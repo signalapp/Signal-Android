@@ -25,6 +25,7 @@ import org.whispersystems.libaxolotl.protocol.WhisperMessage;
 import org.whispersystems.libaxolotl.ratchet.ChainKey;
 import org.whispersystems.libaxolotl.ratchet.MessageKeys;
 import org.whispersystems.libaxolotl.ratchet.RootKey;
+import org.whispersystems.libaxolotl.state.AxolotlStore;
 import org.whispersystems.libaxolotl.state.IdentityKeyStore;
 import org.whispersystems.libaxolotl.state.PreKeyStore;
 import org.whispersystems.libaxolotl.state.SessionRecord;
@@ -37,6 +38,7 @@ import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.security.InvalidAlgorithmParameterException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -87,6 +89,10 @@ public class SessionCipher {
     this.preKeyStore    = preKeyStore;
     this.sessionBuilder = new SessionBuilder(sessionStore, preKeyStore, signedPreKeyStore,
                                              identityKeyStore, recipientId, deviceId);
+  }
+
+  public SessionCipher(AxolotlStore store, long recipientId, int deviceId) {
+    this(store, store, store, store, recipientId, deviceId);
   }
 
   /**
@@ -198,19 +204,28 @@ public class SessionCipher {
       throws DuplicateMessageException, LegacyMessageException, InvalidMessageException
   {
     synchronized (SESSION_LOCK) {
-      SessionState       sessionState   = sessionRecord.getSessionState();
-      List<SessionState> previousStates = sessionRecord.getPreviousSessionStates();
-      List<Exception>    exceptions     = new LinkedList<>();
+      Iterator<SessionState> previousStates = sessionRecord.getPreviousSessionStates().iterator();
+      List<Exception>        exceptions     = new LinkedList<>();
 
       try {
-        return decrypt(sessionState, ciphertext);
+        SessionState sessionState = new SessionState(sessionRecord.getSessionState());
+        byte[]       plaintext    = decrypt(sessionState, ciphertext);
+
+        sessionRecord.setState(sessionState);
+        return plaintext;
       } catch (InvalidMessageException e) {
         exceptions.add(e);
       }
 
-      for (SessionState previousState : previousStates) {
+      while (previousStates.hasNext()) {
         try {
-          return decrypt(previousState, ciphertext);
+          SessionState promotedState = new SessionState(previousStates.next());
+          byte[]       plaintext     = decrypt(promotedState, ciphertext);
+
+          previousStates.remove();
+          sessionRecord.promoteState(promotedState);
+
+          return plaintext;
         } catch (InvalidMessageException e) {
           exceptions.add(e);
         }

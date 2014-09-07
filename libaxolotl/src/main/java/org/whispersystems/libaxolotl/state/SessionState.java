@@ -59,6 +59,10 @@ public class SessionState {
     this.sessionStructure = sessionStructure;
   }
 
+  public SessionState(SessionState copy) {
+    this.sessionStructure = copy.sessionStructure.toBuilder().build();
+  }
+
   public SessionStructure getStructure() {
     return sessionStructure;
   }
@@ -71,16 +75,6 @@ public class SessionState {
     this.sessionStructure = this.sessionStructure.toBuilder()
                                                  .setAliceBaseKey(ByteString.copyFrom(aliceBaseKey))
                                                  .build();
-  }
-
-  public void setNeedsRefresh(boolean needsRefresh) {
-    this.sessionStructure = this.sessionStructure.toBuilder()
-                                                 .setNeedsRefresh(needsRefresh)
-                                                 .build();
-  }
-
-  public boolean getNeedsRefresh() {
-    return this.sessionStructure.getNeedsRefresh();
   }
 
   public void setSessionVersion(int version) {

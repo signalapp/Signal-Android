@@ -35,9 +35,7 @@ public class SessionUtil {
     int          deviceId     = recipientDevice.getDeviceId();
     SessionStore sessionStore = new TextSecureSessionStore(context, masterSecret);
 
-    return
-        sessionStore.containsSession(recipientId, deviceId) &&
-        !sessionStore.loadSession(recipientId, deviceId).getSessionState().getNeedsRefresh();
+    return sessionStore.containsSession(recipientId, deviceId);
   }
 
 }

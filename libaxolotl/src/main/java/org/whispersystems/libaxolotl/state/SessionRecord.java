@@ -15,18 +15,25 @@ import static org.whispersystems.libaxolotl.state.StorageProtos.SessionStructure
  */
 public class SessionRecord {
 
-  private SessionState       sessionState   = new SessionState();
-  private List<SessionState> previousStates = new LinkedList<>();
+  private static final int ARCHIVED_STATES_MAX_LENGTH = 40;
 
-  public SessionRecord() {}
+  private SessionState             sessionState   = new SessionState();
+  private LinkedList<SessionState> previousStates = new LinkedList<>();
+  private boolean                  fresh          = false;
+
+  public SessionRecord() {
+    this.fresh = true;
+  }
 
   public SessionRecord(SessionState sessionState) {
     this.sessionState = sessionState;
+    this.fresh        = false;
   }
 
   public SessionRecord(byte[] serialized) throws IOException {
     RecordStructure record = RecordStructure.parseFrom(serialized);
     this.sessionState = new SessionState(record.getCurrentSession());
+    this.fresh        = false;
 
     for (SessionStructure previousStructure : record.getPreviousSessionsList()) {
       previousStates.add(new SessionState(previousStructure));
@@ -62,14 +69,9 @@ public class SessionRecord {
     return previousStates;
   }
 
-  /**
-   * Reset the current SessionRecord, clearing all "previous" session states,
-   * and resetting the current {@link org.whispersystems.libaxolotl.state.SessionState}
-   * to a fresh state.
-   */
-  public void reset() {
-    this.sessionState   = new SessionState();
-    this.previousStates = new LinkedList<>();
+
+  public boolean isFresh() {
+    return fresh;
   }
 
   /**
@@ -78,8 +80,20 @@ public class SessionRecord {
    * with a fresh reset instance.
    */
   public void archiveCurrentState() {
-    this.previousStates.add(sessionState);
-    this.sessionState = new SessionState();
+    promoteState(new SessionState());
+  }
+
+  public void promoteState(SessionState promotedState) {
+    this.previousStates.addFirst(sessionState);
+    this.sessionState = promotedState;
+
+    if (previousStates.size() > ARCHIVED_STATES_MAX_LENGTH) {
+      previousStates.removeLast();
+    }
+  }
+
+  public void setState(SessionState sessionState) {
+    this.sessionState = sessionState;
   }
 
   /**

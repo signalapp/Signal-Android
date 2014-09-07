@@ -12,6 +12,7 @@ import org.whispersystems.libaxolotl.ratchet.AliceAxolotlParameters;
 import org.whispersystems.libaxolotl.ratchet.BobAxolotlParameters;
 import org.whispersystems.libaxolotl.ratchet.RatchetingSession;
 import org.whispersystems.libaxolotl.ratchet.SymmetricAxolotlParameters;
+import org.whispersystems.libaxolotl.state.AxolotlStore;
 import org.whispersystems.libaxolotl.state.IdentityKeyStore;
 import org.whispersystems.libaxolotl.state.PreKeyBundle;
 import org.whispersystems.libaxolotl.state.PreKeyStore;
@@ -75,6 +76,16 @@ public class SessionBuilder {
   }
 
   /**
+   * Constructs a SessionBuilder
+   * @param store The {@link org.whispersystems.libaxolotl.state.AxolotlStore} to store all state information in.
+   * @param recipientId The recipient ID of the remote user to build a session with.
+   * @param deviceId The device ID of the remote user's physical device.
+   */
+  public SessionBuilder(AxolotlStore store, long recipientId, int deviceId) {
+    this(store, store, store, store, recipientId, deviceId);
+  }
+
+  /**
    * Build a new session from a received {@link org.whispersystems.libaxolotl.protocol.PreKeyWhisperMessage}.
    *
    * After a session is constructed in this way, the embedded {@link org.whispersystems.libaxolotl.protocol.WhisperMessage}
@@ -119,8 +130,7 @@ public class SessionBuilder {
       return Optional.absent();
     }
 
-    boolean   simultaneousInitiate = sessionRecord.getSessionState().hasUnacknowledgedPreKeyMessage();
-    ECKeyPair ourSignedPreKey      = signedPreKeyStore.loadSignedPreKey(message.getSignedPreKeyId()).getKeyPair();
+    ECKeyPair ourSignedPreKey = signedPreKeyStore.loadSignedPreKey(message.getSignedPreKeyId()).getKeyPair();
 
     BobAxolotlParameters.Builder parameters = BobAxolotlParameters.newBuilder();
 
@@ -136,16 +146,13 @@ public class SessionBuilder {
       parameters.setOurOneTimePreKey(Optional.<ECKeyPair>absent());
     }
 
-    if (!simultaneousInitiate) sessionRecord.reset();
-    else                       sessionRecord.archiveCurrentState();
+    if (!sessionRecord.isFresh()) sessionRecord.archiveCurrentState();
 
     RatchetingSession.initializeSession(sessionRecord.getSessionState(), message.getMessageVersion(), parameters.create());
 
     sessionRecord.getSessionState().setLocalRegistrationId(identityKeyStore.getLocalRegistrationId());
     sessionRecord.getSessionState().setRemoteRegistrationId(message.getRegistrationId());
     sessionRecord.getSessionState().setAliceBaseKey(message.getBaseKey().serialize());
-
-    if (simultaneousInitiate) sessionRecord.getSessionState().setNeedsRefresh(true);
 
     if (message.getPreKeyId().isPresent() && message.getPreKeyId().get() != Medium.MAX_VALUE) {
       return message.getPreKeyId();
@@ -168,8 +175,7 @@ public class SessionBuilder {
       return Optional.absent();
     }
 
-    ECKeyPair     ourPreKey            = preKeyStore.loadPreKey(message.getPreKeyId().get()).getKeyPair();
-    boolean       simultaneousInitiate = sessionRecord.getSessionState().hasUnacknowledgedPreKeyMessage();
+    ECKeyPair ourPreKey = preKeyStore.loadPreKey(message.getPreKeyId().get()).getKeyPair();
 
     BobAxolotlParameters.Builder parameters = BobAxolotlParameters.newBuilder();
 
@@ -180,15 +186,13 @@ public class SessionBuilder {
               .setTheirIdentityKey(message.getIdentityKey())
               .setTheirBaseKey(message.getBaseKey());
 
-    if (!simultaneousInitiate) sessionRecord.reset();
-    else                       sessionRecord.archiveCurrentState();
+    if (!sessionRecord.isFresh()) sessionRecord.archiveCurrentState();
 
     RatchetingSession.initializeSession(sessionRecord.getSessionState(), message.getMessageVersion(), parameters.create());
 
     sessionRecord.getSessionState().setLocalRegistrationId(identityKeyStore.getLocalRegistrationId());
     sessionRecord.getSessionState().setRemoteRegistrationId(message.getRegistrationId());
-
-    if (simultaneousInitiate) sessionRecord.getSessionState().setNeedsRefresh(true);
+    sessionRecord.getSessionState().setAliceBaseKey(message.getBaseKey().serialize());
 
     if (message.getPreKeyId().get() != Medium.MAX_VALUE) {
       return message.getPreKeyId();
@@ -227,7 +231,6 @@ public class SessionBuilder {
       }
 
       boolean               supportsV3           = preKey.getSignedPreKey() != null;
-      boolean               isExistingSession    = sessionStore.containsSession(recipientId, deviceId);
       SessionRecord         sessionRecord        = sessionStore.loadSession(recipientId, deviceId);
       ECKeyPair             ourBaseKey           = Curve.generateKeyPair();
       ECPublicKey           theirSignedPreKey    = supportsV3 ? preKey.getSignedPreKey() : preKey.getPreKey();
@@ -244,8 +247,7 @@ public class SessionBuilder {
                 .setTheirRatchetKey(theirSignedPreKey)
                 .setTheirOneTimePreKey(supportsV3 ? theirOneTimePreKey : Optional.<ECPublicKey>absent());
 
-      if (isExistingSession) sessionRecord.archiveCurrentState();
-      else                   sessionRecord.reset();
+      if (!sessionRecord.isFresh()) sessionRecord.archiveCurrentState();
 
       RatchetingSession.initializeSession(sessionRecord.getSessionState(),
                                           supportsV3 ? 3 : 2,
@@ -254,6 +256,7 @@ public class SessionBuilder {
       sessionRecord.getSessionState().setUnacknowledgedPreKeyMessage(theirOneTimePreKeyId, preKey.getSignedPreKeyId(), ourBaseKey.getPublicKey());
       sessionRecord.getSessionState().setLocalRegistrationId(identityKeyStore.getLocalRegistrationId());
       sessionRecord.getSessionState().setRemoteRegistrationId(preKey.getRegistrationId());
+      sessionRecord.getSessionState().setAliceBaseKey(ourBaseKey.getPublicKey().serialize());
 
       sessionStore.storeSession(recipientId, deviceId, sessionRecord);
       identityKeyStore.saveIdentity(recipientId, preKey.getIdentityKey());
@@ -316,7 +319,7 @@ public class SessionBuilder {
 
     SymmetricAxolotlParameters parameters = builder.create();
 
-    sessionRecord.reset();
+    if (!sessionRecord.isFresh()) sessionRecord.archiveCurrentState();
 
     RatchetingSession.initializeSession(sessionRecord.getSessionState(),
                                         Math.min(message.getMaxVersion(), CiphertextMessage.CURRENT_VERSION),
@@ -358,7 +361,7 @@ public class SessionBuilder {
               .setTheirRatchetKey(message.getRatchetKey())
               .setTheirIdentityKey(message.getIdentityKey());
 
-    sessionRecord.reset();
+    if (!sessionRecord.isFresh()) sessionRecord.archiveCurrentState();
 
     RatchetingSession.initializeSession(sessionRecord.getSessionState(),
                                         Math.min(message.getMaxVersion(), CiphertextMessage.CURRENT_VERSION),

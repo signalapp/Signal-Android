@@ -18,6 +18,7 @@ import org.whispersystems.libaxolotl.protocol.WhisperMessage;
 import org.whispersystems.libaxolotl.ratchet.AliceAxolotlParameters;
 import org.whispersystems.libaxolotl.ratchet.BobAxolotlParameters;
 import org.whispersystems.libaxolotl.ratchet.RatchetingSession;
+import org.whispersystems.libaxolotl.state.AxolotlStore;
 import org.whispersystems.libaxolotl.state.IdentityKeyStore;
 import org.whispersystems.libaxolotl.state.PreKeyStore;
 import org.whispersystems.libaxolotl.state.SessionRecord;
@@ -60,20 +61,14 @@ public class SessionCipherTest extends AndroidTestCase {
 
   private void runInteraction(SessionRecord aliceSessionRecord, SessionRecord bobSessionRecord)
       throws DuplicateMessageException, LegacyMessageException, InvalidMessageException, NoSuchAlgorithmException, NoSessionException {
-    SessionStore      aliceSessionStore      = new InMemorySessionStore();
-    PreKeyStore       alicePreKeyStore       = new InMemoryPreKeyStore();
-    SignedPreKeyStore aliceSignedPreKeyStore = new InMemorySignedPreKeyStore();
-    IdentityKeyStore  aliceIdentityKeyStore  = new InMemoryIdentityKeyStore();
-    SessionStore      bobSessionStore        = new InMemorySessionStore();
-    PreKeyStore       bobPreKeyStore         = new InMemoryPreKeyStore();
-    SignedPreKeyStore bobSignedPreKeyStore   = new InMemorySignedPreKeyStore();
-    IdentityKeyStore  bobIdentityKeyStore    = new InMemoryIdentityKeyStore();
+    AxolotlStore aliceStore = new InMemoryAxolotlStore();
+    AxolotlStore bobStore   = new InMemoryAxolotlStore();
 
-    aliceSessionStore.storeSession(2L, 1, aliceSessionRecord);
-    bobSessionStore.storeSession(3L, 1, bobSessionRecord);
+    aliceStore.storeSession(2L, 1, aliceSessionRecord);
+    bobStore.storeSession(3L, 1, bobSessionRecord);
 
-    SessionCipher     aliceCipher    = new SessionCipher(aliceSessionStore, alicePreKeyStore, aliceSignedPreKeyStore, aliceIdentityKeyStore, 2L, 1);
-    SessionCipher     bobCipher      = new SessionCipher(bobSessionStore, bobPreKeyStore, bobSignedPreKeyStore, bobIdentityKeyStore, 3L, 1);
+    SessionCipher     aliceCipher    = new SessionCipher(aliceStore, 2L, 1);
+    SessionCipher     bobCipher      = new SessionCipher(bobStore, 3L, 1);
 
     byte[]            alicePlaintext = "This is a plaintext message.".getBytes();
     CiphertextMessage message        = aliceCipher.encrypt(alicePlaintext);
