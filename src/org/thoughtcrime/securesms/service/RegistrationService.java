@@ -180,7 +180,7 @@ public class RegistrationService extends Service {
     int          registrationId = TextSecurePreferences.getLocalRegistrationId(this);
 
     if (registrationId == 0) {
-      registrationId = KeyHelper.generateRegistrationId();
+      registrationId = KeyHelper.generateRegistrationId(false);
       TextSecurePreferences.setLocalRegistrationId(this, registrationId);
     }
 
