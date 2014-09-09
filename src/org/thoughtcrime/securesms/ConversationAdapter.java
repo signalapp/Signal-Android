@@ -16,12 +16,16 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.OvershootInterpolator;
 import android.widget.AbsListView;
 import android.support.v4.widget.CursorAdapter;
 
@@ -35,7 +39,9 @@ import org.thoughtcrime.securesms.util.LRUCache;
 
 import java.lang.ref.SoftReference;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * A cursor adapter for a conversation thread.  Ultimately
@@ -55,12 +61,29 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
   public static final int MESSAGE_TYPE_INCOMING = 1;
   public static final int MESSAGE_TYPE_GROUP_ACTION = 2;
 
+  /**
+   * The minimum SDK version for animation support. ICS is required for the >= Honeycomb animation
+   * framework and View.animate() helper.
+   */
+  public static final int ANIMATION_TARGET_API = Build.VERSION_CODES.ICE_CREAM_SANDWICH;
+  public static final boolean ANIMATION_SUPPORTED = Build.VERSION.SDK_INT >= ANIMATION_TARGET_API;
+  public static final int ANIMATION_START_DELAY = 500;
+  public static final int ANIMATION_DURATION = 250;
+  public static final float ANIMATION_OVERSHOOT_AMOUNT = 1.1f;
+
   private final Handler failedIconClickHandler;
+  /**
+   * A handler for posting view animations. Used to let the view layout and measure itself.
+   */
+  private final Handler animationHandler = new Handler();
   private final Context context;
   private final MasterSecret masterSecret;
   private final boolean groupThread;
   private final boolean pushDestination;
   private final LayoutInflater inflater;
+  private boolean animateNext = false;
+  private final Set<Long> seenRows = new HashSet<Long>();
+  private final Set<Long> animatingRows = new HashSet<Long>();
 
   public ConversationAdapter(Context context, MasterSecret masterSecret,
                              Handler failedIconClickHandler, boolean groupThread, boolean pushDestination)
@@ -82,6 +105,16 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
     MessageRecord messageRecord = getMessageRecord(id, cursor, type);
 
     item.set(masterSecret, messageRecord, failedIconClickHandler, groupThread, pushDestination);
+
+    if (animateNext && !seenRows.contains(id)) {
+      animatingRows.add(id);
+      queueAnimationForView(view);
+      animateNext = false;
+    } else if (!animatingRows.contains(id)) {
+      cancelAnimationForView(view);
+    }
+
+    seenRows.add(id);
   }
 
   @Override
@@ -128,6 +161,46 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
     else                                    return MESSAGE_TYPE_INCOMING;
   }
 
+  @TargetApi(ANIMATION_TARGET_API)
+  private void cancelAnimationForView(View view) {
+    if (ANIMATION_SUPPORTED) {
+      view.setScaleX(1.f);
+      view.setScaleY(1.f);
+      view.animate().cancel();
+    }
+  }
+
+  @TargetApi(ANIMATION_TARGET_API)
+  private void queueAnimationForView(final View view) {
+    if (ANIMATION_SUPPORTED) {
+      view.setScaleX(0.f);
+      view.setScaleY(0.f);
+
+      animationHandler.post(new Runnable() {
+        @Override
+        public void run() {
+          startAnimationForView(view);
+        }
+      });
+    }
+  }
+
+  @TargetApi(ANIMATION_TARGET_API)
+  private void startAnimationForView(final View view) {
+    if (ANIMATION_SUPPORTED) {
+      view.setPivotX(view.getWidth());
+      view.setPivotY(view.getHeight());
+
+      view.animate()
+        .scaleX(1.f)
+        .scaleY(1.f)
+        .setStartDelay(ANIMATION_START_DELAY)
+        .setDuration(ANIMATION_DURATION)
+        .setInterpolator(new OvershootInterpolator(ANIMATION_OVERSHOOT_AMOUNT))
+        .start();
+    }
+  }
+
   private MessageRecord getMessageRecord(long messageId, Cursor cursor, String type) {
     SoftReference<MessageRecord> reference = messageRecordCache.get(type + messageId);
 
@@ -156,6 +229,13 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
 
   public void close() {
     this.getCursor().close();
+  }
+
+  /**
+   * Requests the adapter for an animation on the next row's appearance.
+   */
+  public void animateNext() {
+    this.animateNext = true;
   }
 
   @Override
