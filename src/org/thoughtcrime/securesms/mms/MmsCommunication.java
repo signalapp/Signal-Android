@@ -44,6 +44,8 @@ import java.util.List;
 public class MmsCommunication {
   private static final String TAG = "MmsCommunication";
 
+  public static final int MAX_REDIRECTS = 10;
+
   protected static MmsConnectionParameters getLocallyConfiguredMmsConnectionParameters(Context context)
       throws ApnUnavailableException
   {
@@ -180,7 +182,7 @@ public class MmsCommunication {
       urlConnection = (HttpURLConnection) url.openConnection();
     }
 
-    urlConnection.setInstanceFollowRedirects(true);
+    urlConnection.setInstanceFollowRedirects(false);
     urlConnection.setConnectTimeout(20*1000);
     urlConnection.setReadTimeout(20*1000);
     urlConnection.setUseCaches(false);

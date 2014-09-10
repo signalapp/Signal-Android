@@ -18,12 +18,15 @@ package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
 import android.net.Uri;
+import android.text.TextUtils;
 import android.util.Log;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 import ws.com.google.android.mms.pdu.PduParser;
 import ws.com.google.android.mms.pdu.RetrieveConf;
@@ -36,29 +39,45 @@ public class MmsDownloadHelper extends MmsCommunication {
   {
     HttpURLConnection client = null;
 
-    try {
-      client = constructHttpClient(url, proxy, proxyPort);
-
-      client.setDoInput(true);
-      client.setRequestMethod("GET");
-      client.setRequestProperty("Accept", "*/*, application/vnd.wap.mms-message, application/vnd.wap.sic");
-
-      Log.w(TAG, "Connecting to " + url);
-      client.connect();
-
-      final InputStream is           = client.getInputStream();
-      final int         responseCode = client.getResponseCode();
-
-      Log.w(TAG, "Response code: " + responseCode + "/" + client.getResponseMessage());
-
-      if (responseCode != 200) {
-        throw new IOException("non-200 response");
+    int redirects = MAX_REDIRECTS;
+    final Set<String> previousUrls = new HashSet<String>();
+    String currentUrl = url;
+    while (redirects-- > 0) {
+      if (previousUrls.contains(currentUrl)) {
+        throw new IOException("redirect loop detected");
       }
+      try {
+        client = constructHttpClient(currentUrl, proxy, proxyPort);
 
-      return parseResponse(is);
-    } finally {
-      if (client != null) client.disconnect();
+        client.setDoInput(true);
+        client.setRequestMethod("GET");
+        client.setRequestProperty("Accept", "*/*, application/vnd.wap.mms-message, application/vnd.wap.sic");
+
+        Log.w(TAG, "connecting to " + currentUrl);
+        client.connect();
+
+        int responseCode = client.getResponseCode();
+        Log.w(TAG, "* response code: " + responseCode + "/" + client.getResponseMessage());
+
+        if (responseCode == 301 || responseCode == 302) {
+          final String redirectUrl = client.getHeaderField("Location");
+          Log.w(TAG, "* Location: " + redirectUrl);
+          if (TextUtils.isEmpty(redirectUrl)) {
+            throw new IOException("Got redirect response code, but Location header was empty or missing");
+          }
+          previousUrls.add(currentUrl);
+          currentUrl = redirectUrl;
+        } else if (responseCode == 200) {
+          final InputStream is = client.getInputStream();
+          return parseResponse(is);
+        } else {
+          throw new IOException("unhandled response code");
+        }
+      } finally {
+        if (client != null) client.disconnect();
+      }
     }
+    throw new IOException("max redirects hit");
   }
 
   public static boolean isMmsConnectionParametersAvailable(Context context, String apn) {
