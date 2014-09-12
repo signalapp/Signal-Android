@@ -124,24 +124,4 @@
     <item>3000,3000</item>
     <item>custom</item>
   </string-array>
-
-  <string-array name="navigation_drawer_text">
-    <item>@string/arrays__import_export</item>
-    <item>@string/arrays__my_identity_key</item>
-  </string-array>
-
-  <string-array name="navigation_drawer_values" translatable="false">
-    <item>import_export</item>
-    <item>my_identity_key</item>
-  </string-array>
-
-  <string-array name="navigation_drawer_icons_light">
-    <item>@drawable/import_export_light</item>
-    <item>@drawable/my_identity_light</item>
-  </string-array>
-
-  <string-array name="navigation_drawer_icons_dark">
-    <item>@drawable/import_export_dark</item>
-    <item>@drawable/my_identity_dark</item>
-  </string-array>
 </resources>

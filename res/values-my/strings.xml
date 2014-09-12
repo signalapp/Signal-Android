@@ -20,33 +20,24 @@
   <string name="ConversationItem_message_size_d_kb">စာတိုအရွယ်အစား: %d KB</string>
   <string name="ConversationItem_expires_s">သက်တမ်းကုန်: %s</string>
   <string name="ConversationItem_error_sending_message">မှာကြားချက်ပို့ခြင်းအမှား</string>
-  <string name="ConversationItem_saving_attachment">ပူးတွဲပါအရာအားသိမ်းဆည်းနေ</string>
-  <string name="ConversationItem_saving_attachment_to_sd_card">ပူးတွဲပါအား SD ကဒ်သို့သိမ်းဆည်းနေ...</string>
-  <string name="ConversationItem_save_to_sd_card">SD ကဒ်သို့သိမ်းမည်လား</string>
-  <string name="ConversationItem_error_while_saving_attachment_to_sd_card">ပူးတွဲမှုအား SDကဒ်သို့ သိမ်းဆည်းနေစဉ်အမှားပေါ်ပေါက်</string>
-  <string name="ConversationItem_success_exclamation">အောင်မြင်!</string>
-  <string name="ConversationItem_unable_to_write_to_sd_card_exclamation">SDကဒ်သို့ ရေးမှတ်ခြင်းမပြုနိုင်</string>
   <string name="ConversationItem_view_secure_media_question">လံုခြုံသောမီဒီယာကိုကြည့်မည်လား</string>
   <string name="ConversationItem_received_and_processed_key_exchange_message">ရရှိလာသော ကီးအလဲအလှယ်စာသားများကို ဆောင်ရွက်ပြီးပါပြီ။</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">ပြဿနာ၊ ရရှိလာတဲ့ ကီးအလဲအလှယ်စာသား လွဲနေပါသည်။</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_initiate_secure_session_question">လံုခြုံသောဆက်ရှင်အစပြုမည်လား</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">%s ဖြင့်လံုခြုံသောဆက်ရှင်အစပြုမည်လား?</string>
-  <string name="ConversationActivity_delete_thread_confirmation">စကားဝိုင်းဖျက်သိမ်းမှုအတည်ပြုချက်</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">စကားစမြည်ပြောထားခြင်းကို အပြီးဖျက်မှာသေချာပြီလား</string>
   <string name="ConversationActivity_add_attachment">ပူးတွဲမှုအားပေါင်းထည့်</string>
-  <string name="ConversationActivity_compose_message">စာတိုရေးဖွဲ့</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">ပူးတွဲပါဖိုင်တွင် ဆက်တင်အမှားရှိ.</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">ရွေးထားသော ဗွီဒီယိုသည် ကန့်သတ်ထားသော အရွယ်ကျော်နေ</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">ရွေးထားသော အသံဖိုင်သည် ကန့်သတ်ထားသော အရွယ်ကျော်နေ</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">လက်ခံသူသည်　မှန်ကန်သော SMS(သို့)အီးမေးလိပ်စာ　မဟုတ်</string>
   <string name="ConversationActivity_message_is_empty_exclamation">စာတိုမရှိ</string>
-  <string name="ConversationActivity_group_conversation_recipients">အစုအဖွဲ့ဖြင့်စကားစမြည်ပြောခြင်းလက်ခံသူများ</string>
-  <string name="ConversationActivity_group_conversation">အစုအဖွဲ့ဖြင့်စကားစမြည်ပြောခြင်း</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">စာတို အသေးစိတ်အချက်အလက်များ</string>
-  <string name="ConversationFragment_confirm_message_delete">စာတိုဖျက်ခြင်းကိုအတည်ပြု</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">စာတိုကို အပြီးဖျက်ပစ်မည်မှာ သေချာလား</string>
+  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">ပူးတွဲမှုအား SDကဒ်သို့ သိမ်းဆည်းနေစဉ်အမှားပေါ်ပေါက်</string>
+  <string name="ConversationFragment_success_exclamation">အောင်မြင်!</string>
+  <string name="ConversationFragment_saving_attachment_to_sd_card">ပူးတွဲပါအား SD ကဒ်သို့သိမ်းဆည်းနေ...</string>
   <!--ConversationListAdapter-->
   <string name="ConversationListAdapter_key_exchange_message">ကီးပြောင်းလဲခြင်းစာတို...</string>
   <!--ConversationListFragment-->
@@ -58,9 +49,14 @@
   <string name="ConversationListItem_key_exchange_message">ကီးပြောင်းလဲခြင်းစာတို...</string>
   <!--ShareActivity-->
   <!--ExportFragment-->
+  <string name="ExportFragment_export">ထုတ်ယူ</string>
   <string name="ExportFragment_success">အောင်မြင်!</string>
   <!--GroupCreateActivity-->
+  <!--ImportExportActivity-->
+  <string name="ImportExportActivity_import">သွင်းယူ</string>
+  <string name="ImportExportActivity_export">ထုတ်ယူ</string>
   <!--ImportFragment-->
+  <string name="ImportFragment_import">သွင်းယူ</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">စိစစ်ထားသောကီးရှာမတွေ့</string>
   <!--MmsDownloader-->
@@ -68,17 +64,12 @@
   <string name="MmsDownloader_error_storing_mms">MMS အားသိမ်းဆည်းခြင်းအမှား</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">MMS ထောက်ပံ့သူသို့ဆက်သွယ်ခြင်းအမှား...</string>
   <!--NotificationMmsMessageRecord-->
+  <!--MessageRecord-->
   <!--PassphraseChangeActivity-->
-  <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">စကားဝှက်များ ကိုက်ညီမှုမရှိ</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">စကားဝှက်အဟောင်းမမှန်ကန်</string>
-  <!--PassphraseCreateActivity-->
-  <string name="PassphraseCreateActivity_passphrases_dont_match">စကားဝှက်များ ကိုက်ညီမှုမရှိ</string>
-  <string name="PassphraseCreateActivity_you_must_specify_a_password">စကားဝှက်သတ်မှတ်ရန်လိုအပ်</string>
   <!--PassphrasePromptActivity-->
-  <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">စကားဝှက်မမှန်ကန်</string>
   <!--PromptMmsActivity-->
   <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">သင်၏　carrier အတွက်　MMSC URL　သတ်မှတ်သင့်</string>
-  <string name="PromptMmsActivity_mms_settings_updated">MMS ဆက်တင် အဆင့်မြှင့်ပြီး</string>
   <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">သင်သည်　ဤတန်ဖိုးတွေကို　စာသာလံုခြုံမှု　ဆက်တင်မီနူးမှနေ၍　အချိန်မရွေး　ပြင်ဆင်နိုင်</string>
   <!--ReceiveKeyActivity-->
   <!--RegistrationActivity-->
@@ -103,7 +94,6 @@
   <string name="VerifyKeysActivity_get_my_fingerprint_scanned">ကျွန်တော့်လက်ဗွေရာကို ဖတ်ရှုရန်</string>
   <string name="VerifyKeysActivity_scan_their_fingerprint">၎င်းတို့ လက်ဗွေရာကို ဖတ်ရှုရန်</string>
   <string name="VerifyKeysActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully2">သတိပေးချက်၊　စစ်ဆေးလိုက်သောကီးသည်　တူညီမှုမရှိ၊　ကျေးဇူးပြု၍　လက်ဗွေစာသားကို　ဂရုတစိုက်စစ်ပါ</string>
-  <string name="VerifyKeysActivity_not_verified_exclamation">မစိစစ်ရသေး</string>
   <string name="VerifyKeysActivity_their_key_is_correct_it_is_also_necessary_to_get_your_fingerprint_scanned_as_well">၎င်း၏ ကီးမှန်ပါသည်။ အသင့်၏ လက်ဗွေရာကို ဖတ်ရန်လည်း လိုအပ်ပါသည်။</string>
   <string name="VerifyKeysActivity_verified_exclamation">အတည်ပြုပြီး</string>
   <!--ViewIdentityActivity-->
@@ -111,11 +101,9 @@
   <string name="ViewIdentityActivity_scan_to_compare">နှိုင်ယှဉ်ရန် ဖတ်ပါ</string>
   <string name="ViewIdentityActivity_get_scanned_to_compare">နှိုင်းယှဉ်ရန် အဖတ်ခံပါ</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">သတိပေးချက်၊ ဖတ်ထားသည့် ကီးများ မကိုက်ညီပါ။</string>
-  <string name="ViewIdentityActivity_not_verified_exclamation">မစိစစ်ရသေး</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">ဖတ်ထားသည့်ကီးများ ကိုက်ပါသည်။</string>
   <string name="ViewIdentityActivity_verified_exclamation">အတည်ပြုပြီး</string>
   <!--KeyExchangeInitiator-->
-  <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">နဂိုတောင်းဆိုချက် ရှိနှင့်ပြီးဖြစ်သော်လည်း ထပ်စမှလား</string>
   <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">ဒီအဆက်အသွယ်ထံ ဆက်ရှင်စရန် တောင်းဆိုချက် ပို့ထားပြီးသားဖြစ်သည်။ ထပ်မံပို့မှာ သေချာလား။ ထပ်ပို့ပါက ယခင်ပို့ထားသော တောင်းဆိုချက်ကို ပယ်ဖျက်မည်ဖြစ်သည်</string>
   <string name="KeyExchangeInitiator_send">ပို့</string>
   <!--MessageDisplayHelper-->
@@ -125,7 +113,6 @@
   <!--MmsDatabase-->
   <string name="MmsDatabase_connecting_to_mms_server">MMS　ဆာဗာသို့ချိတ်ဆက်နေသည်...</string>
   <string name="MmsDatabase_downloading_mms">MMS အားကူးဆွဲနေသည်...</string>
-  <string name="MmsDatabase_mms_download_failed">MMSကူးဆွဲခြင်း မအောင်မြင်!</string>
   <string name="MmsDatabase_downloading">ကူးဆွဲနေသည်...</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">MMSမှဝှက်စာ ဖော်နေသည်၊ ခေတ္တစောင့်ပါ...</string>
@@ -134,13 +121,11 @@
   <!--MmsSender-->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">သွင်းယူနေ</string>
-  <string name="ApplicationMigrationService_importing_text_messages">စာသားစာတိုများသွင်းယူနေ</string>
   <!--KeyCachingService-->
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">စာတိုအသစ် %d</string>
   <string name="MessageNotifier_most_recent_from_s">မကြာသေးမီက: %s</string>
   <string name="MessageNotifier_encrypted_message">စာဝှက်စနစ်ဖြင့်　အကြောင်းကြားချက်...</string>
-  <string name="MessageNotifier_no_subject">(အကြောင်းအရာမရှိ)</string>
   <string name="MessageNotifier_message_delivery_failed">အကြောင်းကြားချက်ပို့လွတ်ခြင်းမအောင်မြင်</string>
   <string name="MessageNotifier_failed_to_deliver_message">အကြောင်းကြားချက်ပို့လွတ်ရန်မအောင်မြင်</string>
   <string name="MessageNotifier_error_delivering_message">အကြောင်းကြားချက်ပို့လွတ်စဉ်အမှား</string>
@@ -151,7 +136,6 @@
   <!--QuickResponseService-->
   <!--auto_initiate_activity-->
   <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Textsecure ဝှက်စာပို့စနစ်ကို သုံးသည့်သူတစ်ဦးထံမှ စာလက်ခံရရှိလာပါတယ်။ လုံခြုံမှုရှိသော ဆက်ရှင်တစ်ခု စမည်လား။</string>
-  <string name="auto_initiate_activity__initiate_exchange">ပြောင်းလဲခြင်းအစပြု</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">စကားဝှက်အဟောင်း:</string>
   <string name="change_passphrase_activity__new_passphrase">စကားဝှက်အသစ်:</string>
@@ -175,7 +159,6 @@
   <string name="conversation_item_received__download">ကူးဆွဲ</string>
   <string name="conversation_item_received__downloading">ကူးဆွဲနေသည်</string>
   <!--conversation_fragment_cab-->
-  <string name="conversation_fragment_cab__batch_selection_mode">အုပ်လိုက်ရွေးရန်</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__search">ရှာရန်</string>
   <!--create_passphrase_activity-->
@@ -222,31 +205,16 @@
   <string name="verify_keys_activity__they_read_this">သူများဖတ်သည်</string>
   <string name="verify_keys_activity__you_read_this">အသင် ဖတ်သည်</string>
   <!--AndroidManifest.xml-->
-  <string name="AndroidManifest__create_passphrase">စကားဝှက်ဖန်တီး</string>
-  <string name="AndroidManifest__enter_passphrase">စကားဝှက်ထည့်သွင်း</string>
-  <string name="AndroidManifest__select_contacts">အဆက်အသွယ်များရွေးချယ်</string>
-  <string name="AndroidManifest__textsecure_detected">စာသားလံုခြုံမှု သိရှိ</string>
-  <string name="AndroidManifest__public_identity_key">အများဆိုင်အသိအမှတ်ပြုကီး</string>
-  <string name="AndroidManifest__change_passphrase">စကားဝှက်ပြောင်း</string>
-  <string name="AndroidManifest__verify_session">ဆက်ရှင်အတည်ပြု</string>
-  <string name="AndroidManifest__verify_identity">အသိအမှတ်ပြုခြင်း　အတည်ပြု</string>
-  <string name="AndroidManifest__manage_identity_keys">အသိအမှတ်ပြုထားသောကီးများစီမန်ခန့်ခွဲ</string>
-  <string name="AndroidManifest__complete_key_exchange">ကီးများပြောင်းလဲခြင်းပြီးဆုံးပါပြီ</string>
   <!--arrays.xml-->
   <!--preferences.xml-->
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">textsecure ကိုဝင်လာသောစာတိုများကိုကြည့်ရန်/သိမ်းရန်အတွက်သုံးပါ</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">textsecure ကိုဝင်လာသောမာတီမီဒီယာစာတိုများကိုကြည့်ရန်/သိမ်းရန်အတွက်သုံးပါ</string>
   <string name="preferences__input_settings">ကီးဘုတ်ပုံစံသတ်မှတ်ချက်များ</string>
-  <string name="preferences__pref_enter_sends_title">ပို့ရန်ကိုနှိပ်ပါ</string>
-  <string name="preferences__pressing_the_enter_key_will_send_text_messages">Enter နှိပ်လျှင် စာသားများကို ပို့ပါမည်</string>
-  <string name="preferences__display_settings">သတ်မှတ်ချက်များကိုပြပါ</string>
-  <string name="preferences__choose_identity">ကိုယ်စားလှယ်ရွေးချယ်ပါ</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">အဆက်အသွယ်ကို အဆက်အသွယ်စာရင်းမှ ရွေးယူပါ</string>
   <string name="preferences__change_my_passphrase">ကျွန်ုပ်စကားဝှက်ကိုပြောင်းပါ</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">ဆက်ရှင်အသစ်အတွက်(သို့)ကိုယ်စားပြုကီးတူညီသောလက်ရှိဆက်ရှင်အတွက် ကီးပြောင်းလဲမှုကိုအလိုလျှောက်လုပ်ဆောင်ပါ</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">အချိန်တစ်ခုကြာပြီးနောက်မန်မိုရီပေါ်မှဝှက်စာကိုမေ့ပစ်ပါ</string>
   <string name="preferences__timeout_passphrase">စကားဝှက် အချိန်လွန်</string>
-  <string name="preferences__pref_timeout_interval_dialogtitle">စကားဝှက်မှတ်ထားမည့်အချိန်ရွေးချယ်ပါ</string>
   <string name="preferences__pref_timeout_interval_title">ကြားချိန်</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">မန်မိုရီပေါ်မှစကားဝှက်ပျောက်မသွားခင်စောင့်ရမည့်ကြာချိန်</string>
   <string name="preferences__view_my_identity_key">ကိုယ်စားပြုကီးကိုပြပါ</string>
@@ -282,13 +250,10 @@
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
-  <string name="contact_selection_list__menu_select_all">အားလုံးကိုရွေးချယ်ပါ</string>
-  <string name="contact_selection_list__menu_unselect_all">အားလုံးကိုမရွေးချယ်ပါနှင့်</string>
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">ပြီးပါပြီ</string>
   <!--refreshing push directory from menu-->
   <!--conversation_button_context-->
-  <string name="conversation_button_context__menu_send_unencrypted">ဝှက်စာမလုပ်ပဲပို့ပါ</string>
   <!--conversation_callable-->
   <string name="conversation_callable__menu_call">ခေါ်ရန်</string>
   <!--conversation_context-->
@@ -296,16 +261,13 @@
   <string name="conversation_context__menu_copy_text">စာသားကူးရန်</string>
   <string name="conversation_context__menu_delete_message">စာတိုဖျက်ရန်</string>
   <string name="conversation_context__menu_forward_message">စာတိုဆက်ပို့ရန်</string>
+  <!--conversation_context_image-->
   <!--conversation_insecure-->
-  <string name="conversation_insecure__menu_start_secure_session">လုံခြုံသောဆက်ရှင် စပါ</string>
   <!--conversation_list_batch-->
-  <string name="conversation_list_batch__menu_delete_selected">ရွေးထားသည်များကိုဖျတ်ပါ</string>
-  <string name="conversation_list_batch__menu_select_all">အားလုံးကိုရွေးချယ်ပါ</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">ရှာရန်</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">လုံခြုံရေး</string>
-  <string name="conversation_secure_verified__menu_verify_identity">အသိအမှတ်ပြုခြင်း　အတည်ပြု</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">ပူးတွဲမှုအားပေါင်းထည့်</string>
   <string name="conversation__menu_delete_thread">စာတွဲကိုဖျက်ပါ</string>
@@ -318,9 +280,9 @@
   <!--text_secure_locked-->
   <string name="text_secure_locked__menu_unlock">ပိတ်ထားသည်ကိုဖွင့်</string>
   <!--text_secure_normal-->
-  <string name="text_secure_normal__menu_new_message">စာတိုအသစ်</string>
   <string name="text_secure_normal__menu_settings">ဆက်တင်</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">စစ်ဆေးပြီး</string>
+  <!--reminder_header-->
   <!--EOF-->
 </resources>

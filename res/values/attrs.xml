@@ -52,10 +52,7 @@
     <attr name="contact_selection_label_text" format="reference|color" />
     <attr name="conversation_selection_header_text" format="reference|color" />
 
-    <attr name="navigation_drawer_background" format="reference|color"/>
-    <attr name="navigation_drawer_text_color" format="color"/>
-    <attr name="navigation_drawer_icons" format="reference"/>
-    <attr name="navigation_drawer_shadow" format="reference"/>
+    <attr name="reminder_header_background" format="color"/>
 
     <attr name="menu_new_conversation_icon" format="reference" />
     <attr name="menu_new_group_icon" format="reference" />

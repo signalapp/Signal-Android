@@ -34,13 +34,6 @@
   <string name="ConversationItem_message_size_d_kb">Mida del missatge: %d KB</string>
   <string name="ConversationItem_expires_s">Expira: %s</string>
   <string name="ConversationItem_error_sending_message">Error enviant el missatge</string>
-  <string name="ConversationItem_saving_attachment">Desant Adjunt</string>
-  <string name="ConversationItem_saving_attachment_to_sd_card">Desant l\'adjunt a la targeta SD...</string>
-  <string name="ConversationItem_save_to_sd_card">Desar a la targeta SD?</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_warning">Aquest contingut ha estat emmagatzemant en una base de dades encriptada. La versió que desis a la targeta SD ja no estarà encriptada. Vols continuar?</string>
-  <string name="ConversationItem_error_while_saving_attachment_to_sd_card">Error mentre es desava l\'adjunt a la targeta SD!</string>
-  <string name="ConversationItem_success_exclamation">Èxit!</string>
-  <string name="ConversationItem_unable_to_write_to_sd_card_exclamation">No s\'ha pogut escriure a la targeta SD!</string>
   <string name="ConversationItem_view_secure_media_question">Vols veure continguts segurs?</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Aquest contingut ha estat emmagatzemant en una base de dades encriptada. Desafortunadament, actualment per veure\'l amb un visor de continguts externs les dades han de ser temporalment desencriptades i escrites al disc. Estàs segur que vols fer això?</string>
   <string name="ConversationItem_received_and_processed_key_exchange_message">Missatge d\'intercanvi de clau rebut i processat.</string>
@@ -51,27 +44,19 @@
   <string name="ConversationItem_group_action_joined">%1$s s\'ha unit al grup.</string>
   <string name="ConversationItem_group_action_modify">%1$s ha actualitzat el grup.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_initiate_secure_session_question">Iniciar una sessió segura?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Iniciar una sessió segura amb %s?</string>
-  <string name="ConversationActivity_abort_secure_session_confirmation">Confirmació de final de sessió segura</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Estàs segur que vols finalitzar aquesta sessió segura?</string>
-  <string name="ConversationActivity_delete_thread_confirmation">Confirmació d\'esborrat de fil de conversa</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Estàs segur que vols esborrar permanentment aquesta conversa?</string>
   <string name="ConversationActivity_add_attachment">Afegeix un adjunt</string>
   <string name="ConversationActivity_select_contact_info">Selecciona info del contacte</string>
-  <string name="ConversationActivity_compose_message">Escriu un Missatge</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Ho sento, hi ha hagut un error establint el teu adjunt.</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Ho sento, el vídeo seleccionat excedeix els límits de mida del missatge.</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Ho sento, el clip de so seleccionat excedeix els límits de mida del missatge.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">El recipient no és una adreça de correu electrònic o SMS vàlid!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">El missatge és buit!</string>
-  <string name="ConversationActivity_group_conversation_recipients">Recipients de converses de grup</string>
-  <string name="ConversationActivity_group_conversation">Conversa de grup</string>
-  <string name="ConversationActivity_unnamed_group">Grup Sensenom</string>
   <string name="ConversationActivity_d_recipients_in_group">%d membres</string>
   <string name="ConversationActivity_d_recipients_in_group_singular">1 membre</string>
   <string name="ConversationActivity_invalid_recipient">Destinatari invàlid!</string>
-  <string name="ConversationActivity_calls_not_supported">Trucades no suportades</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Aquest dispositiu no sembla suportar accions de trucada.</string>
   <string name="ConversationActivity_leave_group">Deixar el grup?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Estàs segur que vols deixar aquest grup?</string>
@@ -79,8 +64,11 @@
   <string name="ConversationFragment_message_details">Detalls del missatge</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nEnviat/Rebut:%2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Remitent: %1$s\nTransport: %2$s\nEnviat: %3$s\nRebut:%4$s</string>
-  <string name="ConversationFragment_confirm_message_delete">Confirma l\'esborrat del missatge</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Estàs segur que vols esborrar permanentment aquest missatge?</string>
+  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Aquest contingut ha estat emmagatzemant en una base de dades encriptada. La versió que desis a la targeta SD ja no estarà encriptada. Vols continuar?</string>
+  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Error mentre es desava l\'adjunt a la targeta SD!</string>
+  <string name="ConversationFragment_success_exclamation">Èxit!</string>
+  <string name="ConversationFragment_saving_attachment_to_sd_card">Desant l\'adjunt a la targeta SD...</string>
   <!--ConversationListAdapter-->
   <string name="ConversationListAdapter_key_exchange_message">Missatge d\'intercanvi de clau...</string>
   <!--ConversationListFragment-->
@@ -92,10 +80,8 @@
   <string name="ConversationListItem_key_exchange_message">Missatge d\'intercanvi de clau...</string>
   <!--ShareActivity-->
   <!--ExportFragment-->
-  <string name="ExportFragment_export_to_sd_card">Exportar a la targeta SD?</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Això exportarà les teves claus encriptades, ajustaments, i missatges a la targeta SD.</string>
   <string name="ExportFragment_export">Exporta</string>
-  <string name="ExportFragment_export_plaintext_to_sd_card">Exportar text pla a la targeta SD?</string>
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Alerta, això exportarà els continguts de text pla dels teus missatges TextSecure a la targeta SD.</string>
   <string name="ExportFragment_cancel">Cancel·la</string>
   <string name="ExportFragment_exporting">Exportant</string>
@@ -105,28 +91,22 @@
   <string name="ExportFragment_success">Èxit!</string>
   <string name="ExportFragment_exporting_keys_settings_and_messages">Exportant claus encriptades, ajustaments, i missatges...</string>
   <!--GroupCreateActivity-->
-  <string name="GroupCreateActivity_actionbar_title">Nou grup</string>
-  <string name="GroupCreateActivity_actionbar_update_title">Actualitza el grup</string>
-  <string name="GroupCreateActivity_group_name_hint">Nom del grup</string>
-  <string name="GroupCreateActivity_actionbar_mms_title">Nou grup MMS</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Has seleccionat un contacte que no suporta grups de TextSecure, això farà que aquest grup sigui de MMS.</string>
   <string name="GroupCreateActivity_you_dont_support_push">No estàs registrat per utilitzar el canal de dades, això farà que els grups de TextSecure estiguin desactivats.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Ha passat un error inesperat que ha fet que la creació del grup hagi fallat.</string>
   <string name="GroupCreateActivity_contacts_no_members">Necessites almenys una persona dins el teu grup!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Un dels membres del teu grup té un número que no pot ser llegit correctament. Si us plau corregeix o treu aquest contacte i intenta-ho de nou.</string>
   <string name="GroupCreateActivity_file_io_exception">Error d\'arxiu E/S, no s\'ha pogut crear un arxiu d\'imatge temporal.</string>
-  <string name="GroupCreateActivity_avatar_content_description">Avatar del grup</string>
-  <string name="GroupCreateActivity_menu_create_title">Crea un grup</string>
   <string name="GroupCreateActivity_creating_group">Creant %1$s…</string>
+  <!--ImportExportActivity-->
+  <string name="ImportExportActivity_import">Importa</string>
+  <string name="ImportExportActivity_export">Exporta</string>
   <!--ImportFragment-->
-  <string name="ImportFragment_import_system_sms_database">Importar la base de dades d\'SMS del sistema?</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">Això importarà els missatges des de la base de dades SMS del sistema a TextSecure. Si has importat prèviament els missatges de la base de dades SMS del sistema, importar-los de nou provocarà tenir missatges duplicats.</string>
   <string name="ImportFragment_import">Importa</string>
   <string name="ImportFragment_cancel">Cancel·la</string>
-  <string name="ImportFragment_restore_encrypted_backup">Restaurar la còpia de seguretat encriptada?</string>
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">Restaurar una còpia de seguretat encriptada provocarà que es substitueixi completament les teves claus existents, preferències, i missatges. Perdràs qualsevol informació que sigui a la teva instal·lació de TextSecure i no hi sigui a la còpia de seguretat.</string>
   <string name="ImportFragment_restore">Restaura</string>
-  <string name="ImportFragment_import_plaintext_backup">Importar la còpia de seguretat en text pla?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Això importarà els missatges des d\'una còpia de seguretat en text pla. Si has importat prèviament la base de dades SMS del sistema, importar-la de nou provocarà la generació de missatges duplicats.</string>
   <string name="ImportFragment_importing">Important</string>
   <string name="ImportFragment_import_plaintext_backup_elipse">Importa còpia de seguretat en text pla...</string>
@@ -145,18 +125,12 @@
   <string name="MmsDownloader_error_connecting_to_mms_provider">Error connectant amb l\'operador de MMS...</string>
   <string name="MmsDownloader_error_reading_mms_settings">Error llegint els ajustaments MMS de l\'operador inalàmbric\u2026</string>
   <!--NotificationMmsMessageRecord-->
-  <string name="NotificationMmsMessageRecord_multimedia_message">Missatge Multimèdia</string>
+  <!--MessageRecord-->
   <!--PassphraseChangeActivity-->
-  <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Les contrasenyes no coincideixen!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Frase contrasenya antiga incorrecta!</string>
-  <!--PassphraseCreateActivity-->
-  <string name="PassphraseCreateActivity_passphrases_dont_match">Les frases contrasenya no coincideixen</string>
-  <string name="PassphraseCreateActivity_you_must_specify_a_password">Has d\'especificar una contrasenya</string>
   <!--PassphrasePromptActivity-->
-  <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Frase contrasenya invàlida!</string>
   <!--PromptMmsActivity-->
   <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">Has d\'especificar una URL MMSC per la teva operadora.</string>
-  <string name="PromptMmsActivity_mms_settings_updated">Ajustaments MMS actualitzats</string>
   <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Pots modificar aquests valors en qualsevol moment des del menú d\'ajustaments de TextSecure.</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">La signatura en aquest intercanvi de claus és diferent que el que havies rebut prèviament d\'aquest contacte. Això pot voler dir tant que algú està intentant interceptar la teva comunicació, o que aquest contacte simplement ha re-instal·lat TextSecure i ara té una clau d\'identitat nova.</string>
@@ -166,18 +140,15 @@
   <string name="ReceiveKeyActivity_processing_key_exchange">Processant intercanvi de clau...</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">Connecta amb TextSecure</string>
-  <string name="RegistrationActivity_select_your_country">Selecciona el teu país</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Has d\'especificar el teu codi de país</string>
   <string name="RegistrationActivity_you_must_specify_your_phone_number">Has d\'especificar el teu número de telèfon</string>
   <string name="RegistrationActivity_invalid_number">Número invàlid</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">El número que has especificat (%s) és invàlid.</string>
   <string name="RegistrationActivity_unsupported">No suportat</string>
-  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Ho sento, aquest dispositiu no està suportat pel que fa els missatges de dades. Els dispositius que executin versions d\'Android més antigues que la 4.0 necessiten tenir registrada un compte Google. Els dispositius que executen una versió d\'Android 4.0 o posterior no necessiten un compte Google, però necessiten tenir l\'app de la Play Store instal·lada.</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">Ara verificarem que el número següent està associat amb aquest dispositiu:\n\n%s\n\nÉs aquest el número correcte, o vols editar-lo abans de continuar?</string>
   <string name="RegistrationActivity_continue">Continua</string>
   <string name="RegistrationActivity_edit">Edita</string>
   <!--RegistrationProblemsActivity-->
-  <string name="RegistrationProblemsActivity_possible_problems">Possibles problemes</string>
   <!--RegistrationProgressActivity-->
   <string name="RegistrationProgressActivity_verifying_number">Verificant número</string>
   <string name="RegistrationProgressActivity_edit_s">Edita %s</string>
@@ -186,25 +157,17 @@
   <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Primer has d\'introduir el codi que has rebut...</string>
   <string name="RegistrationProgressActivity_connecting">Connectant</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">Connectant per verificar...</string>
-  <string name="RegistrationProgressActivity_network_error">Error de xarxa!</string>
   <string name="RegistrationProgressActivity_unable_to_connect">No s\'ha pogut connectar. Si us plau verifica la teva connexió de xarxa i intenta-ho de nou.</string>
-  <string name="RegistrationProgressActivity_verification_failed">Ha fallat la verificació!</string>
   <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">El codi de verificació que has enviat és incorrecte. Si us plau intenta-ho de nou.</string>
   <string name="RegistrationProgressActivity_too_many_attempts">Massa intents</string>
   <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">Has enviat un codi de verificació incorrecte massa vegades. Si us plau espera un minut abans d\'intentar-ho de nou.</string>
-  <string name="RegistrationProgressActivity_requesting_call">Demanant Trucada</string>
   <string name="RegistrationProgressActivity_requesting_incoming_call">Demanant una trucada de verificació...</string>
-  <string name="RegistrationProgressActivity_server_error">Error del Servidor</string>
   <string name="RegistrationProgressActivity_the_server_encountered_an_error">El servidor ha trobat un error. Si us plau intenta-ho de nou.</string>
-  <string name="RegistrationProgressActivity_too_many_requests">Hi ha massa sol·licituds!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Ja has demanat recentment una trucada de veu. Pots tornar-la a demanar d\'aquí 20 minuts.</string>
   <string name="RegistrationProgressActivity_verifying_voice_code">Verificant codi de veu...</string>
   <string name="RegistrationProgressActivity_registration_conflict">Conflicte de registre</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Aquest número ja està registrat en un servidor TextSecure diferent (CyanogenMod?). T\'has de des-registrar abans de registrar-te aquí.</string>
   <!--RegistrationService-->
-  <string name="RegistrationService_registration_complete">Registre complet</string>
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">El registre a TextSecure s\'ha completat satisfactòriament.</string>
-  <string name="RegistrationService_registration_error">Error de registre</string>
   <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">El registre a TextSecure ha trobat un problema.</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">S\'ha rebut un missatge d\'intercanvi de claus corromput!</string>
@@ -230,7 +193,6 @@
   <string name="VerifyKeysActivity_get_my_fingerprint_scanned">Escaneja la meva empremta digital</string>
   <string name="VerifyKeysActivity_scan_their_fingerprint">Escanejant la seva empremta digital</string>
   <string name="VerifyKeysActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully2">ALERTA, la clau escanejada NO coincideix! Si us plau verifica el text de l\'empremta digital cuidadosament.</string>
-  <string name="VerifyKeysActivity_not_verified_exclamation">NO Verificat!</string>
   <string name="VerifyKeysActivity_their_key_is_correct_it_is_also_necessary_to_get_your_fingerprint_scanned_as_well">La seva clau és correcta però també és necessari escanejar la teva empremta digital.</string>
   <string name="VerifyKeysActivity_verified_exclamation">Verificat!</string>
   <!--ViewIdentityActivity-->
@@ -238,13 +200,9 @@
   <string name="ViewIdentityActivity_scan_to_compare">Escaneja per comparar</string>
   <string name="ViewIdentityActivity_get_scanned_to_compare">Sigues escanejat per comparar</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">ALERTA, la clau escanejada NO coincideix!</string>
-  <string name="ViewIdentityActivity_not_verified_exclamation">NO Verificat!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">La clau escanejada coincideix!</string>
   <string name="ViewIdentityActivity_verified_exclamation">Verificat!</string>
-  <string name="ViewIdentityActivity_identity_fingerprint">Empremta digital d\'identitat</string>
-  <string name="ViewIdentityActivity_my_identity_fingerprint">La meva empremta digital d\'identitat</string>
   <!--KeyExchangeInitiator-->
-  <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Iniciar tot hi la petició existent?</string>
   <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Ja has enviat una petició per iniciar una sessió a aquest destinatari, estàs segur que vols enviar-ne una altra? Això invalidarà la primera petició.</string>
   <string name="KeyExchangeInitiator_send">Envia</string>
   <!--MessageDisplayHelper-->
@@ -254,7 +212,6 @@
   <!--MmsDatabase-->
   <string name="MmsDatabase_connecting_to_mms_server">Connectant al servidor MMS...</string>
   <string name="MmsDatabase_downloading_mms">Descarregant MMS...</string>
-  <string name="MmsDatabase_mms_download_failed">La descàrrega MMS ha fallat!</string>
   <string name="MmsDatabase_downloading">Descarregant...</string>
   <string name="MmsDatabase_mms_pending_download">Pica i configura els ajustaments MMS per continuar la descàrrega.</string>
   <!--MmsMessageRecord-->
@@ -265,7 +222,6 @@
   <string name="MmsSender_currently_unable_to_send_your_mms_message">Actualment no es pot enviar el teu missatge MMS.</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importació en curs</string>
-  <string name="ApplicationMigrationService_importing_text_messages">Important missatges de text</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_textsecure_passphrase_cached">Toca per obrir.</string>
   <string name="KeyCachingService_textsecure_passphrase_cached_with_lock">Toca per obrir, o toca el bloqueig per tancar.</string>
@@ -275,7 +231,6 @@
   <string name="MessageNotifier_d_new_messages">%d nous missatges</string>
   <string name="MessageNotifier_most_recent_from_s">Més recent de: %s</string>
   <string name="MessageNotifier_encrypted_message">Missatge encriptat...</string>
-  <string name="MessageNotifier_no_subject">(Sense títol)</string>
   <string name="MessageNotifier_message_delivery_failed">Entrega del missatge fallida.</string>
   <string name="MessageNotifier_failed_to_deliver_message">No s\'ha pogut entregar el missatge.</string>
   <string name="MessageNotifier_error_delivering_message">Error entregant el missatge.</string>
@@ -285,7 +240,6 @@
   <string name="ViewLocalIdentityActivity_regenerating">Regenerant...</string>
   <string name="ViewLocalIdentityActivity_regenerating_identity_key">Regenerant clau d\'identitat...</string>
   <string name="ViewLocalIdentityActivity_regenerated">Regenerada!</string>
-  <string name="ViewLocalIdentityActivity_reset_identity_key">Reiniciar clau d\'identitat?</string>
   <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">Precaució! Regenerant la teva clau d\'identitat, la teva identitat actual es perdrà permanentment, i els teus contactes existents rebran alertes quan estableixin noves sessions segures amb tu. Estàs segur que vols continuar?</string>
   <string name="ViewLocalIdentityActivity_cancel">Cancel·la</string>
   <string name="ViewLocalIdentityActivity_continue">Continua</string>
@@ -295,7 +249,6 @@
   <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Ho sento, La resposta ràpida encara no està suportada per TextSecure!</string>
   <!--auto_initiate_activity-->
   <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Has rebut un missatge d\'algú que suporta sessions de TextSecure encriptades. Vols iniciar una sessió segura?</string>
-  <string name="auto_initiate_activity__initiate_exchange">Inicia intercanvi</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">FRASE CONTRASENYA ANTIGA:</string>
   <string name="change_passphrase_activity__new_passphrase">NOVA FRASE CONTRASENYA:</string>
@@ -311,7 +264,6 @@
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Sense trucades recents.</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message"><small>Envia un missatge</small></string>
   <string name="conversation_activity__send">Envia</string>
   <string name="conversation_activity__remove">Treu</string>
   <!--conversation_item-->
@@ -322,7 +274,6 @@
   <string name="conversation_item_received__download">Descàrrega</string>
   <string name="conversation_item_received__downloading">Descarregant</string>
   <!--conversation_fragment_cab-->
-  <string name="conversation_fragment_cab__batch_selection_mode">Mode de selecció per lots</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Carregant països...</string>
   <string name="country_selection_fragment__search">Cerca</string>
@@ -353,18 +304,11 @@
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Això pot tardar una mica. Si us plau sigues pacient, et notificarem quan la importació estigui completa.</string>
   <string name="database_migration_activity__importing">IMPORTANT</string>
   <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Actualitzant base de dades...</string>
-  <string name="export_fragment__export_encrypted_backup">Exporta còpia de seguretat encriptada</string>
   <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Exporta una còpia de seguretat\nencriptada a la targeta SD.</string>
-  <string name="export_fragment__export_plaintext_backup">Exporta còpia de seguretat en text pla</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">Exporta una còpia de seguretat en text pla compatible amb \'Còpia de seguretat i restauració d\'SMS\' a la targeta SD.</string>
-  <string name="import_fragment__import_system_sms_database">Importa la base de dades d\'SMS del sistema</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importa la base de dades\ndes de l\'app de missatgeria predeterminada del sistema.</string>
-  <string name="import_fragment__import_encrypted_backup">Importa còpia de seguretat encriptada</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">Restaura una còpia de seguretat encriptada de TextSecure prèviament exportada.</string>
-  <string name="import_fragment__import_plaintext_backup">Importa còpia de seguretat en text pla</string>
   <string name="import_fragment__import_a_plaintext_backup_file">Importa un arxiu de còpia de seguretat en text pla. Compatible amb \'Còpia de seguretat i restauració d\'SMS\'.</string>
-  <string name="local_identity__regenerate_key">Regenera la clau</string>
   <!--mms_preferences_activity-->
   <string name="mms_preferences_activity__manual_mms_settings_are_required">En el teu telèfon són necessaris els ajustaments MMS manuals.</string>
   <!--prompt_passphrase_activity-->
@@ -388,25 +332,20 @@
   <string name="registration_activity__skip">Salta</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Alguns possibles problemes inclouen:</string>
-  <string name="registration_problems__sms_interceptors">Interceptadors SMS.</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">Alguns clients de missatgeria de text de tercers, com ara Handcent o GoSMS, es comporten inadequadament i intercepten tots els missatges SMS entrants. Verifica per veure si has rebut un missatge de text que comença per \'Your TextSecure verification code:\', en aquest cas necessitaràs configurar la teva app de missatgeria de tercers per deixar passar els missatges de text.</string>
   <string name="registration_problems__incorrect_number">Número incorrecte.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">Si us plau verifica per estar segur que has introduït el teu número correctament, i està ajustat correctament per la teva regió.</string>
   <string name="registration_problems__google_voice">Google Voice.</string>
   <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">TextSecure no funcionarà amb números de Google Voice.</string>
   <!--registration_progress_activity-->
-  <string name="registration_progress_activity__voice_verification">Verificació de veu</string>
   <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">TextSecure també et pot trucar per verificar el teu número de telèfon. Pica \'Truca\'m\' i introdueix a sota el codi de sis dígits que sentis.</string>
   <string name="registration_progress_activity__verify">Verifica</string>
-  <string name="registration_progress_activity__call_me">Truca\'m</string>
   <string name="registration_progress_activity__edit_number">Edita número</string>
   <string name="registration_progress_activity__connectivity_error">Error de connectivitat.</string>
   <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">TextSecure no s\'ha pogut connectar al servei push.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Alguns possibles problemes inclouen:</string>
   <string name="registration_progress_activity__no_network_connectivity">No hi ha connexió de xarxa.</string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">El teu dispositiu necessita connectivitat de xarxa per poder utilitzar aquesta característica de TextSecure. Verifica-ho per assegurar que està connectat a 3G o Wifi.</string>
   <string name="registration_progress_activity__restrictive_firewall">Tallafocs restrictiu.</string>
-  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">Si estàs connectat via wifi, és possible que hi hagi un tallafocs bloquejant l\'accés al servidor TextSecure. Intenta-ho amb una altra xarxa o amb les dades mòbils.</string>
   <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">TextSecure verificarà automàticament el teu número amb un missatge de confirmació SMS.</string>
   <string name="registration_progress_activity__connecting">Connectant...</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">Esperant la verificació SMS...</string>
@@ -431,32 +370,14 @@
   <string name="verify_keys_activity__they_read_this">Han llegit això:</string>
   <string name="verify_keys_activity__you_read_this">Has llegit això:</string>
   <!--AndroidManifest.xml-->
-  <string name="AndroidManifest__create_passphrase">Crea frase contrasenya</string>
-  <string name="AndroidManifest__enter_passphrase">Introdueix frase contrasenya</string>
-  <string name="AndroidManifest__select_contacts">Selecciona contactes</string>
-  <string name="AndroidManifest__select_contact">Selecciona contacte</string>
-  <string name="AndroidManifest__textsecure_detected">TextSecure detectat</string>
-  <string name="AndroidManifest__public_identity_key">Clau d\'identitat pública</string>
   <string name="AndroidManifest__change_passphrase">Canvia frase contrasenya</string>
-  <string name="AndroidManifest__verify_session">Verifica sessió</string>
-  <string name="AndroidManifest__verify_identity">Verifica identitat</string>
   <string name="AndroidManifest__manage_identity_keys">Gestiona claus d\'identitat</string>
-  <string name="AndroidManifest__complete_key_exchange">Completa intercanvi de claus</string>
-  <string name="AndroidManifest__log_submit">Envia registres de depuració</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Importa / Exporta</string>
-  <string name="arrays__my_identity_key">La meva clau d\'identitat</string>
-  <string name="arrays__contact_keys">Claus de contactes</string>
   <!--preferences.xml-->
   <string name="preferences__general">General</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Utilitza TextSecure per veure i emmagatzemar tots els missatges de text entrants</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Utilitza TextSecure per veure i emmagatzemar tots els missatges multimèdia entrants</string>
   <string name="preferences__enable_enter_key_title">Habilita la tecla Enter</string>
-  <string name="preferences__replace_smiley_with_enter_key">Substitueix la tecla smiley amb una tecla enter</string>
-  <string name="preferences__pref_enter_sends_title">Enter envia</string>
-  <string name="preferences__pressing_the_enter_key_will_send_text_messages">Apretant la tecla entrar s\'enviaran els missatges de text</string>
-  <string name="preferences__display_settings">Ajustaments de pantalla</string>
-  <string name="preferences__choose_identity">Escull identitat</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Escull el teu contacte de la llista de contactes</string>
   <string name="preferences__change_passphrase">Canvia frase contrasenya</string>
   <string name="preferences__change_my_passphrase">Canvia la meva frase contrasenya</string>
@@ -465,10 +386,8 @@
   <string name="preferences__disable_local_encryption_of_messages_and_keys">Desactiva l\'encriptació local dels missatges i claus</string>
   <string name="preferences__screen_security">Seguretat de pantalla</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Completa els intercanvis de claus automàticament en les noves sessions o en les sessions existents amb la mateixa clau d\'identitat</string>
-  <string name="preferences__disable_screen_security_to_allow_screen_shots">Desactiva la seguretat de la pantalla per permetre captures de pantalla</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Oblida la frase contrasenya de la memòria després d\'un interval de temps</string>
   <string name="preferences__timeout_passphrase">Temps d\'espera de la frase contrasenya</string>
-  <string name="preferences__pref_timeout_interval_dialogtitle">Selecciona el temps d\'espera de la frase contrasenya</string>
   <string name="preferences__pref_timeout_interval_title">Interval del temps d\'espera</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">La quantitat de temps que s\'esperarà abans d\'oblidar la frase contrasenya de la memòria</string>
   <string name="preferences__identity_key_settings">Claus d\'identitat</string>
@@ -479,9 +398,6 @@
   <string name="preferences__display_message_notifications_in_status_bar">Mostra notificacions dels missatges a la barra d\'estat</string>
   <string name="preferences__led_color">Color del LED</string>
   <string name="preferences__pref_led_blink_title">Patró d\'intermitència del LED</string>
-  <string name="preferences__pref_led_blink_custom_pattern_title">Fixa un patró de parpalleig del LED personalitzat</string>
-  <string name="preferences__pref_led_blink_custom_pattern_on_for">Encès per:</string>
-  <string name="preferences__pref_led_blink_custom_pattern_off_for">Apagat per:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">S\'ha fixat un patró de parpalleig del LED personalitzat!</string>
   <string name="preferences__sound">So</string>
   <string name="preferences__change_notification_sound">Canvia el so de notificació</string>
@@ -504,8 +420,6 @@
   <string name="preferences__custom">Personalitzat</string>
   <string name="preferences__advanced">Avançat</string>
   <string name="preferences__passphrase">Frase contrasenya</string>
-  <string name="preferences__advanced_mms_access_point_names">Preferències MMS</string>
-  <string name="preferences__enable_manual_mms">Activa MMS Manuals</string>
   <string name="preferences__override_system_mms_settings">Sobreescriu els ajustaments MMS del sistema amb la informació següent.</string>
   <string name="preferences__mmsc_url_required">MMSC URL (Requerit)</string>
   <string name="preferences__mms_proxy_host_optional">Servidor Proxy MMS (Opcional)</string>
@@ -518,8 +432,6 @@
   <string name="preferences__conversation_length_limit">Límit de mida de la conversació</string>
   <string name="preferences__trim_all_threads_now">Escapça tots els fils ara</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Cerca en tots els fils de conversa i fes respectar els límits de mida de la conversació</string>
-  <string name="preferences__light_theme">Tema clar</string>
-  <string name="preferences__dark_theme">Tema fosc</string>
   <string name="preferences__appearance">Aparença</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__default">Predeterminat</string>
@@ -529,19 +441,15 @@
   <string name="preferences__use_data_channel">Missatges Push</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">\nAugmenta la privacitat i evita els càrrecs d\'SMS utilitzant el canal de dades per comunicar-se amb altres usuaris de TextSecure</string>
   <string name="preferences__allow_sms_fallback_disabled_reason">TextSecure és actualment la teva app d\'SMS predeterminada. Si us plau estableix una altra app d\'SMS abans de canviar aquesta preferència.</string>
-  <string name="preferences__refresh_push_directory">Actualitza el Directori Push</string>
   <string name="preferences__submit_debug_log">Envia un registre de depuració</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
-  <string name="contact_selection_list__menu_select_all">Selecciona tot</string>
-  <string name="contact_selection_list__menu_unselect_all">Deselecciona tot</string>
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">Finalitzat</string>
   <!--refreshing push directory from menu-->
   <!--conversation_button_context-->
-  <string name="conversation_button_context__menu_send_unencrypted">Envia desencriptat</string>
   <!--conversation_callable-->
   <string name="conversation_callable__menu_call">Truca</string>
   <!--conversation_context-->
@@ -550,24 +458,17 @@
   <string name="conversation_context__menu_delete_message">Esborra el missatge</string>
   <string name="conversation_context__menu_forward_message">Reenvia el missatge</string>
   <string name="conversation_context__menu_resend_message">Torna a enviar el missatge</string>
+  <!--conversation_context_image-->
   <!--conversation_insecure-->
-  <string name="conversation_insecure__menu_start_secure_session">Comença sessió segura</string>
   <!--conversation_list_batch-->
-  <string name="conversation_list_batch__menu_delete_selected">Esborra els seleccionats</string>
-  <string name="conversation_list_batch__menu_select_all">Selecciona tot</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Cerca</string>
   <string name="conversation_list__drawer_open">Obre el calaix de navegació</string>
   <string name="conversation_list__drawer_close">Tanca el calaix de navegació</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Seguretat</string>
-  <string name="conversation_secure_verified__menu_no_identity">No hi ha una identitat disponible</string>
-  <string name="conversation_secure_verified__menu_verify_identity">Verifica identitat</string>
-  <string name="conversation_secure_verified__menu_abort_secure_session">Finalitza sessió segura</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Afegeix un adjunt</string>
-  <string name="conversation__menu_update_group">Actualitza el grup</string>
-  <string name="conversation__menu_leave_group">Deixa el grup</string>
   <string name="conversation__menu_add_contact_info">Afegeix info de contacte</string>
   <string name="conversation__menu_delete_thread">Esborra fil</string>
   <!--conversation_group_options-->
@@ -582,12 +483,10 @@
   <!--text_secure_locked-->
   <string name="text_secure_locked__menu_unlock">Desbloqueja</string>
   <!--text_secure_normal-->
-  <string name="text_secure_normal__menu_new_message">Nou missatge</string>
-  <string name="text_secure_normal__menu_new_group">Nou grup</string>
   <string name="text_secure_normal__menu_settings">Configuració</string>
   <string name="text_secure_normal__menu_clear_passphrase">Bloqueja</string>
-  <string name="text_secure_normal__mark_all_as_read">Marca Tots com a llegits</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Verificat</string>
+  <!--reminder_header-->
   <!--EOF-->
 </resources>

@@ -14,12 +14,8 @@ public class VersionTracker {
 
   public static void updateLastSeenVersion(Context context) {
     try {
-      int currentVersionCode        = context.getPackageManager()
-                                             .getPackageInfo(context.getPackageName(), 0)
-                                             .versionCode;
+      int currentVersionCode = Util.getCurrentApkReleaseVersion(context);
       TextSecurePreferences.setLastVersionCode(context, currentVersionCode);
-    } catch (PackageManager.NameNotFoundException e) {
-      throw new AssertionError(e);
     } catch (IOException ioe) {
       throw new AssertionError(ioe);
     }

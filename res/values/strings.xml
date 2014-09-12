@@ -217,10 +217,6 @@
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passphrases don\'t match!</string>
     <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Incorrect old passphrase!</string>
 
-    <!-- PassphraseCreateActivity -->
-    <string name="PassphraseCreateActivity_passphrases_dont_match">Passphrases don\'t match</string>
-    <string name="PassphraseCreateActivity_you_must_specify_a_password">You must specify a password</string>
-
     <!-- PassphrasePromptActivity -->
     <string name="PassphrasePromptActivity_enter_passphrase">Enter passphrase</string>
     <string name="PassphrasePromptActivity_watermark_content_description">TextSecure icon</string>
@@ -458,21 +454,25 @@
     <string name="conversation_activity__type_message_mms_insecure">Send insecure MMS</string>
     <string name="conversation_activity__send">Send</string>
     <string name="conversation_activity__remove">Remove</string>
+    <string name="conversation_activity__window_description">Conversation with %1$s</string>
+    <string name="conversation_activity__compose_description">Message composition</string>
+    <string name="conversation_activity__emoji_toggle_description">Toggle emoji keyboard</string>
 
     <!-- conversation_item -->
     <string name="conversation_item__mms_image_description">Media message</string>
     <string name="conversation_item__play_button_description">Play button</string>
-    <string name="conversation_item__secure_message_description">Secure message indicator</string>
+    <string name="conversation_item__secure_message_description">Secure message</string>
 
     <!-- conversation_item_sent -->
     <string name="conversation_item_sent__download">Download</string>
     <string name="conversation_item_sent__downloading">Downloading</string>
-    <string name="conversation_item_sent__send_failed_indicator_description">Send Failed Indicator</string>
+    <string name="conversation_item_sent__send_failed_indicator_description">Send Failed</string>
     <string name="conversation_item_sent__pending_approval_description">Pending Approval</string>
-    <string name="conversation_item_sent__delivered_description">Delivered Indicator</string>
+    <string name="conversation_item_sent__delivered_description">Delivered</string>
 
     <!-- conversation_item_received -->
     <string name="conversation_item_received__download">Download</string>
+    <string name="conversation_item_received__contact_photo_description">Contact photo</string>
     <string name="conversation_item_received__downloading">Downloading</string>
 
     <!-- conversation_fragment_cab -->
@@ -675,7 +675,7 @@
     <string name="AndroidManifest__log_submit">Submit debug logs</string>
 
     <!-- arrays.xml -->
-    <string name="arrays__import_export">Import / Export</string>
+    <string name="arrays__import_export">Import / export</string>
     <string name="arrays__my_identity_key">My identity key</string>
 
     <!-- preferences.xml -->
@@ -863,6 +863,13 @@
     <!-- verify_keys -->
     <string name="verify_keys__menu_verified">Verified</string>
 
+    <!-- reminder_header -->
+    <string name="reminder_header_sms_default_title">Use as default SMS app?</string>
+    <string name="reminder_header_sms_default_text">TextSecure is not currently your default SMS app.</string>
+    <string name="reminder_header_sms_import_title">Import system SMS?</string>
+    <string name="reminder_header_sms_import_text">TextSecure can copy your phone\'s SMS messages into its encrypted database.</string>
+    <string name="reminder_header_push_title">Enable TextSecure messages?</string>
+    <string name="reminder_header_push_text">Instant delivery, stronger privacy, and no SMS fees.</string>
     <!-- EOF -->
 
 </resources>

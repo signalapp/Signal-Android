@@ -39,13 +39,16 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.widget.SearchView;
 
+import org.thoughtcrime.securesms.components.DefaultSmsReminder;
+import org.thoughtcrime.securesms.components.PushRegistrationReminder;
+import org.thoughtcrime.securesms.components.ReminderView;
+import org.thoughtcrime.securesms.components.SystemSmsImportReminder;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.loaders.ConversationListLoader;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.util.Util;
 
 import java.util.Set;
 
@@ -57,12 +60,20 @@ public class ConversationListFragment extends SherlockListFragment
   private ConversationSelectedListener listener;
   private MasterSecret                 masterSecret;
   private ActionMode                   actionMode;
-
-  private String queryFilter = "";
+  private ReminderView                 reminderView;
+  private String                       queryFilter  = "";
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
-    return inflater.inflate(R.layout.conversation_list_fragment, container, false);
+    final View view = inflater.inflate(R.layout.conversation_list_fragment, container, false);
+    reminderView = new ReminderView(getActivity());
+    return view;
+  }
+
+  @Override
+  public void onDestroyView() {
+    super.onDestroyView();
+    getListView().setAdapter(null);
   }
 
   @Override
@@ -70,10 +81,19 @@ public class ConversationListFragment extends SherlockListFragment
     super.onActivityCreated(bundle);
 
     setHasOptionsMenu(true);
+    getListView().setAdapter(null);
+    getListView().addHeaderView(reminderView);
     initializeListAdapter();
     initializeBatchListener();
 
     getLoaderManager().initLoader(0, null, this);
+  }
+
+  @Override
+  public void onResume() {
+    super.onResume();
+
+    initializeReminders();
   }
 
   @Override
@@ -131,12 +151,6 @@ public class ConversationListFragment extends SherlockListFragment
     getLoaderManager().restartLoader(0, null, this);
   }
 
-  public void resetQueryFilter() {
-    if (!Util.isEmpty(this.queryFilter)) {
-      setQueryFilter("");
-    }
-  }
-
   private void initializeSearch(SearchView searchView) {
     searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
       @Override
@@ -147,6 +161,7 @@ public class ConversationListFragment extends SherlockListFragment
         }
         return false;
       }
+
       @Override
       public boolean onQueryTextChange(String newText) {
         return onQueryTextSubmit(newText);
@@ -168,6 +183,18 @@ public class ConversationListFragment extends SherlockListFragment
         return true;
       }
     });
+  }
+
+  private void initializeReminders() {
+    if (DefaultSmsReminder.isEligible(getActivity())) {
+      reminderView.showReminder(new DefaultSmsReminder(getActivity()));
+    } else if (SystemSmsImportReminder.isEligible(getActivity())) {
+      reminderView.showReminder(new SystemSmsImportReminder(getActivity(), masterSecret));
+    } else if (PushRegistrationReminder.isEligible(getActivity())) {
+      reminderView.showReminder(new PushRegistrationReminder(getActivity(), masterSecret));
+    } else {
+      reminderView.hide();
+    }
   }
 
   private void initializeListAdapter() {

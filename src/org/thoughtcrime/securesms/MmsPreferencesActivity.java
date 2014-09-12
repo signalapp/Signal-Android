@@ -86,7 +86,7 @@ public class MmsPreferencesActivity extends PassphraseRequiredSherlockPreference
   }
 
   private void initializePreferences() {
-    if (!MmsDownloadHelper.isMmsConnectionParametersAvailable(this, null, false)) {
+    if (!MmsDownloadHelper.isMmsConnectionParametersAvailable(this, null)) {
       TextSecurePreferences.setUseLocalApnsEnabled(this, true);
       addPreferencesFromResource(R.xml.mms_preferences);
       this.findPreference(TextSecurePreferences.ENABLE_MANUAL_MMS_PREF).setOnPreferenceChangeListener(new OverrideMmsChangeListener());

@@ -2,10 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
           package="org.thoughtcrime.securesms"
-      android:versionCode="71"
-      android:versionName="2.0.8">
-
-    <uses-sdk android:minSdkVersion="9" android:targetSdkVersion="19"/>
+      android:versionCode="79"
+      android:versionName="2.1.7">
 
     <permission android:name="org.thoughtcrime.securesms.ACCESS_SECRETS"
                 android:label="Access to TextSecure Secrets"
@@ -33,7 +31,6 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_CALL_LOG" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
     <permission android:name="org.thoughtcrime.securesms.permission.C2D_MESSAGE"
@@ -44,6 +41,9 @@
                  android:icon="@drawable/icon"
                  android:label="@string/app_name"
                  android:theme="@style/TextSecure.LightTheme">
+
+        <meta-data android:name="com.google.android.gms.version"
+                   android:value="@integer/google_play_services_version" />
 
         <activity android:name=".RoutingActivity"
                   android:theme="@style/NoAnimation.Theme.BlackScreen"
@@ -126,7 +126,7 @@
     <activity android:name=".PassphraseCreateActivity"
               android:label="@string/AndroidManifest__create_passphrase"
               android:windowSoftInputMode="stateUnchanged"
-              android:theme="@style/NoAnimation.Theme.Sherlock.Light.DarkActionBar"
+              android:theme="@style/TextSecure.IntroTheme"
               android:launchMode="singleTop"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
@@ -203,13 +203,13 @@
               android:clearTaskOnLaunch="true"
               android:finishOnTaskLaunch="true" />
 
+    <service android:enabled="true" android:name=".service.GcmRegistrationService"/>
     <service android:enabled="true" android:name=".service.ApplicationMigrationService"/>
     <service android:enabled="true" android:name=".service.KeyCachingService"/>
     <service android:enabled="true" android:name=".service.SendReceiveService"/>
     <service android:enabled="true" android:name=".service.RegistrationService"/>
     <service android:enabled="true" android:name=".service.DirectoryRefreshService"/>
     <service android:enabled="true" android:name=".service.PreKeyService"/>
-    <service android:enabled="true" android:name=".gcm.GcmIntentService"/>
 
     <service android:name=".service.QuickResponseService"
              android:permission="android.permission.SEND_RESPOND_VIA_MESSAGE"
@@ -236,7 +236,6 @@
     <receiver android:name=".gcm.GcmBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND" >
         <intent-filter>
             <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-            <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
             <category android:name="org.thoughtcrime.securesms" />
         </intent-filter>
     </receiver>
@@ -302,8 +301,4 @@
 
        <uses-library android:name="android.test.runner" />
 </application>
-
-<instrumentation android:name="android.test.InstrumentationTestRunner"
-       android:targetPackage="org.thoughtcrime.securesms.tests" android:label="Tests for My App" />
-
 </manifest>

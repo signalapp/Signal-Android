@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms.util;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.provider.Telephony;
@@ -153,28 +154,11 @@ public class Util {
       (context.getPackageName().equals(Telephony.Sms.getDefaultSmsPackage(context)));
   }
 
-  //  public static Bitmap loadScaledBitmap(InputStream src, int targetWidth, int targetHeight) {
-  //    return BitmapFactory.decodeStream(src);
-  ////  BitmapFactory.Options options = new BitmapFactory.Options();
-  ////  options.inJustDecodeBounds    = true;
-  ////  BitmapFactory.decodeStream(src, null, options);
-  ////
-  ////  Log.w("Util", "Bitmap Origin Width: " + options.outWidth);
-  ////  Log.w("Util", "Bitmap Origin Height: " + options.outHeight);
-  ////
-  ////  boolean scaleByHeight =
-  ////    Math.abs(options.outHeight - targetHeight) >=
-  ////    Math.abs(options.outWidth - targetWidth);
-  ////
-  ////  if (options.outHeight * options.outWidth >= targetWidth * targetHeight * 2) {
-  ////    double sampleSize = scaleByHeight ? (double)options.outHeight / (double)targetHeight : (double)options.outWidth / (double)targetWidth;
-  //////    options.inSampleSize = (int)Math.pow(2d, Math.floor(Math.log(sampleSize) / Math.log(2d)));
-  ////    Log.w("Util", "Sampling by: " + options.inSampleSize);
-  ////  }
-  ////
-  ////  options.inJustDecodeBounds = false;
-  ////
-  ////  return BitmapFactory.decodeStream(src, null, options);
-  //  }
-
+  public static int getCurrentApkReleaseVersion(Context context) {
+    try {
+      return context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode;
+    } catch (PackageManager.NameNotFoundException e) {
+      throw new AssertionError(e);
+    }
+  }
 }

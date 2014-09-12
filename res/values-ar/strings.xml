@@ -25,48 +25,37 @@
   <string name="ConversationItem_message_size_d_kb">حجم الرسالة: %d كيلوبايت</string>
   <string name="ConversationItem_expires_s">تاريخ الانتهاء: %s</string>
   <string name="ConversationItem_error_sending_message">خطأ بالارسال</string>
-  <string name="ConversationItem_saving_attachment">حفظ الإضافة</string>
-  <string name="ConversationItem_saving_attachment_to_sd_card">حفظ الإضافة على كرت الذاكرة</string>
-  <string name="ConversationItem_save_to_sd_card">حفظ على كرت الذاكرة؟</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_warning">تم حفظ هذه الوسائط بقاعدة بيانات مشفرة. النسخة التي تريد حفظها بكرت الذاكرة لن تكون مشفرة.هل تريد الاستمرار؟</string>
-  <string name="ConversationItem_error_while_saving_attachment_to_sd_card">خطأ أثناء حفظ الاضافات على كرت الذاكرة!</string>
-  <string name="ConversationItem_success_exclamation">نجحت!</string>
-  <string name="ConversationItem_unable_to_write_to_sd_card_exclamation">غير قادر على الكتابة على كرت الذاكرة!</string>
   <string name="ConversationItem_view_secure_media_question">عرض الوسائط المشفرة؟</string>
+  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">تم حفظ هذا المحتوى بقاعدة بينات مشفرة، يتطلب عرضها فى تطبيق خارجى لفك تشفيرها و تخزينها مؤقتاً بالذاكرة، هل ترغب فى الاستمرار؟</string>
   <string name="ConversationItem_received_and_processed_key_exchange_message">تم استقبال و معالجة رسالة تبادل المفاتيح</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">خطأ، تم استقبال رسالة تبادل مفاتيح غير صالحة</string>
   <string name="ConversationItem_group_action_left">%1$s تَرك المجموعة.</string>
   <string name="ConversationItem_group_action_joined">%1$s دخَل الفريق.</string>
   <string name="ConversationItem_group_action_modify">%1$s حَدث الفريق.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_initiate_secure_session_question">هل أفتح قناة تشفير؟</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">فتح قناة تشفير مع %s ؟</string>
-  <string name="ConversationActivity_abort_secure_session_confirmation">تأكيد انهاء قناة التشفير</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">هل انت متأكد من ان تريد انهاء قناة التشفير؟</string>
-  <string name="ConversationActivity_delete_thread_confirmation">تأكيد حذف المحادثة</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">هل انت متأكد من انك تريد انهاء قناة التشفير؟</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">هل تريد حقاَ حذف هذه المحادثة نهائياً؟</string>
   <string name="ConversationActivity_add_attachment">إضافات</string>
   <string name="ConversationActivity_select_contact_info">اختيار تفاصيل جهة الاتصال</string>
-  <string name="ConversationActivity_compose_message">كتابة رسالة</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">عذراً، حصل خطأ أثناء رفع إضافتك</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">عذراً، حجم هذا الفيديو يزيد عن الحد المسموح بالرسالة.</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">عذراً، حجم هذا التسجيل يزيد عن الحد المسموح بالرسالة.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">الطرف الآخر ليس رقم هاتف أو عنوان بريد الكتروني صحيح!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">الرسالة فارغة</string>
-  <string name="ConversationActivity_group_conversation_recipients">مستقبلي رسائل المحادثة الجماعية</string>
-  <string name="ConversationActivity_group_conversation">محادثة جماعية</string>
-  <string name="ConversationActivity_unnamed_group">مجموعة لا اسم لها</string>
   <string name="ConversationActivity_d_recipients_in_group">أعضاء %d </string>
   <string name="ConversationActivity_d_recipients_in_group_singular">عضو 1</string>
   <string name="ConversationActivity_invalid_recipient">جهة اتصال غير صحيحة!</string>
-  <string name="ConversationActivity_calls_not_supported">خاصية الاتصال غير متوفرة</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">هذا الجهاز لا يدعم خاصية الاتصال.</string>
   <string name="ConversationActivity_leave_group">اترك المجموعة؟</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">هل أنت متأكد من ترك المجموعة؟</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">تفاصيل الرسالة</string>
-  <string name="ConversationFragment_confirm_message_delete">تأكيد حذف الرسالة</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">هل أنت متأكد من حذف هذه الرسالة نهائياً؟</string>
+  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">تم حفظ هذه الوسائط بقاعدة بيانات مشفرة. النسخة التي تريد حفظها بكرت الذاكرة لن تكون مشفرة.هل تريد الاستمرار؟</string>
+  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">خطأ أثناء حفظ الاضافات على كرت الذاكرة!</string>
+  <string name="ConversationFragment_success_exclamation">نجحت!</string>
+  <string name="ConversationFragment_saving_attachment_to_sd_card">حفظ الإضافة على كرت الذاكرة</string>
   <!--ConversationListAdapter-->
   <string name="ConversationListAdapter_key_exchange_message">رسالة تبادل المفاتيح</string>
   <!--ConversationListFragment-->
@@ -78,10 +67,8 @@
   <string name="ConversationListItem_key_exchange_message">رسالة تبادل المفاتيح</string>
   <!--ShareActivity-->
   <!--ExportFragment-->
-  <string name="ExportFragment_export_to_sd_card">تصديرإلى كرت الذاكرة؟</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">هذه الخاصية تصدر مفاتيحك المشفرة و إعداداتك و رسائلك لكرت الذاكرة.</string>
   <string name="ExportFragment_export">تصدير</string>
-  <string name="ExportFragment_export_plaintext_to_sd_card">تصدير النص الغير مشفر إلى كرت الذاكرة؟</string>
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">تحذير: هذه الخاصية تصدر مفاتيحك المشفرة و إعداداتك و رسائلك لكرت الذاكرة.</string>
   <string name="ExportFragment_cancel">الغاء</string>
   <string name="ExportFragment_exporting">تصدير</string>
@@ -91,22 +78,16 @@
   <string name="ExportFragment_success">نجحت!</string>
   <string name="ExportFragment_exporting_keys_settings_and_messages">جاري تصدير مفاتيحك المشفرة و إعداداتك و رسائلك</string>
   <!--GroupCreateActivity-->
-  <string name="GroupCreateActivity_actionbar_title">مجموعة جديدة</string>
-  <string name="GroupCreateActivity_actionbar_update_title">حدث المجموعة</string>
-  <string name="GroupCreateActivity_group_name_hint">اسم المجموعة</string>
-  <string name="GroupCreateActivity_actionbar_mms_title">مجموعة MMS جديدة</string>
-  <string name="GroupCreateActivity_avatar_content_description">الصورة الرمزية للمجموعة</string>
-  <string name="GroupCreateActivity_menu_create_title">إنشاء مجموعة</string>
   <string name="GroupCreateActivity_creating_group">انشاء %1$s…</string>
+  <!--ImportExportActivity-->
+  <string name="ImportExportActivity_import">استيراد</string>
+  <string name="ImportExportActivity_export">تصدير</string>
   <!--ImportFragment-->
-  <string name="ImportFragment_import_system_sms_database">استيراد الرسائل القصيرة بالنظام؟</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">هذه الخاصية ستستورد الرسائل القصيرة من النظام إلى داخل تكست سيكيور. إذا قمت بعمل هذا من قبل فسيتم تكرار رسائلك القصيرة.</string>
   <string name="ImportFragment_import">استيراد</string>
   <string name="ImportFragment_cancel">الغاء</string>
-  <string name="ImportFragment_restore_encrypted_backup">استعادة النسخ الاحتياطية المشفرة؟</string>
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">\nاسترجاع نسخة احتياطية مشفرة سيمسح بالكامل أي مفاتيح حالية أو اعدادات أو رسائل. ستفقد أي معلومات موجودة الآن في تكست سيكيور ولكن غير موجودة في النسخة الاحتياطية.</string>
   <string name="ImportFragment_restore">استعادة</string>
-  <string name="ImportFragment_import_plaintext_backup">استيراد النسخة الاحتياطية الغير مشفرة؟</string>
   <string name="ImportFragment_importing">جاري الاستيراد...</string>
   <string name="ImportFragment_import_plaintext_backup_elipse">استيراد النسخ الاحتياطية الغير المشفرة</string>
   <string name="ImportFragment_no_plaintext_backup_found">لم يتم العثور على نسح احتياطية غير مشفرة!</string>
@@ -124,32 +105,24 @@
   <string name="MmsDownloader_error_connecting_to_mms_provider">خطأ في الاتصال مع مزود خدمة رسالة الوسائط المتعددة...</string>
   <string name="MmsDownloader_error_reading_mms_settings">خطأ بقراءة اعدادات مزود خدمة رسائل الوسائط المتعددة...</string>
   <!--NotificationMmsMessageRecord-->
-  <string name="NotificationMmsMessageRecord_multimedia_message">رسالة الوسائط المتعددة</string>
+  <!--MessageRecord-->
   <!--PassphraseChangeActivity-->
-  <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">العبارة السرية غير متطابقة!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">العبارة السرية القديمة غير صحيحة!</string>
-  <!--PassphraseCreateActivity-->
-  <string name="PassphraseCreateActivity_passphrases_dont_match">العبارات السرية لا تتطابق</string>
-  <string name="PassphraseCreateActivity_you_must_specify_a_password">يجب أن تحدد كلمة سرية</string>
   <!--PassphrasePromptActivity-->
-  <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">عبارة سرية غير صحيحة!</string>
   <!--PromptMmsActivity-->
   <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">يجب أن تحدد عنوان أو رابط لمركز رسائل الوسائط المتعددة.</string>
-  <string name="PromptMmsActivity_mms_settings_updated">تم تعديل اعدادات رسائل الوسائط المتعددة</string>
   <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">يمكنك تعديل هذه البيانات من اعدادات تكست سكيور بأي وقت.</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">المفتاح لجهة الاتصال هذه مختلف عن المرة السابقة. هذا قد يعني ان هناك محاولة لاعتراض اتصالاتك، أو ان جهة الاتصال قام\قامت بإعادة تنصيب تكست سيكيور لديهم.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">ربما تود التحقق من جهة الاتصال هذه</string>
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">التوقيع لجهة الاتصال هذه معتمد لديك، لكنك قمت بتعطيل خاصية اكمال تبادل المفاتيح اوتوماتيكياً</string>
   <!--RegistrationActivity-->
-  <string name="RegistrationActivity_select_your_country">اختر بلدك</string>
   <string name="RegistrationActivity_you_must_specify_your_phone_number">يجب عليك تحديد\nرقم الهاتف الخاص بك</string>
   <string name="RegistrationActivity_invalid_number">رقم غير صالح</string>
   <string name="RegistrationActivity_unsupported">غير مسنود </string>
   <string name="RegistrationActivity_continue">متابعة</string>
   <string name="RegistrationActivity_edit">تحرير</string>
   <!--RegistrationProblemsActivity-->
-  <string name="RegistrationProblemsActivity_possible_problems">مشاكل ممكنة.</string>
   <!--RegistrationProgressActivity-->
   <string name="RegistrationProgressActivity_verifying_number">جاري التحقٌق من الرقم</string>
   <string name="RegistrationProgressActivity_edit_s">تعديل %s</string>
@@ -158,18 +131,11 @@
   <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">يجب عليك إدخال الرمز الذي تلقيته اولاً...</string>
   <string name="RegistrationProgressActivity_connecting">جاري الاتصال</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">جاري الإتصال للتحقٌق...</string>
-  <string name="RegistrationProgressActivity_network_error">خطأ في الشبكة!</string>
-  <string name="RegistrationProgressActivity_verification_failed">فشل التحقٌق!</string>
   <string name="RegistrationProgressActivity_too_many_attempts">محاولات كثيرة</string>
-  <string name="RegistrationProgressActivity_requesting_call">جاري طلب الاتصال</string>
-  <string name="RegistrationProgressActivity_server_error">خطأ في الخادم</string>
-  <string name="RegistrationProgressActivity_too_many_requests">طلبات كثيرة!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">لقد طلبت مؤخرا بآجراء مكالمة صوتية. يمكنك طلب مكالمة آخرى في 20 دقيقة. </string>
   <string name="RegistrationProgressActivity_verifying_voice_code">التحقق من رمز الصوت...</string>
   <string name="RegistrationProgressActivity_registration_conflict">تعارض في التسجيل</string>
   <!--RegistrationService-->
-  <string name="RegistrationService_registration_complete">اكتمال التسجيل</string>
-  <string name="RegistrationService_registration_error">تسجيل خاطئ</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_secure_session_ended">قناة التشفير انتهت.</string>
   <!--ThreadRecord-->
@@ -190,7 +156,6 @@
   <string name="VerifyKeysActivity_get_my_fingerprint_scanned">قم بالمسح الضوئي لبصمة مفتاحي</string>
   <string name="VerifyKeysActivity_scan_their_fingerprint">قم بالمسح الضوئي لبصمة مفتاحهم</string>
   <string name="VerifyKeysActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully2">تحذير: المفتاح الذي تم مسحه ضوئياً لا يتطابق! تأكد من بصمة المفتاح بحذر.</string>
-  <string name="VerifyKeysActivity_not_verified_exclamation">لم يتم التحقق!</string>
   <string name="VerifyKeysActivity_their_key_is_correct_it_is_also_necessary_to_get_your_fingerprint_scanned_as_well">مفتاحهم صحيح. يجب أيضاً أن تقوم بالمسح الضوئي لبصمة مفتاحك.</string>
   <string name="VerifyKeysActivity_verified_exclamation">تم التحقق!</string>
   <!--ViewIdentityActivity-->
@@ -198,12 +163,9 @@
   <string name="ViewIdentityActivity_scan_to_compare">قم بالمسح الضوئي للمقارنة</string>
   <string name="ViewIdentityActivity_get_scanned_to_compare">قم بالمسح الضوئي للمقارنة</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">تحذير: المفتاح الذي تم مسحه ضوئياً لا يتطابق!</string>
-  <string name="ViewIdentityActivity_not_verified_exclamation">لم يتم التحقق!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">المفتاح الذي تم مسحه ضوئياً متطابق!</string>
   <string name="ViewIdentityActivity_verified_exclamation">تم التحقق!</string>
-  <string name="ViewIdentityActivity_identity_fingerprint">بصمة مفتاح الهوية</string>
   <!--KeyExchangeInitiator-->
-  <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">البدء بالاتصال رغم وجود طلب مسبق؟</string>
   <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">لقد قمت بارسال طلب انشاء قناة اتصال مسبقاً لجهة الاتصال هذه، هل تريد ارسال طلب آخر؟ هذه العملية ستلغي الطلب السابق.</string>
   <string name="KeyExchangeInitiator_send">ارسال</string>
   <!--MessageDisplayHelper-->
@@ -213,7 +175,6 @@
   <!--MmsDatabase-->
   <string name="MmsDatabase_connecting_to_mms_server"> الاتصال مع مزود خدمة رسالة الوسائط المتعددة...</string>
   <string name="MmsDatabase_downloading_mms">تحميل رسالة الوسائط المتعددة...</string>
-  <string name="MmsDatabase_mms_download_failed">خطأ بتحميل رسالة الوسائط المتعددة!</string>
   <string name="MmsDatabase_downloading">تحميل...</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">انتظر، يتم فك تشفير رسالة الوسائط المتعددة...</string>
@@ -223,7 +184,6 @@
   <string name="MmsSender_currently_unable_to_send_your_mms_message">غير قادر على ارسال الرسالة حاليا.</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">جاري الاستيراد...</string>
-  <string name="ApplicationMigrationService_importing_text_messages">جاري استيراد الرسائل النصية</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_textsecure_passphrase_cached">المس للفتح</string>
   <string name="KeyCachingService_passphrase_cached">انفتح تكست سيكيور </string>
@@ -232,7 +192,6 @@
   <string name="MessageNotifier_d_new_messages">(%d) رسائل جديدة</string>
   <string name="MessageNotifier_most_recent_from_s">آخر رسالة من: %s</string>
   <string name="MessageNotifier_encrypted_message">رسالة مشفرة</string>
-  <string name="MessageNotifier_no_subject">(من دون عنوان)</string>
   <string name="MessageNotifier_message_delivery_failed">خطأ بإيصال الرسالة</string>
   <string name="MessageNotifier_failed_to_deliver_message">فشل في توصيل الرسالة</string>
   <string name="MessageNotifier_error_delivering_message">خطأ بالارسال</string>
@@ -242,7 +201,6 @@
   <string name="ViewLocalIdentityActivity_regenerating">إعادة الانشاء...</string>
   <string name="ViewLocalIdentityActivity_regenerating_identity_key">إعادة إنشاء مفتاح الهوية...</string>
   <string name="ViewLocalIdentityActivity_regenerated">تم إعادة الانشاء!</string>
-  <string name="ViewLocalIdentityActivity_reset_identity_key">إعادة ضبط مفتاح الهوية؟</string>
   <string name="ViewLocalIdentityActivity_cancel">الغاء</string>
   <string name="ViewLocalIdentityActivity_continue">متابعة</string>
   <!--SmsReceiver-->
@@ -250,7 +208,6 @@
   <!--QuickResponseService-->
   <!--auto_initiate_activity-->
   <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">وصلتك رسالة من شخص لديه القدرة على بدء قناة تشفير. هل تريد بدء قناة تشفير حتى يكون الاتصال سري و آمن؟</string>
-  <string name="auto_initiate_activity__initiate_exchange">البدء بتبادل المفاتيح</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">العبارة السرية القديمة:</string>
   <string name="change_passphrase_activity__new_passphrase">العبارة السرية الجديدة:</string>
@@ -264,7 +221,6 @@
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">لا توجد مكالمات حديثة.</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message"><small>ارسل رسالة</small></string>
   <string name="conversation_activity__send">ارسال</string>
   <string name="conversation_activity__remove">إزالة</string>
   <!--conversation_item-->
@@ -275,11 +231,11 @@
   <string name="conversation_item_received__download">تحميل</string>
   <string name="conversation_item_received__downloading">تحميل</string>
   <!--conversation_fragment_cab-->
-  <string name="conversation_fragment_cab__batch_selection_mode">وضع الدفعات</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">جاري تحميل البلدان...</string>
   <string name="country_selection_fragment__search">بحث</string>
   <!--create_passphrase_activity-->
+  <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">من فضلك اختر عبارة مرور إذا كنت ترغب فى تشفير المحتوى المحفوظ بالذاكرة.</string>
   <string name="create_passphrase_activity__passphrase">العبارة السرية:</string>
   <string name="create_passphrase_activity__repeat">تكرار:</string>
   <string name="create_passphrase_activity__continue">متابعة</string>
@@ -300,15 +256,9 @@
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">قد تستغرق العملية عدة دقائق. يرجى الانتظار. سيتم تنبيهك عند انتهاء العملية.</string>
   <string name="database_migration_activity__importing">مهم!</string>
   <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">تحديث قواعد البيانات</string>
-  <string name="export_fragment__export_encrypted_backup">استعادة النسخ الاحتياطية المشفرة</string>
   <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">تصدير نسخة احتياطية غير مشفرة لكرت الذاكرة...</string>
-  <string name="export_fragment__export_plaintext_backup">تصدير النسخة الاحتياطية الغير مشفرة</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">\nتصدير نسخة غير مشفرة لكرت الذاكرة SD Card  بصيغة متوافقة مع SMSBackup And Restore</string>
-  <string name="import_fragment__import_system_sms_database">استيراد الرسائل القصيرة بالنظام</string>
-  <string name="import_fragment__import_encrypted_backup">استيراد النسخ الاحتياطية المشفرة</string>
-  <string name="import_fragment__import_plaintext_backup">استيراد النسخة الاحتياطية الغير مشفرة</string>
-  <string name="local_identity__regenerate_key">إعادة إنشاء المفتاح</string>
+  <string name="import_fragment__import_the_database_from_the_default_system">استيراد قاعدة البيانات\nمن تطبيق الرسائل الافتراضي لنظام التشغيل</string>
   <!--mms_preferences_activity-->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">العبارة السرية لتكست سيكيور</string>
@@ -326,14 +276,11 @@
   <string name="registration_activity__skip">تجاهل</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">بعض المشاكل المحتملة\nوتشمل:</string>
-  <string name="registration_problems__sms_interceptors">رسائل نصية قصيرة</string>
   <string name="registration_problems__incorrect_number"> رقم غير صحيح.</string>
   <string name="registration_problems__google_voice">.Google Voice</string>
   <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">\nTextSecure لن يعمل مع أرقام Google Voice</string>
   <!--registration_progress_activity-->
-  <string name="registration_progress_activity__voice_verification">التحقق الصوتي </string>
   <string name="registration_progress_activity__verify">تحقق</string>
-  <string name="registration_progress_activity__call_me">اتصل بي</string>
   <string name="registration_progress_activity__edit_number">تعديل الرقم</string>
   <string name="registration_progress_activity__connectivity_error">خطأ في الاتصال</string>
   <string name="registration_progress_activity__some_possible_problems_include">بعض المشاكل \nالمحتملة وتشمل:</string>
@@ -344,6 +291,7 @@
   <string name="registration_progress_activity__registering_with_server">جاري التسجيل مع الخادم...</string>
   <string name="registration_progress_activity__generating_keys">جارِ انشاء المفتاح...</string>
   <!--recipients_panel-->
+  <string name="recipients_panel__to">ادخل اسم او رقم</string>
   <string name="recipients_panel__add_member">إضافة عضو</string>
   <!--review_identities-->
   <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">لا يوجد لديك أي مفاتيح هوية مسجلة</string>
@@ -359,40 +307,26 @@
   <string name="verify_keys_activity__they_read_this">هم يقرؤون:</string>
   <string name="verify_keys_activity__you_read_this">أنت تقرأ:</string>
   <!--AndroidManifest.xml-->
-  <string name="AndroidManifest__create_passphrase">انشاء عبارة سرية</string>
-  <string name="AndroidManifest__enter_passphrase">ادخل العبارة السرية</string>
-  <string name="AndroidManifest__select_contacts">اختيار جهات الاتصال</string>
-  <string name="AndroidManifest__select_contact">اختار جهة الاتصال</string>
-  <string name="AndroidManifest__textsecure_detected">تم العثور على تكست سيكيور</string>
-  <string name="AndroidManifest__public_identity_key">مفتاح الهوية العام</string>
   <string name="AndroidManifest__change_passphrase">غير العبارة السرية</string>
-  <string name="AndroidManifest__verify_session">تحقق من قناة الاتصال</string>
-  <string name="AndroidManifest__verify_identity">تحقق من الهوية</string>
   <string name="AndroidManifest__manage_identity_keys">إدارة مفاتيح الهوية</string>
-  <string name="AndroidManifest__complete_key_exchange">اكمال تبادل المفاتيح</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">استيراد/تصدير</string>
-  <string name="arrays__my_identity_key">مفتاح هويتي</string>
-  <string name="arrays__contact_keys">مفاتيح جهات الاتصال</string>
   <!--preferences.xml-->
   <string name="preferences__general">عام</string>
+  <string name="preferences__pref_all_sms_title">إستخدم لإستقبال كل الرسائل النصية القصيرة</string>
+  <string name="preferences__pref_all_mms_title">إستخدم لإستقبال كل الرسائل المتعددة الوسائط</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">استخدم تكست سيكيور لمشاهدة و حفظ كل الرسائل القصيرة الواردة</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">استخدم تكست سيكيور لمشاهدة وحفظ كل رسائل الوسائط المتعددة الواردة</string>
   <string name="preferences__input_settings">خيارات الادخال</string>
   <string name="preferences__enable_enter_key_title">تفعيل مفتاح الرجوع</string>
-  <string name="preferences__pref_enter_sends_title">زر الرجوع Enter يرسل الرسالة</string>
-  <string name="preferences__pressing_the_enter_key_will_send_text_messages">ضغط مفتاح الرجوع Enter سيرسل الرسالة</string>
-  <string name="preferences__display_settings">اعدادات العرض</string>
-  <string name="preferences__choose_identity">اختر هوية</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">اختر جهة الاتصال من القائمة</string>
   <string name="preferences__change_passphrase">غير العبارة السرية</string>
   <string name="preferences__change_my_passphrase">غير عبارتي السرية</string>
   <string name="preferences__complete_key_exchanges">اكمال تبادل المفاتيح</string>
   <string name="preferences__disable_passphrase">تعطيل العبارة السرية</string>
+  <string name="preferences__disable_local_encryption_of_messages_and_keys">إيقاف تشفير الرسائل المفوظة و المفاتيح</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">أكمل تبادل المفاتيح اوتوماتيكياً لمحادثات جديدة او قديمة بنفس مفتاح الهوية</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">انسى العبارة السرية من ذاكرة الجهاز بعد فترة</string>
   <string name="preferences__timeout_passphrase">نسيان العبارة السرية بعد فترة</string>
-  <string name="preferences__pref_timeout_interval_dialogtitle">اختيار مدة حفظ العبارة السرية مؤقتاً</string>
   <string name="preferences__pref_timeout_interval_title">مدة الصلاحية</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">الوقت اللازم ليتم مسح العبارة السرية من الذاكرة</string>
   <string name="preferences__identity_key_settings">مفاتيح الهوية</string>
@@ -424,7 +358,6 @@
   <string name="preferences__custom">مخصص</string>
   <string name="preferences__advanced">متقدم</string>
   <string name="preferences__passphrase">العبارة السرية</string>
-  <string name="preferences__advanced_mms_access_point_names">تفضيلات MMS</string>
   <string name="preferences__mmsc_url_required">عنوان مركز رسائل الوسائط المتعددة (الزامي)</string>
   <string name="preferences__mms_proxy_host_optional">عنوان بروكسي رسائل الوسائط المتعددة (غير الزامي)</string>
   <string name="preferences__mms_proxy_port_optional">منفذ او بورت بروكسي  الرسائل الوسائط المتعددة (غير الزامي)</string>
@@ -436,24 +369,19 @@
   <string name="preferences__conversation_length_limit">حد طول المحادثة</string>
   <string name="preferences__trim_all_threads_now">نظف كل المحادثات الآن</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">افحص كل المحادثات وافرض حد الطول لكل محادثة</string>
-  <string name="preferences__light_theme">قالب ألوان خفيفة</string>
-  <string name="preferences__dark_theme">قالب ألوان داكنة</string>
   <string name="preferences__appearance">المظهر</string>
   <string name="preferences__theme">قالب</string>
   <string name="preferences__default">التلقائي</string>
   <string name="preferences__language">اللغة</string>
+  <string name="preferences__make_default_sms_app">ضبط تكست سكيور كتطبيق الرسائل الافتراضي</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
-  <string name="contact_selection_list__menu_select_all">اختيار الكل</string>
-  <string name="contact_selection_list__menu_unselect_all">إزالة اختيار الكل</string>
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">تم الانتهاء</string>
   <!--refreshing push directory from menu-->
-  <string name="push_directory__menu_refresh">انعش جهات الاتصال</string>
   <!--conversation_button_context-->
-  <string name="conversation_button_context__menu_send_unencrypted">أرسل من دون تشفير</string>
   <!--conversation_callable-->
   <string name="conversation_callable__menu_call">اتصال</string>
   <!--conversation_context-->
@@ -462,22 +390,15 @@
   <string name="conversation_context__menu_delete_message">مسح الرسالة</string>
   <string name="conversation_context__menu_forward_message">إعادة ارسال الرسالة</string>
   <string name="conversation_context__menu_resend_message">إعادة إرسال الرسالة</string>
+  <!--conversation_context_image-->
   <!--conversation_insecure-->
-  <string name="conversation_insecure__menu_start_secure_session">بدء قناة تشفير</string>
   <!--conversation_list_batch-->
-  <string name="conversation_list_batch__menu_delete_selected">امسح الاختيارات</string>
-  <string name="conversation_list_batch__menu_select_all">اختيار الكل</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">بحث</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">الأمن</string>
-  <string name="conversation_secure_verified__menu_no_identity">لا هوية موجودة</string>
-  <string name="conversation_secure_verified__menu_verify_identity">تحقق من الهوية</string>
-  <string name="conversation_secure_verified__menu_abort_secure_session">انهاء قناة التشفير</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">إضافات</string>
-  <string name="conversation__menu_update_group">تحديث المجموعة</string>
-  <string name="conversation__menu_leave_group">ترك المجموعة</string>
   <string name="conversation__menu_add_contact_info">إضافة معلومات الاتصال</string>
   <string name="conversation__menu_delete_thread">مسح المحاذفة</string>
   <!--conversation_group_options-->
@@ -492,12 +413,10 @@
   <!--text_secure_locked-->
   <string name="text_secure_locked__menu_unlock">فتح القفل</string>
   <!--text_secure_normal-->
-  <string name="text_secure_normal__menu_new_message">رسالة جديدة</string>
-  <string name="text_secure_normal__menu_new_group">مجموعة جديدة</string>
   <string name="text_secure_normal__menu_settings">الاعدادات</string>
   <string name="text_secure_normal__menu_clear_passphrase">أقفل</string>
-  <string name="text_secure_normal__mark_all_as_read">اعتبارها رسائل مقروءة</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">تم التحقق!</string>
+  <!--reminder_header-->
   <!--EOF-->
 </resources>

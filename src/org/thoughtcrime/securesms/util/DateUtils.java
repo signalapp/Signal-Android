@@ -43,7 +43,7 @@ public class DateUtils extends android.text.format.DateUtils {
       } else if (isWithinYear(millis)) {
         formatFlags |= DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_NO_YEAR | DateUtils.FORMAT_ABBREV_ALL;
       } else {
-        formatFlags |= DateUtils.FORMAT_NUMERIC_DATE;
+        formatFlags |= DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL;
       }
     }
     return DateUtils.formatDateTime(c, millis, formatFlags);

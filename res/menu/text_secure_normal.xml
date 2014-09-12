@@ -17,6 +17,14 @@
           android:id="@+id/menu_mark_all_read"
           android:icon="@android:drawable/ic_menu_set_as" />
 
+    <item android:title="@string/arrays__import_export"
+          android:id="@+id/menu_import_export"
+          android:icon="@android:drawable/ic_menu_upload" />
+
+    <item android:title="@string/arrays__my_identity_key"
+          android:id="@+id/menu_my_identity"
+          android:icon="@android:drawable/ic_menu_view" />
+
     <item android:title="@string/text_secure_normal__menu_settings"
           android:id="@+id/menu_settings"
           android:icon="@android:drawable/ic_menu_preferences" />

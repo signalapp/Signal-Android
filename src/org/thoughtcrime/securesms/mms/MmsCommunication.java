@@ -20,29 +20,29 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteException;
 import android.net.ConnectivityManager;
-import android.net.Uri;
-import android.net.http.AndroidHttpClient;
 import android.util.Log;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpHost;
-import org.apache.http.conn.params.ConnRouteParams;
-import org.apache.http.params.HttpConnectionParams;
-import org.apache.http.params.HttpParams;
-import org.apache.http.params.HttpProtocolParams;
+import org.thoughtcrime.securesms.database.ApnDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.service.MmsDownloader;
-import org.whispersystems.textsecure.util.Conversions;
+import org.thoughtcrime.securesms.util.TelephonyUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.textsecure.util.Conversions;
 import org.whispersystems.textsecure.util.Util;
 
-import java.io.DataInputStream;
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.Proxy;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MmsCommunication {
+  private static final String TAG = "MmsCommunication";
 
   protected static MmsConnectionParameters getLocallyConfiguredMmsConnectionParameters(Context context)
       throws ApnUnavailableException
@@ -71,70 +71,65 @@ public class MmsCommunication {
     if (TextSecurePreferences.isUseLocalApnsEnabled(context)) {
       return getLocallyConfiguredMmsConnectionParameters(context);
     } else {
-      MmsConnectionParameters params = ApnDefaults.getMmsConnectionParameters(context);
+      try {
+        MmsConnectionParameters params = ApnDatabase.getInstance(context)
+                                                    .getMmsConnectionParameters(TelephonyUtil.getMccMnc(context),
+                                                                                TelephonyUtil.getApn(context));
 
-      if (params == null) {
-        throw new ApnUnavailableException("No parameters available from ApnDefaults.");
+        if (params == null) {
+          throw new ApnUnavailableException("No parameters available from ApnDefaults.");
+        }
+
+        return params;
+      } catch (IOException ioe) {
+        throw new ApnUnavailableException("ApnDatabase threw an IOException", ioe);
       }
-
-      return params;
     }
   }
 
-  protected static MmsConnectionParameters getMmsConnectionParameters(Context context, String apn,
-                                                                      boolean proxyIfPossible)
+  protected static MmsConnectionParameters getMmsConnectionParameters(Context context, String apn)
       throws ApnUnavailableException
   {
+    Log.w(TAG, "Getting MMSC params for apn " + apn);
     Cursor cursor = null;
 
     try {
       cursor = DatabaseFactory.getMmsDatabase(context).getCarrierMmsInformation(apn);
 
-      if (cursor == null || !cursor.moveToFirst())
+      if (cursor == null || !cursor.moveToFirst()) {
+        Log.w(TAG, "Android didn't have a result, querying local parameters.");
         return getLocalMmsConnectionParameters(context);
+      }
 
       do {
         String mmsc  = cursor.getString(cursor.getColumnIndexOrThrow("mmsc"));
-        String proxy = null;
-        String port  = null;
+        String proxy = cursor.getString(cursor.getColumnIndexOrThrow("mmsproxy"));
+        String port  = cursor.getString(cursor.getColumnIndexOrThrow("mmsport"));
 
-        if (proxyIfPossible) {
-          proxy = cursor.getString(cursor.getColumnIndexOrThrow("mmsproxy"));
-          port  = cursor.getString(cursor.getColumnIndexOrThrow("mmsport"));
-        }
-
-        if (!Util.isEmpty(mmsc))
+        if (!Util.isEmpty(mmsc)) {
+          Log.w(TAG, "Using Android-provided MMSC parameters.");
           return new MmsConnectionParameters(mmsc, proxy, port);
+        }
 
       } while (cursor.moveToNext());
 
+      Log.w(TAG, "Android provided results were empty, querying local parameters.");
       return getLocalMmsConnectionParameters(context);
     } catch (SQLiteException sqe) {
-      Log.w("MmsCommunication", sqe);
-      return getLocalMmsConnectionParameters(context);
+      Log.w(TAG, sqe);
     } catch (SecurityException se) {
-      Log.i("MmsCommunication", "Couldn't write APN settings, expected. msg: " + se.getMessage());
+      Log.w(TAG, "Android won't let us query the APN database.");
       return getLocalMmsConnectionParameters(context);
     } catch (IllegalArgumentException iae) {
-      Log.w("MmsCommunication", iae);
-      return getLocalMmsConnectionParameters(context);
+      Log.w(TAG, iae);
     } finally {
       if (cursor != null)
         cursor.close();
     }
+    return getLocalMmsConnectionParameters(context);
   }
 
-  protected static boolean checkRouteToHost(Context context, MmsConnectionParameters.Apn parameters,
-                                         String url, boolean usingMmsRadio)
-    throws IOException
-  {
-    if (parameters == null || !parameters.hasProxy())
-      return checkRouteToHost(context, Uri.parse(url).getHost(), usingMmsRadio);
-    else
-      return checkRouteToHost(context, parameters.getProxy(), usingMmsRadio);
-  }
-
-  private static boolean checkRouteToHost(Context context, String host, boolean usingMmsRadio)
+  protected static boolean checkRouteToHost(Context context, String host, boolean usingMmsRadio)
       throws IOException
   {
     InetAddress inetAddress = InetAddress.getByName(host);
@@ -147,7 +142,7 @@ public class MmsCommunication {
       return true;
     }
 
-    Log.w("MmsCommunication", "Checking route to address: " + host + " , " + inetAddress.getHostAddress());
+    Log.w(TAG, "Checking route to address: " + host + " , " + inetAddress.getHostAddress());
 
     byte[] ipAddressBytes = inetAddress.getAddress();
 
@@ -160,36 +155,42 @@ public class MmsCommunication {
     return true;
   }
 
-  protected static AndroidHttpClient constructHttpClient(Context context, MmsConnectionParameters.Apn mmsConfig) {
-    AndroidHttpClient client = AndroidHttpClient.newInstance("Android-Mms/2.0", context);
-    HttpParams params        = client.getParams();
-    HttpProtocolParams.setContentCharset(params, "UTF-8");
-    HttpConnectionParams.setSoTimeout(params, 20 * 1000);
+  protected static byte[] parseResponse(InputStream is) throws IOException {
+    InputStream           in   = new BufferedInputStream(is);
+    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    Util.copy(in, baos);
 
-    if (mmsConfig.hasProxy()) {
-      ConnRouteParams.setDefaultProxy(params, new HttpHost(mmsConfig.getProxy(), mmsConfig.getPort()));
+    Log.w(TAG, "Received full server response, " + baos.size() + " bytes");
+
+    return baos.toByteArray();
+  }
+
+  protected static HttpURLConnection constructHttpClient(String urlString, String proxy, int port)
+      throws IOException
+  {
+    HttpURLConnection urlConnection;
+    URL url = new URL(urlString);
+
+    if (proxy != null) {
+      Log.w(TAG, String.format("Constructing http client using a proxy: (%s:%d)", proxy, port));
+      Proxy proxyRoute = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxy, port));
+      urlConnection = (HttpURLConnection) url.openConnection(proxyRoute);
+    } else {
+      Log.w(TAG, "Constructing http client without proxy");
+      urlConnection = (HttpURLConnection) url.openConnection();
     }
 
-    return client;
+    urlConnection.setInstanceFollowRedirects(true);
+    urlConnection.setConnectTimeout(20*1000);
+    urlConnection.setReadTimeout(20*1000);
+    urlConnection.setUseCaches(false);
+    urlConnection.setRequestProperty("User-Agent", "Android-Mms/2.0");
+    urlConnection.setRequestProperty("Accept-Charset", "UTF-8");
+    return urlConnection;
   }
 
-  protected static byte[] parseResponse(HttpEntity entity) throws IOException {
-    if (entity == null || entity.getContentLength() == 0)
-      return null;
+  public static class MmsConnectionParameters {
 
-    if (entity.getContentLength() < 0)
-      throw new IOException("Unknown content length!");
-
-    byte[] responseBytes            = new byte[(int)entity.getContentLength()];
-    DataInputStream dataInputStream = new DataInputStream(entity.getContent());
-    dataInputStream.readFully(responseBytes);
-    dataInputStream.close();
-
-    entity.consumeContent();
-    return responseBytes;
-  }
-
-  protected static class MmsConnectionParameters {
     public class Apn {
       private final String mmsc;
       private final String proxy;
@@ -221,6 +222,14 @@ public class MmsCommunication {
           return 80;
 
         return Integer.parseInt(port);
+      }
+
+      @Override
+      public String toString() {
+        return MmsConnectionParameters.class.getSimpleName() +
+               "{ mmsc: \"" + mmsc + "\"" +
+               ", proxy: " + (proxy == null ? "none" : '"' + proxy + '"') +
+               ", port: " + (port == null ? "none" : port) + " }";
       }
     }
 

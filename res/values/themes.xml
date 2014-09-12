@@ -79,17 +79,8 @@
         <item name="menu_info_icon">@drawable/ic_dialog_info_holo_light</item>
         <item name="menu_forward_icon">@drawable/ic_action_forward_holo_light</item>
         <item name="menu_save_icon">@drawable/ic_action_save_holo_light</item>
-    </style>
 
-    <style name="TextSecure.LightTheme.NavigationDrawer"
-           parent="@style/TextSecure.LightTheme"
-           tools:ignore="NewApi">
-        <item name="android:homeAsUpIndicator">@drawable/ic_drawer</item>
-        <item name="homeAsUpIndicator">@drawable/ic_drawer</item>
-        <item name="navigation_drawer_background">@color/abs__background_holo_light</item>
-        <item name="navigation_drawer_text_color">#ff333333</item>
-        <item name="navigation_drawer_icons">@array/navigation_drawer_icons_light</item>
-        <item name="navigation_drawer_shadow">@drawable/drawer_shadow_light</item>
+        <item name="reminder_header_background">#ff5a8800</item>
     </style>
 
     <style name="TextSecure.DarkTheme" parent="@style/TextSecure.Dark">
@@ -160,17 +151,8 @@
         <item name="menu_info_icon">@drawable/ic_dialog_info_holo_dark</item>
         <item name="menu_forward_icon">@drawable/ic_action_forward_holo_dark</item>
         <item name="menu_save_icon">@drawable/ic_action_save_holo_dark</item>
-    </style>
 
-    <style name="TextSecure.DarkTheme.NavigationDrawer"
-           parent="@style/TextSecure.DarkTheme"
-           tools:ignore="NewApi">
-        <item name="android:homeAsUpIndicator">@drawable/ic_drawer</item>
-        <item name="homeAsUpIndicator">@drawable/ic_drawer</item>
-        <item name="navigation_drawer_background">#ff333333</item>
-        <item name="navigation_drawer_text_color">#ffdddddd</item>
-        <item name="navigation_drawer_icons">@array/navigation_drawer_icons_dark</item>
-        <item name="navigation_drawer_shadow">@drawable/drawer_shadow_dark</item>
+        <item name="reminder_header_background">#ff385400</item>
     </style>
 
     <style name="TextSecure.LightTheme.ConversationActivity"

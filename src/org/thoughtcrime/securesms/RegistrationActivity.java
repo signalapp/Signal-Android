@@ -18,15 +18,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockActivity;
-import com.google.android.gcm.GCMRegistrar;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.i18n.phonenumbers.AsYouTypeFormatter;
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 
-import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Dialogs;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.util.PhoneNumberFormatter;
 import org.whispersystems.textsecure.util.Util;
 
@@ -178,11 +179,15 @@ public class RegistrationActivity extends SherlockActivity {
         return;
       }
 
-      try {
-        GCMRegistrar.checkDevice(self);
-      } catch (UnsupportedOperationException uoe) {
-        Dialogs.showAlertDialog(self, getString(R.string.RegistrationActivity_unsupported),
-                             getString(R.string.RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging));
+      int gcmStatus = GooglePlayServicesUtil.isGooglePlayServicesAvailable(self);
+
+      if (gcmStatus != ConnectionResult.SUCCESS) {
+        if (GooglePlayServicesUtil.isUserRecoverableError(gcmStatus)) {
+          GooglePlayServicesUtil.getErrorDialog(gcmStatus, self, 9000).show();
+        } else {
+          Dialogs.showAlertDialog(self, getString(R.string.RegistrationActivity_unsupported),
+                                  getString(R.string.RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging));
+        }
         return;
       }
 

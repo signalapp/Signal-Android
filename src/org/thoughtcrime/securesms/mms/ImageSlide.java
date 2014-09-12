@@ -33,6 +33,10 @@ import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.LRUCache;
+import org.thoughtcrime.securesms.util.SmilUtil;
+import org.w3c.dom.smil.SMILDocument;
+import org.w3c.dom.smil.SMILMediaElement;
+import org.w3c.dom.smil.SMILRegionElement;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 
 import java.io.FileNotFoundException;
@@ -59,7 +63,7 @@ public class ImageSlide extends Slide {
   public ImageSlide(Context context, Uri uri) throws IOException, BitmapDecodingException {
     super(context, constructPartFromUri(context, uri));
   }
-		
+
   @Override
   public Drawable getThumbnail(int maxWidth, int maxHeight) {
     Drawable thumbnail = getCachedThumbnail();
@@ -161,12 +165,29 @@ public class ImageSlide extends Slide {
   public boolean hasImage() {
     return true;
   }
-	
+
+  @Override
+  public SMILRegionElement getSmilRegion(SMILDocument document) {
+    SMILRegionElement region = (SMILRegionElement) document.createElement("region");
+    region.setId("Image");
+    region.setLeft(0);
+    region.setTop(0);
+    region.setWidth(SmilUtil.ROOT_WIDTH);
+    region.setHeight(SmilUtil.ROOT_HEIGHT);
+    region.setFit("meet");
+    return region;
+  }
+
+  @Override
+  public SMILMediaElement getMediaElement(SMILDocument document) {
+    return SmilUtil.createMediaElement("img", document, new String(getPart().getName()));
+  }
+
   private static PduPart constructPartFromUri(Context context, Uri uri)
       throws IOException, BitmapDecodingException
   {
     PduPart part = new PduPart();
-    byte[] data  = BitmapUtil.createScaledBytes(context, uri, 640, 480, (300 * 1024) - 5000);
+    byte[] data  = BitmapUtil.createScaledBytes(context, uri, 1280, 1280, MAX_MESSAGE_SIZE);
 
     part.setData(data);
     part.setDataUri(uri);

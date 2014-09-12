@@ -52,6 +52,26 @@ public class TextSecurePreferences {
   private static final String FALLBACK_SMS_ASK_REQUIRED_PREF   = "pref_sms_fallback_ask";
   private static final String DIRECT_SMS_ALLOWED_PREF          = "pref_sms_non_data_out";
 
+  private static final String GCM_REGISTRATION_ID_PREF         = "pref_gcm_registration_id";
+  private static final String GCM_REGISTRATION_ID_VERSION_PREF = "pref_gcm_registration_id_version";
+
+  private static final String PUSH_REGISTRATION_REMINDER_PREF  = "pref_push_registration_reminder";
+
+  public static void setGcmRegistrationId(Context context, String registrationId) {
+    setStringPreference(context, GCM_REGISTRATION_ID_PREF, registrationId);
+    setIntegerPrefrence(context, GCM_REGISTRATION_ID_VERSION_PREF, Util.getCurrentApkReleaseVersion(context));
+  }
+
+  public static String getGcmRegistrationId(Context context) {
+    int storedRegistrationIdVersion = getIntegerPreference(context, GCM_REGISTRATION_ID_VERSION_PREF, 0);
+
+    if (storedRegistrationIdVersion != Util.getCurrentApkReleaseVersion(context)) {
+      return null;
+    } else {
+      return getStringPreference(context, GCM_REGISTRATION_ID_PREF, null);
+    }
+  }
+
   public static boolean isFallbackSmsAllowed(Context context) {
     return getBooleanPreference(context, FALLBACK_SMS_ALLOWED_PREF, true);
   }
@@ -285,6 +305,14 @@ public class TextSecurePreferences {
 
   public static int getThreadTrimLength(Context context) {
     return Integer.parseInt(getStringPreference(context, THREAD_TRIM_LENGTH, "500"));
+  }
+
+  public static long getLastPushReminderTime(Context context) {
+    return getLongPreference(context, PUSH_REGISTRATION_REMINDER_PREF, 0L);
+  }
+
+  public static void setLastPushReminderTime(Context context, long time) {
+    setLongPreference(context, PUSH_REGISTRATION_REMINDER_PREF, time);
   }
 
   private static void setBooleanPreference(Context context, String key, boolean value) {
