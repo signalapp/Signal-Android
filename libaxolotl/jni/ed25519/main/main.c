@@ -39,7 +39,7 @@ int main(int argc, char* argv[])
 };
   unsigned char sha512_actual_output[64];
 
-  crypto_hash_sha512_ref(sha512_actual_output, sha512_input, sizeof(sha512_input));
+  crypto_hash_sha512(sha512_actual_output, sha512_input, sizeof(sha512_input));
   if (memcmp(sha512_actual_output, sha512_correct_output, 64) != 0)
     printf("SHA512 bad #1\n");
   else
@@ -47,7 +47,7 @@ int main(int argc, char* argv[])
 
   sha512_input[111] ^= 1;
 
-  crypto_hash_sha512_ref(sha512_actual_output, sha512_input, sizeof(sha512_input));
+  crypto_hash_sha512(sha512_actual_output, sha512_input, sizeof(sha512_input));
   if (memcmp(sha512_actual_output, sha512_correct_output, 64) != 0)
     printf("SHA512 good #2\n");
   else
@@ -74,9 +74,9 @@ int main(int argc, char* argv[])
   printf("Random testing...\n");
   for (int count = 0; count < 10000; count++) {
     unsigned char b[64];
-    crypto_hash_sha512_ref(b, privkey, 32);
+    crypto_hash_sha512(b, privkey, 32);
     memmove(privkey, b, 32);
-    crypto_hash_sha512_ref(b, privkey, 32);
+    crypto_hash_sha512(b, privkey, 32);
     memmove(random, b, 64);
 
     privkey[0] &= 248;

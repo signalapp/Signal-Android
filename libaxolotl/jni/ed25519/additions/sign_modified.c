@@ -43,11 +43,5 @@ int crypto_sign_modified(
   sc_reduce(hram);
   sc_muladd(sm + 32,hram,sk,nonce); /* NEW: Use privkey directly */
 
-  /* NEW: Dummy call to hopefully erase any traces of privkey or 
-     nonce left in the stack from prev call to this func. */
-  volatile unsigned char* p = sm+64;
-  sc_muladd(sm+64,hram,hram,hram);
-
-  zeroize(nonce, 64);
   return 0;
 }

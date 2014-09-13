@@ -80,14 +80,15 @@ JNIEXPORT jbyteArray JNICALL Java_org_whispersystems_libaxolotl_ecc_Curve25519_c
     uint8_t*   messageBytes    = (uint8_t*)(*env)->GetByteArrayElements(env, message, 0);
     jsize      messageLength   = (*env)->GetArrayLength(env, message);
 
-    curve25519_sign(signatureBytes, privateKeyBytes, messageBytes, messageLength, randomBytes);
+    int result = curve25519_sign(signatureBytes, privateKeyBytes, messageBytes, messageLength, randomBytes);
 
     (*env)->ReleaseByteArrayElements(env, signature, signatureBytes, 0);
     (*env)->ReleaseByteArrayElements(env, random, randomBytes, 0);
     (*env)->ReleaseByteArrayElements(env, privateKey, privateKeyBytes, 0);
     (*env)->ReleaseByteArrayElements(env, message, messageBytes, 0);
 
-    return signature;
+    if (result == 0) return signature;
+    else             (*env)->ThrowNew(env, (*env)->FindClass(env, "java/lang/AssertionError"), "Signature failed!");
 }
 
 JNIEXPORT jboolean JNICALL Java_org_whispersystems_libaxolotl_ecc_Curve25519_verifySignature

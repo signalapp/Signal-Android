@@ -10,7 +10,7 @@ include $(BUILD_STATIC_LIBRARY)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE     := libcurve25519-ref10
-LOCAL_SRC_FILES  := $(wildcard ed25519/*.c) $(wildcard ed25519/additions/*.c) ed25519/sha512/sha2big.c
+LOCAL_SRC_FILES  := $(wildcard ed25519/*.c) $(wildcard ed25519/additions/*.c) $(wildcard ed25519/nacl_sha512/*.c)
 LOCAL_C_INCLUDES := ed25519/nacl_includes ed25519/additions ed25519/sha512 ed25519
 
 include $(BUILD_STATIC_LIBRARY)
