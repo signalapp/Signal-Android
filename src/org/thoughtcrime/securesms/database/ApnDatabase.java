@@ -95,7 +95,10 @@ public class ApnDatabase {
                                                                              final String apn)
   {
 
-    if (mccmnc == null) throw new InvalidParameterException("mccmnc must not be null");
+    if (mccmnc == null) {
+      Log.w(TAG, "mccmnc was null, returning null");
+      return null;
+    }
 
     Cursor cursor = null;
 
