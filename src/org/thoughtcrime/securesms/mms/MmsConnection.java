@@ -20,6 +20,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteException;
 import android.net.ConnectivityManager;
+import android.text.TextUtils;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.database.ApnDatabase;
@@ -38,17 +39,23 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-public class MmsCommunication {
+public abstract class MmsConnection {
   private static final String TAG = "MmsCommunication";
 
   public static final int MAX_REDIRECTS = 10;
 
-  protected static MmsConnectionParameters getLocallyConfiguredMmsConnectionParameters(Context context)
-      throws ApnUnavailableException
-  {
+  protected final Context context;
+  protected final Apn     apn;
+
+  protected MmsConnection(Context context, Apn apn) {
+    this.context = context;
+    this.apn     = apn;
+  }
+
+  protected static Apn getLocallyConfiguredApn(Context context) throws ApnUnavailableException {
     if (TextSecurePreferences.isUseLocalApnsEnabled(context)) {
       String mmsc = TextSecurePreferences.getMmscUrl(context);
 
@@ -61,22 +68,20 @@ public class MmsCommunication {
       String proxy = TextSecurePreferences.getMmscProxy(context);
       String port  = TextSecurePreferences.getMmscProxyPort(context);
 
-      return new MmsConnectionParameters(mmsc, proxy, port);
+      return new Apn(mmsc, proxy, port);
     }
 
     throw new ApnUnavailableException("No locally configured parameters available");
   }
 
-  protected static MmsConnectionParameters getLocalMmsConnectionParameters(Context context)
-      throws ApnUnavailableException
-  {
+  protected static Apn getLocalApn(Context context) throws ApnUnavailableException {
     if (TextSecurePreferences.isUseLocalApnsEnabled(context)) {
-      return getLocallyConfiguredMmsConnectionParameters(context);
+      return getLocallyConfiguredApn(context);
     } else {
       try {
-        MmsConnectionParameters params = ApnDatabase.getInstance(context)
-                                                    .getMmsConnectionParameters(TelephonyUtil.getMccMnc(context),
-                                                                                TelephonyUtil.getApn(context));
+        Apn params = ApnDatabase.getInstance(context)
+                                .getMmsConnectionParameters(TelephonyUtil.getMccMnc(context),
+                                                            TelephonyUtil.getApn(context));
 
         if (params == null) {
           throw new ApnUnavailableException("No parameters available from ApnDefaults.");
@@ -89,18 +94,16 @@ public class MmsCommunication {
     }
   }
 
-  protected static MmsConnectionParameters getMmsConnectionParameters(Context context, String apn)
-      throws ApnUnavailableException
-  {
-    Log.w(TAG, "Getting MMSC params for apn " + apn);
+  public static Apn getApn(Context context, String apnName) throws ApnUnavailableException {
+    Log.w(TAG, "Getting MMSC params for apn " + apnName);
     Cursor cursor = null;
 
     try {
-      cursor = DatabaseFactory.getMmsDatabase(context).getCarrierMmsInformation(apn);
+      cursor = DatabaseFactory.getMmsDatabase(context).getCarrierMmsInformation(apnName);
 
       if (cursor == null || !cursor.moveToFirst()) {
         Log.w(TAG, "Android didn't have a result, querying local parameters.");
-        return getLocalMmsConnectionParameters(context);
+        return getLocalApn(context);
       }
 
       do {
@@ -110,25 +113,25 @@ public class MmsCommunication {
 
         if (!Util.isEmpty(mmsc)) {
           Log.w(TAG, "Using Android-provided MMSC parameters.");
-          return new MmsConnectionParameters(mmsc, proxy, port);
+          return new Apn(mmsc, proxy, port);
         }
 
       } while (cursor.moveToNext());
 
       Log.w(TAG, "Android provided results were empty, querying local parameters.");
-      return getLocalMmsConnectionParameters(context);
+      return getLocalApn(context);
     } catch (SQLiteException sqe) {
       Log.w(TAG, sqe);
     } catch (SecurityException se) {
       Log.w(TAG, "Android won't let us query the APN database.");
-      return getLocalMmsConnectionParameters(context);
+      return getLocalApn(context);
     } catch (IllegalArgumentException iae) {
       Log.w(TAG, iae);
     } finally {
       if (cursor != null)
         cursor.close();
     }
-    return getLocalMmsConnectionParameters(context);
+    return getLocalApn(context);
   }
 
   protected static boolean checkRouteToHost(Context context, String host, boolean usingMmsRadio)
@@ -167,15 +170,15 @@ public class MmsCommunication {
     return baos.toByteArray();
   }
 
-  protected static HttpURLConnection constructHttpClient(String urlString, String proxy, int port)
+  protected HttpURLConnection constructHttpClient(boolean useProxy)
       throws IOException
   {
     HttpURLConnection urlConnection;
-    URL url = new URL(urlString);
+    URL url = new URL(apn.getMmsc());
 
-    if (proxy != null) {
-      Log.w(TAG, String.format("Constructing http client using a proxy: (%s:%d)", proxy, port));
-      Proxy proxyRoute = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxy, port));
+    if (apn.hasProxy() && useProxy) {
+      Log.w(TAG, String.format("Constructing http client using a proxy: (%s:%d)", apn.getProxy(), apn.getPort()));
+      Proxy proxyRoute = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(apn.getProxy(), apn.getPort()));
       urlConnection = (HttpURLConnection) url.openConnection(proxyRoute);
     } else {
       Log.w(TAG, "Constructing http client without proxy");
@@ -191,63 +194,84 @@ public class MmsCommunication {
     return urlConnection;
   }
 
-  public static class MmsConnectionParameters {
+  protected byte[] makeRequest(boolean useProxy) throws IOException {
+    HttpURLConnection client = null;
 
-    public class Apn {
-      private final String mmsc;
-      private final String proxy;
-      private final String port;
+    int redirects = MAX_REDIRECTS;
+    final Set<String> previousUrls = new HashSet<String>();
+    String currentUrl = apn.getMmsc();
+    while (redirects-- > 0) {
+      try {
+        client = constructHttpClient(useProxy);
+        Log.w(TAG, "connecting to " + currentUrl);
+        client.connect();
 
-      public Apn(String mmsc, String proxy, String port) {
-        this.mmsc  = mmsc;
-        this.proxy = proxy;
-        this.port  = port;
-      }
+        transact(client);
 
-      public boolean hasProxy() {
-        return !Util.isEmpty(proxy);
-      }
+        Log.w(TAG, "* response code: " + client.getResponseCode() + "/" + client.getResponseMessage());
+        switch (client.getResponseCode()) {
+        case 200:
+          return parseResponse(client.getInputStream());
+        case 301:
+        case 302:
+          final String redirectUrl = client.getHeaderField("Location");
+          Log.w(TAG, "* Location: " + redirectUrl);
 
-      public String getMmsc() {
-        return mmsc;
-      }
+          if (TextUtils.isEmpty(redirectUrl) || !(redirectUrl.startsWith("http://") || redirectUrl.startsWith("https://"))) {
+            throw new IOException("Redirect location can't be handled");
+          }
 
-      public String getProxy() {
-        if (!hasProxy())
-          return null;
-
-        return proxy;
-      }
-
-      public int getPort() {
-        if (Util.isEmpty(port))
-          return 80;
-
-        return Integer.parseInt(port);
-      }
-
-      @Override
-      public String toString() {
-        return MmsConnectionParameters.class.getSimpleName() +
-               "{ mmsc: \"" + mmsc + "\"" +
-               ", proxy: " + (proxy == null ? "none" : '"' + proxy + '"') +
-               ", port: " + (port == null ? "none" : port) + " }";
+          previousUrls.add(currentUrl);
+          if (previousUrls.contains(redirectUrl)) {
+            throw new IOException("redirect loop detected");
+          }
+          currentUrl = redirectUrl;
+          break;
+        default:
+          throw new IOException("unhandled response code");
+        }
+      } finally {
+        if (client != null) client.disconnect();
       }
     }
+    throw new IOException("max redirects hit");
+  }
 
-    private List<Apn> apn = new ArrayList<Apn>();
+  protected void transact(HttpURLConnection client) throws IOException { }
 
-    public MmsConnectionParameters(String mmsc, String proxy, String port) {
-      apn.add(new Apn(mmsc, proxy, port));
+  public static class Apn {
+    private final String mmsc;
+    private final String proxy;
+    private final String port;
+
+    public Apn(String mmsc, String proxy, String port) {
+      this.mmsc  = mmsc;
+      this.proxy = proxy;
+      this.port  = port;
     }
 
-    public MmsConnectionParameters add(String mmsc, String proxy, String port) {
-      apn.add(new Apn(mmsc, proxy, port));
-      return this;
+    public boolean hasProxy() {
+      return !Util.isEmpty(proxy);
     }
 
-    public List<Apn> get() {
-      return apn;
+    public String getMmsc() {
+      return mmsc;
+    }
+
+    public String getProxy() {
+      return hasProxy() ? proxy : null;
+    }
+
+    public int getPort() {
+      return Util.isEmpty(port) ? 80 : Integer.parseInt(port);
+    }
+
+    @Override
+    public String toString() {
+      return Apn.class.getSimpleName() +
+             "{ mmsc: \"" + mmsc + "\"" +
+             ", proxy: " + (proxy == null ? "none" : '"' + proxy + '"') +
+             ", port: " + (port == null ? "none" : port) + " }";
     }
   }
 

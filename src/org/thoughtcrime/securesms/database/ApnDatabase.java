@@ -23,8 +23,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.mms.MmsCommunication;
-import org.thoughtcrime.securesms.mms.MmsCommunication.MmsConnectionParameters;
+import org.thoughtcrime.securesms.mms.MmsConnection;
+import org.thoughtcrime.securesms.mms.MmsConnection.Apn;
 import org.whispersystems.textsecure.util.Util;
 
 import java.io.File;
@@ -91,8 +91,7 @@ public class ApnDatabase {
                                           SQLiteDatabase.OPEN_READONLY | SQLiteDatabase.NO_LOCALIZED_COLLATORS);
   }
 
-  public MmsCommunication.MmsConnectionParameters getMmsConnectionParameters(final String mccmnc,
-                                                                             final String apn)
+  public MmsConnection.Apn getMmsConnectionParameters(final String mccmnc, final String apn)
   {
 
     if (mccmnc == null) {
@@ -121,10 +120,10 @@ public class ApnDatabase {
       }
 
       if (cursor != null && cursor.moveToFirst()) {
-        MmsConnectionParameters params = new MmsConnectionParameters(cursor.getString(cursor.getColumnIndexOrThrow(MMSC_COLUMN)),
-                                                                     cursor.getString(cursor.getColumnIndexOrThrow(MMS_PROXY_COLUMN)),
-                                                                     cursor.getString(cursor.getColumnIndexOrThrow(MMS_PORT_COLUMN)));
-        Log.w(TAG, "Returning preferred APN " + params.get().get(0));
+        Apn params = new Apn(cursor.getString(cursor.getColumnIndexOrThrow(MMSC_COLUMN)),
+                             cursor.getString(cursor.getColumnIndexOrThrow(MMS_PROXY_COLUMN)),
+                             cursor.getString(cursor.getColumnIndexOrThrow(MMS_PORT_COLUMN)));
+        Log.w(TAG, "Returning preferred APN " + params);
         return params;
       }
 
