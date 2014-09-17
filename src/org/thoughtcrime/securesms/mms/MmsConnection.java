@@ -40,6 +40,7 @@ import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.net.URL;
 import java.util.HashSet;
+import java.util.Properties;
 import java.util.Set;
 
 public abstract class MmsConnection {
@@ -155,8 +156,11 @@ public abstract class MmsConnection {
       int ipAddress               = Conversions.byteArrayToIntLittleEndian(ipAddressBytes, 0);
       ConnectivityManager manager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
-      return manager.requestRouteToHost(MmsRadio.TYPE_MOBILE_MMS, ipAddress);
+      boolean routeToHostObtained = manager.requestRouteToHost(MmsRadio.TYPE_MOBILE_MMS, ipAddress);
+      Log.w(TAG, "requestRouteToHost result: " + routeToHostObtained);
+      return routeToHostObtained;
     }
+    Log.w(TAG, "returning vacuous true");
     return true;
   }
 
@@ -179,7 +183,12 @@ public abstract class MmsConnection {
     if (apn.hasProxy() && useProxy) {
       Log.w(TAG, String.format("Constructing http client using a proxy: (%s:%d)", apn.getProxy(), apn.getPort()));
       Proxy proxyRoute = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(apn.getProxy(), apn.getPort()));
-      urlConnection = (HttpURLConnection) url.openConnection(proxyRoute);
+      Properties systemProperties = System.getProperties();
+      systemProperties.setProperty("http.proxyHost",apn.getProxy());
+      systemProperties.setProperty("http.proxyPort",Integer.toString(apn.getPort()));
+      systemProperties.setProperty("https.proxyHost",apn.getProxy());
+      systemProperties.setProperty("https.proxyPort",Integer.toString(apn.getPort()));
+      urlConnection = (HttpURLConnection) url.openConnection();
     } else {
       Log.w(TAG, "Constructing http client without proxy");
       urlConnection = (HttpURLConnection) url.openConnection();

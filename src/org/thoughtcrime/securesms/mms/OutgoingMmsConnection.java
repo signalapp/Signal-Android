@@ -90,6 +90,7 @@ public class OutgoingMmsConnection extends MmsConnection {
         }
       }
     } catch (IOException ioe) {
+      Log.w(TAG, "caught an IOException when checking host routes and making requests.");
       Log.w(TAG, ioe);
     }
     throw new IOException("Connection manager could not obtain route to host.");
