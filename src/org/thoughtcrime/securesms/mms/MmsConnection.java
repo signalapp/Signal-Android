@@ -38,9 +38,12 @@ import java.net.HttpURLConnection;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
+import java.net.Proxy.Type;
+import java.net.ProxySelector;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.HashSet;
-import java.util.Properties;
+import java.util.List;
 import java.util.Set;
 
 public abstract class MmsConnection {
@@ -181,23 +184,39 @@ public abstract class MmsConnection {
     URL url = new URL(apn.getMmsc());
 
     if (apn.hasProxy() && useProxy) {
+      Log.w(TAG, "http.nonProxyHosts:   " + System.getProperty("http.nonProxyHosts"));
+      Log.w(TAG, "http.proxyHost:       " + System.getProperty("http.proxyHost"));
+      Log.w(TAG, "http.proxyPort:       " + System.getProperty("http.proxyPort"));
+      Log.w(TAG, "https.nonProxyHosts:  " + System.getProperty("https.nonProxyHosts"));
+      Log.w(TAG, "https.proxyHost:      " + System.getProperty("https.proxyHost"));
+      Log.w(TAG, "https.proxyPort:      " + System.getProperty("https.proxyPort"));
+      try {
+        List<Proxy> defaultProxies = ProxySelector.getDefault().select(url.toURI());
+        if (defaultProxies.size() == 0) {
+          Log.w(TAG, "ProxySelector returned no default proxies for the MMSC");
+        }
+        for (Proxy proxy : defaultProxies) {
+          InetSocketAddress addr = (InetSocketAddress) proxy.address();
+          Log.w(TAG, "ProxySelector type: " + proxy.type() + ", address: " +
+                     (addr != null ? addr.getHostName() : null) + ":" +
+                     (addr != null ? addr.getPort() : null));
+        }
+      } catch (URISyntaxException use) {
+        Log.w(TAG, "URL couldn't be transformed to URI");
+      }
       Log.w(TAG, String.format("Constructing http client using a proxy: (%s:%d)", apn.getProxy(), apn.getPort()));
-      Proxy proxyRoute = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(apn.getProxy(), apn.getPort()));
-      Properties systemProperties = System.getProperties();
-      systemProperties.setProperty("http.proxyHost",apn.getProxy());
-      systemProperties.setProperty("http.proxyPort",Integer.toString(apn.getPort()));
-      systemProperties.setProperty("https.proxyHost",apn.getProxy());
-      systemProperties.setProperty("https.proxyPort",Integer.toString(apn.getPort()));
-      urlConnection = (HttpURLConnection) url.openConnection();
+      Proxy proxyRoute = new Proxy(Type.HTTP, new InetSocketAddress(apn.getProxy(), apn.getPort()));
+      urlConnection = (HttpURLConnection) url.openConnection(proxyRoute);
     } else {
       Log.w(TAG, "Constructing http client without proxy");
       urlConnection = (HttpURLConnection) url.openConnection();
     }
 
     urlConnection.setInstanceFollowRedirects(false);
-    urlConnection.setConnectTimeout(20*1000);
-    urlConnection.setReadTimeout(20*1000);
+    urlConnection.setConnectTimeout(20 * 1000);
+    urlConnection.setReadTimeout(20 * 1000);
     urlConnection.setUseCaches(false);
+    Log.w(TAG, "urlConnection using proxy: " + urlConnection.usingProxy());
     urlConnection.setRequestProperty("User-Agent", "Android-Mms/2.0");
     urlConnection.setRequestProperty("Accept-Charset", "UTF-8");
     return urlConnection;
