@@ -116,4 +116,28 @@ public class KeyHelper {
     return new SignedPreKeyRecord(signedPreKeyId, System.currentTimeMillis(), keyPair, signature);
   }
 
+
+  public static ECKeyPair generateSenderSigningKey() {
+    return Curve.generateKeyPair();
+  }
+
+  public static byte[] generateSenderKey() {
+    try {
+      byte[] key = new byte[32];
+      SecureRandom.getInstance("SHA1PRNG").nextBytes(key);
+
+      return key;
+    } catch (NoSuchAlgorithmException e) {
+      throw new AssertionError(e);
+    }
+  }
+
+  public static int generateSenderKeyId() {
+    try {
+      return SecureRandom.getInstance("SHA1PRNG").nextInt(Integer.MAX_VALUE);
+    } catch (NoSuchAlgorithmException e) {
+      throw new AssertionError(e);
+    }
+  }
+
 }

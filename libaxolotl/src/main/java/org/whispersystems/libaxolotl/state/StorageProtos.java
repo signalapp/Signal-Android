@@ -8273,6 +8273,3265 @@ public final class StorageProtos {
     // @@protoc_insertion_point(class_scope:textsecure.IdentityKeyPairStructure)
   }
 
+  public interface SenderKeyStateStructureOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // optional uint32 senderKeyId = 1;
+    /**
+     * <code>optional uint32 senderKeyId = 1;</code>
+     */
+    boolean hasSenderKeyId();
+    /**
+     * <code>optional uint32 senderKeyId = 1;</code>
+     */
+    int getSenderKeyId();
+
+    // optional .textsecure.SenderKeyStateStructure.SenderChainKey senderChainKey = 2;
+    /**
+     * <code>optional .textsecure.SenderKeyStateStructure.SenderChainKey senderChainKey = 2;</code>
+     */
+    boolean hasSenderChainKey();
+    /**
+     * <code>optional .textsecure.SenderKeyStateStructure.SenderChainKey senderChainKey = 2;</code>
+     */
+    org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey getSenderChainKey();
+    /**
+     * <code>optional .textsecure.SenderKeyStateStructure.SenderChainKey senderChainKey = 2;</code>
+     */
+    org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKeyOrBuilder getSenderChainKeyOrBuilder();
+
+    // optional .textsecure.SenderKeyStateStructure.SenderSigningKey senderSigningKey = 3;
+    /**
+     * <code>optional .textsecure.SenderKeyStateStructure.SenderSigningKey senderSigningKey = 3;</code>
+     */
+    boolean hasSenderSigningKey();
+    /**
+     * <code>optional .textsecure.SenderKeyStateStructure.SenderSigningKey senderSigningKey = 3;</code>
+     */
+    org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey getSenderSigningKey();
+    /**
+     * <code>optional .textsecure.SenderKeyStateStructure.SenderSigningKey senderSigningKey = 3;</code>
+     */
+    org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKeyOrBuilder getSenderSigningKeyOrBuilder();
+
+    // repeated .textsecure.SenderKeyStateStructure.SenderMessageKey senderMessageKeys = 4;
+    /**
+     * <code>repeated .textsecure.SenderKeyStateStructure.SenderMessageKey senderMessageKeys = 4;</code>
+     */
+    java.util.List<org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey> 
+        getSenderMessageKeysList();
+    /**
+     * <code>repeated .textsecure.SenderKeyStateStructure.SenderMessageKey senderMessageKeys = 4;</code>
+     */
+    org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey getSenderMessageKeys(int index);
+    /**
+     * <code>repeated .textsecure.SenderKeyStateStructure.SenderMessageKey senderMessageKeys = 4;</code>
+     */
+    int getSenderMessageKeysCount();
+    /**
+     * <code>repeated .textsecure.SenderKeyStateStructure.SenderMessageKey senderMessageKeys = 4;</code>
+     */
+    java.util.List<? extends org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKeyOrBuilder> 
+        getSenderMessageKeysOrBuilderList();
+    /**
+     * <code>repeated .textsecure.SenderKeyStateStructure.SenderMessageKey senderMessageKeys = 4;</code>
+     */
+    org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKeyOrBuilder getSenderMessageKeysOrBuilder(
+        int index);
+  }
+  /**
+   * Protobuf type {@code textsecure.SenderKeyStateStructure}
+   */
+  public static final class SenderKeyStateStructure extends
+      com.google.protobuf.GeneratedMessage
+      implements SenderKeyStateStructureOrBuilder {
+    // Use SenderKeyStateStructure.newBuilder() to construct.
+    private SenderKeyStateStructure(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private SenderKeyStateStructure(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final SenderKeyStateStructure defaultInstance;
+    public static SenderKeyStateStructure getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public SenderKeyStateStructure getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private SenderKeyStateStructure(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              senderKeyId_ = input.readUInt32();
+              break;
+            }
+            case 18: {
+              org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000002) == 0x00000002)) {
+                subBuilder = senderChainKey_.toBuilder();
+              }
+              senderChainKey_ = input.readMessage(org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(senderChainKey_);
+                senderChainKey_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000002;
+              break;
+            }
+            case 26: {
+              org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000004) == 0x00000004)) {
+                subBuilder = senderSigningKey_.toBuilder();
+              }
+              senderSigningKey_ = input.readMessage(org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(senderSigningKey_);
+                senderSigningKey_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000004;
+              break;
+            }
+            case 34: {
+              if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+                senderMessageKeys_ = new java.util.ArrayList<org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey>();
+                mutable_bitField0_ |= 0x00000008;
+              }
+              senderMessageKeys_.add(input.readMessage(org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey.PARSER, extensionRegistry));
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+          senderMessageKeys_ = java.util.Collections.unmodifiableList(senderMessageKeys_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.whispersystems.libaxolotl.state.StorageProtos.internal_static_textsecure_SenderKeyStateStructure_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.whispersystems.libaxolotl.state.StorageProtos.internal_static_textsecure_SenderKeyStateStructure_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.class, org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<SenderKeyStateStructure> PARSER =
+        new com.google.protobuf.AbstractParser<SenderKeyStateStructure>() {
+      public SenderKeyStateStructure parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new SenderKeyStateStructure(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<SenderKeyStateStructure> getParserForType() {
+      return PARSER;
+    }
+
+    public interface SenderChainKeyOrBuilder
+        extends com.google.protobuf.MessageOrBuilder {
+
+      // optional uint32 iteration = 1;
+      /**
+       * <code>optional uint32 iteration = 1;</code>
+       */
+      boolean hasIteration();
+      /**
+       * <code>optional uint32 iteration = 1;</code>
+       */
+      int getIteration();
+
+      // optional bytes seed = 2;
+      /**
+       * <code>optional bytes seed = 2;</code>
+       */
+      boolean hasSeed();
+      /**
+       * <code>optional bytes seed = 2;</code>
+       */
+      com.google.protobuf.ByteString getSeed();
+    }
+    /**
+     * Protobuf type {@code textsecure.SenderKeyStateStructure.SenderChainKey}
+     */
+    public static final class SenderChainKey extends
+        com.google.protobuf.GeneratedMessage
+        implements SenderChainKeyOrBuilder {
+      // Use SenderChainKey.newBuilder() to construct.
+      private SenderChainKey(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+        super(builder);
+        this.unknownFields = builder.getUnknownFields();
+      }
+      private SenderChainKey(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+      private static final SenderChainKey defaultInstance;
+      public static SenderChainKey getDefaultInstance() {
+        return defaultInstance;
+      }
+
+      public SenderChainKey getDefaultInstanceForType() {
+        return defaultInstance;
+      }
+
+      private final com.google.protobuf.UnknownFieldSet unknownFields;
+      @java.lang.Override
+      public final com.google.protobuf.UnknownFieldSet
+          getUnknownFields() {
+        return this.unknownFields;
+      }
+      private SenderChainKey(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        initFields();
+        int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              default: {
+                if (!parseUnknownField(input, unknownFields,
+                                       extensionRegistry, tag)) {
+                  done = true;
+                }
+                break;
+              }
+              case 8: {
+                bitField0_ |= 0x00000001;
+                iteration_ = input.readUInt32();
+                break;
+              }
+              case 18: {
+                bitField0_ |= 0x00000002;
+                seed_ = input.readBytes();
+                break;
+              }
+            }
+          }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(
+              e.getMessage()).setUnfinishedMessage(this);
+        } finally {
+          this.unknownFields = unknownFields.build();
+          makeExtensionsImmutable();
+        }
+      }
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.whispersystems.libaxolotl.state.StorageProtos.internal_static_textsecure_SenderKeyStateStructure_SenderChainKey_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.whispersystems.libaxolotl.state.StorageProtos.internal_static_textsecure_SenderKeyStateStructure_SenderChainKey_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey.class, org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey.Builder.class);
+      }
+
+      public static com.google.protobuf.Parser<SenderChainKey> PARSER =
+          new com.google.protobuf.AbstractParser<SenderChainKey>() {
+        public SenderChainKey parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return new SenderChainKey(input, extensionRegistry);
+        }
+      };
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<SenderChainKey> getParserForType() {
+        return PARSER;
+      }
+
+      private int bitField0_;
+      // optional uint32 iteration = 1;
+      public static final int ITERATION_FIELD_NUMBER = 1;
+      private int iteration_;
+      /**
+       * <code>optional uint32 iteration = 1;</code>
+       */
+      public boolean hasIteration() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional uint32 iteration = 1;</code>
+       */
+      public int getIteration() {
+        return iteration_;
+      }
+
+      // optional bytes seed = 2;
+      public static final int SEED_FIELD_NUMBER = 2;
+      private com.google.protobuf.ByteString seed_;
+      /**
+       * <code>optional bytes seed = 2;</code>
+       */
+      public boolean hasSeed() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional bytes seed = 2;</code>
+       */
+      public com.google.protobuf.ByteString getSeed() {
+        return seed_;
+      }
+
+      private void initFields() {
+        iteration_ = 0;
+        seed_ = com.google.protobuf.ByteString.EMPTY;
+      }
+      private byte memoizedIsInitialized = -1;
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized != -1) return isInitialized == 1;
+
+        memoizedIsInitialized = 1;
+        return true;
+      }
+
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        getSerializedSize();
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          output.writeUInt32(1, iteration_);
+        }
+        if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          output.writeBytes(2, seed_);
+        }
+        getUnknownFields().writeTo(output);
+      }
+
+      private int memoizedSerializedSize = -1;
+      public int getSerializedSize() {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeUInt32Size(1, iteration_);
+        }
+        if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeBytesSize(2, seed_);
+        }
+        size += getUnknownFields().getSerializedSize();
+        memoizedSerializedSize = size;
+        return size;
+      }
+
+      private static final long serialVersionUID = 0L;
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
+          throws java.io.ObjectStreamException {
+        return super.writeReplace();
+      }
+
+      public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input);
+      }
+      public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input, extensionRegistry);
+      }
+      public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return PARSER.parseDelimitedFrom(input);
+      }
+      public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      }
+      public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input);
+      }
+      public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input, extensionRegistry);
+      }
+
+      public static Builder newBuilder() { return Builder.create(); }
+      public Builder newBuilderForType() { return newBuilder(); }
+      public static Builder newBuilder(org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey prototype) {
+        return newBuilder().mergeFrom(prototype);
+      }
+      public Builder toBuilder() { return newBuilder(this); }
+
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
+      /**
+       * Protobuf type {@code textsecure.SenderKeyStateStructure.SenderChainKey}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessage.Builder<Builder>
+         implements org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKeyOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return org.whispersystems.libaxolotl.state.StorageProtos.internal_static_textsecure_SenderKeyStateStructure_SenderChainKey_descriptor;
+        }
+
+        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return org.whispersystems.libaxolotl.state.StorageProtos.internal_static_textsecure_SenderKeyStateStructure_SenderChainKey_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey.class, org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey.Builder.class);
+        }
+
+        // Construct using org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey.newBuilder()
+        private Builder() {
+          maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+            com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          }
+        }
+        private static Builder create() {
+          return new Builder();
+        }
+
+        public Builder clear() {
+          super.clear();
+          iteration_ = 0;
+          bitField0_ = (bitField0_ & ~0x00000001);
+          seed_ = com.google.protobuf.ByteString.EMPTY;
+          bitField0_ = (bitField0_ & ~0x00000002);
+          return this;
+        }
+
+        public Builder clone() {
+          return create().mergeFrom(buildPartial());
+        }
+
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return org.whispersystems.libaxolotl.state.StorageProtos.internal_static_textsecure_SenderKeyStateStructure_SenderChainKey_descriptor;
+        }
+
+        public org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey getDefaultInstanceForType() {
+          return org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey.getDefaultInstance();
+        }
+
+        public org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey build() {
+          org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        public org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey buildPartial() {
+          org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey result = new org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey(this);
+          int from_bitField0_ = bitField0_;
+          int to_bitField0_ = 0;
+          if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+            to_bitField0_ |= 0x00000001;
+          }
+          result.iteration_ = iteration_;
+          if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+            to_bitField0_ |= 0x00000002;
+          }
+          result.seed_ = seed_;
+          result.bitField0_ = to_bitField0_;
+          onBuilt();
+          return result;
+        }
+
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey) {
+            return mergeFrom((org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey other) {
+          if (other == org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey.getDefaultInstance()) return this;
+          if (other.hasIteration()) {
+            setIteration(other.getIteration());
+          }
+          if (other.hasSeed()) {
+            setSeed(other.getSeed());
+          }
+          this.mergeUnknownFields(other.getUnknownFields());
+          return this;
+        }
+
+        public final boolean isInitialized() {
+          return true;
+        }
+
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey parsedMessage = null;
+          try {
+            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            parsedMessage = (org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey) e.getUnfinishedMessage();
+            throw e;
+          } finally {
+            if (parsedMessage != null) {
+              mergeFrom(parsedMessage);
+            }
+          }
+          return this;
+        }
+        private int bitField0_;
+
+        // optional uint32 iteration = 1;
+        private int iteration_ ;
+        /**
+         * <code>optional uint32 iteration = 1;</code>
+         */
+        public boolean hasIteration() {
+          return ((bitField0_ & 0x00000001) == 0x00000001);
+        }
+        /**
+         * <code>optional uint32 iteration = 1;</code>
+         */
+        public int getIteration() {
+          return iteration_;
+        }
+        /**
+         * <code>optional uint32 iteration = 1;</code>
+         */
+        public Builder setIteration(int value) {
+          bitField0_ |= 0x00000001;
+          iteration_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>optional uint32 iteration = 1;</code>
+         */
+        public Builder clearIteration() {
+          bitField0_ = (bitField0_ & ~0x00000001);
+          iteration_ = 0;
+          onChanged();
+          return this;
+        }
+
+        // optional bytes seed = 2;
+        private com.google.protobuf.ByteString seed_ = com.google.protobuf.ByteString.EMPTY;
+        /**
+         * <code>optional bytes seed = 2;</code>
+         */
+        public boolean hasSeed() {
+          return ((bitField0_ & 0x00000002) == 0x00000002);
+        }
+        /**
+         * <code>optional bytes seed = 2;</code>
+         */
+        public com.google.protobuf.ByteString getSeed() {
+          return seed_;
+        }
+        /**
+         * <code>optional bytes seed = 2;</code>
+         */
+        public Builder setSeed(com.google.protobuf.ByteString value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+          seed_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>optional bytes seed = 2;</code>
+         */
+        public Builder clearSeed() {
+          bitField0_ = (bitField0_ & ~0x00000002);
+          seed_ = getDefaultInstance().getSeed();
+          onChanged();
+          return this;
+        }
+
+        // @@protoc_insertion_point(builder_scope:textsecure.SenderKeyStateStructure.SenderChainKey)
+      }
+
+      static {
+        defaultInstance = new SenderChainKey(true);
+        defaultInstance.initFields();
+      }
+
+      // @@protoc_insertion_point(class_scope:textsecure.SenderKeyStateStructure.SenderChainKey)
+    }
+
+    public interface SenderMessageKeyOrBuilder
+        extends com.google.protobuf.MessageOrBuilder {
+
+      // optional uint32 iteration = 1;
+      /**
+       * <code>optional uint32 iteration = 1;</code>
+       */
+      boolean hasIteration();
+      /**
+       * <code>optional uint32 iteration = 1;</code>
+       */
+      int getIteration();
+
+      // optional bytes seed = 2;
+      /**
+       * <code>optional bytes seed = 2;</code>
+       */
+      boolean hasSeed();
+      /**
+       * <code>optional bytes seed = 2;</code>
+       */
+      com.google.protobuf.ByteString getSeed();
+    }
+    /**
+     * Protobuf type {@code textsecure.SenderKeyStateStructure.SenderMessageKey}
+     */
+    public static final class SenderMessageKey extends
+        com.google.protobuf.GeneratedMessage
+        implements SenderMessageKeyOrBuilder {
+      // Use SenderMessageKey.newBuilder() to construct.
+      private SenderMessageKey(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+        super(builder);
+        this.unknownFields = builder.getUnknownFields();
+      }
+      private SenderMessageKey(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+      private static final SenderMessageKey defaultInstance;
+      public static SenderMessageKey getDefaultInstance() {
+        return defaultInstance;
+      }
+
+      public SenderMessageKey getDefaultInstanceForType() {
+        return defaultInstance;
+      }
+
+      private final com.google.protobuf.UnknownFieldSet unknownFields;
+      @java.lang.Override
+      public final com.google.protobuf.UnknownFieldSet
+          getUnknownFields() {
+        return this.unknownFields;
+      }
+      private SenderMessageKey(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        initFields();
+        int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              default: {
+                if (!parseUnknownField(input, unknownFields,
+                                       extensionRegistry, tag)) {
+                  done = true;
+                }
+                break;
+              }
+              case 8: {
+                bitField0_ |= 0x00000001;
+                iteration_ = input.readUInt32();
+                break;
+              }
+              case 18: {
+                bitField0_ |= 0x00000002;
+                seed_ = input.readBytes();
+                break;
+              }
+            }
+          }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(
+              e.getMessage()).setUnfinishedMessage(this);
+        } finally {
+          this.unknownFields = unknownFields.build();
+          makeExtensionsImmutable();
+        }
+      }
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.whispersystems.libaxolotl.state.StorageProtos.internal_static_textsecure_SenderKeyStateStructure_SenderMessageKey_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.whispersystems.libaxolotl.state.StorageProtos.internal_static_textsecure_SenderKeyStateStructure_SenderMessageKey_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey.class, org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey.Builder.class);
+      }
+
+      public static com.google.protobuf.Parser<SenderMessageKey> PARSER =
+          new com.google.protobuf.AbstractParser<SenderMessageKey>() {
+        public SenderMessageKey parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return new SenderMessageKey(input, extensionRegistry);
+        }
+      };
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<SenderMessageKey> getParserForType() {
+        return PARSER;
+      }
+
+      private int bitField0_;
+      // optional uint32 iteration = 1;
+      public static final int ITERATION_FIELD_NUMBER = 1;
+      private int iteration_;
+      /**
+       * <code>optional uint32 iteration = 1;</code>
+       */
+      public boolean hasIteration() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional uint32 iteration = 1;</code>
+       */
+      public int getIteration() {
+        return iteration_;
+      }
+
+      // optional bytes seed = 2;
+      public static final int SEED_FIELD_NUMBER = 2;
+      private com.google.protobuf.ByteString seed_;
+      /**
+       * <code>optional bytes seed = 2;</code>
+       */
+      public boolean hasSeed() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional bytes seed = 2;</code>
+       */
+      public com.google.protobuf.ByteString getSeed() {
+        return seed_;
+      }
+
+      private void initFields() {
+        iteration_ = 0;
+        seed_ = com.google.protobuf.ByteString.EMPTY;
+      }
+      private byte memoizedIsInitialized = -1;
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized != -1) return isInitialized == 1;
+
+        memoizedIsInitialized = 1;
+        return true;
+      }
+
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        getSerializedSize();
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          output.writeUInt32(1, iteration_);
+        }
+        if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          output.writeBytes(2, seed_);
+        }
+        getUnknownFields().writeTo(output);
+      }
+
+      private int memoizedSerializedSize = -1;
+      public int getSerializedSize() {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeUInt32Size(1, iteration_);
+        }
+        if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeBytesSize(2, seed_);
+        }
+        size += getUnknownFields().getSerializedSize();
+        memoizedSerializedSize = size;
+        return size;
+      }
+
+      private static final long serialVersionUID = 0L;
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
+          throws java.io.ObjectStreamException {
+        return super.writeReplace();
+      }
+
+      public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input);
+      }
+      public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input, extensionRegistry);
+      }
+      public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return PARSER.parseDelimitedFrom(input);
+      }
+      public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      }
+      public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input);
+      }
+      public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input, extensionRegistry);
+      }
+
+      public static Builder newBuilder() { return Builder.create(); }
+      public Builder newBuilderForType() { return newBuilder(); }
+      public static Builder newBuilder(org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey prototype) {
+        return newBuilder().mergeFrom(prototype);
+      }
+      public Builder toBuilder() { return newBuilder(this); }
+
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
+      /**
+       * Protobuf type {@code textsecure.SenderKeyStateStructure.SenderMessageKey}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessage.Builder<Builder>
+         implements org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKeyOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return org.whispersystems.libaxolotl.state.StorageProtos.internal_static_textsecure_SenderKeyStateStructure_SenderMessageKey_descriptor;
+        }
+
+        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return org.whispersystems.libaxolotl.state.StorageProtos.internal_static_textsecure_SenderKeyStateStructure_SenderMessageKey_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey.class, org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey.Builder.class);
+        }
+
+        // Construct using org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey.newBuilder()
+        private Builder() {
+          maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+            com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          }
+        }
+        private static Builder create() {
+          return new Builder();
+        }
+
+        public Builder clear() {
+          super.clear();
+          iteration_ = 0;
+          bitField0_ = (bitField0_ & ~0x00000001);
+          seed_ = com.google.protobuf.ByteString.EMPTY;
+          bitField0_ = (bitField0_ & ~0x00000002);
+          return this;
+        }
+
+        public Builder clone() {
+          return create().mergeFrom(buildPartial());
+        }
+
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return org.whispersystems.libaxolotl.state.StorageProtos.internal_static_textsecure_SenderKeyStateStructure_SenderMessageKey_descriptor;
+        }
+
+        public org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey getDefaultInstanceForType() {
+          return org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey.getDefaultInstance();
+        }
+
+        public org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey build() {
+          org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        public org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey buildPartial() {
+          org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey result = new org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey(this);
+          int from_bitField0_ = bitField0_;
+          int to_bitField0_ = 0;
+          if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+            to_bitField0_ |= 0x00000001;
+          }
+          result.iteration_ = iteration_;
+          if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+            to_bitField0_ |= 0x00000002;
+          }
+          result.seed_ = seed_;
+          result.bitField0_ = to_bitField0_;
+          onBuilt();
+          return result;
+        }
+
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey) {
+            return mergeFrom((org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey other) {
+          if (other == org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey.getDefaultInstance()) return this;
+          if (other.hasIteration()) {
+            setIteration(other.getIteration());
+          }
+          if (other.hasSeed()) {
+            setSeed(other.getSeed());
+          }
+          this.mergeUnknownFields(other.getUnknownFields());
+          return this;
+        }
+
+        public final boolean isInitialized() {
+          return true;
+        }
+
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey parsedMessage = null;
+          try {
+            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            parsedMessage = (org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey) e.getUnfinishedMessage();
+            throw e;
+          } finally {
+            if (parsedMessage != null) {
+              mergeFrom(parsedMessage);
+            }
+          }
+          return this;
+        }
+        private int bitField0_;
+
+        // optional uint32 iteration = 1;
+        private int iteration_ ;
+        /**
+         * <code>optional uint32 iteration = 1;</code>
+         */
+        public boolean hasIteration() {
+          return ((bitField0_ & 0x00000001) == 0x00000001);
+        }
+        /**
+         * <code>optional uint32 iteration = 1;</code>
+         */
+        public int getIteration() {
+          return iteration_;
+        }
+        /**
+         * <code>optional uint32 iteration = 1;</code>
+         */
+        public Builder setIteration(int value) {
+          bitField0_ |= 0x00000001;
+          iteration_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>optional uint32 iteration = 1;</code>
+         */
+        public Builder clearIteration() {
+          bitField0_ = (bitField0_ & ~0x00000001);
+          iteration_ = 0;
+          onChanged();
+          return this;
+        }
+
+        // optional bytes seed = 2;
+        private com.google.protobuf.ByteString seed_ = com.google.protobuf.ByteString.EMPTY;
+        /**
+         * <code>optional bytes seed = 2;</code>
+         */
+        public boolean hasSeed() {
+          return ((bitField0_ & 0x00000002) == 0x00000002);
+        }
+        /**
+         * <code>optional bytes seed = 2;</code>
+         */
+        public com.google.protobuf.ByteString getSeed() {
+          return seed_;
+        }
+        /**
+         * <code>optional bytes seed = 2;</code>
+         */
+        public Builder setSeed(com.google.protobuf.ByteString value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+          seed_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>optional bytes seed = 2;</code>
+         */
+        public Builder clearSeed() {
+          bitField0_ = (bitField0_ & ~0x00000002);
+          seed_ = getDefaultInstance().getSeed();
+          onChanged();
+          return this;
+        }
+
+        // @@protoc_insertion_point(builder_scope:textsecure.SenderKeyStateStructure.SenderMessageKey)
+      }
+
+      static {
+        defaultInstance = new SenderMessageKey(true);
+        defaultInstance.initFields();
+      }
+
+      // @@protoc_insertion_point(class_scope:textsecure.SenderKeyStateStructure.SenderMessageKey)
+    }
+
+    public interface SenderSigningKeyOrBuilder
+        extends com.google.protobuf.MessageOrBuilder {
+
+      // optional bytes public = 1;
+      /**
+       * <code>optional bytes public = 1;</code>
+       */
+      boolean hasPublic();
+      /**
+       * <code>optional bytes public = 1;</code>
+       */
+      com.google.protobuf.ByteString getPublic();
+
+      // optional bytes private = 2;
+      /**
+       * <code>optional bytes private = 2;</code>
+       */
+      boolean hasPrivate();
+      /**
+       * <code>optional bytes private = 2;</code>
+       */
+      com.google.protobuf.ByteString getPrivate();
+    }
+    /**
+     * Protobuf type {@code textsecure.SenderKeyStateStructure.SenderSigningKey}
+     */
+    public static final class SenderSigningKey extends
+        com.google.protobuf.GeneratedMessage
+        implements SenderSigningKeyOrBuilder {
+      // Use SenderSigningKey.newBuilder() to construct.
+      private SenderSigningKey(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+        super(builder);
+        this.unknownFields = builder.getUnknownFields();
+      }
+      private SenderSigningKey(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+      private static final SenderSigningKey defaultInstance;
+      public static SenderSigningKey getDefaultInstance() {
+        return defaultInstance;
+      }
+
+      public SenderSigningKey getDefaultInstanceForType() {
+        return defaultInstance;
+      }
+
+      private final com.google.protobuf.UnknownFieldSet unknownFields;
+      @java.lang.Override
+      public final com.google.protobuf.UnknownFieldSet
+          getUnknownFields() {
+        return this.unknownFields;
+      }
+      private SenderSigningKey(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        initFields();
+        int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              default: {
+                if (!parseUnknownField(input, unknownFields,
+                                       extensionRegistry, tag)) {
+                  done = true;
+                }
+                break;
+              }
+              case 10: {
+                bitField0_ |= 0x00000001;
+                public_ = input.readBytes();
+                break;
+              }
+              case 18: {
+                bitField0_ |= 0x00000002;
+                private_ = input.readBytes();
+                break;
+              }
+            }
+          }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(
+              e.getMessage()).setUnfinishedMessage(this);
+        } finally {
+          this.unknownFields = unknownFields.build();
+          makeExtensionsImmutable();
+        }
+      }
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.whispersystems.libaxolotl.state.StorageProtos.internal_static_textsecure_SenderKeyStateStructure_SenderSigningKey_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.whispersystems.libaxolotl.state.StorageProtos.internal_static_textsecure_SenderKeyStateStructure_SenderSigningKey_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey.class, org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey.Builder.class);
+      }
+
+      public static com.google.protobuf.Parser<SenderSigningKey> PARSER =
+          new com.google.protobuf.AbstractParser<SenderSigningKey>() {
+        public SenderSigningKey parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return new SenderSigningKey(input, extensionRegistry);
+        }
+      };
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<SenderSigningKey> getParserForType() {
+        return PARSER;
+      }
+
+      private int bitField0_;
+      // optional bytes public = 1;
+      public static final int PUBLIC_FIELD_NUMBER = 1;
+      private com.google.protobuf.ByteString public_;
+      /**
+       * <code>optional bytes public = 1;</code>
+       */
+      public boolean hasPublic() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional bytes public = 1;</code>
+       */
+      public com.google.protobuf.ByteString getPublic() {
+        return public_;
+      }
+
+      // optional bytes private = 2;
+      public static final int PRIVATE_FIELD_NUMBER = 2;
+      private com.google.protobuf.ByteString private_;
+      /**
+       * <code>optional bytes private = 2;</code>
+       */
+      public boolean hasPrivate() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional bytes private = 2;</code>
+       */
+      public com.google.protobuf.ByteString getPrivate() {
+        return private_;
+      }
+
+      private void initFields() {
+        public_ = com.google.protobuf.ByteString.EMPTY;
+        private_ = com.google.protobuf.ByteString.EMPTY;
+      }
+      private byte memoizedIsInitialized = -1;
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized != -1) return isInitialized == 1;
+
+        memoizedIsInitialized = 1;
+        return true;
+      }
+
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        getSerializedSize();
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          output.writeBytes(1, public_);
+        }
+        if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          output.writeBytes(2, private_);
+        }
+        getUnknownFields().writeTo(output);
+      }
+
+      private int memoizedSerializedSize = -1;
+      public int getSerializedSize() {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeBytesSize(1, public_);
+        }
+        if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeBytesSize(2, private_);
+        }
+        size += getUnknownFields().getSerializedSize();
+        memoizedSerializedSize = size;
+        return size;
+      }
+
+      private static final long serialVersionUID = 0L;
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
+          throws java.io.ObjectStreamException {
+        return super.writeReplace();
+      }
+
+      public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input);
+      }
+      public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input, extensionRegistry);
+      }
+      public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return PARSER.parseDelimitedFrom(input);
+      }
+      public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      }
+      public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input);
+      }
+      public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input, extensionRegistry);
+      }
+
+      public static Builder newBuilder() { return Builder.create(); }
+      public Builder newBuilderForType() { return newBuilder(); }
+      public static Builder newBuilder(org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey prototype) {
+        return newBuilder().mergeFrom(prototype);
+      }
+      public Builder toBuilder() { return newBuilder(this); }
+
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
+      /**
+       * Protobuf type {@code textsecure.SenderKeyStateStructure.SenderSigningKey}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessage.Builder<Builder>
+         implements org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKeyOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return org.whispersystems.libaxolotl.state.StorageProtos.internal_static_textsecure_SenderKeyStateStructure_SenderSigningKey_descriptor;
+        }
+
+        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return org.whispersystems.libaxolotl.state.StorageProtos.internal_static_textsecure_SenderKeyStateStructure_SenderSigningKey_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey.class, org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey.Builder.class);
+        }
+
+        // Construct using org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey.newBuilder()
+        private Builder() {
+          maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+            com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          }
+        }
+        private static Builder create() {
+          return new Builder();
+        }
+
+        public Builder clear() {
+          super.clear();
+          public_ = com.google.protobuf.ByteString.EMPTY;
+          bitField0_ = (bitField0_ & ~0x00000001);
+          private_ = com.google.protobuf.ByteString.EMPTY;
+          bitField0_ = (bitField0_ & ~0x00000002);
+          return this;
+        }
+
+        public Builder clone() {
+          return create().mergeFrom(buildPartial());
+        }
+
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return org.whispersystems.libaxolotl.state.StorageProtos.internal_static_textsecure_SenderKeyStateStructure_SenderSigningKey_descriptor;
+        }
+
+        public org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey getDefaultInstanceForType() {
+          return org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey.getDefaultInstance();
+        }
+
+        public org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey build() {
+          org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        public org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey buildPartial() {
+          org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey result = new org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey(this);
+          int from_bitField0_ = bitField0_;
+          int to_bitField0_ = 0;
+          if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+            to_bitField0_ |= 0x00000001;
+          }
+          result.public_ = public_;
+          if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+            to_bitField0_ |= 0x00000002;
+          }
+          result.private_ = private_;
+          result.bitField0_ = to_bitField0_;
+          onBuilt();
+          return result;
+        }
+
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey) {
+            return mergeFrom((org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey other) {
+          if (other == org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey.getDefaultInstance()) return this;
+          if (other.hasPublic()) {
+            setPublic(other.getPublic());
+          }
+          if (other.hasPrivate()) {
+            setPrivate(other.getPrivate());
+          }
+          this.mergeUnknownFields(other.getUnknownFields());
+          return this;
+        }
+
+        public final boolean isInitialized() {
+          return true;
+        }
+
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey parsedMessage = null;
+          try {
+            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            parsedMessage = (org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey) e.getUnfinishedMessage();
+            throw e;
+          } finally {
+            if (parsedMessage != null) {
+              mergeFrom(parsedMessage);
+            }
+          }
+          return this;
+        }
+        private int bitField0_;
+
+        // optional bytes public = 1;
+        private com.google.protobuf.ByteString public_ = com.google.protobuf.ByteString.EMPTY;
+        /**
+         * <code>optional bytes public = 1;</code>
+         */
+        public boolean hasPublic() {
+          return ((bitField0_ & 0x00000001) == 0x00000001);
+        }
+        /**
+         * <code>optional bytes public = 1;</code>
+         */
+        public com.google.protobuf.ByteString getPublic() {
+          return public_;
+        }
+        /**
+         * <code>optional bytes public = 1;</code>
+         */
+        public Builder setPublic(com.google.protobuf.ByteString value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+          public_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>optional bytes public = 1;</code>
+         */
+        public Builder clearPublic() {
+          bitField0_ = (bitField0_ & ~0x00000001);
+          public_ = getDefaultInstance().getPublic();
+          onChanged();
+          return this;
+        }
+
+        // optional bytes private = 2;
+        private com.google.protobuf.ByteString private_ = com.google.protobuf.ByteString.EMPTY;
+        /**
+         * <code>optional bytes private = 2;</code>
+         */
+        public boolean hasPrivate() {
+          return ((bitField0_ & 0x00000002) == 0x00000002);
+        }
+        /**
+         * <code>optional bytes private = 2;</code>
+         */
+        public com.google.protobuf.ByteString getPrivate() {
+          return private_;
+        }
+        /**
+         * <code>optional bytes private = 2;</code>
+         */
+        public Builder setPrivate(com.google.protobuf.ByteString value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+          private_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>optional bytes private = 2;</code>
+         */
+        public Builder clearPrivate() {
+          bitField0_ = (bitField0_ & ~0x00000002);
+          private_ = getDefaultInstance().getPrivate();
+          onChanged();
+          return this;
+        }
+
+        // @@protoc_insertion_point(builder_scope:textsecure.SenderKeyStateStructure.SenderSigningKey)
+      }
+
+      static {
+        defaultInstance = new SenderSigningKey(true);
+        defaultInstance.initFields();
+      }
+
+      // @@protoc_insertion_point(class_scope:textsecure.SenderKeyStateStructure.SenderSigningKey)
+    }
+
+    private int bitField0_;
+    // optional uint32 senderKeyId = 1;
+    public static final int SENDERKEYID_FIELD_NUMBER = 1;
+    private int senderKeyId_;
+    /**
+     * <code>optional uint32 senderKeyId = 1;</code>
+     */
+    public boolean hasSenderKeyId() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional uint32 senderKeyId = 1;</code>
+     */
+    public int getSenderKeyId() {
+      return senderKeyId_;
+    }
+
+    // optional .textsecure.SenderKeyStateStructure.SenderChainKey senderChainKey = 2;
+    public static final int SENDERCHAINKEY_FIELD_NUMBER = 2;
+    private org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey senderChainKey_;
+    /**
+     * <code>optional .textsecure.SenderKeyStateStructure.SenderChainKey senderChainKey = 2;</code>
+     */
+    public boolean hasSenderChainKey() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional .textsecure.SenderKeyStateStructure.SenderChainKey senderChainKey = 2;</code>
+     */
+    public org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey getSenderChainKey() {
+      return senderChainKey_;
+    }
+    /**
+     * <code>optional .textsecure.SenderKeyStateStructure.SenderChainKey senderChainKey = 2;</code>
+     */
+    public org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKeyOrBuilder getSenderChainKeyOrBuilder() {
+      return senderChainKey_;
+    }
+
+    // optional .textsecure.SenderKeyStateStructure.SenderSigningKey senderSigningKey = 3;
+    public static final int SENDERSIGNINGKEY_FIELD_NUMBER = 3;
+    private org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey senderSigningKey_;
+    /**
+     * <code>optional .textsecure.SenderKeyStateStructure.SenderSigningKey senderSigningKey = 3;</code>
+     */
+    public boolean hasSenderSigningKey() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>optional .textsecure.SenderKeyStateStructure.SenderSigningKey senderSigningKey = 3;</code>
+     */
+    public org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey getSenderSigningKey() {
+      return senderSigningKey_;
+    }
+    /**
+     * <code>optional .textsecure.SenderKeyStateStructure.SenderSigningKey senderSigningKey = 3;</code>
+     */
+    public org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKeyOrBuilder getSenderSigningKeyOrBuilder() {
+      return senderSigningKey_;
+    }
+
+    // repeated .textsecure.SenderKeyStateStructure.SenderMessageKey senderMessageKeys = 4;
+    public static final int SENDERMESSAGEKEYS_FIELD_NUMBER = 4;
+    private java.util.List<org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey> senderMessageKeys_;
+    /**
+     * <code>repeated .textsecure.SenderKeyStateStructure.SenderMessageKey senderMessageKeys = 4;</code>
+     */
+    public java.util.List<org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey> getSenderMessageKeysList() {
+      return senderMessageKeys_;
+    }
+    /**
+     * <code>repeated .textsecure.SenderKeyStateStructure.SenderMessageKey senderMessageKeys = 4;</code>
+     */
+    public java.util.List<? extends org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKeyOrBuilder> 
+        getSenderMessageKeysOrBuilderList() {
+      return senderMessageKeys_;
+    }
+    /**
+     * <code>repeated .textsecure.SenderKeyStateStructure.SenderMessageKey senderMessageKeys = 4;</code>
+     */
+    public int getSenderMessageKeysCount() {
+      return senderMessageKeys_.size();
+    }
+    /**
+     * <code>repeated .textsecure.SenderKeyStateStructure.SenderMessageKey senderMessageKeys = 4;</code>
+     */
+    public org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey getSenderMessageKeys(int index) {
+      return senderMessageKeys_.get(index);
+    }
+    /**
+     * <code>repeated .textsecure.SenderKeyStateStructure.SenderMessageKey senderMessageKeys = 4;</code>
+     */
+    public org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKeyOrBuilder getSenderMessageKeysOrBuilder(
+        int index) {
+      return senderMessageKeys_.get(index);
+    }
+
+    private void initFields() {
+      senderKeyId_ = 0;
+      senderChainKey_ = org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey.getDefaultInstance();
+      senderSigningKey_ = org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey.getDefaultInstance();
+      senderMessageKeys_ = java.util.Collections.emptyList();
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeUInt32(1, senderKeyId_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeMessage(2, senderChainKey_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeMessage(3, senderSigningKey_);
+      }
+      for (int i = 0; i < senderMessageKeys_.size(); i++) {
+        output.writeMessage(4, senderMessageKeys_.get(i));
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(1, senderKeyId_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, senderChainKey_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, senderSigningKey_);
+      }
+      for (int i = 0; i < senderMessageKeys_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(4, senderMessageKeys_.get(i));
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code textsecure.SenderKeyStateStructure}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructureOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.whispersystems.libaxolotl.state.StorageProtos.internal_static_textsecure_SenderKeyStateStructure_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.whispersystems.libaxolotl.state.StorageProtos.internal_static_textsecure_SenderKeyStateStructure_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.class, org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.Builder.class);
+      }
+
+      // Construct using org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getSenderChainKeyFieldBuilder();
+          getSenderSigningKeyFieldBuilder();
+          getSenderMessageKeysFieldBuilder();
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        senderKeyId_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        if (senderChainKeyBuilder_ == null) {
+          senderChainKey_ = org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey.getDefaultInstance();
+        } else {
+          senderChainKeyBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000002);
+        if (senderSigningKeyBuilder_ == null) {
+          senderSigningKey_ = org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey.getDefaultInstance();
+        } else {
+          senderSigningKeyBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000004);
+        if (senderMessageKeysBuilder_ == null) {
+          senderMessageKeys_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000008);
+        } else {
+          senderMessageKeysBuilder_.clear();
+        }
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.whispersystems.libaxolotl.state.StorageProtos.internal_static_textsecure_SenderKeyStateStructure_descriptor;
+      }
+
+      public org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure getDefaultInstanceForType() {
+        return org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.getDefaultInstance();
+      }
+
+      public org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure build() {
+        org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure buildPartial() {
+        org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure result = new org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.senderKeyId_ = senderKeyId_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        if (senderChainKeyBuilder_ == null) {
+          result.senderChainKey_ = senderChainKey_;
+        } else {
+          result.senderChainKey_ = senderChainKeyBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        if (senderSigningKeyBuilder_ == null) {
+          result.senderSigningKey_ = senderSigningKey_;
+        } else {
+          result.senderSigningKey_ = senderSigningKeyBuilder_.build();
+        }
+        if (senderMessageKeysBuilder_ == null) {
+          if (((bitField0_ & 0x00000008) == 0x00000008)) {
+            senderMessageKeys_ = java.util.Collections.unmodifiableList(senderMessageKeys_);
+            bitField0_ = (bitField0_ & ~0x00000008);
+          }
+          result.senderMessageKeys_ = senderMessageKeys_;
+        } else {
+          result.senderMessageKeys_ = senderMessageKeysBuilder_.build();
+        }
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure) {
+          return mergeFrom((org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure other) {
+        if (other == org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.getDefaultInstance()) return this;
+        if (other.hasSenderKeyId()) {
+          setSenderKeyId(other.getSenderKeyId());
+        }
+        if (other.hasSenderChainKey()) {
+          mergeSenderChainKey(other.getSenderChainKey());
+        }
+        if (other.hasSenderSigningKey()) {
+          mergeSenderSigningKey(other.getSenderSigningKey());
+        }
+        if (senderMessageKeysBuilder_ == null) {
+          if (!other.senderMessageKeys_.isEmpty()) {
+            if (senderMessageKeys_.isEmpty()) {
+              senderMessageKeys_ = other.senderMessageKeys_;
+              bitField0_ = (bitField0_ & ~0x00000008);
+            } else {
+              ensureSenderMessageKeysIsMutable();
+              senderMessageKeys_.addAll(other.senderMessageKeys_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.senderMessageKeys_.isEmpty()) {
+            if (senderMessageKeysBuilder_.isEmpty()) {
+              senderMessageKeysBuilder_.dispose();
+              senderMessageKeysBuilder_ = null;
+              senderMessageKeys_ = other.senderMessageKeys_;
+              bitField0_ = (bitField0_ & ~0x00000008);
+              senderMessageKeysBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getSenderMessageKeysFieldBuilder() : null;
+            } else {
+              senderMessageKeysBuilder_.addAllMessages(other.senderMessageKeys_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // optional uint32 senderKeyId = 1;
+      private int senderKeyId_ ;
+      /**
+       * <code>optional uint32 senderKeyId = 1;</code>
+       */
+      public boolean hasSenderKeyId() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional uint32 senderKeyId = 1;</code>
+       */
+      public int getSenderKeyId() {
+        return senderKeyId_;
+      }
+      /**
+       * <code>optional uint32 senderKeyId = 1;</code>
+       */
+      public Builder setSenderKeyId(int value) {
+        bitField0_ |= 0x00000001;
+        senderKeyId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint32 senderKeyId = 1;</code>
+       */
+      public Builder clearSenderKeyId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        senderKeyId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // optional .textsecure.SenderKeyStateStructure.SenderChainKey senderChainKey = 2;
+      private org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey senderChainKey_ = org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey, org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey.Builder, org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKeyOrBuilder> senderChainKeyBuilder_;
+      /**
+       * <code>optional .textsecure.SenderKeyStateStructure.SenderChainKey senderChainKey = 2;</code>
+       */
+      public boolean hasSenderChainKey() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional .textsecure.SenderKeyStateStructure.SenderChainKey senderChainKey = 2;</code>
+       */
+      public org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey getSenderChainKey() {
+        if (senderChainKeyBuilder_ == null) {
+          return senderChainKey_;
+        } else {
+          return senderChainKeyBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .textsecure.SenderKeyStateStructure.SenderChainKey senderChainKey = 2;</code>
+       */
+      public Builder setSenderChainKey(org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey value) {
+        if (senderChainKeyBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          senderChainKey_ = value;
+          onChanged();
+        } else {
+          senderChainKeyBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>optional .textsecure.SenderKeyStateStructure.SenderChainKey senderChainKey = 2;</code>
+       */
+      public Builder setSenderChainKey(
+          org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey.Builder builderForValue) {
+        if (senderChainKeyBuilder_ == null) {
+          senderChainKey_ = builderForValue.build();
+          onChanged();
+        } else {
+          senderChainKeyBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>optional .textsecure.SenderKeyStateStructure.SenderChainKey senderChainKey = 2;</code>
+       */
+      public Builder mergeSenderChainKey(org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey value) {
+        if (senderChainKeyBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002) &&
+              senderChainKey_ != org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey.getDefaultInstance()) {
+            senderChainKey_ =
+              org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey.newBuilder(senderChainKey_).mergeFrom(value).buildPartial();
+          } else {
+            senderChainKey_ = value;
+          }
+          onChanged();
+        } else {
+          senderChainKeyBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>optional .textsecure.SenderKeyStateStructure.SenderChainKey senderChainKey = 2;</code>
+       */
+      public Builder clearSenderChainKey() {
+        if (senderChainKeyBuilder_ == null) {
+          senderChainKey_ = org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey.getDefaultInstance();
+          onChanged();
+        } else {
+          senderChainKeyBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+      /**
+       * <code>optional .textsecure.SenderKeyStateStructure.SenderChainKey senderChainKey = 2;</code>
+       */
+      public org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey.Builder getSenderChainKeyBuilder() {
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return getSenderChainKeyFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .textsecure.SenderKeyStateStructure.SenderChainKey senderChainKey = 2;</code>
+       */
+      public org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKeyOrBuilder getSenderChainKeyOrBuilder() {
+        if (senderChainKeyBuilder_ != null) {
+          return senderChainKeyBuilder_.getMessageOrBuilder();
+        } else {
+          return senderChainKey_;
+        }
+      }
+      /**
+       * <code>optional .textsecure.SenderKeyStateStructure.SenderChainKey senderChainKey = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey, org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey.Builder, org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKeyOrBuilder> 
+          getSenderChainKeyFieldBuilder() {
+        if (senderChainKeyBuilder_ == null) {
+          senderChainKeyBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey, org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKey.Builder, org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderChainKeyOrBuilder>(
+                  senderChainKey_,
+                  getParentForChildren(),
+                  isClean());
+          senderChainKey_ = null;
+        }
+        return senderChainKeyBuilder_;
+      }
+
+      // optional .textsecure.SenderKeyStateStructure.SenderSigningKey senderSigningKey = 3;
+      private org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey senderSigningKey_ = org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey, org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey.Builder, org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKeyOrBuilder> senderSigningKeyBuilder_;
+      /**
+       * <code>optional .textsecure.SenderKeyStateStructure.SenderSigningKey senderSigningKey = 3;</code>
+       */
+      public boolean hasSenderSigningKey() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>optional .textsecure.SenderKeyStateStructure.SenderSigningKey senderSigningKey = 3;</code>
+       */
+      public org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey getSenderSigningKey() {
+        if (senderSigningKeyBuilder_ == null) {
+          return senderSigningKey_;
+        } else {
+          return senderSigningKeyBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .textsecure.SenderKeyStateStructure.SenderSigningKey senderSigningKey = 3;</code>
+       */
+      public Builder setSenderSigningKey(org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey value) {
+        if (senderSigningKeyBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          senderSigningKey_ = value;
+          onChanged();
+        } else {
+          senderSigningKeyBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000004;
+        return this;
+      }
+      /**
+       * <code>optional .textsecure.SenderKeyStateStructure.SenderSigningKey senderSigningKey = 3;</code>
+       */
+      public Builder setSenderSigningKey(
+          org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey.Builder builderForValue) {
+        if (senderSigningKeyBuilder_ == null) {
+          senderSigningKey_ = builderForValue.build();
+          onChanged();
+        } else {
+          senderSigningKeyBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000004;
+        return this;
+      }
+      /**
+       * <code>optional .textsecure.SenderKeyStateStructure.SenderSigningKey senderSigningKey = 3;</code>
+       */
+      public Builder mergeSenderSigningKey(org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey value) {
+        if (senderSigningKeyBuilder_ == null) {
+          if (((bitField0_ & 0x00000004) == 0x00000004) &&
+              senderSigningKey_ != org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey.getDefaultInstance()) {
+            senderSigningKey_ =
+              org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey.newBuilder(senderSigningKey_).mergeFrom(value).buildPartial();
+          } else {
+            senderSigningKey_ = value;
+          }
+          onChanged();
+        } else {
+          senderSigningKeyBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000004;
+        return this;
+      }
+      /**
+       * <code>optional .textsecure.SenderKeyStateStructure.SenderSigningKey senderSigningKey = 3;</code>
+       */
+      public Builder clearSenderSigningKey() {
+        if (senderSigningKeyBuilder_ == null) {
+          senderSigningKey_ = org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey.getDefaultInstance();
+          onChanged();
+        } else {
+          senderSigningKeyBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000004);
+        return this;
+      }
+      /**
+       * <code>optional .textsecure.SenderKeyStateStructure.SenderSigningKey senderSigningKey = 3;</code>
+       */
+      public org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey.Builder getSenderSigningKeyBuilder() {
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return getSenderSigningKeyFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .textsecure.SenderKeyStateStructure.SenderSigningKey senderSigningKey = 3;</code>
+       */
+      public org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKeyOrBuilder getSenderSigningKeyOrBuilder() {
+        if (senderSigningKeyBuilder_ != null) {
+          return senderSigningKeyBuilder_.getMessageOrBuilder();
+        } else {
+          return senderSigningKey_;
+        }
+      }
+      /**
+       * <code>optional .textsecure.SenderKeyStateStructure.SenderSigningKey senderSigningKey = 3;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey, org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey.Builder, org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKeyOrBuilder> 
+          getSenderSigningKeyFieldBuilder() {
+        if (senderSigningKeyBuilder_ == null) {
+          senderSigningKeyBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey, org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKey.Builder, org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderSigningKeyOrBuilder>(
+                  senderSigningKey_,
+                  getParentForChildren(),
+                  isClean());
+          senderSigningKey_ = null;
+        }
+        return senderSigningKeyBuilder_;
+      }
+
+      // repeated .textsecure.SenderKeyStateStructure.SenderMessageKey senderMessageKeys = 4;
+      private java.util.List<org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey> senderMessageKeys_ =
+        java.util.Collections.emptyList();
+      private void ensureSenderMessageKeysIsMutable() {
+        if (!((bitField0_ & 0x00000008) == 0x00000008)) {
+          senderMessageKeys_ = new java.util.ArrayList<org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey>(senderMessageKeys_);
+          bitField0_ |= 0x00000008;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilder<
+          org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey, org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey.Builder, org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKeyOrBuilder> senderMessageKeysBuilder_;
+
+      /**
+       * <code>repeated .textsecure.SenderKeyStateStructure.SenderMessageKey senderMessageKeys = 4;</code>
+       */
+      public java.util.List<org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey> getSenderMessageKeysList() {
+        if (senderMessageKeysBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(senderMessageKeys_);
+        } else {
+          return senderMessageKeysBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .textsecure.SenderKeyStateStructure.SenderMessageKey senderMessageKeys = 4;</code>
+       */
+      public int getSenderMessageKeysCount() {
+        if (senderMessageKeysBuilder_ == null) {
+          return senderMessageKeys_.size();
+        } else {
+          return senderMessageKeysBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .textsecure.SenderKeyStateStructure.SenderMessageKey senderMessageKeys = 4;</code>
+       */
+      public org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey getSenderMessageKeys(int index) {
+        if (senderMessageKeysBuilder_ == null) {
+          return senderMessageKeys_.get(index);
+        } else {
+          return senderMessageKeysBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .textsecure.SenderKeyStateStructure.SenderMessageKey senderMessageKeys = 4;</code>
+       */
+      public Builder setSenderMessageKeys(
+          int index, org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey value) {
+        if (senderMessageKeysBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureSenderMessageKeysIsMutable();
+          senderMessageKeys_.set(index, value);
+          onChanged();
+        } else {
+          senderMessageKeysBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .textsecure.SenderKeyStateStructure.SenderMessageKey senderMessageKeys = 4;</code>
+       */
+      public Builder setSenderMessageKeys(
+          int index, org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey.Builder builderForValue) {
+        if (senderMessageKeysBuilder_ == null) {
+          ensureSenderMessageKeysIsMutable();
+          senderMessageKeys_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          senderMessageKeysBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .textsecure.SenderKeyStateStructure.SenderMessageKey senderMessageKeys = 4;</code>
+       */
+      public Builder addSenderMessageKeys(org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey value) {
+        if (senderMessageKeysBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureSenderMessageKeysIsMutable();
+          senderMessageKeys_.add(value);
+          onChanged();
+        } else {
+          senderMessageKeysBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .textsecure.SenderKeyStateStructure.SenderMessageKey senderMessageKeys = 4;</code>
+       */
+      public Builder addSenderMessageKeys(
+          int index, org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey value) {
+        if (senderMessageKeysBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureSenderMessageKeysIsMutable();
+          senderMessageKeys_.add(index, value);
+          onChanged();
+        } else {
+          senderMessageKeysBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .textsecure.SenderKeyStateStructure.SenderMessageKey senderMessageKeys = 4;</code>
+       */
+      public Builder addSenderMessageKeys(
+          org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey.Builder builderForValue) {
+        if (senderMessageKeysBuilder_ == null) {
+          ensureSenderMessageKeysIsMutable();
+          senderMessageKeys_.add(builderForValue.build());
+          onChanged();
+        } else {
+          senderMessageKeysBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .textsecure.SenderKeyStateStructure.SenderMessageKey senderMessageKeys = 4;</code>
+       */
+      public Builder addSenderMessageKeys(
+          int index, org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey.Builder builderForValue) {
+        if (senderMessageKeysBuilder_ == null) {
+          ensureSenderMessageKeysIsMutable();
+          senderMessageKeys_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          senderMessageKeysBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .textsecure.SenderKeyStateStructure.SenderMessageKey senderMessageKeys = 4;</code>
+       */
+      public Builder addAllSenderMessageKeys(
+          java.lang.Iterable<? extends org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey> values) {
+        if (senderMessageKeysBuilder_ == null) {
+          ensureSenderMessageKeysIsMutable();
+          super.addAll(values, senderMessageKeys_);
+          onChanged();
+        } else {
+          senderMessageKeysBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .textsecure.SenderKeyStateStructure.SenderMessageKey senderMessageKeys = 4;</code>
+       */
+      public Builder clearSenderMessageKeys() {
+        if (senderMessageKeysBuilder_ == null) {
+          senderMessageKeys_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000008);
+          onChanged();
+        } else {
+          senderMessageKeysBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .textsecure.SenderKeyStateStructure.SenderMessageKey senderMessageKeys = 4;</code>
+       */
+      public Builder removeSenderMessageKeys(int index) {
+        if (senderMessageKeysBuilder_ == null) {
+          ensureSenderMessageKeysIsMutable();
+          senderMessageKeys_.remove(index);
+          onChanged();
+        } else {
+          senderMessageKeysBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .textsecure.SenderKeyStateStructure.SenderMessageKey senderMessageKeys = 4;</code>
+       */
+      public org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey.Builder getSenderMessageKeysBuilder(
+          int index) {
+        return getSenderMessageKeysFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .textsecure.SenderKeyStateStructure.SenderMessageKey senderMessageKeys = 4;</code>
+       */
+      public org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKeyOrBuilder getSenderMessageKeysOrBuilder(
+          int index) {
+        if (senderMessageKeysBuilder_ == null) {
+          return senderMessageKeys_.get(index);  } else {
+          return senderMessageKeysBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .textsecure.SenderKeyStateStructure.SenderMessageKey senderMessageKeys = 4;</code>
+       */
+      public java.util.List<? extends org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKeyOrBuilder> 
+           getSenderMessageKeysOrBuilderList() {
+        if (senderMessageKeysBuilder_ != null) {
+          return senderMessageKeysBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(senderMessageKeys_);
+        }
+      }
+      /**
+       * <code>repeated .textsecure.SenderKeyStateStructure.SenderMessageKey senderMessageKeys = 4;</code>
+       */
+      public org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey.Builder addSenderMessageKeysBuilder() {
+        return getSenderMessageKeysFieldBuilder().addBuilder(
+            org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .textsecure.SenderKeyStateStructure.SenderMessageKey senderMessageKeys = 4;</code>
+       */
+      public org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey.Builder addSenderMessageKeysBuilder(
+          int index) {
+        return getSenderMessageKeysFieldBuilder().addBuilder(
+            index, org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .textsecure.SenderKeyStateStructure.SenderMessageKey senderMessageKeys = 4;</code>
+       */
+      public java.util.List<org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey.Builder> 
+           getSenderMessageKeysBuilderList() {
+        return getSenderMessageKeysFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey, org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey.Builder, org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKeyOrBuilder> 
+          getSenderMessageKeysFieldBuilder() {
+        if (senderMessageKeysBuilder_ == null) {
+          senderMessageKeysBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey, org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey.Builder, org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.SenderMessageKeyOrBuilder>(
+                  senderMessageKeys_,
+                  ((bitField0_ & 0x00000008) == 0x00000008),
+                  getParentForChildren(),
+                  isClean());
+          senderMessageKeys_ = null;
+        }
+        return senderMessageKeysBuilder_;
+      }
+
+      // @@protoc_insertion_point(builder_scope:textsecure.SenderKeyStateStructure)
+    }
+
+    static {
+      defaultInstance = new SenderKeyStateStructure(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:textsecure.SenderKeyStateStructure)
+  }
+
+  public interface SenderKeyRecordStructureOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // repeated .textsecure.SenderKeyStateStructure senderKeyStates = 1;
+    /**
+     * <code>repeated .textsecure.SenderKeyStateStructure senderKeyStates = 1;</code>
+     */
+    java.util.List<org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure> 
+        getSenderKeyStatesList();
+    /**
+     * <code>repeated .textsecure.SenderKeyStateStructure senderKeyStates = 1;</code>
+     */
+    org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure getSenderKeyStates(int index);
+    /**
+     * <code>repeated .textsecure.SenderKeyStateStructure senderKeyStates = 1;</code>
+     */
+    int getSenderKeyStatesCount();
+    /**
+     * <code>repeated .textsecure.SenderKeyStateStructure senderKeyStates = 1;</code>
+     */
+    java.util.List<? extends org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructureOrBuilder> 
+        getSenderKeyStatesOrBuilderList();
+    /**
+     * <code>repeated .textsecure.SenderKeyStateStructure senderKeyStates = 1;</code>
+     */
+    org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructureOrBuilder getSenderKeyStatesOrBuilder(
+        int index);
+  }
+  /**
+   * Protobuf type {@code textsecure.SenderKeyRecordStructure}
+   */
+  public static final class SenderKeyRecordStructure extends
+      com.google.protobuf.GeneratedMessage
+      implements SenderKeyRecordStructureOrBuilder {
+    // Use SenderKeyRecordStructure.newBuilder() to construct.
+    private SenderKeyRecordStructure(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private SenderKeyRecordStructure(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final SenderKeyRecordStructure defaultInstance;
+    public static SenderKeyRecordStructure getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public SenderKeyRecordStructure getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private SenderKeyRecordStructure(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+                senderKeyStates_ = new java.util.ArrayList<org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              senderKeyStates_.add(input.readMessage(org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.PARSER, extensionRegistry));
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+          senderKeyStates_ = java.util.Collections.unmodifiableList(senderKeyStates_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.whispersystems.libaxolotl.state.StorageProtos.internal_static_textsecure_SenderKeyRecordStructure_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.whispersystems.libaxolotl.state.StorageProtos.internal_static_textsecure_SenderKeyRecordStructure_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyRecordStructure.class, org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyRecordStructure.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<SenderKeyRecordStructure> PARSER =
+        new com.google.protobuf.AbstractParser<SenderKeyRecordStructure>() {
+      public SenderKeyRecordStructure parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new SenderKeyRecordStructure(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<SenderKeyRecordStructure> getParserForType() {
+      return PARSER;
+    }
+
+    // repeated .textsecure.SenderKeyStateStructure senderKeyStates = 1;
+    public static final int SENDERKEYSTATES_FIELD_NUMBER = 1;
+    private java.util.List<org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure> senderKeyStates_;
+    /**
+     * <code>repeated .textsecure.SenderKeyStateStructure senderKeyStates = 1;</code>
+     */
+    public java.util.List<org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure> getSenderKeyStatesList() {
+      return senderKeyStates_;
+    }
+    /**
+     * <code>repeated .textsecure.SenderKeyStateStructure senderKeyStates = 1;</code>
+     */
+    public java.util.List<? extends org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructureOrBuilder> 
+        getSenderKeyStatesOrBuilderList() {
+      return senderKeyStates_;
+    }
+    /**
+     * <code>repeated .textsecure.SenderKeyStateStructure senderKeyStates = 1;</code>
+     */
+    public int getSenderKeyStatesCount() {
+      return senderKeyStates_.size();
+    }
+    /**
+     * <code>repeated .textsecure.SenderKeyStateStructure senderKeyStates = 1;</code>
+     */
+    public org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure getSenderKeyStates(int index) {
+      return senderKeyStates_.get(index);
+    }
+    /**
+     * <code>repeated .textsecure.SenderKeyStateStructure senderKeyStates = 1;</code>
+     */
+    public org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructureOrBuilder getSenderKeyStatesOrBuilder(
+        int index) {
+      return senderKeyStates_.get(index);
+    }
+
+    private void initFields() {
+      senderKeyStates_ = java.util.Collections.emptyList();
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      for (int i = 0; i < senderKeyStates_.size(); i++) {
+        output.writeMessage(1, senderKeyStates_.get(i));
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      for (int i = 0; i < senderKeyStates_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, senderKeyStates_.get(i));
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyRecordStructure parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyRecordStructure parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyRecordStructure parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyRecordStructure parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyRecordStructure parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyRecordStructure parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyRecordStructure parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyRecordStructure parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyRecordStructure parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyRecordStructure parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyRecordStructure prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code textsecure.SenderKeyRecordStructure}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyRecordStructureOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.whispersystems.libaxolotl.state.StorageProtos.internal_static_textsecure_SenderKeyRecordStructure_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.whispersystems.libaxolotl.state.StorageProtos.internal_static_textsecure_SenderKeyRecordStructure_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyRecordStructure.class, org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyRecordStructure.Builder.class);
+      }
+
+      // Construct using org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyRecordStructure.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getSenderKeyStatesFieldBuilder();
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        if (senderKeyStatesBuilder_ == null) {
+          senderKeyStates_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          senderKeyStatesBuilder_.clear();
+        }
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.whispersystems.libaxolotl.state.StorageProtos.internal_static_textsecure_SenderKeyRecordStructure_descriptor;
+      }
+
+      public org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyRecordStructure getDefaultInstanceForType() {
+        return org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyRecordStructure.getDefaultInstance();
+      }
+
+      public org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyRecordStructure build() {
+        org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyRecordStructure result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyRecordStructure buildPartial() {
+        org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyRecordStructure result = new org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyRecordStructure(this);
+        int from_bitField0_ = bitField0_;
+        if (senderKeyStatesBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+            senderKeyStates_ = java.util.Collections.unmodifiableList(senderKeyStates_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.senderKeyStates_ = senderKeyStates_;
+        } else {
+          result.senderKeyStates_ = senderKeyStatesBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyRecordStructure) {
+          return mergeFrom((org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyRecordStructure)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyRecordStructure other) {
+        if (other == org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyRecordStructure.getDefaultInstance()) return this;
+        if (senderKeyStatesBuilder_ == null) {
+          if (!other.senderKeyStates_.isEmpty()) {
+            if (senderKeyStates_.isEmpty()) {
+              senderKeyStates_ = other.senderKeyStates_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureSenderKeyStatesIsMutable();
+              senderKeyStates_.addAll(other.senderKeyStates_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.senderKeyStates_.isEmpty()) {
+            if (senderKeyStatesBuilder_.isEmpty()) {
+              senderKeyStatesBuilder_.dispose();
+              senderKeyStatesBuilder_ = null;
+              senderKeyStates_ = other.senderKeyStates_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              senderKeyStatesBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getSenderKeyStatesFieldBuilder() : null;
+            } else {
+              senderKeyStatesBuilder_.addAllMessages(other.senderKeyStates_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyRecordStructure parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyRecordStructure) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // repeated .textsecure.SenderKeyStateStructure senderKeyStates = 1;
+      private java.util.List<org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure> senderKeyStates_ =
+        java.util.Collections.emptyList();
+      private void ensureSenderKeyStatesIsMutable() {
+        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+          senderKeyStates_ = new java.util.ArrayList<org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure>(senderKeyStates_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilder<
+          org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure, org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.Builder, org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructureOrBuilder> senderKeyStatesBuilder_;
+
+      /**
+       * <code>repeated .textsecure.SenderKeyStateStructure senderKeyStates = 1;</code>
+       */
+      public java.util.List<org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure> getSenderKeyStatesList() {
+        if (senderKeyStatesBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(senderKeyStates_);
+        } else {
+          return senderKeyStatesBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .textsecure.SenderKeyStateStructure senderKeyStates = 1;</code>
+       */
+      public int getSenderKeyStatesCount() {
+        if (senderKeyStatesBuilder_ == null) {
+          return senderKeyStates_.size();
+        } else {
+          return senderKeyStatesBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .textsecure.SenderKeyStateStructure senderKeyStates = 1;</code>
+       */
+      public org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure getSenderKeyStates(int index) {
+        if (senderKeyStatesBuilder_ == null) {
+          return senderKeyStates_.get(index);
+        } else {
+          return senderKeyStatesBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .textsecure.SenderKeyStateStructure senderKeyStates = 1;</code>
+       */
+      public Builder setSenderKeyStates(
+          int index, org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure value) {
+        if (senderKeyStatesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureSenderKeyStatesIsMutable();
+          senderKeyStates_.set(index, value);
+          onChanged();
+        } else {
+          senderKeyStatesBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .textsecure.SenderKeyStateStructure senderKeyStates = 1;</code>
+       */
+      public Builder setSenderKeyStates(
+          int index, org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.Builder builderForValue) {
+        if (senderKeyStatesBuilder_ == null) {
+          ensureSenderKeyStatesIsMutable();
+          senderKeyStates_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          senderKeyStatesBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .textsecure.SenderKeyStateStructure senderKeyStates = 1;</code>
+       */
+      public Builder addSenderKeyStates(org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure value) {
+        if (senderKeyStatesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureSenderKeyStatesIsMutable();
+          senderKeyStates_.add(value);
+          onChanged();
+        } else {
+          senderKeyStatesBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .textsecure.SenderKeyStateStructure senderKeyStates = 1;</code>
+       */
+      public Builder addSenderKeyStates(
+          int index, org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure value) {
+        if (senderKeyStatesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureSenderKeyStatesIsMutable();
+          senderKeyStates_.add(index, value);
+          onChanged();
+        } else {
+          senderKeyStatesBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .textsecure.SenderKeyStateStructure senderKeyStates = 1;</code>
+       */
+      public Builder addSenderKeyStates(
+          org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.Builder builderForValue) {
+        if (senderKeyStatesBuilder_ == null) {
+          ensureSenderKeyStatesIsMutable();
+          senderKeyStates_.add(builderForValue.build());
+          onChanged();
+        } else {
+          senderKeyStatesBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .textsecure.SenderKeyStateStructure senderKeyStates = 1;</code>
+       */
+      public Builder addSenderKeyStates(
+          int index, org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.Builder builderForValue) {
+        if (senderKeyStatesBuilder_ == null) {
+          ensureSenderKeyStatesIsMutable();
+          senderKeyStates_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          senderKeyStatesBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .textsecure.SenderKeyStateStructure senderKeyStates = 1;</code>
+       */
+      public Builder addAllSenderKeyStates(
+          java.lang.Iterable<? extends org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure> values) {
+        if (senderKeyStatesBuilder_ == null) {
+          ensureSenderKeyStatesIsMutable();
+          super.addAll(values, senderKeyStates_);
+          onChanged();
+        } else {
+          senderKeyStatesBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .textsecure.SenderKeyStateStructure senderKeyStates = 1;</code>
+       */
+      public Builder clearSenderKeyStates() {
+        if (senderKeyStatesBuilder_ == null) {
+          senderKeyStates_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          senderKeyStatesBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .textsecure.SenderKeyStateStructure senderKeyStates = 1;</code>
+       */
+      public Builder removeSenderKeyStates(int index) {
+        if (senderKeyStatesBuilder_ == null) {
+          ensureSenderKeyStatesIsMutable();
+          senderKeyStates_.remove(index);
+          onChanged();
+        } else {
+          senderKeyStatesBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .textsecure.SenderKeyStateStructure senderKeyStates = 1;</code>
+       */
+      public org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.Builder getSenderKeyStatesBuilder(
+          int index) {
+        return getSenderKeyStatesFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .textsecure.SenderKeyStateStructure senderKeyStates = 1;</code>
+       */
+      public org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructureOrBuilder getSenderKeyStatesOrBuilder(
+          int index) {
+        if (senderKeyStatesBuilder_ == null) {
+          return senderKeyStates_.get(index);  } else {
+          return senderKeyStatesBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .textsecure.SenderKeyStateStructure senderKeyStates = 1;</code>
+       */
+      public java.util.List<? extends org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructureOrBuilder> 
+           getSenderKeyStatesOrBuilderList() {
+        if (senderKeyStatesBuilder_ != null) {
+          return senderKeyStatesBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(senderKeyStates_);
+        }
+      }
+      /**
+       * <code>repeated .textsecure.SenderKeyStateStructure senderKeyStates = 1;</code>
+       */
+      public org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.Builder addSenderKeyStatesBuilder() {
+        return getSenderKeyStatesFieldBuilder().addBuilder(
+            org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .textsecure.SenderKeyStateStructure senderKeyStates = 1;</code>
+       */
+      public org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.Builder addSenderKeyStatesBuilder(
+          int index) {
+        return getSenderKeyStatesFieldBuilder().addBuilder(
+            index, org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .textsecure.SenderKeyStateStructure senderKeyStates = 1;</code>
+       */
+      public java.util.List<org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.Builder> 
+           getSenderKeyStatesBuilderList() {
+        return getSenderKeyStatesFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure, org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.Builder, org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructureOrBuilder> 
+          getSenderKeyStatesFieldBuilder() {
+        if (senderKeyStatesBuilder_ == null) {
+          senderKeyStatesBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure, org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructure.Builder, org.whispersystems.libaxolotl.state.StorageProtos.SenderKeyStateStructureOrBuilder>(
+                  senderKeyStates_,
+                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  getParentForChildren(),
+                  isClean());
+          senderKeyStates_ = null;
+        }
+        return senderKeyStatesBuilder_;
+      }
+
+      // @@protoc_insertion_point(builder_scope:textsecure.SenderKeyRecordStructure)
+    }
+
+    static {
+      defaultInstance = new SenderKeyRecordStructure(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:textsecure.SenderKeyRecordStructure)
+  }
+
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_textsecure_SessionStructure_descriptor;
   private static
@@ -8323,6 +11582,31 @@ public final class StorageProtos {
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_textsecure_IdentityKeyPairStructure_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_textsecure_SenderKeyStateStructure_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_textsecure_SenderKeyStateStructure_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_textsecure_SenderKeyStateStructure_SenderChainKey_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_textsecure_SenderKeyStateStructure_SenderChainKey_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_textsecure_SenderKeyStateStructure_SenderMessageKey_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_textsecure_SenderKeyStateStructure_SenderMessageKey_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_textsecure_SenderKeyStateStructure_SenderSigningKey_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_textsecure_SenderKeyStateStructure_SenderSigningKey_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_textsecure_SenderKeyRecordStructure_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_textsecure_SenderKeyRecordStructure_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -8370,8 +11654,22 @@ public final class StorageProtos {
       "\n\tpublicKey\030\002 \001(\014\022\022\n\nprivateKey\030\003 \001(\014\022\021\n" +
       "\tsignature\030\004 \001(\014\022\021\n\ttimestamp\030\005 \001(\006\"A\n\030I" +
       "dentityKeyPairStructure\022\021\n\tpublicKey\030\001 \001" +
-      "(\014\022\022\n\nprivateKey\030\002 \001(\014B4\n#org.whispersys" +
-      "tems.libaxolotl.stateB\rStorageProtos"
+      "(\014\022\022\n\nprivateKey\030\002 \001(\014\"\270\003\n\027SenderKeyStat" +
+      "eStructure\022\023\n\013senderKeyId\030\001 \001(\r\022J\n\016sende",
+      "rChainKey\030\002 \001(\01322.textsecure.SenderKeySt" +
+      "ateStructure.SenderChainKey\022N\n\020senderSig" +
+      "ningKey\030\003 \001(\01324.textsecure.SenderKeyStat" +
+      "eStructure.SenderSigningKey\022O\n\021senderMes" +
+      "sageKeys\030\004 \003(\01324.textsecure.SenderKeySta" +
+      "teStructure.SenderMessageKey\0321\n\016SenderCh" +
+      "ainKey\022\021\n\titeration\030\001 \001(\r\022\014\n\004seed\030\002 \001(\014\032" +
+      "3\n\020SenderMessageKey\022\021\n\titeration\030\001 \001(\r\022\014" +
+      "\n\004seed\030\002 \001(\014\0323\n\020SenderSigningKey\022\016\n\006publ" +
+      "ic\030\001 \001(\014\022\017\n\007private\030\002 \001(\014\"X\n\030SenderKeyRe",
+      "cordStructure\022<\n\017senderKeyStates\030\001 \003(\0132#" +
+      ".textsecure.SenderKeyStateStructureB4\n#o" +
+      "rg.whispersystems.libaxolotl.stateB\rStor" +
+      "ageProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -8438,6 +11736,36 @@ public final class StorageProtos {
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_textsecure_IdentityKeyPairStructure_descriptor,
               new java.lang.String[] { "PublicKey", "PrivateKey", });
+          internal_static_textsecure_SenderKeyStateStructure_descriptor =
+            getDescriptor().getMessageTypes().get(5);
+          internal_static_textsecure_SenderKeyStateStructure_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_textsecure_SenderKeyStateStructure_descriptor,
+              new java.lang.String[] { "SenderKeyId", "SenderChainKey", "SenderSigningKey", "SenderMessageKeys", });
+          internal_static_textsecure_SenderKeyStateStructure_SenderChainKey_descriptor =
+            internal_static_textsecure_SenderKeyStateStructure_descriptor.getNestedTypes().get(0);
+          internal_static_textsecure_SenderKeyStateStructure_SenderChainKey_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_textsecure_SenderKeyStateStructure_SenderChainKey_descriptor,
+              new java.lang.String[] { "Iteration", "Seed", });
+          internal_static_textsecure_SenderKeyStateStructure_SenderMessageKey_descriptor =
+            internal_static_textsecure_SenderKeyStateStructure_descriptor.getNestedTypes().get(1);
+          internal_static_textsecure_SenderKeyStateStructure_SenderMessageKey_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_textsecure_SenderKeyStateStructure_SenderMessageKey_descriptor,
+              new java.lang.String[] { "Iteration", "Seed", });
+          internal_static_textsecure_SenderKeyStateStructure_SenderSigningKey_descriptor =
+            internal_static_textsecure_SenderKeyStateStructure_descriptor.getNestedTypes().get(2);
+          internal_static_textsecure_SenderKeyStateStructure_SenderSigningKey_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_textsecure_SenderKeyStateStructure_SenderSigningKey_descriptor,
+              new java.lang.String[] { "Public", "Private", });
+          internal_static_textsecure_SenderKeyRecordStructure_descriptor =
+            getDescriptor().getMessageTypes().get(6);
+          internal_static_textsecure_SenderKeyRecordStructure_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_textsecure_SenderKeyRecordStructure_descriptor,
+              new java.lang.String[] { "SenderKeyStates", });
           return null;
         }
       };
