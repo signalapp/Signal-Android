@@ -65,7 +65,7 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
   public ConversationAdapter(Context context, MasterSecret masterSecret,
                              Handler failedIconClickHandler, boolean groupThread, boolean pushDestination)
   {
-    super(context, null, true);
+    super(context, null, 0);
     this.context                = context;
     this.masterSecret           = masterSecret;
     this.failedIconClickHandler = failedIconClickHandler;
@@ -82,6 +82,12 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
     MessageRecord messageRecord = getMessageRecord(id, cursor, type);
 
     item.set(masterSecret, messageRecord, failedIconClickHandler, groupThread, pushDestination);
+  }
+
+  @Override
+  public void changeCursor(Cursor cursor) {
+    messageRecordCache.clear();
+    super.changeCursor(cursor);
   }
 
   @Override
@@ -146,12 +152,6 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
     messageRecordCache.put(type + messageId, new SoftReference<MessageRecord>(messageRecord));
 
     return messageRecord;
-  }
-
-  @Override
-  protected void onContentChanged() {
-    super.onContentChanged();
-    messageRecordCache.clear();
   }
 
   public void close() {
