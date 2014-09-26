@@ -148,7 +148,6 @@ public class MessageNotifier {
         sendSingleThreadNotification(context, masterSecret, notificationState, signal);
       }
 
-      //TODO: add if (desired..)
       sendUnreadMessageAppIconBadgeUpdate(context, notificationState);
     } finally {
       if (telcoCursor != null) telcoCursor.close();
@@ -159,35 +158,39 @@ public class MessageNotifier {
   private static void sendUnreadMessageAppIconBadgeUpdate(Context context,
                                                           NotificationState notificationState)
   {
-    /*
-     * this code uses the TeslaUnread API to update the Nova Launcher (prime) & widget locker
-     * unread message app icon.
-     * See http://novalauncher.com/teslaunread-api/ for further details.
-     */
-    try {
-      int count;
-      if (notificationState != null) {
-        count = notificationState.getMessageCount();
-      } else {
-        count = 0;
+    boolean teslaUnreadAPINotificationEnabled = TextSecurePreferences.isNotificationTeslaUnreadAPIEnabled(context);
+
+    if (teslaUnreadAPINotificationEnabled) {
+      /*
+       * this code uses the TeslaUnread API to update the Nova Launcher (prime) & widget locker
+       * unread message app icon.
+       * See http://novalauncher.com/teslaunread-api/ for further details.
+       */
+      try {
+        int count;
+        if (notificationState != null) {
+          count = notificationState.getMessageCount();
+        } else {
+          count = 0;
+        }
+        ContentValues cv = new ContentValues();
+
+        cv.put("tag", context.getPackageName() + "/.RoutingActivity");
+        cv.put("count", count);
+
+        context.getContentResolver().insert(
+          Uri.parse("content://com.teslacoilsw.notifier/unread_count"), cv);
+
+      } catch (IllegalArgumentException ex) {
+        /* Fine, TeslaUnread is not installed. */
+        ex.printStackTrace();
+      } catch (Exception ex) {
+        /* Some other error, possibly because the format
+           of the ContentValues are incorrect.
+           Log but do not crash over this. */
+
+        ex.printStackTrace();
       }
-      ContentValues cv = new ContentValues();
-
-      cv.put("tag", context.getPackageName() + "/.RoutingActivity");
-      cv.put("count", count);
-
-      context.getContentResolver().insert(
-        Uri.parse("content://com.teslacoilsw.notifier/unread_count"), cv);
-
-    } catch (IllegalArgumentException ex) {
-      /* Fine, TeslaUnread is not installed. */
-      ex.printStackTrace();
-    } catch (Exception ex) {
-      /* Some other error, possibly because the format
-         of the ContentValues are incorrect.
-         Log but do not crash over this. */
-
-      ex.printStackTrace();
     }
   }
 
