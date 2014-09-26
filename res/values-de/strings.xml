@@ -577,8 +577,6 @@ fehlgeschlagen.</string>
   <string name="preferences__play_inthread_notifications">Benachrichtigungston während aktiver Unterhaltungen abspielen.</string>
   <string name="preferences__vibrate">Vibration</string>
   <string name="preferences__also_vibrate_when_notified">Bei Benachrichtigungen vibrieren</string>
-  <string name="preferences__enable_tesla_unread_api">Aktualisiere Tesla ungelesene nachrichten Anzeige</string>
-  <string name="preferences__enable_tesla_unread_api_explanation">Aktualisiere das TextSecure ikon in Nova Launcher (Prime) und WidgetLocker, sodass es die Anzahl ungelesener Nachrichten darstellt.</string>
   <string name="preferences__minutes">Minuten</string>
   <string name="preferences__hours">Stunden</string>
   <string name="preferences__green">Grün</string>

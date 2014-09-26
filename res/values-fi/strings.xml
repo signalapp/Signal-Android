@@ -564,8 +564,6 @@ epäonnistui.</string>
   <string name="preferences__play_inthread_notifications">Toista ilmoitusäänet aktiivista keskustelua tarkasteltaessa.</string>
   <string name="preferences__vibrate">Värinä</string>
   <string name="preferences__also_vibrate_when_notified">Värinöi myös ilmoituksista</string>
-  <string name="preferences__enable_tesla_unread_api">Päivitä Tesla lukematon numero</string>
-  <string name="preferences__enable_tesla_unread_api_explanation">Päivitä TextSecure ikoni Nova Launcher Primeisaa ja WidgetLockerissa että se näyttää lukemattomien viestien numeron.</string>
   <string name="preferences__minutes">minuuttia</string>
   <string name="preferences__hours">tuntia</string>
   <string name="preferences__green">Vihreä</string>
