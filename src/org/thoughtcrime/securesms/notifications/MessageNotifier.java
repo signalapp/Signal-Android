@@ -175,7 +175,9 @@ public class MessageNotifier {
         }
         ContentValues cv = new ContentValues();
 
-        cv.put("tag", context.getPackageName() + "/.RoutingActivity");
+        Intent launchIntent = context.getPackageManager().getLaunchIntentForPackage(context.getPackageName());
+        String launchIntentClassname = launchIntent.getComponent().getClassName();
+        cv.put("tag", context.getPackageName() + "/" + launchIntentClassname);
         cv.put("count", count);
 
         context.getContentResolver().insert(
