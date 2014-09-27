@@ -185,7 +185,6 @@ public class MessageNotifier {
 
       } catch (IllegalArgumentException ex) {
         /* Fine, TeslaUnread is not installed. */
-        ex.printStackTrace();
       } catch (Exception ex) {
         /* Some other error, possibly because the format
            of the ContentValues are incorrect.
