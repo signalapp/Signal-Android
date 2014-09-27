@@ -158,40 +158,35 @@ public class MessageNotifier {
   private static void sendUnreadMessageAppIconBadgeUpdate(Context context,
                                                           NotificationState notificationState)
   {
-    boolean teslaUnreadAPINotificationEnabled = TextSecurePreferences.isNotificationTeslaUnreadAPIEnabled(context);
-
-    if (teslaUnreadAPINotificationEnabled) {
-      /*
-       * this code uses the TeslaUnread API to update the Nova Launcher (prime) & widget locker
-       * unread message app icon.
-       * See http://novalauncher.com/teslaunread-api/ for further details.
-       */
-      try {
-        int count;
-        if (notificationState != null) {
-          count = notificationState.getMessageCount();
-        } else {
-          count = 0;
-        }
-        ContentValues cv = new ContentValues();
-
-        Intent launchIntent = context.getPackageManager().getLaunchIntentForPackage(context.getPackageName());
-        String launchIntentClassname = launchIntent.getComponent().getClassName();
-        cv.put("tag", context.getPackageName() + "/" + launchIntentClassname);
-        cv.put("count", count);
-
-        context.getContentResolver().insert(
-          Uri.parse("content://com.teslacoilsw.notifier/unread_count"), cv);
-
-      } catch (IllegalArgumentException ex) {
-        /* Fine, TeslaUnread is not installed. */
-      } catch (Exception ex) {
-        /* Some other error, possibly because the format
-           of the ContentValues are incorrect.
-           Log but do not crash over this. */
-
-        ex.printStackTrace();
+    /*
+     * this code uses the TeslaUnread API to update the Nova Launcher (prime) & widget locker
+     * unread message app icon.
+     * See http://novalauncher.com/teslaunread-api/ for further details.
+     */
+    try {
+      int count;
+      if (notificationState != null) {
+        count = notificationState.getMessageCount();
+      } else {
+        count = 0;
       }
+      ContentValues cv = new ContentValues();
+
+      Intent launchIntent = context.getPackageManager().getLaunchIntentForPackage(context.getPackageName());
+      String launchIntentClassname = launchIntent.getComponent().getClassName();
+      cv.put("tag", context.getPackageName() + "/" + launchIntentClassname);
+      cv.put("count", count);
+
+      context.getContentResolver().insert(
+        Uri.parse("content://com.teslacoilsw.notifier/unread_count"), cv);
+
+    } catch (IllegalArgumentException ex) {
+      /* Fine, TeslaUnread is not installed. */
+    } catch (Exception ex) {
+      /* Some other error, possibly because the format
+         of the ContentValues are incorrect.
+         Log but do not crash over this. */
+      ex.printStackTrace();
     }
   }
 

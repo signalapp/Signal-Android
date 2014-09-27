@@ -70,12 +70,6 @@
                             android:title="@string/preferences__vibrate"
                             android:summary="@string/preferences__also_vibrate_when_notified" />
 
-        <CheckBoxPreference android:dependency="pref_key_enable_notifications"
-                            android:key="pref_key_enable_tesla_unread_api"
-                            android:defaultValue="false"
-                            android:title="@string/preferences__enable_tesla_unread_api"
-                            android:summary="@string/preferences__enable_tesla_unread_api_explanation" />
-
   </PreferenceCategory>
 
   <PreferenceCategory android:title="@string/preferences__input_settings">

@@ -23,7 +23,6 @@ public class TextSecurePreferences {
   private static final String LAST_VERSION_CODE_PREF           = "last_version_code";
   public  static final String RINGTONE_PREF                    = "pref_key_ringtone";
   private static final String VIBRATE_PREF                     = "pref_key_vibrate";
-  private static final String TESLA_UNREAD_API_PREF            = "pref_key_enable_tesla_unread_api";
   private static final String NOTIFICATION_PREF                = "pref_key_enable_notifications";
   public  static final String LED_COLOR_PREF                   = "pref_led_color";
   public  static final String LED_BLINK_PREF                   = "pref_led_blink";
@@ -282,10 +281,6 @@ public class TextSecurePreferences {
 
   public static boolean isNotificationVibrateEnabled(Context context) {
     return getBooleanPreference(context, VIBRATE_PREF, true);
-  }
-
-  public static boolean isNotificationTeslaUnreadAPIEnabled(Context context) {
-    return getBooleanPreference(context, TESLA_UNREAD_API_PREF, false);
   }
 
   public static String getNotificationLedColor(Context context) {
