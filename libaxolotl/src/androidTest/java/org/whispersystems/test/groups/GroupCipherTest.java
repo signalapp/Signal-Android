@@ -6,6 +6,7 @@ import android.util.Log;
 import org.whispersystems.libaxolotl.DuplicateMessageException;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.libaxolotl.LegacyMessageException;
+import org.whispersystems.libaxolotl.NoSessionException;
 import org.whispersystems.libaxolotl.ecc.ECKeyPair;
 import org.whispersystems.libaxolotl.groups.GroupCipher;
 import org.whispersystems.libaxolotl.groups.GroupSessionBuilder;
@@ -21,7 +22,7 @@ import java.util.List;
 public class GroupCipherTest extends AndroidTestCase {
 
   public void testBasicEncryptDecrypt()
-      throws LegacyMessageException, DuplicateMessageException, InvalidMessageException
+      throws LegacyMessageException, DuplicateMessageException, InvalidMessageException, NoSessionException
   {
     InMemorySenderKeyStore aliceStore = new InMemorySenderKeyStore();
     InMemorySenderKeyStore bobStore   = new InMemorySenderKeyStore();
@@ -49,7 +50,7 @@ public class GroupCipherTest extends AndroidTestCase {
   }
 
   public void testBasicRatchet()
-      throws LegacyMessageException, DuplicateMessageException, InvalidMessageException
+      throws LegacyMessageException, DuplicateMessageException, InvalidMessageException, NoSessionException
   {
     InMemorySenderKeyStore aliceStore = new InMemorySenderKeyStore();
     InMemorySenderKeyStore bobStore   = new InMemorySenderKeyStore();
@@ -92,7 +93,7 @@ public class GroupCipherTest extends AndroidTestCase {
   }
 
   public void testOutOfOrder()
-      throws LegacyMessageException, DuplicateMessageException, InvalidMessageException
+      throws LegacyMessageException, DuplicateMessageException, InvalidMessageException, NoSessionException
   {
     InMemorySenderKeyStore aliceStore = new InMemorySenderKeyStore();
     InMemorySenderKeyStore bobStore   = new InMemorySenderKeyStore();
@@ -126,6 +127,17 @@ public class GroupCipherTest extends AndroidTestCase {
       byte[] plaintext  = bobGroupCipher.decrypt(ciphertext);
 
       assertTrue(new String(plaintext).equals("up the punks"));
+    }
+  }
+
+  public void testEncryptNoSession() {
+    InMemorySenderKeyStore aliceStore = new InMemorySenderKeyStore();
+    GroupCipher aliceGroupCipher = new GroupCipher(aliceStore, "groupWithBobInIt");
+    try {
+      aliceGroupCipher.encrypt("up the punks".getBytes());
+      throw new AssertionError("Should have failed!");
+    } catch (NoSessionException nse) {
+      // good
     }
   }
 

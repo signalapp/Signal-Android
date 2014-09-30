@@ -1,18 +1,16 @@
 package org.whispersystems.libaxolotl.groups;
 
-import android.util.Log;
-
 import org.whispersystems.libaxolotl.DuplicateMessageException;
 import org.whispersystems.libaxolotl.InvalidKeyIdException;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.libaxolotl.LegacyMessageException;
+import org.whispersystems.libaxolotl.NoSessionException;
 import org.whispersystems.libaxolotl.groups.ratchet.SenderChainKey;
 import org.whispersystems.libaxolotl.groups.ratchet.SenderMessageKey;
 import org.whispersystems.libaxolotl.groups.state.SenderKeyRecord;
 import org.whispersystems.libaxolotl.groups.state.SenderKeyState;
-import org.whispersystems.libaxolotl.protocol.SenderKeyMessage;
 import org.whispersystems.libaxolotl.groups.state.SenderKeyStore;
-
+import org.whispersystems.libaxolotl.protocol.SenderKeyMessage;
 
 import java.security.InvalidAlgorithmParameterException;
 import java.security.NoSuchAlgorithmException;
@@ -36,23 +34,27 @@ public class GroupCipher {
     this.senderKeyId    = senderKeyId;
   }
 
-  public byte[] encrypt(byte[] paddedPlaintext) {
+  public byte[] encrypt(byte[] paddedPlaintext) throws NoSessionException {
     synchronized (LOCK) {
-      SenderKeyRecord  record         = senderKeyStore.loadSenderKey(senderKeyId);
-      SenderKeyState   senderKeyState = record.getSenderKeyState();
-      SenderMessageKey senderKey      = senderKeyState.getSenderChainKey().getSenderMessageKey();
-      byte[]           ciphertext     = getCipherText(senderKey.getIv(), senderKey.getCipherKey(), paddedPlaintext);
+      try {
+        SenderKeyRecord  record         = senderKeyStore.loadSenderKey(senderKeyId);
+        SenderKeyState   senderKeyState = record.getSenderKeyState();
+        SenderMessageKey senderKey      = senderKeyState.getSenderChainKey().getSenderMessageKey();
+        byte[]           ciphertext     = getCipherText(senderKey.getIv(), senderKey.getCipherKey(), paddedPlaintext);
 
-      SenderKeyMessage senderKeyMessage = new SenderKeyMessage(senderKeyState.getKeyId(),
-                                                               senderKey.getIteration(),
-                                                               ciphertext,
-                                                               senderKeyState.getSigningKeyPrivate());
+        SenderKeyMessage senderKeyMessage = new SenderKeyMessage(senderKeyState.getKeyId(),
+                                                                 senderKey.getIteration(),
+                                                                 ciphertext,
+                                                                 senderKeyState.getSigningKeyPrivate());
 
-      senderKeyState.setSenderChainKey(senderKeyState.getSenderChainKey().getNext());
+        senderKeyState.setSenderChainKey(senderKeyState.getSenderChainKey().getNext());
 
-      senderKeyStore.storeSenderKey(senderKeyId, record);
+        senderKeyStore.storeSenderKey(senderKeyId, record);
 
-      return senderKeyMessage.serialize();
+        return senderKeyMessage.serialize();
+      } catch (InvalidKeyIdException e) {
+        throw new NoSessionException(e);
+      }
     }
   }
 

@@ -3,7 +3,6 @@ package org.whispersystems.libaxolotl.groups.state;
 import org.whispersystems.libaxolotl.InvalidKeyIdException;
 import org.whispersystems.libaxolotl.ecc.ECKeyPair;
 import org.whispersystems.libaxolotl.ecc.ECPublicKey;
-import org.whispersystems.libaxolotl.groups.state.SenderKeyState;
 import org.whispersystems.libaxolotl.state.StorageProtos;
 
 import java.io.IOException;
@@ -26,8 +25,12 @@ public class SenderKeyRecord {
     }
   }
 
-  public SenderKeyState getSenderKeyState() {
-    return senderKeyStates.get(0);
+  public SenderKeyState getSenderKeyState() throws InvalidKeyIdException {
+    if (!senderKeyStates.isEmpty()) {
+      return senderKeyStates.get(0);
+    } else {
+      throw new InvalidKeyIdException("No key state in record!");
+    }
   }
 
   public SenderKeyState getSenderKeyState(int keyId) throws InvalidKeyIdException {

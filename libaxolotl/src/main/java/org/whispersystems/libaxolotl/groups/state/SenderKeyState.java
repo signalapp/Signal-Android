@@ -1,7 +1,5 @@
 package org.whispersystems.libaxolotl.groups.state;
 
-import android.util.Log;
-
 import com.google.protobuf.ByteString;
 
 import org.whispersystems.libaxolotl.InvalidKeyException;
