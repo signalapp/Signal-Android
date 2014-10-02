@@ -1,6 +1,8 @@
 buildscript {
     repositories {
-        mavenCentral()
+        maven {
+            url "https://repo1.maven.org/maven2"
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:0.12.2'
@@ -12,7 +14,9 @@ apply plugin: 'com.android.application'
 apply plugin: 'witness'
 
 repositories {
-    mavenCentral()
+    maven {
+        url "https://repo1.maven.org/maven2"
+    }
     maven {
         url "https://raw.github.com/whispersystems/maven/master/gcm-client/releases/"
     }
