@@ -30,7 +30,6 @@ public class TextSecurePreferences {
   public  static final String ALL_MMS_PREF                     = "pref_all_mms";
   public  static final String ALL_SMS_PREF                     = "pref_all_sms";
   private static final String PASSPHRASE_TIMEOUT_INTERVAL_PREF = "pref_timeout_interval";
-  private static final String PASSPHRASE_TIMEOUT_PREF          = "pref_timeout_passphrase";
   private static final String AUTO_KEY_EXCHANGE_PREF           = "pref_auto_complete_key_exchange";
   public  static final String SCREEN_SECURITY_PREF             = "pref_screen_security";
   private static final String ENTER_SENDS_PREF                 = "pref_enter_sends";
@@ -224,7 +223,8 @@ public class TextSecurePreferences {
   }
 
   public static boolean isPassphraseTimeoutEnabled(Context context) {
-    return getBooleanPreference(context, PASSPHRASE_TIMEOUT_PREF, false);
+    int timeout = getIntegerPreference(context, PASSPHRASE_TIMEOUT_INTERVAL_PREF, 0);
+    return timeout != 0;
   }
 
   public static int getPassphraseTimeoutInterval(Context context) {

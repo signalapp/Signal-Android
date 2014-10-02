@@ -72,6 +72,12 @@
     <attr name="menu_forward_icon" format="reference" />
     <attr name="menu_save_icon" format="reference" />
 
+    <declare-styleable name="TimeDeltaPreference">
+        <attr name="enable_toggle" format="boolean" />
+        <attr name="enable_text" format="reference" />
+        <attr name="disable_text" format="reference" />
+    </declare-styleable>
+
     <declare-styleable name="ForegroundImageView">
         <attr name="android:foreground" />
         <attr name="android:foregroundInsidePadding" />

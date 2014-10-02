@@ -5,7 +5,7 @@
     <string name="no">No</string>
     <string name="delete">Delete</string>
 
-    <!-- ApplicationPreferencesActivity -->
+    <!-- ApplicationPreferencesFragment -->
     <string name="ApplicationPreferencesActivity_currently_s">Currently: %s</string>
     <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">You need to have entered your passphrase before managing keys...</string>
     <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">You haven\'t set a passphrase yet!</string>
@@ -700,8 +700,8 @@
     <string name="preferences__disable_screen_security_to_allow_screen_shots">Block screenshots in the recents list and inside the app</string>
     <string name="preferences__forget_passphrase_from_memory_after_some_interval">Forget passphrase from memory after some interval</string>
     <string name="preferences__timeout_passphrase">Timeout passphrase</string>
-    <string name="preferences__pref_timeout_interval_dialogtitle">Select passphrase timeout</string>
-    <string name="preferences__pref_timeout_interval_title">Timeout interval</string>
+    <string name="preferences__pref_timeout_interval_enable">Enable passphrase timeout</string>
+    <string name="preferences__pref_timeout_interval_disable">Disable passphrase timeout</string>
     <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">The amount of time to wait before forgetting passphrase from memory</string>
     <string name="preferences__identity_key_settings">Identity keys</string>
     <string name="preferences__view_my_identity_key">View my identity key</string>
@@ -867,6 +867,11 @@
     <string name="reminder_header_sms_import_text">TextSecure can copy your phone\'s SMS messages into its encrypted database.</string>
     <string name="reminder_header_push_title">Enable TextSecure messages?</string>
     <string name="reminder_header_push_text">Instant delivery, stronger privacy, and no SMS fees.</string>
+
+    <!-- TimeDeltaPreference -->
+    <string name="timedeltapreference__default_enable">Enable</string>
+    <string name="timedeltapreference__default_disable">Disable</string>
+
     <!-- EOF -->
 
 </resources>

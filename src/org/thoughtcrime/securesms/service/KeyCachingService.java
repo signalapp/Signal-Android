@@ -187,8 +187,8 @@ public class KeyCachingService extends Service {
     boolean timeoutEnabled = TextSecurePreferences.isPassphraseTimeoutEnabled(this);
 
     if ((activitiesRunning == 0) && (this.masterSecret != null) && timeoutEnabled && !TextSecurePreferences.isPasswordDisabled(this)) {
-      long timeoutMinutes = TextSecurePreferences.getPassphraseTimeoutInterval(this);
-      long timeoutMillis  = timeoutMinutes * 60 * 1000;
+      long timeoutSeconds = TextSecurePreferences.getPassphraseTimeoutInterval(this);
+      long timeoutMillis  = timeoutSeconds * 1000;
 
       Log.w("KeyCachingService", "Starting timeout: " + timeoutMillis);
 
