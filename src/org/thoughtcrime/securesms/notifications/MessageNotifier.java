@@ -65,6 +65,8 @@ import java.util.List;
 
 public class MessageNotifier {
 
+  private static final String TAG = MessageNotifier.class.getSimpleName();
+
   public static final int NOTIFICATION_ID = 1338;
 
   private volatile static long visibleThread = -1;
@@ -186,7 +188,7 @@ public class MessageNotifier {
       /* Some other error, possibly because the format
          of the ContentValues are incorrect.
          Log but do not crash over this. */
-      ex.printStackTrace();
+      Log.w(TAG, ex);
     }
   }
 
@@ -314,7 +316,7 @@ public class MessageNotifier {
 
       player.start();
     } catch (IOException ioe) {
-      Log.w("MessageNotifier", ioe);
+      Log.w(TAG, ioe);
     }
   }
 
@@ -337,7 +339,7 @@ public class MessageNotifier {
         try {
           recipient = RecipientFactory.getRecipientsFromString(context, message.getSource(), false).getPrimaryRecipient();
         } catch (RecipientFormattingException e) {
-          Log.w("MessageNotifier", e);
+          Log.w(TAG, e);
           recipient = Recipient.getUnknownRecipient(context);
         }
 
