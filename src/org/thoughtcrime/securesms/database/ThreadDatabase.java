@@ -253,15 +253,22 @@ public class ThreadDatabase extends Database {
     if (recipientIds == null || recipientIds.size() == 0)
       return null;
 
-    String selection       = RECIPIENT_IDS + " = ?";
-    String[] selectionArgs = new String[recipientIds.size()];
+    String selection       = RECIPIENT_IDS + " = ?"  + " OR " + RECIPIENT_IDS + " LIKE ?" + " OR " + RECIPIENT_IDS + " LIKE ?" + " OR " + RECIPIENT_IDS + " LIKE ?";
+    String[] selectionArgs = new String[recipientIds.size() * 4];
 
-    for (int i=0;i<recipientIds.size()-1;i++)
-      selection += (" OR " + RECIPIENT_IDS + " = ?");
+    for (int i=0;i<recipientIds.size()-1;i++) {
+        selection += (" OR " + RECIPIENT_IDS + " = ?");
+        selection += (" OR " + RECIPIENT_IDS + " LIKE ?");
+        selection += (" OR " + RECIPIENT_IDS + " LIKE ?");
+        selection += (" OR " + RECIPIENT_IDS + " LIKE ?");
+    }
 
     int i= 0;
     for (long id : recipientIds) {
       selectionArgs[i++] = id+"";
+      selectionArgs[i++] = "% " + id + " %";
+      selectionArgs[i++] = id + " %";
+      selectionArgs[i++] = "% " + id;
     }
 
     SQLiteDatabase db = databaseHelper.getReadableDatabase();
