@@ -20,8 +20,11 @@ import android.content.Context;
 import android.net.Uri;
 import android.util.Log;
 
+import com.squareup.okhttp.Call;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+
 import java.io.IOException;
-import java.net.HttpURLConnection;
 import java.util.Arrays;
 
 import ws.com.google.android.mms.pdu.PduParser;
@@ -39,12 +42,13 @@ public class IncomingMmsConnection extends MmsConnection {
   }
 
   @Override
-  protected HttpURLConnection constructHttpClient(boolean useProxy) throws IOException {
-    HttpURLConnection client = super.constructHttpClient(useProxy);
-    client.setDoInput(true);
-    client.setRequestMethod("GET");
-    client.setRequestProperty("Accept", "*/*, application/vnd.wap.mms-message, application/vnd.wap.sic");
-    return client;
+  protected Call constructCall(boolean useProxy) throws IOException {
+    OkHttpClient client = constructHttpClient(useProxy);
+    Request.Builder builder = constructBaseRequest();
+    Request request = builder.header("Accept", "*/*, application/vnd.wap.mms-message, application/vnd.wap.sic")
+                             .get()
+                             .build();
+    return client.newCall(request);
   }
 
   public static boolean isConnectionPossible(Context context, String apn) {

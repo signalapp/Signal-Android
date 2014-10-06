@@ -22,9 +22,13 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.util.Log;
 
+import com.squareup.okhttp.Call;
+import com.squareup.okhttp.MediaType;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.RequestBody;
+
 import java.io.IOException;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
 
 import ws.com.google.android.mms.pdu.PduParser;
 import ws.com.google.android.mms.pdu.SendConf;
@@ -34,34 +38,29 @@ public class OutgoingMmsConnection extends MmsConnection {
 
   private final byte[] mms;
 
+  public OutgoingMmsConnection(Context context, Apn apn, byte[] mms) {
+    super(context, apn);
+    this.mms = mms;
+  }
+
   public OutgoingMmsConnection(Context context, String apnName, byte[] mms) throws ApnUnavailableException {
     super(context, getApn(context, apnName));
     this.mms = mms;
   }
 
   @Override
-  protected HttpURLConnection constructHttpClient(boolean useProxy)
+  protected Call constructCall(boolean useProxy)
       throws IOException
   {
-    HttpURLConnection client = super.constructHttpClient(useProxy);
-    client.setFixedLengthStreamingMode(mms.length);
-    client.setDoInput(true);
-    client.setDoOutput(true);
-    client.setRequestMethod("POST");
-    client.setRequestProperty("Content-Type", "application/vnd.wap.mms-message");
-    client.setRequestProperty("Accept", "*/*, application/vnd.wap.mms-message, application/vnd.wap.sic");
-    client.setRequestProperty("x-wap-profile", "http://www.google.com/oha/rdf/ua-profile-kila.xml");
-    return client;
-  }
+    OkHttpClient client = constructHttpClient(useProxy);
+    Request.Builder builder = constructBaseRequest();
+    builder.header("Accept", "*/*, application/vnd.wap.mms-message, application/vnd.wap.sic")
+           .header("x-wap-profile", "http://www.google.com/oha/rdf/ua-profile-kila.xml")
+           .post(RequestBody.create(MediaType.parse("application/vnd.wap.mms-message"), mms));
 
-  @Override
-  protected void transact(HttpURLConnection client) throws IOException {
-    Log.w(TAG, "* writing mms payload, " + mms.length + " bytes");
-    OutputStream out = client.getOutputStream();
-    out.write(mms);
-    out.flush();
-    out.close();
-    Log.w(TAG, "* payload sent");
+    Request request = builder.build();
+
+    return client.newCall(request);
   }
 
   public void sendNotificationReceived(boolean usingMmsRadio, boolean useProxyIfAvailable)
@@ -80,11 +79,13 @@ public class OutgoingMmsConnection extends MmsConnection {
     try {
       if (useProxyIfAvailable && apn.hasProxy()) {
         if (checkRouteToHost(context, apn.getProxy(), usingMmsRadio)) {
+          Log.w(TAG, "got successful route to proxy host");
           byte[] response = makeRequest(true);
           if (response != null) return response;
         }
       } else {
         if (checkRouteToHost(context, Uri.parse(apn.getMmsc()).getHost(), usingMmsRadio)) {
+          Log.w(TAG, "got successful route directly to mmsc");
           byte[] response = makeRequest(false);
           if (response != null) return response;
         }
