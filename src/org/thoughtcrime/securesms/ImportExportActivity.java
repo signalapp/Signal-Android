@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.view.MenuItem;
 
+import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 
 
@@ -19,8 +20,11 @@ public class ImportExportActivity extends PassphraseRequiredSherlockFragmentActi
   private ViewPager viewPager;
   private MasterSecret masterSecret;
 
+  private final DynamicTheme dynamicTheme    = new DynamicTheme();
+
   @Override
   public void onCreate(Bundle savedInstanceState) {
+    dynamicTheme.onCreate(this);
     super.onCreate(savedInstanceState);
     setContentView(R.layout.import_export_activity);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -39,6 +43,12 @@ public class ImportExportActivity extends PassphraseRequiredSherlockFragmentActi
     }
 
     return false;
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+    dynamicTheme.onCreate(this);
   }
 
   private void initializeResources() {
