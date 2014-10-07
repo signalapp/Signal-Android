@@ -50,6 +50,8 @@
         <item name="conversation_item_background">@drawable/conversation_item_background</item>
         <item name="conversation_item_received_background">@drawable/conversation_item_received_shape</item>
         <item name="conversation_item_received_triangle_background">@drawable/conversation_item_received_triangle_shape</item>
+        <item name="conversation_item_received_push_background">@drawable/conversation_item_received_push_shape</item>
+        <item name="conversation_item_received_push_triangle_background">@drawable/conversation_item_received_push_triangle_shape</item>
         <item name="conversation_item_sent_background">@drawable/conversation_item_sent_shape</item>
         <item name="conversation_item_sent_triangle_background">@drawable/conversation_item_sent_triangle_shape</item>
         <item name="conversation_item_sent_push_background">@drawable/conversation_item_sent_push_shape</item>
@@ -109,6 +111,8 @@
         <item name="conversation_item_background">@drawable/conversation_item_background_dark</item>
         <item name="conversation_item_received_background">@drawable/conversation_item_received_shape_dark</item>
         <item name="conversation_item_received_triangle_background">@drawable/conversation_item_received_triangle_shape_dark</item>
+        <item name="conversation_item_received_push_background">@drawable/conversation_item_received_push_shape_dark</item>
+        <item name="conversation_item_received_push_triangle_background">@drawable/conversation_item_received_push_triangle_shape_dark</item>
         <item name="conversation_item_sent_background">@drawable/conversation_item_sent_shape_dark</item>
         <item name="conversation_item_sent_triangle_background">@drawable/conversation_item_sent_triangle_shape_dark</item>
         <item name="conversation_item_sent_push_background">@drawable/conversation_item_sent_push_shape_dark</item>

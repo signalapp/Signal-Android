@@ -74,7 +74,11 @@ public class ConversationItem extends LinearLayout {
                                                       R.attr.conversation_item_sent_pending_background,
                                                       R.attr.conversation_item_sent_pending_triangle_background,
                                                       R.attr.conversation_item_sent_push_pending_background,
-                                                      R.attr.conversation_item_sent_push_pending_triangle_background};
+                                                      R.attr.conversation_item_sent_push_pending_triangle_background,
+                                                      R.attr.conversation_item_received_background,
+                                                      R.attr.conversation_item_received_triangle_background,
+                                                      R.attr.conversation_item_received_push_background,
+                                                      R.attr.conversation_item_received_push_triangle_background};
 
   private final static int SENT_PUSH = 0;
   private final static int SENT_PUSH_TRIANGLE = 1;
@@ -84,6 +88,10 @@ public class ConversationItem extends LinearLayout {
   private final static int SENT_SMS_PENDING_TRIANGLE = 5;
   private final static int SENT_PUSH_PENDING = 6;
   private final static int SENT_PUSH_PENDING_TRIANGLE = 7;
+  private final static int RECEIVED_SMS = 8;
+  private final static int RECEIVED_SMS_TRIANGLE = 9;
+  private final static int RECEIVED_PUSH = 10;
+  private final static int RECEIVED_PUSH_TRIANGLE = 11;
 
   private Handler       failedIconHandler;
   private MessageRecord messageRecord;
@@ -207,9 +215,9 @@ public class ConversationItem extends LinearLayout {
 
   private void setBackgroundDrawables(MessageRecord messageRecord) {
     if (conversationParent != null && backgroundDrawables != null) {
+      final int background;
+      final int triangleBackground;
       if (messageRecord.isOutgoing()) {
-        final int background;
-        final int triangleBackground;
         if (messageRecord.isPending() && pushDestination && !messageRecord.isForcedSms()) {
           background = SENT_PUSH_PENDING;
           triangleBackground = SENT_PUSH_PENDING_TRIANGLE;
@@ -223,9 +231,17 @@ public class ConversationItem extends LinearLayout {
           background = SENT_SMS;
           triangleBackground = SENT_SMS_TRIANGLE;
         }
-        setViewBackgroundWithoutResettingPadding(conversationParent, backgroundDrawables.getResourceId(background, -1));
-        setViewBackgroundWithoutResettingPadding(triangleTick, backgroundDrawables.getResourceId(triangleBackground, -1));
+      } else {
+        if (messageRecord.isPush()) {
+          background = RECEIVED_PUSH;
+          triangleBackground = RECEIVED_PUSH_TRIANGLE;
+        } else {
+          background = RECEIVED_SMS;
+          triangleBackground = RECEIVED_SMS_TRIANGLE;
+        }
       }
+      setViewBackgroundWithoutResettingPadding(conversationParent, backgroundDrawables.getResourceId(background, -1));
+      setViewBackgroundWithoutResettingPadding(triangleTick, backgroundDrawables.getResourceId(triangleBackground, -1));
     }
   }
 
