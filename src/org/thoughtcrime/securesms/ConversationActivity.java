@@ -360,7 +360,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
       emojiDrawer.setVisibility(View.GONE);
       emojiToggle.toggle();
     } else {
-      super.onBackPressed();
+      handleReturnToConversationList();
     }
   }
 
