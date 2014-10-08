@@ -54,6 +54,7 @@ import org.whispersystems.textsecure.push.IncomingPushMessage;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.ListIterator;
 
 /**
  * Handles posting system notifications for new messages.
@@ -181,7 +182,9 @@ public class MessageNotifier {
 
     SpannableStringBuilder content = new SpannableStringBuilder();
 
-    for (NotificationItem item : notifications) {
+    ListIterator<NotificationItem> iterator = notifications.listIterator(notifications.size());
+    while(iterator.hasPrevious()) {
+      NotificationItem item = iterator.previous();
       content.append(item.getBigStyleSummary());
       content.append('\n');
     }
@@ -225,7 +228,9 @@ public class MessageNotifier {
 
     InboxStyle style = new InboxStyle();
 
-    for (NotificationItem item : notifications) {
+    ListIterator<NotificationItem> iterator = notifications.listIterator(notifications.size());
+    while(iterator.hasPrevious()) {
+      NotificationItem item = iterator.previous();
       style.addLine(item.getTickerText());
     }
 
