@@ -233,7 +233,7 @@ public class RegistrationService extends Service {
 
     setState(new RegistrationState(RegistrationState.STATE_GCM_REGISTERING, number));
 
-    String gcmRegistrationId = GoogleCloudMessaging.getInstance(this).register("312334754206");
+    String gcmRegistrationId = GoogleCloudMessaging.getInstance(this).register(GcmRegistrationService.REGISTRATION_ID);
     TextSecurePreferences.setGcmRegistrationId(this, gcmRegistrationId);
     socket.registerGcmId(gcmRegistrationId);
 
