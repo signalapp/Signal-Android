@@ -22,11 +22,11 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.util.Log;
 
-import com.squareup.okhttp.Call;
-import com.squareup.okhttp.MediaType;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.RequestBody;
+import org.apache.http.HttpHost;
+import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.methods.HttpPostHC4;
+import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.entity.ByteArrayEntityHC4;
 
 import java.io.IOException;
 
@@ -49,18 +49,19 @@ public class OutgoingMmsConnection extends MmsConnection {
   }
 
   @Override
-  protected Call constructCall(boolean useProxy)
+  protected HttpUriRequest constructCall(boolean useProxy)
       throws IOException
   {
-    OkHttpClient client = constructHttpClient(useProxy);
-    Request.Builder builder = constructBaseRequest();
-    builder.header("Accept", "*/*, application/vnd.wap.mms-message, application/vnd.wap.sic")
-           .header("x-wap-profile", "http://www.google.com/oha/rdf/ua-profile-kila.xml")
-           .post(RequestBody.create(MediaType.parse("application/vnd.wap.mms-message"), mms));
-
-    Request request = builder.build();
-
-    return client.newCall(request);
+    HttpPostHC4 request = new HttpPostHC4(apn.getMmsc());
+    request.addHeader("Accept", "*/*, application/vnd.wap.mms-message, application/vnd.wap.sic");
+    request.addHeader("x-wap-profile", "http://www.google.com/oha/rdf/ua-profile-kila.xml");
+    request.addHeader("Content-Type", "application/vnd.wap.mms-message");
+    request.setEntity(new ByteArrayEntityHC4(mms));
+    if (useProxy) {
+      HttpHost proxy = new HttpHost(apn.getProxy(), apn.getPort());
+      request.setConfig(RequestConfig.custom().setProxy(proxy).build());
+    }
+    return request;
   }
 
   public void sendNotificationReceived(boolean usingMmsRadio, boolean useProxyIfAvailable)

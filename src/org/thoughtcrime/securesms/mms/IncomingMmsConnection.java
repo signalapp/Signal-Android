@@ -20,9 +20,10 @@ import android.content.Context;
 import android.net.Uri;
 import android.util.Log;
 
-import com.squareup.okhttp.Call;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
+import org.apache.http.HttpHost;
+import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.methods.HttpGetHC4;
+import org.apache.http.client.methods.HttpUriRequest;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -42,13 +43,14 @@ public class IncomingMmsConnection extends MmsConnection {
   }
 
   @Override
-  protected Call constructCall(boolean useProxy) throws IOException {
-    OkHttpClient client = constructHttpClient(useProxy);
-    Request.Builder builder = constructBaseRequest();
-    Request request = builder.header("Accept", "*/*, application/vnd.wap.mms-message, application/vnd.wap.sic")
-                             .get()
-                             .build();
-    return client.newCall(request);
+  protected HttpUriRequest constructCall(boolean useProxy) throws IOException {
+    HttpGetHC4 request = new HttpGetHC4(apn.getMmsc());
+    request.addHeader("Accept", "*/*, application/vnd.wap.mms-message, application/vnd.wap.sic");
+    if (useProxy) {
+      HttpHost proxy = new HttpHost(apn.getProxy(), apn.getPort());
+      request.setConfig(RequestConfig.custom().setProxy(proxy).build());
+    }
+    return request;
   }
 
   public static boolean isConnectionPossible(Context context, String apn) {

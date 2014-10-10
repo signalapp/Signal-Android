@@ -21,12 +21,14 @@ import android.net.ConnectivityManager;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.squareup.okhttp.Call;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Request.Builder;
-import com.squareup.okhttp.Response;
-
+import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.impl.NoConnectionReuseStrategyHC4;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.client.LaxRedirectStrategy;
+import org.apache.http.impl.conn.BasicHttpClientConnectionManager;
 import org.thoughtcrime.securesms.database.ApnDatabase;
 import org.thoughtcrime.securesms.util.TelephonyUtil;
 import org.whispersystems.textsecure.util.Conversions;
@@ -37,10 +39,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.InetAddress;
-import java.net.InetSocketAddress;
-import java.net.Proxy;
-import java.net.Proxy.Type;
-import java.util.concurrent.TimeUnit;
 
 public abstract class MmsConnection {
   private static final String TAG = "MmsCommunication";
@@ -113,43 +111,48 @@ public abstract class MmsConnection {
     return baos.toByteArray();
   }
 
-  protected OkHttpClient constructHttpClient(boolean useProxy)
+  protected CloseableHttpClient constructHttpClient()
       throws IOException {
-    OkHttpClient client = new OkHttpClient();
-    client.setConnectTimeout(20, TimeUnit.SECONDS);
-    client.setReadTimeout(20, TimeUnit.SECONDS);
-    client.setWriteTimeout(20, TimeUnit.SECONDS);
+    RequestConfig config = RequestConfig.custom()
+                                        .setConnectTimeout(20 * 1000)
+                                        .setConnectionRequestTimeout(20 * 1000)
+                                        .setSocketTimeout(20 * 1000)
+                                        .build();
 
-    if (apn.hasProxy() && useProxy) {
-      Log.w(TAG, String.format("Constructing http client using a proxy: (%s:%d)", apn.getProxy(), apn.getPort()));
-      Proxy proxyRoute = new Proxy(Type.HTTP, new InetSocketAddress(apn.getProxy(), apn.getPort()));
-      client.setProxy(proxyRoute);
-    }
-
-    return client;
-  }
-
-  protected Request.Builder constructBaseRequest() {
-    return new Builder().url(apn.getMmsc())
-                        .header("User-Agent", "Android-Mms/2.0")
-                        .header("Accept-Charset", "UTF-8");
+    return HttpClients.custom()
+                      .setConnectionReuseStrategy(new NoConnectionReuseStrategyHC4())
+                      .setRedirectStrategy(new LaxRedirectStrategy())
+                      .setUserAgent("Android-Mms/2.0")
+                      .setConnectionManager(new BasicHttpClientConnectionManager())
+                      .setDefaultRequestConfig(config)
+                      .build();
   }
 
   protected byte[] makeRequest(boolean useProxy) throws IOException {
-    String currentUrl = apn.getMmsc();
-    Call call = constructCall(useProxy);
-    Log.w(TAG, "connecting to " + currentUrl);
-    Response response = call.execute();
+    Log.w(TAG, "connecting to " + apn.getMmsc());
 
-    Log.w(TAG, "* response code: " + response.code());
-    if (response.isSuccessful()) {
-      return parseResponse(response.body().byteStream());
+    HttpUriRequest request;
+    CloseableHttpClient   client   = null;
+    CloseableHttpResponse response = null;
+    try {
+      request  = constructCall(useProxy);
+      client   = constructHttpClient();
+      response = client.execute(request);
+
+      Log.w(TAG, "* response code: " + response.getStatusLine());
+
+      if (response.getStatusLine().getStatusCode() == 200) {
+        return parseResponse(response.getEntity().getContent());
+      }
+    } finally {
+      if (response != null) response.close();
+      if (client != null)   client.close();
     }
 
     throw new IOException("unhandled response code");
   }
 
-  protected abstract Call constructCall(boolean useProxy) throws IOException;
+  protected abstract HttpUriRequest constructCall(boolean useProxy) throws IOException;
 
   public static class Apn {
     private final String mmsc;
