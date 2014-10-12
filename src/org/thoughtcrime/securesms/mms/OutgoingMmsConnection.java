@@ -38,11 +38,6 @@ public class OutgoingMmsConnection extends MmsConnection {
 
   private final byte[] mms;
 
-  public OutgoingMmsConnection(Context context, Apn apn, byte[] mms) {
-    super(context, apn);
-    this.mms = mms;
-  }
-
   public OutgoingMmsConnection(Context context, String apnName, byte[] mms) throws ApnUnavailableException {
     super(context, getApn(context, apnName));
     this.mms = mms;
@@ -70,29 +65,28 @@ public class OutgoingMmsConnection extends MmsConnection {
     sendBytes(usingMmsRadio, useProxyIfAvailable);
   }
 
-  public SendConf send(boolean usingMmsRadio, boolean useProxyIfAvailable)  throws IOException {
-    byte[] response = sendBytes(usingMmsRadio, useProxyIfAvailable);
+  public SendConf send(boolean useMmsRadio, boolean useProxyIfAvailable)  throws IOException {
+    byte[] response = sendBytes(useMmsRadio, useProxyIfAvailable);
     return (SendConf) new PduParser(response).parse();
   }
 
-  private byte[] sendBytes(boolean usingMmsRadio, boolean useProxyIfAvailable) throws IOException {
-    Log.w(TAG, "Sending MMS of length: " + mms.length + "." + (usingMmsRadio ? " using mms radio" : ""));
+  private byte[] sendBytes(boolean useMmsRadio, boolean useProxyIfAvailable) throws IOException {
+    final boolean useProxy   = useProxyIfAvailable && apn.hasProxy();
+    final String  targetHost = useProxy
+                             ? apn.getProxy()
+                             : Uri.parse(apn.getMmsc()).getHost();
+
+    Log.w(TAG, "Sending MMS of length: " + mms.length
+               + (useMmsRadio ? ", using mms radio" : "")
+               + (useProxy ? ", using proxy" : ""));
+
     try {
-      if (useProxyIfAvailable && apn.hasProxy()) {
-        if (checkRouteToHost(context, apn.getProxy(), usingMmsRadio)) {
-          Log.w(TAG, "got successful route to proxy host");
-          byte[] response = makeRequest(true);
-          if (response != null) return response;
-        }
-      } else {
-        if (checkRouteToHost(context, Uri.parse(apn.getMmsc()).getHost(), usingMmsRadio)) {
-          Log.w(TAG, "got successful route directly to mmsc");
-          byte[] response = makeRequest(false);
-          if (response != null) return response;
-        }
+      if (checkRouteToHost(context, targetHost, useMmsRadio)) {
+        Log.w(TAG, "got successful route to host " + targetHost);
+        byte[] response = makeRequest(useProxy);
+        if (response != null) return response;
       }
     } catch (IOException ioe) {
-      Log.w(TAG, "caught an IOException when checking host routes and making requests.");
       Log.w(TAG, ioe);
     }
     throw new IOException("Connection manager could not obtain route to host.");
@@ -106,9 +100,8 @@ public class OutgoingMmsConnection extends MmsConnection {
         Log.w(TAG, "MMS network info was null, unsupported by this device");
         return false;
       }
-      String apn = networkInfo.getExtraInfo();
 
-      getApn(context, apn);
+      getApn(context, networkInfo.getExtraInfo());
       return true;
     } catch (ApnUnavailableException e) {
       Log.w(TAG, e);

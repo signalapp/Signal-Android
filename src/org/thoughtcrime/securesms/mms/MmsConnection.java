@@ -76,29 +76,25 @@ public abstract class MmsConnection {
       throws IOException
   {
     InetAddress inetAddress = InetAddress.getByName(host);
-
     if (!usingMmsRadio) {
       if (inetAddress.isSiteLocalAddress()) {
         throw new IOException("RFC1918 address in non-MMS radio situation!");
       }
-
+      Log.w(TAG, "returning vacuous success since MMS radio is not in use");
+      return true;
+    }
+    byte[] ipAddressBytes = inetAddress.getAddress();
+    if (ipAddressBytes == null || ipAddressBytes.length != 4) {
+      Log.w(TAG, "returning vacuous success since android.net package doesn't support IPv6");
       return true;
     }
 
-    Log.w(TAG, "Checking route to address: " + host + " , " + inetAddress.getHostAddress());
-
-    byte[] ipAddressBytes = inetAddress.getAddress();
-
-    if (ipAddressBytes != null && ipAddressBytes.length == 4) {
-      int ipAddress               = Conversions.byteArrayToIntLittleEndian(ipAddressBytes, 0);
-      ConnectivityManager manager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
-
-      boolean routeToHostObtained = manager.requestRouteToHost(MmsRadio.TYPE_MOBILE_MMS, ipAddress);
-      Log.w(TAG, "requestRouteToHost result: " + routeToHostObtained);
-      return routeToHostObtained;
-    }
-    Log.w(TAG, "returning vacuous true");
-    return true;
+    Log.w(TAG, "Checking route to address: " + host + ", " + inetAddress.getHostAddress());
+    ConnectivityManager manager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+    int     ipAddress           = Conversions.byteArrayToIntLittleEndian(ipAddressBytes, 0);
+    boolean routeToHostObtained = manager.requestRouteToHost(MmsRadio.TYPE_MOBILE_MMS, ipAddress);
+    Log.w(TAG, "requestRouteToHost result: " + routeToHostObtained);
+    return routeToHostObtained;
   }
 
   protected static byte[] parseResponse(InputStream is) throws IOException {

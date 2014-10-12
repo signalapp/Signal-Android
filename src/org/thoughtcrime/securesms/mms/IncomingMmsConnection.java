@@ -38,10 +38,6 @@ public class IncomingMmsConnection extends MmsConnection {
     super(context, apn);
   }
 
-  public IncomingMmsConnection(Context context, String apnName) throws ApnUnavailableException {
-    super(context, getApn(context, apnName));
-  }
-
   @Override
   protected HttpUriRequest constructRequest(boolean useProxy) throws IOException {
     HttpGetHC4 request = new HttpGetHC4(apn.getMmsc());
@@ -67,15 +63,14 @@ public class IncomingMmsConnection extends MmsConnection {
   {
     byte[] pdu = null;
 
+    final boolean useProxy   = useProxyIfAvailable && apn.hasProxy();
+    final String  targetHost = useProxy
+                             ? apn.getProxy()
+                             : Uri.parse(apn.getMmsc()).getHost();
     try {
-      if (useProxyIfAvailable && apn.hasProxy()) {
-        if (checkRouteToHost(context, apn.getProxy(), usingMmsRadio)) {
-          pdu = makeRequest(true);
-        }
-      } else {
-        if (checkRouteToHost(context, Uri.parse(apn.getMmsc()).getHost(), usingMmsRadio)) {
-          pdu = makeRequest(false);
-        }
+      if (checkRouteToHost(context, targetHost, usingMmsRadio)) {
+        Log.w(TAG, "got successful route to host " + targetHost);
+        pdu = makeRequest(useProxy);
       }
     } catch (IOException ioe) {
       Log.w(TAG, ioe);
@@ -88,7 +83,8 @@ public class IncomingMmsConnection extends MmsConnection {
     RetrieveConf retrieved = (RetrieveConf)new PduParser(pdu).parse();
 
     if (retrieved == null) {
-      Log.w(TAG, "Couldn't parse PDU, raw server response: " + Arrays.toString(pdu));
+      Log.w(TAG, "Couldn't parse PDU, byte response: " + Arrays.toString(pdu));
+      Log.w(TAG, "Couldn't parse PDU, ASCII:         " + new String(pdu));
       throw new IOException("Bad retrieved PDU");
     }
 
