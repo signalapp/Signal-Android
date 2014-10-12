@@ -43,7 +43,7 @@ public class IncomingMmsConnection extends MmsConnection {
   }
 
   @Override
-  protected HttpUriRequest constructCall(boolean useProxy) throws IOException {
+  protected HttpUriRequest constructRequest(boolean useProxy) throws IOException {
     HttpGetHC4 request = new HttpGetHC4(apn.getMmsc());
     request.addHeader("Accept", "*/*, application/vnd.wap.mms-message, application/vnd.wap.sic");
     if (useProxy) {

@@ -129,13 +129,13 @@ public abstract class MmsConnection {
   }
 
   protected byte[] makeRequest(boolean useProxy) throws IOException {
-    Log.w(TAG, "connecting to " + apn.getMmsc());
+    Log.w(TAG, "connecting to " + apn.getMmsc() + (useProxy ? " using proxy" : ""));
 
     HttpUriRequest request;
     CloseableHttpClient   client   = null;
     CloseableHttpResponse response = null;
     try {
-      request  = constructCall(useProxy);
+      request  = constructRequest(useProxy);
       client   = constructHttpClient();
       response = client.execute(request);
 
@@ -152,7 +152,7 @@ public abstract class MmsConnection {
     throw new IOException("unhandled response code");
   }
 
-  protected abstract HttpUriRequest constructCall(boolean useProxy) throws IOException;
+  protected abstract HttpUriRequest constructRequest(boolean useProxy) throws IOException;
 
   public static class Apn {
     private final String mmsc;
@@ -189,5 +189,4 @@ public abstract class MmsConnection {
           ", port: " + (port == null ? "none" : port) + " }";
     }
   }
-
 }

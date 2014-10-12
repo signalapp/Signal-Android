@@ -49,7 +49,7 @@ public class OutgoingMmsConnection extends MmsConnection {
   }
 
   @Override
-  protected HttpUriRequest constructCall(boolean useProxy)
+  protected HttpUriRequest constructRequest(boolean useProxy)
       throws IOException
   {
     HttpPostHC4 request = new HttpPostHC4(apn.getMmsc());
