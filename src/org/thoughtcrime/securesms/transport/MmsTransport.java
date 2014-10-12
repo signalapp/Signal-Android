@@ -22,17 +22,17 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.mms.ApnUnavailableException;
 import org.thoughtcrime.securesms.mms.MmsRadio;
 import org.thoughtcrime.securesms.mms.MmsRadioException;
-import org.thoughtcrime.securesms.mms.MmsSendHelper;
 import org.thoughtcrime.securesms.mms.MmsSendResult;
+import org.thoughtcrime.securesms.mms.OutgoingMmsConnection;
 import org.thoughtcrime.securesms.mms.TextTransport;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.util.NumberUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.SessionCipher;
 import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
@@ -124,21 +124,25 @@ public class MmsTransport {
       message.setFrom(new EncodedStringValue(number));
     }
 
-    SendConf conf = MmsSendHelper.sendMms(context, new PduComposer(context, message).make(),
-                                          radio.getApnInformation(), usingMmsRadio, useProxy);
+    try {
+      OutgoingMmsConnection connection = new OutgoingMmsConnection(context, radio.getApnInformation(), new PduComposer(context, message).make());
+      SendConf conf = connection.send(usingMmsRadio, useProxy);
 
-    for (int i=0;i<message.getBody().getPartsNum();i++) {
-      Log.w("MmsSender", "Sent MMS part of content-type: " + new String(message.getBody().getPart(i).getContentType()));
-    }
+      for (int i=0;i<message.getBody().getPartsNum();i++) {
+        Log.w("MmsSender", "Sent MMS part of content-type: " + new String(message.getBody().getPart(i).getContentType()));
+      }
 
-    if (conf == null) {
-      throw new UndeliverableMessageException("No M-Send.conf received in response to send.");
-    } else if (conf.getResponseStatus() != PduHeaders.RESPONSE_STATUS_OK) {
-      throw new UndeliverableMessageException("Got bad response: " + conf.getResponseStatus());
-    } else if (isInconsistentResponse(message, conf)) {
-      throw new UndeliverableMessageException("Mismatched response!");
-    } else {
-      return new MmsSendResult(conf.getMessageId(), conf.getResponseStatus(), upgradedSecure, false);
+      if (conf == null) {
+        throw new UndeliverableMessageException("No M-Send.conf received in response to send.");
+      } else if (conf.getResponseStatus() != PduHeaders.RESPONSE_STATUS_OK) {
+        throw new UndeliverableMessageException("Got bad response: " + conf.getResponseStatus());
+      } else if (isInconsistentResponse(message, conf)) {
+        throw new UndeliverableMessageException("Mismatched response!");
+      } else {
+        return new MmsSendResult(conf.getMessageId(), conf.getResponseStatus(), upgradedSecure, false);
+      }
+    } catch (ApnUnavailableException aue) {
+      throw new IOException("no APN was retrievable");
     }
   }
 

@@ -25,22 +25,22 @@ import android.util.Pair;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.DecryptingQueue;
+import org.thoughtcrime.securesms.mms.IncomingMmsConnection;
+import org.thoughtcrime.securesms.mms.MmsConnection;
+import org.thoughtcrime.securesms.mms.MmsConnection.Apn;
+import org.thoughtcrime.securesms.mms.OutgoingMmsConnection;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
 import org.thoughtcrime.securesms.mms.ApnUnavailableException;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
-import org.thoughtcrime.securesms.mms.MmsDownloadHelper;
 import org.thoughtcrime.securesms.mms.MmsRadio;
 import org.thoughtcrime.securesms.mms.MmsRadioException;
-import org.thoughtcrime.securesms.mms.MmsSendHelper;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
 
 import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
 
 import ws.com.google.android.mms.InvalidHeaderValueException;
 import ws.com.google.android.mms.MmsException;
@@ -70,7 +70,7 @@ public class MmsDownloader {
   }
 
   private void handleMmsPendingApnDownloads(MasterSecret masterSecret) {
-    if (!MmsDownloadHelper.isMmsConnectionParametersAvailable(context, null))
+    if (!IncomingMmsConnection.isConnectionPossible(context, null))
       return;
 
     MmsDatabase mmsDatabase = DatabaseFactory.getMmsDatabase(context);
@@ -135,7 +135,6 @@ public class MmsDownloader {
         retrieveAndStore(masterSecret, messageId, threadId,
                          contentLocation, transactionId, true, false);
         radio.disconnect();
-        return;
       } catch (IOException e) {
         Log.w("MmsDownloader", e);
         radio.disconnect();
@@ -169,9 +168,10 @@ public class MmsDownloader {
                                 boolean radioEnabled, boolean useProxy)
       throws IOException, MmsException, ApnUnavailableException
   {
-    RetrieveConf retrieved = MmsDownloadHelper.retrieveMms(context, contentLocation,
-                                                           radio.getApnInformation(),
-                                                           radioEnabled, useProxy);
+    Apn                   dbApn      = MmsConnection.getApn(context, radio.getApnInformation());
+    Apn                   contentApn = new Apn(contentLocation, dbApn.getProxy(), Integer.toString(dbApn.getPort()));
+    IncomingMmsConnection connection = new IncomingMmsConnection(context, contentApn);
+    RetrieveConf          retrieved  = connection.retrieve(radioEnabled, useProxy);
 
     storeRetrievedMms(masterSecret, contentLocation, messageId, threadId, retrieved);
     sendRetrievedAcknowledgement(transactionId, radioEnabled, useProxy);
@@ -206,14 +206,15 @@ public class MmsDownloader {
   private void sendRetrievedAcknowledgement(byte[] transactionId,
                                             boolean usingRadio,
                                             boolean useProxy)
+      throws ApnUnavailableException
   {
     try {
       NotifyRespInd notifyResponse = new NotifyRespInd(PduHeaders.CURRENT_MMS_VERSION,
                                                        transactionId,
                                                        PduHeaders.STATUS_RETRIEVED);
 
-      MmsSendHelper.sendNotificationReceived(context, new PduComposer(context, notifyResponse).make(),
-                                             radio.getApnInformation(), usingRadio, useProxy);
+      OutgoingMmsConnection connection = new OutgoingMmsConnection(context, radio.getApnInformation(), new PduComposer(context, notifyResponse).make());
+      connection.sendNotificationReceived(usingRadio, useProxy);
     } catch (InvalidHeaderValueException e) {
       Log.w("MmsDownloader", e);
     } catch (IOException e) {

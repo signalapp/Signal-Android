@@ -35,6 +35,7 @@ dependencies {
     compile 'com.google.android.gms:play-services:5.0.89'
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
     compile 'org.w3c:smil:1.0.0'
+    compile 'org.apache.httpcomponents:httpclient-android:4.3.5'
 
     androidTestCompile 'com.squareup:fest-android:1.0.8'
 
@@ -49,6 +50,7 @@ dependencyVerification {
         'com.google.android.gms:play-services:38f326e525830f1d70f60f594ceafcbdf5b312287ddbecd338fd1ed7958a4b1e',
         'com.astuetz:pagerslidingtabstrip:f1641396732c7132a7abb837e482e5ee2b0ebb8d10813fc52bbaec2c15c184c2',
         'org.w3c:smil:085dc40f2bb249651578bfa07499fd08b16ad0886dbe2c4078586a408da62f9b',
+        'org.apache.httpcomponents:httpclient-android:6f56466a9bd0d42934b90bfbfe9977a8b654c058bf44a12bdc2877c4e1f033f1',
         'com.google.protobuf:protobuf-java:ad9769a22989e688a46af4d3accc348cc501ced22118033230542bc916e33f0b',
         'com.madgag:sc-light-jdk15on:931f39d351429fb96c2f749e7ecb1a256a8ebbf5edca7995c9cc085b94d1841d',
         'com.googlecode.libphonenumber:libphonenumber:eba17eae81dd622ea89a00a3a8c025b2f25d342e0d9644c5b62e16f15687c3ab',

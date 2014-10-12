@@ -20,11 +20,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
 import android.preference.Preference;
-import android.preference.PreferenceManager;
 import android.widget.Toast;
 
 import com.actionbarsherlock.view.MenuItem;
-import org.thoughtcrime.securesms.mms.MmsDownloadHelper;
+
+import org.thoughtcrime.securesms.mms.IncomingMmsConnection;
 import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -86,7 +86,7 @@ public class MmsPreferencesActivity extends PassphraseRequiredSherlockPreference
   }
 
   private void initializePreferences() {
-    if (!MmsDownloadHelper.isMmsConnectionParametersAvailable(this, null)) {
+    if (!IncomingMmsConnection.isConnectionPossible(this, null)) {
       TextSecurePreferences.setUseLocalApnsEnabled(this, true);
       addPreferencesFromResource(R.xml.mms_preferences);
       this.findPreference(TextSecurePreferences.ENABLE_MANUAL_MMS_PREF).setOnPreferenceChangeListener(new OverrideMmsChangeListener());
