@@ -62,13 +62,13 @@ public class IncomingMmsConnection extends MmsConnection {
     }
   }
 
-  public RetrieveConf retrieve(boolean usingMmsRadio, boolean proxyIfPossible)
+  public RetrieveConf retrieve(boolean usingMmsRadio, boolean useProxyIfAvailable)
       throws IOException, ApnUnavailableException
   {
     byte[] pdu = null;
 
     try {
-      if (proxyIfPossible && apn.hasProxy()) {
+      if (useProxyIfAvailable && apn.hasProxy()) {
         if (checkRouteToHost(context, apn.getProxy(), usingMmsRadio)) {
           pdu = makeRequest(true);
         }
