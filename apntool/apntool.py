@@ -39,12 +39,17 @@ try:
 
     count = 0
     for apn in root.iter("apn"):
+        if apn.get("mmsc") == None:
+            continue
         sqlvars = ["?" for x in apn.attrib.keys()] + ["?"]
-        values = [apn.get(attrib) for attrib in apn.attrib.keys()] + ["%s%s" % (apn.get("mcc"), apn.get("mnc"))]
-        keys = apn.attrib.keys() + ["mccmnc"]
+        mccmnc  = "%s%s" % (apn.get("mcc"), apn.get("mnc"))
+        values  = [apn.get(attrib) for attrib in apn.attrib.keys()] + [mccmnc]
+        keys    = apn.attrib.keys() + ["mccmnc"]
 
-        statement = "INSERT INTO apns (%s) VALUES (%s)" % (", ".join(keys), ", ".join(sqlvars))
-        cursor.execute(statement, values)
+        cursor.execute("SELECT 1 FROM apns WHERE mccmnc = ? AND apn = ?", [mccmnc, apn.get("apn")])
+        if cursor.fetchone() == None:
+            statement = "INSERT INTO apns (%s) VALUES (%s)" % (", ".join(keys), ", ".join(sqlvars))
+            cursor.execute(statement, values)
 
         count += 1
         if not args.quiet:
