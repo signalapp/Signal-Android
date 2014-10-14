@@ -14,12 +14,16 @@
   <string name="ApplicationPreferencesActivity_delete">削除</string>
   <string name="ApplicationPreferencesActivity_my">自分のﾌｨﾝｶﾞｰﾌﾟﾘﾝﾄ</string>
   <string name="ApplicationPreferencesActivity_disable_storage_encryption">端末内保存データの暗号化を無効にしますか？</string>
-  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">\n警告、この作業によって、携帯端末に保存されるすべてのメッセージと鍵の暗号化が無効になります！\n通信上（セッション）の暗号化は引き続き行われますが、お使いの携帯端末それ自体に、誰かが物理的な接触を試みた場合、メッセージや鍵などの情報が入手されてしまう可能性があります。</string>
+  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
+警告、この作業によって、携帯端末に保存されるすべてのメッセージと鍵の暗号化が無効になります！
+通信上（セッション）の暗号化は引き続き行われますが、お使いの携帯端末それ自体に、誰かが物理的な接触を試みた場合、メッセージや鍵などの情報が入手されてしまう可能性があります。</string>
   <string name="ApplicationPreferencesActivity_disable">無効</string>
   <string name="ApplicationPreferencesActivity_unregistering">登録破棄中…</string>
   <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">データ通信を行うために登録を取消しています</string>
   <string name="ApplicationPreferencesActivity_disable_push_messages">プッシュメッセージを無効化しますか？</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">\nサーバーから登録を取消し、プッシュメッセージを無効化します。\n再びプッシュメッセージを使用するには、</string>
+  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">
+サーバーから登録を取消し、プッシュメッセージを無効化します。
+再びプッシュメッセージを使用するには、</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">サーバー接続中にエラーが発生しました！</string>
   <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">あなたはプッシュサービスに登録していません。</string>
   <string name="ApplicationPreferencesActivity_updating_directory">ダイレクトリーを更新しています</string>
@@ -52,7 +56,6 @@
   <string name="ConversationItem_click_to_approve_mms_dialog_title">代替としてMMSに切り替わりますか？</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">代替として暗号化されていないSMSに切り替わりますか？</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">代替として暗号化されていないMMSに切り替わりますか？</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">セキュア・セッションが構築できなかったため、このメッセージは暗号化<b>されません</b>。\n\n暗号化されていないメッセージを送信しますか?</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">セキュア・セッションを開始しますか？</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">%sさんとセキュア・セッションを開始しますか？</string>
@@ -81,8 +84,6 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">このグループを本当に抜けますか？</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">メッセージの詳細</string>
-  <string name="ConversationFragment_transport_s_sent_received_s">通信: %1$s\n送受信: %2$s</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">送信者: %1$s\n通信: %2$s\n送信: %3$s\n受信: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">メッセージ削除の確認</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">このメッセージを完全に削除してもよろしいですか？</string>
   <string name="ConversationFragment_save_to_sd_card">SDカードに保存しますか？</string>
@@ -140,7 +141,8 @@
   <string name="ImportFragment_import">インポート</string>
   <string name="ImportFragment_cancel">中止</string>
   <string name="ImportFragment_restore_encrypted_backup">暗号化されたバックアップを復元しますか？</string>
-  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">\n暗号化されたバックアップ・ファイルを復元すると、現在のキー、設定、及びメッセージは完全に上書きされます。現在のTextSecureインストール環境は上書きされますが、バックアップ・ファイルは残ります。</string>
+  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
+暗号化されたバックアップ・ファイルを復元すると、現在のキー、設定、及びメッセージは完全に上書きされます。現在のTextSecureインストール環境は上書きされますが、バックアップ・ファイルは残ります。</string>
   <string name="ImportFragment_restore">復元</string>
   <string name="ImportFragment_import_plaintext_backup">平文のバックアップをインポートしますか？</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">暗号化されていないテキストのバックアップ・ファイルからメッセージをインポートします。以前に同じバックアップ・ファイルをインポートしたことがある場合、メッセージが重複することになります。</string>
@@ -173,9 +175,15 @@
   <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">お使いの通信事業者のMMSセンター用URLを指定して下さい。</string>
   <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">TextSecure設定メニューから、これらの値をいつでも変更できます。</string>
   <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">この\n鍵交換の電子署名は、以前この連絡先から受信したものと違っています。\n誰かがあなたの通信を傍受しようとしているか、もしくは\n単にこの連絡先がTextSecureを再インストールしたため、認証キーが新しくなった可能性があります。</string>
-  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">この連絡先を\n照合することが推奨されています。</string>
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">この\n鍵交換の電子署名は信用されていますが、「自動で鍵交換を完了する」設定は\n無効になっています。</string>
+  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">この
+鍵交換の電子署名は、以前この連絡先から受信したものと違っています。
+誰かがあなたの通信を傍受しようとしているか、もしくは
+単にこの連絡先がTextSecureを再インストールしたため、認証キーが新しくなった可能性があります。</string>
+  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">この連絡先を
+照合することが推奨されています。</string>
+  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">この
+鍵交換の電子署名は信用されていますが、「自動で鍵交換を完了する」設定は
+無効になっています。</string>
   <string name="ReceiveKeyActivity_processing">処理中</string>
   <string name="ReceiveKeyActivity_processing_key_exchange">鍵交換を処理中...</string>
   <!--RegistrationActivity-->
@@ -260,7 +268,10 @@
   <string name="ViewLocalIdentityActivity_regenerating">再生成中…</string>
   <string name="ViewLocalIdentityActivity_regenerating_identity_key">アイデンティティー鍵を再生成中…</string>
   <string name="ViewLocalIdentityActivity_regenerated">再生成完了！</string>
-  <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">\n警告!アイデンティティー鍵を再生成することで、現在の鍵は失われ、\n既存の連絡先はあなたと暗号化されたセッションを開始するときに警告を受けることになります。\n続行しますか？</string>
+  <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">
+警告!アイデンティティー鍵を再生成することで、現在の鍵は失われ、
+既存の連絡先はあなたと暗号化されたセッションを開始するときに警告を受けることになります。
+続行しますか？</string>
   <string name="ViewLocalIdentityActivity_cancel">中止</string>
   <string name="ViewLocalIdentityActivity_continue">続行</string>
   <!--SmsReceiver-->
@@ -314,11 +325,16 @@
   <string name="database_migration_activity__importing">インポート中</string>
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">データベースを更新中…</string>
-  <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">SDカードへ暗号化された\nバックアップ・ファイルをエクスポートします</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">\n「SMSバックアップと復元」と互換性のある暗号化されていないテキストのバックアップ・ファイルをSDカードにエクスポートします</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">端末既定のメッセンジャー・アプリから\nデータベースをインポート</string>
-  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">\n前回エクスポートした暗号化されたTextSecureバックアップ・ファイルを復元</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">\n暗号化されていないテキストのバックアップ・ファイルをインポートします。「SMSバックアップと復元」と互換可能です。</string>
+  <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">SDカードへ暗号化された
+バックアップ・ファイルをエクスポートします</string>
+  <string name="export_fragment__export_a_plaintext_backup_compatible_with">
+「SMSバックアップと復元」と互換性のある暗号化されていないテキストのバックアップ・ファイルをSDカードにエクスポートします</string>
+  <string name="import_fragment__import_the_database_from_the_default_system">端末既定のメッセンジャー・アプリから
+データベースをインポート</string>
+  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">
+前回エクスポートした暗号化されたTextSecureバックアップ・ファイルを復元</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">
+暗号化されていないテキストのバックアップ・ファイルをインポートします。「SMSバックアップと復元」と互換可能です。</string>
   <!--mms_preferences_activity-->
   <string name="mms_preferences_activity__manual_mms_settings_are_required">この端末は、ご自分でMMS設定をする必要があります。</string>
   <!--prompt_passphrase_activity-->
@@ -356,8 +372,6 @@
   <string name="verify_identity_activity__their_identity_they_read">相手の認証キー（通信相手が読む）:</string>
   <string name="verify_identity_activity__your_identity_you_read">自分の認証キー（自分が読む）:</string>
   <!--verify_import_identity_activity-->
-  <string name="verify_import_identity_activity__identity_name_n">IDネーム:\\n</string>
-  <string name="verify_import_identity_activity__imported_identity_n">インポートした認証キー:\\n</string>
   <string name="verify_import_identity_activity__verified">照合できました。</string>
   <string name="verify_import_identity_activity__compare">比較</string>
   <!--verify_keys_activity-->
@@ -383,7 +397,8 @@
   <string name="preferences__disable_local_encryption_of_messages_and_keys">携帯端末におけるメッセージ及び鍵の暗号化を無効にする</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">同じIDネームとの新しいセッション、又は現在のセッションをするのに鍵交換を自動で完了させる</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">一定時間経過するとメモリからパスワードを消去する</string>
-  <string name="preferences__timeout_passphrase">パスワードの\nタイムアウト</string>
+  <string name="preferences__timeout_passphrase">パスワードの
+タイムアウト</string>
   <string name="preferences__pref_timeout_interval_title">タイムアウトの間隔</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">メモリからパスワードを消去するまでの待ち時間です</string>
   <string name="preferences__identity_key_settings">認証キー</string>

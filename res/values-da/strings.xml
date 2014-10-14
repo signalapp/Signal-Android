@@ -14,7 +14,11 @@
   <string name="ApplicationPreferencesActivity_delete">Slet</string>
   <string name="ApplicationPreferencesActivity_my">Min</string>
   <string name="ApplicationPreferencesActivity_disable_storage_encryption">Deaktiverer kryptering af lager?</string>
-  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">\n Advarsel! Dette vil deaktiverer kryptering af lager for alle beskeder og nøgler.\n Dine krypterede sessioner vil fortsætte med at fungere,\n men alle med fysisk adgang til din enhed kan få adgang til dem.\n</string>
+  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
+ Advarsel! Dette vil deaktiverer kryptering af lager for alle beskeder og nøgler.
+ Dine krypterede sessioner vil fortsætte med at fungere,
+ men alle med fysisk adgang til din enhed kan få adgang til dem.
+</string>
   <string name="ApplicationPreferencesActivity_disable">Deaktivere</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Kunne ikke forbinde til serveren!</string>
   <!--AttachmentTypeSelectorAdapter-->
@@ -49,7 +53,6 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Er du sikker at du vil forlade denne gruppe?</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Besked detaljer</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Sender: %1$s\nTransport: %2$s\nSendt: %3$s\nModtaget: %4$s</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Er du sikker på at du ønsker at slette denne besked?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Data er gemt i en krypteret database. Versionen du gemmer på SD-kortet vil ikke længere være krypteret. Vil du fortsætte?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Kunne ikke gemme vedhæftning på SD-kort!</string>
@@ -86,7 +89,8 @@
   <string name="ImportFragment_this_will_import_messages_from_the_system">Dette vil importere beskeder fra systemets standard SMS database til TextSecure.</string>
   <string name="ImportFragment_import">Importer</string>
   <string name="ImportFragment_cancel">Afbryd</string>
-  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">\nGenoprettelse af en krypteret backup vil overskrive eksisterende nøgler, indstillinger og beskeder. Du vil miste de informationer i TextSecure som ikke findes i din backup.</string>
+  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
+Genoprettelse af en krypteret backup vil overskrive eksisterende nøgler, indstillinger og beskeder. Du vil miste de informationer i TextSecure som ikke findes i din backup.</string>
   <string name="ImportFragment_restore">Genopret</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Dette vil importere beskeder fra en klartekst backup. Hvis du tidligere har importeret den samme backup, vil det resultere i dupletter.</string>
   <string name="ImportFragment_importing">Importerer</string>
@@ -114,19 +118,26 @@
   <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">Du skal specificere en MMSC URL for din operatør.</string>
   <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Du kan ændre disse værdier når som helst i konfigurationsmenuen for TextSecure.</string>
   <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Signaturen på denne udvekslingsnøgle er ikke ens med den som du tidligere modtog fra denne\nkontakt. Det kan enten betyde, at der er nogle som prøver på at kompromitterer din kommunikation eller\nat din kontakt har installeret TextSecure på ny og dermed fået en ny udvekslingsnøgle.</string>
-  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Du bør verificere\ndenne kontakt.</string>
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">Signaturen på denne udvekslingsnøgle er til at stole på, men du har deaktiveret indstillingen\n\'fuldfør udvekslingsnøgler automatisk\'.</string>
+  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Signaturen på denne udvekslingsnøgle er ikke ens med den som du tidligere modtog fra denne
+kontakt. Det kan enten betyde, at der er nogle som prøver på at kompromitterer din kommunikation eller
+at din kontakt har installeret TextSecure på ny og dermed fået en ny udvekslingsnøgle.</string>
+  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Du bør verificere
+denne kontakt.</string>
+  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">Signaturen på denne udvekslingsnøgle er til at stole på, men du har deaktiveret indstillingen
+\'fuldfør udvekslingsnøgler automatisk\'.</string>
   <string name="ReceiveKeyActivity_processing">Arbejder</string>
   <string name="ReceiveKeyActivity_processing_key_exchange">Arbejder på nøgleudvekling...</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">Forbind med TextSecure</string>
-  <string name="RegistrationActivity_you_must_specify_your_country_code">Du skal vælge din\nlandekode</string>
-  <string name="RegistrationActivity_you_must_specify_your_phone_number">Du skal skrive dit\ntelefonnummer</string>
+  <string name="RegistrationActivity_you_must_specify_your_country_code">Du skal vælge din
+landekode</string>
+  <string name="RegistrationActivity_you_must_specify_your_phone_number">Du skal skrive dit
+telefonnummer</string>
   <string name="RegistrationActivity_invalid_number">Ikke gyldigt nummer</string>
-  <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Det nummer som du\nindtastede (%s) er ugyldigt.\n    </string>
+  <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Det nummer som du
+indtastede (%s) er ugyldigt.
+    </string>
   <string name="RegistrationActivity_unsupported">Ikke understøttet</string>
-  <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">\n        Kontrollerer at det følgende nummer hører til denne enhed:\n\n%s\n\n\n        Er dette nummer korrekt eller vil du redigere det før du fortsætter?\n    </string>
   <string name="RegistrationActivity_continue">Fortsæt</string>
   <string name="RegistrationActivity_edit">Rediger</string>
   <!--RegistrationProblemsActivity-->
@@ -151,9 +162,12 @@
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">TextSecure er blevet registreret.</string>
   <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Der opstod en fejl under registreringen af TextSecure.</string>
   <!--SmsMessageRecord-->
-  <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Modtog en ugyldig\nnøgle-besked!</string>
-  <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">\nModtog en nøgle-besked for en ugyldig protokol-version.</string>
-  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">\nModtog en besked med en ukendt identitetsnøgle. Klik for se og behandle den.</string>
+  <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Modtog en ugyldig
+nøgle-besked!</string>
+  <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
+Modtog en nøgle-besked for en ugyldig protokol-version.</string>
+  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
+Modtog en besked med en ukendt identitetsnøgle. Klik for se og behandle den.</string>
   <string name="SmsMessageRecord_secure_session_ended">Sikker session afsluttet.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Forlod gruppen...</string>
@@ -220,7 +234,10 @@
   <string name="ViewLocalIdentityActivity_regenerating">Regenererer...</string>
   <string name="ViewLocalIdentityActivity_regenerating_identity_key">Regenererer ID-nøgle...</string>
   <string name="ViewLocalIdentityActivity_regenerated">Regenereret!</string>
-  <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">\nADVARSEL! Ved at regenerere din ID-nøgle vil din nuværende ID-nøgle gå tabt, og dine eksisterende kontakter vil modtage en advarsel når de forsøger at oprette sikre sessioner med dig.\n\nEr du sikker på at du vil fortsætte?</string>
+  <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">
+ADVARSEL! Ved at regenerere din ID-nøgle vil din nuværende ID-nøgle gå tabt, og dine eksisterende kontakter vil modtage en advarsel når de forsøger at oprette sikre sessioner med dig.
+
+Er du sikker på at du vil fortsætte?</string>
   <string name="ViewLocalIdentityActivity_cancel">Afbryd</string>
   <string name="ViewLocalIdentityActivity_continue">Fortsæt</string>
   <!--SmsReceiver-->
@@ -277,8 +294,10 @@
   <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Eksporter en krypteret backup til SD-kort.</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">Eksporter en klartekst backup kompatibel med \'SMSBackup And Restore\' til SD-kort.</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importer databasen fra systemets standard SMS applikation.</string>
-  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">\nGenopret en tidligere eksporteret krypteret TextSecure backup.</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">\nImporter en klartekst backup fil. Kompatibel med \'SMSBackup And Restore\'.</string>
+  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">
+Genopret en tidligere eksporteret krypteret TextSecure backup.</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">
+Importer en klartekst backup fil. Kompatibel med \'SMSBackup And Restore\'.</string>
   <!--mms_preferences_activity-->
   <string name="mms_preferences_activity__manual_mms_settings_are_required">Din telefon kræver manuel indtastning af MMS-indstillinger.</string>
   <!--prompt_passphrase_activity-->
@@ -294,25 +313,37 @@
   <string name="receive_key_activity__complete">Udført</string>
   <!--registration_activity-->
   <string name="registration_activity__your_country">DIT LAND</string>
-  <string name="registration_activity__your_country_code_and_phone_number">DIT LANDE KODE OG\nTELEFONNUMMER</string>
+  <string name="registration_activity__your_country_code_and_phone_number">DIT LANDE KODE OG
+TELEFONNUMMER</string>
   <string name="registration_activity__phone_number">TELEFONNUMMER</string>
   <string name="registration_activity__register">Register</string>
   <string name="registration_activity__skip">Spring over</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Mulige problemer:</string>
-  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">\nVisse tredjeparts SMS-apps som f.eks. Handcent og GoSMS overtager alle modtagne SMSer.\nSe om du har modtaget en SMS som starter med \"Your TextSecure verification code:\". \nHvis dette er tilfældet skal du konfigurere din tredjeparts SMS-app til at lade tekst-beskeder slippe igennem.</string>
+  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
+Visse tredjeparts SMS-apps som f.eks. Handcent og GoSMS overtager alle modtagne SMSer.
+Se om du har modtaget en SMS som starter med \"Your TextSecure verification code:\". 
+Hvis dette er tilfældet skal du konfigurere din tredjeparts SMS-app til at lade tekst-beskeder slippe igennem.</string>
   <string name="registration_problems__incorrect_number">Forkert nummer.</string>
   <string name="registration_problems__google_voice">Google Voice.</string>
-  <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">\nTextSecure virker ikke med Google Voice numre.\n</string>
+  <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">
+TextSecure virker ikke med Google Voice numre.
+</string>
   <!--registration_progress_activity-->
-  <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">\nTextSecure kan også ringe dig op for at kontrollere dit nummer. Klik \"Ring mig op\" og\nindtast det sekscifrede nummer du hører.</string>
+  <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">
+TextSecure kan også ringe dig op for at kontrollere dit nummer. Klik \"Ring mig op\" og
+indtast det sekscifrede nummer du hører.</string>
   <string name="registration_progress_activity__verify">Godkend</string>
   <string name="registration_progress_activity__edit_number">Rediger nummer</string>
   <string name="registration_progress_activity__connectivity_error">Forbindelse fejl.</string>
   <string name="registration_progress_activity__connecting">Forbinder...</string>
-  <string name="registration_progress_activity__waiting_for_sms_verification">Venter på SMS\ngodkendelse...\n</string>
+  <string name="registration_progress_activity__waiting_for_sms_verification">Venter på SMS
+godkendelse...
+</string>
   <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Dette kan vare et øjeblik. Hav tålmodighed - vi siger til når verifikationen er afsluttet.</string>
-  <string name="registration_progress_activity__sms_verification_failed">SMS godkendelse\nfejlede.\n</string>
+  <string name="registration_progress_activity__sms_verification_failed">SMS godkendelse
+fejlede.
+</string>
   <string name="registration_progress_activity__generating_keys">Genererer nøgler...</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Indtast navn eller nummer</small></string>
@@ -323,8 +354,6 @@
   <string name="verify_identity_activity__their_identity_they_read">Deres identitet (de læser):</string>
   <string name="verify_identity_activity__your_identity_you_read">Din identitet (du læser):</string>
   <!--verify_import_identity_activity-->
-  <string name="verify_import_identity_activity__identity_name_n">Identitets navn:\\n</string>
-  <string name="verify_import_identity_activity__imported_identity_n">Importeret identitet:\\n</string>
   <string name="verify_import_identity_activity__verified">Bekræftet!</string>
   <string name="verify_import_identity_activity__compare">Sammenlign</string>
   <!--verify_keys_activity-->

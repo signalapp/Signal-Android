@@ -14,7 +14,10 @@
   <string name="ApplicationPreferencesActivity_delete">Hapus</string>
   <string name="ApplicationPreferencesActivity_my">Saya</string>
   <string name="ApplicationPreferencesActivity_disable_storage_encryption">Matikan enkripsi media simpan?</string>
-  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">\nPeringatan, ini akan menonaktifkan penyimpanan terenkripsi untuk semua pesan dan kunci. Sesi enkripsi\nanda selanjutnya akan berfungsi, tapi siapa saja yang mempunyai akses pisik ke perangkat anda\ndapat mengaksesnya</string>
+  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
+Peringatan, ini akan menonaktifkan penyimpanan terenkripsi untuk semua pesan dan kunci. Sesi enkripsi
+anda selanjutnya akan berfungsi, tapi siapa saja yang mempunyai akses pisik ke perangkat anda
+dapat mengaksesnya</string>
   <string name="ApplicationPreferencesActivity_disable">Dinon aktifkan</string>
   <string name="ApplicationPreferencesActivity_unregistering">Keluar...</string>
   <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Keluar dari komunikasi berbasis data</string>
@@ -61,8 +64,6 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Anda yakin ingin meninggalkan grup ini?</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Rincian pesan</string>
-  <string name="ConversationFragment_transport_s_sent_received_s">Transpor: %1$s\nTerkirim/Diterima: %2$s</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Pengirim: %1$s\nTranspor: %2$s\nTerkirim: %3$s\nDiterima: %4$s</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Apakah anda yakin akan menghapus pesan ini secara permanen?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Media ini telah disimpan dalam basis data terenkripsi. Versi yang anda simpan ke kartu SD tidak akan lagi dienkripsi. Apakah anda ingin melanjutkan?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Gagal menyimpan lampiran ke kartu SD!</string>
@@ -79,16 +80,23 @@
   <string name="ConversationListItem_key_exchange_message">Pesan pertukaran kunci...</string>
   <!--ShareActivity-->
   <!--ExportFragment-->
-  <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Ini\nakan mengeksport kunci terenkripsi, dan pesan ke kartu SD    </string>
+  <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Ini
+akan mengeksport kunci terenkripsi, dan pesan ke kartu SD    </string>
   <string name="ExportFragment_export">Eksport</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Peringatan, ini akan\nmengeksport konten pesan teks polos TextSecure anda ke kartu SD</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Peringatan, ini akan
+mengeksport konten pesan teks polos TextSecure anda ke kartu SD</string>
   <string name="ExportFragment_cancel">Batal</string>
   <string name="ExportFragment_exporting">Mengeksport</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Mengeksport teks polos ke kartu SD...\n</string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">Tidak dapat menyimpan ke kartu\nSD!\n</string>
-  <string name="ExportFragment_error_while_writing_to_sd_card">Gagal ketika menyimpan ke kartu SD.\n</string>
+  <string name="ExportFragment_exporting_plaintext_to_sd_card">Mengeksport teks polos ke kartu SD...
+</string>
+  <string name="ExportFragment_error_unable_to_write_to_sd_card">Tidak dapat menyimpan ke kartu
+SD!
+</string>
+  <string name="ExportFragment_error_while_writing_to_sd_card">Gagal ketika menyimpan ke kartu SD.
+</string>
   <string name="ExportFragment_success">Sukses!</string>
-  <string name="ExportFragment_exporting_keys_settings_and_messages">Mengeksport kunci yang dienkripsi,\npengaturan, dan pesan...</string>
+  <string name="ExportFragment_exporting_keys_settings_and_messages">Mengeksport kunci yang dienkripsi,
+pengaturan, dan pesan...</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_contacts_dont_support_push">Anda telah memilih kontak yang tidak mendukung grup TextSecure, sehingga grup ini akan menggunakan MMS.</string>
   <string name="GroupCreateActivity_you_dont_support_push">Anda tidak terdaftar untuk menggunakan saluran data, sehingga grup TextSecure dimatikan.</string>
@@ -101,12 +109,21 @@
   <string name="ImportExportActivity_import">Import</string>
   <string name="ImportExportActivity_export">Eksport</string>
   <!--ImportFragment-->
-  <string name="ImportFragment_this_will_import_messages_from_the_system">Ini akan mengimport\npesan dari basis data SMS default ke TextSecure. Jika anda sebelumnya\ntelah mengimport basis data sistem SMS, hal ini akan menyebabkan adanya duplikasi pesan.\n</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">Ini akan mengimport
+pesan dari basis data SMS default ke TextSecure. Jika anda sebelumnya
+telah mengimport basis data sistem SMS, hal ini akan menyebabkan adanya duplikasi pesan.
+</string>
   <string name="ImportFragment_import">Import</string>
   <string name="ImportFragment_cancel">Batal</string>
-  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">\nMemulihkan dari cadangan yang enkripsi akan sepenuhnya mengganti kunci, preferensi dan\npesan anda. Anda akan kehilangan informasi yang ada di instalasi TextSecure saat ini tetapi\ncadangan anda tetap aman.\n</string>
+  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
+Memulihkan dari cadangan yang enkripsi akan sepenuhnya mengganti kunci, preferensi dan
+pesan anda. Anda akan kehilangan informasi yang ada di instalasi TextSecure saat ini tetapi
+cadangan anda tetap aman.
+</string>
   <string name="ImportFragment_restore">Pulihkan</string>
-  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Ini akan mengimport\npesan dari basis data SMS standar ke TextSecure. Jika anda sebelumnya\ntelah mengimport basis data sistem SMS, hal ini akan menyebabkan adanya duplikasi pesan.</string>
+  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Ini akan mengimport
+pesan dari basis data SMS standar ke TextSecure. Jika anda sebelumnya
+telah mengimport basis data sistem SMS, hal ini akan menyebabkan adanya duplikasi pesan.</string>
   <string name="ImportFragment_importing">Mengimport</string>
   <string name="ImportFragment_import_plaintext_backup_elipse">Mengimport cadangan teks polos...</string>
   <string name="ImportFragment_no_plaintext_backup_found">Cadangan teks polos tidak ditemukan!</string>
@@ -132,19 +149,32 @@
   <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">Anda harus mengisi URL MMSC operator anda.</string>
   <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Anda dapat memodifikasi nilai ini kapan saja dari pengaturan TextSecure.</string>
   <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Isi\ntanda tangan dalam pertukaran kunci ini berbeda dengan apa yang telah anda terima sebelumnya dari\nkontak ini. Hal ini bisa berarti bahwa seseorang mencoba mencegat komunikasi anda, atau\nkontak ini telah menginstall ulang TextSecure dan sekarang memiliki kunci identitas baru.</string>
-  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Anda mungkin ingin memverifikasi\nkontak ini.\n</string>
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">Isi\ntanda tangan pertukaran kunci ini dipercaya, tetapi anda\nmenonaktifkan \'selesaikan perturakan kunci\nsecara otomatis\'</string>
+  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Isi
+tanda tangan dalam pertukaran kunci ini berbeda dengan apa yang telah anda terima sebelumnya dari
+kontak ini. Hal ini bisa berarti bahwa seseorang mencoba mencegat komunikasi anda, atau
+kontak ini telah menginstall ulang TextSecure dan sekarang memiliki kunci identitas baru.</string>
+  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Anda mungkin ingin memverifikasi
+kontak ini.
+</string>
+  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">Isi
+tanda tangan pertukaran kunci ini dipercaya, tetapi anda
+menonaktifkan \'selesaikan perturakan kunci
+secara otomatis\'</string>
   <string name="ReceiveKeyActivity_processing">Memproses</string>
   <string name="ReceiveKeyActivity_processing_key_exchange">Memproses pertukaran kunci...</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">Hubungkan dengan TextSecure</string>
-  <string name="RegistrationActivity_you_must_specify_your_country_code">Anda harus menetapkan kode\nNegara anda\n</string>
-  <string name="RegistrationActivity_you_must_specify_your_phone_number">Anda harus mengisi nomor\ntelefon anda\n</string>
+  <string name="RegistrationActivity_you_must_specify_your_country_code">Anda harus menetapkan kode
+Negara anda
+</string>
+  <string name="RegistrationActivity_you_must_specify_your_phone_number">Anda harus mengisi nomor
+telefon anda
+</string>
   <string name="RegistrationActivity_invalid_number">Nomor tidak benar</string>
-  <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Nomor yang anda\nisikan (%s) tidak tepat.\n</string>
+  <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Nomor yang anda
+isikan (%s) tidak tepat.
+</string>
   <string name="RegistrationActivity_unsupported">Tidak didukung</string>
-  <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">\nKami sekarang akan memverifikasi bahwa nomor berikut dikaitkan dengan perangkat ini:\n\n%s\n\n\nApakah nomor ini benar, apakah ingin merubahnya sebelum melanjutkan?</string>
   <string name="RegistrationActivity_continue">Lanjutkan</string>
   <string name="RegistrationActivity_edit">Edit</string>
   <!--RegistrationProblemsActivity-->
@@ -169,9 +199,13 @@
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">Pendaftaran TextSecure telah berhasil.</string>
   <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Pendaftaran TextSecure mengalami masalah.</string>
   <!--SmsMessageRecord-->
-  <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Pesan menerima dan \nmemproses pertukaran kunci korupsi.</string>
-  <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">\nDiterima pesan pertukaran kunci untuk versi protokol yang tidak valid.\n</string>
-  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">\nMenerima pesan dengan identitas kunci tidak diketahui. Klik untuk memproses dan menampilkan.</string>
+  <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Pesan menerima dan 
+memproses pertukaran kunci korupsi.</string>
+  <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
+Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
+</string>
+  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
+Menerima pesan dengan identitas kunci tidak diketahui. Klik untuk memproses dan menampilkan.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Menerima pembaharuan atas identitas yang tidak diketahui. Sentuh untuk memvalidasi identitas</string>
   <string name="SmsMessageRecord_secure_session_ended">Sesi aman berakhir.</string>
   <!--ThreadRecord-->
@@ -237,9 +271,15 @@
   <string name="MessageNotifier_mark_as_read">Tandai telah dibaca</string>
   <!--ViewLocalIdentityActivity-->
   <string name="ViewLocalIdentityActivity_regenerating">Meregenerasi...</string>
-  <string name="ViewLocalIdentityActivity_regenerating_identity_key">Meregenerasi kunci\nidentitas...\n</string>
+  <string name="ViewLocalIdentityActivity_regenerating_identity_key">Meregenerasi kunci
+identitas...
+</string>
   <string name="ViewLocalIdentityActivity_regenerated">Teregenerasi!</string>
-  <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">\nPerhatian! Dengan meregenerasi kunci identitas akan menghilangkan kunci identitas saat ini\ndan seluruh kontak anda akan mendapat peringatan ketika membuat sesi aman yang baru dengan Anda.\nApakah Anda yakin untuk melanjutkan?\n</string>
+  <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">
+Perhatian! Dengan meregenerasi kunci identitas akan menghilangkan kunci identitas saat ini
+dan seluruh kontak anda akan mendapat peringatan ketika membuat sesi aman yang baru dengan Anda.
+Apakah Anda yakin untuk melanjutkan?
+</string>
   <string name="ViewLocalIdentityActivity_cancel">Batal</string>
   <string name="ViewLocalIdentityActivity_continue">Lanjutkan</string>
   <!--SmsReceiver-->
@@ -303,11 +343,18 @@
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Ini bisa sedikit memakan waktu. Harap bersabar, kami akan memberi tahu anda ketika proses import selesai</string>
   <string name="database_migration_activity__importing">MENGIMPORT</string>
   <!--database_upgrade_activity-->
-  <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Eksport cadangan dienkripsi\nke kartu SD.</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">\nExport cadangan ke teks polos yang kompatibel dengan \'SMSBackup And Restore\'  ke kartu SD.</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">Import database\ndari aplikasi perpesan bawaan\n</string>
-  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">\nPulihkan dari cadangan teracak TextSecure.\n</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">\nImport cadangan dalam texks polos. Kompatibel dengan aplikasi \'SMSBackup And Restore\'.</string>
+  <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Eksport cadangan dienkripsi
+ke kartu SD.</string>
+  <string name="export_fragment__export_a_plaintext_backup_compatible_with">
+Export cadangan ke teks polos yang kompatibel dengan \'SMSBackup And Restore\'  ke kartu SD.</string>
+  <string name="import_fragment__import_the_database_from_the_default_system">Import database
+dari aplikasi perpesan bawaan
+</string>
+  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">
+Pulihkan dari cadangan teracak TextSecure.
+</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">
+Import cadangan dalam texks polos. Kompatibel dengan aplikasi \'SMSBackup And Restore\'.</string>
   <!--mms_preferences_activity-->
   <string name="mms_preferences_activity__manual_mms_settings_are_required">Telepon Anda membutuhkan pengaturan MMS secara manual.</string>
   <!--prompt_passphrase_activity-->
@@ -323,29 +370,49 @@
   <string name="receive_key_activity__complete">Selesai</string>
   <!--registration_activity-->
   <string name="registration_activity__your_country">NEGARA ANDA</string>
-  <string name="registration_activity__your_country_code_and_phone_number">KODE NEGARA ANDA DAN\nNOMOR TELEPON</string>
+  <string name="registration_activity__your_country_code_and_phone_number">KODE NEGARA ANDA DAN
+NOMOR TELEPON</string>
   <string name="registration_activity__phone_number">NOMOR TELEPON</string>
   <string name="registration_activity__register">Daftar</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Registrasi akan mengirim beberapa info kontak ke server untuk sementara.</string>
   <string name="registration_activity__skip">Lewati</string>
   <!--registration_problems-->
-  <string name="registration_problems__some_possible_problems_include">Beberapa masalah yang mungkin\ntermasuk:\n</string>
-  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">\nBeberapa aplikasi sms pihak ketiga seperti Hancent atau GoSMS bekerja dengan agresif dan\nmenghadang seluruh pesan SMS masuk. Periksa jika anda menerima pesan yg berawalan\n\'Your TextSecure verification code:\', dalam hal ini anda perlu untuk mengkonfigurasi\naplikasi SMS pihak ketiga anda untuk memperbolehkan pesan SMS masuk.\n</string>
+  <string name="registration_problems__some_possible_problems_include">Beberapa masalah yang mungkin
+termasuk:
+</string>
+  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
+Beberapa aplikasi sms pihak ketiga seperti Hancent atau GoSMS bekerja dengan agresif dan
+menghadang seluruh pesan SMS masuk. Periksa jika anda menerima pesan yg berawalan
+\'Your TextSecure verification code:\', dalam hal ini anda perlu untuk mengkonfigurasi
+aplikasi SMS pihak ketiga anda untuk memperbolehkan pesan SMS masuk.
+</string>
   <string name="registration_problems__incorrect_number">nomor salah.</string>
   <string name="registration_problems__google_voice">Google Voice.</string>
-  <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">\nTextSecure tidak akan berfungsi dengan nomor Google Voice\n</string>
+  <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">
+TextSecure tidak akan berfungsi dengan nomor Google Voice
+</string>
   <!--registration_progress_activity-->
   <string name="registration_progress_activity__verify">Verifikasi</string>
   <string name="registration_progress_activity__edit_number">Edit nomor</string>
   <string name="registration_progress_activity__connectivity_error">Kesalahan konektivitas</string>
-  <string name="registration_progress_activity__some_possible_problems_include">Kemungkinan masalah\ntermasuk:\n</string>
-  <string name="registration_progress_activity__no_network_connectivity">Tidak ada konektivitas\njaringan.\n</string>
-  <string name="registration_progress_activity__restrictive_firewall">Firewall yang ketat.\n</string>
+  <string name="registration_progress_activity__some_possible_problems_include">Kemungkinan masalah
+termasuk:
+</string>
+  <string name="registration_progress_activity__no_network_connectivity">Tidak ada konektivitas
+jaringan.
+</string>
+  <string name="registration_progress_activity__restrictive_firewall">Firewall yang ketat.
+</string>
   <string name="registration_progress_activity__connecting">Menghubungkan...</string>
-  <string name="registration_progress_activity__waiting_for_sms_verification">Menunggu Verifikasi\nSMS...</string>
+  <string name="registration_progress_activity__waiting_for_sms_verification">Menunggu Verifikasi
+SMS...</string>
   <string name="registration_progress_activity__registering_with_server">Mendaftarkan ke server...</string>
-  <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">\nTextSecure kehabisan waktu saat menunggu verifikasi pesan SMS.\n</string>
-  <string name="registration_progress_activity__sms_verification_failed">Verifikasi SMS\nTelah gagal\n</string>
+  <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">
+TextSecure kehabisan waktu saat menunggu verifikasi pesan SMS.
+</string>
+  <string name="registration_progress_activity__sms_verification_failed">Verifikasi SMS
+Telah gagal
+</string>
   <string name="registration_progress_activity__generating_keys">Membuat kunci...</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Masukkan nama atau nomor</small></string>
@@ -356,8 +423,6 @@
   <string name="verify_identity_activity__their_identity_they_read">Identitas mereka (terbaca):</string>
   <string name="verify_identity_activity__your_identity_you_read">Identitas anda (terbaca):</string>
   <!--verify_import_identity_activity-->
-  <string name="verify_import_identity_activity__identity_name_n">Nama identitas:\\n</string>
-  <string name="verify_import_identity_activity__imported_identity_n">Identitas yang diimpor:\\n</string>
   <string name="verify_import_identity_activity__verified">Terverifikasi!</string>
   <string name="verify_import_identity_activity__compare">Bandingkan</string>
   <!--verify_keys_activity-->

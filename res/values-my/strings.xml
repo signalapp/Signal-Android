@@ -197,8 +197,6 @@
   <string name="verify_identity_activity__their_identity_they_read">သူများ အိုင်ဒီ (သူများ အမြင်) - </string>
   <string name="verify_identity_activity__your_identity_you_read">အသင့်အိုင်ဒီ (အသင့်အမြင်) - </string>
   <!--verify_import_identity_activity-->
-  <string name="verify_import_identity_activity__identity_name_n">အသိအမှတ်ပြုမှုအမည်:\\n</string>
-  <string name="verify_import_identity_activity__imported_identity_n">အသိအမှတ်ပြုမှုသွင်းယူ:\\n</string>
   <string name="verify_import_identity_activity__verified">အတည်ပြုပြီး</string>
   <string name="verify_import_identity_activity__compare">နှိုင်းယှဉ်</string>
   <!--verify_keys_activity-->

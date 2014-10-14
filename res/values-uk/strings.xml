@@ -55,8 +55,6 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Ви дійсно хочете покинути цю групу?</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Деталі повідомлення</string>
-  <string name="ConversationFragment_transport_s_sent_received_s">Відправник: %1$s\nВідправлено/Отримано: %2$s</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Відправник: %1$s\nТип зв’язку: %2$s\nВідправлено: %3$s\nОтримано: %4$s</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Ви дійсно хочете назавжди вилучити це повідомлення?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Цей медіа-файл зберігається в зашифрованій базі даних. Його копія, яку ви збережете на SD-картку, не буде зашифрована. Бажаєте продовжити?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Сталась помилка підчас збереження прикріплення на SD-карту!</string>
@@ -133,7 +131,6 @@
   <string name="RegistrationActivity_invalid_number">Невірний номер</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Вказаний вами номер (%s) не є дійсним.</string>
   <string name="RegistrationActivity_unsupported">Не підтримується</string>
-  <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">Зараз буде виконана перевірка, що цим пристроєм дійсно використовується номер телефону:\n\n%S\n\nНомер введений правильно, чи Ви хочете його редагувати?</string>
   <string name="RegistrationActivity_continue">Продовжити</string>
   <string name="RegistrationActivity_edit">Редагувати</string>
   <!--RegistrationProblemsActivity-->
@@ -260,7 +257,9 @@
   <string name="country_selection_fragment__loading_countries">Завантаження країн\u2026</string>
   <string name="country_selection_fragment__search">Пошук</string>
   <!--create_passphrase_activity-->
-  <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">Будь ласка, виберіть фразу-пароль, яка використовуватиметься для локального шифрування ваших даних.\n\nВона повинна бути надійною.</string>
+  <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">Будь ласка, виберіть фразу-пароль, яка використовуватиметься для локального шифрування ваших даних.
+
+Вона повинна бути надійною.</string>
   <string name="create_passphrase_activity__passphrase">ФРАЗА-КЛЮЧ:</string>
   <string name="create_passphrase_activity__repeat">ПОВТОРІТЬ:</string>
   <string name="create_passphrase_activity__continue">Продовжити</string>
@@ -283,7 +282,8 @@
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Це може зайняти якийсь час. Будь ласка, наберіться терпіння, ми Вам повідомимо, коли імпортування завершиться.</string>
   <string name="database_migration_activity__importing">ІМПОРТУВАННЯ</string>
   <!--database_upgrade_activity-->
-  <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Експортувати на SD-карту\nзашифровану резервну копію.</string>
+  <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Експортувати на SD-карту
+зашифровану резервну копію.</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">Експортувати на SD-карту незашифровану резервну копію, сумісну з додатком \'SMSBackup And Restore\'.</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Імпортувати базу даних з SMS-додатку, який використовується зараз за замовчуванням.</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">Відновити з раніше експортованої зашифрованої резервної копії TextSecure</string>
@@ -303,7 +303,8 @@
   <string name="receive_key_activity__complete">Виконати</string>
   <!--registration_activity-->
   <string name="registration_activity__your_country">ВАША КРАЇНА</string>
-  <string name="registration_activity__your_country_code_and_phone_number">КОД ВАШОЇ КРАЇНИ ТА НОМЕР ТЕЛЕФОНУ\n    </string>
+  <string name="registration_activity__your_country_code_and_phone_number">КОД ВАШОЇ КРАЇНИ ТА НОМЕР ТЕЛЕФОНУ
+    </string>
   <string name="registration_activity__phone_number">НОМЕР ТЕЛЕФОНУ</string>
   <string name="registration_activity__register">Реєстрація</string>
   <string name="registration_activity__skip">Пропустити</string>
@@ -339,8 +340,6 @@
   <string name="verify_identity_activity__their_identity_they_read">Cпіврозмовник (він читає):</string>
   <string name="verify_identity_activity__your_identity_you_read">Ви (ви читаєте):</string>
   <!--verify_import_identity_activity-->
-  <string name="verify_import_identity_activity__identity_name_n">І’мя :\\n</string>
-  <string name="verify_import_identity_activity__imported_identity_n">Імпортований співрозмовник:\\n</string>
   <string name="verify_import_identity_activity__verified">Перевірено!</string>
   <string name="verify_import_identity_activity__compare">Порівняти</string>
   <!--verify_keys_activity-->
