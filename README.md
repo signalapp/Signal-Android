@@ -26,6 +26,14 @@ If you're new to the TextSecure codebase, we recommend going through our issues 
 
 For larger changes and feature ideas, we ask that you propose it on the mailing list for a high-level discussion before implementation.
 
+### Bountysource
+
+There are open bounties on issues in this repository. You can post or earn bounties via [Bountysource](https://www.bountysource.com/trackers/11493-whisper-systems-text-secure).
+
+[![Bountysource](https://www.bountysource.com/badge/tracker?tracker_id=11493)](https://www.bountysource.com/trackers/11493-whisper-systems-text-secure?utm_source=11493&utm_medium=shield&utm_campaign=TRACKER_BADGE)
+
+### BitHub
+
 This repository is set up with [BitHub](https://whispersystems.org/blog/bithub/), so you can make money for committing to TextSecure. The current BitHub price for an accepted pull request is:
 
 [![Current BitHub Price](https://bithub.herokuapp.com/v1/status/payment/commit/)](https://whispersystems.org/blog/bithub/)
