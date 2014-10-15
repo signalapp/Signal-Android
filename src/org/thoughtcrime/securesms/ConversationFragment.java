@@ -16,6 +16,7 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.text.ClipboardManager;
 import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,6 +53,7 @@ import java.io.OutputStream;
 import java.lang.ref.WeakReference;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -107,16 +109,18 @@ public class ConversationFragment extends SherlockListFragment
   }
 
   private void initializeContextualActionBar() {
+    getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+
     getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
       @Override
       public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
         if (actionMode != null) {
-          view.setSelected(true);
+          setCorrectMenuVisibility(getSelectedMessages(), actionMode.getMenu());
           return false;
         }
 
-        actionMode = getSherlockActivity().startActionMode(actionModeCallback);
-        view.setSelected(true);
+        actionMode = getSherlockActivity().startActionMode(new ModeCallback());
+        getListView().setItemChecked(position, true);
         return true;
       }
     });
@@ -125,20 +129,33 @@ public class ConversationFragment extends SherlockListFragment
       @Override
       public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (actionMode != null) {
-          view.setSelected(true);
-          setCorrectMenuVisibility(getMessageRecord(), actionMode.getMenu());
+          int numberOfMessages = getSelectedMessages().size();
+          if (numberOfMessages == 0) {
+            actionMode.finish();
+            return;
+          } else if (numberOfMessages == 1) {
+            actionMode.setTitle(null);
+            actionMode.setSubtitle(null);
+          } else if (numberOfMessages > 1) {
+            actionMode.setTitle(R.string.conversation_fragment_cab__batch_selection_mode);
+            actionMode.setSubtitle(getString(R.string.conversation_fragment_cab__batch_selection_amount,
+                numberOfMessages));
+          }
+          setCorrectMenuVisibility(getSelectedMessages(), actionMode.getMenu());
+        } else {
+          getListView().setItemChecked(position, false);
         }
       }
     });
   }
 
   private void setCorrectMenuVisibility(MessageRecord messageRecord, Menu menu) {
-    MenuItem resend         = menu.findItem(R.id.menu_context_resend);
+    menu.findItem(R.id.menu_context_details).setVisible(true);
+    menu.findItem(R.id.menu_context_copy).setVisible(true);
+    menu.findItem(R.id.menu_context_forward).setVisible(true);
+    menu.findItem(R.id.menu_context_resend).setVisible(messageRecord.isFailed());
+
     MenuItem saveAttachment = menu.findItem(R.id.menu_context_save_attachment);
-
-    if (messageRecord.isFailed()) resend.setVisible(true);
-    else                          resend.setVisible(false);
-
     if (messageRecord.isMms() && !messageRecord.isMmsNotification()) {
       try {
         if (((MediaMmsMessageRecord)messageRecord).getSlideDeck().get().containsMediaSlide()) {
@@ -156,10 +173,44 @@ public class ConversationFragment extends SherlockListFragment
     }
   }
 
+  private void setCorrectMenuVisibility(List<MessageRecord> messageRecords, Menu menu){
+    switch (messageRecords.size()) {
+      case 0:
+        return;
+      case 1:
+        setCorrectMenuVisibility(messageRecords.get(0), menu);
+        return;
+      default:
+        menu.findItem(R.id.menu_context_details).setVisible(false);
+        menu.findItem(R.id.menu_context_copy).setVisible(false);
+        menu.findItem(R.id.menu_context_forward).setVisible(false);
+        menu.findItem(R.id.menu_context_resend).setVisible(false);
+        menu.findItem(R.id.menu_context_save_attachment).setVisible(false);
+    }
+  }
+
   private MessageRecord getMessageRecord() {
     Cursor cursor                     = ((CursorAdapter)getListAdapter()).getCursor();
     ConversationItem conversationItem = (ConversationItem)(((ConversationAdapter)getListAdapter()).newView(getActivity(), cursor, null));
     return conversationItem.getMessageRecord();
+  }
+
+  private List<MessageRecord> getSelectedMessages() {
+    List<MessageRecord> selectedMessages = new ArrayList<MessageRecord>();
+
+    SparseBooleanArray checked = getListView().getCheckedItemPositions();
+    if (checked == null) return selectedMessages;
+    for (int i = 0; i < checked.size(); i++) {
+      int key = checked.keyAt(i);
+      boolean value = checked.get(key);
+      if (value) {
+        Cursor cursor = (Cursor) getListView().getItemAtPosition(key);
+        ConversationItem conversationItem = (ConversationItem) (((ConversationAdapter)getListAdapter()).newView(getActivity(), cursor, null));
+        MessageRecord messageRecord = conversationItem.getMessageRecord();
+        selectedMessages.add(messageRecord);
+      }
+    }
+    return selectedMessages;
   }
 
   public void reload(Recipients recipients, long threadId) {
@@ -186,6 +237,7 @@ public class ConversationFragment extends SherlockListFragment
     ClipboardManager clipboard = (ClipboardManager)getActivity()
         .getSystemService(Context.CLIPBOARD_SERVICE);
     clipboard.setText(body);
+    actionMode.finish();
   }
 
   private void handleDeleteMessage(final MessageRecord message) {
@@ -205,11 +257,60 @@ public class ConversationFragment extends SherlockListFragment
         } else {
           DatabaseFactory.getSmsDatabase(getActivity()).deleteMessage(messageId);
         }
+        actionMode.finish();
       }
     });
 
     builder.setNegativeButton(R.string.no, null);
     builder.show();
+  }
+
+  private void handleDeleteMessages(final List<MessageRecord> messageRecords){
+    AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+    alert.setIcon(Dialogs.resolveIcon(getActivity(), R.attr.dialog_alert_icon));
+    alert.setTitle(R.string.ConversationFragment_confirm_message_delete);
+    alert.setMessage(R.string.ConversationFragment_are_you_sure_you_want_to_permanently_delete_these_messages);
+    alert.setCancelable(true);
+
+    alert.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
+      @Override
+      public void onClick(DialogInterface dialog, int which) {
+        if (!messageRecords.isEmpty()) {
+          new AsyncTask<Void, Void, Void>() {
+            private ProgressDialog dialog;
+
+            @Override
+            protected void onPreExecute() {
+              dialog = ProgressDialog.show(getActivity(),
+                  getSherlockActivity().getString(R.string.ConversationFragment_deleting),
+                  getSherlockActivity().getString(R.string.ConversationFragment_deleting_selected_messages),
+                                                  true, false);
+            }
+
+            @Override
+            protected Void doInBackground(Void... params) {
+              for (MessageRecord messageRecord : messageRecords) {
+                if (messageRecord.isMms()) {
+                  DatabaseFactory.getMmsDatabase(getActivity()).delete(messageRecord.getId());
+                } else {
+                  DatabaseFactory.getSmsDatabase(getActivity()).deleteMessage(messageRecord.getId());
+                }
+              }
+              return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void result) {
+              dialog.dismiss();
+            }
+          }.execute();
+        }
+        actionMode.finish();
+      }
+    });
+
+    alert.setNegativeButton(android.R.string.cancel, null);
+    alert.show();
   }
 
   private void handleDisplayDetails(MessageRecord message) {
@@ -245,6 +346,7 @@ public class ConversationFragment extends SherlockListFragment
 
     builder.setPositiveButton(android.R.string.ok, null);
     builder.show();
+    actionMode.finish();
   }
 
   private void handleForwardMessage(MessageRecord message) {
@@ -252,12 +354,14 @@ public class ConversationFragment extends SherlockListFragment
     composeIntent.putExtra(ConversationActivity.DRAFT_TEXT_EXTRA, message.getDisplayBody().toString());
     composeIntent.putExtra(ShareActivity.MASTER_SECRET_EXTRA, masterSecret);
     startActivity(composeIntent);
+    actionMode.finish();
   }
 
   private void handleResendMessage(MessageRecord message) {
     long messageId = message.getId();
     final Activity activity = getActivity();
     MessageSender.resend(activity, messageId, message.isMms());
+    actionMode.finish();
   }
 
   private void handleSaveAttachment(final MessageRecord message) {
@@ -270,6 +374,7 @@ public class ConversationFragment extends SherlockListFragment
       public void onClick(DialogInterface dialog, int which) {
         SaveAttachmentTask saveTask = new SaveAttachmentTask(getActivity());
         saveTask.execute((MediaMmsMessageRecord) message);
+        actionMode.finish();
       }
     });
     builder.setNegativeButton(R.string.no, null);
@@ -291,6 +396,10 @@ public class ConversationFragment extends SherlockListFragment
     ((CursorAdapter)getListAdapter()).changeCursor(null);
   }
 
+  public interface ConversationFragmentListener {
+    public void setComposeText(String text);
+  }
+
   private class FailedIconClickHandler extends Handler {
     @Override
     public void handleMessage(android.os.Message message) {
@@ -300,19 +409,17 @@ public class ConversationFragment extends SherlockListFragment
     }
   }
 
-  public interface ConversationFragmentListener {
-    public void setComposeText(String text);
-  }
-
-  private ActionMode.Callback actionModeCallback = new ActionMode.Callback() {
+  private final class ModeCallback implements ActionMode.Callback {
 
     @Override
     public boolean onCreateActionMode(ActionMode mode, Menu menu) {
       MenuInflater inflater = mode.getMenuInflater();
       inflater.inflate(R.menu.conversation_context, menu);
 
-      MessageRecord messageRecord = getMessageRecord();
-      setCorrectMenuVisibility(messageRecord, menu);
+      setCorrectMenuVisibility(getSelectedMessages(), menu);
+
+      mode.setTitle(null);
+      mode.setSubtitle(null);
 
       return true;
     }
@@ -324,9 +431,10 @@ public class ConversationFragment extends SherlockListFragment
 
     @Override
     public void onDestroyActionMode(ActionMode mode) {
-      if (getListView() != null && getListView().getChildCount() > 0) {
-        for (int i = 0; i < getListView().getChildCount(); i++){
-          getListView().getChildAt(i).setSelected(false);
+      final ListView listView = getListView();
+      if (listView != null && listView.getChildCount() > 0) {
+        for (int i = 0; i < listView.getAdapter().getCount(); i++){
+          listView.setItemChecked(i, false);
         }
       }
       actionMode = null;
@@ -334,36 +442,42 @@ public class ConversationFragment extends SherlockListFragment
 
     @Override
     public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-      MessageRecord messageRecord = getMessageRecord();
+      List<MessageRecord> selectedMessages = getSelectedMessages();
 
-      switch(item.getItemId()) {
-        case R.id.menu_context_copy:
-          handleCopyMessage(messageRecord);
-          actionMode.finish();
-          return true;
-        case R.id.menu_context_delete_message:
-          handleDeleteMessage(messageRecord);
-          actionMode.finish();
-          return true;
-        case R.id.menu_context_details:
-          handleDisplayDetails(messageRecord);
-          actionMode.finish();
-          return true;
-        case R.id.menu_context_forward:
-          handleForwardMessage(messageRecord);
-          actionMode.finish();
-          return true;
-        case R.id.menu_context_resend:
-          handleResendMessage(messageRecord);
-          actionMode.finish();
-          return true;
-        case R.id.menu_context_save_attachment:
-          handleSaveAttachment(messageRecord);
-          actionMode.finish();
-          return true;
+      if (selectedMessages.size() == 1) {
+        MessageRecord messageRecord = selectedMessages.get(0);
+        switch (item.getItemId()) {
+          case R.id.menu_context_copy:
+            handleCopyMessage(messageRecord);
+            return true;
+          case R.id.menu_context_delete_message:
+            handleDeleteMessage(messageRecord);
+            return true;
+          case R.id.menu_context_details:
+            handleDisplayDetails(messageRecord);
+            return true;
+          case R.id.menu_context_forward:
+            handleForwardMessage(messageRecord);
+            return true;
+          case R.id.menu_context_resend:
+            handleResendMessage(messageRecord);
+            return true;
+          case R.id.menu_context_save_attachment:
+            handleSaveAttachment(messageRecord);
+            return true;
+          default:
+            return false;
+        }
       }
 
-      return false;
+      switch (item.getItemId()) {
+        case R.id.menu_context_delete_message:
+          handleDeleteMessages(selectedMessages);
+          mode.finish();
+          return true;
+        default:
+          return false;
+      }
     }
   };
 
