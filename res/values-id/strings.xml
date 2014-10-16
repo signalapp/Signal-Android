@@ -538,7 +538,6 @@ Telah gagal
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Tambahkan lampiran</string>
   <string name="conversation__menu_add_contact_info">Tambahkan info kontak</string>
-    <string name="conversation__menu_send_textsecure_link">Kirim link TextSecure</string>
   <string name="conversation__menu_delete_thread">Hapus Percakapan</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Daftar Penerima</string>

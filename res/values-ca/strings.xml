@@ -470,7 +470,6 @@ Augmenta la privacitat i evita els càrrecs d\'SMS utilitzant el canal de dades 
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Afegeix un adjunt</string>
   <string name="conversation__menu_add_contact_info">Afegeix info de contacte</string>
-  <string name="conversation__menu_send_textsecure_link">Enviar l'enllaç TextSecure</string>
   <string name="conversation__menu_delete_thread">Esborra fil</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Llista de destinataris</string>

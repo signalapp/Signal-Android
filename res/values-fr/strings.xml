@@ -696,7 +696,6 @@ Augmenter la confidentialité et éviter les frais de SMS en utilisant le canal 
   <string name="conversation__menu_update_group">Mettre à jour le groupe</string>
   <string name="conversation__menu_leave_group">Quitter le groupe</string>
   <string name="conversation__menu_add_contact_info">Ajouter des informations de contact</string>
-  <string name="conversation__menu_send_textsecure_link">Envoyer le lien de TextSecure</string>
   <string name="conversation__menu_delete_thread">Supprimer le fil de discussion</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Liste des destinataires</string>

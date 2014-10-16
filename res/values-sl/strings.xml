@@ -660,7 +660,6 @@ bila uspešna.</string>
   <string name="conversation__menu_update_group">Posodobi skupino</string>
   <string name="conversation__menu_leave_group">Zapusti skupino</string>
   <string name="conversation__menu_add_contact_info">Dodaj podatke o stiku</string>
-  <string name="conversation__menu_send_textsecure_link">Pošlji TextSecure povezavo</string>
   <string name="conversation__menu_delete_thread">Izbriši pogovor</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Seznam prejemnikov</string>

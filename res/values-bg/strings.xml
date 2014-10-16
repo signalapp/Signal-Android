@@ -706,7 +706,6 @@ TextSecure чака твърде дълго за SMS потвърждение.
   <string name="conversation__menu_update_group">Промени група</string>
   <string name="conversation__menu_leave_group">Напусни група</string>
   <string name="conversation__menu_add_contact_info">Добави визитка на контакт</string>
-  <string name="conversation__menu_send_textsecure_link">Изпрати TextSecure връзка</string>
   <string name="conversation__menu_delete_thread">Изтрий разговора</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Списък на получатели</string>

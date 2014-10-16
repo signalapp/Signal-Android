@@ -667,7 +667,6 @@ Styrk personvernet ditt og unngå SMS kostnader ved å benytte mobil data når d
   <string name="conversation__menu_update_group">Oppdater gruppe</string>
   <string name="conversation__menu_leave_group">Forlat gruppe</string>
   <string name="conversation__menu_add_contact_info">Legg til kontaktinformasjon</string>
-  <string name="conversation__menu_send_textsecure_link">Send TextSecure lenke</string>
   <string name="conversation__menu_delete_thread">Slett tråd</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Mottakerliste</string>

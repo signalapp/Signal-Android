@@ -675,7 +675,6 @@ fehlgeschlagen.</string>
   <string name="conversation__menu_update_group">Gruppe aktualisieren</string>
   <string name="conversation__menu_leave_group">Gruppe verlassen</string>
   <string name="conversation__menu_add_contact_info">Kontaktinfo einfügen</string>
-  <string name="conversation__menu_send_textsecure_link">TextSecure Link senden</string>
   <string name="conversation__menu_delete_thread">Unterhaltung löschen</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Teilnehmerliste</string>

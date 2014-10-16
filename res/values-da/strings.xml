@@ -455,7 +455,6 @@ fejlede.
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Vedhæft fil</string>
   <string name="conversation__menu_add_contact_info">Tilføj kontakt information</string>
-    <string name="conversation__menu_send_textsecure_link">Send TextSecure link</string>
   <string name="conversation__menu_delete_thread">Slet tråd</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Modtager liste</string>

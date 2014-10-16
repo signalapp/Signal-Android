@@ -600,7 +600,6 @@
   <string name="conversation__menu_update_group">ಸಮೂಹವನ್ನು ನವೀಕರಿಸಿ</string>
   <string name="conversation__menu_leave_group">ಸಮೂಹವನ್ನು ಬಿಟ್ಟುಬಿಡಿ </string>
   <string name="conversation__menu_add_contact_info">ಸಂಪರ್ಕ ಮಾಹಿತಿಯನ್ನು ಸೇರಿಸು</string>
-  <string name="conversation__menu_send_textsecure_link">TextSecure ಲಿಂಕ್ ಕಳುಹಿಸಿ</string>
   <string name="conversation__menu_delete_thread">ಸಂವಾದದ ಎಳೆಗಳನ್ನು ಅಳಿಸಿ </string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">ಸ್ವೀಕೃತದಾರರ ಪಟ್ಟಿ</string>

@@ -656,7 +656,6 @@ TextSecure لن يعمل مع أرقام Google Voice</string>
   <string name="conversation__menu_update_group">تحديث المجموعة</string>
   <string name="conversation__menu_leave_group">أترك المجموعة</string>
   <string name="conversation__menu_add_contact_info">إضافة معلومات الاتصال</string>
-  <string name="conversation__menu_send_textsecure_link">أرسل TextSecure الوصلة</string>
   <string name="conversation__menu_delete_thread">مسح المحاذفة</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">قائمة المشاركين</string>

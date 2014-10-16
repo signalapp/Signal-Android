@@ -743,7 +743,6 @@ Növeld a biztonságodat és kerüld el az SMS díjak fizetését azzal, hogy ad
   <string name="conversation__menu_update_group">Csoport frissítése</string>
   <string name="conversation__menu_leave_group">Csoport elhagyása</string>
   <string name="conversation__menu_add_contact_info">Névjegy adat hozzáadása</string>
-    <string name="conversation__menu_send_textsecure_link">Küldd TextSecure link</string>
   <string name="conversation__menu_delete_thread">Beszélgetésfolyam törlése</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Címzettek listája</string>
