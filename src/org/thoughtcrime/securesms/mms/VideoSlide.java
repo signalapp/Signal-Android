@@ -39,6 +39,11 @@ public class VideoSlide extends Slide {
     super(context, part);
   }
 
+  @Override
+  public String getContentType() {
+    return "video/*";
+  }
+
   public VideoSlide(Context context, Uri uri) throws IOException, MediaTooLargeException {
     super(context, constructPartFromUri(context, uri));
   }
