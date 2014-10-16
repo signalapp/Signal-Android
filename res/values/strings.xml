@@ -37,6 +37,9 @@
     <string name="ApplicationPreferencesActivity_sms_disabled">Incoming SMS Disabled</string>
     <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Touch to make TextSecure your default SMS app</string>
 
+    <!-- AttchmentManager -->
+    <string name="AttachmentManager_cant_open_media_selection">Can\'t find an app to select media.</string>
+
     <!-- AttachmentTypeSelectorAdapter -->
 
     <string name="AttachmentTypeSelectorAdapter_picture">Picture</string>
