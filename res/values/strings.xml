@@ -834,6 +834,7 @@
     <string name="conversation__menu_update_group">Update group</string>
     <string name="conversation__menu_leave_group">Leave group</string>
     <string name="conversation__menu_add_contact_info">Add contact info</string>
+    <string name="conversation__menu_send_textsecure_link">Send TextSecure link</string>
     <string name="conversation__menu_delete_thread">Delete thread</string>
 
     <!-- conversation_group_options -->

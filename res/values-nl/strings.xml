@@ -666,6 +666,7 @@ TextSecure heeft te lang moeten wachten op het binnenkomen van de verificatie-SM
   <string name="conversation__menu_update_group">Groep bijwerken</string>
   <string name="conversation__menu_leave_group">Groep verlaten</string>
   <string name="conversation__menu_add_contact_info">Voeg contactinformatie toe</string>
+  <string name="conversation__menu_send_textsecure_link">Stuur TextSecure koppeling</string>
   <string name="conversation__menu_delete_thread">Verwijder gehele gesprek</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Lijst met ontvangers</string>

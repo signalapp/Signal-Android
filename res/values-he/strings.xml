@@ -390,6 +390,7 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">צרף קובץ</string>
   <string name="conversation__menu_add_contact_info">הוסף מידע לאיש הקשר</string>
+  <string name="conversation__menu_send_textsecure_link">שלח קישור TextSecure</string>
   <string name="conversation__menu_delete_thread">מחק שרשור</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">רשימת נמענים</string>

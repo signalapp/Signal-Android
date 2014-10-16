@@ -550,6 +550,7 @@ zlyhalo.
   <string name="conversation__menu_update_group">Aktualizuj skupinu</string>
   <string name="conversation__menu_leave_group">Opusti skupinu</string>
   <string name="conversation__menu_add_contact_info">Pridaj kontaktné informácie</string>
+  <string name="conversation__menu_send_textsecure_link">Poslať TextSecure odkaz</string>
   <string name="conversation__menu_delete_thread">Zmaž vlákno</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Zoznam príjemcov</string>

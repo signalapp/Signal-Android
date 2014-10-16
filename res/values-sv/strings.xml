@@ -674,6 +674,7 @@ Utöka sekretessen och undvik SMS-kostnader genom att använda datakanalen för 
   <string name="conversation__menu_update_group">Uppdatera grupp</string>
   <string name="conversation__menu_leave_group">Lämna grupp</string>
   <string name="conversation__menu_add_contact_info">Lägg till kontaktinfo</string>
+  <string name="conversation__menu_send_textsecure_link">Skicka TextSecure länk</string>
   <string name="conversation__menu_delete_thread">Radera tråd</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Mottagare lista</string>

@@ -687,6 +687,7 @@ Diğer TextSecure kullanıcıları ile iletişiminiz için veri kanallarını ku
   <string name="conversation__menu_update_group">Grubu güncelle</string>
   <string name="conversation__menu_leave_group">Grubu terket</string>
   <string name="conversation__menu_add_contact_info">Kişi bilgisi ekle</string>
+  <string name="conversation__menu_send_textsecure_link">TextSecure link gönder</string>
   <string name="conversation__menu_delete_thread">Başlığı sil</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Katılımcı listesi</string>

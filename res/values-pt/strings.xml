@@ -702,6 +702,7 @@ Aumente a privacidade e evite custos de SMS ao utilizar o canal de dados para co
   <string name="conversation__menu_update_group">Actualizar grupo</string>
   <string name="conversation__menu_leave_group">Deixar grupo</string>
   <string name="conversation__menu_add_contact_info">Adicionar informações de contacto</string>
+  <string name="conversation__menu_send_textsecure_link">Enviar ligação TextSecure</string>
   <string name="conversation__menu_delete_thread">Apagar conversa</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Lista de destinatários</string>

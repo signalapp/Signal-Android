@@ -717,6 +717,7 @@ Aumenta la privacy ed evita i costi degli SMS usando la connettività dati per c
   <string name="conversation__menu_update_group">Aggiorna gruppo</string>
   <string name="conversation__menu_leave_group">Abbandona il gruppo</string>
   <string name="conversation__menu_add_contact_info">Aggiungi informazioni sul contatto</string>
+  <string name="conversation__menu_send_textsecure_link">Invia link TextSecure</string>
   <string name="conversation__menu_delete_thread">Cancella conversazione</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">La lista dei destinatari</string>

@@ -298,6 +298,7 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
     case R.id.menu_call:                      handleDial(getRecipients().getPrimaryRecipient()); return true;
     case R.id.menu_delete_thread:             handleDeleteThread();                              return true;
     case R.id.menu_add_contact_info:          handleAddContactInfo();                            return true;
+    case R.id.menu_send_textsecure_link:      handleSendTextSecureLink();                        return true;
     case R.id.menu_add_attachment:            handleAddAttachment();                             return true;
     case R.id.menu_start_secure_session:      handleStartSecureSession();                        return true;
     case R.id.menu_abort_session:             handleAbortSecureSession();                        return true;
@@ -569,6 +570,11 @@ public class ConversationActivity extends PassphraseRequiredSherlockFragmentActi
   private void handleAddContactInfo() {
     Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
     startActivityForResult(intent, PICK_CONTACT_INFO);
+  }
+
+  private void handleSendTextSecureLink() {
+      this.setComposeText("Please install the TextSecure: " +
+              "https://play.google.com/store/apps/details?id=org.thoughtcrime.securesms");
   }
 
   private void handleAddAttachment() {

@@ -560,6 +560,7 @@ Tăng độ riêng tư và tránh cước SMS bằng cách dùng đường truy�
   <string name="conversation__menu_add_attachment">Thêm tập tin đính kèm</string>
   <string name="conversation__menu_update_group">Cập nhật nhóm</string>
   <string name="conversation__menu_add_contact_info">Thêm thông tin liên hệ</string>
+  <string name="conversation__menu_send_textsecure_link">Gửi liên kết TextSecure</string>
   <string name="conversation__menu_delete_thread">Xóa luồng</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Danh sách người nhận</string>

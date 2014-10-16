@@ -668,6 +668,7 @@ Zwiększ swoją prywatność i unikaj opłat za SMS używając transmisji danych
   <string name="conversation__menu_update_group">Aktualizuj grupę</string>
   <string name="conversation__menu_leave_group">Opuść grupę</string>
   <string name="conversation__menu_add_contact_info">Dodaj dane kontaktowe</string>
+  <string name="conversation__menu_send_textsecure_link">Wyślij TextSecure linku</string>
   <string name="conversation__menu_delete_thread">Usuń wątek</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Lita odbiorców</string>

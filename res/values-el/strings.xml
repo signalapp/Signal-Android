@@ -709,6 +709,7 @@
   <string name="conversation__menu_update_group">Ενημέρωση ομάδας</string>
   <string name="conversation__menu_leave_group">Αποχωρήστε απο την ομάδα</string>
   <string name="conversation__menu_add_contact_info">Προσθήκη πληροφοριών επαφής</string>
+  <string name="conversation__menu_send_textsecure_link">Αποστολή TextSecure σύνδεσμο</string>
   <string name="conversation__menu_delete_thread">Διαγραφή συζήτησης</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Λίστα παραλήπτων</string>

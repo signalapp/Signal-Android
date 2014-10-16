@@ -744,6 +744,7 @@ Incremente la privacidad y evite tarifas SMS al usar el canal de datos para la c
   <string name="conversation__menu_update_group">Actualizar grupo</string>
   <string name="conversation__menu_leave_group">Abandonar grupo</string>
   <string name="conversation__menu_add_contact_info">Añadir información de contacto</string>
+  <string name="conversation__menu_send_textsecure_link">Enviar enlace TextSecure</string>
   <string name="conversation__menu_delete_thread">Borrar conversación</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Lista de receptores</string>

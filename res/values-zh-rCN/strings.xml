@@ -686,6 +686,7 @@ TextSecure 在等待短信验证时超时。</string>
   <string name="conversation__menu_update_group">更新群组</string>
   <string name="conversation__menu_leave_group">离开群组</string>
   <string name="conversation__menu_add_contact_info">添加联系人信息</string>
+  <string name="conversation__menu_send_textsecure_link">發送TextSecure鏈接</string>
   <string name="conversation__menu_delete_thread">删除线程</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">接收人列表</string>
