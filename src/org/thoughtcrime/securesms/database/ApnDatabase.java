@@ -20,6 +20,7 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.text.TextUtils;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.mms.ApnUnavailableException;
@@ -94,9 +95,8 @@ public class ApnDatabase {
   }
   protected Apn getLocallyConfiguredMmsConnectionParameters() throws ApnUnavailableException {
     if (TextSecurePreferences.isUseLocalApnsEnabled(context)) {
-      String mmsc = TextSecurePreferences.getMmscUrl(context);
-
-      if (mmsc == null)
+      String mmsc = TextSecurePreferences.getMmscUrl(context).trim();
+      if (TextUtils.isEmpty(mmsc))
         throw new ApnUnavailableException("Malformed locally configured MMSC.");
 
       if (!mmsc.startsWith("http"))
