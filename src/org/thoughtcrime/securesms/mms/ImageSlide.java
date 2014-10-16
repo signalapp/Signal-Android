@@ -60,6 +60,11 @@ public class ImageSlide extends Slide {
     super(context, masterSecret, part);
   }
 
+  @Override
+  public String getContentType() {
+    return "image/*";
+  }
+
   public ImageSlide(Context context, Uri uri) throws IOException, BitmapDecodingException {
     super(context, constructPartFromUri(context, uri));
   }

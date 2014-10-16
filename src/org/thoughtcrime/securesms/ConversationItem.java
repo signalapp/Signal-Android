@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms;
 
 import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -36,6 +37,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -446,7 +448,12 @@ public class ConversationItem extends LinearLayout {
       Intent intent = new Intent(Intent.ACTION_VIEW);
       intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
       intent.setDataAndType(slide.getUri(), slide.getContentType());
-      context.startActivity(intent);
+      try {
+        context.startActivity(intent);
+      } catch (ActivityNotFoundException anfe) {
+        Log.w(TAG, "No activity existed to view the media.");
+        Toast.makeText(context, R.string.ConversationItem_unable_to_open_media, Toast.LENGTH_LONG).show();
+      }
     }
 
     public void onClick(View v) {
