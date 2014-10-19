@@ -42,6 +42,7 @@ import com.actionbarsherlock.view.MenuItem;
 
 import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
+import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.util.Util;
@@ -53,14 +54,22 @@ import org.whispersystems.textsecure.util.Util;
  */
 public class PassphrasePromptActivity extends PassphraseActivity {
 
+  private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
   private EditText passphraseText;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
+    dynamicLanguage.onCreate(this);
     super.onCreate(savedInstanceState);
 
     setContentView(R.layout.prompt_passphrase_activity);
     initializeResources();
+  }
+
+  @Override
+  public void onResume() {
+    super.onResume();
+    dynamicLanguage.onResume(this);
   }
 
   @Override

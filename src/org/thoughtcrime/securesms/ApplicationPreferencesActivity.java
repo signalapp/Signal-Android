@@ -76,7 +76,7 @@ import java.io.IOException;
 public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPreferenceActivity
     implements SharedPreferences.OnSharedPreferenceChangeListener
 {
-  private static final String TAG = "Preferences";
+  private static final String TAG = ApplicationPreferencesActivity.class.getSimpleName();
 
   private static final int PICK_IDENTITY_CONTACT        = 1;
   private static final int ENABLE_PASSPHRASE_ACTIVITY   = 2;
@@ -162,7 +162,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   public void onActivityResult(int reqCode, int resultCode, Intent data) {
     super.onActivityResult(reqCode, resultCode, data);
 
-    Log.w("ApplicationPreferencesActivity", "Got result: " + resultCode + " for req: " + reqCode);
+    Log.w(TAG, "Got result: " + resultCode + " for req: " + reqCode);
 
     if (resultCode == Activity.RESULT_OK) {
       switch (reqCode) {
@@ -296,6 +296,10 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
     } else if (key.equals(TextSecurePreferences.LANGUAGE_PREF)) {
       dynamicLanguage.onResume(this);
     }
+
+    Intent intent = new Intent(this, KeyCachingService.class);
+    intent.setAction(KeyCachingService.NOTIFICATION_REFRESH);
+    startService(intent);
   }
 
   private class PushMessagingClickListener implements Preference.OnPreferenceChangeListener {
@@ -348,10 +352,10 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
 
           return SUCCESS;
         } catch (AuthorizationFailedException afe) {
-          Log.w("ApplicationPreferencesActivity", afe);
+          Log.w(TAG, afe);
           return SUCCESS;
         } catch (IOException ioe) {
-          Log.w("ApplicationPreferencesActivity", ioe);
+          Log.w(TAG, ioe);
           return NETWORK_ERROR;
         }
       }
@@ -485,7 +489,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
       try {
         Integer.parseInt((String)newValue);
       } catch (NumberFormatException nfe) {
-        Log.w("ApplicationPreferencesActivity", nfe);
+        Log.w(TAG, nfe);
         return false;
       }
 

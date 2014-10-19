@@ -38,10 +38,11 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.RoutingActivity;
 import org.thoughtcrime.securesms.crypto.DecryptingQueue;
 import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
-import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 
 /**
  * Small service that stays running to keep a key cached in memory.
@@ -61,12 +62,14 @@ public class KeyCachingService extends Service {
   public  static final String DISABLE_ACTION           = "org.thoughtcrime.securesms.service.action.DISABLE";
   public  static final String ACTIVITY_START_EVENT     = "org.thoughtcrime.securesms.service.action.ACTIVITY_START_EVENT";
   public  static final String ACTIVITY_STOP_EVENT      = "org.thoughtcrime.securesms.service.action.ACTIVITY_STOP_EVENT";
+  public  static final String NOTIFICATION_REFRESH     = "org.thoughtcrime.securesms.service.action.NOTIFICATION_REFRESH";
 
   private PendingIntent pending;
   private int activitiesRunning = 0;
   private final IBinder binder  = new KeyCachingBinder();
 
   private MasterSecret masterSecret;
+  private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   public KeyCachingService() {}
 
@@ -107,6 +110,8 @@ public class KeyCachingService extends Service {
       handleClearKey();
     else if (intent.getAction() != null && intent.getAction().equals(DISABLE_ACTION))
       handleDisableService();
+    else if (intent.getAction() != null && intent.getAction().equals(NOTIFICATION_REFRESH))
+      handleNotificationRefresh();
 
     return START_NOT_STICKY;
   }
@@ -181,6 +186,11 @@ public class KeyCachingService extends Service {
   private void handleDisableService() {
     if (TextSecurePreferences.isPasswordDisabled(this))
       stopForeground(true);
+  }
+
+  private void handleNotificationRefresh() {
+    dynamicLanguage.setServiceLocale(this);
+    foregroundService();
   }
 
   private void startTimeoutIfAppropriate() {
