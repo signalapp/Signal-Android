@@ -122,16 +122,11 @@ public class RoutingActivity extends PassphraseRequiredSherlockActivity {
     final ConversationParameters parameters = getConversationParameters();
     final Intent intent;
 
+    scheduleRefreshActions();
 
     if      (isShareAction())               intent = getShareIntent(parameters);
     else if (parameters.recipients != null) intent = getConversationIntent(parameters);
     else                                    intent = getConversationListIntent();
-
-    if (TextSecurePreferences.isPushRegistered(this) &&
-        !TextSecurePreferences.isSignedPreKeyRegistered(this))
-    {
-      PreKeyService.initiateCreateSigned(this, masterSecret);
-    }
 
     startActivity(intent);
     finish();
@@ -184,6 +179,12 @@ public class RoutingActivity extends PassphraseRequiredSherlockActivity {
     {
       Intent intent = new Intent(this, GcmRegistrationService.class);
       startService(intent);
+    }
+
+    if (TextSecurePreferences.isPushRegistered(this) &&
+        !TextSecurePreferences.isSignedPreKeyRegistered(this))
+    {
+      PreKeyService.initiateCreateSigned(this, masterSecret);
     }
   }
 
