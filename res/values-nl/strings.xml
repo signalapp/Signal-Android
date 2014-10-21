@@ -516,11 +516,11 @@ TextSecure heeft te lang moeten wachten op het binnenkomen van de verificatie-SM
   <string name="AndroidManifest__change_passphrase">Verander wachtwoord</string>
   <string name="AndroidManifest__verify_session">Sessie verifiëren</string>
   <string name="AndroidManifest__verify_identity">Identiteit verifiëren</string>
-  <string name="AndroidManifest__manage_identity_keys">Beheer identiteitssleutels</string>
+  <string name="AndroidManifest__manage_identityi_keys">Beheer identiteitssleutels</string>
   <string name="AndroidManifest__complete_key_exchange">Sleuteluitwisseling voltooien</string>
   <string name="AndroidManifest__log_submit">Debug logs indienen</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Impoteer / exporteer </string>
+  <string name="arrays__import_export">Importeer / exporteer </string>
   <string name="arrays__my_identity_key">Mijn identiteitssleutel</string>
   <!--preferences.xml-->
   <string name="preferences__general">Algemeen</string>
