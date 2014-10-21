@@ -134,6 +134,13 @@ public class Util {
     return PhoneNumberFormatter.formatNumber(number, localNumber);
   }
 
+  public static String canonicalizeNumberOrGroup(Context context, String number)
+      throws InvalidNumberException
+  {
+    if (GroupUtil.isEncodedGroup(number)) return number;
+    else                                  return canonicalizeNumber(context, number);
+  }
+
   public static byte[] readFully(InputStream in) throws IOException {
     ByteArrayOutputStream baos   = new ByteArrayOutputStream();
     byte[]                buffer = new byte[4069];
