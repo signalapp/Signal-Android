@@ -20,7 +20,6 @@ public class RoutingActivity extends PassphraseRequiredSherlockActivity {
   private static final int STATE_CONVERSATION_OR_LIST     = 3;
   private static final int STATE_UPGRADE_DATABASE         = 4;
   private static final int STATE_PROMPT_PUSH_REGISTRATION = 5;
-  private static final int STATE_CREATE_SIGNED_PREKEY     = 6;
 
   private MasterSecret masterSecret   = null;
   private boolean      isVisible      = false;
@@ -168,21 +167,6 @@ public class RoutingActivity extends PassphraseRequiredSherlockActivity {
 
     return intent;
   }
-
-//  private void scheduleRefreshActions() {
-//    if (TextSecurePreferences.isPushRegistered(this) &&
-//        TextSecurePreferences.getGcmRegistrationId(this) == null)
-//    {
-//      Intent intent = new Intent(this, GcmRegistrationService.class);
-//      startService(intent);
-//    }
-//
-//    if (TextSecurePreferences.isPushRegistered(this) &&
-//        !TextSecurePreferences.isSignedPreKeyRegistered(this))
-//    {
-//      PreKeyService.initiateCreateSigned(this, masterSecret);
-//    }
-//  }
 
   private int getApplicationState() {
     if (!MasterSecretUtil.isPassphraseInitialized(this))
