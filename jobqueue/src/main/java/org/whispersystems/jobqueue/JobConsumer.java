@@ -20,6 +20,12 @@ import org.whispersystems.jobqueue.persistence.PersistentStorage;
 
 public class JobConsumer extends Thread {
 
+  enum JobResult {
+    SUCCESS,
+    FAILURE,
+    DEFERRED
+  }
+
   private final JobQueue          jobQueue;
   private final PersistentStorage persistentStorage;
 
@@ -34,12 +40,16 @@ public class JobConsumer extends Thread {
     while (true) {
       Job job = jobQueue.getNext();
 
-      if (!runJob(job)) {
-        job.onCanceled();
-      }
+      JobResult result;
 
-      if (job.isPersistent()) {
-        persistentStorage.remove(job.getPersistentId());
+      if ((result = runJob(job)) != JobResult.DEFERRED) {
+        if (result == JobResult.FAILURE) {
+          job.onCanceled();
+        }
+
+        if (job.isPersistent()) {
+          persistentStorage.remove(job.getPersistentId());
+        }
       }
 
       if (job.getGroupId() != null) {
@@ -48,21 +58,25 @@ public class JobConsumer extends Thread {
     }
   }
 
-  private boolean runJob(Job job) {
-    int retryCount = job.getRetryCount();
+  private JobResult runJob(Job job) {
+    int retryCount   = job.getRetryCount();
+    int runIteration = job.getRunIteration();
 
-    for (int i=retryCount;i>0;i--) {
+    for (;runIteration<retryCount;runIteration++) {
       try {
         job.onRun();
-        return true;
+        return JobResult.SUCCESS;
       } catch (Throwable throwable) {
         if (!job.onShouldRetry(throwable)) {
-          return false;
+          return JobResult.FAILURE;
+        } else if (!job.isRequirementsMet()) {
+          job.setRunIteration(runIteration+1);
+          return JobResult.DEFERRED;
         }
       }
     }
 
-    return false;
+    return JobResult.FAILURE;
   }
 
 }

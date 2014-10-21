@@ -26,6 +26,7 @@ public abstract class Job implements Serializable {
   private final JobParameters parameters;
 
   private transient long persistentId;
+  private transient int  runIteration;
 
   public Job(JobParameters parameters) {
     this.parameters = parameters;
@@ -69,6 +70,14 @@ public abstract class Job implements Serializable {
 
   public long getPersistentId() {
     return persistentId;
+  }
+
+  public int getRunIteration() {
+    return runIteration;
+  }
+
+  public void setRunIteration(int runIteration) {
+    this.runIteration = runIteration;
   }
 
   public abstract void onAdded();
