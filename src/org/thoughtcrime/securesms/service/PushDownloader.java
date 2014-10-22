@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.service;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.util.Pair;
 
@@ -35,11 +34,7 @@ public class PushDownloader {
     this.context = context.getApplicationContext();
   }
 
-  public void process(MasterSecret masterSecret, Intent intent) {
-    if (!SendReceiveService.DOWNLOAD_PUSH_ACTION.equals(intent.getAction()))
-      return;
-
-    long         messageId = intent.getLongExtra("message_id", -1);
+  public void process(MasterSecret masterSecret, long messageId) throws IOException {
     PartDatabase database  = DatabaseFactory.getEncryptingPartDatabase(context, masterSecret);
 
     Log.w("PushDownloader", "Downloading push parts for: " + messageId);
@@ -61,7 +56,7 @@ public class PushDownloader {
     }
   }
 
-  private void retrievePart(MasterSecret masterSecret, PduPart part, long messageId, long partId) {
+  private void retrievePart(MasterSecret masterSecret, PduPart part, long messageId, long partId) throws IOException {
     EncryptingPartDatabase database       = DatabaseFactory.getEncryptingPartDatabase(context, masterSecret);
     File                   attachmentFile = null;
 
@@ -100,9 +95,6 @@ public class PushDownloader {
       } catch (MmsException mme) {
         Log.w("PushDownloader", mme);
       }
-    } catch (IOException e) {
-      Log.w("PushDownloader", e);
-      /// XXX schedule some kind of soft failure retry action
     } finally {
       if (attachmentFile != null)
         attachmentFile.delete();
