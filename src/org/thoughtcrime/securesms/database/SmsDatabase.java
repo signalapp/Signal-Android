@@ -311,6 +311,32 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
     notifyConversationListListeners();
   }
 
+  public Pair<Long, Long> copyMessageInbox(long messageId) {
+    Reader           reader = readerFor(getMessage(messageId));
+    SmsMessageRecord record = reader.getNext();
+
+    ContentValues contentValues = new ContentValues();
+    contentValues.put(TYPE, (record.getType() & ~Types.BASE_TYPE_MASK) | Types.BASE_INBOX_TYPE);
+    contentValues.put(ADDRESS, record.getIndividualRecipient().getNumber());
+    contentValues.put(ADDRESS_DEVICE_ID, record.getRecipientDeviceId());
+    contentValues.put(DATE_RECEIVED, System.currentTimeMillis());
+    contentValues.put(DATE_SENT, record.getDateSent());
+    contentValues.put(PROTOCOL, 31337);
+    contentValues.put(READ, 0);
+    contentValues.put(BODY, record.getBody().getBody());
+    contentValues.put(THREAD_ID, record.getThreadId());
+
+    SQLiteDatabase db           = databaseHelper.getWritableDatabase();
+    long           newMessageId = db.insert(TABLE_NAME, null, contentValues);
+
+    DatabaseFactory.getThreadDatabase(context).update(record.getThreadId());
+    notifyConversationListeners(record.getThreadId());
+    Trimmer.trimThread(context, record.getThreadId());
+    reader.close();
+    
+    return new Pair<>(newMessageId, record.getThreadId());
+  }
+
   protected Pair<Long, Long> insertMessageInbox(IncomingTextMessage message, long type) {
     if (message.isKeyExchange()) {
       type |= Types.KEY_EXCHANGE_BIT;

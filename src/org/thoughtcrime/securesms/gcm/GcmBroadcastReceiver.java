@@ -72,9 +72,7 @@ public class GcmBroadcastReceiver extends BroadcastReceiver {
                                               message.getTimestampMillis(),
                                               message.getRelay()));
       }
-    } catch (IOException e) {
-      Log.w(TAG, e);
-    } catch (InvalidVersionException e) {
+    } catch (IOException | InvalidVersionException e) {
       Log.w(TAG, e);
     }
   }

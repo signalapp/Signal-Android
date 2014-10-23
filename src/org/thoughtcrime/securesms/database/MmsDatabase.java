@@ -499,6 +499,20 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
     return new Reader(masterSecret, cursor);
   }
 
+  public long copyMessageInbox(MasterSecret masterSecret, long messageId) throws MmsException {
+    SendReq[] request = getOutgoingMessages(masterSecret, messageId);
+
+    ContentValues contentValues = getContentValuesFromHeader(request[0].getPduHeaders());
+
+    contentValues.put(MESSAGE_BOX, Types.BASE_INBOX_TYPE | Types.SECURE_MESSAGE_BIT | Types.ENCRYPTION_SYMMETRIC_BIT);
+    contentValues.put(THREAD_ID, getThreadIdForMessage(messageId));
+    contentValues.put(READ, 1);
+    contentValues.put(DATE_RECEIVED, contentValues.getAsLong(DATE_SENT));
+
+    return insertMediaMessage(masterSecret, request[0].getPduHeaders(),
+                              request[0].getBody(), contentValues);
+  }
+
   private Pair<Long, Long> insertMessageInbox(MasterSecret masterSecret, IncomingMediaMessage retrieved,
                                               String contentLocation, long threadId, long mailbox)
       throws MmsException
