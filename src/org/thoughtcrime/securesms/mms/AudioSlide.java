@@ -38,11 +38,6 @@ public class AudioSlide extends Slide {
     super(context, part);
   }
 
-  @Override
-  public String getContentType() {
-    return "audio/*";
-  }
-
   public AudioSlide(Context context, Uri uri) throws IOException, MediaTooLargeException {
     super(context, constructPartFromUri(context, uri));
   }
