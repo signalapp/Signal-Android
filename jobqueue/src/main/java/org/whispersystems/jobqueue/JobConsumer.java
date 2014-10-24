@@ -55,6 +55,10 @@ public class JobConsumer extends Thread {
       if (job.getGroupId() != null) {
         jobQueue.setGroupIdAvailable(job.getGroupId());
       }
+
+      if (result == JobResult.DEFERRED) {
+        jobQueue.add(job);
+      }
     }
   }
 
@@ -72,6 +76,8 @@ public class JobConsumer extends Thread {
         } else if (!job.isRequirementsMet()) {
           job.setRunIteration(runIteration+1);
           return JobResult.DEFERRED;
+        } else {
+          job.setRunIteration(runIteration+1);
         }
       }
     }
