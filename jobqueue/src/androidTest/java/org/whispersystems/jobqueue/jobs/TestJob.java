@@ -5,13 +5,13 @@ import org.whispersystems.jobqueue.JobParameters;
 
 public class TestJob extends Job {
 
-  private final Object ADDED_LOCK    = new Object();
-  private final Object RAN_LOCK      = new Object();
-  private final Object CANCELED_LOCK = new Object();
+  private   final Object ADDED_LOCK    = new Object();
+  protected final Object RAN_LOCK      = new Object();
+  private   final Object CANCELED_LOCK = new Object();
 
-  private boolean added    = false;
-  private boolean ran      = false;
-  private boolean canceled = false;
+  private   boolean added    = false;
+  protected boolean ran      = false;
+  private   boolean canceled = false;
 
   private Runnable runnable;
 

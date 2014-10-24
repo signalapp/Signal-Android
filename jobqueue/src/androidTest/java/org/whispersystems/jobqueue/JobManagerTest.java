@@ -3,6 +3,7 @@ package org.whispersystems.jobqueue;
 import android.test.AndroidTestCase;
 
 import org.whispersystems.jobqueue.jobs.PersistentTestJob;
+import org.whispersystems.jobqueue.jobs.RequirementDeferringTestJob;
 import org.whispersystems.jobqueue.jobs.RequirementTestJob;
 import org.whispersystems.jobqueue.jobs.TestJob;
 import org.whispersystems.jobqueue.persistence.JavaJobSerializer;
@@ -11,6 +12,9 @@ import org.whispersystems.jobqueue.util.MockRequirementProvider;
 import org.whispersystems.jobqueue.util.PersistentMockRequirement;
 import org.whispersystems.jobqueue.util.PersistentRequirement;
 import org.whispersystems.jobqueue.util.PersistentResult;
+import org.whispersystems.jobqueue.util.RunnableThrowable;
+
+import java.io.IOException;
 
 public class JobManagerTest extends AndroidTestCase {
 
@@ -40,6 +44,59 @@ public class JobManagerTest extends AndroidTestCase {
 
     assertTrue(testJob.isRan());
 
+  }
+
+  public void testTransientRequirementDeferringJobExecution() throws InterruptedException {
+    final Object lock = new Object();
+
+    RunnableThrowable waitRunnable = new RunnableThrowable() {
+      public Boolean shouldThrow = false;
+
+      @Override
+      public void run() throws IOException {
+        try {
+          synchronized (lock) {
+            lock.wait();
+
+            if (shouldThrow) {
+              throw new IOException();
+            }
+          }
+        } catch (InterruptedException e) {
+          throw new AssertionError(e);
+        }
+      }
+      @Override
+      public void shouldThrow(Boolean value) {
+        shouldThrow = value;
+      }
+    };
+
+    MockRequirementProvider     provider    = new MockRequirementProvider();
+    MockRequirement             requirement = new MockRequirement(false);
+    RequirementDeferringTestJob testJob     = new RequirementDeferringTestJob(requirement, 5, waitRunnable);
+    JobManager                  jobManager  = new JobManager(getContext(), "transient-requirement-test", provider, null, 1);
+
+    jobManager.add(testJob);
+
+    waitRunnable.shouldThrow(true);
+    requirement.setPresent(true);
+    provider.fireChange();
+
+    assertTrue(testJob.isRan());
+    assertTrue(!testJob.isFinished());
+    synchronized (lock) { lock.notifyAll(); }
+    assertTrue(!testJob.isFinished());
+
+    requirement.setPresent(false);
+    synchronized (lock) { lock.notifyAll(); }
+    assertTrue(!testJob.isFinished());
+
+    waitRunnable.shouldThrow(false);
+    requirement.setPresent(true);
+    provider.fireChange();
+    synchronized (lock) { lock.notifyAll(); }
+    assertTrue(testJob.isFinished());
   }
 
   public void testPersistentJobExecuton() throws InterruptedException {

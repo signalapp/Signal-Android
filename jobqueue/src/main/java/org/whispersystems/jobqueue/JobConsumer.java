@@ -72,6 +72,8 @@ public class JobConsumer extends Thread {
         } else if (!job.isRequirementsMet()) {
           job.setRunIteration(runIteration+1);
           return JobResult.DEFERRED;
+        } else {
+          job.setRunIteration(runIteration+1);
         }
       }
     }
