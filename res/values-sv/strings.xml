@@ -33,6 +33,7 @@ Det här kommer slå av pushmeddelanden genom att avregistrera dig från servern
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Tryck för att ändra din standardapp för SMS</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Inkommande SMS avslaget</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Tryck för att göra TextSecure till din standardapp för SMS</string>
+  <!--AttchmentManager-->
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Bild</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>

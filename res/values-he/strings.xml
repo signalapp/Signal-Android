@@ -21,6 +21,7 @@
 </string>
   <string name="ApplicationPreferencesActivity_disable">בטל</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">אירעה שגיאה בחיבור לשרת!</string>
+  <!--AttchmentManager-->
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">תמונה</string>
   <string name="AttachmentTypeSelectorAdapter_video">וידאו</string>

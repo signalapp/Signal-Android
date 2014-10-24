@@ -31,6 +31,7 @@ U zal uw telefoonnummer opnieuw moeten registreren als u push berichten weer wil
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Raak aan om uw standaard SMS applicatie te veranderen</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Inkomende SMS uitgeschakeld</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Raak aan om TextSecure uw standaard SMS applicatie te maken</string>
+  <!--AttchmentManager-->
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Afbeelding</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
@@ -520,7 +521,7 @@ TextSecure heeft te lang moeten wachten op het binnenkomen van de verificatie-SM
   <string name="AndroidManifest__complete_key_exchange">Sleuteluitwisseling voltooien</string>
   <string name="AndroidManifest__log_submit">Debug logs indienen</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Impoteer / exporteer </string>
+  <string name="arrays__import_export">Importeer / exporteer </string>
   <string name="arrays__my_identity_key">Mijn identiteitssleutel</string>
   <!--preferences.xml-->
   <string name="preferences__general">Algemeen</string>

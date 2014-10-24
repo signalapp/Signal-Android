@@ -31,6 +31,7 @@ Du må registrere telefonnummeret ditt på nytt dersom du ønsker å benytte \'p
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Klikk for å endre standard SMS applikasjon</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Innkommende SMS deaktivert</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Klikk for å la TextSecure være din standard SMS applikasjon</string>
+  <!--AttchmentManager-->
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Bilde</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>

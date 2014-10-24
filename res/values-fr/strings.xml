@@ -33,6 +33,7 @@ Ceci va désactiver les messages push en vous désinscrivant du serveur. Vous de
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Appuyez pour modifier votre application SMS par défaut</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS entrants désactivés</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Appuyez pour faire de TextSecure votre application SMS par défaut</string>
+  <!--AttchmentManager-->
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Image</string>
   <string name="AttachmentTypeSelectorAdapter_video">Vidéo</string>

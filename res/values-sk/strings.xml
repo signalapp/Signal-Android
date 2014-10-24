@@ -22,6 +22,7 @@ Upozornenie, toto vypne kryptovanie úložiska správ a kľúčov. Vaše bezpeč
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Chyba spojenia na server!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">Prichádzajúce SMS povolené</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Prichádzajúce SMS zakazané </string>
+  <!--AttchmentManager-->
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Obrázok</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>

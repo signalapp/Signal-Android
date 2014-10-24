@@ -30,6 +30,7 @@
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">أضغط لتغيير التطبيق الافتراضي للرسائل</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">تعطيل ورود الرسائل</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">أضغط لجعل تيكست سيكيورالتطبيق الافتراضي للرسئل</string>
+  <!--AttchmentManager-->
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">صورة</string>
   <string name="AttachmentTypeSelectorAdapter_video">فيديو</string>

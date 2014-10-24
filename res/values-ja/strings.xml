@@ -32,6 +32,7 @@
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">デフォルトSMSアップをタッチで変更</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS受信が無効です。</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">タッチでTextSecureをデフォルトのSMSアップにできます</string>
+  <!--AttchmentManager-->
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">写真</string>
   <string name="AttachmentTypeSelectorAdapter_video">動画</string>

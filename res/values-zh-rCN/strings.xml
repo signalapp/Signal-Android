@@ -31,6 +31,7 @@
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">点击来改变默认的短信应用</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">已停用接收短信</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">点击将TextSecure设定为默认的短信应用</string>
+  <!--AttchmentManager-->
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">图片</string>
   <string name="AttachmentTypeSelectorAdapter_video">视频</string>

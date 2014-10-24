@@ -34,6 +34,7 @@ Necesitará volver a registrar su número de teléfono para usar los mensajes ac
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Pulse para cambiar la aplicación de SMS predeterminada</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS entrantes deshabilitados</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Pulse para que TextSecure sea su aplicación de SMS predeterminada</string>
+  <!--AttchmentManager-->
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Fotografía</string>
   <string name="AttachmentTypeSelectorAdapter_video">Vídeo</string>

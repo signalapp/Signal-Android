@@ -32,6 +32,7 @@ Avrai bisogno di registrare di nuovo il tuo numero di telefono per usare i messa
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Premi per cambiare l\'applicazione predefinita per gli SMS</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS in entrata disabilitati</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Tocca per rendere TextSecure l\'applicazione predefinita per gli SMS</string>
+  <!--AttchmentManager-->
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Immagine</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>

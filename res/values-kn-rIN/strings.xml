@@ -29,6 +29,7 @@
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">ನಿಮ್ಮ ಪೂರ್ವನಿಯೋಜಿತ ಎಸ್.ಎಮ್.ಎಸ್ ಅಪ್ಲಿಕೇಶನ್ನು ಬದಲಾಯಿಸಲು ಸ್ಪರ್ಶಿಸಿ</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">ಒಳಬರುವ ಎಸ್.ಎಮ್.ಎಸನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯೂರನ್ನು ನಿಮ್ಮ ಪೂರ್ವನಿಯೋಜಿತ ಎಸ್.ಎಮ್.ಎಸ್ ಅಪ್ಲಿಕೇಶನ್ನಾಗಿ ಬದಲಾಯಿಸಲು ಸ್ಪರ್ಶಿಸಿ</string>
+  <!--AttchmentManager-->
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">ಚಿತ್ರ</string>
   <string name="AttachmentTypeSelectorAdapter_video">ದೃಶ್ಯ</string>

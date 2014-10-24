@@ -12,6 +12,7 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">စာတိုအဟောင်းများအားလံုးဖျက်မည်လား</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">စကားဝိုင်း၊ စကားတွဲများအားလုံးကို လတ်တလော စာသား %s ခုသာ သိမ်းထား၍ အခြားစာသားများကို ဖျက်မှာ သေချာရဲ့လား</string>
   <string name="ApplicationPreferencesActivity_delete">ဖျက်ရန်</string>
+  <!--AttchmentManager-->
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">ပုံ</string>
   <string name="AttachmentTypeSelectorAdapter_video">ဗွီဒီယို</string>

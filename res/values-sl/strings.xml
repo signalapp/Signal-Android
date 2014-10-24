@@ -30,6 +30,7 @@ Za ponovno uporabo potisnih sporočil se boste morali zopet prijaviti s svojo te
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Dotaknite se za spremembo privzete aplikacije SMS</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Dohodna SMS sporočila izklopljena</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Z dotikom nastavi TexteScure za privzeto aplikacijo SMS</string>
+  <!--AttchmentManager-->
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Slika</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>

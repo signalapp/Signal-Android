@@ -33,6 +33,8 @@ Um zukünftig wieder Push-Nachrichten nutzen zu können, werden Sie Ihr Gerät e
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Standard-SMS-App ändern</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Eingehende SMS deaktiviert</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">TextSecure als Standard-SMS-App verwenden</string>
+  <!--AttchmentManager-->
+  <string name="AttachmentManager_cant_open_media_selection">Keine App zur Auswahl der Datei auffindbar.</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Bild</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
@@ -45,8 +47,8 @@ Um zukünftig wieder Push-Nachrichten nutzen zu können, werden Sie Ihr Gerät e
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Diese Datei ist in einer verschlüsselten Datenbank gespeichert. Zur Anzeige muss sie vorübergehend entschlüsselt abgespeichert werden. Möchten Sie dennoch fortfahren?</string>
   <string name="ConversationItem_received_and_processed_key_exchange_message">Schlüsselaustausch-Nachricht empfangen und verarbeitet.</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Fehler: Abgelaufene Schlüsselaustausch-Nachricht empfangen.</string>
-  <string name="ConversationItem_received_key_exchange_message_click_to_process">Schlüsselaustausch-Nachricht empfangen. Drücken um fortzufahren.</string>
-  <string name="ConversationItem_received_plaintext_message_click_to_terminate">Sie haben eine unverschlüsselte SMS während einer sicheren Unterhaltung empfangen. Wenn Ihr Gegenüber keine Verschlüsselung mehr aktiviert hat, wird Ihre nächste Nachricht für ihn nicht lesbar sein. Drücken um sichere Unterhaltung zu beenden. </string>
+  <string name="ConversationItem_received_key_exchange_message_click_to_process">Schlüsselaustausch-Nachricht empfangen. Antippen um fortzufahren.</string>
+  <string name="ConversationItem_received_plaintext_message_click_to_terminate">Sie haben eine unverschlüsselte SMS während einer sicheren Unterhaltung empfangen. Wenn Ihr Gegenüber keine Verschlüsselung mehr aktiviert hat, wird Ihre nächste Nachricht für ihn nicht lesbar sein. Antippen um sichere Unterhaltung zu beenden. </string>
   <string name="ConversationItem_group_action_left">%1$s hat die Gruppe verlassen.</string>
   <string name="ConversationItem_group_action_joined">%1$s sind der Gruppe beigetreten.</string>
   <string name="ConversationItem_group_action_modify">%1$s hat die Gruppe aktualisiert.</string>
@@ -60,6 +62,7 @@ Um zukünftig wieder Push-Nachrichten nutzen zu können, werden Sie Ihr Gerät e
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Diese Nachricht wird <b>nicht</b> verschlüsselt sein, da keine sichere Unterhaltung aufgebaut werden konnte.
 
 Unsichere Nachricht senden?</string>
+  <string name="ConversationItem_unable_to_open_media">Keine App zum Öffnen der Datei auffindbar.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Sichere Unterhaltung starten?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Sichere Unterhaltung mit %s starten?</string>
@@ -94,7 +97,7 @@ Unsichere Nachricht senden?</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Sind Sie sicher, dass Sie diese Nachricht unwiderruflich löschen möchten?</string>
   <string name="ConversationFragment_save_to_sd_card">Auf SD-Karte speichern?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Diese Datei wurde in einer verschlüsselten Datenbank gespeichert. Die Version, die Sie auf der SD-Karte speichern, wird hingegen nicht mehr verschlüsselt sein. Möchten Sie trotzdem fortfahren?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Fehler beim Speichern des Anhangs auf der SD-Karte!</string>
+  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Fehler beim Speichern des Anhangs auf die SD-Karte!</string>
   <string name="ConversationFragment_success_exclamation">Erfolgreich!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Kein Schreibzugriff auf SD-Karte!</string>
   <string name="ConversationFragment_saving_attachment">Speichere Anhang</string>
@@ -185,7 +188,7 @@ Bitten Sie den Absender, TextSecure zu aktualisieren und die Nachricht erneut zu
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Das eingegebene alte Passwort ist falsch!</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Passwort eingeben</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">TextSecure Icon</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">TextSecure Symbol</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Passwort übermitteln</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Passwort ungültig!</string>
   <!--PromptMmsActivity-->
@@ -300,8 +303,8 @@ Nachricht mit unbekanntem Schlüssel empfangen. Klicken um fortzufahren und ihn 
   <string name="MmsDatabase_connecting_to_mms_server">Verbindung zu MMS-Server wird aufgebaut...</string>
   <string name="MmsDatabase_downloading_mms">MMS wird heruntergeladen...</string>
   <string name="MmsDatabase_mms_download_failed">MMS-Download fehlgeschlagen!</string>
-  <string name="MmsDatabase_downloading">Herunterladen...</string>
-  <string name="MmsDatabase_mms_pending_download">Antippen und MMS-Einstellungen konfigurieren um den Download fortzusetzen.</string>
+  <string name="MmsDatabase_downloading">Lädt herunter...</string>
+  <string name="MmsDatabase_mms_pending_download">Antippen und MMS-Einstellungen konfigurieren um das Herunterladen fortzusetzen.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">MMS wird entschlüsselt, bitte warten...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Fehlerhaft verschlüsselte MMS...</string>
@@ -380,14 +383,14 @@ Möchten Sie dennoch fortfahren?</string>
   <string name="conversation_item__secure_message_description">Sichere Nachricht</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Download</string>
-  <string name="conversation_item_sent__downloading">Herunterladen</string>
+  <string name="conversation_item_sent__downloading">Lädt herunter</string>
   <string name="conversation_item_sent__send_failed_indicator_description">Senden fehlgeschlagen</string>
   <string name="conversation_item_sent__pending_approval_description">Bestätigung ausstehend</string>
   <string name="conversation_item_sent__delivered_description">Übermittelt</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__download">Download</string>
   <string name="conversation_item_received__contact_photo_description">Kontaktbild</string>
-  <string name="conversation_item_received__downloading">Herunterladen</string>
+  <string name="conversation_item_received__downloading">Lädt herunter</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Mehrfachauswahl</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s ausgewählt</string>
@@ -460,7 +463,8 @@ TELEFONNUMMER</string>
   <string name="registration_activity__skip">Überspringen</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Einige mögliche Probleme
-beinhalten:</string>
+beinhalten:
+</string>
   <string name="registration_problems__sms_interceptors">SMS-abfangende Apps.</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">Manche SMS-Apps von Drittanbietern, z.B. Handcent oder GoSMS, fangen fälschlicherweise alle eingehenden SMS ab. Überprüfen Sie, ob Sie eine Textnachricht empfangen haben, die mit \"Your TextSecure verification code:\" beginnt. In diesem Fall müssen Sie Ihre Drittanbieter-App so einstellen, dass sie SMS durchlässt.</string>
   <string name="registration_problems__incorrect_number">Falsche Nummer.</string>
@@ -482,7 +486,8 @@ TextSecure kann Sie auch anrufen um Ihre Nummer zu überprüfen. Tippen Sie auf 
 TextSecure konnte sich nicht mit dem Push-Dienst verbinden.
 </string>
   <string name="registration_progress_activity__some_possible_problems_include">Einige der möglichen
-Probleme beinhalten:</string>
+Probleme beinhalten:
+</string>
   <string name="registration_progress_activity__no_network_connectivity">Keine Netzwerk-
 Verbindung.</string>
   <string name="registration_progress_activity__your_device_needs_network_connectivity">Ihr Gerät benötigt eine Netzverbindung, um diese TextSecure-Funktion nutzen zu können. Stellen Sie sicher, dass eine 3G- oder WLAN-Verbindung besteht.</string>
@@ -553,7 +558,7 @@ fehlgeschlagen.</string>
   <string name="preferences__disable_local_encryption_of_messages_and_keys">Verschlüsselung von Nachrichten und Schlüsseln auf diesem Gerät deaktivieren</string>
   <string name="preferences__screen_security">Bildschirmschutz</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Automatischer Schlüsselaustausch für neue oder bestehende Unterhaltungen mit demselben Schlüssel</string>
-  <string name="preferences__disable_screen_security_to_allow_screen_shots">Screenshots in der Anwendung und der Liste der letzten Anwendungen blockieren</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">Bildschirmfotos in der Anwendung und der Liste der letzten Anwendungen blockieren</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Passwort nach einer gewissen Zeit vergessen</string>
   <string name="preferences__timeout_passphrase">Passwort vergessen</string>
   <string name="preferences__pref_timeout_interval_dialogtitle">Wartezeit auswählen</string>
@@ -595,7 +600,7 @@ fehlgeschlagen.</string>
   <string name="preferences__passphrase">Passwort</string>
   <string name="preferences__advanced_mms_access_point_names">MMS-Einstellungen</string>
   <string name="preferences__enable_manual_mms">Manuelle MMS-Einstellungen</string>
-  <string name="preferences__override_system_mms_settings">Statt der Systemeinstellungen für MMS die unten genannten Einstellungen benutzen</string>
+  <string name="preferences__override_system_mms_settings">Statt der Systemeinstellungen für MMS die unten genannten Einstellungen benutzen.</string>
   <string name="preferences__mmsc_url_required">MMS-Center-URL (erforderlich)</string>
   <string name="preferences__mms_proxy_host_optional">MMS-Proxy-Host (optional)</string>
   <string name="preferences__mms_proxy_port_optional">MMS-Proxy-Port (optional)</string>

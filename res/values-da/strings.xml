@@ -21,6 +21,7 @@
 </string>
   <string name="ApplicationPreferencesActivity_disable">Deaktivere</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Kunne ikke forbinde til serveren!</string>
+  <!--AttchmentManager-->
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Billede</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>

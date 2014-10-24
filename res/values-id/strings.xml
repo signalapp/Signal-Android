@@ -28,6 +28,7 @@ dapat mengaksesnya</string>
   <string name="ApplicationPreferencesActivity_updating_push_directory">Sedang memperbaharui direktori...</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Sentuh untuk mengubah aplikasi SMS default</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Sentuh untuk membuat TextSecure sebagai aplikasi SMS default</string>
+  <!--AttchmentManager-->
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Gambar</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>

@@ -30,6 +30,7 @@ Thao tác này sẽ tắt tin nhắn đẩy bằng cách gỡ đăng ký bạn r
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Chạm vào để đổi ứng dụng SMS mặc định</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Không Cho SMS Gửi Vào</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Chạm vào để chọn TextSecure làm ứng dụng SMS mặc định</string>
+  <!--AttchmentManager-->
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Hình ảnh</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>

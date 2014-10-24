@@ -12,6 +12,7 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">ད་ལྟ་རང་འཕྲིན་ཐུང་རྙིང་པ་ཚང་མ་གསུབ་གི་ཡིན་ནམ། </string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">ཁྱེད་ཀྱིས་མྱུར་དུ་ཉེ་འཆར་གྱི་འཕྲིན་ཐུང་དེའི་སླད་དུ་གླེང་མོལ་གྱི་སྐུད་པ་ཚང་མ་གཙང་བཟོ་བྱེད་ཀྱི་ཡིན་ནམ། </string>
   <string name="ApplicationPreferencesActivity_delete">གསུབ། </string>
+  <!--AttchmentManager-->
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">འདྲ་པར།</string>
   <string name="AttachmentTypeSelectorAdapter_video">བརྙན་པར།</string>

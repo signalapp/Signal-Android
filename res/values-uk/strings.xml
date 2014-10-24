@@ -22,6 +22,7 @@
   <string name="ApplicationPreferencesActivity_updating_directory">Оновлення теки</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Торкніться, щоб змінити типову програму для SMS</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Торкніться аби зробити TextSecure типовою програмою SMS</string>
+  <!--AttchmentManager-->
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Зображення</string>
   <string name="AttachmentTypeSelectorAdapter_video">Відео</string>

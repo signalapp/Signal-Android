@@ -28,6 +28,7 @@ Necessitaràs tornar a registrar el teu número de telèfon per utilitzar els mi
   <string name="ApplicationPreferencesActivity_updating_push_directory">Actualitzant el Directori Push...</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Toca per canviar la teva app d\'SMS predeterminada</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Toca per fer TextSecure la teva app d\'SMS predeterminada</string>
+  <!--AttchmentManager-->
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Fotografia</string>
   <string name="AttachmentTypeSelectorAdapter_video">Vídeo</string>
