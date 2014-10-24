@@ -35,7 +35,7 @@ public class RequirementDeferringTestJob extends TestJob {
 
   @Override
   public boolean onShouldRetry(Throwable throwable) {
-    if (throwable instanceof IOException) {
+    if (throwable instanceof Exception) {
       return true;
     }
     return false;

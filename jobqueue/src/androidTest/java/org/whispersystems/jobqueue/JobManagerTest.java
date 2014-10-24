@@ -53,13 +53,13 @@ public class JobManagerTest extends AndroidTestCase {
       public Boolean shouldThrow = false;
 
       @Override
-      public void run() throws IOException {
+      public void run() throws Exception {
         try {
           synchronized (lock) {
             lock.wait();
 
             if (shouldThrow) {
-              throw new IOException();
+              throw new Exception();
             }
           }
         } catch (InterruptedException e) {
