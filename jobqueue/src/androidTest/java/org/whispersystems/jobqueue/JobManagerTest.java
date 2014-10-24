@@ -89,12 +89,15 @@ public class JobManagerTest extends AndroidTestCase {
     assertTrue(!testJob.isFinished());
 
     requirement.setPresent(false);
+    provider.fireChange();
+    assertTrue(!testJob.isFinished());
     synchronized (lock) { lock.notifyAll(); }
     assertTrue(!testJob.isFinished());
 
     waitRunnable.shouldThrow(false);
     requirement.setPresent(true);
     provider.fireChange();
+    assertTrue(!testJob.isFinished());
     synchronized (lock) { lock.notifyAll(); }
     assertTrue(testJob.isFinished());
   }
