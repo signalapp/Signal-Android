@@ -109,7 +109,7 @@ public class MmsSender {
           else                                   systemStateListener.registerForConnectivityChange();
 
           toastHandler
-              .obtainMessage(0, context.getString(R.string.SmsReceiver_currently_unable_to_send_your_sms_message))
+              .obtainMessage(0, context.getString(R.string.MmsSender_currently_unable_to_send_your_mms_message))
               .sendToTarget();
         }
       }
