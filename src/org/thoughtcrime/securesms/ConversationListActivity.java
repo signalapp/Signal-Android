@@ -116,8 +116,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     if (this.masterSecret != null) {
       inflater.inflate(R.menu.conversation_list, menu);
       MenuItem menuItem = menu.findItem(R.id.menu_search);
-      SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
-      initializeSearch(searchView);
+      initializeSearch(menuItem);
     } else {
       inflater.inflate(R.menu.conversation_list_empty, menu);
     }
@@ -126,21 +125,38 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     return true;
   }
 
-  private void initializeSearch(SearchView searchView) {
+  private void initializeSearch(MenuItem searchViewItem) {
+    SearchView searchView = (SearchView)MenuItemCompat.getActionView(searchViewItem);
     searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
       @Override
       public boolean onQueryTextSubmit(String query) {
-        ConversationListFragment fragment = (ConversationListFragment)getSupportFragmentManager()
-            .findFragmentById(R.id.fragment_content);
         if (fragment != null) {
           fragment.setQueryFilter(query);
           return true;
         }
+
         return false;
       }
+
       @Override
       public boolean onQueryTextChange(String newText) {
         return onQueryTextSubmit(newText);
+      }
+    });
+
+    MenuItemCompat.setOnActionExpandListener(searchViewItem, new MenuItemCompat.OnActionExpandListener() {
+      @Override
+      public boolean onMenuItemActionExpand(MenuItem menuItem) {
+        return true;
+      }
+
+      @Override
+      public boolean onMenuItemActionCollapse(MenuItem menuItem) {
+        if (fragment != null) {
+          fragment.resetQueryFilter();
+        }
+
+        return true;
       }
     });
   }
