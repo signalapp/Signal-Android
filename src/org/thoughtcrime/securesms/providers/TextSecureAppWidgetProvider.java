@@ -24,12 +24,14 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.RemoteViews;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.RoutingActivity;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.notifications.NotificationState;
 
 /**
  * The provider for the TextSecure AppWidget
@@ -37,69 +39,55 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
  * @author Lukas Barth
  */
 public class TextSecureAppWidgetProvider extends AppWidgetProvider {
+  private static final String UNREAD_COUNT = "unread_count";
 
-  public static void triggerUpdate(Context context) {
+  public static void triggerUpdate(Context context, int unreadCount) {
     AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
     ComponentName widgetComponent = new ComponentName(context, TextSecureAppWidgetProvider.class);
     int[] widgetIds = widgetManager.getAppWidgetIds(widgetComponent);
 
     Intent updateIntent = new Intent();
     updateIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, widgetIds);
+    updateIntent.putExtra(UNREAD_COUNT, unreadCount);
     updateIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
     updateIntent.setClass(context, TextSecureAppWidgetProvider.class);
     context.sendBroadcast(updateIntent);
   }
 
-  private int getUnreadCount(Context context) {
-    Cursor telcoCursor = null;
-    Cursor pushCursor = null;
-    int unread = 0;
+  public void onReceive(Context context, Intent intent) {
+    String action = intent.getAction();
+    if (!AppWidgetManager.ACTION_APPWIDGET_UPDATE.equals(action)) { return; }
 
-    try {
-      telcoCursor = DatabaseFactory.getMmsSmsDatabase(context).getUnread();
-      pushCursor = DatabaseFactory.getPushDatabase(context).getPending();
+    Bundle extras = intent.getExtras();
+    if (extras != null) {
+      int[] appWidgetIds = extras.getIntArray(AppWidgetManager.EXTRA_APPWIDGET_IDS);
+      int unread = extras.getInt(UNREAD_COUNT);
 
-      if (telcoCursor != null) {
-        unread += telcoCursor.getCount();
-      }
+      if (appWidgetIds != null && appWidgetIds.length > 0) {
+        final int n = appWidgetIds.length;
 
-      if (pushCursor != null) {
-        unread += pushCursor.getCount();
-      }
+        for (int i = 0; i < n; i++) {
+          int appWidgetId = appWidgetIds[i];
 
-    } finally {
-      if (telcoCursor != null) telcoCursor.close();
-      if (pushCursor != null) pushCursor.close();
-    }
+          Intent launchIntent = new Intent(context, RoutingActivity.class);
+          PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, launchIntent, 0);
 
-    return unread;
-  }
+          RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.textsecure_appwidget);
+          views.setOnClickPendingIntent(R.id.icon_view, pendingIntent);
 
-  public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-    final int n = appWidgetIds.length;
+          if (unread > 0) {
+            if (unread > 99) {
+              unread = 99;
+            }
 
-    for (int i = 0; i < n; i++) {
-      int appWidgetId = appWidgetIds[i];
-
-      Intent intent = new Intent(context, RoutingActivity.class);
-      PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
-
-      RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.textsecure_appwidget);
-      views.setOnClickPendingIntent(R.id.icon_view, pendingIntent);
-
-      int unread = getUnreadCount(context);
-      if (unread > 0) {
-        if (unread > 99) {
-          unread = 99;
+            views.setTextViewText(R.id.unread_count_text, Integer.toString(unread));
+            views.setViewVisibility(R.id.unread_count_text, View.VISIBLE);
+          } else {
+            views.setViewVisibility(R.id.unread_count_text, View.INVISIBLE);
+          }
+          AppWidgetManager.getInstance(context).updateAppWidget(appWidgetId, views);
         }
-
-        views.setTextViewText(R.id.unread_count_text, Integer.toString(unread));
-        views.setViewVisibility(R.id.unread_count_text, View.VISIBLE);
-      } else {
-        views.setViewVisibility(R.id.unread_count_text, View.INVISIBLE);
       }
-
-      appWidgetManager.updateAppWidget(appWidgetId, views);
     }
   }
 }

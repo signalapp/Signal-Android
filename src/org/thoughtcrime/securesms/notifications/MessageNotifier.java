@@ -131,8 +131,6 @@ public class MessageNotifier {
     Cursor telcoCursor = null;
     Cursor pushCursor  = null;
 
-    TextSecureAppWidgetProvider.triggerUpdate(context);
-
     try {
       telcoCursor = DatabaseFactory.getMmsSmsDatabase(context).getUnread();
       pushCursor  = DatabaseFactory.getPushDatabase(context).getPending();
@@ -154,6 +152,9 @@ public class MessageNotifier {
       } else {
         sendSingleThreadNotification(context, masterSecret, notificationState, signal);
       }
+
+      TextSecureAppWidgetProvider.triggerUpdate(context, notificationState.getMessageCount());
+
     } finally {
       if (telcoCursor != null) telcoCursor.close();
       if (pushCursor != null)  pushCursor.close();
