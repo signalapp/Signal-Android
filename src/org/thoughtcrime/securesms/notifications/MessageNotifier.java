@@ -140,6 +140,7 @@ public class MessageNotifier {
       {
         ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
           .cancel(NOTIFICATION_ID);
+        TextSecureAppWidgetProvider.triggerUpdate(context, 0);
         return;
       }
 
@@ -169,6 +170,7 @@ public class MessageNotifier {
     if (notificationState.getNotifications().isEmpty()) {
       ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
           .cancel(NOTIFICATION_ID);
+      TextSecureAppWidgetProvider.triggerUpdate(context, 0);
       return;
     }
 
