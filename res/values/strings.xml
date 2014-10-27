@@ -495,18 +495,10 @@
 
 
     <!-- log_submit_activity -->
-    <string name="log_submit_activity__confirmation">This log will be posted publicly online for TextSecure contributors to view. Feel free to examine or edit the logs below before hitting submit.</string>
-    <string name="log_submit_activity__button_cancel">Don\'t submit</string>
-    <string name="log_submit_activity__button_ok">Submit</string>
     <string name="log_submit_activity__log_fetch_failed">Could not grab logs from your device. You can still use ADB to get debug logs instead.</string>
-    <string name="log_submit_activity__log_submit_success_title">Success!</string>
-    <string name="log_submit_activity__log_got_it">Got it</string>
-    <string name="log_submit_activity__your_pastebin_url">Please copy this URL and add it to your issue (long press to put in clipboard):\n\n<b>%1$s</b></string>
-    <string name="log_submit_activity__copied_to_clipboard">Copied to clipboard</string>
-    <string name="log_submit_activity__loading_logcat">Loading logcat&#8230;</string>
     <string name="log_submit_activity__thanks">Thanks for your help!</string>
     <string name="log_submit_activity__submitting">Submitting</string>
-    <string name="log_submit_activity__posting_logs">Posting logs to pastebin&#8230;</string>
+    <string name="log_submit_activity__posting_logs">Posting logs to gist&#8230;</string>
 
     <!-- database_migration_activity -->
     <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Would you like to import your existing text messages into TextSecure\'s encrypted database?</string>
