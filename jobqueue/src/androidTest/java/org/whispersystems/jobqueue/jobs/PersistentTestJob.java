@@ -19,7 +19,7 @@ public class PersistentTestJob extends Job {
 
   @Override
   public void onAdded() {
-    PersistentResult.getInstance().onAdded();;
+    PersistentResult.getInstance().onAdded();
   }
 
   @Override
