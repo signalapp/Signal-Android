@@ -42,20 +42,20 @@ public class JobConsumer extends Thread {
 
       JobResult result;
 
-      if ((result = runJob(job)) != JobResult.DEFERRED) {
-        if (result == JobResult.FAILURE) {
-          job.onCanceled();
-        }
-
-        if (job.isPersistent()) {
-          persistentStorage.remove(job.getPersistentId());
-        }
-      } else {
-        jobQueue.add(job);
+      if ((result = runJob(job)) == JobResult.FAILURE) {
+        job.onCanceled();
       }
 
       if (job.getGroupId() != null) {
         jobQueue.setGroupIdAvailable(job.getGroupId());
+      }
+
+      if (job.isPersistent()) {
+        persistentStorage.remove(job.getPersistentId());
+      }
+
+      if (result == JobResult.DEFERRED) {
+        jobQueue.add(job);
       }
     }
   }
