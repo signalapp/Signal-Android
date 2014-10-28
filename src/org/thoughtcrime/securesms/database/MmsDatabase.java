@@ -1064,7 +1064,7 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
         }
       };
 
-      future = new ListenableFutureTask<SlideDeck>(task, null);
+      future = new ListenableFutureTask<SlideDeck>(task);
       slideResolver.execute(future);
 
       return future;
@@ -1084,7 +1084,7 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
             }
           };
 
-          ListenableFutureTask<SlideDeck> future = new ListenableFutureTask<SlideDeck>(task, null);
+          ListenableFutureTask<SlideDeck> future = new ListenableFutureTask<SlideDeck>(task);
           future.run();
 
           return future;

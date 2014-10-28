@@ -22,10 +22,13 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.mms.MediaNotFoundException;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.whispersystems.textsecure.push.exceptions.NotFoundException;
+import org.whispersystems.textsecure.util.FutureTaskListener;
 import org.whispersystems.textsecure.util.ListenableFutureTask;
 
 import java.util.List;
@@ -82,21 +85,26 @@ public class MediaMmsMessageRecord extends MessageRecord {
     return deck != null && deck.containsMediaSlide();
   }
 
-  public Slide getMediaSlideSync() {
-    SlideDeck deck = getSlideDeckSync();
-    if (deck == null) {
-      return null;
-    }
-    List<Slide> slides = deck.getSlides();
 
-    for (Slide slide : slides) {
-      if (slide.hasImage() || slide.hasVideo() || slide.hasAudio()) {
-        return slide;
+  public void fetchMediaSlide(final FutureTaskListener<Slide> listener) {
+    slideDeckFutureTask.addListener(new FutureTaskListener<SlideDeck>() {
+      @Override
+      public void onSuccess(SlideDeck deck) {
+        for (Slide slide : deck.getSlides()) {
+          if (slide.hasImage() || slide.hasVideo() || slide.hasAudio()) {
+            listener.onSuccess(slide);
+            return;
+          }
+        }
+        listener.onFailure(new MediaNotFoundException("no media slide found"));
       }
-    }
-    return null;
-  }
 
+      @Override
+      public void onFailure(Throwable error) {
+        listener.onFailure(error);
+      }
+    });
+  }
 
   public int getPartCount() {
     return partCount;

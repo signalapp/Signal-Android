@@ -67,7 +67,7 @@ public class Recipient implements Parcelable, CanonicalRecipient {
     this.contactPhoto               = contactPhoto;
     this.recipientId                = recipientId;
 
-    future.setListener(new FutureTaskListener<RecipientDetails>() {
+    future.addListener(new FutureTaskListener<RecipientDetails>() {
       @Override
       public void onSuccess(RecipientDetails result) {
         if (result != null) {

@@ -107,6 +107,7 @@ public class ConversationItem extends LinearLayout {
   private  Button    mmsDownloadButton;
   private  TextView  mmsDownloadingLabel;
   private  ListenableFutureTask<SlideDeck> slideDeck;
+  private  FutureTaskListener<SlideDeck> slideDeckListener;
   private  TypedArray backgroundDrawables;
 
   private final FailedIconClickListener failedIconClickListener         = new FailedIconClickListener();
@@ -181,8 +182,8 @@ public class ConversationItem extends LinearLayout {
   }
 
   public void unbind() {
-    if (slideDeck != null)
-      slideDeck.setListener(null);
+    if (slideDeck != null && slideDeckListener != null)
+      slideDeck.removeListener(slideDeckListener);
   }
 
   public MessageRecord getMessageRecord() {
@@ -345,7 +346,7 @@ public class ConversationItem extends LinearLayout {
     }
 
     slideDeck = messageRecord.getSlideDeckFuture();
-    slideDeck.setListener(new FutureTaskListener<SlideDeck>() {
+    slideDeckListener = new FutureTaskListener<SlideDeck>() {
       @Override
       public void onSuccess(final SlideDeck result) {
         if (result == null)
@@ -376,7 +377,8 @@ public class ConversationItem extends LinearLayout {
 
       @Override
       public void onFailure(Throwable error) {}
-    });
+    };
+    slideDeck.addListener(slideDeckListener);
   }
 
   /// Helper Methods
