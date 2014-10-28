@@ -61,27 +61,27 @@ public class AttachmentManager {
   }
 
   public void setImage(Uri image) throws IOException, BitmapDecodingException {
-    ImageSlide slide = new ImageSlide(context, image);
-    slideDeck.addSlide(slide);
-    thumbnail.setImageDrawable(slide.getThumbnail(345, 261));
-    attachmentView.setVisibility(View.VISIBLE);
-    attachmentListener.onAttachmentChanged();
+    setMedia(new ImageSlide(context, image), 345, 261);
   }
 
   public void setVideo(Uri video) throws IOException, MediaTooLargeException {
-    VideoSlide slide = new VideoSlide(context, video);
+    setMedia(new VideoSlide(context, video));
+  }
+
+  public void setAudio(Uri audio) throws IOException, MediaTooLargeException {
+    setMedia(new AudioSlide(context, audio));
+  }
+
+  public void setMedia(Slide slide, int thumbnailWidth, int thumbnailHeight) {
+    slideDeck.clear();
     slideDeck.addSlide(slide);
-    thumbnail.setImageDrawable(slide.getThumbnail(thumbnail.getWidth(), thumbnail.getHeight()));
+    thumbnail.setImageDrawable(slide.getThumbnail(thumbnailWidth, thumbnailHeight));
     attachmentView.setVisibility(View.VISIBLE);
     attachmentListener.onAttachmentChanged();
   }
 
-  public void setAudio(Uri audio)throws IOException, MediaTooLargeException {
-    AudioSlide slide = new AudioSlide(context, audio);
-    slideDeck.addSlide(slide);
-    thumbnail.setImageDrawable(slide.getThumbnail(thumbnail.getWidth(), thumbnail.getHeight()));
-    attachmentView.setVisibility(View.VISIBLE);
-    attachmentListener.onAttachmentChanged();
+  public void setMedia(Slide slide) {
+    setMedia(slide, thumbnail.getWidth(), thumbnail.getHeight());
   }
 
   public boolean isAttachmentPresent() {
