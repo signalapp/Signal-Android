@@ -9,7 +9,10 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.ParcelUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.jobqueue.EncryptionKeys;
+import org.whispersystems.jobqueue.JobManager;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 
 public class RoutingActivity extends PassphraseRequiredSherlockActivity {
@@ -58,6 +61,9 @@ public class RoutingActivity extends PassphraseRequiredSherlockActivity {
     if (isVisible) {
       routeApplicationState();
     }
+
+    JobManager jobManager = ApplicationContext.getInstance(this).getJobManager();
+    jobManager.setEncryptionKeys(new EncryptionKeys(ParcelUtil.serialize(masterSecret)));
   }
 
   @Override
