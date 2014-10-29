@@ -82,6 +82,17 @@ android {
     }
 
     android {
+        buildTypes {
+            debug {
+                runProguard true
+                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.cfg'
+            }
+            release {
+                runProguard true
+                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.cfg'
+            }
+        }
+
         sourceSets {
             main {
                 manifest.srcFile 'AndroidManifest.xml'
