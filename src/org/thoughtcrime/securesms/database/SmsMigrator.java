@@ -29,9 +29,13 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class SmsMigrator {
+
+  private static final String TAG = SmsMigrator.class.getSimpleName();
+  private static final long DRAFT = 3L;
 
   private static void addEncryptedStringToStatement(Context context, SQLiteStatement statement,
                                                     Cursor cursor, MasterSecret masterSecret,
@@ -83,6 +87,26 @@ public class SmsMigrator {
     }
   }
 
+  private static String getStringFromCursor(Cursor cursor, String key) {
+    int columnIndex = cursor.getColumnIndexOrThrow(key);
+
+    if (cursor.isNull(columnIndex)) {
+      return "";
+    } else {
+      return cursor.getString(columnIndex);
+    }
+  }
+
+  private static long getLongFromCursor(Cursor cursor, String key) {
+    int columnIndex = cursor.getColumnIndexOrThrow(key);
+
+    if (cursor.isNull(columnIndex)) {
+      return 0L;
+    } else {
+      return cursor.getLong(columnIndex);
+    }
+  }
+
   private static void getContentValuesForRow(Context context, MasterSecret masterSecret,
                                              Cursor cursor, long threadId,
                                              SQLiteStatement statement)
@@ -116,7 +140,7 @@ public class SmsMigrator {
         return null;
       }
     } catch (IllegalStateException iae) {
-      Log.w("SmsMigrator", iae);
+      Log.w(TAG, iae);
       return null;
     } finally {
       if (cursor != null)
@@ -145,7 +169,7 @@ public class SmsMigrator {
       if (sb.length() == 0) return null;
       else                  return RecipientFactory.getRecipientsFromString(context, sb.toString(), true);
     } catch (RecipientFormattingException rfe) {
-      Log.w("SmsMigrator", rfe);
+      Log.w(TAG, rfe);
       return null;
     }
   }
@@ -171,8 +195,11 @@ public class SmsMigrator {
       SQLiteStatement statement  = ourSmsDatabase.createInsertStatement(transaction);
 
       while (cursor != null && cursor.moveToNext()) {
-        getContentValuesForRow(context, masterSecret, cursor, ourThreadId, statement);
-        statement.execute();
+
+        if (getLongFromCursor(cursor, SmsDatabase.TYPE) != DRAFT)
+          insertMessage(context, masterSecret, ourThreadId, cursor, statement);
+        else
+          insertDraft(context, masterSecret, ourThreadId, cursor);
 
         listener.progressUpdate(new ProgressDescription(progress, cursor.getCount(), cursor.getPosition()));
       }
@@ -185,6 +212,20 @@ public class SmsMigrator {
       if (cursor != null)
         cursor.close();
     }
+  }
+
+  private static void insertMessage(Context context, MasterSecret masterSecret, long ourThreadId, Cursor cursor, SQLiteStatement statement) {
+    getContentValuesForRow(context, masterSecret, cursor, ourThreadId, statement);
+    statement.execute();
+  }
+
+  private static void insertDraft(Context context, MasterSecret masterSecret, long ourThreadId, Cursor cursor) {
+    MasterCipher masterCipher = new MasterCipher(masterSecret);
+    DatabaseFactory.getDraftDatabase(context)
+                   .insertDrafts(masterCipher, ourThreadId,
+                       Arrays.asList(new DraftDatabase.Draft(DraftDatabase.Draft.TEXT,
+                           getStringFromCursor(cursor, SmsDatabase.BODY)))
+                   );
   }
 
   public static void migrateDatabase(Context context,

@@ -6,25 +6,29 @@ import android.database.sqlite.SQLiteStatement;
 import android.os.Environment;
 import android.util.Log;
 
-import org.whispersystems.textsecure.crypto.MasterCipher;
-import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.whispersystems.textsecure.crypto.MasterCipher;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
 
 public class PlaintextBackupImporter {
 
+  private static final String TAG = PlaintextBackupImporter.class.getSimpleName();
+  private static final int DRAFT  = 3;
+
   public static void importPlaintextFromSd(Context context, MasterSecret masterSecret)
       throws NoExternalStorageException, IOException
   {
-    Log.w("PlaintextBackupImporter", "Importing plaintext...");
+    Log.w(TAG, "Importing plaintext...");
     verifyExternalStorageForPlaintextImport();
     importPlaintext(context, masterSecret);
   }
@@ -43,43 +47,35 @@ public class PlaintextBackupImporter {
   private static void importPlaintext(Context context, MasterSecret masterSecret)
       throws IOException
   {
-    Log.w("PlaintextBackupImporter", "importPlaintext()");
+    Log.w(TAG, "importPlaintext()");
     SmsDatabase    db          = DatabaseFactory.getSmsDatabase(context);
     SQLiteDatabase transaction = db.beginTransaction();
 
     try {
-      ThreadDatabase threads         = DatabaseFactory.getThreadDatabase(context);
-      XmlBackup      backup          = new XmlBackup(getPlaintextExportDirectoryPath());
-      MasterCipher   masterCipher    = new MasterCipher(masterSecret);
-      Set<Long>      modifiedThreads = new HashSet<Long>();
+      ThreadDatabase  threads         = DatabaseFactory.getThreadDatabase(context);
+      XmlBackup       backup          = new XmlBackup(getPlaintextExportDirectoryPath());
+      MasterCipher    masterCipher    = new MasterCipher(masterSecret);
+      Set<Long>       modifiedThreads = new HashSet<Long>();
+      SQLiteStatement statement       = db.createInsertStatement(transaction);
       XmlBackup.XmlBackupItem item;
 
       while ((item = backup.getNext()) != null) {
         try {
-          Recipients      recipients = RecipientFactory.getRecipientsFromString(context, item.getAddress(), false);
-          long            threadId   = threads.getThreadIdFor(recipients);
-          SQLiteStatement statement  = db.createInsertStatement(transaction);
+          Recipients recipients = RecipientFactory.getRecipientsFromString(context, item.getAddress(), false);
+          long       threadId   = threads.getThreadIdFor(recipients);
 
           if (item.getAddress() == null || item.getAddress().equals("null"))
             continue;
 
-          addStringToStatement(statement, 1, item.getAddress());
-          addNullToStatement(statement, 2);
-          addLongToStatement(statement, 3, item.getDate());
-          addLongToStatement(statement, 4, item.getDate());
-          addLongToStatement(statement, 5, item.getProtocol());
-          addLongToStatement(statement, 6, item.getRead());
-          addLongToStatement(statement, 7, item.getStatus());
-          addTranslatedTypeToStatement(statement, 8, item.getType());
-          addNullToStatement(statement, 9);
-          addStringToStatement(statement, 10, item.getSubject());
-          addEncryptedStingToStatement(masterCipher, statement, 11, item.getBody());
-          addStringToStatement(statement, 12, item.getServiceCenter());
-          addLongToStatement(statement, 13, threadId);
+          if (item.getType() != DRAFT)
+            insertMessage(masterCipher, threadId, item, statement);
+          else
+            insertDraft(context, masterCipher, threadId, item);
+
           modifiedThreads.add(threadId);
-          statement.execute();
+
         } catch (RecipientFormattingException rfe) {
-          Log.w("PlaintextBackupImporter", rfe);
+          Log.w(TAG, rfe);
         }
       }
 
@@ -87,16 +83,48 @@ public class PlaintextBackupImporter {
         threads.update(threadId);
       }
 
-      Log.w("PlaintextBackupImporter", "Exited loop");
+      Log.w(TAG, "Exited loop");
     } catch (XmlPullParserException e) {
-      Log.w("PlaintextBackupImporter", e);
+      Log.w(TAG, e);
       throw new IOException("XML Parsing error!");
     } finally {
       db.endTransaction(transaction);
     }
   }
 
-  private static void addEncryptedStingToStatement(MasterCipher masterCipher, SQLiteStatement statement, int index, String value) {
+  private static void insertMessage(MasterCipher masterCipher, long threadId,
+                                    XmlBackup.XmlBackupItem item, SQLiteStatement statement)
+  {
+    getContentValuesForItem(masterCipher, item, threadId, statement);
+    statement.execute();
+  }
+
+  private static void getContentValuesForItem(MasterCipher masterCipher, XmlBackup.XmlBackupItem item,
+                                              long threadId, SQLiteStatement statement)
+  {
+    addStringToStatement(statement, 1, item.getAddress());
+    addNullToStatement(statement, 2);
+    addLongToStatement(statement, 3, item.getDate());
+    addLongToStatement(statement, 4, item.getDate());
+    addLongToStatement(statement, 5, item.getProtocol());
+    addLongToStatement(statement, 6, item.getRead());
+    addLongToStatement(statement, 7, item.getStatus());
+    addTranslatedTypeToStatement(statement, 8, item.getType());
+    addNullToStatement(statement, 9);
+    addStringToStatement(statement, 10, item.getSubject());
+    addEncryptedStringToStatement(masterCipher, statement, 11, item.getBody());
+    addStringToStatement(statement, 12, item.getServiceCenter());
+    statement.bindLong(13, threadId);
+  }
+
+  private static void insertDraft(Context context, MasterCipher masterCipher,
+                                  long threadId, XmlBackup.XmlBackupItem item)
+  {
+    DatabaseFactory.getDraftDatabase(context).insertDrafts(masterCipher, threadId,
+        Arrays.asList(new DraftDatabase.Draft(DraftDatabase.Draft.TEXT, item.getBody())));
+  }
+
+  private static void addEncryptedStringToStatement(MasterCipher masterCipher, SQLiteStatement statement, int index, String value) {
     if (value == null || value.equals("null")) {
       statement.bindNull(index);
     } else {
