@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms.notifications;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -63,6 +64,8 @@ import java.util.List;
  */
 
 public class MessageNotifier {
+
+  private static final String TAG = MessageNotifier.class.getSimpleName();
 
   public static final int NOTIFICATION_ID = 1338;
 
@@ -133,6 +136,7 @@ public class MessageNotifier {
       {
         ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
           .cancel(NOTIFICATION_ID);
+        sendUnreadMessageAppIconBadgeUpdate(context, null);
         return;
       }
 
@@ -145,11 +149,49 @@ public class MessageNotifier {
       } else {
         sendSingleThreadNotification(context, masterSecret, notificationState, signal);
       }
+
+      sendUnreadMessageAppIconBadgeUpdate(context, notificationState);
     } finally {
       if (telcoCursor != null) telcoCursor.close();
       if (pushCursor != null)  pushCursor.close();
     }
   }
+
+  private static void sendUnreadMessageAppIconBadgeUpdate(Context context,
+                                                          NotificationState notificationState)
+  {
+    /*
+     * this code uses the TeslaUnread API to update the Nova Launcher (prime) & widget locker
+     * unread message app icon.
+     * See http://novalauncher.com/teslaunread-api/ for further details.
+     */
+    try {
+      int count;
+      if (notificationState != null) {
+        count = notificationState.getMessageCount();
+      } else {
+        count = 0;
+      }
+      ContentValues cv = new ContentValues();
+
+      Intent launchIntent = context.getPackageManager().getLaunchIntentForPackage(context.getPackageName());
+      String launchIntentClassname = launchIntent.getComponent().getClassName();
+      cv.put("tag", context.getPackageName() + "/" + launchIntentClassname);
+      cv.put("count", count);
+
+      context.getContentResolver().insert(
+        Uri.parse("content://com.teslacoilsw.notifier/unread_count"), cv);
+
+    } catch (IllegalArgumentException ex) {
+      /* Fine, TeslaUnread is not installed. */
+    } catch (Exception ex) {
+      /* Some other error, possibly because the format
+         of the ContentValues are incorrect.
+         Log but do not crash over this. */
+      Log.w(TAG, ex);
+    }
+  }
+
 
   private static void sendSingleThreadNotification(Context context,
                                                    MasterSecret masterSecret,
@@ -274,7 +316,7 @@ public class MessageNotifier {
 
       player.start();
     } catch (IOException ioe) {
-      Log.w("MessageNotifier", ioe);
+      Log.w(TAG, ioe);
     }
   }
 
@@ -297,7 +339,7 @@ public class MessageNotifier {
         try {
           recipient = RecipientFactory.getRecipientsFromString(context, message.getSource(), false).getPrimaryRecipient();
         } catch (RecipientFormattingException e) {
-          Log.w("MessageNotifier", e);
+          Log.w(TAG, e);
           recipient = Recipient.getUnknownRecipient(context);
         }
 
