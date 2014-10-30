@@ -29,11 +29,14 @@ import android.os.Message;
 import android.util.Log;
 import android.widget.Toast;
 
+import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.database.CanonicalSessionMigrator;
+import org.thoughtcrime.securesms.jobs.PushDownloadJob;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.WorkerThread;
+import org.whispersystems.jobqueue.JobManager;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 
 import java.util.Iterator;
@@ -83,7 +86,6 @@ public class SendReceiveService extends Service {
   private MmsSender        mmsSender;
   private MmsDownloader    mmsDownloader;
   private PushReceiver     pushReceiver;
-  private PushDownloader   pushDownloader;
   private AvatarDownloader avatarDownloader;
 
   private MasterSecret masterSecret;
@@ -166,7 +168,6 @@ public class SendReceiveService extends Service {
     mmsSender        = new MmsSender(this, systemStateListener, toastHandler);
     mmsDownloader    = new MmsDownloader(this, toastHandler);
     pushReceiver     = new PushReceiver(this);
-    pushDownloader   = new PushDownloader(this);
     avatarDownloader = new AvatarDownloader(this);
   }
 
@@ -269,15 +270,23 @@ public class SendReceiveService extends Service {
       }
 
       switch (what) {
-      case RECEIVE_SMS:	         smsReceiver.process(masterSecret, intent);      return;
-      case SEND_SMS:		         smsSender.process(masterSecret, intent);        return;
+      case RECEIVE_SMS:          smsReceiver.process(masterSecret, intent);      return;
+      case SEND_SMS:             smsSender.process(masterSecret, intent);        return;
       case RECEIVE_MMS:          mmsReceiver.process(masterSecret, intent);      return;
       case SEND_MMS:             mmsSender.process(masterSecret, intent);        return;
       case DOWNLOAD_MMS:         mmsDownloader.process(masterSecret, intent);    return;
       case DOWNLOAD_MMS_PENDING: mmsDownloader.process(masterSecret, intent);    return;
       case RECEIVE_PUSH:         pushReceiver.process(masterSecret, intent);     return;
-      case DOWNLOAD_PUSH:        pushDownloader.process(masterSecret, intent);   return;
+      case DOWNLOAD_PUSH:        addPushDownloadJob(masterSecret, intent);       return;
       case DOWNLOAD_AVATAR:      avatarDownloader.process(masterSecret, intent); return;
+      }
+    }
+
+    private void addPushDownloadJob(MasterSecret masterSecret, Intent intent) {
+      if (DOWNLOAD_PUSH_ACTION.equals(intent.getAction())) {
+        long messageId = intent.getLongExtra("message_id", -1);
+        JobManager jobManager = ApplicationContext.getInstance(SendReceiveService.this).getJobManager();
+        jobManager.add(new PushDownloadJob(SendReceiveService.this, masterSecret, messageId));
       }
     }
   }
