@@ -9,8 +9,7 @@
 
     <RelativeLayout android:id="@+id/prompt_layout"
                     android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-        >
+                    android:layout_height="wrap_content">
 
         <ImageView android:id="@+id/watermark"
                    android:layout_width="wrap_content"
@@ -28,13 +27,14 @@
 
             <EditText android:id="@+id/passphrase_edit"
                       android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
+                      android:layout_height="45sp"
                       android:inputType="textPassword"
                       android:layout_marginLeft="50dp"
                       android:layout_marginRight="50dp"
                       android:singleLine="true"
                       android:background="@drawable/passphrase_input_background"
-                      android:padding="10dp"/>
+                      android:paddingLeft="10dp"
+                      android:paddingRight="10dp"/>
 
             <ImageButton android:id="@+id/ok_button"
                          android:src="@drawable/ic_action_forward"
