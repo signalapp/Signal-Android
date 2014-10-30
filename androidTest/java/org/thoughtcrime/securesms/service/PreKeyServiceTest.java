@@ -46,13 +46,13 @@ public class PreKeyServiceTest extends AndroidTestCase {
     when(currentSignedPreKeyEntity.getKeyId()).thenReturn(3133);
     when(pushServiceSocket.getCurrentSignedPreKey()).thenReturn(currentSignedPreKeyEntity);
 
-    final SignedPreKeyRecord currentRecord = new SignedPreKeyRecord(3133, System.currentTimeMillis(), Curve.generateKeyPair(true), new byte[64]);
+    final SignedPreKeyRecord currentRecord = new SignedPreKeyRecord(3133, System.currentTimeMillis(), Curve.generateKeyPair(), new byte[64]);
 
     List<SignedPreKeyRecord> records = new LinkedList<SignedPreKeyRecord>() {{
-      add(new SignedPreKeyRecord(1, 10, Curve.generateKeyPair(true), new byte[32]));
-      add(new SignedPreKeyRecord(2, 11, Curve.generateKeyPair(true), new byte[32]));
-      add(new SignedPreKeyRecord(3, System.currentTimeMillis() - 90, Curve.generateKeyPair(true), new byte[64]));
-      add(new SignedPreKeyRecord(4, System.currentTimeMillis() - 100, Curve.generateKeyPair(true), new byte[64]));
+      add(new SignedPreKeyRecord(1, 10, Curve.generateKeyPair(), new byte[32]));
+      add(new SignedPreKeyRecord(2, 11, Curve.generateKeyPair(), new byte[32]));
+      add(new SignedPreKeyRecord(3, System.currentTimeMillis() - 90, Curve.generateKeyPair(), new byte[64]));
+      add(new SignedPreKeyRecord(4, System.currentTimeMillis() - 100, Curve.generateKeyPair(), new byte[64]));
       add(currentRecord);
     }};
 
@@ -75,7 +75,7 @@ public class PreKeyServiceTest extends AndroidTestCase {
     when(currentSignedPreKeyEntity.getKeyId()).thenReturn(3133);
     when(pushServiceSocket.getCurrentSignedPreKey()).thenReturn(currentSignedPreKeyEntity);
 
-    final SignedPreKeyRecord currentRecord = new SignedPreKeyRecord(3133, System.currentTimeMillis(), Curve.generateKeyPair(true), new byte[64]);
+    final SignedPreKeyRecord currentRecord = new SignedPreKeyRecord(3133, System.currentTimeMillis(), Curve.generateKeyPair(), new byte[64]);
 
     List<SignedPreKeyRecord> records = new LinkedList<SignedPreKeyRecord>() {{
       add(currentRecord);
