@@ -19,8 +19,9 @@ package org.whispersystems.textsecure.crypto;
 
 import android.util.Log;
 
-import org.whispersystems.textsecure.crypto.ecc.Curve;
-import org.whispersystems.textsecure.crypto.ecc.ECPrivateKey;
+import org.whispersystems.libaxolotl.InvalidMessageException;
+import org.whispersystems.libaxolotl.ecc.Curve;
+import org.whispersystems.libaxolotl.ecc.ECPrivateKey;
 import org.whispersystems.textsecure.util.Base64;
 import org.whispersystems.textsecure.util.Hex;
 
@@ -84,12 +85,12 @@ public class MasterCipher {
   }
 	
   public ECPrivateKey decryptKey(byte[] key)
-      throws org.whispersystems.textsecure.crypto.InvalidKeyException
+      throws org.whispersystems.libaxolotl.InvalidKeyException
   {
     try {
       return Curve.decodePrivatePoint(decryptBytes(key));
     } catch (InvalidMessageException ime) {
-      throw new org.whispersystems.textsecure.crypto.InvalidKeyException(ime);
+      throw new org.whispersystems.libaxolotl.InvalidKeyException(ime);
     }
   }
 	

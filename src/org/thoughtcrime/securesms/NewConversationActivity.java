@@ -19,10 +19,9 @@ package org.thoughtcrime.securesms;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -50,7 +49,7 @@ import static org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
  * @author Moxie Marlinspike
  *
  */
-public class NewConversationActivity extends PassphraseRequiredSherlockFragmentActivity {
+public class NewConversationActivity extends PassphraseRequiredActionBarActivity {
   private final static String TAG                 = "ContactSelectActivity";
   public  final static String MASTER_SECRET_EXTRA = "master_secret";
 
@@ -83,7 +82,7 @@ public class NewConversationActivity extends PassphraseRequiredSherlockFragmentA
 
   @Override
   public boolean onPrepareOptionsMenu(Menu menu) {
-    MenuInflater inflater = this.getSupportMenuInflater();
+    MenuInflater inflater = this.getMenuInflater();
     menu.clear();
 
     if (TextSecurePreferences.isPushRegistered(this)) inflater.inflate(R.menu.push_directory, menu);

@@ -19,13 +19,16 @@
   <string name="ApplicationPreferencesActivity_unregistering">Des-registrant...</string>
   <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Des-registrant per les comunicacions basades en dades</string>
   <string name="ApplicationPreferencesActivity_disable_push_messages">Desactivar els missatges push?</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">\nAixò desactivarà els missatges push des-registran-te del servidor.\nNecessitaràs tornar a registrar el teu número de telèfon per utilitzar els missatges push una altra vegada.</string>
+  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">
+Això desactivarà els missatges push des-registran-te del servidor.
+Necessitaràs tornar a registrar el teu número de telèfon per utilitzar els missatges push una altra vegada.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Error connectant amb el servidor!</string>
   <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">No estàs registrat al servei push...</string>
   <string name="ApplicationPreferencesActivity_updating_directory">Actualitzant directori</string>
   <string name="ApplicationPreferencesActivity_updating_push_directory">Actualitzant el Directori Push...</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Toca per canviar la teva app d\'SMS predeterminada</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Toca per fer TextSecure la teva app d\'SMS predeterminada</string>
+  <!--AttchmentManager-->
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Fotografia</string>
   <string name="AttachmentTypeSelectorAdapter_video">Vídeo</string>
@@ -62,8 +65,6 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Estàs segur que vols deixar aquest grup?</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalls del missatge</string>
-  <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nEnviat/Rebut:%2$s</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Remitent: %1$s\nTransport: %2$s\nEnviat: %3$s\nRebut:%4$s</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Estàs segur que vols esborrar permanentment aquest missatge?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Aquest contingut ha estat emmagatzemant en una base de dades encriptada. La versió que desis a la targeta SD ja no estarà encriptada. Vols continuar?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Error mentre es desava l\'adjunt a la targeta SD!</string>
@@ -145,7 +146,6 @@
   <string name="RegistrationActivity_invalid_number">Número invàlid</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">El número que has especificat (%s) és invàlid.</string>
   <string name="RegistrationActivity_unsupported">No suportat</string>
-  <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">Ara verificarem que el número següent està associat amb aquest dispositiu:\n\n%s\n\nÉs aquest el número correcte, o vols editar-lo abans de continuar?</string>
   <string name="RegistrationActivity_continue">Continua</string>
   <string name="RegistrationActivity_edit">Edita</string>
   <!--RegistrationProblemsActivity-->
@@ -292,7 +292,6 @@
   <string name="log_submit_activity__log_fetch_failed">No s\'han pogut recollir els registres del teu dispositiu. Encara pots utilitzar ADB per aconseguir els registres de depuració.</string>
   <string name="log_submit_activity__log_submit_success_title">Èxit!</string>
   <string name="log_submit_activity__log_got_it">Ho tinc</string>
-  <string name="log_submit_activity__your_pastebin_url">Si us plau copia aquesta URL i afegeix el teu problema (apretada llarga per posar-ho al portapapers):\n\n<b>%1$s</b></string>
   <string name="log_submit_activity__copied_to_clipboard">Copiat al portapapers</string>
   <string name="log_submit_activity__loading_logcat">Carregant logcat...</string>
   <string name="log_submit_activity__thanks">Gràcies per la teva ajuda!</string>
@@ -304,9 +303,11 @@
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Això pot tardar una mica. Si us plau sigues pacient, et notificarem quan la importació estigui completa.</string>
   <string name="database_migration_activity__importing">IMPORTANT</string>
   <!--database_upgrade_activity-->
-  <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Exporta una còpia de seguretat\nencriptada a la targeta SD.</string>
+  <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Exporta una còpia de seguretat
+encriptada a la targeta SD.</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">Exporta una còpia de seguretat en text pla compatible amb \'Còpia de seguretat i restauració d\'SMS\' a la targeta SD.</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">Importa la base de dades\ndes de l\'app de missatgeria predeterminada del sistema.</string>
+  <string name="import_fragment__import_the_database_from_the_default_system">Importa la base de dades
+des de l\'app de missatgeria predeterminada del sistema.</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">Restaura una còpia de seguretat encriptada de TextSecure prèviament exportada.</string>
   <string name="import_fragment__import_a_plaintext_backup_file">Importa un arxiu de còpia de seguretat en text pla. Compatible amb \'Còpia de seguretat i restauració d\'SMS\'.</string>
   <!--mms_preferences_activity-->
@@ -323,7 +324,8 @@
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Complet</string>
   <!--registration_activity-->
-  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">\nTextSecure pot utilitzar missatges instantanis per incrementar la privacitat i evitar càrrecs d\'SMS quan es comuniqui amb altres usuaris de TextSecure. Per habilitar aquesta característica, si us plau verifica el teu codi de país i el teu número de telèfon.</string>
+  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
+TextSecure pot utilitzar missatges instantanis per incrementar la privacitat i evitar càrrecs d\'SMS quan es comuniqui amb altres usuaris de TextSecure. Per habilitar aquesta característica, si us plau verifica el teu codi de país i el teu número de telèfon.</string>
   <string name="registration_activity__your_country">EL TEU PAÍS</string>
   <string name="registration_activity__your_country_code_and_phone_number">EL TEU CODI DE PAÍS I NÚMERO DE TELÈFON</string>
   <string name="registration_activity__phone_number">NÚMERO DE TELÈFON</string>
@@ -362,8 +364,6 @@
   <string name="verify_identity_activity__their_identity_they_read">La seva identitat (ells llegeixen):</string>
   <string name="verify_identity_activity__your_identity_you_read">La teva identitat (tu llegeixes):</string>
   <!--verify_import_identity_activity-->
-  <string name="verify_import_identity_activity__identity_name_n">Nom de l\'identitat:\\n</string>
-  <string name="verify_import_identity_activity__imported_identity_n">Identitat importada:\\n</string>
   <string name="verify_import_identity_activity__verified">Verificat!</string>
   <string name="verify_import_identity_activity__compare">Compara</string>
   <!--verify_keys_activity-->
@@ -439,7 +439,8 @@
   <string name="preferences__make_default_sms_app">Estableix com a app d\'SMS predeterminada</string>
   <string name="preferences__make_textsecure_the_default_sms_mms_app">Fes TextSecure l\'aplicació d\'SMS/MMS predeterminada del teu sistema.</string>
   <string name="preferences__use_data_channel">Missatges Push</string>
-  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">\nAugmenta la privacitat i evita els càrrecs d\'SMS utilitzant el canal de dades per comunicar-se amb altres usuaris de TextSecure</string>
+  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
+Augmenta la privacitat i evita els càrrecs d\'SMS utilitzant el canal de dades per comunicar-se amb altres usuaris de TextSecure</string>
   <string name="preferences__allow_sms_fallback_disabled_reason">TextSecure és actualment la teva app d\'SMS predeterminada. Si us plau estableix una altra app d\'SMS abans de canviar aquesta preferència.</string>
   <string name="preferences__submit_debug_log">Envia un registre de depuració</string>
   <!--****************************************-->

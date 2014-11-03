@@ -22,6 +22,7 @@ import android.content.Context;
 import android.telephony.SmsManager;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.crypto.TextSecureCipher;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MultipartSmsMessageHandler;
@@ -30,11 +31,10 @@ import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.sms.SmsTransportDetails;
 import org.thoughtcrime.securesms.util.NumberUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.libaxolotl.protocol.CiphertextMessage;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.crypto.SessionCipher;
-import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
 import org.whispersystems.textsecure.storage.RecipientDevice;
-import org.whispersystems.textsecure.storage.Session;
+import org.whispersystems.textsecure.storage.SessionUtil;
 
 import java.util.ArrayList;
 
@@ -173,15 +173,14 @@ public class SmsTransport extends BaseTransport {
     RecipientDevice     recipientDevice   = new RecipientDevice(recipient.getRecipientId(),
                                                                 RecipientDevice.DEFAULT_DEVICE_ID);
 
-    if (!Session.hasEncryptCapableSession(context, masterSecret, recipient, recipientDevice)) {
+    if (!SessionUtil.hasEncryptCapableSession(context, masterSecret, recipientDevice)) {
       throw new InsecureFallbackApprovalException("No session exists for this secure message.");
     }
 
     String              body              = message.getMessageBody();
     SmsTransportDetails transportDetails  = new SmsTransportDetails();
-    SessionCipher       sessionCipher     = SessionCipher.createFor(context, masterSecret, recipientDevice);
-    byte[]              paddedPlaintext   = transportDetails.getPaddedMessageBody(body.getBytes());
-    CiphertextMessage   ciphertextMessage = sessionCipher.encrypt(paddedPlaintext);
+    TextSecureCipher    cipher            = new TextSecureCipher(context, masterSecret, recipientDevice, transportDetails);
+    CiphertextMessage   ciphertextMessage = cipher.encrypt(body.getBytes());
     String              encodedCiphertext = new String(transportDetails.getEncodedMessage(ciphertextMessage.serialize()));
 
     if (ciphertextMessage.getType() == CiphertextMessage.PREKEY_TYPE) {

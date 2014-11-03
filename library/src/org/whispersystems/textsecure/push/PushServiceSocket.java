@@ -23,8 +23,19 @@ import com.google.thoughtcrimegson.Gson;
 import com.google.thoughtcrimegson.JsonParseException;
 
 import org.apache.http.conn.ssl.StrictHostnameVerifier;
-import org.whispersystems.textsecure.crypto.IdentityKey;
-import org.whispersystems.textsecure.storage.PreKeyRecord;
+import org.whispersystems.libaxolotl.IdentityKey;
+import org.whispersystems.libaxolotl.ecc.ECPublicKey;
+import org.whispersystems.libaxolotl.state.PreKeyBundle;
+import org.whispersystems.libaxolotl.state.PreKeyRecord;
+import org.whispersystems.libaxolotl.state.SignedPreKeyRecord;
+import org.whispersystems.textsecure.push.exceptions.AuthorizationFailedException;
+import org.whispersystems.textsecure.push.exceptions.ExpectationFailedException;
+import org.whispersystems.textsecure.push.exceptions.MismatchedDevicesException;
+import org.whispersystems.textsecure.push.exceptions.NonSuccessfulResponseCodeException;
+import org.whispersystems.textsecure.push.exceptions.NotFoundException;
+import org.whispersystems.textsecure.push.exceptions.PushNetworkException;
+import org.whispersystems.textsecure.push.exceptions.RateLimitException;
+import org.whispersystems.textsecure.push.exceptions.StaleDevicesException;
 import org.whispersystems.textsecure.util.Base64;
 import org.whispersystems.textsecure.util.BlacklistingTrustManager;
 import org.whispersystems.textsecure.util.Util;
@@ -64,13 +75,15 @@ public class PushServiceSocket {
   private static final String CREATE_ACCOUNT_VOICE_PATH = "/v1/accounts/voice/code/%s";
   private static final String VERIFY_ACCOUNT_PATH       = "/v1/accounts/code/%s";
   private static final String REGISTER_GCM_PATH         = "/v1/accounts/gcm/";
-  private static final String PREKEY_METADATA_PATH      = "/v1/keys/";
-  private static final String PREKEY_PATH               = "/v1/keys/%s";
-  private static final String PREKEY_DEVICE_PATH        = "/v1/keys/%s/%s";
+  private static final String PREKEY_METADATA_PATH      = "/v2/keys/";
+  private static final String PREKEY_PATH               = "/v2/keys/%s";
+  private static final String PREKEY_DEVICE_PATH        = "/v2/keys/%s/%s";
+  private static final String SIGNED_PREKEY_PATH        = "/v2/keys/signed";
 
   private static final String DIRECTORY_TOKENS_PATH     = "/v1/directory/tokens";
   private static final String DIRECTORY_VERIFY_PATH     = "/v1/directory/%s";
   private static final String MESSAGE_PATH              = "/v1/messages/%s";
+  private static final String RECEIPT_PATH              = "/v1/receipt/%s/%d";
   private static final String ATTACHMENT_PATH           = "/v1/attachments/%s";
 
   private static final boolean ENFORCE_SSL = true;
@@ -105,6 +118,16 @@ public class PushServiceSocket {
                 "PUT", new Gson().toJson(signalingKeyEntity));
   }
 
+  public void sendReceipt(String destination, long messageId, String relay) throws IOException {
+    String path = String.format(RECEIPT_PATH, destination, messageId);
+
+    if (!Util.isEmpty(relay)) {
+      path += "?relay=" + relay;
+    }
+
+    makeRequest(path, "PUT", null);
+  }
+
   public void registerGcmId(String gcmRegistrationId) throws IOException {
     GcmRegistrationId registration = new GcmRegistrationId(gcmRegistrationId);
     makeRequest(REGISTER_GCM_PATH, "PUT", new Gson().toJson(registration));
@@ -126,26 +149,29 @@ public class PushServiceSocket {
 
   public void registerPreKeys(IdentityKey identityKey,
                               PreKeyRecord lastResortKey,
+                              SignedPreKeyRecord signedPreKey,
                               List<PreKeyRecord> records)
       throws IOException
   {
-    List<PreKeyEntity> entities = new LinkedList<PreKeyEntity>();
+    List<PreKeyEntity> entities = new LinkedList<>();
 
     for (PreKeyRecord record : records) {
       PreKeyEntity entity = new PreKeyEntity(record.getId(),
-                                             record.getKeyPair().getPublicKey(),
-                                             identityKey);
+                                             record.getKeyPair().getPublicKey());
 
       entities.add(entity);
     }
 
     PreKeyEntity lastResortEntity = new PreKeyEntity(lastResortKey.getId(),
-                                                     lastResortKey.getKeyPair().getPublicKey(),
-                                                     identityKey);
+                                                     lastResortKey.getKeyPair().getPublicKey());
 
+    SignedPreKeyEntity signedPreKeyEntity = new SignedPreKeyEntity(signedPreKey.getId(),
+                                                                   signedPreKey.getKeyPair().getPublicKey(),
+                                                                   signedPreKey.getSignature());
 
     makeRequest(String.format(PREKEY_PATH, ""), "PUT",
-                PreKeyList.toJson(new PreKeyList(lastResortEntity, entities)));
+                PreKeyState.toJson(new PreKeyState(entities, lastResortEntity,
+                                                   signedPreKeyEntity, identityKey)));
   }
 
   public int getAvailablePreKeys() throws IOException {
@@ -155,7 +181,7 @@ public class PushServiceSocket {
     return preKeyStatus.getCount();
   }
 
-  public List<PreKeyEntity> getPreKeys(PushAddress destination) throws IOException {
+  public List<PreKeyBundle> getPreKeys(PushAddress destination) throws IOException {
     try {
       String deviceId = String.valueOf(destination.getDeviceId());
 
@@ -168,10 +194,34 @@ public class PushServiceSocket {
         path = path + "?relay=" + destination.getRelay();
       }
 
-      String responseText = makeRequest(path, "GET", null);
-      PreKeyList response = PreKeyList.fromJson(responseText);
+      String             responseText = makeRequest(path, "GET", null);
+      PreKeyResponse     response     = PreKeyResponse.fromJson(responseText);
+      List<PreKeyBundle> bundles      = new LinkedList<>();
 
-      return response.getKeys();
+      for (PreKeyResponseItem device : response.getDevices()) {
+        ECPublicKey preKey                = null;
+        ECPublicKey signedPreKey          = null;
+        byte[]      signedPreKeySignature = null;
+        int         preKeyId              = -1;
+        int         signedPreKeyId        = -1;
+
+        if (device.getSignedPreKey() != null) {
+          signedPreKey          = device.getSignedPreKey().getPublicKey();
+          signedPreKeyId        = device.getSignedPreKey().getKeyId();
+          signedPreKeySignature = device.getSignedPreKey().getSignature();
+        }
+
+        if (device.getPreKey() != null) {
+          preKeyId = device.getPreKey().getKeyId();
+          preKey   = device.getPreKey().getPublicKey();
+        }
+
+        bundles.add(new PreKeyBundle(device.getRegistrationId(), device.getDeviceId(), preKeyId,
+                                     preKey, signedPreKeyId, signedPreKey, signedPreKeySignature,
+                                     response.getIdentityKey()));
+      }
+
+      return bundles;
     } catch (JsonParseException e) {
       throw new IOException(e);
     } catch (NotFoundException nfe) {
@@ -179,7 +229,7 @@ public class PushServiceSocket {
     }
   }
 
-  public PreKeyEntity getPreKey(PushAddress destination) throws IOException {
+  public PreKeyBundle getPreKey(PushAddress destination) throws IOException {
     try {
       String path = String.format(PREKEY_DEVICE_PATH, destination.getNumber(),
                                   String.valueOf(destination.getDeviceId()));
@@ -188,18 +238,54 @@ public class PushServiceSocket {
         path = path + "?relay=" + destination.getRelay();
       }
 
-      String     responseText = makeRequest(path, "GET", null);
-      PreKeyList response     = PreKeyList.fromJson(responseText);
+      String         responseText = makeRequest(path, "GET", null);
+      PreKeyResponse response     = PreKeyResponse.fromJson(responseText);
 
-      if (response.getKeys() == null || response.getKeys().size() < 1)
+      if (response.getDevices() == null || response.getDevices().size() < 1)
         throw new IOException("Empty prekey list");
 
-      return response.getKeys().get(0);
+      PreKeyResponseItem device                = response.getDevices().get(0);
+      ECPublicKey        preKey                = null;
+      ECPublicKey        signedPreKey          = null;
+      byte[]             signedPreKeySignature = null;
+      int                preKeyId              = -1;
+      int                signedPreKeyId        = -1;
+
+      if (device.getPreKey() != null) {
+        preKeyId = device.getPreKey().getKeyId();
+        preKey   = device.getPreKey().getPublicKey();
+      }
+
+      if (device.getSignedPreKey() != null) {
+        signedPreKeyId        = device.getSignedPreKey().getKeyId();
+        signedPreKey          = device.getSignedPreKey().getPublicKey();
+        signedPreKeySignature = device.getSignedPreKey().getSignature();
+      }
+
+      return new PreKeyBundle(device.getRegistrationId(), device.getDeviceId(), preKeyId, preKey,
+                              signedPreKeyId, signedPreKey, signedPreKeySignature, response.getIdentityKey());
     } catch (JsonParseException e) {
       throw new IOException(e);
     } catch (NotFoundException nfe) {
       throw new UnregisteredUserException(destination.getNumber(), nfe);
     }
+  }
+
+  public SignedPreKeyEntity getCurrentSignedPreKey() throws IOException {
+    try {
+      String responseText = makeRequest(SIGNED_PREKEY_PATH, "GET", null);
+      return SignedPreKeyEntity.fromJson(responseText);
+    } catch (NotFoundException e) {
+      Log.w("PushServiceSocket", e);
+      return null;
+    }
+  }
+
+  public void setCurrentSignedPreKey(SignedPreKeyRecord signedPreKey) throws IOException {
+    SignedPreKeyEntity signedPreKeyEntity = new SignedPreKeyEntity(signedPreKey.getId(),
+                                                                   signedPreKey.getKeyPair().getPublicKey(),
+                                                                   signedPreKey.getSignature());
+    makeRequest(SIGNED_PREKEY_PATH, "PUT", SignedPreKeyEntity.toJson(signedPreKeyEntity));
   }
 
   public long sendAttachment(PushAttachmentData attachment) throws IOException {
@@ -313,71 +399,75 @@ public class PushServiceSocket {
   }
 
   private String makeRequest(String urlFragment, String method, String body)
-      throws IOException
+      throws NonSuccessfulResponseCodeException, PushNetworkException
   {
     HttpURLConnection connection = makeBaseRequest(urlFragment, method, body);
-    String            response   = Util.readFully(connection.getInputStream());
 
-    connection.disconnect();
+    try {
+      String response = Util.readFully(connection.getInputStream());
+      connection.disconnect();
 
-    return response;
+      return response;
+    } catch (IOException ioe) {
+      throw new PushNetworkException(ioe);
+    }
   }
 
   private HttpURLConnection makeBaseRequest(String urlFragment, String method, String body)
-      throws IOException
+      throws NonSuccessfulResponseCodeException, PushNetworkException
   {
-    HttpURLConnection connection = getConnection(urlFragment, method);
+    HttpURLConnection connection = getConnection(urlFragment, method, body);
+    int               responseCode;
+    String            responseMessage;
+    String            response;
 
-    if (body != null) {
-      connection.setDoOutput(true);
+    try {
+      responseCode    = connection.getResponseCode();
+      responseMessage = connection.getResponseMessage();
+    } catch (IOException ioe) {
+      throw new PushNetworkException(ioe);
     }
 
-    connection.connect();
-
-    if (body != null) {
-      Log.w("PushServiceSocket", method +  "  --  " + body);
-      OutputStream out = connection.getOutputStream();
-      out.write(body.getBytes());
-      out.close();
+    switch (responseCode) {
+      case 413:
+        connection.disconnect();
+        throw new RateLimitException("Rate limit exceeded: " + responseCode);
+      case 401:
+      case 403:
+        connection.disconnect();
+        throw new AuthorizationFailedException("Authorization failed!");
+      case 404:
+        connection.disconnect();
+        throw new NotFoundException("Not found");
+      case 409:
+        try {
+          response = Util.readFully(connection.getErrorStream());
+        } catch (IOException e) {
+          throw new PushNetworkException(e);
+        }
+        throw new MismatchedDevicesException(new Gson().fromJson(response, MismatchedDevices.class));
+      case 410:
+        try {
+          response = Util.readFully(connection.getErrorStream());
+        } catch (IOException e) {
+          throw new PushNetworkException(e);
+        }
+        throw new StaleDevicesException(new Gson().fromJson(response, StaleDevices.class));
+      case 417:
+        throw new ExpectationFailedException();
     }
 
-    if (connection.getResponseCode() == 413) {
-      connection.disconnect();
-      throw new RateLimitException("Rate limit exceeded: " + connection.getResponseCode());
-    }
-
-    if (connection.getResponseCode() == 401 || connection.getResponseCode() == 403) {
-      connection.disconnect();
-      throw new AuthorizationFailedException("Authorization failed!");
-    }
-
-    if (connection.getResponseCode() == 404) {
-      connection.disconnect();
-      throw new NotFoundException("Not found");
-    }
-
-    if (connection.getResponseCode() == 409) {
-      String response = Util.readFully(connection.getErrorStream());
-      throw new MismatchedDevicesException(new Gson().fromJson(response, MismatchedDevices.class));
-    }
-
-    if (connection.getResponseCode() == 410) {
-      String response = Util.readFully(connection.getErrorStream());
-      throw new StaleDevicesException(new Gson().fromJson(response, StaleDevices.class));
-    }
-
-    if (connection.getResponseCode() == 417) {
-      throw new ExpectationFailedException();
-    }
-
-    if (connection.getResponseCode() != 200 && connection.getResponseCode() != 204) {
-      throw new IOException("Bad response: " + connection.getResponseCode() + " " + connection.getResponseMessage());
+    if (responseCode != 200 && responseCode != 204) {
+        throw new NonSuccessfulResponseCodeException("Bad response: " + responseCode + " " +
+                                                     responseMessage);
     }
 
     return connection;
   }
 
-  private HttpURLConnection getConnection(String urlFragment, String method) throws IOException {
+  private HttpURLConnection getConnection(String urlFragment, String method, String body)
+      throws PushNetworkException
+  {
     try {
       SSLContext context = SSLContext.getInstance("TLS");
       context.init(null, trustManagers, null);
@@ -386,11 +476,11 @@ public class PushServiceSocket {
       Log.w("PushServiceSocket", "Push service URL: " + serviceUrl);
       Log.w("PushServiceSocket", "Opening URL: " + url);
 
-      HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+      HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
       if (ENFORCE_SSL) {
-        ((HttpsURLConnection)connection).setSSLSocketFactory(context.getSocketFactory());
-        ((HttpsURLConnection)connection).setHostnameVerifier(new StrictHostnameVerifier());
+        ((HttpsURLConnection) connection).setSSLSocketFactory(context.getSocketFactory());
+        ((HttpsURLConnection) connection).setHostnameVerifier(new StrictHostnameVerifier());
       }
 
       connection.setRequestMethod(method);
@@ -400,12 +490,25 @@ public class PushServiceSocket {
         connection.setRequestProperty("Authorization", getAuthorizationHeader());
       }
 
+      if (body != null) {
+        connection.setDoOutput(true);
+      }
+
+      connection.connect();
+
+      if (body != null) {
+        Log.w("PushServiceSocket", method + "  --  " + body);
+        OutputStream out = connection.getOutputStream();
+        out.write(body.getBytes());
+        out.close();
+      }
+
       return connection;
+    } catch (IOException e) {
+      throw new PushNetworkException(e);
     } catch (NoSuchAlgorithmException e) {
       throw new AssertionError(e);
     } catch (KeyManagementException e) {
-      throw new AssertionError(e);
-    } catch (MalformedURLException e) {
       throw new AssertionError(e);
     }
   }

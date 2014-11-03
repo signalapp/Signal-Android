@@ -28,12 +28,11 @@ import org.thoughtcrime.securesms.DatabaseUpgradeActivity;
 import org.thoughtcrime.securesms.crypto.DecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.DecryptingQueue;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
-import org.whispersystems.textsecure.crypto.IdentityKey;
-import org.whispersystems.textsecure.crypto.InvalidMessageException;
+import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.whispersystems.libaxolotl.IdentityKey;
+import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.textsecure.crypto.MasterCipher;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
-import org.whispersystems.textsecure.storage.Session;
 import org.whispersystems.textsecure.util.Base64;
 import org.whispersystems.textsecure.util.Util;
 
@@ -56,7 +55,9 @@ public class DatabaseFactory {
   private static final int INTRODUCED_PUSH_DATABASE_VERSION  = 10;
   private static final int INTRODUCED_GROUP_DATABASE_VERSION = 11;
   private static final int INTRODUCED_PUSH_FIX_VERSION       = 12;
-  private static final int DATABASE_VERSION                  = 12;
+  private static final int INTRODUCED_DELIVERY_RECEIPTS      = 13;
+  private static final int DATABASE_VERSION                  = 13;
+
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
@@ -403,8 +404,15 @@ public class DatabaseFactory {
             String name = session.getName();
 
             if (name.matches("[0-9]+")) {
-              long recipientId            = Long.parseLong(name);
-              IdentityKey identityKey     = Session.getRemoteIdentityKey(context, masterSecret, recipientId);
+              long        recipientId = Long.parseLong(name);
+              IdentityKey identityKey = null;
+              // NOTE (4/21/14) -- At this moment in time, we're forgetting the ability to parse
+              // V1 session records.  Despite our usual attempts to avoid using shared code in the
+              // upgrade path, this is too complex to put here directly.  Thus, unfortunately
+              // this operation is now lost to the ages.  From the git log, it seems to have been
+              // almost exactly a year since this went in, so hopefully the bulk of people have
+              // already upgraded.
+//              IdentityKey identityKey     = Session.getRemoteIdentityKey(context, masterSecret, recipientId);
 
               if (identityKey != null) {
                 MasterCipher masterCipher = new MasterCipher(masterSecret);
@@ -694,6 +702,13 @@ public class DatabaseFactory {
         db.execSQL("CREATE TABLE push (_id INTEGER PRIMARY KEY, type INTEGER, source TEXT, body TEXT, timestamp INTEGER, device_id INTEGER DEFAULT 1);");
         db.execSQL("INSERT INTO push (_id, type, source, body, timestamp, device_id) SELECT _id, type, source, body, timestamp, device_id FROM push_backup;");
         db.execSQL("DROP TABLE push_backup;");
+      }
+
+      if (oldVersion < INTRODUCED_DELIVERY_RECEIPTS) {
+        db.execSQL("ALTER TABLE sms ADD COLUMN delivery_receipt_count INTEGER DEFAULT 0;");
+        db.execSQL("ALTER TABLE mms ADD COLUMN delivery_receipt_count INTEGER DEFAULT 0;");
+        db.execSQL("CREATE INDEX IF NOT EXISTS sms_date_sent_index ON sms (date_sent);");
+        db.execSQL("CREATE INDEX IF NOT EXISTS mms_date_sent_index ON mms (date);");
       }
 
       db.setTransactionSuccessful();

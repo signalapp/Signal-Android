@@ -31,6 +31,7 @@ Käyttääksenne push-palvelua tulevaisuudessa teidän täytyy rekisteröityä u
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Kosketa muuttaaksesi oletus tekstiviestisovellusta</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Saapuvat tekstiviestit kielletty</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Kosketa asettaaksesi TextSecuren oletus tekstiviestisovellukseksi</string>
+  <!--AttchmentManager-->
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Kuva</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>

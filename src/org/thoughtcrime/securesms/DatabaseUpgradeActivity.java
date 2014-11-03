@@ -29,12 +29,14 @@ import android.widget.ProgressBar;
 
 import org.thoughtcrime.securesms.crypto.DecryptingQueue;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
+import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.util.VersionTracker;
 
+import java.io.File;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -45,12 +47,16 @@ public class DatabaseUpgradeActivity extends Activity {
   public static final int TOFU_IDENTITIES_VERSION              = 50;
   public static final int CURVE25519_VERSION                   = 63;
   public static final int ASYMMETRIC_MASTER_SECRET_FIX_VERSION = 73;
+  public static final int NO_V1_VERSION                        = 83;
+  public static final int SIGNED_PREKEY_VERSION                = 83;
 
   private static final SortedSet<Integer> UPGRADE_VERSIONS = new TreeSet<Integer>() {{
     add(NO_MORE_KEY_EXCHANGE_PREFIX_VERSION);
     add(TOFU_IDENTITIES_VERSION);
     add(CURVE25519_VERSION);
     add(ASYMMETRIC_MASTER_SECRET_FIX_VERSION);
+    add(NO_V1_VERSION);
+    add(SIGNED_PREKEY_VERSION);
   }};
 
   private MasterSecret masterSecret;
@@ -135,6 +141,28 @@ public class DatabaseUpgradeActivity extends Activity {
         if (!IdentityKeyUtil.hasCurve25519IdentityKeys(context)) {
           IdentityKeyUtil.generateCurve25519IdentityKeys(context, masterSecret);
         }
+      }
+
+      if (params[0] < NO_V1_VERSION) {
+        File v1sessions = new File(context.getFilesDir(), "sessions");
+
+        if (v1sessions.exists() && v1sessions.isDirectory()) {
+          File[] contents = v1sessions.listFiles();
+
+          if (contents != null) {
+            for (File session : contents) {
+              session.delete();
+            }
+          }
+
+          v1sessions.delete();
+        }
+      }
+
+      if (params[0] < SIGNED_PREKEY_VERSION) {
+        ApplicationContext.getInstance(getApplicationContext())
+                          .getJobManager()
+                          .add(new CreateSignedPreKeyJob(context, masterSecret));
       }
 
       return null;

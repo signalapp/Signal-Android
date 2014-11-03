@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -17,7 +18,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.actionbarsherlock.app.SherlockActivity;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.i18n.phonenumbers.AsYouTypeFormatter;
@@ -38,7 +38,7 @@ import org.whispersystems.textsecure.util.Util;
  * @author Moxie Marlinspike
  *
  */
-public class RegistrationActivity extends SherlockActivity {
+public class RegistrationActivity extends ActionBarActivity {
 
   private static final int PICK_COUNTRY = 1;
 

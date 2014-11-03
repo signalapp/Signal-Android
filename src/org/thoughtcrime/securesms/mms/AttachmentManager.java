@@ -17,13 +17,16 @@
 package org.thoughtcrime.securesms.mms;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
@@ -31,6 +34,7 @@ import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import java.io.IOException;
 
 public class AttachmentManager {
+  private final static String TAG = AttachmentManager.class.getSimpleName();
 
   private final Context context;
   private final View attachmentView;
@@ -57,27 +61,27 @@ public class AttachmentManager {
   }
 
   public void setImage(Uri image) throws IOException, BitmapDecodingException {
-    ImageSlide slide = new ImageSlide(context, image);
-    slideDeck.addSlide(slide);
-    thumbnail.setImageDrawable(slide.getThumbnail(345, 261));
-    attachmentView.setVisibility(View.VISIBLE);
-    attachmentListener.onAttachmentChanged();
+    setMedia(new ImageSlide(context, image), 345, 261);
   }
 
   public void setVideo(Uri video) throws IOException, MediaTooLargeException {
-    VideoSlide slide = new VideoSlide(context, video);
+    setMedia(new VideoSlide(context, video));
+  }
+
+  public void setAudio(Uri audio) throws IOException, MediaTooLargeException {
+    setMedia(new AudioSlide(context, audio));
+  }
+
+  public void setMedia(Slide slide, int thumbnailWidth, int thumbnailHeight) {
+    slideDeck.clear();
     slideDeck.addSlide(slide);
-    thumbnail.setImageDrawable(slide.getThumbnail(thumbnail.getWidth(), thumbnail.getHeight()));
+    thumbnail.setImageDrawable(slide.getThumbnail(thumbnailWidth, thumbnailHeight));
     attachmentView.setVisibility(View.VISIBLE);
     attachmentListener.onAttachmentChanged();
   }
 
-  public void setAudio(Uri audio)throws IOException, MediaTooLargeException {
-    AudioSlide slide = new AudioSlide(context, audio);
-    slideDeck.addSlide(slide);
-    thumbnail.setImageDrawable(slide.getThumbnail(thumbnail.getWidth(), thumbnail.getHeight()));
-    attachmentView.setVisibility(View.VISIBLE);
-    attachmentListener.onAttachmentChanged();
+  public void setMedia(Slide slide) {
+    setMedia(slide, thumbnail.getWidth(), thumbnail.getHeight());
   }
 
   public boolean isAttachmentPresent() {
@@ -101,16 +105,26 @@ public class AttachmentManager {
   }
 
   private static void selectMediaType(Activity activity, String type, int requestCode) {
-    final Intent intent;
+    final Intent intent = new Intent();
+    intent.setType(type);
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-      intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-    } else {
-      intent = new Intent(Intent.ACTION_GET_CONTENT);
+      intent.setAction(Intent.ACTION_OPEN_DOCUMENT);
+      try {
+        activity.startActivityForResult(intent, requestCode);
+        return;
+      } catch (ActivityNotFoundException anfe) {
+        Log.w(TAG, "couldn't complete ACTION_OPEN_DOCUMENT, no activity found. falling back.");
+      }
     }
 
-    intent.setType(type);
-    activity.startActivityForResult(intent, requestCode);
+    intent.setAction(Intent.ACTION_GET_CONTENT);
+    try {
+      activity.startActivityForResult(intent, requestCode);
+    } catch (ActivityNotFoundException anfe) {
+      Log.w(TAG, "couldn't complete ACTION_GET_CONTENT intent, no activity found. falling back.");
+      Toast.makeText(activity, R.string.AttachmentManager_cant_open_media_selection, Toast.LENGTH_LONG).show();
+    }
   }
 
   private class RemoveButtonListener implements View.OnClickListener {

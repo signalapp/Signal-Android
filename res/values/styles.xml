@@ -1,59 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="NoAnimation.Theme.BlackScreen" parent="@style/Theme.Sherlock.NoActionBar">
+    <style name="Theme.AppCompat.NoActionBar" parent="@style/Theme.AppCompat">
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="NoAnimation.Theme.BlackScreen" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowAnimationStyle">@null</item>
         <item name="android:windowBackground">@android:color/black</item>
     </style>
 
-    <style name="NoAnimation.Theme.Sherlock.Light.DarkActionBar" parent="@style/Theme.Sherlock.Light.DarkActionBar">
+    <style name="NoAnimation.Theme.AppCompat.Light.DarkActionBar" parent="@style/Theme.AppCompat.Light.DarkActionBar">
         <item name="android:windowAnimationStyle">@null</item>
-    </style>
-
-    <!-- the theme applied to the application or activity -->
-    <style name="TextSecure.Dark"
-           parent="@style/Theme.Sherlock">
-        <item name="android:actionBarStyle">@style/TextSecure.DarkActionBar</item>
-        <item name="actionBarStyle">@style/TextSecure.DarkActionBar</item>
     </style>
 
     <!-- ActionBar styles -->
     <style name="TextSecure.DarkActionBar"
-           parent="@style/Widget.Sherlock.ActionBar">
-        <item name="android:background">#ff111111</item>
-        <item name="background">#ff111111</item>
-        <item name="android:icon">@drawable/actionbar_icon_holo_dark</item>
-        <item name="icon">@drawable/actionbar_icon_holo_dark</item>
+           parent="@style/Widget.AppCompat.ActionBar">
+        <item name="background">@color/gray95</item>
+        <item name="elevation">1dp</item>
     </style>
 
-    <style name="TextSecure.ClearTitleTextStyle" parent="TextAppearance.Sherlock.Widget.ActionBar.Title">
+    <style name="TextSecure.LightActionBar"
+           parent="@style/Widget.AppCompat.ActionBar">
+        <item name="background">@color/gray5</item>
+        <item name="elevation">1dp</item>
+    </style>
+
+    <style name="TextSecure.ClearTitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textColor">@android:color/transparent</item>
     </style>
 
-    <style name="TextSecure.TitleTextStyle" parent="TextAppearance.Sherlock.Widget.ActionBar.Title">
+    <style name="TextSecure.TitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textColor">#ff555555</item>
         <item name="android:textSize">19sp</item>
     </style>
 
-    <style name="TextSecure.SubtitleTextStyle" parent="TextAppearance.Sherlock.Widget.ActionBar.Subtitle">
+    <style name="TextSecure.SubtitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Subtitle">
         <item name="android:textColor">#ff555555</item>
     </style>
 
-    <style name="TextSecure.LightActionBar" parent="Widget.Sherlock.Light.ActionBar.Solid">
-        <item name="android:titleTextStyle">@style/TextSecure.TitleTextStyle</item>
-        <item name="titleTextStyle">@style/TextSecure.TitleTextStyle</item>
-        <item name="android:subtitleTextStyle">@style/TextSecure.SubtitleTextStyle</item>
-        <item name="subtitleTextStyle">@style/TextSecure.SubtitleTextStyle</item>
-        <item name="android:icon">@drawable/actionbar_icon_holo_light</item>
-        <item name="icon">@drawable/actionbar_icon_holo_light</item>
-    </style>
-
-    <style name="TextSecure.IntroActionBar" parent="Widget.Sherlock.Light.ActionBar.Solid">
-        <item name="android:titleTextStyle">@style/TextSecure.ClearTitleTextStyle</item>
-        <item name="titleTextStyle">@style/TextSecure.ClearTitleTextStyle</item>
-        <item name="android:background">@drawable/background_pattern_repeat</item>
+    <style name="TextSecure.IntroActionBar" parent="Widget.AppCompat.Light.ActionBar.Solid">
         <item name="background">@drawable/background_pattern_repeat</item>
-        <item name="android:icon">@android:color/transparent</item>
-        <item name="icon">@android:color/transparent</item>
+        <item name="elevation">0dp</item>
     </style>
 
 	<style name="transparent_progress">
@@ -67,7 +55,6 @@
 	    <item name="android:backgroundDimEnabled">false</item>
 	    <item name="android:background">@android:color/transparent</item>
 	</style>
-
 
 	<style name="NotificationText">
       <item name="android:textColor">?android:attr/textColorPrimary</item>

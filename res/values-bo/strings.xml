@@ -12,6 +12,7 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">ད་ལྟ་རང་འཕྲིན་ཐུང་རྙིང་པ་ཚང་མ་གསུབ་གི་ཡིན་ནམ། </string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">ཁྱེད་ཀྱིས་མྱུར་དུ་ཉེ་འཆར་གྱི་འཕྲིན་ཐུང་དེའི་སླད་དུ་གླེང་མོལ་གྱི་སྐུད་པ་ཚང་མ་གཙང་བཟོ་བྱེད་ཀྱི་ཡིན་ནམ། </string>
   <string name="ApplicationPreferencesActivity_delete">གསུབ། </string>
+  <!--AttchmentManager-->
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">འདྲ་པར།</string>
   <string name="AttachmentTypeSelectorAdapter_video">བརྙན་པར།</string>
@@ -200,8 +201,6 @@
   <string name="verify_identity_activity__their_identity_they_read">གཞན་གྱི་ངོས་འཛིན། (ཁོང་ཚོས་ཀློགས)</string>
   <string name="verify_identity_activity__your_identity_you_read">ཁྱེད་ཀྱི་ངོས་འཛིན། (ཁྱེད་ཀྱིས་ཀློགས)</string>
   <!--verify_import_identity_activity-->
-  <string name="verify_import_identity_activity__identity_name_n">ངོས་འཛིན་གྱི་མིང་། </string>
-  <string name="verify_import_identity_activity__imported_identity_n">ནང་འཇུག་བྱས་པའི་ངོས་འཛིན།</string>
   <string name="verify_import_identity_activity__verified">ར་སྤྲོད་བྱས་ཟིན།</string>
   <string name="verify_import_identity_activity__compare">ཞིབ་བསྡུར་བྱོས།  </string>
   <!--verify_keys_activity-->

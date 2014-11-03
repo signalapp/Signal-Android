@@ -11,6 +11,7 @@ import android.graphics.Rect;
 import android.net.Uri;
 import android.util.Log;
 
+import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -96,8 +97,8 @@ public class BitmapUtil {
     options.inSampleSize       = scaler;
     options.inJustDecodeBounds = false;
 
-    FlushedInputStream is = new FlushedInputStream(data);
-    Bitmap roughThumbnail = BitmapFactory.decodeStream(is, null, options);
+    BufferedInputStream is = new BufferedInputStream(data);
+    Bitmap roughThumbnail  = BitmapFactory.decodeStream(is, null, options);
     try {
       is.close();
     } catch (IOException ioe) {
@@ -143,7 +144,7 @@ public class BitmapUtil {
   private static BitmapFactory.Options getImageDimensions(InputStream inputStream) {
     BitmapFactory.Options options = new BitmapFactory.Options();
     options.inJustDecodeBounds    = true;
-    FlushedInputStream fis        = new FlushedInputStream(inputStream);
+    BufferedInputStream fis       = new BufferedInputStream(inputStream);
     BitmapFactory.decodeStream(fis, null, options);
     try {
       fis.close();

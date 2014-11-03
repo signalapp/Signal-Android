@@ -18,6 +18,8 @@ package org.whispersystems.textsecure.crypto;
 
 import android.util.Log;
 
+import org.whispersystems.libaxolotl.InvalidMacException;
+import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.textsecure.util.Util;
 
 import java.io.File;

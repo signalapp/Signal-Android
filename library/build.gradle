@@ -8,7 +8,7 @@ buildscript {
     }
 }
 
-apply plugin: 'android-library'
+apply plugin: 'com.android.library'
 apply plugin: 'maven'
 
 repositories {
@@ -19,15 +19,22 @@ repositories {
 }
 
 dependencies {
-    compile 'com.google.protobuf:protobuf-java:2.4.1'
+    compile 'com.google.protobuf:protobuf-java:2.5.0'
     compile 'com.madgag:sc-light-jdk15on:1.47.0.2'
     compile 'com.googlecode.libphonenumber:libphonenumber:6.1'
     compile 'org.whispersystems:gson:2.2.4'
+
+    compile project(':libaxolotl')
 }
 
 android {
     compileSdkVersion 19
     buildToolsVersion '20.0.0'
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
 
     android {
         sourceSets {
@@ -41,7 +48,19 @@ android {
                 assets.srcDirs = ['assets']
                 jniLibs.srcDirs = ['libs']
             }
+            androidTest {
+                java.srcDirs = ['androidTest/java']
+                resources.srcDirs = ['androidTest/java']
+                aidl.srcDirs = ['androidTest/java']
+                renderscript.srcDirs = ['androidTest/java']
+            }
         }
+    }
+}
+
+tasks.whenTaskAdded { task ->
+    if (task.name.equals("lint")) {
+        task.enabled = false
     }
 }
 

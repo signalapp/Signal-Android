@@ -2,7 +2,7 @@ package org.whispersystems.textsecure.push;
 
 import android.util.Log;
 
-import org.whispersystems.textsecure.crypto.InvalidVersionException;
+import org.whispersystems.libaxolotl.InvalidVersionException;
 import org.whispersystems.textsecure.util.Base64;
 import org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal;
 import org.whispersystems.textsecure.util.Hex;

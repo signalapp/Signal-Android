@@ -34,6 +34,7 @@ Vai necessitar de re-registar o seu número de telefone se pretender utilizar es
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Definir como aplicação SMS por omissão</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Recepção de SMS desactivada</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Pressione para tornar TextSecure a sua applicação SMS por omissão</string>
+  <!--AttchmentManager-->
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Imagem</string>
   <string name="AttachmentTypeSelectorAdapter_video">Vídeo</string>

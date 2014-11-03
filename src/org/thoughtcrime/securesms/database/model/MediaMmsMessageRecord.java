@@ -18,14 +18,21 @@ package org.thoughtcrime.securesms.database.model;
 
 import android.content.Context;
 import android.text.SpannableString;
+import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.MmsDatabase;
-import org.thoughtcrime.securesms.database.SmsDatabase;
+import org.thoughtcrime.securesms.mms.MediaNotFoundException;
+import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.whispersystems.textsecure.push.exceptions.NotFoundException;
+import org.whispersystems.textsecure.util.FutureTaskListener;
 import org.whispersystems.textsecure.util.ListenableFutureTask;
+
+import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Represents the message record model for MMS messages that contain
@@ -36,27 +43,67 @@ import org.whispersystems.textsecure.util.ListenableFutureTask;
  */
 
 public class MediaMmsMessageRecord extends MessageRecord {
+  private final static String TAG = MediaMmsMessageRecord.class.getSimpleName();
 
   private final Context context;
   private final int partCount;
-  private final ListenableFutureTask<SlideDeck> slideDeck;
+  private final ListenableFutureTask<SlideDeck> slideDeckFutureTask;
 
   public MediaMmsMessageRecord(Context context, long id, Recipients recipients,
                                Recipient individualRecipient, int recipientDeviceId,
-                               long dateSent, long dateReceived, long threadId, Body body,
+                               long dateSent, long dateReceived, int deliveredCount,
+                               long threadId, Body body,
                                ListenableFutureTask<SlideDeck> slideDeck,
                                int partCount, long mailbox)
   {
     super(context, id, body, recipients, individualRecipient, recipientDeviceId,
-          dateSent, dateReceived, threadId, DELIVERY_STATUS_NONE, mailbox);
+          dateSent, dateReceived, threadId, deliveredCount, DELIVERY_STATUS_NONE, mailbox);
 
-    this.context   = context.getApplicationContext();
-    this.partCount = partCount;
-    this.slideDeck = slideDeck;
+    this.context             = context.getApplicationContext();
+    this.partCount           = partCount;
+    this.slideDeckFutureTask = slideDeck;
   }
 
-  public ListenableFutureTask<SlideDeck> getSlideDeck() {
-    return slideDeck;
+  public ListenableFutureTask<SlideDeck> getSlideDeckFuture() {
+    return slideDeckFutureTask;
+  }
+
+  private SlideDeck getSlideDeckSync() {
+    try {
+      return slideDeckFutureTask.get();
+    } catch (InterruptedException e) {
+      Log.w(TAG, e);
+      return null;
+    } catch (ExecutionException e) {
+      Log.w(TAG, e);
+      return null;
+    }
+  }
+
+  public boolean containsMediaSlide() {
+    SlideDeck deck = getSlideDeckSync();
+    return deck != null && deck.containsMediaSlide();
+  }
+
+
+  public void fetchMediaSlide(final FutureTaskListener<Slide> listener) {
+    slideDeckFutureTask.addListener(new FutureTaskListener<SlideDeck>() {
+      @Override
+      public void onSuccess(SlideDeck deck) {
+        for (Slide slide : deck.getSlides()) {
+          if (slide.hasImage() || slide.hasVideo() || slide.hasAudio()) {
+            listener.onSuccess(slide);
+            return;
+          }
+        }
+        listener.onFailure(new MediaNotFoundException("no media slide found"));
+      }
+
+      @Override
+      public void onFailure(Throwable error) {
+        listener.onFailure(error);
+      }
+    });
   }
 
   public int getPartCount() {

@@ -7,12 +7,10 @@
     <EditText android:id="@+id/filter"
         android:inputType="textPersonName"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="45sp"
         android:hint="@string/recipients_panel__to"
         android:paddingRight="45dip"
         android:paddingLeft="15dp"
-        android:paddingTop="12dp"
-        android:paddingBottom="12dp"
         android:textColor="?conversation_editor_text_color"
         android:background="?conversation_editor_background" />
 

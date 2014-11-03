@@ -14,8 +14,14 @@
   <string name="ApplicationPreferencesActivity_delete">מחק</string>
   <string name="ApplicationPreferencesActivity_my">שלי</string>
   <string name="ApplicationPreferencesActivity_disable_storage_encryption">לבטל הצפנת אחסון?</string>
-  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">\nאזהרה, פעולה זו תבטל הצפנה מקומית לכל ההודעות והמפתחות. החיבורים\nהמאובטחים שלך ימשיכו לתפקד, אבל כל אחד עם גישה פיזית למכשירך יוכל\nלגשת אליהם.\n</string>
+  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
+אזהרה, פעולה זו תבטל הצפנה מקומית לכל ההודעות והמפתחות. החיבורים
+המאובטחים שלך ימשיכו לתפקד, אבל כל אחד עם גישה פיזית למכשירך יוכל
+לגשת אליהם.
+</string>
   <string name="ApplicationPreferencesActivity_disable">בטל</string>
+  <string name="ApplicationPreferencesActivity_error_connecting_to_server">אירעה שגיאה בחיבור לשרת!</string>
+  <!--AttchmentManager-->
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">תמונה</string>
   <string name="AttachmentTypeSelectorAdapter_video">וידאו</string>
@@ -58,25 +64,41 @@
   <string name="ConversationListItem_key_exchange_message">הודעת החלפת מפתח...</string>
   <!--ShareActivity-->
   <!--ExportFragment-->
-  <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">פעולה זו\nתייצא את המפתחות, ההגדרות וההודעות המוצפנות שלך לכרטיס ה-SD.\n</string>
+  <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">פעולה זו
+תייצא את המפתחות, ההגדרות וההודעות המוצפנות שלך לכרטיס ה-SD.
+</string>
   <string name="ExportFragment_export">יצא</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">אזהרה, פעולה זו\nתייצא את תוכן הודעות ה-TextSecure שלך לכרטיס ה-SD ללא הצפנה.\n</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">אזהרה, פעולה זו
+תייצא את תוכן הודעות ה-TextSecure שלך לכרטיס ה-SD ללא הצפנה.
+</string>
   <string name="ExportFragment_cancel">בטל</string>
   <string name="ExportFragment_exporting">מייצא</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">מייצא טקסט ללא הצפנה לכרטיס ה-SD...\n</string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">שגיאה, לא ניתן לכתוב לכרטיס\nה-SD!\n</string>
-  <string name="ExportFragment_error_while_writing_to_sd_card">שגיאה בכתיבה לכרטיס ה-SD.\n</string>
+  <string name="ExportFragment_exporting_plaintext_to_sd_card">מייצא טקסט ללא הצפנה לכרטיס ה-SD...
+</string>
+  <string name="ExportFragment_error_unable_to_write_to_sd_card">שגיאה, לא ניתן לכתוב לכרטיס
+ה-SD!
+</string>
+  <string name="ExportFragment_error_while_writing_to_sd_card">שגיאה בכתיבה לכרטיס ה-SD.
+</string>
   <string name="ExportFragment_success">הצליח!</string>
-  <string name="ExportFragment_exporting_keys_settings_and_messages">מייצא מפתחות, הגדרות\nוהודעות מוצפנות...\n</string>
+  <string name="ExportFragment_exporting_keys_settings_and_messages">מייצא מפתחות, הגדרות
+והודעות מוצפנות...
+</string>
   <!--GroupCreateActivity-->
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">יבא</string>
   <string name="ImportExportActivity_export">יצא</string>
   <!--ImportFragment-->
-  <string name="ImportFragment_this_will_import_messages_from_the_system">פעולה זו תייבא\nהודעות מבסיס הנתונים של ה-SMS ברירת המחדל של המערכת ל-TextSecure.\n אם כבר ייבאת מבסיס נתונים זה, ייבוא מחדש יגרום להודעות כפולות.</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">פעולה זו תייבא
+הודעות מבסיס הנתונים של ה-SMS ברירת המחדל של המערכת ל-TextSecure.
+ אם כבר ייבאת מבסיס נתונים זה, ייבוא מחדש יגרום להודעות כפולות.</string>
   <string name="ImportFragment_import">יבא</string>
   <string name="ImportFragment_cancel">בטל</string>
-  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">\nשחזור גיבוי מוצפן יחליף לגמרי את המפתחות, ההגדרות וההודעות הקיימות.\nאתה \nתאבד את כל המידע שבהתקנת ה-TextSecure הנוכחית שלך אבל לא שבגיבוי.\n</string>
+  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
+שחזור גיבוי מוצפן יחליף לגמרי את המפתחות, ההגדרות וההודעות הקיימות.
+אתה 
+תאבד את כל המידע שבהתקנת ה-TextSecure הנוכחית שלך אבל לא שבגיבוי.
+</string>
   <string name="ImportFragment_restore">שחזר</string>
   <string name="ImportFragment_importing">מייבא</string>
   <string name="ImportFragment_import_plaintext_backup_elipse">יבא גיבוי לא מוצפן...</string>
@@ -103,9 +125,19 @@
   <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">אתה חייב לציין כתובת MMSC עבור ספק השירות שלך.</string>
   <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">אתה יכול לערוך את הערכים האלו מתפריט ההגדרות של TextSecure בכל זמן.</string>
   <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">החתימה\nעל החלפת המפתח הזאת שונה ממה שקיבלת בעבר מאיש הקשר הזה.\nזה יכול להעיד שמישהו מנסה ליירט את התקשורת שלך\nאו\nשאיש הקשר פשוט התקין מחדש את TextSecure ועכשיו יש לו מפתח זהות חדש.\n</string>
-  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">ייתכן שתרצה לאמת\nאת איש הקשר הזה.\n</string>
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">החתימה\nעל החלפת המפתח הזו אמינה, אבל ביטלת את האפשרות של \"השלם החלפת\n מפתח אוטומטית\" בהגדרות.\n</string>
+  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">החתימה
+על החלפת המפתח הזאת שונה ממה שקיבלת בעבר מאיש הקשר הזה.
+זה יכול להעיד שמישהו מנסה ליירט את התקשורת שלך
+או
+שאיש הקשר פשוט התקין מחדש את TextSecure ועכשיו יש לו מפתח זהות חדש.
+</string>
+  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">ייתכן שתרצה לאמת
+את איש הקשר הזה.
+</string>
+  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">החתימה
+על החלפת המפתח הזו אמינה, אבל ביטלת את האפשרות של \"השלם החלפת
+ מפתח אוטומטית\" בהגדרות.
+</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_continue">המשך</string>
   <!--RegistrationProblemsActivity-->
@@ -169,9 +201,17 @@
   <string name="MessageNotifier_mark_as_read">סמן כנקרא</string>
   <!--ViewLocalIdentityActivity-->
   <string name="ViewLocalIdentityActivity_regenerating">מייצר מחדש...</string>
-  <string name="ViewLocalIdentityActivity_regenerating_identity_key">מייצר מפתח זהות\nמחדש...\n</string>
+  <string name="ViewLocalIdentityActivity_regenerating_identity_key">מייצר מפתח זהות
+מחדש...
+</string>
   <string name="ViewLocalIdentityActivity_regenerated">יוצר מחדש!</string>
-  <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">\nאזהרה! ייצור מחדש של מפתח הזהות יאבד את מפתח הזהות\nהעכשווי,\nואנשי הקשר הקיימים שלך יקבלו אזהרה כשהם ינסו לבצע חיבור מאובטח\nחדש איתך.\nאתה בטוח שברצונך להמשיך?\n</string>
+  <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">
+אזהרה! ייצור מחדש של מפתח הזהות יאבד את מפתח הזהות
+העכשווי,
+ואנשי הקשר הקיימים שלך יקבלו אזהרה כשהם ינסו לבצע חיבור מאובטח
+חדש איתך.
+אתה בטוח שברצונך להמשיך?
+</string>
   <string name="ViewLocalIdentityActivity_cancel">בטל</string>
   <string name="ViewLocalIdentityActivity_continue">המשך</string>
   <!--SmsReceiver-->
@@ -220,11 +260,19 @@
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">זה יכול לקחת כמה רגעים. סבלנות בבקשה, אנחנו נודיע לך כשהייבוא הושלם.</string>
   <string name="database_migration_activity__importing">מייבא</string>
   <!--database_upgrade_activity-->
-  <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">יצא גיבוי\nמוצפן לכרטיס ה-SD.\n</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">\nיצא גיבוי לא מוצפן שתואם את האפליקציה \'SMSBackup And Restore\' לכרטיס ה-SD.</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">יבא את בסיס הנתונים\nמאפליקציית ברירת המחדל של המערכת.\n</string>
-  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">\nשחזר גיבוי מוצפן של TextSecure שיוצא בעבר.\n</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">\nיבא קובץ גיבוי לא מוצפן. תואם \'SMSBackup And Restore\'.</string>
+  <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">יצא גיבוי
+מוצפן לכרטיס ה-SD.
+</string>
+  <string name="export_fragment__export_a_plaintext_backup_compatible_with">
+יצא גיבוי לא מוצפן שתואם את האפליקציה \'SMSBackup And Restore\' לכרטיס ה-SD.</string>
+  <string name="import_fragment__import_the_database_from_the_default_system">יבא את בסיס הנתונים
+מאפליקציית ברירת המחדל של המערכת.
+</string>
+  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">
+שחזר גיבוי מוצפן של TextSecure שיוצא בעבר.
+</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">
+יבא קובץ גיבוי לא מוצפן. תואם \'SMSBackup And Restore\'.</string>
   <!--mms_preferences_activity-->
   <string name="mms_preferences_activity__manual_mms_settings_are_required">נדרשות הגדרות MMS ידניות עבור מכשירך.</string>
   <!--prompt_passphrase_activity-->
@@ -249,8 +297,6 @@
   <string name="verify_identity_activity__their_identity_they_read">הזהות שלהם (הם קוראים):</string>
   <string name="verify_identity_activity__your_identity_you_read">הזהות שלך (אתה קורא):</string>
   <!--verify_import_identity_activity-->
-  <string name="verify_import_identity_activity__identity_name_n">שם הזהות:/\n</string>
-  <string name="verify_import_identity_activity__imported_identity_n">זהות מיובאת:/\n</string>
   <string name="verify_import_identity_activity__verified">אומת!</string>
   <string name="verify_import_identity_activity__compare">השווה</string>
   <!--verify_keys_activity-->

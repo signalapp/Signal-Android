@@ -37,6 +37,9 @@
     <string name="ApplicationPreferencesActivity_sms_disabled">Incoming SMS Disabled</string>
     <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Touch to make TextSecure your default SMS app</string>
 
+    <!-- AttchmentManager -->
+    <string name="AttachmentManager_cant_open_media_selection">Can\'t find an app to select media.</string>
+
     <!-- AttachmentTypeSelectorAdapter -->
 
     <string name="AttachmentTypeSelectorAdapter_picture">Picture</string>
@@ -64,6 +67,7 @@
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Fallback to unencrypted SMS?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Fallback to unencrypted MMS?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">This message will <b>not</b> be encrypted because a secure session could not be established.\n\nSend insecure message?</string>
+    <string name="ConversationItem_unable_to_open_media">Can\'t find an app able to open this media.</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_initiate_secure_session_question">Initiate secure session?</string>
@@ -98,13 +102,13 @@
     <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Sender: %1$s\nTransport: %2$s\nSent: %3$s\nReceived: %4$s</string>
     <string name="ConversationFragment_confirm_message_delete">Confirm message delete</string>
     <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Are you sure that you want to permanently delete this message?</string>
-    <string name="ConversationFragment_save_to_sd_card">Save to SD card?</string>
-    <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">This media has been stored in an encrypted database. The version you save to the SD card will no longer be encrypted. Would you like to continue?</string>
-    <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Error while saving attachment to SD card!</string>
+    <string name="ConversationFragment_save_to_sd_card">Save to storage?</string>
+    <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Saving this media to storage will allow any other apps on your phone to access it.\n\nContinue?</string>
+    <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Error while saving attachment to storage!</string>
     <string name="ConversationFragment_success_exclamation">Success!</string>
-    <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Unable to write to SD card!</string>
+    <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Unable to write to storage!</string>
     <string name="ConversationFragment_saving_attachment">Saving attachment</string>
-    <string name="ConversationFragment_saving_attachment_to_sd_card">Saving attachment to SD card...</string>
+    <string name="ConversationFragment_saving_attachment_to_sd_card">Saving attachment to storage...</string>
 
     <!-- ConversationListAdapter -->
     <string name="ConversationListAdapter_key_exchange_message">Key exchange message...</string>
@@ -555,8 +559,7 @@
 
     <!-- registration_activity -->
     <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-        TextSecure can use instant messages to increase privacy and avoid SMS charges when communicating with other
-        TextSecure users. To enable this feature, please verify your country code and phone number.
+        Registering is free and increases privacy when messaging other TextSecure users. Please verify your phone number.
     </string>
     <string name="registration_activity__your_country">YOUR COUNTRY</string>
     <string name="registration_activity__your_country_code_and_phone_number">YOUR COUNTRY CODE AND
@@ -564,7 +567,7 @@
     </string>
     <string name="registration_activity__phone_number">PHONE NUMBER</string>
     <string name="registration_activity__register">Register</string>
-    <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Registration will transmit some contact information to the server temporarily.</string>
+    <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Registration transmits some contact information to the server. It is not stored.</string>
     <string name="registration_activity__skip">Skip</string>
 
     <!-- registration_problems -->
@@ -670,6 +673,7 @@
     <string name="AndroidManifest__manage_identity_keys">Manage identity keys</string>
     <string name="AndroidManifest__complete_key_exchange">Complete key exchange</string>
     <string name="AndroidManifest__log_submit">Submit debug logs</string>
+    <string name="AndroidManifest__media_preview">Media Preview</string>
 
     <!-- arrays.xml -->
     <string name="arrays__import_export">Import / export</string>
@@ -867,6 +871,15 @@
     <string name="reminder_header_sms_import_text">TextSecure can copy your phone\'s SMS messages into its encrypted database.</string>
     <string name="reminder_header_push_title">Enable TextSecure messages?</string>
     <string name="reminder_header_push_text">Instant delivery, stronger privacy, and no SMS fees.</string>
+
+    <!-- MediaPreviewActivity -->
+    <string name="MediaPreviewActivity_you">You</string>
+
+    <!-- media_preview -->
+    <string name="media_preview__save_title">Save</string>
+
+    <!-- media_preview_activity -->
+    <string name="media_preview_activity__image_content_description">Image Preview</string>
     <!-- EOF -->
 
 </resources>

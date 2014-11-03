@@ -19,8 +19,9 @@ package org.whispersystems.textsecure.crypto;
 
 import android.util.Log;
 
-import org.whispersystems.textsecure.crypto.ecc.Curve;
-import org.whispersystems.textsecure.crypto.ecc.ECPublicKey;
+import org.whispersystems.libaxolotl.InvalidKeyException;
+import org.whispersystems.libaxolotl.ecc.Curve;
+import org.whispersystems.libaxolotl.ecc.ECPublicKey;
 import org.whispersystems.textsecure.util.Conversions;
 import org.whispersystems.textsecure.util.Hex;
 import org.whispersystems.textsecure.util.Util;

@@ -40,11 +40,15 @@ import android.preference.RingtonePreference;
 import android.provider.ContactsContract;
 import android.provider.Settings;
 import android.provider.Telephony;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.preference.PreferenceFragment;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.actionbarsherlock.view.MenuItem;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import org.thoughtcrime.securesms.components.OutgoingSmsPreference;
@@ -61,7 +65,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Trimmer;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.push.AuthorizationFailedException;
+import org.whispersystems.textsecure.push.exceptions.AuthorizationFailedException;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 
 import java.io.IOException;
@@ -73,7 +77,7 @@ import java.io.IOException;
  *
  */
 
-public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPreferenceActivity
+public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarActivity
     implements SharedPreferences.OnSharedPreferenceChangeListener
 {
   private static final String TAG = "Preferences";
@@ -98,6 +102,55 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
     super.onCreate(icicle);
 
     this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+    Fragment            fragment            = new ApplicationPreferenceFragment();
+    FragmentManager     fragmentManager     = getSupportFragmentManager();
+    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+    fragmentTransaction.replace(android.R.id.content, fragment);
+    fragmentTransaction.commit();
+  }
+
+  @Override
+  public void onResume() {
+    super.onResume();
+    dynamicTheme.onResume(this);
+    dynamicLanguage.onResume(this);
+  }
+
+  @Override
+  public void onDestroy() {
+    MemoryCleaner.clean((MasterSecret) getIntent().getParcelableExtra("master_secret"));
+    super.onDestroy();
+  }
+
+  @Override
+  public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+    if (key.equals(TextSecurePreferences.THEME_PREF)) {
+      dynamicTheme.onResume(this);
+    } else if (key.equals(TextSecurePreferences.LANGUAGE_PREF)) {
+      dynamicLanguage.onResume(this);
+    }
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+    case android.R.id.home:
+      Intent intent = new Intent(this, ConversationListActivity.class);
+      intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+      startActivity(intent);
+      finish();
+      return true;
+    }
+
+    return false;
+  }
+
+  public static class ApplicationPreferenceFragment extends PreferenceFragment {
+
+  @Override
+  public void onCreate(Bundle icicle) {
+    super.onCreate(icicle);
 
     addPreferencesFromResource(R.xml.preferences);
 
@@ -134,14 +187,12 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   @Override
   public void onStart() {
     super.onStart();
-    getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
+    getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener((ApplicationPreferencesActivity)getActivity());
   }
 
   @Override
   public void onResume() {
     super.onResume();
-    dynamicTheme.onResume(this);
-    dynamicLanguage.onResume(this);
 
     initializePlatformSpecificOptions();
   }
@@ -149,13 +200,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   @Override
   public void onStop() {
     super.onStop();
-    getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
-  }
-
-  @Override
-  public void onDestroy() {
-    MemoryCleaner.clean((MasterSecret) getIntent().getParcelableExtra("master_secret"));
-    super.onDestroy();
+    getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener((ApplicationPreferencesActivity)getActivity());
   }
 
   @Override
@@ -167,23 +212,9 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
     if (resultCode == Activity.RESULT_OK) {
       switch (reqCode) {
       case PICK_IDENTITY_CONTACT:      handleIdentitySelection(data); break;
-      case ENABLE_PASSPHRASE_ACTIVITY: finish();                      break;
+      case ENABLE_PASSPHRASE_ACTIVITY: getActivity().finish();        break;
       }
     }
-  }
-
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-    switch (item.getItemId()) {
-    case android.R.id.home:
-      Intent intent = new Intent(this, ConversationListActivity.class);
-      intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-      startActivity(intent);
-      finish();
-      return true;
-    }
-
-    return false;
   }
 
   private void initializePlatformSpecificOptions() {
@@ -198,13 +229,13 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
       if (allSmsPreference != null) pushSmsCategory.removePreference(allSmsPreference);
       if (allMmsPreference != null) pushSmsCategory.removePreference(allMmsPreference);
 
-      if (Util.isDefaultSmsProvider(this)) {
+      if (Util.isDefaultSmsProvider(getActivity())) {
         defaultPreference.setIntent(new Intent(Settings.ACTION_WIRELESS_SETTINGS));
         defaultPreference.setTitle(getString(R.string.ApplicationPreferencesActivity_sms_enabled));
         defaultPreference.setSummary(getString(R.string.ApplicationPreferencesActivity_touch_to_change_your_default_sms_app));
       } else {
         Intent intent = new Intent(Telephony.Sms.Intents.ACTION_CHANGE_DEFAULT);
-        intent.putExtra(Telephony.Sms.Intents.EXTRA_PACKAGE_NAME, getPackageName());
+        intent.putExtra(Telephony.Sms.Intents.EXTRA_PACKAGE_NAME, getActivity().getPackageName());
         defaultPreference.setIntent(intent);
         defaultPreference.setTitle(getString(R.string.ApplicationPreferencesActivity_sms_disabled));
         defaultPreference.setSummary(getString(R.string.ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app));
@@ -239,12 +270,12 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
 
   private void initializePushMessagingToggle() {
     CheckBoxPreference preference = (CheckBoxPreference)this.findPreference(PUSH_MESSAGING_PREF);
-    preference.setChecked(TextSecurePreferences.isPushRegistered(this));
+    preference.setChecked(TextSecurePreferences.isPushRegistered(getActivity()));
     preference.setOnPreferenceChangeListener(new PushMessagingClickListener());
   }
 
   private void initializeIdentitySelection() {
-    ContactIdentityManager identity = ContactIdentityManager.getInstance(this);
+    ContactIdentityManager identity = ContactIdentityManager.getInstance(getActivity());
 
     if (identity.isSelfIdentityAutoDetected()) {
       Preference preference = this.findPreference(DISPLAY_CATEGORY_PREF);
@@ -253,7 +284,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
       Uri contactUri = identity.getSelfIdentityUri();
 
       if (contactUri != null) {
-        String contactName = ContactAccessor.getInstance().getNameFromContact(this, contactUri);
+        String contactName = ContactAccessor.getInstance().getNameFromContact(getActivity(), contactUri);
         this.findPreference(TextSecurePreferences.IDENTITY_PREF)
           .setSummary(String.format(getString(R.string.ApplicationPreferencesActivity_currently_s),
                       contactName));
@@ -271,7 +302,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   private void initializeRingtoneSummary(RingtonePreference pref) {
     RingtoneSummaryListener listener =
       (RingtoneSummaryListener) pref.getOnPreferenceChangeListener();
-    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
     listener.onPreferenceChange(pref, sharedPreferences.getString(pref.getKey(), ""));
   }
@@ -284,17 +315,8 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
     Uri contactUri = data.getData();
 
     if (contactUri != null) {
-      TextSecurePreferences.setIdentityContactUri(this, contactUri.toString());
+      TextSecurePreferences.setIdentityContactUri(getActivity(), contactUri.toString());
       initializeIdentitySelection();
-    }
-  }
-
-  @Override
-  public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-    if (key.equals(TextSecurePreferences.THEME_PREF)) {
-      dynamicTheme.onResume(this);
-    } else if (key.equals(TextSecurePreferences.LANGUAGE_PREF)) {
-      dynamicLanguage.onResume(this);
     }
   }
 
@@ -313,7 +335,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
 
       @Override
       protected void onPreExecute() {
-        dialog = ProgressDialog.show(ApplicationPreferencesActivity.this,
+        dialog = ProgressDialog.show(getActivity(),
                                      getString(R.string.ApplicationPreferencesActivity_unregistering),
                                      getString(R.string.ApplicationPreferencesActivity_unregistering_for_data_based_communication),
                                      true, false);
@@ -326,13 +348,13 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
 
         switch (result) {
           case NETWORK_ERROR:
-            Toast.makeText(ApplicationPreferencesActivity.this,
+            Toast.makeText(getActivity(),
                            getString(R.string.ApplicationPreferencesActivity_error_connecting_to_server),
                            Toast.LENGTH_LONG).show();
             break;
           case SUCCESS:
             ((CheckBoxPreference)preference).setChecked(false);
-            TextSecurePreferences.setPushRegistered(ApplicationPreferencesActivity.this, false);
+            TextSecurePreferences.setPushRegistered(getActivity(), false);
             break;
         }
       }
@@ -340,7 +362,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
       @Override
       protected Integer doInBackground(Void... params) {
         try {
-          Context           context = ApplicationPreferencesActivity.this;
+          Context           context = getActivity();
           PushServiceSocket socket  = PushServiceSocketFactory.create(context);
 
           socket.unregisterGcmId();
@@ -360,8 +382,8 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
     @Override
     public boolean onPreferenceChange(final Preference preference, Object newValue) {
       if (((CheckBoxPreference)preference).isChecked()) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(ApplicationPreferencesActivity.this);
-        builder.setIcon(Dialogs.resolveIcon(ApplicationPreferencesActivity.this, R.attr.dialog_info_icon));
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setIcon(Dialogs.resolveIcon(getActivity(), R.attr.dialog_info_icon));
         builder.setTitle(getString(R.string.ApplicationPreferencesActivity_disable_push_messages));
         builder.setMessage(getString(R.string.ApplicationPreferencesActivity_this_will_disable_push_messages));
         builder.setNegativeButton(android.R.string.cancel, null);
@@ -373,8 +395,8 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
         });
         builder.show();
       } else {
-        Intent intent = new Intent(ApplicationPreferencesActivity.this, RegistrationActivity.class);
-        intent.putExtra("master_secret", getIntent().getParcelableExtra("master_secret"));
+        Intent intent = new Intent(getActivity(), RegistrationActivity.class);
+        intent.putExtra("master_secret", getActivity().getIntent().getParcelableExtra("master_secret"));
         startActivity(intent);
       }
 
@@ -396,10 +418,10 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   private class ChangePassphraseClickListener implements Preference.OnPreferenceClickListener {
     @Override
     public boolean onPreferenceClick(Preference preference) {
-       if (MasterSecretUtil.isPassphraseInitialized(ApplicationPreferencesActivity.this)) {
-        startActivity(new Intent(ApplicationPreferencesActivity.this, PassphraseChangeActivity.class));
+      if (MasterSecretUtil.isPassphraseInitialized(getActivity())) {
+        startActivity(new Intent(getActivity(), PassphraseChangeActivity.class));
       } else {
-        Toast.makeText(ApplicationPreferencesActivity.this,
+        Toast.makeText(getActivity(),
                        R.string.ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet,
                        Toast.LENGTH_LONG).show();
       }
@@ -411,8 +433,8 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   private class TrimNowClickListener implements Preference.OnPreferenceClickListener {
     @Override
     public boolean onPreferenceClick(Preference preference) {
-      final int threadLengthLimit = TextSecurePreferences.getThreadTrimLength(ApplicationPreferencesActivity.this);
-      AlertDialog.Builder builder = new AlertDialog.Builder(ApplicationPreferencesActivity.this);
+      final int threadLengthLimit = TextSecurePreferences.getThreadTrimLength(getActivity());
+      AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
       builder.setTitle(R.string.ApplicationPreferencesActivity_delete_all_old_messages_now);
       builder.setMessage(String.format(getString(R.string.ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages),
       		                             threadLengthLimit));
@@ -420,7 +442,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
                                 new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
-          Trimmer.trimAllThreads(ApplicationPreferencesActivity.this, threadLengthLimit);
+          Trimmer.trimAllThreads(getActivity(), threadLengthLimit);
         }
       });
 
@@ -436,31 +458,31 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
     @Override
     public boolean onPreferenceChange(final Preference preference, Object newValue) {
       if (!((CheckBoxPreference)preference).isChecked()) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(ApplicationPreferencesActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(R.string.ApplicationPreferencesActivity_disable_storage_encryption);
         builder.setMessage(R.string.ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages);
-        builder.setIcon(Dialogs.resolveIcon(ApplicationPreferencesActivity.this, R.attr.dialog_alert_icon));
+        builder.setIcon(Dialogs.resolveIcon(getActivity(), R.attr.dialog_alert_icon));
         builder.setPositiveButton(R.string.ApplicationPreferencesActivity_disable, new DialogInterface.OnClickListener() {
           @Override
           public void onClick(DialogInterface dialog, int which) {
-            MasterSecret masterSecret = getIntent().getParcelableExtra("master_secret");
-            MasterSecretUtil.changeMasterSecretPassphrase(ApplicationPreferencesActivity.this,
+            MasterSecret masterSecret = getActivity().getIntent().getParcelableExtra("master_secret");
+            MasterSecretUtil.changeMasterSecretPassphrase(getActivity(),
                                                           masterSecret,
                                                           MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
 
 
-            TextSecurePreferences.setPasswordDisabled(ApplicationPreferencesActivity.this, true);
+            TextSecurePreferences.setPasswordDisabled(getActivity(), true);
             ((CheckBoxPreference)preference).setChecked(true);
 
-            Intent intent = new Intent(ApplicationPreferencesActivity.this, KeyCachingService.class);
+            Intent intent = new Intent(getActivity(), KeyCachingService.class);
             intent.setAction(KeyCachingService.DISABLE_ACTION);
-            startService(intent);
+            getActivity().startService(intent);
           }
         });
         builder.setNegativeButton(android.R.string.cancel, null);
         builder.show();
       } else {
-        Intent intent = new Intent(ApplicationPreferencesActivity.this,
+        Intent intent = new Intent(getActivity(),
                                    PassphraseChangeActivity.class);
         startActivityForResult(intent, ENABLE_PASSPHRASE_ACTIVITY);
       }
@@ -504,7 +526,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
 
     @Override
     public boolean onPreferenceClick(Preference preference) {
-      startActivity(new Intent(ApplicationPreferencesActivity.this, MmsPreferencesActivity.class));
+      startActivity(new Intent(getActivity(), MmsPreferencesActivity.class));
       return true;
     }
   }
@@ -534,10 +556,10 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
       if (TextUtils.isEmpty(value)) {
         preference.setSummary(R.string.preferences__default);
       } else {
-        Ringtone tone = RingtoneManager.getRingtone(ApplicationPreferencesActivity.this,
+        Ringtone tone = RingtoneManager.getRingtone(getActivity(),
           Uri.parse(value));
         if (tone != null) {
-          preference.setSummary(tone.getTitle(ApplicationPreferencesActivity.this));
+          preference.setSummary(tone.getTitle(getActivity()));
         }
       }
 
@@ -548,7 +570,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
   private class SubmitDebugLogListener implements Preference.OnPreferenceClickListener {
     @Override
     public boolean onPreferenceClick(Preference preference) {
-      final Intent intent = new Intent(ApplicationPreferencesActivity.this, LogSubmitActivity.class);
+      final Intent intent = new Intent(getActivity(), LogSubmitActivity.class);
       startActivity(intent);
       return true;
     }
@@ -566,9 +588,9 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
 
   private String buildOutgoingSmsDescription() {
     final StringBuilder builder         = new StringBuilder();
-    final boolean       dataFallback    = TextSecurePreferences.isFallbackSmsAllowed(this);
-    final boolean       dataFallbackAsk = TextSecurePreferences.isFallbackSmsAskRequired(this);
-    final boolean       nonData         = TextSecurePreferences.isDirectSmsAllowed(this);
+    final boolean       dataFallback    = TextSecurePreferences.isFallbackSmsAllowed(getActivity());
+    final boolean       dataFallbackAsk = TextSecurePreferences.isFallbackSmsAskRequired(getActivity());
+    final boolean       nonData         = TextSecurePreferences.isDirectSmsAllowed(getActivity());
 
     if (dataFallback) {
       builder.append(getString(R.string.preferences__sms_outgoing_push_users));
@@ -593,8 +615,8 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredSherlockPr
     if (preference!=null)
       if (preference instanceof PreferenceScreen)
           if (((PreferenceScreen)preference).getDialog()!=null)
-            ((PreferenceScreen)preference).getDialog().getWindow().getDecorView().setBackgroundDrawable(this.getWindow().getDecorView().getBackground().getConstantState().newDrawable());
+            ((PreferenceScreen)preference).getDialog().getWindow().getDecorView().setBackgroundDrawable(getActivity().getWindow().getDecorView().getBackground().getConstantState().newDrawable());
     return false;
   }
-
+  }
 }

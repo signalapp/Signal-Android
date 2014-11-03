@@ -14,12 +14,14 @@
   <string name="ApplicationPreferencesActivity_delete">Xóa</string>
   <string name="ApplicationPreferencesActivity_my">Của Tôi</string>
   <string name="ApplicationPreferencesActivity_disable_storage_encryption">Tắt mã hóa lưu trữ?</string>
-  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">\nCảnh báo, điều này tắt mã hóa lưu trữ cho tất cả tin nhắn và chìa khóa. Phiên mã hóa vẫn tiếp tục hoạt động, nhưng bất cứ ai vào được máy bạn sẽ truy cập được nội dung.</string>
+  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
+Cảnh báo, điều này tắt mã hóa lưu trữ cho tất cả tin nhắn và chìa khóa. Phiên mã hóa vẫn tiếp tục hoạt động, nhưng bất cứ ai vào được máy bạn sẽ truy cập được nội dung.</string>
   <string name="ApplicationPreferencesActivity_disable">Tắt</string>
   <string name="ApplicationPreferencesActivity_unregistering">Gỡ đăng ký...</string>
   <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Gỡ đăng ký cho thông tin qua đường truyền mạng</string>
   <string name="ApplicationPreferencesActivity_disable_push_messages">Tắt tin nhắn đẩy?</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">\nThao tác này sẽ tắt tin nhắn đẩy bằng cách gỡ đăng ký bạn ra khỏi máy chủ. Bạn sẽ cần đăng ký lại số điện thoại để dùng tin nhắn đẩy trong tương lai.</string>
+  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">
+Thao tác này sẽ tắt tin nhắn đẩy bằng cách gỡ đăng ký bạn ra khỏi máy chủ. Bạn sẽ cần đăng ký lại số điện thoại để dùng tin nhắn đẩy trong tương lai.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Có lỗi kết nối vào máy chủ!</string>
   <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">Bạn chưa đăng ký với dịch vụ đẩy...</string>
   <string name="ApplicationPreferencesActivity_updating_directory">Cập nhật thư mục</string>
@@ -28,6 +30,7 @@
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Chạm vào để đổi ứng dụng SMS mặc định</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Không Cho SMS Gửi Vào</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Chạm vào để chọn TextSecure làm ứng dụng SMS mặc định</string>
+  <!--AttchmentManager-->
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Hình ảnh</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
@@ -52,7 +55,6 @@
   <string name="ConversationItem_click_to_approve_mms_dialog_title">Hủy bỏ MMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Trở lại SMS không mã hóa?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Hủy bỏ MMS chưa được mã hóa?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Tin nhắn này sẽ <b>không</b> được mã hóa vì không thiết lập được phiên an toàn.\n\nGửi tin nhắn không mã hóa?</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Khởi động tiến trình mã hóa?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Khởi tạo phiên trao đổi an toàn với %s?</string>
@@ -81,8 +83,6 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Bạn có chắc là muốn rời nhóm?</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Chi tiết tin nhắn</string>
-  <string name="ConversationFragment_transport_s_sent_received_s">Chuyển tải: %1$s\nGửi/Nhận: %2$s</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Nơi gởi: %1$s\nChuyển tải: %2$s\nGửi: %3$s\nNhận: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Xác nhận xóa tin</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Bạn có chắc là muốn xóa vĩnh viễn tin nhắn này?</string>
   <string name="ConversationFragment_save_to_sd_card">Lưu vào thẻ nhớ?</string>
@@ -140,7 +140,8 @@
   <string name="ImportFragment_import">Nhập</string>
   <string name="ImportFragment_cancel">Hủy bỏ</string>
   <string name="ImportFragment_restore_encrypted_backup">Khôi phục phần sao lưu đã mã hóa?</string>
-  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">\nPhục hồi bản sao lưu có mã hóa sẽ thay thế hoàn toàn các chìa khóa hiện thời, chọn lựa và tin nhắn. Bạn sẽ mất những thông tin nào có trong phiên bản TextSecure cài đặt hiện thời nhưng không có trong bản sao lưu.</string>
+  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
+Phục hồi bản sao lưu có mã hóa sẽ thay thế hoàn toàn các chìa khóa hiện thời, chọn lựa và tin nhắn. Bạn sẽ mất những thông tin nào có trong phiên bản TextSecure cài đặt hiện thời nhưng không có trong bản sao lưu.</string>
   <string name="ImportFragment_restore">Phục hồi</string>
   <string name="ImportFragment_import_plaintext_backup">Xuất dữ liệu sao lưu dạng thuần văn bản?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Thao tác này sẽ nhập các tin nhắn từ bản sao lưu thường (không mã hóa). Nếu bạn đã nhập sao lưu này trước đó, nhập lần nữa sẽ dẫn đến việc có tin nhắn trùng lập.</string>
@@ -178,7 +179,9 @@
   <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Bạn có thể sửa đổi các trị số này trong menu thiết đặt của TextSecure bất cứ lúc nào.</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Chữ ký của việc trao đổi chìa khóa này khác với lần trao đổi trước nhận được từ người liên lạc này. Điều này có nghĩa là có ai đó tìm cách chận bắt liên lạc thông tin của bạn, hoặc đơn thuần là người này cài đặt lại TextSecure và có chìa khóa nhận diện mới.</string>
-  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Bạn có thể muốn kiểm chứng\nđịa chỉ liên lạc này.\n    </string>
+  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Bạn có thể muốn kiểm chứng
+địa chỉ liên lạc này.
+    </string>
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">Chữ ký của việc trao đổi chìa khóa này thì tin cẩn, nhưng bạn để tắt thiết đặt \'tự động hoàn tất trao đổi chìa khóa\'.</string>
   <string name="ReceiveKeyActivity_processing">Đang xử lý</string>
   <string name="ReceiveKeyActivity_processing_key_exchange">Xử lý trao đổi chìa khóa...</string>
@@ -190,7 +193,6 @@
   <string name="RegistrationActivity_invalid_number">Số không đúng</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Số bạn cung cấp (%s) không đúng.</string>
   <string name="RegistrationActivity_unsupported">Không hỗ trợ</string>
-  <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">\nBây giờ chúng tôi sẽ kiểm chứng xem số sau đây có liên đới với thiết bị này:\n\n%s\n\nSố này có đúng không, hay bạn có muốn sửa đổi nó trước khi tiếp tục?</string>
   <string name="RegistrationActivity_continue">Tiếp tục</string>
   <string name="RegistrationActivity_edit">Sửa</string>
   <!--RegistrationProblemsActivity-->
@@ -215,9 +217,12 @@
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">Đăng ký TextSecure đã hoàn tất tốt đẹp.</string>
   <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Đăng ký TextSecure gặp phải vấn đề.</string>
   <!--SmsMessageRecord-->
-  <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Nhận được thông tin\ntrao đổi chìa khóa bị hỏng!</string>
-  <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">\nNhận thông tin trao đổi chìa khóa về phiên bản giao thức không hợp lệ.</string>
-  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">\nNhận thông tin về chìa khóa nhận diện không rõ. Bấm để xử lý và hiển thị.</string>
+  <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Nhận được thông tin
+trao đổi chìa khóa bị hỏng!</string>
+  <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
+Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không hợp lệ.</string>
+  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
+Nhận thông tin về chìa khóa nhận diện không rõ. Bấm để xử lý và hiển thị.</string>
   <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Nhận được cập nhật nhưng không rõ thông tin nhận diện. Nhấn vào để kiểm nhận tên nhận diện.</string>
   <string name="SmsMessageRecord_secure_session_ended">Phiên an toàn chấm dứt.</string>
   <string name="SmsMessageRecord_duplicate_message">Tin nhắn trùng lập.</string>
@@ -286,7 +291,8 @@
   <string name="ViewLocalIdentityActivity_regenerating">Tái tạo...</string>
   <string name="ViewLocalIdentityActivity_regenerating_identity_key">Tái tạo chìa khóa nhận diện</string>
   <string name="ViewLocalIdentityActivity_regenerated">Tái tạo xong!</string>
-  <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">\nLưu ý! Khi tái tạo chìa khóa nhận diện của bạn, chìa khóa hiện thời sẽ bị mất vĩnh viễn, và những người liên hệ với bạn sẽ được cảnh báo khi thiết lập phiên an toàn mới với bạn. Bạn có chắc là muốn tiếp tục?</string>
+  <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">
+Lưu ý! Khi tái tạo chìa khóa nhận diện của bạn, chìa khóa hiện thời sẽ bị mất vĩnh viễn, và những người liên hệ với bạn sẽ được cảnh báo khi thiết lập phiên an toàn mới với bạn. Bạn có chắc là muốn tiếp tục?</string>
   <string name="ViewLocalIdentityActivity_cancel">Hủy bỏ</string>
   <string name="ViewLocalIdentityActivity_continue">Tiếp tục</string>
   <!--SmsReceiver-->
@@ -343,7 +349,6 @@
   <string name="log_submit_activity__log_fetch_failed">Không lấy được ký sự từ thiết bị của bạn. Thay vào đó, bạn có thể dùng ADB để lấy ký sự gỡ lỗi (debug).</string>
   <string name="log_submit_activity__log_submit_success_title">Thành công!</string>
   <string name="log_submit_activity__log_got_it">Nhận tốt</string>
-  <string name="log_submit_activity__your_pastebin_url">Xin sao chép đường dẫn này và thêm vào phần báo lỗi (nhấn/đè lâu để cho vào bảng ghi tạm-clipboard):\n\n<b>%1$s</b></string>
   <string name="log_submit_activity__copied_to_clipboard">Sao chép vào bảng ghi tạm</string>
   <string name="log_submit_activity__loading_logcat">Nạp logcat...</string>
   <string name="log_submit_activity__thanks">Cám ơn sự trợ giúp của bạn!</string>
@@ -358,10 +363,13 @@
   <string name="database_migration_activity__importing">ĐANG NHẬP VÀO</string>
   <!--database_upgrade_activity-->
   <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Xuất sao lưu có mã hóa ra thẻ nhớ SD</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">\nXuất sao lưu thường tương thích với \'Sao Lưu và Phục Hồi SMS\' ra thẻ nhớ SD.</string>
+  <string name="export_fragment__export_a_plaintext_backup_compatible_with">
+Xuất sao lưu thường tương thích với \'Sao Lưu và Phục Hồi SMS\' ra thẻ nhớ SD.</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Nhập cơ sở dữ liệu của ứng dụng tin nhắn mặc định của hệ thống.</string>
-  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">\nPhục hồi sao lưu TextSecure có mã hóa từng xuất ra trước đó.</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">\nNhập tập tin sao lưu thường-không mã hóa. Tương thích với \'Sao Lưu và Phục Hồi SMS\'.</string>
+  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">
+Phục hồi sao lưu TextSecure có mã hóa từng xuất ra trước đó.</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">
+Nhập tập tin sao lưu thường-không mã hóa. Tương thích với \'Sao Lưu và Phục Hồi SMS\'.</string>
   <!--mms_preferences_activity-->
   <string name="mms_preferences_activity__manual_mms_settings_are_required">Phải làm thiết đặt MMS bằng tay cho điện thoại của bạn.</string>
   <!--prompt_passphrase_activity-->
@@ -376,35 +384,48 @@
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Hoàn tất</string>
   <!--registration_activity-->
-  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">\nTextSecure có thể dùng tin nhắn nhanh để tăng độ riêng tư và tránh cước SMS khi liên lạc với những người dùng TextSecure khác. Để mở tính năng này, xin kiểm chứng mã số quốc gia và số điện thoại của bạn.</string>
+  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
+TextSecure có thể dùng tin nhắn nhanh để tăng độ riêng tư và tránh cước SMS khi liên lạc với những người dùng TextSecure khác. Để mở tính năng này, xin kiểm chứng mã số quốc gia và số điện thoại của bạn.</string>
   <string name="registration_activity__your_country">QUỐC GIA BẠN</string>
-  <string name="registration_activity__your_country_code_and_phone_number">MÃ SỐ QUỐC GIA VÀ\nSỐ ĐIỆN THOẠI BẠN</string>
+  <string name="registration_activity__your_country_code_and_phone_number">MÃ SỐ QUỐC GIA VÀ
+SỐ ĐIỆN THOẠI BẠN</string>
   <string name="registration_activity__phone_number">SỐ ĐIỆN THOẠI</string>
   <string name="registration_activity__register">Đăng ký</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Thể thức đăng ký sẽ chuyển một số thông tin liên hệ tạm thời đến máy chủ .</string>
   <string name="registration_activity__skip">Bỏ qua</string>
   <!--registration_problems-->
-  <string name="registration_problems__some_possible_problems_include">Một số vấn đề có thể gặp\nbao gồm:</string>
-  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">\nMột số ứng dụng tin nhắn bên thứ ba, như Handcent hay GoSMS hành xử không hay và chận bắt tất cả tin nhắn SMS đi vào. Kiểm lại trong các ứng dụng đó xem coi có tin nhắn nào có hàng chữ \'Mã số kiểm chứng TextSecure của bạn:\', trong trường hợp đó bạn cần cấu hình ứng dụng đó cho phép tin nhắn đi xuyên qua.</string>
+  <string name="registration_problems__some_possible_problems_include">Một số vấn đề có thể gặp
+bao gồm:</string>
+  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
+Một số ứng dụng tin nhắn bên thứ ba, như Handcent hay GoSMS hành xử không hay và chận bắt tất cả tin nhắn SMS đi vào. Kiểm lại trong các ứng dụng đó xem coi có tin nhắn nào có hàng chữ \'Mã số kiểm chứng TextSecure của bạn:\', trong trường hợp đó bạn cần cấu hình ứng dụng đó cho phép tin nhắn đi xuyên qua.</string>
   <string name="registration_problems__incorrect_number">Số không đúng.</string>
-  <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">\nXin xem lại số điền vào có đúng không, và dạng số phù hợp với vùng bạn cư ngụ. </string>
+  <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
+Xin xem lại số điền vào có đúng không, và dạng số phù hợp với vùng bạn cư ngụ. </string>
   <string name="registration_problems__google_voice">Google Voice.</string>
-  <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">\nTextSecure không chạy với số của Google Voice.</string>
+  <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">
+TextSecure không chạy với số của Google Voice.</string>
   <!--registration_progress_activity-->
-  <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">\nTextSecure cũng có thể gọi bạn để kiểm chứng số điện thoại. Nhấn vào \'Gọi Tôi\' và điền vào dưới đây mã 6 số mà bạn nghe được qua cú gọi.</string>
+  <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">
+TextSecure cũng có thể gọi bạn để kiểm chứng số điện thoại. Nhấn vào \'Gọi Tôi\' và điền vào dưới đây mã 6 số mà bạn nghe được qua cú gọi.</string>
   <string name="registration_progress_activity__verify">Kiểm chứng</string>
   <string name="registration_progress_activity__edit_number">Sửa số</string>
   <string name="registration_progress_activity__connectivity_error">Có lỗi kết nối.</string>
-  <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">\nTextSecure không thể kết nối vào dịch vụ đẩy.</string>
-  <string name="registration_progress_activity__some_possible_problems_include">Một số vấn đề có\nthể gặp bao gồm:</string>
-  <string name="registration_progress_activity__no_network_connectivity">Không có đường\ntruyền mạng.</string>
+  <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">
+TextSecure không thể kết nối vào dịch vụ đẩy.</string>
+  <string name="registration_progress_activity__some_possible_problems_include">Một số vấn đề có
+thể gặp bao gồm:</string>
+  <string name="registration_progress_activity__no_network_connectivity">Không có đường
+truyền mạng.</string>
   <string name="registration_progress_activity__restrictive_firewall">Tường lửa ngăn chận.</string>
-  <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">\nTextSecure bây giờ sẽ tự động kiểm chứng số điện thoại bạn với một tin nhắn SMS xác nhận.</string>
+  <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
+TextSecure bây giờ sẽ tự động kiểm chứng số điện thoại bạn với một tin nhắn SMS xác nhận.</string>
   <string name="registration_progress_activity__connecting">Đang kết nối...</string>
-  <string name="registration_progress_activity__waiting_for_sms_verification">Chờ kiểm\nchứng SMS...</string>
+  <string name="registration_progress_activity__waiting_for_sms_verification">Chờ kiểm
+chứng SMS...</string>
   <string name="registration_progress_activity__registering_with_server">Đăng ký với máy chủ...</string>
   <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Việc này có thể mất chút thời gian. Xin kiên nhãn chờ, chúng tôi sẽ báo cho bạn biết khi kiểm chứng xong.</string>
-  <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">\nTextSecure hết hạn chờ trong lúc đợi tin nhắn SMS xác nhận.</string>
+  <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">
+TextSecure hết hạn chờ trong lúc đợi tin nhắn SMS xác nhận.</string>
   <string name="registration_progress_activity__sms_verification_failed">Kiểm chứng SMS thất bại.</string>
   <string name="registration_progress_activity__generating_keys">Tạo chìa khóa...</string>
   <!--recipients_panel-->
@@ -416,8 +437,6 @@
   <string name="verify_identity_activity__their_identity_they_read">Tên nhận diện của họ (họ đọc):</string>
   <string name="verify_identity_activity__your_identity_you_read">Tên nhận diện của bạn (bạn đọc):</string>
   <!--verify_import_identity_activity-->
-  <string name="verify_import_identity_activity__identity_name_n">Tên nhận diện:\\n</string>
-  <string name="verify_import_identity_activity__imported_identity_n">Tên nhận diện nhập vào:\\n</string>
   <string name="verify_import_identity_activity__verified">Đã kiểm chứng!</string>
   <string name="verify_import_identity_activity__compare">So sánh</string>
   <!--verify_keys_activity-->
@@ -499,7 +518,8 @@
   <string name="preferences__make_default_sms_app">Chọn làm ứng dụng SMS mặc định</string>
   <string name="preferences__make_textsecure_the_default_sms_mms_app">Chọn TextSecure làm ứng dụng SMS/MMS mặc định của hệ thống.</string>
   <string name="preferences__use_data_channel">Tin nhắn đẩy</string>
-  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">\nTăng độ riêng tư và tránh cước SMS bằng cách dùng đường truyền internet để liên lạc với những người dùng TextSecure khác</string>
+  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
+Tăng độ riêng tư và tránh cước SMS bằng cách dùng đường truyền internet để liên lạc với những người dùng TextSecure khác</string>
   <string name="preferences__allow_sms_fallback">Cho phép gửi SMS đến</string>
   <string name="preferences__allow_sms_fallback_disabled_reason">TextSecure hiện thời là ứng dụng SMS mặc định. Xin thiết đặt một ứng dụng SMS mặc định khác trước khi thay đổi chọn lựa này.</string>
   <string name="preferences__submit_debug_log">Nạp ký sự gỡ lỗi</string>

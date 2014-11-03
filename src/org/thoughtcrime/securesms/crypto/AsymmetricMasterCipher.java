@@ -17,15 +17,15 @@
  */
 package org.thoughtcrime.securesms.crypto;
 
-import org.whispersystems.textsecure.crypto.InvalidKeyException;
-import org.whispersystems.textsecure.crypto.InvalidMessageException;
+import org.whispersystems.libaxolotl.InvalidKeyException;
+import org.whispersystems.libaxolotl.InvalidMessageException;
+import org.whispersystems.libaxolotl.ecc.Curve;
+import org.whispersystems.libaxolotl.ecc.ECKeyPair;
+import org.whispersystems.libaxolotl.ecc.ECPrivateKey;
+import org.whispersystems.libaxolotl.ecc.ECPublicKey;
 import org.whispersystems.textsecure.crypto.MasterCipher;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.crypto.PublicKey;
-import org.whispersystems.textsecure.crypto.ecc.Curve;
-import org.whispersystems.textsecure.crypto.ecc.ECKeyPair;
-import org.whispersystems.textsecure.crypto.ecc.ECPrivateKey;
-import org.whispersystems.textsecure.crypto.ecc.ECPublicKey;
 import org.whispersystems.textsecure.util.Base64;
 import org.whispersystems.textsecure.util.Conversions;
 import org.whispersystems.textsecure.util.Util;
@@ -86,7 +86,7 @@ public class AsymmetricMasterCipher {
   public String encryptBody(String body) {
     try {
       ECPublicKey  theirPublic        = asymmetricMasterSecret.getDjbPublicKey();
-      ECKeyPair    ourKeyPair         = Curve.generateKeyPair(true);
+      ECKeyPair    ourKeyPair         = Curve.generateKeyPair();
       byte[]       secret             = Curve.calculateAgreement(theirPublic, ourKeyPair.getPrivateKey());
       MasterCipher masterCipher       = getMasterCipherForSecret(secret);
       byte[]       encryptedBodyBytes = masterCipher.encryptBytes(body.getBytes());

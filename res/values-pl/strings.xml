@@ -31,6 +31,7 @@ Będziesz musiał ponownie zarejestrować swój numer, aby w przyszłości ponow
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Dotknij aby zmienić swoją domyślną aplikację SMS</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Otrzymywanie SMS wyłączone</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Dotknij aby TextSecure była Twoją domyślną aplikacją SMS</string>
+  <!--AttchmentManager-->
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Zdjęcie</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>

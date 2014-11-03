@@ -8,9 +8,9 @@
   <string name="ApplicationPreferencesActivity_currently_s">In questo momento: %s</string>
   <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Devi inserire la tua password prima di controllare le chiavi...</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Non hai ancora impostato una password!</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">messagi per conversazione</string>
-  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Elimina tutti i messagi vecchi ora?</string>
-  <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Vuoi davvero ridurre tutti i thread delle conversazioni ai %s messaggi più recenti?</string>
+  <string name="ApplicationPreferencesActivity_messages_per_conversation">messaggi per conversazione</string>
+  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Eliminare tutti i messaggi vecchi ora?</string>
+  <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Vuoi davvero ridurre tutte conversazioni ai soli %s messaggi più recenti?</string>
   <string name="ApplicationPreferencesActivity_delete">Elimina</string>
   <string name="ApplicationPreferencesActivity_my">Il mio</string>
   <string name="ApplicationPreferencesActivity_disable_storage_encryption">Disabilitare la cifratura dei dati salvati?</string>
@@ -26,12 +26,13 @@ Avrai bisogno di registrare di nuovo il tuo numero di telefono per usare i messa
 </string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Errore durante la connessione al server!</string>
   <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">Non sei registrato con il servizio push...</string>
-  <string name="ApplicationPreferencesActivity_updating_directory">Aggiornamento directory</string>
-  <string name="ApplicationPreferencesActivity_updating_push_directory">Aggiornamento directory push...</string>
+  <string name="ApplicationPreferencesActivity_updating_directory">Aggiornamento cartella</string>
+  <string name="ApplicationPreferencesActivity_updating_push_directory">Aggiornamento cartella push...</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS in entrata abilitati</string>
-  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Tocca per cambiare l\'applicazione predefinita per gli SMS</string>
+  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Premi per cambiare l\'applicazione predefinita per gli SMS</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS in entrata disabilitati</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Tocca per rendere TextSecure l\'applicazione predefinita per gli SMS</string>
+  <!--AttchmentManager-->
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Immagine</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
@@ -385,6 +386,7 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <string name="conversation_activity__remove">Elimina</string>
   <string name="conversation_activity__window_description">Conversazione con %1$s</string>
   <string name="conversation_activity__compose_description">Composizione messaggio</string>
+  <string name="conversation_activity__emoji_toggle_description">Dis/attiva la tastiera emoji</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Messaggio multimediale</string>
   <string name="conversation_item__play_button_description">Pulsante Play</string>
@@ -401,7 +403,7 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <string name="conversation_item_received__downloading">Caricamento in corso</string>
   <!--conversation_fragment_cab-->
   <string name="conversation_fragment_cab__batch_selection_mode">Modalità di selezione di gruppo</string>
-  <string name="conversation_fragment_cab__batch_selection_amount">%s selezionato</string>
+  <string name="conversation_fragment_cab__batch_selection_amount">%s selezionati</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Caricamento dei paese...</string>
   <string name="country_selection_fragment__search">Cerca</string>
@@ -420,6 +422,7 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <string name="log_submit_activity__log_fetch_failed">Non riesco a recuperare i log dal tuo dispositivo. Puoi sempre utilizzare ADB per ottenere i log di debug.</string>
   <string name="log_submit_activity__log_submit_success_title">Completato!</string>
   <string name="log_submit_activity__log_got_it">Capito</string>
+  <string name="log_submit_activity__your_pastebin_url">Per favore, copia quest\'indirizzo ed aggiungilo alla tua segnalazione (pressione prolungata per copiarlo negli appunti) <b>%1$s</b></string>
   <string name="log_submit_activity__copied_to_clipboard">Aggiunto agli appunti</string>
   <string name="log_submit_activity__loading_logcat">Caricamento logcat...</string>
   <string name="log_submit_activity__thanks">Grazie dell\'aiuto!</string>

@@ -14,13 +14,15 @@
   <string name="ApplicationPreferencesActivity_delete">Zmaž</string>
   <string name="ApplicationPreferencesActivity_my">Moja</string>
   <string name="ApplicationPreferencesActivity_disable_storage_encryption">Vypnúť kryptovanie úložiska?</string>
-  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">\nUpozornenie, toto vypne kryptovanie úložiska správ a kľúčov. Vaše bezpečné sessions budú naďalej fungovať, ale hocikto s fyzickým prístupom k zariadeniu ich bude schopný čítať.</string>
+  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
+Upozornenie, toto vypne kryptovanie úložiska správ a kľúčov. Vaše bezpečné sessions budú naďalej fungovať, ale hocikto s fyzickým prístupom k zariadeniu ich bude schopný čítať.</string>
   <string name="ApplicationPreferencesActivity_disable">Vypnúť</string>
   <string name="ApplicationPreferencesActivity_unregistering">Neregistrovanie...</string>
   <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Neregistrovanie pre dátovú komunikáciu</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Chyba spojenia na server!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">Prichádzajúce SMS povolené</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Prichádzajúce SMS zakazané </string>
+  <!--AttchmentManager-->
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Obrázok</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
@@ -62,7 +64,6 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Ste si istí že chcete opustiť túto skupinu?</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detaily správy</string>
-  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Odosielateľ:: %1$s\nPrepravené: %2$s\nOdoslané: %3$s\nPrijaté:%4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Potvrď zmazanie správy</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Ste si istí že chcete úplne zmazať túto správu?</string>
   <string name="ConversationFragment_save_to_sd_card">Uložiť na SD kartu?</string>
@@ -84,14 +85,17 @@
   <string name="ShareActivity_share_with">Zdieľaj s</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export_to_sd_card">Exportuj na SD kartu?</string>
-  <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Toto\nexportuje Vaše kryptované kľúče, nastavenia a správy na SD kartu.</string>
+  <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Toto
+exportuje Vaše kryptované kľúče, nastavenia a správy na SD kartu.</string>
   <string name="ExportFragment_export">Export</string>
   <string name="ExportFragment_export_plaintext_to_sd_card">Exportuj čistý text na SD kartu?</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Upozornenie, toto\nexportuje nekryptovaný obsah TextSecure správy na SD kartu.</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Upozornenie, toto
+exportuje nekryptovaný obsah TextSecure správy na SD kartu.</string>
   <string name="ExportFragment_cancel">Zrušiť</string>
   <string name="ExportFragment_exporting">Exportujem</string>
   <string name="ExportFragment_exporting_plaintext_to_sd_card">Exportujem nekryptovaný text na SD kartu...</string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">Chyba, nemôžem zapísať na SD\nkartu!</string>
+  <string name="ExportFragment_error_unable_to_write_to_sd_card">Chyba, nemôžem zapísať na SD
+kartu!</string>
   <string name="ExportFragment_error_while_writing_to_sd_card">Chyba pri zápise na SD kartu.</string>
   <string name="ExportFragment_success">Úspech!</string>
   <string name="ExportFragment_exporting_keys_settings_and_messages">Exportujem zakryptované kľúče, nastavenia a správy...</string>
@@ -110,11 +114,14 @@
   <string name="ImportExportActivity_export">Export</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Importovať systémovú databázu SMS?</string>
-  <string name="ImportFragment_this_will_import_messages_from_the_system">Toto naimportuje\nsprávy zo štandardnej systémovj databázy SMS správ do TextSecure. Ak ste predým\nimportovali systémovú databázu SMS, opakovaný import zduplikuje správy.</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">Toto naimportuje
+správy zo štandardnej systémovj databázy SMS správ do TextSecure. Ak ste predým
+importovali systémovú databázu SMS, opakovaný import zduplikuje správy.</string>
   <string name="ImportFragment_import">Import</string>
   <string name="ImportFragment_cancel">Zrušiť</string>
   <string name="ImportFragment_restore_encrypted_backup">Obnoviť zašifrovanú zálohu?</string>
-  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">\nObnovenie zakryptovanej zálohy prepíše všetky existujúce kryptovacie kľúče, nastavenia a správy. Všetky informácie v aktuálnej inštalácii TextSecure budú prepísané. Záloha zostane zachovaná.</string>
+  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
+Obnovenie zakryptovanej zálohy prepíše všetky existujúce kryptovacie kľúče, nastavenia a správy. Všetky informácie v aktuálnej inštalácii TextSecure budú prepísané. Záloha zostane zachovaná.</string>
   <string name="ImportFragment_restore">Obnovenie</string>
   <string name="ImportFragment_import_plaintext_backup">Importovať nezašifrovanú zálohu?</string>
   <string name="ImportFragment_importing">Importujem</string>
@@ -150,8 +157,13 @@
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">Pripojiť s TextSecure</string>
   <string name="RegistrationActivity_select_your_country">Vyber svoju krajinu</string>
-  <string name="RegistrationActivity_you_must_specify_your_country_code">Ty musíš zadať tvoj\n\nkód krajiny\n</string>
-  <string name="RegistrationActivity_you_must_specify_your_phone_number">Ty musíš zadať tvoje\n\ntelefónne číslo</string>
+  <string name="RegistrationActivity_you_must_specify_your_country_code">Ty musíš zadať tvoj
+
+kód krajiny
+</string>
+  <string name="RegistrationActivity_you_must_specify_your_phone_number">Ty musíš zadať tvoje
+
+telefónne číslo</string>
   <string name="RegistrationActivity_invalid_number">Neplatné číslo</string>
   <string name="RegistrationActivity_unsupported">Nepodporované</string>
   <string name="RegistrationActivity_continue">Pokračovať</string>
@@ -249,7 +261,8 @@
   <string name="MessageNotifier_mark_as_read">Označ ako prečítané</string>
   <!--ViewLocalIdentityActivity-->
   <string name="ViewLocalIdentityActivity_regenerating">Pregenerovávam...</string>
-  <string name="ViewLocalIdentityActivity_regenerating_identity_key">Pregenerovávam kľúče\ntotožnosti...</string>
+  <string name="ViewLocalIdentityActivity_regenerating_identity_key">Pregenerovávam kľúče
+totožnosti...</string>
   <string name="ViewLocalIdentityActivity_regenerated">Pregenerované!</string>
   <string name="ViewLocalIdentityActivity_cancel">Zrušiť</string>
   <string name="ViewLocalIdentityActivity_continue">Pokračovať</string>
@@ -323,15 +336,20 @@
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Aktualizujem databázu...</string>
   <string name="export_fragment__export_encrypted_backup">Exportovať zakryptovanú zálohu</string>
-  <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Exportovať zakryptovanú\nzálohu na SD kartu.</string>
+  <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Exportovať zakryptovanú
+zálohu na SD kartu.</string>
   <string name="export_fragment__export_plaintext_backup">Exportovať nezakryptovanú zálohu</string>
-  <string name="export_fragment__export_a_plaintext_backup_compatible_with">\nExportovať nezakryptovanú zálohu kompatibilnú so \'SMSBackup a Restore\' na SD kartu.</string>
+  <string name="export_fragment__export_a_plaintext_backup_compatible_with">
+Exportovať nezakryptovanú zálohu kompatibilnú so \'SMSBackup a Restore\' na SD kartu.</string>
   <string name="import_fragment__import_system_sms_database">Importovať systémovú databázu SMS</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">Importovať databázu\nštandardnej systémovej aplikácie na správy.</string>
+  <string name="import_fragment__import_the_database_from_the_default_system">Importovať databázu
+štandardnej systémovej aplikácie na správy.</string>
   <string name="import_fragment__import_encrypted_backup">Importovať zakryptovanú zálohu</string>
-  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">\nObnoviť predtým exportovanú zakryptovanú TextSecure zálohu.</string>
+  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">
+Obnoviť predtým exportovanú zakryptovanú TextSecure zálohu.</string>
   <string name="import_fragment__import_plaintext_backup">Importovať nezakryptovanú zálohu</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">\nImportovať nezakryptovanú zálohu. Kompatibilné so \'SMSBackup And Restore\'.</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">
+Importovať nezakryptovanú zálohu. Kompatibilné so \'SMSBackup And Restore\'.</string>
   <string name="local_identity__regenerate_key">Pregeneruj kľúče</string>
   <!--mms_preferences_activity-->
   <string name="mms_preferences_activity__manual_mms_settings_are_required">Manuálne MMS nastavenia sú vyžadované pre tvoj telefón.</string>
@@ -343,7 +361,8 @@
   <string name="receive_key_activity__complete">Dokončené</string>
   <!--registration_activity-->
   <string name="registration_activity__your_country">TVOJA KRAJINA</string>
-  <string name="registration_activity__your_country_code_and_phone_number">Tvoj kód krajiny a\ntelefónne číslo</string>
+  <string name="registration_activity__your_country_code_and_phone_number">Tvoj kód krajiny a
+telefónne číslo</string>
   <string name="registration_activity__phone_number">TELEFÓNNE ČÍSLO </string>
   <string name="registration_activity__register">Registrovať</string>
   <string name="registration_activity__skip">Preskoč</string>
@@ -352,18 +371,28 @@
   <string name="registration_problems__google_voice">Google hlas</string>
   <!--registration_progress_activity-->
   <string name="registration_progress_activity__voice_verification">Hlasové overovanie</string>
-  <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">\nTextSecure Vám môže tiež zavolať kvôli overeniu Vášho čísla. Kliknite \"Zavolaj mi\" a vložte 6 číslic\nkód ktoré budete počuť.\n</string>
+  <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">
+TextSecure Vám môže tiež zavolať kvôli overeniu Vášho čísla. Kliknite \"Zavolaj mi\" a vložte 6 číslic
+kód ktoré budete počuť.
+</string>
   <string name="registration_progress_activity__verify">Overené</string>
   <string name="registration_progress_activity__call_me">Zavolaj mi</string>
   <string name="registration_progress_activity__edit_number">Úprav číslo</string>
   <string name="registration_progress_activity__connectivity_error">Problém pripojenia.</string>
-  <string name="registration_progress_activity__no_network_connectivity">Žiadne sieťové\npripojenie.\n</string>
+  <string name="registration_progress_activity__no_network_connectivity">Žiadne sieťové
+pripojenie.
+</string>
   <string name="registration_progress_activity__restrictive_firewall">Reštriktívny firewall</string>
-  <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">\nTeraz TextSecure automaticky overí tvoje číslo prostredníctvom overovacej SMS správy.\n</string>
+  <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
+Teraz TextSecure automaticky overí tvoje číslo prostredníctvom overovacej SMS správy.
+</string>
   <string name="registration_progress_activity__connecting">Pripájanie...</string>
-  <string name="registration_progress_activity__waiting_for_sms_verification">Čakanie na SMS\noverovanie...</string>
+  <string name="registration_progress_activity__waiting_for_sms_verification">Čakanie na SMS
+overovanie...</string>
   <string name="registration_progress_activity__registering_with_server">Registrujem na server...</string>
-  <string name="registration_progress_activity__sms_verification_failed">SMS overovanie\nzlyhalo.\n</string>
+  <string name="registration_progress_activity__sms_verification_failed">SMS overovanie
+zlyhalo.
+</string>
   <string name="registration_progress_activity__generating_keys">Generovanie kľúčov...</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Vlož meno alebo číslo</small></string>
@@ -374,8 +403,6 @@
   <string name="verify_identity_activity__their_identity_they_read">Ich totožnosť (oni vidia):</string>
   <string name="verify_identity_activity__your_identity_you_read">Vaša totožnosť (vy vidíte):</string>
   <!--verify_import_identity_activity-->
-  <string name="verify_import_identity_activity__identity_name_n">Meno totožnosti:\\n</string>
-  <string name="verify_import_identity_activity__imported_identity_n">Importovaná totožnosť:\\n</string>
   <string name="verify_import_identity_activity__verified">Verifikované!</string>
   <string name="verify_import_identity_activity__compare">Porovnaj</string>
   <!--verify_keys_activity-->

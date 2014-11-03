@@ -93,15 +93,6 @@ public class Util {
     return value == null || value.length() == 0;
   }
 
-
-  public static int generateRegistrationId() {
-    try {
-      return SecureRandom.getInstance("SHA1PRNG").nextInt(16380) + 1;
-    } catch (NoSuchAlgorithmException e) {
-      throw new AssertionError(e);
-    }
-  }
-
   public static String getSecret(int size) {
     try {
       byte[] secret = new byte[size];

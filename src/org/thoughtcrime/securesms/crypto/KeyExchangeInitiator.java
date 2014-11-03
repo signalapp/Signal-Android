@@ -22,20 +22,22 @@ import android.content.Context;
 import android.content.DialogInterface;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.crypto.protocol.KeyExchangeMessageV2;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingKeyExchangeMessage;
 import org.thoughtcrime.securesms.util.Dialogs;
-import org.whispersystems.textsecure.crypto.IdentityKeyPair;
+import org.whispersystems.libaxolotl.SessionBuilder;
+import org.whispersystems.libaxolotl.protocol.KeyExchangeMessage;
+import org.whispersystems.libaxolotl.state.SignedPreKeyStore;
+import org.whispersystems.libaxolotl.state.IdentityKeyStore;
+import org.whispersystems.libaxolotl.state.PreKeyStore;
+import org.whispersystems.libaxolotl.state.SessionRecord;
+import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.crypto.ecc.Curve;
-import org.whispersystems.textsecure.crypto.ecc.ECKeyPair;
 import org.whispersystems.textsecure.storage.RecipientDevice;
-import org.whispersystems.textsecure.storage.SessionRecordV2;
-
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
+import org.whispersystems.textsecure.storage.TextSecurePreKeyStore;
+import org.whispersystems.textsecure.storage.TextSecureSessionStore;
+import org.whispersystems.textsecure.util.Base64;
 
 public class KeyExchangeInitiator {
 
@@ -59,23 +61,18 @@ public class KeyExchangeInitiator {
   }
 
   private static void initiateKeyExchange(Context context, MasterSecret masterSecret, Recipient recipient) {
-    int             sequence     = getRandomSequence();
-    int             flags        = KeyExchangeMessageV2.INITIATE_FLAG;
-    ECKeyPair       baseKey      = Curve.generateKeyPair(true);
-    ECKeyPair       ephemeralKey = Curve.generateKeyPair(true);
-    IdentityKeyPair identityKey  = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
+    SessionStore      sessionStore      = new TextSecureSessionStore(context, masterSecret);
+    PreKeyStore       preKeyStore       = new TextSecurePreKeyStore(context, masterSecret);
+    SignedPreKeyStore signedPreKeyStore = new TextSecurePreKeyStore(context, masterSecret);
+    IdentityKeyStore  identityKeyStore  = new TextSecureIdentityKeyStore(context, masterSecret);
 
-    KeyExchangeMessageV2 message = new KeyExchangeMessageV2(sequence, flags,
-                                                            baseKey.getPublicKey(),
-                                                            ephemeralKey.getPublicKey(),
-                                                            identityKey.getPublicKey());
+    SessionBuilder    sessionBuilder    = new SessionBuilder(sessionStore, preKeyStore, signedPreKeyStore,
+                                                             identityKeyStore, recipient.getRecipientId(),
+                                                             RecipientDevice.DEFAULT_DEVICE_ID);
 
-    OutgoingKeyExchangeMessage textMessage = new OutgoingKeyExchangeMessage(recipient, message.serialize());
-    RecipientDevice recipientDevice = new RecipientDevice(recipient.getRecipientId(), RecipientDevice.DEFAULT_DEVICE_ID);
-
-    SessionRecordV2 sessionRecordV2 = new SessionRecordV2(context, masterSecret, recipientDevice);
-    sessionRecordV2.getSessionState().setPendingKeyExchange(sequence, baseKey, ephemeralKey, identityKey);
-    sessionRecordV2.save();
+    KeyExchangeMessage         keyExchangeMessage = sessionBuilder.process();
+    String                     serializedMessage  = Base64.encodeBytesWithoutPadding(keyExchangeMessage.serialize());
+    OutgoingKeyExchangeMessage textMessage        = new OutgoingKeyExchangeMessage(recipient, serializedMessage);
 
     MessageSender.send(context, masterSecret, textMessage, -1, false);
   }
@@ -83,21 +80,9 @@ public class KeyExchangeInitiator {
   private static boolean hasInitiatedSession(Context context, MasterSecret masterSecret,
                                              Recipient recipient)
   {
-    RecipientDevice recipientDevice = new RecipientDevice(recipient.getRecipientId(), RecipientDevice.DEFAULT_DEVICE_ID);
-    return
-        new SessionRecordV2(context, masterSecret, recipientDevice)
-            .getSessionState()
-            .hasPendingKeyExchange();
-  }
+    SessionStore  sessionStore  = new TextSecureSessionStore(context, masterSecret);
+    SessionRecord sessionRecord = sessionStore.loadSession(recipient.getRecipientId(), RecipientDevice.DEFAULT_DEVICE_ID);
 
-  private static int getRandomSequence() {
-    try {
-      SecureRandom random    = SecureRandom.getInstance("SHA1PRNG");
-      int          candidate = Math.abs(random.nextInt());
-
-      return candidate % 65535;
-    } catch (NoSuchAlgorithmException e) {
-      throw new AssertionError(e);
-    }
+    return sessionRecord.getSessionState().hasPendingKeyExchange();
   }
 }

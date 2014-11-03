@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.transport;
 
-import org.whispersystems.textsecure.crypto.IdentityKey;
-import org.whispersystems.textsecure.push.UnregisteredUserException;
+import org.whispersystems.libaxolotl.IdentityKey;
 
 public class UntrustedIdentityException extends Exception {
 

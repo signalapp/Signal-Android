@@ -12,6 +12,7 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">စာတိုအဟောင်းများအားလံုးဖျက်မည်လား</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">စကားဝိုင်း၊ စကားတွဲများအားလုံးကို လတ်တလော စာသား %s ခုသာ သိမ်းထား၍ အခြားစာသားများကို ဖျက်မှာ သေချာရဲ့လား</string>
   <string name="ApplicationPreferencesActivity_delete">ဖျက်ရန်</string>
+  <!--AttchmentManager-->
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">ပုံ</string>
   <string name="AttachmentTypeSelectorAdapter_video">ဗွီဒီယို</string>
@@ -197,8 +198,6 @@
   <string name="verify_identity_activity__their_identity_they_read">သူများ အိုင်ဒီ (သူများ အမြင်) - </string>
   <string name="verify_identity_activity__your_identity_you_read">အသင့်အိုင်ဒီ (အသင့်အမြင်) - </string>
   <!--verify_import_identity_activity-->
-  <string name="verify_import_identity_activity__identity_name_n">အသိအမှတ်ပြုမှုအမည်:\\n</string>
-  <string name="verify_import_identity_activity__imported_identity_n">အသိအမှတ်ပြုမှုသွင်းယူ:\\n</string>
   <string name="verify_import_identity_activity__verified">အတည်ပြုပြီး</string>
   <string name="verify_import_identity_activity__compare">နှိုင်းယှဉ်</string>
   <!--verify_keys_activity-->

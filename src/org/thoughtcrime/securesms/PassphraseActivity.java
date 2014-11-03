@@ -21,19 +21,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
+import android.support.v7.app.ActionBarActivity;
 
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 
-import com.actionbarsherlock.app.SherlockActivity;
 
 /**
  * Base Activity for changing/prompting local encryption passphrase.
  *
  * @author Moxie Marlinspike
  */
-public abstract class PassphraseActivity extends SherlockActivity {
+public abstract class PassphraseActivity extends ActionBarActivity {
 
   private KeyCachingService keyCachingService;
   private MasterSecret masterSecret;

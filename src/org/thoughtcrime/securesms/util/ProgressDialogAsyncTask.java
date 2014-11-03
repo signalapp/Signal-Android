@@ -4,17 +4,19 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import java.lang.ref.WeakReference;
+
 public abstract class ProgressDialogAsyncTask<Params, Progress, Result> extends AsyncTask<Params, Progress, Result> {
-  private final Context        context;
-  private       ProgressDialog progress;
-  private final String         title;
-  private final String         message;
+  private final WeakReference<Context> contextReference;
+  private       ProgressDialog         progress;
+  private final String                 title;
+  private final String                 message;
 
   public ProgressDialogAsyncTask(Context context, String title, String message) {
     super();
-    this.context = context;
-    this.title   = title;
-    this.message = message;
+    this.contextReference = new WeakReference<Context>(context);
+    this.title            = title;
+    this.message          = message;
   }
 
   public ProgressDialogAsyncTask(Context context, int title, int message) {
@@ -23,7 +25,8 @@ public abstract class ProgressDialogAsyncTask<Params, Progress, Result> extends 
 
   @Override
   protected void onPreExecute() {
-    progress = ProgressDialog.show(context, title, message, true);
+    final Context context = contextReference.get();
+    if (context != null) progress = ProgressDialog.show(context, title, message, true);
   }
 
   @Override

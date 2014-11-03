@@ -1,32 +1,30 @@
 package org.whispersystems.textsecure.util;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
 
 public class ListenableFutureTask<V> extends FutureTask<V> {
 
-//  private WeakReference<FutureTaskListener<V>> listener;
-  private FutureTaskListener<V> listener;
+  private final List<FutureTaskListener<V>> listeners;
 
-  public ListenableFutureTask(Callable<V> callable, FutureTaskListener<V> listener) {
+  public ListenableFutureTask(Callable<V> callable) {
     super(callable);
-    this.listener = listener;
-//    if (listener == null) {
-//      this.listener = null;
-//    } else {
-//      this.listener = new WeakReference<FutureTaskListener<V>>(listener);
-//    }
+    this.listeners = new LinkedList<>();
   }
 
-  public synchronized void setListener(FutureTaskListener<V> listener) {
-//    if (listener != null) this.listener = new WeakReference<FutureTaskListener<V>>(listener);
-//    else                  this.listener = null;
-    this.listener = listener;
-
+  public synchronized void addListener(FutureTaskListener<V> listener) {
     if (this.isDone()) {
-      callback();
+      callback(listener);
+      return;
     }
+    listeners.add(listener);
+  }
+
+  public synchronized boolean removeListener(FutureTaskListener<V> listener) {
+    return listeners.remove(listener);
   }
 
   @Override
@@ -35,17 +33,19 @@ public class ListenableFutureTask<V> extends FutureTask<V> {
   }
 
   private void callback() {
-    if (this.listener != null) {
-      FutureTaskListener<V> nestedListener = this.listener;
-//      FutureTaskListener<V> nestedListener = this.listener.get();
-      if (nestedListener != null) {
-        try {
-          nestedListener.onSuccess(get());
-        } catch (ExecutionException ee) {
-          nestedListener.onFailure(ee);
-        } catch (InterruptedException e) {
-          throw new AssertionError(e);
-        }
+    for (FutureTaskListener<V> listener : listeners) {
+      callback(listener);
+    }
+  }
+
+  private void callback(FutureTaskListener<V> listener) {
+    if (listener != null) {
+      try {
+        listener.onSuccess(get());
+      } catch (ExecutionException ee) {
+        listener.onFailure(ee);
+      } catch (InterruptedException e) {
+        throw new AssertionError(e);
       }
     }
   }

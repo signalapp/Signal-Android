@@ -23,10 +23,8 @@ import android.util.Pair;
 
 import org.thoughtcrime.securesms.crypto.DecryptingQueue;
 import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
-import org.thoughtcrime.securesms.crypto.KeyExchangeProcessorV2;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
-import org.thoughtcrime.securesms.crypto.protocol.KeyExchangeMessage;
-import org.whispersystems.textsecure.crypto.LegacyMessageException;
+import org.thoughtcrime.securesms.crypto.TextSecureCipher;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
@@ -35,21 +33,31 @@ import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
+import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.IncomingKeyExchangeMessage;
 import org.thoughtcrime.securesms.sms.IncomingPreKeyBundleMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
+import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.MultipartSmsMessageHandler;
+import org.thoughtcrime.securesms.sms.OutgoingKeyExchangeMessage;
 import org.thoughtcrime.securesms.sms.SmsTransportDetails;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.textsecure.crypto.InvalidKeyException;
-import org.whispersystems.textsecure.crypto.InvalidMessageException;
-import org.whispersystems.textsecure.crypto.InvalidVersionException;
+import org.whispersystems.libaxolotl.DuplicateMessageException;
+import org.whispersystems.libaxolotl.InvalidKeyException;
+import org.whispersystems.libaxolotl.InvalidMessageException;
+import org.whispersystems.libaxolotl.InvalidVersionException;
+import org.whispersystems.libaxolotl.LegacyMessageException;
+import org.whispersystems.libaxolotl.NoSessionException;
+import org.whispersystems.libaxolotl.StaleKeyExchangeException;
+import org.whispersystems.libaxolotl.UntrustedIdentityException;
+import org.whispersystems.libaxolotl.protocol.KeyExchangeMessage;
+import org.whispersystems.libaxolotl.protocol.PreKeyWhisperMessage;
+import org.whispersystems.libaxolotl.protocol.WhisperMessage;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.crypto.protocol.PreKeyWhisperMessage;
-import org.whispersystems.textsecure.crypto.protocol.WhisperMessage;
-import org.whispersystems.textsecure.storage.InvalidKeyIdException;
+import org.whispersystems.libaxolotl.InvalidKeyIdException;
 import org.whispersystems.textsecure.storage.RecipientDevice;
+import org.whispersystems.textsecure.util.Base64;
 
 import java.io.IOException;
 import java.util.List;
@@ -110,48 +118,47 @@ public class SmsReceiver {
                                                      IncomingPreKeyBundleMessage message)
   {
     Log.w("SmsReceiver", "Processing prekey message...");
+    EncryptingSmsDatabase database = DatabaseFactory.getEncryptingSmsDatabase(context);
 
-    try {
-      Recipient              recipient        = RecipientFactory.getRecipientsFromString(context, message.getSender(), false).getPrimaryRecipient();
-      RecipientDevice        recipientDevice  = new RecipientDevice(recipient.getRecipientId(), message.getSenderDeviceId());
-      KeyExchangeProcessorV2 processor        = new KeyExchangeProcessorV2(context, masterSecret, recipientDevice);
-      SmsTransportDetails    transportDetails = new SmsTransportDetails();
-      byte[]                 rawMessage       = transportDetails.getDecodedMessage(message.getMessageBody().getBytes());
-      PreKeyWhisperMessage   preKeyExchange   = new PreKeyWhisperMessage(rawMessage);
+    if (masterSecret != null) {
+      try {
+        Recipient            recipient            = RecipientFactory.getRecipientsFromString(context, message.getSender(), false).getPrimaryRecipient();
+        RecipientDevice      recipientDevice      = new RecipientDevice(recipient.getRecipientId(), message.getSenderDeviceId());
+        SmsTransportDetails  transportDetails     = new SmsTransportDetails();
+        TextSecureCipher     cipher               = new TextSecureCipher(context, masterSecret, recipientDevice, transportDetails);
+        byte[]               rawMessage           = transportDetails.getDecodedMessage(message.getMessageBody().getBytes());
+        PreKeyWhisperMessage preKeyWhisperMessage = new PreKeyWhisperMessage(rawMessage);
+        byte[]               plaintext            = cipher.decrypt(preKeyWhisperMessage);
 
-      if (processor.isTrusted(preKeyExchange)) {
-        processor.processKeyExchangeMessage(preKeyExchange);
+        IncomingEncryptedMessage bundledMessage     = new IncomingEncryptedMessage(message, new String(transportDetails.getEncodedMessage(preKeyWhisperMessage.getWhisperMessage().serialize())));
+        Pair<Long, Long>         messageAndThreadId = database.insertMessageInbox(masterSecret, bundledMessage);
 
-        WhisperMessage           ciphertextMessage  = preKeyExchange.getWhisperMessage();
-        String                   bundledMessageBody = new String(transportDetails.getEncodedMessage(ciphertextMessage.serialize()));
-        IncomingEncryptedMessage bundledMessage     = new IncomingEncryptedMessage(message, bundledMessageBody);
-        Pair<Long, Long>         messageAndThreadId = storeSecureMessage(masterSecret, bundledMessage);
+        database.updateMessageBody(masterSecret, messageAndThreadId.first, new String(plaintext));
 
-        Intent intent = new Intent(KeyExchangeProcessorV2.SECURITY_UPDATE_EVENT);
+        Intent intent = new Intent(KeyExchangeProcessor.SECURITY_UPDATE_EVENT);
         intent.putExtra("thread_id", messageAndThreadId.second);
         intent.setPackage(context.getPackageName());
         context.sendBroadcast(intent, KeyCachingService.KEY_PERMISSION);
 
         return messageAndThreadId;
+      } catch (InvalidKeyException | RecipientFormattingException | InvalidMessageException | IOException | NoSessionException e) {
+        Log.w("SmsReceiver", e);
+        message.setCorrupted(true);
+      } catch (InvalidVersionException e) {
+        Log.w("SmsReceiver", e);
+        message.setInvalidVersion(true);
+      } catch (InvalidKeyIdException e) {
+        Log.w("SmsReceiver", e);
+        message.setStale(true);
+      } catch (UntrustedIdentityException e) {
+        Log.w("SmsReceiver", e);
+      } catch (DuplicateMessageException e) {
+        Log.w("SmsReceiver", e);
+        message.setDuplicate(true);
+      } catch (LegacyMessageException e) {
+        Log.w("SmsReceiver", e);
+        message.setLegacyVersion(true);
       }
-    } catch (InvalidKeyException e) {
-      Log.w("SmsReceiver", e);
-      message.setCorrupted(true);
-    } catch (InvalidVersionException e) {
-      Log.w("SmsReceiver", e);
-      message.setInvalidVersion(true);
-    } catch (InvalidKeyIdException e) {
-      Log.w("SmsReceiver", e);
-      message.setStale(true);
-    } catch (IOException e) {
-      Log.w("SmsReceive", e);
-      message.setCorrupted(true);
-    } catch (InvalidMessageException e) {
-      Log.w("SmsReceiver", e);
-      message.setCorrupted(true);
-    } catch (RecipientFormattingException e) {
-      Log.w("SmsReceiver", e);
-      message.setCorrupted(true);
     }
 
     return storeStandardMessage(masterSecret, message);
@@ -164,34 +171,34 @@ public class SmsReceiver {
       try {
         Recipient            recipient       = RecipientFactory.getRecipientsFromString(context, message.getSender(), false).getPrimaryRecipient();
         RecipientDevice      recipientDevice = new RecipientDevice(recipient.getRecipientId(), message.getSenderDeviceId());
-        KeyExchangeMessage   exchangeMessage = KeyExchangeMessage.createFor(message.getMessageBody());
-        KeyExchangeProcessor processor       = KeyExchangeProcessor.createFor(context, masterSecret, recipientDevice, exchangeMessage);
+        KeyExchangeMessage   exchangeMessage = new KeyExchangeMessage(Base64.decodeWithoutPadding(message.getMessageBody()));
+        KeyExchangeProcessor processor       = new KeyExchangeProcessor(context, masterSecret, recipientDevice);
+        long                 threadId        = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(new Recipients(recipient));
+        OutgoingKeyExchangeMessage response = processor.processKeyExchangeMessage(exchangeMessage, threadId);
 
-        if (processor.isStale(exchangeMessage)) {
-          message.setStale(true);
-        } else if (processor.isTrusted(exchangeMessage)) {
-          message.setProcessed(true);
+        message.setProcessed(true);
 
-          Pair<Long, Long> messageAndThreadId = storeStandardMessage(masterSecret, message);
-          processor.processKeyExchangeMessage(exchangeMessage, messageAndThreadId.second);
+        Pair<Long, Long> messageAndThreadId = storeStandardMessage(masterSecret, message);
 
-          return messageAndThreadId;
+        if (response != null) {
+          MessageSender.send(context, masterSecret, response, messageAndThreadId.second, true);
         }
+
+        return messageAndThreadId;
       } catch (InvalidVersionException e) {
         Log.w("SmsReceiver", e);
         message.setInvalidVersion(true);
-      } catch (InvalidKeyException e) {
-        Log.w("SmsReceiver", e);
-        message.setCorrupted(true);
-      } catch (InvalidMessageException e) {
-        Log.w("SmsReceiver", e);
-        message.setCorrupted(true);
-      } catch (RecipientFormattingException e) {
+      } catch (InvalidMessageException | InvalidKeyException | IOException | RecipientFormattingException e) {
         Log.w("SmsReceiver", e);
         message.setCorrupted(true);
       } catch (LegacyMessageException e) {
         Log.w("SmsReceiver", e);
         message.setLegacyVersion(true);
+      } catch (StaleKeyExchangeException e) {
+        Log.w("SmsReceiver", e);
+        message.setStale(true);
+      } catch (UntrustedIdentityException e) {
+        Log.w("SmsReceiver", e);
       }
     }
 

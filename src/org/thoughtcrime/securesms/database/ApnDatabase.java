@@ -20,17 +20,17 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
+import android.text.TextUtils;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.mms.MmsCommunication;
-import org.thoughtcrime.securesms.mms.MmsCommunication.MmsConnectionParameters;
+import org.thoughtcrime.securesms.mms.ApnUnavailableException;
+import org.thoughtcrime.securesms.mms.MmsConnection.Apn;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.util.Util;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.security.InvalidParameterException;
 
 /**
  * Database to query APN and MMSC information
@@ -39,6 +39,7 @@ public class ApnDatabase {
   private static final String TAG = ApnDatabase.class.getSimpleName();
 
   private final SQLiteDatabase db;
+  private final Context        context;
 
   private static final String DATABASE_NAME = "apns.db";
   private static final String ASSET_PATH    = "databases" + File.separator + DATABASE_NAME;
@@ -77,6 +78,8 @@ public class ApnDatabase {
   }
 
   private ApnDatabase(final Context context) throws IOException {
+    this.context = context;
+
     File dbFile = context.getDatabasePath(DATABASE_NAME);
 
     if (!dbFile.getParentFile().exists() && !dbFile.getParentFile().mkdir()) {
@@ -90,10 +93,35 @@ public class ApnDatabase {
                                           null,
                                           SQLiteDatabase.OPEN_READONLY | SQLiteDatabase.NO_LOCALIZED_COLLATORS);
   }
+  protected Apn getLocallyConfiguredMmsConnectionParameters() throws ApnUnavailableException {
+    if (TextSecurePreferences.isUseLocalApnsEnabled(context)) {
+      String mmsc = TextSecurePreferences.getMmscUrl(context).trim();
+      if (TextUtils.isEmpty(mmsc))
+        throw new ApnUnavailableException("Malformed locally configured MMSC.");
 
-  public MmsCommunication.MmsConnectionParameters getMmsConnectionParameters(final String mccmnc,
-                                                                             final String apn)
-  {
+      if (!mmsc.startsWith("http"))
+        mmsc = "http://" + mmsc;
+
+      String proxy = TextSecurePreferences.getMmscProxy(context);
+      String port  = TextSecurePreferences.getMmscProxyPort(context);
+
+      return new Apn(mmsc, proxy, port);
+    }
+
+    throw new ApnUnavailableException("No locally configured parameters available");
+
+  }
+
+  public Apn getMmsConnectionParameters(final String mccmnc, final String apn) {
+
+    if (TextSecurePreferences.isUseLocalApnsEnabled(context)) {
+      Log.w(TAG, "Choosing locally-overridden MMS settings");
+      try {
+        return getLocallyConfiguredMmsConnectionParameters();
+      } catch (ApnUnavailableException aue) {
+        Log.w(TAG, "preference to use local apn set, but no parameters avaiable. falling back.");
+      }
+    }
 
     if (mccmnc == null) {
       Log.w(TAG, "mccmnc was null, returning null");
@@ -121,10 +149,10 @@ public class ApnDatabase {
       }
 
       if (cursor != null && cursor.moveToFirst()) {
-        MmsConnectionParameters params = new MmsConnectionParameters(cursor.getString(cursor.getColumnIndexOrThrow(MMSC_COLUMN)),
-                                                                     cursor.getString(cursor.getColumnIndexOrThrow(MMS_PROXY_COLUMN)),
-                                                                     cursor.getString(cursor.getColumnIndexOrThrow(MMS_PORT_COLUMN)));
-        Log.w(TAG, "Returning preferred APN " + params.get().get(0));
+        Apn params = new Apn(cursor.getString(cursor.getColumnIndexOrThrow(MMSC_COLUMN)),
+                             cursor.getString(cursor.getColumnIndexOrThrow(MMS_PROXY_COLUMN)),
+                             cursor.getString(cursor.getColumnIndexOrThrow(MMS_PORT_COLUMN)));
+        Log.w(TAG, "Returning preferred APN " + params);
         return params;
       }
 

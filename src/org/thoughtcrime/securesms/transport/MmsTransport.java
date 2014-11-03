@@ -21,23 +21,23 @@ import android.content.Context;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.crypto.TextSecureCipher;
 import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.mms.ApnUnavailableException;
 import org.thoughtcrime.securesms.mms.MmsRadio;
 import org.thoughtcrime.securesms.mms.MmsRadioException;
-import org.thoughtcrime.securesms.mms.MmsSendHelper;
 import org.thoughtcrime.securesms.mms.MmsSendResult;
+import org.thoughtcrime.securesms.mms.OutgoingMmsConnection;
 import org.thoughtcrime.securesms.mms.TextTransport;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.util.NumberUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.libaxolotl.protocol.CiphertextMessage;
 import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.crypto.SessionCipher;
-import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
 import org.whispersystems.textsecure.storage.RecipientDevice;
-import org.whispersystems.textsecure.storage.Session;
+import org.whispersystems.textsecure.storage.SessionUtil;
 import org.whispersystems.textsecure.util.Hex;
 
 import java.io.IOException;
@@ -124,21 +124,25 @@ public class MmsTransport {
       message.setFrom(new EncodedStringValue(number));
     }
 
-    SendConf conf = MmsSendHelper.sendMms(context, new PduComposer(context, message).make(),
-                                          radio.getApnInformation(), usingMmsRadio, useProxy);
+    try {
+      OutgoingMmsConnection connection = new OutgoingMmsConnection(context, radio.getApnInformation(), new PduComposer(context, message).make());
+      SendConf conf = connection.send(usingMmsRadio, useProxy);
 
-    for (int i=0;i<message.getBody().getPartsNum();i++) {
-      Log.w("MmsSender", "Sent MMS part of content-type: " + new String(message.getBody().getPart(i).getContentType()));
-    }
+      for (int i=0;i<message.getBody().getPartsNum();i++) {
+        Log.w("MmsSender", "Sent MMS part of content-type: " + new String(message.getBody().getPart(i).getContentType()));
+      }
 
-    if (conf == null) {
-      throw new UndeliverableMessageException("No M-Send.conf received in response to send.");
-    } else if (conf.getResponseStatus() != PduHeaders.RESPONSE_STATUS_OK) {
-      throw new UndeliverableMessageException("Got bad response: " + conf.getResponseStatus());
-    } else if (isInconsistentResponse(message, conf)) {
-      throw new UndeliverableMessageException("Mismatched response!");
-    } else {
-      return new MmsSendResult(conf.getMessageId(), conf.getResponseStatus(), upgradedSecure, false);
+      if (conf == null) {
+        throw new UndeliverableMessageException("No M-Send.conf received in response to send.");
+      } else if (conf.getResponseStatus() != PduHeaders.RESPONSE_STATUS_OK) {
+        throw new UndeliverableMessageException("Got bad response: " + conf.getResponseStatus());
+      } else if (isInconsistentResponse(message, conf)) {
+        throw new UndeliverableMessageException("Mismatched response!");
+      } else {
+        return new MmsSendResult(conf.getMessageId(), conf.getResponseStatus(), upgradedSecure, false);
+      }
+    } catch (ApnUnavailableException aue) {
+      throw new IOException("no APN was retrievable");
     }
   }
 
@@ -163,18 +167,20 @@ public class MmsTransport {
     return encryptedPdu;
   }
 
-  private byte[] getEncryptedPdu(MasterSecret masterSecret, String recipientString, byte[] pduBytes) throws InsecureFallbackApprovalException {
+  private byte[] getEncryptedPdu(MasterSecret masterSecret, String recipientString, byte[] pduBytes)
+      throws InsecureFallbackApprovalException
+  {
     try {
       TextTransport     transportDetails  = new TextTransport();
       Recipient         recipient         = RecipientFactory.getRecipientsFromString(context, recipientString, false).getPrimaryRecipient();
       RecipientDevice   recipientDevice   = new RecipientDevice(recipient.getRecipientId(), RecipientDevice.DEFAULT_DEVICE_ID);
 
-      if (!Session.hasEncryptCapableSession(context, masterSecret, recipient, recipientDevice)) {
+      if (!SessionUtil.hasEncryptCapableSession(context, masterSecret, recipientDevice)) {
         throw new InsecureFallbackApprovalException("No session exists for this secure message.");
       }
 
-      SessionCipher     sessionCipher     = SessionCipher.createFor(context, masterSecret, recipientDevice);
-      CiphertextMessage ciphertextMessage = sessionCipher.encrypt(pduBytes);
+      TextSecureCipher  cipher            = new TextSecureCipher(context, masterSecret, recipientDevice, transportDetails);
+      CiphertextMessage ciphertextMessage = cipher.encrypt(pduBytes);
 
       return transportDetails.getEncodedMessage(ciphertextMessage.serialize());
     } catch (RecipientFormattingException e) {

@@ -1,47 +1,91 @@
-/**
- * Copyright (C) 2011 Whisper Systems
- * Copyright (C) 2013 Open Whisper Systems
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package org.thoughtcrime.securesms.crypto;
 
 import android.content.Context;
 import android.content.Intent;
 
-import org.thoughtcrime.securesms.crypto.protocol.KeyExchangeMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.service.KeyCachingService;
-import org.whispersystems.textsecure.crypto.InvalidMessageException;
+import org.thoughtcrime.securesms.service.PreKeyService;
+import org.thoughtcrime.securesms.sms.OutgoingKeyExchangeMessage;
+import org.whispersystems.libaxolotl.InvalidKeyException;
+import org.whispersystems.libaxolotl.InvalidKeyIdException;
+import org.whispersystems.libaxolotl.SessionBuilder;
+import org.whispersystems.libaxolotl.StaleKeyExchangeException;
+import org.whispersystems.libaxolotl.UntrustedIdentityException;
+import org.whispersystems.libaxolotl.protocol.KeyExchangeMessage;
+import org.whispersystems.libaxolotl.protocol.PreKeyWhisperMessage;
+import org.whispersystems.libaxolotl.state.SignedPreKeyStore;
+import org.whispersystems.libaxolotl.state.IdentityKeyStore;
+import org.whispersystems.libaxolotl.state.PreKeyBundle;
+import org.whispersystems.libaxolotl.state.PreKeyStore;
+import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.storage.RecipientDevice;
+import org.whispersystems.textsecure.storage.TextSecurePreKeyStore;
+import org.whispersystems.textsecure.storage.TextSecureSessionStore;
+import org.whispersystems.textsecure.util.Base64;
 
-public abstract class KeyExchangeProcessor {
+/**
+ * This class processes key exchange interactions.
+ *
+ * @author Moxie Marlinspike
+ */
+
+public class KeyExchangeProcessor {
 
   public static final String SECURITY_UPDATE_EVENT = "org.thoughtcrime.securesms.KEY_EXCHANGE_UPDATE";
 
-  public abstract boolean isStale(KeyExchangeMessage message);
-  public abstract boolean isTrusted(KeyExchangeMessage message);
-  public abstract void processKeyExchangeMessage(KeyExchangeMessage message, long threadid)
-      throws InvalidMessageException;
+  private Context         context;
+  private RecipientDevice recipientDevice;
+  private MasterSecret    masterSecret;
+  private SessionBuilder  sessionBuilder;
 
-  public static KeyExchangeProcessor createFor(Context context, MasterSecret masterSecret,
-                                               RecipientDevice recipientDevice,
-                                               KeyExchangeMessage message)
+  public KeyExchangeProcessor(Context context, MasterSecret masterSecret, RecipientDevice recipientDevice)
   {
-    return new KeyExchangeProcessorV2(context, masterSecret, recipientDevice);
+    this.context         = context;
+    this.recipientDevice = recipientDevice;
+    this.masterSecret    = masterSecret;
+
+    IdentityKeyStore  identityKeyStore  = new TextSecureIdentityKeyStore(context, masterSecret);
+    PreKeyStore       preKeyStore       = new TextSecurePreKeyStore(context, masterSecret);
+    SignedPreKeyStore signedPreKeyStore = new TextSecurePreKeyStore(context, masterSecret);
+    SessionStore      sessionStore      = new TextSecureSessionStore(context, masterSecret);
+
+    this.sessionBuilder = new SessionBuilder(sessionStore, preKeyStore, signedPreKeyStore,
+                                             identityKeyStore, recipientDevice.getRecipientId(),
+                                             recipientDevice.getDeviceId());
+  }
+
+  public void processKeyExchangeMessage(PreKeyBundle bundle, long threadId)
+      throws InvalidKeyException, UntrustedIdentityException
+  {
+    sessionBuilder.process(bundle);
+
+    if (threadId != -1) {
+      broadcastSecurityUpdateEvent(context, threadId);
+    }
+  }
+
+  public OutgoingKeyExchangeMessage processKeyExchangeMessage(KeyExchangeMessage message, long threadId)
+      throws InvalidKeyException, UntrustedIdentityException, StaleKeyExchangeException
+  {
+    KeyExchangeMessage responseMessage = sessionBuilder.process(message);
+    Recipient          recipient       = RecipientFactory.getRecipientsForIds(context,
+                                                                              String.valueOf(recipientDevice.getRecipientId()),
+                                                                              false)
+                                                         .getPrimaryRecipient();
+
+    DecryptingQueue.scheduleRogueMessages(context, masterSecret, recipient);
+
+    broadcastSecurityUpdateEvent(context, threadId);
+
+    if (responseMessage != null) {
+      String serializedResponse = Base64.encodeBytesWithoutPadding(responseMessage.serialize());
+      return new OutgoingKeyExchangeMessage(recipient, serializedResponse);
+    } else {
+      return null;
+    }
   }
 
   public static void broadcastSecurityUpdateEvent(Context context, long threadId) {

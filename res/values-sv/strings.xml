@@ -33,6 +33,7 @@ Det här kommer slå av pushmeddelanden genom att avregistrera dig från servern
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Tryck för att ändra din standardapp för SMS</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Inkommande SMS avslaget</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Tryck för att göra TextSecure till din standardapp för SMS</string>
+  <!--AttchmentManager-->
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Bild</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
@@ -57,6 +58,7 @@ Det här kommer slå av pushmeddelanden genom att avregistrera dig från servern
   <string name="ConversationItem_click_to_approve_mms_dialog_title">Använd MMS istället?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Använd okrypterat SMS istället?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Använd okrypterat MMS istället?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Det här meddelandet kommer <b>inte</b> bli krypterat eftersom en säker session inte kunde etableras.\n\nSkicka osäkert meddelande?</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Påbörja säker session?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Upprätta en säker förbindelse med %s?</string>
@@ -85,6 +87,8 @@ Det här kommer slå av pushmeddelanden genom att avregistrera dig från servern
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Är du säker på att du vill lämna den här gruppen?</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Meddelandedetaljer</string>
+  <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nSkickat/Mottagits: %2$s</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Avsändare: %1$s\nTransport: %2$s\nSkickat: %3$s\nMottagits: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Bekräfta borttagning av meddelande</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Är du säker på att du vill ta bort detta meddelande permanent?</string>
   <string name="ConversationFragment_save_to_sd_card">Spara till minneskort?</string>
@@ -203,6 +207,10 @@ verifiera denna kontakt.</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Numret du angav (%s) är ogiltigt.</string>
   <string name="RegistrationActivity_unsupported">Stöds ej</string>
   <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Tyvärr stödjer inte den här enheten datameddelanden. Enheter som kör versioner av Android äldre än 4.0 måste ha ett registrerat Google-konto. Enheter som kör Android 4.0 eller nyare behöver inte ett Google-konto, men måste ha appen Play Store installerad.</string>
+  <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
+        Vi kommer nu verifiera att följande nummer är associerat med den här enheten:\n\n%s\n\n
+        Är detta nummer korrekt, eller vill du ändra det innan du går vidare?
+    </string>
   <string name="RegistrationActivity_continue">Fortsätt</string>
   <string name="RegistrationActivity_edit">Ändra</string>
   <!--RegistrationProblemsActivity-->
@@ -397,6 +405,7 @@ och dina existerande kontakter kommer att få varningar när de etablerar nya s�
   <string name="log_submit_activity__log_fetch_failed">Kunde inte plocka loggarna från din enhet, men du kan använda ADB för att hämta debugloggarna istället.</string>
   <string name="log_submit_activity__log_submit_success_title">Lyckades!</string>
   <string name="log_submit_activity__log_got_it">Uppfattat</string>
+  <string name="log_submit_activity__your_pastebin_url">Var vänlig och kopiera denna URL och skriv in den i ditt ärende (långtryck för att kopiera):\n\n<b>%1$s</b></string>
   <string name="log_submit_activity__copied_to_clipboard">Kopierade till urklipp</string>
   <string name="log_submit_activity__loading_logcat">Laddar logcat…</string>
   <string name="log_submit_activity__thanks">Tack för din hjälp!</string>
@@ -498,6 +507,8 @@ TextSecure uppnådde tidsgränsen för sms-verifiering.</string>
   <string name="verify_identity_activity__their_identity_they_read">Deras identitet (de läser):</string>
   <string name="verify_identity_activity__your_identity_you_read">Din identitet (du läser):</string>
   <!--verify_import_identity_activity-->
+  <string name="verify_import_identity_activity__identity_name_n">Identitetsnamn:\\n</string>
+  <string name="verify_import_identity_activity__imported_identity_n">Importerad identitet:\\n</string>
   <string name="verify_import_identity_activity__verified">Verifierad!</string>
   <string name="verify_import_identity_activity__compare">Jämför</string>
   <!--verify_keys_activity-->
