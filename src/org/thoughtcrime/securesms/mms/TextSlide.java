@@ -24,7 +24,7 @@ import org.thoughtcrime.securesms.util.SmilUtil;
 import org.w3c.dom.smil.SMILDocument;
 import org.w3c.dom.smil.SMILMediaElement;
 import org.w3c.dom.smil.SMILRegionElement;
-import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.LRUCache;
 
 import java.io.UnsupportedEncodingException;

@@ -64,7 +64,7 @@ import org.thoughtcrime.securesms.components.EmojiToggle;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 import org.thoughtcrime.securesms.crypto.KeyExchangeInitiator;
-import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
+import org.thoughtcrime.securesms.crypto.SecurityEvent;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.DraftDatabase;
 import org.thoughtcrime.securesms.database.DraftDatabase.Draft;
@@ -104,10 +104,10 @@ import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.libaxolotl.state.SessionStore;
-import org.whispersystems.textsecure.crypto.MasterCipher;
-import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.MasterCipher;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.whispersystems.textsecure.storage.RecipientDevice;
-import org.whispersystems.textsecure.storage.TextSecureSessionStore;
+import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.whispersystems.textsecure.util.Util;
 
 import java.io.IOException;
@@ -818,7 +818,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     };
 
     registerReceiver(securityUpdateReceiver,
-                     new IntentFilter(KeyExchangeProcessor.SECURITY_UPDATE_EVENT),
+                     new IntentFilter(SecurityEvent.SECURITY_UPDATE_EVENT),
                      KeyCachingService.KEY_PERMISSION, null);
 
     registerReceiver(groupUpdateReceiver,

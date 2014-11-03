@@ -14,14 +14,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.thoughtcrime.securesms.util.Dialogs;
-import org.thoughtcrime.securesms.database.EncryptedBackupExporter;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.EncryptedBackupExporter;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.database.PlaintextBackupImporter;
 import org.thoughtcrime.securesms.service.ApplicationMigrationService;
 import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.util.Dialogs;
 
 import java.io.IOException;
 

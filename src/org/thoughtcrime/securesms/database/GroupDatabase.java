@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.textsecure.api.messages.TextSecureAttachmentPointer;
 import org.whispersystems.textsecure.util.Util;
 
 import java.io.IOException;
@@ -103,7 +104,7 @@ public class GroupDatabase extends Database {
   }
 
   public void create(byte[] groupId, String title, List<String> members,
-                     AttachmentPointer avatar, String relay)
+                     TextSecureAttachmentPointer avatar, String relay)
   {
     ContentValues contentValues = new ContentValues();
     contentValues.put(GROUP_ID, GroupUtil.getEncodedId(groupId));
@@ -112,7 +113,7 @@ public class GroupDatabase extends Database {
 
     if (avatar != null) {
       contentValues.put(AVATAR_ID, avatar.getId());
-      contentValues.put(AVATAR_KEY, avatar.getKey().toByteArray());
+      contentValues.put(AVATAR_KEY, avatar.getKey());
       contentValues.put(AVATAR_CONTENT_TYPE, avatar.getContentType());
     }
 
@@ -123,14 +124,14 @@ public class GroupDatabase extends Database {
     databaseHelper.getWritableDatabase().insert(TABLE_NAME, null, contentValues);
   }
 
-  public void update(byte[] groupId, String title, AttachmentPointer avatar) {
+  public void update(byte[] groupId, String title, TextSecureAttachmentPointer avatar) {
     ContentValues contentValues = new ContentValues();
     if (title != null) contentValues.put(TITLE, title);
 
     if (avatar != null) {
       contentValues.put(AVATAR_ID, avatar.getId());
       contentValues.put(AVATAR_CONTENT_TYPE, avatar.getContentType());
-      contentValues.put(AVATAR_KEY, avatar.getKey().toByteArray());
+      contentValues.put(AVATAR_KEY, avatar.getKey());
     }
 
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues,

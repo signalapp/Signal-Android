@@ -16,9 +16,13 @@
  */
 package org.whispersystems.jobqueue;
 
+import android.util.Log;
+
 import org.whispersystems.jobqueue.persistence.PersistentStorage;
 
 public class JobConsumer extends Thread {
+
+  private static final String TAG = JobConsumer.class.getSimpleName();
 
   enum JobResult {
     SUCCESS,
@@ -69,6 +73,7 @@ public class JobConsumer extends Thread {
         job.onRun();
         return JobResult.SUCCESS;
       } catch (Throwable throwable) {
+        Log.w(TAG, throwable);
         if (!job.onShouldRetry(throwable)) {
           return JobResult.FAILURE;
         } else if (!job.isRequirementsMet()) {

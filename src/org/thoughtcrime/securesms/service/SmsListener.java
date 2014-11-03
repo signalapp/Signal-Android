@@ -25,6 +25,8 @@ import android.provider.Telephony;
 import android.telephony.SmsMessage;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.jobs.SmsReceiveJob;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -78,15 +80,15 @@ public class SmsListener extends BroadcastReceiver {
     return bodyBuilder.toString();
   }
 
-  private ArrayList<IncomingTextMessage> getAsTextMessages(Intent intent) {
-    Object[] pdus                   = (Object[])intent.getExtras().get("pdus");
-    ArrayList<IncomingTextMessage> messages = new ArrayList<IncomingTextMessage>(pdus.length);
-
-    for (int i=0;i<pdus.length;i++)
-      messages.add(new IncomingTextMessage(SmsMessage.createFromPdu((byte[])pdus[i])));
-
-    return messages;
-  }
+//  private ArrayList<IncomingTextMessage> getAsTextMessages(Intent intent) {
+//    Object[] pdus                   = (Object[])intent.getExtras().get("pdus");
+//    ArrayList<IncomingTextMessage> messages = new ArrayList<IncomingTextMessage>(pdus.length);
+//
+//    for (int i=0;i<pdus.length;i++)
+//      messages.add(new IncomingTextMessage(SmsMessage.createFromPdu((byte[])pdus[i])));
+//
+//    return messages;
+//  }
 
   private boolean isRelevant(Context context, Intent intent) {
     SmsMessage message = getSmsMessageFromIntent(intent);
@@ -157,11 +159,14 @@ public class SmsListener extends BroadcastReceiver {
     } else if ((intent.getAction().equals(SMS_DELIVERED_ACTION)) ||
                (intent.getAction().equals(SMS_RECEIVED_ACTION)) && isRelevant(context, intent))
     {
-      Intent receivedIntent = new Intent(context, SendReceiveService.class);
-      receivedIntent.setAction(SendReceiveService.RECEIVE_SMS_ACTION);
-      receivedIntent.putExtra("ResultCode", this.getResultCode());
-      receivedIntent.putParcelableArrayListExtra("text_messages",getAsTextMessages(intent));
-      context.startService(receivedIntent);
+      Object[] pdus = (Object[])intent.getExtras().get("pdus");
+      ApplicationContext.getInstance(context).getJobManager().add(new SmsReceiveJob(context, pdus));
+
+//      Intent receivedIntent = new Intent(context, SendReceiveService.class);
+//      receivedIntent.setAction(SendReceiveService.RECEIVE_SMS_ACTION);
+//      receivedIntent.putExtra("ResultCode", this.getResultCode());
+//      receivedIntent.putParcelableArrayListExtra("text_messages",getAsTextMessages(intent));
+//      context.startService(receivedIntent);
 
       abortBroadcast();
     }

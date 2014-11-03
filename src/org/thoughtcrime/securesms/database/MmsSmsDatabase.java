@@ -24,7 +24,7 @@ import android.database.sqlite.SQLiteQueryBuilder;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 
 import java.util.HashSet;
 import java.util.Set;

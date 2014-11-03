@@ -10,7 +10,7 @@ public class PushAddress extends RecipientDevice {
   private final String e164number;
   private final String relay;
 
-  private PushAddress(long recipientId, String e164number, int deviceId, String relay) {
+  public PushAddress(long recipientId, String e164number, int deviceId, String relay) {
     super(recipientId, deviceId);
     this.e164number  = e164number;
     this.relay       = relay;

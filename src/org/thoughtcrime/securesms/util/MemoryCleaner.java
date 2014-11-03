@@ -16,12 +16,7 @@
  */
 package org.thoughtcrime.securesms.util;
 
-import java.lang.reflect.Field;
-import java.util.Arrays;
-
-import org.whispersystems.textsecure.crypto.MasterSecret;
-
-import android.util.Log;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 
 /**
  * This is not straightforward in Java, but this class makes

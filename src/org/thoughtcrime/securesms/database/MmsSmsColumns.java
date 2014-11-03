@@ -155,6 +155,10 @@ public interface MmsSmsColumns {
       return (type & ENCRYPTION_SYMMETRIC_BIT) != 0;
     }
 
+    public static boolean isAsymmetricEncryption(long type) {
+      return (type & ENCRYPTION_ASYMMETRIC_BIT) != 0;
+    }
+
     public static boolean isFailedDecryptType(long type) {
       return (type & ENCRYPTION_REMOTE_FAILED_BIT) != 0;
     }

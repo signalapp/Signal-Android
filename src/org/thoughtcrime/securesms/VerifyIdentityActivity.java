@@ -29,10 +29,10 @@ import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.state.SessionRecord;
 import org.whispersystems.libaxolotl.state.SessionStore;
-import org.whispersystems.textsecure.crypto.IdentityKeyParcelable;
-import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.whispersystems.textsecure.storage.RecipientDevice;
-import org.whispersystems.textsecure.storage.TextSecureSessionStore;
+import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 
 /**
  * Activity for verifying identity keys.

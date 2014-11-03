@@ -23,6 +23,8 @@ import android.os.Build;
 import android.provider.Telephony;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.jobs.MmsReceiveJob;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -80,11 +82,10 @@ public class MmsListener extends BroadcastReceiver {
          isRelevant(context, intent)))
     {
       Log.w("MmsListener", "Relevant!");
-      intent.setAction(SendReceiveService.RECEIVE_MMS_ACTION);
-      intent.putExtra("ResultCode", this.getResultCode());
-      intent.setClass(context, SendReceiveService.class);
+      ApplicationContext.getInstance(context)
+                        .getJobManager()
+                        .add(new MmsReceiveJob(context, intent.getByteArrayExtra("data")));
 
-      context.startService(intent);
       abortBroadcast();
     }
   }

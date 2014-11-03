@@ -32,16 +32,18 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.RemoteViews;
 
+import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.DatabaseUpgradeActivity;
 import org.thoughtcrime.securesms.DummyActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.RoutingActivity;
-import org.thoughtcrime.securesms.crypto.DecryptingQueue;
 import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
-import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.util.ParcelUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.jobqueue.EncryptionKeys;
 
 /**
  * Small service that stays running to keep a key cached in memory.
@@ -64,33 +66,51 @@ public class KeyCachingService extends Service {
 
   private PendingIntent pending;
   private int activitiesRunning = 0;
-  private final IBinder binder  = new KeyCachingBinder();
+  private final IBinder binder  = new KeySetBinder();
 
-  private MasterSecret masterSecret;
+  private static MasterSecret masterSecret;
 
   public KeyCachingService() {}
 
-  public synchronized MasterSecret getMasterSecret() {
+  public static synchronized MasterSecret getMasterSecret(Context context) {
+    if (masterSecret == null && TextSecurePreferences.isPasswordDisabled(context)) {
+      try {
+        MasterSecret masterSecret = MasterSecretUtil.getMasterSecret(context, MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
+        Intent       intent       = new Intent(context, KeyCachingService.class);
+
+        context.startService(intent);
+
+        return masterSecret;
+      } catch (InvalidPassphraseException e) {
+        Log.w("KeyCachingService", e);
+      }
+    }
+
     return masterSecret;
   }
 
-  public synchronized void setMasterSecret(final MasterSecret masterSecret) {
-    this.masterSecret = masterSecret;
+  public void setMasterSecret(final MasterSecret masterSecret) {
+    synchronized (KeyCachingService.class) {
+      KeyCachingService.masterSecret = masterSecret;
 
-    foregroundService();
-    broadcastNewSecret();
-    startTimeoutIfAppropriate();
+      foregroundService();
+      broadcastNewSecret();
+      startTimeoutIfAppropriate();
 
-    new AsyncTask<Void, Void, Void>() {
-      @Override
-      protected Void doInBackground(Void... params) {
-        if (!DatabaseUpgradeActivity.isUpdate(KeyCachingService.this)) {
-          DecryptingQueue.schedulePendingDecrypts(KeyCachingService.this, masterSecret);
-          MessageNotifier.updateNotification(KeyCachingService.this, masterSecret);
+      new AsyncTask<Void, Void, Void>() {
+        @Override
+        protected Void doInBackground(Void... params) {
+          if (!DatabaseUpgradeActivity.isUpdate(KeyCachingService.this)) {
+//            DecryptingQueue.schedulePendingDecrypts(KeyCachingService.this, masterSecret);
+            ApplicationContext.getInstance(KeyCachingService.this)
+                              .getJobManager()
+                              .setEncryptionKeys(new EncryptionKeys(ParcelUtil.serialize(masterSecret)));
+            MessageNotifier.updateNotification(KeyCachingService.this, masterSecret);
+          }
+          return null;
         }
-        return null;
-      }
-    }.execute();
+      }.execute();
+    }
   }
 
   @Override
@@ -287,7 +307,7 @@ public class KeyCachingService extends Service {
     return binder;
   }
 
-  public class KeyCachingBinder extends Binder {
+  public class KeySetBinder extends Binder {
     public KeyCachingService getService() {
       return KeyCachingService.this;
     }

@@ -2,12 +2,16 @@ package org.thoughtcrime.securesms.mms;
 
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.textsecure.crypto.MasterCipher;
-import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.MasterCipher;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.whispersystems.libaxolotl.util.guava.Optional;
+import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
+import org.whispersystems.textsecure.api.messages.TextSecureGroup;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
 import org.whispersystems.textsecure.util.Base64;
-import org.whispersystems.textsecure.util.Hex;
+
+import java.util.List;
 
 import ws.com.google.android.mms.pdu.CharacterSets;
 import ws.com.google.android.mms.pdu.EncodedStringValue;
@@ -30,49 +34,56 @@ public class IncomingMediaMessage {
     this.push    = false;
   }
 
-  public IncomingMediaMessage(MasterSecret masterSecret, String localNumber,
-                              IncomingPushMessage message,
-                              PushMessageContent messageContent)
+  public IncomingMediaMessage(MasterSecret masterSecret,
+                              String from,
+                              String to,
+                              long sentTimeMillis,
+                              Optional<String> relay,
+                              Optional<String> body,
+                              Optional<TextSecureGroup> group,
+                              Optional<List<TextSecureAttachment>> attachments)
   {
     this.headers = new PduHeaders();
     this.body    = new PduBody();
     this.push    = true;
 
-    if (messageContent.hasGroup()) {
-      this.groupId = GroupUtil.getEncodedId(messageContent.getGroup().getId().toByteArray());
+    if (group.isPresent()) {
+      this.groupId = GroupUtil.getEncodedId(group.get().getGroupId());
     } else {
       this.groupId = null;
     }
 
-    this.headers.setEncodedStringValue(new EncodedStringValue(message.getSource()), PduHeaders.FROM);
-    this.headers.appendEncodedStringValue(new EncodedStringValue(localNumber), PduHeaders.TO);
-    this.headers.setLongInteger(message.getTimestampMillis() / 1000, PduHeaders.DATE);
+    this.headers.setEncodedStringValue(new EncodedStringValue(from), PduHeaders.FROM);
+    this.headers.appendEncodedStringValue(new EncodedStringValue(to), PduHeaders.TO);
+    this.headers.setLongInteger(sentTimeMillis / 1000, PduHeaders.DATE);
 
 
-    if (!org.whispersystems.textsecure.util.Util.isEmpty(messageContent.getBody())) {
+    if (body.isPresent() && !org.whispersystems.textsecure.util.Util.isEmpty(body.get())) {
       PduPart text = new PduPart();
-      text.setData(Util.toUtf8Bytes(messageContent.getBody()));
+      text.setData(Util.toUtf8Bytes(body.get()));
       text.setContentType(Util.toIsoBytes("text/plain"));
       text.setCharset(CharacterSets.UTF_8);
-      body.addPart(text);
+      this.body.addPart(text);
     }
 
-    if (messageContent.getAttachmentsCount() > 0) {
-      for (PushMessageContent.AttachmentPointer attachment : messageContent.getAttachmentsList()) {
-        PduPart media        = new PduPart();
-        byte[]  encryptedKey = new MasterCipher(masterSecret).encryptBytes(attachment.getKey().toByteArray());
+    if (attachments.isPresent()) {
+      for (TextSecureAttachment attachment : attachments.get()) {
+        if (attachment.isPointer()) {
+          PduPart media        = new PduPart();
+          byte[]  encryptedKey = new MasterCipher(masterSecret).encryptBytes(attachment.asPointer().getKey());
 
-        media.setContentType(Util.toIsoBytes(attachment.getContentType()));
-        media.setContentLocation(Util.toIsoBytes(String.valueOf(attachment.getId())));
-        media.setContentDisposition(Util.toIsoBytes(Base64.encodeBytes(encryptedKey)));
+          media.setContentType(Util.toIsoBytes(attachment.getContentType()));
+          media.setContentLocation(Util.toIsoBytes(String.valueOf(attachment.asPointer().getId())));
+          media.setContentDisposition(Util.toIsoBytes(Base64.encodeBytes(encryptedKey)));
 
-        if (message.getRelay() != null) {
-          media.setName(Util.toIsoBytes(message.getRelay()));
+          if (relay.isPresent()) {
+            media.setName(Util.toIsoBytes(relay.get()));
+          }
+
+          media.setPendingPush(true);
+
+          this.body.addPart(media);
         }
-
-        media.setPendingPush(true);
-
-        body.addPart(media);
       }
     }
   }

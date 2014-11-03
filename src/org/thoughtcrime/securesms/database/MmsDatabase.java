@@ -34,8 +34,8 @@ import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libaxolotl.InvalidMessageException;
-import org.whispersystems.textsecure.crypto.MasterCipher;
-import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.MasterCipher;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.model.DisplayRecord;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -49,6 +49,7 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.LRUCache;
+import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.util.InvalidNumberException;
 import org.whispersystems.textsecure.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.Trimmer;
@@ -427,6 +428,32 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
     contentValues.put(READ, 1);
 
     database.update(TABLE_NAME, contentValues, null, null);
+  }
+
+  public Optional<NotificationInd> getNotification(long messageId) {
+    SQLiteDatabase     db              = databaseHelper.getReadableDatabase();
+    MmsAddressDatabase addressDatabase = DatabaseFactory.getMmsAddressDatabase(context);
+
+    Cursor cursor = null;
+
+    try {
+      cursor = db.query(TABLE_NAME, MMS_PROJECTION, ID_WHERE, new String[] {String.valueOf(messageId)}, null, null, null);
+
+      if (cursor != null && cursor.moveToNext()) {
+        PduHeaders headers = getHeadersFromCursor(cursor);
+        addressDatabase.getAddressesForId(messageId, headers);
+
+        return Optional.of(new NotificationInd(headers));
+      } else {
+        return Optional.absent();
+      }
+    } catch (InvalidHeaderValueException e) {
+      Log.w("MmsDatabase", e);
+      return Optional.absent();
+    } finally {
+      if (cursor != null)
+        cursor.close();
+    }
   }
 
   public SendReq[] getOutgoingMessages(MasterSecret masterSecret, long messageId)

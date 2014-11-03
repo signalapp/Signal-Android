@@ -22,19 +22,15 @@ import android.content.Context;
 import android.telephony.SmsManager;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.crypto.TextSecureCipher;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.SmsCipher;
+import org.thoughtcrime.securesms.crypto.storage.TextSecureAxolotlStore;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
-import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MultipartSmsMessageHandler;
-import org.thoughtcrime.securesms.sms.OutgoingPrekeyBundleMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
-import org.thoughtcrime.securesms.sms.SmsTransportDetails;
 import org.thoughtcrime.securesms.util.NumberUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.libaxolotl.protocol.CiphertextMessage;
-import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.storage.RecipientDevice;
-import org.whispersystems.textsecure.storage.SessionUtil;
+import org.whispersystems.libaxolotl.NoSessionException;
 
 import java.util.ArrayList;
 
@@ -138,7 +134,7 @@ public class SmsTransport extends BaseTransport {
   private ArrayList<PendingIntent> constructSentIntents(long messageId, long type,
                                                         ArrayList<String> messages, boolean secure)
   {
-    ArrayList<PendingIntent> sentIntents = new ArrayList<PendingIntent>(messages.size());
+    ArrayList<PendingIntent> sentIntents = new ArrayList<>(messages.size());
 
     for (String ignored : messages) {
       sentIntents.add(PendingIntent.getBroadcast(context, 0,
@@ -154,7 +150,7 @@ public class SmsTransport extends BaseTransport {
       return null;
     }
 
-    ArrayList<PendingIntent> deliveredIntents = new ArrayList<PendingIntent>(messages.size());
+    ArrayList<PendingIntent> deliveredIntents = new ArrayList<>(messages.size());
 
     for (String ignored : messages) {
       deliveredIntents.add(PendingIntent.getBroadcast(context, 0,
@@ -169,26 +165,10 @@ public class SmsTransport extends BaseTransport {
                                                    OutgoingTextMessage message)
       throws InsecureFallbackApprovalException
   {
-    Recipient           recipient         = message.getRecipients().getPrimaryRecipient();
-    RecipientDevice     recipientDevice   = new RecipientDevice(recipient.getRecipientId(),
-                                                                RecipientDevice.DEFAULT_DEVICE_ID);
-
-    if (!SessionUtil.hasEncryptCapableSession(context, masterSecret, recipientDevice)) {
-      throw new InsecureFallbackApprovalException("No session exists for this secure message.");
+    try {
+      return new SmsCipher(new TextSecureAxolotlStore(context, masterSecret)).encrypt(message);
+    } catch (NoSessionException e) {
+      throw new InsecureFallbackApprovalException(e);
     }
-
-    String              body              = message.getMessageBody();
-    SmsTransportDetails transportDetails  = new SmsTransportDetails();
-    TextSecureCipher    cipher            = new TextSecureCipher(context, masterSecret, recipientDevice, transportDetails);
-    CiphertextMessage   ciphertextMessage = cipher.encrypt(body.getBytes());
-    String              encodedCiphertext = new String(transportDetails.getEncodedMessage(ciphertextMessage.serialize()));
-
-    if (ciphertextMessage.getType() == CiphertextMessage.PREKEY_TYPE) {
-      message = new OutgoingPrekeyBundleMessage(message, encodedCiphertext);
-    } else {
-      message = message.withBody(encodedCiphertext);
-    }
-
-    return message;
   }
 }

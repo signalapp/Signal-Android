@@ -20,11 +20,16 @@ import android.app.Application;
 import android.content.Context;
 
 import org.thoughtcrime.securesms.crypto.PRNGFixes;
-import org.thoughtcrime.securesms.jobs.EncryptingJobSerializer;
+import org.thoughtcrime.securesms.jobs.persistence.EncryptingJobSerializer;
 import org.thoughtcrime.securesms.jobs.GcmRefreshJob;
+import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirementProvider;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.JobManager;
 import org.whispersystems.jobqueue.requirements.NetworkRequirementProvider;
+import org.whispersystems.jobqueue.requirements.RequirementProvider;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Will be called once when the TextSecure process is created.
@@ -58,8 +63,12 @@ public class ApplicationContext extends Application {
   }
 
   private void initializeJobManager() {
-    this.jobManager = new JobManager(this, "TextSecureJobs",
-                                     new NetworkRequirementProvider(this),
+    List<RequirementProvider> providers = new LinkedList<RequirementProvider>() {{
+      add(new NetworkRequirementProvider(ApplicationContext.this));
+      add(new MasterSecretRequirementProvider(ApplicationContext.this));
+    }};
+
+    this.jobManager = new JobManager(this, "TextSecureJobs", providers,
                                      new EncryptingJobSerializer(this), 5);
   }
 

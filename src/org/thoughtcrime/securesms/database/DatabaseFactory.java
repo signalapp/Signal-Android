@@ -26,13 +26,12 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.DatabaseUpgradeActivity;
 import org.thoughtcrime.securesms.crypto.DecryptingPartInputStream;
-import org.thoughtcrime.securesms.crypto.DecryptingQueue;
+import org.thoughtcrime.securesms.crypto.MasterCipher;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.InvalidMessageException;
-import org.whispersystems.textsecure.crypto.MasterCipher;
-import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.util.Base64;
 import org.whispersystems.textsecure.util.Util;
 
@@ -467,7 +466,7 @@ public class DatabaseFactory {
     db.setTransactionSuccessful();
     db.endTransaction();
 
-    DecryptingQueue.schedulePendingDecrypts(context, masterSecret);
+//    DecryptingQueue.schedulePendingDecrypts(context, masterSecret);
     MessageNotifier.updateNotification(context, masterSecret);
   }
 

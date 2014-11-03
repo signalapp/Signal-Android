@@ -33,6 +33,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.providers.PartProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -40,7 +41,6 @@ import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
-import org.whispersystems.textsecure.crypto.MasterSecret;
 
 import java.io.IOException;
 import java.io.InputStream;

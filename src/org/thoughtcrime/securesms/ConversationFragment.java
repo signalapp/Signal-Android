@@ -38,9 +38,17 @@ import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
-import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.util.FutureTaskListener;
 
+import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.whispersystems.textsecure.util.FutureTaskListener;
+import org.whispersystems.textsecure.util.Util;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.lang.ref.WeakReference;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 

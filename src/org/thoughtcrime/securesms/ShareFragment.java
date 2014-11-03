@@ -31,7 +31,7 @@ import android.widget.ListView;
 
 import org.thoughtcrime.securesms.database.loaders.ConversationListLoader;
 import org.thoughtcrime.securesms.recipients.Recipients;
-import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 
 /**
  * A fragment to select and share to open conversations

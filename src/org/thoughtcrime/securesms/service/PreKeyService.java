@@ -14,11 +14,11 @@ import org.whispersystems.libaxolotl.InvalidKeyIdException;
 import org.whispersystems.libaxolotl.state.PreKeyRecord;
 import org.whispersystems.libaxolotl.state.SignedPreKeyRecord;
 import org.whispersystems.libaxolotl.state.SignedPreKeyStore;
-import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.crypto.PreKeyUtil;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.PreKeyUtil;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.push.SignedPreKeyEntity;
-import org.whispersystems.textsecure.storage.TextSecurePreKeyStore;
+import org.thoughtcrime.securesms.crypto.storage.TextSecurePreKeyStore;
 
 import java.io.IOException;
 import java.util.Arrays;

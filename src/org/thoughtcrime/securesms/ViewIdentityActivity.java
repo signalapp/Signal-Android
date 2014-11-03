@@ -20,7 +20,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import org.whispersystems.libaxolotl.IdentityKey;
-import org.whispersystems.textsecure.crypto.IdentityKeyParcelable;
+import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 
 /**
  * Activity for displaying an identity key.

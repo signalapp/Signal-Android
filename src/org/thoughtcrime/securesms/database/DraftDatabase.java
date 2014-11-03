@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import org.whispersystems.libaxolotl.InvalidMessageException;
-import org.whispersystems.textsecure.crypto.MasterCipher;
+import org.thoughtcrime.securesms.crypto.MasterCipher;
 
 import java.util.LinkedList;
 import java.util.List;

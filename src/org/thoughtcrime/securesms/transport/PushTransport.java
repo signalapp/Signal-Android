@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2013 Open Whisper Systems
+ * Copyright (C) 2013-2014 Open Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,60 +20,44 @@ package org.thoughtcrime.securesms.transport;
 import android.content.Context;
 import android.util.Log;
 
-import com.google.protobuf.ByteString;
-
-import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
-import org.thoughtcrime.securesms.crypto.TextSecureCipher;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.mms.PartParser;
-import org.thoughtcrime.securesms.push.PushServiceSocketFactory;
+import org.thoughtcrime.securesms.push.TextSecureMessageSenderFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libaxolotl.InvalidKeyException;
-import org.whispersystems.libaxolotl.protocol.CiphertextMessage;
-import org.whispersystems.libaxolotl.state.PreKeyBundle;
-import org.whispersystems.libaxolotl.state.SessionStore;
-import org.whispersystems.textsecure.crypto.AttachmentCipher;
-import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.crypto.TransportDetails;
-import org.whispersystems.textsecure.push.MismatchedDevices;
-import org.whispersystems.textsecure.push.exceptions.MismatchedDevicesException;
-import org.whispersystems.textsecure.push.OutgoingPushMessage;
-import org.whispersystems.textsecure.push.OutgoingPushMessageList;
+import org.whispersystems.textsecure.api.TextSecureMessageSender;
+import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
+import org.whispersystems.textsecure.api.messages.TextSecureAttachmentStream;
+import org.whispersystems.textsecure.api.messages.TextSecureGroup;
+import org.whispersystems.textsecure.api.messages.TextSecureMessage;
+import org.whispersystems.textsecure.crypto.UntrustedIdentityException;
+import org.whispersystems.textsecure.directory.Directory;
 import org.whispersystems.textsecure.push.PushAddress;
-import org.whispersystems.textsecure.push.PushAttachmentData;
-import org.whispersystems.textsecure.push.PushAttachmentPointer;
-import org.whispersystems.textsecure.push.PushBody;
-import org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
-import org.whispersystems.textsecure.push.PushServiceSocket;
-import org.whispersystems.textsecure.push.PushTransportDetails;
-import org.whispersystems.textsecure.push.StaleDevices;
-import org.whispersystems.textsecure.push.exceptions.StaleDevicesException;
 import org.whispersystems.textsecure.push.UnregisteredUserException;
-import org.whispersystems.textsecure.storage.SessionUtil;
-import org.whispersystems.textsecure.storage.TextSecureSessionStore;
+import org.whispersystems.textsecure.push.exceptions.EncapsulatedExceptions;
 import org.whispersystems.textsecure.util.Base64;
 import org.whispersystems.textsecure.util.InvalidNumberException;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
 import ws.com.google.android.mms.ContentType;
-import ws.com.google.android.mms.pdu.PduBody;
 import ws.com.google.android.mms.pdu.SendReq;
 
-import static org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal;
-import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer;
 import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.GroupContext;
 
 public class PushTransport extends BaseTransport {
+
+  private static final String TAG = PushTransport.class.getSimpleName();
 
   private final Context      context;
   private final MasterSecret masterSecret;
@@ -87,56 +71,84 @@ public class PushTransport extends BaseTransport {
       throws IOException, UntrustedIdentityException
   {
     try {
-      Recipient         recipient = message.getIndividualRecipient();
-      long              threadId  = message.getThreadId();
-      PushServiceSocket socket    = PushServiceSocketFactory.create(context);
-      byte[]            plaintext = getPlaintextMessage(message);
-
-      deliver(socket, recipient, message.getDateSent(), threadId, plaintext);
+      PushAddress             address       = getPushAddress(message.getIndividualRecipient());
+      TextSecureMessageSender messageSender = TextSecureMessageSenderFactory.create(context, masterSecret);
 
       if (message.isEndSession()) {
-        SessionStore sessionStore = new TextSecureSessionStore(context, masterSecret);
-        sessionStore.deleteAllSessions(recipient.getRecipientId());
-        KeyExchangeProcessor.broadcastSecurityUpdateEvent(context, threadId);
+        messageSender.sendMessage(address, new TextSecureMessage(message.getDateSent(), null,
+                                                                 null, null, true, true));
+      } else {
+        messageSender.sendMessage(address, new TextSecureMessage(message.getDateSent(), null,
+                                                                 message.getBody().getBody()));
       }
 
       context.sendBroadcast(constructSentIntent(context, message.getId(), message.getType(), true, true));
-
     } catch (InvalidNumberException e) {
-      Log.w("PushTransport", e);
+      Log.w(TAG, e);
       throw new IOException("Badly formatted number.");
+    }
+  }
+
+  public void deliverGroupMessage(SendReq message, long threadId)
+      throws IOException, RecipientFormattingException, InvalidNumberException, EncapsulatedExceptions
+  {
+    TextSecureMessageSender    messageSender = TextSecureMessageSenderFactory.create(context, masterSecret);
+    byte[]                     groupId       = GroupUtil.getDecodedId(message.getTo()[0].getString());
+    Recipients                 recipients    = DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupId, false);
+    List<PushAddress>          addresses     = getPushAddresses(recipients);
+    List<TextSecureAttachment> attachments   = getAttachments(message);
+
+    if (MmsSmsColumns.Types.isGroupUpdate(message.getDatabaseMessageBox()) ||
+        MmsSmsColumns.Types.isGroupQuit(message.getDatabaseMessageBox()))
+    {
+      String content = PartParser.getMessageText(message.getBody());
+
+      if (content != null && !content.trim().isEmpty()) {
+        GroupContext         groupContext = GroupContext.parseFrom(Base64.decode(content));
+        TextSecureAttachment avatar       = attachments.isEmpty() ? null : attachments.get(0);
+        TextSecureGroup.Type type         = MmsSmsColumns.Types.isGroupQuit(message.getDatabaseMessageBox()) ? TextSecureGroup.Type.QUIT : TextSecureGroup.Type.UPDATE;
+        TextSecureGroup      group        = new TextSecureGroup(type, groupId, groupContext.getName(), groupContext.getMembersList(), avatar);
+        TextSecureMessage    groupMessage = new TextSecureMessage(message.getSentTimestamp(), group, null, null);
+
+        messageSender.sendMessage(addresses, groupMessage);
+      }
+    } else {
+      String            body         = PartParser.getMessageText(message.getBody());
+      TextSecureGroup   group        = new TextSecureGroup(groupId);
+      TextSecureMessage groupMessage = new TextSecureMessage(message.getSentTimestamp(), group, attachments, body);
+
+      messageSender.sendMessage(addresses, groupMessage);
     }
   }
 
   public void deliver(SendReq message, long threadId)
       throws IOException, RecipientFormattingException, InvalidNumberException, EncapsulatedExceptions
   {
-    PushServiceSocket socket      = PushServiceSocketFactory.create(context);
-    byte[]            plaintext   = getPlaintextMessage(socket, message);
-    String            destination = message.getTo()[0].getString();
-
-    Recipients recipients;
-
-    if (GroupUtil.isEncodedGroup(destination)) {
-      recipients = DatabaseFactory.getGroupDatabase(context)
-                                  .getGroupMembers(GroupUtil.getDecodedId(destination), false);
-    } else {
-      recipients = RecipientFactory.getRecipientsFromString(context, destination, false);
-    }
+    TextSecureMessageSender messageSender = TextSecureMessageSenderFactory.create(context, masterSecret);
+    String                  destination   = message.getTo()[0].getString();
 
     List<UntrustedIdentityException> untrustedIdentities = new LinkedList<>();
     List<UnregisteredUserException>  unregisteredUsers   = new LinkedList<>();
 
-    for (Recipient recipient : recipients.getRecipientsList()) {
-      try {
-        deliver(socket, recipient, message.getSentTimestamp(), threadId, plaintext);
-      } catch (UntrustedIdentityException e) {
-        Log.w("PushTransport", e);
-        untrustedIdentities.add(e);
-      } catch (UnregisteredUserException e) {
-        Log.w("PushTransport", e);
-        unregisteredUsers.add(e);
-      }
+    if (GroupUtil.isEncodedGroup(destination)) {
+      deliverGroupMessage(message, threadId);
+      return;
+    }
+
+    try {
+      Recipients                 recipients   = RecipientFactory.getRecipientsFromString(context, destination, false);
+      PushAddress                address      = getPushAddress(recipients.getPrimaryRecipient());
+      List<TextSecureAttachment> attachments  = getAttachments(message);
+      String                     body         = PartParser.getMessageText(message.getBody());
+      TextSecureMessage          mediaMessage = new TextSecureMessage(message.getSentTimestamp(), attachments, body);
+
+      messageSender.sendMessage(address, mediaMessage);
+    } catch (UntrustedIdentityException e) {
+      Log.w(TAG, e);
+      untrustedIdentities.add(e);
+    } catch (UnregisteredUserException e) {
+      Log.w(TAG, e);
+      unregisteredUsers.add(e);
     }
 
     if (!untrustedIdentities.isEmpty() || !unregisteredUsers.isEmpty()) {
@@ -144,220 +156,36 @@ public class PushTransport extends BaseTransport {
     }
   }
 
-  private void deliver(PushServiceSocket socket, Recipient recipient, long timestamp,
-                       long threadId, byte[] plaintext)
-      throws IOException, InvalidNumberException, UntrustedIdentityException
-  {
-    for (int i=0;i<3;i++) {
-      try {
-        OutgoingPushMessageList messages = getEncryptedMessages(socket, threadId, recipient,
-                                                                timestamp, plaintext);
-        socket.sendMessage(messages);
-
-        return;
-      } catch (MismatchedDevicesException mde) {
-        Log.w("PushTransport", mde);
-        handleMismatchedDevices(socket, threadId, recipient, mde.getMismatchedDevices());
-      } catch (StaleDevicesException ste) {
-        Log.w("PushTransport", ste);
-        handleStaleDevices(recipient, ste.getStaleDevices());
-      }
-    }
+  private PushAddress getPushAddress(Recipient recipient) throws InvalidNumberException {
+    String e164number = Util.canonicalizeNumber(context, recipient.getNumber());
+    String relay      = Directory.getInstance(context).getRelay(e164number);
+    return new PushAddress(recipient.getRecipientId(), e164number, 1, relay);
   }
 
-  private List<PushAttachmentPointer> getPushAttachmentPointers(PushServiceSocket socket, PduBody body)
-      throws IOException
-  {
-    List<PushAttachmentPointer> attachments = new LinkedList<>();
+  private List<PushAddress> getPushAddresses(Recipients recipients) throws InvalidNumberException {
+    List<PushAddress> addresses = new LinkedList<>();
 
-    for (int i=0;i<body.getPartsNum();i++) {
-      String contentType = Util.toIsoString(body.getPart(i).getContentType());
+    for (Recipient recipient : recipients.getRecipientsList()) {
+      addresses.add(getPushAddress(recipient));
+    }
+
+    return addresses;
+  }
+
+  private List<TextSecureAttachment> getAttachments(SendReq message) {
+    List<TextSecureAttachment> attachments = new LinkedList<>();
+
+    for (int i=0;i<message.getBody().getPartsNum();i++) {
+      String contentType = Util.toIsoString(message.getBody().getPart(i).getContentType());
       if (ContentType.isImageType(contentType) ||
           ContentType.isAudioType(contentType) ||
           ContentType.isVideoType(contentType))
       {
-        attachments.add(getPushAttachmentPointer(socket, contentType, body.getPart(i).getData()));
+        byte[] data = message.getBody().getPart(i).getData();
+        attachments.add(new TextSecureAttachmentStream(new ByteArrayInputStream(data), contentType, data.length));
       }
     }
 
     return attachments;
-  }
-
-  private PushAttachmentPointer getPushAttachmentPointer(PushServiceSocket socket,
-                                                         String contentType, byte[] data)
-      throws IOException
-  {
-    AttachmentCipher   cipher               = new AttachmentCipher();
-    byte[]             key                  = cipher.getCombinedKeyMaterial();
-    byte[]             ciphertextAttachment = cipher.encrypt(data);
-    PushAttachmentData attachmentData       = new PushAttachmentData(contentType, ciphertextAttachment);
-    long               attachmentId         = socket.sendAttachment(attachmentData);
-
-    return new PushAttachmentPointer(contentType, attachmentId, key);
-  }
-
-  private void handleMismatchedDevices(PushServiceSocket socket, long threadId,
-                                       Recipient recipient,
-                                       MismatchedDevices mismatchedDevices)
-      throws InvalidNumberException, IOException, UntrustedIdentityException
-  {
-    try {
-      SessionStore sessionStore = new TextSecureSessionStore(context, masterSecret);
-      String       e164number   = Util.canonicalizeNumber(context, recipient.getNumber());
-      long         recipientId  = recipient.getRecipientId();
-
-      for (int extraDeviceId : mismatchedDevices.getExtraDevices()) {
-        sessionStore.deleteSession(recipientId, extraDeviceId);
-      }
-
-      for (int missingDeviceId : mismatchedDevices.getMissingDevices()) {
-        PushAddress          address   = PushAddress.create(context, recipientId, e164number, missingDeviceId);
-        PreKeyBundle         preKey    = socket.getPreKey(address);
-        KeyExchangeProcessor processor = new KeyExchangeProcessor(context, masterSecret, address);
-
-        try {
-          processor.processKeyExchangeMessage(preKey, threadId);
-        } catch (org.whispersystems.libaxolotl.UntrustedIdentityException e) {
-          throw new UntrustedIdentityException("Untrusted identity key!", e164number, preKey.getIdentityKey());
-        }
-
-      }
-    } catch (InvalidKeyException e) {
-      throw new IOException(e);
-    }
-  }
-
-  private void handleStaleDevices(Recipient recipient, StaleDevices staleDevices) {
-    SessionStore sessionStore = new TextSecureSessionStore(context, masterSecret);
-    long         recipientId  = recipient.getRecipientId();
-
-    for (int staleDeviceId : staleDevices.getStaleDevices()) {
-      sessionStore.deleteSession(recipientId, staleDeviceId);
-    }
-  }
-
-  private byte[] getPlaintextMessage(PushServiceSocket socket, SendReq message) throws IOException {
-    String                      messageBody = PartParser.getMessageText(message.getBody());
-    List<PushAttachmentPointer> attachments = getPushAttachmentPointers(socket, message.getBody());
-
-    PushMessageContent.Builder builder = PushMessageContent.newBuilder();
-
-    if (GroupUtil.isEncodedGroup(message.getTo()[0].getString())) {
-      GroupContext.Builder groupBuilder = GroupContext.newBuilder();
-      byte[]               groupId      = GroupUtil.getDecodedId(message.getTo()[0].getString());
-
-      groupBuilder.setId(ByteString.copyFrom(groupId));
-      groupBuilder.setType(GroupContext.Type.DELIVER);
-
-      if (MmsSmsColumns.Types.isGroupUpdate(message.getDatabaseMessageBox()) ||
-          MmsSmsColumns.Types.isGroupQuit(message.getDatabaseMessageBox()))
-      {
-        if (messageBody != null && messageBody.trim().length() > 0) {
-          groupBuilder = GroupContext.parseFrom(Base64.decode(messageBody)).toBuilder();
-          messageBody  = null;
-
-          if (attachments != null && !attachments.isEmpty()) {
-            groupBuilder.setAvatar(AttachmentPointer.newBuilder()
-                                                    .setId(attachments.get(0).getId())
-                                                    .setContentType(attachments.get(0).getContentType())
-                                                    .setKey(ByteString.copyFrom(attachments.get(0).getKey()))
-                                                    .build());
-
-            attachments.remove(0);
-          }
-        }
-      }
-
-      builder.setGroup(groupBuilder.build());
-    }
-
-    if (messageBody != null) {
-      builder.setBody(messageBody);
-    }
-
-    for (PushAttachmentPointer attachment : attachments) {
-      AttachmentPointer.Builder attachmentBuilder =
-          AttachmentPointer.newBuilder();
-
-      attachmentBuilder.setId(attachment.getId());
-      attachmentBuilder.setContentType(attachment.getContentType());
-      attachmentBuilder.setKey(ByteString.copyFrom(attachment.getKey()));
-
-      builder.addAttachments(attachmentBuilder.build());
-    }
-
-    return builder.build().toByteArray();
-  }
-
-  private byte[] getPlaintextMessage(SmsMessageRecord record) {
-    PushMessageContent.Builder builder = PushMessageContent.newBuilder()
-                                                           .setBody(record.getBody().getBody());
-
-    if (record.isEndSession()) {
-      builder.setFlags(PushMessageContent.Flags.END_SESSION_VALUE);
-    }
-
-    return builder.build().toByteArray();
-  }
-
-  private OutgoingPushMessageList getEncryptedMessages(PushServiceSocket socket, long threadId,
-                                                       Recipient recipient, long timestamp,
-                                                       byte[] plaintext)
-      throws IOException, InvalidNumberException, UntrustedIdentityException
-  {
-    SessionStore sessionStore = new TextSecureSessionStore(context, masterSecret);
-    String       e164number   = Util.canonicalizeNumber(context, recipient.getNumber());
-    long         recipientId  = recipient.getRecipientId();
-    PushAddress  masterDevice = PushAddress.create(context, recipientId, e164number, 1);
-    PushBody     masterBody   = getEncryptedMessage(socket, threadId, masterDevice, plaintext);
-
-    List<OutgoingPushMessage> messages = new LinkedList<>();
-    messages.add(new OutgoingPushMessage(masterDevice, masterBody));
-
-    for (int deviceId : sessionStore.getSubDeviceSessions(recipientId)) {
-      PushAddress device = PushAddress.create(context, recipientId, e164number, deviceId);
-      PushBody    body   = getEncryptedMessage(socket, threadId, device, plaintext);
-
-      messages.add(new OutgoingPushMessage(device, body));
-    }
-
-    return new OutgoingPushMessageList(e164number, timestamp, masterDevice.getRelay(), messages);
-  }
-
-  private PushBody getEncryptedMessage(PushServiceSocket socket, long threadId,
-                                       PushAddress pushAddress, byte[] plaintext)
-      throws IOException, UntrustedIdentityException
-  {
-    if (!SessionUtil.hasEncryptCapableSession(context, masterSecret, pushAddress)) {
-      try {
-        List<PreKeyBundle> preKeys = socket.getPreKeys(pushAddress);
-
-        for (PreKeyBundle preKey : preKeys) {
-          PushAddress          device    = PushAddress.create(context, pushAddress.getRecipientId(), pushAddress.getNumber(), preKey.getDeviceId());
-          KeyExchangeProcessor processor = new KeyExchangeProcessor(context, masterSecret, device);
-
-          try {
-            processor.processKeyExchangeMessage(preKey, threadId);
-          } catch (org.whispersystems.libaxolotl.UntrustedIdentityException e) {
-            throw new UntrustedIdentityException("Untrusted identity key!", pushAddress.getNumber(), preKey.getIdentityKey());
-          }
-        }
-      } catch (InvalidKeyException e) {
-        throw new IOException(e);
-      }
-    }
-
-    TransportDetails  transportDetails     = new PushTransportDetails(SessionUtil.getSessionVersion(context, masterSecret, pushAddress));
-    TextSecureCipher  cipher               = new TextSecureCipher(context, masterSecret, pushAddress, transportDetails);
-    CiphertextMessage message              = cipher.encrypt(plaintext);
-    int               remoteRegistrationId = cipher.getRemoteRegistrationId();
-
-    if (message.getType() == CiphertextMessage.PREKEY_TYPE) {
-      return new PushBody(IncomingPushMessageSignal.Type.PREKEY_BUNDLE_VALUE, remoteRegistrationId, message.serialize());
-    } else if (message.getType() == CiphertextMessage.WHISPER_TYPE) {
-      return new PushBody(IncomingPushMessageSignal.Type.CIPHERTEXT_VALUE, remoteRegistrationId, message.serialize());
-    } else {
-      throw new AssertionError("Unknown ciphertext type: " + message.getType());
-    }
   }
 }

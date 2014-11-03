@@ -29,8 +29,8 @@ import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.LRUCache;
 import org.whispersystems.libaxolotl.InvalidMessageException;
-import org.whispersystems.textsecure.crypto.MasterCipher;
-import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.MasterCipher;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 
 import java.lang.ref.SoftReference;
 import java.util.Collections;
@@ -73,7 +73,9 @@ public class EncryptingSmsDatabase extends SmsDatabase {
   {
     long type = Types.BASE_INBOX_TYPE;
 
-    if (!message.isSecureMessage() && !message.isEndSession()) {
+    if (masterSecret == null && message.isSecureMessage()) {
+      type |= Types.ENCRYPTION_REMOTE_BIT;
+    } else {
       type |= Types.ENCRYPTION_SYMMETRIC_BIT;
       message = message.withMessageBody(getEncryptedBody(masterSecret, message.getMessageBody()));
     }
@@ -97,8 +99,9 @@ public class EncryptingSmsDatabase extends SmsDatabase {
   }
 
   public void updateBundleMessageBody(MasterSecret masterSecret, long messageId, String body) {
-    updateMessageBodyAndType(messageId, body, Types.TOTAL_MASK,
-                             Types.BASE_INBOX_TYPE | Types.ENCRYPTION_REMOTE_BIT | Types.SECURE_MESSAGE_BIT);
+    String encryptedBody = getEncryptedBody(masterSecret, body);
+    updateMessageBodyAndType(messageId, encryptedBody, Types.TOTAL_MASK,
+                             Types.BASE_INBOX_TYPE | Types.SECURE_MESSAGE_BIT);
   }
 
   public void updateMessageBody(MasterSecret masterSecret, long messageId, String body) {

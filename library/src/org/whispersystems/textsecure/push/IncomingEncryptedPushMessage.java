@@ -69,15 +69,7 @@ public class IncomingEncryptedPushMessage {
 
       return cipher.doFinal(ciphertext, CIPHERTEXT_OFFSET,
                             ciphertext.length - VERSION_LENGTH - IV_LENGTH - MAC_SIZE);
-    } catch (NoSuchAlgorithmException e) {
-      throw new AssertionError(e);
-    } catch (NoSuchPaddingException e) {
-      throw new AssertionError(e);
-    } catch (InvalidKeyException e) {
-      throw new AssertionError(e);
-    } catch (InvalidAlgorithmParameterException e) {
-      throw new AssertionError(e);
-    } catch (IllegalBlockSizeException e) {
+    } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | InvalidAlgorithmParameterException | IllegalBlockSizeException e) {
       throw new AssertionError(e);
     } catch (BadPaddingException e) {
       Log.w("IncomingEncryptedPushMessage", e);

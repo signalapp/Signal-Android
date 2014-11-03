@@ -28,6 +28,7 @@ import org.whispersystems.libaxolotl.ecc.ECPublicKey;
 import org.whispersystems.libaxolotl.state.PreKeyBundle;
 import org.whispersystems.libaxolotl.state.PreKeyRecord;
 import org.whispersystems.libaxolotl.state.SignedPreKeyRecord;
+import org.whispersystems.textsecure.crypto.AttachmentCipherOutputStream;
 import org.whispersystems.textsecure.push.exceptions.AuthorizationFailedException;
 import org.whispersystems.textsecure.push.exceptions.ExpectationFailedException;
 import org.whispersystems.textsecure.push.exceptions.MismatchedDevicesException;
@@ -47,7 +48,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.security.KeyManagementException;
 import java.security.KeyStore;
@@ -298,12 +298,13 @@ public class PushServiceSocket {
 
     Log.w("PushServiceSocket", "Got attachment content location: " + attachmentKey.getLocation());
 
-    uploadExternalFile("PUT", attachmentKey.getLocation(), attachment.getData());
+    uploadAttachment("PUT", attachmentKey.getLocation(), attachment.getData(),
+                     attachment.getDataSize(), attachment.getKey());
 
     return attachmentKey.getId();
   }
 
-  public File retrieveAttachment(String relay, long attachmentId) throws IOException {
+  public void retrieveAttachment(String relay, long attachmentId, File destination) throws IOException {
     String path = String.format(ATTACHMENT_PATH, String.valueOf(attachmentId));
 
     if (!Util.isEmpty(relay)) {
@@ -315,12 +316,7 @@ public class PushServiceSocket {
 
     Log.w("PushServiceSocket", "Attachment: " + attachmentId + " is at: " + descriptor.getLocation());
 
-    File attachment = File.createTempFile("attachment", ".tmp", context.getFilesDir());
-    attachment.deleteOnExit();
-
-    downloadExternalFile(descriptor.getLocation(), attachment);
-
-    return attachment;
+    downloadExternalFile(descriptor.getLocation(), destination);
   }
 
   public List<ContactTokenDetails> retrieveDirectory(Set<String> contactTokens) {
@@ -356,7 +352,7 @@ public class PushServiceSocket {
 
     try {
       if (connection.getResponseCode() != 200) {
-        throw new IOException("Bad response: " + connection.getResponseCode());
+        throw new NonSuccessfulResponseCodeException("Bad response: " + connection.getResponseCode());
       }
 
       OutputStream output = new FileOutputStream(localDestination);
@@ -375,20 +371,23 @@ public class PushServiceSocket {
     }
   }
 
-  private void uploadExternalFile(String method, String url, byte[] data)
+  private void uploadAttachment(String method, String url, InputStream data, long dataSize, byte[] key)
     throws IOException
   {
     URL                uploadUrl  = new URL(url);
     HttpsURLConnection connection = (HttpsURLConnection) uploadUrl.openConnection();
     connection.setDoOutput(true);
+    connection.setFixedLengthStreamingMode((int) AttachmentCipherOutputStream.getCiphertextLength(dataSize));
     connection.setRequestMethod(method);
     connection.setRequestProperty("Content-Type", "application/octet-stream");
     connection.connect();
 
     try {
-      OutputStream out = connection.getOutputStream();
-      out.write(data);
-      out.close();
+      OutputStream                 stream = connection.getOutputStream();
+      AttachmentCipherOutputStream out    = new AttachmentCipherOutputStream(key, stream);
+
+      Util.copy(data, out);
+      out.flush();
 
       if (connection.getResponseCode() != 200) {
         throw new IOException("Bad response: " + connection.getResponseCode() + " " + connection.getResponseMessage());
@@ -532,14 +531,8 @@ public class PushServiceSocket {
       trustManagerFactory.init(keyStore);
 
       return BlacklistingTrustManager.createFor(trustManagerFactory.getTrustManagers());
-    } catch (KeyStoreException kse) {
+    } catch (KeyStoreException | CertificateException | NoSuchAlgorithmException | IOException kse) {
       throw new AssertionError(kse);
-    } catch (CertificateException e) {
-      throw new AssertionError(e);
-    } catch (NoSuchAlgorithmException e) {
-      throw new AssertionError(e);
-    } catch (IOException ioe) {
-      throw new AssertionError(ioe);
     }
   }
 

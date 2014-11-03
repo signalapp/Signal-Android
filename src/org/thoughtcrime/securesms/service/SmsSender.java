@@ -27,7 +27,7 @@ import android.telephony.SmsMessage;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.crypto.KeyExchangeProcessor;
+import org.thoughtcrime.securesms.crypto.SecurityEvent;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
@@ -41,10 +41,10 @@ import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.SecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.transport.UniversalTransport;
-import org.thoughtcrime.securesms.transport.UntrustedIdentityException;
+import org.whispersystems.textsecure.crypto.UntrustedIdentityException;
 import org.whispersystems.libaxolotl.state.SessionStore;
-import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.storage.TextSecureSessionStore;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 
 public class SmsSender {
 
@@ -141,7 +141,7 @@ public class SmsSender {
         Log.w("SmsSender", "Ending session...");
         SessionStore sessionStore = new TextSecureSessionStore(context, masterSecret);
         sessionStore.deleteAllSessions(record.getIndividualRecipient().getRecipientId());
-        KeyExchangeProcessor.broadcastSecurityUpdateEvent(context, record.getThreadId());
+        SecurityEvent.broadcastSecurityUpdateEvent(context, record.getThreadId());
       }
 
       unregisterForRadioChanges();

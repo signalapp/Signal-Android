@@ -25,7 +25,7 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.support.v4.widget.CursorAdapter;
 
-import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;

@@ -16,18 +16,16 @@
  */
 package org.thoughtcrime.securesms;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.MenuItem;
 
-import org.thoughtcrime.securesms.service.SendReceiveService;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
-import org.whispersystems.textsecure.crypto.MasterSecret;
 
 public class MmsPreferencesActivity extends PassphraseRequiredActionBarActivity {
 
@@ -72,7 +70,6 @@ public class MmsPreferencesActivity extends PassphraseRequiredActionBarActivity 
   public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
       case android.R.id.home:
-        handleDownloadMmsPendingApn();
         finish();
         return true;
     }
@@ -82,13 +79,7 @@ public class MmsPreferencesActivity extends PassphraseRequiredActionBarActivity 
 
   @Override
   public void onBackPressed() {
-    handleDownloadMmsPendingApn();
     super.onBackPressed();
   }
 
-  private void handleDownloadMmsPendingApn() {
-    Intent intent = new Intent(this, SendReceiveService.class);
-    intent.setAction(SendReceiveService.DOWNLOAD_MMS_PENDING_APN_ACTION);
-    startService(intent);
-  }
 }

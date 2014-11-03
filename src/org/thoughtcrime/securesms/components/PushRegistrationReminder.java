@@ -8,7 +8,7 @@ import android.view.View.OnClickListener;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.RegistrationActivity;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 
 public class PushRegistrationReminder extends Reminder {
   public static final long REMINDER_INTERVAL_MS = 3 * 24 * 60 * 60 * 1000;

@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 
-import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 
 public class PassphraseRequiredActionBarActivity extends ActionBarActivity implements PassphraseRequiredActivity {
 

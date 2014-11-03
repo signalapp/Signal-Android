@@ -39,14 +39,16 @@ public class JobManager implements RequirementListener {
   private final PersistentStorage  persistentStorage;
 
   public JobManager(Context context, String name,
-                    RequirementProvider requirementProvider,
+                    List<RequirementProvider> requirementProviders,
                     JobSerializer jobSerializer, int consumers)
   {
     this.persistentStorage = new PersistentStorage(context, name, jobSerializer);
     eventExecutor.execute(new LoadTask(null));
 
-    if (requirementProvider != null) {
-      requirementProvider.setListener(this);
+    if (requirementProviders != null && !requirementProviders.isEmpty()) {
+      for (RequirementProvider provider : requirementProviders) {
+        provider.setListener(this);
+      }
     }
 
     for (int i=0;i<consumers;i++) {

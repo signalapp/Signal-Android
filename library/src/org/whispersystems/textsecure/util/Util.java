@@ -94,12 +94,17 @@ public class Util {
   }
 
   public static String getSecret(int size) {
+    byte[] secret = getSecretBytes(size);
+    return Base64.encodeBytes(secret);
+  }
+
+  public static byte[] getSecretBytes(int size) {
     try {
       byte[] secret = new byte[size];
       SecureRandom.getInstance("SHA1PRNG").nextBytes(secret);
-      return Base64.encodeBytes(secret);
-    } catch (NoSuchAlgorithmException nsae) {
-      throw new AssertionError(nsae);
+      return secret;
+    } catch (NoSuchAlgorithmException e) {
+      throw new AssertionError(e);
     }
   }
 

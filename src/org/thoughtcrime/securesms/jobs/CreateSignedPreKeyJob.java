@@ -12,8 +12,8 @@ import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.libaxolotl.IdentityKeyPair;
 import org.whispersystems.libaxolotl.state.SignedPreKeyRecord;
-import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.crypto.PreKeyUtil;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.PreKeyUtil;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 
 import java.io.IOException;

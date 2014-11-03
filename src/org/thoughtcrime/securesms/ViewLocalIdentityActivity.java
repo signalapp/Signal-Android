@@ -24,7 +24,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
-import org.whispersystems.textsecure.crypto.IdentityKeyParcelable;
+import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 
 /**
  * Activity that displays the local identity key and offers the option to regenerate it.

@@ -38,12 +38,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
+import org.thoughtcrime.securesms.jobs.MmsDownloadJob;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -51,7 +53,6 @@ import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.Emoji;
-import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.whispersystems.textsecure.util.FutureTaskListener;
 import org.whispersystems.textsecure.util.ListenableFutureTask;
 
@@ -490,13 +491,10 @@ public class ConversationItem extends LinearLayout {
       mmsDownloadButton.setVisibility(View.GONE);
       mmsDownloadingLabel.setVisibility(View.VISIBLE);
 
-      Intent intent = new Intent(context, SendReceiveService.class);
-      intent.putExtra("content_location", new String(notificationRecord.getContentLocation()));
-      intent.putExtra("message_id", notificationRecord.getId());
-      intent.putExtra("transaction_id", notificationRecord.getTransactionId());
-      intent.putExtra("thread_id", notificationRecord.getThreadId());
-      intent.setAction(SendReceiveService.DOWNLOAD_MMS_ACTION);
-      context.startService(intent);
+      ApplicationContext.getInstance(context)
+                        .getJobManager()
+                        .add(new MmsDownloadJob(context, messageRecord.getId(),
+                                                messageRecord.getThreadId(), false));
     }
   }
 

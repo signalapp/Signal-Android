@@ -30,7 +30,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.whispersystems.libaxolotl.InvalidMessageException;
-import org.whispersystems.textsecure.crypto.MasterCipher;
+import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.whispersystems.textsecure.util.Util;
 
 import java.util.Arrays;

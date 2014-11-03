@@ -31,9 +31,9 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libaxolotl.state.SessionStore;
-import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.whispersystems.textsecure.storage.RecipientDevice;
-import org.whispersystems.textsecure.storage.TextSecureSessionStore;
+import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 
 /**
  * Activity which prompts the user to initiate a secure

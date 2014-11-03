@@ -48,13 +48,15 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class AttachmentCipherInputStream extends FileInputStream {
 
-  private static final int BLOCK_SIZE = 16;
+  private static final int BLOCK_SIZE      = 16;
+  private static final int CIPHER_KEY_SIZE = 32;
+  private static final int MAC_KEY_SIZE    = 32;
 
   private Cipher  cipher;
   private boolean done;
   private long    totalDataSize;
   private long    totalRead;
-  private byte[] overflowBuffer;
+  private byte[]  overflowBuffer;
 
   public AttachmentCipherInputStream(File file, byte[] combinedKeyMaterial)
       throws IOException, InvalidMessageException
@@ -62,11 +64,9 @@ public class AttachmentCipherInputStream extends FileInputStream {
     super(file);
 
     try {
-      byte[][] parts = Util.split(combinedKeyMaterial,
-                                  AttachmentCipher.CIPHER_KEY_SIZE,
-                                  AttachmentCipher.MAC_KEY_SIZE);
+      byte[][] parts = Util.split(combinedKeyMaterial, CIPHER_KEY_SIZE, MAC_KEY_SIZE);
+      Mac      mac   = Mac.getInstance("HmacSHA256");
 
-      Mac mac = Mac.getInstance("HmacSHA256");
       mac.init(new SecretKeySpec(parts[1], "HmacSHA256"));
 
       if (file.length() <= BLOCK_SIZE + mac.getMacLength()) {
@@ -84,16 +84,10 @@ public class AttachmentCipherInputStream extends FileInputStream {
       this.done          = false;
       this.totalRead     = 0;
       this.totalDataSize = file.length() - cipher.getBlockSize() - mac.getMacLength();
-    } catch (NoSuchAlgorithmException e) {
-      throw new AssertionError(e);
-    } catch (InvalidKeyException e) {
+    } catch (NoSuchAlgorithmException | InvalidKeyException | NoSuchPaddingException | InvalidAlgorithmParameterException e) {
       throw new AssertionError(e);
     } catch (InvalidMacException e) {
       throw new InvalidMessageException(e);
-    } catch (NoSuchPaddingException e) {
-      throw new AssertionError(e);
-    } catch (InvalidAlgorithmParameterException e) {
-      throw new AssertionError(e);
     }
   }
 

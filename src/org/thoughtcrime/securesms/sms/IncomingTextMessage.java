@@ -5,6 +5,8 @@ import android.os.Parcelable;
 import android.telephony.SmsMessage;
 
 import org.thoughtcrime.securesms.util.GroupUtil;
+import org.whispersystems.libaxolotl.util.guava.Optional;
+import org.whispersystems.textsecure.api.messages.TextSecureGroup;
 import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.storage.RecipientDevice;
 
@@ -50,19 +52,21 @@ public class IncomingTextMessage implements Parcelable {
     this.push                 = false;
   }
 
-  public IncomingTextMessage(IncomingPushMessage message, String encodedBody, GroupContext group) {
+  public IncomingTextMessage(String sender, int senderDeviceId, long sentTimestampMillis,
+                             String encodedBody, Optional<TextSecureGroup> group)
+  {
     this.message              = encodedBody;
-    this.sender               = message.getSource();
-    this.senderDeviceId       = message.getSourceDevice();
+    this.sender               = sender;
+    this.senderDeviceId       = senderDeviceId;
     this.protocol             = 31337;
     this.serviceCenterAddress = "GCM";
     this.replyPathPresent     = true;
     this.pseudoSubject        = "";
-    this.sentTimestampMillis  = message.getTimestampMillis();
+    this.sentTimestampMillis  = sentTimestampMillis;
     this.push                 = true;
 
-    if (group != null && group.hasId()) {
-      this.groupId = GroupUtil.getEncodedId(group.getId().toByteArray());
+    if (group.isPresent()) {
+      this.groupId = GroupUtil.getEncodedId(group.get().getGroupId());
     } else {
       this.groupId = null;
     }

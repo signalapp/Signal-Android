@@ -350,7 +350,7 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
       else if (((IncomingKeyExchangeMessage)message).isPreKeyBundle())   type |= Types.KEY_EXCHANGE_BUNDLE_BIT;
     } else if (message.isSecureMessage()) {
       type |= Types.SECURE_MESSAGE_BIT;
-      type |= Types.ENCRYPTION_REMOTE_BIT;
+//      type |= Types.ENCRYPTION_REMOTE_BIT;
     } else if (message.isGroup()) {
       type |= Types.SECURE_MESSAGE_BIT;
       if      (((IncomingGroupMessage)message).isUpdate()) type |= Types.GROUP_UPDATE_BIT;
@@ -358,7 +358,7 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
     } else if (message.isEndSession()) {
       type |= Types.SECURE_MESSAGE_BIT;
       type |= Types.END_SESSION_BIT;
-      type |= Types.ENCRYPTION_REMOTE_BIT;
+//      type |= Types.ENCRYPTION_REMOTE_BIT;
     }
 
     if (message.isPush()) type |= Types.PUSH_MESSAGE_BIT;

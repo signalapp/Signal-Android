@@ -23,7 +23,7 @@ import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.support.v7.app.ActionBarActivity;
 
-import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 
@@ -53,7 +53,7 @@ public abstract class PassphraseActivity extends ActionBarActivity {
   private ServiceConnection serviceConnection = new ServiceConnection() {
       @Override
       public void onServiceConnected(ComponentName className, IBinder service) {
-        keyCachingService = ((KeyCachingService.KeyCachingBinder)service).getService();
+        keyCachingService = ((KeyCachingService.KeySetBinder)service).getService();
         keyCachingService.setMasterSecret(masterSecret);
 
         PassphraseActivity.this.unbindService(PassphraseActivity.this.serviceConnection);

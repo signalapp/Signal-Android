@@ -20,7 +20,7 @@ import android.content.Context;
 
 import org.thoughtcrime.securesms.dom.smil.parser.SmilXmlSerializer;
 import org.thoughtcrime.securesms.util.SmilUtil;
-import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 
 import java.io.ByteArrayOutputStream;
 import java.io.UnsupportedEncodingException;

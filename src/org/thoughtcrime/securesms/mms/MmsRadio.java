@@ -99,6 +99,8 @@ public class MmsRadio {
   private boolean isConnected() {
     NetworkInfo info = connectivityManager.getNetworkInfo(TYPE_MOBILE_MMS);
 
+    Log.w("MmsRadio", "Connected: " + info);
+
     if ((info == null) || (info.getType() != TYPE_MOBILE_MMS) || !info.isConnected())
       return false;
 

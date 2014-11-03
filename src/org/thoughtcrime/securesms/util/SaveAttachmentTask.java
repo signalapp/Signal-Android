@@ -12,9 +12,9 @@ import android.webkit.MimeTypeMap;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.providers.PartProvider;
-import org.whispersystems.textsecure.crypto.MasterSecret;
 
 import java.io.File;
 import java.io.FileOutputStream;

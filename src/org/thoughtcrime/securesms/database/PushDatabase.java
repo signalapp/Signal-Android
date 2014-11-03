@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.util.Base64;
@@ -38,6 +39,32 @@ public class PushDatabase extends Database {
     values.put(TIMESTAMP, message.getTimestampMillis());
 
     return databaseHelper.getWritableDatabase().insert(TABLE_NAME, null, values);
+  }
+
+  public IncomingPushMessage get(long id) throws NoSuchMessageException {
+    Cursor cursor = null;
+
+    try {
+      cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, ID_WHERE,
+                                                          new String[] {String.valueOf(id)},
+                                                          null, null, null);
+
+      if (cursor != null && cursor.moveToNext()) {
+        return new IncomingPushMessage(cursor.getInt(cursor.getColumnIndexOrThrow(TYPE)),
+                                       cursor.getString(cursor.getColumnIndexOrThrow(SOURCE)),
+                                       cursor.getInt(cursor.getColumnIndexOrThrow(DEVICE_ID)),
+                                       Base64.decode(cursor.getString(cursor.getColumnIndexOrThrow(BODY))),
+                                       cursor.getLong(cursor.getColumnIndexOrThrow(TIMESTAMP)));
+      }
+    } catch (IOException e) {
+      Log.w("PushDatabase", e);
+      throw new NoSuchMessageException(e);
+    } finally {
+      if (cursor != null)
+        cursor.close();
+    }
+
+    throw new NoSuchMessageException("Not found");
   }
 
   public Cursor getPending() {
@@ -83,6 +110,11 @@ public class PushDatabase extends Database {
     public void close() {
       this.cursor.close();
     }
+  }
+
+  public static class NoSuchMessageException extends Exception {
+    public NoSuchMessageException(String s) {super(s);}
+    public NoSuchMessageException(Exception e) {super(e);}
   }
 
 }

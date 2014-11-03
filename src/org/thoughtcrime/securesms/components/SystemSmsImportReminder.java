@@ -9,7 +9,7 @@ import org.thoughtcrime.securesms.ConversationListActivity;
 import org.thoughtcrime.securesms.DatabaseMigrationActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.service.ApplicationMigrationService;
-import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 
 public class SystemSmsImportReminder extends Reminder {
 
