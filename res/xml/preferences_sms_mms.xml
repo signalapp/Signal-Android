@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <CheckBoxPreference android:defaultValue="true"
+                        android:key="pref_all_sms"
+                        android:summary="@string/preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages"
+                        android:title="@string/preferences__pref_all_sms_title" />
+
+    <CheckBoxPreference android:defaultValue="true"
+                        android:key="pref_all_mms"
+                        android:summary="@string/preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages"
+                        android:title="@string/preferences__pref_all_mms_title" />
+
+    <Preference android:key="pref_set_default"
+                android:title="@string/preferences__make_default_sms_app"
+                android:summary="@string/preferences__make_textsecure_the_default_sms_mms_app" />
+
+    <org.thoughtcrime.securesms.components.OutgoingSmsPreference
+        android:key="pref_outgoing_sms"
+        android:title="@string/preferences__allow_sms_fallback" />
+
+    <CheckBoxPreference android:defaultValue="false"
+                        android:key="pref_delivery_report_sms"
+                        android:summary="@string/preferences__request_a_delivery_report_for_each_sms_message_you_send"
+                        android:title="@string/preferences__sms_delivery_reports" />
+
+    <Preference android:key="pref_mms_preferences"
+                android:title="@string/preferences__advanced_mms_access_point_names"/>
+
+    <CheckBoxPreference android:defaultValue="true"
+                        android:key="pref_auto_complete_key_exchange"
+                        android:title="@string/preferences__complete_key_exchanges"
+                        android:summary="@string/preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key" />
+
+</PreferenceScreen>

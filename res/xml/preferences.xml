@@ -1,177 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <PreferenceCategory android:key="push_sms_category" android:title="@string/preferences__push_sms_category">
-        <CheckBoxPreference android:defaultValue="false"
-                            android:key="pref_toggle_push_messaging"
-                            android:title="@string/preferences__use_data_channel"
-                            android:summary="@string/preferences__use_the_data_channel_for_communication_with_other_textsecure_users"/>
-
-        <CheckBoxPreference android:defaultValue="true"
-                          android:key="pref_all_sms"
-                          android:summary="@string/preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages"
-                          android:title="@string/preferences__pref_all_sms_title" />
-
-        <CheckBoxPreference android:defaultValue="true"
-                          android:key="pref_all_mms"
-                          android:summary="@string/preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages"
-                          android:title="@string/preferences__pref_all_mms_title" />
-
-        <Preference android:key="pref_set_default"
-                    android:title="@string/preferences__make_default_sms_app"
-                    android:summary="@string/preferences__make_textsecure_the_default_sms_mms_app" />
-
-        <org.thoughtcrime.securesms.components.OutgoingSmsPreference
-                        android:key="pref_outgoing_sms"
-                        android:title="@string/preferences__allow_sms_fallback" />
-
-        <CheckBoxPreference android:defaultValue="false"
-                            android:key="pref_delivery_report_sms"
-                            android:summary="@string/preferences__request_a_delivery_report_for_each_sms_message_you_send"
-                            android:title="@string/preferences__sms_delivery_reports" />
-    </PreferenceCategory>
-    <PreferenceCategory android:title="@string/preferences__notifications">
-        <CheckBoxPreference android:key="pref_key_enable_notifications"
-                            android:title="@string/preferences__notifications"
-                            android:summary="@string/preferences__display_message_notifications_in_status_bar"
-                            android:defaultValue="true" />
-        <ListPreference
-                          android:key="pref_led_color"
-                          android:defaultValue="green"
-                          android:title="@string/preferences__led_color"
-                          android:dependency="pref_key_enable_notifications"
-                          android:entries="@array/pref_led_color_entries"
-                          android:entryValues="@array/pref_led_color_values" />
-
-        <org.thoughtcrime.securesms.preferences.LedBlinkPatternListPreference
-                          android:key="pref_led_blink"
-                          android:defaultValue="500,2000"
-                          android:title="@string/preferences__pref_led_blink_title"
-                          android:dependency="pref_key_enable_notifications"
-                          android:entries="@array/pref_led_blink_pattern_entries"
-                          android:entryValues="@array/pref_led_blink_pattern_values" />
-
-        <RingtonePreference android:dependency="pref_key_enable_notifications"
-                            android:key="pref_key_ringtone"
-                            android:title="@string/preferences__sound"
-                            android:summary="@string/preferences__change_notification_sound"
-                            android:ringtoneType="notification"
-                            android:defaultValue="content://settings/system/notification_sound" />
-
-        <CheckBoxPreference android:key="pref_key_inthread_notifications"
-                            android:title="@string/preferences__inthread_notifications"
-                            android:summary="@string/preferences__play_inthread_notifications"
-                            android:dependency="pref_key_enable_notifications"
-                            android:defaultValue="true" />
-
-        <CheckBoxPreference android:dependency="pref_key_enable_notifications"
-                            android:key="pref_key_vibrate"
-                            android:defaultValue="true"
-                            android:title="@string/preferences__vibrate"
-                            android:summary="@string/preferences__also_vibrate_when_notified" />
-
-  </PreferenceCategory>
-
-  <PreferenceCategory android:title="@string/preferences__input_settings">
-      <CheckBoxPreference android:defaultValue="false"
-                          android:key="pref_enter_key"
-                          android:title="@string/preferences__enable_enter_key_title"
-                          android:summary="@string/preferences__replace_smiley_with_enter_key"/>
-
-      <CheckBoxPreference android:defaultValue="false"
-                          android:key="pref_enter_sends"
-                          android:summary="@string/preferences__pressing_the_enter_key_will_send_text_messages"
-                          android:title="@string/preferences__pref_enter_sends_title" />
-
-  </PreferenceCategory>
-
-  <PreferenceCategory android:title="@string/preferences__appearance">
-      <ListPreference android:key="pref_theme"
-                      android:title="@string/preferences__theme"
-                      android:entries="@array/pref_theme_entries"
-                      android:entryValues="@array/pref_theme_values"
-                      android:defaultValue="light">
-      </ListPreference>
-
-      <ListPreference android:key="pref_language"
-                      android:title="@string/preferences__language"
-                      android:entries="@array/language_entries"
-                      android:entryValues="@array/language_values"
-                      android:defaultValue="zz"/>
-  </PreferenceCategory>
-
-  <PreferenceCategory android:title="@string/preferences__storage">
     <CheckBoxPreference android:defaultValue="false"
-                        android:key="pref_trim_threads"
-                        android:summary="@string/preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length"
-                        android:title="@string/preferences__delete_old_messages" />
+                        android:key="pref_toggle_push_messaging"
+                        android:title="@string/preferences__use_data_channel"
+                        android:summary="@string/preferences__use_the_data_channel_for_communication_with_other_textsecure_users"/>
 
-    <EditTextPreference android:defaultValue="500"
-                        android:key="pref_trim_length"
-                        android:title="@string/preferences__conversation_length_limit"
-                        android:inputType="number"
-                        android:dependency="pref_trim_threads" />
+    <Preference android:key="preference_category_sms_mms"
+                android:title="@string/preferences__sms_mms"/>
 
-    <Preference android:key="pref_trim_now"
-                android:title="@string/preferences__trim_all_threads_now"
-                android:summary="@string/preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits"
-                android:dependency="pref_trim_threads" />
+    <Preference android:key="preference_category_notifications"
+                android:title="@string/preferences__notifications"/>
 
-   </PreferenceCategory>
+    <Preference android:key="preference_category_app_protection"
+                android:title="@string/preferences__app_protection"/>
 
-  <PreferenceCategory android:title="@string/preferences__display_settings" android:key="pref_display_category">
+    <Preference android:key="preference_category_appearance"
+                android:title="@string/preferences__appearance"/>
 
-    <Preference android:key="pref_choose_identity"
-                android:title="@string/preferences__choose_identity"
-                android:summary="@string/preferences__choose_your_contact_entry_from_the_contacts_list"/>
+    <Preference android:key="preference_category_storage"
+                android:title="@string/preferences__delete_old_messages"/>
 
-  </PreferenceCategory>
-
-   <PreferenceCategory android:title="@string/preferences__passphrase">
-
-       <Preference android:key="pref_change_passphrase"
-                   android:title="@string/preferences__change_passphrase"
-                   android:summary="@string/preferences__change_my_passphrase"
-                   android:dependency="pref_disable_passphrase"/>
-
-       <CheckBoxPreference android:key="pref_disable_passphrase"
-                           android:defaultValue="false"
-                           android:title="@string/preferences__disable_passphrase"
-                           android:summary="@string/preferences__disable_local_encryption_of_messages_and_keys"
-                           android:disableDependentsState="true"/>
-
-       <CheckBoxPreference android:defaultValue="false"
-                           android:key="pref_timeout_passphrase"
-                           android:title="@string/preferences__timeout_passphrase"
-                           android:summary="@string/preferences__forget_passphrase_from_memory_after_some_interval"
-                           android:dependency="pref_disable_passphrase"/>
-
-       <org.thoughtcrime.securesms.preferences.PassphraseTimeoutPreference
-               android:key="pref_timeout_interval"
-               android:defaultValue="300"
-               android:title="@string/preferences__pref_timeout_interval_title"
-               android:summary="@string/preferences__the_amount_of_time_to_wait_before_forgetting_passphrase"
-               android:dependency="pref_timeout_passphrase"
-               android:dialogTitle="@string/preferences__pref_timeout_interval_dialogtitle" />
-
-    </PreferenceCategory>
-
-    <PreferenceCategory android:key="advanced_category" android:title="@string/preferences__advanced">
-       <CheckBoxPreference android:defaultValue="true"
-                           android:key="pref_auto_complete_key_exchange"
-                           android:title="@string/preferences__complete_key_exchanges"
-                           android:summary="@string/preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key" />
-
-       <CheckBoxPreference android:defaultValue="true"
-                           android:key="pref_screen_security"
-                           android:title="@string/preferences__screen_security"
-                           android:summary="@string/preferences__disable_screen_security_to_allow_screen_shots" />
-
-        <Preference android:key="pref_mms_preferences"
-                    android:title="@string/preferences__advanced_mms_access_point_names"/>
-
-        <Preference android:key="pref_submit_debug_logs"
-                    android:title="@string/preferences__submit_debug_log"/>
-
-    </PreferenceCategory>
+    <Preference android:key="preference_category_advanced"
+                android:title="@string/preferences__advanced"/>
 </PreferenceScreen>
