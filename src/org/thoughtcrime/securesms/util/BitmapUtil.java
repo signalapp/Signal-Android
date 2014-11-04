@@ -86,7 +86,7 @@ public class BitmapUtil {
     return createScaledBitmap(data, maxWidth, maxHeight, options, constrainedMemory);
   }
 
-  private static Bitmap createScaledBitmap(InputStream measure, InputStream orientationStream, InputStream data,
+  public static Bitmap createScaledBitmap(InputStream measure, InputStream orientationStream, InputStream data,
                                           int maxWidth, int maxHeight, boolean constrainedMemory)
       throws BitmapDecodingException
   {
@@ -100,7 +100,7 @@ public class BitmapUtil {
     }
   }
 
-  public static Bitmap rotateBitmap(Bitmap bitmap, int angle) {
+  private static Bitmap rotateBitmap(Bitmap bitmap, int angle) {
     Matrix matrix = new Matrix();
     matrix.postRotate(angle);
     return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
