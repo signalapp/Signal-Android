@@ -86,12 +86,12 @@ public class BitmapUtil {
     return createScaledBitmap(data, maxWidth, maxHeight, options, constrainedMemory);
   }
 
-  public static Bitmap createScaledBitmap(InputStream measure, InputStream orient,InputStream data,
+  private static Bitmap createScaledBitmap(InputStream measure, InputStream orientationStream, InputStream data,
                                           int maxWidth, int maxHeight, boolean constrainedMemory)
       throws BitmapDecodingException
   {
     Bitmap bitmap         = createScaledBitmap(measure, data, maxWidth, maxHeight, constrainedMemory);
-    final int orientation = Exif.getOrientation(orient);
+    final int orientation = Exif.getOrientation(orientationStream);
 
     if (orientation != 0) {
       return rotateBitmap(bitmap, orientation);

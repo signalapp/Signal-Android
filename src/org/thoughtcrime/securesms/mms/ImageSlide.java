@@ -77,11 +77,11 @@ public class ImageSlide extends Slide {
     }
 
     try {
-      InputStream measureStream = getPartDataInputStream();
-      InputStream orientStream  = getPartDataInputStream();
-      InputStream dataStream    = getPartDataInputStream();
+      InputStream measureStream     = getPartDataInputStream();
+      InputStream orientationStream = getPartDataInputStream();
+      InputStream dataStream        = getPartDataInputStream();
 
-      thumbnail = new BitmapDrawable(context.getResources(), BitmapUtil.createScaledBitmap(measureStream, dataStream, orientStream, maxWidth, maxHeight, false));
+      thumbnail = new BitmapDrawable(context.getResources(), BitmapUtil.createScaledBitmap(measureStream, dataStream, orientationStream, maxWidth, maxHeight, false));
       thumbnailCache.put(part.getDataUri(), new SoftReference<Drawable>(thumbnail));
 
       return thumbnail;
