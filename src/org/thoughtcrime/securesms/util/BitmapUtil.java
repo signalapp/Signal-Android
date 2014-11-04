@@ -32,16 +32,10 @@ public class BitmapUtil {
   {
     Bitmap bitmap;
     try {
-      bitmap = createScaledBitmap(context.getContentResolver().openInputStream(uri),
-                                  context.getContentResolver().openInputStream(uri),
-                                  context.getContentResolver().openInputStream(uri),
-                                  maxWidth, maxHeight, false);
+      bitmap = createScaledBitmap(context, uri, maxWidth, maxHeight, false);
     } catch(OutOfMemoryError oome) {
       Log.w(TAG, "OutOfMemoryError when scaling precisely, doing rough scale to save memory instead");
-      bitmap = createScaledBitmap(context.getContentResolver().openInputStream(uri),
-                                  context.getContentResolver().openInputStream(uri),
-                                  context.getContentResolver().openInputStream(uri),
-                                  maxWidth, maxHeight, true);
+      bitmap = createScaledBitmap(context, uri, maxWidth, maxHeight, true);
     }
     int quality         = MAX_COMPRESSION_QUALITY;
     int attempts        = 0;
@@ -84,6 +78,14 @@ public class BitmapUtil {
   {
     final BitmapFactory.Options options = getImageDimensions(measure);
     return createScaledBitmap(data, maxWidth, maxHeight, options, constrainedMemory);
+  }
+
+  private static Bitmap createScaledBitmap(Context context, Uri uri, int maxWidth, int maxHeight,
+                                          boolean constrainedMemory) throws IOException, BitmapDecodingException {
+    return createScaledBitmap(context.getContentResolver().openInputStream(uri),
+                              context.getContentResolver().openInputStream(uri),
+                              context.getContentResolver().openInputStream(uri),
+                              maxWidth, maxHeight, constrainedMemory);
   }
 
   public static Bitmap createScaledBitmap(InputStream measure, InputStream orientationStream, InputStream data,
