@@ -86,6 +86,10 @@ public class RegistrationActivity extends ActionBarActivity {
     this.number.addTextChangedListener(new NumberChangedListener());
     this.createButton.setOnClickListener(new CreateButtonListener());
     this.skipButton.setOnClickListener(new CancelButtonListener());
+
+    if (getIntent().getBooleanExtra("cancel_button", false)) {
+      this.skipButton.setText(android.R.string.cancel);
+    }
   }
 
   private void initializeSpinner() {
