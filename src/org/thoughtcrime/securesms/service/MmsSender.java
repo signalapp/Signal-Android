@@ -76,7 +76,7 @@ public class MmsSender {
         try {
           Log.w("MmsSender", "Passing to MMS transport: " + message.getDatabaseMessageId());
           database.markAsSending(message.getDatabaseMessageId());
-          MmsSendResult result = transport.deliver(message, threadId);
+          MmsSendResult result = transport.deliver(message);
 
           if (result.isUpgradedSecure()) database.markAsSecure(message.getDatabaseMessageId());
           if (result.isPush())           database.markAsPush(message.getDatabaseMessageId());

@@ -1,11 +1,19 @@
-package org.whispersystems.textsecure.push;
+package org.whispersystems.textsecure.api.messages;
 
 import android.util.Log;
 
+import com.google.protobuf.ByteString;
+
 import org.whispersystems.libaxolotl.InvalidVersionException;
-import org.whispersystems.textsecure.util.Base64;
 import org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal;
+import org.whispersystems.textsecure.util.Base64;
 import org.whispersystems.textsecure.util.Hex;
+
+import java.io.IOException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -14,13 +22,10 @@ import javax.crypto.Mac;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
-import java.io.IOException;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
 
-public class IncomingEncryptedPushMessage {
+public class TextSecureEnvelope {
+
+  private static final String TAG = TextSecureEnvelope.class.getSimpleName();
 
   private static final int SUPPORTED_VERSION =  1;
   private static final int CIPHER_KEY_SIZE   = 32;
@@ -33,9 +38,9 @@ public class IncomingEncryptedPushMessage {
   private static final int IV_LENGTH         = 16;
   private static final int CIPHERTEXT_OFFSET = IV_OFFSET + IV_LENGTH;
 
-  private final IncomingPushMessage incomingPushMessage;
+  private final IncomingPushMessageSignal signal;
 
-  public IncomingEncryptedPushMessage(String message, String signalingKey)
+  public TextSecureEnvelope(String message, String signalingKey)
       throws IOException, InvalidVersionException
   {
     byte[] ciphertext = Base64.decode(message);
@@ -48,14 +53,60 @@ public class IncomingEncryptedPushMessage {
 
     verifyMac(ciphertext, macKey);
 
-    byte[]                    plaintext = getPlaintext(ciphertext, cipherKey);
-    IncomingPushMessageSignal signal    = IncomingPushMessageSignal.parseFrom(plaintext);
-
-    this.incomingPushMessage = new IncomingPushMessage(signal);
+    this.signal = IncomingPushMessageSignal.parseFrom(getPlaintext(ciphertext, cipherKey));
   }
 
-  public IncomingPushMessage getIncomingPushMessage() {
-    return incomingPushMessage;
+  public TextSecureEnvelope(int type, String source, int sourceDevice,
+                            String relay, long timestamp, byte[] message)
+  {
+    this.signal = IncomingPushMessageSignal.newBuilder()
+                                           .setType(IncomingPushMessageSignal.Type.valueOf(type))
+                                           .setSource(source)
+                                           .setSourceDevice(sourceDevice)
+                                           .setRelay(relay)
+                                           .setTimestamp(timestamp)
+                                           .setMessage(ByteString.copyFrom(message))
+                                           .build();
+  }
+
+  public String getSource() {
+    return signal.getSource();
+  }
+
+  public int getSourceDevice() {
+    return signal.getSourceDevice();
+  }
+
+  public int getType() {
+    return signal.getType().getNumber();
+  }
+
+  public String getRelay() {
+    return signal.getRelay();
+  }
+
+  public long getTimestamp() {
+    return signal.getTimestamp();
+  }
+
+  public byte[] getMessage() {
+    return signal.getMessage().toByteArray();
+  }
+
+  public boolean isWhisperMessage() {
+    return signal.getType().getNumber() == IncomingPushMessageSignal.Type.CIPHERTEXT_VALUE;
+  }
+
+  public boolean isPreKeyWhisperMessage() {
+    return signal.getType().getNumber() == IncomingPushMessageSignal.Type.PREKEY_BUNDLE_VALUE;
+  }
+
+  public boolean isPlaintext() {
+    return signal.getType().getNumber() == IncomingPushMessageSignal.Type.PLAINTEXT_VALUE;
+  }
+
+  public boolean isReceipt() {
+    return signal.getType().getNumber() == IncomingPushMessageSignal.Type.RECEIPT_VALUE;
   }
 
   private byte[] getPlaintext(byte[] ciphertext, SecretKeySpec cipherKey) throws IOException {
@@ -72,7 +123,7 @@ public class IncomingEncryptedPushMessage {
     } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | InvalidAlgorithmParameterException | IllegalBlockSizeException e) {
       throw new AssertionError(e);
     } catch (BadPaddingException e) {
-      Log.w("IncomingEncryptedPushMessage", e);
+      Log.w(TAG, e);
       throw new IOException("Bad padding?");
     }
   }
@@ -94,15 +145,13 @@ public class IncomingEncryptedPushMessage {
       byte[] theirMacBytes = new byte[MAC_SIZE];
       System.arraycopy(ciphertext, ciphertext.length-MAC_SIZE, theirMacBytes, 0, theirMacBytes.length);
 
-      Log.w("IncomingEncryptedPushMessage", "Our MAC: " + Hex.toString(ourMacBytes));
-      Log.w("IncomingEncryptedPushMessage", "Thr MAC: " + Hex.toString(theirMacBytes));
+      Log.w(TAG, "Our MAC: " + Hex.toString(ourMacBytes));
+      Log.w(TAG, "Thr MAC: " + Hex.toString(theirMacBytes));
 
       if (!Arrays.equals(ourMacBytes, theirMacBytes)) {
         throw new IOException("Invalid MAC compare!");
       }
-    } catch (NoSuchAlgorithmException e) {
-      throw new AssertionError(e);
-    } catch (InvalidKeyException e) {
+    } catch (NoSuchAlgorithmException | InvalidKeyException e) {
       throw new AssertionError(e);
     }
   }

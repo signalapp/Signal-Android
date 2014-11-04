@@ -173,11 +173,13 @@ public class TextSecureMessageSender {
     List<AttachmentPointer> pointers = new LinkedList<>();
 
     if (!attachments.isPresent() || attachments.get().isEmpty()) {
+      Log.w(TAG, "No attachments present...");
       return pointers;
     }
 
     for (TextSecureAttachment attachment : attachments.get()) {
       if (attachment.isStream()) {
+        Log.w(TAG, "Found attachment, creating pointer...");
         pointers.add(createAttachmentPointer(attachment.asStream()));
       }
     }
@@ -249,7 +251,7 @@ public class TextSecureMessageSender {
       }
     }
 
-    TextSecureCipher  cipher               = new TextSecureCipher(store, recipient);
+    TextSecureCipher  cipher               = new TextSecureCipher(store, recipient.getRecipientId(), recipient.getDeviceId());
     CiphertextMessage message              = cipher.encrypt(plaintext);
     int               remoteRegistrationId = cipher.getRemoteRegistrationId();
 

@@ -21,7 +21,6 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.database.CanonicalAddressDatabase;
-import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.util.Util;
 
 import java.util.LinkedList;
@@ -71,18 +70,6 @@ public class RecipientFactory {
     }
 
     return new Recipients(results);
-  }
-
-  public static Recipients getRecipientsFromMessage(Context context,
-                                                    IncomingPushMessage message,
-                                                    boolean asynchronous)
-  {
-    try {
-      return getRecipientsFromString(context, message.getSource(), asynchronous);
-    } catch (RecipientFormattingException e) {
-      Log.w("RecipientFactory", e);
-      return new Recipients(Recipient.getUnknownRecipient(context));
-    }
   }
 
   private static Recipient getRecipientFromProviderId(Context context, String recipientId, boolean asynchronous) {

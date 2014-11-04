@@ -9,11 +9,10 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.JobManager;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.libaxolotl.InvalidVersionException;
+import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 import org.whispersystems.textsecure.directory.Directory;
 import org.whispersystems.textsecure.directory.NotInDirectoryException;
 import org.whispersystems.textsecure.push.ContactTokenDetails;
-import org.whispersystems.textsecure.push.IncomingEncryptedPushMessage;
-import org.whispersystems.textsecure.push.IncomingPushMessage;
 
 import java.io.IOException;
 
@@ -37,20 +36,19 @@ public class PushReceiveJob extends ContextJob {
   @Override
   public void onRun() {
     try {
-      String                       sessionKey = TextSecurePreferences.getSignalingKey(context);
-      IncomingEncryptedPushMessage encrypted  = new IncomingEncryptedPushMessage(data, sessionKey);
-      IncomingPushMessage          message    = encrypted.getIncomingPushMessage();
+      String             sessionKey = TextSecurePreferences.getSignalingKey(context);
+      TextSecureEnvelope envelope   = new TextSecureEnvelope(data, sessionKey);
 
-      if (!isActiveNumber(context, message.getSource())) {
+      if (!isActiveNumber(context, envelope.getSource())) {
         Directory           directory           = Directory.getInstance(context);
         ContactTokenDetails contactTokenDetails = new ContactTokenDetails();
-        contactTokenDetails.setNumber(message.getSource());
+        contactTokenDetails.setNumber(envelope.getSource());
 
         directory.setNumber(contactTokenDetails, true);
       }
 
-      if (message.isReceipt()) handleReceipt(message);
-      else                     handleMessage(message);
+      if (envelope.isReceipt()) handleReceipt(envelope);
+      else                     handleMessage(envelope);
     } catch (IOException | InvalidVersionException e) {
       Log.w(TAG, e);
     }
@@ -66,21 +64,21 @@ public class PushReceiveJob extends ContextJob {
     return false;
   }
 
-  private void handleMessage(IncomingPushMessage message) {
+  private void handleMessage(TextSecureEnvelope envelope) {
     JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
-    long       messageId  = DatabaseFactory.getPushDatabase(context).insert(message);
+    long       messageId  = DatabaseFactory.getPushDatabase(context).insert(envelope);
 
-    jobManager.add(new DeliveryReceiptJob(context, message.getSource(),
-                                          message.getTimestampMillis(),
-                                          message.getRelay()));
+    jobManager.add(new DeliveryReceiptJob(context, envelope.getSource(),
+                                          envelope.getTimestamp(),
+                                          envelope.getRelay()));
 
     jobManager.add(new PushDecryptJob(context, messageId));
   }
 
-  private void handleReceipt(IncomingPushMessage message) {
-    Log.w(TAG, String.format("Received receipt: (XXXXX, %d)", message.getTimestampMillis()));
-    DatabaseFactory.getMmsSmsDatabase(context).incrementDeliveryReceiptCount(message.getSource(),
-                                                                             message.getTimestampMillis());
+  private void handleReceipt(TextSecureEnvelope envelope) {
+    Log.w(TAG, String.format("Received receipt: (XXXXX, %d)", envelope.getTimestamp()));
+    DatabaseFactory.getMmsSmsDatabase(context).incrementDeliveryReceiptCount(envelope.getSource(),
+                                                                             envelope.getTimestamp());
   }
 
   private boolean isActiveNumber(Context context, String e164number) {

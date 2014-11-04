@@ -6,14 +6,14 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import org.whispersystems.textsecure.push.IncomingPushMessage;
+import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 import org.whispersystems.textsecure.util.Base64;
-import org.whispersystems.textsecure.util.Util;
 
 import java.io.IOException;
-import java.util.List;
 
 public class PushDatabase extends Database {
+
+  private static final String TAG = PushDatabase.class.getSimpleName();
 
   private static final String TABLE_NAME   = "push";
   public  static final String ID           = "_id";
@@ -30,18 +30,18 @@ public class PushDatabase extends Database {
     super(context, databaseHelper);
   }
 
-  public long insert(IncomingPushMessage message) {
+  public long insert(TextSecureEnvelope envelope) {
     ContentValues values = new ContentValues();
-    values.put(TYPE, message.getType());
-    values.put(SOURCE, message.getSource());
-    values.put(DEVICE_ID, message.getSourceDevice());
-    values.put(BODY, Base64.encodeBytes(message.getBody()));
-    values.put(TIMESTAMP, message.getTimestampMillis());
+    values.put(TYPE, envelope.getType());
+    values.put(SOURCE, envelope.getSource());
+    values.put(DEVICE_ID, envelope.getSourceDevice());
+    values.put(BODY, Base64.encodeBytes(envelope.getMessage()));
+    values.put(TIMESTAMP, envelope.getTimestamp());
 
     return databaseHelper.getWritableDatabase().insert(TABLE_NAME, null, values);
   }
 
-  public IncomingPushMessage get(long id) throws NoSuchMessageException {
+  public TextSecureEnvelope get(long id) throws NoSuchMessageException {
     Cursor cursor = null;
 
     try {
@@ -50,14 +50,15 @@ public class PushDatabase extends Database {
                                                           null, null, null);
 
       if (cursor != null && cursor.moveToNext()) {
-        return new IncomingPushMessage(cursor.getInt(cursor.getColumnIndexOrThrow(TYPE)),
-                                       cursor.getString(cursor.getColumnIndexOrThrow(SOURCE)),
-                                       cursor.getInt(cursor.getColumnIndexOrThrow(DEVICE_ID)),
-                                       Base64.decode(cursor.getString(cursor.getColumnIndexOrThrow(BODY))),
-                                       cursor.getLong(cursor.getColumnIndexOrThrow(TIMESTAMP)));
+        return new TextSecureEnvelope(cursor.getInt(cursor.getColumnIndexOrThrow(TYPE)),
+                                      cursor.getString(cursor.getColumnIndexOrThrow(SOURCE)),
+                                      cursor.getInt(cursor.getColumnIndexOrThrow(DEVICE_ID)),
+                                      "",
+                                      cursor.getLong(cursor.getColumnIndexOrThrow(TIMESTAMP)),
+                                      Base64.decode(cursor.getString(cursor.getColumnIndexOrThrow(BODY))));
       }
     } catch (IOException e) {
-      Log.w("PushDatabase", e);
+      Log.w(TAG, e);
       throw new NoSuchMessageException(e);
     } finally {
       if (cursor != null)
@@ -86,7 +87,7 @@ public class PushDatabase extends Database {
       this.cursor = cursor;
     }
 
-    public IncomingPushMessage getNext() {
+    public TextSecureEnvelope getNext() {
       try {
         if (cursor == null || !cursor.moveToNext())
           return null;
@@ -97,14 +98,10 @@ public class PushDatabase extends Database {
         byte[]       body         = Base64.decode(cursor.getString(cursor.getColumnIndexOrThrow(BODY)));
         long         timestamp    = cursor.getLong(cursor.getColumnIndexOrThrow(TIMESTAMP));
 
-        return new IncomingPushMessage(type, source, deviceId, body, timestamp);
+        return new TextSecureEnvelope(type, source, deviceId, "", timestamp, body);
       } catch (IOException e) {
         throw new AssertionError(e);
       }
-    }
-
-    public long getCurrentId() {
-      return cursor.getLong(cursor.getColumnIndexOrThrow(ID));
     }
 
     public void close() {

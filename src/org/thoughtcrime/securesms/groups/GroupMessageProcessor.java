@@ -18,9 +18,9 @@ import org.thoughtcrime.securesms.sms.IncomingGroupMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
+import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 import org.whispersystems.textsecure.api.messages.TextSecureGroup;
 import org.whispersystems.textsecure.api.messages.TextSecureMessage;
-import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.util.Base64;
 
 import java.util.HashSet;
@@ -38,7 +38,7 @@ public class GroupMessageProcessor {
 
   public static void process(Context context,
                              MasterSecret masterSecret,
-                             IncomingPushMessage push,
+                             TextSecureEnvelope envelope,
                              TextSecureMessage message)
   {
     if (!message.getGroupInfo().isPresent() || message.getGroupInfo().get().getGroupId() == null) {
@@ -57,11 +57,11 @@ public class GroupMessageProcessor {
     GroupRecord   record   = database.getGroup(id);
 
     if (record != null && group.getType() == TextSecureGroup.Type.UPDATE) {
-      handleGroupUpdate(context, masterSecret, push, group, record);
+      handleGroupUpdate(context, masterSecret, envelope, group, record);
     } else if (record == null && group.getType() == TextSecureGroup.Type.UPDATE) {
-      handleGroupCreate(context, masterSecret, push, group);
+      handleGroupCreate(context, masterSecret, envelope, group);
     } else if (record != null && group.getType() == TextSecureGroup.Type.QUIT) {
-      handleGroupLeave(context, masterSecret, push, group, record);
+      handleGroupLeave(context, masterSecret, envelope, group, record);
     } else {
       Log.w(TAG, "Received unknown type, ignoring...");
     }
@@ -69,7 +69,7 @@ public class GroupMessageProcessor {
 
   private static void handleGroupCreate(Context context,
                                         MasterSecret masterSecret,
-                                        IncomingPushMessage message,
+                                        TextSecureEnvelope envelope,
                                         TextSecureGroup group)
   {
     GroupDatabase        database = DatabaseFactory.getGroupDatabase(context);
@@ -81,14 +81,14 @@ public class GroupMessageProcessor {
 
     database.create(id, group.getName().orNull(), group.getMembers().orNull(),
                     avatar != null && avatar.isPointer() ? avatar.asPointer() : null,
-                    message.getRelay());
+                    envelope.getRelay());
 
-    storeMessage(context, masterSecret, message, group, builder.build());
+    storeMessage(context, masterSecret, envelope, group, builder.build());
   }
 
   private static void handleGroupUpdate(Context context,
                                         MasterSecret masterSecret,
-                                        IncomingPushMessage push,
+                                        TextSecureEnvelope envelope,
                                         TextSecureGroup group,
                                         GroupRecord groupRecord)
   {
@@ -133,12 +133,12 @@ public class GroupMessageProcessor {
 
     if (!groupRecord.isActive()) database.setActive(id, true);
 
-    storeMessage(context, masterSecret, push, group, builder.build());
+    storeMessage(context, masterSecret, envelope, group, builder.build());
   }
 
   private static void handleGroupLeave(Context             context,
                                        MasterSecret        masterSecret,
-                                       IncomingPushMessage message,
+                                       TextSecureEnvelope envelope,
                                        TextSecureGroup     group,
                                        GroupRecord         record)
   {
@@ -149,16 +149,16 @@ public class GroupMessageProcessor {
     GroupContext.Builder builder = createGroupContext(group);
     builder.setType(GroupContext.Type.QUIT);
 
-    if (members.contains(message.getSource())) {
-      database.remove(id, message.getSource());
+    if (members.contains(envelope.getSource())) {
+      database.remove(id, envelope.getSource());
 
-      storeMessage(context, masterSecret, message, group, builder.build());
+      storeMessage(context, masterSecret, envelope, group, builder.build());
     }
   }
 
 
   private static void storeMessage(Context context, MasterSecret masterSecret,
-                                   IncomingPushMessage push, TextSecureGroup group,
+                                   TextSecureEnvelope envelope, TextSecureGroup group,
                                    GroupContext storage)
   {
     if (group.getAvatar().isPresent()) {
@@ -168,7 +168,7 @@ public class GroupMessageProcessor {
 
     EncryptingSmsDatabase smsDatabase  = DatabaseFactory.getEncryptingSmsDatabase(context);
     String                body         = Base64.encodeBytes(storage.toByteArray());
-    IncomingTextMessage   incoming     = new IncomingTextMessage(push.getSource(), push.getSourceDevice(), push.getTimestampMillis(), body, Optional.of(group));
+    IncomingTextMessage   incoming     = new IncomingTextMessage(envelope.getSource(), envelope.getSourceDevice(), envelope.getTimestamp(), body, Optional.of(group));
     IncomingGroupMessage  groupMessage = new IncomingGroupMessage(incoming, storage, body);
 
     Pair<Long, Long> messageAndThreadId = smsDatabase.insertMessageInbox(masterSecret, groupMessage);

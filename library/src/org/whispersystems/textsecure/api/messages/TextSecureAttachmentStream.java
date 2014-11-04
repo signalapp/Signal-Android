@@ -15,12 +15,12 @@ public class TextSecureAttachmentStream extends TextSecureAttachment {
 
   @Override
   public boolean isStream() {
-    return false;
+    return true;
   }
 
   @Override
   public boolean isPointer() {
-    return true;
+    return false;
   }
 
   public InputStream getInputStream() {

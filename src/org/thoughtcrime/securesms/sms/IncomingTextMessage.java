@@ -7,12 +7,9 @@ import android.telephony.SmsMessage;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.messages.TextSecureGroup;
-import org.whispersystems.textsecure.push.IncomingPushMessage;
 import org.whispersystems.textsecure.storage.RecipientDevice;
 
 import java.util.List;
-
-import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.GroupContext;
 
 public class IncomingTextMessage implements Parcelable {
 

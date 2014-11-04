@@ -111,7 +111,7 @@ public class UniversalTransport {
     }
   }
 
-  public MmsSendResult deliver(SendReq mediaMessage, long threadId)
+  public MmsSendResult deliver(SendReq mediaMessage)
       throws UndeliverableMessageException, RetryLaterException, UntrustedIdentityException,
              SecureFallbackApprovalException, InsecureFallbackApprovalException
   {
@@ -124,7 +124,7 @@ public class UniversalTransport {
     }
 
     if (GroupUtil.isEncodedGroup(mediaMessage.getTo()[0].getString())) {
-      return deliverGroupMessage(mediaMessage, threadId);
+      return deliverGroupMessage(mediaMessage);
     }
 
     if (!TextSecurePreferences.isPushRegistered(context)) {
@@ -143,7 +143,7 @@ public class UniversalTransport {
 
         try {
           Log.w(TAG, "Using GCM as transport...");
-          pushTransport.deliver(mediaMessage, threadId);
+          pushTransport.deliver(mediaMessage);
           return new MmsSendResult("push".getBytes("UTF-8"), 0, true, true);
         } catch (IOException ioe) {
           Log.w(TAG, ioe);
@@ -216,7 +216,7 @@ public class UniversalTransport {
     }
   }
 
-  private MmsSendResult deliverGroupMessage(SendReq mediaMessage, long threadId)
+  private MmsSendResult deliverGroupMessage(SendReq mediaMessage)
       throws RetryLaterException, UndeliverableMessageException
   {
     if (!TextSecurePreferences.isPushRegistered(context)) {
@@ -224,7 +224,7 @@ public class UniversalTransport {
     }
 
     try {
-      pushTransport.deliver(mediaMessage, threadId);
+      pushTransport.deliver(mediaMessage);
       return new MmsSendResult("push".getBytes("UTF-8"), 0, true, true);
     } catch (IOException e) {
       Log.w(TAG, e);
