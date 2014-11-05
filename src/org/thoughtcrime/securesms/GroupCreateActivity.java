@@ -507,14 +507,12 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
     @Override
     protected Bitmap doInBackground(Void... voids) {
       if (avatarUri != null) {
-        InputStream inputStream;
         try {
-          inputStream = getApplicationContext().getContentResolver().openInputStream(avatarUri);
+          avatarBmp = BitmapUtil.getScaledCircleCroppedBitmap(getApplicationContext(), avatarUri, AVATAR_SIZE);
         } catch (FileNotFoundException e) {
           Log.w(TAG, e);
           return null;
         }
-        avatarBmp = BitmapUtil.getScaledCircleCroppedBitmap(BitmapFactory.decodeStream(inputStream), AVATAR_SIZE);
       }
       return avatarBmp;
     }

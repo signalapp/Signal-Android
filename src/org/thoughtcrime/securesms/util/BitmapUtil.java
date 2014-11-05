@@ -14,6 +14,7 @@ import android.util.Log;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -72,7 +73,7 @@ public class BitmapUtil {
     return createScaledBitmap(measure, data, maxWidth, maxHeight, false);
   }
 
-  public static Bitmap createScaledBitmap(InputStream measure, InputStream data,
+  private static Bitmap createScaledBitmap(InputStream measure, InputStream data,
                                          int maxWidth, int maxHeight, boolean constrainedMemory)
       throws BitmapDecodingException
   {
@@ -80,19 +81,29 @@ public class BitmapUtil {
     return createScaledBitmap(data, maxWidth, maxHeight, options, constrainedMemory);
   }
 
+  public static Bitmap createScaledBitmap(Context context, Uri uri, int maxWidth, int maxHeight)
+      throws BitmapDecodingException, FileNotFoundException
+  {
+    return createScaledBitmap(context, uri, maxWidth, maxHeight, false);
+  }
+
   private static Bitmap createScaledBitmap(Context context, Uri uri, int maxWidth, int maxHeight,
-                                          boolean constrainedMemory) throws IOException, BitmapDecodingException {
+                                          boolean constrainedMemory) throws FileNotFoundException, BitmapDecodingException {
     return createScaledBitmap(context.getContentResolver().openInputStream(uri),
                               context.getContentResolver().openInputStream(uri),
                               context.getContentResolver().openInputStream(uri),
                               maxWidth, maxHeight, constrainedMemory);
   }
 
-  public static Bitmap createScaledBitmap(InputStream measure, InputStream orientationStream, InputStream data,
+  private static Bitmap createScaledBitmap(InputStream measure, InputStream orientationStream, InputStream data,
                                           int maxWidth, int maxHeight, boolean constrainedMemory)
       throws BitmapDecodingException
   {
-    Bitmap bitmap         = createScaledBitmap(measure, data, maxWidth, maxHeight, constrainedMemory);
+    Bitmap bitmap = createScaledBitmap(measure, data, maxWidth, maxHeight, constrainedMemory);
+    return fixOrientation(bitmap, orientationStream);
+  }
+
+  private static Bitmap fixOrientation(Bitmap bitmap, InputStream orientationStream) {
     final int orientation = Exif.getOrientation(orientationStream);
 
     if (orientation != 0) {
@@ -185,6 +196,14 @@ public class BitmapUtil {
     if (bitmap == null) return null;
     final int srcSize = Math.min(bitmap.getWidth(), bitmap.getHeight());
     return getScaledCircleCroppedBitmap(bitmap, srcSize);
+  }
+
+  public static Bitmap getScaledCircleCroppedBitmap(Context context, Uri uri, int destSize) throws FileNotFoundException {
+    InputStream dataStream        = context.getContentResolver().openInputStream(uri);
+    InputStream orientationStream = context.getContentResolver().openInputStream(uri);
+    Bitmap      bitmap            = BitmapFactory.decodeStream(dataStream);
+
+    return getScaledCircleCroppedBitmap(fixOrientation(bitmap, orientationStream), destSize);
   }
 
   public static Bitmap getScaledCircleCroppedBitmap(Bitmap bitmap, int destSize) {
