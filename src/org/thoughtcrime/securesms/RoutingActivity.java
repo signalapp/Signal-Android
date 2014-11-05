@@ -196,7 +196,8 @@ public class RoutingActivity extends PassphraseRequiredActionBarActivity {
 
   private ConversationParameters getConversationParametersForSendAction() {
     Recipients recipients;
-    long       threadId = getIntent().getLongExtra("thread_id", -1);
+    String body     = getIntent().getStringExtra("sms_body");
+    long   threadId = getIntent().getLongExtra("thread_id", -1);
 
     try {
       String data = getIntent().getData().getSchemeSpecificPart();
@@ -206,7 +207,7 @@ public class RoutingActivity extends PassphraseRequiredActionBarActivity {
       recipients = null;
     }
 
-    return new ConversationParameters(threadId, recipients, null, null, null, null);
+    return new ConversationParameters(threadId, recipients, body, null, null, null);
   }
 
   private ConversationParameters getConversationParametersForShareAction() {
