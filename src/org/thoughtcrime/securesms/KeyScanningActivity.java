@@ -99,11 +99,13 @@ public abstract class KeyScanningActivity extends PassphraseRequiredActionBarAct
   }
 
   protected void initiateScan() {
-    IntentIntegrator.initiateScan(this);
+    IntentIntegrator integrator = new IntentIntegrator(this);
+    integrator.initiateScan();
   }
 
   protected void initiateDisplay() {
-    IntentIntegrator.shareText(this, Base64.encodeBytes(getIdentityKeyToDisplay().serialize()));
+    IntentIntegrator integrator = new IntentIntegrator(this);
+    integrator.shareText(Base64.encodeBytes(getIdentityKeyToDisplay().serialize()));
   }
 
   protected abstract String getScanString();
