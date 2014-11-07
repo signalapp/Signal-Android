@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.preferences;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -11,7 +10,6 @@ import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
 import android.support.v4.preference.PreferenceFragment;
-import android.util.Log;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
@@ -24,16 +22,18 @@ import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 public class PreferenceFragmentAppProtection extends PreferenceFragment {
-  private static final String TAG = "PreferenceFragmentAppProtection";
+  private CheckBoxPreference disablePassphrase;
 
   @Override
   public void onCreate(Bundle paramBundle) {
     super.onCreate(paramBundle);
     addPreferencesFromResource(R.xml.preferences_app_protection);
 
+    disablePassphrase = (CheckBoxPreference) this.findPreference(TextSecurePreferences.DISABLE_PASSPHRASE_PREF);
+
     this.findPreference(TextSecurePreferences.CHANGE_PASSPHRASE_PREF)
       .setOnPreferenceClickListener(new ChangePassphraseClickListener());
-    this.findPreference(TextSecurePreferences.DISABLE_PASSPHRASE_PREF)
+    disablePassphrase
       .setOnPreferenceChangeListener(new DisablePassphraseClickListener());
   }
 
@@ -42,16 +42,8 @@ public class PreferenceFragmentAppProtection extends PreferenceFragment {
     super.onResume();
     ((ApplicationPreferencesActivity) getActivity()).getSupportActionBar().setTitle(R.string.preferences__app_protection);
     initializePlatformSpecificOptions();
-  }
 
-  @Override
-  public void onActivityResult(int reqCode, int resultCode, Intent data) {
-    super.onActivityResult(reqCode, resultCode, data);
-
-    Log.w(TAG, "Got result: " + resultCode + " for req: " + reqCode);
-    if (resultCode == Activity.RESULT_OK && reqCode == ApplicationPreferencesActivity.ENABLE_PASSPHRASE_ACTIVITY) {
-      getActivity().finish();
-    }
+    disablePassphrase.setChecked(TextSecurePreferences.isPasswordDisabled(getActivity()));
   }
 
   private void initializePlatformSpecificOptions() {
@@ -93,8 +85,8 @@ public class PreferenceFragmentAppProtection extends PreferenceFragment {
           public void onClick(DialogInterface dialog, int which) {
             MasterSecret masterSecret = getActivity().getIntent().getParcelableExtra("master_secret");
             MasterSecretUtil.changeMasterSecretPassphrase(getActivity(),
-              masterSecret,
-              MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
+                                                          masterSecret,
+                                                          MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
 
 
             TextSecurePreferences.setPasswordDisabled(getActivity(), true);
@@ -108,8 +100,7 @@ public class PreferenceFragmentAppProtection extends PreferenceFragment {
         builder.setNegativeButton(android.R.string.cancel, null);
         builder.show();
       } else {
-        Intent intent = new Intent(getActivity(),
-          PassphraseChangeActivity.class);
+        Intent intent = new Intent(getActivity(), PassphraseChangeActivity.class);
         startActivityForResult(intent, ApplicationPreferencesActivity.ENABLE_PASSPHRASE_ACTIVITY);
       }
 
