@@ -879,6 +879,12 @@
 
     <!-- media_preview_activity -->
     <string name="media_preview_activity__image_content_description">Image Preview</string>
+
+    <!-- Trimmer -->
+    <string name="trimmer__deleting">Deleting...</string>
+    <string name="trimmer__deleting_old_messages">Deleting old messages...</string>
+    <string name="trimmer__old_messages_successfully_deleted">Old messages successfully deleted</string>
+
     <!-- EOF -->
 
 </resources>
