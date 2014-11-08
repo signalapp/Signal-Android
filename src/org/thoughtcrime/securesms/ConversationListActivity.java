@@ -38,18 +38,17 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
-import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.KeyCachingService;
-import org.thoughtcrime.securesms.service.SendReceiveService;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 
 
 public class ConversationListActivity extends PassphraseRequiredActionBarActivity
@@ -72,7 +71,6 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
     getSupportActionBar().setTitle(R.string.app_name);
 
-    initializeSenderReceiverService();
     initializeResources();
     initializeContactUpdatesReceiver();
 
@@ -245,15 +243,6 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
     getContentResolver().registerContentObserver(ContactsContract.Contacts.CONTENT_URI,
                                                  true, observer);
-  }
-
-  private void initializeSenderReceiverService() {
-    Intent smsSenderIntent = new Intent(SendReceiveService.SEND_SMS_ACTION, null, this,
-                                        SendReceiveService.class);
-    Intent mmsSenderIntent = new Intent(SendReceiveService.SEND_MMS_ACTION, null, this,
-                                        SendReceiveService.class);
-    startService(smsSenderIntent);
-    startService(mmsSenderIntent);
   }
 
   private void initializeResources() {

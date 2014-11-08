@@ -47,6 +47,11 @@ public class NetworkRequirementProvider implements RequirementProvider {
   }
 
   @Override
+  public String getName() {
+    return "network";
+  }
+
+  @Override
   public void setListener(RequirementListener listener) {
     this.listener = listener;
   }

@@ -1,21 +1,4 @@
-/**
- * Copyright (C) 2013 Open Whisper Systems
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
-package org.thoughtcrime.securesms.transport;
+package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
 import android.telephony.TelephonyManager;
@@ -24,51 +7,108 @@ import android.util.Log;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MmsCipher;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureAxolotlStore;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.database.NoSuchMessageException;
+import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.mms.ApnUnavailableException;
 import org.thoughtcrime.securesms.mms.MmsRadio;
 import org.thoughtcrime.securesms.mms.MmsRadioException;
 import org.thoughtcrime.securesms.mms.MmsSendResult;
 import org.thoughtcrime.securesms.mms.OutgoingMmsConnection;
+import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
+import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
+import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.NumberUtil;
+import org.whispersystems.jobqueue.JobParameters;
+import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.libaxolotl.NoSessionException;
 import org.whispersystems.textsecure.util.Hex;
 
 import java.io.IOException;
 import java.util.Arrays;
 
+import ws.com.google.android.mms.MmsException;
 import ws.com.google.android.mms.pdu.EncodedStringValue;
 import ws.com.google.android.mms.pdu.PduComposer;
 import ws.com.google.android.mms.pdu.PduHeaders;
 import ws.com.google.android.mms.pdu.SendConf;
 import ws.com.google.android.mms.pdu.SendReq;
 
-public class MmsTransport {
+public class MmsSendJob extends MasterSecretJob {
 
-  private static final String TAG = MmsTransport.class.getSimpleName();
+  private static final String TAG = MmsSendJob.class.getSimpleName();
 
-  private final Context      context;
-  private final MasterSecret masterSecret;
-  private final MmsRadio     radio;
+  private final long messageId;
 
-  public MmsTransport(Context context, MasterSecret masterSecret) {
-    this.context      = context;
-    this.masterSecret = masterSecret;
-    this.radio        = MmsRadio.getInstance(context);
+  public MmsSendJob(Context context, long messageId) {
+    super(context, JobParameters.newBuilder()
+                                .withGroupId("mms-operation")
+                                .withRequirement(new NetworkRequirement(context))
+                                .withRequirement(new MasterSecretRequirement(context))
+                                .withPersistence()
+                                .create());
+
+    this.messageId = messageId;
   }
 
-  public MmsSendResult deliver(SendReq message) throws UndeliverableMessageException,
-                                                       InsecureFallbackApprovalException
+  @Override
+  public void onAdded() {
+
+  }
+
+  @Override
+  public void onRun() throws RequirementNotMetException, MmsException, NoSuchMessageException {
+    MasterSecret masterSecret = getMasterSecret();
+    MmsDatabase  database     = DatabaseFactory.getMmsDatabase(context);
+    SendReq      message      = database.getOutgoingMessage(masterSecret, messageId);
+
+    try {
+      MmsSendResult result = deliver(masterSecret, message);
+
+      if (result.isUpgradedSecure()) {
+        database.markAsSecure(messageId);
+      }
+
+      database.markAsSent(messageId, result.getMessageId(), result.getResponseStatus());
+    } catch (UndeliverableMessageException e) {
+      Log.w(TAG, e);
+      database.markAsSentFailed(messageId);
+      notifyMediaMessageDeliveryFailed(context, messageId);
+    } catch (InsecureFallbackApprovalException e) {
+      Log.w(TAG, e);
+      database.markAsPendingInsecureSmsFallback(messageId);
+      notifyMediaMessageDeliveryFailed(context, messageId);
+    }
+  }
+
+  @Override
+  public boolean onShouldRetry(Throwable throwable) {
+    if (throwable instanceof RequirementNotMetException) return true;
+    return false;
+  }
+
+  @Override
+  public void onCanceled() {
+    DatabaseFactory.getMmsDatabase(context).markAsSentFailed(messageId);
+    notifyMediaMessageDeliveryFailed(context, messageId);
+  }
+
+  public MmsSendResult deliver(MasterSecret masterSecret, SendReq message)
+      throws UndeliverableMessageException, InsecureFallbackApprovalException
   {
 
     validateDestinations(message);
+
+    MmsRadio radio = MmsRadio.getInstance(context);
 
     try {
       if (isCdmaDevice()) {
         Log.w(TAG, "Sending MMS directly without radio change...");
         try {
-          return sendMms(message, false, false);
+          return sendMms(masterSecret, radio, message, false, false);
         } catch (IOException e) {
           Log.w(TAG, e);
         }
@@ -78,7 +118,7 @@ public class MmsTransport {
       radio.connect();
 
       try {
-        MmsSendResult result = sendMms(message, true, true);
+        MmsSendResult result = sendMms(masterSecret, radio, message, true, true);
         radio.disconnect();
         return result;
       } catch (IOException e) {
@@ -88,7 +128,7 @@ public class MmsTransport {
       Log.w(TAG, "Sending MMS with radio change and without proxy...");
 
       try {
-        MmsSendResult result = sendMms(message, true, false);
+        MmsSendResult result = sendMms(masterSecret, radio, message, true, false);
         radio.disconnect();
         return result;
       } catch (IOException ioe) {
@@ -103,14 +143,15 @@ public class MmsTransport {
     }
   }
 
-  private MmsSendResult sendMms(SendReq message, boolean usingMmsRadio, boolean useProxy)
+  private MmsSendResult sendMms(MasterSecret masterSecret, MmsRadio radio, SendReq message,
+                                boolean usingMmsRadio, boolean useProxy)
       throws IOException, UndeliverableMessageException, InsecureFallbackApprovalException
   {
     String  number         = ((TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE)).getLine1Number();
     boolean upgradedSecure = false;
 
     if (MmsDatabase.Types.isSecureType(message.getDatabaseMessageBox())) {
-      message        = getEncryptedMessage(message);
+      message        = getEncryptedMessage(masterSecret, message);
       upgradedSecure = true;
     }
 
@@ -140,7 +181,9 @@ public class MmsTransport {
     }
   }
 
-  private SendReq getEncryptedMessage(SendReq pdu) throws InsecureFallbackApprovalException {
+  private SendReq getEncryptedMessage(MasterSecret masterSecret, SendReq pdu)
+      throws InsecureFallbackApprovalException
+  {
     try {
       MmsCipher cipher = new MmsCipher(new TextSecureAxolotlStore(context, masterSecret));
       return cipher.encrypt(context, pdu);
@@ -166,7 +209,7 @@ public class MmsTransport {
   private void validateDestination(EncodedStringValue destination) throws UndeliverableMessageException {
     if (destination == null || !NumberUtil.isValidSmsOrEmail(destination.getString())) {
       throw new UndeliverableMessageException("Invalid destination: " +
-                                              (destination == null ? null : destination.getString()));
+                                                  (destination == null ? null : destination.getString()));
     }
   }
 
@@ -193,5 +236,14 @@ public class MmsTransport {
       throw new UndeliverableMessageException("No to, cc, or bcc specified!");
     }
   }
+
+  private void notifyMediaMessageDeliveryFailed(Context context, long messageId) {
+    long       threadId   = DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(messageId);
+    Recipients recipients = DatabaseFactory.getThreadDatabase(context).getRecipientsForThreadId(threadId);
+
+    MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId);
+  }
+
+
 
 }

@@ -57,7 +57,7 @@ public class MmsDownloadJob extends MasterSecretJob {
                                 .withPersistence()
                                 .withRequirement(new MasterSecretRequirement(context))
                                 .withRequirement(new NetworkRequirement(context))
-                                .withGroupId("mms-download")
+                                .withGroupId("mms-operation")
                                 .create());
 
     this.messageId = messageId;
@@ -170,7 +170,13 @@ public class MmsDownloadJob extends MasterSecretJob {
 
   @Override
   public void onCanceled() {
-    // TODO
+    MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
+    database.markDownloadState(messageId, MmsDatabase.Status.DOWNLOAD_SOFT_FAILURE);
+
+    if (automatic) {
+      database.markIncomingNotificationReceived(threadId);
+      MessageNotifier.updateNotification(context, null, threadId);
+    }
   }
 
   @Override

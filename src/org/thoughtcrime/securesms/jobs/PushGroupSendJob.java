@@ -1,0 +1,148 @@
+package org.thoughtcrime.securesms.jobs;
+
+import android.content.Context;
+import android.util.Log;
+
+import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.database.MmsSmsColumns;
+import org.thoughtcrime.securesms.database.NoSuchMessageException;
+import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
+import org.thoughtcrime.securesms.mms.PartParser;
+import org.thoughtcrime.securesms.push.TextSecureMessageSenderFactory;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
+import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.sms.IncomingIdentityUpdateMessage;
+import org.thoughtcrime.securesms.util.GroupUtil;
+import org.whispersystems.jobqueue.JobParameters;
+import org.whispersystems.jobqueue.requirements.NetworkRequirement;
+import org.whispersystems.textsecure.api.TextSecureMessageSender;
+import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
+import org.whispersystems.textsecure.api.messages.TextSecureGroup;
+import org.whispersystems.textsecure.api.messages.TextSecureMessage;
+import org.whispersystems.textsecure.crypto.UntrustedIdentityException;
+import org.whispersystems.textsecure.push.PushAddress;
+import org.whispersystems.textsecure.push.PushMessageProtos;
+import org.whispersystems.textsecure.push.exceptions.EncapsulatedExceptions;
+import org.whispersystems.textsecure.util.Base64;
+import org.whispersystems.textsecure.util.InvalidNumberException;
+
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
+
+import ws.com.google.android.mms.MmsException;
+import ws.com.google.android.mms.pdu.SendReq;
+
+public class PushGroupSendJob extends PushSendJob {
+
+  private static final String TAG = PushGroupSendJob.class.getSimpleName();
+
+  private final long messageId;
+
+  public PushGroupSendJob(Context context, long messageId, String destination) {
+    super(context, JobParameters.newBuilder()
+                                .withPersistence()
+                                .withGroupId(destination)
+                                .withRequirement(new MasterSecretRequirement(context))
+                                .withRequirement(new NetworkRequirement(context))
+                                .withRetryCount(5)
+                                .create());
+
+    this.messageId = messageId;
+  }
+
+  @Override
+  public void onAdded() {
+
+  }
+
+  @Override
+  public void onRun() throws RequirementNotMetException, MmsException, IOException, NoSuchMessageException {
+    MasterSecret masterSecret = getMasterSecret();
+    MmsDatabase  database     = DatabaseFactory.getMmsDatabase(context);
+    SendReq      message      = database.getOutgoingMessage(masterSecret, messageId);
+
+    try {
+      deliver(masterSecret, message);
+
+      database.markAsPush(messageId);
+      database.markAsSecure(messageId);
+      database.markAsSent(messageId, "push".getBytes(), 0);
+    } catch (InvalidNumberException | RecipientFormattingException e) {
+      Log.w(TAG, e);
+      database.markAsSentFailed(messageId);
+      notifyMediaMessageDeliveryFailed(context, messageId);
+    } catch (EncapsulatedExceptions e) {
+      Log.w(TAG, e);
+      if (!e.getUnregisteredUserExceptions().isEmpty()) {
+        database.markAsSentFailed(messageId);
+      }
+
+      for (UntrustedIdentityException uie : e.getUntrustedIdentityExceptions()) {
+        IncomingIdentityUpdateMessage identityUpdateMessage = IncomingIdentityUpdateMessage.createFor(message.getTo()[0].getString(), uie.getIdentityKey());
+        DatabaseFactory.getEncryptingSmsDatabase(context).insertMessageInbox(masterSecret, identityUpdateMessage);
+        database.markAsSentFailed(messageId);
+      }
+
+      notifyMediaMessageDeliveryFailed(context, messageId);
+    }
+  }
+
+  @Override
+  public void onCanceled() {
+    DatabaseFactory.getMmsDatabase(context).markAsSentFailed(messageId);
+  }
+
+  @Override
+  public boolean onShouldRetry(Throwable throwable) {
+    if (throwable instanceof RequirementNotMetException) return true;
+    if (throwable instanceof IOException)                return true;
+    return false;
+  }
+
+  private void deliver(MasterSecret masterSecret, SendReq message)
+      throws IOException, RecipientFormattingException, InvalidNumberException, EncapsulatedExceptions
+  {
+    TextSecureMessageSender    messageSender = TextSecureMessageSenderFactory.create(context, masterSecret);
+    byte[]                     groupId       = GroupUtil.getDecodedId(message.getTo()[0].getString());
+    Recipients                 recipients    = DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupId, false);
+    List<PushAddress>          addresses     = getPushAddresses(recipients);
+    List<TextSecureAttachment> attachments   = getAttachments(message);
+
+    if (MmsSmsColumns.Types.isGroupUpdate(message.getDatabaseMessageBox()) ||
+        MmsSmsColumns.Types.isGroupQuit(message.getDatabaseMessageBox()))
+    {
+      String content = PartParser.getMessageText(message.getBody());
+
+      if (content != null && !content.trim().isEmpty()) {
+        PushMessageProtos.PushMessageContent.GroupContext groupContext = PushMessageProtos.PushMessageContent.GroupContext.parseFrom(Base64.decode(content));
+        TextSecureAttachment avatar       = attachments.isEmpty() ? null : attachments.get(0);
+        TextSecureGroup.Type type         = MmsSmsColumns.Types.isGroupQuit(message.getDatabaseMessageBox()) ? TextSecureGroup.Type.QUIT : TextSecureGroup.Type.UPDATE;
+        TextSecureGroup      group        = new TextSecureGroup(type, groupId, groupContext.getName(), groupContext.getMembersList(), avatar);
+        TextSecureMessage groupMessage = new TextSecureMessage(message.getSentTimestamp(), group, null, null);
+
+        messageSender.sendMessage(addresses, groupMessage);
+      }
+    } else {
+      String            body         = PartParser.getMessageText(message.getBody());
+      TextSecureGroup   group        = new TextSecureGroup(groupId);
+      TextSecureMessage groupMessage = new TextSecureMessage(message.getSentTimestamp(), group, attachments, body);
+
+      messageSender.sendMessage(addresses, groupMessage);
+    }
+  }
+
+  private List<PushAddress> getPushAddresses(Recipients recipients) throws InvalidNumberException {
+    List<PushAddress> addresses = new LinkedList<>();
+
+    for (Recipient recipient : recipients.getRecipientsList()) {
+      addresses.add(getPushAddress(recipient));
+    }
+
+    return addresses;
+  }
+
+}

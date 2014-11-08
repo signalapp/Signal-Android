@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.crypto.SmsCipher;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureAxolotlStore;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
+import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
@@ -61,18 +62,15 @@ public class SmsDecryptJob extends MasterSecretJob {
   }
 
   @Override
-  public void onRun() throws RequirementNotMetException {
+  public void onRun() throws RequirementNotMetException, NoSuchMessageException {
     MasterSecret          masterSecret = getMasterSecret();
     EncryptingSmsDatabase database     = DatabaseFactory.getEncryptingSmsDatabase(context);
-    SmsDatabase.Reader    reader       = null;
 
     try {
-      reader = database.getMessage(masterSecret, messageId);
-
-      SmsMessageRecord    record     = reader.getNext();
-      IncomingTextMessage message    = createIncomingTextMessage(masterSecret, record);
-      long                messageId  = record.getId();
-      long                threadId   = record.getThreadId();
+      SmsMessageRecord    record    = database.getMessage(masterSecret, messageId);
+      IncomingTextMessage message   = createIncomingTextMessage(masterSecret, record);
+      long                messageId = record.getId();
+      long                threadId  = record.getThreadId();
 
       if      (message.isSecureMessage()) handleSecureMessage(masterSecret, messageId, message);
       else if (message.isPreKeyBundle())  handlePreKeyWhisperMessage(masterSecret, messageId, threadId, (IncomingPreKeyBundleMessage) message);
@@ -93,9 +91,6 @@ public class SmsDecryptJob extends MasterSecretJob {
     } catch (NoSessionException e) {
       Log.w(TAG, e);
       database.markAsNoSession(messageId);
-    } finally {
-      if (reader != null)
-        reader.close();
     }
   }
 

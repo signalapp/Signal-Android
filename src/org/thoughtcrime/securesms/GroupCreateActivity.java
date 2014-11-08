@@ -65,6 +65,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.whispersystems.textsecure.directory.Directory;
 import org.whispersystems.textsecure.directory.NotInDirectoryException;
 import org.whispersystems.textsecure.util.InvalidNumberException;
+import org.whispersystems.textsecure.util.ListenableFutureTask;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -76,6 +77,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.ExecutionException;
 
 import ws.com.google.android.mms.MmsException;
 
@@ -443,7 +445,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
 
   private Pair<Long, Recipients> handlePushOperation(byte[] groupId, String groupName, byte[] avatar,
                                                      Set<String> e164numbers)
-      throws MmsException, InvalidNumberException
+      throws InvalidNumberException
   {
 
     try {
@@ -460,12 +462,9 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
       OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(this, groupRecipient, context, avatar);
       long                      threadId        = MessageSender.send(this, masterSecret, outgoingMessage, -1, false);
 
-      return new Pair<Long, Recipients>(threadId, groupRecipient);
+      return new Pair<>(threadId, groupRecipient);
     } catch (RecipientFormattingException e) {
       throw new AssertionError(e);
-    } catch (MmsException e) {
-      Log.w(TAG, e);
-      throw new MmsException(e);
     }
   }
 

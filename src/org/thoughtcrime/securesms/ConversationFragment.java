@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.ListFragment;
@@ -241,10 +242,15 @@ public class ConversationFragment extends ListFragment
     startActivity(composeIntent);
   }
 
-  private void handleResendMessage(MessageRecord message) {
-    long messageId = message.getId();
-    final Activity activity = getActivity();
-    MessageSender.resend(activity, messageId, message.isMms());
+  private void handleResendMessage(final MessageRecord message) {
+    final Context context = getActivity().getApplicationContext();
+    new AsyncTask<MessageRecord, Void, Void>() {
+      @Override
+      protected Void doInBackground(MessageRecord... messageRecords) {
+        MessageSender.resend(context, masterSecret, messageRecords[0]);
+        return null;
+      }
+    }.execute(message);
   }
 
   private void handleSaveAttachment(final MediaMmsMessageRecord message) {

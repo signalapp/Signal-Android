@@ -36,13 +36,16 @@ public class JobManager implements RequirementListener {
   private final Executor      eventExecutor      = Executors.newSingleThreadExecutor();
   private final AtomicBoolean hasLoadedEncrypted = new AtomicBoolean(false);
 
-  private final PersistentStorage  persistentStorage;
+  private final PersistentStorage         persistentStorage;
+  private final List<RequirementProvider> requirementProviders;
 
   public JobManager(Context context, String name,
                     List<RequirementProvider> requirementProviders,
                     JobSerializer jobSerializer, int consumers)
   {
-    this.persistentStorage = new PersistentStorage(context, name, jobSerializer);
+    this.persistentStorage    = new PersistentStorage(context, name, jobSerializer);
+    this.requirementProviders = requirementProviders;
+
     eventExecutor.execute(new LoadTask(null));
 
     if (requirementProviders != null && !requirementProviders.isEmpty()) {
@@ -54,6 +57,16 @@ public class JobManager implements RequirementListener {
     for (int i=0;i<consumers;i++) {
       new JobConsumer("JobConsumer-" + i, jobQueue, persistentStorage).start();
     }
+  }
+
+  public RequirementProvider getRequirementProvider(String name) {
+    for (RequirementProvider provider : requirementProviders) {
+      if (provider.getName().equals(name)) {
+        return provider;
+      }
+    }
+
+    return null;
   }
 
   public void setEncryptionKeys(EncryptionKeys keys) {

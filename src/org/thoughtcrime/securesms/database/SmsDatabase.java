@@ -428,36 +428,33 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
     return insertMessageInbox(message, Types.BASE_INBOX_TYPE);
   }
 
-  protected List<Long> insertMessageOutbox(long threadId, OutgoingTextMessage message,
-                                           long type, boolean forceSms)
+  protected long insertMessageOutbox(long threadId, OutgoingTextMessage message,
+                                     long type, boolean forceSms)
   {
     if      (message.isKeyExchange())   type |= Types.KEY_EXCHANGE_BIT;
     else if (message.isSecureMessage()) type |= Types.SECURE_MESSAGE_BIT;
     else if (message.isEndSession())    type |= Types.END_SESSION_BIT;
     if      (forceSms)                  type |= Types.MESSAGE_FORCE_SMS_BIT;
 
-    long date             = System.currentTimeMillis();
-    List<Long> messageIds = new LinkedList<Long>();
+    long date = System.currentTimeMillis();
 
-    for (Recipient recipient : message.getRecipients().getRecipientsList()) {
-      ContentValues contentValues = new ContentValues(6);
-      contentValues.put(ADDRESS, PhoneNumberUtils.formatNumber(recipient.getNumber()));
-      contentValues.put(THREAD_ID, threadId);
-      contentValues.put(BODY, message.getMessageBody());
-      contentValues.put(DATE_RECEIVED, date);
-      contentValues.put(DATE_SENT, date);
-      contentValues.put(READ, 1);
-      contentValues.put(TYPE, type);
+    ContentValues contentValues = new ContentValues(6);
+    contentValues.put(ADDRESS, PhoneNumberUtils.formatNumber(message.getRecipients().getPrimaryRecipient().getNumber()));
+    contentValues.put(THREAD_ID, threadId);
+    contentValues.put(BODY, message.getMessageBody());
+    contentValues.put(DATE_RECEIVED, date);
+    contentValues.put(DATE_SENT, date);
+    contentValues.put(READ, 1);
+    contentValues.put(TYPE, type);
 
-      SQLiteDatabase db = databaseHelper.getWritableDatabase();
-      messageIds.add(db.insert(TABLE_NAME, ADDRESS, contentValues));
+    SQLiteDatabase db        = databaseHelper.getWritableDatabase();
+    long           messageId = db.insert(TABLE_NAME, ADDRESS, contentValues);
 
-      DatabaseFactory.getThreadDatabase(context).update(threadId);
-      notifyConversationListeners(threadId);
-      Trimmer.trimThread(context, threadId);
-    }
+    DatabaseFactory.getThreadDatabase(context).update(threadId);
+    notifyConversationListeners(threadId);
+    Trimmer.trimThread(context, threadId);
 
-    return messageIds;
+    return messageId;
   }
 
   Cursor getMessages(int skip, int limit) {

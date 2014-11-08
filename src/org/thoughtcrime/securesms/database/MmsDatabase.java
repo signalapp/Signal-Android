@@ -456,39 +456,22 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
     }
   }
 
-  public SendReq[] getOutgoingMessages(MasterSecret masterSecret, long messageId)
-      throws MmsException
+  public SendReq getOutgoingMessage(MasterSecret masterSecret, long messageId)
+      throws MmsException, NoSuchMessageException
   {
     MmsAddressDatabase addr         = DatabaseFactory.getMmsAddressDatabase(context);
     PartDatabase       partDatabase = getPartDatabase(masterSecret);
     SQLiteDatabase     database     = databaseHelper.getReadableDatabase();
-    MasterCipher       masterCipher = masterSecret == null ? null : new MasterCipher(masterSecret);
+    MasterCipher       masterCipher = new MasterCipher(masterSecret);
     Cursor             cursor       = null;
 
-
-    String selection;
-    String[] selectionArgs;
-
-    if (messageId > 0) {
-      selection     = ID_WHERE;
-      selectionArgs = new String[]{messageId + ""};
-    } else {
-      selection     = MESSAGE_BOX + " & " + Types.BASE_TYPE_MASK + " = " + Types.BASE_OUTBOX_TYPE;
-      selectionArgs = null;
-    }
+    String   selection     = ID_WHERE;
+    String[] selectionArgs = new String[]{String.valueOf(messageId)};
 
     try {
       cursor = database.query(TABLE_NAME, MMS_PROJECTION, selection, selectionArgs, null, null, null);
 
-      if (cursor == null || cursor.getCount() == 0)
-        return new SendReq[0];
-
-      SendReq[] requests = new SendReq[cursor.getCount()];
-      int i = 0;
-
-      while (cursor.moveToNext()) {
-        messageId = cursor.getLong(cursor.getColumnIndexOrThrow(ID));
-
+      if (cursor != null && cursor.moveToNext()) {
         long       outboxType  = cursor.getLong(cursor.getColumnIndexOrThrow(MESSAGE_BOX));
         String     messageText = cursor.getString(cursor.getColumnIndexOrThrow(BODY));
         long       timestamp   = cursor.getLong(cursor.getColumnIndexOrThrow(NORMALIZED_DATE_SENT));
@@ -507,10 +490,10 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
           Log.w("MmsDatabase", e);
         }
 
-        requests[i++] = new SendReq(headers, body, messageId, outboxType, timestamp);
+        return new SendReq(headers, body, messageId, outboxType, timestamp);
       }
 
-      return requests;
+      throw new NoSuchMessageException("No record found for id: " + messageId);
     } finally {
       if (cursor != null)
         cursor.close();
@@ -527,17 +510,20 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
   }
 
   public long copyMessageInbox(MasterSecret masterSecret, long messageId) throws MmsException {
-    SendReq[] request = getOutgoingMessages(masterSecret, messageId);
+    try {
+      SendReq request = getOutgoingMessage(masterSecret, messageId);
+      ContentValues contentValues = getContentValuesFromHeader(request.getPduHeaders());
 
-    ContentValues contentValues = getContentValuesFromHeader(request[0].getPduHeaders());
+      contentValues.put(MESSAGE_BOX, Types.BASE_INBOX_TYPE | Types.SECURE_MESSAGE_BIT | Types.ENCRYPTION_SYMMETRIC_BIT);
+      contentValues.put(THREAD_ID, getThreadIdForMessage(messageId));
+      contentValues.put(READ, 1);
+      contentValues.put(DATE_RECEIVED, contentValues.getAsLong(DATE_SENT));
 
-    contentValues.put(MESSAGE_BOX, Types.BASE_INBOX_TYPE | Types.SECURE_MESSAGE_BIT | Types.ENCRYPTION_SYMMETRIC_BIT);
-    contentValues.put(THREAD_ID, getThreadIdForMessage(messageId));
-    contentValues.put(READ, 1);
-    contentValues.put(DATE_RECEIVED, contentValues.getAsLong(DATE_SENT));
-
-    return insertMediaMessage(masterSecret, request[0].getPduHeaders(),
-                              request[0].getBody(), contentValues);
+      return insertMediaMessage(masterSecret, request.getPduHeaders(),
+                                request.getBody(), contentValues);
+    } catch (NoSuchMessageException e) {
+      throw new MmsException(e);
+    }
   }
 
   private Pair<Long, Long> insertMessageInbox(MasterSecret masterSecret, IncomingMediaMessage retrieved,

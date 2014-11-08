@@ -108,10 +108,4 @@ public class PushDatabase extends Database {
       this.cursor.close();
     }
   }
-
-  public static class NoSuchMessageException extends Exception {
-    public NoSuchMessageException(String s) {super(s);}
-    public NoSuchMessageException(Exception e) {super(e);}
-  }
-
 }

@@ -25,6 +25,7 @@ import android.util.Pair;
 import org.thoughtcrime.securesms.crypto.AsymmetricMasterCipher;
 import org.thoughtcrime.securesms.crypto.AsymmetricMasterSecret;
 import org.thoughtcrime.securesms.database.model.DisplayRecord;
+import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.LRUCache;
@@ -58,8 +59,8 @@ public class EncryptingSmsDatabase extends SmsDatabase {
     return ciphertext;
   }
 
-  public List<Long> insertMessageOutbox(MasterSecret masterSecret, long threadId,
-                                        OutgoingTextMessage message, boolean forceSms)
+  public long insertMessageOutbox(MasterSecret masterSecret, long threadId,
+                                  OutgoingTextMessage message, boolean forceSms)
   {
     long type = Types.BASE_OUTBOX_TYPE;
     message   = message.withBody(getEncryptedBody(masterSecret, message.getMessageBody()));
@@ -120,9 +121,15 @@ public class EncryptingSmsDatabase extends SmsDatabase {
     return new DecryptingReader(masterSecret, cursor);
   }
 
-  public Reader getMessage(MasterSecret masterSecret, long messageId) {
-    Cursor cursor = super.getMessage(messageId);
-    return new DecryptingReader(masterSecret, cursor);
+  public SmsMessageRecord getMessage(MasterSecret masterSecret, long messageId) throws NoSuchMessageException {
+    Cursor           cursor = super.getMessage(messageId);
+    DecryptingReader reader = new DecryptingReader(masterSecret, cursor);
+    SmsMessageRecord record = reader.getNext();
+
+    reader.close();
+
+    if (record == null) throw new NoSuchMessageException("No message for ID: " + messageId);
+    else                return record;
   }
 
   public Reader getDecryptInProgressMessages(MasterSecret masterSecret) {

@@ -17,5 +17,6 @@
 package org.whispersystems.jobqueue.requirements;
 
 public interface RequirementProvider {
+  public String getName();
   public void setListener(RequirementListener listener);
 }

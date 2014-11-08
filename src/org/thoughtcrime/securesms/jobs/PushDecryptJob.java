@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.groups.GroupMessageProcessor;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
@@ -68,18 +69,13 @@ public class PushDecryptJob extends MasterSecretJob {
   }
 
   @Override
-  public void onRun() throws RequirementNotMetException {
-    try {
-      MasterSecret       masterSecret = getMasterSecret();
-      PushDatabase       database     = DatabaseFactory.getPushDatabase(context);
-      TextSecureEnvelope envelope     = database.get(messageId);
+  public void onRun() throws RequirementNotMetException, NoSuchMessageException {
+    MasterSecret       masterSecret = getMasterSecret();
+    PushDatabase       database     = DatabaseFactory.getPushDatabase(context);
+    TextSecureEnvelope envelope     = database.get(messageId);
 
-      handleMessage(masterSecret, envelope);
-      database.delete(messageId);
-
-    } catch (PushDatabase.NoSuchMessageException e) {
-      Log.w(TAG, e);
-    }
+    handleMessage(masterSecret, envelope);
+    database.delete(messageId);
   }
 
   @Override
