@@ -42,7 +42,7 @@ import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 import org.whispersystems.textsecure.api.messages.TextSecureGroup;
 import org.whispersystems.textsecure.api.messages.TextSecureMessage;
-import org.whispersystems.textsecure.crypto.TextSecureCipher;
+import org.whispersystems.textsecure.api.crypto.TextSecureCipher;
 import org.whispersystems.textsecure.util.Base64;
 
 import ws.com.google.android.mms.MmsException;

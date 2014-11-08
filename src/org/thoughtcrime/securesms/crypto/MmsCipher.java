@@ -3,14 +3,11 @@ package org.thoughtcrime.securesms.crypto;
 import android.content.Context;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.mms.TextTransport;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
-import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.whispersystems.libaxolotl.DuplicateMessageException;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.libaxolotl.LegacyMessageException;
@@ -20,7 +17,6 @@ import org.whispersystems.libaxolotl.protocol.CiphertextMessage;
 import org.whispersystems.libaxolotl.protocol.WhisperMessage;
 import org.whispersystems.libaxolotl.state.AxolotlStore;
 import org.whispersystems.libaxolotl.util.guava.Optional;
-import org.whispersystems.textsecure.crypto.TextSecureCipher;
 import org.whispersystems.textsecure.storage.RecipientDevice;
 import org.whispersystems.textsecure.util.Util;
 
@@ -101,7 +97,7 @@ public class MmsCipher {
     }
 
     SessionCipher     cipher            = new SessionCipher(axolotlStore, recipientId, RecipientDevice.DEFAULT_DEVICE_ID);
-    CiphertextMessage ciphertextMessage = cipher.encrypt(textTransport.getPaddedMessageBody(pduBytes));
+    CiphertextMessage ciphertextMessage = cipher.encrypt(pduBytes);
     byte[]            encryptedPduBytes = textTransport.getEncodedMessage(ciphertextMessage.serialize());
 
     PduBody body         = new PduBody();

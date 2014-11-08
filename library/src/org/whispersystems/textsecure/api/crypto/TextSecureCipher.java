@@ -1,4 +1,4 @@
-package org.whispersystems.textsecure.crypto;
+package org.whispersystems.textsecure.api.crypto;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 
@@ -30,8 +30,8 @@ import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageCo
 
 public class TextSecureCipher {
 
-  private final SessionCipher    sessionCipher;
-  private final TransportDetails transportDetails;
+  private final SessionCipher        sessionCipher;
+  private final PushTransportDetails transportDetails;
 
   public TextSecureCipher(AxolotlStore axolotlStore, long recipientId, int deviceId) {
     int sessionVersion = axolotlStore.loadSession(recipientId, deviceId)

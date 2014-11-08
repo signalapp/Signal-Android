@@ -28,7 +28,7 @@ import org.whispersystems.libaxolotl.ecc.ECPublicKey;
 import org.whispersystems.libaxolotl.state.PreKeyBundle;
 import org.whispersystems.libaxolotl.state.PreKeyRecord;
 import org.whispersystems.libaxolotl.state.SignedPreKeyRecord;
-import org.whispersystems.textsecure.crypto.AttachmentCipherOutputStream;
+import org.whispersystems.textsecure.api.crypto.AttachmentCipherOutputStream;
 import org.whispersystems.textsecure.push.exceptions.AuthorizationFailedException;
 import org.whispersystems.textsecure.push.exceptions.ExpectationFailedException;
 import org.whispersystems.textsecure.push.exceptions.MismatchedDevicesException;

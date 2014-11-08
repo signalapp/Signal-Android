@@ -1,4 +1,4 @@
-package org.whispersystems.textsecure.crypto;
+package org.whispersystems.textsecure.api.crypto;
 
 import org.whispersystems.libaxolotl.IdentityKey;
 

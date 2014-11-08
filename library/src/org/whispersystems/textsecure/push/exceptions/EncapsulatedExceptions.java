@@ -1,6 +1,6 @@
 package org.whispersystems.textsecure.push.exceptions;
 
-import org.whispersystems.textsecure.crypto.UntrustedIdentityException;
+import org.whispersystems.textsecure.api.crypto.UntrustedIdentityException;
 import org.whispersystems.textsecure.push.UnregisteredUserException;
 
 import java.util.List;

@@ -5,7 +5,7 @@ import android.content.Context;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.libaxolotl.state.AxolotlStore;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachmentPointer;
-import org.whispersystems.textsecure.crypto.AttachmentCipherInputStream;
+import org.whispersystems.textsecure.api.crypto.AttachmentCipherInputStream;
 import org.whispersystems.textsecure.push.PushServiceSocket;
 
 import java.io.File;

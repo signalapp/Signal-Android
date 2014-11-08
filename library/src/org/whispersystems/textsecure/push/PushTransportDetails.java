@@ -18,11 +18,7 @@ package org.whispersystems.textsecure.push;
 
 import android.util.Log;
 
-import org.whispersystems.textsecure.crypto.TransportDetails;
-
-import java.io.IOException;
-
-public class PushTransportDetails implements TransportDetails {
+public class PushTransportDetails {
 
   private final int messageVersion;
 
@@ -30,7 +26,6 @@ public class PushTransportDetails implements TransportDetails {
     this.messageVersion = messageVersion;
   }
 
-  @Override
   public byte[] getStrippedPaddingMessageBody(byte[] messageWithPadding) {
     if      (messageVersion < 2) throw new AssertionError("Unknown version: " + messageVersion);
     else if (messageVersion == 2) return messageWithPadding;
@@ -53,7 +48,6 @@ public class PushTransportDetails implements TransportDetails {
     return strippedMessage;
   }
 
-  @Override
   public byte[] getPaddedMessageBody(byte[] messageBody) {
     if       (messageVersion < 2) throw new AssertionError("Unknown version: " + messageVersion);
     else if (messageVersion == 2) return messageBody;
@@ -66,16 +60,6 @@ public class PushTransportDetails implements TransportDetails {
     paddedMessage[messageBody.length] = (byte)0x80;
 
     return paddedMessage;
-  }
-
-  @Override
-  public byte[] getEncodedMessage(byte[] messageWithMac) {
-    return messageWithMac;
-  }
-
-  @Override
-  public byte[] getDecodedMessage(byte[] encodedMessageBytes) throws IOException {
-    return encodedMessageBytes;
   }
 
   private int getPaddedMessageLength(int messageLength) {
