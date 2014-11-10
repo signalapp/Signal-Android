@@ -15,7 +15,7 @@ import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachmentStream;
-import org.whispersystems.textsecure.directory.Directory;
+import org.thoughtcrime.securesms.database.TextSecureDirectory;
 import org.whispersystems.textsecure.push.PushAddress;
 import org.whispersystems.textsecure.util.InvalidNumberException;
 
@@ -57,13 +57,13 @@ public abstract class PushSendJob extends MasterSecretJob {
       return false;
     }
 
-    Directory directory = Directory.getInstance(context);
+    TextSecureDirectory directory = TextSecureDirectory.getInstance(context);
     return directory.isSmsFallbackSupported(destination);
   }
 
   protected PushAddress getPushAddress(Recipient recipient) throws InvalidNumberException {
     String e164number = Util.canonicalizeNumber(context, recipient.getNumber());
-    String relay      = Directory.getInstance(context).getRelay(e164number);
+    String relay      = TextSecureDirectory.getInstance(context).getRelay(e164number);
     return new PushAddress(recipient.getRecipientId(), e164number, 1, relay);
   }
 

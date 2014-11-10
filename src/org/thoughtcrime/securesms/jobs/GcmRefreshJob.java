@@ -8,11 +8,12 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
-import org.thoughtcrime.securesms.push.PushServiceSocketFactory;
+import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
-import org.whispersystems.textsecure.push.PushServiceSocket;
+import org.whispersystems.libaxolotl.util.guava.Optional;
+import org.whispersystems.textsecure.api.TextSecureAccountManager;
 import org.whispersystems.textsecure.push.exceptions.NonSuccessfulResponseCodeException;
 
 public class GcmRefreshJob extends ContextJob {
@@ -40,10 +41,11 @@ public class GcmRefreshJob extends ContextJob {
         Toast.makeText(context, "Unable to register with GCM!", Toast.LENGTH_LONG).show();
       }
 
-      String            gcmId  = GoogleCloudMessaging.getInstance(context).register(REGISTRATION_ID);
-      PushServiceSocket socket = PushServiceSocketFactory.create(context);
+      String                   gcmId          = GoogleCloudMessaging.getInstance(context).register(REGISTRATION_ID);
+      TextSecureAccountManager accountManager = TextSecureCommunicationFactory.createManager(context);
 
-      socket.registerGcmId(gcmId);
+      accountManager.setGcmId(Optional.of(gcmId));
+
       TextSecurePreferences.setGcmRegistrationId(context, gcmId);
     }
   }

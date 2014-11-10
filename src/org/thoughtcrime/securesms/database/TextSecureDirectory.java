@@ -1,4 +1,4 @@
-package org.whispersystems.textsecure.directory;
+package org.thoughtcrime.securesms.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -19,7 +19,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Directory {
+public class TextSecureDirectory {
 
   private static final int INTRODUCED_CHANGE_FROM_TOKEN_TO_E164_NUMBER = 2;
 
@@ -41,13 +41,13 @@ public class Directory {
                               TIMESTAMP    + " INTEGER);";
 
   private static final Object instanceLock = new Object();
-  private static volatile Directory instance;
+  private static volatile TextSecureDirectory instance;
 
-  public static Directory getInstance(Context context) {
+  public static TextSecureDirectory getInstance(Context context) {
     if (instance == null) {
       synchronized (instanceLock) {
         if (instance == null) {
-          instance = new Directory(context);
+          instance = new TextSecureDirectory(context);
         }
       }
     }
@@ -58,7 +58,7 @@ public class Directory {
   private final DatabaseHelper databaseHelper;
   private final Context        context;
 
-  private Directory(Context context) {
+  private TextSecureDirectory(Context context) {
     this.context = context;
     this.databaseHelper = new DatabaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
   }

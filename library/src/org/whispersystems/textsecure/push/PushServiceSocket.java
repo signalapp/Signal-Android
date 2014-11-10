@@ -16,7 +16,6 @@
  */
 package org.whispersystems.textsecure.push;
 
-import android.content.Context;
 import android.util.Log;
 
 import com.google.thoughtcrimegson.Gson;
@@ -88,16 +87,14 @@ public class PushServiceSocket {
 
   private static final boolean ENFORCE_SSL = true;
 
-  private final Context        context;
   private final String         serviceUrl;
   private final String         localNumber;
   private final String         password;
   private final TrustManager[] trustManagers;
 
-  public PushServiceSocket(Context context, String serviceUrl, TrustStore trustStore,
+  public PushServiceSocket(String serviceUrl, TrustStore trustStore,
                            String localNumber, String password)
   {
-    this.context       = context.getApplicationContext();
     this.serviceUrl    = serviceUrl;
     this.localNumber   = localNumber;
     this.password      = password;

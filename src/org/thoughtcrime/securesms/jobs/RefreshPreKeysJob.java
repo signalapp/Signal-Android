@@ -1,0 +1,85 @@
+package org.thoughtcrime.securesms.jobs;
+
+import android.content.Context;
+import android.util.Log;
+
+import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.PreKeyUtil;
+import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
+import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.jobqueue.JobParameters;
+import org.whispersystems.jobqueue.requirements.NetworkRequirement;
+import org.whispersystems.libaxolotl.IdentityKeyPair;
+import org.whispersystems.libaxolotl.state.PreKeyRecord;
+import org.whispersystems.libaxolotl.state.SignedPreKeyRecord;
+import org.whispersystems.textsecure.api.TextSecureAccountManager;
+import org.whispersystems.textsecure.push.PushServiceSocket;
+import org.whispersystems.textsecure.push.exceptions.NonSuccessfulResponseCodeException;
+import org.whispersystems.textsecure.push.exceptions.PushNetworkException;
+
+import java.io.IOException;
+import java.util.List;
+
+public class RefreshPreKeysJob extends MasterSecretJob {
+
+  private static final String TAG = RefreshPreKeysJob.class.getSimpleName();
+
+  private static final int PREKEY_MINIMUM = 10;
+
+  public RefreshPreKeysJob(Context context) {
+    super(context, JobParameters.newBuilder()
+                                .withGroupId(RefreshPreKeysJob.class.getSimpleName())
+                                .withRequirement(new NetworkRequirement(context))
+                                .withRequirement(new MasterSecretRequirement(context))
+                                .withRetryCount(5)
+                                .create());
+  }
+
+  @Override
+  public void onAdded() {
+
+  }
+
+  @Override
+  public void onRun() throws RequirementNotMetException, IOException {
+    if (!TextSecurePreferences.isPushRegistered(context)) return;
+
+    MasterSecret             masterSecret   = getMasterSecret();
+    TextSecureAccountManager accountManager = TextSecureCommunicationFactory.createManager(context);
+    int                      availableKeys  = accountManager.getPreKeysCount();
+
+    if (availableKeys >= PREKEY_MINIMUM && TextSecurePreferences.isSignedPreKeyRegistered(context)) {
+      Log.w(TAG, "Available keys sufficient: " + availableKeys);
+      return;
+    }
+
+    List<PreKeyRecord> preKeyRecords       = PreKeyUtil.generatePreKeys(context, masterSecret);
+    PreKeyRecord       lastResortKeyRecord = PreKeyUtil.generateLastResortKey(context, masterSecret);
+    IdentityKeyPair    identityKey         = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
+    SignedPreKeyRecord signedPreKeyRecord  = PreKeyUtil.generateSignedPreKey(context, masterSecret, identityKey);
+
+    Log.w(TAG, "Registering new prekeys...");
+
+    accountManager.setPreKeys(identityKey.getPublicKey(), lastResortKeyRecord, signedPreKeyRecord, preKeyRecords);
+
+    TextSecurePreferences.setSignedPreKeyRegistered(context, true);
+//      PreKeyService.initiateClean(context, masterSecret);
+  }
+
+  @Override
+  public boolean onShouldRetry(Throwable throwable) {
+    if (throwable instanceof RequirementNotMetException)         return true;
+    if (throwable instanceof NonSuccessfulResponseCodeException) return false;
+    if (throwable instanceof PushNetworkException)               return true;
+
+    return false;
+  }
+
+  @Override
+  public void onCanceled() {
+
+  }
+
+}

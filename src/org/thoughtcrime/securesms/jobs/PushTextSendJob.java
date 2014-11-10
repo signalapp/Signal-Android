@@ -11,7 +11,7 @@ import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
-import org.thoughtcrime.securesms.push.TextSecureMessageSenderFactory;
+import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.IncomingIdentityUpdateMessage;
@@ -85,7 +85,7 @@ public class PushTextSendJob extends PushSendJob {
 
     try {
       PushAddress             address       = getPushAddress(message.getIndividualRecipient());
-      TextSecureMessageSender messageSender = TextSecureMessageSenderFactory.create(context, masterSecret);
+      TextSecureMessageSender messageSender = TextSecureCommunicationFactory.createSender(context, masterSecret);
 
       if (message.isEndSession()) {
         messageSender.sendMessage(address, new TextSecureMessage(message.getDateSent(), null,

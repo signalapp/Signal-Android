@@ -10,8 +10,8 @@ import org.whispersystems.jobqueue.JobManager;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.libaxolotl.InvalidVersionException;
 import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
-import org.whispersystems.textsecure.directory.Directory;
-import org.whispersystems.textsecure.directory.NotInDirectoryException;
+import org.thoughtcrime.securesms.database.TextSecureDirectory;
+import org.thoughtcrime.securesms.database.NotInDirectoryException;
 import org.whispersystems.textsecure.push.ContactTokenDetails;
 
 import java.io.IOException;
@@ -40,7 +40,7 @@ public class PushReceiveJob extends ContextJob {
       TextSecureEnvelope envelope   = new TextSecureEnvelope(data, sessionKey);
 
       if (!isActiveNumber(context, envelope.getSource())) {
-        Directory           directory           = Directory.getInstance(context);
+        TextSecureDirectory directory           = TextSecureDirectory.getInstance(context);
         ContactTokenDetails contactTokenDetails = new ContactTokenDetails();
         contactTokenDetails.setNumber(envelope.getSource());
 
@@ -85,7 +85,7 @@ public class PushReceiveJob extends ContextJob {
     boolean isActiveNumber;
 
     try {
-      isActiveNumber = Directory.getInstance(context).isActiveNumber(e164number);
+      isActiveNumber = TextSecureDirectory.getInstance(context).isActiveNumber(e164number);
     } catch (NotInDirectoryException e) {
       isActiveNumber = false;
     }

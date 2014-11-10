@@ -10,7 +10,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingPartDatabase;
 import org.thoughtcrime.securesms.database.PartDatabase;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
-import org.thoughtcrime.securesms.push.TextSecureMessageReceiverFactory;
+import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
@@ -89,12 +89,13 @@ public class AttachmentDownloadJob extends MasterSecretJob {
   private void retrievePart(MasterSecret masterSecret, PduPart part, long messageId, long partId)
       throws IOException
   {
-    TextSecureMessageReceiver receiver       = TextSecureMessageReceiverFactory.create(context, masterSecret);
+    TextSecureMessageReceiver receiver       = TextSecureCommunicationFactory.createReceiver(context, masterSecret);
     EncryptingPartDatabase    database       = DatabaseFactory.getEncryptingPartDatabase(context, masterSecret);
     File                      attachmentFile = null;
 
     try {
       attachmentFile = createTempFile();
+
       TextSecureAttachmentPointer pointer    = createAttachmentPointer(masterSecret, part);
       InputStream                 attachment = receiver.retrieveAttachment(pointer, attachmentFile);
 

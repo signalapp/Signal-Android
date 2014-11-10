@@ -11,18 +11,41 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libaxolotl.util.guava.Optional;
+import org.whispersystems.textsecure.api.TextSecureAccountManager;
+import org.whispersystems.textsecure.api.TextSecureMessageReceiver;
 import org.whispersystems.textsecure.api.TextSecureMessageSender;
 
 import static org.whispersystems.textsecure.api.TextSecureMessageSender.EventListener;
 
-public class TextSecureMessageSenderFactory {
-  public static TextSecureMessageSender create(Context context, MasterSecret masterSecret) {
-    return new TextSecureMessageSender(context, Release.PUSH_URL,
+public class TextSecureCommunicationFactory {
+  public static TextSecureMessageSender createSender(Context context, MasterSecret masterSecret) {
+    return new TextSecureMessageSender(Release.PUSH_URL,
                                        new TextSecurePushTrustStore(context),
                                        TextSecurePreferences.getLocalNumber(context),
                                        TextSecurePreferences.getPushServerPassword(context),
                                        new TextSecureAxolotlStore(context, masterSecret),
                                        Optional.of((EventListener)new SecurityEventListener(context)));
+  }
+
+  public static TextSecureMessageReceiver createReceiver(Context context, MasterSecret masterSecret) {
+    return new TextSecureMessageReceiver(TextSecurePreferences.getSignalingKey(context),
+                                         Release.PUSH_URL,
+                                         new TextSecurePushTrustStore(context),
+                                         TextSecurePreferences.getLocalNumber(context),
+                                         TextSecurePreferences.getPushServerPassword(context),
+                                         new TextSecureAxolotlStore(context, masterSecret));
+  }
+
+  public static TextSecureAccountManager createManager(Context context) {
+    return new TextSecureAccountManager(Release.PUSH_URL,
+                                        new TextSecurePushTrustStore(context),
+                                        TextSecurePreferences.getLocalNumber(context),
+                                        TextSecurePreferences.getPushServerPassword(context));
+  }
+
+  public static TextSecureAccountManager createManager(Context context, String number, String password) {
+    return new TextSecureAccountManager(Release.PUSH_URL, new TextSecurePushTrustStore(context),
+                                        number, password);
   }
 
   private static class SecurityEventListener implements EventListener {

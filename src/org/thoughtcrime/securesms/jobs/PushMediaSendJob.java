@@ -10,7 +10,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.mms.PartParser;
-import org.thoughtcrime.securesms.push.TextSecureMessageSenderFactory;
+import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
@@ -98,7 +98,7 @@ public class PushMediaSendJob extends PushSendJob {
              InsecureFallbackApprovalException, UntrustedIdentityException
   {
     MmsDatabase             database               = DatabaseFactory.getMmsDatabase(context);
-    TextSecureMessageSender messageSender          = TextSecureMessageSenderFactory.create(context, masterSecret);
+    TextSecureMessageSender messageSender          = TextSecureCommunicationFactory.createSender(context, masterSecret);
     String                  destination            = message.getTo()[0].getString();
     boolean                 isSmsFallbackSupported = isSmsFallbackSupported(context, destination);
 

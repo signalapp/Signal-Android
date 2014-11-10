@@ -62,10 +62,9 @@ import org.thoughtcrime.securesms.util.SelectedRecipientsAdapter;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.whispersystems.textsecure.directory.Directory;
-import org.whispersystems.textsecure.directory.NotInDirectoryException;
+import org.thoughtcrime.securesms.database.TextSecureDirectory;
+import org.thoughtcrime.securesms.database.NotInDirectoryException;
 import org.whispersystems.textsecure.util.InvalidNumberException;
-import org.whispersystems.textsecure.util.ListenableFutureTask;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -77,7 +76,6 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.ExecutionException;
 
 import ws.com.google.android.mms.MmsException;
 
@@ -171,7 +169,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
 
   private static boolean isActiveInDirectory(Context context, Recipient recipient) {
     try {
-      if (!Directory.getInstance(context).isActiveNumber(Util.canonicalizeNumber(context, recipient.getNumber()))) {
+      if (!TextSecureDirectory.getInstance(context).isActiveNumber(Util.canonicalizeNumber(context, recipient.getNumber()))) {
         return false;
       }
     } catch (NotInDirectoryException e) {

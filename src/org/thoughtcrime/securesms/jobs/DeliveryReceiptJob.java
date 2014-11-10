@@ -3,12 +3,18 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.push.PushServiceSocketFactory;
+import org.thoughtcrime.securesms.Release;
+import org.thoughtcrime.securesms.push.TextSecurePushTrustStore;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
-import org.whispersystems.textsecure.push.PushServiceSocket;
+import org.whispersystems.libaxolotl.util.guava.Optional;
+import org.whispersystems.textsecure.api.TextSecureMessageSender;
+import org.whispersystems.textsecure.push.PushAddress;
 import org.whispersystems.textsecure.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.textsecure.push.exceptions.PushNetworkException;
+
+import java.io.IOException;
 
 public class DeliveryReceiptJob extends ContextJob {
 
@@ -34,10 +40,17 @@ public class DeliveryReceiptJob extends ContextJob {
   public void onAdded() {}
 
   @Override
-  public void onRun() throws Throwable {
+  public void onRun() throws IOException {
     Log.w("DeliveryReceiptJob", "Sending delivery receipt...");
-    PushServiceSocket socket = PushServiceSocketFactory.create(context);
-    socket.sendReceipt(destination, timestamp, relay);
+    TextSecureMessageSender messageSender =
+        new TextSecureMessageSender(Release.PUSH_URL,
+                                    new TextSecurePushTrustStore(context),
+                                    TextSecurePreferences.getLocalNumber(context),
+                                    TextSecurePreferences.getPushServerPassword(context),
+                                    null, Optional.<TextSecureMessageSender.EventListener>absent());
+
+    PushAddress pushAddress = new PushAddress(-1, destination, 1, relay);
+    messageSender.sendDeliveryReceipt(pushAddress, timestamp);
   }
 
   @Override

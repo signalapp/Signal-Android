@@ -30,13 +30,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import org.thoughtcrime.securesms.push.PushServiceSocketFactory;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
 import org.thoughtcrime.securesms.service.RegistrationService;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.whispersystems.textsecure.api.TextSecureAccountManager;
 import org.whispersystems.textsecure.push.exceptions.ExpectationFailedException;
-import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.push.exceptions.RateLimitException;
 import org.whispersystems.textsecure.util.PhoneNumberFormatter;
 import org.whispersystems.textsecure.util.Util;
@@ -514,9 +514,11 @@ public class RegistrationProgressActivity extends ActionBarActivity {
         @Override
         protected Integer doInBackground(Void... params) {
           try {
-            PushServiceSocket socket = PushServiceSocketFactory.create(context, e164number, password);
+            TextSecureAccountManager accountManager = TextSecureCommunicationFactory.createManager(context);
             int registrationId = TextSecurePreferences.getLocalRegistrationId(context);
-            socket.verifyAccount(code, signalingKey, true, registrationId);
+
+            accountManager.verifyAccount(code, signalingKey, true, registrationId);
+
             return SUCCESS;
           } catch (ExpectationFailedException e) {
             Log.w("RegistrationProgressActivity", e);
@@ -605,8 +607,8 @@ public class RegistrationProgressActivity extends ActionBarActivity {
         @Override
         protected Integer doInBackground(Void... params) {
           try {
-            PushServiceSocket socket = PushServiceSocketFactory.create(context, e164number, password);
-            socket.createAccount(true);
+            TextSecureAccountManager accountManager = TextSecureCommunicationFactory.createManager(context);
+            accountManager.requestVoiceVerificationCode();
 
             return SUCCESS;
           } catch (RateLimitException e) {

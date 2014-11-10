@@ -7,7 +7,6 @@ import android.os.IBinder;
 import android.os.PowerManager;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.push.PushServiceSocketFactory;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
 
 import java.util.concurrent.Executor;

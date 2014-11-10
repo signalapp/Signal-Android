@@ -10,7 +10,7 @@ import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.mms.PartParser;
-import org.thoughtcrime.securesms.push.TextSecureMessageSenderFactory;
+import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -106,7 +106,7 @@ public class PushGroupSendJob extends PushSendJob {
   private void deliver(MasterSecret masterSecret, SendReq message)
       throws IOException, RecipientFormattingException, InvalidNumberException, EncapsulatedExceptions
   {
-    TextSecureMessageSender    messageSender = TextSecureMessageSenderFactory.create(context, masterSecret);
+    TextSecureMessageSender    messageSender = TextSecureCommunicationFactory.createSender(context, masterSecret);
     byte[]                     groupId       = GroupUtil.getDecodedId(message.getTo()[0].getString());
     Recipients                 recipients    = DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupId, false);
     List<PushAddress>          addresses     = getPushAddresses(recipients);

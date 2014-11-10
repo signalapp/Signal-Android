@@ -25,6 +25,8 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.database.NotInDirectoryException;
+import org.thoughtcrime.securesms.database.TextSecureDirectory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.jobs.MmsSendJob;
@@ -33,17 +35,16 @@ import org.thoughtcrime.securesms.jobs.PushMediaSendJob;
 import org.thoughtcrime.securesms.jobs.PushTextSendJob;
 import org.thoughtcrime.securesms.jobs.SmsSendJob;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
-import org.thoughtcrime.securesms.push.PushServiceSocketFactory;
+import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobManager;
-import org.whispersystems.textsecure.directory.Directory;
-import org.whispersystems.textsecure.directory.NotInDirectoryException;
+import org.whispersystems.libaxolotl.util.guava.Optional;
+import org.whispersystems.textsecure.api.TextSecureAccountManager;
 import org.whispersystems.textsecure.push.ContactTokenDetails;
-import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.util.DirectoryUtil;
 import org.whispersystems.textsecure.util.InvalidNumberException;
 
@@ -263,24 +264,24 @@ public class MessageSender {
   }
 
   private static boolean isPushDestination(Context context, String destination) {
-    Directory directory = Directory.getInstance(context);
+    TextSecureDirectory directory = TextSecureDirectory.getInstance(context);
 
     try {
       return directory.isActiveNumber(destination);
     } catch (NotInDirectoryException e) {
       try {
-        PushServiceSocket socket         = PushServiceSocketFactory.create(context);
-        String              contactToken   = DirectoryUtil.getDirectoryServerToken(destination);
-        ContactTokenDetails registeredUser = socket.getContactTokenDetails(contactToken);
+        TextSecureAccountManager      accountManager = TextSecureCommunicationFactory.createManager(context);
+        String                        contactToken   = DirectoryUtil.getDirectoryServerToken(destination);
+        Optional<ContactTokenDetails> registeredUser = accountManager.getContact(contactToken);
 
-        if (registeredUser == null) {
-          registeredUser = new ContactTokenDetails();
-          registeredUser.setNumber(destination);
-          directory.setNumber(registeredUser, false);
+        if (!registeredUser.isPresent()) {
+          registeredUser = Optional.of(new ContactTokenDetails());
+          registeredUser.get().setNumber(destination);
+          directory.setNumber(registeredUser.get(), false);
           return false;
         } else {
-          registeredUser.setNumber(destination);
-          directory.setNumber(registeredUser, true);
+          registeredUser.get().setNumber(destination);
+          directory.setNumber(registeredUser.get(), true);
           return true;
         }
       } catch (IOException e1) {

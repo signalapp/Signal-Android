@@ -1,6 +1,5 @@
 package org.whispersystems.textsecure.api;
 
-import android.content.Context;
 import android.util.Log;
 
 import com.google.protobuf.ByteString;
@@ -11,12 +10,12 @@ import org.whispersystems.libaxolotl.protocol.CiphertextMessage;
 import org.whispersystems.libaxolotl.state.AxolotlStore;
 import org.whispersystems.libaxolotl.state.PreKeyBundle;
 import org.whispersystems.libaxolotl.util.guava.Optional;
+import org.whispersystems.textsecure.api.crypto.TextSecureCipher;
+import org.whispersystems.textsecure.api.crypto.UntrustedIdentityException;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachmentStream;
 import org.whispersystems.textsecure.api.messages.TextSecureGroup;
 import org.whispersystems.textsecure.api.messages.TextSecureMessage;
-import org.whispersystems.textsecure.api.crypto.TextSecureCipher;
-import org.whispersystems.textsecure.api.crypto.UntrustedIdentityException;
 import org.whispersystems.textsecure.push.MismatchedDevices;
 import org.whispersystems.textsecure.push.OutgoingPushMessage;
 import org.whispersystems.textsecure.push.OutgoingPushMessageList;
@@ -48,15 +47,17 @@ public class TextSecureMessageSender {
   private final AxolotlStore            store;
   private final Optional<EventListener> eventListener;
 
-  public TextSecureMessageSender(Context context, String url,
-                                 PushServiceSocket.TrustStore trustStore,
-                                 String user, String password,
-                                 AxolotlStore store,
+  public TextSecureMessageSender(String url, PushServiceSocket.TrustStore trustStore,
+                                 String user, String password, AxolotlStore store,
                                  Optional<EventListener> eventListener)
   {
-    this.socket        = new PushServiceSocket(context, url, trustStore, user, password);
+    this.socket        = new PushServiceSocket(url, trustStore, user, password);
     this.store         = store;
     this.eventListener = eventListener;
+  }
+
+  public void sendDeliveryReceipt(PushAddress recipient, long messageId) throws IOException {
+    this.socket.sendReceipt(recipient.getNumber(), messageId, recipient.getRelay());
   }
 
   public void sendMessage(PushAddress recipient, TextSecureMessage message)
