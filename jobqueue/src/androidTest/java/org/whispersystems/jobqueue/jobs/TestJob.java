@@ -37,7 +37,7 @@ public class TestJob extends Job {
   }
 
   @Override
-  public void onRun() throws Throwable {
+  public void onRun() throws Exception {
     synchronized (RAN_LOCK) {
       this.ran = true;
     }
@@ -54,7 +54,7 @@ public class TestJob extends Job {
   }
 
   @Override
-  public boolean onShouldRetry(Throwable throwable) {
+  public boolean onShouldRetry(Exception exception) {
     return false;
   }
 

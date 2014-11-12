@@ -7,6 +7,7 @@ import org.whispersystems.jobqueue.jobs.RequirementDeferringTestJob;
 import org.whispersystems.jobqueue.jobs.RequirementTestJob;
 import org.whispersystems.jobqueue.jobs.TestJob;
 import org.whispersystems.jobqueue.persistence.JavaJobSerializer;
+import org.whispersystems.jobqueue.requirements.RequirementProvider;
 import org.whispersystems.jobqueue.util.MockRequirement;
 import org.whispersystems.jobqueue.util.MockRequirementProvider;
 import org.whispersystems.jobqueue.util.PersistentMockRequirement;
@@ -15,12 +16,17 @@ import org.whispersystems.jobqueue.util.PersistentResult;
 import org.whispersystems.jobqueue.util.RunnableThrowable;
 
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 public class JobManagerTest extends AndroidTestCase {
 
   public void testTransientJobExecution() throws InterruptedException {
     TestJob    testJob    = new TestJob();
-    JobManager jobManager = new JobManager(getContext(), "transient-test", null, null, 1);
+    JobManager jobManager = JobManager.newBuilder(getContext())
+                                      .withName("transient-test")
+                                      .withConsumerThreads(1)
+                                      .build();
 
     jobManager.add(testJob);
 
@@ -32,8 +38,12 @@ public class JobManagerTest extends AndroidTestCase {
     MockRequirementProvider provider    = new MockRequirementProvider();
     MockRequirement         requirement = new MockRequirement(false);
     TestJob                 testJob     = new RequirementTestJob(requirement);
-    JobManager              jobManager  = new JobManager(getContext(), "transient-requirement-test",
-                                                         provider, null, 1);
+
+    JobManager jobManager = JobManager.newBuilder(getContext())
+                                      .withName("transient-requirement-test")
+                                      .withRequirementProviders(provider)
+                                      .withConsumerThreads(1)
+                                      .build();
 
     jobManager.add(testJob);
 
@@ -75,8 +85,12 @@ public class JobManagerTest extends AndroidTestCase {
     MockRequirementProvider     provider    = new MockRequirementProvider();
     MockRequirement             requirement = new MockRequirement(false);
     RequirementDeferringTestJob testJob     = new RequirementDeferringTestJob(requirement, 5, waitRunnable);
-    JobManager                  jobManager  = new JobManager(getContext(), "transient-requirement-test",
-                                                             provider, null, 1);
+
+    JobManager jobManager = JobManager.newBuilder(getContext())
+                                      .withName("transient-requirement-test")
+                                      .withRequirementProviders(provider)
+                                      .withConsumerThreads(1)
+                                      .build();
 
     jobManager.add(testJob);
 
@@ -106,8 +120,11 @@ public class JobManagerTest extends AndroidTestCase {
   public void testPersistentJobExecuton() throws InterruptedException {
     PersistentMockRequirement requirement = new PersistentMockRequirement();
     PersistentTestJob         testJob     = new PersistentTestJob(requirement);
-    JobManager                jobManager  = new JobManager(getContext(), "persistent-requirement-test3",
-                                                           null, new JavaJobSerializer(getContext()), 1);
+    JobManager                jobManager  = JobManager.newBuilder(getContext())
+                                                      .withName("persistent-requirement-test3")
+                                                      .withJobSerializer(new JavaJobSerializer(getContext()))
+                                                      .withConsumerThreads(1)
+                                                      .build();
 
     PersistentResult.getInstance().reset();
     PersistentRequirement.getInstance().setPresent(false);
@@ -118,8 +135,12 @@ public class JobManagerTest extends AndroidTestCase {
     assertTrue(!PersistentResult.getInstance().isRan());
 
     PersistentRequirement.getInstance().setPresent(true);
-    jobManager = new JobManager(getContext(), "persistent-requirement-test3", null,
-                                new JavaJobSerializer(getContext()), 1);
+
+    jobManager = JobManager.newBuilder(getContext())
+                           .withName("persistent-requirement-test3")
+                           .withJobSerializer(new JavaJobSerializer(getContext()))
+                           .withConsumerThreads(1)
+                           .build();
 
     assertTrue(PersistentResult.getInstance().isRan());
   }
@@ -128,8 +149,12 @@ public class JobManagerTest extends AndroidTestCase {
     EncryptionKeys            keys        = new EncryptionKeys(new byte[30]);
     PersistentMockRequirement requirement = new PersistentMockRequirement();
     PersistentTestJob         testJob     = new PersistentTestJob(requirement, keys);
-    JobManager                jobManager  = new JobManager(getContext(), "persistent-requirement-test4",
-                                                           null, new JavaJobSerializer(getContext()), 1);
+    JobManager                jobManager  = JobManager.newBuilder(getContext())
+                                                      .withName("persistent-requirement-test4")
+                                                      .withJobSerializer(new JavaJobSerializer(getContext()))
+                                                      .withConsumerThreads(1)
+                                                      .build();
+
     jobManager.setEncryptionKeys(keys);
 
     PersistentResult.getInstance().reset();
@@ -141,7 +166,11 @@ public class JobManagerTest extends AndroidTestCase {
     assertTrue(!PersistentResult.getInstance().isRan());
 
     PersistentRequirement.getInstance().setPresent(true);
-    jobManager = new JobManager(getContext(), "persistent-requirement-test4", null, new JavaJobSerializer(getContext()), 1);
+    jobManager = JobManager.newBuilder(getContext())
+                           .withName("persistent-requirement-test4")
+                           .withJobSerializer(new JavaJobSerializer(getContext()))
+                           .withConsumerThreads(1)
+                           .build();
 
     assertTrue(!PersistentResult.getInstance().isRan());
 
@@ -169,7 +198,10 @@ public class JobManagerTest extends AndroidTestCase {
     TestJob    testJobOne   = new TestJob(JobParameters.newBuilder().withGroupId("foo").create(), waitRunnable);
     TestJob    testJobTwo   = new TestJob(JobParameters.newBuilder().withGroupId("foo").create());
     TestJob    testJobThree = new TestJob(JobParameters.newBuilder().withGroupId("bar").create());
-    JobManager jobManager   = new JobManager(getContext(), "transient-test", null, null, 3);
+    JobManager jobManager   = JobManager.newBuilder(getContext())
+                                        .withName("transient-test")
+                                        .withConsumerThreads(3)
+                                        .build();
 
     jobManager.add(testJobOne);
     jobManager.add(testJobTwo);

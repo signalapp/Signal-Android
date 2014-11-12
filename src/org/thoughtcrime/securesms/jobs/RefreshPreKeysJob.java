@@ -9,7 +9,6 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.PreKeyUtil;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
-import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
@@ -17,7 +16,6 @@ import org.whispersystems.libaxolotl.IdentityKeyPair;
 import org.whispersystems.libaxolotl.state.PreKeyRecord;
 import org.whispersystems.libaxolotl.state.SignedPreKeyRecord;
 import org.whispersystems.textsecure.api.TextSecureAccountManager;
-import org.whispersystems.textsecure.push.PushServiceSocket;
 import org.whispersystems.textsecure.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.textsecure.push.exceptions.PushNetworkException;
 
@@ -76,9 +74,9 @@ public class RefreshPreKeysJob extends MasterSecretJob implements InjectableType
   }
 
   @Override
-  public boolean onShouldRetryThrowable(Throwable throwable) {
-    if (throwable instanceof NonSuccessfulResponseCodeException) return false;
-    if (throwable instanceof PushNetworkException)               return true;
+  public boolean onShouldRetryThrowable(Exception exception) {
+    if (exception instanceof NonSuccessfulResponseCodeException) return false;
+    if (exception instanceof PushNetworkException)               return true;
 
     return false;
   }

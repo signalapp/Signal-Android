@@ -19,11 +19,11 @@ public class PersistentTestJob extends Job {
 
   @Override
   public void onAdded() {
-    PersistentResult.getInstance().onAdded();;
+    PersistentResult.getInstance().onAdded();
   }
 
   @Override
-  public void onRun() throws Throwable {
+  public void onRun() throws Exception {
     PersistentResult.getInstance().onRun();
   }
 
@@ -33,7 +33,7 @@ public class PersistentTestJob extends Job {
   }
 
   @Override
-  public boolean onShouldRetry(Throwable throwable) {
+  public boolean onShouldRetry(Exception exception) {
     return false;
   }
 }

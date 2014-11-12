@@ -84,7 +84,7 @@ public class CleanPreKeysJob extends MasterSecretJob implements InjectableType {
   }
 
   @Override
-  public boolean onShouldRetryThrowable(Throwable throwable) {
+  public boolean onShouldRetryThrowable(Exception throwable) {
     if (throwable instanceof NonSuccessfulResponseCodeException) return false;
     if (throwable instanceof PushNetworkException)               return true;
     return false;

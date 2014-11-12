@@ -77,8 +77,8 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
   }
 
   @Override
-  public boolean onShouldRetryThrowable(Throwable throwable) {
-    if (throwable instanceof PushNetworkException) return true;
+  public boolean onShouldRetryThrowable(Exception exception) {
+    if (exception instanceof PushNetworkException) return true;
 
     return false;
   }

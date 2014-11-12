@@ -15,4 +15,9 @@ public class MockRequirementProvider implements RequirementProvider {
   public void setListener(RequirementListener listener) {
     this.listener = listener;
   }
+
+  @Override
+  public String getName() {
+    return "mock-requirement-provider";
+  }
 }

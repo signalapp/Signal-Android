@@ -91,8 +91,8 @@ public class AvatarDownloadJob extends MasterSecretJob {
   public void onCanceled() {}
 
   @Override
-  public boolean onShouldRetryThrowable(Throwable throwable) {
-    if (throwable instanceof IOException) return true;
+  public boolean onShouldRetryThrowable(Exception exception) {
+    if (exception instanceof IOException) return true;
     return false;
   }
 

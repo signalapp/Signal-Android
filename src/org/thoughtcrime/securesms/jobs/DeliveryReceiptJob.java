@@ -62,10 +62,10 @@ public class DeliveryReceiptJob extends ContextJob implements InjectableType {
   }
 
   @Override
-  public boolean onShouldRetry(Throwable throwable) {
-    Log.w(TAG, throwable);
-    if (throwable instanceof NonSuccessfulResponseCodeException) return false;
-    if (throwable instanceof PushNetworkException)               return true;
+  public boolean onShouldRetry(Exception exception) {
+    Log.w(TAG, exception);
+    if (exception instanceof NonSuccessfulResponseCodeException) return false;
+    if (exception instanceof PushNetworkException)               return true;
 
     return false;
   }

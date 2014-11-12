@@ -97,8 +97,8 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
   }
 
   @Override
-  public boolean onShouldRetryThrowable(Throwable throwable) {
-    if (throwable instanceof IOException) return true;
+  public boolean onShouldRetryThrowable(Exception exception) {
+    if (exception instanceof IOException) return true;
     return false;
   }
 

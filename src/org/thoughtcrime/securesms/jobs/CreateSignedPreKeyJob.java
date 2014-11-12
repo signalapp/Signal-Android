@@ -7,7 +7,6 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.PreKeyUtil;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
 import org.thoughtcrime.securesms.util.ParcelUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.EncryptionKeys;
@@ -60,8 +59,8 @@ public class CreateSignedPreKeyJob extends ContextJob implements InjectableType 
   public void onCanceled() {}
 
   @Override
-  public boolean onShouldRetry(Throwable throwable) {
-    if (throwable instanceof PushNetworkException) return true;
+  public boolean onShouldRetry(Exception exception) {
+    if (exception instanceof PushNetworkException) return true;
     return false;
   }
 }

@@ -26,6 +26,7 @@ import org.whispersystems.jobqueue.requirements.RequirementListener;
 import org.whispersystems.jobqueue.requirements.RequirementProvider;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -41,10 +42,10 @@ public class JobManager implements RequirementListener {
   private final List<RequirementProvider> requirementProviders;
   private final DependencyInjector        dependencyInjector;
 
-  public JobManager(Context context, String name,
-                    List<RequirementProvider> requirementProviders,
-                    DependencyInjector dependencyInjector,
-                    JobSerializer jobSerializer, int consumers)
+  private JobManager(Context context, String name,
+                     List<RequirementProvider> requirementProviders,
+                     DependencyInjector dependencyInjector,
+                     JobSerializer jobSerializer, int consumers)
   {
     this.persistentStorage    = new PersistentStorage(context, name, jobSerializer, dependencyInjector);
     this.requirementProviders = requirementProviders;
@@ -61,6 +62,10 @@ public class JobManager implements RequirementListener {
     for (int i=0;i<consumers;i++) {
       new JobConsumer("JobConsumer-" + i, jobQueue, persistentStorage).start();
     }
+  }
+
+  public static Builder newBuilder(Context context) {
+    return new Builder(context);
   }
 
   public RequirementProvider getRequirementProvider(String name) {
@@ -128,6 +133,55 @@ public class JobManager implements RequirementListener {
       else              pendingJobs = persistentStorage.getAllEncrypted(keys);
 
       jobQueue.addAll(pendingJobs);
+    }
+  }
+
+  public static class Builder {
+    private final Context                   context;
+    private       String                    name;
+    private       List<RequirementProvider> requirementProviders;
+    private       DependencyInjector        dependencyInjector;
+    private       JobSerializer             jobSerializer;
+    private       int                       consumerThreads;
+
+    Builder(Context context) {
+      this.context         = context;
+      this.consumerThreads = 5;
+    }
+
+    public Builder withName(String name) {
+      this.name = name;
+      return this;
+    }
+
+    public Builder withRequirementProviders(RequirementProvider... requirementProviders) {
+      this.requirementProviders = Arrays.asList(requirementProviders);
+      return this;
+    }
+
+    public Builder withDependencyInjector(DependencyInjector dependencyInjector) {
+      this.dependencyInjector = dependencyInjector;
+      return this;
+    }
+
+    public Builder withJobSerializer(JobSerializer jobSerializer) {
+      this.jobSerializer = jobSerializer;
+      return this;
+    }
+
+    public Builder withConsumerThreads(int consumerThreads) {
+      this.consumerThreads = consumerThreads;
+      return this;
+    }
+
+    public JobManager build() {
+      if (name == null) {
+        throw new IllegalArgumentException("You must specify a name!");
+      }
+
+      return new JobManager(context, name, requirementProviders,
+                            dependencyInjector, jobSerializer,
+                            consumerThreads);
     }
   }
 

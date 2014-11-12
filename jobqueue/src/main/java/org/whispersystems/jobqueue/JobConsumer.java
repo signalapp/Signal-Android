@@ -42,11 +42,12 @@ public class JobConsumer extends Thread {
   @Override
   public void run() {
     while (true) {
-      Job job = jobQueue.getNext();
+      Job       job    = jobQueue.getNext();
+      JobResult result = runJob(job);
 
-      JobResult result;
-
-      if ((result = runJob(job)) != JobResult.DEFERRED) {
+      if (result == JobResult.DEFERRED) {
+        jobQueue.push(job);
+      } else {
         if (result == JobResult.FAILURE) {
           job.onCanceled();
         }
@@ -54,8 +55,6 @@ public class JobConsumer extends Thread {
         if (job.isPersistent()) {
           persistentStorage.remove(job.getPersistentId());
         }
-      } else {
-        jobQueue.add(job);
       }
 
       if (job.getGroupId() != null) {
@@ -72,9 +71,11 @@ public class JobConsumer extends Thread {
       try {
         job.onRun();
         return JobResult.SUCCESS;
-      } catch (Throwable throwable) {
-        Log.w(TAG, throwable);
-        if (!job.onShouldRetry(throwable)) {
+      } catch (Exception exception) {
+        Log.w(TAG, exception);
+        if (exception instanceof RuntimeException) {
+          throw (RuntimeException)exception;
+        } else if (!job.onShouldRetry(exception)) {
           return JobResult.FAILURE;
         } else if (!job.isRequirementsMet()) {
           job.setRunIteration(runIteration+1);

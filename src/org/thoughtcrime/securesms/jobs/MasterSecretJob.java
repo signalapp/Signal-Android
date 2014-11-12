@@ -13,19 +13,19 @@ public abstract class MasterSecretJob extends ContextJob {
   }
 
   @Override
-  public void onRun() throws Throwable {
+  public void onRun() throws Exception {
     MasterSecret masterSecret = getMasterSecret();
     onRun(masterSecret);
   }
 
   @Override
-  public boolean onShouldRetry(Throwable throwable) {
-    if (throwable instanceof RequirementNotMetException) return true;
-    return onShouldRetryThrowable(throwable);
+  public boolean onShouldRetry(Exception exception) {
+    if (exception instanceof RequirementNotMetException) return true;
+    return onShouldRetryThrowable(exception);
   }
 
-  public abstract void onRun(MasterSecret masterSecret) throws Throwable;
-  public abstract boolean onShouldRetryThrowable(Throwable throwable);
+  public abstract void onRun(MasterSecret masterSecret) throws Exception;
+  public abstract boolean onShouldRetryThrowable(Exception exception);
 
   private MasterSecret getMasterSecret() throws RequirementNotMetException {
     MasterSecret masterSecret = KeyCachingService.getMasterSecret(context);

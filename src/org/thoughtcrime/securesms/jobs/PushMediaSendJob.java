@@ -86,8 +86,8 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
   }
 
   @Override
-  public boolean onShouldRetryThrowable(Throwable throwable) {
-    if (throwable instanceof RequirementNotMetException) return true;
+  public boolean onShouldRetryThrowable(Exception exception) {
+    if (exception instanceof RequirementNotMetException) return true;
     return false;
   }
 

@@ -63,7 +63,7 @@ public class MmsReceiveJob extends ContextJob {
   }
 
   @Override
-  public boolean onShouldRetry(Throwable throwable) {
+  public boolean onShouldRetry(Exception exception) {
     return false;
   }
 }

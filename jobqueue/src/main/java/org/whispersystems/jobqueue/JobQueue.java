@@ -43,6 +43,10 @@ public class JobQueue {
     notifyAll();
   }
 
+  synchronized void push(Job job) {
+    jobQueue.push(job);
+  }
+
   public synchronized Job getNext() {
     try {
       Job nextAvailableJob;

@@ -84,7 +84,7 @@ public class MmsSendJob extends MasterSecretJob {
   }
 
   @Override
-  public boolean onShouldRetryThrowable(Throwable throwable) {
+  public boolean onShouldRetryThrowable(Exception exception) {
     return false;
   }
 

@@ -22,18 +22,12 @@ import android.content.Context;
 import org.thoughtcrime.securesms.crypto.PRNGFixes;
 import org.thoughtcrime.securesms.dependencies.AxolotlStorageModule;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.jobs.persistence.EncryptingJobSerializer;
-import org.thoughtcrime.securesms.jobs.GcmRefreshJob;
-import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirementProvider;
 import org.thoughtcrime.securesms.dependencies.TextSecureCommunicationModule;
+import org.thoughtcrime.securesms.jobs.GcmRefreshJob;
+import org.thoughtcrime.securesms.jobs.persistence.EncryptingJobSerializer;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.JobManager;
 import org.whispersystems.jobqueue.dependencies.DependencyInjector;
-import org.whispersystems.jobqueue.requirements.NetworkRequirementProvider;
-import org.whispersystems.jobqueue.requirements.RequirementProvider;
-
-import java.util.LinkedList;
-import java.util.List;
 
 import dagger.ObjectGraph;
 
@@ -79,13 +73,12 @@ public class ApplicationContext extends Application implements DependencyInjecto
   }
 
   private void initializeJobManager() {
-    List<RequirementProvider> providers = new LinkedList<RequirementProvider>() {{
-      add(new NetworkRequirementProvider(ApplicationContext.this));
-      add(new MasterSecretRequirementProvider(ApplicationContext.this));
-    }};
-
-    this.jobManager = new JobManager(this, "TextSecureJobs", providers, this,
-                                     new EncryptingJobSerializer(this), 5);
+    this.jobManager = JobManager.newBuilder(this)
+                                .withName("TextSecureJobs")
+                                .withDependencyInjector(this)
+                                .withJobSerializer(new EncryptingJobSerializer(this))
+                                .withConsumerThreads(5)
+                                .build();
   }
 
   private void initializeDependencyInjection() {

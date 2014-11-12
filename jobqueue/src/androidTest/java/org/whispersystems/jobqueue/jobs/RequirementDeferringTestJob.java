@@ -20,7 +20,7 @@ public class RequirementDeferringTestJob extends TestJob {
   }
 
   @Override
-  public void onRun() throws Throwable {
+  public void onRun() throws Exception {
     synchronized (RAN_LOCK) {
       this.ran = true;
     }
@@ -34,8 +34,8 @@ public class RequirementDeferringTestJob extends TestJob {
   }
 
   @Override
-  public boolean onShouldRetry(Throwable throwable) {
-    if (throwable instanceof Exception) {
+  public boolean onShouldRetry(Exception exception) {
+    if (exception instanceof Exception) {
       return true;
     }
     return false;

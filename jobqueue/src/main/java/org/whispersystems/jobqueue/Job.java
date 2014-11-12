@@ -81,9 +81,10 @@ public abstract class Job implements Serializable {
   }
 
   public abstract void onAdded();
-  public abstract void onRun() throws Throwable;
+  public abstract void onRun() throws Exception;
+  public abstract boolean onShouldRetry(Exception exception);
   public abstract void onCanceled();
-  public abstract boolean onShouldRetry(Throwable throwable);
+
 
 
 }

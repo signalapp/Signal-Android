@@ -56,7 +56,7 @@ public class GcmRefreshJob extends ContextJob {
   }
 
   @Override
-  public boolean onShouldRetry(Throwable throwable) {
+  public boolean onShouldRetry(Exception throwable) {
     if (throwable instanceof NonSuccessfulResponseCodeException) return false;
     return true;
   }

@@ -23,7 +23,7 @@ public class PersistentResult {
     }
   }
 
-  public void onRun() throws Throwable {
+  public void onRun() throws Exception {
     synchronized (RAN_LOCK) {
       this.ran = true;
     }
