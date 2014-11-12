@@ -55,7 +55,7 @@ public class MediaMmsMessageRecord extends MessageRecord {
                                int partCount, long mailbox)
   {
     super(context, id, body, recipients, individualRecipient, recipientDeviceId,
-          dateSent, dateReceived, threadId, deliveredCount, DELIVERY_STATUS_NONE, mailbox);
+          dateSent, dateReceived, threadId, DELIVERY_STATUS_NONE, deliveredCount, mailbox);
 
     this.context             = context.getApplicationContext();
     this.partCount           = partCount;
