@@ -17,11 +17,11 @@
 package org.thoughtcrime.securesms.recipients;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.database.CanonicalAddressDatabase;
-import org.whispersystems.textsecure.util.Util;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -32,7 +32,7 @@ public class RecipientFactory {
   private static final RecipientProvider provider = new RecipientProvider();
 
   public static Recipients getRecipientsForIds(Context context, String recipientIds, boolean asynchronous) {
-    if (Util.isEmpty(recipientIds))
+    if (TextUtils.isEmpty(recipientIds))
       return new Recipients(new LinkedList<Recipient>());
 
     List<Recipient> results   = new LinkedList<Recipient>();

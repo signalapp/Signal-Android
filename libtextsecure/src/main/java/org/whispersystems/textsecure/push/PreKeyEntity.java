@@ -9,11 +9,10 @@ import com.google.thoughtcrimegson.JsonPrimitive;
 import com.google.thoughtcrimegson.JsonSerializationContext;
 import com.google.thoughtcrimegson.JsonSerializer;
 
-import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.InvalidKeyException;
 import org.whispersystems.libaxolotl.ecc.Curve;
 import org.whispersystems.libaxolotl.ecc.ECPublicKey;
-import org.whispersystems.textsecure.util.Base64;
+import org.whispersystems.textsecure.internal.util.Base64;
 
 import java.io.IOException;
 import java.lang.reflect.Type;

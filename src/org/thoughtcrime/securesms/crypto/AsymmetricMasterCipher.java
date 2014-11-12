@@ -17,15 +17,15 @@
  */
 package org.thoughtcrime.securesms.crypto;
 
+import org.thoughtcrime.securesms.util.Base64;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libaxolotl.InvalidKeyException;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.libaxolotl.ecc.Curve;
 import org.whispersystems.libaxolotl.ecc.ECKeyPair;
 import org.whispersystems.libaxolotl.ecc.ECPrivateKey;
 import org.whispersystems.libaxolotl.ecc.ECPublicKey;
-import org.whispersystems.textsecure.util.Base64;
 import org.thoughtcrime.securesms.util.Conversions;
-import org.whispersystems.textsecure.util.Util;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
@@ -73,11 +73,9 @@ public class AsymmetricMasterCipher {
       byte[]       decryptedBody = masterCipher.decryptBytes(parts[1]);
 
       return new String(decryptedBody);
-    } catch (InvalidKeyException ike) {
+    } catch (InvalidKeyException | InvalidMessageException ike) {
       throw new InvalidMessageException(ike);
-    } catch (InvalidMessageException e) {
-      throw new InvalidMessageException(e);
-    }		
+    }
   }
 	
   public String encryptBody(String body) {
@@ -127,9 +125,7 @@ public class AsymmetricMasterCipher {
       Mac mac = Mac.getInstance("HmacSHA256");
       mac.init(new SecretKeySpec(secretBytes, "HmacSHA256"));
       return mac.doFinal(Conversions.intToByteArray(iteration));
-    } catch (NoSuchAlgorithmException e) {
-      throw new AssertionError(e);
-    } catch (java.security.InvalidKeyException e) {
+    } catch (NoSuchAlgorithmException | java.security.InvalidKeyException e) {
       throw new AssertionError(e);
     }
   }

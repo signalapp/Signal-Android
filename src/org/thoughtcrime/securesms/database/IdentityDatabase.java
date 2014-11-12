@@ -26,11 +26,11 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.InvalidKeyException;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.whispersystems.textsecure.util.Base64;
 
 import java.io.IOException;
 

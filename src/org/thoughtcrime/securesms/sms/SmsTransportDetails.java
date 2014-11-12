@@ -20,8 +20,8 @@ package org.thoughtcrime.securesms.sms;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.protocol.WirePrefix;
+import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.libaxolotl.protocol.CiphertextMessage;
-import org.whispersystems.textsecure.util.Base64;
 
 import java.io.IOException;
 

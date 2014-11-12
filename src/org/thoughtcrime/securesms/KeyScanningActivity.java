@@ -23,8 +23,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.libaxolotl.IdentityKey;
-import org.whispersystems.textsecure.util.Base64;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 

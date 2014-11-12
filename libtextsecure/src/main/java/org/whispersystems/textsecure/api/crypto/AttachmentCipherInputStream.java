@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2013 Open Whisper Systems
+ * Copyright (C) 2013-2014 Open Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@ import android.util.Log;
 
 import org.whispersystems.libaxolotl.InvalidMacException;
 import org.whispersystems.libaxolotl.InvalidMessageException;
-import org.whispersystems.textsecure.util.Util;
+import org.whispersystems.textsecure.internal.util.Util;
 
 import java.io.File;
 import java.io.FileInputStream;

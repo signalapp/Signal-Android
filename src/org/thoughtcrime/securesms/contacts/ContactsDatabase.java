@@ -26,12 +26,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 import android.provider.ContactsContract;
+import android.text.TextUtils;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.NumberUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.textsecure.util.Util;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -108,7 +108,7 @@ public class ContactsDatabase {
       androidCursor = null;
     }
 
-    if (includeAndroidContacts && !Util.isEmpty(filter) && NumberUtil.isValidSmsOrEmail(filter)) {
+    if (includeAndroidContacts && !TextUtils.isEmpty(filter) && NumberUtil.isValidSmsOrEmail(filter)) {
       newNumberCursor = new MatrixCursor(CONTACTS_PROJECTION, 1);
       newNumberCursor.addRow(new Object[]{-1L, context.getString(R.string.contact_selection_list__unknown_contact),
                              ContactsContract.CommonDataKinds.Phone.TYPE_CUSTOM, "\u21e2", filter, NORMAL_TYPE});
@@ -130,7 +130,7 @@ public class ContactsDatabase {
 
   private Cursor queryAndroidDb(String filter) {
     final Uri baseUri;
-    if (!Util.isEmpty(filter)) {
+    if (!TextUtils.isEmpty(filter)) {
       baseUri = Uri.withAppendedPath(ContactsContract.CommonDataKinds.Phone.CONTENT_FILTER_URI,
                                      Uri.encode(filter));
     } else {
@@ -144,7 +144,7 @@ public class ContactsDatabase {
     final String   selection;
     final String[] selectionArgs;
     final String   fuzzyFilter = "%" + filter + "%";
-    if (!Util.isEmpty(filter)) {
+    if (!TextUtils.isEmpty(filter)) {
       selection     = FILTER_SELECTION;
       selectionArgs = new String[]{fuzzyFilter, fuzzyFilter};
     } else {

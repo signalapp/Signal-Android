@@ -26,7 +26,7 @@ import android.util.Log;
 import org.thoughtcrime.securesms.mms.ApnUnavailableException;
 import org.thoughtcrime.securesms.mms.MmsConnection.Apn;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.textsecure.util.Util;
+import org.thoughtcrime.securesms.util.Util;
 
 import java.io.File;
 import java.io.FileOutputStream;

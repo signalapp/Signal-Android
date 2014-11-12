@@ -27,8 +27,8 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.VersionTracker;
-import org.whispersystems.textsecure.util.Util;
 
 /**
  * Activity for creating a user's local encryption passphrase.

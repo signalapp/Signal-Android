@@ -18,7 +18,7 @@ package org.thoughtcrime.securesms.sms;
 
 import android.util.Log;
 
-import org.whispersystems.textsecure.util.Base64;
+import org.thoughtcrime.securesms.util.Base64;
 
 import java.io.IOException;
 import java.util.ArrayList;

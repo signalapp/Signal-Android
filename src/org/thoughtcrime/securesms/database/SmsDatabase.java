@@ -23,6 +23,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
 import android.telephony.PhoneNumberUtils;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.Pair;
 
@@ -37,11 +38,8 @@ import org.thoughtcrime.securesms.sms.IncomingKeyExchangeMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.Trimmer;
-import org.whispersystems.textsecure.util.InvalidNumberException;
-import org.whispersystems.textsecure.util.Util;
+import org.whispersystems.textsecure.api.util.InvalidNumberException;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Set;
 
 import static org.thoughtcrime.securesms.util.Util.canonicalizeNumber;
@@ -401,7 +399,7 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
     values.put(PROTOCOL, message.getProtocol());
     values.put(READ, unread ? 0 : 1);
 
-    if (!Util.isEmpty(message.getPseudoSubject()))
+    if (!TextUtils.isEmpty(message.getPseudoSubject()))
       values.put(SUBJECT, message.getPseudoSubject());
 
     values.put(REPLY_PATH_PRESENT, message.isReplyPathPresent());

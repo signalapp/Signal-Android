@@ -18,8 +18,8 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachmentPointer;
-import org.whispersystems.textsecure.util.Util;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
@@ -200,7 +200,7 @@ public class GroupDatabase extends Database {
         return Util.split(cursor.getString(cursor.getColumnIndexOrThrow(MEMBERS)), ",");
       }
 
-      return new LinkedList<String>();
+      return new LinkedList<>();
     } finally {
       if (cursor != null)
         cursor.close();

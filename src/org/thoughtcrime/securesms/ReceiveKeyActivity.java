@@ -43,6 +43,7 @@ import org.thoughtcrime.securesms.sms.IncomingIdentityUpdateMessage;
 import org.thoughtcrime.securesms.sms.IncomingKeyExchangeMessage;
 import org.thoughtcrime.securesms.sms.IncomingPreKeyBundleMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
+import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.InvalidKeyException;
@@ -54,7 +55,6 @@ import org.whispersystems.libaxolotl.protocol.PreKeyWhisperMessage;
 import org.whispersystems.libaxolotl.state.IdentityKeyStore;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.messages.TextSecureGroup;
-import org.whispersystems.textsecure.util.Base64;
 
 import java.io.IOException;
 

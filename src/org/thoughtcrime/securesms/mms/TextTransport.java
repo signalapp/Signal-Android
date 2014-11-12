@@ -17,9 +17,10 @@
  */
 package org.thoughtcrime.securesms.mms;
 
+import org.thoughtcrime.securesms.util.Base64;
+
 import java.io.IOException;
 
-import org.whispersystems.textsecure.util.Base64;
 
 public class TextTransport {
 

@@ -1,4 +1,20 @@
-package org.whispersystems.textsecure.util;
+/**
+ * Copyright (C) 2014 Open Whisper Systems
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+package org.whispersystems.textsecure.api.util;
 
 import android.util.Log;
 
@@ -16,6 +32,8 @@ import java.util.Locale;
  *
  */
 public class PhoneNumberFormatter {
+
+  private static final String TAG = PhoneNumberFormatter.class.getSimpleName();
 
   public static boolean isValidNumber(String number) {
     return number.matches("^\\+[0-9]{10,}");
@@ -46,7 +64,7 @@ public class PhoneNumberFormatter {
       PhoneNumber parsedNumber = util.parse(number, null);
       return util.format(parsedNumber, PhoneNumberFormat.INTERNATIONAL);
     } catch (NumberParseException e) {
-      Log.w("PhoneNumberFormatter", e);
+      Log.w(TAG, e);
       return number;
     }
   }
@@ -72,12 +90,12 @@ public class PhoneNumberFormatter {
       PhoneNumber localNumberObject = util.parse(localNumber, null);
 
       String localCountryCode       = util.getRegionCodeForNumber(localNumberObject);
-      Log.w("PhoneNumberFormatter", "Got local CC: " + localCountryCode);
+      Log.w(TAG, "Got local CC: " + localCountryCode);
 
       PhoneNumber numberObject      = util.parse(number, localCountryCode);
       return util.format(numberObject, PhoneNumberFormat.E164);
     } catch (NumberParseException e) {
-      Log.w("PhoneNumberFormatter", e);
+      Log.w(TAG, e);
       return impreciseFormatNumber(number, localNumber);
     }
   }
@@ -95,10 +113,8 @@ public class PhoneNumberFormatter {
                                             util.getRegionCodeForCountryCode(parsedCountryCode));
 
       return util.format(parsedNumber, PhoneNumberUtil.PhoneNumberFormat.E164);
-    } catch (NumberParseException npe) {
-      Log.w("CreateAccountActivity", npe);
-    } catch (NumberFormatException nfe) {
-      Log.w("CreateAccountActivity", nfe);
+    } catch (NumberParseException | NumberFormatException npe) {
+      Log.w(TAG, npe);
     }
 
     return "+"                                                     +
@@ -112,7 +128,7 @@ public class PhoneNumberFormatter {
       PhoneNumber parsedNumber = util.parse(e164number, null);
       return util.format(parsedNumber, PhoneNumberFormat.INTERNATIONAL);
     } catch (NumberParseException e) {
-      Log.w("PhoneNumberFormatter", e);
+      Log.w(TAG, e);
       return e164number;
     }
   }

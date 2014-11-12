@@ -6,8 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
-import org.whispersystems.textsecure.util.Base64;
 
 import java.io.IOException;
 

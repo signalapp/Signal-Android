@@ -16,12 +16,12 @@ import org.thoughtcrime.securesms.jobs.AvatarDownloadJob;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.sms.IncomingGroupMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
+import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
 import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 import org.whispersystems.textsecure.api.messages.TextSecureGroup;
 import org.whispersystems.textsecure.api.messages.TextSecureMessage;
-import org.whispersystems.textsecure.util.Base64;
 
 import java.util.HashSet;
 import java.util.LinkedList;

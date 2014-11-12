@@ -32,7 +32,7 @@ import org.apache.http.impl.conn.BasicHttpClientConnectionManager;
 import org.thoughtcrime.securesms.database.ApnDatabase;
 import org.thoughtcrime.securesms.util.TelephonyUtil;
 import org.thoughtcrime.securesms.util.Conversions;
-import org.whispersystems.textsecure.util.Util;
+import org.thoughtcrime.securesms.util.Util;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;

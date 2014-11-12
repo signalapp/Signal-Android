@@ -10,8 +10,8 @@ import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.util.Log;
 
 import org.whispersystems.textsecure.push.ContactTokenDetails;
-import org.whispersystems.textsecure.util.InvalidNumberException;
-import org.whispersystems.textsecure.util.PhoneNumberFormatter;
+import org.whispersystems.textsecure.api.util.InvalidNumberException;
+import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
 
 import java.util.ArrayList;
 import java.util.Collection;

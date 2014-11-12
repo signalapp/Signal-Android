@@ -26,7 +26,7 @@ import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
 import org.whispersystems.textsecure.api.messages.TextSecureMessage;
 import org.whispersystems.textsecure.push.PushAddress;
 import org.whispersystems.textsecure.push.UnregisteredUserException;
-import org.whispersystems.textsecure.util.InvalidNumberException;
+import org.whispersystems.textsecure.api.util.InvalidNumberException;
 
 import java.io.IOException;
 import java.util.List;

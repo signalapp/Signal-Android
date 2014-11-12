@@ -23,11 +23,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.telephony.PhoneNumberUtils;
+import android.text.TextUtils;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.VisibleForTesting;
-import org.whispersystems.textsecure.util.Util;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -201,7 +201,7 @@ public class CanonicalAddressDatabase {
       return false;
 
     final String networkNumber = PhoneNumberUtils.extractNetworkPortion(number);
-    if (Util.isEmpty(networkNumber))
+    if (TextUtils.isEmpty(networkNumber))
       return false;
     if (networkNumber.length() < 3)
       return false;

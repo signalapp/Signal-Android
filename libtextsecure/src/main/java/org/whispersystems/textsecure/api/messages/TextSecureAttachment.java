@@ -1,7 +1,5 @@
 package org.whispersystems.textsecure.api.messages;
 
-import java.io.InputStream;
-
 public abstract class TextSecureAttachment {
 
   private final String contentType;

@@ -4,8 +4,8 @@ import android.test.AndroidTestCase;
 
 import junit.framework.AssertionFailedError;
 
-import org.whispersystems.textsecure.util.InvalidNumberException;
-import org.whispersystems.textsecure.util.PhoneNumberFormatter;
+import org.whispersystems.textsecure.api.util.InvalidNumberException;
+import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
 import static org.fest.assertions.api.Assertions.assertThat;
 
 public class PhoneNumberFormatterTest extends AndroidTestCase {

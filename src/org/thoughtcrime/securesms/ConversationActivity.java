@@ -105,10 +105,10 @@ import org.thoughtcrime.securesms.util.EncryptedCharacterCalculator;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.textsecure.push.PushAddress;
-import org.whispersystems.textsecure.util.Util;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -621,7 +621,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     this.getSupportActionBar().setTitle(title);
     getWindow().getDecorView().setContentDescription(getString(R.string.conversation_activity__window_description, title));
 
-    if (subtitle != null && !Util.isEmpty(subtitle))
+    if (subtitle != null && !TextUtils.isEmpty(subtitle))
       this.getSupportActionBar().setSubtitle(PhoneNumberUtils.formatNumber(subtitle));
 
     this.supportInvalidateOptionsMenu();

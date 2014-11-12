@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingKeyExchangeMessage;
+import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.whispersystems.libaxolotl.SessionBuilder;
 import org.whispersystems.libaxolotl.protocol.KeyExchangeMessage;
@@ -37,7 +38,6 @@ import org.whispersystems.libaxolotl.state.SessionRecord;
 import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.libaxolotl.state.SignedPreKeyStore;
 import org.whispersystems.textsecure.push.PushAddress;
-import org.whispersystems.textsecure.util.Base64;
 
 public class KeyExchangeInitiator {
 

@@ -4,7 +4,7 @@ import android.content.Context;
 
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.recipients.Recipients;
-import org.whispersystems.textsecure.util.Base64;
+import org.thoughtcrime.securesms.util.Base64;
 
 import ws.com.google.android.mms.ContentType;
 import ws.com.google.android.mms.pdu.PduBody;

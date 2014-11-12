@@ -16,6 +16,7 @@ import android.os.Message;
 import android.support.v7.app.ActionBarActivity;
 import android.text.SpannableString;
 import android.text.Spanned;
+import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.util.Log;
@@ -35,11 +36,11 @@ import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
 import org.thoughtcrime.securesms.service.RegistrationService;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.api.TextSecureAccountManager;
 import org.whispersystems.textsecure.push.exceptions.ExpectationFailedException;
 import org.whispersystems.textsecure.push.exceptions.RateLimitException;
-import org.whispersystems.textsecure.util.PhoneNumberFormatter;
-import org.whispersystems.textsecure.util.Util;
+import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
 
 import java.io.IOException;
 
@@ -461,7 +462,7 @@ public class RegistrationProgressActivity extends ActionBarActivity {
     public void onClick(View v) {
       final String code = codeEditText.getText().toString();
 
-      if (Util.isEmpty(code)) {
+      if (TextUtils.isEmpty(code)) {
         Toast.makeText(context,
                        getString(R.string.RegistrationProgressActivity_you_must_enter_the_code_you_received_first),
                        Toast.LENGTH_LONG).show();

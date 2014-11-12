@@ -16,7 +16,8 @@
  */
 package org.thoughtcrime.securesms.protocol;
 
-import org.whispersystems.textsecure.util.Base64;
+
+import org.thoughtcrime.securesms.util.Base64;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

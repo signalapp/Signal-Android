@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.IncomingIdentityUpdateMessage;
+import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
@@ -26,8 +27,7 @@ import org.whispersystems.textsecure.api.messages.TextSecureMessage;
 import org.whispersystems.textsecure.push.PushAddress;
 import org.whispersystems.textsecure.push.PushMessageProtos;
 import org.whispersystems.textsecure.push.exceptions.EncapsulatedExceptions;
-import org.whispersystems.textsecure.util.Base64;
-import org.whispersystems.textsecure.util.InvalidNumberException;
+import org.whispersystems.textsecure.api.util.InvalidNumberException;
 
 import java.io.IOException;
 import java.util.LinkedList;

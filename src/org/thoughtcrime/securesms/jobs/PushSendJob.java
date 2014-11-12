@@ -17,7 +17,7 @@ import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachmentStream;
 import org.thoughtcrime.securesms.database.TextSecureDirectory;
 import org.whispersystems.textsecure.push.PushAddress;
-import org.whispersystems.textsecure.util.InvalidNumberException;
+import org.whispersystems.textsecure.api.util.InvalidNumberException;
 
 import java.io.ByteArrayInputStream;
 import java.util.LinkedList;

@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.database.EncryptingPartDatabase;
 import org.thoughtcrime.securesms.database.PartDatabase;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
+import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
@@ -19,7 +20,6 @@ import org.whispersystems.textsecure.api.TextSecureMessageReceiver;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachmentPointer;
 import org.whispersystems.textsecure.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.textsecure.push.exceptions.PushNetworkException;
-import org.whispersystems.textsecure.util.Base64;
 
 import java.io.File;
 import java.io.IOException;

@@ -19,12 +19,12 @@ package org.thoughtcrime.securesms.crypto;
 
 import android.util.Log;
 
+import org.thoughtcrime.securesms.util.Hex;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libaxolotl.InvalidKeyException;
 import org.whispersystems.libaxolotl.ecc.Curve;
 import org.whispersystems.libaxolotl.ecc.ECPublicKey;
 import org.thoughtcrime.securesms.util.Conversions;
-import org.whispersystems.textsecure.util.Hex;
-import org.whispersystems.textsecure.util.Util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

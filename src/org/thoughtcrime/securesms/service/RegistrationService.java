@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.crypto.PreKeyUtil;
 import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libaxolotl.IdentityKeyPair;
 import org.whispersystems.libaxolotl.state.PreKeyRecord;
 import org.whispersystems.libaxolotl.state.SignedPreKeyRecord;
@@ -26,7 +27,6 @@ import org.whispersystems.libaxolotl.util.KeyHelper;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.TextSecureAccountManager;
 import org.whispersystems.textsecure.push.exceptions.ExpectationFailedException;
-import org.whispersystems.textsecure.util.Util;
 
 import java.io.IOException;
 import java.util.List;

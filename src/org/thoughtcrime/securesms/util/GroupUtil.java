@@ -2,14 +2,9 @@ package org.thoughtcrime.securesms.util;
 
 import android.util.Log;
 
-import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 
-import org.whispersystems.textsecure.util.Base64;
-import org.whispersystems.textsecure.util.Hex;
-
 import java.io.IOException;
-import java.util.LinkedList;
 import java.util.List;
 
 import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.GroupContext;
@@ -46,7 +41,7 @@ public class GroupUtil {
       String       title       = context.getName();
 
       if (!members.isEmpty()) {
-        description += org.whispersystems.textsecure.util.Util.join(members, ", ") + " joined the group.";
+        description += Util.join(members, ", ") + " joined the group.";
       }
 
       if (title != null && !title.trim().isEmpty()) {

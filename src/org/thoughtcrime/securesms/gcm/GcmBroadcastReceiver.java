@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.gcm;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
@@ -10,7 +11,6 @@ import com.google.android.gms.gcm.GoogleCloudMessaging;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.jobs.PushReceiveJob;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.textsecure.util.Util;
 
 public class GcmBroadcastReceiver extends BroadcastReceiver {
 
@@ -32,8 +32,8 @@ public class GcmBroadcastReceiver extends BroadcastReceiver {
       String messageData = intent.getStringExtra("message");
       String receiptData = intent.getStringExtra("receipt");
 
-      if      (!Util.isEmpty(messageData)) handleReceivedMessage(context, messageData);
-      else if (!Util.isEmpty(receiptData)) handleReceivedMessage(context, receiptData);
+      if      (!TextUtils.isEmpty(messageData)) handleReceivedMessage(context, messageData);
+      else if (!TextUtils.isEmpty(receiptData)) handleReceivedMessage(context, receiptData);
     }
   }
 

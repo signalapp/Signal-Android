@@ -22,13 +22,13 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.IdentityKeyPair;
 import org.whispersystems.libaxolotl.InvalidKeyException;
 import org.whispersystems.libaxolotl.ecc.Curve;
 import org.whispersystems.libaxolotl.ecc.ECKeyPair;
 import org.whispersystems.libaxolotl.ecc.ECPrivateKey;
-import org.whispersystems.textsecure.util.Base64;
 
 import java.io.IOException;
 
@@ -78,9 +78,7 @@ public class IdentityKeyUtil {
       ECPrivateKey privateKey   = masterCipher.decryptKey(Base64.decode(retrieve(context, IDENTITY_PRIVATE_KEY_DJB_PREF)));
 
       return new IdentityKeyPair(publicKey, privateKey);
-    } catch (IOException e) {
-      throw new AssertionError(e);
-    } catch (InvalidKeyException e) {
+    } catch (IOException | InvalidKeyException e) {
       throw new AssertionError(e);
     }
   }

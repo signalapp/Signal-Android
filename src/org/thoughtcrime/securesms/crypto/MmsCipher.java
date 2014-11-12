@@ -8,6 +8,7 @@ import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libaxolotl.DuplicateMessageException;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.libaxolotl.LegacyMessageException;
@@ -18,7 +19,6 @@ import org.whispersystems.libaxolotl.protocol.WhisperMessage;
 import org.whispersystems.libaxolotl.state.AxolotlStore;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.push.PushAddress;
-import org.whispersystems.textsecure.util.Util;
 
 import java.io.IOException;
 

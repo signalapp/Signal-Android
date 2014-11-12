@@ -1,4 +1,4 @@
-package org.whispersystems.textsecure.util;
+package org.whispersystems.textsecure.api.util;
 
 public class InvalidNumberException extends Throwable {
   public InvalidNumberException(String s) {

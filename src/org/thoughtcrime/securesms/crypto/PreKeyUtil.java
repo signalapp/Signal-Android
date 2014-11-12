@@ -23,6 +23,7 @@ import android.util.Log;
 import com.google.thoughtcrimegson.Gson;
 
 import org.thoughtcrime.securesms.crypto.storage.TextSecurePreKeyStore;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libaxolotl.IdentityKeyPair;
 import org.whispersystems.libaxolotl.InvalidKeyException;
 import org.whispersystems.libaxolotl.InvalidKeyIdException;
@@ -34,7 +35,6 @@ import org.whispersystems.libaxolotl.state.SignedPreKeyStore;
 import org.whispersystems.libaxolotl.state.PreKeyRecord;
 import org.whispersystems.libaxolotl.state.PreKeyStore;
 import org.whispersystems.libaxolotl.util.Medium;
-import org.whispersystems.textsecure.util.Util;
 
 import java.io.File;
 import java.io.FileInputStream;

@@ -23,7 +23,7 @@ import android.util.Patterns;
 import org.thoughtcrime.securesms.recipients.Recipient.RecipientModifiedListener;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.NumberUtil;
-import org.whispersystems.textsecure.util.Util;
+import org.thoughtcrime.securesms.util.Util;
 
 import java.util.ArrayList;
 import java.util.Iterator;

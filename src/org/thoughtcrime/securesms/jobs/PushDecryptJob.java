@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.IncomingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.IncomingPreKeyBundleMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
+import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.libaxolotl.DuplicateMessageException;
@@ -43,7 +44,6 @@ import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 import org.whispersystems.textsecure.api.messages.TextSecureGroup;
 import org.whispersystems.textsecure.api.messages.TextSecureMessage;
 import org.whispersystems.textsecure.api.crypto.TextSecureCipher;
-import org.whispersystems.textsecure.util.Base64;
 
 import ws.com.google.android.mms.MmsException;
 

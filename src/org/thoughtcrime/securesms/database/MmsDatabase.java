@@ -23,17 +23,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 import android.telephony.TelephonyManager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.Pair;
 
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
-import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
-import org.thoughtcrime.securesms.util.GroupUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.model.DisplayRecord;
@@ -41,6 +37,8 @@ import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
+import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
+import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.PartParser;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.mms.TextSlide;
@@ -48,12 +46,15 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.LRUCache;
-import org.whispersystems.libaxolotl.util.guava.Optional;
-import org.whispersystems.textsecure.util.InvalidNumberException;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Trimmer;
-import org.whispersystems.textsecure.util.Util;
+import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.libaxolotl.InvalidMessageException;
+import org.whispersystems.libaxolotl.util.guava.Optional;
+import org.whispersystems.textsecure.api.util.InvalidNumberException;
 
 import java.io.UnsupportedEncodingException;
 import java.lang.ref.SoftReference;
@@ -481,9 +482,9 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
         PduBody body = getPartsAsBody(partDatabase.getParts(messageId, true));
 
         try {
-          if (!Util.isEmpty(messageText) && Types.isSymmetricEncryption(outboxType)) {
+          if (!TextUtils.isEmpty(messageText) && Types.isSymmetricEncryption(outboxType)) {
             body.addPart(new TextSlide(context, masterCipher.decryptBody(messageText)).getPart());
-          } else if (!Util.isEmpty(messageText)) {
+          } else if (!TextUtils.isEmpty(messageText)) {
             body.addPart(new TextSlide(context, messageText).getPart());
           }
         } catch (InvalidMessageException e) {
@@ -708,7 +709,7 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
       String messageText = PartParser.getMessageText(body);
       body               = PartParser.getNonTextParts(body);
 
-      if (!Util.isEmpty(messageText)) {
+      if (!TextUtils.isEmpty(messageText)) {
         contentValues.put(BODY, new MasterCipher(masterSecret).encryptBody(messageText));
       }
     }
@@ -808,8 +809,8 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
 
   public Cursor getCarrierMmsInformation(String apn) {
     Uri uri                = Uri.withAppendedPath(Uri.parse("content://telephony/carriers"), "current");
-    String selection       = Util.isEmpty(apn) ? null : "apn = ?";
-    String[] selectionArgs = Util.isEmpty(apn) ? null : new String[] {apn.trim()};
+    String selection       = TextUtils.isEmpty(apn) ? null : "apn = ?";
+    String[] selectionArgs = TextUtils.isEmpty(apn) ? null : new String[] {apn.trim()};
 
     try {
       return context.getContentResolver().query(uri, null, selection, selectionArgs, null);
@@ -981,10 +982,10 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
       byte[]contentLocationBytes = null;
       byte[]transactionIdBytes   = null;
 
-      if (!Util.isEmpty(contentLocation))
+      if (!TextUtils.isEmpty(contentLocation))
         contentLocationBytes = org.thoughtcrime.securesms.util.Util.toIsoBytes(contentLocation);
 
-      if (!Util.isEmpty(transactionId))
+      if (!TextUtils.isEmpty(transactionId))
         transactionIdBytes = org.thoughtcrime.securesms.util.Util.toIsoBytes(transactionId);
 
 
@@ -1016,7 +1017,7 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
 
     private Recipients getRecipientsFor(String address) {
       try {
-        if (Util.isEmpty(address) || address.equals("insert-address-token")) {
+        if (TextUtils.isEmpty(address) || address.equals("insert-address-token")) {
           return new Recipients(Recipient.getUnknownRecipient(context));
         }
 
@@ -1038,9 +1039,9 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
         String body = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.BODY));
         long box    = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.MESSAGE_BOX));
 
-        if (!Util.isEmpty(body) && masterCipher != null && Types.isSymmetricEncryption(box)) {
+        if (!TextUtils.isEmpty(body) && masterCipher != null && Types.isSymmetricEncryption(box)) {
           return new DisplayRecord.Body(masterCipher.decryptBody(body), true);
-        } else if (!Util.isEmpty(body) && masterCipher == null && Types.isSymmetricEncryption(box)) {
+        } else if (!TextUtils.isEmpty(body) && masterCipher == null && Types.isSymmetricEncryption(box)) {
           return new DisplayRecord.Body(body, false);
         } else {
           return new DisplayRecord.Body(body == null ? "" : body, true);

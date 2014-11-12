@@ -19,11 +19,11 @@ package org.thoughtcrime.securesms.crypto;
 
 import android.util.Log;
 
+import org.thoughtcrime.securesms.util.Base64;
+import org.thoughtcrime.securesms.util.Hex;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.libaxolotl.ecc.Curve;
 import org.whispersystems.libaxolotl.ecc.ECPrivateKey;
-import org.whispersystems.textsecure.util.Base64;
-import org.whispersystems.textsecure.util.Hex;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -65,10 +65,8 @@ public class MasterCipher {
       this.encryptingCipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
       this.decryptingCipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
       this.hmac             = Mac.getInstance("HmacSHA1");
-    } catch (NoSuchPaddingException nspe) {
+    } catch (NoSuchPaddingException | NoSuchAlgorithmException nspe) {
       throw new AssertionError(nspe);
-    } catch (NoSuchAlgorithmException e) {
-      throw new AssertionError(e);
     }
   }
 

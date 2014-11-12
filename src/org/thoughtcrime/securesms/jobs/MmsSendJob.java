@@ -21,11 +21,11 @@ import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
+import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.NumberUtil;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.libaxolotl.NoSessionException;
-import org.whispersystems.textsecure.util.Hex;
 
 import java.io.IOException;
 import java.util.Arrays;

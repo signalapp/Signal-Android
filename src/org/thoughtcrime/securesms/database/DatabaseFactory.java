@@ -22,6 +22,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.text.TextUtils;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.DatabaseUpgradeActivity;
@@ -30,10 +31,10 @@ import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.util.Base64;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.InvalidMessageException;
-import org.whispersystems.textsecure.util.Base64;
-import org.whispersystems.textsecure.util.Util;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -290,7 +291,7 @@ public class DatabaseFactory {
             long snippetType = threadCursor.getLong(threadCursor.getColumnIndexOrThrow("snippet_type"));
             long id          = threadCursor.getLong(threadCursor.getColumnIndexOrThrow("_id"));
 
-            if (!Util.isEmpty(snippet)) {
+            if (!TextUtils.isEmpty(snippet)) {
               snippet = masterCipher.decryptBody(snippet);
             }
 
@@ -379,7 +380,7 @@ public class DatabaseFactory {
           }
         }
 
-        if (!Util.isEmpty(body)) {
+        if (!TextUtils.isEmpty(body)) {
           body = masterCipher.encryptBody(body);
           db.execSQL("UPDATE mms SET body = ?, part_count = ? WHERE _id = ?",
                      new String[] {body, partCount+"", mmsId+""});
@@ -666,7 +667,7 @@ public class DatabaseFactory {
           long mmsId     = cursor.getLong(cursor.getColumnIndexOrThrow("mms_id"));
           String address = cursor.getString(cursor.getColumnIndexOrThrow("address"));
 
-          if (!Util.isEmpty(address)) {
+          if (!TextUtils.isEmpty(address)) {
             db.execSQL("UPDATE mms SET address = ? WHERE _id = ?", new String[]{address, mmsId+""});
           }
         }

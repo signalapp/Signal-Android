@@ -43,7 +43,7 @@ import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.whispersystems.textsecure.util.Util;
+import org.thoughtcrime.securesms.util.Util;
 
 /**
  * Activity that prompts for a user's passphrase.

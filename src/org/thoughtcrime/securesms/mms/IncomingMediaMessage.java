@@ -1,13 +1,15 @@
 package org.thoughtcrime.securesms.mms;
 
+import android.text.TextUtils;
+
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
 import org.whispersystems.textsecure.api.messages.TextSecureGroup;
-import org.whispersystems.textsecure.util.Base64;
 
 import java.util.List;
 
@@ -56,7 +58,7 @@ public class IncomingMediaMessage {
     this.headers.setLongInteger(sentTimeMillis / 1000, PduHeaders.DATE);
 
 
-    if (body.isPresent() && !org.whispersystems.textsecure.util.Util.isEmpty(body.get())) {
+    if (body.isPresent() && !TextUtils.isEmpty(body.get())) {
       PduPart text = new PduPart();
       text.setData(Util.toUtf8Bytes(body.get()));
       text.setContentType(Util.toIsoBytes("text/plain"));

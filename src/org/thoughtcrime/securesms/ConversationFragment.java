@@ -12,6 +12,7 @@ import android.os.Handler;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
+import android.support.v4.widget.CursorAdapter;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.view.ActionMode;
 import android.text.ClipboardManager;
@@ -22,11 +23,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v4.widget.CursorAdapter;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.loaders.ConversationLoader;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
@@ -37,19 +38,10 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
+import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.whispersystems.textsecure.util.FutureTaskListener;
-import org.whispersystems.textsecure.util.Util;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.lang.ref.WeakReference;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 

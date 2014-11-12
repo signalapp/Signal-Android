@@ -16,7 +16,8 @@
  */
 package org.whispersystems.textsecure.push;
 
-import org.whispersystems.textsecure.util.Base64;
+
+import org.whispersystems.textsecure.internal.util.Base64;
 
 public class OutgoingPushMessage {
 

@@ -19,15 +19,16 @@ package org.thoughtcrime.securesms.crypto;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.text.TextUtils;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.util.Base64;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libaxolotl.InvalidKeyException;
 import org.whispersystems.libaxolotl.ecc.Curve;
 import org.whispersystems.libaxolotl.ecc.ECKeyPair;
 import org.whispersystems.libaxolotl.ecc.ECPrivateKey;
 import org.whispersystems.libaxolotl.ecc.ECPublicKey;
-import org.whispersystems.textsecure.util.Base64;
-import org.whispersystems.textsecure.util.Util;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -143,10 +144,8 @@ public class MasterSecretUtil {
       }
 
       return new AsymmetricMasterSecret(djbPublicKey, djbPrivateKey);
-    } catch (InvalidKeyException ike) {
+    } catch (InvalidKeyException | IOException ike) {
       throw new AssertionError(ike);
-    } catch (IOException e) {
-      throw new AssertionError(e);
     }
   }
 
@@ -231,8 +230,8 @@ public class MasterSecretUtil {
     SharedPreferences settings = context.getSharedPreferences(PREFERENCES_NAME, 0);
     String encodedValue        = settings.getString(key, "");
 
-    if (Util.isEmpty(encodedValue)) return null;
-    else                            return Base64.decode(encodedValue);
+    if (TextUtils.isEmpty(encodedValue)) return null;
+    else                                 return Base64.decode(encodedValue);
   }
 
   private static int retrieve(Context context, String key, int defaultValue) throws IOException {

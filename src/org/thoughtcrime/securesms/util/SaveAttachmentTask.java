@@ -63,7 +63,7 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
       InputStream inputStream   = DatabaseFactory.getEncryptingPartDatabase(context, masterSecret).getPartStream(ContentUris.parseId(attachment.uri));
       OutputStream outputStream = new FileOutputStream(mediaFile);
 
-      org.whispersystems.textsecure.util.Util.copy(inputStream, outputStream);
+      Util.copy(inputStream, outputStream);
 
       MediaScannerConnection.scanFile(context, new String[]{mediaFile.getAbsolutePath()},
                                       new String[]{attachment.contentType}, null);

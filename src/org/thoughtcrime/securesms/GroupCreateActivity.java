@@ -64,7 +64,7 @@ import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.TextSecureDirectory;
 import org.thoughtcrime.securesms.database.NotInDirectoryException;
-import org.whispersystems.textsecure.util.InvalidNumberException;
+import org.whispersystems.textsecure.api.util.InvalidNumberException;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
