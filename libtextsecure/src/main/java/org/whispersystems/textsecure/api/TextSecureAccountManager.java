@@ -20,9 +20,9 @@ import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.state.PreKeyRecord;
 import org.whispersystems.libaxolotl.state.SignedPreKeyRecord;
 import org.whispersystems.libaxolotl.util.guava.Optional;
-import org.whispersystems.textsecure.push.ContactTokenDetails;
-import org.whispersystems.textsecure.push.PushServiceSocket;
-import org.whispersystems.textsecure.push.SignedPreKeyEntity;
+import org.whispersystems.textsecure.api.push.ContactTokenDetails;
+import org.whispersystems.textsecure.internal.push.PushServiceSocket;
+import org.whispersystems.textsecure.api.push.SignedPreKeyEntity;
 
 import java.io.IOException;
 import java.util.List;

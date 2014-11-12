@@ -32,28 +32,28 @@ import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachmentStream;
 import org.whispersystems.textsecure.api.messages.TextSecureGroup;
 import org.whispersystems.textsecure.api.messages.TextSecureMessage;
-import org.whispersystems.textsecure.push.MismatchedDevices;
-import org.whispersystems.textsecure.push.OutgoingPushMessage;
-import org.whispersystems.textsecure.push.OutgoingPushMessageList;
-import org.whispersystems.textsecure.push.PushAddress;
-import org.whispersystems.textsecure.push.PushAttachmentData;
-import org.whispersystems.textsecure.push.PushBody;
-import org.whispersystems.textsecure.push.PushServiceSocket;
-import org.whispersystems.textsecure.push.StaleDevices;
-import org.whispersystems.textsecure.push.UnregisteredUserException;
-import org.whispersystems.textsecure.push.exceptions.EncapsulatedExceptions;
-import org.whispersystems.textsecure.push.exceptions.MismatchedDevicesException;
-import org.whispersystems.textsecure.push.exceptions.StaleDevicesException;
+import org.whispersystems.textsecure.api.push.PushAddress;
+import org.whispersystems.textsecure.internal.push.MismatchedDevices;
+import org.whispersystems.textsecure.internal.push.OutgoingPushMessage;
+import org.whispersystems.textsecure.internal.push.OutgoingPushMessageList;
+import org.whispersystems.textsecure.internal.push.PushAttachmentData;
+import org.whispersystems.textsecure.internal.push.PushBody;
+import org.whispersystems.textsecure.internal.push.PushServiceSocket;
+import org.whispersystems.textsecure.internal.push.StaleDevices;
+import org.whispersystems.textsecure.api.push.exceptions.UnregisteredUserException;
+import org.whispersystems.textsecure.api.push.exceptions.EncapsulatedExceptions;
+import org.whispersystems.textsecure.internal.push.exceptions.MismatchedDevicesException;
+import org.whispersystems.textsecure.internal.push.exceptions.StaleDevicesException;
 import org.whispersystems.textsecure.internal.util.Util;
 
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal.Type;
-import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
-import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer;
-import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.GroupContext;
+import static org.whispersystems.textsecure.internal.push.PushMessageProtos.IncomingPushMessageSignal.Type;
+import static org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent;
+import static org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.AttachmentPointer;
+import static org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.GroupContext;
 
 public class TextSecureMessageSender {
 

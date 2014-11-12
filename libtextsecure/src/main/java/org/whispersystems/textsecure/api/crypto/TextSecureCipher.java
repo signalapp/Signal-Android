@@ -36,13 +36,13 @@ import org.whispersystems.textsecure.api.messages.TextSecureAttachmentPointer;
 import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 import org.whispersystems.textsecure.api.messages.TextSecureGroup;
 import org.whispersystems.textsecure.api.messages.TextSecureMessage;
-import org.whispersystems.textsecure.push.PushTransportDetails;
+import org.whispersystems.textsecure.internal.push.PushTransportDetails;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent;
-import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.GroupContext.Type.DELIVER;
+import static org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent;
+import static org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.GroupContext.Type.DELIVER;
 
 public class TextSecureCipher {
 

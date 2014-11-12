@@ -18,7 +18,7 @@ import org.whispersystems.libaxolotl.protocol.CiphertextMessage;
 import org.whispersystems.libaxolotl.protocol.WhisperMessage;
 import org.whispersystems.libaxolotl.state.AxolotlStore;
 import org.whispersystems.libaxolotl.util.guava.Optional;
-import org.whispersystems.textsecure.push.PushAddress;
+import org.whispersystems.textsecure.api.push.PushAddress;
 
 import java.io.IOException;
 

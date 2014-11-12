@@ -44,7 +44,7 @@ import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobManager;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.TextSecureAccountManager;
-import org.whispersystems.textsecure.push.ContactTokenDetails;
+import org.whispersystems.textsecure.api.push.ContactTokenDetails;
 import org.thoughtcrime.securesms.util.DirectoryUtil;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
 

@@ -33,7 +33,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libaxolotl.state.SessionStore;
-import org.whispersystems.textsecure.push.PushAddress;
+import org.whispersystems.textsecure.api.push.PushAddress;
 
 /**
  * Activity which prompts the user to initiate a secure

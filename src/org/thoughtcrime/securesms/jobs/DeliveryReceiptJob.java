@@ -3,18 +3,13 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.Release;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.dependencies.TextSecureCommunicationModule;
-import org.thoughtcrime.securesms.push.TextSecurePushTrustStore;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
-import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.TextSecureMessageSender;
-import org.whispersystems.textsecure.push.PushAddress;
-import org.whispersystems.textsecure.push.exceptions.NonSuccessfulResponseCodeException;
-import org.whispersystems.textsecure.push.exceptions.PushNetworkException;
+import org.whispersystems.textsecure.api.push.PushAddress;
+import org.whispersystems.textsecure.api.push.exceptions.NonSuccessfulResponseCodeException;
+import org.whispersystems.textsecure.api.push.exceptions.PushNetworkException;
 
 import java.io.IOException;
 

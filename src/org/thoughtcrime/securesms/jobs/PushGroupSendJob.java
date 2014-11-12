@@ -24,9 +24,9 @@ import org.whispersystems.textsecure.api.crypto.UntrustedIdentityException;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
 import org.whispersystems.textsecure.api.messages.TextSecureGroup;
 import org.whispersystems.textsecure.api.messages.TextSecureMessage;
-import org.whispersystems.textsecure.push.PushAddress;
-import org.whispersystems.textsecure.push.PushMessageProtos;
-import org.whispersystems.textsecure.push.exceptions.EncapsulatedExceptions;
+import org.whispersystems.textsecure.api.push.PushAddress;
+import org.whispersystems.textsecure.internal.push.PushMessageProtos;
+import org.whispersystems.textsecure.api.push.exceptions.EncapsulatedExceptions;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
 
 import java.io.IOException;

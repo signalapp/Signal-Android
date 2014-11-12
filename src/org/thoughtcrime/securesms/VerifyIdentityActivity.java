@@ -32,7 +32,7 @@ import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.state.SessionRecord;
 import org.whispersystems.libaxolotl.state.SessionStore;
-import org.whispersystems.textsecure.push.PushAddress;
+import org.whispersystems.textsecure.api.push.PushAddress;
 
 /**
  * Activity for verifying identity keys.

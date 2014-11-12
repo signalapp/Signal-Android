@@ -1,7 +1,8 @@
 package org.whispersystems.textsecure.push;
 
 import android.test.AndroidTestCase;
-import android.util.Base64;
+
+import org.whispersystems.textsecure.internal.push.PushTransportDetails;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;

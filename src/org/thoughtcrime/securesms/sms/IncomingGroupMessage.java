@@ -1,12 +1,6 @@
 package org.thoughtcrime.securesms.sms;
 
-import com.google.protobuf.ByteString;
-
-import org.thoughtcrime.securesms.util.GroupUtil;
-
-import java.io.IOException;
-
-import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.GroupContext;
+import static org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.GroupContext;
 
 public class IncomingGroupMessage extends IncomingTextMessage {
 

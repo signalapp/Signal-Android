@@ -21,7 +21,7 @@ import android.util.Log;
 import com.google.protobuf.ByteString;
 
 import org.whispersystems.libaxolotl.InvalidVersionException;
-import org.whispersystems.textsecure.push.PushMessageProtos.IncomingPushMessageSignal;
+import org.whispersystems.textsecure.internal.push.PushMessageProtos.IncomingPushMessageSignal;
 import org.whispersystems.textsecure.internal.util.Base64;
 import org.whispersystems.textsecure.internal.util.Hex;
 

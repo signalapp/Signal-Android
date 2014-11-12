@@ -37,7 +37,7 @@ import org.whispersystems.libaxolotl.state.PreKeyStore;
 import org.whispersystems.libaxolotl.state.SessionRecord;
 import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.libaxolotl.state.SignedPreKeyStore;
-import org.whispersystems.textsecure.push.PushAddress;
+import org.whispersystems.textsecure.api.push.PushAddress;
 
 public class KeyExchangeInitiator {
 

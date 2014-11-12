@@ -16,7 +16,7 @@ import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachmentStream;
 import org.thoughtcrime.securesms.database.TextSecureDirectory;
-import org.whispersystems.textsecure.push.PushAddress;
+import org.whispersystems.textsecure.api.push.PushAddress;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
 
 import java.io.ByteArrayInputStream;

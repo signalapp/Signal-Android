@@ -15,7 +15,7 @@ import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.libaxolotl.IdentityKeyPair;
 import org.whispersystems.libaxolotl.state.SignedPreKeyRecord;
 import org.whispersystems.textsecure.api.TextSecureAccountManager;
-import org.whispersystems.textsecure.push.exceptions.PushNetworkException;
+import org.whispersystems.textsecure.api.push.exceptions.PushNetworkException;
 
 import java.io.IOException;
 

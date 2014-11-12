@@ -80,7 +80,7 @@ import java.util.Set;
 import ws.com.google.android.mms.MmsException;
 
 import static org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
-import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.GroupContext;
+import static org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.GroupContext;
 
 /**
  * Activity to create and update groups

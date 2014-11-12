@@ -67,7 +67,7 @@ import org.thoughtcrime.securesms.util.Trimmer;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.TextSecureAccountManager;
-import org.whispersystems.textsecure.push.exceptions.AuthorizationFailedException;
+import org.whispersystems.textsecure.api.push.exceptions.AuthorizationFailedException;
 
 import java.io.IOException;
 

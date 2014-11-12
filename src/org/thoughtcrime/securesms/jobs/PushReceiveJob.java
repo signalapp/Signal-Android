@@ -12,7 +12,7 @@ import org.whispersystems.libaxolotl.InvalidVersionException;
 import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 import org.thoughtcrime.securesms.database.TextSecureDirectory;
 import org.thoughtcrime.securesms.database.NotInDirectoryException;
-import org.whispersystems.textsecure.push.ContactTokenDetails;
+import org.whispersystems.textsecure.api.push.ContactTokenDetails;
 
 import java.io.IOException;
 

@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.push;
 import android.content.Context;
 
 import org.thoughtcrime.securesms.R;
-import org.whispersystems.textsecure.push.PushServiceSocket;
+import org.whispersystems.textsecure.internal.push.PushServiceSocket;
 
 import java.io.InputStream;
 

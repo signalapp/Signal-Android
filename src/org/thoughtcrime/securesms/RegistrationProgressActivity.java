@@ -38,8 +38,8 @@ import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.api.TextSecureAccountManager;
-import org.whispersystems.textsecure.push.exceptions.ExpectationFailedException;
-import org.whispersystems.textsecure.push.exceptions.RateLimitException;
+import org.whispersystems.textsecure.api.push.exceptions.ExpectationFailedException;
+import org.whispersystems.textsecure.api.push.exceptions.RateLimitException;
 import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
 
 import java.io.IOException;

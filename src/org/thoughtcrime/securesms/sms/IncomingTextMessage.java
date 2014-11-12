@@ -7,7 +7,7 @@ import android.telephony.SmsMessage;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.messages.TextSecureGroup;
-import org.whispersystems.textsecure.push.PushAddress;
+import org.whispersystems.textsecure.api.push.PushAddress;
 
 import java.util.List;
 

@@ -6,9 +6,9 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.whispersystems.textsecure.api.TextSecureMessageSender;
-import org.whispersystems.textsecure.push.PushAddress;
-import org.whispersystems.textsecure.push.exceptions.NotFoundException;
-import org.whispersystems.textsecure.push.exceptions.PushNetworkException;
+import org.whispersystems.textsecure.api.push.PushAddress;
+import org.whispersystems.textsecure.api.push.exceptions.NotFoundException;
+import org.whispersystems.textsecure.api.push.exceptions.PushNetworkException;
 
 import java.io.IOException;
 

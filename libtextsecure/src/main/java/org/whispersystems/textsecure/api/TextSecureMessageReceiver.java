@@ -19,7 +19,7 @@ package org.whispersystems.textsecure.api;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.textsecure.api.crypto.AttachmentCipherInputStream;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachmentPointer;
-import org.whispersystems.textsecure.push.PushServiceSocket;
+import org.whispersystems.textsecure.internal.push.PushServiceSocket;
 
 import java.io.File;
 import java.io.IOException;
