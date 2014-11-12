@@ -101,6 +101,10 @@ public class PushDecryptJob extends MasterSecretJob {
       else if (message.isGroupUpdate())              handleGroupMessage(masterSecret, envelope, message);
       else if (message.getAttachments().isPresent()) handleMediaMessage(masterSecret, envelope, message);
       else                                           handleTextMessage(masterSecret, envelope, message);
+
+      if (envelope.isPreKeyWhisperMessage()) {
+        ApplicationContext.getInstance(context).getJobManager().add(new RefreshPreKeysJob(context));
+      }
     } catch (InvalidVersionException e) {
       Log.w(TAG, e);
       handleInvalidVersionMessage(masterSecret, envelope);

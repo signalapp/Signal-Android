@@ -27,11 +27,16 @@ public class TextSecureMessage {
 
   public TextSecureMessage(long timestamp, TextSecureGroup group, List<TextSecureAttachment> attachments, String body, boolean secure, boolean endSession) {
     this.timestamp   = timestamp;
-    this.attachments = Optional.fromNullable(attachments);
     this.body        = Optional.fromNullable(body);
     this.group       = Optional.fromNullable(group);
     this.secure      = secure;
     this.endSession  = endSession;
+
+    if (attachments != null && !attachments.isEmpty()) {
+      this.attachments = Optional.of(attachments);
+    } else {
+      this.attachments = Optional.absent();
+    }
   }
 
   public long getTimestamp() {

@@ -274,6 +274,17 @@ public class SessionCipher {
     }
   }
 
+  public int getSessionVersion() {
+    synchronized (SESSION_LOCK) {
+      if (!sessionStore.containsSession(recipientId, deviceId)) {
+        throw new IllegalStateException(String.format("No session for (%d, %d)!", recipientId, deviceId));
+      }
+
+      SessionRecord record = sessionStore.loadSession(recipientId, deviceId);
+      return record.getSessionState().getSessionVersion();
+    }
+  }
+
   private ChainKey getOrCreateChainKey(SessionState sessionState, ECPublicKey theirEphemeral)
       throws InvalidMessageException
   {

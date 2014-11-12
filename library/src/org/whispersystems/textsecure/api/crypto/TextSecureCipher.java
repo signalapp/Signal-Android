@@ -1,5 +1,7 @@
 package org.whispersystems.textsecure.api.crypto;
 
+import android.util.Log;
+
 import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.whispersystems.libaxolotl.DuplicateMessageException;
@@ -30,18 +32,14 @@ import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageCo
 
 public class TextSecureCipher {
 
-  private final SessionCipher        sessionCipher;
-  private final PushTransportDetails transportDetails;
+  private final SessionCipher sessionCipher;
 
   public TextSecureCipher(AxolotlStore axolotlStore, long recipientId, int deviceId) {
-    int sessionVersion = axolotlStore.loadSession(recipientId, deviceId)
-                                     .getSessionState().getSessionVersion();
-
-    this.transportDetails = new PushTransportDetails(sessionVersion);
-    this.sessionCipher    = new SessionCipher(axolotlStore, recipientId, deviceId);
+    this.sessionCipher = new SessionCipher(axolotlStore, recipientId, deviceId);
   }
 
   public CiphertextMessage encrypt(byte[] unpaddedMessage) {
+    PushTransportDetails transportDetails = new PushTransportDetails(sessionCipher.getSessionVersion());
     return sessionCipher.encrypt(transportDetails.getPaddedMessageBody(unpaddedMessage));
   }
 
@@ -63,7 +61,9 @@ public class TextSecureCipher {
         throw new InvalidMessageException("Unknown type: " + envelope.getType());
       }
 
-      PushMessageContent content = PushMessageContent.parseFrom(transportDetails.getStrippedPaddingMessageBody(paddedMessage));
+      PushTransportDetails transportDetails = new PushTransportDetails(sessionCipher.getSessionVersion());
+      PushMessageContent   content          = PushMessageContent.parseFrom(transportDetails.getStrippedPaddingMessageBody(paddedMessage));
+
       return createTextSecureMessage(envelope, content);
     } catch (InvalidProtocolBufferException e) {
       throw new InvalidMessageException(e);
