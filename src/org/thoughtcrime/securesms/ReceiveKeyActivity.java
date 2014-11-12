@@ -37,6 +37,8 @@ import org.thoughtcrime.securesms.crypto.storage.TextSecureIdentityKeyStore;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
+import org.thoughtcrime.securesms.database.PushDatabase;
+import org.thoughtcrime.securesms.jobs.PushDecryptJob;
 import org.thoughtcrime.securesms.jobs.SmsDecryptJob;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.IncomingIdentityUpdateMessage;
@@ -54,6 +56,7 @@ import org.whispersystems.libaxolotl.protocol.KeyExchangeMessage;
 import org.whispersystems.libaxolotl.protocol.PreKeyWhisperMessage;
 import org.whispersystems.libaxolotl.state.IdentityKeyStore;
 import org.whispersystems.libaxolotl.util.guava.Optional;
+import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 import org.whispersystems.textsecure.api.messages.TextSecureGroup;
 
 import java.io.IOException;
@@ -211,18 +214,39 @@ public class ReceiveKeyActivity extends Activity {
 
         @Override
         protected Void doInBackground(Void... params) {
-          IdentityDatabase      identityDatabase = DatabaseFactory.getIdentityDatabase(ReceiveKeyActivity.this);
-          EncryptingSmsDatabase smsDatabase      = DatabaseFactory.getEncryptingSmsDatabase(ReceiveKeyActivity.this);
           Context               context          = ReceiveKeyActivity.this;
+          IdentityDatabase      identityDatabase = DatabaseFactory.getIdentityDatabase(context);
+          EncryptingSmsDatabase smsDatabase      = DatabaseFactory.getEncryptingSmsDatabase(context);
+          PushDatabase          pushDatabase     = DatabaseFactory.getPushDatabase(context);
 
           identityDatabase.saveIdentity(masterSecret, recipient.getRecipientId(), identityKey);
 
           if (message.isIdentityUpdate()) {
             smsDatabase.markAsProcessedKeyExchange(messageId);
           } else {
-            ApplicationContext.getInstance(context)
-                              .getJobManager()
-                              .add(new SmsDecryptJob(context, messageId));
+            if (getIntent().getBooleanExtra("is_push", false)) {
+              try {
+                byte[]             body     = Base64.decode(message.getMessageBody());
+                TextSecureEnvelope envelope = new TextSecureEnvelope(3, message.getSender(),
+                                                                     message.getSenderDeviceId(), "",
+                                                                     message.getSentTimestampMillis(),
+                                                                     body);
+
+                long pushId = pushDatabase.insert(envelope);
+
+                ApplicationContext.getInstance(context)
+                                  .getJobManager()
+                                  .add(new PushDecryptJob(context, pushId));
+
+                smsDatabase.deleteMessage(messageId);
+              } catch (IOException e) {
+                throw new AssertionError(e);
+              }
+            } else {
+              ApplicationContext.getInstance(context)
+                                .getJobManager()
+                                .add(new SmsDecryptJob(context, messageId));
+            }
           }
 
           return null;
