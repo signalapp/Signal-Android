@@ -4,6 +4,8 @@ import android.content.Context;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.Release;
+import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.dependencies.TextSecureCommunicationModule;
 import org.thoughtcrime.securesms.push.TextSecurePushTrustStore;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.JobParameters;
@@ -16,9 +18,15 @@ import org.whispersystems.textsecure.push.exceptions.PushNetworkException;
 
 import java.io.IOException;
 
-public class DeliveryReceiptJob extends ContextJob {
+import javax.inject.Inject;
+
+import static org.thoughtcrime.securesms.dependencies.TextSecureCommunicationModule.TextSecureMessageSenderFactory;
+
+public class DeliveryReceiptJob extends ContextJob implements InjectableType {
 
   private static final String TAG = DeliveryReceiptJob.class.getSimpleName();
+
+  @Inject transient TextSecureMessageSenderFactory messageSenderFactory;
 
   private final String destination;
   private final long   timestamp;
@@ -42,14 +50,9 @@ public class DeliveryReceiptJob extends ContextJob {
   @Override
   public void onRun() throws IOException {
     Log.w("DeliveryReceiptJob", "Sending delivery receipt...");
-    TextSecureMessageSender messageSender =
-        new TextSecureMessageSender(Release.PUSH_URL,
-                                    new TextSecurePushTrustStore(context),
-                                    TextSecurePreferences.getLocalNumber(context),
-                                    TextSecurePreferences.getPushServerPassword(context),
-                                    null, Optional.<TextSecureMessageSender.EventListener>absent());
+    TextSecureMessageSender messageSender = messageSenderFactory.create(null);
+    PushAddress             pushAddress   = new PushAddress(-1, destination, 1, relay);
 
-    PushAddress pushAddress = new PushAddress(-1, destination, 1, relay);
     messageSender.sendDeliveryReceipt(pushAddress, timestamp);
   }
 

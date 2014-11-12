@@ -25,6 +25,7 @@ import android.util.Log;
 
 import org.whispersystems.jobqueue.EncryptionKeys;
 import org.whispersystems.jobqueue.Job;
+import org.whispersystems.jobqueue.dependencies.DependencyInjector;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -42,12 +43,17 @@ public class PersistentStorage {
   private static final String DATABASE_CREATE = String.format("CREATE TABLE %s (%s INTEGER PRIMARY KEY, %s TEXT NOT NULL, %s INTEGER DEFAULT 0);",
                                                               TABLE_NAME, ID, ITEM, ENCRYPTED);
 
-  private final DatabaseHelper databaseHelper;
-  private final JobSerializer jobSerializer;
+  private final DatabaseHelper     databaseHelper;
+  private final JobSerializer      jobSerializer;
+  private final DependencyInjector dependencyInjector;
 
-  public PersistentStorage(Context context, String name, JobSerializer serializer) {
-    this.databaseHelper = new DatabaseHelper(context, "_jobqueue-" + name);
-    this.jobSerializer  = serializer;
+  public PersistentStorage(Context context, String name,
+                           JobSerializer serializer,
+                           DependencyInjector dependencyInjector)
+  {
+    this.databaseHelper     = new DatabaseHelper(context, "_jobqueue-" + name);
+    this.jobSerializer      = serializer;
+    this.dependencyInjector = dependencyInjector;
   }
 
   public void store(Job job) throws IOException {
@@ -58,10 +64,6 @@ public class PersistentStorage {
     long id = databaseHelper.getWritableDatabase().insert(TABLE_NAME, null, contentValues);
     job.setPersistentId(id);
   }
-
-//  public List<Job> getAll(EncryptionKeys keys) {
-//    return getJobs(keys, null);
-//  }
 
   public List<Job> getAllUnencrypted() {
     return getJobs(null, ENCRYPTED + " = 0");
@@ -88,6 +90,11 @@ public class PersistentStorage {
           Job job = jobSerializer.deserialize(keys, encrypted, item);
 
           job.setPersistentId(id);
+
+          if (dependencyInjector != null) {
+            dependencyInjector.injectDependencies(job);
+          }
+
           results.add(job);
         } catch (IOException e) {
           Log.w("PersistentStore", e);

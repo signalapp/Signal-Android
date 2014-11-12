@@ -1,7 +1,6 @@
 package org.whispersystems.textsecure.api;
 
 import org.whispersystems.libaxolotl.InvalidMessageException;
-import org.whispersystems.libaxolotl.state.AxolotlStore;
 import org.whispersystems.textsecure.api.crypto.AttachmentCipherInputStream;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachmentPointer;
 import org.whispersystems.textsecure.push.PushServiceSocket;
@@ -12,18 +11,12 @@ import java.io.InputStream;
 
 public class TextSecureMessageReceiver {
 
-  private final String            signalingKey;
-  private final AxolotlStore      axolotlStore;
   private final PushServiceSocket socket;
 
-  public TextSecureMessageReceiver(String signalingKey, String url,
-                                   PushServiceSocket.TrustStore trustStore,
-                                   String user, String password,
-                                   AxolotlStore axolotlStore)
+  public TextSecureMessageReceiver(String url, PushServiceSocket.TrustStore trustStore,
+                                   String user, String password)
   {
-    this.axolotlStore = axolotlStore;
-    this.signalingKey = signalingKey;
-    this.socket       = new PushServiceSocket(url, trustStore, user, password);
+    this.socket = new PushServiceSocket(url, trustStore, user, password);
   }
 
   public InputStream retrieveAttachment(TextSecureAttachmentPointer pointer, File destination)

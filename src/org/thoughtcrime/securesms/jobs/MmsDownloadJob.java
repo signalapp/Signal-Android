@@ -74,10 +74,9 @@ public class MmsDownloadJob extends MasterSecretJob {
   }
 
   @Override
-  public void onRun() throws RequirementNotMetException {
+  public void onRun(MasterSecret masterSecret)  {
     Log.w(TAG, "MmsDownloadJob:onRun()");
 
-    MasterSecret              masterSecret = getMasterSecret();
     MmsDatabase               database     = DatabaseFactory.getMmsDatabase(context);
     Optional<NotificationInd> notification = database.getNotification(messageId);
 
@@ -180,7 +179,7 @@ public class MmsDownloadJob extends MasterSecretJob {
   }
 
   @Override
-  public boolean onShouldRetry(Throwable throwable) {
+  public boolean onShouldRetryThrowable(Throwable throwable) {
     return false;
   }
 

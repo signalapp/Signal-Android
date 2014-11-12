@@ -8,9 +8,9 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
+import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.mms.PartParser;
-import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -19,10 +19,10 @@ import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.textsecure.api.TextSecureMessageSender;
+import org.whispersystems.textsecure.api.crypto.UntrustedIdentityException;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
 import org.whispersystems.textsecure.api.messages.TextSecureGroup;
 import org.whispersystems.textsecure.api.messages.TextSecureMessage;
-import org.whispersystems.textsecure.api.crypto.UntrustedIdentityException;
 import org.whispersystems.textsecure.push.PushAddress;
 import org.whispersystems.textsecure.push.PushMessageProtos;
 import org.whispersystems.textsecure.push.exceptions.EncapsulatedExceptions;
@@ -33,12 +33,18 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import ws.com.google.android.mms.MmsException;
 import ws.com.google.android.mms.pdu.SendReq;
 
-public class PushGroupSendJob extends PushSendJob {
+import static org.thoughtcrime.securesms.dependencies.TextSecureCommunicationModule.TextSecureMessageSenderFactory;
+
+public class PushGroupSendJob extends PushSendJob implements InjectableType {
 
   private static final String TAG = PushGroupSendJob.class.getSimpleName();
+
+  @Inject transient TextSecureMessageSenderFactory messageSenderFactory;
 
   private final long messageId;
 
@@ -60,10 +66,9 @@ public class PushGroupSendJob extends PushSendJob {
   }
 
   @Override
-  public void onRun() throws RequirementNotMetException, MmsException, IOException, NoSuchMessageException {
-    MasterSecret masterSecret = getMasterSecret();
-    MmsDatabase  database     = DatabaseFactory.getMmsDatabase(context);
-    SendReq      message      = database.getOutgoingMessage(masterSecret, messageId);
+  public void onRun(MasterSecret masterSecret) throws MmsException, IOException, NoSuchMessageException {
+    MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
+    SendReq     message  = database.getOutgoingMessage(masterSecret, messageId);
 
     try {
       deliver(masterSecret, message);
@@ -92,21 +97,20 @@ public class PushGroupSendJob extends PushSendJob {
   }
 
   @Override
-  public void onCanceled() {
-    DatabaseFactory.getMmsDatabase(context).markAsSentFailed(messageId);
+  public boolean onShouldRetryThrowable(Throwable throwable) {
+    if (throwable instanceof IOException) return true;
+    return false;
   }
 
   @Override
-  public boolean onShouldRetry(Throwable throwable) {
-    if (throwable instanceof RequirementNotMetException) return true;
-    if (throwable instanceof IOException)                return true;
-    return false;
+  public void onCanceled() {
+    DatabaseFactory.getMmsDatabase(context).markAsSentFailed(messageId);
   }
 
   private void deliver(MasterSecret masterSecret, SendReq message)
       throws IOException, RecipientFormattingException, InvalidNumberException, EncapsulatedExceptions
   {
-    TextSecureMessageSender    messageSender = TextSecureCommunicationFactory.createSender(context, masterSecret);
+    TextSecureMessageSender    messageSender = messageSenderFactory.create(masterSecret);
     byte[]                     groupId       = GroupUtil.getDecodedId(message.getTo()[0].getString());
     Recipients                 recipients    = DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupId, false);
     List<PushAddress>          addresses     = getPushAddresses(recipients);

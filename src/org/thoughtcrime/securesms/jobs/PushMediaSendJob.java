@@ -9,8 +9,8 @@ import org.thoughtcrime.securesms.crypto.storage.TextSecureAxolotlStore;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
+import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.mms.PartParser;
-import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
@@ -21,9 +21,9 @@ import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.SecureFallbackApprovalException;
 import org.whispersystems.libaxolotl.state.AxolotlStore;
 import org.whispersystems.textsecure.api.TextSecureMessageSender;
+import org.whispersystems.textsecure.api.crypto.UntrustedIdentityException;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
 import org.whispersystems.textsecure.api.messages.TextSecureMessage;
-import org.whispersystems.textsecure.api.crypto.UntrustedIdentityException;
 import org.whispersystems.textsecure.push.PushAddress;
 import org.whispersystems.textsecure.push.UnregisteredUserException;
 import org.whispersystems.textsecure.storage.RecipientDevice;
@@ -32,12 +32,18 @@ import org.whispersystems.textsecure.util.InvalidNumberException;
 import java.io.IOException;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import ws.com.google.android.mms.MmsException;
 import ws.com.google.android.mms.pdu.SendReq;
 
-public class PushMediaSendJob extends PushSendJob {
+import static org.thoughtcrime.securesms.dependencies.TextSecureCommunicationModule.TextSecureMessageSenderFactory;
+
+public class PushMediaSendJob extends PushSendJob implements InjectableType {
 
   private static final String TAG = PushMediaSendJob.class.getSimpleName();
+
+  @Inject transient TextSecureMessageSenderFactory messageSenderFactory;
 
   private final long messageId;
 
@@ -52,12 +58,11 @@ public class PushMediaSendJob extends PushSendJob {
   }
 
   @Override
-  public void onRun()
-      throws RequirementNotMetException, RetryLaterException, MmsException, NoSuchMessageException
+  public void onRun(MasterSecret masterSecret)
+      throws RetryLaterException, MmsException, NoSuchMessageException
   {
-    MasterSecret masterSecret = getMasterSecret();
-    MmsDatabase  database     = DatabaseFactory.getMmsDatabase(context);
-    SendReq      message      = database.getOutgoingMessage(masterSecret, messageId);
+    MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
+    SendReq     message  = database.getOutgoingMessage(masterSecret, messageId);
 
     try {
       deliver(masterSecret, message);
@@ -81,24 +86,24 @@ public class PushMediaSendJob extends PushSendJob {
   }
 
   @Override
+  public boolean onShouldRetryThrowable(Throwable throwable) {
+    if (throwable instanceof RequirementNotMetException) return true;
+    return false;
+  }
+
+  @Override
   public void onCanceled() {
     DatabaseFactory.getMmsDatabase(context).markAsSentFailed(messageId);
     notifyMediaMessageDeliveryFailed(context, messageId);
   }
 
-  @Override
-  public boolean onShouldRetry(Throwable throwable) {
-    if (throwable instanceof RetryLaterException)        return true;
-    if (throwable instanceof RequirementNotMetException) return true;
-    return false;
-  }
 
   private void deliver(MasterSecret masterSecret, SendReq message)
       throws RetryLaterException, SecureFallbackApprovalException,
              InsecureFallbackApprovalException, UntrustedIdentityException
   {
     MmsDatabase             database               = DatabaseFactory.getMmsDatabase(context);
-    TextSecureMessageSender messageSender          = TextSecureCommunicationFactory.createSender(context, masterSecret);
+    TextSecureMessageSender messageSender          = messageSenderFactory.create(masterSecret);
     String                  destination            = message.getTo()[0].getString();
     boolean                 isSmsFallbackSupported = isSmsFallbackSupported(context, destination);
 

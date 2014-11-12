@@ -10,8 +10,8 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
+import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
-import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.IncomingIdentityUpdateMessage;
@@ -20,8 +20,8 @@ import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.SecureFallbackApprovalException;
 import org.whispersystems.libaxolotl.state.AxolotlStore;
 import org.whispersystems.textsecure.api.TextSecureMessageSender;
-import org.whispersystems.textsecure.api.messages.TextSecureMessage;
 import org.whispersystems.textsecure.api.crypto.UntrustedIdentityException;
+import org.whispersystems.textsecure.api.messages.TextSecureMessage;
 import org.whispersystems.textsecure.push.PushAddress;
 import org.whispersystems.textsecure.push.UnregisteredUserException;
 import org.whispersystems.textsecure.storage.RecipientDevice;
@@ -29,9 +29,15 @@ import org.whispersystems.textsecure.util.InvalidNumberException;
 
 import java.io.IOException;
 
-public class PushTextSendJob extends PushSendJob {
+import javax.inject.Inject;
+
+import static org.thoughtcrime.securesms.dependencies.TextSecureCommunicationModule.TextSecureMessageSenderFactory;
+
+public class PushTextSendJob extends PushSendJob implements InjectableType {
 
   private static final String TAG = PushTextSendJob.class.getSimpleName();
+
+  @Inject transient TextSecureMessageSenderFactory messageSenderFactory;
 
   private final long messageId;
 
@@ -46,9 +52,7 @@ public class PushTextSendJob extends PushSendJob {
   }
 
   @Override
-  public void onRun() throws RequirementNotMetException, NoSuchMessageException, RetryLaterException
-  {
-    MasterSecret          masterSecret = getMasterSecret();
+  public void onRun(MasterSecret masterSecret) throws NoSuchMessageException, RetryLaterException {
     EncryptingSmsDatabase database     = DatabaseFactory.getEncryptingSmsDatabase(context);
     SmsMessageRecord      record       = database.getMessage(masterSecret, messageId);
     String                destination  = record.getIndividualRecipient().getNumber();
@@ -77,7 +81,24 @@ public class PushTextSendJob extends PushSendJob {
     }
   }
 
-  public void deliver(MasterSecret masterSecret, SmsMessageRecord message, String destination)
+  @Override
+  public boolean onShouldRetryThrowable(Throwable throwable) {
+    if (throwable instanceof RetryLaterException) return true;
+
+    return false;
+  }
+
+  @Override
+  public void onCanceled() {
+    DatabaseFactory.getSmsDatabase(context).markAsSentFailed(messageId);
+
+    long       threadId   = DatabaseFactory.getSmsDatabase(context).getThreadIdForMessage(messageId);
+    Recipients recipients = DatabaseFactory.getThreadDatabase(context).getRecipientsForThreadId(threadId);
+
+    MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId);
+  }
+
+  private void deliver(MasterSecret masterSecret, SmsMessageRecord message, String destination)
       throws UntrustedIdentityException, SecureFallbackApprovalException,
              InsecureFallbackApprovalException, RetryLaterException
   {
@@ -85,7 +106,7 @@ public class PushTextSendJob extends PushSendJob {
 
     try {
       PushAddress             address       = getPushAddress(message.getIndividualRecipient());
-      TextSecureMessageSender messageSender = TextSecureCommunicationFactory.createSender(context, masterSecret);
+      TextSecureMessageSender messageSender = messageSenderFactory.create(masterSecret);
 
       if (message.isEndSession()) {
         messageSender.sendMessage(address, new TextSecureMessage(message.getDateSent(), null,
@@ -103,24 +124,6 @@ public class PushTextSendJob extends PushSendJob {
       if (isSmsFallbackSupported) fallbackOrAskApproval(masterSecret, message, destination);
       else                        throw new RetryLaterException(e);
     }
-  }
-
-  @Override
-  public boolean onShouldRetry(Throwable throwable) {
-    if (throwable instanceof RequirementNotMetException) return true;
-    if (throwable instanceof RetryLaterException)        return true;
-
-    return false;
-  }
-
-  @Override
-  public void onCanceled() {
-    DatabaseFactory.getSmsDatabase(context).markAsSentFailed(messageId);
-
-    long       threadId   = DatabaseFactory.getSmsDatabase(context).getThreadIdForMessage(messageId);
-    Recipients recipients = DatabaseFactory.getThreadDatabase(context).getRecipientsForThreadId(threadId);
-
-    MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId);
   }
 
   private void fallbackOrAskApproval(MasterSecret masterSecret, SmsMessageRecord smsMessage, String destination)

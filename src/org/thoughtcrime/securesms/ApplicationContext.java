@@ -20,16 +20,22 @@ import android.app.Application;
 import android.content.Context;
 
 import org.thoughtcrime.securesms.crypto.PRNGFixes;
+import org.thoughtcrime.securesms.dependencies.AxolotlStorageModule;
+import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobs.persistence.EncryptingJobSerializer;
 import org.thoughtcrime.securesms.jobs.GcmRefreshJob;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirementProvider;
+import org.thoughtcrime.securesms.dependencies.TextSecureCommunicationModule;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.JobManager;
+import org.whispersystems.jobqueue.dependencies.DependencyInjector;
 import org.whispersystems.jobqueue.requirements.NetworkRequirementProvider;
 import org.whispersystems.jobqueue.requirements.RequirementProvider;
 
 import java.util.LinkedList;
 import java.util.List;
+
+import dagger.ObjectGraph;
 
 /**
  * Will be called once when the TextSecure process is created.
@@ -39,9 +45,10 @@ import java.util.List;
  *
  * @author Moxie Marlinspike
  */
-public class ApplicationContext extends Application {
+public class ApplicationContext extends Application implements DependencyInjector {
 
   private JobManager jobManager;
+  private ObjectGraph objectGraph;
 
   public static ApplicationContext getInstance(Context context) {
     return (ApplicationContext)context.getApplicationContext();
@@ -50,13 +57,22 @@ public class ApplicationContext extends Application {
   @Override
   public void onCreate() {
     initializeRandomNumberFix();
+    initializeDependencyInjection();
     initializeJobManager();
     initializeGcmCheck();
+  }
+
+  @Override
+  public void injectDependencies(Object object) {
+    if (object instanceof InjectableType) {
+      objectGraph.inject(object);
+    }
   }
 
   public JobManager getJobManager() {
     return jobManager;
   }
+
 
   private void initializeRandomNumberFix() {
     PRNGFixes.apply();
@@ -68,8 +84,13 @@ public class ApplicationContext extends Application {
       add(new MasterSecretRequirementProvider(ApplicationContext.this));
     }};
 
-    this.jobManager = new JobManager(this, "TextSecureJobs", providers,
+    this.jobManager = new JobManager(this, "TextSecureJobs", providers, this,
                                      new EncryptingJobSerializer(this), 5);
+  }
+
+  private void initializeDependencyInjection() {
+    this.objectGraph = ObjectGraph.create(new TextSecureCommunicationModule(this),
+                                          new AxolotlStorageModule(this));
   }
 
   private void initializeGcmCheck() {

@@ -19,6 +19,7 @@ package org.whispersystems.jobqueue;
 import android.content.Context;
 import android.util.Log;
 
+import org.whispersystems.jobqueue.dependencies.DependencyInjector;
 import org.whispersystems.jobqueue.persistence.JobSerializer;
 import org.whispersystems.jobqueue.persistence.PersistentStorage;
 import org.whispersystems.jobqueue.requirements.RequirementListener;
@@ -38,13 +39,16 @@ public class JobManager implements RequirementListener {
 
   private final PersistentStorage         persistentStorage;
   private final List<RequirementProvider> requirementProviders;
+  private final DependencyInjector        dependencyInjector;
 
   public JobManager(Context context, String name,
                     List<RequirementProvider> requirementProviders,
+                    DependencyInjector dependencyInjector,
                     JobSerializer jobSerializer, int consumers)
   {
-    this.persistentStorage    = new PersistentStorage(context, name, jobSerializer);
+    this.persistentStorage    = new PersistentStorage(context, name, jobSerializer, dependencyInjector);
     this.requirementProviders = requirementProviders;
+    this.dependencyInjector   = dependencyInjector;
 
     eventExecutor.execute(new LoadTask(null));
 
@@ -82,6 +86,10 @@ public class JobManager implements RequirementListener {
         try {
           if (job.isPersistent()) {
             persistentStorage.store(job);
+          }
+
+          if (dependencyInjector != null) {
+            dependencyInjector.injectDependencies(job);
           }
 
           job.onAdded();

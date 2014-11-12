@@ -3,9 +3,11 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.PreKeyUtil;
+import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -22,11 +24,15 @@ import org.whispersystems.textsecure.push.exceptions.PushNetworkException;
 import java.io.IOException;
 import java.util.List;
 
-public class RefreshPreKeysJob extends MasterSecretJob {
+import javax.inject.Inject;
+
+public class RefreshPreKeysJob extends MasterSecretJob implements InjectableType {
 
   private static final String TAG = RefreshPreKeysJob.class.getSimpleName();
 
   private static final int PREKEY_MINIMUM = 10;
+
+  @Inject transient TextSecureAccountManager accountManager;
 
   public RefreshPreKeysJob(Context context) {
     super(context, JobParameters.newBuilder()
@@ -43,12 +49,10 @@ public class RefreshPreKeysJob extends MasterSecretJob {
   }
 
   @Override
-  public void onRun() throws RequirementNotMetException, IOException {
+  public void onRun(MasterSecret masterSecret) throws IOException {
     if (!TextSecurePreferences.isPushRegistered(context)) return;
 
-    MasterSecret             masterSecret   = getMasterSecret();
-    TextSecureAccountManager accountManager = TextSecureCommunicationFactory.createManager(context);
-    int                      availableKeys  = accountManager.getPreKeysCount();
+    int availableKeys = accountManager.getPreKeysCount();
 
     if (availableKeys >= PREKEY_MINIMUM && TextSecurePreferences.isSignedPreKeyRegistered(context)) {
       Log.w(TAG, "Available keys sufficient: " + availableKeys);
@@ -65,12 +69,14 @@ public class RefreshPreKeysJob extends MasterSecretJob {
     accountManager.setPreKeys(identityKey.getPublicKey(), lastResortKeyRecord, signedPreKeyRecord, preKeyRecords);
 
     TextSecurePreferences.setSignedPreKeyRegistered(context, true);
-//      PreKeyService.initiateClean(context, masterSecret);
+
+    ApplicationContext.getInstance(context)
+                      .getJobManager()
+                      .add(new CleanPreKeysJob(context));
   }
 
   @Override
-  public boolean onShouldRetry(Throwable throwable) {
-    if (throwable instanceof RequirementNotMetException)         return true;
+  public boolean onShouldRetryThrowable(Throwable throwable) {
     if (throwable instanceof NonSuccessfulResponseCodeException) return false;
     if (throwable instanceof PushNetworkException)               return true;
 

@@ -53,10 +53,9 @@ public class SmsSendJob extends MasterSecretJob {
   }
 
   @Override
-  public void onRun() throws RequirementNotMetException, NoSuchMessageException {
-    MasterSecret          masterSecret = getMasterSecret();
-    EncryptingSmsDatabase database     = DatabaseFactory.getEncryptingSmsDatabase(context);
-    SmsMessageRecord      record       = database.getMessage(masterSecret, messageId);
+  public void onRun(MasterSecret masterSecret) throws NoSuchMessageException {
+    EncryptingSmsDatabase database = DatabaseFactory.getEncryptingSmsDatabase(context);
+    SmsMessageRecord      record   = database.getMessage(masterSecret, messageId);
 
     try {
       Log.w(TAG, "Sending message: " + messageId);
@@ -74,6 +73,11 @@ public class SmsSendJob extends MasterSecretJob {
   }
 
   @Override
+  public boolean onShouldRetryThrowable(Throwable throwable) {
+    return false;
+  }
+
+  @Override
   public void onCanceled() {
     Log.w(TAG, "onCanceled()");
     long       threadId   = DatabaseFactory.getSmsDatabase(context).getThreadIdForMessage(messageId);
@@ -81,12 +85,6 @@ public class SmsSendJob extends MasterSecretJob {
 
     DatabaseFactory.getSmsDatabase(context).markAsSentFailed(messageId);
     MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId);
-  }
-
-  @Override
-  public boolean onShouldRetry(Throwable throwable) {
-    if (throwable instanceof RequirementNotMetException) return true;
-    return false;
   }
 
   private void deliver(MasterSecret masterSecret, SmsMessageRecord record)

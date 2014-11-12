@@ -9,8 +9,8 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingPartDatabase;
 import org.thoughtcrime.securesms.database.PartDatabase;
+import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
-import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
@@ -26,12 +26,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import ws.com.google.android.mms.MmsException;
 import ws.com.google.android.mms.pdu.PduPart;
 
-public class AttachmentDownloadJob extends MasterSecretJob {
+public class AttachmentDownloadJob extends MasterSecretJob implements InjectableType {
 
   private static final String TAG = AttachmentDownloadJob.class.getSimpleName();
+
+  @Inject transient TextSecureMessageReceiver messageReceiver;
 
   private final long messageId;
 
@@ -49,9 +53,8 @@ public class AttachmentDownloadJob extends MasterSecretJob {
   public void onAdded() {}
 
   @Override
-  public void onRun() throws RequirementNotMetException, IOException {
-    MasterSecret masterSecret = getMasterSecret();
-    PartDatabase database     = DatabaseFactory.getEncryptingPartDatabase(context, masterSecret);
+  public void onRun(MasterSecret masterSecret) throws IOException {
+    PartDatabase database = DatabaseFactory.getEncryptingPartDatabase(context, masterSecret);
 
     Log.w(TAG, "Downloading push parts for: " + messageId);
 
@@ -65,23 +68,17 @@ public class AttachmentDownloadJob extends MasterSecretJob {
 
   @Override
   public void onCanceled() {
-    try {
-      MasterSecret              masterSecret = getMasterSecret();
-      PartDatabase              database     = DatabaseFactory.getEncryptingPartDatabase(context, masterSecret);
-      List<Pair<Long, PduPart>> parts        = database.getParts(messageId, false);
+    PartDatabase              database = DatabaseFactory.getPartDatabase(context);
+    List<Pair<Long, PduPart>> parts    = database.getParts(messageId, false);
 
-      for (Pair<Long, PduPart> partPair : parts) {
-        markFailed(masterSecret, messageId, partPair.second, partPair.first);
-      }
-    } catch (RequirementNotMetException e) {
-      Log.w(TAG, e);
+    for (Pair<Long, PduPart> partPair : parts) {
+      markFailed(messageId, partPair.second, partPair.first);
     }
   }
 
   @Override
-  public boolean onShouldRetry(Throwable throwable) {
-    if (throwable instanceof PushNetworkException)       return true;
-    if (throwable instanceof RequirementNotMetException) return true;
+  public boolean onShouldRetryThrowable(Throwable throwable) {
+    if (throwable instanceof PushNetworkException) return true;
 
     return false;
   }
@@ -89,7 +86,6 @@ public class AttachmentDownloadJob extends MasterSecretJob {
   private void retrievePart(MasterSecret masterSecret, PduPart part, long messageId, long partId)
       throws IOException
   {
-    TextSecureMessageReceiver receiver       = TextSecureCommunicationFactory.createReceiver(context, masterSecret);
     EncryptingPartDatabase    database       = DatabaseFactory.getEncryptingPartDatabase(context, masterSecret);
     File                      attachmentFile = null;
 
@@ -97,12 +93,12 @@ public class AttachmentDownloadJob extends MasterSecretJob {
       attachmentFile = createTempFile();
 
       TextSecureAttachmentPointer pointer    = createAttachmentPointer(masterSecret, part);
-      InputStream                 attachment = receiver.retrieveAttachment(pointer, attachmentFile);
+      InputStream                 attachment = messageReceiver.retrieveAttachment(pointer, attachmentFile);
 
       database.updateDownloadedPart(messageId, partId, part, attachment);
     } catch (InvalidPartException | NonSuccessfulResponseCodeException | InvalidMessageException | MmsException e) {
       Log.w(TAG, e);
-      markFailed(masterSecret, messageId, part, partId);
+      markFailed(messageId, part, partId);
     } finally {
       if (attachmentFile != null)
         attachmentFile.delete();
@@ -140,9 +136,9 @@ public class AttachmentDownloadJob extends MasterSecretJob {
     }
   }
 
-  private void markFailed(MasterSecret masterSecret, long messageId, PduPart part, long partId) {
+  private void markFailed(long messageId, PduPart part, long partId) {
     try {
-      EncryptingPartDatabase database = DatabaseFactory.getEncryptingPartDatabase(context, masterSecret);
+      PartDatabase database = DatabaseFactory.getPartDatabase(context);
       database.updateFailedDownloadedPart(messageId, partId, part);
     } catch (MmsException e) {
       Log.w(TAG, e);

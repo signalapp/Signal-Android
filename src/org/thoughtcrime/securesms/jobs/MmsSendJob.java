@@ -60,10 +60,9 @@ public class MmsSendJob extends MasterSecretJob {
   }
 
   @Override
-  public void onRun() throws RequirementNotMetException, MmsException, NoSuchMessageException {
-    MasterSecret masterSecret = getMasterSecret();
-    MmsDatabase  database     = DatabaseFactory.getMmsDatabase(context);
-    SendReq      message      = database.getOutgoingMessage(masterSecret, messageId);
+  public void onRun(MasterSecret masterSecret) throws MmsException, NoSuchMessageException {
+    MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
+    SendReq     message  = database.getOutgoingMessage(masterSecret, messageId);
 
     try {
       MmsSendResult result = deliver(masterSecret, message);
@@ -85,8 +84,7 @@ public class MmsSendJob extends MasterSecretJob {
   }
 
   @Override
-  public boolean onShouldRetry(Throwable throwable) {
-    if (throwable instanceof RequirementNotMetException) return true;
+  public boolean onShouldRetryThrowable(Throwable throwable) {
     return false;
   }
 

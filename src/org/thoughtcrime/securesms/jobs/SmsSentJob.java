@@ -44,9 +44,8 @@ public class SmsSentJob extends MasterSecretJob {
   }
 
   @Override
-  public void onRun() throws RequirementNotMetException {
+  public void onRun(MasterSecret masterSecret) {
     Log.w(TAG, "Got SMS callback: " + action + " , " + result);
-    MasterSecret masterSecret = getMasterSecret();
 
     switch (action) {
       case SmsDeliveryListener.SENT_SMS_ACTION:
@@ -59,8 +58,7 @@ public class SmsSentJob extends MasterSecretJob {
   }
 
   @Override
-  public boolean onShouldRetry(Throwable throwable) {
-    if (throwable instanceof RequirementNotMetException) return true;
+  public boolean onShouldRetryThrowable(Throwable throwable) {
     return false;
   }
 

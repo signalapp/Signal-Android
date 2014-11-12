@@ -62,9 +62,8 @@ public class SmsDecryptJob extends MasterSecretJob {
   }
 
   @Override
-  public void onRun() throws RequirementNotMetException, NoSuchMessageException {
-    MasterSecret          masterSecret = getMasterSecret();
-    EncryptingSmsDatabase database     = DatabaseFactory.getEncryptingSmsDatabase(context);
+  public void onRun(MasterSecret masterSecret) throws NoSuchMessageException {
+    EncryptingSmsDatabase database = DatabaseFactory.getEncryptingSmsDatabase(context);
 
     try {
       SmsMessageRecord    record    = database.getMessage(masterSecret, messageId);
@@ -92,6 +91,11 @@ public class SmsDecryptJob extends MasterSecretJob {
       Log.w(TAG, e);
       database.markAsNoSession(messageId);
     }
+  }
+
+  @Override
+  public boolean onShouldRetryThrowable(Throwable throwable) {
+    return false;
   }
 
   @Override
@@ -164,12 +168,6 @@ public class SmsDecryptJob extends MasterSecretJob {
         Log.w(TAG, e);
       }
     }
-  }
-
-  @Override
-  public boolean onShouldRetry(Throwable throwable) {
-    if (throwable instanceof RequirementNotMetException) return true;
-    return false;
   }
 
   private String getAsymmetricDecryptedBody(MasterSecret masterSecret, String body)

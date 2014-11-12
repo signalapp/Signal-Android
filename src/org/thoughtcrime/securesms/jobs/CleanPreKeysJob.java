@@ -4,10 +4,8 @@ import android.content.Context;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.crypto.storage.TextSecureAxolotlStore;
+import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
-import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
-import org.thoughtcrime.securesms.util.VisibleForTesting;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.libaxolotl.InvalidKeyIdException;
 import org.whispersystems.libaxolotl.state.SignedPreKeyRecord;
@@ -20,16 +18,22 @@ import org.whispersystems.textsecure.push.exceptions.PushNetworkException;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class CleanPreKeysJob extends MasterSecretJob {
+import javax.inject.Inject;
+
+import static org.thoughtcrime.securesms.dependencies.AxolotlStorageModule.SignedPreKeyStoreFactory;
+
+public class CleanPreKeysJob extends MasterSecretJob implements InjectableType {
 
   private static final String TAG = CleanPreKeysJob.class.getSimpleName();
 
   private static final int ARCHIVE_AGE_DAYS = 15;
+
+  @Inject transient TextSecureAccountManager accountManager;
+  @Inject transient SignedPreKeyStoreFactory signedPreKeyStoreFactory;
 
   public CleanPreKeysJob(Context context) {
     super(context, JobParameters.newBuilder()
@@ -45,40 +49,33 @@ public class CleanPreKeysJob extends MasterSecretJob {
   }
 
   @Override
-  public void onRun() throws RequirementNotMetException, IOException {
+  public void onRun(MasterSecret masterSecret) throws IOException {
     try {
-      MasterSecret             masterSecret      = getMasterSecret();
-      SignedPreKeyStore        signedPreKeyStore = createSignedPreKeyStore(context, masterSecret);
-      TextSecureAccountManager accountManager    = createAccountManager(context);
-
+      SignedPreKeyStore  signedPreKeyStore   = signedPreKeyStoreFactory.create(masterSecret);
       SignedPreKeyEntity currentSignedPreKey = accountManager.getSignedPreKey();
 
       if (currentSignedPreKey == null) return;
 
-      SignedPreKeyRecord       currentRecord = signedPreKeyStore.loadSignedPreKey(currentSignedPreKey.getKeyId());
-      List<SignedPreKeyRecord> allRecords    = signedPreKeyStore.loadSignedPreKeys();
-      List<SignedPreKeyRecord> oldRecords    = removeRecordFrom(currentRecord, allRecords);
+      SignedPreKeyRecord             currentRecord = signedPreKeyStore.loadSignedPreKey(currentSignedPreKey.getKeyId());
+      List<SignedPreKeyRecord>       allRecords    = signedPreKeyStore.loadSignedPreKeys();
+      LinkedList<SignedPreKeyRecord> oldRecords    = removeRecordFrom(currentRecord, allRecords);
 
       Collections.sort(oldRecords, new SignedPreKeySorter());
 
       Log.w(TAG, "Old signed prekey record count: " + oldRecords.size());
 
-      if (oldRecords.size() < 2) {
-        return;
-      }
+      boolean foundAgedRecord = false;
 
-      SignedPreKeyRecord latestRecord                = oldRecords.get(0);
-      long               latestRecordArchiveDuration = System.currentTimeMillis() - latestRecord.getTimestamp();
+      for (SignedPreKeyRecord oldRecord : oldRecords) {
+        long archiveDuration = System.currentTimeMillis() - oldRecord.getTimestamp();
 
-      if (latestRecordArchiveDuration >= TimeUnit.DAYS.toMillis(ARCHIVE_AGE_DAYS)) {
-        Iterator<SignedPreKeyRecord> iterator = oldRecords.iterator();
-        iterator.next();
-
-        while (iterator.hasNext()) {
-          SignedPreKeyRecord expiredRecord = iterator.next();
-          Log.w(TAG, "Removing signed prekey record: " + expiredRecord.getId() + " with timestamp: " + expiredRecord.getTimestamp());
-
-          signedPreKeyStore.removeSignedPreKey(expiredRecord.getId());
+        if (archiveDuration >= TimeUnit.DAYS.toMillis(ARCHIVE_AGE_DAYS)) {
+          if (!foundAgedRecord) {
+            foundAgedRecord = true;
+          } else {
+            Log.w(TAG, "Removing signed prekey record: " + oldRecord.getId() + " with timestamp: " + oldRecord.getTimestamp());
+            signedPreKeyStore.removeSignedPreKey(oldRecord.getId());
+          }
         }
       }
     } catch (InvalidKeyIdException e) {
@@ -87,8 +84,7 @@ public class CleanPreKeysJob extends MasterSecretJob {
   }
 
   @Override
-  public boolean onShouldRetry(Throwable throwable) {
-    if (throwable instanceof RequirementNotMetException)         return true;
+  public boolean onShouldRetryThrowable(Throwable throwable) {
     if (throwable instanceof NonSuccessfulResponseCodeException) return false;
     if (throwable instanceof PushNetworkException)               return true;
     return false;
@@ -99,11 +95,11 @@ public class CleanPreKeysJob extends MasterSecretJob {
     Log.w(TAG, "Failed to execute clean signed prekeys task.");
   }
 
-  private List<SignedPreKeyRecord> removeRecordFrom(SignedPreKeyRecord currentRecord,
-                                                    List<SignedPreKeyRecord> records)
+  private LinkedList<SignedPreKeyRecord> removeRecordFrom(SignedPreKeyRecord currentRecord,
+                                                          List<SignedPreKeyRecord> records)
 
   {
-    List<SignedPreKeyRecord> others = new LinkedList<>();
+    LinkedList<SignedPreKeyRecord> others = new LinkedList<>();
 
     for (SignedPreKeyRecord record : records) {
       if (record.getId() != currentRecord.getId()) {
@@ -114,20 +110,11 @@ public class CleanPreKeysJob extends MasterSecretJob {
     return others;
   }
 
-  @VisibleForTesting
-  protected TextSecureAccountManager createAccountManager(Context context) {
-    return TextSecureCommunicationFactory.createManager(context);
-  }
-
-  protected SignedPreKeyStore createSignedPreKeyStore(Context context, MasterSecret masterSecret) {
-    return new TextSecureAxolotlStore(context, masterSecret);
-  }
-
   private static class SignedPreKeySorter implements Comparator<SignedPreKeyRecord> {
     @Override
     public int compare(SignedPreKeyRecord lhs, SignedPreKeyRecord rhs) {
-      if      (lhs.getTimestamp() < rhs.getTimestamp()) return -1;
-      else if (lhs.getTimestamp() > rhs.getTimestamp()) return 1;
+      if      (lhs.getTimestamp() > rhs.getTimestamp()) return -1;
+      else if (lhs.getTimestamp() < rhs.getTimestamp()) return 1;
       else                                              return 0;
     }
   }

@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.Release;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
@@ -47,7 +48,7 @@ public class AvatarDownloadJob extends MasterSecretJob {
   public void onAdded() {}
 
   @Override
-  public void onRun() throws IOException {
+  public void onRun(MasterSecret masterSecret) throws IOException {
     GroupDatabase             database   = DatabaseFactory.getGroupDatabase(context);
     GroupDatabase.GroupRecord record     = database.getGroup(groupId);
     File                      attachment = null;
@@ -90,7 +91,7 @@ public class AvatarDownloadJob extends MasterSecretJob {
   public void onCanceled() {}
 
   @Override
-  public boolean onShouldRetry(Throwable throwable) {
+  public boolean onShouldRetryThrowable(Throwable throwable) {
     if (throwable instanceof IOException) return true;
     return false;
   }

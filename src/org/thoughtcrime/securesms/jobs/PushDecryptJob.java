@@ -69,24 +69,22 @@ public class PushDecryptJob extends MasterSecretJob {
   }
 
   @Override
-  public void onRun() throws RequirementNotMetException, NoSuchMessageException {
-    MasterSecret       masterSecret = getMasterSecret();
-    PushDatabase       database     = DatabaseFactory.getPushDatabase(context);
-    TextSecureEnvelope envelope     = database.get(messageId);
+  public void onRun(MasterSecret masterSecret) throws NoSuchMessageException {
+    PushDatabase       database = DatabaseFactory.getPushDatabase(context);
+    TextSecureEnvelope envelope = database.get(messageId);
 
     handleMessage(masterSecret, envelope);
     database.delete(messageId);
   }
 
   @Override
-  public void onCanceled() {
-
+  public boolean onShouldRetryThrowable(Throwable throwable) {
+    return false;
   }
 
   @Override
-  public boolean onShouldRetry(Throwable throwable) {
-    if (throwable instanceof RequirementNotMetException) return true;
-    return false;
+  public void onCanceled() {
+
   }
 
   private void handleMessage(MasterSecret masterSecret, TextSecureEnvelope envelope) {
