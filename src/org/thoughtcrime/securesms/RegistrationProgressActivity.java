@@ -515,7 +515,7 @@ public class RegistrationProgressActivity extends ActionBarActivity {
         @Override
         protected Integer doInBackground(Void... params) {
           try {
-            TextSecureAccountManager accountManager = TextSecureCommunicationFactory.createManager(context);
+            TextSecureAccountManager accountManager = TextSecureCommunicationFactory.createManager(context, e164number, password);
             int registrationId = TextSecurePreferences.getLocalRegistrationId(context);
 
             accountManager.verifyAccount(code, signalingKey, true, registrationId);
@@ -608,7 +608,7 @@ public class RegistrationProgressActivity extends ActionBarActivity {
         @Override
         protected Integer doInBackground(Void... params) {
           try {
-            TextSecureAccountManager accountManager = TextSecureCommunicationFactory.createManager(context);
+            TextSecureAccountManager accountManager = TextSecureCommunicationFactory.createManager(context, e164number, password);
             accountManager.requestVoiceVerificationCode();
 
             return SUCCESS;
