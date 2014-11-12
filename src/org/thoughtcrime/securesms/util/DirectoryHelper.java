@@ -11,7 +11,6 @@ import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.whispersystems.textsecure.api.TextSecureAccountManager;
 import org.whispersystems.textsecure.push.ContactTokenDetails;
-import org.whispersystems.textsecure.util.DirectoryUtil;
 import org.whispersystems.textsecure.util.InvalidNumberException;
 
 import java.util.List;
