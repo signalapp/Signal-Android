@@ -11,7 +11,7 @@ import org.whispersystems.libaxolotl.state.SignedPreKeyRecord;
 import org.whispersystems.libaxolotl.state.SignedPreKeyStore;
 import org.whispersystems.libaxolotl.state.PreKeyRecord;
 import org.whispersystems.libaxolotl.state.PreKeyStore;
-import org.whispersystems.textsecure.util.Conversions;
+import org.thoughtcrime.securesms.util.Conversions;
 
 import java.io.File;
 import java.io.FileInputStream;

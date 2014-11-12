@@ -22,7 +22,7 @@ import android.util.Log;
 import org.whispersystems.libaxolotl.InvalidKeyException;
 import org.whispersystems.libaxolotl.ecc.Curve;
 import org.whispersystems.libaxolotl.ecc.ECPublicKey;
-import org.whispersystems.textsecure.util.Conversions;
+import org.thoughtcrime.securesms.util.Conversions;
 import org.whispersystems.textsecure.util.Hex;
 import org.whispersystems.textsecure.util.Util;
 

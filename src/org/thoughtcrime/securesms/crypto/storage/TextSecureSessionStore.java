@@ -10,7 +10,7 @@ import org.whispersystems.libaxolotl.state.SessionRecord;
 import org.whispersystems.libaxolotl.state.SessionState;
 import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.textsecure.push.PushAddress;
-import org.whispersystems.textsecure.util.Conversions;
+import org.thoughtcrime.securesms.util.Conversions;
 
 import java.io.File;
 import java.io.FileInputStream;

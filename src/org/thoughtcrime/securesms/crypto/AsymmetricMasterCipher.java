@@ -24,7 +24,7 @@ import org.whispersystems.libaxolotl.ecc.ECKeyPair;
 import org.whispersystems.libaxolotl.ecc.ECPrivateKey;
 import org.whispersystems.libaxolotl.ecc.ECPublicKey;
 import org.whispersystems.textsecure.util.Base64;
-import org.whispersystems.textsecure.util.Conversions;
+import org.thoughtcrime.securesms.util.Conversions;
 import org.whispersystems.textsecure.util.Util;
 
 import java.io.IOException;

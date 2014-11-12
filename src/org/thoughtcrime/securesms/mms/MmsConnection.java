@@ -31,7 +31,7 @@ import org.apache.http.impl.client.LaxRedirectStrategy;
 import org.apache.http.impl.conn.BasicHttpClientConnectionManager;
 import org.thoughtcrime.securesms.database.ApnDatabase;
 import org.thoughtcrime.securesms.util.TelephonyUtil;
-import org.whispersystems.textsecure.util.Conversions;
+import org.thoughtcrime.securesms.util.Conversions;
 import org.whispersystems.textsecure.util.Util;
 
 import java.io.BufferedInputStream;
