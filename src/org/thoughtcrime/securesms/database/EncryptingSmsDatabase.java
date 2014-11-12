@@ -102,7 +102,7 @@ public class EncryptingSmsDatabase extends SmsDatabase {
   public void updateBundleMessageBody(MasterSecret masterSecret, long messageId, String body) {
     String encryptedBody = getEncryptedBody(masterSecret, body);
     updateMessageBodyAndType(messageId, encryptedBody, Types.TOTAL_MASK,
-                             Types.BASE_INBOX_TYPE | Types.SECURE_MESSAGE_BIT);
+                             Types.BASE_INBOX_TYPE | Types.ENCRYPTION_SYMMETRIC_BIT | Types.SECURE_MESSAGE_BIT);
   }
 
   public void updateMessageBody(MasterSecret masterSecret, long messageId, String body) {
