@@ -17,7 +17,6 @@
 package org.thoughtcrime.securesms.recipients;
 
 import android.content.Context;
-import android.database.ContentObserver;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -34,7 +33,7 @@ import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.LRUCache;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.textsecure.util.ListenableFutureTask;
+import org.thoughtcrime.securesms.util.ListenableFutureTask;
 
 import java.io.IOException;
 import java.util.Collections;

@@ -54,8 +54,8 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.Emoji;
-import org.whispersystems.textsecure.util.FutureTaskListener;
-import org.whispersystems.textsecure.util.ListenableFutureTask;
+import org.thoughtcrime.securesms.util.FutureTaskListener;
+import org.thoughtcrime.securesms.util.ListenableFutureTask;
 
 /**
  * A view that displays an individual conversation item within a conversation

@@ -51,7 +51,7 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.LRUCache;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.util.InvalidNumberException;
-import org.whispersystems.textsecure.util.ListenableFutureTask;
+import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.Trimmer;
 import org.whispersystems.textsecure.util.Util;
 

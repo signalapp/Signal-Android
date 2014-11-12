@@ -27,11 +27,9 @@ import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
-import org.whispersystems.textsecure.push.exceptions.NotFoundException;
-import org.whispersystems.textsecure.util.FutureTaskListener;
-import org.whispersystems.textsecure.util.ListenableFutureTask;
+import org.thoughtcrime.securesms.util.FutureTaskListener;
+import org.thoughtcrime.securesms.util.ListenableFutureTask;
 
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 /**

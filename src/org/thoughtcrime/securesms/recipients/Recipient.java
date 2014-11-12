@@ -26,8 +26,8 @@ import android.util.Log;
 import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.recipients.RecipientProvider.RecipientDetails;
 import org.thoughtcrime.securesms.util.GroupUtil;
-import org.whispersystems.textsecure.util.FutureTaskListener;
-import org.whispersystems.textsecure.util.ListenableFutureTask;
+import org.thoughtcrime.securesms.util.FutureTaskListener;
+import org.thoughtcrime.securesms.util.ListenableFutureTask;
 
 import java.util.HashSet;
 
