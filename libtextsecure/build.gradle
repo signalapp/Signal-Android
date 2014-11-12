@@ -35,27 +35,6 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
     }
-
-    android {
-        sourceSets {
-            main {
-                manifest.srcFile 'AndroidManifest.xml'
-                java.srcDirs = ['src']
-                resources.srcDirs = ['src']
-                aidl.srcDirs = ['src']
-                renderscript.srcDirs = ['src']
-                res.srcDirs = ['res']
-                assets.srcDirs = ['assets']
-                jniLibs.srcDirs = ['libs']
-            }
-            androidTest {
-                java.srcDirs = ['androidTest/java']
-                resources.srcDirs = ['androidTest/java']
-                aidl.srcDirs = ['androidTest/java']
-                renderscript.srcDirs = ['androidTest/java']
-            }
-        }
-    }
 }
 
 tasks.whenTaskAdded { task ->
