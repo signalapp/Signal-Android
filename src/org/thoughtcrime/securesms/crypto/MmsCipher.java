@@ -17,7 +17,7 @@ import org.whispersystems.libaxolotl.protocol.CiphertextMessage;
 import org.whispersystems.libaxolotl.protocol.WhisperMessage;
 import org.whispersystems.libaxolotl.state.AxolotlStore;
 import org.whispersystems.libaxolotl.util.guava.Optional;
-import org.whispersystems.textsecure.storage.RecipientDevice;
+import org.whispersystems.textsecure.push.PushAddress;
 import org.whispersystems.textsecure.util.Util;
 
 import java.io.IOException;
@@ -92,11 +92,11 @@ public class MmsCipher {
     long                 recipientId      = recipients.getPrimaryRecipient().getRecipientId();
     byte[]               pduBytes         = new PduComposer(context, message).make();
 
-    if (!axolotlStore.containsSession(recipientId, RecipientDevice.DEFAULT_DEVICE_ID)) {
+    if (!axolotlStore.containsSession(recipientId, PushAddress.DEFAULT_DEVICE_ID)) {
       throw new NoSessionException("No session for: " + recipientId);
     }
 
-    SessionCipher     cipher            = new SessionCipher(axolotlStore, recipientId, RecipientDevice.DEFAULT_DEVICE_ID);
+    SessionCipher     cipher            = new SessionCipher(axolotlStore, recipientId, PushAddress.DEFAULT_DEVICE_ID);
     CiphertextMessage ciphertextMessage = cipher.encrypt(pduBytes);
     byte[]            encryptedPduBytes = textTransport.getEncodedMessage(ciphertextMessage.serialize());
 

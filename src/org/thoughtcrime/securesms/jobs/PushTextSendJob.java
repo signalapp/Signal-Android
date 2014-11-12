@@ -24,7 +24,6 @@ import org.whispersystems.textsecure.api.crypto.UntrustedIdentityException;
 import org.whispersystems.textsecure.api.messages.TextSecureMessage;
 import org.whispersystems.textsecure.push.PushAddress;
 import org.whispersystems.textsecure.push.UnregisteredUserException;
-import org.whispersystems.textsecure.storage.RecipientDevice;
 import org.whispersystems.textsecure.util.InvalidNumberException;
 
 import java.io.IOException;
@@ -137,7 +136,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
       Log.w(TAG, "Falling back to SMS");
       DatabaseFactory.getSmsDatabase(context).markAsForcedSms(smsMessage.getId());
       ApplicationContext.getInstance(context).getJobManager().add(new SmsSendJob(context, messageId, destination));
-    } else if (!axolotlStore.containsSession(recipient.getRecipientId(), RecipientDevice.DEFAULT_DEVICE_ID)) {
+    } else if (!axolotlStore.containsSession(recipient.getRecipientId(), PushAddress.DEFAULT_DEVICE_ID)) {
       Log.w(TAG, "Marking message as pending insecure fallback.");
       throw new InsecureFallbackApprovalException("Pending user approval for fallback to insecure SMS");
     } else {

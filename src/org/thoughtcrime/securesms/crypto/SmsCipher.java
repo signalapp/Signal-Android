@@ -30,7 +30,7 @@ import org.whispersystems.libaxolotl.protocol.KeyExchangeMessage;
 import org.whispersystems.libaxolotl.protocol.PreKeyWhisperMessage;
 import org.whispersystems.libaxolotl.protocol.WhisperMessage;
 import org.whispersystems.libaxolotl.state.AxolotlStore;
-import org.whispersystems.textsecure.storage.RecipientDevice;
+import org.whispersystems.textsecure.push.PushAddress;
 
 import java.io.IOException;
 
@@ -89,11 +89,11 @@ public class SmsCipher {
     byte[] paddedBody  = transportDetails.getPaddedMessageBody(message.getMessageBody().getBytes());
     long   recipientId = message.getRecipients().getPrimaryRecipient().getRecipientId();
 
-    if (!axolotlStore.containsSession(recipientId, RecipientDevice.DEFAULT_DEVICE_ID)) {
+    if (!axolotlStore.containsSession(recipientId, PushAddress.DEFAULT_DEVICE_ID)) {
       throw new NoSessionException("No session for: " + recipientId);
     }
 
-    SessionCipher     cipher            = new SessionCipher(axolotlStore, recipientId, RecipientDevice.DEFAULT_DEVICE_ID);
+    SessionCipher     cipher            = new SessionCipher(axolotlStore, recipientId, PushAddress.DEFAULT_DEVICE_ID);
     CiphertextMessage ciphertextMessage = cipher.encrypt(paddedBody);
     String            encodedCiphertext = new String(transportDetails.getEncodedMessage(ciphertextMessage.serialize()));
 

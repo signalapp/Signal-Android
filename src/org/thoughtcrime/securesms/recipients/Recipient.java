@@ -25,15 +25,13 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.recipients.RecipientProvider.RecipientDetails;
-import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
-import org.whispersystems.textsecure.storage.CanonicalRecipient;
 import org.whispersystems.textsecure.util.FutureTaskListener;
 import org.whispersystems.textsecure.util.ListenableFutureTask;
 
 import java.util.HashSet;
 
-public class Recipient implements Parcelable, CanonicalRecipient {
+public class Recipient implements Parcelable {
 
   private final static String TAG = Recipient.class.getSimpleName();
 

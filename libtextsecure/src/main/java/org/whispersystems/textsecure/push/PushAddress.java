@@ -1,15 +1,18 @@
 package org.whispersystems.textsecure.push;
 
-import org.whispersystems.textsecure.storage.RecipientDevice;
+public class PushAddress {
 
-public class PushAddress extends RecipientDevice {
+  public static final int DEFAULT_DEVICE_ID = 1;
 
+  private final long   recipientId;
   private final String e164number;
+  private final int    deviceId;
   private final String relay;
 
   public PushAddress(long recipientId, String e164number, int deviceId, String relay) {
-    super(recipientId, deviceId);
+    this.recipientId = recipientId;
     this.e164number  = e164number;
+    this.deviceId    = deviceId;
     this.relay       = relay;
   }
 
@@ -21,4 +24,11 @@ public class PushAddress extends RecipientDevice {
     return relay;
   }
 
+  public long getRecipientId() {
+    return recipientId;
+  }
+
+  public int getDeviceId() {
+    return deviceId;
+  }
 }

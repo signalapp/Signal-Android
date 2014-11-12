@@ -21,7 +21,10 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -29,10 +32,7 @@ import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.state.SessionRecord;
 import org.whispersystems.libaxolotl.state.SessionStore;
-import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.whispersystems.textsecure.storage.RecipientDevice;
-import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
+import org.whispersystems.textsecure.push.PushAddress;
 
 /**
  * Activity for verifying identity keys.
@@ -184,7 +184,7 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
   private IdentityKey getRemoteIdentityKey(MasterSecret masterSecret, Recipient recipient) {
     SessionStore  sessionStore = new TextSecureSessionStore(this, masterSecret);
     SessionRecord record       = sessionStore.loadSession(recipient.getRecipientId(),
-                                                          RecipientDevice.DEFAULT_DEVICE_ID);
+                                                          PushAddress.DEFAULT_DEVICE_ID);
 
     if (record == null) {
       return null;

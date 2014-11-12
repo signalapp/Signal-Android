@@ -107,7 +107,7 @@ import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.libaxolotl.state.SessionStore;
-import org.whispersystems.textsecure.storage.RecipientDevice;
+import org.whispersystems.textsecure.push.PushAddress;
 import org.whispersystems.textsecure.util.Util;
 
 import java.io.IOException;
@@ -318,7 +318,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       Recipient  primaryRecipient    = getRecipients() == null ? null : getRecipients().getPrimaryRecipient();
       boolean    isPushDestination   = DirectoryHelper.isPushDestination(this, getRecipients());
       boolean    isSecureDestination = isSingleConversation() && sessionStore.containsSession(primaryRecipient.getRecipientId(),
-                                                                                              RecipientDevice.DEFAULT_DEVICE_ID);
+                                                                                              PushAddress.DEFAULT_DEVICE_ID);
 
       getMenuInflater().inflate(R.menu.conversation_button_context, menu);
 
@@ -697,7 +697,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     Recipient  primaryRecipient    = getRecipients() == null ? null : getRecipients().getPrimaryRecipient();
     boolean    isPushDestination   = DirectoryHelper.isPushDestination(this, getRecipients());
     boolean    isSecureDestination = isSingleConversation() && sessionStore.containsSession(primaryRecipient.getRecipientId(),
-                                                                                            RecipientDevice.DEFAULT_DEVICE_ID);
+                                                                                            PushAddress.DEFAULT_DEVICE_ID);
 
     if (isPushDestination || isSecureDestination) {
       this.isEncryptedConversation = true;

@@ -26,14 +26,14 @@ import android.view.View;
 import android.widget.Button;
 
 import org.thoughtcrime.securesms.crypto.KeyExchangeInitiator;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.protocol.Tag;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libaxolotl.state.SessionStore;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.whispersystems.textsecure.storage.RecipientDevice;
-import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
+import org.whispersystems.textsecure.push.PushAddress;
 
 /**
  * Activity which prompts the user to initiate a secure
@@ -118,6 +118,6 @@ public class AutoInitiateActivity extends Activity {
                                              Recipient recipient)
   {
     SessionStore sessionStore = new TextSecureSessionStore(context, masterSecret);
-    return sessionStore.containsSession(recipient.getRecipientId(), RecipientDevice.DEFAULT_DEVICE_ID);
+    return sessionStore.containsSession(recipient.getRecipientId(), PushAddress.DEFAULT_DEVICE_ID);
   }
 }
