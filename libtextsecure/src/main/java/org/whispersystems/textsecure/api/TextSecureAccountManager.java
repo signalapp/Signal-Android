@@ -21,6 +21,7 @@ import org.whispersystems.libaxolotl.state.PreKeyRecord;
 import org.whispersystems.libaxolotl.state.SignedPreKeyRecord;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.push.ContactTokenDetails;
+import org.whispersystems.textsecure.api.push.TrustStore;
 import org.whispersystems.textsecure.internal.push.PushServiceSocket;
 import org.whispersystems.textsecure.api.push.SignedPreKeyEntity;
 
@@ -32,7 +33,7 @@ public class TextSecureAccountManager {
 
   private final PushServiceSocket pushServiceSocket;
 
-  public TextSecureAccountManager(String url, PushServiceSocket.TrustStore trustStore,
+  public TextSecureAccountManager(String url, TrustStore trustStore,
                                   String user, String password)
   {
     this.pushServiceSocket = new PushServiceSocket(url, trustStore, user, password);

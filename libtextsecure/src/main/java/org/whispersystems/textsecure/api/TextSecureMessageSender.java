@@ -33,6 +33,7 @@ import org.whispersystems.textsecure.api.messages.TextSecureAttachmentStream;
 import org.whispersystems.textsecure.api.messages.TextSecureGroup;
 import org.whispersystems.textsecure.api.messages.TextSecureMessage;
 import org.whispersystems.textsecure.api.push.PushAddress;
+import org.whispersystems.textsecure.api.push.TrustStore;
 import org.whispersystems.textsecure.internal.push.MismatchedDevices;
 import org.whispersystems.textsecure.internal.push.OutgoingPushMessage;
 import org.whispersystems.textsecure.internal.push.OutgoingPushMessageList;
@@ -63,7 +64,7 @@ public class TextSecureMessageSender {
   private final AxolotlStore            store;
   private final Optional<EventListener> eventListener;
 
-  public TextSecureMessageSender(String url, PushServiceSocket.TrustStore trustStore,
+  public TextSecureMessageSender(String url, TrustStore trustStore,
                                  String user, String password, AxolotlStore store,
                                  Optional<EventListener> eventListener)
   {

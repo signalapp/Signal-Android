@@ -19,6 +19,7 @@ package org.whispersystems.textsecure.api;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.textsecure.api.crypto.AttachmentCipherInputStream;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachmentPointer;
+import org.whispersystems.textsecure.api.push.TrustStore;
 import org.whispersystems.textsecure.internal.push.PushServiceSocket;
 
 import java.io.File;
@@ -29,7 +30,7 @@ public class TextSecureMessageReceiver {
 
   private final PushServiceSocket socket;
 
-  public TextSecureMessageReceiver(String url, PushServiceSocket.TrustStore trustStore,
+  public TextSecureMessageReceiver(String url, TrustStore trustStore,
                                    String user, String password)
   {
     this.socket = new PushServiceSocket(url, trustStore, user, password);

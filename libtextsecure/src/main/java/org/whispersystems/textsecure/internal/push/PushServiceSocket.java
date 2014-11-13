@@ -31,6 +31,7 @@ import org.whispersystems.textsecure.api.push.PushAddress;
 import org.whispersystems.textsecure.api.crypto.AttachmentCipherOutputStream;
 import org.whispersystems.textsecure.api.push.ContactTokenDetails;
 import org.whispersystems.textsecure.api.push.SignedPreKeyEntity;
+import org.whispersystems.textsecure.api.push.TrustStore;
 import org.whispersystems.textsecure.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.textsecure.internal.push.exceptions.MismatchedDevicesException;
 import org.whispersystems.textsecure.internal.push.exceptions.StaleDevicesException;
@@ -558,10 +559,5 @@ public class PushServiceSocket {
     public String getLocation() {
       return location;
     }
-  }
-
-  public interface TrustStore {
-    public InputStream getKeyStoreInputStream();
-    public String getKeyStorePassword();
   }
 }
