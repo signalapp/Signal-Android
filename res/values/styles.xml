@@ -18,12 +18,14 @@
            parent="@style/Widget.AppCompat.ActionBar">
         <item name="background">@color/gray95</item>
         <item name="elevation">1dp</item>
+        <item name="logo">@drawable/actionbar_icon_holo_dark</item>
     </style>
 
     <style name="TextSecure.LightActionBar"
            parent="@style/Widget.AppCompat.ActionBar">
         <item name="background">@color/gray5</item>
         <item name="elevation">1dp</item>
+        <item name="logo">@drawable/actionbar_icon_holo_light</item>
     </style>
 
     <style name="TextSecure.ClearTitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
