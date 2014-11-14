@@ -69,6 +69,10 @@ public class JobManager implements RequirementListener {
   }
 
   public RequirementProvider getRequirementProvider(String name) {
+    if (requirementProviders == null || requirementProviders.isEmpty()) {
+      return null;
+    }
+
     for (RequirementProvider provider : requirementProviders) {
       if (provider.getName().equals(name)) {
         return provider;
