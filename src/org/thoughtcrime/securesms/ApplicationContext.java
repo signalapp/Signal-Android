@@ -25,9 +25,12 @@ import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.dependencies.TextSecureCommunicationModule;
 import org.thoughtcrime.securesms.jobs.GcmRefreshJob;
 import org.thoughtcrime.securesms.jobs.persistence.EncryptingJobSerializer;
+import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirementProvider;
+import org.thoughtcrime.securesms.jobs.requirements.ServiceRequirementProvider;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.JobManager;
 import org.whispersystems.jobqueue.dependencies.DependencyInjector;
+import org.whispersystems.jobqueue.requirements.NetworkRequirementProvider;
 
 import dagger.ObjectGraph;
 
@@ -77,6 +80,9 @@ public class ApplicationContext extends Application implements DependencyInjecto
                                 .withName("TextSecureJobs")
                                 .withDependencyInjector(this)
                                 .withJobSerializer(new EncryptingJobSerializer(this))
+                                .withRequirementProviders(new MasterSecretRequirementProvider(this),
+                                                          new ServiceRequirementProvider(this),
+                                                          new NetworkRequirementProvider(this))
                                 .withConsumerThreads(5)
                                 .build();
   }
