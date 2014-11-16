@@ -18,6 +18,12 @@ package org.whispersystems.jobqueue.requirements;
 
 import java.io.Serializable;
 
+/**
+ * A Requirement that must be satisfied before a Job can run.
+ */
 public interface Requirement extends Serializable {
+  /**
+   * @return true if the requirement is satisfied, false otherwise.
+   */
   public boolean isPresent();
 }

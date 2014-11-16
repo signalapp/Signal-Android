@@ -20,7 +20,7 @@ import android.util.Log;
 
 import org.whispersystems.jobqueue.persistence.PersistentStorage;
 
-public class JobConsumer extends Thread {
+class JobConsumer extends Thread {
 
   private static final String TAG = JobConsumer.class.getSimpleName();
 

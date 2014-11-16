@@ -21,6 +21,10 @@ import org.whispersystems.jobqueue.requirements.Requirement;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * An abstract class representing a unit of work that can be scheduled with
+ * the JobManager. This should be extended to implement tasks.
+ */
 public abstract class Job implements Serializable {
 
   private final JobParameters parameters;
@@ -80,9 +84,31 @@ public abstract class Job implements Serializable {
     this.runIteration = runIteration;
   }
 
+  /**
+   * Called after a job has been added to the JobManager queue.  If it's a persistent job,
+   * the state has been persisted to disk before this method is called.
+   */
   public abstract void onAdded();
+
+  /**
+   * Called to actually execute the job.
+   * @throws Exception
+   */
   public abstract void onRun() throws Exception;
+
+  /**
+   * If onRun() throws an exception, this method will be called to determine whether the
+   * job should be retried.
+   *
+   * @param exception The exception onRun() threw.
+   * @return true if onRun() should be called again, false otherwise.
+   */
   public abstract boolean onShouldRetry(Exception exception);
+
+  /**
+   * Called if a job fails to run (onShouldRetry returned false, or the number of retries exceeded
+   * the job's configured retry count.
+   */
   public abstract void onCanceled();
 
 

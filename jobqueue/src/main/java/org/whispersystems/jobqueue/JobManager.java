@@ -27,11 +27,17 @@ import org.whispersystems.jobqueue.requirements.RequirementProvider;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+/**
+ * A JobManager allows you to enqueue {@link org.whispersystems.jobqueue.Job} tasks
+ * that are executed once a Job's {@link org.whispersystems.jobqueue.requirements.Requirement}s
+ * are met.
+ */
 public class JobManager implements RequirementListener {
 
   private final JobQueue      jobQueue           = new JobQueue();
@@ -64,15 +70,22 @@ public class JobManager implements RequirementListener {
     }
   }
 
+  /**
+   * @param context An Android {@link android.content.Context}.
+   * @return a {@link org.whispersystems.jobqueue.JobManager.Builder} used to construct a JobManager.
+   */
   public static Builder newBuilder(Context context) {
     return new Builder(context);
   }
 
+  /**
+   * Returns a {@link org.whispersystems.jobqueue.requirements.RequirementProvider} registered with
+   * the JobManager by name.
+   *
+   * @param name The name of the registered {@link org.whispersystems.jobqueue.requirements.RequirementProvider}
+   * @return The RequirementProvider, or null if no provider is registered with that name.
+   */
   public RequirementProvider getRequirementProvider(String name) {
-    if (requirementProviders == null || requirementProviders.isEmpty()) {
-      return null;
-    }
-
     for (RequirementProvider provider : requirementProviders) {
       if (provider.getName().equals(name)) {
         return provider;
@@ -88,6 +101,11 @@ public class JobManager implements RequirementListener {
     }
   }
 
+  /**
+   * Queue a {@link org.whispersystems.jobqueue.Job} to be executed.
+   *
+   * @param job The Job to be executed.
+   */
   public void add(final Job job) {
     eventExecutor.execute(new Runnable() {
       @Override
@@ -153,34 +171,77 @@ public class JobManager implements RequirementListener {
       this.consumerThreads = 5;
     }
 
+    /**
+     * A name for the {@link org.whispersystems.jobqueue.JobManager}. This is a required parameter,
+     * and is linked to the durable queue used by persistent jobs.
+     *
+     * @param name The name for the JobManager to build.
+     * @return The builder.
+     */
     public Builder withName(String name) {
       this.name = name;
       return this;
     }
 
+    /**
+     * The {@link org.whispersystems.jobqueue.requirements.RequirementProvider}s to register with this
+     * JobManager.  Optional. Each {@link org.whispersystems.jobqueue.requirements.Requirement} an
+     * enqueued Job depends on should have a matching RequirementProvider registered here.
+     *
+     * @param requirementProviders The RequirementProviders
+     * @return The builder.
+     */
     public Builder withRequirementProviders(RequirementProvider... requirementProviders) {
       this.requirementProviders = Arrays.asList(requirementProviders);
       return this;
     }
 
+    /**
+     * The {@link org.whispersystems.jobqueue.dependencies.DependencyInjector} to use for injecting
+     * dependencies into {@link Job}s. Optional. Injection occurs just before a Job's onAdded() callback, or
+     * after deserializing a persistent job.
+     *
+     * @param dependencyInjector The injector to use.
+     * @return The builder.
+     */
     public Builder withDependencyInjector(DependencyInjector dependencyInjector) {
       this.dependencyInjector = dependencyInjector;
       return this;
     }
 
+    /**
+     * The {@link org.whispersystems.jobqueue.persistence.JobSerializer} to use for persistent Jobs.
+     * Required if persistent Jobs are used.
+     *
+     * @param jobSerializer The serializer to use.
+     * @return The builder.
+     */
     public Builder withJobSerializer(JobSerializer jobSerializer) {
       this.jobSerializer = jobSerializer;
       return this;
     }
 
+    /**
+     * Set the number of threads dedicated to consuming Jobs from the queue and executing them.
+     *
+     * @param consumerThreads The number of threads.
+     * @return The builder.
+     */
     public Builder withConsumerThreads(int consumerThreads) {
       this.consumerThreads = consumerThreads;
       return this;
     }
 
+    /**
+     * @return A constructed JobManager.
+     */
     public JobManager build() {
       if (name == null) {
         throw new IllegalArgumentException("You must specify a name!");
+      }
+
+      if (requirementProviders == null) {
+        requirementProviders = new LinkedList<>();
       }
 
       return new JobManager(context, name, requirementProviders,

@@ -21,9 +21,27 @@ import org.whispersystems.jobqueue.Job;
 
 import java.io.IOException;
 
+/**
+ * A JobSerializer is responsible for serializing and deserializing persistent jobs.
+ */
 public interface JobSerializer {
 
+  /**
+   * Serialize a job object into a string.
+   * @param job The Job to serialize.
+   * @return The serialized Job.
+   * @throws IOException if serialization fails.
+   */
   public String serialize(Job job) throws IOException;
+
+  /**
+   * Deserialize a String into a Job.
+   * @param keys Optional encryption keys that could have been used.
+   * @param encrypted True if the job was encrypted using the encryption keys.
+   * @param serialized The serialized Job.
+   * @return The deserialized Job.
+   * @throws IOException If the Job deserialization fails.
+   */
   public Job deserialize(EncryptionKeys keys, boolean encrypted, String serialized) throws IOException;
 
 }

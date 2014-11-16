@@ -30,6 +30,10 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+/**
+ * An implementation of {@link org.whispersystems.jobqueue.persistence.JobSerializer} that uses
+ * Java Serialization.
+ */
 public class JavaJobSerializer implements JobSerializer {
 
   private final Context context;

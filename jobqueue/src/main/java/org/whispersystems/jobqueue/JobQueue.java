@@ -16,29 +16,27 @@
  */
 package org.whispersystems.jobqueue;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
-import java.util.Map;
 import java.util.Set;
 
-public class JobQueue {
+class JobQueue {
 
   private final Set<String>     activeGroupIds = new HashSet<>();
   private final LinkedList<Job> jobQueue       = new LinkedList<>();
 
-  public synchronized void onRequirementStatusChanged() {
+  synchronized void onRequirementStatusChanged() {
     notifyAll();
   }
 
-  public synchronized void add(Job job) {
+  synchronized void add(Job job) {
     jobQueue.add(job);
     notifyAll();
   }
 
-  public synchronized void addAll(List<Job> jobs) {
+  synchronized void addAll(List<Job> jobs) {
     jobQueue.addAll(jobs);
     notifyAll();
   }
@@ -47,7 +45,7 @@ public class JobQueue {
     jobQueue.push(job);
   }
 
-  public synchronized Job getNext() {
+  synchronized Job getNext() {
     try {
       Job nextAvailableJob;
 
@@ -61,7 +59,7 @@ public class JobQueue {
     }
   }
 
-  public synchronized void setGroupIdAvailable(String groupId) {
+  synchronized void setGroupIdAvailable(String groupId) {
     if (groupId != null) {
       activeGroupIds.remove(groupId);
       notifyAll();

@@ -22,6 +22,9 @@ import android.net.NetworkInfo;
 
 import org.whispersystems.jobqueue.dependencies.ContextDependent;
 
+/**
+ * A requirement that is satisfied when a network connection is present.
+ */
 public class NetworkRequirement implements Requirement, ContextDependent {
 
   private transient Context context;

@@ -22,6 +22,9 @@ import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * The set of parameters that describe a {@link org.whispersystems.jobqueue.Job}.
+ */
 public class JobParameters implements Serializable {
 
   private transient EncryptionKeys encryptionKeys;
@@ -63,6 +66,9 @@ public class JobParameters implements Serializable {
     return retryCount;
   }
 
+  /**
+   * @return a builder used to construct JobParameters.
+   */
   public static Builder newBuilder() {
     return new Builder();
   }
@@ -78,31 +84,64 @@ public class JobParameters implements Serializable {
     private int               retryCount     = 100;
     private String            groupId        = null;
 
+    /**
+     * Specify a {@link org.whispersystems.jobqueue.requirements.Requirement }that must be met
+     * before the Job is executed.  May be called multiple times to register multiple requirements.
+     * @param requirement The Requirement that must be met.
+     * @return the builder.
+     */
     public Builder withRequirement(Requirement requirement) {
       this.requirements.add(requirement);
       return this;
     }
 
+    /**
+     * Specify that the Job should be durably persisted to disk, so that it remains in the queue
+     * across application restarts.
+     * @return The builder.
+     */
     public Builder withPersistence() {
       this.isPersistent = true;
       return this;
     }
 
+    /**
+     * Specify that the job should use encryption when durably persisted to disk.
+     * @param encryptionKeys The keys to encrypt the serialized job with before persisting.
+     * @return the builder.
+     */
     public Builder withEncryption(EncryptionKeys encryptionKeys) {
       this.encryptionKeys = encryptionKeys;
       return this;
     }
 
+    /**
+     * Specify how many times the job should be retried if execution fails but onShouldRetry() returns
+     * true.
+     *
+     * @param retryCount The number of times the job should be retried.
+     * @return the builder.
+     */
     public Builder withRetryCount(int retryCount) {
       this.retryCount = retryCount;
       return this;
     }
 
+    /**
+     * Specify a groupId the job should belong to.  Jobs with the same groupId are guaranteed to be
+     * executed serially.
+     *
+     * @param groupId The job's groupId.
+     * @return the builder.
+     */
     public Builder withGroupId(String groupId) {
       this.groupId = groupId;
       return this;
     }
 
+    /**
+     * @return the JobParameters instance that describes a Job.
+     */
     public JobParameters create() {
       return new JobParameters(requirements, isPersistent, groupId, encryptionKeys, retryCount);
     }
