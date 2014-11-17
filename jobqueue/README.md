@@ -76,7 +76,7 @@ public class SampleJob extends Job {
    return false;
   }
 }
-``
+```
 
 A Job is scheduled simply by adding it to the JobManager:
 
