@@ -12,6 +12,8 @@
                   android:scrollbarStyle="insideOverlay"
                   android:fadingEdgeLength="16dip"
                   android:divider="?conversation_list_item_divider"
+                  android:headerDividersEnabled="false"
+                  android:footerDividersEnabled="false"
                   android:dividerHeight="1px" />
 
 </LinearLayout>

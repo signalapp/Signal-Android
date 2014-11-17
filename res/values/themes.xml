@@ -8,10 +8,10 @@
 
     <style name="TextSecure.LightTheme" parent="@style/Theme.AppCompat.Light">
         <item name="actionBarStyle">@style/TextSecure.LightActionBar</item>
-        <item name="android:windowContentOverlay">@null</item>
         <item name="colorPrimary">@color/gray5</item>
         <item name="colorPrimaryDark">@color/gray95</item>
         <item name="colorAccent">#ff259b24</item>
+        <item name="android:windowContentOverlay">@drawable/compat_actionbar_shadow_background</item>
         <item name="conversation_list_item_background_read">@drawable/conversation_list_item_background_read_light</item>
         <item name="conversation_list_item_background_unread">@drawable/conversation_list_item_background_unread_light</item>
         <item name="conversation_list_item_background_selected">@drawable/list_selected_holo_light</item>
