@@ -122,7 +122,7 @@ public class JobManagerTest extends AndroidTestCase {
     PersistentTestJob         testJob     = new PersistentTestJob(requirement);
     JobManager                jobManager  = JobManager.newBuilder(getContext())
                                                       .withName("persistent-requirement-test3")
-                                                      .withJobSerializer(new JavaJobSerializer(getContext()))
+                                                      .withJobSerializer(new JavaJobSerializer())
                                                       .withConsumerThreads(1)
                                                       .build();
 
@@ -138,7 +138,7 @@ public class JobManagerTest extends AndroidTestCase {
 
     jobManager = JobManager.newBuilder(getContext())
                            .withName("persistent-requirement-test3")
-                           .withJobSerializer(new JavaJobSerializer(getContext()))
+                           .withJobSerializer(new JavaJobSerializer())
                            .withConsumerThreads(1)
                            .build();
 
@@ -151,7 +151,7 @@ public class JobManagerTest extends AndroidTestCase {
     PersistentTestJob         testJob     = new PersistentTestJob(requirement, keys);
     JobManager                jobManager  = JobManager.newBuilder(getContext())
                                                       .withName("persistent-requirement-test4")
-                                                      .withJobSerializer(new JavaJobSerializer(getContext()))
+                                                      .withJobSerializer(new JavaJobSerializer())
                                                       .withConsumerThreads(1)
                                                       .build();
 
@@ -168,7 +168,7 @@ public class JobManagerTest extends AndroidTestCase {
     PersistentRequirement.getInstance().setPresent(true);
     jobManager = JobManager.newBuilder(getContext())
                            .withName("persistent-requirement-test4")
-                           .withJobSerializer(new JavaJobSerializer(getContext()))
+                           .withJobSerializer(new JavaJobSerializer())
                            .withConsumerThreads(1)
                            .build();
 

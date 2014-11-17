@@ -25,7 +25,9 @@ import android.util.Log;
 
 import org.whispersystems.jobqueue.EncryptionKeys;
 import org.whispersystems.jobqueue.Job;
+import org.whispersystems.jobqueue.dependencies.ContextDependent;
 import org.whispersystems.jobqueue.dependencies.DependencyInjector;
+import org.whispersystems.jobqueue.requirements.Requirement;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -43,6 +45,7 @@ public class PersistentStorage {
   private static final String DATABASE_CREATE = String.format("CREATE TABLE %s (%s INTEGER PRIMARY KEY, %s TEXT NOT NULL, %s INTEGER DEFAULT 0);",
                                                               TABLE_NAME, ID, ITEM, ENCRYPTED);
 
+  private final Context            context;
   private final DatabaseHelper     databaseHelper;
   private final JobSerializer      jobSerializer;
   private final DependencyInjector dependencyInjector;
@@ -52,6 +55,7 @@ public class PersistentStorage {
                            DependencyInjector dependencyInjector)
   {
     this.databaseHelper     = new DatabaseHelper(context, "_jobqueue-" + name);
+    this.context            = context;
     this.jobSerializer      = serializer;
     this.dependencyInjector = dependencyInjector;
   }
@@ -90,10 +94,8 @@ public class PersistentStorage {
           Job job = jobSerializer.deserialize(keys, encrypted, item);
 
           job.setPersistentId(id);
-
-          if (dependencyInjector != null) {
-            dependencyInjector.injectDependencies(job);
-          }
+          job.setEncryptionKeys(keys);
+          injectDependencies(job);
 
           results.add(job);
         } catch (IOException e) {
@@ -109,10 +111,25 @@ public class PersistentStorage {
     return results;
   }
 
-
   public void remove(long id) {
     databaseHelper.getWritableDatabase()
                   .delete(TABLE_NAME, ID + " = ?", new String[] {String.valueOf(id)});
+  }
+
+  private void injectDependencies(Job job) {
+    if (job instanceof ContextDependent) {
+      ((ContextDependent)job).setContext(context);
+    }
+
+    for (Requirement requirement : job.getRequirements()) {
+      if (requirement instanceof ContextDependent) {
+        ((ContextDependent)requirement).setContext(context);
+      }
+    }
+
+    if (dependencyInjector != null) {
+      dependencyInjector.injectDependencies(job);
+    }
   }
 
   private static class DatabaseHelper extends SQLiteOpenHelper {

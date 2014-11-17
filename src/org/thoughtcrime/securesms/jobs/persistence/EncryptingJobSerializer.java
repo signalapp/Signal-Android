@@ -1,15 +1,13 @@
 package org.thoughtcrime.securesms.jobs.persistence;
 
-import android.content.Context;
-
+import org.thoughtcrime.securesms.crypto.MasterCipher;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.ParcelUtil;
 import org.whispersystems.jobqueue.EncryptionKeys;
 import org.whispersystems.jobqueue.Job;
 import org.whispersystems.jobqueue.persistence.JavaJobSerializer;
 import org.whispersystems.jobqueue.persistence.JobSerializer;
 import org.whispersystems.libaxolotl.InvalidMessageException;
-import org.thoughtcrime.securesms.crypto.MasterCipher;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 
 import java.io.IOException;
 
@@ -17,8 +15,8 @@ public class EncryptingJobSerializer implements JobSerializer {
 
   private final JavaJobSerializer delegate;
 
-  public EncryptingJobSerializer(Context context) {
-    this.delegate = new JavaJobSerializer(context);
+  public EncryptingJobSerializer() {
+    this.delegate = new JavaJobSerializer();
   }
 
   @Override

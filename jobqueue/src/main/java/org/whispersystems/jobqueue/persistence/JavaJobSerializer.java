@@ -16,13 +16,10 @@
  */
 package org.whispersystems.jobqueue.persistence;
 
-import android.content.Context;
 import android.util.Base64;
 
 import org.whispersystems.jobqueue.EncryptionKeys;
 import org.whispersystems.jobqueue.Job;
-import org.whispersystems.jobqueue.dependencies.ContextDependent;
-import org.whispersystems.jobqueue.requirements.Requirement;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -36,11 +33,7 @@ import java.io.ObjectOutputStream;
  */
 public class JavaJobSerializer implements JobSerializer {
 
-  private final Context context;
-
-  public JavaJobSerializer(Context context) {
-    this.context = context;
-  }
+  public JavaJobSerializer() {}
 
   @Override
   public String serialize(Job job) throws IOException {
@@ -57,21 +50,7 @@ public class JavaJobSerializer implements JobSerializer {
       ByteArrayInputStream bais = new ByteArrayInputStream(Base64.decode(serialized, Base64.NO_WRAP));
       ObjectInputStream    ois  = new ObjectInputStream(bais);
 
-      Job job = (Job)ois.readObject();
-
-      if (job instanceof ContextDependent) {
-        ((ContextDependent)job).setContext(context);
-      }
-
-      for (Requirement requirement : job.getRequirements()) {
-        if (requirement instanceof ContextDependent) {
-          ((ContextDependent)requirement).setContext(context);
-        }
-      }
-
-      job.setEncryptionKeys(keys);
-
-      return job;
+      return (Job)ois.readObject();
     } catch (ClassNotFoundException e) {
       throw new IOException(e);
     }

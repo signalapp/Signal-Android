@@ -79,7 +79,7 @@ public class ApplicationContext extends Application implements DependencyInjecto
     this.jobManager = JobManager.newBuilder(this)
                                 .withName("TextSecureJobs")
                                 .withDependencyInjector(this)
-                                .withJobSerializer(new EncryptingJobSerializer(this))
+                                .withJobSerializer(new EncryptingJobSerializer())
                                 .withRequirementProviders(new MasterSecretRequirementProvider(this),
                                                           new ServiceRequirementProvider(this),
                                                           new NetworkRequirementProvider(this))
