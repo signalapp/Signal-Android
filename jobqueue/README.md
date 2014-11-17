@@ -11,7 +11,7 @@ API calls over a network, send SMS messages, download attachments, and interact 
 The standard Android way to do these things are with Services, AsyncTasks, or a dedicated Thread.
 However, some of an app's operations might need to wait until certain dependencies are available
 (such as a network connection), and some of the operations might need to be durable (complete even if the
-app restarts before they have a chance to run).  Doing that standard Android way can result in
+app restarts before they have a chance to run).  The standard Android way can result in
 a lot of retry logic, timers for monitoring dependencies, and one-off code for making operations
 durable.
 
@@ -114,7 +114,7 @@ public class ApplicationContext extends Application {
 
 ```
 
-The Job itself simply needs to declare itself as durable when constructed:
+The Job simply needs to declare itself as durable when constructed:
 
 ```
 public class SampleJob extends Job {
@@ -135,7 +135,7 @@ the App restarts first.  A Job's onAdded() method is called after the commit to 
 ## Requirements
 
 A Job might have certain requirements that need to be met before it can run.  A requirement is
-represented by the `Requirement` class.  Each `Requirement` must also have a corresponding
+represented by the `Requirement` interface.  Each `Requirement` must also have a corresponding
 `RequirementProvider` that is registered with the JobManager.
 
 A `Requirement` tells you whether it is present when queried, while a `RequirementProvider`
@@ -170,7 +170,7 @@ public class ApplicationContext extends Application {
 }
 ```
 
-The Job itself simply needs to declare itself as having a `Requirement` when constructed:
+The Job declares itself as having a `Requirement` when constructed:
 
 ```
 public class SampleJob extends Job {
