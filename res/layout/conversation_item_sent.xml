@@ -121,60 +121,64 @@
                           android:paddingTop="0dip"
                           android:layout_gravity="right">
 
-              <ImageView android:id="@+id/delivered_indicator"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:paddingRight="3dip"
-                         android:src="?conversation_delivered_indicator"
-                         android:visibility="gone"
-                         android:contentDescription="@string/conversation_item_sent__delivered_description"/>
+                <TextView android:id="@+id/group_message_status"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:linksClickable="false"
+                          android:textAppearance="?android:attr/textAppearanceSmall"
+                          android:layout_gravity="right"
+                          android:textColor="?conversation_sent_text_secondary_color"
+                          android:visibility="gone"
+                          android:layout_marginRight="8dip"
+                          android:paddingTop="1dip"/>
 
-		      <TextView android:id="@+id/group_message_status"
-		                android:layout_width="wrap_content"
-		                android:layout_height="wrap_content"
-		                android:linksClickable="false"
-		                android:textAppearance="?android:attr/textAppearanceSmall"
-		                android:layout_gravity="right"
-		                android:textColor="?conversation_sent_text_secondary_color"
-		                android:visibility="gone"
-		                android:layout_marginRight="8dip"
-		                android:paddingTop="1dip"/>
+                <TextView android:id="@+id/conversation_item_date"
+                          android:autoLink="none"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:minWidth="15sp"
+                          android:linksClickable="false"
+                          android:textAppearance="?android:attr/textAppearanceSmall"
+                          android:layout_gravity="right"
+                          android:fontFamily="sans-serif-light"
+                          android:textColor="?conversation_sent_text_secondary_color"
+                          android:paddingTop="1dip"
+                          android:paddingBottom="5dp" />
 
-		      <TextView android:id="@+id/conversation_item_date"
-		                android:autoLink="none"
-		                android:layout_width="wrap_content"
-		                android:layout_height="wrap_content"
-		                android:minWidth="15sp"
-		                android:linksClickable="false"
-		                android:textAppearance="?android:attr/textAppearanceSmall"
-		                android:layout_gravity="right"
-                        android:fontFamily="sans-serif-light"
-		                android:textColor="?conversation_sent_text_secondary_color"
-		                android:paddingTop="1dip"
-                        android:paddingBottom="5dp" />
+                <LinearLayout android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:orientation="horizontal"
+                              android:layout_gravity="center_vertical|end"
+                              android:gravity="center_vertical"
+                              android:paddingBottom="3dp"
+                              android:paddingLeft="3dp"
+                              android:paddingStart="3dp">
 
-                <ImageView
-                    android:id="@+id/sms_secure_indicator"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical|right"
-                    android:src="?menu_lock_icon_small"
-                    android:visibility="gone"
-                    android:paddingLeft="4dp"
-                    android:paddingBottom="3dp"
-                    android:contentDescription="@string/conversation_item__secure_message_description" />
+                    <ImageView android:id="@+id/delivered_indicator"
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:src="?conversation_delivered_indicator"
+                               android:visibility="gone"
+                               android:paddingRight="1dp"
+                               android:contentDescription="@string/conversation_item_sent__delivered_description" />
 
+                    <ImageView android:id="@+id/sms_secure_indicator"
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:src="?menu_lock_icon_small"
+                               android:visibility="gone"
+                               android:contentDescription="@string/conversation_item__secure_message_description" />
+
+                </LinearLayout>
             </LinearLayout>
-
         </LinearLayout>
 
         <View android:id="@+id/triangle_tick"
-            android:background="?conversation_item_sent_triangle_background"
-            android:layout_width="12dp"
-            android:layout_height="15dp"
-            android:layout_marginTop="12dp"
-            android:layout_alignParentRight="true"
-            />
+              android:layout_width="12dp"
+              android:layout_height="15dp"
+              android:layout_alignParentRight="true"
+              android:layout_marginTop="12dp"
+              android:background="?conversation_item_sent_triangle_background" />
 
         <TextView android:id="@+id/indicator_text"
             android:layout_width="wrap_content"
