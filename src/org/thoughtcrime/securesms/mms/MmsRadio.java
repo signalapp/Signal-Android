@@ -17,7 +17,7 @@ public class MmsRadio {
 
   public static synchronized MmsRadio getInstance(Context context) {
     if (instance == null)
-      instance = new MmsRadio(context);
+      instance = new MmsRadio(context.getApplicationContext());
 
     return instance;
   }
