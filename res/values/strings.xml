@@ -611,8 +611,8 @@
     <string name="preferences__change_passphrase">Change passphrase</string>
     <string name="preferences__change_my_passphrase">Change my passphrase</string>
     <string name="preferences__complete_key_exchanges">Complete key exchanges</string>
-    <string name="preferences__disable_passphrase">Disable passphrase</string>
-    <string name="preferences__disable_local_encryption_of_messages_and_keys">Disable local encryption of messages and keys</string>
+    <string name="preferences__enable_passphrase">Enable passphrase</string>
+    <string name="preferences__enable_local_encryption_of_messages_and_keys">Enable local encryption of messages and keys</string>
     <string name="preferences__screen_security">Screen security</string>
     <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Automatically complete key exchanges for new sessions or for existing sessions with the same identity key</string>
     <string name="preferences__disable_screen_security_to_allow_screen_shots">Block screenshots in the recents list and inside the app</string>

@@ -29,7 +29,7 @@ public class PreferenceFragmentAppProtection extends PreferenceFragment {
     super.onCreate(paramBundle);
     addPreferencesFromResource(R.xml.preferences_app_protection);
 
-    disablePassphrase = (CheckBoxPreference) this.findPreference(TextSecurePreferences.DISABLE_PASSPHRASE_PREF);
+    disablePassphrase = (CheckBoxPreference) this.findPreference("pref_enable_passphrase_temporary");
 
     this.findPreference(TextSecurePreferences.CHANGE_PASSPHRASE_PREF)
       .setOnPreferenceClickListener(new ChangePassphraseClickListener());
@@ -43,7 +43,7 @@ public class PreferenceFragmentAppProtection extends PreferenceFragment {
     ((ApplicationPreferencesActivity) getActivity()).getSupportActionBar().setTitle(R.string.preferences__app_protection);
     initializePlatformSpecificOptions();
 
-    disablePassphrase.setChecked(TextSecurePreferences.isPasswordDisabled(getActivity()));
+    disablePassphrase.setChecked(!TextSecurePreferences.isPasswordDisabled(getActivity()));
   }
 
   private void initializePlatformSpecificOptions() {
@@ -75,7 +75,7 @@ public class PreferenceFragmentAppProtection extends PreferenceFragment {
 
     @Override
     public boolean onPreferenceChange(final Preference preference, Object newValue) {
-      if (!((CheckBoxPreference)preference).isChecked()) {
+      if (((CheckBoxPreference)preference).isChecked()) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(R.string.ApplicationPreferencesActivity_disable_storage_encryption);
         builder.setMessage(R.string.ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages);
@@ -90,7 +90,7 @@ public class PreferenceFragmentAppProtection extends PreferenceFragment {
 
 
             TextSecurePreferences.setPasswordDisabled(getActivity(), true);
-            ((CheckBoxPreference)preference).setChecked(true);
+            ((CheckBoxPreference)preference).setChecked(false);
 
             Intent intent = new Intent(getActivity(), KeyCachingService.class);
             intent.setAction(KeyCachingService.DISABLE_ACTION);
