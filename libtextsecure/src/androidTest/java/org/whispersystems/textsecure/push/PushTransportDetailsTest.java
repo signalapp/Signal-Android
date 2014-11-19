@@ -4,10 +4,6 @@ import android.test.AndroidTestCase;
 
 import org.whispersystems.textsecure.internal.push.PushTransportDetails;
 
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
-import java.util.Arrays;
-
 public class PushTransportDetailsTest extends AndroidTestCase {
 
   private final PushTransportDetails transportV2 = new PushTransportDetails(2);
@@ -36,23 +32,4 @@ public class PushTransportDetailsTest extends AndroidTestCase {
       assertTrue(transportV2.getPaddedMessageBody(message).length == message.length);
     }
   }
-
-  public void testV3Encoding() throws NoSuchAlgorithmException {
-    byte[] message = new byte[501];
-    SecureRandom.getInstance("SHA1PRNG").nextBytes(message);
-
-    byte[] padded = transportV3.getEncodedMessage(message);
-
-    assertTrue(Arrays.equals(padded, message));
-  }
-
-  public void testV2Encoding() throws NoSuchAlgorithmException {
-    byte[] message = new byte[501];
-    SecureRandom.getInstance("SHA1PRNG").nextBytes(message);
-
-    byte[] padded = transportV2.getEncodedMessage(message);
-
-    assertTrue(Arrays.equals(padded, message));
-  }
-
 }
