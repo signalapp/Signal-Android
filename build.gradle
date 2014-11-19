@@ -5,7 +5,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.14.0'
+        classpath 'com.android.tools.build:gradle:0.14.2'
         classpath files('libs/gradle-witness.jar')
     }
 }
@@ -35,7 +35,7 @@ dependencies {
     compile 'org.w3c:smil:1.0.0'
     compile 'org.apache.httpcomponents:httpclient-android:4.3.5'
     compile 'com.github.chrisbanes.photoview:library:1.2.3'
-    compile 'com.android.support:appcompat-v7:21.0.0'
+    compile 'com.android.support:appcompat-v7:21.0.2'
     compile ('com.android.support:support-v4-preferencefragment:1.0.0@aar'){
         exclude module: 'support-v4'
     }
@@ -57,21 +57,22 @@ dependencyVerification {
             'com.astuetz:pagerslidingtabstrip:f1641396732c7132a7abb837e482e5ee2b0ebb8d10813fc52bbaec2c15c184c2',
             'org.w3c:smil:085dc40f2bb249651578bfa07499fd08b16ad0886dbe2c4078586a408da62f9b',
             'org.apache.httpcomponents:httpclient-android:6f56466a9bd0d42934b90bfbfe9977a8b654c058bf44a12bdc2877c4e1f033f1',
-            'com.android.support:appcompat-v7:45e999dda55fe81d9cc1c7342b7b70480ff3f307baa8da0df767f92fc5c52cd1',
+            'com.android.support:appcompat-v7:b760fd3d0b0b0547a1bcef9031b40939f31049ba955f04c8fdc5aa09a25d19e9',
             'com.android.support:support-v4-preferencefragment:5470f5872514a6226fa1fc6f4e000991f38805691c534cf0bd2778911fc773ad',
+            'com.squareup.dagger:dagger:789aca24537022e49f91fc6444078d9de8f1dd99e1bfb090f18491b186967883',
             'com.google.protobuf:protobuf-java:e0c1c64575c005601725e7c6a02cebf9e1285e888f756b2a1d73ffa8d725cc74',
             'com.madgag:sc-light-jdk15on:931f39d351429fb96c2f749e7ecb1a256a8ebbf5edca7995c9cc085b94d1841d',
             'com.googlecode.libphonenumber:libphonenumber:eba17eae81dd622ea89a00a3a8c025b2f25d342e0d9644c5b62e16f15687c3ab',
             'org.whispersystems:gson:08f4f7498455d1539c9233e5aac18e9b1805815ef29221572996508eb512fe51',
             'com.github.chrisbanes.photoview:library:8b5344e206f125e7ba9d684008f36c4992d03853c57e5814125f88496126e3cc',
-            'com.android.support:support-v4:199ef7bb169386c80b4836354df6747ce2ae3d24434db923c22439e47106a1e2',
-            'com.android.support:support-annotations:e9e817959d1b846349e93b796537bdaef84aef2c67d8b8b2acc31c6ef540d559',
+            'com.android.support:support-v4:126a4c291f41f75f3fff4968e9d397bc8454cdff4d8f994cbe0524e3bad76e72',
+            'com.android.support:support-annotations:7e37f00e3d932c4d9a6dd84604a99133bb5ae7d81cbd1aee69861fcf2f91e5e9',
     ]
 }
 
 android {
     compileSdkVersion 21
-    buildToolsVersion '21.0.2'
+    buildToolsVersion '21.1.1'
 
     defaultConfig {
         minSdkVersion 9
