@@ -100,7 +100,7 @@ public class ConversationItem extends LinearLayout {
   private  ImageView secureImage;
   private  ImageView failedImage;
   private  ImageView contactPhoto;
-  private  ImageView deliveredImage;
+  private  ImageView deliveryImage;
   private  View      triangleTick;
   private  ImageView pendingIndicator;
 
@@ -144,7 +144,7 @@ public class ConversationItem extends LinearLayout {
     this.mmsDownloadButton   = (Button)   findViewById(R.id.mms_download_button);
     this.mmsDownloadingLabel = (TextView) findViewById(R.id.mms_label_downloading);
     this.contactPhoto        = (ImageView)findViewById(R.id.contact_photo);
-    this.deliveredImage      = (ImageView)findViewById(R.id.delivered_indicator);
+    this.deliveryImage       = (ImageView)findViewById(R.id.delivered_indicator);
     this.conversationParent  =            findViewById(R.id.conversation_item_parent);
     this.triangleTick        =            findViewById(R.id.triangle_tick);
     this.pendingIndicator    = (ImageView)findViewById(R.id.pending_approval_indicator);
@@ -250,7 +250,7 @@ public class ConversationItem extends LinearLayout {
     }
     secureImage.setVisibility(messageRecord.isSecure() ? View.VISIBLE : View.GONE);
     bodyText.setCompoundDrawablesWithIntrinsicBounds(0, 0, messageRecord.isKeyExchange() ? R.drawable.ic_menu_login : 0, 0);
-    deliveredImage.setVisibility(!messageRecord.isKeyExchange() && messageRecord.isDelivered() ? View.VISIBLE : View.GONE);
+    deliveryImage.setVisibility(!messageRecord.isKeyExchange() && messageRecord.isDelivered() ? View.VISIBLE : View.GONE);
 
     mmsThumbnail.setVisibility(View.GONE);
     mmsDownloadButton.setVisibility(View.GONE);

@@ -121,7 +121,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingRight="3dip"
-                    android:src="?conversation_delivered_indicator"
+                    android:src="?conversation_delivery_delivered"
                     android:contentDescription="@string/conversation_item_sent__delivered_description"
                     android:visibility="gone" />
 
@@ -142,6 +142,7 @@
                     android:paddingTop="1dip"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="?conversation_received_text_secondary_color"
+                    android:textSize="@dimen/conversation_item_date_text_size"
                     android:fontFamily="sans-serif-light"
                     android:autoLink="none"
                     android:linksClickable="false" />

@@ -5,6 +5,7 @@
     <dimen name="emoji_drawer_item_padding">8dp</dimen>
     <dimen name="emoji_drawer_indicator_height">2dp</dimen>
     <dimen name="emoji_drawer_left_right_padding">8dp</dimen>
+    <dimen name="conversation_item_date_text_size">12sp</dimen>
     <dimen name="conversation_item_corner_radius">3dp</dimen>
     <dimen name="conversation_item_drop_shadow_dist">2dp</dimen>
     <dimen name="contact_selection_photo_size">50dp</dimen>
