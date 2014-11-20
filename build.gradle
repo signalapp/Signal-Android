@@ -11,6 +11,7 @@ buildscript {
 }
 
 apply plugin: 'com.android.application'
+apply from: 'strip_play_services.gradle'
 apply plugin: 'witness'
 
 repositories {
@@ -90,12 +91,10 @@ android {
     android {
         buildTypes {
             debug {
-                runProguard true
-                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.cfg'
+                minifyEnabled false
             }
             release {
-                runProguard true
-                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.cfg'
+                minifyEnabled false
             }
         }
 

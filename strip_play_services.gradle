@@ -1,0 +1,109 @@
+// adapted from https://gist.github.com/CedricGatay/4e21ce855bd2562f9257
+// which was adapted from https://gist.github.com/dmarcato/d7c91b94214acd936e42
+
+def toCamelCase(String string) {
+    String result = ""
+    string.findAll("[^\\W]+") { String word ->
+        result += word.capitalize()
+    }
+    return result
+}
+
+afterEvaluate { project ->
+    Configuration runtimeConfiguration = project.configurations.getByName('compile')
+    println runtimeConfiguration
+    ResolutionResult resolution = runtimeConfiguration.incoming.resolutionResult
+    // Forces resolve of configuration
+    ModuleVersionIdentifier module = resolution.getAllComponents().find {
+        it.moduleVersion.name.equals("play-services")
+    }.moduleVersion
+
+
+    def playServicesLibName = toCamelCase("${module.group} ${module.name} ${module.version}")
+    String prepareTaskName = "prepare${playServicesLibName}Library"
+    File playServiceRootFolder = project.tasks.find { it.name.equals(prepareTaskName) }.explodedDir
+
+
+    def tmpDir = new File(project.buildDir, 'intermediates/tmp')
+    tmpDir.mkdirs()
+    def libFile = new File(tmpDir, "${playServicesLibName}.marker")
+
+    def strippedClassFileName = "${playServicesLibName}.jar"
+    def classesStrippedJar = new File(tmpDir, strippedClassFileName)
+
+    def packageToExclude = [
+    "com/google/ads/**",
+    //"com/google/android/gms/actions/**",
+    "com/google/android/gms/ads/**",
+    "com/google/android/gms/analytics/**",
+    //"com/google/android/gms/appindexing/**",
+    //"com/google/android/gms/appstate/**",
+    //"com/google/android/gms/auth/**",
+    //"com/google/android/gms/cast/**",
+    "com/google/android/gms/drive/**",
+    "com/google/android/gms/fitness/**",
+    "com/google/android/gms/games/**",
+    //"com/google/android/gms/gcm/**",
+    //"com/google/android/gms/identity/**",
+    "com/google/android/gms/location/**",
+    "com/google/android/gms/maps/**",
+    "com/google/android/gms/panorama/**",
+    "com/google/android/gms/plus/**",
+    //"com/google/android/gms/security/**",
+    //"com/google/android/gms/tagmanager/**",
+    "com/google/android/gms/wallet/**",
+    "com/google/android/gms/wearable/**"
+    ]
+
+    Task stripPlayServices = project.tasks.create(name: 'stripPlayServices', group: "Strip") {
+        inputs.files new File(playServiceRootFolder, "classes.jar")
+        outputs.dir playServiceRootFolder
+        description 'Strip useless packages from Google Play Services library to avoid reaching dex limit'
+
+        doLast {
+            def packageExcludesAsString = packageToExclude.join(",")
+            if (libFile.exists()
+                    && libFile.text == packageExcludesAsString
+                    && classesStrippedJar.exists()){
+                println "Play services already stripped"
+                copy {
+                    from(file(classesStrippedJar))
+                    into(file(playServiceRootFolder))
+                    rename { fileName ->
+                        fileName = "classes.jar"
+                    }
+                }
+            }else {
+                copy {
+                    from(file(new File(playServiceRootFolder, "classes.jar")))
+                    into(file(playServiceRootFolder))
+                    rename { fileName ->
+                        fileName = "classes_orig.jar"
+                    }
+                }
+                tasks.create(name: "stripPlayServices" + module.version, type: Jar) {
+                    destinationDir = playServiceRootFolder
+                    archiveName = "classes.jar"
+                    from(zipTree(new File(playServiceRootFolder, "classes_orig.jar"))) {
+                        exclude packageToExclude
+                    }
+                }.execute()
+                delete file(new File(playServiceRootFolder, "classes_orig.jar"))
+                copy {
+                    from(file(new File(playServiceRootFolder, "classes.jar")))
+                    into(file(tmpDir))
+                    rename { fileName ->
+                        fileName = strippedClassFileName
+                    }
+                }
+                libFile.text = packageExcludesAsString
+            }
+        }
+    }
+
+    project.tasks.findAll {
+        it.name.startsWith('prepare') && it.name.endsWith('Dependencies')
+    }.each { Task task ->
+        task.dependsOn stripPlayServices
+    }
+}
