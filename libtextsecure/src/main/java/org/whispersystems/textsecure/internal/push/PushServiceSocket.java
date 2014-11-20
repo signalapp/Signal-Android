@@ -368,6 +368,8 @@ public class PushServiceSocket {
 
       output.close();
       Log.w("PushServiceSocket", "Downloaded: " + url + " to: " + localDestination.getAbsolutePath());
+    } catch (IOException ioe) {
+      throw new PushNetworkException(ioe);
     } finally {
       connection.disconnect();
     }
