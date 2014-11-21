@@ -89,13 +89,8 @@
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Отправитель: %1$s\nТранспорт: %2$s\nОтправлено: %3$s\nПолучено: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Подтвердите удаление сообщения</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Вы уверены, что хотите навсегда удалить это сообщение?</string>
-  <string name="ConversationFragment_save_to_sd_card">Сохранить на SD карту?</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Этот медиа-файл хранится в зашифрованной базе данных. Его копия, которую вы сохраните на SD-карту, не будет зашифрована. Хотите продолжить?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Ошибка при сохранении вложения на SD-карту!</string>
   <string name="ConversationFragment_success_exclamation">Успешно!</string>
-  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Невозможно записать на SD карту!</string>
   <string name="ConversationFragment_saving_attachment">Сохранение вложения</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">Сохраняем вложение на SD-карту...</string>
   <!--ConversationListAdapter-->
   <string name="ConversationListAdapter_key_exchange_message">Сообщениe обмена ключами...</string>
   <!--ConversationListFragment-->
@@ -436,14 +431,11 @@
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Выполнить</string>
   <!--registration_activity-->
-  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-TextSecure может передавать сообщения через интернет для повышения безопасности и снижения расходов на SMS при общении с другими пользователями TextSecure. Для включения этой возможности, пожалуйста, подтвердите ваш код страны и номер телефона.</string>
   <string name="registration_activity__your_country">ВАША СТРАНА</string>
   <string name="registration_activity__your_country_code_and_phone_number">КОД ВАШЕЙ СТРАНЫ
 И НОМЕР ТЕЛЕФОНА</string>
   <string name="registration_activity__phone_number">НОМЕР ТЕЛЕФОНА</string>
   <string name="registration_activity__register">Зарегистрироваться</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Для регистрации на сервер будет временно передана некоторая контактная информация.</string>
   <string name="registration_activity__skip">Пропустить</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Возможные причины:</string>
@@ -700,5 +692,8 @@ SMS-подтверждения...
   <string name="reminder_header_sms_import_text">TextSecure может скопировать SMS из вашего телефона в свою зашифрованную базу.</string>
   <string name="reminder_header_push_title">Включить общение через TextSecure?</string>
   <string name="reminder_header_push_text">Мгновенная доставка, защита приватности и никакой платы за SMS.</string>
+  <!--MediaPreviewActivity-->
+  <!--media_preview-->
+  <!--media_preview_activity-->
   <!--EOF-->
 </resources>

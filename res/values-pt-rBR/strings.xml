@@ -36,6 +36,7 @@
   <string name="ApplicationPreferencesActivity_sms_disabled">Recebimento de SMS desabilitado</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Toque para tornar o TextSecure o seu app padrão de SMS</string>
   <!--AttchmentManager-->
+  <string name="AttachmentManager_cant_open_media_selection">Não localizei um aplicativo para selecionar o arquivo.</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Imagem</string>
   <string name="AttachmentTypeSelectorAdapter_video">Vídeo</string>
@@ -62,6 +63,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Contingenciar para SMS não criptografado?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Contingenciar para MMS não criptografado?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Esta mensagem <b>não</b> será criptografada pois não foi possível estabelecer uma sessão segura.\n\nEnviar mensagem insegura?</string>
+  <string name="ConversationItem_unable_to_open_media">Não localizei um aplicativo para abrir o arquivo.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Iniciar sessão segura?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Iniciar sessão segura com %s?</string>
@@ -95,8 +97,8 @@ Tem certeza que deseja fazer isto?</string>
   <string name="ConversationFragment_confirm_message_delete">Confirmação de exclusão de mensagem</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Tem certeza que deseja apagar permanentemente esta mensagem?</string>
   <string name="ConversationFragment_save_to_sd_card">Salvar no cartão SD?</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Este arquivo foi armazenado em uma base de dados criptografada. A versão salva no cartão SD não estará criptografada. Deseja continuar?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Erro a gravar anexo para o cartão SD...</string>
+  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Salvando esta mídia no armazenamento permitirá que quaisquer outros aplicativos em seu telefone possam acessá-la.\n\nContinuar?</string>
+  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Erro a gravar anexo para o cartão SD!</string>
   <string name="ConversationFragment_success_exclamation">Sucesso!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Não foi possível escrever no cartão SD!</string>
   <string name="ConversationFragment_saving_attachment">Salvando anexo</string>
@@ -490,17 +492,14 @@ Tem certeza que deseja fazer isto?</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Concluído</string>
   <!--registration_activity-->
-  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-        O TextSecure pode usar mensagens instantâneas para aumentar a privacidade e evitar cobranças SMS ao comunicar-se
-        com outros usuários TextSecure. Para habilitar esta funcionalidade, favor verificar seu código de país e número telefônico.
-    </string>
+  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">O registo é gratuito e aumenta a privacidade quando você troca mensagens com outros usuários TextSecure . Por favor, verifique seu número de telefone .</string>
   <string name="registration_activity__your_country">SEU PAÍS</string>
   <string name="registration_activity__your_country_code_and_phone_number">SEU CÓDIGO DE PAÍS E
         NÚMERO TELEFÔNICO
     </string>
   <string name="registration_activity__phone_number">NÚMERO TELEFÔNICO</string>
   <string name="registration_activity__register">Cadastrar</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">O registro irá transmitir algumas informações de contato com o servidor temporariamente.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">O registro irá transmitir algumas informações de contato para o servidor. Elas não serão gravadas.</string>
   <string name="registration_activity__skip">Pular</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Alguns problemas possíveis
@@ -591,6 +590,7 @@ falhou.</string>
   <string name="AndroidManifest__manage_identity_keys">Gerenciar chaves de identidade</string>
   <string name="AndroidManifest__complete_key_exchange">Completar troca de chaves</string>
   <string name="AndroidManifest__log_submit">Enviar logs de depuração</string>
+  <string name="AndroidManifest__media_preview">Visualização rápida</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importar / exportar</string>
   <string name="arrays__my_identity_key">Minha chave de identidade</string>
@@ -767,5 +767,11 @@ falhou.</string>
   <string name="reminder_header_sms_import_text">O TextSecure pode copiar as mensagens SMS do seu dispositivo para a base de dados criptografada do TextSecure.</string>
   <string name="reminder_header_push_title">Habilitar mensagens TextSecure?</string>
   <string name="reminder_header_push_text">Entrega imediata, maior privacidade e sem despesas de SMS.</string>
+  <!--MediaPreviewActivity-->
+  <string name="MediaPreviewActivity_you">Você</string>
+  <!--media_preview-->
+  <string name="media_preview__save_title">Salvar</string>
+  <!--media_preview_activity-->
+  <string name="media_preview_activity__image_content_description">Visualização rápida.</string>
   <!--EOF-->
 </resources>

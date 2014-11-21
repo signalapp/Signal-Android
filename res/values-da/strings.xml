@@ -15,13 +15,28 @@
   <string name="ApplicationPreferencesActivity_my">Min</string>
   <string name="ApplicationPreferencesActivity_disable_storage_encryption">Deaktiverer kryptering af lager?</string>
   <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
- Advarsel! Dette vil deaktiverer kryptering af lager for alle beskeder og nøgler.
- Dine krypterede sessioner vil fortsætte med at fungere,
- men alle med fysisk adgang til din enhed kan få adgang til dem.
+Advarsel! Dette vil deaktiverer kryptering af lager for alle beskeder og nøgler.
+Dine krypterede sessioner vil fortsætte med at fungere,
+men alle med fysisk adgang til din enhed kan få adgang til dem.
 </string>
   <string name="ApplicationPreferencesActivity_disable">Deaktivere</string>
-  <string name="ApplicationPreferencesActivity_error_connecting_to_server">Kunne ikke forbinde til serveren!</string>
+  <string name="ApplicationPreferencesActivity_unregistering">Afregistrerer...</string>
+  <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Afregistrerer for data kommunikation</string>
+  <string name="ApplicationPreferencesActivity_disable_push_messages">Deaktiver \\'push\\' beskeder?</string>
+  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">
+Dette vil deaktivere \\'push\\' beskeder, og afregistrerer dig fra tjenesten.
+Du skal registrere dit telefonnummer påny hvis du vil bruge \\'push\\' beskeder i fremtiden.
+</string>
+  <string name="ApplicationPreferencesActivity_error_connecting_to_server">Kunne ikke oprette forbindelse til serveren!</string>
+  <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">Du er ikke registreret som bruger af \\'push\\' tjenesten...</string>
+  <string name="ApplicationPreferencesActivity_updating_directory">Opdaterer bibliotek</string>
+  <string name="ApplicationPreferencesActivity_updating_push_directory">Opdaterer \\'push\\' bibliotek...</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">SMS aktiveret</string>
+  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Brug som standard SMS program</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">SMS deaktiveret</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Brug TextSecure som dit standard SMS program</string>
   <!--AttchmentManager-->
+  <string name="AttachmentManager_cant_open_media_selection">Kan ikke åbne valgte data</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Billede</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
@@ -30,35 +45,60 @@
   <string name="ConversationItem_message_size_d_kb">Besked størrelse: %d KB</string>
   <string name="ConversationItem_expires_s">Udløber: %s</string>
   <string name="ConversationItem_error_sending_message">Kunne ikke sende besked</string>
-  <string name="ConversationItem_view_secure_media_question">Vis sikret data?</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Denne fil er gemt i en krypteret database. For at se den i et externt program kræves det, desværre, at filen midlertidigt dekrypteres og gemmes. Er du sikker på at du vil gøre det?</string>
+  <string name="ConversationItem_view_secure_media_question">Gennemse sikret data?</string>
+  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Denne fil er gemt i en krypteret database. For at se den i et eksternt program kræves det, desværre, at filen midlertidigt dekrypteres og gemmes. Er du sikker på at du vil gøre det?</string>
   <string name="ConversationItem_received_and_processed_key_exchange_message">Udvekslingsnøgle er modtaget og behandlet.</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Fejl! Modtog en gammel udvekslingsnøgle.</string>
   <string name="ConversationItem_received_key_exchange_message_click_to_process">Udvekslingsnøgle er modtaget. Klik for at fortsætte</string>
+  <string name="ConversationItem_received_plaintext_message_click_to_terminate">Modtag en klartekst SMS, mens du har en sikker forbindelse åben. Hvis modtager ikke har en forbindelse åben, vil beskeder du sender være ulæselige. Tryk for at afslutte sikker forbindelse.</string>
+  <string name="ConversationItem_group_action_left">%1$s har forladt gruppen.</string>
+  <string name="ConversationItem_group_action_joined">%1$s har tilsluttet sig gruppen.</string>
+  <string name="ConversationItem_group_action_modify">%1$s har opdateret gruppen.</string>
+  <string name="ConversationItem_click_to_approve_sms">Tryk for at godkende SMS</string>
+  <string name="ConversationItem_click_to_approve_mms">Tryk for at godkende MMS</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">Tryk for at godkende ukrypteret beskeder</string>
+  <string name="ConversationItem_click_to_approve_sms_dialog_title">Godkend SMS?</string>
+  <string name="ConversationItem_click_to_approve_mms_dialog_title">Godkend MMS?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Godkend ukrypteret SMS?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Godkend ukrypteret MMS?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Denne meddelelse kan <b>ikke</b> krypteres, fordi der ikke kunne oprettes en sikker forbindelse.
+
+Send ukrypteret besked?</string>
+  <string name="ConversationItem_unable_to_open_media">Kan ikke åbne data</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_initiate_secure_session_with_s_question">Opret en sikker session med %s?</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Er du sikker på du vil afbryde denne sikre forbindelse?</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Vil du slette denne samtale permanent?</string>
+  <string name="ConversationActivity_initiate_secure_session_question">Opret en sikker forbindelse?</string>
+  <string name="ConversationActivity_initiate_secure_session_with_s_question">Opret en sikker forbindelse med %s?</string>
+  <string name="ConversationActivity_abort_secure_session_confirmation">Bekræft afslutning af sikker forbindelse</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Er du sikker på du vil afbryde den sikre forbindelse?</string>
+  <string name="ConversationActivity_delete_thread_confirmation">Bekræft sletning af tråd</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Er du sikker på at du vil slette denne samtale permanent?</string>
   <string name="ConversationActivity_add_attachment">Vedhæft fil.</string>
   <string name="ConversationActivity_select_contact_info">Vælg kontakt information</string>
+  <string name="ConversationActivity_compose_message">Opret besked</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Beklager, der opstod en fejl ved vedhæftning af fil.</string>
-  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Beklager, den valgte video overskrider grænsen på beskedstørrelsen</string>
-  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Beklager, den valgte lydfil overskrider grænsen på beskedstørrelsen</string>
+  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Beklager, den valgte video overskrider grænsen på beskedens størrelse</string>
+  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Beklager, den valgte lydfil overskrider grænsen på beskedens størrelse</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Modtageren har ikke en gyldig SMS- eller e-mail adresse!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Beskeden er tom!</string>
+  <string name="ConversationActivity_group_conversation_recipients">Modtagere i gruppen</string>
+  <string name="ConversationActivity_group_conversation">Gruppe beskeder</string>
+  <string name="ConversationActivity_unnamed_group">Navnløs gruppe</string>
   <string name="ConversationActivity_d_recipients_in_group">%d modtagere</string>
-  <string name="ConversationActivity_d_recipients_in_group_singular">1 medlem</string>
+  <string name="ConversationActivity_d_recipients_in_group_singular">1 modtager</string>
+  <string name="ConversationActivity_saved_draft">Gemte kladder</string>
   <string name="ConversationActivity_invalid_recipient">Ugyldig modtager!</string>
+  <string name="ConversationActivity_calls_not_supported">Opkald er ikke understøttet</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Din enhed understøtter ikke initieret opkald.</string>
   <string name="ConversationActivity_leave_group">Forlad gruppe?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Er du sikker at du vil forlade denne gruppe?</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Besked detaljer</string>
+  <string name="ConversationFragment_transport_s_sent_received_s">Overførsel: %1$s\nSendt/Modtaget: %2$s</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Sender: %1$s\nOverførsel: %2$s\nSendt: %3$s\nModtaget: %4$s</string>
+  <string name="ConversationFragment_confirm_message_delete">Bekræft sletning af besked</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Er du sikker på at du ønsker at slette denne besked?</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Data er gemt i en krypteret database. Versionen du gemmer på SD-kortet vil ikke længere være krypteret. Vil du fortsætte?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Kunne ikke gemme vedhæftning på SD-kort!</string>
   <string name="ConversationFragment_success_exclamation">Fuldført!</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">Gemmer vedhæftning til SD-kort...</string>
+  <string name="ConversationFragment_saving_attachment">Gem vedhæftning</string>
   <!--ConversationListAdapter-->
   <string name="ConversationListAdapter_key_exchange_message">Udvekslingsnøgle...</string>
   <!--ConversationListFragment-->
@@ -69,9 +109,12 @@
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Udvekslingsnøgle...</string>
   <!--ShareActivity-->
+  <string name="ShareActivity_share_with">Del med</string>
   <!--ExportFragment-->
+  <string name="ExportFragment_export_to_sd_card">Eksporter til SD-kort?</string>
   <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Dette vil eksportere dine krypteringsnøgler, indstillinger og beskeder til SD-kortet.</string>
   <string name="ExportFragment_export">Eksportér</string>
+  <string name="ExportFragment_export_plaintext_to_sd_card">Eksportere klartekst til SD-kort?</string>
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Advarsel! Dette vil eksportere dine TextSecure beskeder i klartekst til SD-kortet.</string>
   <string name="ExportFragment_cancel">Afbryd</string>
   <string name="ExportFragment_exporting">Eksporterer</string>
@@ -81,18 +124,33 @@
   <string name="ExportFragment_success">Fuldført!</string>
   <string name="ExportFragment_exporting_keys_settings_and_messages">Eksporterer krypterede nøgler, indstillinger og beskeder...</string>
   <!--GroupCreateActivity-->
+  <string name="GroupCreateActivity_actionbar_title">Ny gruppe</string>
+  <string name="GroupCreateActivity_actionbar_update_title">Opdater gruppe</string>
+  <string name="GroupCreateActivity_group_name_hint">Gruppenavn</string>
+  <string name="GroupCreateActivity_actionbar_mms_title">Ny MMS gruppe</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Du har valgt en kontaktperson, der ikke understøtter TextSecure grupper, så denne vil blive en MMS gruppe.</string>
+  <string name="GroupCreateActivity_you_dont_support_push">Du har ikke registreret dig som bruger af data, så TextSecure grupper er deaktivert.</string>
+  <string name="GroupCreateActivity_contacts_mms_exception">En ukendt fejl har medført, at oprettelse af gruppen mislykkedes.</string>
   <string name="GroupCreateActivity_contacts_no_members">Der skal være mindst én person i gruppen!</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">En af medlemmerne i gruppen har et nummer der ikke kan læses. Ret nummeret eller slet kontakten, og prøv igen.</string>
+  <string name="GroupCreateActivity_contacts_invalid_number">En kontaktperson i gruppen har et nummer der ikke kan læses. Ret nummeret eller slet kontakten, og prøv igen.</string>
+  <string name="GroupCreateActivity_file_io_exception">Datafejl. Kunne ikke oprette en midlertidig billedfil.</string>
+  <string name="GroupCreateActivity_avatar_content_description">Gruppe ikon</string>
+  <string name="GroupCreateActivity_menu_create_title">Opret gruppe</string>
+  <string name="GroupCreateActivity_creating_group">Opretter %1$s...</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Kan ikke tilføje ikke-TextSecure kontakter til en eksisterende TextSecure gruppe</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Importer</string>
   <string name="ImportExportActivity_export">Eksportér</string>
   <!--ImportFragment-->
-  <string name="ImportFragment_this_will_import_messages_from_the_system">Dette vil importere beskeder fra systemets standard SMS database til TextSecure.</string>
+  <string name="ImportFragment_import_system_sms_database">Importer enhedens SMS database?</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">Dette vil importere beskeder fra enhedens standard SMS database til TextSecure.</string>
   <string name="ImportFragment_import">Importer</string>
   <string name="ImportFragment_cancel">Afbryd</string>
+  <string name="ImportFragment_restore_encrypted_backup">Genopret en krypteret backup?</string>
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
 Genoprettelse af en krypteret backup vil overskrive eksisterende nøgler, indstillinger og beskeder. Du vil miste de informationer i TextSecure som ikke findes i din backup.</string>
   <string name="ImportFragment_restore">Genopret</string>
+  <string name="ImportFragment_import_plaintext_backup">Importer klartekst backup?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Dette vil importere beskeder fra en klartekst backup. Hvis du tidligere har importeret den samme backup, vil det resultere i dupletter.</string>
   <string name="ImportFragment_importing">Importerer</string>
   <string name="ImportFragment_import_plaintext_backup_elipse">Importerer klartekst backup...</string>
@@ -111,13 +169,21 @@ Genoprettelse af en krypteret backup vil overskrive eksisterende nøgler, indsti
   <string name="MmsDownloader_error_connecting_to_mms_provider">Fejl! Ingen forbindelse til MMS tjenesten...</string>
   <string name="MmsDownloader_error_reading_mms_settings">Kunne ikke læse udbyderens MMS-indstillinger.</string>
   <!--NotificationMmsMessageRecord-->
+  <string name="NotificationMmsMessageRecord_multimedia_message">MMS-besked</string>
   <!--MessageRecord-->
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Modtog en besked, krypteret med en ældre version af TextSecure, der ikke længere understøttes. Bed venligst afsenderen om at opgradere til den nyeste version, og at sende beskeden igen.</string>
   <!--PassphraseChangeActivity-->
+  <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Kodeord matcher ikke!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Fejl! Gammelt kodeord</string>
   <!--PassphrasePromptActivity-->
+  <string name="PassphrasePromptActivity_enter_passphrase">Indtast kodeord</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">TextSecure ikon</string>
+  <string name="PassphrasePromptActivity_ok_button_content_description">Godkend kodeord</string>
+  <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Ugyldigt kodeord!</string>
   <!--PromptMmsActivity-->
   <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">Du skal specificere en MMSC URL for din operatør.</string>
-  <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Du kan ændre disse værdier når som helst i konfigurationsmenuen for TextSecure.</string>
+  <string name="PromptMmsActivity_mms_settings_updated">MMS-indstillinger er opdateret</string>
+  <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Du kan ændre disse værdier når som helst i menuen indstillinger for TextSecure.</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Signaturen på denne udvekslingsnøgle er ikke ens med den som du tidligere modtog fra denne
 kontakt. Det kan enten betyde, at der er nogle som prøver på at kompromitterer din kommunikation eller
@@ -130,37 +196,50 @@ denne kontakt.</string>
   <string name="ReceiveKeyActivity_processing_key_exchange">Arbejder på nøgleudvekling...</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">Forbind med TextSecure</string>
+  <string name="RegistrationActivity_select_your_country">Vælg land</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Du skal vælge din
 landekode</string>
-  <string name="RegistrationActivity_you_must_specify_your_phone_number">Du skal skrive dit
+  <string name="RegistrationActivity_you_must_specify_your_phone_number">Du skal indtaste dit
 telefonnummer</string>
-  <string name="RegistrationActivity_invalid_number">Ikke gyldigt nummer</string>
+  <string name="RegistrationActivity_invalid_number">Ugyldigt nummer</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Det nummer som du
 indtastede (%s) er ugyldigt.
     </string>
   <string name="RegistrationActivity_unsupported">Ikke understøttet</string>
+  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Beklager, denne enhed understøtter ikke meddelelser sendt over mobil data. Enheder som kører versioner af Android lavere end 4.0 kræver en Google konto. Enheder som kører versioner af Android 4.0 eller nyere kræver ikke en Google konto, men Play Store app skal være installeret.</string>
+  <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
+Vi vil nu kontrollere om følgende nummer hører til denne enhed:\n\n%s\n\n Er dette nummer korrekt, eller vil du at ændre det før du fortsætter?</string>
   <string name="RegistrationActivity_continue">Fortsæt</string>
   <string name="RegistrationActivity_edit">Rediger</string>
   <!--RegistrationProblemsActivity-->
+  <string name="RegistrationProblemsActivity_possible_problems">Mulige problemer</string>
   <!--RegistrationProgressActivity-->
   <string name="RegistrationProgressActivity_verifying_number">Godkender nummer</string>
   <string name="RegistrationProgressActivity_edit_s">Rediger %s</string>
   <string name="RegistrationProgressActivity_registration_complete">Registrering fuldført!</string>
   <string name="RegistrationProgressActivity_possible_problems">Mulige problemer.</string>
-  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Du skal ført indtaste den kode du modtog.</string>
+  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Du skal først indtaste den kode du modtog.</string>
   <string name="RegistrationProgressActivity_connecting">Forbinder</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">Forbinder for godkendelse...</string>
-  <string name="RegistrationProgressActivity_unable_to_connect">Kunne ikke skabe forbindelse. Venligst tjek din netværks forbindelse og prøv igen.</string>
-  <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">Den godkendelses kode du indtastet er forkert. Prøv igen.</string>
+  <string name="RegistrationProgressActivity_network_error">Netværksfejl!</string>
+  <string name="RegistrationProgressActivity_unable_to_connect">Kunne ikke oprette forbindelse. Tjek venligst din netværksforbindelse og prøv igen.</string>
+  <string name="RegistrationProgressActivity_verification_failed">Godkendelsesfejl!</string>
+  <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">Godkendelseskoden du har indtastet er forkert. Prøv igen.</string>
   <string name="RegistrationProgressActivity_too_many_attempts">For mange forsøg</string>
   <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">Du har indtastet en ugyldig verifikationskode for mange gange. Vent venligst et minut før du prøver igen.</string>
-  <string name="RegistrationProgressActivity_requesting_incoming_call">Bestiller opkald til verifikation.</string>
+  <string name="RegistrationProgressActivity_requesting_call">Anmoder om opkald</string>
+  <string name="RegistrationProgressActivity_requesting_incoming_call">Anmoder om opkald til godkendelse.</string>
+  <string name="RegistrationProgressActivity_server_error">Server fejl</string>
   <string name="RegistrationProgressActivity_the_server_encountered_an_error">Serveren stødte på en fejl. Prøv igen.</string>
-  <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Du har allerede for kort tid siden bestilt et opkald. Du kan bestille et nyt om 20 minutter.</string>
+  <string name="RegistrationProgressActivity_too_many_requests">For mange forsøg</string>
+  <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Du har allerede anmodet om et opkald. Du kan anmode om et nyt om 20 minutter.</string>
   <string name="RegistrationProgressActivity_verifying_voice_code">Kontrollerer stemmekode.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Registrerings-konflikt</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Dette nummeret er allerede registreret hos en anden TextSecure tjeneste (CyanogenMod?). Du skal først afmelde dig der før du kan registrere dig her.</string>
   <!--RegistrationService-->
+  <string name="RegistrationService_registration_complete">Registrering fuldført</string>
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">TextSecure er blevet registreret.</string>
+  <string name="RegistrationService_registration_error">Registreringsfejl</string>
   <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Der opstod en fejl under registreringen af TextSecure.</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Modtog en ugyldig
@@ -168,8 +247,10 @@ nøgle-besked!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Modtog en nøgle-besked for en ugyldig protokol-version.</string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
-Modtog en besked med en ukendt identitetsnøgle. Klik for se og behandle den.</string>
+Modtog en besked med en ukendt identitetsnøgle. Klik for at se og behandle den.</string>
+  <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Modtog en opdateret, men ukendte identitetsoplysninger. Klik for at validere identitet.</string>
   <string name="SmsMessageRecord_secure_session_ended">Sikker session afsluttet.</string>
+  <string name="SmsMessageRecord_duplicate_message">Duplikeret besked.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Forlod gruppen...</string>
   <string name="TheadRecord_secure_session_ended">Sikker session afsluttet.</string>
@@ -177,9 +258,9 @@ Modtog en besked med en ukendt identitetsnøgle. Klik for se og behandle den.</s
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Du har ingen ID-nøgle.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Modtageren har ingen ID-nøgle.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Modtageren har ingen ID-nøgle!</string>
-  <string name="VerifyIdentityActivity_scan_their_key_to_compare">Foretag skanning af deres nøgle for at sammenligne</string>
+  <string name="VerifyIdentityActivity_scan_their_key_to_compare">Skan nøgler for at sammenligne</string>
   <string name="VerifyIdentityActivity_get_my_key_scanned">Skan min nøgle</string>
-  <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">ADVARSEL. Den skannede nøgle er IKKE den samme! Vær venlig at tjekke fingeraftrykkets tekst nøje.</string>
+  <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">ADVARSEL. De skannede fingeraftryk matcher IKKE! Vær omhyggelig ved indskanning af fingeraftryk.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">IKKE bekræftet!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Modpartens nøgle er korrekt. Det er også nødvendigt at bekræfte din nøgle med modparten.</string>
   <string name="VerifyIdentityActivity_verified_exclamation">Bekræftet!</string>
@@ -187,17 +268,22 @@ Modtog en besked med en ukendt identitetsnøgle. Klik for se og behandle den.</s
   <!--VerifyKeysActivity-->
   <string name="VerifyKeysActivity_get_my_fingerprint_scanned">Få mit fingeraftryk skannet</string>
   <string name="VerifyKeysActivity_scan_their_fingerprint">Skan modpartens fingeraftryk</string>
-  <string name="VerifyKeysActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully2">ADVARSEL. Den skannede nøgle er IKKE den samme! Vær venlig at tjekke fingeraftrykkets tekst nøje.</string>
+  <string name="VerifyKeysActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully2">ADVARSEL. Den skannede nøgle matcher IKKE! Vær venlig at tjekke nøglen igen.</string>
+  <string name="VerifyKeysActivity_not_verified_exclamation">IKKE bekræftet!</string>
   <string name="VerifyKeysActivity_their_key_is_correct_it_is_also_necessary_to_get_your_fingerprint_scanned_as_well">Modpartens nøgle er korrekt. Det er også nødvendigt at få dit fingeraftryk skannet.</string>
   <string name="VerifyKeysActivity_verified_exclamation">Bekræftet!</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Du har ingen ID-nøgle.</string>
-  <string name="ViewIdentityActivity_scan_to_compare">Skan for at sammenligne</string>
-  <string name="ViewIdentityActivity_get_scanned_to_compare">Få den skannet for at sammenligne</string>
-  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">ADVARSEL. Den skannede nøgle er IKKE den samme!</string>
+  <string name="ViewIdentityActivity_scan_to_compare">Skanner for at sammenligne</string>
+  <string name="ViewIdentityActivity_get_scanned_to_compare">Skan for at sammenligne</string>
+  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">ADVARSEL. Den skannede nøgle matcher IKKE!</string>
+  <string name="ViewIdentityActivity_not_verified_exclamation">IKKE bekræftet!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Den skannede nøgle stemmer overens!</string>
   <string name="ViewIdentityActivity_verified_exclamation">Bekræftet!</string>
+  <string name="ViewIdentityActivity_identity_fingerprint">ID fingeraftryk</string>
+  <string name="ViewIdentityActivity_my_identity_fingerprint">Mit ID-fingeraftryk</string>
   <!--KeyExchangeInitiator-->
+  <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Initialisere til trods for eksisterende forespørgsel?</string>
   <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Du har allerede sendt en forespørgsel om at initialisere en session til denne modtager. Er du sikker på at du vil sende en til? Dette vil gøre en tidligere forespørgsel ugyldig.</string>
   <string name="KeyExchangeInitiator_send">Send</string>
   <!--MessageDisplayHelper-->
@@ -207,25 +293,28 @@ Modtog en besked med en ukendt identitetsnøgle. Klik for se og behandle den.</s
   <!--MmsDatabase-->
   <string name="MmsDatabase_connecting_to_mms_server">Forbinder til MMS tjenesten...</string>
   <string name="MmsDatabase_downloading_mms">Henter MMS...</string>
+  <string name="MmsDatabase_mms_download_failed">Fejl ved afhentning af MMS!</string>
   <string name="MmsDatabase_downloading">Henter...</string>
-  <string name="MmsDatabase_mms_pending_download">Klik og konfigurer MMS-indstillinger for at downloade.</string>
+  <string name="MmsDatabase_mms_pending_download">Tryk og konfigurere MMS-indstillinger for at fortsætte download.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Dekrypterer MMS, vent venligst...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Ugyldig krypteret MMS...</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS krypteret for en ikke-eksisterende session...</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS krypteret fra en ikke-eksisterende session...</string>
   <!--MmsSender-->
   <string name="MmsSender_currently_unable_to_send_your_mms_message">Det er ikke muligt at sende MMS beskeden nu.</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Henter...</string>
+  <string name="ApplicationMigrationService_importing_text_messages">Henter tekstbeskeder</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_textsecure_passphrase_cached">Klik for at åbne.</string>
   <string name="KeyCachingService_textsecure_passphrase_cached_with_lock">Klik for at åbne eller klik på låsen for at lukke.</string>
   <string name="KeyCachingService_passphrase_cached">TextSecure er låst op</string>
-  <string name="KeyCachingService_lock">Lås med kode</string>
+  <string name="KeyCachingService_lock">Lås med et kodeord</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">(%d) Nye beskeder</string>
   <string name="MessageNotifier_most_recent_from_s">Sidst modtaget fra: %s</string>
   <string name="MessageNotifier_encrypted_message">Krypteret besked...</string>
+  <string name="MessageNotifier_no_subject">(Intet emne)</string>
   <string name="MessageNotifier_message_delivery_failed">Levering af besked mislykkedes.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Kunne ikke sende besked.</string>
   <string name="MessageNotifier_error_delivering_message">Fejl ved levering af besked.</string>
@@ -235,9 +324,9 @@ Modtog en besked med en ukendt identitetsnøgle. Klik for se og behandle den.</s
   <string name="ViewLocalIdentityActivity_regenerating">Regenererer...</string>
   <string name="ViewLocalIdentityActivity_regenerating_identity_key">Regenererer ID-nøgle...</string>
   <string name="ViewLocalIdentityActivity_regenerated">Regenereret!</string>
+  <string name="ViewLocalIdentityActivity_reset_identity_key">Nulstil ID-nøgle?</string>
   <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">
 ADVARSEL! Ved at regenerere din ID-nøgle vil din nuværende ID-nøgle gå tabt, og dine eksisterende kontakter vil modtage en advarsel når de forsøger at oprette sikre sessioner med dig.
-
 Er du sikker på at du vil fortsætte?</string>
   <string name="ViewLocalIdentityActivity_cancel">Afbryd</string>
   <string name="ViewLocalIdentityActivity_continue">Fortsæt</string>
@@ -246,44 +335,78 @@ Er du sikker på at du vil fortsætte?</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">TextSecure understøtter desværre endnu ikke \"Quick Response\".</string>
   <!--auto_initiate_activity-->
-  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Du har modtaget en besked fra en som understøtter TextSecure krypterede sessioner. Ønsker du at initiere en sikker session?</string>
+  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Du har modtaget en besked fra en som understøtter TextSecure krypterede sessioner. Ønsker du at starte en sikker session?</string>
+  <string name="auto_initiate_activity__initiate_exchange">Start nøgleudveksling</string>
   <!--change_passphrase_activity-->
-  <string name="change_passphrase_activity__old_passphrase">Gammelt kodeord:</string>
-  <string name="change_passphrase_activity__new_passphrase">Nyt kodeord:</string>
-  <string name="change_passphrase_activity__repeat_new_passphrase">Gentag nyt kodeord:</string>
+  <string name="change_passphrase_activity__old_passphrase">GAMMELT KODEORD:</string>
+  <string name="change_passphrase_activity__new_passphrase">NYT KODEORD:</string>
+  <string name="change_passphrase_activity__repeat_new_passphrase">GENTAG NYT KODEORD:</string>
   <!--contact_selection_group_activity-->
   <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">Ingen kontakter.</string>
+  <string name="contact_selection_group_activity__finding_contacts">Indlæser kontaktpersoner...</string>
   <!--single_contact_selection_activity-->
+  <string name="single_contact_selection_group_activity__filter">Indtast et navn for at filtrere...</string>
+  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">Du er ikke registreret som bruger af \\"push\\" tjenesten...</string>
+  <string name="SingleContactSelectionActivity_updating_directory">Opdaterer bibliotek</string>
+  <string name="SingleContactSelectionActivity_updating_push_directory">Opdaterer \\"push\\" bibliotek</string>
+  <string name="SingleContactSelectionActivity_contact_photo">Kontaktbillede</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Vælg</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Ingen nye samtaler.</string>
   <!--conversation_activity-->
+  <string name="conversation_activity__type_message_push">Send TextSecure besked</string>
+  <string name="conversation_activity__type_message_sms_secure">Send krypteret SMS</string>
+  <string name="conversation_activity__type_message_sms_insecure">Send ukrypteret SMS</string>
+  <string name="conversation_activity__type_message_mms_secure">Send krypteret MMS</string>
+  <string name="conversation_activity__type_message_mms_insecure">Send ukrypteret MMS</string>
   <string name="conversation_activity__send">Send</string>
   <string name="conversation_activity__remove">Slet</string>
+  <string name="conversation_activity__window_description">Samtale med %1$s</string>
+  <string name="conversation_activity__compose_description">Besked sammensætning</string>
+  <string name="conversation_activity__emoji_toggle_description">Emoji tastatur deaktiver/aktiver</string>
   <!--conversation_item-->
+  <string name="conversation_item__mms_image_description">Multimedie besked</string>
+  <string name="conversation_item__play_button_description">Afspiller knap</string>
+  <string name="conversation_item__secure_message_description">Indikator for sikker besked</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Hent</string>
   <string name="conversation_item_sent__downloading">Henter</string>
+  <string name="conversation_item_sent__send_failed_indicator_description">Indikator for besked fejl</string>
+  <string name="conversation_item_sent__pending_approval_description">Afventer godkendelse</string>
+  <string name="conversation_item_sent__delivered_description">Indikator for leveret besked</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__download">Hent</string>
+  <string name="conversation_item_received__contact_photo_description">Kontaktbillede</string>
   <string name="conversation_item_received__downloading">Henter</string>
   <!--conversation_fragment_cab-->
+  <string name="conversation_fragment_cab__batch_selection_mode">Valgte mængde</string>
+  <string name="conversation_fragment_cab__batch_selection_amount">%s valgt</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Indlæser lande...</string>
   <string name="country_selection_fragment__search">Søg</string>
   <!--create_passphrase_activity-->
   <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">Vælg et kodeord som skal bruges til kryptering af dine lokale data.</string>
-  <string name="create_passphrase_activity__passphrase">Kodeord:</string>
-  <string name="create_passphrase_activity__repeat">Gentag:</string>
+  <string name="create_passphrase_activity__passphrase">KODEORD:</string>
+  <string name="create_passphrase_activity__repeat">GENTAG:</string>
   <string name="create_passphrase_activity__continue">Fortsæt</string>
   <string name="create_passphrase_activity__generating_secrets">GENERERER NØGLER</string>
   <string name="create_passphrase_activity__skip">Spring over</string>
   <string name="create_passphrase_activity__create">Opret</string>
   <!--log_submit_activity-->
+  <string name="log_submit_activity__confirmation">Denne log vil blive offentliggjort på internettet så TextSecure bidragydere kan læse den. Du er velkommen til at læse eller redigere din log inden den sendes.</string>
+  <string name="log_submit_activity__button_cancel">Annullere</string>
+  <string name="log_submit_activity__button_ok">Send</string>
+  <string name="log_submit_activity__log_fetch_failed">Kunne ikke hente loggene fra din enhed. Du kan stadig bruge ADB til loggen.</string>
   <string name="log_submit_activity__log_submit_success_title">Fuldført!</string>
-  <string name="log_submit_activity__log_got_it">Finno</string>
+  <string name="log_submit_activity__log_got_it">Modtaget</string>
+  <string name="log_submit_activity__your_pastebin_url">Kopiere venligst denne URL og placer den i din mappe (tryk og hold for at kopiere til udklipsholder):\n\n<b>%1$s</b></string>
+  <string name="log_submit_activity__copied_to_clipboard">Kopieret til udklipsholder</string>
+  <string name="log_submit_activity__loading_logcat">Henter logcat...</string>
+  <string name="log_submit_activity__thanks">Tak for hjælpen!</string>
+  <string name="log_submit_activity__submitting">Sender</string>
+  <string name="log_submit_activity__posting_logs">Sender log til \\"pastebin\\"...</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Ønsker du at importere dine eksisterende beskeder til TextSecures krypterede database?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Den eksisterende systemdatabase vil ikke blive ændret.</string>
@@ -292,20 +415,27 @@ Er du sikker på at du vil fortsætte?</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Det kan tage et øjeblik. Vent venligst.</string>
   <string name="database_migration_activity__importing">IMPORTERER</string>
   <!--database_upgrade_activity-->
+  <string name="database_upgrade_activity__updating_database">Opdaterer databasen...</string>
+  <string name="export_fragment__export_encrypted_backup">Eksporter krypteret backup</string>
   <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Eksporter en krypteret backup til SD-kort.</string>
+  <string name="export_fragment__export_plaintext_backup">Eksporter klartekst backup</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">Eksporter en klartekst backup kompatibel med \'SMSBackup And Restore\' til SD-kort.</string>
+  <string name="import_fragment__import_system_sms_database">Importer enhedens SMS database</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importer databasen fra systemets standard SMS applikation.</string>
+  <string name="import_fragment__import_encrypted_backup">Importer krypteret backup</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">
 Genopret en tidligere eksporteret krypteret TextSecure backup.</string>
+  <string name="import_fragment__import_plaintext_backup">Importer klartekst backup</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
-Importer en klartekst backup fil. Kompatibel med \'SMSBackup And Restore\'.</string>
+Importer en klartekst backup fil. Kompatibel med \'SMSBackup og Restore\'.</string>
+  <string name="local_identity__regenerate_key">Regenerer nøgle</string>
   <!--mms_preferences_activity-->
   <string name="mms_preferences_activity__manual_mms_settings_are_required">Din telefon kræver manuel indtastning af MMS-indstillinger.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__textsecure_passphrase">TEXTSECURE KODEORD</string>
   <string name="prompt_passphrase_activity__unlock">Lås op</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure har brug for at kende MMS-indstillingerne for at sende medieindhold og gruppebeskeder gennem din teleudbyder. Din enhed gør ikke disse oplysninger tilgængelige, hvilket kan forkomme for f.eks. låste enheder.</string>
+  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure har brug for at kende MMS-indstillingerne for at sende medieindhold og gruppebeskeder gennem din teleudbyder. Din enhed gør ikke disse oplysninger tilgængelige, hvilket kan forekomme for f.eks. låste enheder.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">For at sende multimedia- og gruppebeskeder klik \'OK\' og udfyld indstillingerne. MMS-indstillingerne for din teleoperatør kan ofte findes ved at søge på \'din operatør APN\'. Du behøver kun gøre dette en gang.</string>
   <string name="prompt_mms_activity__mmsc_url_required">MMSC URL (PÅKRÆVET):</string>
   <string name="prompt_mms_activity__mms_proxy_host_optional">MMS PROXY VERT (IKKE PÅKRÆVET):</string>
@@ -314,34 +444,52 @@ Importer en klartekst backup fil. Kompatibel med \'SMSBackup And Restore\'.</str
   <string name="receive_key_activity__complete">Udført</string>
   <!--registration_activity-->
   <string name="registration_activity__your_country">DIT LAND</string>
-  <string name="registration_activity__your_country_code_and_phone_number">DIT LANDE KODE OG
+  <string name="registration_activity__your_country_code_and_phone_number">DIN LANDEKODE OG DIT
 TELEFONNUMMER</string>
   <string name="registration_activity__phone_number">TELEFONNUMMER</string>
-  <string name="registration_activity__register">Register</string>
+  <string name="registration_activity__register">Registrer</string>
   <string name="registration_activity__skip">Spring over</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Mulige problemer:</string>
+  <string name="registration_problems__sms_interceptors">SMS blokering.</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
 Visse tredjeparts SMS-apps som f.eks. Handcent og GoSMS overtager alle modtagne SMSer.
 Se om du har modtaget en SMS som starter med \"Your TextSecure verification code:\". 
 Hvis dette er tilfældet skal du konfigurere din tredjeparts SMS-app til at lade tekst-beskeder slippe igennem.</string>
   <string name="registration_problems__incorrect_number">Forkert nummer.</string>
+  <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
+Tjek venligst om du har indtastet din landekode og dit telefonnummer korrekt.</string>
   <string name="registration_problems__google_voice">Google Voice.</string>
   <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">
 TextSecure virker ikke med Google Voice numre.
 </string>
   <!--registration_progress_activity-->
+  <string name="registration_progress_activity__voice_verification">Stemme godkendelse</string>
   <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">
 TextSecure kan også ringe dig op for at kontrollere dit nummer. Klik \"Ring mig op\" og
 indtast det sekscifrede nummer du hører.</string>
   <string name="registration_progress_activity__verify">Godkend</string>
+  <string name="registration_progress_activity__call_me">Ring mig op</string>
   <string name="registration_progress_activity__edit_number">Rediger nummer</string>
-  <string name="registration_progress_activity__connectivity_error">Forbindelse fejl.</string>
+  <string name="registration_progress_activity__connectivity_error">Forbindelsesfejl.</string>
+  <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">
+TextSecure kunne ikke oprette forbindelse til \\'push\\' tjenesten.</string>
+  <string name="registration_progress_activity__some_possible_problems_include">Mulige problemer:</string>
+  <string name="registration_progress_activity__no_network_connectivity">Ingen netværksforbindelse.</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">Din enhed kræver en netværksforbindelse. Tjek om enheden har forbindelse til Edge, 3G, LTE eller et trådløst netværk.</string>
+  <string name="registration_progress_activity__restrictive_firewall">Restriktiv firewall.</string>
+  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
+Hvis du er tilsluttet til Internet via et trådløst netværk, så er det muligt at en firewall blokkerer adgangen til TextSecure´s server. Prøv et andet trådløst netværk eller brug mobil data.</string>
+  <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
+TextSecure vil automatisk verificere dit telefonnummer ved at sende en bekræftelse via SMS.</string>
   <string name="registration_progress_activity__connecting">Forbinder...</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">Venter på SMS
 godkendelse...
 </string>
-  <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Dette kan vare et øjeblik. Hav tålmodighed - vi siger til når verifikationen er afsluttet.</string>
+  <string name="registration_progress_activity__registering_with_server">Server behandler din registrering...</string>
+  <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Dette kan tage et stykke tid. Vent venligst - vi siger til når godkendelsen er afsluttet.</string>
+  <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">
+Tiden udløb mens TextSecure ventede på en SMS godkendelse.</string>
   <string name="registration_progress_activity__sms_verification_failed">SMS godkendelse
 fejlede.
 </string>
@@ -355,32 +503,56 @@ fejlede.
   <string name="verify_identity_activity__their_identity_they_read">Deres identitet (de læser):</string>
   <string name="verify_identity_activity__your_identity_you_read">Din identitet (du læser):</string>
   <!--verify_import_identity_activity-->
+  <string name="verify_import_identity_activity__identity_name_n">ID navn:\\n</string>
+  <string name="verify_import_identity_activity__imported_identity_n">Importeret ID:\\n</string>
   <string name="verify_import_identity_activity__verified">Bekræftet!</string>
   <string name="verify_import_identity_activity__compare">Sammenlign</string>
   <!--verify_keys_activity-->
   <string name="verify_keys_activity__they_read_this">De læser dette:</string>
   <string name="verify_keys_activity__you_read_this">Du læser dette:</string>
   <!--AndroidManifest.xml-->
+  <string name="AndroidManifest__create_passphrase">Indtast kodeord</string>
+  <string name="AndroidManifest__enter_passphrase">Opret kodeord</string>
+  <string name="AndroidManifest__select_contacts">Vælg kontakter</string>
+  <string name="AndroidManifest__select_contact">Vælg kontakt</string>
+  <string name="AndroidManifest__textsecure_detected">TextSecure er fundet</string>
+  <string name="AndroidManifest__public_identity_key">Offentlig ID nøgle</string>
   <string name="AndroidManifest__change_passphrase">Ændre kodeord</string>
+  <string name="AndroidManifest__verify_session">Verificer session</string>
+  <string name="AndroidManifest__verify_identity">Verificer identitet</string>
   <string name="AndroidManifest__manage_identity_keys">Administrer ID-nøgler</string>
+  <string name="AndroidManifest__complete_key_exchange">Fuldfør nøgleudveksling</string>
+  <string name="AndroidManifest__log_submit">Indsend fejlfindingslog</string>
   <!--arrays.xml-->
+  <string name="arrays__import_export">Importer / eksporter</string>
+  <string name="arrays__my_identity_key">Min ID-nøgle</string>
   <!--preferences.xml-->
   <string name="preferences__general">Generelt</string>
+  <string name="preferences__push_sms_category">\\'Push\\' og SMS</string>
   <string name="preferences__pref_all_sms_title">Modtag alle SMS</string>
   <string name="preferences__pref_all_mms_title">Modtag alle MMS</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Benyt TextSecure til at læse og gemme alle indkommende SMS beskeder.</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Benyt TextSecure til at læse og gemme alle indkommende MMS beskeder.</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Brug TextSecure til at læse og gemme alle indkommende SMS beskeder.</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Brug TextSecure til at læse og gemme alle indkommende MMS beskeder.</string>
+  <string name="preferences__input_settings">Indstillinger</string>
   <string name="preferences__enable_enter_key_title">Slå enter-knap til</string>
+  <string name="preferences__replace_smiley_with_enter_key">Erstat \\"Smiley-knap\\" med en \\"Enter-knap\\"</string>
+  <string name="preferences__pref_enter_sends_title">\\"Enter\\" sender</string>
+  <string name="preferences__pressing_the_enter_key_will_send_text_messages">\\"Enter\\" vil sende beskeden</string>
+  <string name="preferences__display_settings">Indstillinger for visning</string>
+  <string name="preferences__choose_identity">Vælg ID</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Vælg din kontakt fra kontaktlisten.</string>
   <string name="preferences__change_passphrase">Ændre kodeord</string>
   <string name="preferences__change_my_passphrase">Ændre mit kodeord</string>
   <string name="preferences__complete_key_exchanges">Fuldfør nøgleudveksling</string>
   <string name="preferences__disable_passphrase">Deaktiver kodeord</string>
   <string name="preferences__disable_local_encryption_of_messages_and_keys">Deaktiver lokal kryptering af beskeder og nøgler</string>
+  <string name="preferences__screen_security">Skærm sikkerhed</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Fuldfør automatisk nøgleudveksling for nye sessioner eller sessioner med samme ID-nøgle</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokér skærmbillede (screenshots) i listen \\"forrige apps\\" og i TextSecure</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Fjern kodeord fra hukommelsen efter et givent interval</string>
   <string name="preferences__timeout_passphrase">Kodeords timeout</string>
-  <string name="preferences__pref_timeout_interval_title">Tidsinterval</string>
+  <string name="preferences__pref_timeout_interval_dialogtitle">Vælg kodeord timeout</string>
+  <string name="preferences__pref_timeout_interval_title">Timeout tidsinterval</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Hvor lang tid skal der gå før kodeordet slettes fra hukommelsen</string>
   <string name="preferences__identity_key_settings">ID-nøgler</string>
   <string name="preferences__view_my_identity_key">Vis min ID-nøgle</string>
@@ -390,6 +562,10 @@ fejlede.
   <string name="preferences__display_message_notifications_in_status_bar">Vis notifikation om beskeder i status feltet</string>
   <string name="preferences__led_color">LED farve</string>
   <string name="preferences__pref_led_blink_title">LED blinkemønster</string>
+  <string name="preferences__pref_led_blink_custom_pattern_title">Tilpas LED blinkemønster</string>
+  <string name="preferences__pref_led_blink_custom_pattern_on_for">Tænd for:</string>
+  <string name="preferences__pref_led_blink_custom_pattern_off_for">Sluk for:</string>
+  <string name="preferences__pref_led_blink_custom_pattern_set">LED blinkemønster er tilpasset</string>
   <string name="preferences__sound">Lyd</string>
   <string name="preferences__change_notification_sound">Ændre notifikations-lyd</string>
   <string name="preferences__inthread_notifications">I beskeder</string>
@@ -412,6 +588,8 @@ fejlede.
   <string name="preferences__custom">Tilpasset</string>
   <string name="preferences__advanced">Avanceret</string>
   <string name="preferences__passphrase">Kodeord</string>
+  <string name="preferences__advanced_mms_access_point_names">MMS indstillinger</string>
+  <string name="preferences__enable_manual_mms">Manuel MMS indstillinger</string>
   <string name="preferences__override_system_mms_settings">Brug nedenstående MMS-indstillinger i stedet for systemets</string>
   <string name="preferences__mmsc_url_required">MMSC URL (påkrævet)</string>
   <string name="preferences__mms_proxy_host_optional">MMS proxy host (valgfrit)</string>
@@ -424,20 +602,46 @@ fejlede.
   <string name="preferences__conversation_length_limit">Grænse på beskeder</string>
   <string name="preferences__trim_all_threads_now">Trim alle besked tråde nu</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Skan alle beskeder og håndhæv grænsen for størrelsen af beskeder</string>
+  <string name="preferences__light_theme">Lys tema</string>
+  <string name="preferences__dark_theme">Mørk tema</string>
   <string name="preferences__appearance">Udseende</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__default">Standard</string>
   <string name="preferences__language">Sprog</string>
   <string name="preferences__make_default_sms_app">Brug som standard SMS-app</string>
   <string name="preferences__make_textsecure_the_default_sms_mms_app">Gør TextSecure til standard SMS/MMS-applikationen for dit system.</string>
+  <string name="preferences__use_data_channel">Push besked</string>
+  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
+Styrk sikkerheden af din data kommunikation og undgå SMS gebyrer ved at bruge mobil data når du kommunikerer med andre TextSecure brugere.</string>
+  <string name="preferences__allow_sms_fallback">Tillad udgående SMS til</string>
+  <string name="preferences__allow_sms_fallback_disabled_reason">TextSecure er nu din standard SMS-app. Vælg venligst en anden standard SMS-app inden du ændre denne indstilling.</string>
+  <string name="preferences__refresh_push_directory">Opdater \\'push\\' bibliotek</string>
+  <string name="preferences__submit_debug_log">Indsend fejlfindings log</string>
+  <string name="preferences__sms_outgoing_push_users">TextSecure brugere</string>
+  <string name="preferences__sms_fallback_push_users_ask">(spørg først)</string>
+  <string name="preferences__sms_outgoing_push_users_description">Send sikker sms, hvis data-forbindelse er tabt</string>
+  <string name="preferences__sms_fallback_ask_fallback">Spørg inden afsendelse af SMS</string>
+  <string name="preferences__sms_fallback_non_push_users">Brugere uden TextSecure</string>
+  <string name="preferences__sms_fallback_nobody">Ingen</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
+  <string name="contact_selection_list__menu_select_all">Marker alle</string>
+  <string name="contact_selection_list__menu_unselect_all">Fjern markering</string>
+  <string name="contact_selection_list__header_textsecure_users">TEXTSECURE BRUGERE</string>
+  <string name="contact_selection_list__header_other">ALLE KONTAKTER</string>
+  <string name="contact_selection_list__unknown_contact">Ny besked til...</string>
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">Afslut</string>
   <!--refreshing push directory from menu-->
+  <string name="push_directory__menu_refresh">Opdater kontakt liste</string>
   <!--conversation_button_context-->
+  <string name="conversation_button_context__send_textsecure_message">Send besked med TextSecure</string>
+  <string name="conversation_button_context__send_secure_sms">Send SMS krypteret</string>
+  <string name="conversation_button_context__send_insecure_sms">Send SMS ukrypteret</string>
+  <string name="conversation_button_context__send_secure_mms">Send MMS krypteret</string>
+  <string name="conversation_button_context__send_insecure_mms">Send MMS ukrypteret</string>
   <!--conversation_callable-->
   <string name="conversation_callable__menu_call">Opkald</string>
   <!--conversation_context-->
@@ -447,14 +651,25 @@ fejlede.
   <string name="conversation_context__menu_forward_message">Videresend besked</string>
   <string name="conversation_context__menu_resend_message">Send besked igen</string>
   <!--conversation_context_image-->
+  <string name="conversation_context_image__save_attachment">Gem vedhæftning</string>
   <!--conversation_insecure-->
+  <string name="conversation_insecure__menu_start_secure_session">Start sikker forbindelse</string>
   <!--conversation_list_batch-->
+  <string name="conversation_list_batch__menu_delete_selected">Slet markeret</string>
+  <string name="conversation_list_batch__menu_select_all">Marker alle</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Søg</string>
+  <string name="conversation_list__drawer_open">Åben navigation</string>
+  <string name="conversation_list__drawer_close">Luk navigation</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Sikkerhed</string>
+  <string name="conversation_secure_verified__menu_no_identity">Ingen identitet tilgængelig</string>
+  <string name="conversation_secure_verified__menu_verify_identity">Verificer identitet</string>
+  <string name="conversation_secure_verified__menu_abort_secure_session">Afslut sikker forbindelse</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Vedhæft fil</string>
+  <string name="conversation__menu_update_group">Opdater gruppe</string>
+  <string name="conversation__menu_leave_group">Forlad gruppe</string>
   <string name="conversation__menu_add_contact_info">Tilføj kontakt information</string>
   <string name="conversation__menu_delete_thread">Slet tråd</string>
   <!--conversation_group_options-->
@@ -469,10 +684,22 @@ fejlede.
   <!--text_secure_locked-->
   <string name="text_secure_locked__menu_unlock">Åben</string>
   <!--text_secure_normal-->
+  <string name="text_secure_normal__menu_new_message">Ny besked</string>
+  <string name="text_secure_normal__menu_new_group">Ny gruppe</string>
   <string name="text_secure_normal__menu_settings">Indstillinger</string>
   <string name="text_secure_normal__menu_clear_passphrase">Lås</string>
+  <string name="text_secure_normal__mark_all_as_read">Marker alle som læst</string>
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Bekræftet</string>
   <!--reminder_header-->
+  <string name="reminder_header_sms_default_title">Anvend som standard SMS-app?</string>
+  <string name="reminder_header_sms_default_text">TextSecure er i øjeblikket ikke din standard SMS-app.</string>
+  <string name="reminder_header_sms_import_title">Importer enhedens SMS?</string>
+  <string name="reminder_header_sms_import_text">TextSecure kan kopiere telefonens SMS beskeder til sin egen krypteret database.</string>
+  <string name="reminder_header_push_title">Aktiver TextSecure beskeder?</string>
+  <string name="reminder_header_push_text">Øjeblikkelig levering, stærkere privatliv, og ingen SMS gebyrer.</string>
+  <!--MediaPreviewActivity-->
+  <!--media_preview-->
+  <!--media_preview_activity-->
   <!--EOF-->
 </resources>

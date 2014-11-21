@@ -66,12 +66,8 @@ Upozornenie, toto vypne kryptovanie úložiska správ a kľúčov. Vaše bezpeč
   <string name="ConversationFragment_message_details">Detaily správy</string>
   <string name="ConversationFragment_confirm_message_delete">Potvrď zmazanie správy</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Ste si istí že chcete úplne zmazať túto správu?</string>
-  <string name="ConversationFragment_save_to_sd_card">Uložiť na SD kartu?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Chyba počas ukladania na SD kartu!</string>
   <string name="ConversationFragment_success_exclamation">Úspech!</string>
-  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Nemôžem zapisovať na SD kartu!</string>
   <string name="ConversationFragment_saving_attachment">Ukladám prílohu</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">Ukladám prílohu na SD kartu...</string>
   <!--ConversationListAdapter-->
   <string name="ConversationListAdapter_key_exchange_message">Správa vzájomnej výmeny kľúčov...</string>
   <!--ConversationListFragment-->
@@ -572,5 +568,8 @@ zlyhalo.
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Overené</string>
   <!--reminder_header-->
+  <!--MediaPreviewActivity-->
+  <!--media_preview-->
+  <!--media_preview_activity-->
   <!--EOF-->
 </resources>

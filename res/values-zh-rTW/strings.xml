@@ -95,13 +95,13 @@
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">傳送者: %1$s\n傳送狀態: %2$s\n已傳送: %3$s\n已接收: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">刪除訊息確認</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">您確認要永久刪除此訊息？</string>
-  <string name="ConversationFragment_save_to_sd_card">儲存到 SD卡？</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">這個媒體檔案已被儲存於加密的本機端資料庫內。您轉存到 SD 卡的版本將不會被加密。您確定要這麼做嗎？</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">轉存至 SD 卡時發生錯誤！</string>
+  <string name="ConversationFragment_save_to_sd_card">儲存到儲存裝置？</string>
+  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">將檔案儲存到儲存裝置，將會使得手機上的其他 APP 也能存取它。\n\n您要繼續嗎？</string>
+  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">儲存檔案到儲存裝置時發生錯誤！</string>
   <string name="ConversationFragment_success_exclamation">成功！</string>
-  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">無法寫入 SD 卡！（防寫開關？）</string>
+  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">無法寫入儲存裝置！</string>
   <string name="ConversationFragment_saving_attachment">正在儲存附件檔案</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">正在轉存附件檔案至 SD 卡</string>
+  <string name="ConversationFragment_saving_attachment_to_sd_card">正在寫入儲存裝置中...</string>
   <!--ConversationListAdapter-->
   <string name="ConversationListAdapter_key_exchange_message">金鑰交換訊息...</string>
   <!--ConversationListFragment-->
@@ -480,14 +480,14 @@
   <string name="receive_key_activity__complete">完成</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-TextSecure 可以用來整合手機簡訊、提升隱私性，並且透過與其他一樣使用 TextSecure 的朋友一起節約手機簡訊費用。
-要開始享受這些功能，您必須先輸入您的國碼與手機的號碼進行驗證。</string>
+        註冊是完全免費的，同時可以與其他也使用 TextSecure 的朋友一起提生隱私性。請在此驗證您的手機號碼。
+    </string>
   <string name="registration_activity__your_country">您的國家／區域</string>
   <string name="registration_activity__your_country_code_and_phone_number">您的國碼與
 手機號碼</string>
   <string name="registration_activity__phone_number">手機號碼</string>
   <string name="registration_activity__register">註冊</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">註冊過程將會暫時性地傳送某些連絡人資料到伺服器。</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">註冊過程中將會傳送某些您手機上的連絡人資訊到我們的伺服器端。不過它們不會被保存在伺服器上。</string>
   <string name="registration_activity__skip">略過</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">某些可能的問題
@@ -567,6 +567,7 @@ TextSecure 等候驗證用的手機簡訊已逾時。</string>
   <string name="AndroidManifest__manage_identity_keys">管理身份驗證金鑰</string>
   <string name="AndroidManifest__complete_key_exchange">金鑰交換完成</string>
   <string name="AndroidManifest__log_submit">送出偵錯紀錄</string>
+  <string name="AndroidManifest__media_preview">預覽檔案</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">匯入／匯出</string>
   <string name="arrays__my_identity_key">我的身分識別金鑰</string>
@@ -742,5 +743,11 @@ TextSecure 等候驗證用的手機簡訊已逾時。</string>
   <string name="reminder_header_sms_import_text">TextSecure 可複製您裝置上目前的手機簡訊至加密的資料庫內。</string>
   <string name="reminder_header_push_title">啟用 TextSecure 即時訊息功能？</string>
   <string name="reminder_header_push_text">即時傳遞、更高的隱私防護，並且完全免費。</string>
+  <!--MediaPreviewActivity-->
+  <string name="MediaPreviewActivity_you">您</string>
+  <!--media_preview-->
+  <string name="media_preview__save_title">儲存</string>
+  <!--media_preview_activity-->
+  <string name="media_preview_activity__image_content_description">預覽圖片</string>
   <!--EOF-->
 </resources>

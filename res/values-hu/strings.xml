@@ -36,6 +36,7 @@ A telefonod újra regisztrálása szükséges az azonnali üzenetek jövőbeli h
   <string name="ApplicationPreferencesActivity_sms_disabled">Bejövő SMS tiltva</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Érintsd meg a TextSecure alapértelmezett SMS alkalmzássá tételéhez</string>
   <!--AttchmentManager-->
+  <string name="AttachmentManager_cant_open_media_selection">Nem található alkalmazás a média kiválasztásához</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Kép</string>
   <string name="AttachmentTypeSelectorAdapter_video">Videó</string>
@@ -61,6 +62,7 @@ A telefonod újra regisztrálása szükséges az azonnali üzenetek jövőbeli h
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Legyen tartalék mód a nem biztonságos SMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Legyen tartalék mód a nem biztonságos MMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ez az üzenet <b>nem lesz titkosítva</b> mert nem lehetséges a biztonságos kapcsolat létrehozása.\n\nKüldesz nem biztonságos üzenetet?</string>
+  <string name="ConversationItem_unable_to_open_media">Nem található alkalmazás ennek a médiafájlnak a kinyitásához</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Biztonságos üzenetváltás indítása?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Indítasz biztonságos üzenetváltást vele: %s?</string>
@@ -93,13 +95,13 @@ A telefonod újra regisztrálása szükséges az azonnali üzenetek jövőbeli h
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Küldő: %1$s\nÁtvitel: %2$s\nKüldött: %3$s\nFogadott: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Üzenettörlés megerősítése</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Biztosan véglegesen törölni akarod ezt az üzenetet?</string>
-  <string name="ConversationFragment_save_to_sd_card">Mentés SD kártyára?</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Ez a médiafájl egy titkosított adatbázisba került mentésre. Az SD kártyára mentésre kerülő változat nem lesz titkosított. Szeretnéd folytatni?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Hiba történt a melléklet SD kártyára történő mentése közben!</string>
+  <string name="ConversationFragment_save_to_sd_card">Mentsük a tárolóra?</string>
+  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Ennek a médiának az elmentése más alkalmazások számára lehetővé teszi azok hozzáférését.\n\n Folytassuk?</string>
+  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Hiba történt a csatolmány mentése közben!</string>
   <string name="ConversationFragment_success_exclamation">Sikerült!</string>
-  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Nem lehet írni az SD kártyára!</string>
+  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Nem lehet a tárolóra írni!</string>
   <string name="ConversationFragment_saving_attachment">Melléklet mentése</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">Melléklet mentése az SD kártyára...</string>
+  <string name="ConversationFragment_saving_attachment_to_sd_card">Melléklet mentése a tárolóra...</string>
   <!--ConversationListAdapter-->
   <string name="ConversationListAdapter_key_exchange_message">Kulcs-csere üzenet...</string>
   <!--ConversationListFragment-->
@@ -488,17 +490,15 @@ Egy titkosítatlan biztonsági mentés fájl importálása. \"SMS biztonsági me
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Befejezés</string>
   <!--registration_activity-->
-  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-A TextSecure azonnali üzenetek használatát is lehetővé teszi, így elősegíti a titoktartást és az SMS díjak elkerülését a más
-TextSecure felhasználókkal való kommunikáció során. Ennek a szolgáltatásnak az igénybe vételéhez, kérlek ellenőrizd a saját országhívó számot és a telefonszámot!
- </string>
+  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">A regisztrálás ingyenes és növeli a biztonságot más TextSecure felhasználókkal történő üzenetváltás közben. Kérlek ellenőrizd a telefonszámodat!
+</string>
   <string name="registration_activity__your_country">SAJÁT ORSZÁGOD</string>
   <string name="registration_activity__your_country_code_and_phone_number">SAJÁT ORSZÁG HÍVÓSZÁM
 TELEFONSZÁM
  </string>
   <string name="registration_activity__phone_number">TELEFONSZÁM</string>
   <string name="registration_activity__register">Regisztrálás</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">A regisztrálás néhány személyes adatot fog küldeni a kiszolgálónak ideiglenesen.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">A regisztrálás néhány személyes információt juttat el a kiszolgálóhoz. Az adatok nem kerülnek tárolásra.</string>
   <string name="registration_activity__skip">Kihagyás</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Néhány lehetséges probléma
@@ -595,6 +595,7 @@ sikertelen.
   <string name="AndroidManifest__manage_identity_keys">Azonosító kulcsok kezelése</string>
   <string name="AndroidManifest__complete_key_exchange">Teljes kulcs-csere</string>
   <string name="AndroidManifest__log_submit">Hibakeresési napló küldése</string>
+  <string name="AndroidManifest__media_preview">Média előnézet</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importálás / Exportálás</string>
   <string name="arrays__my_identity_key">Saját azonosító kulcs</string>
@@ -771,5 +772,11 @@ Növeld a biztonságodat és kerüld el az SMS díjak fizetését azzal, hogy ad
   <string name="reminder_header_sms_import_text">A telefon SMS üzeneteit a TextSecure be tudja másolni a titkosított adatbázisába.</string>
   <string name="reminder_header_push_title">Engedélyezed a TextSecure üzeneteket?</string>
   <string name="reminder_header_push_text">Azonnali kézbesítés, jobb titoktartás és nincsenek SMS díjak.</string>
+  <!--MediaPreviewActivity-->
+  <string name="MediaPreviewActivity_you">Te</string>
+  <!--media_preview-->
+  <string name="media_preview__save_title">Mentés</string>
+  <!--media_preview_activity-->
+  <string name="media_preview_activity__image_content_description">Kép előnézet</string>
   <!--EOF-->
 </resources>

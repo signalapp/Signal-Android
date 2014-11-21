@@ -49,10 +49,7 @@
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">פרטי הודעה</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">אתה בטוח שאתה רוצה למחוק את ההודעה הזו לתמיד?</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">המדיה הזאת אוחסנה בבסיס נתונים מוצפן. הגרסה שתשמור בכרטיס ה-SD לא תהיה מוצפנת יותר. אתה בטוח שברצונך להמשיך?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">שגיאה בשמירת הקובץ המצורף בכרטיס ה-SD!</string>
   <string name="ConversationFragment_success_exclamation">הצליח!</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">שומר את הקובץ המצורף בכרטיס ה-SD...</string>
   <!--ConversationListAdapter-->
   <string name="ConversationListAdapter_key_exchange_message">הודעת החלפת מפתח...</string>
   <!--ConversationListFragment-->
@@ -408,5 +405,8 @@
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">מאומת</string>
   <!--reminder_header-->
+  <!--MediaPreviewActivity-->
+  <!--media_preview-->
+  <!--media_preview_activity-->
   <!--EOF-->
 </resources>

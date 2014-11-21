@@ -36,9 +36,7 @@
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">စာတို အသေးစိတ်အချက်အလက်များ</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">စာတိုကို အပြီးဖျက်ပစ်မည်မှာ သေချာလား</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">ပူးတွဲမှုအား SDကဒ်သို့ သိမ်းဆည်းနေစဉ်အမှားပေါ်ပေါက်</string>
   <string name="ConversationFragment_success_exclamation">အောင်မြင်!</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">ပူးတွဲပါအား SD ကဒ်သို့သိမ်းဆည်းနေ...</string>
   <!--ConversationListAdapter-->
   <string name="ConversationListAdapter_key_exchange_message">ကီးပြောင်းလဲခြင်းစာတို...</string>
   <!--ConversationListFragment-->
@@ -283,5 +281,8 @@
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">စစ်ဆေးပြီး</string>
   <!--reminder_header-->
+  <!--MediaPreviewActivity-->
+  <!--media_preview-->
+  <!--media_preview_activity-->
   <!--EOF-->
 </resources>

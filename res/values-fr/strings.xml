@@ -34,6 +34,7 @@ Ceci va désactiver les messages push en vous désinscrivant du serveur. Vous de
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS entrants désactivés</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Appuyez pour faire de TextSecure votre application SMS par défaut</string>
   <!--AttchmentManager-->
+  <string name="AttachmentManager_cant_open_media_selection">Impossible de trouver une application pour sélectionner le média.</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Image</string>
   <string name="AttachmentTypeSelectorAdapter_video">Vidéo</string>
@@ -59,6 +60,7 @@ Ceci va désactiver les messages push en vous désinscrivant du serveur. Vous de
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Utiliser la solution de repli sur les SMS non chiffrés ?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Utiliser la solution de repli sur les MMS non chiffrés ?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ce message <b>ne</b> sera pas chiffré car une session sécurisé n\'a pu être établie.\n\n Envoyer un message non sécurisé ?</string>
+  <string name="ConversationItem_unable_to_open_media">Impossible de trouver une application pour ouvrir le média.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Initier une session sécurisée ?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Initier une session sécurisée avec %s ?</string>
@@ -91,13 +93,13 @@ Ceci va désactiver les messages push en vous désinscrivant du serveur. Vous de
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Émetteur: %1$s\nTransport: %2$s\nEnvoyé: %3$s\nReçu: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Confirmer la suppression du message</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Êtes-vous sûr de vouloir supprimer définitivement ce message ?</string>
-  <string name="ConversationFragment_save_to_sd_card">Enregistrer sur la carte SD ?</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Ce média est stocké dans une base de données chiffrée. La version que vous sauvez sur la carte SD ne sera plus chiffrée. Voulez-vous continuer ?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Erreur lors de l\'enregistrement de la pièce jointe sur la carte SD !</string>
+  <string name="ConversationFragment_save_to_sd_card">Enregistrer dans l\'espace de stockage?</string>
+  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">La sauvegarde de média dans l\'espace de stockage autorisera d\'autres applications à y accéder.\n\n Continuer?</string>
+  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Erreur lors de l\'enregistrement de la pièce jointe sur l\'espace de stockage!</string>
   <string name="ConversationFragment_success_exclamation">Réussite !</string>
-  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Impossible d’écrire sur la carte SD !</string>
+  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Impossible d’écrire dans l\'espace de stockage!</string>
   <string name="ConversationFragment_saving_attachment">Enregistrement de la pièce jointe</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">Enregistrement de la pièce jointe sur la carte SD…</string>
+  <string name="ConversationFragment_saving_attachment_to_sd_card">Enregistrement de la pièce jointe dans l\'espace de stockage…</string>
   <!--ConversationListAdapter-->
   <string name="ConversationListAdapter_key_exchange_message">Message d’échange des clés…</string>
   <!--ConversationListFragment-->
@@ -461,14 +463,14 @@ Importer un fichier de sauvegarde en texte clair. Compatible avec «SMSBackup An
   <string name="receive_key_activity__complete">Compléter</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-TextSecure peut utiliser les messages instantanés pour augmenter la confidentialité et éviter des frais de SMS lors de communications avec d’autres
-utilisateurs de TextSecure. Pour activer cette fonctionnalité, veuillez procéder à la vérification de l’indicatif de votre pays et votre numéro de téléphone.</string>
+L\'enregistrement est gratuit et accroit la confidentialité lors des communications avec les autres utilisateurs de TextSecure. Veuillez procéder à la vérification de votre numéro de téléphone.
+</string>
   <string name="registration_activity__your_country">VOTRE PAYS</string>
   <string name="registration_activity__your_country_code_and_phone_number">VOTRE CODE PAYS ET
 VOTRE NUMÉRO DE TÉLÉPHONE</string>
   <string name="registration_activity__phone_number">NUMÉRO DE TÉLÉPHONE</string>
   <string name="registration_activity__register">S\'enregistrer</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">L\'enregistrement transmettra temporairement des informations de contact au serveur.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">L\'enregistrement transmettra des informations de contact au serveur. Il n\'est pas stocké.</string>
   <string name="registration_activity__skip">Passer</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Certains des problèmes possibles
@@ -549,6 +551,7 @@ par SMS.</string>
   <string name="AndroidManifest__manage_identity_keys">Gérer les clés d’identité</string>
   <string name="AndroidManifest__complete_key_exchange">Finaliser l’échange de clés</string>
   <string name="AndroidManifest__log_submit">Soumettre un rapport de débogage</string>
+  <string name="AndroidManifest__media_preview">Prévisualisation du média.</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importer / exporter</string>
   <string name="arrays__my_identity_key">Ma clé d\'identité</string>
@@ -724,5 +727,11 @@ Augmenter la confidentialité et éviter les frais de SMS en utilisant le canal 
   <string name="reminder_header_sms_import_text">TextSecure peut copier vos SMS au sein de sa base de donnée chiffrée. </string>
   <string name="reminder_header_push_title">Activer les messages TextSecure ?</string>
   <string name="reminder_header_push_text">Instantané, sans frais SMS et protège votre vie privé.</string>
+  <!--MediaPreviewActivity-->
+  <string name="MediaPreviewActivity_you">Vous</string>
+  <!--media_preview-->
+  <string name="media_preview__save_title">Enregistrer</string>
+  <!--media_preview_activity-->
+  <string name="media_preview_activity__image_content_description">Prévisualisation de l’image.</string>
   <!--EOF-->
 </resources>

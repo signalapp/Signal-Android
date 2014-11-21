@@ -88,13 +88,8 @@ Za ponovno uporabo potisnih sporočil se boste morali zopet prijaviti s svojo te
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Pošiljatelj: %1$s\nNačin prenosa: %2$s\nPoslano: %3$s\nPrejeto: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Potrdite izbris sporočila</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Ste prepričani, da želite dokonćno izbrisati sporočilo?</string>
-  <string name="ConversationFragment_save_to_sd_card">Shranim na kartico SD?</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Datoteka, ki jo želite odpreti, je shranjena v šifrirani zbirki. Različica, ki jo boste shranili na kartico SD ne bo več šifrirana. Želite nadaljevati?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Napaka pri shranjevanju priponke na kartico SD!</string>
   <string name="ConversationFragment_success_exclamation">Uspešno opravljeno!</string>
-  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Ne morem pisati na kartico SD!</string>
   <string name="ConversationFragment_saving_attachment">Shranjujem priponko</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">Shranjujem priponko na kartico SD...</string>
   <!--ConversationListAdapter-->
   <string name="ConversationListAdapter_key_exchange_message">Sporočilo za izmenjavo ključev...</string>
   <!--ConversationListFragment-->
@@ -428,15 +423,11 @@ Prejeto sporočilo z neznanim identifikacijskim ključem. Kliknite za obdelavo i
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Dokončaj</string>
   <!--registration_activity-->
-  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-Za večjo zasebnost in v izogib stroškom SMS sporočil lahko TextSecure pri komunikaciji z drugimi uporabniki aplikacije
-uporablja potisna sporočila. Za aktivacijo te funkcije preverite kodo vaše države in telefonsko številko.</string>
   <string name="registration_activity__your_country">VAŠA DRŽAVA</string>
   <string name="registration_activity__your_country_code_and_phone_number">KODA DRŽAVE IN VAŠA
 TELEFONSKA ŠTEVILKA</string>
   <string name="registration_activity__phone_number">TELEFONSKA ŠTEVILKA</string>
   <string name="registration_activity__register">Registriraj</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Med registracijo bo nekaj podatkov o stikih začasno posredovano na strežnik.</string>
   <string name="registration_activity__skip">Preskoči</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Nekatere možni razlogi
@@ -688,5 +679,8 @@ bila uspešna.</string>
   <string name="reminder_header_sms_import_text">TextSecure lahko prekopira sporočila SMS z vašega telefona v svojo šifrirano zbirko.</string>
   <string name="reminder_header_push_title">Vklopim sporočila TextSecure?</string>
   <string name="reminder_header_push_text">Takojšnja dostava, večja zasebnost, brez stroškov SMS.</string>
+  <!--MediaPreviewActivity-->
+  <!--media_preview-->
+  <!--media_preview_activity-->
   <!--EOF-->
 </resources>

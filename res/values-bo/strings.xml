@@ -36,9 +36,7 @@
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">འཕྲིན་ཐུང་གི་ཞིབ་ཆ།</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">ཁྱོད་ཀྱིས་དངོས་གནས་འཕྲིན་ཐུང་འདི་གཏན་དུ་གསུབ་རྒྱུ་ཡིན་ནམ།</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">ཉེན་སྲུང་འཕྲུལ་ཆས་ཀྱི་བྱང་བུའི་ནང་ཟུར་སྣོན་ཉར་ཚགས་བྱེད་སྐབས་ནོར་འཁྲུལ་བྱུང་འདུག </string>
   <string name="ConversationFragment_success_exclamation">ལེགས་འགྲུབ། </string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">ཉེན་སྲུང་འཕྲུལ་ཆས་ཀྱི་བྱང་བུའི་(SD Card) ནང་ཟུར་སྣོན་ཉར་ཚགས་བྱེད་བཞིན་ཡོད།</string>
   <!--ConversationListAdapter-->
   <string name="ConversationListAdapter_key_exchange_message">ལྡེ་མིག་བརྗེ་ལེན་བྱེད་རྒྱུའི་བརྡ་ལན།</string>
   <!--ConversationListFragment-->
@@ -290,5 +288,8 @@
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">ཁུངས་སྐྱེལ་བྱས་ཟིན།</string>
   <!--reminder_header-->
+  <!--MediaPreviewActivity-->
+  <!--media_preview-->
+  <!--media_preview_activity-->
   <!--EOF-->
 </resources>

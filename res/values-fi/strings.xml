@@ -86,13 +86,8 @@ Käyttääksenne push-palvelua tulevaisuudessa teidän täytyy rekisteröityä u
   <string name="ConversationFragment_message_details">Viestin tiedot</string>
   <string name="ConversationFragment_confirm_message_delete">Viestin poiston varmistus</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Haluatteko varmasti poistaa tämän viestin pysyvästi?</string>
-  <string name="ConversationFragment_save_to_sd_card">Tallenna SD-muistikortille?</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Valittu media on tallennettuna salattuun tietokantaan. Olette tallentamassa sitä SD-muistikortille salaamattomana. Haluatteko varmasti jatkaa?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Virhe SD-muistikorttiin tallennuksessa!</string>
   <string name="ConversationFragment_success_exclamation">Onnistuimme!</string>
-  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">SD-muistikortille kirjoittaminen ei onnistunut!</string>
   <string name="ConversationFragment_saving_attachment">Liitettä tallennetaan</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">Liitettä tallennetaan SD-muistikortille...</string>
   <!--ConversationListAdapter-->
   <string name="ConversationListAdapter_key_exchange_message">Avainvaihtoviesti...</string>
   <!--ConversationListFragment-->
@@ -437,15 +432,11 @@ Tuo salaamaton varmuuskopiotiedosto. Yhteensopiva \"SMS Backup And Restore\":lla
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Valmis</string>
   <!--registration_activity-->
-  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-TextSecure voi käyttää pikaviestejä yksityisyyden kasvattamiseksi ja tekstiviestilaskujen välttämiseksi
-muiden TextSecuren käyttäjien kanssa keskusteltaessa. Ottaaksesi tämän toiminnon käyttöön, olkaa hyvä ja varmistakaa suunta- ja puhelinnumeronne.</string>
   <string name="registration_activity__your_country">MAA</string>
   <string name="registration_activity__your_country_code_and_phone_number">SUUNTA- JA
 PUHELINNUMEROSI</string>
   <string name="registration_activity__phone_number">PUHELINNUMERO</string>
   <string name="registration_activity__register">Rekisteröidy</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Rekisteröityminen tulee siirtämään joitain hajakoodattuja yhteystietoja palvelimelle väliaikaisesti.</string>
   <string name="registration_activity__skip">Ohita</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Mahdollisiin ongelmiin
@@ -685,5 +676,8 @@ Paranna yksityisyyttäsi ja vältä tekstiviestilaskuja käyttämällä tiedonsi
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Varmennettu</string>
   <!--reminder_header-->
+  <!--MediaPreviewActivity-->
+  <!--media_preview-->
+  <!--media_preview_activity-->
   <!--EOF-->
 </resources>

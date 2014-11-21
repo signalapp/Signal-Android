@@ -89,13 +89,8 @@ Vai necessitar de re-registar o seu número de telefone se pretender utilizar es
   <string name="ConversationFragment_message_details">Detalhes da mensagem</string>
   <string name="ConversationFragment_confirm_message_delete">Confirme apagar a mensagem</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Tem a certeza que pretende apagar permanentemente esta mensagem?</string>
-  <string name="ConversationFragment_save_to_sd_card">Guardar no cartão SD?</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Este ficheiro foi armazenado numa base de dados cifrada. A versão que guardar para o cartão SD não se encontrará cifrada. Deseja prosseguir?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Erro ao guardar o anexo no Cartão SD!</string>
   <string name="ConversationFragment_success_exclamation">Sucesso!</string>
-  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Não é possível escrever no cartão SD!</string>
   <string name="ConversationFragment_saving_attachment">A guardar anexo</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">A guardar anexo para o cartão SD...</string>
   <!--ConversationListAdapter-->
   <string name="ConversationListAdapter_key_exchange_message">Mensagem de intercâmbio de chaves...</string>
   <!--ConversationListFragment-->
@@ -465,15 +460,11 @@ Importar uma cópia de segurança de texto simples. Compatível com \'SMSBackup 
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Completo</string>
   <!--registration_activity-->
-  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-TextSecure pode usar mensagens instantâneas para aumentar a privacidade e evitar custos quando comunica com outros 
-utilizadores TextSecure. Para activar esta funcionalidade, por favor valide o seu indicativo de país e número de telefone.</string>
   <string name="registration_activity__your_country">PAÍS</string>
   <string name="registration_activity__your_country_code_and_phone_number">PAÍS E
 NÚMERO DE TELEFONE</string>
   <string name="registration_activity__phone_number">TELEFONE</string>
   <string name="registration_activity__register">Registar</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">O registo irá transmitir alguma informação de contacto ao servidor temporariamente.</string>
   <string name="registration_activity__skip">Saltar</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Alguns possíveis problemas
@@ -730,5 +721,8 @@ Aumente a privacidade e evite custos de SMS ao utilizar o canal de dados para co
   <string name="reminder_header_sms_import_text">TextSecure pode copiar as suas SMS para a base de dados TextSecure cifrada.</string>
   <string name="reminder_header_push_title">Habilitar mensagens do TextSecure?</string>
   <string name="reminder_header_push_text">Entrega instantânea, mais privacidade, e sem taxas de SMS.</string>
+  <!--MediaPreviewActivity-->
+  <!--media_preview-->
+  <!--media_preview_activity-->
   <!--EOF-->
 </resources>

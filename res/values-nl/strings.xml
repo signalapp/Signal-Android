@@ -32,6 +32,7 @@ U zal uw telefoonnummer opnieuw moeten registreren als u push berichten weer wil
   <string name="ApplicationPreferencesActivity_sms_disabled">Inkomende SMS uitgeschakeld</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Raak aan om TextSecure uw standaard SMS applicatie te maken</string>
   <!--AttchmentManager-->
+  <string name="AttachmentManager_cant_open_media_selection">Geen app gevonden om media te selecteren.</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Afbeelding</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
@@ -57,6 +58,7 @@ U zal uw telefoonnummer opnieuw moeten registreren als u push berichten weer wil
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Terugvallen naar onversleutelde SMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Terugvallen naar onversleutelde MMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Dit bericht zal <b>niet</b> versleuteld worden, omdat een veilige sessie niet opgezet kon worden.\n\nBericht onveilig versturen?</string>
+  <string name="ConversationItem_unable_to_open_media">Geen app gevonden om dit bestand te openen.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Veilige sessie initiëren?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Initieer beveiligde sessie met %s?</string>
@@ -89,13 +91,13 @@ U zal uw telefoonnummer opnieuw moeten registreren als u push berichten weer wil
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Verzender: %1$s\nTransport: %2$s\nVerstuurd%3$s\n/Ontvangen:%4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Berichtverwijdering bevestigen</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Weet u zeker dat u dit bericht permanent wilt verwijderen?</string>
-  <string name="ConversationFragment_save_to_sd_card">Opslaan op SD-kaart?</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Deze media is opgeslagen in een versleutelde database. De versie die u op de SD-kaart opslaat, zal niet langer versleuteld zijn. Wilt u doorgaan?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Fout tijdens het opslaan van de bijlage naar de SD-kaart!</string>
+  <string name="ConversationFragment_save_to_sd_card">Opslaan?</string>
+  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Het opslaan van dit mediabestand maakt het toegankelijke voor alle apps op je telefoon.t.\n\nDoorgaan?</string>
+  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Fout tijdens het opslaan van de bijlage!</string>
   <string name="ConversationFragment_success_exclamation">Succesvol!</string>
-  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">SD-kaart niet beschrijfbaar!</string>
+  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Opslag niet beschrijfbaar!</string>
   <string name="ConversationFragment_saving_attachment">Bijlage opslaan</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">Bijlage aan het opslaan op de SD-kaart...</string>
+  <string name="ConversationFragment_saving_attachment_to_sd_card">Bijlage aan het opslaan...</string>
   <!--ConversationListAdapter-->
   <string name="ConversationListAdapter_key_exchange_message">Sleuteluitwisselingsbericht...</string>
   <!--ConversationListFragment-->
@@ -442,13 +444,13 @@ Importeer een niet-versleutelde back-up voor \'SMS Back-up En Herstellen\'.</str
   <string name="receive_key_activity__complete">Voltooid</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-TextSecure kan instant messages gebruiken om de privacy te verbeteren en om SMS-kosten te vermijden als u met andere TextSecure gebruikers communiceert. Als u deze functionaliteit wil inschakelen, verifiëer dan uw landcode en telefoonnummer.</string>
+Registreren is gratis en verbetert je privacy als je chat met andere TextSecure gebruikers.</string>
   <string name="registration_activity__your_country">UW LAND</string>
   <string name="registration_activity__your_country_code_and_phone_number">UW LANDCODE EN
 TELEFOONNUMMER</string>
   <string name="registration_activity__phone_number">TELEFOONNUMMER</string>
   <string name="registration_activity__register">Registreren</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Registratie zal wat contactinformatie tijdelijk met de server delen.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Registreren deelt tijdelijk enige informatie met de server. Het wordt niet bewaard.</string>
   <string name="registration_activity__skip">Overslaan</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Mogelijke problemen
@@ -520,6 +522,7 @@ TextSecure heeft te lang moeten wachten op het binnenkomen van de verificatie-SM
   <string name="AndroidManifest__manage_identity_keys">Beheer identiteitssleutels</string>
   <string name="AndroidManifest__complete_key_exchange">Sleuteluitwisseling voltooien</string>
   <string name="AndroidManifest__log_submit">Debug logs indienen</string>
+  <string name="AndroidManifest__media_preview">Media Voorvertoning</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importeer / exporteer </string>
   <string name="arrays__my_identity_key">Mijn identiteitssleutel</string>
@@ -694,5 +697,11 @@ TextSecure heeft te lang moeten wachten op het binnenkomen van de verificatie-SM
   <string name="reminder_header_sms_import_text">TextSecure kan uw SMS-berichten importeren in haar versleutelde database.</string>
   <string name="reminder_header_push_title">Activeer TextSecure berichten</string>
   <string name="reminder_header_push_text">Directe aflevering, Sterkere privacy, en geen SMS kosten.</string>
+  <!--MediaPreviewActivity-->
+  <string name="MediaPreviewActivity_you">Jij</string>
+  <!--media_preview-->
+  <string name="media_preview__save_title">Opslaan</string>
+  <!--media_preview_activity-->
+  <string name="media_preview_activity__image_content_description">Afbeelding Voorvertoning</string>
   <!--EOF-->
 </resources>

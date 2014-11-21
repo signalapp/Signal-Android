@@ -89,13 +89,8 @@ Du må registrere telefonnummeret ditt på nytt dersom du ønsker å benytte \'p
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Avsender: %1$s\nTransport: %2$s\nSendt: %3$s\nMottatt:%4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Bekreft sletting av melding</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Er du sikker på at du ønsker å slette denne meldingen?</string>
-  <string name="ConversationFragment_save_to_sd_card">Lagre til SD-kort?</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Dette mediet har blitt lagret i en kryptert database. Versjonen du lagrer på SD-kortet vil ikke lenger være kryptert. Vil du fortsette?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Kunne ikke lagre vedlegg til SD-kort!</string>
   <string name="ConversationFragment_success_exclamation">Suksess!</string>
-  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Kunne ikke skrive til SD-kort!</string>
   <string name="ConversationFragment_saving_attachment">Lagrer vedlegg</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">Lagrer vedlegg til SD-kort...</string>
   <!--ConversationListAdapter-->
   <string name="ConversationListAdapter_key_exchange_message">Nøkkelutvekslingsmelding...</string>
   <!--ConversationListFragment-->
@@ -440,14 +435,11 @@ Importer en klartekst backup kompatibel med \'SMSBackup And Restore\'.</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Complete</string>
   <!--registration_activity-->
-  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-TextSecure can benytte lynmeldinger for å øke personvernet ditt og unngå SMS kostnader når du kommuniserer med andre TextSecure brukere. For å aktivere denne funksjonen, vær vennlig å verifisere telefonnummeret og landskoden din.</string>
   <string name="registration_activity__your_country">DITT LAND</string>
   <string name="registration_activity__your_country_code_and_phone_number">DIN LANDSKODE OG
 TELEFONNUMMER</string>
   <string name="registration_activity__phone_number">TELEFONNUMMER</string>
   <string name="registration_activity__register">Registrer</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Registreringen vil midlertidig overføre noe kontaktinformasjon til serveren.</string>
   <string name="registration_activity__skip">Hopp over</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Noen mulige problemer
@@ -695,5 +687,8 @@ Styrk personvernet ditt og unngå SMS kostnader ved å benytte mobil data når d
   <string name="reminder_header_sms_import_text">TextSecure kan kopiere telefonens SMS meldinger til sin egen krypterte database.</string>
   <string name="reminder_header_push_title">Benytte TextSecure meldinger?</string>
   <string name="reminder_header_push_text">Umiddelbar levering, sterkere personvern, ingen SMS kostnader.</string>
+  <!--MediaPreviewActivity-->
+  <!--media_preview-->
+  <!--media_preview_activity-->
   <!--EOF-->
 </resources>

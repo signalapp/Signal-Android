@@ -33,6 +33,7 @@ Bu işlem sunucudan kaydınızı silerek itilen mesajları etkisizleştirir. Gel
   <string name="ApplicationPreferencesActivity_sms_disabled">Gelen SMS Etkisizleştirildi</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">TextSecure\'u varsayılan SMS uygulamanız yapmak için dokunun</string>
   <!--AttchmentManager-->
+  <string name="AttachmentManager_cant_open_media_selection">Seçtiğiniz medya için bir uygulama bulunamadı.</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Resim</string>
   <string name="AttachmentTypeSelectorAdapter_video">Görüntü</string>
@@ -58,6 +59,7 @@ Bu işlem sunucudan kaydınızı silerek itilen mesajları etkisizleştirir. Gel
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Şifrelenmemiş SMS geri düşülmesi?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Şifrelenmemiş MMS geri düşülmesi?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Bu mesaj güvenli bir oturum olmaması nedeni ile şifrelenmiş <b>gönderilemiyor</b>.\n\nGüvensiz mesaj gönderilsin mi?</string>
+  <string name="ConversationItem_unable_to_open_media">Bu medyayı açabilen bir uygulama bulunamadı.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Güvenli oturum başlatılsın mı?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">%s ile güvenli oturum başlat?</string>
@@ -90,13 +92,13 @@ Bu işlem sunucudan kaydınızı silerek itilen mesajları etkisizleştirir. Gel
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Gönderici: %1$s\nTaşıma: %2$s\nGönderildi: %3$s\nAlındı: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Mesaj silinmesini onayla</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Bu mesajın geri dönülemez şekilde silinmesini istediğinizden emin misiniz?</string>
-  <string name="ConversationFragment_save_to_sd_card">SD karta kaydedilsin mi?</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Bu medya şifrelenmiş bir veritabanında saklanmıştı. SD karta kaydedeceğiniz bu hali şifrelenmiş olmayacak. Devam etmek istiyor musunuz?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Ek SD karta kaydedilirken hata!</string>
+  <string name="ConversationFragment_save_to_sd_card">Depolama alanına kaydedilsin mi?</string>
+  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Bu medyayı depolama alanına kaydetmekle, telefondaki diğer uygulamaların erişmesine izin vereceksiniz.\n\nDevam etmek istiyor musunuz?</string>
+  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Depolama alanına ek kaydedilirken hata!</string>
   <string name="ConversationFragment_success_exclamation">Başarılı!</string>
-  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">SD karta yazılamıyor!</string>
+  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Depolama alanına yazılamıyor!</string>
   <string name="ConversationFragment_saving_attachment">Ek kaydediliyor</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">Ek SD karta kaydediliyor...</string>
+  <string name="ConversationFragment_saving_attachment_to_sd_card">Depolama alanına ek kaydediliyor...</string>
   <!--ConversationListAdapter-->
   <string name="ConversationListAdapter_key_exchange_message">Anahtar takas mesajı...</string>
   <!--ConversationListFragment-->
@@ -157,7 +159,7 @@ kurulumunuzda bulunan ancak yüklenecek yedekte bulunmayan tüm bilgiler kaybolu
   <string name="ImportFragment_restore">Yeniden yükle</string>
   <string name="ImportFragment_import_plaintext_backup">Şifresiz metin yedeği içe aktarılsın mı?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Bu mesajları açık metin bir yedekten TextSecure\'a aktarır. Eğer bu yedeği daha önce aktardı iseniz, yeniden aktarım çifte mesajlarla sonuçlanabilir.</string>
-  <string name="ImportFragment_importing">İçe aktarma sürüyor</string>
+  <string name="ImportFragment_importing">İçe aktarılıyor</string>
   <string name="ImportFragment_import_plaintext_backup_elipse">Şifresiz metin yedeğinden içe aktar</string>
   <string name="ImportFragment_no_plaintext_backup_found">Şifresiz metin yedeği bulunamadı!</string>
   <string name="ImportFragment_error_importing_backup">Yedek içe aktarımında hata!</string>
@@ -455,14 +457,15 @@ Daha önce dışa aktarılmış bir şifrelenmiş TextSecure yedeğini yeniden y
   <string name="receive_key_activity__complete">Tamamlandı</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-TextSecure, diğer TextSecure kullanıcıları ile iletişim kurarken gizliliği artırmak ve SMS ücretlerinden kaçınmak için anlık ileti kullanabilir. Bu özelliği etkinleştirmek için lütfen ülke kodunuz ve telefon numaranızı doğrulatınız.</string>
+        Kayıt olma ücretsiz ve diğer TextSecure kullanıcılarına mesaj gönderirken gizliliğini arttırır. Lütfen telefon numaranızı doğrulatın.
+    </string>
   <string name="registration_activity__your_country">ÜLKENİZ</string>
   <string name="registration_activity__your_country_code_and_phone_number">ÜLKE KODUNUZ VE
         TELEFON NUMARANIZ
     </string>
   <string name="registration_activity__phone_number">TELEFON NUMARASI</string>
   <string name="registration_activity__register">Kayıt ol</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Kayıt işlemi geçici olarak kişi bilgisini sunucuya gönderecek.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Kayıt işlemi ile bazı kişi bilgileriniz sunucuya gönderilecek. Fakat bu bilgiler sunucuda saklanmıyor.</string>
   <string name="registration_activity__skip">Atla</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Muhtemel sorunlar
@@ -540,6 +543,7 @@ başarısız.</string>
   <string name="AndroidManifest__manage_identity_keys">Kimlik anahtarını yönet</string>
   <string name="AndroidManifest__complete_key_exchange">Anahtar değişimini tamamla</string>
   <string name="AndroidManifest__log_submit">Hata ayıklama kayıtlarını gönder</string>
+  <string name="AndroidManifest__media_preview">Medya Önizleme</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">İçeri / Dışarı Aktar</string>
   <string name="arrays__my_identity_key">Kimlik anahtarım</string>
@@ -715,5 +719,11 @@ Diğer TextSecure kullanıcıları ile iletişiminiz için veri kanallarını ku
   <string name="reminder_header_sms_import_text">TextSecure telefonunuzdaki SMS mesajlarınızı, şifreli veritabanına aktarabilir.</string>
   <string name="reminder_header_push_title">TextSecure mesajlarını aç?</string>
   <string name="reminder_header_push_text">Anında gönderim, güçlü gizlilik, SMS ücreti yok.</string>
+  <!--MediaPreviewActivity-->
+  <string name="MediaPreviewActivity_you">Siz</string>
+  <!--media_preview-->
+  <string name="media_preview__save_title">Kaydet</string>
+  <!--media_preview_activity-->
+  <string name="media_preview_activity__image_content_description">Resim Önizleme</string>
   <!--EOF-->
 </resources>

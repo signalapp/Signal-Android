@@ -85,13 +85,8 @@ Thao tác này sẽ tắt tin nhắn đẩy bằng cách gỡ đăng ký bạn r
   <string name="ConversationFragment_message_details">Chi tiết tin nhắn</string>
   <string name="ConversationFragment_confirm_message_delete">Xác nhận xóa tin</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Bạn có chắc là muốn xóa vĩnh viễn tin nhắn này?</string>
-  <string name="ConversationFragment_save_to_sd_card">Lưu vào thẻ nhớ?</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Phương tiện dữ liệu này được lưu trong cơ sở dữ liệu có mã hóa. Phiên bản mà bạn lưu vào thẻ nhớ SD sẽ không còn được mã hóa. Bạn vẫn muốn tiếp tục?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Có lỗi khi lưu tập tin đính kèm vào thẻ nhớ SD!</string>
   <string name="ConversationFragment_success_exclamation">Thành công!</string>
-  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Không thể ghi dữ liệu vào thẻ nhớ</string>
   <string name="ConversationFragment_saving_attachment">Đang lưu lại phần đính kèm</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">Lưu tập tin đính kèm vào thẻ nhớ SD</string>
   <!--ConversationListAdapter-->
   <string name="ConversationListAdapter_key_exchange_message">Thông tin trao đổi chìa khóa...</string>
   <!--ConversationListFragment-->
@@ -384,14 +379,11 @@ Nhập tập tin sao lưu thường-không mã hóa. Tương thích với \'Sao 
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Hoàn tất</string>
   <!--registration_activity-->
-  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-TextSecure có thể dùng tin nhắn nhanh để tăng độ riêng tư và tránh cước SMS khi liên lạc với những người dùng TextSecure khác. Để mở tính năng này, xin kiểm chứng mã số quốc gia và số điện thoại của bạn.</string>
   <string name="registration_activity__your_country">QUỐC GIA BẠN</string>
   <string name="registration_activity__your_country_code_and_phone_number">MÃ SỐ QUỐC GIA VÀ
 SỐ ĐIỆN THOẠI BẠN</string>
   <string name="registration_activity__phone_number">SỐ ĐIỆN THOẠI</string>
   <string name="registration_activity__register">Đăng ký</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Thể thức đăng ký sẽ chuyển một số thông tin liên hệ tạm thời đến máy chủ .</string>
   <string name="registration_activity__skip">Bỏ qua</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Một số vấn đề có thể gặp
@@ -580,5 +572,8 @@ Tăng độ riêng tư và tránh cước SMS bằng cách dùng đường truy�
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Đã kiểm chứng</string>
   <!--reminder_header-->
+  <!--MediaPreviewActivity-->
+  <!--media_preview-->
+  <!--media_preview_activity-->
   <!--EOF-->
 </resources>

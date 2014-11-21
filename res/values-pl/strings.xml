@@ -32,6 +32,7 @@ Będziesz musiał ponownie zarejestrować swój numer, aby w przyszłości ponow
   <string name="ApplicationPreferencesActivity_sms_disabled">Otrzymywanie SMS wyłączone</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Dotknij aby TextSecure była Twoją domyślną aplikacją SMS</string>
   <!--AttchmentManager-->
+  <string name="AttachmentManager_cant_open_media_selection">Nie można znaleźć aplikacji, aby wybrać media.</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Zdjęcie</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
@@ -57,6 +58,7 @@ Będziesz musiał ponownie zarejestrować swój numer, aby w przyszłości ponow
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Fallback do nieszyfrowanej wiadomości SMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Fallback do nieszyfrowanych wiadomości MMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ta wiadomość <b>nie będzie</b> szyfrowana ponieważ nie udało się ustanowić bezpiecznego połączenia. \n\n\Wysłać nieszyfrowaną wiadomość?</string>
+  <string name="ConversationItem_unable_to_open_media">Nie można znaleźć aplikacji, aby otworzyć te media.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Rozpocząć bezpieczną sesję?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Rozpocząć Bezpieczną Sesję z %s?</string>
@@ -89,13 +91,13 @@ Będziesz musiał ponownie zarejestrować swój numer, aby w przyszłości ponow
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Nadawca: %1$s\nTransport: %2$s\nWysłano: %3$s\nOtrzymano: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Potwierdź usunięcie wiadomości</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Usunąć trwale wybraną wiadomość?</string>
-  <string name="ConversationFragment_save_to_sd_card">Zapisać na kartę SD?</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Te media zostały zapisane w zaszyfrowanej bazie danych. Wersja zapisana na karcie SD nie będzie szyfrowana. Czy chcesz kontynuować?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Wystąpił błąd podczas zapisywania załącznika na kartę SD!</string>
+  <string name="ConversationFragment_save_to_sd_card">Zapisać na dysk?</string>
+  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Zapisanie tych plików na dysku pozwoli innym aplikacjom na Twoim telefonie na dostęp do tych plików.\n\nKontynuować?</string>
+  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Błąd podczas zapisywania załącznika na dysk!</string>
   <string name="ConversationFragment_success_exclamation">Sukces!</string>
-  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Nie można zapisać na kartę SD!</string>
+  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Nie udało zapisać się pliku!</string>
   <string name="ConversationFragment_saving_attachment">Zapisywanie załącznika</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">Zapisuję załącznik na kartę SD...</string>
+  <string name="ConversationFragment_saving_attachment_to_sd_card">Zapisywanie załącznika na dysku...</string>
   <!--ConversationListAdapter-->
   <string name="ConversationListAdapter_key_exchange_message">Wiadomość wymiany kluczy...</string>
   <!--ConversationListFragment-->
@@ -447,13 +449,13 @@ Importuj niezaszyfrowany plik kopii zapasowej, kompatybilny z \'SMSBackup And Re
   <string name="receive_key_activity__complete">Zakończono</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-TextSecure może wysyłać wiadomości on-line aby zwiększyć prywatność i uniknąć opłat za SMS podczas komunikacji z innymi użytkownikami TextSecure. Aby włączyć tą funkcję, zweryfikuj swój numer telefonu.</string>
+Rejestracja jest darmowa i zwiększa prywatność podczas pisania do innych użytkowników TextSecure. Proszę zweryfikuj swój numer.</string>
   <string name="registration_activity__your_country">TWÓJ KRAJ</string>
   <string name="registration_activity__your_country_code_and_phone_number">KOD TWOJEGO KRAJU I 
 NUMER TELEFONU</string>
   <string name="registration_activity__phone_number">NUMER TELEFONU</string>
   <string name="registration_activity__register">Rejestracja</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Podczas rejestracji, niektóre informacje o kontakcie zostaną przesłane tymczasowo na serwer.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Podczas rejestracji, niektóre informacje o kontakcie zostaną przesłane tymczasowo na serwer. Nie będą one zapisane.</string>
   <string name="registration_activity__skip">Pomiń</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Niektóre możliwe problemy:</string>
@@ -521,6 +523,7 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="AndroidManifest__manage_identity_keys">Zarządzaj kluczami tożsamości</string>
   <string name="AndroidManifest__complete_key_exchange">Ukończ wymianę kluczy</string>
   <string name="AndroidManifest__log_submit">Wyślij logi debugowania</string>
+  <string name="AndroidManifest__media_preview">Podgląd pliku</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Import / eksport</string>
   <string name="arrays__my_identity_key">Mój klucz tożsamości</string>
@@ -696,5 +699,11 @@ Zwiększ swoją prywatność i unikaj opłat za SMS używając transmisji danych
   <string name="reminder_header_sms_import_text">TextSecure może skopiować Twoje wiadomości SMS do szyfrowanej bazy danych.</string>
   <string name="reminder_header_push_title">Włączyć wiadomości TextSecure?</string>
   <string name="reminder_header_push_text">Szybkie dostarczenie, większa prywatność i brak opłat SMS.</string>
+  <!--MediaPreviewActivity-->
+  <string name="MediaPreviewActivity_you">Ty</string>
+  <!--media_preview-->
+  <string name="media_preview__save_title">Zapisz</string>
+  <!--media_preview_activity-->
+  <string name="media_preview_activity__image_content_description">Podgląd obrazu</string>
   <!--EOF-->
 </resources>

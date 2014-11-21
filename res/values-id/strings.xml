@@ -66,10 +66,7 @@ dapat mengaksesnya</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Rincian pesan</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Apakah anda yakin akan menghapus pesan ini secara permanen?</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Media ini telah disimpan dalam basis data terenkripsi. Versi yang anda simpan ke kartu SD tidak akan lagi dienkripsi. Apakah anda ingin melanjutkan?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Gagal menyimpan lampiran ke kartu SD!</string>
   <string name="ConversationFragment_success_exclamation">Sukses!</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">Menyimpan lampiran ke kartu SD...</string>
   <!--ConversationListAdapter-->
   <string name="ConversationListAdapter_key_exchange_message">Pesan pertukaran kunci...</string>
   <!--ConversationListFragment-->
@@ -375,7 +372,6 @@ Import cadangan dalam texks polos. Kompatibel dengan aplikasi \'SMSBackup And Re
 NOMOR TELEPON</string>
   <string name="registration_activity__phone_number">NOMOR TELEPON</string>
   <string name="registration_activity__register">Daftar</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Registrasi akan mengirim beberapa info kontak ke server untuk sementara.</string>
   <string name="registration_activity__skip">Lewati</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Beberapa masalah yang mungkin
@@ -557,5 +553,8 @@ Telah gagal
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Terverifikasi</string>
   <!--reminder_header-->
+  <!--MediaPreviewActivity-->
+  <!--media_preview-->
+  <!--media_preview_activity-->
   <!--EOF-->
 </resources>

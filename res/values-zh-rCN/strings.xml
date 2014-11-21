@@ -89,13 +89,8 @@
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">发送者： %1$s\n传输： %2$s\n已发送： %3$s\n已接收： %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">确认删除信息？</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">是否确定要永久删除此信息？</string>
-  <string name="ConversationFragment_save_to_sd_card">保存到SD卡？</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">该媒体已存储在加密数据库中。 您保存到 SD 卡的版本将不再加密，是否继续？</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">将附件保存到 SD 卡时出现错误！</string>
   <string name="ConversationFragment_success_exclamation">成功！</string>
-  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">SD卡无法写入！</string>
   <string name="ConversationFragment_saving_attachment">正在保存附件</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">正在将附件保存到 SD 卡...</string>
   <!--ConversationListAdapter-->
   <string name="ConversationListAdapter_key_exchange_message">密钥交换消息...</string>
   <!--ConversationListFragment-->
@@ -447,16 +442,11 @@
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">完成</string>
   <!--registration_activity-->
-  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-当与其他TextSecure用户通讯时，TextSecure可以使用即时消息来提高私密性并
-避免短信费用。
-要开启此功能，请验证您的国家地区代码和电话号码。</string>
   <string name="registration_activity__your_country">国家或地区</string>
   <string name="registration_activity__your_country_code_and_phone_number">您的国家代码和
 电话号码</string>
   <string name="registration_activity__phone_number">电话号码</string>
   <string name="registration_activity__register">注册人</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">注册过程将会发送一些临时性的联系信息到服务器。</string>
   <string name="registration_activity__skip">略过</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">可能的问题
@@ -714,5 +704,8 @@ TextSecure 在等待短信验证时超时。</string>
   <string name="reminder_header_sms_import_text">TextSecure 可以将您手机中的短信息复制到加密的数据库中。</string>
   <string name="reminder_header_push_title">启用 TextSecure 信息？</string>
   <string name="reminder_header_push_text">顷刻投递，私密存储，并且没有短信费用。</string>
+  <!--MediaPreviewActivity-->
+  <!--media_preview-->
+  <!--media_preview_activity-->
   <!--EOF-->
 </resources>

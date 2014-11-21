@@ -66,10 +66,7 @@ Necessitaràs tornar a registrar el teu número de telèfon per utilitzar els mi
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalls del missatge</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Estàs segur que vols esborrar permanentment aquest missatge?</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Aquest contingut ha estat emmagatzemant en una base de dades encriptada. La versió que desis a la targeta SD ja no estarà encriptada. Vols continuar?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Error mentre es desava l\'adjunt a la targeta SD!</string>
   <string name="ConversationFragment_success_exclamation">Èxit!</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">Desant l\'adjunt a la targeta SD...</string>
   <!--ConversationListAdapter-->
   <string name="ConversationListAdapter_key_exchange_message">Missatge d\'intercanvi de clau...</string>
   <!--ConversationListFragment-->
@@ -324,13 +321,10 @@ des de l\'app de missatgeria predeterminada del sistema.</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Complet</string>
   <!--registration_activity-->
-  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-TextSecure pot utilitzar missatges instantanis per incrementar la privacitat i evitar càrrecs d\'SMS quan es comuniqui amb altres usuaris de TextSecure. Per habilitar aquesta característica, si us plau verifica el teu codi de país i el teu número de telèfon.</string>
   <string name="registration_activity__your_country">EL TEU PAÍS</string>
   <string name="registration_activity__your_country_code_and_phone_number">EL TEU CODI DE PAÍS I NÚMERO DE TELÈFON</string>
   <string name="registration_activity__phone_number">NÚMERO DE TELÈFON</string>
   <string name="registration_activity__register">Registra</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">El registre transmetrà temporalment alguna informació de contacte al servidor.</string>
   <string name="registration_activity__skip">Salta</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Alguns possibles problemes inclouen:</string>
@@ -489,5 +483,8 @@ Augmenta la privacitat i evita els càrrecs d\'SMS utilitzant el canal de dades 
   <!--verify_keys-->
   <string name="verify_keys__menu_verified">Verificat</string>
   <!--reminder_header-->
+  <!--MediaPreviewActivity-->
+  <!--media_preview-->
+  <!--media_preview_activity-->
   <!--EOF-->
 </resources>

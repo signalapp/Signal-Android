@@ -90,13 +90,8 @@ Avrai bisogno di registrare di nuovo il tuo numero di telefono per usare i messa
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Mittente: %1$s\nTrasporto: %2$s\nInviato: %3$s\nRicevuto: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Messaggio di conferma cancellazione</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Sicuro di voler cancellare definitivamente questo messaggio?</string>
-  <string name="ConversationFragment_save_to_sd_card">Salvare nella scheda SD?</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Questo media è conservato in un database criptato. La versione che verrà salvata sulla SD non sarà più cifrata. Vuoi continuare?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Errore durante il salvataggio dell\'allegato sulla scheda SD!</string>
   <string name="ConversationFragment_success_exclamation">Completato!</string>
-  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Impossibile scrivere sulla scheda SD!</string>
   <string name="ConversationFragment_saving_attachment">Salvataggio allegato</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">Salvataggio allegato sulla memoria SD...</string>
   <!--ConversationListAdapter-->
   <string name="ConversationListAdapter_key_exchange_message">Messaggio di scambio della chiave...</string>
   <!--ConversationListFragment-->
@@ -467,16 +462,11 @@ Importo una copia in chiaro. Compatibile con \"SMSBackup And Restore\"</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Completato</string>
   <!--registration_activity-->
-  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-TextSecure può usare i messaggi istantanei per aumentare la privacy ed evitare i costi degli SMS quando comunichi
-con altri utenti TextSecure. Per abilitare questa funzione, verifica il tuo numero di telefono.
-</string>
   <string name="registration_activity__your_country">PAESE</string>
   <string name="registration_activity__your_country_code_and_phone_number">CODICE DEL PAESE E
 NUMERO DI TELEFONO</string>
   <string name="registration_activity__phone_number">NUMERO DI TELEFONO</string>
   <string name="registration_activity__register">Registro</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">La registrazione invierà temporaneamente al server alcune informazioni di contatto.</string>
   <string name="registration_activity__skip">Salta</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Alcuni possibili problemi
@@ -745,5 +735,8 @@ Aumenta la privacy ed evita i costi degli SMS usando la connettività dati per c
   <string name="reminder_header_sms_import_text">TextSecure può copiare i messaggi SMS del tuo telefono nella sua banca dati cifrata.</string>
   <string name="reminder_header_push_title">Attivare i messaggi di TextSecure?</string>
   <string name="reminder_header_push_text">Consegna istantanea, migliore privacy, e nessun costo SMS.</string>
+  <!--MediaPreviewActivity-->
+  <!--media_preview-->
+  <!--media_preview_activity-->
   <!--EOF-->
 </resources>
