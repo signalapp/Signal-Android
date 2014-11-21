@@ -32,6 +32,8 @@ import org.whispersystems.jobqueue.JobManager;
 import org.whispersystems.jobqueue.dependencies.DependencyInjector;
 import org.whispersystems.jobqueue.requirements.NetworkRequirementProvider;
 
+import java.security.Security;
+
 import dagger.ObjectGraph;
 
 /**
@@ -72,6 +74,7 @@ public class ApplicationContext extends Application implements DependencyInjecto
 
 
   private void initializeRandomNumberFix() {
+    Security.insertProviderAt(new org.spongycastle.jce.provider.BouncyCastleProvider(), 1);
     PRNGFixes.apply();
   }
 
