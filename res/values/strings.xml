@@ -653,8 +653,8 @@
     <string name="preferences__custom">Custom</string>
     <string name="preferences__advanced">Advanced</string>
     <string name="preferences__app_protection">App protection</string>
-    <string name="preferences__advanced_mms_access_point_names">Manual MMS preferences</string>
-    <string name="preferences__enable_manual_mms">Enable manual MMS</string>
+    <string name="preferences__advanced_mms_access_point_names">Manual MMS settings</string>
+    <string name="preferences__enable_manual_mms">Use manual MMS settings</string>
     <string name="preferences__override_system_mms_settings">Override system MMS settings with the information below.</string>
     <string name="preferences__mmsc_url_required">MMSC URL (Required)</string>
     <string name="preferences__mms_proxy_host_optional">MMS Proxy Host (Optional)</string>
