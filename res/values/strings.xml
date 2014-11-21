@@ -38,7 +38,7 @@
     <string name="ApplicationPreferencesActivity_partial">partial</string>
     <string name="ApplicationPreferencesActivity_sms">SMS</string>
     <string name="ApplicationPreferencesActivity_mms">MMS</string>
-    <string name="ApplicationPreferencesActivity_incoming_sms">incoming SMS</string>
+    <string name="ApplicationPreferencesActivity_incoming_sms">Incoming SMS</string>
     <string name="ApplicationPreferencesActivity_outgoing_sms">outgoing SMS</string>
 
     <!-- AttchmentManager -->
