@@ -8,10 +8,13 @@ import android.preference.Preference;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
 import android.provider.Telephony;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.preference.PreferenceFragment;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
-import org.thoughtcrime.securesms.MmsPreferencesActivity;
+import org.thoughtcrime.securesms.MmsPreferencesFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.OutgoingSmsPreference;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -39,6 +42,9 @@ public class PreferenceFragmentSmsMms extends PreferenceFragment {
   public void onResume() {
     super.onResume();
     ((ApplicationPreferencesActivity) getActivity()).getSupportActionBar().setTitle(R.string.preferences__sms_mms);
+    this.findPreference(MMS_PREF)
+      .setSummary(MmsPreferencesFragment.getSummary(getActivity()));
+
     initializePlatformSpecificOptions();
   }
 
@@ -106,7 +112,13 @@ public class PreferenceFragmentSmsMms extends PreferenceFragment {
 
     @Override
     public boolean onPreferenceClick(Preference preference) {
-      startActivity(new Intent(getActivity(), MmsPreferencesActivity.class));
+      Fragment            fragment            = new MmsPreferencesFragment();
+      FragmentManager     fragmentManager     = getActivity().getSupportFragmentManager();
+      FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+      fragmentTransaction.replace(android.R.id.content, fragment);
+      fragmentTransaction.addToBackStack(null);
+      fragmentTransaction.commit();
+
       return true;
     }
   }

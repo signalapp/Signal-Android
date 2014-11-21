@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
 import android.preference.Preference;
@@ -33,15 +34,18 @@ public class MmsPreferencesFragment extends PreferenceFragment {
     super.onCreate(paramBundle);
     initializePreferences();
     initializeEditTextSummaries();
+    ((PassphraseRequiredActionBarActivity) getActivity()).getSupportActionBar()
+        .setTitle(R.string.preferences__advanced_mms_access_point_names);
   }
 
   private void initializePreferences() {
     if (!OutgoingMmsConnection.isConnectionPossible(getActivity())) {
       TextSecurePreferences.setUseLocalApnsEnabled(getActivity(), true);
-      addPreferencesFromResource(R.xml.mms_preferences);
-      this.findPreference(TextSecurePreferences.ENABLE_MANUAL_MMS_PREF).setOnPreferenceChangeListener(new OverrideMmsChangeListener());
+      addPreferencesFromResource(R.xml.preferences_manual_mms);
+      this.findPreference(TextSecurePreferences.ENABLE_MANUAL_MMS_PREF)
+          .setOnPreferenceChangeListener(new OverrideMmsChangeListener());
     } else {
-      addPreferencesFromResource(R.xml.mms_preferences);
+      addPreferencesFromResource(R.xml.preferences_manual_mms);
     }
   }
 
@@ -73,8 +77,16 @@ public class MmsPreferencesFragment extends PreferenceFragment {
     @Override
     public boolean onPreferenceChange(Preference preference, Object o) {
       TextSecurePreferences.setUseLocalApnsEnabled(getActivity(), true);
-      Toast.makeText(getActivity(), R.string.mms_preferences_activity__manual_mms_settings_are_required, Toast.LENGTH_SHORT).show();
+      Toast.makeText(getActivity(), R.string.MmsPreferencesFragment__manual_mms_settings_are_required,
+                     Toast.LENGTH_SHORT).show();
       return false;
     }
+  }
+
+  public static CharSequence getSummary(Context context) {
+    final int enabledResId   = R.string.MmsPreferencesFragment__enabled;
+    final int disabledResId  = R.string.MmsPreferencesFragment__disabled;
+
+    return context.getString(TextSecurePreferences.isUseLocalApnsEnabled(context) ? enabledResId : disabledResId);
   }
 }
