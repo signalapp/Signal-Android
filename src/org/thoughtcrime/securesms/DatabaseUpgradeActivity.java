@@ -21,6 +21,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,15 +31,19 @@ import android.widget.ProgressBar;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
+import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
+import org.thoughtcrime.securesms.jobs.PushDecryptJob;
 import org.thoughtcrime.securesms.jobs.SmsDecryptJob;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.util.ParcelUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.VersionTracker;
 import org.whispersystems.jobqueue.EncryptionKeys;
+import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 
 import java.io.File;
 import java.util.SortedSet;
@@ -175,21 +180,38 @@ public class DatabaseUpgradeActivity extends Activity {
       }
 
       if (params[0] < NO_DECRYPT_QUEUE_VERSION) {
-        SmsDatabase.Reader reader = null;
+        EncryptingSmsDatabase smsDatabase  = DatabaseFactory.getEncryptingSmsDatabase(getApplicationContext());
+        PushDatabase          pushDatabase = DatabaseFactory.getPushDatabase(getApplicationContext());
+
+        SmsDatabase.Reader smsReader  = null;
+        Cursor             pushReader = null;
+
         SmsMessageRecord record;
 
         try {
-          reader = DatabaseFactory.getEncryptingSmsDatabase(getApplicationContext())
-                                  .getDecryptInProgressMessages(masterSecret);
+          smsReader = smsDatabase.getDecryptInProgressMessages(masterSecret);
 
-          while ((record = reader.getNext()) != null) {
+          while ((record = smsReader.getNext()) != null) {
             ApplicationContext.getInstance(getApplicationContext())
                               .getJobManager()
                               .add(new SmsDecryptJob(getApplicationContext(), record.getId()));
           }
         } finally {
-          if (reader != null)
-            reader.close();
+          if (smsReader != null)
+            smsReader.close();
+        }
+
+        try {
+          pushReader = pushDatabase.getPending();
+
+          while ((pushReader != null && pushReader.moveToNext())) {
+            ApplicationContext.getInstance(getApplicationContext())
+                .getJobManager()
+                .add(new PushDecryptJob(getApplicationContext(), pushReader.getLong(pushReader.getColumnIndexOrThrow(PushDatabase.ID))));
+          }
+        } finally {
+          if (pushReader != null)
+            pushReader.close();
         }
       }
 
