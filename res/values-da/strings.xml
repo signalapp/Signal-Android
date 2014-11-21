@@ -22,15 +22,15 @@ men alle med fysisk adgang til din enhed kan få adgang til dem.
   <string name="ApplicationPreferencesActivity_disable">Deaktivere</string>
   <string name="ApplicationPreferencesActivity_unregistering">Afregistrerer...</string>
   <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Afregistrerer for data kommunikation</string>
-  <string name="ApplicationPreferencesActivity_disable_push_messages">Deaktiver \\'push\\' beskeder?</string>
+  <string name="ApplicationPreferencesActivity_disable_push_messages">Deaktiver \'push\' beskeder?</string>
   <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">
-Dette vil deaktivere \\'push\\' beskeder, og afregistrerer dig fra tjenesten.
-Du skal registrere dit telefonnummer påny hvis du vil bruge \\'push\\' beskeder i fremtiden.
+Dette vil deaktivere \'push\' beskeder, og afregistrerer dig fra tjenesten.
+Du skal registrere dit telefonnummer påny hvis du vil bruge \'push\' beskeder i fremtiden.
 </string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Kunne ikke oprette forbindelse til serveren!</string>
-  <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">Du er ikke registreret som bruger af \\'push\\' tjenesten...</string>
+  <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">Du er ikke registreret som bruger af \'push\' tjenesten...</string>
   <string name="ApplicationPreferencesActivity_updating_directory">Opdaterer bibliotek</string>
-  <string name="ApplicationPreferencesActivity_updating_push_directory">Opdaterer \\'push\\' bibliotek...</string>
+  <string name="ApplicationPreferencesActivity_updating_push_directory">Opdaterer \'push\' bibliotek...</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS aktiveret</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Brug som standard SMS program</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS deaktiveret</string>
@@ -473,7 +473,7 @@ indtast det sekscifrede nummer du hører.</string>
   <string name="registration_progress_activity__edit_number">Rediger nummer</string>
   <string name="registration_progress_activity__connectivity_error">Forbindelsesfejl.</string>
   <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">
-TextSecure kunne ikke oprette forbindelse til \\'push\\' tjenesten.</string>
+TextSecure kunne ikke oprette forbindelse til \'push\' tjenesten.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Mulige problemer:</string>
   <string name="registration_progress_activity__no_network_connectivity">Ingen netværksforbindelse.</string>
   <string name="registration_progress_activity__your_device_needs_network_connectivity">Din enhed kræver en netværksforbindelse. Tjek om enheden har forbindelse til Edge, 3G, LTE eller et trådløst netværk.</string>
@@ -528,7 +528,7 @@ fejlede.
   <string name="arrays__my_identity_key">Min ID-nøgle</string>
   <!--preferences.xml-->
   <string name="preferences__general">Generelt</string>
-  <string name="preferences__push_sms_category">\\'Push\\' og SMS</string>
+  <string name="preferences__push_sms_category">\'Push\' og SMS</string>
   <string name="preferences__pref_all_sms_title">Modtag alle SMS</string>
   <string name="preferences__pref_all_mms_title">Modtag alle MMS</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Brug TextSecure til at læse og gemme alle indkommende SMS beskeder.</string>
@@ -615,7 +615,7 @@ fejlede.
 Styrk sikkerheden af din data kommunikation og undgå SMS gebyrer ved at bruge mobil data når du kommunikerer med andre TextSecure brugere.</string>
   <string name="preferences__allow_sms_fallback">Tillad udgående SMS til</string>
   <string name="preferences__allow_sms_fallback_disabled_reason">TextSecure er nu din standard SMS-app. Vælg venligst en anden standard SMS-app inden du ændre denne indstilling.</string>
-  <string name="preferences__refresh_push_directory">Opdater \\'push\\' bibliotek</string>
+  <string name="preferences__refresh_push_directory">Opdater \'push\' bibliotek</string>
   <string name="preferences__submit_debug_log">Indsend fejlfindings log</string>
   <string name="preferences__sms_outgoing_push_users">TextSecure brugere</string>
   <string name="preferences__sms_fallback_push_users_ask">(spørg først)</string>
