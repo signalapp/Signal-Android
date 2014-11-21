@@ -160,7 +160,7 @@
     </style>
 
     <style name="TextSecure.Light.Dialog"
-           parent="Theme.AppCompat.Dialog"
+           parent="Theme.AppCompat.Light.Dialog"
            tools:ignore="NewApi">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowTitleStyle">@style/TextSecureDialogWindowTitle</item>
