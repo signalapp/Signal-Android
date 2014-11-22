@@ -23,13 +23,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
+
 import org.thoughtcrime.securesms.util.Base64;
-import org.whispersystems.libaxolotl.IdentityKey;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DynamicTheme;
-
-import org.whispersystems.textsecure.zxing.integration.IntentIntegrator;
-import org.whispersystems.textsecure.zxing.integration.IntentResult;
+import org.whispersystems.libaxolotl.IdentityKey;
 
 /**
  * Activity for initiating/receiving key QR code scans.
@@ -99,11 +99,13 @@ public abstract class KeyScanningActivity extends PassphraseRequiredActionBarAct
   }
 
   protected void initiateScan() {
-    IntentIntegrator.initiateScan(this);
+    IntentIntegrator intentIntegrator = new IntentIntegrator(this);
+    intentIntegrator.initiateScan();
   }
 
   protected void initiateDisplay() {
-    IntentIntegrator.shareText(this, Base64.encodeBytes(getIdentityKeyToDisplay().serialize()));
+    IntentIntegrator intentIntegrator = new IntentIntegrator(this);
+    intentIntegrator.shareText(Base64.encodeBytes(getIdentityKeyToDisplay().serialize()));
   }
 
   protected abstract String getScanString();
