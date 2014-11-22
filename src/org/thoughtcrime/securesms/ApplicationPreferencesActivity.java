@@ -119,6 +119,14 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
   }
 
   @Override
+  protected void onActivityResult(int requestCode, int resultCode, Intent data)
+  {
+    super.onActivityResult(requestCode, resultCode, data);
+    Fragment fragment = getSupportFragmentManager().findFragmentById(android.R.id.content);
+    fragment.onActivityResult(requestCode, resultCode, data);
+  }
+
+  @Override
   public void onDestroy() {
     MemoryCleaner.clean((MasterSecret) getIntent().getParcelableExtra("master_secret"));
     super.onDestroy();
