@@ -121,6 +121,30 @@ public class MasterSecretUtil {
     }
   }
 
+  public static MasterSecret getMasterSecret2(Context context, String passphrase)
+      throws InvalidPassphraseException
+  {
+    try {
+      byte[] encryptedAndMacdMasterSecret = retrieve(context, "master_secret2");
+      byte[] macSalt                      = retrieve(context, "mac_salt2");
+      int    iterations                   = retrieve(context, "passphrase_iterations2", 100);
+      byte[] encryptedMasterSecret        = verifyMac(macSalt, iterations, encryptedAndMacdMasterSecret, passphrase);
+      byte[] encryptionSalt               = retrieve(context, "encryption_salt2");
+      byte[] combinedSecrets              = decryptWithPassphrase(encryptionSalt, iterations, encryptedMasterSecret, passphrase);
+      byte[] encryptionSecret             = Util.split(combinedSecrets, 16, 20)[0];
+      byte[] macSecret                    = Util.split(combinedSecrets, 16, 20)[1];
+
+      return new MasterSecret(new SecretKeySpec(encryptionSecret, "AES"),
+                              new SecretKeySpec(macSecret, "HmacSHA1"));
+    } catch (GeneralSecurityException e) {
+      Log.w("keyutil", e);
+      return null; //XXX
+    } catch (IOException e) {
+      Log.w("keyutil", e);
+      return null; //XXX
+    }
+  }
+
   public static AsymmetricMasterSecret getAsymmetricMasterSecret(Context context,
                                                                  MasterSecret masterSecret)
   {
@@ -180,6 +204,33 @@ public class MasterSecretUtil {
 
       return new MasterSecret(new SecretKeySpec(encryptionSecret, "AES"),
                               new SecretKeySpec(macSecret, "HmacSHA1"));
+    } catch (GeneralSecurityException e) {
+      Log.w("keyutil", e);
+      return null;
+    }
+  }
+
+  public static MasterSecret generateMasterSecretDuress(Context context,
+                                                        String newDuress,
+                                                        MasterSecret masterSecret)
+  {
+    try {
+      byte[] encryptionSalt               = generateSalt();
+      int    iterations                   = generateIterationCount(newDuress, encryptionSalt);
+      byte[] macSalt                      = generateSalt();
+
+      byte[] masterCombinedSecrets        = Util.combine(masterSecret.getEncryptionKey().getEncoded(),
+            masterSecret.getMacKey().getEncoded());
+      byte[] encryptedMasterSecretDuress  = encryptWithPassphrase(encryptionSalt, iterations, masterCombinedSecrets, newDuress);
+      byte[] encryptedAndMacdMasterSecret = macWithPassphrase(macSalt, iterations, encryptedMasterSecretDuress, newDuress);
+
+      save(context, "encryption_salt2", encryptionSalt);
+      save(context, "mac_salt2", macSalt);
+      save(context, "passphrase_iterations2", iterations);
+      save(context, "master_secret2", encryptedAndMacdMasterSecret);
+
+      return null;
+
     } catch (GeneralSecurityException e) {
       Log.w("keyutil", e);
       return null;
