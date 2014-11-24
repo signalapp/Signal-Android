@@ -36,6 +36,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DateUtils;
@@ -120,7 +121,12 @@ public class ConversationListItem extends RelativeLayout
   }
 
   private void initializeContactWidgetVisibility() {
-    contactPhotoImage.setVisibility(View.VISIBLE);
+    if (TextSecurePreferences.isHideAvatarsEnabled(this.context)) {
+      contactPhotoImage.setVisibility(View.GONE);
+    }
+    else {
+      contactPhotoImage.setVisibility(View.VISIBLE);
+    }
   }
 
   private void setContactPhoto(final Recipient recipient) {
