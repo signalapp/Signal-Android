@@ -69,10 +69,6 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
     setContentView(R.layout.conversation_list_activity);
 
-    getSupportActionBar().setHomeButtonEnabled(true);
-    getSupportActionBar().setDisplayShowHomeEnabled(true);
-    getSupportActionBar().setDisplayUseLogoEnabled(true);
-
     getSupportActionBar().setTitle(R.string.app_name);
 
     initializeResources();
