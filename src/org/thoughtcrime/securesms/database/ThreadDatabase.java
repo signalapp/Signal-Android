@@ -294,6 +294,16 @@ public class ThreadDatabase extends Database {
     notifyConversationListListeners();
   }
 
+
+  public void deleteEncryptedConversations() {
+    DatabaseFactory.getSmsDatabase(context).deleteSecure();
+    DatabaseFactory.getMmsDatabase(context).deleteAllThreads();
+
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    db.delete(TABLE_NAME, "type = '" + (MmsSmsColumns.Types.TOTAL_MASK - MmsSmsColumns.Types.SECURE_MESSAGE_BIT) + "'", null);
+
+  }
+
   public void deleteAllConversations() {
     DatabaseFactory.getSmsDatabase(context).deleteAllThreads();
     DatabaseFactory.getMmsDatabase(context).deleteAllThreads();

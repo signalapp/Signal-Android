@@ -101,7 +101,7 @@ public class PassphrasePromptActivity extends PassphraseActivity {
         Editable text             = passphraseText.getText();
         String passphrase         = (text == null ? "" : text.toString());
         MasterSecret masterSecret = MasterSecretUtil.getMasterSecret2(PassphrasePromptActivity.this, passphrase);
-        DatabaseFactory.getThreadDatabase(PassphrasePromptActivity.this).deleteAllConversations();
+        DatabaseFactory.getThreadDatabase(PassphrasePromptActivity.this).deleteEncryptedConversations();
         MemoryCleaner.clean(passphrase);
         setMasterSecret(masterSecret);
       } catch (InvalidPassphraseException ipf) {
