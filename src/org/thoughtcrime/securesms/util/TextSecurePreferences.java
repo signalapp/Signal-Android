@@ -12,6 +12,7 @@ public class TextSecurePreferences {
   public  static final String CHANGE_PASSPHRASE_PREF           = "pref_change_passphrase";
   public  static final String DISABLE_PASSPHRASE_PREF          = "pref_disable_passphrase";
   public  static final String THEME_PREF                       = "pref_theme";
+  public  static final String HIDE_AVATARS_PREF                = "pref_hide_avatars";
   public  static final String LANGUAGE_PREF                    = "pref_language";
   public  static final String MMSC_HOST_PREF                   = "pref_apn_mmsc_host";
   public  static final String MMSC_PROXY_HOST_PREF             = "pref_apn_mms_proxy";
@@ -213,6 +214,10 @@ public class TextSecurePreferences {
 
   public static String getTheme(Context context) {
     return getStringPreference(context, THEME_PREF, "light");
+  }
+
+  public static boolean isHideAvatarsEnabled(Context context) {
+    return getBooleanPreference(context, HIDE_AVATARS_PREF, false);
   }
 
   public static boolean isVerifying(Context context) {
