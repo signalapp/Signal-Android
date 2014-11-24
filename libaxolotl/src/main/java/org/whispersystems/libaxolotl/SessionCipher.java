@@ -324,7 +324,7 @@ public class SessionCipher {
       }
     }
 
-    if (chainKey.getIndex() - counter > 2000) {
+    if (counter - chainKey.getIndex() > 2000) {
       throw new InvalidMessageException("Over 2000 messages into the future!");
     }
 
