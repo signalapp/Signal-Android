@@ -208,13 +208,14 @@
               android:clearTaskOnLaunch="true"
               android:finishOnTaskLaunch="true" />
 
-    <service android:enabled="true" android:name=".service.GcmRegistrationService"/>
+    <activity android:name=".PlayServicesProblemActivity"
+              android:theme="@android:style/Theme.Translucent.NoTitleBar"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+
     <service android:enabled="true" android:name=".service.ApplicationMigrationService"/>
     <service android:enabled="true" android:name=".service.KeyCachingService"/>
-    <service android:enabled="true" android:name=".service.SendReceiveService"/>
     <service android:enabled="true" android:name=".service.RegistrationService"/>
     <service android:enabled="true" android:name=".service.DirectoryRefreshService"/>
-    <service android:enabled="true" android:name=".service.PreKeyService"/>
 
     <service android:name=".service.QuickResponseService"
              android:permission="android.permission.SEND_RESPOND_VIA_MESSAGE"
