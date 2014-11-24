@@ -19,12 +19,8 @@ import org.whispersystems.libaxolotl.ratchet.AliceAxolotlParameters;
 import org.whispersystems.libaxolotl.ratchet.BobAxolotlParameters;
 import org.whispersystems.libaxolotl.ratchet.RatchetingSession;
 import org.whispersystems.libaxolotl.state.AxolotlStore;
-import org.whispersystems.libaxolotl.state.IdentityKeyStore;
-import org.whispersystems.libaxolotl.state.PreKeyStore;
 import org.whispersystems.libaxolotl.state.SessionRecord;
 import org.whispersystems.libaxolotl.state.SessionState;
-import org.whispersystems.libaxolotl.state.SessionStore;
-import org.whispersystems.libaxolotl.state.SignedPreKeyStore;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.security.NoSuchAlgorithmException;
