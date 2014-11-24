@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 
 /**
  * Activity that prompts for a user's passphrase.
@@ -76,7 +77,7 @@ public class PassphrasePromptActivity extends PassphraseActivity {
   public boolean onOptionsItemSelected(MenuItem item) {
     super.onOptionsItemSelected(item);
     switch (item.getItemId()) {
-    case R.id.menu_submit_debug_logs: handleLogSubmit(); return true;
+      case R.id.menu_submit_debug_logs: handleLogSubmit(); return true;
     }
 
     return false;
@@ -96,69 +97,78 @@ public class PassphrasePromptActivity extends PassphraseActivity {
       MemoryCleaner.clean(passphrase);
       setMasterSecret(masterSecret);
     } catch (InvalidPassphraseException ipe) {
-      passphraseText.setText("");
-      Toast.makeText(this, R.string.PassphrasePromptActivity_invalid_passphrase_exclamation,
-                     Toast.LENGTH_SHORT).show();
-    }
-  }
-
-  private void initializeResources() {
-    getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-    getSupportActionBar().setCustomView(R.layout.light_centered_app_title);
-    mitigateAndroidTilingBug();
-
-    ImageButton okButton = (ImageButton) findViewById(R.id.ok_button);
-    passphraseText       = (EditText)    findViewById(R.id.passphrase_edit);
-    SpannableString hint = new SpannableString(getString(R.string.PassphrasePromptActivity_enter_passphrase));
-
-    hint.setSpan(new RelativeSizeSpan(0.8f), 0, hint.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
-    hint.setSpan(new TypefaceSpan("sans-serif"), 0, hint.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
-    hint.setSpan(new ForegroundColorSpan(0x66000000), 0, hint.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
-    passphraseText.setHint(hint);
-    okButton.setOnClickListener(new OkButtonClickListener());
-    passphraseText.setOnEditorActionListener(new PassphraseActionListener());
-    passphraseText.setImeActionLabel(getString(R.string.prompt_passphrase_activity__unlock),
-                                     EditorInfo.IME_ACTION_DONE);
-  }
-
-  private class PassphraseActionListener implements TextView.OnEditorActionListener {
-    @Override
-    public boolean onEditorAction(TextView exampleView, int actionId, KeyEvent keyEvent) {
-      if ((keyEvent == null && actionId == EditorInfo.IME_ACTION_DONE) ||
-          (keyEvent != null && keyEvent.getAction() == KeyEvent.ACTION_DOWN &&
-              (actionId == EditorInfo.IME_NULL)))
-      {
-        handlePassphrase();
-        return true;
-      } else if (keyEvent != null && keyEvent.getAction() == KeyEvent.ACTION_UP &&
-                 actionId == EditorInfo.IME_NULL)
-      {
-        return true;
+      try {
+        Editable text             = passphraseText.getText();
+        String passphrase         = (text == null ? "" : text.toString());
+        MasterSecret masterSecret = MasterSecretUtil.getMasterSecret2(PassphrasePromptActivity.this, passphrase);
+        DatabaseFactory.getThreadDatabase(PassphrasePromptActivity.this).deleteEncryptedConversations();
+        MemoryCleaner.clean(passphrase);
+        setMasterSecret(masterSecret);
+      } catch (InvalidPassphraseException ipf) {
+        passphraseText.setText("");
+        Toast.makeText(this, R.string.PassphrasePromptActivity_invalid_passphrase_exclamation,
+                       Toast.LENGTH_SHORT).show();
+        }
       }
-
-      return false;
     }
-  }
 
-  private void mitigateAndroidTilingBug() {
-    if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-      Drawable actionBarBackground = getResources().getDrawable(R.drawable.background_pattern_repeat);
-      Util.fixBackgroundRepeat(actionBarBackground);
-      getSupportActionBar().setBackgroundDrawable(actionBarBackground);
-      Util.fixBackgroundRepeat(findViewById(R.id.scroll_parent).getBackground());
+    private void initializeResources() {
+      getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+      getSupportActionBar().setCustomView(R.layout.light_centered_app_title);
+      mitigateAndroidTilingBug();
+
+      ImageButton okButton = (ImageButton) findViewById(R.id.ok_button);
+      passphraseText       = (EditText)    findViewById(R.id.passphrase_edit);
+      SpannableString hint = new SpannableString(getString(R.string.PassphrasePromptActivity_enter_passphrase));
+
+      hint.setSpan(new RelativeSizeSpan(0.8f), 0, hint.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+      hint.setSpan(new TypefaceSpan("sans-serif"), 0, hint.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+      hint.setSpan(new ForegroundColorSpan(0x66000000), 0, hint.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+      passphraseText.setHint(hint);
+      okButton.setOnClickListener(new OkButtonClickListener());
+      passphraseText.setOnEditorActionListener(new PassphraseActionListener());
+      passphraseText.setImeActionLabel(getString(R.string.prompt_passphrase_activity__unlock),
+                                       EditorInfo.IME_ACTION_DONE);
     }
-  }
 
-  private class OkButtonClickListener implements OnClickListener {
+    private class PassphraseActionListener implements TextView.OnEditorActionListener {
+      @Override
+      public boolean onEditorAction(TextView exampleView, int actionId, KeyEvent keyEvent) {
+        if ((keyEvent == null && actionId == EditorInfo.IME_ACTION_DONE) ||
+            (keyEvent != null && keyEvent.getAction() == KeyEvent.ACTION_DOWN &&
+            (actionId == EditorInfo.IME_NULL)))
+        {
+          handlePassphrase();
+          return true;
+        } else if (keyEvent != null && keyEvent.getAction() == KeyEvent.ACTION_UP &&
+                   actionId == EditorInfo.IME_NULL)
+        {
+          return true;
+        }
+
+        return false;
+      }
+    }
+
+    private void mitigateAndroidTilingBug() {
+      if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+        Drawable actionBarBackground = getResources().getDrawable(R.drawable.background_pattern_repeat);
+        Util.fixBackgroundRepeat(actionBarBackground);
+        getSupportActionBar().setBackgroundDrawable(actionBarBackground);
+        Util.fixBackgroundRepeat(findViewById(R.id.scroll_parent).getBackground());
+      }
+    }
+
+    private class OkButtonClickListener implements OnClickListener {
+      @Override
+      public void onClick(View v) {
+            handlePassphrase();
+        }
+    }
+
     @Override
-    public void onClick(View v) {
-      handlePassphrase();
+    protected void cleanup() {
+      this.passphraseText.setText("");
+      System.gc();
     }
-  }
-
-  @Override
-  protected void cleanup() {
-    this.passphraseText.setText("");
-    System.gc();
-  }
 }
