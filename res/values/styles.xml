@@ -19,6 +19,7 @@
         <item name="android:icon">@drawable/actionbar_icon_holo_dark</item>
         <item name="icon">@drawable/actionbar_icon_holo_dark</item>
         <item name="background">@color/gray95</item>
+        <item name="android:background">@color/gray95</item>
         <item name="android:logo">@drawable/actionbar_icon_holo_dark</item>
         <item name="logo">@drawable/actionbar_icon_holo_dark</item>
     </style>
