@@ -20,4 +20,14 @@
                         android:title="@string/preferences__mms_proxy_port_optional"
                         android:dependency="pref_enable_manual_mms"
                         android:inputType="number" />
+
+    <EditTextPreference android:key="pref_apn_mmsc_username"
+                        android:title="@string/preferences__mmsc_username_optional"
+                        android:dependency="pref_enable_manual_mms"
+                        android:inputType="textNoSuggestions" />
+
+    <EditTextPreference android:key="pref_apn_mmsc_password"
+                        android:title="@string/preferences__mmsc_password_optional"
+                        android:dependency="pref_enable_manual_mms"
+                        android:inputType="textVisiblePassword" />
 </PreferenceScreen>

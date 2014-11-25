@@ -16,6 +16,8 @@ public class TextSecurePreferences {
   public  static final String MMSC_HOST_PREF                   = "pref_apn_mmsc_host";
   public  static final String MMSC_PROXY_HOST_PREF             = "pref_apn_mms_proxy";
   public  static final String MMSC_PROXY_PORT_PREF             = "pref_apn_mms_proxy_port";
+  public  static final String MMSC_USERNAME_PREF               = "pref_apn_mmsc_username";
+  public  static final String MMSC_PASSWORD_PREF               = "pref_apn_mmsc_password";
   public  static final String THREAD_TRIM_LENGTH               = "pref_trim_length";
   public  static final String THREAD_TRIM_NOW                  = "pref_trim_now";
   public  static final String ENABLE_MANUAL_MMS_PREF           = "pref_enable_manual_mms";
@@ -175,6 +177,14 @@ public class TextSecurePreferences {
 
   public static String getMmscProxyPort(Context context) {
     return getStringPreference(context, MMSC_PROXY_PORT_PREF, "");
+  }
+
+  public static String getMmscUsername(Context context) {
+    return getStringPreference(context, MMSC_USERNAME_PREF, "");
+  }
+
+  public static String getMmscPassword(Context context) {
+    return getStringPreference(context, MMSC_PASSWORD_PREF, "");
   }
 
   public static String getIdentityContactUri(Context context) {

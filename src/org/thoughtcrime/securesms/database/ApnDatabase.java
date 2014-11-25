@@ -104,8 +104,10 @@ public class ApnDatabase {
 
       String proxy = TextSecurePreferences.getMmscProxy(context);
       String port  = TextSecurePreferences.getMmscProxyPort(context);
+      String user  = TextSecurePreferences.getMmscUsername(context);
+      String pass  = TextSecurePreferences.getMmscPassword(context);
 
-      return new Apn(mmsc, proxy, port);
+      return new Apn(mmsc, proxy, port, user, pass);
     }
 
     throw new ApnUnavailableException("No locally configured parameters available");
@@ -151,7 +153,9 @@ public class ApnDatabase {
       if (cursor != null && cursor.moveToFirst()) {
         Apn params = new Apn(cursor.getString(cursor.getColumnIndexOrThrow(MMSC_COLUMN)),
                              cursor.getString(cursor.getColumnIndexOrThrow(MMS_PROXY_COLUMN)),
-                             cursor.getString(cursor.getColumnIndexOrThrow(MMS_PORT_COLUMN)));
+                             cursor.getString(cursor.getColumnIndexOrThrow(MMS_PORT_COLUMN)),
+                             cursor.getString(cursor.getColumnIndexOrThrow(USER_COLUMN)),
+                             cursor.getString(cursor.getColumnIndexOrThrow(PASSWORD_COLUMN)));
         Log.w(TAG, "Returning preferred APN " + params);
         return params;
       }

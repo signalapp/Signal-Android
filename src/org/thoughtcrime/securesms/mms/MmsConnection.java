@@ -21,10 +21,14 @@ import android.net.ConnectivityManager;
 import android.text.TextUtils;
 import android.util.Log;
 
+import org.apache.http.auth.AuthScope;
+import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.client.CredentialsProvider;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.impl.NoConnectionReuseStrategyHC4;
+import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.client.LaxRedirectStrategy;
@@ -39,6 +43,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.InetAddress;
+import java.net.URL;
 
 public abstract class MmsConnection {
   private static final String TAG = "MmsCommunication";
@@ -116,12 +121,21 @@ public abstract class MmsConnection {
                                         .setMaxRedirects(20)
                                         .build();
 
+    URL mmsc = new URL(apn.getMmsc());
+    CredentialsProvider credsProvider = new BasicCredentialsProvider();
+
+    if (apn.hasAuthentication()) {
+      credsProvider.setCredentials(new AuthScope(mmsc.getHost(), mmsc.getPort() > -1 ? mmsc.getPort() : mmsc.getDefaultPort()),
+                                   new UsernamePasswordCredentials(apn.getUsername(), apn.getPassword()));
+    }
+
     return HttpClients.custom()
                       .setConnectionReuseStrategy(new NoConnectionReuseStrategyHC4())
                       .setRedirectStrategy(new LaxRedirectStrategy())
                       .setUserAgent("Android-Mms/2.0")
                       .setConnectionManager(new BasicHttpClientConnectionManager())
                       .setDefaultRequestConfig(config)
+                      .setDefaultCredentialsProvider(credsProvider)
                       .build();
   }
 
@@ -155,11 +169,15 @@ public abstract class MmsConnection {
     private final String mmsc;
     private final String proxy;
     private final String port;
+    private final String username;
+    private final String password;
 
-    public Apn(String mmsc, String proxy, String port) {
-      this.mmsc  = mmsc;
-      this.proxy = proxy;
-      this.port  = port;
+    public Apn(String mmsc, String proxy, String port, String username, String password) {
+      this.mmsc     = mmsc;
+      this.proxy    = proxy;
+      this.port     = port;
+      this.username = username;
+      this.password = password;
     }
 
     public boolean hasProxy() {
@@ -178,12 +196,26 @@ public abstract class MmsConnection {
       return TextUtils.isEmpty(port) ? 80 : Integer.parseInt(port);
     }
 
+    public boolean hasAuthentication() {
+      return !TextUtils.isEmpty(username) || !TextUtils.isEmpty(password);
+    }
+
+    public String getUsername() {
+      return username;
+    }
+
+    public String getPassword() {
+      return password;
+    }
+
     @Override
     public String toString() {
       return Apn.class.getSimpleName() +
           "{ mmsc: \"" + mmsc + "\"" +
           ", proxy: " + (proxy == null ? "none" : '"' + proxy + '"') +
-          ", port: " + (port == null ? "none" : port) + " }";
+          ", port: " + (port == null ? "(none)" : port) +
+          ", user: " + (username == null ? "none" : '"' + username + '"') +
+          ", pass: " + (password == null ? "none" : '"' + password + '"') + " }";
     }
   }
 }
