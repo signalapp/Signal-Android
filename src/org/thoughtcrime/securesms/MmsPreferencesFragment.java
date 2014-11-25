@@ -65,6 +65,8 @@ public class MmsPreferencesFragment extends PreferenceFragment {
     initializeEditTextSummary((EditTextPreference)this.findPreference(TextSecurePreferences.MMSC_HOST_PREF));
     initializeEditTextSummary((EditTextPreference)this.findPreference(TextSecurePreferences.MMSC_PROXY_HOST_PREF));
     initializeEditTextSummary((EditTextPreference)this.findPreference(TextSecurePreferences.MMSC_PROXY_PORT_PREF));
+    initializeEditTextSummary((EditTextPreference)this.findPreference(TextSecurePreferences.MMSC_USERNAME_PREF));
+    initializeEditTextSummary((EditTextPreference)this.findPreference(TextSecurePreferences.MMSC_PASSWORD_PREF));
   }
 
   private class OverrideMmsChangeListener implements Preference.OnPreferenceChangeListener {

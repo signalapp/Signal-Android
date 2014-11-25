@@ -192,7 +192,7 @@ public class MmsDownloadJob extends MasterSecretJob {
              InvalidMessageException, LegacyMessageException
   {
     Apn                   dbApn      = MmsConnection.getApn(context, radio.getApnInformation());
-    Apn                   contentApn = new Apn(contentLocation, dbApn.getProxy(), Integer.toString(dbApn.getPort()));
+    Apn                   contentApn = new Apn(contentLocation, dbApn.getProxy(), Integer.toString(dbApn.getPort()), dbApn.getUsername(), dbApn.getPassword());
     IncomingMmsConnection connection = new IncomingMmsConnection(context, contentApn);
     RetrieveConf          retrieved  = connection.retrieve(radioEnabled, useProxy);
 
