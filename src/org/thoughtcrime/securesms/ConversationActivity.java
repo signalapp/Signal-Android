@@ -1037,6 +1037,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     ConversationFragment fragment = (ConversationFragment) getSupportFragmentManager()
         .findFragmentById(R.id.fragment_content);
 
+    if (fragment == null) {
+      return;
+    }
+
     if (refreshFragment) {
       fragment.reload(recipients, threadId);
 
