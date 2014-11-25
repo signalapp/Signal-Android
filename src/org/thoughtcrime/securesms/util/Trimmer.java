@@ -14,22 +14,6 @@ public class Trimmer {
     new TrimmingProgressTask(context).execute(threadLengthLimit);
   }
 
-  public static void trimThread(final Context context, final long threadId) {
-          boolean trimmingEnabled   = TextSecurePreferences.isThreadLengthTrimmingEnabled(context);
-    final int     threadLengthLimit = TextSecurePreferences.getThreadTrimLength(context);
-
-    if (!trimmingEnabled)
-      return;
-
-    new AsyncTask<Void, Void, Void>() {
-      @Override
-      protected Void doInBackground(Void... params) {
-        DatabaseFactory.getThreadDatabase(context).trimThread(threadId, threadLengthLimit);
-        return null;
-      }
-    }.execute();
-  }
-
   private static class TrimmingProgressTask extends AsyncTask<Integer, Integer, Void> implements ThreadDatabase.ProgressListener {
     private ProgressDialog progressDialog;
     private Context context;
