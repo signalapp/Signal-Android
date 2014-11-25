@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms;
 
 import android.app.AlertDialog;
-import android.os.Build;
 import android.support.v7.app.ActionBarActivity;
 import android.text.ClipboardManager;
 import android.content.DialogInterface;
@@ -10,7 +9,6 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
-import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -232,22 +230,5 @@ public class LogSubmitActivity extends ActionBarActivity {
         finish();
       }
     }
-  }
-
-  @Override
-  public boolean onKeyDown(int keyCode, KeyEvent event) {
-    if (keyCode == KeyEvent.KEYCODE_MENU && "LGE".equalsIgnoreCase(Build.BRAND)) {
-      return true;
-    }
-    return super.onKeyDown(keyCode, event);
-  }
-
-  @Override
-  public boolean onKeyUp(int keyCode, KeyEvent event) {
-    if (keyCode == KeyEvent.KEYCODE_MENU && "LGE".equalsIgnoreCase(Build.BRAND)) {
-      openOptionsMenu();
-      return true;
-    }
-    return super.onKeyUp(keyCode, event);
   }
 }
