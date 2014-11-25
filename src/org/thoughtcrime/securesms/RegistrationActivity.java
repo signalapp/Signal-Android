@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.telephony.TelephonyManager;
@@ -11,6 +12,7 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -287,5 +289,22 @@ public class RegistrationActivity extends ActionBarActivity {
       startActivity(nextIntent);
       finish();
     }
+  }
+
+  @Override
+  public boolean onKeyDown(int keyCode, KeyEvent event) {
+    if (keyCode == KeyEvent.KEYCODE_MENU && "LGE".equalsIgnoreCase(Build.BRAND)) {
+      return true;
+    }
+    return super.onKeyDown(keyCode, event);
+  }
+
+  @Override
+  public boolean onKeyUp(int keyCode, KeyEvent event) {
+    if (keyCode == KeyEvent.KEYCODE_MENU && "LGE".equalsIgnoreCase(Build.BRAND)) {
+      openOptionsMenu();
+      return true;
+    }
+    return super.onKeyUp(keyCode, event);
   }
 }
