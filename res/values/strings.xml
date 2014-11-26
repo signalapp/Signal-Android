@@ -219,6 +219,8 @@
 
     <!-- KeyScanningActivity -->
     <string name="KeyScanningActivity_no_scanned_key_found_exclamation">No scanned key found!</string>
+    <string name="KeyScanningActivity_install_barcode_Scanner">Install Barcode Scanner?</string>
+    <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">TextSecure needs Barcode Scanner for QR codes.</string>
 
     <!-- MmsDownloader -->
     <string name="MmsDownloader_error_storing_mms">Error storing MMS!</string>
