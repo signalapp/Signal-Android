@@ -17,7 +17,6 @@
 package org.whispersystems.textsecure.api.push.exceptions;
 
 import java.io.IOException;
-import java.util.List;
 
 public class UnregisteredUserException extends IOException {
 
