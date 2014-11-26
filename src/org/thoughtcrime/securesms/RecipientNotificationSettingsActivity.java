@@ -17,14 +17,14 @@
 package org.thoughtcrime.securesms;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.MenuItem;
 import com.doomonafireball.betterpickers.hmspicker.HmsPickerBuilder;
 import com.doomonafireball.betterpickers.hmspicker.HmsPickerDialogFragment;
 
@@ -45,7 +45,7 @@ import java.util.Date;
  * @author Lukas Barth
  *
  */
-public class RecipientNotificationSettingsActivity extends SherlockFragmentActivity
+public class RecipientNotificationSettingsActivity extends ActionBarActivity
   implements HmsPickerDialogFragment.HmsPickerDialogHandler
 {
   private static final String FRAG_TAG_TIME_PICKER = "timePickerDialogFragment";
@@ -121,7 +121,7 @@ public class RecipientNotificationSettingsActivity extends SherlockFragmentActiv
   }
 
   @Override
-  public boolean onMenuItemSelected(int featureId, MenuItem item) {
+  public boolean onOptionsItemSelected(MenuItem item) {
     int itemId = item.getItemId();
 
     if (itemId == android.R.id.home) {
