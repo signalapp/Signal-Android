@@ -22,6 +22,8 @@ import org.whispersystems.libaxolotl.state.SignedPreKeyRecord;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.push.ContactTokenDetails;
 import org.whispersystems.textsecure.api.push.TrustStore;
+import org.whispersystems.textsecure.api.push.exceptions.NonSuccessfulResponseCodeException;
+import org.whispersystems.textsecure.api.push.exceptions.PushNetworkException;
 import org.whispersystems.textsecure.internal.push.PushServiceSocket;
 import org.whispersystems.textsecure.api.push.SignedPreKeyEntity;
 
@@ -86,7 +88,9 @@ public class TextSecureAccountManager {
     return Optional.fromNullable(this.pushServiceSocket.getContactTokenDetails(contactToken));
   }
 
-  public List<ContactTokenDetails> getContacts(Set<String> contactTokens) {
+  public List<ContactTokenDetails> getContacts(Set<String> contactTokens)
+      throws IOException
+  {
     return this.pushServiceSocket.retrieveDirectory(contactTokens);
   }
 

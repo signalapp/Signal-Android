@@ -321,17 +321,14 @@ public class PushServiceSocket {
     downloadExternalFile(descriptor.getLocation(), destination);
   }
 
-  public List<ContactTokenDetails> retrieveDirectory(Set<String> contactTokens) {
-    try {
-      ContactTokenList        contactTokenList = new ContactTokenList(new LinkedList<String>(contactTokens));
-      String                  response         = makeRequest(DIRECTORY_TOKENS_PATH, "PUT", new Gson().toJson(contactTokenList));
-      ContactTokenDetailsList activeTokens     = new Gson().fromJson(response, ContactTokenDetailsList.class);
+  public List<ContactTokenDetails> retrieveDirectory(Set<String> contactTokens)
+      throws NonSuccessfulResponseCodeException, PushNetworkException
+  {
+    ContactTokenList        contactTokenList = new ContactTokenList(new LinkedList<>(contactTokens));
+    String                  response         = makeRequest(DIRECTORY_TOKENS_PATH, "PUT", new Gson().toJson(contactTokenList));
+    ContactTokenDetailsList activeTokens     = new Gson().fromJson(response, ContactTokenDetailsList.class);
 
-      return activeTokens.getContacts();
-    } catch (IOException ioe) {
-      Log.w("PushServiceSocket", ioe);
-      return null;
-    }
+    return activeTokens.getContacts();
   }
 
   public ContactTokenDetails getContactTokenDetails(String contactToken) throws IOException {
