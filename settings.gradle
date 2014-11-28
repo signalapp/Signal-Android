@@ -1,1 +1,1 @@
-include ':libtextsecure', ':libaxolotl', ':jobqueue'
+include ':libtextsecure', ':libaxolotl'

@@ -45,12 +45,13 @@ dependencies {
     compile 'com.squareup.dagger:dagger:1.2.2'
     provided 'com.squareup.dagger:dagger-compiler:1.2.2'
 
+    compile 'org.whispersystems:jobmanager:0.9.0'
+
     androidTestCompile 'com.squareup:fest-android:1.0.8'
     androidTestCompile 'com.google.dexmaker:dexmaker:1.1'
     androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.1'
 
     compile project(':libtextsecure')
-    compile project(':jobqueue')
 }
 
 dependencyVerification {
@@ -72,6 +73,7 @@ dependencyVerification {
             'com.google.protobuf:protobuf-java:e0c1c64575c005601725e7c6a02cebf9e1285e888f756b2a1d73ffa8d725cc74',
             'com.googlecode.libphonenumber:libphonenumber:eba17eae81dd622ea89a00a3a8c025b2f25d342e0d9644c5b62e16f15687c3ab',
             'org.whispersystems:gson:08f4f7498455d1539c9233e5aac18e9b1805815ef29221572996508eb512fe51',
+            'org.whispersystems:jobmanager:adb4329b69035053a7b6a48e22a3280235ac405b225ed8679b994612a8e6f5b6',
             'com.android.support:support-annotations:1aa96ef0cc4a445bfc2f93ccf762305bc57fa107b12afe9d11f3863ae8a11036',
     ]
 }
