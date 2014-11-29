@@ -659,6 +659,11 @@
     <string name="verify_keys_activity__they_read_this">They read this:</string>
     <string name="verify_keys_activity__you_read_this">You read this:</string>
 
+    <!-- Trimming old messages -->
+    <string name="Trimmer__deleting_old_messages_title">Deleting&#8230;</string>
+    <string name="Trimmer__deleting_old_messages_message">Deleting old messages&#8230;</string>
+    <string name="Trimmer__old_messages_successfully_deleted_toast">Old messages successfully deleted!</string>
+
     <!-- AndroidManifest.xml -->
     <string name="AndroidManifest__create_passphrase">Create passphrase</string>
     <string name="AndroidManifest__enter_passphrase">Enter passphrase</string>
