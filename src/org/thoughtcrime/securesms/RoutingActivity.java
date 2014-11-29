@@ -196,17 +196,19 @@ public class RoutingActivity extends PassphraseRequiredActionBarActivity {
 
   private ConversationParameters getConversationParametersForSendAction() {
     Recipients recipients;
+    String body = null;
     long       threadId = getIntent().getLongExtra("thread_id", -1);
 
     try {
       String data = getIntent().getData().getSchemeSpecificPart();
       recipients = RecipientFactory.getRecipientsFromString(this, data, false);
       threadId   = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipients);
+      body = getIntent().getStringExtra("sms_body");
     } catch (RecipientFormattingException rfe) {
       recipients = null;
     }
 
-    return new ConversationParameters(threadId, recipients, null, null, null, null);
+    return new ConversationParameters(threadId, recipients, body, null, null, null);
   }
 
   private ConversationParameters getConversationParametersForShareAction() {
