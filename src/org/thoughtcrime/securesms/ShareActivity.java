@@ -143,11 +143,13 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
     final Uri    draftImage = originalIntent.getParcelableExtra(ConversationActivity.DRAFT_IMAGE_EXTRA);
     final Uri    draftAudio = originalIntent.getParcelableExtra(ConversationActivity.DRAFT_AUDIO_EXTRA);
     final Uri    draftVideo = originalIntent.getParcelableExtra(ConversationActivity.DRAFT_VIDEO_EXTRA);
+    final Uri    draftVCard = originalIntent.getParcelableExtra(ConversationActivity.DRAFT_VCARD_EXTRA);
 
     intent.putExtra(ConversationActivity.DRAFT_TEXT_EXTRA, draftText);
     intent.putExtra(ConversationActivity.DRAFT_IMAGE_EXTRA, draftImage);
     intent.putExtra(ConversationActivity.DRAFT_AUDIO_EXTRA, draftAudio);
     intent.putExtra(ConversationActivity.DRAFT_VIDEO_EXTRA, draftVideo);
+    intent.putExtra(ConversationActivity.DRAFT_VCARD_EXTRA, draftVCard);
     intent.putExtra(NewConversationActivity.MASTER_SECRET_EXTRA, masterSecret);
 
     return intent;

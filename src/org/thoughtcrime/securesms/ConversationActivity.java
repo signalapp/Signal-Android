@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -56,6 +57,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.database.Cursor;
 
 import com.google.protobuf.ByteString;
 
@@ -138,6 +140,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   public static final String DRAFT_IMAGE_EXTRA       = "draft_image";
   public static final String DRAFT_AUDIO_EXTRA       = "draft_audio";
   public static final String DRAFT_VIDEO_EXTRA       = "draft_video";
+  public static final String DRAFT_VCARD_EXTRA       = "draft_vcard";
   public static final String DISTRIBUTION_TYPE_EXTRA = "distribution_type";
 
   private static final int PICK_IMAGE        = 1;
@@ -632,15 +635,35 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     Uri    draftImage = getIntent().getParcelableExtra(DRAFT_IMAGE_EXTRA);
     Uri    draftAudio = getIntent().getParcelableExtra(DRAFT_AUDIO_EXTRA);
     Uri    draftVideo = getIntent().getParcelableExtra(DRAFT_VIDEO_EXTRA);
+    Uri    draftVCard = getIntent().getParcelableExtra(DRAFT_VCARD_EXTRA);
 
     if (draftText != null)  composeText.setText(draftText);
     if (draftImage != null) addAttachmentImage(draftImage);
     if (draftAudio != null) addAttachmentAudio(draftAudio);
     if (draftVideo != null) addAttachmentVideo(draftVideo);
+    if (draftVCard != null) addVCard(draftVCard);
 
-    if (draftText == null && draftImage == null && draftAudio == null && draftVideo == null) {
+    if (draftText == null && draftImage == null && draftAudio == null && draftVideo == null && draftVCard == null) {
       initializeDraftFromDatabase();
     }
+  }
+
+  private void addVCard(Uri uri) {
+    ContentResolver resolver = getContentResolver();
+    Cursor cursor;
+    try {
+        // zxing is seeing about six reports a week of this exception although I don't understand why.
+        // https://github.com/zxing/zxing/blob/dfd6fe71c2075cf404d9d039935bbe8e60dfcf32/android/src/com/google/zxing/client/android/share/ShareActivity.java#L181
+        cursor = resolver.query(uri, null, null, null, null);
+    } catch (IllegalArgumentException ignored) {
+        return;
+    }
+    if (cursor == null || !cursor.moveToFirst()) {
+        return;
+    }
+    ContactAccessor accessor        = ContactAccessor.getInstance();
+    ContactData     contactData     = accessor.getContactData(this, cursor);
+    addContactInfo(contactData);
   }
 
   private void initializeEnabledCheck() {
@@ -888,7 +911,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void addContactInfo(Uri contactUri) {
     ContactAccessor contactDataList = ContactAccessor.getInstance();
     ContactData contactData = contactDataList.getContactData(this, contactUri);
+    addContactInfo(contactData);
+  }
 
+  private void addContactInfo(ContactData contactData) {
     if      (contactData.numbers.size() == 1) composeText.append(contactData.numbers.get(0).number);
     else if (contactData.numbers.size() > 1)  selectContactInfo(contactData);
   }
