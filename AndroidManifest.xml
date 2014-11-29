@@ -287,6 +287,22 @@
         </intent-filter>
     </receiver>
 
+    <receiver android:name=".notifications.MessageNotifier$RenotifyReceiver"
+              android:enabled="true"
+              android:exported="false">
+        <intent-filter>
+            <action android:name="org.thoughtcrime.securesms.notifications.RENOTIFY"/>
+        </intent-filter>
+    </receiver>
+
+    <receiver android:name=".notifications.MessageNotifier$NotificationDeleteReceiver"
+              android:enabled="true"
+              android:exported="false">
+        <intent-filter>
+            <action android:name="org.thoughtcrime.securesms.notifications.CANCEL_RENOTIFY"/>
+        </intent-filter>
+    </receiver>
+
     <provider android:name=".providers.PartProvider"
               android:grantUriPermissions="true"
               android:authorities="org.thoughtcrime.provider.securesms" />

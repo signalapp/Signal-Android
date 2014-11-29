@@ -70,6 +70,12 @@
                             android:title="@string/preferences__vibrate"
                             android:summary="@string/preferences__also_vibrate_when_notified" />
 
+        <org.thoughtcrime.securesms.preferences.RenotificationTimePreference
+                            android:key="pref_renotification"
+                            android:defaultValue="0"
+                            android:title="@string/preferences__pref_renotification"
+                            android:summary="@string/preferences__the_amount_of_time_before_repeating_notifications"
+                            android:dialogTitle="@string/preferences__pref_renotification_dialogtitle" />
   </PreferenceCategory>
 
   <PreferenceCategory android:title="@string/preferences__input_settings">
