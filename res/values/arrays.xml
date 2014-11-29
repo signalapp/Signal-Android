@@ -36,6 +36,7 @@
       <item>Tibetan བོད་སྐད།</item>
       <item>Türkçe</item>
       <item>Ukrainian Український</item>
+      <item>српски</item>
   </string-array>
 
   <string-array name="language_values">
@@ -73,6 +74,7 @@
       <item>bo</item>
       <item>tr</item>
       <item>uk</item>
+      <item>sr</item>
   </string-array>
 
   <string-array name="minutes_hours">
