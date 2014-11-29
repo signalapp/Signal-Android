@@ -44,6 +44,10 @@ dependencies {
     }
     compile 'com.squareup.dagger:dagger:1.2.2'
     provided 'com.squareup.dagger:dagger-compiler:1.2.2'
+    
+    compile ("com.doomonafireball.betterpickers:library:1.5.2") {
+        exclude group: 'com.android.support', module: 'support-v4'
+    }
 
     compile 'org.whispersystems:jobmanager:0.9.0'
     compile 'org.whispersystems:libpastelog:1.0.2'

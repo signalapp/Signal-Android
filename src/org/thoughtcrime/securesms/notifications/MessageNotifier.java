@@ -27,6 +27,7 @@ import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.provider.ContactsContract;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationCompat.BigTextStyle;
 import android.support.v4.app.NotificationCompat.InboxStyle;
@@ -39,6 +40,12 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.RoutingActivity;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
+import org.thoughtcrime.securesms.database.PushDatabase;
+import org.thoughtcrime.securesms.database.RecipientNotificationsDatabase;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
@@ -115,7 +122,17 @@ public class MessageNotifier {
       DatabaseFactory.getThreadDatabase(context).setRead(threadId);
       sendInThreadNotification(context);
     } else {
-      updateNotification(context, masterSecret, true);
+      Recipients recipients = DatabaseFactory.getThreadDatabase(context).getRecipientsForThreadId(threadId);
+      RecipientNotificationsDatabase notificationsDatabase = DatabaseFactory.getNotificationDatabase(context);
+
+      boolean signal;
+      if (notificationsDatabase.isSilencedNow(recipients.getPrimaryRecipient())) {
+        signal = false;
+      } else {
+        signal = true;
+      }
+
+      updateNotification(context, masterSecret, signal);
     }
   }
 

@@ -13,4 +13,8 @@
           android:id="@+id/menu_delete_thread"
           android:icon="@android:drawable/ic_menu_delete" />
 
+    <item android:title="@string/conversation__menu_notification_settings"
+          android:id="@+id/menu_notification_settings"
+          />
+
 </menu>

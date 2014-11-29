@@ -5,6 +5,12 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/reminderHolder">
+    </FrameLayout>
+
     <ListView android:id="@android:id/list"
               style="?android:attr/listViewWhiteStyle"
               android:layout_width="fill_parent"

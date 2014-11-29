@@ -7,27 +7,27 @@ import android.view.ViewGroup;
 import org.thoughtcrime.securesms.R;
 
 public abstract class Reminder {
-  private int             iconResId;
-  private int             titleResId;
-  private int             textResId;
+  private Integer         iconResId;
+  private Integer         titleResId;
+  private Integer         textResId;
   private OnClickListener okListener;
   private OnClickListener cancelListener;
 
-  public Reminder(int iconResId, int titleResId, int textResId) {
+  public Reminder(Integer iconResId, Integer titleResId, Integer textResId) {
     this.iconResId  = iconResId;
     this.titleResId = titleResId;
     this.textResId  = textResId;
   }
 
-  public int getIconResId() {
+  public Integer getIconResId() {
     return iconResId;
   }
 
-  public int getTitleResId() {
+  public Integer getTitleResId() {
     return titleResId;
   }
 
-  public int getTextResId() {
+  public Integer getTextResId() {
     return textResId;
   }
 
@@ -46,4 +46,10 @@ public abstract class Reminder {
   public void setCancelListener(OnClickListener cancelListener) {
     this.cancelListener = cancelListener;
   }
+
+  public String getOKText() {
+    return null;
+  }
+
+  public Integer getCancelResId() { return R.drawable.ic_menu_remove_holo_light; }
 }

@@ -24,15 +24,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.components.ReminderView;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.RecipientNotificationsDatabase;
 import org.thoughtcrime.securesms.database.loaders.ConversationLoader;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.mms.Slide;
+import org.thoughtcrime.securesms.notifications.NotificationsMutedReminder;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
@@ -56,10 +60,13 @@ public class ConversationFragment extends ListFragment
   private Recipients   recipients;
   private long         threadId;
   private ActionMode   actionMode;
+  private ReminderView reminderView;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
-    return inflater.inflate(R.layout.conversation_fragment, container, false);
+    View view = inflater.inflate(R.layout.conversation_fragment, container, false);
+    reminderView = new ReminderView(getActivity());
+    return view;
   }
 
   @Override
@@ -69,6 +76,23 @@ public class ConversationFragment extends ListFragment
     initializeResources();
     initializeListAdapter();
     initializeContextualActionBar();
+  }
+
+  @Override
+  public void onResume() {
+    super.onResume();
+
+    initializeReminders();
+  }
+
+  private void initializeReminders() {
+    RecipientNotificationsDatabase notificationsDatabase = DatabaseFactory.getNotificationDatabase(getActivity());
+    if (notificationsDatabase.isSilencedNow(this.recipients.getPrimaryRecipient())) {
+      this.reminderView.showReminder(new NotificationsMutedReminder(getActivity(), this.recipients.getPrimaryRecipient(),
+                                     this.reminderView));
+    } else {
+      this.reminderView.hide();
+    }
   }
 
   @Override
@@ -83,6 +107,9 @@ public class ConversationFragment extends ListFragment
     this.masterSecret = this.getActivity().getIntent().getParcelableExtra("master_secret");
     this.recipients   = RecipientFactory.getRecipientsForIds(getActivity(), recipientIds, true);
     this.threadId     = this.getActivity().getIntent().getLongExtra("thread_id", -1);
+
+    FrameLayout reminderHolder = (FrameLayout) getView().findViewById(R.id.reminderHolder);
+    reminderHolder.addView(this.reminderView);
   }
 
   private void initializeListAdapter() {
