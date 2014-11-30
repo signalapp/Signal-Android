@@ -161,36 +161,52 @@ public class MessageNotifier {
       return;
     }
 
+    boolean privacy = TextSecurePreferences.isNotificationPrivacyEnabled(context);
+
     List<NotificationItem>notifications = notificationState.getNotifications();
     NotificationCompat.Builder builder  = new NotificationCompat.Builder(context);
     Recipient recipient                 = notifications.get(0).getIndividualRecipient();
 
     builder.setSmallIcon(R.drawable.icon_notification);
-    builder.setLargeIcon(recipient.getContactPhoto());
-    builder.setContentTitle(recipient.toShortString());
-    builder.setContentText(notifications.get(0).getText());
+    if (privacy) {
+      builder.setLargeIcon(ContactPhotoFactory.getDefaultContactPhoto(context));
+      builder.setContentTitle(String.format(context.getString(R.string.MessageNotifier_d_new_messages),
+                                            notificationState.getMessageCount()));
+      builder.setContentText(context.getString(R.string.MessageNotifier_click_to_open));
+    } else {
+      builder.setLargeIcon(recipient.getContactPhoto());
+      builder.setContentTitle(recipient.toShortString());
+      builder.setContentText(notifications.get(0).getText());
+    }
     builder.setContentIntent(notifications.get(0).getPendingIntent(context));
     builder.setContentInfo(String.valueOf(notificationState.getMessageCount()));
     builder.setNumber(notificationState.getMessageCount());
 
-    if (masterSecret != null) {
+    if ((masterSecret != null) && !privacy) {
       builder.addAction(R.drawable.check, context.getString(R.string.MessageNotifier_mark_as_read),
                         notificationState.getMarkAsReadIntent(context, masterSecret));
     }
 
-    SpannableStringBuilder content = new SpannableStringBuilder();
+    if (!privacy) {
+      SpannableStringBuilder content = new SpannableStringBuilder();
 
-    for (NotificationItem item : notifications) {
-      content.append(item.getBigStyleSummary());
-      content.append('\n');
+      for (NotificationItem item : notifications) {
+        content.append(item.getBigStyleSummary());
+        content.append('\n');
+      }
+
+      builder.setStyle(new BigTextStyle().bigText(content));
     }
-
-    builder.setStyle(new BigTextStyle().bigText(content));
 
     setNotificationAlarms(context, builder, signal);
 
     if (signal) {
-      builder.setTicker(notifications.get(0).getTickerText());
+      if (privacy) {
+        builder.setTicker(String.format(context.getString(R.string.MessageNotifier_d_new_messages),
+                                        notificationState.getMessageCount()));
+      } else {
+        builder.setTicker(notifications.get(0).getTickerText());
+      }
     }
 
     ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
@@ -202,6 +218,8 @@ public class MessageNotifier {
                                                      NotificationState notificationState,
                                                      boolean signal)
   {
+    boolean privacy = TextSecurePreferences.isNotificationPrivacyEnabled(context);
+
     List<NotificationItem> notifications = notificationState.getNotifications();
     NotificationCompat.Builder builder   = new NotificationCompat.Builder(context);
 
@@ -210,30 +228,41 @@ public class MessageNotifier {
                                                       R.drawable.icon_notification));
     builder.setContentTitle(String.format(context.getString(R.string.MessageNotifier_d_new_messages),
                                           notificationState.getMessageCount()));
-    builder.setContentText(String.format(context.getString(R.string.MessageNotifier_most_recent_from_s),
-                                         notifications.get(0).getIndividualRecipientName()));
+    if (privacy) {
+      builder.setContentText(context.getString(R.string.MessageNotifier_click_to_open));
+    } else {
+      builder.setContentText(String.format(context.getString(R.string.MessageNotifier_most_recent_from_s),
+                                           notifications.get(0).getIndividualRecipientName()));
+    }
     builder.setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, RoutingActivity.class), 0));
-    
+
     builder.setContentInfo(String.valueOf(notificationState.getMessageCount()));
     builder.setNumber(notificationState.getMessageCount());
 
-    if (masterSecret != null) {
+    if ((masterSecret != null) && !privacy) {
       builder.addAction(R.drawable.check, context.getString(R.string.MessageNotifier_mark_all_as_read),
                         notificationState.getMarkAsReadIntent(context, masterSecret));
     }
 
-    InboxStyle style = new InboxStyle();
+    if (!privacy) {
+      InboxStyle style = new InboxStyle();
 
-    for (NotificationItem item : notifications) {
-      style.addLine(item.getTickerText());
+      for (NotificationItem item : notifications) {
+        style.addLine(item.getTickerText());
+      }
+
+      builder.setStyle(style);
     }
-
-    builder.setStyle(style);
 
     setNotificationAlarms(context, builder, signal);
 
     if (signal) {
-      builder.setTicker(notifications.get(0).getTickerText());
+      if (privacy) {
+        builder.setTicker(String.format(context.getString(R.string.MessageNotifier_d_new_messages),
+                                        notificationState.getMessageCount()));
+      } else {
+        builder.setTicker(notifications.get(0).getTickerText());
+      }
     }
 
     ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))

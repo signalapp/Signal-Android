@@ -70,6 +70,12 @@
                             android:title="@string/preferences__vibrate"
                             android:summary="@string/preferences__also_vibrate_when_notified" />
 
+        <CheckBoxPreference android:dependency="pref_key_enable_notifications"
+                            android:key="pref_key_notification_privacy"
+                            android:defaultValue="false"
+                            android:title="@string/preferences__notification_privacy"
+                            android:summary="@string/preferences__hide_sensitive_info_in_notification" />
+
   </PreferenceCategory>
 
   <PreferenceCategory android:title="@string/preferences__input_settings">
