@@ -79,7 +79,7 @@ public class VideoSlide extends Slide {
     PduPart part             = new PduPart();
     ContentResolver resolver = context.getContentResolver();
     Cursor cursor            = null;
-		
+
     try {
       cursor = resolver.query(uri, new String[] {MediaStore.Video.Media.MIME_TYPE}, null, null, null);
       if (cursor != null && cursor.moveToFirst()) {
@@ -90,14 +90,14 @@ public class VideoSlide extends Slide {
       if (cursor != null)
         cursor.close();
     }
-		
+
     if (getMediaSize(context, uri) > MAX_MESSAGE_SIZE)
       throw new MediaTooLargeException("Video exceeds maximum message size.");
-		
+
     part.setDataUri(uri);
     part.setContentId((System.currentTimeMillis()+"").getBytes());
     part.setName(("Video" + System.currentTimeMillis()).getBytes());
-		
+
     return part;
   }
 }

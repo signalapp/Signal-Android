@@ -1,4 +1,4 @@
-/** 
+/**
  * Copyright (C) 2011 Whisper Systems
  * Copyright (C) 2014 Open Whisper Systems
  * 
@@ -26,7 +26,7 @@ import org.whispersystems.libaxolotl.protocol.CiphertextMessage;
 import java.io.IOException;
 
 public class SmsTransportDetails {
-	
+
   public static final int SMS_SIZE           = 160;
   public static final int MULTIPART_SMS_SIZE = 153;
 

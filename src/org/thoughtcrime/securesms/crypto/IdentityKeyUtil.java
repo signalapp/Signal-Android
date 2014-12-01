@@ -42,7 +42,7 @@ public class IdentityKeyUtil {
 
   private static final String IDENTITY_PUBLIC_KEY_DJB_PREF  = "pref_identity_public_curve25519";
   private static final String IDENTITY_PRIVATE_KEY_DJB_PREF = "pref_identity_private_curve25519";
-	
+
   public static boolean hasIdentityKey(Context context) {
     SharedPreferences preferences = context.getSharedPreferences(MasterSecretUtil.PREFERENCES_NAME, 0);
 
@@ -50,10 +50,10 @@ public class IdentityKeyUtil {
         preferences.contains(IDENTITY_PUBLIC_KEY_DJB_PREF) &&
         preferences.contains(IDENTITY_PRIVATE_KEY_DJB_PREF);
   }
-	
+
   public static IdentityKey getIdentityKey(Context context) {
     if (!hasIdentityKey(context)) return null;
-		
+
     try {
       byte[] publicKeyBytes = Base64.decode(retrieve(context, IDENTITY_PUBLIC_KEY_DJB_PREF));
       return new IdentityKey(publicKeyBytes, 0);
@@ -114,11 +114,11 @@ public class IdentityKeyUtil {
     SharedPreferences preferences = context.getSharedPreferences(MasterSecretUtil.PREFERENCES_NAME, 0);
     return preferences.getString(key, null);
   }
-	
+
   public static void save(Context context, String key, String value) {
     SharedPreferences preferences   = context.getSharedPreferences(MasterSecretUtil.PREFERENCES_NAME, 0);
     Editor preferencesEditor        = preferences.edit();
-		
+
     preferencesEditor.putString(key, value);
     if (!preferencesEditor.commit()) throw new AssertionError("failed to save identity key/value to shared preferences");
   }

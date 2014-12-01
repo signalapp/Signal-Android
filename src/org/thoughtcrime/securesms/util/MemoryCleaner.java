@@ -37,7 +37,7 @@ public class MemoryCleaner {
   public static void clean(MasterSecret masterSecret) {
 //    if (masterSecret == null)
 //      return;
-//	  
+//    
 //    try {
 //      SecretKeySpec cipherKey = masterSecret.getEncryptionKey();
 //      SecretKeySpec macKey    = masterSecret.getMacKey();
