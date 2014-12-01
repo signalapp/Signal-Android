@@ -37,7 +37,7 @@ import ws.com.google.android.mms.pdu.CharacterSets;
 import ws.com.google.android.mms.pdu.PduPart;
 
 public class TextSlide extends Slide {
-	
+
   private static final int MAX_CACHE_SIZE = 10;
   private static final Map<Uri, SoftReference<String>> textCache =
       Collections.synchronizedMap(new LRUCache<Uri, SoftReference<String>>(MAX_CACHE_SIZE));
@@ -54,7 +54,7 @@ public class TextSlide extends Slide {
     public boolean hasText() {
     return true;
   }
-	
+
   @Override
   public String getText() {
     try {
@@ -69,9 +69,9 @@ public class TextSlide extends Slide {
       }
 
 
-      String text = new String(getPartData(), CharacterSets.getMimeName(part.getCharset()));			
+      String text = new String(getPartData(), CharacterSets.getMimeName(part.getCharset()));
       textCache.put(part.getDataUri(), new SoftReference<String>(text));
-			
+
       return text;
     } catch (UnsupportedEncodingException uee) {
       Log.w("TextSlide", uee);

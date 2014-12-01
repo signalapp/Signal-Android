@@ -60,7 +60,7 @@ public class AsymmetricMasterCipher {
   public AsymmetricMasterCipher(AsymmetricMasterSecret asymmetricMasterSecret) {
     this.asymmetricMasterSecret = asymmetricMasterSecret;
   }
-	
+
   public String decryptBody(String body) throws IOException, InvalidMessageException {
     try {
       byte[]    combined       = Base64.decode(body);
@@ -77,7 +77,7 @@ public class AsymmetricMasterCipher {
       throw new InvalidMessageException(ike);
     }
   }
-	
+
   public String encryptBody(String body) {
     try {
       ECPublicKey  theirPublic        = asymmetricMasterSecret.getDjbPublicKey();
@@ -95,31 +95,31 @@ public class AsymmetricMasterCipher {
       throw new AssertionError(e);
     }
   }
-	
+
   private MasterCipher getMasterCipherForSecret(byte[] secretBytes) {
     SecretKeySpec cipherKey   = deriveCipherKey(secretBytes);
     SecretKeySpec macKey      = deriveMacKey(secretBytes);
     MasterSecret masterSecret = new MasterSecret(cipherKey, macKey);
 
-    return new MasterCipher(masterSecret);		
+    return new MasterCipher(masterSecret);
   }
-	
+
   private SecretKeySpec deriveMacKey(byte[] secretBytes) {
     byte[] digestedBytes = getDigestedBytes(secretBytes, 1);
     byte[] macKeyBytes   = new byte[20];
-		
+
     System.arraycopy(digestedBytes, 0, macKeyBytes, 0, macKeyBytes.length);
     return new SecretKeySpec(macKeyBytes, "HmacSHA1");
   }
-	
+
   private SecretKeySpec deriveCipherKey(byte[] secretBytes) {
     byte[] digestedBytes  = getDigestedBytes(secretBytes, 0);
     byte[] cipherKeyBytes = new byte[16];
-		
-    System.arraycopy(digestedBytes, 0, cipherKeyBytes, 0, cipherKeyBytes.length);		
+
+    System.arraycopy(digestedBytes, 0, cipherKeyBytes, 0, cipherKeyBytes.length);
     return new SecretKeySpec(cipherKeyBytes, "AES");
   }
-	
+
   private byte[] getDigestedBytes(byte[] secretBytes, int iteration) {
     try {
       Mac mac = Mac.getInstance("HmacSHA256");

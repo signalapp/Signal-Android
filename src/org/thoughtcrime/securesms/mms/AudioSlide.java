@@ -41,12 +41,12 @@ public class AudioSlide extends Slide {
   public AudioSlide(Context context, Uri uri) throws IOException, MediaTooLargeException {
     super(context, constructPartFromUri(context, uri));
   }
-	
+
   @Override
     public boolean hasImage() {
     return true;
   }
-	
+
   @Override
     public boolean hasAudio() {
     return true;
@@ -69,15 +69,15 @@ public class AudioSlide extends Slide {
 
   public static PduPart constructPartFromUri(Context context, Uri uri) throws IOException, MediaTooLargeException {
     PduPart part = new PduPart();
-		
+
     if (getMediaSize(context, uri) > MAX_MESSAGE_SIZE)
       throw new MediaTooLargeException("Audio track larger than size maximum.");
-		
+
     Cursor cursor = null;
-		
+
     try {
       cursor = context.getContentResolver().query(uri, new String[]{Audio.Media.MIME_TYPE}, null, null, null);
-			
+
       if (cursor != null && cursor.moveToFirst())
         part.setContentType(cursor.getString(0).getBytes());
       else
@@ -90,7 +90,7 @@ public class AudioSlide extends Slide {
     part.setDataUri(uri);
     part.setContentId((System.currentTimeMillis()+"").getBytes());
     part.setName(("Audio" + System.currentTimeMillis()).getBytes());
-		
+
     return part;
   }
 }
