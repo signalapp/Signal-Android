@@ -16,6 +16,7 @@ import android.support.v4.widget.CursorAdapter;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.view.ActionMode;
 import android.text.ClipboardManager;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -203,7 +204,13 @@ public class ConversationFragment extends ListFragment
     else if (message.isMms())     transport = "mms";
     else                          transport = "sms";
 
-    SimpleDateFormat dateFormatter = new SimpleDateFormat("EEE MMM d, yyyy 'at' hh:mm:ss a zzz");
+    String dateFormatPattern;
+    if (DateFormat.is24HourFormat(getActivity().getApplicationContext())) {
+      dateFormatPattern = "EEE MMM d, yyyy 'at' HH:mm:ss zzz";
+    } else {
+      dateFormatPattern = "EEE MMM d, yyyy 'at' hh:mm:ss a zzz";
+    }
+    SimpleDateFormat dateFormatter = new SimpleDateFormat(dateFormatPattern);
     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
     builder.setTitle(R.string.ConversationFragment_message_details);
     builder.setIcon(Dialogs.resolveIcon(getActivity(), R.attr.dialog_info_icon));
