@@ -33,13 +33,13 @@ The following steps should help you (re)build TextSecure from the command line.
 Re-building native components
 -----------------------------
 
-Note: This step is optional; native components are contained as binaries (see [library/libs](library/libs)).
+Note: This step is optional; native components are contained as binaries (see [libaxolotl/libs](libaxolotl/libs)).
 
 1. Ensure that the Android NDK is installed.
 
 Execute ndk-build:
 
-    cd library
+    cd libaxolotl
     ndk-build
 
 Afterwards, execute Gradle as above to re-create the APK.
