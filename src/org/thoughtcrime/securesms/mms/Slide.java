@@ -39,7 +39,7 @@ import ws.com.google.android.mms.pdu.PduPart;
 
 public abstract class Slide {
 
-  protected static final int MAX_MESSAGE_SIZE = 280 * 1024;
+  public static final int MAX_MESSAGE_SIZE = 280 * 1024;
 
   protected final PduPart part;
   protected final Context context;
