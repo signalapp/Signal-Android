@@ -198,10 +198,10 @@ public class ConversationFragment extends ListFragment
 
     String transport;
 
-    if      (message.isPending()) transport = "pending";
-    else if (message.isPush())    transport = "push";
-    else if (message.isMms())     transport = "mms";
-    else                          transport = "sms";
+    if      (message.isPending()) transport = getString(R.string.ConversationFragment_pending);
+    else if (message.isPush())    transport = getString(R.string.ConversationFragment_push);
+    else if (message.isMms())     transport = getString(R.string.ConversationFragment_mms);
+    else                          transport = getString(R.string.ConversationFragment_sms);
 
     SimpleDateFormat dateFormatter = new SimpleDateFormat("EEE MMM d, yyyy 'at' hh:mm:ss a zzz");
     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -212,13 +212,13 @@ public class ConversationFragment extends ListFragment
     if (dateReceived == dateSent || message.isOutgoing()) {
       builder.setMessage(String.format(getActivity()
                                        .getString(R.string.ConversationFragment_transport_s_sent_received_s),
-                                       transport.toUpperCase(),
+                                       transport,
                                        dateFormatter.format(new Date(dateSent))));
     } else {
       builder.setMessage(String.format(getActivity()
                                        .getString(R.string.ConversationFragment_sender_s_transport_s_sent_s_received_s),
                                        message.getIndividualRecipient().getNumber(),
-                                       transport.toUpperCase(),
+                                       transport,
                                        dateFormatter.format(new Date(dateSent)),
                                        dateFormatter.format(new Date(dateReceived))));
     }

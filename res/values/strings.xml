@@ -99,6 +99,10 @@
     <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Unable to write to storage!</string>
     <string name="ConversationFragment_saving_attachment">Saving attachment</string>
     <string name="ConversationFragment_saving_attachment_to_sd_card">Saving attachment to storage...</string>
+    <string name="ConversationFragment_pending">PENDING</string>
+    <string name="ConversationFragment_push">PUSH</string>
+    <string name="ConversationFragment_mms">MMS</string>
+    <string name="ConversationFragment_sms">SMS</string>
 
     <!-- ConversationListFragment -->
     <string name="ConversationListFragment_delete_threads_question">Delete threads?</string>
