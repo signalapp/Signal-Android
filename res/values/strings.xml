@@ -763,6 +763,7 @@
 
     <!-- MediaPreviewActivity -->
     <string name="MediaPreviewActivity_you">You</string>
+    <string name="MediaPreviewActivity_cant_display">Failed to preview this image</string>
 
     <!-- media_preview -->
     <string name="media_preview__save_title">Save</string>

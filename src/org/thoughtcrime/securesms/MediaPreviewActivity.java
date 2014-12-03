@@ -19,8 +19,10 @@ package org.thoughtcrime.securesms;
 import android.annotation.TargetApi;
 import android.content.ContentUris;
 import android.content.DialogInterface;
-import android.graphics.BitmapFactory;
+import android.graphics.Bitmap;
 import android.net.Uri;
+import android.opengl.GLES20;
+import android.os.AsyncTask;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
@@ -31,12 +33,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.providers.PartProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.BitmapDecodingException;
+import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
@@ -61,6 +66,8 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity {
 
   private MasterSecret masterSecret;
 
+  private View              loadingView;
+  private TextView          errorText;
   private ImageView         image;
   private PhotoViewAttacher imageAttacher;
   private Uri               mediaUri;
@@ -119,18 +126,10 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity {
       finish();
     }
 
-    try {
-      Log.w(TAG, "Loading Part URI: " + mediaUri);
+    Log.w(TAG, "Loading Part URI: " + mediaUri);
 
-      final InputStream is = getInputStream(mediaUri, masterSecret);
-
-      if (mediaType != null && mediaType.startsWith("image/")) {
-        displayImage(is);
-      }
-    } catch (IOException ioe) {
-      Log.w(TAG, ioe);
-      Toast.makeText(getApplicationContext(), "Could not read the media", Toast.LENGTH_LONG).show();
-      finish();
+    if (mediaType != null && mediaType.startsWith("image/")) {
+      displayImage();
     }
   }
 
@@ -148,14 +147,48 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity {
   }
 
   private void initializeResources() {
+    loadingView   =             findViewById(R.id.loading_indicator);
+    errorText     = (TextView)  findViewById(R.id.error);
     image         = (ImageView) findViewById(R.id.image);
     imageAttacher = new PhotoViewAttacher(image);
    }
 
-  private void displayImage(final InputStream is) {
-    image.setImageBitmap(BitmapFactory.decodeStream(is));
-    image.setVisibility(View.VISIBLE);
-    imageAttacher.update();
+  private void displayImage() {
+    new AsyncTask<Void,Void,Bitmap>() {
+      @Override
+      protected Bitmap doInBackground(Void... params) {
+        try {
+          int[] maxTextureSizeParams = new int[1];
+          GLES20.glGetIntegerv(GLES20.GL_MAX_TEXTURE_SIZE, maxTextureSizeParams, 0);
+          int maxTextureSize = Math.max(maxTextureSizeParams[0], 2048);
+          Log.w(TAG, "reported GL_MAX_TEXTURE_SIZE: " + maxTextureSize);
+          return BitmapUtil.createScaledBitmap(getInputStream(mediaUri, masterSecret),
+                                               getInputStream(mediaUri, masterSecret),
+                                               maxTextureSize, maxTextureSize);
+        } catch (IOException | BitmapDecodingException e) {
+          return null;
+        }
+      }
+
+      @Override
+      protected void onPreExecute() {
+        loadingView.setVisibility(View.VISIBLE);
+      }
+
+      @Override
+      protected void onPostExecute(Bitmap bitmap) {
+        loadingView.setVisibility(View.GONE);
+
+        if (bitmap == null) {
+          errorText.setText(R.string.MediaPreviewActivity_cant_display);
+          errorText.setVisibility(View.VISIBLE);
+        } else {
+          image.setImageBitmap(bitmap);
+          image.setVisibility(View.VISIBLE);
+          imageAttacher.update();
+        }
+      }
+    }.execute();
   }
 
   private void saveToDisk() {
