@@ -59,11 +59,11 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
     try {
       Log.w(TAG, "Sending message: " + messageId);
 
-      deliver(masterSecret, record, destination);
-
-      database.markAsPush(messageId);
-      database.markAsSecure(messageId);
-      database.markAsSent(messageId);
+      if (deliver(masterSecret, record, destination)) {
+        database.markAsPush(messageId);
+        database.markAsSecure(messageId);
+        database.markAsSent(messageId);
+      }
     } catch (InsecureFallbackApprovalException e) {
       Log.w(TAG, e);
       database.markAsPendingInsecureSmsFallback(record.getId());
@@ -97,7 +97,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
     MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId);
   }
 
-  private void deliver(MasterSecret masterSecret, SmsMessageRecord message, String destination)
+  private boolean deliver(MasterSecret masterSecret, SmsMessageRecord message, String destination)
       throws UntrustedIdentityException, SecureFallbackApprovalException,
              InsecureFallbackApprovalException, RetryLaterException
   {
@@ -114,6 +114,8 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
         messageSender.sendMessage(address, new TextSecureMessage(message.getDateSent(), null,
                                                                  message.getBody().getBody()));
       }
+
+      return true;
     } catch (InvalidNumberException | UnregisteredUserException e) {
       Log.w(TAG, e);
       if (isSmsFallbackSupported) fallbackOrAskApproval(masterSecret, message, destination);
@@ -123,6 +125,8 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
       if (isSmsFallbackSupported) fallbackOrAskApproval(masterSecret, message, destination);
       else                        throw new RetryLaterException(e);
     }
+
+    return false;
   }
 
   private void fallbackOrAskApproval(MasterSecret masterSecret, SmsMessageRecord smsMessage, String destination)

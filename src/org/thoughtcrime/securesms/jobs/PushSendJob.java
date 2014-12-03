@@ -49,16 +49,23 @@ public abstract class PushSendJob extends MasterSecretJob {
   }
 
   protected static boolean isSmsFallbackSupported(Context context, String destination) {
-    if (GroupUtil.isEncodedGroup(destination)) {
+    try {
+      String e164number = Util.canonicalizeNumber(context, destination);
+
+      if (GroupUtil.isEncodedGroup(e164number)) {
+        return false;
+      }
+
+      if (!TextSecurePreferences.isFallbackSmsAllowed(context)) {
+        return false;
+      }
+
+      TextSecureDirectory directory = TextSecureDirectory.getInstance(context);
+      return directory.isSmsFallbackSupported(e164number);
+    } catch (InvalidNumberException e) {
+      Log.w(TAG, e);
       return false;
     }
-
-    if (!TextSecurePreferences.isFallbackSmsAllowed(context)) {
-      return false;
-    }
-
-    TextSecureDirectory directory = TextSecureDirectory.getInstance(context);
-    return directory.isSmsFallbackSupported(destination);
   }
 
   protected PushAddress getPushAddress(Recipient recipient) throws InvalidNumberException {
