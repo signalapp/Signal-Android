@@ -9,6 +9,12 @@ Currently available on the Play store.
 
 *[![Play Store Badge](https://developer.android.com/images/brand/en_app_rgb_wo_60.png)](https://play.google.com/store/apps/details?id=org.thoughtcrime.securesms)*
 
+WebSockets
+=================
+This branch gives a very rudimentary WebSocket support.
+The credit for the WebSocket implementation goes to Nathan Schwermann at https://github.com/schwiz
+I gave credit in the NOTICE file, if there is an issue please write me.
+
 ## Contributing Bug reports
 We use GitHub for bug tracking. Please search the existing issues for your bug and create a new one if the issue is not yet tracked!
 

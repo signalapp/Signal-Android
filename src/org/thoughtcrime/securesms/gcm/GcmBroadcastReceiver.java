@@ -24,8 +24,8 @@ public class GcmBroadcastReceiver extends BroadcastReceiver {
     if (GoogleCloudMessaging.MESSAGE_TYPE_MESSAGE.equals(messageType)) {
       Log.w(TAG, "GCM message...");
 
-      if (!TextSecurePreferences.isPushRegistered(context)) {
-        Log.w(TAG, "Not push registered!");
+      if (!TextSecurePreferences.isGcmRegistered(context)) {
+        Log.w(TAG, "Not GCM registered!");
         return;
       }
 

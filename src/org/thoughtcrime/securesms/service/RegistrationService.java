@@ -198,8 +198,11 @@ public class RegistrationService extends Service {
 
       setState(new RegistrationState(RegistrationState.STATE_VERIFYING, number));
       String challenge = waitForChallenge();
-      accountManager.verifyAccount(challenge, signalingKey, true, registrationId);
-
+      if (TextSecurePreferences.isGcmRegistered(this)) {
+        accountManager.verifyAccount(challenge, signalingKey, true, registrationId);
+      } else {
+        accountManager.verifyAccount(challenge, signalingKey, true, registrationId, true);
+      }
       handleCommonRegistration(masterSecret, accountManager, number);
       markAsVerified(number, password, signalingKey);
 
@@ -238,10 +241,11 @@ public class RegistrationService extends Service {
 
     setState(new RegistrationState(RegistrationState.STATE_GCM_REGISTERING, number));
 
-    String gcmRegistrationId = GoogleCloudMessaging.getInstance(this).register(GcmRefreshJob.REGISTRATION_ID);
-    TextSecurePreferences.setGcmRegistrationId(this, gcmRegistrationId);
-    accountManager.setGcmId(Optional.of(gcmRegistrationId));
-
+    if (TextSecurePreferences.isGcmRegistered(this)) {
+    	String gcmRegistrationId = GoogleCloudMessaging.getInstance(this).register(GcmRefreshJob.REGISTRATION_ID);
+    	TextSecurePreferences.setGcmRegistrationId(this, gcmRegistrationId);
+    	accountManager.setGcmId(Optional.of(gcmRegistrationId));
+	  }
     DirectoryHelper.refreshDirectory(this, accountManager, number);
 
     DirectoryRefreshListener.schedule(this);

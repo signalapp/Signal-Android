@@ -21,11 +21,17 @@ public class AccountAttributes {
   private String  signalingKey;
   private boolean supportsSms;
   private int     registrationId;
+  private boolean fetchesMessages;
 
   public AccountAttributes(String signalingKey, boolean supportsSms, int registrationId) {
-    this.signalingKey   = signalingKey;
-    this.supportsSms    = supportsSms;
-    this.registrationId = registrationId;
+    this(signalingKey, supportsSms, registrationId, false);
+  }
+
+  public AccountAttributes(String signalingKey, boolean supportsSms, int registrationId, boolean fetchesMessages) {
+    this.signalingKey    = signalingKey;
+    this.supportsSms     = supportsSms;
+    this.registrationId  = registrationId;
+    this.fetchesMessages = fetchesMessages;
   }
 
   public AccountAttributes() {}

@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.service.RegistrationService;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.websocket.PushService;
 import org.whispersystems.textsecure.api.TextSecureAccountManager;
 import org.whispersystems.textsecure.api.push.exceptions.ExpectationFailedException;
 import org.whispersystems.textsecure.api.push.exceptions.RateLimitException;
@@ -329,6 +330,11 @@ public class RegistrationProgressActivity extends ActionBarActivity {
                      Toast.LENGTH_LONG).show();
     }
 
+	if (TextSecurePreferences.isPushRegistered(getApplicationContext())
+          && !TextSecurePreferences.isGcmRegistered(getApplicationContext())) {
+        startService(PushService.startIntent(this.getApplicationContext()));
+    }
+
     shutdownService();
     startActivity(new Intent(this, RoutingActivity.class));
     finish();
@@ -518,8 +524,11 @@ public class RegistrationProgressActivity extends ActionBarActivity {
             TextSecureAccountManager accountManager = TextSecureCommunicationFactory.createManager(context, e164number, password);
             int registrationId = TextSecurePreferences.getLocalRegistrationId(context);
 
-            accountManager.verifyAccount(code, signalingKey, true, registrationId);
-
+            if (TextSecurePreferences.isGcmRegistered(context)) {
+              accountManager.verifyAccount(code, signalingKey, true, registrationId);
+            } else {
+              accountManager.verifyAccount(code, signalingKey, true, registrationId, true);
+            }
             return SUCCESS;
           } catch (ExpectationFailedException e) {
             Log.w("RegistrationProgressActivity", e);
