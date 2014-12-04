@@ -16,6 +16,7 @@ import android.util.Log;
 
 import com.codebutler.android_websockets.WebSocketClient;
 import com.codebutler.android_websockets.WebSocketClient.Listener;
+import com.google.protobuf.ByteString;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.R;
@@ -24,9 +25,12 @@ import org.thoughtcrime.securesms.jobs.PushReceiveJob;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libaxolotl.InvalidVersionException;
 import org.whispersystems.textsecure.internal.util.Util;
+import org.whispersystems.websocket.messages.protobuf.SubProtocol;
 
 import java.io.IOException;
 import java.net.URI;
+
+import static org.whispersystems.websocket.messages.protobuf.SubProtocol.WebSocketMessage.Type.REQUEST;
 
 public class PushService extends Service implements Listener {
   public static final String TAG = "WebSocket.PushService";
@@ -63,10 +67,10 @@ public class PushService extends Service implements Listener {
     return i;
   }
 
-  public static Intent ackIntent(Context context, WebsocketMessage message) {
+  public static Intent ackIntent(Context context, SubProtocol.WebSocketMessage message) {
     Intent i = new Intent(context, PushService.class);
     i.setAction(ACTION_ACKNOWLEDGE);
-    i.putExtra("ack", message.toJSON());
+    //i.putExtra("ack", message.toJSON());
     return i;
   }
 
@@ -125,7 +129,7 @@ public class PushService extends Service implements Listener {
       PendingIntent operation = PendingIntent.getService(this, 0, PushService.pingIntent(this), PendingIntent.FLAG_NO_CREATE);
       if (operation == null) {
         operation = PendingIntent.getService(this, 0, PushService.pingIntent(this), PendingIntent.FLAG_UPDATE_CURRENT);
-        am.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 30 * 1000, operation);
+        am.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 15 * 1000, operation);
       }
     }
 
@@ -150,11 +154,6 @@ public class PushService extends Service implements Listener {
         }
         else {
           Log.w(TAG, "Ping failed, client not connected");
-        }
-      } else if (ACTION_ACKNOWLEDGE.equals(intent.getAction())) {
-        if (mClient.isConnected()) {
-          String ackMessage= "{\"type\":1, \"id\":" + WebsocketMessage.fromJson(intent.getStringExtra("ack")).getId() + "}";
-          mClient.send(ackMessage); //TODO Build this JSON properly
         }
       }
     }
@@ -214,7 +213,8 @@ public class PushService extends Service implements Listener {
   }
 
   @Override
-  public synchronized void onMessage(String data) {
+  public synchronized void onMessage(byte[] data) {
+    Log.w(TAG,"onMessage: "+data);
     if (onMessageWakeLock != null && !onMessageWakeLock.isHeld())
       onMessageWakeLock.acquire();
     else if (onMessageWakeLock == null) {
@@ -223,20 +223,25 @@ public class PushService extends Service implements Listener {
       onMessageWakeLock.acquire();
     }
     try {
-      if (Util.isEmpty(data)) {
-        return;
-      }
       if (!TextSecurePreferences.isPushRegistered(this)) {
         Log.w(TAG, "Not push registered!");
         return;
       }
-      WebsocketMessage websocketMessage = WebsocketMessage.fromJson(data);
 
-      startService(ackIntent(this, websocketMessage)); //TODO This acks the message prior to reading => could mean that messages with an error are never read?
-
-      ApplicationContext.getInstance(getApplicationContext())
-                                    .getJobManager()
-                                    .add(new PushReceiveJob(getApplicationContext(), websocketMessage.getMessage()));
+      SubProtocol.WebSocketMessage websocketMessage = SubProtocol.WebSocketMessage.parseFrom(data);
+      Log.d(TAG,"websocketMessage: "+websocketMessage.toString());
+      switch (websocketMessage.getType()){
+        case REQUEST:
+          processWebSocketRequestMessage(websocketMessage.getRequest());
+          break;
+        case RESPONSE:
+          processWebSocketResponseMessage(websocketMessage.getRequest());
+          break;
+        case UNKNOWN:
+        default:
+          Log.w(TAG,"Client received an unknown or response type message");
+          break;
+      }
     }catch (Exception e) {
       Log.w(TAG, e);
     } finally {
@@ -246,6 +251,37 @@ public class PushService extends Service implements Listener {
     }
   }
 
+  private void processWebSocketResponseMessage(SubProtocol.WebSocketRequestMessage request) {
+    Log.w(TAG, "Client should not receive WebSocket Respond messages");
+  }
+
+  private void processWebSocketRequestMessage(SubProtocol.WebSocketRequestMessage request) {
+    Log.w(TAG, "Got message with verb: "+request.getVerb()+" and path: "+request.getPath());
+    sendWebSocketMessageAcknowledgement(request);
+    if (request.getPath().equalsIgnoreCase("/api/v1/message") && request.getVerb().equalsIgnoreCase("PUT")){
+      ApplicationContext.getInstance(getApplicationContext())
+              .getJobManager()
+              .add(new PushReceiveJob(getApplicationContext(), request.getBody().toStringUtf8()));
+    }else{
+      Log.w(TAG, "Unsupported WebSocket Request");
+    }
+
+  }
+
+  private void sendWebSocketMessageAcknowledgement(SubProtocol.WebSocketRequestMessage request) {
+    SubProtocol.WebSocketResponseMessage response =
+            SubProtocol.WebSocketResponseMessage.newBuilder().setId(request.getId()).setStatus(200).setMessage("OK").build();
+    SubProtocol.WebSocketMessage message = SubProtocol.WebSocketMessage.newBuilder().setResponse(response).setType(SubProtocol.WebSocketMessage.Type.RESPONSE).build();
+    if(isConnected()) {
+      Log.d(TAG, "Send ACK for message");
+      mClient.send(message.toByteArray());
+    }else {
+      Log.w(TAG, "Could not sent ACK for message. Client not connected");
+    }
+  }
+
   @Override
-  public synchronized void onMessage(byte[] arg0) {}
+  public synchronized void onMessage(String data) {
+    Log.w(TAG, "String message: "+data);
+  }
 }
