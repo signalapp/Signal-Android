@@ -182,14 +182,25 @@ public class RegistrationActivity extends ActionBarActivity {
 
       int gcmStatus = GooglePlayServicesUtil.isGooglePlayServicesAvailable(self);
 
-      if (gcmStatus != ConnectionResult.SUCCESS) {
+      /**
+       * This function checks if GCM is available. If the error is userRecoverable,
+       * that means that either Play is not installed or outdated.
+       *
+       * If that is the case we set GCM to false, but periodically check in GcmRegistrationService
+       */
+
+      if ( !Release.DISABLE_GCM && gcmStatus != ConnectionResult.SUCCESS) {
         if (GooglePlayServicesUtil.isUserRecoverableError(gcmStatus)) {
           GooglePlayServicesUtil.getErrorDialog(gcmStatus, self, 9000).show();
         } else {
-          Dialogs.showAlertDialog(self, getString(R.string.RegistrationActivity_unsupported),
-                                  getString(R.string.RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging));
+           Log.w("RegistrationActivity", "GCM not supported. Fallback to WebSocket");
         }
-        return;
+        TextSecurePreferences.setGcmRegistered(self, false);
+      }else if(!Release.DISABLE_GCM && gcmStatus == ConnectionResult.SUCCESS){
+          TextSecurePreferences.setGcmRegistered(self, true);
+      }else {
+          Log.w("RegistrationActivity", "GCM not supported. Fallback to WebSocket");
+          TextSecurePreferences.setGcmRegistered(self, false);
       }
 
       AlertDialog.Builder dialog = new AlertDialog.Builder(self);

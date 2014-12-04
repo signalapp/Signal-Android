@@ -61,8 +61,16 @@ public class TextSecureAccountManager {
                             boolean supportsSms, int axolotlRegistrationId)
       throws IOException
   {
+    verifyAccount(verificationCode, signalingKey,
+                                         supportsSms, axolotlRegistrationId, false);
+  }
+
+  public void verifyAccount(String verificationCode, String signalingKey,
+                            boolean supportsSms, int axolotlRegistrationId, boolean fetchesMessages)
+          throws IOException
+  {
     this.pushServiceSocket.verifyAccount(verificationCode, signalingKey,
-                                         supportsSms, axolotlRegistrationId);
+            supportsSms, axolotlRegistrationId, fetchesMessages);
   }
 
   public void setPreKeys(IdentityKey identityKey, PreKeyRecord lastResortKey,

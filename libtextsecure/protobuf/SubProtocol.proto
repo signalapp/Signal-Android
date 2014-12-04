@@ -1,0 +1,45 @@
+/**
+ * Copyright (C) 2014 Open WhisperSystems
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+package textsecure;
+
+option java_package = "org.whispersystems.websocket.messages.protobuf";
+
+message WebSocketRequestMessage {
+  optional string verb = 1;
+  optional string path = 2;
+  optional bytes  body = 3;
+  optional uint64 id   = 4;
+}
+
+message WebSocketResponseMessage {
+  optional uint64 id      = 1;
+  optional uint32 status  = 2;
+  optional string message = 3;
+  optional bytes  body    = 4;
+}
+
+message WebSocketMessage {
+  enum Type {
+    UNKNOWN  = 0;
+    REQUEST  = 1;
+    RESPONSE = 2;
+  }
+
+  optional Type                     type     = 1;
+  optional WebSocketRequestMessage  request  = 2;
+  optional WebSocketResponseMessage response = 3;
+}

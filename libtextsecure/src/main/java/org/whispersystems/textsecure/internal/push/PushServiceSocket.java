@@ -103,7 +103,7 @@ public class PushServiceSocket {
     this.serviceUrl    = serviceUrl;
     this.localNumber   = localNumber;
     this.password      = password;
-    this.trustManagers = initializeTrustManager(trustStore);
+    this.trustManagers = Util.initializeTrustManager(trustStore);
   }
 
   public void createAccount(boolean voice) throws IOException {
@@ -115,9 +115,16 @@ public class PushServiceSocket {
                             boolean supportsSms, int registrationId)
       throws IOException
   {
-    AccountAttributes signalingKeyEntity = new AccountAttributes(signalingKey, supportsSms, registrationId);
-    makeRequest(String.format(VERIFY_ACCOUNT_PATH, verificationCode),
-                "PUT", new Gson().toJson(signalingKeyEntity));
+      verifyAccount(verificationCode, signalingKey, supportsSms, registrationId, false);
+  }
+
+  public  void verifyAccount(String verificationCode, String signalingKey,
+                             boolean supportsSms, int registrationId, boolean fetchesMessages)
+          throws IOException
+  {
+      AccountAttributes signalingKeyEntity = new AccountAttributes(signalingKey, supportsSms, registrationId, fetchesMessages);
+      makeRequest(String.format(VERIFY_ACCOUNT_PATH, verificationCode),
+              "PUT", new Gson().toJson(signalingKeyEntity));
   }
 
   public void sendReceipt(String destination, long messageId, String relay) throws IOException {
@@ -521,23 +528,8 @@ public class PushServiceSocket {
     }
   }
 
-  private TrustManager[] initializeTrustManager(TrustStore trustStore) {
-    try {
-      InputStream keyStoreInputStream = trustStore.getKeyStoreInputStream();
-      KeyStore    keyStore            = KeyStore.getInstance("BKS");
 
-      keyStore.load(keyStoreInputStream, trustStore.getKeyStorePassword().toCharArray());
-
-      TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance("X509");
-      trustManagerFactory.init(keyStore);
-
-      return BlacklistingTrustManager.createFor(trustManagerFactory.getTrustManagers());
-    } catch (KeyStoreException | CertificateException | NoSuchAlgorithmException | IOException kse) {
-      throw new AssertionError(kse);
-    }
-  }
-
-  private static class GcmRegistrationId {
+    private static class GcmRegistrationId {
     private String gcmRegistrationId;
 
     public GcmRegistrationId() {}

@@ -20,10 +20,41 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.security.cert.CertificateException;
+
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.TrustManagerFactory;
+
+
+import org.whispersystems.textsecure.api.push.TrustStore;
 
 public class Util {
+
+  public static TrustManager[] initializeTrustManager(TrustStore trustStore) {
+    try {
+      InputStream keyStoreInputStream = trustStore.getKeyStoreInputStream();
+      KeyStore keyStore               = KeyStore.getInstance("BKS");
+
+      keyStore.load(keyStoreInputStream, trustStore.getKeyStorePassword().toCharArray());
+
+      TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance("X509");
+      trustManagerFactory.init(keyStore);
+
+      return BlacklistingTrustManager.createFor(trustManagerFactory.getTrustManagers());
+    } catch (KeyStoreException kse) {
+      throw new AssertionError(kse);
+    } catch (CertificateException e) {
+      throw new AssertionError(e);
+    } catch (NoSuchAlgorithmException e) {
+      throw new AssertionError(e);
+    } catch (IOException ioe) {
+      throw new AssertionError(ioe);
+    }
+  }
 
   public static byte[][] split(byte[] input, int firstLength, int secondLength) {
     byte[][] parts = new byte[2][];
