@@ -19,6 +19,8 @@ package org.thoughtcrime.securesms.notifications;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -40,6 +42,12 @@ import android.util.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.RoutingActivity;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
+import org.thoughtcrime.securesms.database.PushDatabase;
+import org.thoughtcrime.securesms.providers.TextSecureAppWidgetProvider;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
+import org.whispersystems.textsecure.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.PushDatabase;
@@ -98,7 +106,6 @@ public class MessageNotifier {
     }
   }
 
-
   public static void updateNotification(Context context, MasterSecret masterSecret) {
     if (!TextSecurePreferences.isNotificationsEnabled(context)) {
       return;
@@ -120,6 +127,7 @@ public class MessageNotifier {
     }
   }
 
+
   private static void updateNotification(Context context, MasterSecret masterSecret, boolean signal) {
     Cursor telcoCursor = null;
     Cursor pushCursor  = null;
@@ -133,6 +141,7 @@ public class MessageNotifier {
       {
         ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
           .cancel(NOTIFICATION_ID);
+        TextSecureAppWidgetProvider.triggerUpdate(context, 0);
         return;
       }
 
@@ -145,6 +154,9 @@ public class MessageNotifier {
       } else {
         sendSingleThreadNotification(context, masterSecret, notificationState, signal);
       }
+
+      TextSecureAppWidgetProvider.triggerUpdate(context, notificationState.getMessageCount());
+
     } finally {
       if (telcoCursor != null) telcoCursor.close();
       if (pushCursor != null)  pushCursor.close();
@@ -159,6 +171,7 @@ public class MessageNotifier {
     if (notificationState.getNotifications().isEmpty()) {
       ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
           .cancel(NOTIFICATION_ID);
+      TextSecureAppWidgetProvider.triggerUpdate(context, 0);
       return;
     }
 
