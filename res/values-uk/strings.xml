@@ -6,20 +6,17 @@
   <string name="delete">Видалити</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Зараз: %s</string>
-  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Ви повинні ввести перевірочну фразу перед управлінням ключами \u2026</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Ви ще не вказали фразу-пароль!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">повідомлення в розмові</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Вилучити всі старі повідомлення зараз?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Ви впевнені що хочете негайно обрізати всі розмови до %s останніх повідомлень?</string>
   <string name="ApplicationPreferencesActivity_delete">Видалити</string>
-  <string name="ApplicationPreferencesActivity_my">Мій</string>
   <string name="ApplicationPreferencesActivity_disable_storage_encryption">Вимкнути шифрування сховища?</string>
   <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">Увага, це відключить шифрування для всіх повідомлень і ключів. Ваші шифровані сесії продовжать працювати, але будь-яка особа з фізичним доступом до вашого пристрою може переглянути їх.</string>
   <string name="ApplicationPreferencesActivity_disable">Вимкнути</string>
   <string name="ApplicationPreferencesActivity_unregistering">Видалення реєстрації\u2026</string>
   <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Видалення реєстрації для обміну повідомленнями через Інтернет</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Помилка підключення до сервера!</string>
-  <string name="ApplicationPreferencesActivity_updating_directory">Оновлення теки</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Торкніться, щоб змінити типову програму для SMS</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Торкніться аби зробити TextSecure типовою програмою SMS</string>
   <!--AttchmentManager-->
@@ -33,7 +30,6 @@
   <string name="ConversationItem_error_sending_message">Помилка відправлення повідомлення</string>
   <string name="ConversationItem_view_secure_media_question">Переглянути захищений медіа-файл?</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Цей медіа-файл зберігається в зашифрованій базі даних. Через технічні обмеження для того, щоб переглянути його через сторонній додаток, необхідно його тимчасово розшифрувати і записати на диск. Ви впевнені, що хочете це зробити?</string>
-  <string name="ConversationItem_received_and_processed_key_exchange_message">Отримано та оброблено повідомлення обміну ключами.</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Помилка, отримано застаріле повідомлення обміну ключами.</string>
   <string name="ConversationItem_received_key_exchange_message_click_to_process">Отримано повідомлення обміну ключами, натисніть щоб його обробити</string>
   <string name="ConversationItem_group_action_left">%1$s більше не в групі.</string>
@@ -58,8 +54,6 @@
   <string name="ConversationFragment_message_details">Деталі повідомлення</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Ви дійсно хочете назавжди вилучити це повідомлення?</string>
   <string name="ConversationFragment_success_exclamation">Успішно!</string>
-  <!--ConversationListAdapter-->
-  <string name="ConversationListAdapter_key_exchange_message">Повідомлення обміну ключами\u2026</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Видалити розмови?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Ви впевнені, що хочете видалити ВСІ вибрані розмови?</string>
@@ -69,7 +63,6 @@
   <string name="ConversationListItem_key_exchange_message">Повідомлення обміну ключами\u2026</string>
   <!--ShareActivity-->
   <!--ExportFragment-->
-  <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Це експортує ваші шифровані ключі, налаштування та повідомлення на SD карту.</string>
   <string name="ExportFragment_export">Експортувати</string>
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Увага, цим Ви експортуєте на SD-карту свої повідомлення в незашифрованому вигляді.</string>
   <string name="ExportFragment_cancel">Скасувати</string>
@@ -78,10 +71,10 @@
   <string name="ExportFragment_error_unable_to_write_to_sd_card">Помилка, неможливо записати на SD-карту!</string>
   <string name="ExportFragment_error_while_writing_to_sd_card">Сталась помилка під час запису на SD-карту!</string>
   <string name="ExportFragment_success">Успішно!</string>
-  <string name="ExportFragment_exporting_keys_settings_and_messages">Експорт шифрованих ключів, налаштувань та повідомлень\u2026</string>
+  <!--GcmRefreshJob-->
   <!--GroupCreateActivity-->
-  <string name="GroupCreateActivity_file_io_exception">Помилка вводу-виводу. Не вдалося створити тимчасовий файл зображення.</string>
   <string name="GroupCreateActivity_creating_group">Створення %1$s…</string>
+  <!--GroupMembersDialog-->
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Імпортувати</string>
   <string name="ImportExportActivity_export">Експортувати</string>
@@ -104,7 +97,6 @@
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">При скануванні ключ невиявлений!</string>
   <!--MmsDownloader-->
-  <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">Немає доступних підключень для завантаження MMS, спробуйте пізніше\u2026</string>
   <string name="MmsDownloader_error_storing_mms">Помилка при збереженні MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Помилка підключення до MMS провайдеру\u2026</string>
   <string name="MmsDownloader_error_reading_mms_settings">Помилка читання налаштувань MMS провайдера\u2026</string>
@@ -113,9 +105,6 @@
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Невірна стара фраза!</string>
   <!--PassphrasePromptActivity-->
-  <!--PromptMmsActivity-->
-  <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">Ви повинні вказати адресу MMS-центру вашого оператора.</string>
-  <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Ви можете в будь-який час змінити ці значення в налаштуваннях TextSecure.</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Підпис цього обміну ключами відрізняється від отриманого раніше від цього контакту. Це може означати, що хтось намагається перехопити вашу переписку, або цей контакт перевстановив TextSecure і тепер у нього новий ідентифікаційний ключ.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Можливо, вам потрібно перевірити цей контакт.</string>
@@ -136,7 +125,6 @@
   <string name="RegistrationProgressActivity_verifying_number">Перевірка номера</string>
   <string name="RegistrationProgressActivity_edit_s">Редагувати %s</string>
   <string name="RegistrationProgressActivity_registration_complete">Реєстрацію завершено!</string>
-  <string name="RegistrationProgressActivity_possible_problems">Можливі проблеми.</string>
   <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Необхідно ввести отриманий код\u2026</string>
   <string name="RegistrationProgressActivity_connecting">Підключення</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">Підключення до сервера верифікації\u2026</string>
@@ -147,7 +135,6 @@
   <string name="RegistrationProgressActivity_requesting_incoming_call">Виконується запит телефонного дзвінка\u2026</string>
   <string name="RegistrationProgressActivity_the_server_encountered_an_error">На сервері сталася помилка. Будь ласка, спробуйте ще.</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Телефонний дзвінок вже був запитаний. Запросити ще один можна тільки через 20 хвилин.</string>
-  <string name="RegistrationProgressActivity_verifying_voice_code">Перевірка голосового коду\u2026</string>
   <!--RegistrationService-->
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">Реєстрація в службі TextSecure успішно виконана.</string>
   <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Виникла помилка при реєстрації на TextSecure.</string>
@@ -169,12 +156,6 @@
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Ключ співрозмовника вірний. Також необхідно, щоб співрозмовник підтвердив ваш ключ.</string>
   <string name="VerifyIdentityActivity_verified_exclamation">Перевірено!</string>
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">У вас немає особистого ключа!</string>
-  <!--VerifyKeysActivity-->
-  <string name="VerifyKeysActivity_get_my_fingerprint_scanned">Дати сканувати мій відбиток</string>
-  <string name="VerifyKeysActivity_scan_their_fingerprint">Сканувати відбиток співрозмовника</string>
-  <string name="VerifyKeysActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully2">УВАГА, просканований ключ НЕ СПІВПАДАЄ! Уважно перевірте текст відбитка.</string>
-  <string name="VerifyKeysActivity_their_key_is_correct_it_is_also_necessary_to_get_your_fingerprint_scanned_as_well">Ключ співрозмовника вірний. Також необхідно, щоб співрозмовник просканував ваш відбиток.</string>
-  <string name="VerifyKeysActivity_verified_exclamation">Перевірено!</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">У вас немає особистого ключа.</string>
   <string name="ViewIdentityActivity_scan_to_compare">Сканувати і порівняти</string>
@@ -198,8 +179,6 @@
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Розшифрування MMS, зачекайте, будь ласка\u2026</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Зашифроване MMS повідомлення зіпсоване\u2026</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS повідомлення зашифровано для неіснуючої сесії\u2026</string>
-  <!--MmsSender-->
-  <string name="MmsSender_currently_unable_to_send_your_mms_message">В даний момент неможливо надіслати ваше MMS.</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Триває імпортування</string>
   <!--KeyCachingService-->
@@ -214,15 +193,6 @@
   <string name="MessageNotifier_error_delivering_message">Помилка доставки повідомлення.</string>
   <string name="MessageNotifier_mark_all_as_read">Позначити все як прочитане</string>
   <string name="MessageNotifier_mark_as_read">Позначити як прочитане</string>
-  <!--ViewLocalIdentityActivity-->
-  <string name="ViewLocalIdentityActivity_regenerating">Регенерація\u2026</string>
-  <string name="ViewLocalIdentityActivity_regenerating_identity_key">Регенерація особистого ключа\u2026</string>
-  <string name="ViewLocalIdentityActivity_regenerated">Регенеровано!</string>
-  <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">Обережно! Якщо ви заново згенеруєте свій особистий ключ, поточний буде втрачений назавжди, і ваші співрозмовники отримають попередження на початку нових захищених сеансів з вами. Ви впевнені, що хочете продовжити?</string>
-  <string name="ViewLocalIdentityActivity_cancel">Скасувати</string>
-  <string name="ViewLocalIdentityActivity_continue">Продовжити</string>
-  <!--SmsReceiver-->
-  <string name="SmsReceiver_currently_unable_to_send_your_sms_message">Зараз неможливо відправити ваше SMS-повідомлення. Воно буде відправлено, коли зв’язок відновиться.</string>
   <!--QuickResponseService-->
   <!--auto_initiate_activity-->
   <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Ви отримали повідомлення від співрозмовника, який підтримує зашифроване спілкування за допомогою TextSecure. </string>
@@ -234,7 +204,6 @@
   <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">Контактів не знайдено.</string>
   <!--single_contact_selection_activity-->
-  <string name="single_contact_selection_group_activity__filter">Почніть друкувати ім’я для фільтрації...</string>
   <string name="SingleContactSelectionActivity_updating_directory">Оновлення теки</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Вибрати для</string>
@@ -254,23 +223,8 @@
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Завантаження країн\u2026</string>
   <string name="country_selection_fragment__search">Пошук</string>
-  <!--create_passphrase_activity-->
-  <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">Будь ласка, виберіть фразу-пароль, яка використовуватиметься для локального шифрування ваших даних.
-
-Вона повинна бути надійною.</string>
-  <string name="create_passphrase_activity__passphrase">ФРАЗА-КЛЮЧ:</string>
-  <string name="create_passphrase_activity__repeat">ПОВТОРІТЬ:</string>
-  <string name="create_passphrase_activity__continue">Продовжити</string>
-  <string name="create_passphrase_activity__generating_secrets">СТВОРЮЄМО СЕКРЕТИ</string>
-  <string name="create_passphrase_activity__skip">Пропустити</string>
-  <string name="create_passphrase_activity__create">Створити</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__button_cancel">Не відсилати</string>
-  <string name="log_submit_activity__button_ok">Відіслати</string>
   <string name="log_submit_activity__log_fetch_failed">Не вдалось захопити журнал відлагодження. Натомість ви можете скористатись ADB, щоб це зробити.</string>
-  <string name="log_submit_activity__log_submit_success_title">Успішно!</string>
-  <string name="log_submit_activity__copied_to_clipboard">Скопійовано до буфера обміну</string>
-  <string name="log_submit_activity__loading_logcat">Завантаження logcat…</string>
   <string name="log_submit_activity__thanks">Дякуємо за вашу допомогу!</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Ви хочете імпортувати існуючі текстові повідомлень в зашифровану базу даних TextSecure?</string>
@@ -280,8 +234,6 @@
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Це може зайняти якийсь час. Будь ласка, наберіться терпіння, ми Вам повідомимо, коли імпортування завершиться.</string>
   <string name="database_migration_activity__importing">ІМПОРТУВАННЯ</string>
   <!--database_upgrade_activity-->
-  <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Експортувати на SD-карту
-зашифровану резервну копію.</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">Експортувати на SD-карту незашифровану резервну копію, сумісну з додатком \'SMSBackup And Restore\'.</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Імпортувати базу даних з SMS-додатку, який використовується зараз за замовчуванням.</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">Відновити з раніше експортованої зашифрованої резервної копії TextSecure</string>
@@ -289,14 +241,10 @@
   <!--mms_preferences_activity-->
   <string name="mms_preferences_activity__manual_mms_settings_are_required">Параметри MMS для вашого телефону потрібно вказати вручну.</string>
   <!--prompt_passphrase_activity-->
-  <string name="prompt_passphrase_activity__textsecure_passphrase">ФРАЗА-КЛЮЧ TEXTSECURE</string>
   <string name="prompt_passphrase_activity__unlock">Розблокувати</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">Для надсилання MMS-повідомлень TextSecure необхідно знати настройки APN вашого оператора. Однак ваш пристрій не надає цієї інформації - так іноді буває, якщо воно заблоковане або відповідним чином налаштоване.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Щоб мати можливість відправляти MMS-повідомлення, введіть інформацію про APN нижче. Потрібні значення для вашого оператора можна знайти в інтернеті за запитом \'оператор APN\' або в його службі підтримки. Це потрібно зробити тільки один раз.</string>
-  <string name="prompt_mms_activity__mmsc_url_required">MMSC URL (ОБОВ\'ЯЗКОВО):</string>
-  <string name="prompt_mms_activity__mms_proxy_host_optional">ХОСТ MMS ПРОКСІ (НЕ ОБОВ\'ЯЗКОВО):</string>
-  <string name="prompt_mms_activity__mms_proxy_port_optional">ПОРТ MMS ПРОКСІ (НЕ ОБОВ\'ЯЗКОВО):</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Виконати</string>
   <!--registration_activity-->
@@ -332,23 +280,13 @@
   <string name="registration_progress_activity__generating_keys">Генерація ключів\u2026</string>
   <!--recipients_panel-->
   <string name="recipients_panel__add_member">Додати учасника</string>
-  <!--review_identities-->
-  <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">У вашій базі довірених співрозмовників немає жодного особистого ключа.</string>
   <!--verify_identity_activity-->
   <string name="verify_identity_activity__their_identity_they_read">Cпіврозмовник (він читає):</string>
   <string name="verify_identity_activity__your_identity_you_read">Ви (ви читаєте):</string>
-  <!--verify_import_identity_activity-->
-  <string name="verify_import_identity_activity__verified">Перевірено!</string>
-  <string name="verify_import_identity_activity__compare">Порівняти</string>
-  <!--verify_keys_activity-->
-  <string name="verify_keys_activity__they_read_this">Співрозмовник читає це:</string>
-  <string name="verify_keys_activity__you_read_this">Ви читаєте це:</string>
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__change_passphrase">Змінити фразу-ключ</string>
-  <string name="AndroidManifest__manage_identity_keys">Керування ключами ідентифікації</string>
   <!--arrays.xml-->
   <!--preferences.xml-->
-  <string name="preferences__general">Загальні</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Використовувати TextSecure для перегляду та зберігання всіх вхідних текстових повідомлень</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Використовувати TextSecure для перегляду та зберігання всіх вхідних мультимедійних повідомлень</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Виберіть себе із списку контактів.</string>
@@ -362,10 +300,6 @@
   <string name="preferences__timeout_passphrase">Забувати фразу-ключ</string>
   <string name="preferences__pref_timeout_interval_title">Термін зберігання</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Час, після якого фраза-пароль буде стерта з пам’яті</string>
-  <string name="preferences__identity_key_settings">Ключі ідентифікації</string>
-  <string name="preferences__view_my_identity_key">Переглянути свій ключ ідентифікації</string>
-  <string name="preferences__manage_identity_keys">Керування ключами ідентифікації</string>
-  <string name="preferences__manage_configured_identity_keys">Керування налаштованими ключами ідентифікації</string>
   <string name="preferences__notifications">Сповіщення</string>
   <string name="preferences__display_message_notifications_in_status_bar">Показувати сповіщення повідомлень в рядку стану</string>
   <string name="preferences__led_color">Колір LED</string>
@@ -448,16 +382,13 @@
   <string name="key_scanning__menu_compare">Порівняти</string>
   <string name="key_scanning__menu_get_scanned_to_compare">Дати сканувати і порівняти</string>
   <string name="key_scanning__menu_scan_to_compare">Сканувати і порівняти</string>
-  <!--text_secure_locked-->
-  <string name="text_secure_locked__menu_unlock">Розблокувати</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_settings">Налаштування</string>
   <string name="text_secure_normal__menu_clear_passphrase">Очистити фразу-ключ</string>
-  <!--verify_keys-->
-  <string name="verify_keys__menu_verified">Підтверджено</string>
   <!--reminder_header-->
   <!--MediaPreviewActivity-->
   <!--media_preview-->
   <!--media_preview_activity-->
+  <!--Trimmer-->
   <!--EOF-->
 </resources>

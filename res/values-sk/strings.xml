@@ -6,13 +6,11 @@
   <string name="delete">Zmaž</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Aktuálne: %s</string>
-  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Pred spravovaním kľúčov musíte vložiť heslo...</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Ešte ste si nenastavili heslo!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">správ na konverzáciu</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Zmazať všetky staré správy?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Ste si istí, že chcete skrátiť všetky vlákna konverzácií na %s najnovších správ?</string>
   <string name="ApplicationPreferencesActivity_delete">Zmaž</string>
-  <string name="ApplicationPreferencesActivity_my">Moja</string>
   <string name="ApplicationPreferencesActivity_disable_storage_encryption">Vypnúť kryptovanie úložiska?</string>
   <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
 Upozornenie, toto vypne kryptovanie úložiska správ a kľúčov. Vaše bezpečné sessions budú naďalej fungovať, ale hocikto s fyzickým prístupom k zariadeniu ich bude schopný čítať.</string>
@@ -32,11 +30,9 @@ Upozornenie, toto vypne kryptovanie úložiska správ a kľúčov. Vaše bezpeč
   <string name="ConversationItem_expires_s">Vyprší: %s</string>
   <string name="ConversationItem_error_sending_message">Chyba pri posielaní správy</string>
   <string name="ConversationItem_view_secure_media_question">Zobraziť kryptované údaje?</string>
-  <string name="ConversationItem_received_and_processed_key_exchange_message">Prijal som správu vzájomnej výmeny kľúčov a spracovávam ju.</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Chyba, prijal som zaseknutú správu vzájomnej výmeny kľúčov.</string>
   <string name="ConversationItem_received_key_exchange_message_click_to_process">Prijal som správu vzájomnej výmeny kľúčov, kliknite pre spracovanie.</string>
   <string name="ConversationItem_group_action_left">%1$s opustil/a skupinu.</string>
-  <string name="ConversationItem_group_action_joined">%1$s sa pripojil do skupiny.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Vytvoriť bezpečnú reláciu?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Vytvoriť bezpečnú session s %s?</string>
@@ -68,8 +64,6 @@ Upozornenie, toto vypne kryptovanie úložiska správ a kľúčov. Vaše bezpeč
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Ste si istí že chcete úplne zmazať túto správu?</string>
   <string name="ConversationFragment_success_exclamation">Úspech!</string>
   <string name="ConversationFragment_saving_attachment">Ukladám prílohu</string>
-  <!--ConversationListAdapter-->
-  <string name="ConversationListAdapter_key_exchange_message">Správa vzájomnej výmeny kľúčov...</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Zmazať vlákna?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Ste si istí, že chcete zmazať VŠETKY označené vlákna konverzácií?</string>
@@ -80,9 +74,6 @@ Upozornenie, toto vypne kryptovanie úložiska správ a kľúčov. Vaše bezpeč
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Zdieľaj s</string>
   <!--ExportFragment-->
-  <string name="ExportFragment_export_to_sd_card">Exportuj na SD kartu?</string>
-  <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Toto
-exportuje Vaše kryptované kľúče, nastavenia a správy na SD kartu.</string>
   <string name="ExportFragment_export">Export</string>
   <string name="ExportFragment_export_plaintext_to_sd_card">Exportuj čistý text na SD kartu?</string>
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Upozornenie, toto
@@ -94,7 +85,7 @@ exportuje nekryptovaný obsah TextSecure správy na SD kartu.</string>
 kartu!</string>
   <string name="ExportFragment_error_while_writing_to_sd_card">Chyba pri zápise na SD kartu.</string>
   <string name="ExportFragment_success">Úspech!</string>
-  <string name="ExportFragment_exporting_keys_settings_and_messages">Exportujem zakryptované kľúče, nastavenia a správy...</string>
+  <!--GcmRefreshJob-->
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Nová skupina</string>
   <string name="GroupCreateActivity_actionbar_update_title">Aktualizuj skupinu</string>
@@ -105,6 +96,7 @@ kartu!</string>
   <string name="GroupCreateActivity_avatar_content_description">Obrázok skupiny</string>
   <string name="GroupCreateActivity_menu_create_title">Vytvoriť skupinu</string>
   <string name="GroupCreateActivity_creating_group">Vytváranie %1$s…</string>
+  <!--GroupMembersDialog-->
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Import</string>
   <string name="ImportExportActivity_export">Export</string>
@@ -144,9 +136,6 @@ Obnovenie zakryptovanej zálohy prepíše všetky existujúce kryptovacie kľú�
   <string name="PassphrasePromptActivity_enter_passphrase">Zadaj heslo</string>
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure ikonka</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Nesprávne heslo!</string>
-  <!--PromptMmsActivity-->
-  <string name="PromptMmsActivity_mms_settings_updated">MMS nastavenia obnovené</string>
-  <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Môžete  tieto hodnoty zmeniť kedykoľvek z menu nastavenie TextSecure. </string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_processing">Spracováva sa</string>
   <string name="ReceiveKeyActivity_processing_key_exchange">Spracovávajú sa kľúče vymeny</string>
@@ -170,7 +159,6 @@ telefónne číslo</string>
   <string name="RegistrationProgressActivity_verifying_number">Overovanie čísla </string>
   <string name="RegistrationProgressActivity_edit_s">Upraviť %s</string>
   <string name="RegistrationProgressActivity_registration_complete">Registrácia dokončená.</string>
-  <string name="RegistrationProgressActivity_possible_problems">Možné problémy.</string>
   <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Musíš zadať kód ktorý si dostal prvý...</string>
   <string name="RegistrationProgressActivity_connecting">Pripájanie</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">Pripájanie kvôli overovaniu...</string>
@@ -181,7 +169,6 @@ telefónne číslo</string>
   <string name="RegistrationProgressActivity_server_error">Chyba servera</string>
   <string name="RegistrationProgressActivity_the_server_encountered_an_error">Na serveri sa vyskytol problém. Prosím skús to zas.</string>
   <string name="RegistrationProgressActivity_too_many_requests">Príliš veľa požiadaviek!</string>
-  <string name="RegistrationProgressActivity_verifying_voice_code">Overovanie hlasového kódu...</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Registrácia dokončená.</string>
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">TextSecure registrácia bola úspešne dokončená.</string>
@@ -204,13 +191,6 @@ telefónne číslo</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Ich kľúč je v poriadku. Je tiež potrebné dať druhej strane verifikovať váš kľúč.</string>
   <string name="VerifyIdentityActivity_verified_exclamation">Verifikované!</string>
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Nemáte kľúč totožnosti!</string>
-  <!--VerifyKeysActivity-->
-  <string name="VerifyKeysActivity_get_my_fingerprint_scanned">Daj scannovať môj odtlačok</string>
-  <string name="VerifyKeysActivity_scan_their_fingerprint">Scannuj ich odtlačok </string>
-  <string name="VerifyKeysActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully2">POZOR, scannovaný kľúč sa NEZHODUJE! Dôsledne skontrolujte text odtlačku.</string>
-  <string name="VerifyKeysActivity_not_verified_exclamation">NIE JE overené!</string>
-  <string name="VerifyKeysActivity_their_key_is_correct_it_is_also_necessary_to_get_your_fingerprint_scanned_as_well">Ich kľúč je správny. Je tiež potrebné dať druhej strane scannovať Váš odtlačok.</string>
-  <string name="VerifyKeysActivity_verified_exclamation">Verifikovaný!</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Nemáte kľúč totožnosti.</string>
   <string name="ViewIdentityActivity_scan_to_compare">Zoscannuj pre porovnanie</string>
@@ -219,7 +199,6 @@ telefónne číslo</string>
   <string name="ViewIdentityActivity_not_verified_exclamation">NIE JE overené!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Scannovaný kľúč sa zhoduje!</string>
   <string name="ViewIdentityActivity_verified_exclamation">Verifikované!</string>
-  <string name="ViewIdentityActivity_identity_fingerprint">Odtlačok totožnosti</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Tomuto príjemcovi ste už poslali požiadavku na vytvorenie bezpečnej session. Poslanie ďalšej požiadavky zneplatní predchádzajúcu požiadavku.  Ste si istí že chcete poslať ďalšiu požiadavku?</string>
   <string name="KeyExchangeInitiator_send">Odošli</string>
@@ -236,8 +215,6 @@ telefónne číslo</string>
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Prosím čakaj, dekryptujem MMS...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Nesprávne kryptovaná MMS správa...</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS správa zakryptovaná pre neexistujúcu session...</string>
-  <!--MmsSender-->
-  <string name="MmsSender_currently_unable_to_send_your_mms_message">Momentálne nie je možné poslať Vašu MMS správu.</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Prebieha import</string>
   <string name="ApplicationMigrationService_importing_text_messages">Nahrávanie textových správ</string>
@@ -255,15 +232,6 @@ telefónne číslo</string>
   <string name="MessageNotifier_error_delivering_message">Chyba doručovania správy.</string>
   <string name="MessageNotifier_mark_all_as_read">Označ všetko ako prečítané</string>
   <string name="MessageNotifier_mark_as_read">Označ ako prečítané</string>
-  <!--ViewLocalIdentityActivity-->
-  <string name="ViewLocalIdentityActivity_regenerating">Pregenerovávam...</string>
-  <string name="ViewLocalIdentityActivity_regenerating_identity_key">Pregenerovávam kľúče
-totožnosti...</string>
-  <string name="ViewLocalIdentityActivity_regenerated">Pregenerované!</string>
-  <string name="ViewLocalIdentityActivity_cancel">Zrušiť</string>
-  <string name="ViewLocalIdentityActivity_continue">Pokračovať</string>
-  <!--SmsReceiver-->
-  <string name="SmsReceiver_currently_unable_to_send_your_sms_message">Momentálne nie je možné poslať Vašu sms správu. Budo odoslaná ihneď pri dostupnosti služby.</string>
   <!--QuickResponseService-->
   <!--auto_initiate_activity-->
   <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Dostali ste správu od klienta podporujúceho TextSecure bezpečnú session.  Želáte si vytvoriť bezpečnú session?</string>
@@ -305,23 +273,9 @@ totožnosti...</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Načítavanie krajín...</string>
   <string name="country_selection_fragment__search">Hľadaj</string>
-  <!--create_passphrase_activity-->
-  <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">Vyberte si prosím heslo ktoré bude použité na lokálne kryptovanie údajov. Malo by to byť silné heslo.</string>
-  <string name="create_passphrase_activity__passphrase">Heslo:</string>
-  <string name="create_passphrase_activity__repeat">Zopakujte:</string>
-  <string name="create_passphrase_activity__continue">Pokračovať</string>
-  <string name="create_passphrase_activity__generating_secrets">GENEROVANIE TAJOMSTIEV</string>
-  <string name="create_passphrase_activity__skip">Preskoč</string>
-  <string name="create_passphrase_activity__create">Vytvoriť</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__button_cancel">Neodošli</string>
-  <string name="log_submit_activity__button_ok">Odošli</string>
-  <string name="log_submit_activity__log_submit_success_title">Úspech!</string>
-  <string name="log_submit_activity__log_got_it">Mám to</string>
-  <string name="log_submit_activity__copied_to_clipboard">Kopírovať do schránky</string>
   <string name="log_submit_activity__thanks">Ďakujem za tvoju pomoc!</string>
   <string name="log_submit_activity__submitting">Posielanie</string>
-  <string name="log_submit_activity__posting_logs">Ulož logy do pastebin...</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Chcete importovať Vaše existujúce textové správy do kryptovanej databázy TextSecure? </string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Predvolená systémová databáza nebude modifikovaná alebo nahradenáv žiadnom prípade.</string>
@@ -331,9 +285,6 @@ totožnosti...</string>
   <string name="database_migration_activity__importing">IMPORTUJEM</string>
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Aktualizujem databázu...</string>
-  <string name="export_fragment__export_encrypted_backup">Exportovať zakryptovanú zálohu</string>
-  <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Exportovať zakryptovanú
-zálohu na SD kartu.</string>
   <string name="export_fragment__export_plaintext_backup">Exportovať nezakryptovanú zálohu</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">
 Exportovať nezakryptovanú zálohu kompatibilnú so \'SMSBackup a Restore\' na SD kartu.</string>
@@ -346,11 +297,9 @@ Obnoviť predtým exportovanú zakryptovanú TextSecure zálohu.</string>
   <string name="import_fragment__import_plaintext_backup">Importovať nezakryptovanú zálohu</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Importovať nezakryptovanú zálohu. Kompatibilné so \'SMSBackup And Restore\'.</string>
-  <string name="local_identity__regenerate_key">Pregeneruj kľúče</string>
   <!--mms_preferences_activity-->
   <string name="mms_preferences_activity__manual_mms_settings_are_required">Manuálne MMS nastavenia sú vyžadované pre tvoj telefón.</string>
   <!--prompt_passphrase_activity-->
-  <string name="prompt_passphrase_activity__textsecure_passphrase">TEXTSECURE HESLO</string>
   <string name="prompt_passphrase_activity__unlock">Odomkni</string>
   <!--prompt_mms_activity-->
   <!--receive_key_activity-->
@@ -393,34 +342,22 @@ zlyhalo.
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Vlož meno alebo číslo</small></string>
   <string name="recipients_panel__add_member">Pridaj člena</string>
-  <!--review_identities-->
-  <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">V databáze nemáte žiadne kľúče totožnosti.</string>
   <!--verify_identity_activity-->
   <string name="verify_identity_activity__their_identity_they_read">Ich totožnosť (oni vidia):</string>
   <string name="verify_identity_activity__your_identity_you_read">Vaša totožnosť (vy vidíte):</string>
-  <!--verify_import_identity_activity-->
-  <string name="verify_import_identity_activity__verified">Verifikované!</string>
-  <string name="verify_import_identity_activity__compare">Porovnaj</string>
-  <!--verify_keys_activity-->
-  <string name="verify_keys_activity__they_read_this">Oni vidia:</string>
-  <string name="verify_keys_activity__you_read_this">Vy vidíte:</string>
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Vytvor heslo</string>
   <string name="AndroidManifest__enter_passphrase">Zadaj heslo</string>
   <string name="AndroidManifest__select_contacts">Vyber kontakty</string>
-  <string name="AndroidManifest__select_contact">Vyber kontakt</string>
   <string name="AndroidManifest__textsecure_detected">Detekovaný TextSecure</string>
   <string name="AndroidManifest__public_identity_key">Kľúč verejnej totožnosti</string>
   <string name="AndroidManifest__change_passphrase">Zmeň heslo</string>
-  <string name="AndroidManifest__verify_session">Over relácia</string>
   <string name="AndroidManifest__verify_identity">Over totožnosť</string>
-  <string name="AndroidManifest__manage_identity_keys">Spravuj kľúče totožnosti</string>
   <string name="AndroidManifest__complete_key_exchange">Dokončiť vzájomnú výmenu kľúčov</string>
   <string name="AndroidManifest__log_submit">Odošli ladiaci log</string>
   <!--arrays.xml-->
   <string name="arrays__my_identity_key">Môj kľúč totožnosti</string>
   <!--preferences.xml-->
-  <string name="preferences__general">Všeobecné</string>
   <string name="preferences__pref_all_sms_title">Príjmy všetky SMS</string>
   <string name="preferences__pref_all_mms_title">Príjmy všetky MMS</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Použi TextSecure na zobrazenie a uloženie všetkých prichádzajúcich správ</string>
@@ -442,10 +379,6 @@ zlyhalo.
   <string name="preferences__pref_timeout_interval_dialogtitle">Vyber dobu zapamätania hesla</string>
   <string name="preferences__pref_timeout_interval_title">Interval vypršania</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Časový interval po ktorom sa vymaže heslo z pamäte</string>
-  <string name="preferences__identity_key_settings">Kľúče totožnosti</string>
-  <string name="preferences__view_my_identity_key">Zobraz môj kľúč totožnosti</string>
-  <string name="preferences__manage_identity_keys">Spravuj kľúče totožnosti</string>
-  <string name="preferences__manage_configured_identity_keys">Spravuj konfigurované kľúče totožnosti</string>
   <string name="preferences__notifications">Hlásenia</string>
   <string name="preferences__display_message_notifications_in_status_bar">Zobrazuj hlásenia o správach v stavovom riadku</string>
   <string name="preferences__led_color">LED farba</string>
@@ -539,7 +472,6 @@ zlyhalo.
   <string name="conversation_list__menu_search">Hľadaj</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Bezpečnosť</string>
-  <string name="conversation_secure_verified__menu_no_identity">Žiadna identita dostupná</string>
   <string name="conversation_secure_verified__menu_verify_identity">Over totožnosť</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">Ukonči bezpečnú session</string>
   <!--conversation-->
@@ -557,19 +489,16 @@ zlyhalo.
   <string name="key_scanning__menu_compare">Porovnaj</string>
   <string name="key_scanning__menu_get_scanned_to_compare">Nascannuj pre porovnanie</string>
   <string name="key_scanning__menu_scan_to_compare">Zoscannuj pre porovnanie</string>
-  <!--text_secure_locked-->
-  <string name="text_secure_locked__menu_unlock">Odomkni</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">Nová správa</string>
   <string name="text_secure_normal__menu_new_group">Nová skupina</string>
   <string name="text_secure_normal__menu_settings">Nastavenia</string>
   <string name="text_secure_normal__menu_clear_passphrase">Zamkni</string>
   <string name="text_secure_normal__mark_all_as_read">Označ všetky prečítané</string>
-  <!--verify_keys-->
-  <string name="verify_keys__menu_verified">Overené</string>
   <!--reminder_header-->
   <!--MediaPreviewActivity-->
   <!--media_preview-->
   <!--media_preview_activity-->
+  <!--Trimmer-->
   <!--EOF-->
 </resources>

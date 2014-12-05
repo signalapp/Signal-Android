@@ -6,13 +6,11 @@
   <string name="delete">ಅಳಿಸಿಹಾಕು</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">ಪ್ರಸ್ತುತ: %s</string>
-  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">ನಿಮ್ಮ ಕೀಲಿಗಳನ್ನು ನಿರ್ವಹಿಸುವ ಮೊದಲು ಗುಪ್ತಪದವನ್ನು ನಮೂದಿಸುವ ಅಗತ್ಯವಿದೆ...</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">ನೀವು ಇನ್ನೂ ಗುಪ್ತಪದವನ್ನು ಹೊಂದಿಸಿಲ್ಲ!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">ಸಂದೇಶಗಳು ಪ್ರತಿ ಸಂವಾದವಕ್ಕೆ</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">ಈಗ ಎಲ್ಲಾ ಹಳೆಯ ಸಂದೇಶಗಳನ್ನು ಅಳಿಸಿ?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">ನೀವು ಈ  ಕ್ಷಣ ಎಲ್ಲಾ ಸಂಭಾಷಣೆಯ ಇತ್ತೀಚಿನ %s ಸಂದೇಶಗಳಿಗೆ ಮಿತಗೊಳಿಸಲು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?</string>
   <string name="ApplicationPreferencesActivity_delete">ಅಳಿಸಿಹಾಕು</string>
-  <string name="ApplicationPreferencesActivity_my">ನನ್ನ</string>
   <string name="ApplicationPreferencesActivity_disable_storage_encryption">ಶೇಖರಣಾ ಗೂಢಲಿಪೀಕರಣವನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ?</string>
   <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
 ಎಚ್ಚರಿಕೆ, ಇದು ಎಲ್ಲಾ ಸಂದೇಶಗಳ ಮತ್ತು ಕೀಲಿಗಳ ಶೇಖರಣಾ ಗೂಢಲಿಪೀಕರಣವನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸುತ್ತದೆ.
@@ -22,15 +20,17 @@
   <string name="ApplicationPreferencesActivity_unregistering">ನೋಂದಣಿಯನ್ನು ರದ್ದುಗೊಳಿಸಲಾಗುತ್ತಿದೆ...</string>
   <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">ಮಾಹಿತಿ ಆಧಾರಿತ ಸಂವಹನವನ್ನು ರದ್ದುಗೊಳಿಸಲು</string>
   <string name="ApplicationPreferencesActivity_disable_push_messages">ಪುಷ್ ಸಂದೇಶವನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ </string>
+  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">ಈ ಸರ್ವರ್ನಿಂದ ನಿಮ್ಮ ನೋಂದಣಿಯನ್ನು ರದ್ದು ಮೂಲಕ ಪುಶ್ ಸಂದೇಶಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸುತ್ತದೆ.
+ನೀವು ಭವಿಷ್ಯದಲ್ಲಿ ಮತ್ತೆ ಪುಶ್ ಸಂದೇಶಗಳನ್ನು ಬಳಸಲು ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ಮರು ನೋಂದಾಯಿಸಿಕೊಳ್ಳಬಹುದು.
+
+</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">ಸರ್ವರ್ಗೆ ಸಂಪರ್ಕಿಸುವಾಗ ದೋಷ!</string>
-  <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">ನೀವು ಪುಶ್ ಸೇವೆಯೊಂದಿಗೆ ನೋಂದಾಯಿಸಿಕೊಂಡಿಲ್ಲ...</string>
-  <string name="ApplicationPreferencesActivity_updating_directory">ಡೈರೆಕ್ಟರಿಯನ್ನು ನವೀಕರಿಸಲಾಗುತ್ತಿದೆ</string>
-  <string name="ApplicationPreferencesActivity_updating_push_directory">ಪುಶ್ ಡೈರೆಕ್ಟರಿಯನ್ನು ನವೀಕರಿಸಲಾಗುತ್ತಿದೆ ...</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">ಒಳಬರುವ ಎಸ್.ಎಮ್.ಎಸನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">ನಿಮ್ಮ ಪೂರ್ವನಿಯೋಜಿತ ಎಸ್.ಎಮ್.ಎಸ್ ಅಪ್ಲಿಕೇಶನ್ನು ಬದಲಾಯಿಸಲು ಸ್ಪರ್ಶಿಸಿ</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">ಒಳಬರುವ ಎಸ್.ಎಮ್.ಎಸನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯೂರನ್ನು ನಿಮ್ಮ ಪೂರ್ವನಿಯೋಜಿತ ಎಸ್.ಎಮ್.ಎಸ್ ಅಪ್ಲಿಕೇಶನ್ನಾಗಿ ಬದಲಾಯಿಸಲು ಸ್ಪರ್ಶಿಸಿ</string>
   <!--AttchmentManager-->
+  <string name="AttachmentManager_cant_open_media_selection">ಈ ಮೀಡಿಯಾ ತೆರೆಯಲು ಸಾಮರ್ಥ್ಯವಿರುವ ಅಪ್ಲಿಕೇಶನ್ ಹುಡುಕಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ.</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">ಚಿತ್ರ</string>
   <string name="AttachmentTypeSelectorAdapter_video">ದೃಶ್ಯ</string>
@@ -41,12 +41,9 @@
   <string name="ConversationItem_error_sending_message">ಸಂದೇಶ ಕಳುಹಿಸುವಾಗ ದೋಷವಾಗಿದೆ</string>
   <string name="ConversationItem_view_secure_media_question">ಸುರಕ್ಷಿತ ಮಾಧ್ಯಮವನ್ನು ವೀಕ್ಷಿಸಬೇಕೆ?</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">ಈ ಕಡತವನ್ನು ಗೂಢಲಿಪೀಕರಣಗೊಂಡ ದತ್ತಾಂಶದಲ್ಲಿ ಸಂಗ್ರಹಿಸಲಾಗಿದೆ. ದುರದೃಷ್ಟವಶಾತ್, ಬಾಹ್ಯ ವೀಕ್ಷಕದಲ್ಲಿ ಇದನ್ನು ವೀಕ್ಷಿಸಲು ತಾತ್ಕಾಲಿಕವಾಗಿ ಇದನ್ನು ಅಸಂಕೇತಿಕರಿಸಿ ಡಿಸ್ಕಿಗೆ ಬರೆಯಲಾಗುತ್ತದೆ. ನೀವು ಇದನ್ನು ಮಾಡಲು ಬಯಸುತ್ತೀರ?</string>
-  <string name="ConversationItem_received_and_processed_key_exchange_message"> ಕೀಲಿ ವಿನಿಮಯ ಸಂದೇಶವನ್ನು ಸ್ವೀಕರಿಸಲಾಗಿದೆ ಮತ್ತು ಸಂಸ್ಕರಿಸಲಾಗಿದೆ.</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">ದೋಷ, ಹಳತಾದ ಕೀಲಿ ವಿನಿಮಯ ಸಂದೇಶವನ್ನು ಸ್ವೀಕರಿಸಲಾಗಿದೆ.</string>
   <string name="ConversationItem_received_key_exchange_message_click_to_process">ಕೀಲಿ ವಿನಿಮಯ ಸಂದೇಶ ಸ್ವೀಕರಿಸಲಾಗಿದೆ, ಪ್ರಕ್ರಿಯೆಗೊಳಿಸಲು ಕ್ಲಿಕ್ ಮಾಡಿ.</string>
   <string name="ConversationItem_group_action_left">%1$s ಸಮೂಹವನ್ನು ಬಿಟ್ಟಿದ್ದಾರೆ</string>
-  <string name="ConversationItem_group_action_joined">%1$s ಸಮೂಹವನ್ನು ಸೇರಿದ್ದಾರೆ</string>
-  <string name="ConversationItem_group_action_modify">%1$s ಸಮೂಹವನ್ನು ನವೀಕರಿಸಿದ್ದಾರೆ</string>
   <string name="ConversationItem_click_to_approve_sms">ಎಸ್ಎಂಎಸ್ ಹಿಮ್ಮರಳಿಕೆ ಟ್ಯಾಪ್ ಮಾಡಿ</string>
   <string name="ConversationItem_click_to_approve_mms">ಎಮೆಮ್ಎಸ್ ಹಿಮ್ಮರಳಿಕೆ ಟ್ಯಾಪ್ ಮಾಡಿ</string>
   <string name="ConversationItem_click_to_approve_unencrypted">ಅಸುರಕ್ಷಿತ ಸಂವಾದದ ಹಿಮ್ಮರಳಿಕೆ ಟ್ಯಾಪ್ ಮಾಡಿ</string>
@@ -54,6 +51,7 @@
   <string name="ConversationItem_click_to_approve_mms_dialog_title">ಎಮ್.ಎಮ್.ಎಸ್ ಗೆ ಹಿಮ್ಮರಳಿ ?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">ಅಸುರಕ್ಶಿತ ಎಸ್.ಎಮ್.ಎಸ್ ಹಿಮ್ಮರಳಿ ?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">ಅಸುರಕ್ಶಿತ ಎಮ್.ಎಮ್.ಎಸ್ ಹಿಮ್ಮರಳಿ ?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">ಸುರಕ್ಷಿತ ಅಧಿವೇಶನ ಸ್ಥಾಪಿಸಲು ಸಾಧ್ಯವಾಗುತ್ತಿಲ್ಲ, ಈ ಕಾರಣ ಈ ಸಂದೇಶವನ್ನು ಎನ್ಕ್ರಿಪ್ಟ್  ಮಾಡಲು <b>ಸಾಧ್ಯವಿಲ್ಲ</b>. \n \n ಅಸುರಕ್ಷಿತ ಸಂದೇಶವನ್ನು ಕಳುಹಿಸಿ?</string>
   <string name="ConversationItem_unable_to_open_media">ಈ ಮೀಡಿಯಾ ತೆರೆಯಲು ಸಾಮರ್ಥ್ಯವಿರುವ ಅಪ್ಲಿಕೇಶನ್ ಹುಡುಕಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">ಸುರಕ್ಷಿತ ಸೆಷನ್ ಪ್ರಾರಂಭಿಸಿ?</string>
@@ -88,13 +86,12 @@
   <string name="ConversationFragment_confirm_message_delete">ಸಂದೇಶವನ್ನು ಅಳಿಸಿ ಹಾಕಲಾಗುತ್ತದೆ, ಖಚಿತಪಡಿಸಿ</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">ಶಾಶ್ವತವಾಗಿ ಈ ಸಂದೇಶವನ್ನು ಅಳಿಸಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?</string>
   <string name="ConversationFragment_save_to_sd_card">ಸಂಗ್ರಹಕ್ಕೆ ಉಳಿಸಲೆ?</string>
+  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">ಈ ಮಾಧ್ಯಮವನ್ನು ಸಂಗ್ರಹಕ್ಕೆ ಉಳಿಸಲಾಗುತ್ತಿದೆ. ನಿಮ್ಮ ಫೋನಿನ  ಯಾವುದೇ ಅಪ್ಲಿಕೇಶನ್ಗಳು ಇದನ್ನು ನಿಲುಕಿಸಿಕೊಳ್ಳುವ ಅವಕಾಶವಿದೆ \n \ n ಮುಂದುವರಿಯುಲೆ?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">ಸಂಗ್ರಹಕ್ಕೆ ಲಗತ್ತನ್ನು ಉಳಿಸುವಾಗ ತೊಡಕಾಗಿದೆ!</string>
   <string name="ConversationFragment_success_exclamation">ಯಶಸ್ವಿಯಾಗಿದೆ!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">ಸಂಗ್ರಹಕ್ಕೆ ಬರೆಯಲು ಸಾಧ್ಯವಿಲ್ಲ!</string>
   <string name="ConversationFragment_saving_attachment">ಲಗತ್ತು ಉಳಿಸಲಾಗುತ್ತಿದೆ</string>
   <string name="ConversationFragment_saving_attachment_to_sd_card">ಸಂಗ್ರಹಕ್ಕೆ ಲಗತ್ತನ್ನು ಉಳಿಸಲಾಗುತ್ತಿದೆ...</string>
-  <!--ConversationListAdapter-->
-  <string name="ConversationListAdapter_key_exchange_message">ಕೀಲಿ ವಿನಿಮಯ ಸಂದೇಶ ...</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">ಸಂವಾದದ ಎಳೆಗಳನ್ನು ಅಳಿಸು?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">ನೀವು ಆಯ್ಕೆ ಮಾಡಲಾದ ಎಲ್ಲಾ ಸಂವಾದವನ್ನು ಎಳೆಗಳನ್ನು ಅಳಿಸಲು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?</string>
@@ -105,9 +102,6 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">ಜೊತೆ ಹಂಚಿಕೊಳ್ಳಿ </string>
   <!--ExportFragment-->
-  <string name="ExportFragment_export_to_sd_card">ಎಸ್.ಡಿ  ಕಾರ್ಡ್ಗೆ ರಫ್ತು ಮಾಡಿ?</string>
-  <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">ಇದು
-ಏಸ್.ಡಿ ಕಾರ್ಡ್ಗೆ ನಿಮ್ಮ ಗೂಢಲಿಪೀಕರಣಗೊಂಡ ಕೀಲಿಗಳನ್ನು, ಸೆಟ್ಟಿಂಗ್ಗಳನ್ನು ಮತ್ತು ಸಂದೇಶಗಳ ರಫ್ತು ಮಾಡುತ್ತದೆ.</string>
   <string name="ExportFragment_export">ರಫ್ತು ಮಾಡಿ</string>
   <string name="ExportFragment_export_plaintext_to_sd_card">ಎಸ್ ಡಿ ಕಾರ್ಡ್ಗೆ ಸರಳಪಠ್ಯ ರಫ್ತು ಮಾಡಿ?</string>
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">ಎಚ್ಚರಿಕೆ, ಇದು ಏಸ್.ಡಿ ಕಾರ್ಡ್ಗೆ ನಿಮ್ಮ ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯೂರ್ ಸಂದೇಶಗಳ ಅಂತರ್ಯವನ್ನು ಸರಳಪಠ್ಯ ರೂಪದಲ್ಲಿ ರಫ್ತು ಮಾಡುತ್ತದೆ.</string>
@@ -117,8 +111,8 @@
   <string name="ExportFragment_error_unable_to_write_to_sd_card">ದೋಷ ⏎ ಎಸ್ ಡಿ ಕಾರ್ಡ್ಗೆ ಬರೆಯಲು ಸಾಧ್ಯವಾಗುವುತ್ತಿಲ್ಲ! ⏎</string>
   <string name="ExportFragment_error_while_writing_to_sd_card">ಎಸ್.ಡಿ ಕಾರ್ಡ್ಗೆ ಬರೆಯುವಾಗ ದೋಷವಾಗಿದೆ. ⏎</string>
   <string name="ExportFragment_success">ಯಶಸ್ವಿಯಾಗಿದೆ!</string>
-  <string name="ExportFragment_exporting_keys_settings_and_messages">ಗೂಢಲಿಪೀಕರಣಗೊಂಡ ಕೀಲಿಗಳನ್ನು,
-ಸೆಟ್ಟಿಂಗ್ಗಳನ್ನು ಮತ್ತು ಸಂದೇಶಗಳನ್ನು ರಫ್ತು ಮಾಡಲಾಗುತ್ತಿದೆ ...</string>
+  <!--GcmRefreshJob-->
+  <string name="GcmRefreshJob_Permanent_TextSecure_communication_failure">ಶಾಶ್ವತ ಟೆಕ್ಸ್ಟ ಸೆಕ್ಯೂರ್ ಸಂಪರ್ಕ ವೈಫಲ್ಯ!</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">ಹೋಸ ಸಮೂಹ </string>
   <string name="GroupCreateActivity_actionbar_update_title">ಸಮೂಹವನ್ನು ನವೀಕರಿಸಿ</string>
@@ -129,11 +123,12 @@
   <string name="GroupCreateActivity_contacts_mms_exception">ಅನಿರೀಕ್ಷಿತ ದೋಷ ಸಂಭವಿಸಿದೆ ಹಾಗು ಗುಂಪು ಸೃಷ್ಟಿ ವಿಫಲಗೊಂಡಿದೆ .</string>
   <string name="GroupCreateActivity_contacts_no_members">ನಿಮ್ಮ ಗುಂಪಿನಲ್ಲಿ ಕನಿಷ್ಠ ಒಬ್ಬ ವ್ಯಕ್ತಿಯ ಅಗತ್ಯವಿದೆ!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">ನಿಮ್ಮ ಗುಂಪಿನ ಒಬ್ಬ ಸದಸ್ಯ ಸರಿಯಾಗಿ ಓದಲು ಸಾಧ್ಯವಿಲ್ಲದ ಸಂಖ್ಯೆಯನ್ನು ಹೊಂದಿದ್ದಾರೆ. ಸರಿಪಡಿಸಿ ಅಥವಾ ಸಂಪರ್ಕವನ್ನು ತೆಗೆದು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.</string>
-  <string name="GroupCreateActivity_file_io_exception">ಫೈಲ್ I / O ದೋಷ, ತಾತ್ಕಾಲಿಕ ಚಿತ್ರ ಕಡತವನ್ನು ರಚಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ.</string>
   <string name="GroupCreateActivity_avatar_content_description">ಸಮೂಹದ ಚಿತ್ರ</string>
   <string name="GroupCreateActivity_menu_create_title">ಸಮೂಹವನ್ನು ರಚಿಸಿ</string>
   <string name="GroupCreateActivity_creating_group">ಸೃಷ್ಟಿಸಲಾಗುತ್ತಿದೆ %1$s…</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">ಈಗಿರುವ ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯೂರ್  ಗುಂಪಿಗೆ  ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯೂರ್ ಅಲ್ಲದ ಸಂಪರ್ಕಗಳನ್ನು ಸೇರಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ</string>
+  <!--GroupMembersDialog-->
+  <string name="GroupMembersDialog_me">ನಾನು</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">ಆಯಾತ</string>
   <string name="ImportExportActivity_export">ರಫ್ತು ಮಾಡಿ</string>
@@ -163,7 +158,6 @@
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">ಸ್ಕ್ಯಾನ್ ಮಾಡಲಾದ ಕೀಲಿ ಕಂಡುಬಂದಿಲ್ಲ!</string>
   <!--MmsDownloader-->
-  <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">ಎಂ.ಎಂ.ಎಸ್ ಡೌನ್ಲೋಡ್ಗಾಗಿ ಯಾವುದೇ ಸಂಪರ್ಕ ಲಭ್ಯವಿಲ್ಲ, ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ ...</string>
   <string name="MmsDownloader_error_storing_mms">ಎಂ. ಎಂ. ಎಸ್ ಸಂಗ್ರಹಿಸಿಡುವಾಗ ದೋಷ ಸಂಭವಿಸಿದೆ!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">ಎಂ.ಎಂ.ಎಸ್ ಪೂರೈಕೆದಾರರಿಗೆ ಸಂಪರ್ಕಿಸುವಾಗ ದೋಷ ...</string>
   <string name="MmsDownloader_error_reading_mms_settings">ನಿಸ್ತಂತು ಒದಗಿಸುವವರ ಎಂ.ಎಂ.ಎಸ್ ಸೆಟ್ಟಿಂಗ್ಗಳನ್ನು ಓದುವಲ್ಲಿ ದೋಷವಾಗಿದೆ...</string>
@@ -178,10 +172,6 @@
   <string name="PassphrasePromptActivity_watermark_content_description">ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯೂರ್ ಲಾಂಛನ</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">ಗುಪ್ತಪದವನ್ನು ಸಲ್ಲಿಸು</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">ಗುಪ್ತಪದ ಮಾನ್ಯವಾದದ್ದಲ್ಲ!</string>
-  <!--PromptMmsActivity-->
-  <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">ನಿಮ್ಮ ವಾಹಕಕ್ಕೆ ಎಮ್.ಎಮ್.ಎಸ್.ಸಿ ಯು.ಆರ್.ಎಲ್ ಸೂಚಿಸಬೇಕು.</string>
-  <string name="PromptMmsActivity_mms_settings_updated">ಎಂ.ಎಂ.ಎಸ್ ಸೆಟ್ಟಿಂಗ್ಗಳನ್ನು ನವೀಕರಿಸಲಾಗಿದೆ</string>
-  <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">ನೀವು ಯಾವುದೇ ಸಮಯದಲ್ಲಿ ಈ ಮೌಲ್ಯಗಳನ್ನು ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯೂರ್ ಸೆಟ್ಟಿಂಗ್ಗಸ್ ಮೆನುವಿನಲ್ಲಿ ಮಾರ್ಪಡಿಸಬಹುದು.</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">ಈ ಕೀಲಿ ವಿನಿಮಯದ ಮೇಲಿನ ಸಹಿ ನೀವು ಹಿಂದೆ ಈ ಸಂಪರ್ಕದಿಂದ ಸ್ವೀಕರಿಸಿದ್ದಕಿಂತ ಭಿನ್ನವಾಗಿದೆ. ಇದು ಯಾರಾದರೂ ನಿಮ್ಮ ಸಂವಹನವನ್ನು ಅಡ್ಡಿಪಡಿಸಲು ಪ್ರಯತ್ನಿಸುತ್ತಿರಬಹುದು ಅಥವಾ ಈ ಸಂಪರ್ಕ ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯೂರ್ ಮರು ಸ್ಥಾಪಿಸಿ, ಈಗ ಹೊಸ ಗುರುತನ್ನು ಕೀಲಿ ಹೊಂದಿದೆ ಅರ್ಥ.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">ನೀವು ಪರಿಶೀಲಿಸಲು ಇಚ್ಛಿಸಬಹುದಾದ ⏎ 
@@ -208,7 +198,6 @@
   <string name="RegistrationProgressActivity_verifying_number">ಸಂಖ್ಯೆಯನ್ನು ಪರಿಶೀಲಿಸಲಾಗುತ್ತಿದೆ</string>
   <string name="RegistrationProgressActivity_edit_s">%s ಸಂಪಾದಿಸಿ</string>
   <string name="RegistrationProgressActivity_registration_complete">ನೋಂದಣಿ ಪೂರ್ಣಗೊಂಡಿದೆ!</string>
-  <string name="RegistrationProgressActivity_possible_problems">ಸಂಭಾವ್ಯ ಸಮಸ್ಯೆಗಳು.</string>
   <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">ನೀವು ಮೊದಲ ಸ್ವೀಕರಿಸಿದ ಸಂಕೇತವನ್ನು ನಮೂದಿಸಬೇಕು ...</string>
   <string name="RegistrationProgressActivity_connecting">ಸಂಪರ್ಕಿಸಲಾಗುತ್ತಿದೆ</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">ಪರಿಶೀಲನೆಗಾಗಿ ಸಂಪರ್ಕಿಸಲಾಗುತ್ತಿದೆ ...</string>
@@ -224,7 +213,6 @@
   <string name="RegistrationProgressActivity_the_server_encountered_an_error">ಸರ್ವರ್ ದೋಷವನ್ನು ಎದುರಿಸಿದೆ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.</string>
   <string name="RegistrationProgressActivity_too_many_requests">ಅತೀ ಹೆಚ್ಚು ವಿನಂತಿಗಳು!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">ನೀವು ಈಗಾಗಲೇ ಧ್ವನಿ ಕರೆಯನ್ನು ವಿನಂತಿಸಿರುವಿರಿ. ನೀವು 20 ನಿಮಿಷಗಳಲ್ಲಿ ಮತ್ತೊಂದುನ್ನು ಕೋರಬಹುದು.</string>
-  <string name="RegistrationProgressActivity_verifying_voice_code">ಧ್ವನಿ ಸಂಕೇತವನ್ನು ಪರಿಶೀಲಿಸಲಾಗುತ್ತಿದೆ ...</string>
   <string name="RegistrationProgressActivity_registration_conflict">ನೋಂದಣಿ ಪೂರ್ಣಗೊಂಡಿದೆ!</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">ನೋಂದಣಿ ಪೂರ್ಣಗೊಂಡಿದೆ</string>
@@ -254,13 +242,6 @@
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">ಅವರ ಕೀಲಿ ಸರಿಯಾಗಿದೆ. ಅವರು ನಿಮ್ಮ ಕೀಲಿಯನ್ನು ಪರಿಶೀಲಿಸುವುದು ಸಹ ಅವಶ್ಯಕ.</string>
   <string name="VerifyIdentityActivity_verified_exclamation">ಪರಿಶೀಲಿಸಲಾಗಿದೆ</string>
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">ನೀವು ಗುರುತನ್ನು ಕೀಲಿಯನ್ನು ಹೊಂದಿಲ್ಲ!</string>
-  <!--VerifyKeysActivity-->
-  <string name="VerifyKeysActivity_get_my_fingerprint_scanned">ನನ್ನ ಬೆರಳಗುರುತಿನ ಸ್ಕ್ಯಾನ್ ಪಡೆಯಿರಿ</string>
-  <string name="VerifyKeysActivity_scan_their_fingerprint">ಅವರ ಬೆರಳಚ್ಚುಗಳನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡಿ</string>
-  <string name="VerifyKeysActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully2">ಎಚ್ಚರಿಕೆ, ಸ್ಕ್ಯಾನ್ ಮಾಡಲಾದ ಕೀಲಿ ಹೊಂದಿಕೆಯಾಗುತ್ತಿಲ್ಲ! ಬೆರಳಚ್ಚುಗಳನ್ನು ಎಚ್ಚರಿಕೆಯಿಂದ ಪರಿಶೀಲಿಸಿ. </string>
-  <string name="VerifyKeysActivity_not_verified_exclamation">ಪರಿಶೀಲಿಸಿಲ್ಲ!</string>
-  <string name="VerifyKeysActivity_their_key_is_correct_it_is_also_necessary_to_get_your_fingerprint_scanned_as_well">ಅವರ ಕೀಲಿ ಸರಿಯಾಗಿದೆ. ಅವರು ನಿಮ್ಮ ಕೀಲಿಯನ್ನು ಪರಿಶೀಲಿಸುವುದು ಸಹ ಅವಶ್ಯಕ.</string>
-  <string name="VerifyKeysActivity_verified_exclamation">ಪರಿಶೀಲಿಸಲಾಗಿದೆ</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">ನೀವು ಗುರುತಿನ  ಕೀಲಿಯನ್ನು ಹೊಂದಿಲ್ಲ.</string>
   <string name="ViewIdentityActivity_scan_to_compare">ಹೋಲಿಸಲು ಸ್ಕ್ಯಾನ್ ಮಾಡಿ</string>
@@ -269,7 +250,6 @@
   <string name="ViewIdentityActivity_not_verified_exclamation">ಪರಿಶೀಲಿಸಿಲ್ಲ!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">ಸ್ಕ್ಯಾನ್ ಮಾಡಲಾದ ಕೀಲಿಗಳು ಸಮಾನವಾಗಿವೆ!</string>
   <string name="ViewIdentityActivity_verified_exclamation">ಪರಿಶೀಲಿಸಲಾಗಿದೆ</string>
-  <string name="ViewIdentityActivity_identity_fingerprint">ಗುರುತಿನ ಬೆರಳಚ್ಚು</string>
   <string name="ViewIdentityActivity_my_identity_fingerprint">ನನ್ನ ಗುರುತಿನ ಬೆರಳಚ್ಚು</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ವಿನಂತಿ ಹೊರತಾಗಿಯೂ ಸಹ ಪುನಃ ಪ್ರಾರಂಭಿಸಿ?</string>
@@ -289,8 +269,6 @@
   <string name="MmsMessageRecord_decrypting_mms_please_wait">ಎಂ. ಎಂ. ಎಸ್ ಅಸಂಕೇತಿಕರಣಗೊಳಿಸಲಾಗುತ್ತಿದೆ, ದಯವಿಟ್ಟು ನಿರೀಕ್ಷಿಸಿ ...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">ಕಳಪೆ ಗೂಢಲಿಪೀಕರಣಗೊಂಡ ಎಂ. ಎಂ. ಎಸ್ ಸಂದೇಶ ...</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">ಎಂಎಂಎಸ್ ಸಂದೇಶವು ಅಸ್ತಿತ್ವದಲ್ಲಿರದ ಸೆಶನ್ನಿಗೆ ಗೂಢಲಿಪೀಕರಣಗೊಂಡಿದೆ...</string>
-  <!--MmsSender-->
-  <string name="MmsSender_currently_unable_to_send_your_mms_message">ನಿಮ್ಮ ಎಂ.ಎಂ.ಎಸ್ ಸಂದೇಶವನ್ನು ಕಳುಹಿಸಲು ಪ್ರಸ್ತುತ ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">ಆಮದು ಪ್ರಗತಿಯಲ್ಲಿದೆ</string>
   <string name="ApplicationMigrationService_importing_text_messages">ಪಠ್ಯ ಸಂದೇಶಗಳನ್ನು ಆಮದು ಮಾಡಲಾಗುತ್ತಿದೆ</string>
@@ -309,21 +287,6 @@
   <string name="MessageNotifier_error_delivering_message">ಸಂದೇಶವನ್ನು ತಲುಪಿಸುವುದರಲ್ಲಿದೋಷ ಸಂಭವಿಸಿದೆ</string>
   <string name="MessageNotifier_mark_all_as_read">ಎಲ್ಲವನ್ನು ಓದಿದೆ ಎಂದು ಗುರುತು ಮಾಡಿ</string>
   <string name="MessageNotifier_mark_as_read">ಓದಿದೆ ಎಂದು ಗುರುತು ಮಾಡಿ</string>
-  <!--ViewLocalIdentityActivity-->
-  <string name="ViewLocalIdentityActivity_regenerating">ಪುನರುತ್ಥಾನಗೊಳಿಸಲಾಗುತ್ತಿದೆ</string>
-  <string name="ViewLocalIdentityActivity_regenerating_identity_key">ಮರುಸೃಷ್ಟಿಸಲಾಗುತ್ತಿದೆ  ⏎ 
-ಗುರುತಿನ ಕೀಲಿ ... ⏎</string>
-  <string name="ViewLocalIdentityActivity_regenerated">ಪುನರುತ್ಥಾನಗೊಳಿಸಲಾಗಿದೆ!</string>
-  <string name="ViewLocalIdentityActivity_reset_identity_key">ಗುರುತಿನ ಕೀಲಿ ಮರುಹೊಂದಿಸಿ?</string>
-  <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">
-⏎
-ಎಚ್ಚರಿಕೆ! ನಿಮ್ಮ ಗುರುತಿನ ಕೀಲಿಯನ್ನು ಮರುಸೃಷ್ಟಿಸುವ ಮೂಲಕ, ನಿಮ್ಮ ಪ್ರಸ್ತುತ ಗುರುತಿನ ಕೀಲಿಯನ್ನು ಶಾಶ್ವತವಾಗಿ ಕಳೆದುಕೊಳ್ಳುತ್ತೀರಿ, ⏎ 
-ಮತ್ತು ನಿಮ್ಮ ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ಸಂಪರ್ಕಗಳು ನಿಮ್ಮೊಂದಿಗೆ ಹೊಸ ಸುರಕ್ಷಿತ ಸೆಷನ್ಸ್ ಸ್ಥಾಪಿಸುವ ಸಂದರ್ಭದಲ್ಲಿ ಎಚ್ಚರಿಕೆಗಳನ್ನು ಸ್ವೀಕರಿಸುತ್ತಾರೆ.  ⏎ 
-ನೀವು ಮುಂದುವರಿಸಲು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ? ⏎</string>
-  <string name="ViewLocalIdentityActivity_cancel">ರದ್ದುಮಾಡು</string>
-  <string name="ViewLocalIdentityActivity_continue">ಮುಂದುವರಿಸು</string>
-  <!--SmsReceiver-->
-  <string name="SmsReceiver_currently_unable_to_send_your_sms_message">ಪ್ರಸ್ತುತ ನಿಮ್ಮ ಎಸ್.ಎಮ್.ಎಸ್ ಸಂದೇಶ ಕಳುಹಿಸಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ. ಸೇವೆ ಲಭ್ಯವಾದ ತಕ್ಷಣ ಕಳುಹಿಸಲಾಗುವುದು.</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">ಕ್ಷಮಿಸಿ, ತ್ವರಿತ ಪ್ರತಿಕ್ರಿಯೆಯನ್ನು ಸದ್ಯಕ್ಕೆ ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯೂರ್ ಬೆಂಬಲಿಸುತ್ತಿಲ್ಲ!</string>
   <!--auto_initiate_activity-->
@@ -340,6 +303,7 @@
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">ನೀವು ಪುಶ್ ಸೇವೆಯೊಂದಿಗೆ ನೋಂದಾಯಿಸಿಕೊಂಡಿಲ್ಲ...</string>
   <string name="SingleContactSelectionActivity_updating_directory">ಡೈರೆಕ್ಟರಿಯನ್ನು ನವೀಕರಿಸಲಾಗುತ್ತಿದೆ</string>
+  <string name="SingleContactSelectionActivity_updating_push_directory">ಪುಶ್ ಕೋಶವನ್ನು ನವೀಕರಿಸಲಾಗುತ್ತಿದೆ ...</string>
   <string name="SingleContactSelectionActivity_contact_photo">ಸಂಪರ್ಕದ ಛಾಯಾಚಿತ್ರ</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">ಗೆ ಆಯ್ಕೆಮಾಡಿ</string>
@@ -355,6 +319,7 @@
   <string name="conversation_activity__remove">ತೆಗೆದುಹಾಕಿ</string>
   <string name="conversation_activity__window_description">%1$s ಅವರೊಂದಿಗೆ ಸಂವಾದ</string>
   <string name="conversation_activity__compose_description">ಸಂದೇಶ ಸಂಯೋಜನೆ</string>
+  <string name="conversation_activity__emoji_toggle_description">ಎಮೊಜಿಯ ಕೀಲಿಮಣೆಗೆ ಟಾಗಲ್ ಮಾಡಿ</string>
   <!--conversation_item-->
   <string name="conversation_item__play_button_description">ಪ್ಲೇ ಬಟನ್</string>
   <string name="conversation_item__secure_message_description">ಸುರಕ್ಷಿತ ಸಂದೇಶ</string>
@@ -374,21 +339,7 @@
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">ರಾಷ್ಟ್ರಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ ...</string>
   <string name="country_selection_fragment__search">ಹುಡುಕಿ</string>
-  <!--create_passphrase_activity-->
-  <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">ನೀವು ಸ್ಥಳೀಯವಾಗಿ ನಿಮ್ಮ ದತ್ತಾಂಶವನ್ನು ಗೂಢಲಿಪೀಕರಿಸ ಬಯಸಿದಲ್ಲಿ ಗುಪ್ತವಾಕ್ಯಾಂಶವನ್ನು ಆರಿಸಿ.</string>
-  <string name="create_passphrase_activity__passphrase">ಗುಪ್ತಪದ:</string>
-  <string name="create_passphrase_activity__repeat">ಪುನರಾವರ್ತಿಸಿ:</string>
-  <string name="create_passphrase_activity__continue">ಮುಂದುವರಿಸು</string>
-  <string name="create_passphrase_activity__generating_secrets">ರಹಸ್ಯಗಳನ್ನು ಉತ್ಪಾದಿಸುತ್ತಿದ್ದೇವೆ</string>
-  <string name="create_passphrase_activity__skip">ಬಿಟ್ಟು ಮುಂದುವರಿ</string>
-  <string name="create_passphrase_activity__create">ರಚಿಸಿ</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__button_cancel">ಸಲ್ಲಿಸಬೇಡಿ</string>
-  <string name="log_submit_activity__button_ok">ಸಲ್ಲಿಸು</string>
-  <string name="log_submit_activity__log_submit_success_title">ಯಶಸ್ವಿಯಾಗಿದೆ!</string>
-  <string name="log_submit_activity__log_got_it">ಅರ್ಥವಾಯಿತು</string>
-  <string name="log_submit_activity__copied_to_clipboard">ಕ್ಲಿಪ್ಬೋರ್ಡ್ಗೆ ನಕಲು ಮಾಡಲಾಗಿದೆ</string>
-  <string name="log_submit_activity__loading_logcat">ಲಾಗ್ ಕ್ಯಾಟ್ ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ ...</string>
   <string name="log_submit_activity__thanks">ನಿಮ್ಮ ಸಹಾಯಕ್ಕೆ ಧನ್ಯವಾದಗಳು!</string>
   <string name="log_submit_activity__submitting">ಸಲ್ಲಿಸಲಾಗುತ್ತಿದೆ</string>
   <!--database_migration_activity-->
@@ -400,9 +351,6 @@
   <string name="database_migration_activity__importing">ಆಮದು ಮಾಡಲಾಗುತ್ತಿದೆ</string>
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">ದತ್ತಾಂಶ ಆಧುನಿಕಗೊಳಿಸಲಾಗುತ್ತಿದೆ ...</string>
-  <string name="export_fragment__export_encrypted_backup">ಗೂಢಲಿಪೀಕರಣಗೊಂಡ ಬ್ಯಾಕ್ಅಪ್ ಅನ್ನು ರಫ್ತು ಮಾಡಿ</string>
-  <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">ಎಸ್.ಡಿ  ಕಾರ್ಡ್ಗೆ 
-ಒಂದು ಗೂಢಲಿಪೀಕರಣಗೊಂಡ ⏎ ಬ್ಯಾಕ್ಅಪ್ ಅನ್ನು ರಫ್ತು ಮಾಡಿ.</string>
   <string name="export_fragment__export_plaintext_backup">ಸರಳಪಠ್ಯದ ಬ್ಯಾಕಪ್ ಅನ್ನು ರಫ್ತು ಮಾಡಿ</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">
 ಏಸ್ ಡಿ  ಕಾರ್ಡ್ಗೆ \'SMSBackup And Restore\' ಹೊಂದಬಲ್ಲ ಒಂದು ಸರಳಪಠ್ಯ ಬ್ಯಾಕ್ಅಪ್ ಅನ್ನು ರಫ್ತು ಮಾಡಿ.</string>
@@ -414,19 +362,14 @@
   <string name="import_fragment__import_plaintext_backup">ಸರಳಪಠ್ಯದ  ಬ್ಯಾಕಪ್ ಅನ್ನು ಆಮದು ಮಾಡಿಕೊಳ್ಳಿ</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 ಒಂದು ಸರಳಪಠ್ಯ ಬ್ಯಾಕಪ್ ಕಡತವನ್ನು ಆಮದು ಮಾಡಿಕೊಳ್ಳಿ . \'SMSBackup And Restore\' ಜೋತೆ ಹೊಂದಿಕೆಯಾಗುತ್ತದೆ.</string>
-  <string name="local_identity__regenerate_key">ಕೀಲಿ ಮರುರಚಿಸಿ</string>
   <!--mms_preferences_activity-->
   <string name="mms_preferences_activity__manual_mms_settings_are_required">ನಿಮ್ಮ ದೂರವಾಣಿಗೆ ಹಸ್ತಚಾಲಿತ ಎಂ.ಎಂ.ಎಸ್ ಸೆಟ್ಟಿಂಗ್ಗಳ ಅಗತ್ಯವಿದೆ.</string>
   <!--prompt_passphrase_activity-->
-  <string name="prompt_passphrase_activity__textsecure_passphrase">ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯೂರ್ ಗುಪ್ತಪದ</string>
   <string name="prompt_passphrase_activity__unlock">ಅನ್ಲಾಕ್</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯುರಗೆ  ನಿಮ್ಮ ನಿಸ್ತಂತು ವಾಹಕ ಮೂಲಕ ಮಾಧ್ಯಮ ಮತ್ತು ಗುಂಪು ಸಂದೇಶಗಳನ್ನು ತಲುಪಿಸಲು ಎಂಎಂಎಸ್ ಸೆಟ್ಟಿಂಗ್ಗಳ ಅಗತ್ಯವಿದೆ.
 ನಿಮ್ಮ ಸಾಧನ, ಈ ಮಾಹಿತಿಯನ್ನು ಲಭ್ಯ ಮಾಡುವುದಿಲ್ಲ. ಇದು ಲಾಕ್ ಮಾಡಲಾದ ಸಾಧನಗಳು ಮತ್ತು ಇತರ ನಿರ್ಬಂಧಿತ ಸಂರಚನೆಗಳನ್ನು ಉಳ್ಳ ಸಾಧನಗಳಲ್ಲಿ ಕೆಲವೊಮ್ಮೆ ಆಗುತ್ತದೆ.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">ಮಾಧ್ಯಮ ಮತ್ತು ಗುಂಪು ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು, \'OK\' ಅನ್ನು ಕ್ಲಿಕ್ ಮಾಡಿ ಮತ್ತು ವಿನಂತಿಸಿದ ಸೆಟ್ಟಿಂಗ್ಗಳನ್ನು ಪೂರ್ಣಗೊಳಿಸಿ. ನಿಮ್ಮ ವಾಹಕದ   ಎಂಎಂಎಸ್ ಸೆಟ್ಟಿಂಗ್ಗಳನ್ನು ಸಾಮಾನ್ಯ ಹುಡುಕಾಟದ ಮೂಲಕ ಕಂಡುಹಿಡಿಯಬಹುದು. </string>
-  <string name="prompt_mms_activity__mmsc_url_required">ಎಂ.ಎಂ.ಎಸ್.ಸಿ ಯು.ಆರ್.ಎಲ್ (ಅಗತ್ಯ):</string>
-  <string name="prompt_mms_activity__mms_proxy_host_optional">ಎಂ.ಎಂ.ಎಸ್ ಪ್ರಾಕ್ಸಿ ಹೋಸ್ಟ್ (ಐಚ್ಛಿಕ):</string>
-  <string name="prompt_mms_activity__mms_proxy_port_optional">ಎಂ.ಎಂ.ಎಸ್ ಪ್ರಾಕ್ಸಿ ಪೋರ್ಟ್ (ಐಚ್ಛಿಕ):</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">ಪೂರ್ಣಗೊಳಿಸಿ</string>
   <!--registration_activity-->
@@ -480,36 +423,22 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>ಹೆಸರು ಅಥವಾ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ</small></string>
   <string name="recipients_panel__add_member">ಸದಸ್ಯರನ್ನು ಸೇರಿಸಿ </string>
-  <!--review_identities-->
-  <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">ನೀವು ಪ್ರಸ್ತುತ ನಿಮ್ಮ ನಂಬಿಕೆ ದತ್ತಾಂಶ ಸಂಗ್ರಹದಲ್ಲಿ ಯಾವುದೇ ಗುರುತು ಕೀಲಿಗಳನ್ನು ಹೊಂದಿಲ್ಲ.</string>
   <!--verify_identity_activity-->
   <string name="verify_identity_activity__their_identity_they_read">ಅವರ ಗುರುತು (ಅವರು ಓದುವುದು):</string>
   <string name="verify_identity_activity__your_identity_you_read">ನಿಮ್ಮ ಗುರುತು (ನೀವು ಓದುವುದು):</string>
-  <!--verify_import_identity_activity-->
-  <string name="verify_import_identity_activity__identity_name_n">ಗುರುತಿನ ಹೆಸರು:\\n</string>
-  <string name="verify_import_identity_activity__imported_identity_n">ಆಮದು ಮಾಡಿಕೊಂಡ ಗುರುತು:\\n</string>
-  <string name="verify_import_identity_activity__verified">ಪರಿಶೀಲಿಸಲಾಗಿದೆ</string>
-  <string name="verify_import_identity_activity__compare">ಹೋಲಿಸಿ</string>
-  <!--verify_keys_activity-->
-  <string name="verify_keys_activity__they_read_this">ಅವರು ಇದನ್ನು ಓದುವರು:</string>
-  <string name="verify_keys_activity__you_read_this">ನೀವು ಇದನ್ನು ಓದುವರು: </string>
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">ಗುಪ್ತಪದ ರಚಿಸಿ</string>
   <string name="AndroidManifest__enter_passphrase">ಗುಪ್ತಪದ ನಮೂದಿಸಿ</string>
   <string name="AndroidManifest__select_contacts">ಸಂಪರ್ಕಗಳನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
-  <string name="AndroidManifest__select_contact">ಸಂಪರ್ಕವನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
   <string name="AndroidManifest__textsecure_detected">ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯೂರ್ ಪತ್ತೆಹಚ್ಚಲಾಗಿದೆ</string>
   <string name="AndroidManifest__public_identity_key">ಸಾರ್ವಜನಿಕ ಗುರುತಿನ ಕೀಲಿ</string>
   <string name="AndroidManifest__change_passphrase">ಗುಪ್ತಪದವನ್ನು ಬದಲಾಯಿಸಿ</string>
-  <string name="AndroidManifest__verify_session">ಸೆಷನ್ನನ್ನು ಪರಿಶೀಲಿಸಿ</string>
   <string name="AndroidManifest__verify_identity">ಗುರುತನ್ನು ಪರಿಶೀಲಿಸಿ</string>
-  <string name="AndroidManifest__manage_identity_keys">ಗುರುತಿನ ಕೀಲಿಗಳನ್ನು ನಿರ್ವಹಿಸಿ</string>
   <string name="AndroidManifest__complete_key_exchange">ಕೀಲಿ ವಿನಿಮಯ ಪೂರ್ಣಗೊಳಿಸಿ</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">ಆಮದು / ರಫ್ತು</string>
   <string name="arrays__my_identity_key">ನನ್ನ ಗುರುತಿನ ಕೀಲಿ</string>
   <!--preferences.xml-->
-  <string name="preferences__general">ಸಾಮಾನ್ಯ</string>
   <string name="preferences__push_sms_category">ಪುಶ್ ಮತ್ತು ಎಸ್ಎಮ್ಎಸ್</string>
   <string name="preferences__pref_all_sms_title">ಎಲ್ಲಾ ಎಸ್ ಎಂ ಎಸ್ ಪಡೆಯುವಿರಿ</string>
   <string name="preferences__pref_all_mms_title">ಎಲ್ಲಾ ಎಸ್ ಎಂ ಎಸ್ ಪಡೆಯುವಿರಿ</string>
@@ -534,10 +463,6 @@
   <string name="preferences__pref_timeout_interval_dialogtitle">ಗುಪ್ತಪದದ ಕಾಲಾವಧಿಯನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
   <string name="preferences__pref_timeout_interval_title">ಕಾಲಾವಧಿ</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">ಸ್ಮರಣೆಯಿಂದ ಗುಪ್ತಪದವನ್ನು ಮರೆಯುವ ಮೊದಲು ಕಾಯಬೇಕಿರುವ ಸಮಯ ಪ್ರಮಾಣ</string>
-  <string name="preferences__identity_key_settings">ಗುರುತಿನ ಕೀಲಿಗಳು</string>
-  <string name="preferences__view_my_identity_key">ನನ್ನ ಗುರುತಿನ ಕೀಲಿ ವೀಕ್ಷಿಸಿ</string>
-  <string name="preferences__manage_identity_keys">ಗುರುತಿನ ಕೀಲಿಗಳನ್ನು ನಿರ್ವಹಿಸಿ</string>
-  <string name="preferences__manage_configured_identity_keys">ಸಂರಚಿಸಲಾದ ಗುರುತಿನ ಕೀಲಿಗಳನ್ನು ನಿರ್ವಹಿಸಿ</string>
   <string name="preferences__notifications">ಸೂಚನೆಗಳು</string>
   <string name="preferences__display_message_notifications_in_status_bar">ಸ್ಥಿತಿ ಪಟ್ಟಿಯಲ್ಲಿ ಸಂದೇಶದ ಸೂಚನೆಗಳನ್ನು ಪ್ರದರ್ಶಿಸಿ</string>
   <string name="preferences__led_color">ಎಲ್. ಇ. ಡಿ ಬಣ್ಣ</string>
@@ -631,10 +556,8 @@
   <string name="conversation_list_batch__menu_select_all">ಎಲ್ಲಾ ಆಯ್ಕೆಮಾಡಿ</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">ಹುಡುಕಿ</string>
-  <string name="conversation_list__drawer_close">ನ್ಯಾವಿಗೇಶನ್ ಡ್ರಾಯರ್ ಮುಚ್ಚಿರಿ</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">ಸುರಕ್ಷತೆ</string>
-  <string name="conversation_secure_verified__menu_no_identity">ಯಾವುದೇ ಗುರುತು ಲಭ್ಯವಿಲ್ಲ</string>
   <string name="conversation_secure_verified__menu_verify_identity">ಗುರುತನ್ನು ಪರಿಶೀಲಿಸಿ</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">ಸುರಕ್ಷಿತ ಸೆಷನ್ ಕೊನೆಗೊಳಿಸು</string>
   <!--conversation-->
@@ -652,16 +575,12 @@
   <string name="key_scanning__menu_compare">ಹೋಲಿಸಿ</string>
   <string name="key_scanning__menu_get_scanned_to_compare">ಹೋಲಿಸಲು ಸ್ಕ್ಯಾನ್ ಮಾಡಿಕೊಳ್ಳಿ</string>
   <string name="key_scanning__menu_scan_to_compare">ಹೋಲಿಸಲು ಸ್ಕ್ಯಾನ್ ಮಾಡಿ</string>
-  <!--text_secure_locked-->
-  <string name="text_secure_locked__menu_unlock">ಅನ್ಲಾಕ್</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">ಹೊಸ ಸಂದೇಶ</string>
   <string name="text_secure_normal__menu_new_group">ಹೋಸ ಸಮೂಹ </string>
   <string name="text_secure_normal__menu_settings">ಸೆಟ್ಟಿಂಗ್ಗಳು</string>
   <string name="text_secure_normal__menu_clear_passphrase">ಬೀಗ ಹಾಕಿ</string>
   <string name="text_secure_normal__mark_all_as_read">ಎಲ್ಲವನ್ನು ಓದಿದೆ ಎಂದು ಗುರುತು ಮಾಡಿ</string>
-  <!--verify_keys-->
-  <string name="verify_keys__menu_verified">ಪರಿಶೀಲಿಸಲಾಗಿದೆ</string>
   <!--reminder_header-->
   <string name="reminder_header_sms_default_title">ಪೂರ್ವನಿಯೋಜಿತ ಎಸ್ಎಂಎಸ್ ಅಪ್ಲಿಕೇಶನ್ ಆಗಿ ಉಪಯೋಗಿಸಿ.</string>
   <string name="reminder_header_sms_default_text">ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯೂರ ಪ್ರಸ್ತುತವಾಗಿ ನಿಮ್ಮ ಪೂರ್ವನಿಯೋಜಿತ ಎಸ್ಎಮ್ಎಸ್ ಅಪ್ಲಿಕೇಶನ್ ಅಲ್ಲ.</string>
@@ -675,5 +594,6 @@
   <string name="media_preview__save_title">ಉಳಿಸಿ</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">ಚಿತ್ರ ಮುನ್ನೋಟ</string>
+  <!--Trimmer-->
   <!--EOF-->
 </resources>

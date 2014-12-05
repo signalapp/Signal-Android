@@ -6,13 +6,11 @@
   <string name="delete">Cancella</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">In questo momento: %s</string>
-  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Devi inserire la tua password prima di controllare le chiavi...</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Non hai ancora impostato una password!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">messaggi per conversazione</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Eliminare tutti i messaggi vecchi ora?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Vuoi davvero ridurre tutte conversazioni ai soli %s messaggi più recenti?</string>
   <string name="ApplicationPreferencesActivity_delete">Elimina</string>
-  <string name="ApplicationPreferencesActivity_my">Il mio</string>
   <string name="ApplicationPreferencesActivity_disable_storage_encryption">Disabilitare la cifratura dei dati salvati?</string>
   <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
 Attenzione, così facendo interromperai la cifratura di tutti i messaggi e le chiavi che hai salvato. Le tue sessioni cifrate continueranno a funzionare, ma chiunque avrà accesso fisico al tuo dispositivo sarà in grado di accedere ad esse.</string>
@@ -25,14 +23,12 @@ Questo disabiliterà i messaggi push e annullerà la tua registrazione sul serve
 Avrai bisogno di registrare di nuovo il tuo numero di telefono per usare i messaggi push in futuro.
 </string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Errore durante la connessione al server!</string>
-  <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">Non sei registrato con il servizio push...</string>
-  <string name="ApplicationPreferencesActivity_updating_directory">Aggiornamento cartella</string>
-  <string name="ApplicationPreferencesActivity_updating_push_directory">Aggiornamento cartella push...</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS in entrata abilitati</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Premi per cambiare l\'applicazione predefinita per gli SMS</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS in entrata disabilitati</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Tocca per rendere TextSecure l\'applicazione predefinita per gli SMS</string>
   <!--AttchmentManager-->
+  <string name="AttachmentManager_cant_open_media_selection">Impossibile trovare un\'app per selezionare il file.</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Immagine</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
@@ -43,13 +39,9 @@ Avrai bisogno di registrare di nuovo il tuo numero di telefono per usare i messa
   <string name="ConversationItem_error_sending_message">Errore durante l\'invio del messaggio</string>
   <string name="ConversationItem_view_secure_media_question">Vuoi vedere il file multimediale?</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Questo contenuto è stato archiviato in un database cifrato. Sfortunatamente, per aprirlo con un visualizzatore esterno, attualmente è necessario che venga temporaneamente decifrato e scritto sul disco. Si è certi di voler procedere?</string>
-  <string name="ConversationItem_received_and_processed_key_exchange_message">Contrattazione della chiave ricevuta e completata.</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Errore, ricevuto messaggio per la contrattazione della chiave scaduto.</string>
   <string name="ConversationItem_received_key_exchange_message_click_to_process">Ricevuto messaggio per lo scambio della chiave, cliccare per procedere</string>
-  <string name="ConversationItem_received_plaintext_message_click_to_terminate">Ricevuto un SMS in chiaro durante una tua sessione sicura aperta. Se i destinatari non hanno una sessione aperta, i messaggi che manderai appariranno come testo incomprensibile. Clicca per terminare la sessione sicura.</string>
   <string name="ConversationItem_group_action_left">%1$s ha lasciato il gruppo.</string>
-  <string name="ConversationItem_group_action_joined">%1$s è entrato nel gruppo.</string>
-  <string name="ConversationItem_group_action_modify">%1$s ha aggiornato il gruppo.</string>
   <string name="ConversationItem_click_to_approve_sms">Tocca per ripiegare sugli SMS</string>
   <string name="ConversationItem_click_to_approve_mms">Tocca per ripiegare sugli MMS</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Tocca per un ripiego non sicuro</string>
@@ -58,6 +50,7 @@ Avrai bisogno di registrare di nuovo il tuo numero di telefono per usare i messa
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Ripiegare su SMS non cifrati?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Ripiegare su MMS non cifrati?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Questo messaggio <b>non</b> sarà criptato perchè non è stato possibile stabilire una sessione sicura.\n\nInviare il messaggio non sicuro?</string>
+  <string name="ConversationItem_unable_to_open_media">Impossibile trovare un\'app per aprire questo file.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Iniziare sessione sicura?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Iniziare una sessione sicura con %s?</string>
@@ -90,10 +83,13 @@ Avrai bisogno di registrare di nuovo il tuo numero di telefono per usare i messa
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Mittente: %1$s\nTrasporto: %2$s\nInviato: %3$s\nRicevuto: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Messaggio di conferma cancellazione</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Sicuro di voler cancellare definitivamente questo messaggio?</string>
+  <string name="ConversationFragment_save_to_sd_card">Salvare in memoria?</string>
+  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Salvare quest\'immagine sulla memoria consentirà a qualunque applicazione sul tuo telefono di accedervi.\n\nContinuare?</string>
+  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Errore nel salvare l\'allegato in memoria!</string>
   <string name="ConversationFragment_success_exclamation">Completato!</string>
+  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Impossibile scrivere sulla memoria!</string>
   <string name="ConversationFragment_saving_attachment">Salvataggio allegato</string>
-  <!--ConversationListAdapter-->
-  <string name="ConversationListAdapter_key_exchange_message">Messaggio di scambio della chiave...</string>
+  <string name="ConversationFragment_saving_attachment_to_sd_card">Salvataggio allegato nella memoria...</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Cancellare i threads?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Sei sicuro di voler cancellare TUTTE le conversazioni selezionate?</string>
@@ -104,10 +100,6 @@ Avrai bisogno di registrare di nuovo il tuo numero di telefono per usare i messa
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Condividi con</string>
   <!--ExportFragment-->
-  <string name="ExportFragment_export_to_sd_card">Esportare nella scheda SD?</string>
-  <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Verranno
-        esportate sulla scheda SD le tue chiavi crittografiche, le impostazioni ed i messaggi.
-    </string>
   <string name="ExportFragment_export">Esporta</string>
   <string name="ExportFragment_export_plaintext_to_sd_card">Esportare plaintext nella scheda SD?</string>
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Attenzione, verranno
@@ -120,8 +112,7 @@ Avrai bisogno di registrare di nuovo il tuo numero di telefono per usare i messa
 sulla scheda SD!</string>
   <string name="ExportFragment_error_while_writing_to_sd_card">Errore durante la scrittura sulla scheda SD.</string>
   <string name="ExportFragment_success">Completato!</string>
-  <string name="ExportFragment_exporting_keys_settings_and_messages">Esporta le chiavi crittografiche,
-le impostazioni ed i messaggi...</string>
+  <!--GcmRefreshJob-->
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Nuovo gruppo</string>
   <string name="GroupCreateActivity_actionbar_update_title">Aggiorna gruppo</string>
@@ -132,11 +123,12 @@ le impostazioni ed i messaggi...</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Si è verificato un errore inatteso e la creazione del gruppo è fallito.</string>
   <string name="GroupCreateActivity_contacts_no_members">Il tuo gruppo deve contenere almeno una persona!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Uno dei membri del tuo gruppo ha un numero che non può essere letto correttamente. Sistema o rimuovi quel contatto e prova di nuovo.</string>
-  <string name="GroupCreateActivity_file_io_exception">Errore di I/O, impossibile creare il file temporaneo.</string>
   <string name="GroupCreateActivity_avatar_content_description">Avatar del gruppo</string>
   <string name="GroupCreateActivity_menu_create_title">Crea gruppo</string>
   <string name="GroupCreateActivity_creating_group">Creo %1$s…</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Impossibile aggiungere utenti che non usano TextSecure a un gruppo esistente</string>
+  <!--GroupMembersDialog-->
+  <string name="GroupMembersDialog_me">Io</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Importa</string>
   <string name="ImportExportActivity_export">Esporta</string>
@@ -169,7 +161,6 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Nessuna chiave scansionata trovata!</string>
   <!--MmsDownloader-->
-  <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">Nessuna connessione disponibile per il download del MMS, riprovare più tardi...</string>
   <string name="MmsDownloader_error_storing_mms">Errore nel salvare l\'MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Errore durante la connessione al provider MMS...</string>
   <string name="MmsDownloader_error_reading_mms_settings">Errore durante la lettura delle impostazioni MMS</string>
@@ -185,10 +176,6 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icona TextSecure</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Inserisci password</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Password non valida!</string>
-  <!--PromptMmsActivity-->
-  <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">Devi specificare una URL MMSC per il tuo provider.</string>
-  <string name="PromptMmsActivity_mms_settings_updated">Impostazioni MMS aggiornate</string>
-  <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Puoi modificare questi valori dalle impostazioni di TextSecure in ogni momento.</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">La
 firma su questo scambio di chiavi è differente di quella ricevuta precedentemente. Questo potrebbe significare che qualcuno stà cercando di intercettare la tua comunicazione
@@ -226,7 +213,6 @@ Il numero è corretto o vuoi modificarlo prima di continuare?</string>
   <string name="RegistrationProgressActivity_verifying_number">Verifica del numero</string>
   <string name="RegistrationProgressActivity_edit_s">Modifica %s</string>
   <string name="RegistrationProgressActivity_registration_complete">Registrazione completata!</string>
-  <string name="RegistrationProgressActivity_possible_problems">Possibili problemi.</string>
   <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">È necessario inserire prima il codice ricevuto...</string>
   <string name="RegistrationProgressActivity_connecting">Connessione</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">Connessione per la verifica...</string>
@@ -242,7 +228,6 @@ Il numero è corretto o vuoi modificarlo prima di continuare?</string>
   <string name="RegistrationProgressActivity_the_server_encountered_an_error">Il server ha riscontrato un errore. Riprovare.</string>
   <string name="RegistrationProgressActivity_too_many_requests">Troppe richieste!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Hai già richiesto una chiamata recentemente. Devi attendere 20 minuti per richiederne un\'altra.</string>
-  <string name="RegistrationProgressActivity_verifying_voice_code">Verifica del codice vocale...</string>
   <string name="RegistrationProgressActivity_registration_conflict">Conflitto di registrazione</string>
   <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Questo numero risulta già registrato su un altro server TextSecure (CyanogenMod?). Devi deregistrarti da lì prima di poterti registrare qui.</string>
   <!--RegistrationService-->
@@ -277,13 +262,6 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">La chiave è corretta. È anche necessario verificare la tua chiave.</string>
   <string name="VerifyIdentityActivity_verified_exclamation">Verificato!</string>
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Non hai una chiave per l\'identità!</string>
-  <!--VerifyKeysActivity-->
-  <string name="VerifyKeysActivity_get_my_fingerprint_scanned">Scansiona l\'impronta della mia chiave</string>
-  <string name="VerifyKeysActivity_scan_their_fingerprint">Scansiona le impronte della chiave</string>
-  <string name="VerifyKeysActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully2">ATTENZIONE, la chiave scansionata non corrisponde! Controlla l\'impronta con attenzione.</string>
-  <string name="VerifyKeysActivity_not_verified_exclamation">NON verificato!</string>
-  <string name="VerifyKeysActivity_their_key_is_correct_it_is_also_necessary_to_get_your_fingerprint_scanned_as_well">La chiave è corretta. È necessario ottenere anche l\'impronta della tua chiave.</string>
-  <string name="VerifyKeysActivity_verified_exclamation">Verificato!</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Non hai una chiave di identità.</string>
   <string name="ViewIdentityActivity_scan_to_compare">Scansione per controllare</string>
@@ -292,7 +270,6 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <string name="ViewIdentityActivity_not_verified_exclamation">NON verificato!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">La chiave scansionata corrisponde!</string>
   <string name="ViewIdentityActivity_verified_exclamation">Verificata!</string>
-  <string name="ViewIdentityActivity_identity_fingerprint">Impronta identità</string>
   <string name="ViewIdentityActivity_my_identity_fingerprint">Impronta della mia identità</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Iniziare nonostante la richiesta esistente?</string>
@@ -312,8 +289,6 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Decifratura MMS in corso, attendere...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Cifratura MMS invalida..</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Messaggio MMS cifrato per una sessione non esistente</string>
-  <!--MmsSender-->
-  <string name="MmsSender_currently_unable_to_send_your_mms_message">Impossibile inviare il tuo messaggio MMS al momento.</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importazione in corso</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importando i messaggi</string>
@@ -332,22 +307,6 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <string name="MessageNotifier_error_delivering_message">C\'è stato un errore durante l\'invio del messagio</string>
   <string name="MessageNotifier_mark_all_as_read">Segna tutto come già letto</string>
   <string name="MessageNotifier_mark_as_read">Segna come già letto</string>
-  <!--ViewLocalIdentityActivity-->
-  <string name="ViewLocalIdentityActivity_regenerating">Rigenerazione...</string>
-  <string name="ViewLocalIdentityActivity_regenerating_identity_key">Rigenero la chiave
-        identificativa...
-    </string>
-  <string name="ViewLocalIdentityActivity_regenerated">Rigenerata!</string>
-  <string name="ViewLocalIdentityActivity_reset_identity_key">Reimpostare la chiave d\'identità?</string>
-  <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">
-        Attenzione! Rigenerando la tua chiave identificativa perderai per sempre la tua chiave attuale
-        e tutti i tuoi contatti riceveranno un avviso la prossima volta che avvieranno una sessione privata con te.
-        Vuoi farlo davvero?
-    </string>
-  <string name="ViewLocalIdentityActivity_cancel">Annulla</string>
-  <string name="ViewLocalIdentityActivity_continue">Continua</string>
-  <!--SmsReceiver-->
-  <string name="SmsReceiver_currently_unable_to_send_your_sms_message">In questo momento non è possibile inviare il tuo messagio SMS. Sarà inviato quando la comunicazione è disponibile</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">La risposta rapida non è ancora supportata in TextSecure!</string>
   <!--auto_initiate_activity-->
@@ -362,7 +321,6 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <string name="contact_selection_group_activity__no_contacts">Nessun contatto.</string>
   <string name="contact_selection_group_activity__finding_contacts">Caricamento contatti...</string>
   <!--single_contact_selection_activity-->
-  <string name="single_contact_selection_group_activity__filter">Digita un nome per filtrare...</string>
   <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">Non sei registrato al servizio push...</string>
   <string name="SingleContactSelectionActivity_updating_directory">Aggiornamento directory</string>
   <string name="SingleContactSelectionActivity_updating_push_directory">Aggiornamento directory push...</string>
@@ -402,27 +360,10 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Caricamento dei paese...</string>
   <string name="country_selection_fragment__search">Cerca</string>
-  <!--create_passphrase_activity-->
-  <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">Se vuoi che i tuoi dati locali vengano cifrati devi scegliere una password.</string>
-  <string name="create_passphrase_activity__passphrase">Password:</string>
-  <string name="create_passphrase_activity__repeat">Ripeti:</string>
-  <string name="create_passphrase_activity__continue">Continua</string>
-  <string name="create_passphrase_activity__generating_secrets">CREAZIONE SEGRETI</string>
-  <string name="create_passphrase_activity__skip">Salta</string>
-  <string name="create_passphrase_activity__create">Crea</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__confirmation">Questo log verrà pubblicato online a disposizione degli sviluppatori di TextSecure. Prima di inviarlo esamina e modifica il log.</string>
-  <string name="log_submit_activity__button_cancel">Non inviare</string>
-  <string name="log_submit_activity__button_ok">Invia</string>
   <string name="log_submit_activity__log_fetch_failed">Non riesco a recuperare i log dal tuo dispositivo. Puoi sempre utilizzare ADB per ottenere i log di debug.</string>
-  <string name="log_submit_activity__log_submit_success_title">Completato!</string>
-  <string name="log_submit_activity__log_got_it">Capito</string>
-  <string name="log_submit_activity__your_pastebin_url">Per favore, copia quest\'indirizzo ed aggiungilo alla tua segnalazione (pressione prolungata per copiarlo negli appunti) <b>%1$s</b></string>
-  <string name="log_submit_activity__copied_to_clipboard">Aggiunto agli appunti</string>
-  <string name="log_submit_activity__loading_logcat">Caricamento logcat...</string>
   <string name="log_submit_activity__thanks">Grazie dell\'aiuto!</string>
   <string name="log_submit_activity__submitting">Invio in corso</string>
-  <string name="log_submit_activity__posting_logs">Invio dei logs su pastebin in corso...</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Desderi importare i tuoi SMS esistenti nel database cifrato di TextSecure?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Il database di default non verrà modificat o alterato in nessun modo.</string>
@@ -432,9 +373,6 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <string name="database_migration_activity__importing">COPIA</string>
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Aggiornando il database...</string>
-  <string name="export_fragment__export_encrypted_backup">Esporta copia cifrata</string>
-  <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Esporta una copia
-cifrata sulla scheda SD</string>
   <string name="export_fragment__export_plaintext_backup">Esportare copia in chiaro</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">
 Esporto una copia in chiaro compatibile con \"SMSBackup And Restore\" sulla SD card.</string>
@@ -447,18 +385,13 @@ Ripristina una copia cifrata di TextSecure precedentemente esportata.</string>
   <string name="import_fragment__import_plaintext_backup">Importare copia in chiaro</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Importo una copia in chiaro. Compatibile con \"SMSBackup And Restore\"</string>
-  <string name="local_identity__regenerate_key">Rigenera chiave</string>
   <!--mms_preferences_activity-->
   <string name="mms_preferences_activity__manual_mms_settings_are_required">Impostazioni manuali degli MMS sono necessarie per il tuo telefono.</string>
   <!--prompt_passphrase_activity-->
-  <string name="prompt_passphrase_activity__textsecure_passphrase">PASSWORD TEXTSECURE</string>
   <string name="prompt_passphrase_activity__unlock">Sblocca</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure ha bisogno delle impostazioni degli MMS, per poter inviare messaggi multimediali e di gruppo con il tuo operatore. Il tuo dispositivo non fornisce queste impostazioni, probabilmente perché ha un operatore bloccato o altre configurazioni restrittive.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Per inviare contenuti multimediali e messaggi di gruppo, fare clic su \"OK\" e completare le impostazioni richieste. Le impostazioni MMS del proprio operatore possono essere generalemtne trovate cercando \"APN proprio operatore\". Sarà necessario eseguire una sola volta questa procedura.</string>
-  <string name="prompt_mms_activity__mmsc_url_required">MMSC URL (RICHIESTA)</string>
-  <string name="prompt_mms_activity__mms_proxy_host_optional">MMS INDIRIZZO PROXY ( OPZIONALE )</string>
-  <string name="prompt_mms_activity__mms_proxy_port_optional">MMS PORTA PROXY ( OPZIONALE )</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Completato</string>
   <!--registration_activity-->
@@ -467,6 +400,7 @@ Importo una copia in chiaro. Compatibile con \"SMSBackup And Restore\"</string>
 NUMERO DI TELEFONO</string>
   <string name="registration_activity__phone_number">NUMERO DI TELEFONO</string>
   <string name="registration_activity__register">Registro</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">La registrazione trasmette delle informazioni sui contatti al server. Non vengono conservate.</string>
   <string name="registration_activity__skip">Salta</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Alcuni possibili problemi
@@ -533,37 +467,24 @@ non riuscita.
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Inserisci un nome o un numero</small></string>
   <string name="recipients_panel__add_member">Aggiungi partecipante</string>
-  <!--review_identities-->
-  <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">Attualmente non hai nessuna chiave di identità nel tuo database di fiducia.</string>
   <!--verify_identity_activity-->
   <string name="verify_identity_activity__their_identity_they_read">La sua identità ( legge ):</string>
   <string name="verify_identity_activity__your_identity_you_read">La tua identità ( leggi ):</string>
-  <!--verify_import_identity_activity-->
-  <string name="verify_import_identity_activity__identity_name_n">Nome identità:\\n</string>
-  <string name="verify_import_identity_activity__imported_identity_n">Identità importata:\\n</string>
-  <string name="verify_import_identity_activity__verified">Verificata!</string>
-  <string name="verify_import_identity_activity__compare">Controlla</string>
-  <!--verify_keys_activity-->
-  <string name="verify_keys_activity__they_read_this">Si legge questo:</string>
-  <string name="verify_keys_activity__you_read_this">Tu leggi questo:</string>
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Crea password</string>
   <string name="AndroidManifest__enter_passphrase">Inserire la password</string>
   <string name="AndroidManifest__select_contacts">Seleziona contatti</string>
-  <string name="AndroidManifest__select_contact">Seleziona contatto</string>
   <string name="AndroidManifest__textsecure_detected">Rilevato TextSecure</string>
   <string name="AndroidManifest__public_identity_key">Chiave pubblica dell\'identità</string>
   <string name="AndroidManifest__change_passphrase">Cambia passphrase</string>
-  <string name="AndroidManifest__verify_session">Verifica sessione</string>
   <string name="AndroidManifest__verify_identity">Verifica identità</string>
-  <string name="AndroidManifest__manage_identity_keys">Controlla le chiave dei contatti</string>
   <string name="AndroidManifest__complete_key_exchange">Completa lo scambio di chiavi</string>
   <string name="AndroidManifest__log_submit">Invia log di debug</string>
+  <string name="AndroidManifest__media_preview">Anteprima media</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importa / Esporta</string>
   <string name="arrays__my_identity_key">La chiave della mia identità</string>
   <!--preferences.xml-->
-  <string name="preferences__general">Generale</string>
   <string name="preferences__push_sms_category">Push e SMS</string>
   <string name="preferences__pref_all_sms_title">Utilizza per tutti gli SMS</string>
   <string name="preferences__pref_all_mms_title">Utilizza per tutti gli MMS</string>
@@ -590,10 +511,6 @@ non riuscita.
   <string name="preferences__pref_timeout_interval_dialogtitle">Imposta timeout per la password</string>
   <string name="preferences__pref_timeout_interval_title">Intervallo di tempo</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">La quantità di tempo prima di dimenticare la password</string>
-  <string name="preferences__identity_key_settings">Chiavi personali</string>
-  <string name="preferences__view_my_identity_key">La mia chiave di identità</string>
-  <string name="preferences__manage_identity_keys">Controlla le chiave dei contatti</string>
-  <string name="preferences__manage_configured_identity_keys">Controlla le chiavi di identità configurate</string>
   <string name="preferences__notifications">Notifiche</string>
   <string name="preferences__display_message_notifications_in_status_bar">Mostra messaggio di notifica nella barra di stato</string>
   <string name="preferences__led_color">Colore del LED</string>
@@ -651,8 +568,6 @@ non riuscita.
 Aumenta la privacy ed evita i costi degli SMS usando la connettività dati per comunicare con altri utenti TextSecure
 </string>
   <string name="preferences__allow_sms_fallback">Permetti gli SMS in uscita a</string>
-  <string name="preferences__allow_sms_fallback_disabled_reason">TextSecure è impostata come app predefinita per gli SMS. Per poter modificare questa preferenza devi prima selezionare un\'altra app come predefinita per gli SMS.</string>
-  <string name="preferences__refresh_push_directory">Aggiorna directory push</string>
   <string name="preferences__submit_debug_log">Invia log di debug</string>
   <string name="preferences__sms_outgoing_push_users">Utenti TextSecure</string>
   <string name="preferences__sms_fallback_push_users_ask">(chiedi prima)</string>
@@ -696,11 +611,8 @@ Aumenta la privacy ed evita i costi degli SMS usando la connettività dati per c
   <string name="conversation_list_batch__menu_select_all">Seleziona tutto</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Cerca</string>
-  <string name="conversation_list__drawer_open">Apri la barra di navigazione</string>
-  <string name="conversation_list__drawer_close">Chiudi la barra di navigazione</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Sicurezza</string>
-  <string name="conversation_secure_verified__menu_no_identity">Nessuna identità disponibile</string>
   <string name="conversation_secure_verified__menu_verify_identity">Verifica identità</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">Termina sessione sicura</string>
   <!--conversation-->
@@ -718,16 +630,12 @@ Aumenta la privacy ed evita i costi degli SMS usando la connettività dati per c
   <string name="key_scanning__menu_compare">Controlla</string>
   <string name="key_scanning__menu_get_scanned_to_compare">Scansionato per controllare</string>
   <string name="key_scanning__menu_scan_to_compare">Scansiona per controllare</string>
-  <!--text_secure_locked-->
-  <string name="text_secure_locked__menu_unlock">Sblocca</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">Nuovo messaggio</string>
   <string name="text_secure_normal__menu_new_group">Nuovo gruppo</string>
   <string name="text_secure_normal__menu_settings">Impostazioni</string>
   <string name="text_secure_normal__menu_clear_passphrase">Blocca</string>
   <string name="text_secure_normal__mark_all_as_read">Segnala tutto come già letto</string>
-  <!--verify_keys-->
-  <string name="verify_keys__menu_verified">Verificato</string>
   <!--reminder_header-->
   <string name="reminder_header_sms_default_title">Adotta come applicazione predefinita per SMS.</string>
   <string name="reminder_header_sms_default_text">Attualmente TextSecure non è la tua applicazione predefinita per SMS.</string>
@@ -736,7 +644,11 @@ Aumenta la privacy ed evita i costi degli SMS usando la connettività dati per c
   <string name="reminder_header_push_title">Attivare i messaggi di TextSecure?</string>
   <string name="reminder_header_push_text">Consegna istantanea, migliore privacy, e nessun costo SMS.</string>
   <!--MediaPreviewActivity-->
+  <string name="MediaPreviewActivity_you">Tu</string>
   <!--media_preview-->
+  <string name="media_preview__save_title">Salva</string>
   <!--media_preview_activity-->
+  <string name="media_preview_activity__image_content_description">Anteprima Immagine</string>
+  <!--Trimmer-->
   <!--EOF-->
 </resources>

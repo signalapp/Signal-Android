@@ -6,12 +6,13 @@
   <!--ConversationItem-->
   <!--ConversationActivity-->
   <!--ConversationFragment-->
-  <!--ConversationListAdapter-->
   <!--ConversationListFragment-->
   <!--ConversationListItem-->
   <!--ShareActivity-->
   <!--ExportFragment-->
+  <!--GcmRefreshJob-->
   <!--GroupCreateActivity-->
+  <!--GroupMembersDialog-->
   <!--ImportExportActivity-->
   <!--ImportFragment-->
   <!--KeyScanningActivity-->
@@ -20,7 +21,6 @@
   <!--MessageRecord-->
   <!--PassphraseChangeActivity-->
   <!--PassphrasePromptActivity-->
-  <!--PromptMmsActivity-->
   <!--ReceiveKeyActivity-->
   <!--RegistrationActivity-->
   <!--RegistrationProblemsActivity-->
@@ -29,18 +29,14 @@
   <!--SmsMessageRecord-->
   <!--ThreadRecord-->
   <!--VerifyIdentityActivity-->
-  <!--VerifyKeysActivity-->
   <!--ViewIdentityActivity-->
   <!--KeyExchangeInitiator-->
   <!--MessageDisplayHelper-->
   <!--MmsDatabase-->
   <!--MmsMessageRecord-->
-  <!--MmsSender-->
   <!--ApplicationMigrationService-->
   <!--KeyCachingService-->
   <!--MessageNotifier-->
-  <!--ViewLocalIdentityActivity-->
-  <!--SmsReceiver-->
   <!--QuickResponseService-->
   <!--auto_initiate_activity-->
   <!--change_passphrase_activity-->
@@ -55,7 +51,6 @@
   <!--conversation_item_received-->
   <!--conversation_fragment_cab-->
   <!--country_selection_fragment-->
-  <!--create_passphrase_activity-->
   <!--log_submit_activity-->
   <!--database_migration_activity-->
   <!--database_upgrade_activity-->
@@ -67,10 +62,7 @@
   <!--registration_problems-->
   <!--registration_progress_activity-->
   <!--recipients_panel-->
-  <!--review_identities-->
   <!--verify_identity_activity-->
-  <!--verify_import_identity_activity-->
-  <!--verify_keys_activity-->
   <!--AndroidManifest.xml-->
   <!--arrays.xml-->
   <!--preferences.xml-->
@@ -91,12 +83,11 @@
   <!--conversation-->
   <!--conversation_group_options-->
   <!--key_scanning-->
-  <!--text_secure_locked-->
   <!--text_secure_normal-->
-  <!--verify_keys-->
   <!--reminder_header-->
   <!--MediaPreviewActivity-->
   <!--media_preview-->
   <!--media_preview_activity-->
+  <!--Trimmer-->
   <!--EOF-->
 </resources>

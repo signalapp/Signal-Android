@@ -6,13 +6,11 @@
   <string name="delete">מחק</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">עכשיו: %s</string>
-  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">אתה צריך להכניס את הסיסמה לפני שאתה מנהל את המפתחות...</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">עדיין לא הגדרת סיסמה!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">מספר הודעות לשיחה</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">למחוק את כל ההודעות הישנות עכשיו?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">אתה בטוח שברצונך לקצץ מיד את כל שרשורי השיחות עד להודעות ה-%s הכי חדשות?</string>
   <string name="ApplicationPreferencesActivity_delete">מחק</string>
-  <string name="ApplicationPreferencesActivity_my">שלי</string>
   <string name="ApplicationPreferencesActivity_disable_storage_encryption">לבטל הצפנת אחסון?</string>
   <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
 אזהרה, פעולה זו תבטל הצפנה מקומית לכל ההודעות והמפתחות. החיבורים
@@ -31,7 +29,6 @@
   <string name="ConversationItem_expires_s">פג: %s</string>
   <string name="ConversationItem_error_sending_message">שגיאה בשליחת ההודעה</string>
   <string name="ConversationItem_view_secure_media_question">לצפות במדיה מאובטחת?</string>
-  <string name="ConversationItem_received_and_processed_key_exchange_message">הודעת החלפת מפתח התקבלה ועברה עיבוד.</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">שגיאה, התקבלה הודעת החלפת מפתח מיושנת.</string>
   <string name="ConversationItem_received_key_exchange_message_click_to_process">התקבלה הודעת החלפת מפתח, לחץ כדי להמשיך</string>
   <!--ConversationActivity-->
@@ -50,8 +47,6 @@
   <string name="ConversationFragment_message_details">פרטי הודעה</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">אתה בטוח שאתה רוצה למחוק את ההודעה הזו לתמיד?</string>
   <string name="ConversationFragment_success_exclamation">הצליח!</string>
-  <!--ConversationListAdapter-->
-  <string name="ConversationListAdapter_key_exchange_message">הודעת החלפת מפתח...</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">למחוק שרשורים?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">אתה בטוח שאתה רוצה למחוק את השרשורים של כל השיחות שנבחרו?</string>
@@ -61,9 +56,6 @@
   <string name="ConversationListItem_key_exchange_message">הודעת החלפת מפתח...</string>
   <!--ShareActivity-->
   <!--ExportFragment-->
-  <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">פעולה זו
-תייצא את המפתחות, ההגדרות וההודעות המוצפנות שלך לכרטיס ה-SD.
-</string>
   <string name="ExportFragment_export">יצא</string>
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">אזהרה, פעולה זו
 תייצא את תוכן הודעות ה-TextSecure שלך לכרטיס ה-SD ללא הצפנה.
@@ -78,10 +70,9 @@
   <string name="ExportFragment_error_while_writing_to_sd_card">שגיאה בכתיבה לכרטיס ה-SD.
 </string>
   <string name="ExportFragment_success">הצליח!</string>
-  <string name="ExportFragment_exporting_keys_settings_and_messages">מייצא מפתחות, הגדרות
-והודעות מוצפנות...
-</string>
+  <!--GcmRefreshJob-->
   <!--GroupCreateActivity-->
+  <!--GroupMembersDialog-->
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">יבא</string>
   <string name="ImportExportActivity_export">יצא</string>
@@ -109,7 +100,6 @@
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">לא נמצא מפתח סרוק!</string>
   <!--MmsDownloader-->
-  <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">אין חיבור זמין להורדת MMS, נסה שוב לאחר מכן...</string>
   <string name="MmsDownloader_error_storing_mms">שגיאה באחסון ה-MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">שגיאה בהתחברות לספק ה-MMS...</string>
   <string name="MmsDownloader_error_reading_mms_settings">שגיאה בקריאת הגדרות ה-MMS של ספק השירות...</string>
@@ -118,9 +108,6 @@
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">סיסמה ישנה לא נכונה.</string>
   <!--PassphrasePromptActivity-->
-  <!--PromptMmsActivity-->
-  <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">אתה חייב לציין כתובת MMSC עבור ספק השירות שלך.</string>
-  <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">אתה יכול לערוך את הערכים האלו מתפריט ההגדרות של TextSecure בכל זמן.</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">החתימה
 על החלפת המפתח הזאת שונה ממה שקיבלת בעבר מאיש הקשר הזה.
@@ -153,12 +140,6 @@
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">המפתח שלהם נכון. זה הכרחי גם לאמת את המפתח שלך איתם.</string>
   <string name="VerifyIdentityActivity_verified_exclamation">אומת!</string>
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">אין לך מפתח זהות!</string>
-  <!--VerifyKeysActivity-->
-  <string name="VerifyKeysActivity_get_my_fingerprint_scanned">סריק את טביעת האצבע שלי</string>
-  <string name="VerifyKeysActivity_scan_their_fingerprint">סרוק את טביעת האצבע שלהם</string>
-  <string name="VerifyKeysActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully2">אזהרה, המפתח שנסרק אינו תואם! בבקשה בדוק בזהירות את הטקסט של טביעת האצבע.</string>
-  <string name="VerifyKeysActivity_their_key_is_correct_it_is_also_necessary_to_get_your_fingerprint_scanned_as_well">המפתח שלהם נכון. זה הכרחי גם לסרוק את טביעת האצבע שלך.</string>
-  <string name="VerifyKeysActivity_verified_exclamation">אומת!</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">אין לך מפתח זהות.</string>
   <string name="ViewIdentityActivity_scan_to_compare">סרוק להשוואה</string>
@@ -182,8 +163,6 @@
   <string name="MmsMessageRecord_decrypting_mms_please_wait">מפענח MMS, אנא המתן...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">הודעת MMS מוצפנת פגומה...</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">הודעת ה-MMS הוצפנה לחיבור שלא קיים...</string>
-  <!--MmsSender-->
-  <string name="MmsSender_currently_unable_to_send_your_mms_message">לא ניתן לשלוח כעת את הודעת ה-MMS שלך.</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">בתהליך ייבוא</string>
   <!--KeyCachingService-->
@@ -196,23 +175,6 @@
   <string name="MessageNotifier_error_delivering_message">שגיאה במסירת ההודעה.</string>
   <string name="MessageNotifier_mark_all_as_read">סמן הכל כנקרא</string>
   <string name="MessageNotifier_mark_as_read">סמן כנקרא</string>
-  <!--ViewLocalIdentityActivity-->
-  <string name="ViewLocalIdentityActivity_regenerating">מייצר מחדש...</string>
-  <string name="ViewLocalIdentityActivity_regenerating_identity_key">מייצר מפתח זהות
-מחדש...
-</string>
-  <string name="ViewLocalIdentityActivity_regenerated">יוצר מחדש!</string>
-  <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">
-אזהרה! ייצור מחדש של מפתח הזהות יאבד את מפתח הזהות
-העכשווי,
-ואנשי הקשר הקיימים שלך יקבלו אזהרה כשהם ינסו לבצע חיבור מאובטח
-חדש איתך.
-אתה בטוח שברצונך להמשיך?
-</string>
-  <string name="ViewLocalIdentityActivity_cancel">בטל</string>
-  <string name="ViewLocalIdentityActivity_continue">המשך</string>
-  <!--SmsReceiver-->
-  <string name="SmsReceiver_currently_unable_to_send_your_sms_message">לא ניתן לשלוח כעת את הודעת ה-SMS שלך. היא תשלח כשהשירות יהיה זמין.</string>
   <!--QuickResponseService-->
   <!--auto_initiate_activity-->
   <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">קיבלת הודעה ממישהו שתומך בחיבור מאובטח של TextSecure. האם ברצונך להתחיל חיבור מאובטח? </string>
@@ -241,14 +203,7 @@
   <!--conversation_fragment_cab-->
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__search">חפש</string>
-  <!--create_passphrase_activity-->
-  <string name="create_passphrase_activity__passphrase">סיסמה:</string>
-  <string name="create_passphrase_activity__repeat">חזור:</string>
-  <string name="create_passphrase_activity__continue">המשך</string>
-  <string name="create_passphrase_activity__generating_secrets">מייצר סודות</string>
-  <string name="create_passphrase_activity__skip">דלג</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__log_submit_success_title">הצליח!</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">אתה רוצה לייבא את הודעות הטקסט הקיימות שלך לבסיס הנתונים המוצפן של TextSecure?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">בסיס הנתונים ברירת המחדל של המערכת לא ישתנה בשום אופן.</string>
@@ -257,9 +212,6 @@
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">זה יכול לקחת כמה רגעים. סבלנות בבקשה, אנחנו נודיע לך כשהייבוא הושלם.</string>
   <string name="database_migration_activity__importing">מייבא</string>
   <!--database_upgrade_activity-->
-  <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">יצא גיבוי
-מוצפן לכרטיס ה-SD.
-</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">
 יצא גיבוי לא מוצפן שתואם את האפליקציה \'SMSBackup And Restore\' לכרטיס ה-SD.</string>
   <string name="import_fragment__import_the_database_from_the_default_system">יבא את בסיס הנתונים
@@ -273,14 +225,10 @@
   <!--mms_preferences_activity-->
   <string name="mms_preferences_activity__manual_mms_settings_are_required">נדרשות הגדרות MMS ידניות עבור מכשירך.</string>
   <!--prompt_passphrase_activity-->
-  <string name="prompt_passphrase_activity__textsecure_passphrase">סיסמת TextSecure</string>
   <string name="prompt_passphrase_activity__unlock">פתח</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure דורש הגדרות MMS כדי לשלוח הודעות מולטימדיה או הודעות קבוצתיות דרך ספק השירות שלך. המכשיר שלך לא מספק את המידע הזה, זה קורה לעיתים במכשירים נעולים או קונפיגורציות מוגבלות אחרות.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">כדי לשלוח הודעות מולטימדיה או הודעות קבוצתיות,לחץ \'אישור\' והשלם את ההגדרות המתבקשות.את הגדרות ה-MMS עבור ספק השירות שלך אתה יכול למצוא בד\"כ ע\"י חיפוש \"ספק השרות APN\". אתה תצטרך להשלים מידע זה רק פעם אחת.</string>
-  <string name="prompt_mms_activity__mmsc_url_required">כתובת MMSC (חובה):</string>
-  <string name="prompt_mms_activity__mms_proxy_host_optional">שרת Proxy של MMS (לא חובה):</string>
-  <string name="prompt_mms_activity__mms_proxy_port_optional">פתחת ה-Proxy של שרת ה-MMS (לא חובה):</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">השלם</string>
   <!--registration_activity-->
@@ -288,23 +236,13 @@
   <!--registration_problems-->
   <!--registration_progress_activity-->
   <!--recipients_panel-->
-  <!--review_identities-->
-  <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">אין לך מפתחות זהויות בבסיס הנתונים של המפתחות שאתה בוטח בהם.</string>
   <!--verify_identity_activity-->
   <string name="verify_identity_activity__their_identity_they_read">הזהות שלהם (הם קוראים):</string>
   <string name="verify_identity_activity__your_identity_you_read">הזהות שלך (אתה קורא):</string>
-  <!--verify_import_identity_activity-->
-  <string name="verify_import_identity_activity__verified">אומת!</string>
-  <string name="verify_import_identity_activity__compare">השווה</string>
-  <!--verify_keys_activity-->
-  <string name="verify_keys_activity__they_read_this">הם קוראים את זה:</string>
-  <string name="verify_keys_activity__you_read_this">אתה קורא את זה:</string>
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__change_passphrase">שנה סיסמה</string>
-  <string name="AndroidManifest__manage_identity_keys">נהל מפתחות זהות</string>
   <!--arrays.xml-->
   <!--preferences.xml-->
-  <string name="preferences__general">כללי</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">השתמש ב-TextSecure לצפייה ואחסון של כל הודעות הטקסט</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">השתמש ב-TextSecure לצפייה ואחסון של כל הודעות המולטימדיה</string>
   <string name="preferences__input_settings">הכנס הגדרות</string>
@@ -319,10 +257,6 @@
   <string name="preferences__timeout_passphrase">זמן תוקף לסיסמה</string>
   <string name="preferences__pref_timeout_interval_title">זמן התוקף</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">פרק הזמן שיש להמתין לפני שכיחת הסיסמה מהזיכרון</string>
-  <string name="preferences__identity_key_settings">מפתחות זהות</string>
-  <string name="preferences__view_my_identity_key">צפה במפתח הזהות שלי</string>
-  <string name="preferences__manage_identity_keys">נהל מפתחות זהות</string>
-  <string name="preferences__manage_configured_identity_keys">נהל מפתחות זהות שהוגדרו</string>
   <string name="preferences__notifications">התראות</string>
   <string name="preferences__display_message_notifications_in_status_bar">הצג התראות של הודעה בשורת המצב</string>
   <string name="preferences__led_color">צבע LED</string>
@@ -398,15 +332,12 @@
   <string name="key_scanning__menu_compare">השווה</string>
   <string name="key_scanning__menu_get_scanned_to_compare">עבור סריקה להשוואה</string>
   <string name="key_scanning__menu_scan_to_compare">סרוק להשוואה</string>
-  <!--text_secure_locked-->
-  <string name="text_secure_locked__menu_unlock">פתח</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_settings">הגדרות</string>
-  <!--verify_keys-->
-  <string name="verify_keys__menu_verified">מאומת</string>
   <!--reminder_header-->
   <!--MediaPreviewActivity-->
   <!--media_preview-->
   <!--media_preview_activity-->
+  <!--Trimmer-->
   <!--EOF-->
 </resources>

@@ -6,13 +6,11 @@
   <string name="delete">Hapus</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Sekarang: %s</string>
-  <string name="ApplicationPreferenceActivity_you_need_to_have_entered_your_passphrase_before_managing_keys">Anda perlu memasukkan kata kunci sebelum mengelola kunci</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Anda belum mengatur kata kunci!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">pesan per percakapan</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Hapus seluruh pesan lama?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Apakah anda yakin untuk memangkas seluruh rangkaian percakapan hingga ke %s pesan terakhir?</string>
   <string name="ApplicationPreferencesActivity_delete">Hapus</string>
-  <string name="ApplicationPreferencesActivity_my">Saya</string>
   <string name="ApplicationPreferencesActivity_disable_storage_encryption">Matikan enkripsi media simpan?</string>
   <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
 Peringatan, ini akan menonaktifkan penyimpanan terenkripsi untuk semua pesan dan kunci. Sesi enkripsi
@@ -23,9 +21,6 @@ dapat mengaksesnya</string>
   <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Keluar dari komunikasi berbasis data</string>
   <string name="ApplicationPreferencesActivity_disable_push_messages">Jangan gunakan push message</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Kesalahan dalam menghubungkan ke server!</string>
-  <string name="ApplicationPreferencesActivity_you_are_not_registered_with_the_push_service">Anda tidak terdaftar dengan layanan push...</string>
-  <string name="ApplicationPreferencesActivity_updating_directory">Memperbaharui direktori</string>
-  <string name="ApplicationPreferencesActivity_updating_push_directory">Sedang memperbaharui direktori...</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Sentuh untuk mengubah aplikasi SMS default</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Sentuh untuk membuat TextSecure sebagai aplikasi SMS default</string>
   <!--AttchmentManager-->
@@ -39,13 +34,9 @@ dapat mengaksesnya</string>
   <string name="ConversationItem_error_sending_message">Gagal mengirim pesan</string>
   <string name="ConversationItem_view_secure_media_question">Tampilkan media aman?</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Media ini disimpan dalam basis data terenkripsi. Namun, untuk melihatnya dengan aplikasi eksternal akan memerlukan berkas di deskripsi dan disimpan. Apa anda yakin ingin melakukan ini?</string>
-  <string name="ConversationItem_received_and_processed_key_exchange_message">Menerima dan memproses pesan pertukaran kunci.</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Gagal, menerima pesan pertukaran kunci terhenti.</string>
   <string name="ConversationItem_received_key_exchange_message_click_to_process">Menerima pesan pertukaran kunci, klik untuk memproses.</string>
-  <string name="ConversationItem_received_plaintext_message_click_to_terminate">Menerima SMS teks polos dalam sesi aman . Jika pengirim tidak menggunakan sesi aman, pesan yang anda kirim akan berantakan. Klik untuk menghentikan sesi aman.</string>
   <string name="ConversationItem_group_action_left">si %1$s telah meninggalkan grup.</string>
-  <string name="ConversationItem_group_action_joined">%1$s telah bergabung dengan grup.</string>
-  <string name="ConversationItem_group_action_modify">%1$s telah memperbarui grup.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Inisiasi sesi aman dengan %s?</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Apakah anda yakin untuk mengakhiri sesi aman ini?</string>
@@ -67,8 +58,6 @@ dapat mengaksesnya</string>
   <string name="ConversationFragment_message_details">Rincian pesan</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Apakah anda yakin akan menghapus pesan ini secara permanen?</string>
   <string name="ConversationFragment_success_exclamation">Sukses!</string>
-  <!--ConversationListAdapter-->
-  <string name="ConversationListAdapter_key_exchange_message">Pesan pertukaran kunci...</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Hapus topik?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Apakah anda yakin ingin menghapus semua topik pembicaraan terpilih?</string>
@@ -78,8 +67,6 @@ dapat mengaksesnya</string>
   <string name="ConversationListItem_key_exchange_message">Pesan pertukaran kunci...</string>
   <!--ShareActivity-->
   <!--ExportFragment-->
-  <string name="ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages">Ini
-akan mengeksport kunci terenkripsi, dan pesan ke kartu SD    </string>
   <string name="ExportFragment_export">Eksport</string>
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Peringatan, ini akan
 mengeksport konten pesan teks polos TextSecure anda ke kartu SD</string>
@@ -93,16 +80,15 @@ SD!
   <string name="ExportFragment_error_while_writing_to_sd_card">Gagal ketika menyimpan ke kartu SD.
 </string>
   <string name="ExportFragment_success">Sukses!</string>
-  <string name="ExportFragment_exporting_keys_settings_and_messages">Mengeksport kunci yang dienkripsi,
-pengaturan, dan pesan...</string>
+  <!--GcmRefreshJob-->
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_contacts_dont_support_push">Anda telah memilih kontak yang tidak mendukung grup TextSecure, sehingga grup ini akan menggunakan MMS.</string>
   <string name="GroupCreateActivity_you_dont_support_push">Anda tidak terdaftar untuk menggunakan saluran data, sehingga grup TextSecure dimatikan.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Terjadi kesalahan tidak terduga yang menggagalkan pembuatan grup.</string>
   <string name="GroupCreateActivity_contacts_no_members">Anda butuh minimal satu orang dalam grup anda!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Salah satu anggota grup anda memiliki nomor yang tidak dapat dibaca, silakan perbaiki atau keluarkan kontak tersebut dan coba lagi.</string>
-  <string name="GroupCreateActivity_file_io_exception">Kesalahan I/O file, tidak dapat membuat file gambar temporer.</string>
   <string name="GroupCreateActivity_creating_group">Membuat %1$s…</string>
+  <!--GroupMembersDialog-->
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Import</string>
   <string name="ImportExportActivity_export">Eksport</string>
@@ -134,7 +120,6 @@ telah mengimport basis data sistem SMS, hal ini akan menyebabkan adanya duplikas
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Pemindai kunci tidak ditemukan!</string>
   <!--MmsDownloader-->
-  <string name="MmsDownloader_no_connectivity_available_for_mms_download_try_again_later">Tidak tersedia konektivitas untuk mengunduh MMS, coba lagi nanti...</string>
   <string name="MmsDownloader_error_storing_mms">Kesalahan dalam menyimpan MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Kesalahan dalam menghubungi penyedia layanan MMS...</string>
   <string name="MmsDownloader_error_reading_mms_settings">Kesalahan dalam membaca pengaturan MMS penyedia...</string>
@@ -143,9 +128,6 @@ telah mengimport basis data sistem SMS, hal ini akan menyebabkan adanya duplikas
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Kata kunci lama salah!</string>
   <!--PassphrasePromptActivity-->
-  <!--PromptMmsActivity-->
-  <string name="PromptMmsActivity_you_must_specify_an_mmsc_url_for_your_carrier">Anda harus mengisi URL MMSC operator anda.</string>
-  <string name="PromptMmsActivity_you_can_modify_these_values_from_the_textsecure_settings_menu_at_any_time_">Anda dapat memodifikasi nilai ini kapan saja dari pengaturan TextSecure.</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Isi
 tanda tangan dalam pertukaran kunci ini berbeda dengan apa yang telah anda terima sebelumnya dari
@@ -180,7 +162,6 @@ isikan (%s) tidak tepat.
   <string name="RegistrationProgressActivity_verifying_number">Memverifikasi Nomor</string>
   <string name="RegistrationProgressActivity_edit_s">Edit %s</string>
   <string name="RegistrationProgressActivity_registration_complete">Pendaftaran selesai!</string>
-  <string name="RegistrationProgressActivity_possible_problems">Kemungkinan Masalah</string>
   <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Anda harus memasukkan kode yang anda terima terlebih dulu...</string>
   <string name="RegistrationProgressActivity_connecting">Menghubungkan</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">Menghubungkan untuk verifikasi</string>
@@ -191,7 +172,6 @@ isikan (%s) tidak tepat.
   <string name="RegistrationProgressActivity_requesting_incoming_call">Meminta verifikasi panggilan masuk...</string>
   <string name="RegistrationProgressActivity_the_server_encountered_an_error">Server mengalami gangguan. Silakan coba lagi.</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Anda telah meminta panggilan suara. Anda dapat meminta lagi dalam 20 menit kemudian.</string>
-  <string name="RegistrationProgressActivity_verifying_voice_code">Memverifikasi kode suara...</string>
   <string name="RegistrationProgressActivity_registration_conflict">Konflik pendaftaran</string>
   <!--RegistrationService-->
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">Pendaftaran TextSecure telah berhasil.</string>
@@ -220,12 +200,6 @@ Menerima pesan dengan identitas kunci tidak diketahui. Klik untuk memproses dan 
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Kunci benar. Diperlukan juga untuk memverifikasi kunci anda.</string>
   <string name="VerifyIdentityActivity_verified_exclamation">Terverifikasi!</string>
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Anda tidak memiliki kunci identitas!</string>
-  <!--VerifyKeysActivity-->
-  <string name="VerifyKeysActivity_get_my_fingerprint_scanned">Pindai sidik jari saya</string>
-  <string name="VerifyKeysActivity_scan_their_fingerprint">Pindai sidik jari mereka</string>
-  <string name="VerifyKeysActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully2">PERINGATAN, kunci terpindai TIDAK cocok! Mohon periksa teks sidik jari dengan baik.</string>
-  <string name="VerifyKeysActivity_their_key_is_correct_it_is_also_necessary_to_get_your_fingerprint_scanned_as_well">Kunci mereka benar. Juga diperlukan untuk memindai sidik jari anda</string>
-  <string name="VerifyKeysActivity_verified_exclamation">Terverifikasi!</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Anda tidak memiliki kunci identitas.</string>
   <string name="ViewIdentityActivity_scan_to_compare">Pindai untuk dicocokkan</string>
@@ -249,8 +223,6 @@ Menerima pesan dengan identitas kunci tidak diketahui. Klik untuk memproses dan 
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Proses deskripsi MMS, mohon tunggu...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Enkripsi pada pesan MMS tidak dapat dikenali</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS di enkripsi untuk sesi yang tidak ada</string>
-  <!--MmsSender-->
-  <string name="MmsSender_currently_unable_to_send_your_mms_message">Saat ini tidak dapat mengirimkan MMS Anda.</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Dalam proses mengimport</string>
   <!--KeyCachingService-->
@@ -267,21 +239,6 @@ Menerima pesan dengan identitas kunci tidak diketahui. Klik untuk memproses dan 
   <string name="MessageNotifier_error_delivering_message">Kesalahan dalam mengirimkan pesan.</string>
   <string name="MessageNotifier_mark_all_as_read">Tandai telah dibaca semuanya</string>
   <string name="MessageNotifier_mark_as_read">Tandai telah dibaca</string>
-  <!--ViewLocalIdentityActivity-->
-  <string name="ViewLocalIdentityActivity_regenerating">Meregenerasi...</string>
-  <string name="ViewLocalIdentityActivity_regenerating_identity_key">Meregenerasi kunci
-identitas...
-</string>
-  <string name="ViewLocalIdentityActivity_regenerated">Teregenerasi!</string>
-  <string name="ViewLocalIdentityActivity_by_regenerating_your_identity_key_your_existing_contacts_will_receive_warnings">
-Perhatian! Dengan meregenerasi kunci identitas akan menghilangkan kunci identitas saat ini
-dan seluruh kontak anda akan mendapat peringatan ketika membuat sesi aman yang baru dengan Anda.
-Apakah Anda yakin untuk melanjutkan?
-</string>
-  <string name="ViewLocalIdentityActivity_cancel">Batal</string>
-  <string name="ViewLocalIdentityActivity_continue">Lanjutkan</string>
-  <!--SmsReceiver-->
-  <string name="SmsReceiver_currently_unable_to_send_your_sms_message">Saat ini tidak dapat mengirimkan SMS anda. Ketika layanan telah tersedia SMS akan dikirim.</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Maaf, Jawaban cepat masih belum didukung oleh TextSecure!</string>
   <!--auto_initiate_activity-->
@@ -295,7 +252,6 @@ Apakah Anda yakin untuk melanjutkan?
   <string name="contact_selection_group_activity__no_contacts">Tidak ada kontak</string>
   <string name="contact_selection_group_activity__finding_contacts">Memuat kontak...</string>
   <!--single_contact_selection_activity-->
-  <string name="single_contact_selection_group_activity__filter">Ketik nama untuk memfilter...</string>
   <string name="SingleContactSelectionActivity_updating_directory">Memperbaharui direktori</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Pilih untuk</string>
@@ -315,23 +271,8 @@ Apakah Anda yakin untuk melanjutkan?
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Memuat daftar negara...</string>
   <string name="country_selection_fragment__search">Cari</string>
-  <!--create_passphrase_activity-->
-  <string name="create_passphrase_activity__please_choose_a_passphrase_that_will_be_used_to_locally_encrypt_your_data_this_should_be_a_strong_passphrase">Silakan tentukan kata kunci jika ingin mengenkripsi data lokal anda.</string>
-  <string name="create_passphrase_activity__passphrase">KATA KUNCI:</string>
-  <string name="create_passphrase_activity__repeat">ULANGI:</string>
-  <string name="create_passphrase_activity__continue">Lanjutkan</string>
-  <string name="create_passphrase_activity__generating_secrets">MEMBUAT KUNCI RAHASIA</string>
-  <string name="create_passphrase_activity__skip">Lewati</string>
-  <string name="create_passphrase_activity__create">Buat</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__confirmation">Catatan ini akan dikirim secara online untuk kontributor TextSecure secara terbuka. Silakan periksa atau edit catatan tersebut sebelum anda kirim.</string>
-  <string name="log_submit_activity__button_cancel">Jangan Kirim</string>
-  <string name="log_submit_activity__button_ok">Kirim</string>
   <string name="log_submit_activity__log_fetch_failed">Tidak dapat mengambil catatan log dari perangkat anda. Anda masih dapat menggunakan ADB untuk mendapat catatan debug.</string>
-  <string name="log_submit_activity__log_submit_success_title">Sukses!</string>
-  <string name="log_submit_activity__log_got_it">Paham</string>
-  <string name="log_submit_activity__copied_to_clipboard">Disalin ke clipboard</string>
-  <string name="log_submit_activity__loading_logcat">Memuat logcat...</string>
   <string name="log_submit_activity__thanks">Terimakasih atas bantuan anda</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Apakah anda ingin mengimport pesan anda ke dalam basis data terenkripsi TextSecure?</string>
@@ -341,8 +282,6 @@ Apakah Anda yakin untuk melanjutkan?
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Ini bisa sedikit memakan waktu. Harap bersabar, kami akan memberi tahu anda ketika proses import selesai</string>
   <string name="database_migration_activity__importing">MENGIMPORT</string>
   <!--database_upgrade_activity-->
-  <string name="export_fragment__export_an_encrypted_backup_to_the_sd_card">Eksport cadangan dienkripsi
-ke kartu SD.</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">
 Export cadangan ke teks polos yang kompatibel dengan \'SMSBackup And Restore\'  ke kartu SD.</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Import database
@@ -356,14 +295,10 @@ Import cadangan dalam texks polos. Kompatibel dengan aplikasi \'SMSBackup And Re
   <!--mms_preferences_activity-->
   <string name="mms_preferences_activity__manual_mms_settings_are_required">Telepon Anda membutuhkan pengaturan MMS secara manual.</string>
   <!--prompt_passphrase_activity-->
-  <string name="prompt_passphrase_activity__textsecure_passphrase">KATA KUNCI TEXTSECURE</string>
   <string name="prompt_passphrase_activity__unlock">Buka Kunci</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure memerlukan pengaturan MMS untuk mengantar pesan dan media grup melalui operator anda. Perangkan anda tidak menyediakan informasi tersebut, yang biasanya disebabkan oleh perangkat yang dikunci atau pengaturan yang ketat.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Untuk mengirim pesan dan media grup klik \'OK\' dan selesaikan pengaturan yang diminta. Pengaturan MMS untuk operator anda biasanya dapat ditemukan dengan mencari \'APN operator anda\'. Hal ini hanya diperlukan sekali saja.</string>
-  <string name="prompt_mms_activity__mmsc_url_required">URL MMSC (Diperlukan):</string>
-  <string name="prompt_mms_activity__mms_proxy_host_optional">HOST PROXY MMS (OPSIONAL):</string>
-  <string name="prompt_mms_activity__mms_proxy_port_optional">PORT PROXY MMS (OPSIONAL):</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Selesai</string>
   <!--registration_activity-->
@@ -414,23 +349,13 @@ Telah gagal
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Masukkan nama atau nomor</small></string>
   <string name="recipients_panel__add_member">Tambah Anggota</string>
-  <!--review_identities-->
-  <string name="review_identities__you_don_t_currently_have_any_identity_keys_in_your_trust_database">Saat ini anda tidak memiliki kunci identitas di database yang dipercaya</string>
   <!--verify_identity_activity-->
   <string name="verify_identity_activity__their_identity_they_read">Identitas mereka (terbaca):</string>
   <string name="verify_identity_activity__your_identity_you_read">Identitas anda (terbaca):</string>
-  <!--verify_import_identity_activity-->
-  <string name="verify_import_identity_activity__verified">Terverifikasi!</string>
-  <string name="verify_import_identity_activity__compare">Bandingkan</string>
-  <!--verify_keys_activity-->
-  <string name="verify_keys_activity__they_read_this">Yang terbaca oleh mereka:</string>
-  <string name="verify_keys_activity__you_read_this">Yang terbaca oleh anda:</string>
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__change_passphrase">Ganti Kata Kunci</string>
-  <string name="AndroidManifest__manage_identity_keys">Kelola Kunci Identitas</string>
   <!--arrays.xml-->
   <!--preferences.xml-->
-  <string name="preferences__general">Umum</string>
   <string name="preferences__pref_all_sms_title">Terima semua SMS</string>
   <string name="preferences__pref_all_mms_title">Terima semua MMS</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Gunakan TextSecure untuk melihat dan menyimpan semua pesan teks yang masuk</string>
@@ -449,10 +374,6 @@ Telah gagal
   <string name="preferences__timeout_passphrase">Kata kunci kadaluarsa</string>
   <string name="preferences__pref_timeout_interval_title">Interval Kadaluarsa</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Waktu tunggu sebelum melupakan kata kunci dari memori</string>
-  <string name="preferences__identity_key_settings">Identitas kunci</string>
-  <string name="preferences__view_my_identity_key">Tampilkan identitas saya</string>
-  <string name="preferences__manage_identity_keys">Kelola Kunci Identitas</string>
-  <string name="preferences__manage_configured_identity_keys">Kelola konfigurasi kunci identitas</string>
   <string name="preferences__notifications">Pemberitahuan</string>
   <string name="preferences__display_message_notifications_in_status_bar">Tampilkan pemberitahuan pesan di status bar</string>
   <string name="preferences__led_color">Warna LED</string>
@@ -500,7 +421,6 @@ Telah gagal
   <string name="preferences__make_textsecure_the_default_sms_mms_app">Jadikan TextSecure sebagai palikasi default untuk SMS/MMS.</string>
   <string name="preferences__use_data_channel">Pesan Push</string>
   <string name="preferences__allow_sms_fallback">Ijinkan SMS keluar ke</string>
-  <string name="preferences__allow_sms_fallback_disabled_reason">TextSecure saat ini sebagai aplikasi SMS default. Silakan tentukan aplikasi SMS default yang lain untuk mengganti nilai ini.</string>
   <string name="preferences__submit_debug_log">Kirim debug log</string>
   <string name="preferences__sms_outgoing_push_users">Pengguna TextSecure</string>
   <string name="preferences__sms_fallback_push_users_ask">(tanya dulu)</string>
@@ -528,8 +448,6 @@ Telah gagal
   <!--conversation_list_batch-->
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Cari</string>
-  <string name="conversation_list__drawer_open">Buka peringkas navigasi</string>
-  <string name="conversation_list__drawer_close">Tutup peringkas navigasi</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Keamanan</string>
   <!--conversation-->
@@ -545,16 +463,13 @@ Telah gagal
   <string name="key_scanning__menu_compare">Bandingkan</string>
   <string name="key_scanning__menu_get_scanned_to_compare">Pindai kunci untuk dicocokkan</string>
   <string name="key_scanning__menu_scan_to_compare">Pindai untuk dicocokkan</string>
-  <!--text_secure_locked-->
-  <string name="text_secure_locked__menu_unlock">Buka Kunci</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_settings">Konfigurasi</string>
   <string name="text_secure_normal__menu_clear_passphrase">Kunci</string>
-  <!--verify_keys-->
-  <string name="verify_keys__menu_verified">Terverifikasi</string>
   <!--reminder_header-->
   <!--MediaPreviewActivity-->
   <!--media_preview-->
   <!--media_preview_activity-->
+  <!--Trimmer-->
   <!--EOF-->
 </resources>
