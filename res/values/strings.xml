@@ -385,7 +385,6 @@
     <string name="change_passphrase_activity__old_passphrase">OLD PASSPHRASE:</string>
     <string name="change_passphrase_activity__new_passphrase">NEW PASSPHRASE:</string>
     <string name="change_passphrase_activity__repeat_new_passphrase">REPEAT NEW PASSPHRASE:</string>
-    <string name="create_passphrase_activity__cancel">Cancel</string>
 
     <!-- contact_selection_group_activity -->
     <!-- contact_selection_list_activity -->
