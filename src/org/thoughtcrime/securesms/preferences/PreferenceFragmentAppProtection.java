@@ -101,7 +101,7 @@ public class PreferenceFragmentAppProtection extends PreferenceFragment {
         builder.show();
       } else {
         Intent intent = new Intent(getActivity(), PassphraseChangeActivity.class);
-        startActivityForResult(intent, ApplicationPreferencesActivity.ENABLE_PASSPHRASE_ACTIVITY);
+        startActivity(intent);
       }
 
       return false;
