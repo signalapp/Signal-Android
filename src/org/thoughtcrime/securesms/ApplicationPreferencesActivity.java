@@ -264,7 +264,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
           switch (result) {
           case NETWORK_ERROR:
             Toast.makeText(getActivity(),
-              getString(R.string.ApplicationPreferencesActivity_error_connecting_to_server),
+              R.string.ApplicationPreferencesActivity_error_connecting_to_server,
               Toast.LENGTH_LONG).show();
             break;
           case SUCCESS:
@@ -299,8 +299,8 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
         if (((CheckBoxPreference)preference).isChecked()) {
           AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
           builder.setIcon(Dialogs.resolveIcon(getActivity(), R.attr.dialog_info_icon));
-          builder.setTitle(getString(R.string.ApplicationPreferencesActivity_disable_push_messages));
-          builder.setMessage(getString(R.string.ApplicationPreferencesActivity_this_will_disable_push_messages));
+          builder.setTitle(R.string.ApplicationPreferencesActivity_disable_push_messages);
+          builder.setMessage(R.string.ApplicationPreferencesActivity_this_will_disable_push_messages);
           builder.setNegativeButton(android.R.string.cancel, null);
           builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             @Override
