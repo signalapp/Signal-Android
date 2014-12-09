@@ -84,8 +84,8 @@ public class MmsPreferencesFragment extends PreferenceFragment {
   }
 
   public static CharSequence getSummary(Context context) {
-    final int enabledResId   = R.string.MmsPreferencesFragment__enabled;
-    final int disabledResId  = R.string.MmsPreferencesFragment__disabled;
+    final int enabledResId  = R.string.MmsPreferencesFragment__enabled;
+    final int disabledResId = R.string.MmsPreferencesFragment__disabled;
 
     return context.getString(TextSecurePreferences.isUseLocalApnsEnabled(context) ? enabledResId : disabledResId);
   }
