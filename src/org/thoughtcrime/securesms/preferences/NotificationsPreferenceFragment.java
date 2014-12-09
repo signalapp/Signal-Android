@@ -17,6 +17,8 @@ import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
+import java.util.Arrays;
+
 public class NotificationsPreferenceFragment extends PreferenceFragment {
 
   @Override
@@ -45,16 +47,9 @@ public class NotificationsPreferenceFragment extends PreferenceFragment {
   private class ListSummaryListener implements Preference.OnPreferenceChangeListener {
     @Override
     public boolean onPreferenceChange(Preference preference, Object value) {
-      ListPreference asList = (ListPreference) preference;
+      ListPreference listPref = (ListPreference) preference;
 
-      int index = 0;
-      for (; index < asList.getEntryValues().length; index++) {
-        if (value.equals(asList.getEntryValues()[index])) {
-          break;
-        }
-      }
-
-      asList.setSummary(asList.getEntries()[index]);
+      listPref.setSummary(listPref.getEntries()[Arrays.asList(listPref).indexOf(value)]);
       return true;
     }
   }
