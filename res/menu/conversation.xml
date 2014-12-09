@@ -9,6 +9,10 @@
           android:id="@+id/menu_add_contact_info"
           android:icon="@drawable/ic_menu_friendslist" />
 
+    <item android:title="@string/conversation__menu_send_textsecure_link"
+        android:id="@+id/menu_send_textsecure_link"
+        android:icon="@drawable/ic_menu_link" />
+
     <item android:title="@string/conversation__menu_delete_thread"
           android:id="@+id/menu_delete_thread"
           android:icon="@android:drawable/ic_menu_delete" />
