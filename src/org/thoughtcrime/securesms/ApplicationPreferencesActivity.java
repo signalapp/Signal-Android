@@ -324,22 +324,6 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
       }
     }
 
-    private void initializeEditTextSummary(final EditTextPreference preference) {
-      if (preference.getText() == null) {
-        preference.setSummary("Not set");
-      } else {
-        preference.setSummary(preference.getText());
-      }
-
-      preference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-        @Override
-        public boolean onPreferenceChange(Preference pref, Object newValue) {
-          preference.setSummary(newValue == null ? "Not set" : ((String) newValue));
-          return true;
-        }
-      });
-    }
-
     /* http://code.google.com/p/android/issues/detail?id=4611#c35 */
     @SuppressWarnings("deprecation")
     @Override
