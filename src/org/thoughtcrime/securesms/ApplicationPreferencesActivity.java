@@ -68,7 +68,6 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
 {
   private static final String TAG = ApplicationPreferencesActivity.class.getSimpleName();
 
-  public static final int PICK_IDENTITY_CONTACT        = 1;
   public static final int ENABLE_PASSPHRASE_ACTIVITY   = 2;
 
   private static final String PREFERENCE_CATEGORY_SMS_MMS        = "preference_category_sms_mms";

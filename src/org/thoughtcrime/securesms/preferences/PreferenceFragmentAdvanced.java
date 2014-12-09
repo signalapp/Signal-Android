@@ -21,6 +21,8 @@ public class PreferenceFragmentAdvanced extends PreferenceFragment {
 
   private static final String SUBMIT_DEBUG_LOG_PREF = "pref_submit_debug_logs";
 
+  private static final int PICK_IDENTITY_CONTACT = 1;
+
   @Override
   public void onCreate(Bundle paramBundle) {
     super.onCreate(paramBundle);
@@ -43,7 +45,7 @@ public class PreferenceFragmentAdvanced extends PreferenceFragment {
     super.onActivityResult(reqCode, resultCode, data);
 
     Log.w(TAG, "Got result: " + resultCode + " for req: " + reqCode);
-    if (resultCode == Activity.RESULT_OK && reqCode == ApplicationPreferencesActivity.PICK_IDENTITY_CONTACT) {
+    if (resultCode == Activity.RESULT_OK && reqCode == PICK_IDENTITY_CONTACT) {
       handleIdentitySelection(data);
     }
   }
@@ -73,7 +75,7 @@ public class PreferenceFragmentAdvanced extends PreferenceFragment {
     public boolean onPreferenceClick(Preference preference) {
       Intent intent = new Intent(Intent.ACTION_PICK);
       intent.setType(ContactsContract.Contacts.CONTENT_TYPE);
-      startActivityForResult(intent, ApplicationPreferencesActivity.PICK_IDENTITY_CONTACT);
+      startActivityForResult(intent, PICK_IDENTITY_CONTACT);
       return true;
     }
   }
