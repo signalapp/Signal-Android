@@ -1,1 +1,1 @@
-include ':libtextsecure', ':libaxolotl'
+include ':libtextsecure'

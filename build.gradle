@@ -76,6 +76,7 @@ dependencyVerification {
             'com.googlecode.libphonenumber:libphonenumber:eba17eae81dd622ea89a00a3a8c025b2f25d342e0d9644c5b62e16f15687c3ab',
             'org.whispersystems:gson:08f4f7498455d1539c9233e5aac18e9b1805815ef29221572996508eb512fe51',
             'org.whispersystems:jobmanager:adb4329b69035053a7b6a48e22a3280235ac405b225ed8679b994612a8e6f5b6',
+            'org.whispersystems:axolotl-android:7617256d05aaecd7b5475cd55e42773d7079167a22ca48512bcb0f84f8473cc9',
             'com.android.support:support-annotations:1aa96ef0cc4a445bfc2f93ccf762305bc57fa107b12afe9d11f3863ae8a11036',
     ]
 }
