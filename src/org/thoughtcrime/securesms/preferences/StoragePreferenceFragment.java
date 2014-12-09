@@ -40,8 +40,8 @@ public class StoragePreferenceFragment extends PreferenceFragment {
       final int threadLengthLimit = TextSecurePreferences.getThreadTrimLength(getActivity());
       AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
       builder.setTitle(R.string.ApplicationPreferencesActivity_delete_all_old_messages_now);
-      builder.setMessage(String.format(getString(R.string.ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages),
-        threadLengthLimit));
+      builder.setMessage(getString(R.string.ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages,
+                                   threadLengthLimit));
       builder.setPositiveButton(R.string.ApplicationPreferencesActivity_delete,
         new DialogInterface.OnClickListener() {
           @Override
@@ -61,7 +61,7 @@ public class StoragePreferenceFragment extends PreferenceFragment {
 
     public TrimLengthValidationListener() {
       EditTextPreference preference = (EditTextPreference)findPreference(TextSecurePreferences.THREAD_TRIM_LENGTH);
-      preference.setSummary(preference.getText() + " " + getString(R.string.ApplicationPreferencesActivity_messages_per_conversation));
+      preference.setSummary(getString(R.string.ApplicationPreferencesActivity_messages_per_conversation, preference.getText()));
     }
 
     @Override
@@ -81,8 +81,7 @@ public class StoragePreferenceFragment extends PreferenceFragment {
         return false;
       }
 
-      preference.setSummary(newValue + " " +
-        getString(R.string.ApplicationPreferencesActivity_messages_per_conversation));
+      preference.setSummary(getString(R.string.ApplicationPreferencesActivity_messages_per_conversation, newValue));
       return true;
     }
   }

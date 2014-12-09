@@ -8,7 +8,7 @@
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_currently_s">Currently: %s</string>
     <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">You haven\'t set a passphrase yet!</string>
-    <string name="ApplicationPreferencesActivity_messages_per_conversation">messages per conversation</string>
+    <string name="ApplicationPreferencesActivity_messages_per_conversation">%s messages per conversation</string>
     <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Delete all old messages now?</string>
     <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Are you sure you would like to immediately trim all conversation threads to the %s most recent messages?</string>
     <string name="ApplicationPreferencesActivity_delete">Delete</string>
