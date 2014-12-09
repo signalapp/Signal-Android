@@ -330,10 +330,8 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference)
     {
       super.onPreferenceTreeClick(preferenceScreen, preference);
-      if (preference!=null)
-        if (preference instanceof PreferenceScreen)
-          if (((PreferenceScreen)preference).getDialog()!=null)
-            ((PreferenceScreen) preference).getDialog().getWindow().getDecorView().setBackgroundDrawable(getActivity().getWindow().getDecorView().getBackground().getConstantState().newDrawable());
+      if (preference != null && preference instanceof PreferenceScreen && ((PreferenceScreen)preference).getDialog() != null)
+        ((PreferenceScreen) preference).getDialog().getWindow().getDecorView().setBackgroundDrawable(getActivity().getWindow().getDecorView().getBackground().getConstantState().newDrawable());
       return false;
     }
   }
