@@ -242,10 +242,10 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
 
       private class DisablePushMessagesTask extends AsyncTask<Void, Void, Integer> {
         private ProgressDialog dialog;
-        private final Preference preference;
+        private final CheckBoxPreference checkBoxPreference;
 
-        public DisablePushMessagesTask(final Preference preference) {
-          this.preference = preference;
+        public DisablePushMessagesTask(final CheckBoxPreference checkBoxPreference ) {
+          this.checkBoxPreference = checkBoxPreference;
         }
 
         @Override
@@ -268,7 +268,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
               Toast.LENGTH_LONG).show();
             break;
           case SUCCESS:
-            ((CheckBoxPreference)preference).setChecked(false);
+            checkBoxPreference.setChecked(false);
             TextSecurePreferences.setPushRegistered(getActivity(), false);
             break;
           }
@@ -305,7 +305,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
           builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-              new DisablePushMessagesTask(preference).execute();
+              new DisablePushMessagesTask((CheckBoxPreference)preference).execute();
             }
           });
           builder.show();
