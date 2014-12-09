@@ -16,8 +16,8 @@ import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactIdentityManager;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
-public class PreferenceFragmentAdvanced extends PreferenceFragment {
-  private static final String TAG = PreferenceFragmentAdvanced.class.getSimpleName();
+public class AdvancedPreferenceFragment extends PreferenceFragment {
+  private static final String TAG = AdvancedPreferenceFragment.class.getSimpleName();
 
   private static final String SUBMIT_DEBUG_LOG_PREF = "pref_submit_debug_logs";
 

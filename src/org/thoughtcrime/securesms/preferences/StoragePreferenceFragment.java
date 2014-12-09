@@ -14,8 +14,8 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Trimmer;
 
-public class PreferenceFragmentStorage extends PreferenceFragment {
-  private static final String TAG = PreferenceFragmentStorage.class.getSimpleName();
+public class StoragePreferenceFragment extends PreferenceFragment {
+  private static final String TAG = StoragePreferenceFragment.class.getSimpleName();
 
   @Override
   public void onCreate(Bundle paramBundle) {

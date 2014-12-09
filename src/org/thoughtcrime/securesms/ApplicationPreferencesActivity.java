@@ -25,7 +25,6 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
-import android.preference.EditTextPreference;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
 import android.support.v4.app.Fragment;
@@ -38,13 +37,13 @@ import android.widget.Toast;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.preferences.AdvancedPreferenceFragment;
+import org.thoughtcrime.securesms.preferences.AppProtectionPreferenceFragment;
+import org.thoughtcrime.securesms.preferences.AppearancePreferenceFragment;
+import org.thoughtcrime.securesms.preferences.NotificationsPreferenceFragment;
+import org.thoughtcrime.securesms.preferences.SmsMmsPreferenceFragment;
+import org.thoughtcrime.securesms.preferences.StoragePreferenceFragment;
 import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
-import org.thoughtcrime.securesms.preferences.PreferenceFragmentAdvanced;
-import org.thoughtcrime.securesms.preferences.PreferenceFragmentAppProtection;
-import org.thoughtcrime.securesms.preferences.PreferenceFragmentAppearance;
-import org.thoughtcrime.securesms.preferences.PreferenceFragmentNotifications;
-import org.thoughtcrime.securesms.preferences.PreferenceFragmentSmsMms;
-import org.thoughtcrime.securesms.preferences.PreferenceFragmentStorage;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -171,15 +170,15 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
 
     private void setCategorySummaries() {
       this.findPreference(PREFERENCE_CATEGORY_SMS_MMS)
-          .setSummary(PreferenceFragmentSmsMms.getSummary(getActivity()));
+          .setSummary(SmsMmsPreferenceFragment.getSummary(getActivity()));
       this.findPreference(PREFERENCE_CATEGORY_NOTIFICATIONS)
-          .setSummary(PreferenceFragmentNotifications.getSummary(getActivity()));
+          .setSummary(NotificationsPreferenceFragment.getSummary(getActivity()));
       this.findPreference(PREFERENCE_CATEGORY_APP_PROTECTION)
-          .setSummary(PreferenceFragmentAppProtection.getSummary(getActivity()));
+          .setSummary(AppProtectionPreferenceFragment.getSummary(getActivity()));
       this.findPreference(PREFERENCE_CATEGORY_APPEARANCE)
-          .setSummary(PreferenceFragmentAppearance.getSummary(getActivity()));
+          .setSummary(AppearancePreferenceFragment.getSummary(getActivity()));
       this.findPreference(PREFERENCE_CATEGORY_STORAGE)
-          .setSummary(PreferenceFragmentStorage.getSummary(getActivity()));
+          .setSummary(StoragePreferenceFragment.getSummary(getActivity()));
     }
 
     private class CategoryClickListener implements Preference.OnPreferenceClickListener {
@@ -191,26 +190,26 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
 
       @Override
       public boolean onPreferenceClick(Preference preference) {
-        Fragment fragment = null;
+        Fragment fragment;
 
         switch (category) {
         case PREFERENCE_CATEGORY_SMS_MMS:
-          fragment = new PreferenceFragmentSmsMms();
+          fragment = new SmsMmsPreferenceFragment();
           break;
         case PREFERENCE_CATEGORY_NOTIFICATIONS:
-          fragment = new PreferenceFragmentNotifications();
+          fragment = new NotificationsPreferenceFragment();
           break;
         case PREFERENCE_CATEGORY_APP_PROTECTION:
-          fragment = new PreferenceFragmentAppProtection();
+          fragment = new AppProtectionPreferenceFragment();
           break;
         case PREFERENCE_CATEGORY_APPEARANCE:
-          fragment = new PreferenceFragmentAppearance();
+          fragment = new AppearancePreferenceFragment();
           break;
         case PREFERENCE_CATEGORY_STORAGE:
-          fragment = new PreferenceFragmentStorage();
+          fragment = new StoragePreferenceFragment();
           break;
         case PREFERENCE_CATEGORY_ADVANCED:
-          fragment = new PreferenceFragmentAdvanced();
+          fragment = new AdvancedPreferenceFragment();
           break;
         default:
           throw new AssertionError();

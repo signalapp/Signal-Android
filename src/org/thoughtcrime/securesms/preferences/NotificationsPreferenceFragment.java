@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
-public class PreferenceFragmentNotifications extends PreferenceFragment {
+public class NotificationsPreferenceFragment extends PreferenceFragment {
 
   @Override
   public void onCreate(Bundle paramBundle) {

@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
-public class PreferenceFragmentAppProtection extends PreferenceFragment {
+public class AppProtectionPreferenceFragment extends PreferenceFragment {
   private CheckBoxPreference disablePassphrase;
 
   @Override

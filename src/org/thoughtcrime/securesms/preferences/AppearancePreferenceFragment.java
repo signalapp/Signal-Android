@@ -8,7 +8,7 @@ import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
-public class PreferenceFragmentAppearance extends PreferenceFragment {
+public class AppearancePreferenceFragment extends PreferenceFragment {
 
   @Override
   public void onCreate(Bundle paramBundle) {
