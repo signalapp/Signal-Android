@@ -262,15 +262,15 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
             dialog.dismiss();
 
           switch (result) {
-            case NETWORK_ERROR:
-              Toast.makeText(getActivity(),
-                getString(R.string.ApplicationPreferencesActivity_error_connecting_to_server),
-                Toast.LENGTH_LONG).show();
-              break;
-            case SUCCESS:
-              ((CheckBoxPreference)preference).setChecked(false);
-              TextSecurePreferences.setPushRegistered(getActivity(), false);
-              break;
+          case NETWORK_ERROR:
+            Toast.makeText(getActivity(),
+              getString(R.string.ApplicationPreferencesActivity_error_connecting_to_server),
+              Toast.LENGTH_LONG).show();
+            break;
+          case SUCCESS:
+            ((CheckBoxPreference)preference).setChecked(false);
+            TextSecurePreferences.setPushRegistered(getActivity(), false);
+            break;
           }
         }
 
