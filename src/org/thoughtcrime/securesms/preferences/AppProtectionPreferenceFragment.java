@@ -109,8 +109,8 @@ public class AppProtectionPreferenceFragment extends PreferenceFragment {
   }
 
   public static CharSequence getSummary(Context context) {
-    final int onCapsResId   = R.string.ApplicationPreferencesActivity_On;
-    final int offCapsResId  = R.string.ApplicationPreferencesActivity_Off;
+    final int onCapsResId  = R.string.ApplicationPreferencesActivity_On;
+    final int offCapsResId = R.string.ApplicationPreferencesActivity_Off;
 
     return context.getString(TextSecurePreferences.isPasswordDisabled(context) ? offCapsResId : onCapsResId);
   }
