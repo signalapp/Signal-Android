@@ -196,27 +196,35 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
       public boolean onPreferenceClick(Preference preference) {
         Fragment fragment = null;
 
-        if (this.category.equals(PREFERENCE_CATEGORY_SMS_MMS)) {
+        switch (category) {
+        case PREFERENCE_CATEGORY_SMS_MMS:
           fragment = new PreferenceFragmentSmsMms();
-        } else if (this.category.equals(PREFERENCE_CATEGORY_NOTIFICATIONS)) {
+          break;
+        case PREFERENCE_CATEGORY_NOTIFICATIONS:
           fragment = new PreferenceFragmentNotifications();
-        } else if (this.category.equals(PREFERENCE_CATEGORY_APP_PROTECTION)) {
+          break;
+        case PREFERENCE_CATEGORY_APP_PROTECTION:
           fragment = new PreferenceFragmentAppProtection();
-        } else if (this.category.equals(PREFERENCE_CATEGORY_APPEARANCE)) {
+          break;
+        case PREFERENCE_CATEGORY_APPEARANCE:
           fragment = new PreferenceFragmentAppearance();
-        } else if (this.category.equals(PREFERENCE_CATEGORY_STORAGE)) {
+          break;
+        case PREFERENCE_CATEGORY_STORAGE:
           fragment = new PreferenceFragmentStorage();
-        } else if (this.category.equals(PREFERENCE_CATEGORY_ADVANCED)) {
+          break;
+        case PREFERENCE_CATEGORY_ADVANCED:
           fragment = new PreferenceFragmentAdvanced();
+          break;
+        default:
+          throw new AssertionError();
         }
 
-        if (fragment != null) {
-          FragmentManager     fragmentManager     = getActivity().getSupportFragmentManager();
-          FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-          fragmentTransaction.replace(android.R.id.content, fragment);
-          fragmentTransaction.addToBackStack(null);
-          fragmentTransaction.commit();
-        }
+        FragmentManager     fragmentManager     = getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(android.R.id.content, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+
         return true;
       }
     }
