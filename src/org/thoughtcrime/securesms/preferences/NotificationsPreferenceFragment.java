@@ -62,8 +62,7 @@ public class NotificationsPreferenceFragment extends PreferenceFragment {
       if (TextUtils.isEmpty(value)) {
         preference.setSummary(R.string.preferences__default);
       } else {
-        Ringtone tone = RingtoneManager.getRingtone(getActivity(),
-          Uri.parse(value));
+        Ringtone tone = RingtoneManager.getRingtone(getActivity(), Uri.parse(value));
         if (tone != null) {
           preference.setSummary(tone.getTitle(getActivity()));
         }
