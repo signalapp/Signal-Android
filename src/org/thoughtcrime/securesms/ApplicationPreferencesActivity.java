@@ -309,16 +309,5 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
         return false;
       }
     }
-
-    /* http://code.google.com/p/android/issues/detail?id=4611#c35 */
-    @SuppressWarnings("deprecation")
-    @Override
-    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference)
-    {
-      super.onPreferenceTreeClick(preferenceScreen, preference);
-      if (preference != null && preference instanceof PreferenceScreen && ((PreferenceScreen)preference).getDialog() != null)
-        ((PreferenceScreen) preference).getDialog().getWindow().getDecorView().setBackgroundDrawable(getActivity().getWindow().getDecorView().getBackground().getConstantState().newDrawable());
-      return false;
-    }
   }
 }
