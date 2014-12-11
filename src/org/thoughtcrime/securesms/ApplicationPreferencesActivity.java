@@ -17,16 +17,13 @@
 package org.thoughtcrime.securesms;
 
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
-import android.preference.PreferenceScreen;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -313,17 +310,6 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
 
         return false;
       }
-    }
-
-    /* http://code.google.com/p/android/issues/detail?id=4611#c35 */
-    @SuppressWarnings("deprecation")
-    @Override
-    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference)
-    {
-      super.onPreferenceTreeClick(preferenceScreen, preference);
-      if (preference != null && preference instanceof PreferenceScreen && ((PreferenceScreen)preference).getDialog() != null)
-        ((PreferenceScreen) preference).getDialog().getWindow().getDecorView().setBackgroundDrawable(getActivity().getWindow().getDecorView().getBackground().getConstantState().newDrawable());
-      return false;
     }
   }
 }
