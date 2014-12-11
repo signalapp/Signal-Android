@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.util;
 
 import android.app.Activity;
+import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.text.TextUtils;
@@ -15,7 +17,7 @@ public class DynamicLanguage {
 
   public void onCreate(Activity activity) {
     currentLocale = getSelectedLocale(activity);
-    setActivityLocale(activity, currentLocale);
+    setContextLocale(activity, currentLocale);
   }
 
   public void onResume(Activity activity) {
@@ -28,13 +30,18 @@ public class DynamicLanguage {
     }
   }
 
-  private static void setActivityLocale(Activity activity, Locale selectedLocale) {
-    Configuration configuration = activity.getResources().getConfiguration();
+  public void updateServiceLocale(Service service) {
+    currentLocale = getSelectedLocale(service);
+    setContextLocale(service, currentLocale);
+  }
+
+  private static void setContextLocale(Context context, Locale selectedLocale) {
+    Configuration configuration = context.getResources().getConfiguration();
 
     if (!configuration.locale.equals(selectedLocale)) {
       configuration.locale = selectedLocale;
-      activity.getResources().updateConfiguration(configuration,
-                                                  activity.getResources().getDisplayMetrics());
+      context.getResources().updateConfiguration(configuration,
+                                                  context.getResources().getDisplayMetrics());
     }
   }
 
@@ -42,8 +49,8 @@ public class DynamicLanguage {
     return activity.getResources().getConfiguration().locale;
   }
 
-  private static Locale getSelectedLocale(Activity activity) {
-    String language[] = TextUtils.split(TextSecurePreferences.getLanguage(activity), "_");
+  private static Locale getSelectedLocale(Context context) {
+    String language[] = TextUtils.split(TextSecurePreferences.getLanguage(context), "_");
 
     if (language[0].equals(DEFAULT)) {
       return Locale.getDefault();

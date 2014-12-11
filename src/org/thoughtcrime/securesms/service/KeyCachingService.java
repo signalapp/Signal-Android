@@ -41,6 +41,7 @@ import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.ParcelUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.EncryptionKeys;
@@ -63,6 +64,9 @@ public class KeyCachingService extends Service {
   public  static final String DISABLE_ACTION           = "org.thoughtcrime.securesms.service.action.DISABLE";
   public  static final String ACTIVITY_START_EVENT     = "org.thoughtcrime.securesms.service.action.ACTIVITY_START_EVENT";
   public  static final String ACTIVITY_STOP_EVENT      = "org.thoughtcrime.securesms.service.action.ACTIVITY_STOP_EVENT";
+  public  static final String LOCALE_CHANGE_EVENT      = "org.thoughtcrime.securesms.service.action.LOCALE_CHANGE_EVENT";
+
+  private DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   private PendingIntent pending;
   private int activitiesRunning = 0;
@@ -101,7 +105,6 @@ public class KeyCachingService extends Service {
         @Override
         protected Void doInBackground(Void... params) {
           if (!DatabaseUpgradeActivity.isUpdate(KeyCachingService.this)) {
-//            DecryptingQueue.schedulePendingDecrypts(KeyCachingService.this, masterSecret);
             ApplicationContext.getInstance(KeyCachingService.this)
                               .getJobManager()
                               .setEncryptionKeys(new EncryptionKeys(ParcelUtil.serialize(masterSecret)));
@@ -117,16 +120,16 @@ public class KeyCachingService extends Service {
   public int onStartCommand(Intent intent, int flags, int startId) {
     if (intent == null) return START_NOT_STICKY;
 
-    if (intent.getAction() != null && intent.getAction().equals(CLEAR_KEY_ACTION))
-      handleClearKey();
-    else if (intent.getAction() != null && intent.getAction().equals(ACTIVITY_START_EVENT))
-      handleActivityStarted();
-    else if (intent.getAction() != null && intent.getAction().equals(ACTIVITY_STOP_EVENT))
-      handleActivityStopped();
-    else if (intent.getAction() != null && intent.getAction().equals(PASSPHRASE_EXPIRED_EVENT))
-      handleClearKey();
-    else if (intent.getAction() != null && intent.getAction().equals(DISABLE_ACTION))
-      handleDisableService();
+    if (intent.getAction() != null) {
+      switch (intent.getAction()) {
+        case CLEAR_KEY_ACTION:         handleClearKey();        break;
+        case ACTIVITY_START_EVENT:     handleActivityStarted(); break;
+        case ACTIVITY_STOP_EVENT:      handleActivityStopped(); break;
+        case PASSPHRASE_EXPIRED_EVENT: handleClearKey();        break;
+        case DISABLE_ACTION:           handleDisableService();  break;
+        case LOCALE_CHANGE_EVENT:      handleLocaleChanged();   break;
+      }
+    }
 
     return START_NOT_STICKY;
   }
@@ -201,6 +204,11 @@ public class KeyCachingService extends Service {
   private void handleDisableService() {
     if (TextSecurePreferences.isPasswordDisabled(this))
       stopForeground(true);
+  }
+
+  private void handleLocaleChanged() {
+    dynamicLanguage.updateServiceLocale(this);
+    foregroundService();
   }
 
   private void startTimeoutIfAppropriate() {
