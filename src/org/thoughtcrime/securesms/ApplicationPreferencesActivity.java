@@ -48,6 +48,7 @@ import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
+import org.thoughtcrime.securesms.util.ProgressDialogAsyncTask;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.TextSecureAccountManager;
@@ -232,36 +233,25 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
     }
 
     private class PushMessagingClickListener implements Preference.OnPreferenceChangeListener {
-
       private static final int SUCCESS       = 0;
       private static final int NETWORK_ERROR = 1;
 
-      private class DisablePushMessagesTask extends AsyncTask<Void, Void, Integer> {
-        private ProgressDialog dialog;
+      private class DisablePushMessagesTask extends ProgressDialogAsyncTask<Void, Void, Integer> {
         private final CheckBoxPreference checkBoxPreference;
 
-        public DisablePushMessagesTask(final CheckBoxPreference checkBoxPreference ) {
+        public DisablePushMessagesTask(final CheckBoxPreference checkBoxPreference) {
+          super(getActivity(), R.string.ApplicationPreferencesActivity_unregistering, R.string.ApplicationPreferencesActivity_unregistering_for_data_based_communication);
           this.checkBoxPreference = checkBoxPreference;
         }
 
         @Override
-        protected void onPreExecute() {
-          dialog = ProgressDialog.show(getActivity(),
-            getString(R.string.ApplicationPreferencesActivity_unregistering),
-            getString(R.string.ApplicationPreferencesActivity_unregistering_for_data_based_communication),
-            true, false);
-        }
-
-        @Override
         protected void onPostExecute(Integer result) {
-          if (dialog != null)
-            dialog.dismiss();
-
+          super.onPostExecute(result);
           switch (result) {
           case NETWORK_ERROR:
             Toast.makeText(getActivity(),
-              R.string.ApplicationPreferencesActivity_error_connecting_to_server,
-              Toast.LENGTH_LONG).show();
+                           R.string.ApplicationPreferencesActivity_error_connecting_to_server,
+                           Toast.LENGTH_LONG).show();
             break;
           case SUCCESS:
             checkBoxPreference.setChecked(false);
