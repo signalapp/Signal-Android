@@ -22,6 +22,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -40,6 +41,7 @@ import android.widget.Toast;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
@@ -51,6 +53,8 @@ import org.thoughtcrime.securesms.jobs.SmsSendJob;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.AvatarGenerator;
+import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.Emoji;
@@ -405,7 +409,16 @@ public class ConversationItem extends LinearLayout {
   private void setContactPhotoForRecipient(final Recipient recipient) {
     if (contactPhoto == null) return;
 
-    contactPhoto.setImageBitmap(recipient.getCircleCroppedContactPhoto());
+    Bitmap contactPhotoBitmap = null;
+
+    if ((recipient.getContactPhoto().equals(ContactPhotoFactory.getDefaultContactPhoto(context))) &&
+            (groupThread)) {
+      contactPhotoBitmap = recipient.getGeneratedAvatar(context);
+    } else {
+      contactPhotoBitmap = recipient.getCircleCroppedContactPhoto();
+    }
+
+    contactPhoto.setImageBitmap(contactPhotoBitmap);
 
     contactPhoto.setOnClickListener(new View.OnClickListener() {
       @Override

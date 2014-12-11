@@ -39,6 +39,20 @@
       <item>Ukrainian Український</item>
   </string-array>
 
+  <array name="avatar_colors">
+    <item>#6dcaec</item>
+    <item>#cf9fe7</item>
+    <item>#b6db49</item>
+    <item>#ffd060</item>
+    <item>#ff7979</item>
+
+    <item>#2cb1e1</item>
+    <item>#c182e0</item>
+    <item>#92c500</item>
+    <item>#ffb61c</item>
+    <item>#f83a3a</item>
+  </array>
+
   <string-array name="language_values">
       <item>zz</item>
       <item>en</item>
