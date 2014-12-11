@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <CheckBoxPreference android:defaultValue="false"
+                        android:key="pref_enter_key"
+                        android:title="@string/preferences__enable_enter_key_title"
+                        android:summary="@string/preferences__replace_smiley_with_enter_key"/>
+
+    <CheckBoxPreference android:defaultValue="false"
+                        android:key="pref_enter_sends"
+                        android:summary="@string/preferences__pressing_the_enter_key_will_send_text_messages"
+                        android:title="@string/preferences__pref_enter_sends_title"
+                        android:dependency="pref_enter_key"/>
+
+    <Preference android:key="pref_choose_identity"
+                android:title="@string/preferences__choose_identity"
+                android:summary="@string/preferences__choose_your_contact_entry_from_the_contacts_list"/>
+
+    <Preference android:key="pref_submit_debug_logs"
+                android:title="@string/preferences__submit_debug_log"/>
+</PreferenceScreen>
