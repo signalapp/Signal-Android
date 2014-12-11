@@ -125,6 +125,16 @@
                     android:contentDescription="@string/conversation_item_sent__delivered_description"
                     android:visibility="gone" />
 
+                <ImageView android:id="@+id/sms_type_indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingTop="2dp"
+                    android:paddingRight="3dip"
+                    android:src="?conversation_sms_type_indicator"
+                    android:contentDescription="Indicator for sms"
+                    android:visibility="gone" />
+
                 <ImageView android:id="@+id/sms_secure_indicator"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

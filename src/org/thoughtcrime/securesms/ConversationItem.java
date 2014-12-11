@@ -105,6 +105,7 @@ public class ConversationItem extends LinearLayout {
   private  ImageView deliveryImage;
   private  View      triangleTick;
   private  ImageView pendingIndicator;
+  private  ImageView smsTypeIndicator;
 
   private  View      mmsContainer;
   private  ImageView mmsThumbnail;
@@ -151,6 +152,7 @@ public class ConversationItem extends LinearLayout {
     this.triangleTick        =            findViewById(R.id.triangle_tick);
     this.pendingIndicator    = (ImageView)findViewById(R.id.pending_approval_indicator);
     this.backgroundDrawables = context.obtainStyledAttributes(STYLE_ATTRIBUTES);
+    this.smsTypeIndicator    = (ImageView)findViewById(R.id.sms_type_indicator);
 
     setOnClickListener(clickListener);
     if (failedImage != null)       failedImage.setOnClickListener(failedIconClickListener);
@@ -249,6 +251,8 @@ public class ConversationItem extends LinearLayout {
     if (messageRecord.isOutgoing()) {
       pendingIndicator.setVisibility(messageRecord.isPendingSmsFallback() ? View.VISIBLE : View.GONE);
       indicatorText.setVisibility(messageRecord.isPendingSmsFallback() ? View.VISIBLE : View.GONE);
+    } else {
+      smsTypeIndicator.setVisibility(messageRecord.isPush() ? View.GONE : View.VISIBLE);
     }
     secureImage.setVisibility(messageRecord.isSecure() ? View.VISIBLE : View.GONE);
     bodyText.setCompoundDrawablesWithIntrinsicBounds(0, 0, messageRecord.isKeyExchange() ? R.drawable.ic_menu_login : 0, 0);

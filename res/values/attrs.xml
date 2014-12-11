@@ -31,6 +31,8 @@
     <attr name="conversation_delivery_delivered" format="reference"/>
     <attr name="conversation_emoji_toggle" format="reference"/>
     <attr name="conversation_keyboard_toggle" format="reference"/>
+    <attr name="conversation_sms_type_indicator" format="reference"/>
+
 
     <attr name="conversation_item_background" format="reference"/>
     <attr name="conversation_item_received_background" format="reference" />
