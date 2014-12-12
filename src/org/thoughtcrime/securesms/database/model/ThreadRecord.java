@@ -72,6 +72,9 @@ public class ThreadRecord extends DisplayRecord {
       return emphasisAdded(context.getString(R.string.TheadRecord_secure_session_ended));
     } else if (MmsSmsColumns.Types.isLegacyType(type)) {
       return emphasisAdded(context.getString(R.string.MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported));
+    } else if (MmsSmsColumns.Types.isDraftMessageType(type)) {
+      String draftText = context.getString(R.string.ThreadRecord_draft);
+      return emphasisAdded(draftText + " " + getBody().getBody(), 0, draftText.length());
     } else {
       if (TextUtils.isEmpty(getBody().getBody())) {
         return new SpannableString(context.getString(R.string.MessageNotifier_no_subject));
@@ -82,10 +85,13 @@ public class ThreadRecord extends DisplayRecord {
   }
 
   private SpannableString emphasisAdded(String sequence) {
+    return emphasisAdded(sequence, 0, sequence.length());
+  }
+
+  private SpannableString emphasisAdded(String sequence, int start, int end) {
     SpannableString spannable = new SpannableString(sequence);
-    spannable.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), 0,
-                      sequence.length(),
-                      Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+    spannable.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC),
+                      start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
     return spannable;
   }
 

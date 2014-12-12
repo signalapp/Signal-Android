@@ -71,7 +71,9 @@ import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.DraftDatabase;
 import org.thoughtcrime.securesms.database.DraftDatabase.Draft;
+import org.thoughtcrime.securesms.database.DraftDatabase.Drafts;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.MmsSmsColumns.Types;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
 import org.thoughtcrime.securesms.mms.AttachmentTypeSelectorAdapter;
@@ -111,7 +113,6 @@ import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.textsecure.api.push.PushAddress;
 
 import java.io.IOException;
-import java.util.LinkedList;
 import java.util.List;
 
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
@@ -914,8 +915,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     builder.show();
   }
 
-  private List<Draft> getDraftsForCurrentState() {
-    List<Draft> drafts = new LinkedList<>();
+  private Drafts getDraftsForCurrentState() {
+    Drafts drafts = new Drafts();
 
     if (!Util.isEmpty(composeText)) {
       drafts.add(new Draft(Draft.TEXT, composeText.getText().toString()));
@@ -934,27 +935,22 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     if (this.threadId <= 0 || this.recipients == null || this.recipients.isEmpty())
       return;
 
-    final List<Draft> drafts = getDraftsForCurrentState();
-
-    if (drafts.size() <= 0)
-      return;
+    final Drafts drafts = getDraftsForCurrentState();
 
     final long thisThreadId             = this.threadId;
     final MasterSecret thisMasterSecret = this.masterSecret.parcelClone();
 
     new AsyncTask<Void, Void, Void>() {
       @Override
-      protected void onPostExecute(Void aVoid) {
-        super.onPostExecute(aVoid);
-        Toast.makeText(ConversationActivity.this,
-                       R.string.ConversationActivity_saved_draft,
-                       Toast.LENGTH_SHORT).show();
-      }
-
-      @Override
       protected Void doInBackground(Void... params) {
         MasterCipher masterCipher = new MasterCipher(thisMasterSecret);
         DatabaseFactory.getDraftDatabase(ConversationActivity.this).insertDrafts(masterCipher, thisThreadId, drafts);
+        ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(ConversationActivity.this);
+        if (drafts.size() > 0) {
+          threadDatabase.updateSnippet(thisThreadId, drafts.getSnippet(ConversationActivity.this), Types.BASE_DRAFT_TYPE);
+        } else {
+          threadDatabase.update(thisThreadId);
+        }
         MemoryCleaner.clean(thisMasterSecret);
         return null;
       }
