@@ -47,6 +47,11 @@
     <string name="DraftDatabase_Draft_audio_snippet">(audio)</string>
     <string name="DraftDatabase_Draft_video_snippet">(image)</string>
 
+    <!-- DraftDatabase -->
+    <string name="DraftDatabase_Draft_image_snippet">(image)</string>
+    <string name="DraftDatabase_Draft_audio_snippet">(audio)</string>
+    <string name="DraftDatabase_Draft_video_snippet">(image)</string>
+
     <!-- AttchmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Can\'t find an app to select media.</string>
 

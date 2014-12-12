@@ -109,7 +109,6 @@ import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.textsecure.api.push.PushAddress;
 
 import java.io.IOException;
-import java.util.LinkedList;
 import java.util.List;
 
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
