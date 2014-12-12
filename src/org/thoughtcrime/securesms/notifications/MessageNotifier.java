@@ -56,6 +56,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.ListIterator;
 
+import me.leolin.shortcutbadger.ShortcutBadgeException;
+import me.leolin.shortcutbadger.ShortcutBadger;
+
 /**
  * Handles posting system notifications for new messages.
  *
@@ -134,6 +137,7 @@ public class MessageNotifier {
       {
         ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
           .cancel(NOTIFICATION_ID);
+        updateBadge(context, 0);
         return;
       }
 
@@ -146,6 +150,8 @@ public class MessageNotifier {
       } else {
         sendSingleThreadNotification(context, masterSecret, notificationState, signal);
       }
+
+      updateBadge(context, notificationState.getMessageCount());
     } finally {
       if (telcoCursor != null) telcoCursor.close();
       if (pushCursor != null)  pushCursor.close();
@@ -383,5 +389,15 @@ public class MessageNotifier {
       blinkPattern = blinkPatternCustom;
 
     return blinkPattern.split(",");
+  }
+
+  private static void updateBadge(Context context, int count) {
+    try {
+      ShortcutBadger.setBadge(context, count);
+    } catch (Throwable t) {
+      // NOTE :: I don't totally trust this thing, so I'm catching
+      // everything.
+      Log.w("MessageNotifier", t);
+    }
   }
 }

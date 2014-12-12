@@ -27,9 +27,13 @@ repositories {
     maven {
         url "https://raw.github.com/whispersystems/maven/master/smil/releases/"
     }
+    maven {
+        url "https://raw.github.com/whispersystems/maven/master/shortcutbadger/releases/"
+    }
 }
 
 dependencies {
+    compile 'me.leolin:ShortcutBadger:1.0.2'
     compile 'se.emilsjolander:stickylistheaders:2.2.0'
     compile 'com.google.android.gms:play-services:6.1.71'
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
@@ -57,6 +61,7 @@ dependencies {
 
 dependencyVerification {
     verify = [
+            'me.leolin:ShortcutBadger:8fa86a47712d785f01a33dd157ae07209973224061bc1cf2f1cd1715585d196a',
             'se.emilsjolander:stickylistheaders:89146b46c96fea0e40200474a2625cda10fe94891e4128f53cdb42375091b9b6',
             'com.google.android.gms:play-services:32e7d1834a1cf8fa4b17e8d359db580c286e26c1eefbf84fdb9996eac8d74919',
             'com.astuetz:pagerslidingtabstrip:f1641396732c7132a7abb837e482e5ee2b0ebb8d10813fc52bbaec2c15c184c2',
