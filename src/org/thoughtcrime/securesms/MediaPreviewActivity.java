@@ -17,7 +17,6 @@
 package org.thoughtcrime.securesms;
 
 import android.annotation.TargetApi;
-import android.content.ContentUris;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -37,8 +36,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.providers.PartProvider;
+import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
@@ -133,12 +131,8 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity {
     }
   }
 
-  private InputStream getInputStream(Uri uri, MasterSecret masterSecret) throws IOException {
-    if (PartProvider.isAuthority(uri)) {
-      return DatabaseFactory.getEncryptingPartDatabase(this, masterSecret).getPartStream(ContentUris.parseId(uri));
-    } else {
-      throw new AssertionError("Given a URI that is not handled by our app.");
-    }
+  private InputStream getMediaInputStream() throws IOException {
+    return PartAuthority.getPartStream(this, masterSecret, mediaUri);
   }
 
   @Override
@@ -162,8 +156,8 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity {
           GLES20.glGetIntegerv(GLES20.GL_MAX_TEXTURE_SIZE, maxTextureSizeParams, 0);
           int maxTextureSize = Math.max(maxTextureSizeParams[0], 2048);
           Log.w(TAG, "reported GL_MAX_TEXTURE_SIZE: " + maxTextureSize);
-          return BitmapUtil.createScaledBitmap(getInputStream(mediaUri, masterSecret),
-                                               getInputStream(mediaUri, masterSecret),
+          return BitmapUtil.createScaledBitmap(getMediaInputStream(),
+                                               getMediaInputStream(),
                                                maxTextureSize, maxTextureSize);
         } catch (IOException | BitmapDecodingException e) {
           return null;

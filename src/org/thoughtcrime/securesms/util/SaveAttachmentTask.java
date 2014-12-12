@@ -14,7 +14,7 @@ import android.widget.Toast;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.providers.PartProvider;
+import org.thoughtcrime.securesms.mms.PartAuthority;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -60,7 +60,7 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
       }
 
       File mediaFile            = constructOutputFile(attachment.contentType, attachment.date);
-      InputStream inputStream   = DatabaseFactory.getEncryptingPartDatabase(context, masterSecret).getPartStream(ContentUris.parseId(attachment.uri));
+      InputStream inputStream   = PartAuthority.getPartStream(context, masterSecret, attachment.uri);
       OutputStream outputStream = new FileOutputStream(mediaFile);
 
       Util.copy(inputStream, outputStream);
@@ -138,9 +138,6 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
     public Attachment(Uri uri, String contentType, long date) {
       if (uri == null || contentType == null || date < 0) {
         throw new AssertionError("uri, content type, and date must all be specified");
-      }
-      if (!PartProvider.isAuthority(uri)) {
-        throw new AssertionError("attachment must be a TextSecure attachment");
       }
       this.uri         = uri;
       this.contentType = contentType;

@@ -378,7 +378,13 @@ public class PushServiceSocket {
     URL                uploadUrl  = new URL(url);
     HttpsURLConnection connection = (HttpsURLConnection) uploadUrl.openConnection();
     connection.setDoOutput(true);
-    connection.setFixedLengthStreamingMode((int) AttachmentCipherOutputStream.getCiphertextLength(dataSize));
+
+    if (dataSize > 0) {
+      connection.setFixedLengthStreamingMode((int) AttachmentCipherOutputStream.getCiphertextLength(dataSize));
+    } else {
+      connection.setChunkedStreamingMode(0);
+    }
+
     connection.setRequestMethod(method);
     connection.setRequestProperty("Content-Type", "application/octet-stream");
     connection.connect();

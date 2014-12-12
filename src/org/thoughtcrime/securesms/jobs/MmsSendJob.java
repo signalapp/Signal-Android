@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.mms.MmsRadio;
 import org.thoughtcrime.securesms.mms.MmsRadioException;
 import org.thoughtcrime.securesms.mms.MmsSendResult;
 import org.thoughtcrime.securesms.mms.OutgoingMmsConnection;
+import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -23,17 +24,22 @@ import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.NumberUtil;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.libaxolotl.NoSessionException;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Arrays;
 
 import ws.com.google.android.mms.MmsException;
 import ws.com.google.android.mms.pdu.EncodedStringValue;
+import ws.com.google.android.mms.pdu.PduBody;
 import ws.com.google.android.mms.pdu.PduComposer;
 import ws.com.google.android.mms.pdu.PduHeaders;
+import ws.com.google.android.mms.pdu.PduPart;
 import ws.com.google.android.mms.pdu.SendConf;
 import ws.com.google.android.mms.pdu.SendReq;
 
@@ -60,9 +66,11 @@ public class MmsSendJob extends MasterSecretJob {
   }
 
   @Override
-  public void onRun(MasterSecret masterSecret) throws MmsException, NoSuchMessageException {
+  public void onRun(MasterSecret masterSecret) throws MmsException, NoSuchMessageException, IOException {
     MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
     SendReq     message  = database.getOutgoingMessage(masterSecret, messageId);
+
+    populatePartData(message.getBody(), masterSecret);
 
     try {
       MmsSendResult result = deliver(masterSecret, message);
@@ -92,6 +100,20 @@ public class MmsSendJob extends MasterSecretJob {
   public void onCanceled() {
     DatabaseFactory.getMmsDatabase(context).markAsSentFailed(messageId);
     notifyMediaMessageDeliveryFailed(context, messageId);
+  }
+
+  private void populatePartData(PduPart part, MasterSecret masterSecret) throws IOException {
+    ByteArrayOutputStream os = part.getDataSize() > 0 && part.getDataSize() < Integer.MAX_VALUE
+                             ? new ByteArrayOutputStream((int)part.getDataSize())
+                             : new ByteArrayOutputStream();
+    Util.copy(PartAuthority.getPartStream(context, masterSecret, part.getDataUri()), os);
+    part.setData(os.toByteArray());
+  }
+
+  private void populatePartData(PduBody body, MasterSecret masterSecret) throws IOException {
+    for (int i=body.getPartsNum()-1; i>=0; i--) {
+      populatePartData(body.getPart(i), masterSecret);
+    }
   }
 
   public MmsSendResult deliver(MasterSecret masterSecret, SendReq message)

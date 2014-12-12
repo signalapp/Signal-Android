@@ -68,7 +68,7 @@ public class PartProvider extends ContentProvider {
   }
 
   private File copyPartToTemporaryFile(MasterSecret masterSecret, long partId) throws IOException {
-    InputStream in        = DatabaseFactory.getEncryptingPartDatabase(getContext(), masterSecret).getPartStream(partId);
+    InputStream in        = DatabaseFactory.getPartDatabase(getContext()).getPartStream(masterSecret, partId);
     File tmpDir           = getContext().getDir("tmp", 0);
     File tmpFile          = File.createTempFile("test", ".jpg", tmpDir);
     FileOutputStream fout = new FileOutputStream(tmpFile);

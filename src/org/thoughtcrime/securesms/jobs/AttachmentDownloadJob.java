@@ -7,7 +7,6 @@ import android.util.Pair;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.EncryptingPartDatabase;
 import org.thoughtcrime.securesms.database.PartDatabase;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
@@ -54,11 +53,11 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
 
   @Override
   public void onRun(MasterSecret masterSecret) throws IOException {
-    PartDatabase database = DatabaseFactory.getEncryptingPartDatabase(context, masterSecret);
+    PartDatabase database = DatabaseFactory.getPartDatabase(context);
 
     Log.w(TAG, "Downloading push parts for: " + messageId);
 
-    List<Pair<Long, PduPart>> parts = database.getParts(messageId, false);
+    List<Pair<Long, PduPart>> parts = database.getParts(messageId);
 
     for (Pair<Long, PduPart> partPair : parts) {
       retrievePart(masterSecret, partPair.second, messageId, partPair.first);
@@ -69,7 +68,7 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
   @Override
   public void onCanceled() {
     PartDatabase              database = DatabaseFactory.getPartDatabase(context);
-    List<Pair<Long, PduPart>> parts    = database.getParts(messageId, false);
+    List<Pair<Long, PduPart>> parts    = database.getParts(messageId);
 
     for (Pair<Long, PduPart> partPair : parts) {
       markFailed(messageId, partPair.second, partPair.first);
@@ -78,16 +77,14 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
 
   @Override
   public boolean onShouldRetryThrowable(Exception exception) {
-    if (exception instanceof PushNetworkException) return true;
-
-    return false;
+    return (exception instanceof PushNetworkException);
   }
 
   private void retrievePart(MasterSecret masterSecret, PduPart part, long messageId, long partId)
       throws IOException
   {
-    EncryptingPartDatabase    database       = DatabaseFactory.getEncryptingPartDatabase(context, masterSecret);
-    File                      attachmentFile = null;
+    PartDatabase database       = DatabaseFactory.getPartDatabase(context);
+    File         attachmentFile = null;
 
     try {
       attachmentFile = createTempFile();
@@ -95,7 +92,7 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
       TextSecureAttachmentPointer pointer    = createAttachmentPointer(masterSecret, part);
       InputStream                 attachment = messageReceiver.retrieveAttachment(pointer, attachmentFile);
 
-      database.updateDownloadedPart(messageId, partId, part, attachment);
+      database.updateDownloadedPart(masterSecret, messageId, partId, part, attachment);
     } catch (InvalidPartException | NonSuccessfulResponseCodeException | InvalidMessageException | MmsException e) {
       Log.w(TAG, e);
       markFailed(messageId, part, partId);

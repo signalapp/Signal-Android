@@ -91,9 +91,7 @@ public class VideoSlide extends Slide {
         cursor.close();
     }
 
-    if (getMediaSize(context, uri) > MAX_MESSAGE_SIZE)
-      throw new MediaTooLargeException("Video exceeds maximum message size.");
-
+    assertMediaSize(context, uri);
     part.setDataUri(uri);
     part.setContentId((System.currentTimeMillis()+"").getBytes());
     part.setName(("Video" + System.currentTimeMillis()).getBytes());
