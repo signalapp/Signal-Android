@@ -39,6 +39,7 @@ import org.whispersystems.libaxolotl.InvalidMessageException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 import ws.com.google.android.mms.ContentType;
 
@@ -56,14 +57,14 @@ public class DatabaseFactory {
   private static final int INTRODUCED_GROUP_DATABASE_VERSION = 11;
   private static final int INTRODUCED_PUSH_FIX_VERSION       = 12;
   private static final int INTRODUCED_DELIVERY_RECEIPTS      = 13;
-  private static final int DATABASE_VERSION                  = 13;
+  private static final int INTRODUCED_PART_DATA_SIZE_VERSION = 14;
+  private static final int DATABASE_VERSION                  = 14;
 
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
 
   private static DatabaseFactory instance;
-  private static EncryptingPartDatabase encryptingPartInstance;
 
   private DatabaseHelper databaseHelper;
 
@@ -115,17 +116,6 @@ public class DatabaseFactory {
 
   public static PartDatabase getPartDatabase(Context context) {
     return getInstance(context).part;
-  }
-
-  public static EncryptingPartDatabase getEncryptingPartDatabase(Context context, MasterSecret masterSecret) {
-    synchronized (lock)  {
-      if (encryptingPartInstance == null) {
-        DatabaseFactory factory = getInstance(context);
-        encryptingPartInstance  = new EncryptingPartDatabase(context, factory.databaseHelper, masterSecret);
-      }
-
-      return encryptingPartInstance;
-    }
   }
 
   public static MmsAddressDatabase getMmsAddressDatabase(Context context) {
@@ -360,12 +350,12 @@ public class DatabaseFactory {
               boolean encrypted   = partCursor.getInt(partCursor.getColumnIndexOrThrow("encrypted")) == 1;
               File dataFile       = new File(dataLocation);
 
-              FileInputStream fin;
+              InputStream is;
 
-              if (encrypted) fin = new DecryptingPartInputStream(dataFile, masterSecret);
-              else           fin = new FileInputStream(dataFile);
+              if (encrypted) is = new DecryptingPartInputStream(dataFile, masterSecret);
+              else           is = new FileInputStream(dataFile);
 
-              body = (body == null) ? Util.readFully(fin) : body + " " + Util.readFully(fin);
+              body = (body == null) ? Util.readFullyAsString(is) : body + " " + Util.readFullyAsString(is);
 
               dataFile.delete();
               db.delete("part", "_id = ?", new String[] {partId+""});
@@ -709,6 +699,10 @@ public class DatabaseFactory {
         db.execSQL("ALTER TABLE mms ADD COLUMN delivery_receipt_count INTEGER DEFAULT 0;");
         db.execSQL("CREATE INDEX IF NOT EXISTS sms_date_sent_index ON sms (date_sent);");
         db.execSQL("CREATE INDEX IF NOT EXISTS mms_date_sent_index ON mms (date);");
+      }
+
+      if (oldVersion < INTRODUCED_PART_DATA_SIZE_VERSION) {
+        db.execSQL("ALTER TABLE part ADD COLUMN data_size INTEGER DEFAULT 0;");
       }
 
       db.setTransactionSuccessful();

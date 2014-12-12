@@ -123,6 +123,7 @@ public class PduPart {
 
      private boolean isEncrypted;
      private boolean isPendingPush;
+     private long    dataSize;
      
      /**
       * Empty Constructor.
@@ -134,12 +135,21 @@ public class PduPart {
      public void setEncrypted(boolean isEncrypted) {
     	 this.isEncrypted = isEncrypted;
      }
-     
+
      public boolean getEncrypted() {
     	 return isEncrypted;
      }
 
-     public void setPendingPush(boolean isPendingPush) {
+     public void setDataSize(long dataSize) {
+       this.dataSize = dataSize;
+     }
+
+     public long getDataSize() {
+       return this.dataSize;
+     }
+
+
+  public void setPendingPush(boolean isPendingPush) {
        this.isPendingPush = isPendingPush;
      }
 

@@ -146,7 +146,7 @@ public class Util {
     else                                  return canonicalizeNumber(context, number);
   }
 
-  public static String readFully(InputStream in) throws IOException {
+  public static byte[] readFully(InputStream in) throws IOException {
     ByteArrayOutputStream bout = new ByteArrayOutputStream();
     byte[] buffer              = new byte[4096];
     int read;
@@ -157,19 +157,27 @@ public class Util {
 
     in.close();
 
-    return new String(bout.toByteArray());
+    return bout.toByteArray();
   }
 
-  public static void copy(InputStream in, OutputStream out) throws IOException {
+  public static String readFullyAsString(InputStream in) throws IOException {
+    return new String(readFully(in));
+  }
+
+  public static long copy(InputStream in, OutputStream out) throws IOException {
     byte[] buffer = new byte[4096];
     int read;
+    long total = 0;
 
     while ((read = in.read(buffer)) != -1) {
       out.write(buffer, 0, read);
+      total += read;
     }
 
     in.close();
     out.close();
+
+    return total;
   }
 
   public static String getDeviceE164Number(Context context) {

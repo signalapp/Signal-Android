@@ -97,6 +97,24 @@ public class DecryptingPartInputStream extends FileInputStream {
       return -1;
   }
 
+  @Override
+  public boolean markSupported() {
+    return false;
+  }
+
+  @Override
+  public long skip(long byteCount) throws IOException {
+    long skipped = 0L;
+    while (skipped < byteCount) {
+      byte[] buf  = new byte[Math.min(4096, (int)(byteCount-skipped))];
+      int    read = read(buf);
+
+      skipped += read;
+    }
+
+    return skipped;
+  }
+	
   private int readFinal(byte[] buffer, int offset, int length) throws IOException {
     try {
       int flourish = cipher.doFinal(buffer, offset);
