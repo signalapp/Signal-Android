@@ -698,7 +698,8 @@
     <string name="preferences__sms_fallback">Outgoing SMS/MMS</string>
     <string name="preferences__submit_debug_log">Submit debug log</string>
     <string name="preferences__sms_outgoing_push_users">TextSecure users</string>
-    <string name="preferences__sms_fallback_push_users_ask">(ask first)</string>
+    <string name="preferences__sms_fallback_push_users_ask">ask first</string>
+    <string name="preferences__sms_fallback_push_users_no_mms">no MMS</string>
     <string name="preferences__sms_outgoing_push_users_description">Send secure SMS if data connectivity is lost</string>
     <string name="preferences__sms_fallback_ask_before_sending_sms_mms">Ask before sending SMS/MMS</string>
     <string name="preferences__sms_fallback_never_send_mms">Never send MMS</string>

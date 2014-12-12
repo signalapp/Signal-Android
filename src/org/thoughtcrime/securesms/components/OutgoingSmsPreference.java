@@ -38,11 +38,16 @@ public class OutgoingSmsPreference extends DialogPreference {
     dataUsers.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        askForFallback.setEnabled(dataUsers.isChecked());
+        updateEnabledViews();
       }
     });
 
+    updateEnabledViews();
+  }
+
+  private void updateEnabledViews() {
     askForFallback.setEnabled(dataUsers.isChecked());
+    neverFallbackMms.setEnabled(dataUsers.isChecked());
   }
 
   @Override
