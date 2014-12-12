@@ -62,6 +62,7 @@ import java.util.concurrent.TimeUnit;
 
 import me.leolin.shortcutbadger.ShortcutBadger;
 
+
 /**
  * Handles posting system notifications for new messages.
  *
