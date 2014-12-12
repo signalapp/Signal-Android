@@ -21,7 +21,6 @@
                 android:layout_height="match_parent"
                 android:layout_above="@+id/bottom_container" />
 
-
         <LinearLayout
                 android:layout_alignParentBottom="true"
                 android:id="@id/bottom_container"
@@ -97,7 +96,7 @@
                         android:contentDescription="@string/conversation_activity__compose_description"
                         android:textColor="?conversation_editor_text_color" />
 
-                <ImageButton
+                <org.thoughtcrime.securesms.components.SendButton
                     android:id="@+id/send_button"
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
