@@ -247,13 +247,13 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
       public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) { }
       @Override
       public void afterTextChanged(Editable editable) {
+        final int prefixResId = (groupId != null)
+                                ? R.string.GroupCreateActivity_actionbar_update_title
+                                : R.string.GroupCreateActivity_actionbar_title;
         if (editable.length() > 0) {
-          final int prefixResId = (groupId != null)
-                                  ? R.string.GroupCreateActivity_actionbar_update_title
-                                  : R.string.GroupCreateActivity_actionbar_title;
           getSupportActionBar().setTitle(getString(prefixResId) + ": " + editable.toString());
         } else {
-          getSupportActionBar().setTitle(R.string.GroupCreateActivity_actionbar_title);
+          getSupportActionBar().setTitle(getString(prefixResId));
         }
       }
     });
@@ -324,7 +324,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
       return;
     }
     if (whisperGroupUiEnabled()) {
-      enableWhisperGroupCreatingUi();
+      enableWhisperGroupProgressUi(false);
       new CreateWhisperGroupAsyncTask().execute();
     } else {
       new CreateMmsGroupAsyncTask().execute();
@@ -332,19 +332,24 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
   }
 
   private void handleGroupUpdate() {
-    Log.w("GroupCreateActivity", "Creating...");
+    if (whisperGroupUiEnabled()) {
+      enableWhisperGroupProgressUi(true);
+    }
     new UpdateWhisperGroupAsyncTask().execute();
   }
 
-  private void enableWhisperGroupCreatingUi() {
+  private void enableWhisperGroupProgressUi(boolean isGroupUpdate) {
     findViewById(R.id.group_details_layout).setVisibility(View.GONE);
     findViewById(R.id.creating_group_layout).setVisibility(View.VISIBLE);
     findViewById(R.id.menu_create_group).setVisibility(View.GONE);
-    if (groupName.getText() != null)
+    if (groupName.getText() != null && !isGroupUpdate) {
       creatingText.setText(getString(R.string.GroupCreateActivity_creating_group, groupName.getText().toString()));
+    } else if (groupName.getText() != null) {
+      creatingText.setText(getString(R.string.GroupCreateActivity_updating_group, groupName.getText().toString()));
+    }
   }
 
-  private void disableWhisperGroupCreatingUi() {
+  private void disableWhisperGroupProgressUi() {
     findViewById(R.id.group_details_layout).setVisibility(View.VISIBLE);
     findViewById(R.id.creating_group_layout).setVisibility(View.GONE);
     findViewById(R.id.menu_create_group).setVisibility(View.VISIBLE);
@@ -593,7 +598,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
         finish();
       } else if (threadId == RES_BAD_NUMBER) {
         Toast.makeText(getApplicationContext(), R.string.GroupCreateActivity_contacts_invalid_number, Toast.LENGTH_LONG).show();
-        disableWhisperGroupCreatingUi();
+        disableWhisperGroupProgressUi();
       } else if (threadId == RES_MMS_EXCEPTION) {
         Toast.makeText(getApplicationContext(), R.string.GroupCreateActivity_contacts_mms_exception, Toast.LENGTH_LONG).show();
         setResult(RESULT_CANCELED);
@@ -641,7 +646,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
         finish();
       } else if (threadId == RES_BAD_NUMBER) {
         Toast.makeText(getApplicationContext(), R.string.GroupCreateActivity_contacts_invalid_number, Toast.LENGTH_LONG).show();
-        disableWhisperGroupCreatingUi();
+        disableWhisperGroupProgressUi();
       } else if (threadId == RES_MMS_EXCEPTION) {
         Toast.makeText(getApplicationContext(), R.string.GroupCreateActivity_contacts_mms_exception, Toast.LENGTH_LONG).show();
         finish();
@@ -658,12 +663,10 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
 
     @Override
     protected void onPreExecute() {
-      pd = new ProgressDialog(GroupCreateActivity.this);
-      pd.setTitle("Loading group details...");
-      pd.setMessage("Please wait.");
-      pd.setCancelable(false);
-      pd.setIndeterminate(true);
-      pd.show();
+      pd = ProgressDialog.show(GroupCreateActivity.this,
+                               getString(R.string.GroupCreateActivity_loading_group_details),
+                               getString(R.string.please_wait),
+                               true, false);
     }
 
     @Override
