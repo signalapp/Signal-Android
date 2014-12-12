@@ -6,6 +6,19 @@
                         android:summary="@string/preferences__display_message_notifications_in_status_bar"
                         android:defaultValue="true" />
 
+    <RingtonePreference android:dependency="pref_key_enable_notifications"
+                        android:key="pref_key_ringtone"
+                        android:title="@string/preferences__sound"
+                        android:summary="@string/preferences__change_notification_sound"
+                        android:ringtoneType="notification"
+                        android:defaultValue="content://settings/system/notification_sound" />
+
+    <CheckBoxPreference android:dependency="pref_key_enable_notifications"
+                        android:key="pref_key_vibrate"
+                        android:defaultValue="true"
+                        android:title="@string/preferences__vibrate"
+                        android:summary="@string/preferences__also_vibrate_when_notified" />
+
     <ListPreference
         android:key="pref_led_color"
         android:defaultValue="green"
@@ -22,12 +35,6 @@
         android:entries="@array/pref_led_blink_pattern_entries"
         android:entryValues="@array/pref_led_blink_pattern_values" />
 
-    <RingtonePreference android:dependency="pref_key_enable_notifications"
-                        android:key="pref_key_ringtone"
-                        android:title="@string/preferences__sound"
-                        android:summary="@string/preferences__change_notification_sound"
-                        android:ringtoneType="notification"
-                        android:defaultValue="content://settings/system/notification_sound" />
 
     <CheckBoxPreference android:key="pref_key_inthread_notifications"
                         android:title="@string/preferences__inthread_notifications"
@@ -35,9 +42,11 @@
                         android:dependency="pref_key_enable_notifications"
                         android:defaultValue="true" />
 
-    <CheckBoxPreference android:dependency="pref_key_enable_notifications"
-                        android:key="pref_key_vibrate"
-                        android:defaultValue="true"
-                        android:title="@string/preferences__vibrate"
-                        android:summary="@string/preferences__also_vibrate_when_notified" />
+    <ListPreference
+        android:key="pref_repeat_alerts"
+        android:defaultValue="0"
+        android:title="Repeat alerts"
+        android:dependency="pref_key_enable_notifications"
+        android:entries="@array/pref_repeat_alerts_entries"
+        android:entryValues="@array/pref_repeat_alerts_values" />
 </PreferenceScreen>

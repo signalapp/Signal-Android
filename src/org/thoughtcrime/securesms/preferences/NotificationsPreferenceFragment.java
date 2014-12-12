@@ -28,14 +28,17 @@ public class NotificationsPreferenceFragment extends PreferenceFragment {
     addPreferencesFromResource(R.xml.preferences_notifications);
 
     this.findPreference(TextSecurePreferences.LED_COLOR_PREF)
-      .setOnPreferenceChangeListener(new ListSummaryListener());
+        .setOnPreferenceChangeListener(new ListSummaryListener());
     this.findPreference(TextSecurePreferences.LED_BLINK_PREF)
-      .setOnPreferenceChangeListener(new ListSummaryListener());
+        .setOnPreferenceChangeListener(new ListSummaryListener());
     this.findPreference(TextSecurePreferences.RINGTONE_PREF)
-      .setOnPreferenceChangeListener(new RingtoneSummaryListener());
+        .setOnPreferenceChangeListener(new RingtoneSummaryListener());
+    this.findPreference(TextSecurePreferences.REPEAT_ALERTS_PREF)
+        .setOnPreferenceChangeListener(new ListSummaryListener());
 
     initializeListSummary((ListPreference) findPreference(TextSecurePreferences.LED_COLOR_PREF));
     initializeListSummary((ListPreference) findPreference(TextSecurePreferences.LED_BLINK_PREF));
+    initializeListSummary((ListPreference) findPreference(TextSecurePreferences.REPEAT_ALERTS_PREF));
     initializeRingtoneSummary((RingtonePreference) findPreference(TextSecurePreferences.RINGTONE_PREF));
   }
 

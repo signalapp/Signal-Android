@@ -8,6 +8,8 @@ import java.io.IOException;
 
 public class TextSecurePreferences {
 
+  private static final String TAG = TextSecurePreferences.class.getSimpleName();
+
   public  static final String IDENTITY_PREF                    = "pref_choose_identity";
   public  static final String CHANGE_PASSPHRASE_PREF           = "pref_change_passphrase";
   public  static final String DISABLE_PASSPHRASE_PREF          = "pref_disable_passphrase";
@@ -56,6 +58,25 @@ public class TextSecurePreferences {
   private static final String FALLBACK_MMS_ENABLED_PREF        = "pref_mms_fallback_enabled";
   private static final String SIGNED_PREKEY_REGISTERED_PREF    = "pref_signed_prekey_registered";
 
+  private static final String GCM_REGISTRATION_ID_PREF         = "pref_gcm_registration_id";
+  private static final String GCM_REGISTRATION_ID_VERSION_PREF = "pref_gcm_registration_id_version";
+
+  private static final String PUSH_REGISTRATION_REMINDER_PREF  = "pref_push_registration_reminder";
+  public  static final String REPEAT_ALERTS_PREF               = "pref_repeat_alerts";
+
+  public static int getRepeatAlertsCount(Context context) {
+    try {
+      return Integer.parseInt(getStringPreference(context, REPEAT_ALERTS_PREF, "0"));
+    } catch (NumberFormatException e) {
+      Log.w(TAG, e);
+      return 0;
+    }
+  }
+
+  public static void setRepeatAlertsCount(Context context, int count) {
+    setStringPreference(context, REPEAT_ALERTS_PREF, String.valueOf(count));
+  }
+
   public static boolean isSignedPreKeyRegistered(Context context) {
     return getBooleanPreference(context, SIGNED_PREKEY_REGISTERED_PREF, false);
   }
@@ -63,11 +84,6 @@ public class TextSecurePreferences {
   public static void setSignedPreKeyRegistered(Context context, boolean value) {
     setBooleanPreference(context, SIGNED_PREKEY_REGISTERED_PREF, value);
   }
-
-  private static final String GCM_REGISTRATION_ID_PREF         = "pref_gcm_registration_id";
-  private static final String GCM_REGISTRATION_ID_VERSION_PREF = "pref_gcm_registration_id_version";
-
-  private static final String PUSH_REGISTRATION_REMINDER_PREF  = "pref_push_registration_reminder";
 
   public static void setGcmRegistrationId(Context context, String registrationId) {
     setStringPreference(context, GCM_REGISTRATION_ID_PREF, registrationId);

@@ -215,7 +215,6 @@
     <service android:enabled="true" android:name=".service.ApplicationMigrationService"/>
     <service android:enabled="true" android:name=".service.KeyCachingService"/>
     <service android:enabled="true" android:name=".service.RegistrationService"/>
-    <service android:enabled="true" android:name=".service.DirectoryRefreshService"/>
 
     <service android:name=".service.QuickResponseService"
              android:permission="android.permission.SEND_RESPOND_VIA_MESSAGE"
@@ -305,6 +304,17 @@
         </intent-filter>
     </receiver>
 
+    <receiver android:name=".notifications.MessageNotifier$ReminderReceiver">
+        <intent-filter>
+            <action android:name="org.thoughtcrime.securesms.MessageNotifier.REMINDER_ACTION"/>
+        </intent-filter>
+    </receiver>
+
+    <receiver android:name=".notifications.MessageNotifier$DeleteReceiver">
+        <intent-filter>
+            <action android:name="org.thoughtcrime.securesms.MessageNotifier.DELETE_REMINDER_ACTION"/>
+        </intent-filter>
+    </receiver>
        <uses-library android:name="android.test.runner" />
 </application>
 </manifest>

@@ -184,4 +184,22 @@
     <item>@drawable/ic_send_sms_secure</item>
     <item>@drawable/ic_send_push</item>
   </string-array>
+
+  <string-array name="pref_repeat_alerts_entries">
+      <item>Never</item>
+      <item>One time</item>
+      <item>Two times</item>
+      <item>Three times</item>
+      <item>Five times</item>
+      <item>Ten times</item>
+  </string-array>
+
+  <string-array name="pref_repeat_alerts_values" translatable="false">
+      <item>0</item>
+      <item>1</item>
+      <item>2</item>
+      <item>3</item>
+      <item>5</item>
+      <item>10</item>
+  </string-array>
 </resources>

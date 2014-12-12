@@ -16,9 +16,11 @@
  */
 package org.thoughtcrime.securesms.notifications;
 
+import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -40,23 +42,24 @@ import android.util.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.RoutingActivity;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.PushDatabase;
+import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.concurrent.TimeUnit;
 
-import me.leolin.shortcutbadger.ShortcutBadgeException;
 import me.leolin.shortcutbadger.ShortcutBadger;
 
 /**
@@ -102,13 +105,12 @@ public class MessageNotifier {
     }
   }
 
-
   public static void updateNotification(Context context, MasterSecret masterSecret) {
     if (!TextSecurePreferences.isNotificationsEnabled(context)) {
       return;
     }
 
-    updateNotification(context, masterSecret, false);
+    updateNotification(context, masterSecret, false, 0);
   }
 
   public static void updateNotification(Context context, MasterSecret masterSecret, long threadId) {
@@ -120,11 +122,11 @@ public class MessageNotifier {
       DatabaseFactory.getThreadDatabase(context).setRead(threadId);
       sendInThreadNotification(context);
     } else {
-      updateNotification(context, masterSecret, true);
+      updateNotification(context, masterSecret, true, 0);
     }
   }
 
-  private static void updateNotification(Context context, MasterSecret masterSecret, boolean signal) {
+  private static void updateNotification(Context context, MasterSecret masterSecret, boolean signal, int reminderCount) {
     Cursor telcoCursor = null;
     Cursor pushCursor  = null;
 
@@ -138,6 +140,7 @@ public class MessageNotifier {
         ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
           .cancel(NOTIFICATION_ID);
         updateBadge(context, 0);
+        clearReminder(context);
         return;
       }
 
@@ -152,6 +155,7 @@ public class MessageNotifier {
       }
 
       updateBadge(context, notificationState.getMessageCount());
+      scheduleReminder(context, masterSecret, reminderCount);
     } finally {
       if (telcoCursor != null) telcoCursor.close();
       if (pushCursor != null)  pushCursor.close();
@@ -180,6 +184,7 @@ public class MessageNotifier {
     builder.setContentIntent(notifications.get(0).getPendingIntent(context));
     builder.setContentInfo(String.valueOf(notificationState.getMessageCount()));
     builder.setNumber(notificationState.getMessageCount());
+    builder.setDeleteIntent(PendingIntent.getBroadcast(context, 0, new Intent(DeleteReceiver.DELETE_REMINDER_ACTION), 0));
 
     if (masterSecret != null) {
       builder.addAction(R.drawable.check, context.getString(R.string.MessageNotifier_mark_as_read),
@@ -226,6 +231,8 @@ public class MessageNotifier {
     
     builder.setContentInfo(String.valueOf(notificationState.getMessageCount()));
     builder.setNumber(notificationState.getMessageCount());
+
+    builder.setDeleteIntent(PendingIntent.getBroadcast(context, 0, new Intent(DeleteReceiver.DELETE_REMINDER_ACTION), 0));
 
     if (masterSecret != null) {
       builder.addAction(R.drawable.check, context.getString(R.string.MessageNotifier_mark_all_as_read),
@@ -398,6 +405,50 @@ public class MessageNotifier {
       // NOTE :: I don't totally trust this thing, so I'm catching
       // everything.
       Log.w("MessageNotifier", t);
+    }
+  }
+
+  private static void scheduleReminder(Context context, MasterSecret masterSecret, int count) {
+    if (count >= TextSecurePreferences.getRepeatAlertsCount(context)) {
+      return;
+    }
+
+    AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+    Intent       alarmIntent  = new Intent(ReminderReceiver.REMINDER_ACTION);
+    alarmIntent.putExtra("reminder_count", count);
+
+    PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, alarmIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+    long          timeout       = TimeUnit.SECONDS.toMillis(10);
+
+    alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + timeout, pendingIntent);
+  }
+
+  private static void clearReminder(Context context) {
+    Intent        alarmIntent   = new Intent(ReminderReceiver.REMINDER_ACTION);
+    PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, alarmIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+    AlarmManager  alarmManager  = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+    alarmManager.cancel(pendingIntent);
+  }
+
+  public static class ReminderReceiver extends BroadcastReceiver {
+
+    public static final String REMINDER_ACTION = "org.thoughtcrime.securesms.MessageNotifier.REMINDER_ACTION";
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+      MasterSecret masterSecret  = KeyCachingService.getMasterSecret(context);
+      int          reminderCount = intent.getIntExtra("reminder_count", 0);
+      MessageNotifier.updateNotification(context, masterSecret, true, reminderCount + 1);
+    }
+  }
+
+  public static class DeleteReceiver extends BroadcastReceiver {
+
+    public static final String DELETE_REMINDER_ACTION = "org.thoughtcrime.securesms.MessageNotifier.DELETE_REMINDER_ACTION";
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+      clearReminder(context);
     }
   }
 }
