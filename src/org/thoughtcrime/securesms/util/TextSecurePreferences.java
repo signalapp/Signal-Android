@@ -53,6 +53,7 @@ public class TextSecurePreferences {
   private static final String FALLBACK_SMS_ALLOWED_PREF        = "pref_allow_sms_traffic_out";
   private static final String FALLBACK_SMS_ASK_REQUIRED_PREF   = "pref_sms_fallback_ask";
   private static final String DIRECT_SMS_ALLOWED_PREF          = "pref_sms_non_data_out";
+  private static final String FALLBACK_MMS_ENABLED_PREF        = "pref_mms_fallback_enabled";
   private static final String SIGNED_PREKEY_REGISTERED_PREF    = "pref_signed_prekey_registered";
 
   public static boolean isSignedPreKeyRegistered(Context context) {
@@ -97,6 +98,14 @@ public class TextSecurePreferences {
 
   public static void setFallbackSmsAskRequired(Context context, boolean required) {
     setBooleanPreference(context, FALLBACK_SMS_ASK_REQUIRED_PREF, required);
+  }
+
+  public static boolean isFallbackMmsEnabled(Context context) {
+    return getBooleanPreference(context, FALLBACK_MMS_ENABLED_PREF, true);
+  }
+
+  public static void setFallbackMmsEnabled(Context context, boolean enabled) {
+    setBooleanPreference(context, FALLBACK_MMS_ENABLED_PREF, enabled);
   }
 
   public static boolean isDirectSmsAllowed(Context context) {
@@ -369,6 +378,4 @@ public class TextSecurePreferences {
   private static void setLongPreference(Context context, String key, long value) {
     PreferenceManager.getDefaultSharedPreferences(context).edit().putLong(key, value).apply();
   }
-
-
 }

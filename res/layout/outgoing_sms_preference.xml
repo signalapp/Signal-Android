@@ -31,8 +31,17 @@
         android:layout_height="wrap_content"
         android:textSize="14sp"
         android:checkMark="?android:attr/listChoiceIndicatorMultiple"
-        android:text="@string/preferences__sms_fallback_ask_fallback"
+        android:text="@string/preferences__sms_fallback_ask_before_sending_sms_mms"
         android:layout_marginLeft="25dp" />
+
+    <CheckBox android:id="@+id/never_send_mms"
+              style="@style/TextSecureDialogPrimaryText"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:textSize="14sp"
+              android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+              android:text="@string/preferences__sms_fallback_never_send_mms"
+              android:layout_marginLeft="25dp" />
 
     <CheckBox android:id="@+id/non_data_users"
         style="@style/TextSecureDialogPrimaryText"

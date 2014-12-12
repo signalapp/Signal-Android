@@ -16,6 +16,11 @@
                 android:title="@string/preferences__choose_identity"
                 android:summary="@string/preferences__choose_your_contact_entry_from_the_contacts_list"/>
 
+    <CheckBoxPreference android:defaultValue="true"
+                        android:key="pref_auto_complete_key_exchange"
+                        android:title="@string/preferences__complete_key_exchanges"
+                        android:summary="@string/preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key" />
+
     <Preference android:key="pref_submit_debug_logs"
                 android:title="@string/preferences__submit_debug_log"/>
 </PreferenceScreen>

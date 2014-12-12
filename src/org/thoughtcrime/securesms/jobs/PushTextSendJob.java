@@ -41,7 +41,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
   private final long messageId;
 
   public PushTextSendJob(Context context, long messageId, String destination) {
-    super(context, constructParameters(context, destination));
+    super(context, constructParameters(context, destination, false));
     this.messageId = messageId;
   }
 
@@ -101,7 +101,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
       throws UntrustedIdentityException, SecureFallbackApprovalException,
              InsecureFallbackApprovalException, RetryLaterException
   {
-    boolean isSmsFallbackSupported = isSmsFallbackSupported(context, destination);
+    boolean isSmsFallbackSupported = isSmsFallbackSupported(context, destination, false);
 
     try {
       PushAddress             address       = getPushAddress(message.getIndividualRecipient());
@@ -133,7 +133,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
       throws SecureFallbackApprovalException, InsecureFallbackApprovalException
   {
     Recipient    recipient                     = smsMessage.getIndividualRecipient();
-    boolean      isSmsFallbackApprovalRequired = isSmsFallbackApprovalRequired(destination);
+    boolean      isSmsFallbackApprovalRequired = isSmsFallbackApprovalRequired(destination, false);
     AxolotlStore axolotlStore                  = new TextSecureAxolotlStore(context, masterSecret);
 
     if (!isSmsFallbackApprovalRequired) {

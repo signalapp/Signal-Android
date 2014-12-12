@@ -34,13 +34,13 @@ public abstract class PushSendJob extends MasterSecretJob {
     super(context, parameters);
   }
 
-  protected static JobParameters constructParameters(Context context, String destination) {
+  protected static JobParameters constructParameters(Context context, String destination, boolean media) {
     JobParameters.Builder builder = JobParameters.newBuilder();
     builder.withPersistence();
     builder.withGroupId(destination);
     builder.withRequirement(new MasterSecretRequirement(context));
 
-    if (!isSmsFallbackSupported(context, destination)) {
+    if (!isSmsFallbackSupported(context, destination, media)) {
       builder.withRequirement(new NetworkRequirement(context));
       builder.withRetryCount(5);
     }
@@ -48,7 +48,7 @@ public abstract class PushSendJob extends MasterSecretJob {
     return builder.create();
   }
 
-  protected static boolean isSmsFallbackSupported(Context context, String destination) {
+  protected static boolean isSmsFallbackSupported(Context context, String destination, boolean media) {
     try {
       String e164number = Util.canonicalizeNumber(context, destination);
 
@@ -57,6 +57,10 @@ public abstract class PushSendJob extends MasterSecretJob {
       }
 
       if (!TextSecurePreferences.isFallbackSmsAllowed(context)) {
+        return false;
+      }
+
+      if (media && !TextSecurePreferences.isFallbackMmsEnabled(context)) {
         return false;
       }
 
@@ -74,8 +78,8 @@ public abstract class PushSendJob extends MasterSecretJob {
     return new PushAddress(recipient.getRecipientId(), e164number, 1, relay);
   }
 
-  protected boolean isSmsFallbackApprovalRequired(String destination) {
-    return (isSmsFallbackSupported(context, destination) && TextSecurePreferences.isFallbackSmsAskRequired(context));
+  protected boolean isSmsFallbackApprovalRequired(String destination, boolean media) {
+    return (isSmsFallbackSupported(context, destination, media) && TextSecurePreferences.isFallbackSmsAskRequired(context));
   }
 
   protected List<TextSecureAttachment> getAttachments(SendReq message) {
