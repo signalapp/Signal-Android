@@ -10,17 +10,13 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.preference.RingtonePreference;
-import android.support.v4.preference.PreferenceFragment;
 import android.text.TextUtils;
-import android.util.Log;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
-import java.util.Arrays;
-
-public class NotificationsPreferenceFragment extends PreferenceFragment {
+public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragment {
 
   @Override
   public void onCreate(Bundle paramBundle) {
@@ -48,19 +44,6 @@ public class NotificationsPreferenceFragment extends PreferenceFragment {
     ((ApplicationPreferencesActivity) getActivity()).getSupportActionBar().setTitle(R.string.preferences__notifications);
   }
 
-  private class ListSummaryListener implements Preference.OnPreferenceChangeListener {
-    @Override
-    public boolean onPreferenceChange(Preference preference, Object value) {
-      ListPreference listPref = (ListPreference) preference;
-
-      final int entryIndex = Arrays.asList(listPref.getEntryValues()).indexOf(value);
-      listPref.setSummary(entryIndex >= 0 && entryIndex < listPref.getEntries().length
-                          ? listPref.getEntries()[entryIndex]
-                          : getString(R.string.preferences__led_color_unknown));
-      return true;
-    }
-  }
-
   private class RingtoneSummaryListener implements Preference.OnPreferenceChangeListener {
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -77,10 +60,6 @@ public class NotificationsPreferenceFragment extends PreferenceFragment {
 
       return true;
     }
-  }
-
-  private void initializeListSummary(ListPreference pref) {
-    pref.setSummary(pref.getEntry());
   }
 
   private void initializeRingtoneSummary(RingtonePreference pref) {

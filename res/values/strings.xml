@@ -39,8 +39,8 @@
     <string name="ApplicationPreferencesActivity_partial">partial</string>
     <string name="ApplicationPreferencesActivity_sms">SMS</string>
     <string name="ApplicationPreferencesActivity_mms">MMS</string>
-    <string name="ApplicationPreferencesActivity_incoming_sms">Incoming SMS</string>
-    <string name="ApplicationPreferencesActivity_outgoing_sms">outgoing SMS</string>
+    <string name="ApplicationPreferencesActivity_incoming_sms">Incoming</string>
+    <string name="ApplicationPreferencesActivity_outgoing_sms">outgoing</string>
 
     <!-- DraftDatabase -->
     <string name="DraftDatabase_Draft_image_snippet">(image)</string>
@@ -683,8 +683,8 @@
     <string name="preferences__conversation_length_limit">Conversation length limit</string>
     <string name="preferences__trim_all_threads_now">Trim all threads now</string>
     <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Scan through all conversation threads and enforce conversation length limits</string>
-    <string name="preferences__light_theme">Light theme</string>
-    <string name="preferences__dark_theme">Dark theme</string>
+    <string name="preferences__light_theme">Light</string>
+    <string name="preferences__dark_theme">Dark</string>
     <string name="preferences__appearance">Appearance</string>
     <string name="preferences__theme">Theme</string>
     <string name="preferences__default">Default</string>
