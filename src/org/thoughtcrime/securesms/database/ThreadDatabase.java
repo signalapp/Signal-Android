@@ -115,12 +115,21 @@ public class ThreadDatabase extends Database {
 
   private void updateThread(long threadId, long count, String body, long date, long type)
   {
-    ContentValues contentValues = new ContentValues(3);
+    ContentValues contentValues = new ContentValues(4);
     contentValues.put(DATE, date - date % 1000);
     contentValues.put(MESSAGE_COUNT, count);
     contentValues.put(SNIPPET, body);
     contentValues.put(SNIPPET_TYPE, type);
 
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    db.update(TABLE_NAME, contentValues, ID + " = ?", new String[] {threadId + ""});
+    notifyConversationListListeners();
+  }
+
+  public void updateSnippet(long threadId, String snippet, long type) {
+    ContentValues contentValues = new ContentValues(3);
+    contentValues.put(SNIPPET, snippet);
+    contentValues.put(SNIPPET_TYPE, type);
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     db.update(TABLE_NAME, contentValues, ID + " = ?", new String[] {threadId + ""});
     notifyConversationListListeners();

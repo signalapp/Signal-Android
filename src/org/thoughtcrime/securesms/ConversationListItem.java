@@ -35,6 +35,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -42,6 +43,7 @@ import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Emoji;
 
 import java.util.Set;
+import java.util.concurrent.ThreadFactory;
 
 /**
  * A view that displays the element in a list of multiple conversation threads.
@@ -102,10 +104,10 @@ public class ConversationListItem extends RelativeLayout
     this.recipients.addListener(this);
     this.fromView.setText(formatFrom(recipients, count, read));
 
-      this.subjectView.setText(Emoji.getInstance(context).emojify(thread.getDisplayBody(),
-                                                                  Emoji.EMOJI_SMALL,
-                                                                  new Emoji.InvalidatingPageLoadedListener(subjectView)),
-                               TextView.BufferType.SPANNABLE);
+    this.subjectView.setText(Emoji.getInstance(context).emojify(thread.getDisplayBody(),
+                                                                Emoji.EMOJI_SMALL,
+                                                                new Emoji.InvalidatingPageLoadedListener(subjectView)),
+                             TextView.BufferType.SPANNABLE);
 
     if (thread.getDate() > 0)
       this.dateView.setText(DateUtils.getBetterRelativeTimeSpanString(getContext(), thread.getDate()));
