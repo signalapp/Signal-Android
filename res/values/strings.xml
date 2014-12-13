@@ -109,6 +109,8 @@
     <string name="ConversationActivity_transport_secure_sms">Secure SMS</string>
     <string name="ConversationActivity_transport_secure_mms">Secure MMS</string>
     <string name="ConversationActivity_transport_textsecure">TextSecure</string>
+    <string name="ConversationActivity_get_with_it">Get with it: %s</string>
+    <string name="ConversationActivity_install_textsecure">Install TextSecure: %s</string>
 
     <!-- ConversationFragment -->
     <string name="ConversationFragment_message_details">Message details</string>
@@ -750,7 +752,7 @@
     <!-- conversation_context_image -->
     <string name="conversation_context_image__save_attachment">Save attachment</string>
 
-    <!-- conversation_insecure -->
+    <!-- conversation_insecure_no_push -->
     <string name="conversation_insecure__menu_start_secure_session">Start secure session</string>
 
     <!-- conversation_list_batch -->
