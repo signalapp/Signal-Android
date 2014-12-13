@@ -25,8 +25,9 @@
     <color name="touch_highlight">#400099cc</color>
     <color name="light_button">#33ffffff</color>
     <color name="light_button_highlight">#66ffffff</color>
-    <color name="conversation_item_sent_background_dark">#ff284e0a</color>
+
     <color name="conversation_item_sent_background_light">#ff64a926</color>
+    <color name="conversation_item_sent_background_dark">#ff284e0a</color>
     <color name="conversation_item_sent_shadow_light">#ffd5d5d5</color>
     <color name="conversation_item_sent_shadow_dark">#ff222222</color>
     <color name="conversation_item_sent_pending_background_light">#5564A926</color>
@@ -35,10 +36,15 @@
     <color name="conversation_item_sent_push_background_dark">#ff213b77</color>
     <color name="conversation_item_sent_push_pending_background_light">#ff528ff2</color>
     <color name="conversation_item_sent_push_pending_background_dark">#55213b77</color>
+
     <color name="conversation_item_received_background_light">#ffeeeeee</color>
     <color name="conversation_item_received_background_dark">#ff333333</color>
-    <color name="conversation_item_received_shadow_light">#ffd5d5d5</color>
-    <color name="conversation_item_received_shadow_dark">#ff222222</color>
+    <color name="conversation_item_received_shadow_light">#ff64a926</color>
+    <color name="conversation_item_received_shadow_dark">#ff284e0a</color>
+    <color name="conversation_item_received_push_background_light">#ffeeeeee</color>
+    <color name="conversation_item_received_push_background_dark">#ff333333</color>
+    <color name="conversation_item_received_push_shadow_light">#ff3a7ef2</color>
+    <color name="conversation_item_received_push_shadow_dark">#ff213b77</color>
 
     <color name="emoji_tab_indicator">#66ffffff</color>
     <color name="emoji_tab_underline">#11ffffff</color>
