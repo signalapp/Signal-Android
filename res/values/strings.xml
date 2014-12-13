@@ -42,6 +42,9 @@
     <string name="ApplicationPreferencesActivity_incoming_sms">Incoming</string>
     <string name="ApplicationPreferencesActivity_outgoing_sms">outgoing</string>
 
+    <!-- AppProtectionPreferenceFragment -->
+    <string name="AppProtectionPreferenceFragment_minutes">%d minutes</string>
+
     <!-- DraftDatabase -->
     <string name="DraftDatabase_Draft_image_snippet">(image)</string>
     <string name="DraftDatabase_Draft_audio_snippet">(audio)</string>

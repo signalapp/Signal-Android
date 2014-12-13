@@ -69,7 +69,7 @@ public class AppProtectionPreferenceFragment extends PreferenceFragment {
   private void initializeTimeoutSummary() {
     int timeoutMinutes = TextSecurePreferences.getPassphraseTimeoutInterval(getActivity());
     this.findPreference(TextSecurePreferences.PASSPHRASE_TIMEOUT_INTERVAL_PREF)
-        .setSummary(String.format("%d minutes", timeoutMinutes));
+        .setSummary(getString(R.string.AppProtectionPreferenceFragment_minutes, timeoutMinutes));
   }
 
   private class ChangePassphraseClickListener implements Preference.OnPreferenceClickListener {
