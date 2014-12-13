@@ -63,6 +63,11 @@ public class ThreadDatabase extends Database {
     "CREATE INDEX IF NOT EXISTS thread_recipient_ids_index ON " + TABLE_NAME + " (" + RECIPIENT_IDS + ");",
   };
 
+  public static final String RECIPIENT_IDS_EQUAL = RECIPIENT_IDS + " = ?";
+  public static final String RECIPIENT_IDS_LIKE = RECIPIENT_IDS + " LIKE ?";
+  public static final String FILTERED_SELECTION_QUERY = RECIPIENT_IDS_EQUAL + " OR "
+          + RECIPIENT_IDS_LIKE + " OR " + RECIPIENT_IDS_LIKE + " OR " + RECIPIENT_IDS_LIKE;
+
   public ThreadDatabase(Context context, SQLiteOpenHelper databaseHelper) {
     super(context, databaseHelper);
   }
@@ -262,15 +267,20 @@ public class ThreadDatabase extends Database {
     if (recipientIds == null || recipientIds.size() == 0)
       return null;
 
-    String selection       = RECIPIENT_IDS + " = ?";
-    String[] selectionArgs = new String[recipientIds.size()];
+    String selection = FILTERED_SELECTION_QUERY;
 
-    for (int i=0;i<recipientIds.size()-1;i++)
-      selection += (" OR " + RECIPIENT_IDS + " = ?");
+    String[] selectionArgs = new String[recipientIds.size() * 4];
+
+    for (int i=0;i<recipientIds.size()-1;i++) {
+        selection += (" OR " +  FILTERED_SELECTION_QUERY);
+    }
 
     int i= 0;
     for (long id : recipientIds) {
       selectionArgs[i++] = id+"";
+      selectionArgs[i++] = "% " + id + " %";
+      selectionArgs[i++] = id + " %";
+      selectionArgs[i++] = "% " + id;
     }
 
     SQLiteDatabase db = databaseHelper.getReadableDatabase();
