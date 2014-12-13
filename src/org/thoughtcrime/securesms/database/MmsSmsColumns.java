@@ -196,8 +196,10 @@ public interface MmsSmsColumns {
       switch ((int)theirType) {
         case 1: return BASE_INBOX_TYPE;
         case 2: return BASE_SENT_TYPE;
+        case 3: return BASE_DRAFT_TYPE;
         case 4: return BASE_OUTBOX_TYPE;
         case 5: return BASE_SENT_FAILED_TYPE;
+        case 6: return BASE_OUTBOX_TYPE;
       }
 
       return BASE_INBOX_TYPE;

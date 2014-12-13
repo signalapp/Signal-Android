@@ -63,6 +63,9 @@ public class PlaintextBackupImporter {
           if (item.getAddress() == null || item.getAddress().equals("null"))
             continue;
 
+          if (!isAppropriateTypeForImport(item.getType()))
+            continue;
+
           addStringToStatement(statement, 1, item.getAddress());
           addNullToStatement(statement, 2);
           addLongToStatement(statement, 3, item.getDate());
@@ -120,5 +123,14 @@ public class PlaintextBackupImporter {
   private static void addLongToStatement(SQLiteStatement statement, int index, long value) {
     statement.bindLong(index, value);
   }
+
+  private static boolean isAppropriateTypeForImport(long theirType) {
+    long ourType = SmsDatabase.Types.translateFromSystemBaseType(theirType);
+
+    return ourType == MmsSmsColumns.Types.BASE_INBOX_TYPE ||
+           ourType == MmsSmsColumns.Types.BASE_SENT_TYPE ||
+           ourType == MmsSmsColumns.Types.BASE_SENT_FAILED_TYPE;
+  }
+
 
 }
