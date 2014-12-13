@@ -46,6 +46,8 @@ import org.thoughtcrime.securesms.util.ParcelUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.EncryptionKeys;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Small service that stays running to keep a key cached in memory.
  *
@@ -216,7 +218,7 @@ public class KeyCachingService extends Service {
 
     if ((activitiesRunning == 0) && (this.masterSecret != null) && timeoutEnabled && !TextSecurePreferences.isPasswordDisabled(this)) {
       long timeoutMinutes = TextSecurePreferences.getPassphraseTimeoutInterval(this);
-      long timeoutMillis  = timeoutMinutes * 60 * 1000;
+      long timeoutMillis  = TimeUnit.MINUTES.toMillis(timeoutMinutes);
 
       Log.w("KeyCachingService", "Starting timeout: " + timeoutMillis);
 

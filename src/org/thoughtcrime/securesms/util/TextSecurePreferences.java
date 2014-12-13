@@ -33,7 +33,7 @@ public class TextSecurePreferences {
   private static final String LED_BLINK_PREF_CUSTOM            = "pref_led_blink_custom";
   public  static final String ALL_MMS_PREF                     = "pref_all_mms";
   public  static final String ALL_SMS_PREF                     = "pref_all_sms";
-  private static final String PASSPHRASE_TIMEOUT_INTERVAL_PREF = "pref_timeout_interval";
+  public  static final String PASSPHRASE_TIMEOUT_INTERVAL_PREF = "pref_timeout_interval";
   private static final String PASSPHRASE_TIMEOUT_PREF          = "pref_timeout_passphrase";
   private static final String AUTO_KEY_EXCHANGE_PREF           = "pref_auto_complete_key_exchange";
   public  static final String SCREEN_SECURITY_PREF             = "pref_screen_security";

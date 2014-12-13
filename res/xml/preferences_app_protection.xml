@@ -17,13 +17,9 @@
                         android:summary="@string/preferences__forget_passphrase_from_memory_after_some_interval"
                         android:dependency="pref_enable_passphrase_temporary"/>
 
-    <org.thoughtcrime.securesms.preferences.PassphraseTimeoutPreference
-        android:key="pref_timeout_interval"
-        android:defaultValue="300"
-        android:title="@string/preferences__pref_timeout_interval_title"
-        android:summary="@string/preferences__the_amount_of_time_to_wait_before_forgetting_passphrase"
-        android:dependency="pref_timeout_passphrase"
-        android:dialogTitle="@string/preferences__pref_timeout_interval_dialogtitle" />
+    <Preference android:title="@string/preferences__pref_timeout_interval_title"
+                android:key="pref_timeout_interval"
+                android:dependency="pref_timeout_passphrase"/>
 
     <CheckBoxPreference android:defaultValue="true"
                         android:key="pref_screen_security"
