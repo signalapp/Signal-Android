@@ -23,6 +23,7 @@ public class PushRegistrationReminder extends Reminder {
       public void onClick(View v) {
         Intent intent = new Intent(context, RegistrationActivity.class);
         intent.putExtra("master_secret", masterSecret);
+        intent.putExtra("cancel_button", true);
         context.startActivity(intent);
       }
     };
