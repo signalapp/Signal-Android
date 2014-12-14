@@ -32,12 +32,16 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.telephony.PhoneNumberUtils;
 
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.TextSecureDirectory;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
+
+import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 
 /**
  * This class was originally a layer of indirection between
@@ -215,14 +219,14 @@ public class ContactAccessor {
     return contacts;
   }
 
-  public List<String> getNumbersForThreadSearchFilter(String constraint, ContentResolver contentResolver) {
-    LinkedList<String> numberList = new LinkedList<String>();
+  public List<String> getNumbersForThreadSearchFilter(Context context, String constraint) {
+    LinkedList<String> numberList = new LinkedList<>();
     Cursor cursor                 = null;
 
     try {
-      cursor = contentResolver.query(Uri.withAppendedPath(Phone.CONTENT_FILTER_URI,
-                                     Uri.encode(constraint)),
-                                     null, null, null, null);
+      cursor = context.getContentResolver().query(Uri.withAppendedPath(Phone.CONTENT_FILTER_URI,
+                                                                       Uri.encode(constraint)),
+                                                  null, null, null, null);
 
       while (cursor != null && cursor.moveToNext()) {
         numberList.add(cursor.getString(cursor.getColumnIndexOrThrow(Phone.NUMBER)));
@@ -231,6 +235,20 @@ public class ContactAccessor {
     } finally {
       if (cursor != null)
         cursor.close();
+    }
+
+    GroupDatabase.Reader reader = null;
+    GroupRecord record;
+
+    try {
+      reader = DatabaseFactory.getGroupDatabase(context).getGroupsFilteredByTitle(constraint);
+
+      while ((record = reader.getNext()) != null) {
+        numberList.add(record.getEncodedId());
+      }
+    } finally {
+      if (reader != null)
+        reader.close();
     }
 
     return numberList;

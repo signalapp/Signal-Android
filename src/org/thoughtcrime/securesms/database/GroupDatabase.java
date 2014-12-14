@@ -79,6 +79,14 @@ public class GroupDatabase extends Database {
     return record;
   }
 
+  public Reader getGroupsFilteredByTitle(String constraint) {
+    Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, TITLE + " LIKE ?",
+                                                               new String[]{"%" + constraint + "%"},
+                                                               null, null, null);
+
+    return new Reader(cursor);
+  }
+
   public Recipients getGroupMembers(byte[] groupId, boolean includeSelf) {
     String          localNumber = TextSecurePreferences.getLocalNumber(context);
     List<String>    members     = getCurrentMembers(groupId);
@@ -294,6 +302,10 @@ public class GroupDatabase extends Database {
       } catch (IOException ioe) {
         throw new AssertionError(ioe);
       }
+    }
+
+    public String getEncodedId() {
+      return id;
     }
 
     public String getTitle() {
