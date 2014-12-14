@@ -207,9 +207,9 @@ public class ConversationFragment extends ListFragment
     String dateFormatPattern;
 
     if (DateFormat.is24HourFormat(getActivity().getApplicationContext())) {
-      dateFormatPattern = "EEE MMM d, yyyy 'at' HH:mm:ss zzz";
+      dateFormatPattern = "EEE MMM d, yyyy '-' HH:mm:ss zzz";
     } else {
-      dateFormatPattern = "EEE MMM d, yyyy 'at' hh:mm:ss a zzz";
+      dateFormatPattern = "EEE MMM d, yyyy '-' hh:mm:ss a zzz";
     }
 
     SimpleDateFormat    dateFormatter = new SimpleDateFormat(dateFormatPattern);
