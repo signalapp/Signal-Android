@@ -32,6 +32,8 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.telephony.PhoneNumberUtils;
 
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.TextSecureDirectory;
 
 import java.util.ArrayList;
@@ -215,14 +217,14 @@ public class ContactAccessor {
     return contacts;
   }
 
-  public List<String> getNumbersForThreadSearchFilter(String constraint, ContentResolver contentResolver) {
+  public List<String> getNumbersForThreadSearchFilter(String constraint, Context context) {
     LinkedList<String> numberList = new LinkedList<String>();
     Cursor cursor                 = null;
 
     try {
-      cursor = contentResolver.query(Uri.withAppendedPath(Phone.CONTENT_FILTER_URI,
-                                     Uri.encode(constraint)),
-                                     null, null, null, null);
+      cursor = context.getContentResolver().query(Uri.withAppendedPath(Phone.CONTENT_FILTER_URI,
+                                                                       Uri.encode(constraint)),
+                                                                       null, null, null, null);
 
       while (cursor != null && cursor.moveToNext()) {
         numberList.add(cursor.getString(cursor.getColumnIndexOrThrow(Phone.NUMBER)));
@@ -231,6 +233,19 @@ public class ContactAccessor {
     } finally {
       if (cursor != null)
         cursor.close();
+    }
+
+    GroupDatabase.Reader reader = null;
+
+    try {
+      reader = DatabaseFactory.getGroupDatabase(context).getGroupsFilteredByTitle(constraint);
+
+      for (GroupDatabase.GroupRecord record = reader.getNext(); record != null; record = reader.getNext()) {
+        numberList.add(record.getEncodedId());
+      }
+    } finally {
+      if (reader != null)
+        reader.close();
     }
 
     return numberList;
