@@ -182,4 +182,15 @@ public abstract class MessageRecord extends DisplayRecord {
 
     return spannable;
   }
+
+  public boolean equals(Object other) {
+    return other != null                              &&
+           other instanceof MessageRecord             &&
+           ((MessageRecord) other).getId() == getId() &&
+           ((MessageRecord) other).isMms() == isMms();
+  }
+
+  public int hashCode() {
+    return (int)getId();
+  }
 }
