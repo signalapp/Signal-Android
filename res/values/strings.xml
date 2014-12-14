@@ -118,7 +118,7 @@
     <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nSent/Received: %2$s</string>
     <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Sender: %1$s\nTransport: %2$s\nSent: %3$s\nReceived: %4$s</string>
     <string name="ConversationFragment_confirm_message_delete">Confirm message delete</string>
-    <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Are you sure that you want to permanently delete this message?</string>
+    <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Are you sure that you want to permanently delete all selected messages?</string>
     <string name="ConversationFragment_save_to_sd_card">Save to storage?</string>
     <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Saving this media to storage will allow any other apps on your phone to access it.\n\nContinue?</string>
     <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Error while saving attachment to storage!</string>
@@ -130,6 +130,8 @@
     <string name="ConversationFragment_push">PUSH</string>
     <string name="ConversationFragment_mms">MMS</string>
     <string name="ConversationFragment_sms">SMS</string>
+    <string name="ConversationFragment_deleting">Deleting...</string>
+    <string name="ConversationFragment_deleting_messages">Deleting messages...</string>
 
     <!-- ConversationListFragment -->
     <string name="ConversationListFragment_delete_threads_question">Delete threads?</string>

@@ -40,16 +40,22 @@ import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
+import org.thoughtcrime.securesms.util.ProgressDialogAsyncTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.LinkedList;
+import java.util.List;
 
 public class ConversationFragment extends ListFragment
   implements LoaderManager.LoaderCallbacks<Cursor>
 {
   private static final String TAG = ConversationFragment.class.getSimpleName();
+
+  private final ActionModeCallback     actionModeCallback     = new ActionModeCallback();
+  private final SelectionClickListener selectionClickListener = new SelectionClickListener();
 
   private ConversationFragmentListener listener;
 
@@ -96,7 +102,7 @@ public class ConversationFragment extends ListFragment
 
   private void initializeListAdapter() {
     if (this.recipients != null && this.threadId != -1) {
-      this.setListAdapter(new ConversationAdapter(getActivity(), masterSecret,
+      this.setListAdapter(new ConversationAdapter(getActivity(), masterSecret, selectionClickListener,
                                                   new FailedIconClickHandler(),
                                                   (!this.recipients.isSingleRecipient()) || this.recipients.isGroupRecipient(),
                                                   DirectoryHelper.isPushDestination(getActivity(), this.recipients)));
@@ -106,49 +112,50 @@ public class ConversationFragment extends ListFragment
   }
 
   private void initializeContextualActionBar() {
-    getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-      @Override
-      public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-        if (actionMode != null) {
-          view.setSelected(true);
-          return false;
-        }
-
-        actionMode = ((ActionBarActivity)getActivity()).startSupportActionMode(actionModeCallback);
-        view.setSelected(true);
-        return true;
-      }
-    });
-
-    getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
-      @Override
-      public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (actionMode != null) {
-          view.setSelected(true);
-          setCorrectMenuVisibility(getMessageRecord(), actionMode.getMenu());
-        }
-      }
-    });
+    getListView().setOnItemClickListener(selectionClickListener);
+    getListView().setOnItemLongClickListener(selectionClickListener);
   }
 
-  private void setCorrectMenuVisibility(MessageRecord messageRecord, Menu menu) {
-    MenuItem resend         = menu.findItem(R.id.menu_context_resend);
-    MenuItem saveAttachment = menu.findItem(R.id.menu_context_save_attachment);
+  private void setCorrectMenuVisibility(Menu menu) {
+    ConversationAdapter adapter        = (ConversationAdapter) getListAdapter();
+    List<MessageRecord> messageRecords = getSelectedMessageRecords();
 
-    if (messageRecord.isFailed()) resend.setVisible(true);
-    else                          resend.setVisible(false);
+    if (actionMode != null && messageRecords.size() == 0) {
+      adapter.getBatchSelected().clear();
+      adapter.notifyDataSetChanged();
+      actionMode.finish();
+      return;
+    }
 
-    if (messageRecord.isMms() && !messageRecord.isMmsNotification()) {
-      saveAttachment.setVisible(((MediaMmsMessageRecord)messageRecord).containsMediaSlide());
+    if (messageRecords.size() > 1) {
+      menu.findItem(R.id.menu_context_forward).setVisible(false);
+      menu.findItem(R.id.menu_context_copy).setVisible(false);
+      menu.findItem(R.id.menu_context_details).setVisible(false);
+      menu.findItem(R.id.menu_context_save_attachment).setVisible(false);
+      menu.findItem(R.id.menu_context_resend).setVisible(false);
     } else {
-      saveAttachment.setVisible(false);
+      MessageRecord messageRecord = messageRecords.get(0);
+
+      menu.findItem(R.id.menu_context_resend).setVisible(messageRecord.isFailed());
+      menu.findItem(R.id.menu_context_save_attachment).setVisible(messageRecord.isMms()              &&
+                                                                  !messageRecord.isMmsNotification() &&
+                                                                  ((MediaMmsMessageRecord)messageRecord).containsMediaSlide());
+
+      menu.findItem(R.id.menu_context_forward).setVisible(true);
+      menu.findItem(R.id.menu_context_details).setVisible(true);
+      menu.findItem(R.id.menu_context_copy).setVisible(true);
     }
   }
 
-  private MessageRecord getMessageRecord() {
-    Cursor cursor                     = ((CursorAdapter)getListAdapter()).getCursor();
-    ConversationItem conversationItem = (ConversationItem)(((ConversationAdapter)getListAdapter()).newView(getActivity(), cursor, null));
-    return conversationItem.getMessageRecord();
+  private MessageRecord getSelectedMessageRecord() {
+    List<MessageRecord> messageRecords = getSelectedMessageRecords();
+
+    if (messageRecords.size() == 1) return messageRecords.get(0);
+    else                            throw new AssertionError();
+  }
+
+  private List<MessageRecord> getSelectedMessageRecords() {
+    return new LinkedList<>(((ConversationAdapter)getListAdapter()).getBatchSelected());
   }
 
   public void reload(Recipients recipients, long threadId) {
@@ -177,23 +184,32 @@ public class ConversationFragment extends ListFragment
     clipboard.setText(body);
   }
 
-  private void handleDeleteMessage(final MessageRecord message) {
-    final long messageId   = message.getId();
-
+  private void handleDeleteMessages(final List<MessageRecord> messageRecords) {
     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
     builder.setTitle(R.string.ConversationFragment_confirm_message_delete);
     builder.setIcon(Dialogs.resolveIcon(getActivity(), R.attr.dialog_alert_icon));
     builder.setCancelable(true);
-    builder.setMessage(R.string.ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message);
-
+    builder.setMessage(R.string.ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages);
     builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialog, int which) {
-        if (message.isMms()) {
-          DatabaseFactory.getMmsDatabase(getActivity()).delete(messageId);
-        } else {
-          DatabaseFactory.getSmsDatabase(getActivity()).deleteMessage(messageId);
-        }
+        new ProgressDialogAsyncTask<MessageRecord, Void, Void>(getActivity(),
+                                                               R.string.ConversationFragment_deleting,
+                                                               R.string.ConversationFragment_deleting_messages)
+        {
+          @Override
+          protected Void doInBackground(MessageRecord... messageRecords) {
+            for (MessageRecord messageRecord : messageRecords) {
+              if (messageRecord.isMms()) {
+                DatabaseFactory.getMmsDatabase(getActivity()).delete(messageRecord.getId());
+              } else {
+                DatabaseFactory.getSmsDatabase(getActivity()).deleteMessage(messageRecord.getId());
+              }
+            }
+
+            return null;
+          }
+        }.execute(messageRecords.toArray(new MessageRecord[messageRecords.size()]));
       }
     });
 
@@ -312,16 +328,43 @@ public class ConversationFragment extends ListFragment
     public void setComposeText(String text);
   }
 
-  private ActionMode.Callback actionModeCallback = new ActionMode.Callback() {
+  public class SelectionClickListener
+      implements AdapterView.OnItemLongClickListener, AdapterView.OnItemClickListener
+  {
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+      if (actionMode != null && view instanceof ConversationItem) {
+        MessageRecord messageRecord = ((ConversationItem)view).getMessageRecord();
+        ((ConversationAdapter) getListAdapter()).toggleBatchSelected(messageRecord);
+        ((ConversationAdapter) getListAdapter()).notifyDataSetChanged();
+
+        setCorrectMenuVisibility(actionMode.getMenu());
+      }
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+      if (actionMode == null && view instanceof ConversationItem) {
+        MessageRecord messageRecord = ((ConversationItem)view).getMessageRecord();
+        ((ConversationAdapter) getListAdapter()).toggleBatchSelected(messageRecord);
+        ((ConversationAdapter) getListAdapter()).notifyDataSetChanged();
+
+        actionMode = ((ActionBarActivity)getActivity()).startSupportActionMode(actionModeCallback);
+        return true;
+      }
+
+      return false;
+    }
+  }
+
+  private class ActionModeCallback implements ActionMode.Callback {
 
     @Override
     public boolean onCreateActionMode(ActionMode mode, Menu menu) {
       MenuInflater inflater = mode.getMenuInflater();
       inflater.inflate(R.menu.conversation_context, menu);
 
-      MessageRecord messageRecord = getMessageRecord();
-      setCorrectMenuVisibility(messageRecord, menu);
-
+      setCorrectMenuVisibility(menu);
       return true;
     }
 
@@ -332,41 +375,37 @@ public class ConversationFragment extends ListFragment
 
     @Override
     public void onDestroyActionMode(ActionMode mode) {
-      if (getListView() != null && getListView().getChildCount() > 0) {
-        for (int i = 0; i < getListView().getChildCount(); i++){
-          getListView().getChildAt(i).setSelected(false);
-        }
-      }
+      ((ConversationAdapter)getListAdapter()).getBatchSelected().clear();
+      ((ConversationAdapter)getListAdapter()).notifyDataSetChanged();
+
       actionMode = null;
     }
 
     @Override
     public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-      MessageRecord messageRecord = getMessageRecord();
-
       switch(item.getItemId()) {
         case R.id.menu_context_copy:
-          handleCopyMessage(messageRecord);
+          handleCopyMessage(getSelectedMessageRecord());
           actionMode.finish();
           return true;
         case R.id.menu_context_delete_message:
-          handleDeleteMessage(messageRecord);
+          handleDeleteMessages(getSelectedMessageRecords());
           actionMode.finish();
           return true;
         case R.id.menu_context_details:
-          handleDisplayDetails(messageRecord);
+          handleDisplayDetails(getSelectedMessageRecord());
           actionMode.finish();
           return true;
         case R.id.menu_context_forward:
-          handleForwardMessage(messageRecord);
+          handleForwardMessage(getSelectedMessageRecord());
           actionMode.finish();
           return true;
         case R.id.menu_context_resend:
-          handleResendMessage(messageRecord);
+          handleResendMessage(getSelectedMessageRecord());
           actionMode.finish();
           return true;
         case R.id.menu_context_save_attachment:
-          handleSaveAttachment((MediaMmsMessageRecord)messageRecord);
+          handleSaveAttachment((MediaMmsMessageRecord)getSelectedMessageRecord());
           actionMode.finish();
           return true;
       }
