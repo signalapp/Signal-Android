@@ -43,7 +43,6 @@ import android.widget.Toast;
 import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
-import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.Util;
 
@@ -71,6 +70,12 @@ public class PassphrasePromptActivity extends PassphraseActivity {
   public void onResume() {
     super.onResume();
     dynamicLanguage.onResume(this);
+  }
+
+  @Override
+  protected void onNewIntent(Intent intent) {
+    super.onNewIntent(intent);
+    setIntent(intent);
   }
 
   @Override
@@ -102,9 +107,8 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     try {
       Editable text             = passphraseText.getText();
       String passphrase         = (text == null ? "" : text.toString());
-      MasterSecret masterSecret = MasterSecretUtil.getMasterSecret(PassphrasePromptActivity.this, passphrase);
+      MasterSecret masterSecret = MasterSecretUtil.getMasterSecret(this, passphrase);
 
-      MemoryCleaner.clean(passphrase);
       setMasterSecret(masterSecret);
     } catch (InvalidPassphraseException ipe) {
       passphraseText.setText("");

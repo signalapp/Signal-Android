@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.util.Log;
@@ -40,9 +41,13 @@ public class DeviceProvisioningActivity extends PassphraseRequiredActionBarActiv
   private MasterSecret masterSecret;
 
   @Override
-  public void onCreate(Bundle bundle) {
+  protected void onPreCreate() {
     supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
-    super.onCreate(bundle);
+  }
+
+  @Override
+  protected void onCreate(Bundle bundle, @NonNull MasterSecret masterSecret) {
+    this.masterSecret = masterSecret;
     getSupportActionBar().hide();
     initializeResources();
 
@@ -78,11 +83,6 @@ public class DeviceProvisioningActivity extends PassphraseRequiredActionBarActiv
                        }
                      })
                      .show();
-  }
-
-  @Override
-  public void onNewMasterSecret(MasterSecret masterSecret) {
-    this.masterSecret = masterSecret;
   }
 
   private void initializeResources() {
