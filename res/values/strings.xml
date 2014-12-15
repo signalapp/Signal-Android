@@ -113,6 +113,7 @@
     <string name="ConversationActivity_get_with_it">Get with it: %s</string>
     <string name="ConversationActivity_install_textsecure">Install TextSecure: %s</string>
     <string name="ConversationActivity_error_leaving_group">Error leaving group...</string>
+    <string name="ConversationActivity_specify_recipient">Please choose a contact</string>
 
     <!-- ConversationFragment -->
     <string name="ConversationFragment_message_details">Message details</string>

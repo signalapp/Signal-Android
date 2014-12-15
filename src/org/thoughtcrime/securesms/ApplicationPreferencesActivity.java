@@ -35,7 +35,7 @@ import org.thoughtcrime.securesms.preferences.StoragePreferenceFragment;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.thoughtcrime.securesms.util.MemoryCleaner;
+import org.thoughtcrime.securesms.util.ProgressDialogAsyncTask;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 /**
@@ -61,10 +61,9 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   @Override
-  protected void onCreate(Bundle icicle) {
+  protected void onCreate(Bundle icicle, MasterSecret masterSecret) {
     dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
-    super.onCreate(icicle);
 
     this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -102,12 +101,6 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
       finish();
     }
     return true;
-  }
-
-  @Override
-  public void onDestroy() {
-    MemoryCleaner.clean((MasterSecret) getIntent().getParcelableExtra("master_secret"));
-    super.onDestroy();
   }
 
   @Override

@@ -81,7 +81,6 @@ public class RegistrationService extends Service {
   private volatile ChallengeReceiver       challengeReceiver;
   private          String                  challenge;
   private          long                    verificationStartTime;
-  private          boolean                 generatingPreKeys;
 
   @Override
   public int onStartCommand(final Intent intent, int flags, int startId) {
@@ -156,7 +155,7 @@ public class RegistrationService extends Service {
     String       number       = intent.getStringExtra("e164number");
     String       password     = intent.getStringExtra("password"  );
     String       signalingKey = intent.getStringExtra("signaling_key");
-    MasterSecret masterSecret = intent.getParcelableExtra("master_secret");
+    MasterSecret masterSecret = KeyCachingService.getMasterSecret(this);
 
     try {
       TextSecureAccountManager accountManager = TextSecureCommunicationFactory.createManager(this, number, password);
@@ -182,7 +181,7 @@ public class RegistrationService extends Service {
     markAsVerifying(true);
 
     String       number       = intent.getStringExtra("e164number");
-    MasterSecret masterSecret = intent.getParcelableExtra("master_secret");
+    MasterSecret masterSecret = KeyCachingService.getMasterSecret(this);
     int          registrationId = TextSecurePreferences.getLocalRegistrationId(this);
 
     if (registrationId == 0) {

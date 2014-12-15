@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.whispersystems.libaxolotl.IdentityKey;
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 
@@ -36,8 +37,7 @@ public class ViewIdentityActivity extends KeyScanningActivity {
   private IdentityKey identityKey;
 
   @Override
-  public void onCreate(Bundle state) {
-    super.onCreate(state);
+  public void onCreate(Bundle state, MasterSecret masterSecret) {
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     setContentView(R.layout.view_identity_activity);
 

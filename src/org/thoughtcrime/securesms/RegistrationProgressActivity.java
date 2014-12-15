@@ -33,6 +33,7 @@ import android.widget.Toast;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
+import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.service.RegistrationService;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -130,7 +131,7 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
   }
 
   private void initializeResources() {
-    this.masterSecret              = getIntent().getParcelableExtra("master_secret");
+    this.masterSecret              = KeyCachingService.getMasterSecret(this);
     this.registrationLayout        = (LinearLayout)findViewById(R.id.registering_layout);
     this.verificationFailureLayout = (LinearLayout)findViewById(R.id.verification_failure_layout);
     this.connectivityFailureLayout = (LinearLayout)findViewById(R.id.connectivity_failure_layout);
@@ -197,12 +198,9 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
       Intent intent = new Intent(this, RegistrationService.class);
       intent.setAction(RegistrationService.REGISTER_NUMBER_ACTION);
       intent.putExtra("e164number", getNumberDirective());
-      intent.putExtra("master_secret", masterSecret);
       startService(intent);
     } else {
-      Intent intent = new Intent(this, RegistrationActivity.class);
-      intent.putExtra("master_secret", masterSecret);
-      startActivity(intent);
+      startActivity(new Intent(this, RegistrationActivity.class));
       finish();
     }
   }
@@ -330,7 +328,7 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
     }
 
     shutdownService();
-    startActivity(new Intent(this, RoutingActivity.class));
+    startActivity(new Intent(this, ConversationListActivity.class));
     finish();
   }
 
@@ -423,7 +421,6 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
       shutdownService();
 
       Intent activityIntent = new Intent(RegistrationProgressActivity.this, RegistrationActivity.class);
-      activityIntent.putExtra("master_secret", masterSecret);
       startActivity(activityIntent);
       finish();
     }
@@ -490,7 +487,6 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
               intent.putExtra("e164number", e164number);
               intent.putExtra("password", password);
               intent.putExtra("signaling_key", signalingKey);
-              intent.putExtra("master_secret", masterSecret);
               startService(intent);
               break;
             case NETWORK_ERROR:
@@ -576,7 +572,6 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
               intent.setAction(RegistrationService.VOICE_REQUESTED_ACTION);
               intent.putExtra("e164number", e164number);
               intent.putExtra("password", password);
-              intent.putExtra("master_secret", masterSecret);
               startService(intent);
 
               callButton.setEnabled(false);

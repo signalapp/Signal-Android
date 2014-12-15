@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.SmsMigrator.ProgressDescription;
 import org.thoughtcrime.securesms.service.ApplicationMigrationService;
 import org.thoughtcrime.securesms.service.ApplicationMigrationService.ImportState;
@@ -37,8 +38,7 @@ public class DatabaseMigrationActivity extends PassphraseRequiredActionBarActivi
   private boolean isVisible = false;
 
   @Override
-  public void onCreate(Bundle bundle) {
-    super.onCreate(bundle);
+  public void onCreate(Bundle bundle, MasterSecret masterSecret) {
     setContentView(R.layout.database_migration_activity);
 
     initializeResources();
@@ -91,7 +91,6 @@ public class DatabaseMigrationActivity extends PassphraseRequiredActionBarActivi
       public void onClick(View v) {
         Intent intent = new Intent(DatabaseMigrationActivity.this, ApplicationMigrationService.class);
         intent.setAction(ApplicationMigrationService.MIGRATE_DATABASE);
-        intent.putExtra("master_secret", getIntent().getParcelableExtra("master_secret"));
         startService(intent);
 
         promptLayout.setVisibility(View.GONE);

@@ -17,8 +17,8 @@ import android.os.PowerManager.WakeLock;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.ConversationListActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.RoutingActivity;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.SmsMigrator;
 import org.thoughtcrime.securesms.database.SmsMigrator.ProgressDescription;
@@ -128,7 +128,7 @@ public class ApplicationMigrationService extends Service
     builder.setContentText(getString(R.string.ApplicationMigrationService_import_in_progress));
     builder.setOngoing(true);
     builder.setProgress(100, 0, false);
-    builder.setContentIntent(PendingIntent.getActivity(this, 0, new Intent(this, RoutingActivity.class), 0));
+    builder.setContentIntent(PendingIntent.getActivity(this, 0, new Intent(this, ConversationListActivity.class), 0));
 
     stopForeground(true);
     startForeground(4242, builder.build());
@@ -140,7 +140,7 @@ public class ApplicationMigrationService extends Service
     private final MasterSecret masterSecret;
 
     public ImportRunnable(Intent intent) {
-      this.masterSecret = intent.getParcelableExtra("master_secret");
+      this.masterSecret = KeyCachingService.getMasterSecret(ApplicationMigrationService.this);
       Log.w("ApplicationMigrationService", "Service got mastersecret: " + masterSecret);
     }
 
@@ -184,7 +184,7 @@ public class ApplicationMigrationService extends Service
       builder.setSmallIcon(R.drawable.icon_notification);
       builder.setContentTitle("Import Complete");
       builder.setContentText("TextSecure system database import is complete.");
-      builder.setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, RoutingActivity.class), 0));
+      builder.setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, ConversationListActivity.class), 0));
       builder.setWhen(System.currentTimeMillis());
       builder.setDefaults(Notification.DEFAULT_VIBRATE);
       builder.setAutoCancel(true);
