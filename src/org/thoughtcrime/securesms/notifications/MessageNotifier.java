@@ -39,8 +39,8 @@ import android.text.TextUtils;
 import android.text.style.StyleSpan;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.ConversationActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.RoutingActivity;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
@@ -84,7 +84,7 @@ public class MessageNotifier {
     if (visibleThread == threadId) {
       sendInThreadNotification(context);
     } else {
-      Intent intent = new Intent(context, RoutingActivity.class);
+      Intent intent = new Intent(context, ConversationActivity.class);
       intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
       intent.putExtra("recipients", recipients.getIds());
       intent.putExtra("thread_id", threadId);
@@ -228,7 +228,7 @@ public class MessageNotifier {
                                           notificationState.getMessageCount()));
     builder.setContentText(String.format(context.getString(R.string.MessageNotifier_most_recent_from_s),
                                          notifications.get(0).getIndividualRecipientName()));
-    builder.setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, RoutingActivity.class), 0));
+    builder.setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, ConversationActivity.class), 0));
     
     builder.setContentInfo(String.valueOf(notificationState.getMessageCount()));
     builder.setNumber(notificationState.getMessageCount());

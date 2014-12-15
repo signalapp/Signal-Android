@@ -9,6 +9,7 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.service.KeyCachingService;
 
 public class MarkReadReceiver extends BroadcastReceiver {
 
@@ -20,7 +21,7 @@ public class MarkReadReceiver extends BroadcastReceiver {
       return;
 
     final long[]       threadIds    = intent.getLongArrayExtra("thread_ids");
-    final MasterSecret masterSecret = intent.getParcelableExtra("master_secret");
+    final MasterSecret masterSecret = KeyCachingService.getMasterSecret(context);
 
     if (threadIds != null && masterSecret != null) {
       Log.w("MarkReadReceiver", "threadIds length: " + threadIds.length);

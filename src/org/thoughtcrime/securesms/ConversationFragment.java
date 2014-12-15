@@ -100,8 +100,11 @@ public class ConversationFragment extends ListFragment
     getLoaderManager().restartLoader(0, null, this);
   }
 
+  public void setMasterSecret(MasterSecret masterSecret) {
+    this.masterSecret = masterSecret;
+  }
+
   private void initializeResources() {
-    this.masterSecret = this.getActivity().getIntent().getParcelableExtra("master_secret");
     this.recipients   = RecipientFactory.getRecipientsForIds(getActivity(), getActivity().getIntent().getLongArrayExtra("recipients"), true);
     this.threadId     = this.getActivity().getIntent().getLongExtra("thread_id", -1);
   }
@@ -233,7 +236,6 @@ public class ConversationFragment extends ListFragment
   private void handleForwardMessage(MessageRecord message) {
     Intent composeIntent = new Intent(getActivity(), ShareActivity.class);
     composeIntent.putExtra(ConversationActivity.DRAFT_TEXT_EXTRA, message.getDisplayBody().toString());
-    composeIntent.putExtra(ShareActivity.MASTER_SECRET_EXTRA, masterSecret);
     startActivity(composeIntent);
   }
 

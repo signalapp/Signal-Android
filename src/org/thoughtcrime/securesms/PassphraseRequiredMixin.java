@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
+import android.util.Log;
 import android.view.WindowManager;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -26,7 +27,6 @@ public class PassphraseRequiredMixin {
   public <T extends Activity & PassphraseRequiredActivity> void onResume(T activity) {
     initializeScreenshotSecurity(activity);
     initializeNewKeyReceiver(activity);
-    initializeFromMasterSecret(activity);
     KeyCachingService.registerPassphraseActivityStarted(activity);
     MessageRetrievalService.registerActivityStarted(activity);
   }
@@ -52,9 +52,11 @@ public class PassphraseRequiredMixin {
   }
 
   private <T extends Activity & PassphraseRequiredActivity> void initializeClearKeyReceiver(final T activity) {
+    Log.w("PassphraseRequiredMixin", "initializeClearKeyReceiver()");
     this.clearKeyReceiver = new BroadcastReceiver() {
       @Override
       public void onReceive(Context context, Intent intent) {
+        Log.w("PassphraseRequiredMixin", "onReceive() for clear key event");
         activity.onMasterSecretCleared();
       }
     };
@@ -68,22 +70,12 @@ public class PassphraseRequiredMixin {
     this.newKeyReceiver = new BroadcastReceiver() {
       @Override
       public void onReceive(Context context, Intent intent) {
-        activity.onNewMasterSecret((MasterSecret)intent.getParcelableExtra("master_secret"));
+        activity.onNewMasterSecret(KeyCachingService.getMasterSecret(activity));
       }
     };
 
     IntentFilter filter = new IntentFilter(KeyCachingService.NEW_KEY_EVENT);
     activity.registerReceiver(newKeyReceiver, filter, KeyCachingService.KEY_PERMISSION, null);
-  }
-
-  private <T extends Activity & PassphraseRequiredActivity> void initializeFromMasterSecret(T activity) {
-    MasterSecret masterSecret = KeyCachingService.getMasterSecret(activity);
-
-    if (masterSecret == null) {
-      activity.onMasterSecretCleared();
-    } else {
-      activity.onNewMasterSecret(masterSecret);
-    }
   }
 
   private void removeClearKeyReceiver(Context context) {

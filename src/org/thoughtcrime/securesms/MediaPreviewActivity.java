@@ -60,14 +60,12 @@ import uk.co.senab.photoview.PhotoViewAttacher;
 public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity implements RecipientModifiedListener {
   private final static String TAG = MediaPreviewActivity.class.getSimpleName();
 
-  public final static String MASTER_SECRET_EXTRA = "master_secret";
   public final static String RECIPIENT_EXTRA     = "recipient";
   public final static String DATE_EXTRA          = "date";
 
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
-  private MasterSecret masterSecret;
-  private boolean      paused;
+  private boolean paused;
 
   private TextView          errorText;
   private Bitmap            bitmap;
@@ -79,11 +77,9 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   private long              date;
 
   @Override
-  protected void onCreate(Bundle bundle) {
+  protected void onCreate(Bundle bundle, MasterSecret masterSecret) {
     this.setTheme(R.style.TextSecure_DarkTheme);
     dynamicLanguage.onCreate(this);
-
-    super.onCreate(bundle);
 
     setFullscreenIfPossible();
     getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -157,7 +153,6 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   private void initializeResources() {
     final long recipientId = getIntent().getLongExtra(RECIPIENT_EXTRA, -1);
 
-    masterSecret = getIntent().getParcelableExtra(MASTER_SECRET_EXTRA);
     mediaUri     = getIntent().getData();
     mediaType    = getIntent().getType();
     date         = getIntent().getLongExtra(DATE_EXTRA, -1);
@@ -201,7 +196,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
           GLES20.glGetIntegerv(GLES20.GL_MAX_TEXTURE_SIZE, maxTextureSizeParams, 0);
           int maxTextureSize = Math.max(maxTextureSizeParams[0], 2048);
           Log.w(TAG, "reported GL_MAX_TEXTURE_SIZE: " + maxTextureSize);
-          return BitmapUtil.createScaledBitmap(MediaPreviewActivity.this, masterSecret, mediaUri,
+          return BitmapUtil.createScaledBitmap(MediaPreviewActivity.this, getMasterSecret(), mediaUri,
                                                maxTextureSize, maxTextureSize);
         } catch (IOException | BitmapDecodingException e) {
           return null;
@@ -232,7 +227,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     SaveAttachmentTask.showWarningDialog(this, new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialogInterface, int i) {
-        SaveAttachmentTask saveTask = new SaveAttachmentTask(MediaPreviewActivity.this, masterSecret);
+        SaveAttachmentTask saveTask = new SaveAttachmentTask(MediaPreviewActivity.this, getMasterSecret());
         saveTask.execute(new Attachment(mediaUri, mediaType, date));
       }
     });

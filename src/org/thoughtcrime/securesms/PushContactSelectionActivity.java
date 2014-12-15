@@ -23,6 +23,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -50,10 +51,9 @@ public class PushContactSelectionActivity extends PassphraseRequiredActionBarAct
   private PushContactSelectionListFragment contactsFragment;
 
   @Override
-  protected void onCreate(Bundle icicle) {
+  protected void onCreate(Bundle icicle, MasterSecret masterSecret) {
     dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
-    super.onCreate(icicle);
 
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

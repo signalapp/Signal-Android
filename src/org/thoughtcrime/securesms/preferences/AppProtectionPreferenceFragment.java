@@ -126,7 +126,7 @@ public class AppProtectionPreferenceFragment extends PreferenceFragment {
         builder.setPositiveButton(R.string.ApplicationPreferencesActivity_disable, new DialogInterface.OnClickListener() {
           @Override
           public void onClick(DialogInterface dialog, int which) {
-            MasterSecret masterSecret = getActivity().getIntent().getParcelableExtra("master_secret");
+            MasterSecret masterSecret = KeyCachingService.getMasterSecret(getActivity());
             MasterSecretUtil.changeMasterSecretPassphrase(getActivity(),
                                                           masterSecret,
                                                           MasterSecretUtil.UNENCRYPTED_PASSPHRASE);

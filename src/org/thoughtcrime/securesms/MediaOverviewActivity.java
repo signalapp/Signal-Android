@@ -68,6 +68,10 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
     dynamicLanguage.onCreate(this);
 
     super.onCreate(bundle);
+  }
+
+  @Override
+  protected void onCreate(Bundle bundle, MasterSecret masterSecret) {
     setFullscreenIfPossible();
 
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);

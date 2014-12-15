@@ -33,10 +33,10 @@ import android.util.Log;
 import android.widget.RemoteViews;
 
 import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.ConversationListActivity;
 import org.thoughtcrime.securesms.DatabaseUpgradeActivity;
 import org.thoughtcrime.securesms.DummyActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.RoutingActivity;
 import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
@@ -121,6 +121,7 @@ public class KeyCachingService extends Service {
   @Override
   public int onStartCommand(Intent intent, int flags, int startId) {
     if (intent == null) return START_NOT_STICKY;
+    Log.w("KeyCachingService", "onStartCommand, " + intent.getAction());
 
     if (intent.getAction() != null) {
       switch (intent.getAction()) {
@@ -138,6 +139,7 @@ public class KeyCachingService extends Service {
 
   @Override
   public void onCreate() {
+    Log.w("KeyCachingService", "onCreate()");
     super.onCreate();
     this.pending = PendingIntent.getService(this, 0, new Intent(PASSPHRASE_EXPIRED_EVENT, null,
                                                                 this, KeyCachingService.class), 0);
@@ -186,7 +188,8 @@ public class KeyCachingService extends Service {
   }
 
   private void handleClearKey() {
-    this.masterSecret = null;
+    Log.w("KeyCachingService", "handleClearKey()");
+    KeyCachingService.masterSecret = null;
     stopForeground(true);
 
     Intent intent = new Intent(CLEAR_KEY_EVENT);
@@ -216,7 +219,7 @@ public class KeyCachingService extends Service {
   private void startTimeoutIfAppropriate() {
     boolean timeoutEnabled = TextSecurePreferences.isPassphraseTimeoutEnabled(this);
 
-    if ((activitiesRunning == 0) && (this.masterSecret != null) && timeoutEnabled && !TextSecurePreferences.isPasswordDisabled(this)) {
+    if ((activitiesRunning == 0) && (KeyCachingService.masterSecret != null) && timeoutEnabled && !TextSecurePreferences.isPasswordDisabled(this)) {
       long timeoutMinutes = TextSecurePreferences.getPassphraseTimeoutInterval(this);
       long timeoutMillis  = TimeUnit.MINUTES.toMillis(timeoutMinutes);
 
@@ -230,6 +233,7 @@ public class KeyCachingService extends Service {
 
   @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
   private void foregroundServiceModern() {
+    Log.w("KeyCachingService", "foregrounding KCS");
     NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
 
     builder.setContentTitle(getString(R.string.KeyCachingService_passphrase_cached));
@@ -292,7 +296,6 @@ public class KeyCachingService extends Service {
     Log.w("service", "Broadcasting new secret...");
 
     Intent intent = new Intent(NEW_KEY_EVENT);
-    intent.putExtra("master_secret", masterSecret);
     intent.setPackage(getApplicationContext().getPackageName());
 
     sendBroadcast(intent, KEY_PERMISSION);
@@ -306,7 +309,7 @@ public class KeyCachingService extends Service {
   }
 
   private PendingIntent buildLaunchIntent() {
-    Intent intent              = new Intent(this, RoutingActivity.class);
+    Intent intent              = new Intent(this, ConversationListActivity.class);
     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
     PendingIntent launchIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
     return launchIntent;

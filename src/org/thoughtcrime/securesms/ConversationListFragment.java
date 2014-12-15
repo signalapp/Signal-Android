@@ -61,12 +61,17 @@ public class ConversationListFragment extends ListFragment
   implements LoaderManager.LoaderCallbacks<Cursor>, ActionMode.Callback
 {
 
-  private ConversationSelectedListener listener;
   private MasterSecret                 masterSecret;
   private ActionMode                   actionMode;
   private ReminderView                 reminderView;
   private FloatingActionButton         fab;
   private String                       queryFilter  = "";
+
+  public static ConversationListFragment newInstance(MasterSecret masterSecret) {
+    ConversationListFragment fragment = new ConversationListFragment();
+    fragment.masterSecret = masterSecret;
+    return fragment;
+  }
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -78,8 +83,8 @@ public class ConversationListFragment extends ListFragment
 
   @Override
   public void onDestroyView() {
+    clearListAdapter();
     super.onDestroyView();
-    getListView().setAdapter(null);
   }
 
   @Override
@@ -92,9 +97,7 @@ public class ConversationListFragment extends ListFragment
     fab.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
-        Intent intent = new Intent(getActivity(), NewConversationActivity.class);
-        intent.putExtra(NewConversationActivity.MASTER_SECRET_EXTRA, masterSecret);
-        startActivity(intent);
+        startActivity(new Intent(getActivity(), NewConversationActivity.class));
       }
     });
     initializeListAdapter();
@@ -114,7 +117,6 @@ public class ConversationListFragment extends ListFragment
   @Override
   public void onAttach(Activity activity) {
     super.onAttach(activity);
-    this.listener = (ConversationSelectedListener)activity;
   }
 
   @Override
@@ -137,13 +139,6 @@ public class ConversationListFragment extends ListFragment
 
         adapter.notifyDataSetChanged();
       }
-    }
-  }
-
-  public void setMasterSecret(MasterSecret masterSecret) {
-    if (this.masterSecret != masterSecret) {
-      this.masterSecret = masterSecret;
-      initializeListAdapter();
     }
   }
 
@@ -180,12 +175,17 @@ public class ConversationListFragment extends ListFragment
     } else if (DefaultSmsReminder.isEligible(getActivity())) {
       reminderView.showReminder(new DefaultSmsReminder(getActivity()));
     } else if (SystemSmsImportReminder.isEligible(getActivity())) {
-      reminderView.showReminder(new SystemSmsImportReminder(getActivity(), masterSecret));
+      reminderView.showReminder(new SystemSmsImportReminder(getActivity()));
     } else if (PushRegistrationReminder.isEligible(getActivity())) {
-      reminderView.showReminder(new PushRegistrationReminder(getActivity(), masterSecret));
+      reminderView.showReminder(new PushRegistrationReminder(getActivity()));
     } else {
       reminderView.hide();
     }
+  }
+
+  private void clearListAdapter() {
+    getLoaderManager().destroyLoader(0);
+    setListAdapter(null);
   }
 
   private void initializeListAdapter() {
@@ -250,7 +250,7 @@ public class ConversationListFragment extends ListFragment
   }
 
   private void handleCreateConversation(long threadId, Recipients recipients, int distributionType) {
-    listener.onCreateConversation(threadId, recipients, distributionType);
+    ((ConversationSelectedListener)getActivity()).onCreateConversation(threadId, recipients, distributionType);
   }
 
   @Override

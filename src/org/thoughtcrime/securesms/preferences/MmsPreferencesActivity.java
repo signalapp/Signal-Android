@@ -26,24 +26,18 @@ import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.thoughtcrime.securesms.util.MemoryCleaner;
 
 public class MmsPreferencesActivity extends PassphraseRequiredActionBarActivity {
-
-  private MasterSecret masterSecret;
 
   private final DynamicTheme dynamicTheme       = new DynamicTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   @Override
-  protected void onCreate(Bundle icicle) {
+  protected void onCreate(Bundle icicle, MasterSecret masterSecret) {
     dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
-    super.onCreate(icicle);
 
     this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-    masterSecret = getIntent().getParcelableExtra("master_secret");
 
     Fragment fragment = new MmsPreferencesFragment();
     FragmentManager fragmentManager = getSupportFragmentManager();
@@ -58,13 +52,6 @@ public class MmsPreferencesActivity extends PassphraseRequiredActionBarActivity 
     super.onResume();
     dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
-  }
-
-  @Override
-  public void onDestroy() {
-    MemoryCleaner.clean(masterSecret);
-    MemoryCleaner.clean((MasterSecret) getIntent().getParcelableExtra("master_secret"));
-    super.onDestroy();
   }
 
   @Override

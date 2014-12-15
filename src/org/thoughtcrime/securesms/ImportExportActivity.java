@@ -17,14 +17,11 @@ public class ImportExportActivity extends PassphraseRequiredActionBarActivity {
 
   private TabPagerAdapter tabPagerAdapter;
   private ViewPager viewPager;
-  private MasterSecret masterSecret;
 
   private DynamicTheme dynamicTheme = new DynamicTheme();
 
-  @Override
-  public void onCreate(Bundle savedInstanceState) {
+  public void onCreate(Bundle savedInstanceState, MasterSecret masterSecret) {
     dynamicTheme.onCreate(this);
-    super.onCreate(savedInstanceState);
     setContentView(R.layout.import_export_activity);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -39,7 +36,6 @@ public class ImportExportActivity extends PassphraseRequiredActionBarActivity {
       super.onResume();
   }
 
-  @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     super.onOptionsItemSelected(item);
 
@@ -51,7 +47,6 @@ public class ImportExportActivity extends PassphraseRequiredActionBarActivity {
   }
 
   private void initializeResources() {
-    this.masterSecret    = getIntent().getParcelableExtra("master_secret");
     this.viewPager       = (ViewPager) findViewById(R.id.import_export_pager);
     this.tabPagerAdapter = new TabPagerAdapter(getSupportFragmentManager());
 
@@ -94,8 +89,8 @@ public class ImportExportActivity extends PassphraseRequiredActionBarActivity {
 
       this.importFragment = new ImportFragment();
       this.exportFragment = new ExportFragment();
-      this.importFragment.setMasterSecret(masterSecret);
-      this.exportFragment.setMasterSecret(masterSecret);
+      this.importFragment.setMasterSecret(getMasterSecret());
+      this.exportFragment.setMasterSecret(getMasterSecret());
     }
 
     @Override
