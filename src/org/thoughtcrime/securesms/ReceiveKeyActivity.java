@@ -21,6 +21,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
@@ -41,7 +42,6 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.sms.IncomingPreKeyBundleMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.util.Base64;
-import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.InvalidKeyException;
 import org.whispersystems.libaxolotl.InvalidMessageException;
@@ -60,7 +60,7 @@ import java.io.IOException;
  * @author Moxie Marlinspike
  */
 
-public class ReceiveKeyActivity extends BaseActivity {
+public class ReceiveKeyActivity extends PassphraseRequiredActionBarActivity {
 
   private TextView descriptionText;
 
@@ -76,8 +76,8 @@ public class ReceiveKeyActivity extends BaseActivity {
   private IdentityKey                 identityKey;
 
   @Override
-  protected void onCreate(Bundle state) {
-    super.onCreate(state);
+  protected void onCreate(Bundle state, @NonNull MasterSecret masterSecret) {
+    this.masterSecret = masterSecret;
     setContentView(R.layout.receive_key_activity);
 
     initializeResources();
@@ -91,12 +91,6 @@ public class ReceiveKeyActivity extends BaseActivity {
     initializeListeners();
   }
 
-  @Override
-  protected void onDestroy() {
-    MemoryCleaner.clean(masterSecret);
-    super.onDestroy();
-  }
-
   private void initializeText() {
     SpannableString spannableString = new SpannableString(getString(R.string.ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different) + " " +
                                                           getString(R.string.ReceiveKeyActivity_you_may_wish_to_verify_this_contact));
@@ -105,7 +99,6 @@ public class ReceiveKeyActivity extends BaseActivity {
       public void onClick(View widget) {
         Intent intent = new Intent(ReceiveKeyActivity.this, VerifyIdentityActivity.class);
         intent.putExtra("recipient", recipient.getRecipientId());
-        intent.putExtra("master_secret", masterSecret);
         intent.putExtra("remote_identity", new IdentityKeyParcelable(identityKey));
         startActivity(intent);
       }
@@ -137,7 +130,6 @@ public class ReceiveKeyActivity extends BaseActivity {
     this.recipient            = RecipientFactory.getRecipientForId(this, getIntent().getLongExtra("recipient", -1), true);
     this.recipientDeviceId    = getIntent().getIntExtra("recipient_device_id", -1);
     this.messageId            = getIntent().getLongExtra("message_id", -1);
-    this.masterSecret         = getIntent().getParcelableExtra("master_secret");
   }
 
   private void initializeListeners() {
