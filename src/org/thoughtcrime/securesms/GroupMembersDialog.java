@@ -34,7 +34,7 @@ public class GroupMembersDialog extends AsyncTask<Void, Void, Recipients> {
 
   @Override
   public void onPreExecute() {
-    progress = ProgressDialog.show(context, "Members...", "Members...", true, false);
+    progress = ProgressDialog.show(context, context.getString(R.string.GroupMembersDialog_members), context.getString(R.string.GroupMembersDialog_members), true, false);
   }
 
   @Override

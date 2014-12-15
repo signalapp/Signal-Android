@@ -120,7 +120,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity {
 
     if (!isContentTypeSupported(mediaType)) {
       Log.w(TAG, "Unsupported media type sent to MediaPreviewActivity, finishing.");
-      Toast.makeText(getApplicationContext(), "Unsupported media type", Toast.LENGTH_LONG).show();
+      Toast.makeText(getApplicationContext(), R.string.MediaPreviewActivity_unssuported_media_type, Toast.LENGTH_LONG).show();
       finish();
     }
 

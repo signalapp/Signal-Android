@@ -429,8 +429,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialog, int which) {
+        Context self = ConversationActivity.this;
         try {
-          Context self    = ConversationActivity.this;
           byte[]  groupId = GroupUtil.getDecodedId(getRecipients().getPrimaryRecipient().getNumber());
           DatabaseFactory.getGroupDatabase(self).setActive(groupId, false);
 
@@ -446,7 +446,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
           initializeEnabledCheck();
         } catch (IOException e) {
           Log.w(TAG, e);
-          Toast.makeText(ConversationActivity.this, "Error leaving group....", Toast.LENGTH_LONG).show();
+          Toast.makeText(self, R.string.ConversationActivity_error_leaving_group, Toast.LENGTH_LONG).show();
         }
       }
     });

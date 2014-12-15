@@ -111,6 +111,7 @@
     <string name="ConversationActivity_transport_textsecure">TextSecure</string>
     <string name="ConversationActivity_get_with_it">Get with it: %s</string>
     <string name="ConversationActivity_install_textsecure">Install TextSecure: %s</string>
+    <string name="ConversationActivity_error_leaving_group">Error leaving group...</string>
 
     <!-- ConversationFragment -->
     <string name="ConversationFragment_message_details">Message details</string>
@@ -150,13 +151,9 @@
     </string>
     <string name="ExportFragment_cancel">Cancel</string>
     <string name="ExportFragment_exporting">Exporting</string>
-    <string name="ExportFragment_exporting_plaintext_to_sd_card">Exporting plaintext to SD card...
-    </string>
-    <string name="ExportFragment_error_unable_to_write_to_sd_card">Error, unable to write to SD
-        card!
-    </string>
-    <string name="ExportFragment_error_while_writing_to_sd_card">Error while writing to SD card.
-    </string>
+    <string name="ExportFragment_exporting_plaintext_to_sd_card">Exporting plaintext to SD card...</string>
+    <string name="ExportFragment_error_unable_to_write_to_sd_card">Error, unable to write to SD card!</string>
+    <string name="ExportFragment_error_while_writing_to_sd_card">Error while writing to SD card.</string>
     <string name="ExportFragment_success">Success!</string>
 
     <!-- GcmRefreshJob -->
@@ -177,11 +174,12 @@
     <string name="GroupCreateActivity_menu_create_title">Create group</string>
     <string name="GroupCreateActivity_creating_group">Creating %1$s&#8230;</string>
     <string name="GroupCreateActivity_updating_group">Updating %1$s...</string>
-    <string name="GroupCreateActivity_loading_group_details">Loading group details</string>
     <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Cannot add non-TextSecure contacts to an existing TextSecure group</string>
+    <string name="GroupCreateActivity_loading_group_details">Loading group details...</string>
 
     <!-- GroupMembersDialog -->
     <string name="GroupMembersDialog_me">Me</string>
+    <string name="GroupMembersDialog_members">Members...</string>
 
     <!-- ImportExportActivity -->
     <string name="ImportExportActivity_import">Import</string>
@@ -232,6 +230,8 @@
 
     <!-- MessageRecord -->
     <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Received a message encrypted using an old version of TextSecure that is no longer supported. Please ask the sender to upgrade to the most recent version and resend the message.</string>
+    <string name="MessageRecord_left_group">You have left the group.</string>
+    <string name="MessageRecord_updated_group">Updated the group.</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passphrases don\'t match!</string>
@@ -502,6 +502,11 @@
     <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Manual MMS settings are required for your phone.</string>
     <string name="MmsPreferencesFragment__enabled">Enabled</string>
     <string name="MmsPreferencesFragment__disabled">Disabled</string>
+
+    <!-- GroupUtil -->
+    <string name="GroupUtil_joined_the_group">%1$s joined the group.</string>
+    <string name="GroupUtil_group_updated">Group updated.</string>
+    <string name="GroupUtil_title_is_now">Title is now \'%1$s\'.</string>
 
     <!-- prompt_passphrase_activity -->
     <string name="prompt_passphrase_activity__unlock">Unlock</string>
@@ -807,6 +812,7 @@
     <!-- MediaPreviewActivity -->
     <string name="MediaPreviewActivity_you">You</string>
     <string name="MediaPreviewActivity_cant_display">Failed to preview this image</string>
+    <string name="MediaPreviewActivity_unssuported_media_type">Unsupported media type</string>
 
     <!-- media_preview -->
     <string name="media_preview__save_title">Save</string>
