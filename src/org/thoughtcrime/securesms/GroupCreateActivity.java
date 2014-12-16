@@ -54,6 +54,7 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
+import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -511,8 +512,8 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
     protected Bitmap doInBackground(Void... voids) {
       if (avatarUri != null) {
         try {
-          avatarBmp = BitmapUtil.getScaledCircleCroppedBitmap(getApplicationContext(), avatarUri, AVATAR_SIZE);
-        } catch (FileNotFoundException e) {
+          avatarBmp = BitmapUtil.getScaledCircleCroppedBitmap(GroupCreateActivity.this, masterSecret, avatarUri, AVATAR_SIZE);
+        } catch (FileNotFoundException | BitmapDecodingException e) {
           Log.w(TAG, e);
           return null;
         }
