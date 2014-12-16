@@ -274,7 +274,7 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Fortfahren antippen.</string
   <string name="ApplicationMigrationService_import_in_progress">Import wird durchgeführt</string>
   <string name="ApplicationMigrationService_importing_text_messages">Nachrichten werden importiert</string>
   <!--KeyCachingService-->
-  <string name="KeyCachingService_textsecure_passphrase_cached">Zum Entsperren antippen.</string>
+  <string name="KeyCachingService_textsecure_passphrase_cached">Zum Öffnen antippen.</string>
   <string name="KeyCachingService_textsecure_passphrase_cached_with_lock">Zum Entsperren antippen oder zum Sperren Schloss antippen.</string>
   <string name="KeyCachingService_passphrase_cached">TextSecure ist entsperrt</string>
   <string name="KeyCachingService_lock">Mit Passwort sperren</string>
