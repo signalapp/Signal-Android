@@ -502,6 +502,9 @@
     <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Manual MMS settings are required for your phone.</string>
     <string name="MmsPreferencesFragment__enabled">Enabled</string>
     <string name="MmsPreferencesFragment__disabled">Disabled</string>
+    <string name="MmsPreferencesFragment__not_set">Not set</string>
+    <string name="MmsPreferencesFragment__invalid_uri">The text entered was not a valid URI</string>
+    <string name="MmsPreferencesFragment__invalid_host">The text entered was not a valid host</string>
 
     <!-- prompt_passphrase_activity -->
     <string name="prompt_passphrase_activity__unlock">Unlock</string>
