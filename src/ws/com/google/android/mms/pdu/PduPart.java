@@ -19,8 +19,12 @@ package ws.com.google.android.mms.pdu;
 
 import android.net.Uri;
 
+import org.thoughtcrime.securesms.util.Util;
+
 import java.util.HashMap;
 import java.util.Map;
+
+import ws.com.google.android.mms.ContentType;
 
 /**
  * The pdu part.
@@ -121,6 +125,7 @@ public class PduPart {
 
      private static final String TAG = "PduPart";
 
+     private Uri     thumbnailUri;
      private boolean isEncrypted;
      private boolean isPendingPush;
      private long    dataSize;
@@ -156,7 +161,15 @@ public class PduPart {
      public boolean isPendingPush() {
        return isPendingPush;
      }
-     
+
+     public void setThumbnailUri(Uri thumbnailUri) {
+       this.thumbnailUri = thumbnailUri;
+     }
+
+     public Uri getThumbnailUri() {
+       return this.thumbnailUri;
+     }
+
      /**
       * Set part data. The data are stored as byte array.
       *
@@ -318,7 +331,7 @@ public class PduPart {
      /**
       *  Set Content-Type value.
       *
-      *  @param value the value
+      *  @param contentType the value
       *  @throws NullPointerException if the value is null.
       */
      public void setContentType(byte[] contentType) {
@@ -341,7 +354,7 @@ public class PduPart {
      /**
       * Set Content-Transfer-Encoding value
       *
-      * @param contentId the content-id value
+      * @param contentTransferEncoding the value
       * @throws NullPointerException if the value is null.
       */
      public void setContentTransferEncoding(byte[] contentTransferEncoding) {

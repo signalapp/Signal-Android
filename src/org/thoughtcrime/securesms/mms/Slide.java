@@ -16,7 +16,6 @@
  */
 package org.thoughtcrime.securesms.mms;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -25,10 +24,7 @@ import org.w3c.dom.smil.SMILDocument;
 import org.w3c.dom.smil.SMILMediaElement;
 import org.w3c.dom.smil.SMILRegionElement;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.providers.PartProvider;
 
-import android.content.ContentUris;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -42,10 +38,10 @@ public abstract class Slide {
 
   public static final int MAX_MESSAGE_SIZE = 280 * 1024;
 
-  protected final PduPart part;
-  protected final Context context;
-  protected MasterSecret masterSecret;
-
+  protected final PduPart      part;
+  protected final Context      context;
+  protected       MasterSecret masterSecret;
+	
   public Slide(Context context, PduPart part) {
     this.part    = part;
     this.context = context;
@@ -54,10 +50,6 @@ public abstract class Slide {
   public Slide(Context context, MasterSecret masterSecret, PduPart part) {
     this(context, part);
     this.masterSecret = masterSecret;
-  }
-
-  public InputStream getPartDataInputStream() throws FileNotFoundException {
-    return PartAuthority.getPartStream(context, masterSecret, part.getDataUri());
   }
 
   protected byte[] getPartData() {

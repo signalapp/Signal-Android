@@ -17,6 +17,8 @@
 package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
@@ -41,7 +43,6 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
 import java.util.Collections;
@@ -51,6 +52,7 @@ import ws.com.google.android.mms.ContentType;
 import ws.com.google.android.mms.pdu.PduPart;
 
 public class ImageSlide extends Slide {
+  private static final String TAG = ImageSlide.class.getSimpleName();
 
   private static final int MAX_CACHE_SIZE = 10;
   private static final Map<Uri, SoftReference<Drawable>> thumbnailCache =
@@ -77,8 +79,15 @@ public class ImageSlide extends Slide {
     }
 
     try {
-      thumbnail = new BitmapDrawable(context.getResources(),
-                                     BitmapUtil.createScaledBitmap(context, masterSecret, getUri(), maxWidth, maxHeight));
+      Bitmap thumbnailBitmap;
+      long startDecode = System.currentTimeMillis();
+      Log.w(TAG, (part.getThumbnailUri() == null ? "generating" : "fetching pre-generated") + " thumbnail");
+      if (part.getThumbnailUri() != null) thumbnailBitmap = BitmapFactory.decodeStream(PartAuthority.getPartStream(context, masterSecret, part.getThumbnailUri()));
+      else                                thumbnailBitmap = BitmapUtil.createScaledBitmap(context, masterSecret, getUri(), maxWidth, maxHeight);
+
+      Log.w(TAG, "thumbnail decode/generate time: " + (System.currentTimeMillis() - startDecode) + "ms");
+
+      thumbnail = new BitmapDrawable(context.getResources(), thumbnailBitmap);
       thumbnailCache.put(part.getDataUri(), new SoftReference<>(thumbnail));
 
       return thumbnail;
@@ -115,7 +124,7 @@ public class ImageSlide extends Slide {
     MmsDatabase.slideResolver.execute(new Runnable() {
       @Override
       public void run() {
-        final Drawable  bitmap      = getThumbnail(maxWidth, maxHeight);
+        final Drawable bitmap = getThumbnail(maxWidth, maxHeight);
         final ImageView destination = weakImageView.get();
 
         if (destination != null && destination.getDrawable() == temporaryDrawable) {

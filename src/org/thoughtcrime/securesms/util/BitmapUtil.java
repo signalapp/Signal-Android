@@ -5,12 +5,19 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
+import android.graphics.PorterDuff.Mode;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.net.Uri;
 import android.util.Log;
+import android.util.Pair;
+
+import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.mms.PartAuthority;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
@@ -151,11 +158,14 @@ public class BitmapUtil {
         aspectWidth = (aspectHeight / options.outHeight) * options.outWidth;
       }
 
-      Log.w(TAG, "fine scale  " + options.outWidth + "x" + options.outHeight +
-                 " => " + aspectWidth + "x" + aspectHeight);
+      final int fineWidth  = Math.round(aspectWidth);
+      final int fineHeight = Math.round(aspectHeight);
+
+      Log.w(TAG, "fine scale " + options.outWidth + "x" + options.outHeight +
+                 " => " + fineWidth + "x" + fineHeight);
       Bitmap scaledThumbnail = null;
       try {
-        scaledThumbnail = Bitmap.createScaledBitmap(roughThumbnail, (int) aspectWidth, (int) aspectHeight, true);
+        scaledThumbnail = Bitmap.createScaledBitmap(roughThumbnail, fineWidth, fineHeight, true);
       } finally {
         if (roughThumbnail != scaledThumbnail) roughThumbnail.recycle();
       }

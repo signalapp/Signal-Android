@@ -26,9 +26,11 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.Pair;
 
+import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.DecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.EncryptingPartOutputStream;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.jobs.ThumbnailGenerateJob;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.util.Util;
 
@@ -66,6 +68,8 @@ public class PartDatabase extends Database {
   private static final String DATA                    = "_data";
   private static final String PENDING_PUSH_ATTACHMENT = "pending_push";
   private static final String SIZE                    = "data_size";
+  private static final String THUMBNAIL               = "thumbnail";
+  private static final String ASPECT_RATIO            = "aspect_ratio";
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID + " INTEGER PRIMARY KEY, " +
     MMS_ID + " INTEGER, " + SEQUENCE + " INTEGER DEFAULT 0, "                        +
@@ -73,7 +77,8 @@ public class PartDatabase extends Database {
     CONTENT_DISPOSITION + " TEXT, " + FILENAME + " TEXT, " + CONTENT_ID + " TEXT, "  +
     CONTENT_LOCATION + " TEXT, " + CONTENT_TYPE_START + " INTEGER, "                 +
     CONTENT_TYPE_TYPE + " TEXT, " + ENCRYPTED + " INTEGER, "                         +
-    PENDING_PUSH_ATTACHMENT + " INTEGER, "+ DATA + " TEXT, " + SIZE + " INTEGER);";
+    PENDING_PUSH_ATTACHMENT + " INTEGER, "+ DATA + " TEXT, " + SIZE + " INTEGER, "   +
+    THUMBNAIL + " TEXT, " + ASPECT_RATIO + " REAL);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS part_mms_id_index ON " + TABLE_NAME + " (" + MMS_ID + ");",
@@ -88,6 +93,12 @@ public class PartDatabase extends Database {
       throws FileNotFoundException
   {
     return getDataStream(masterSecret, partId, DATA);
+  }
+
+  public InputStream getThumbnailStream(MasterSecret masterSecret, long partId)
+      throws FileNotFoundException
+  {
+    return getDataStream(masterSecret, partId, THUMBNAIL);
   }
 
   public void updateFailedDownloadedPart(long messageId, long partId, PduPart part)
@@ -134,7 +145,7 @@ public class PartDatabase extends Database {
       while (cursor != null && cursor.moveToNext()) {
         PduPart part = getPart(cursor);
         results.add(new Pair<>(cursor.getLong(cursor.getColumnIndexOrThrow(ID)),
-                                            part));
+                                              part));
       }
 
       return results;
@@ -144,19 +155,25 @@ public class PartDatabase extends Database {
     }
   }
 
+  @SuppressWarnings("ResultOfMethodCallIgnored")
   public void deleteParts(long mmsId) {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
     Cursor cursor           = null;
 
     try {
-      cursor = database.query(TABLE_NAME, new String[] {DATA}, MMS_ID + " = ?",
+      cursor = database.query(TABLE_NAME, new String[] {DATA, THUMBNAIL}, MMS_ID + " = ?",
                               new String[] {mmsId+""}, null, null, null);
 
       while (cursor != null && cursor.moveToNext()) {
         String data      = cursor.getString(0);
+        String thumbnail = cursor.getString(1);
 
         if (!TextUtils.isEmpty(data)) {
           new File(data).delete();
+        }
+
+        if (!TextUtils.isEmpty(thumbnail)) {
+          new File(thumbnail).delete();
         }
       }
     } finally {
@@ -167,6 +184,7 @@ public class PartDatabase extends Database {
     database.delete(TABLE_NAME, MMS_ID + " = ?", new String[] {mmsId+""});
   }
 
+  @SuppressWarnings("ResultOfMethodCallIgnored")
   public void deleteAllParts() {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
     database.delete(TABLE_NAME, null, null);
@@ -231,6 +249,12 @@ public class PartDatabase extends Database {
 
     if (!cursor.isNull(pendingPushColumn))
       part.setPendingPush(cursor.getInt(pendingPushColumn) == 1);
+
+    int thumbnailColumn = cursor.getColumnIndexOrThrow(THUMBNAIL);
+
+    if (!cursor.isNull(thumbnailColumn))
+      part.setThumbnailUri(ContentUris.withAppendedId(PartAuthority.THUMB_CONTENT_URI,
+                                                      cursor.getLong(cursor.getColumnIndexOrThrow(ID))));
 
     int sizeColumn = cursor.getColumnIndexOrThrow(SIZE);
 
@@ -356,9 +380,8 @@ public class PartDatabase extends Database {
   }
 
   private PduPart getPart(Cursor cursor) {
-    PduPart part        = new PduPart();
-    String dataLocation = cursor.getString(cursor.getColumnIndexOrThrow(DATA));
-    long partId         = cursor.getLong(cursor.getColumnIndexOrThrow(ID));
+    PduPart part   = new PduPart();
+    long    partId = cursor.getLong(cursor.getColumnIndexOrThrow(ID));
 
     getPartValues(part, cursor);
 
@@ -385,7 +408,11 @@ public class PartDatabase extends Database {
       contentValues.put(SIZE, partData.second);
     }
 
-    return database.insert(TABLE_NAME, null, contentValues);
+    long partId = database.insert(TABLE_NAME, null, contentValues);
+
+    ApplicationContext.getInstance(context).getJobManager().add(new ThumbnailGenerateJob(context, partId));
+
+    return partId;
   }
 
   public void updateDownloadedPart(MasterSecret masterSecret, long messageId,
@@ -407,6 +434,24 @@ public class PartDatabase extends Database {
 
     database.update(TABLE_NAME, values, ID_WHERE, new String[] {partId+""});
 
+    ApplicationContext.getInstance(context).getJobManager().add(new ThumbnailGenerateJob(context, partId));
+
     notifyConversationListeners(DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(messageId));
+  }
+
+  public void updatePartThumbnail(MasterSecret masterSecret, long partId, PduPart part, InputStream in, float aspectRatio)
+      throws MmsException
+  {
+    Log.w(TAG, "updating part thumbnail for #" + partId);
+
+    Pair<File, Long> thumbnailFile = writePartData(masterSecret, part, in);
+
+    SQLiteDatabase database = databaseHelper.getWritableDatabase();
+    ContentValues  values   = new ContentValues(2);
+
+    values.put(THUMBNAIL, thumbnailFile.first.getAbsolutePath());
+    values.put(ASPECT_RATIO, aspectRatio);
+
+    database.update(TABLE_NAME, values, ID_WHERE, new String[] {partId + ""});
   }
 }

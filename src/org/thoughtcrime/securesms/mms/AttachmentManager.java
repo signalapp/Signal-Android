@@ -20,7 +20,9 @@ import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.util.Log;
 import android.provider.ContactsContract;
@@ -74,12 +76,23 @@ public class AttachmentManager {
     setMedia(new AudioSlide(context, audio));
   }
 
-  public void setMedia(Slide slide, int thumbnailWidth, int thumbnailHeight) {
+  public void setMedia(final Slide slide, final int thumbnailWidth, final int thumbnailHeight) {
     slideDeck.clear();
     slideDeck.addSlide(slide);
-    thumbnail.setImageDrawable(slide.getThumbnail(thumbnailWidth, thumbnailHeight));
-    attachmentView.setVisibility(View.VISIBLE);
-    attachmentListener.onAttachmentChanged();
+    new AsyncTask<Void,Void,Drawable>() {
+
+      @Override
+      protected Drawable doInBackground(Void... params) {
+        return slide.getThumbnail(thumbnailWidth, thumbnailHeight);
+      }
+
+      @Override
+      protected void onPostExecute(Drawable drawable) {
+        thumbnail.setImageDrawable(drawable);
+        attachmentView.setVisibility(View.VISIBLE);
+        attachmentListener.onAttachmentChanged();
+      }
+    }.execute();
   }
 
   public void setMedia(Slide slide) {
