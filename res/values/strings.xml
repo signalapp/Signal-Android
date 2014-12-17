@@ -367,12 +367,19 @@
     <string name="MessageDisplayHelper_decrypting_please_wait">Decrypting, please wait...</string>
     <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Message encrypted for non-existing session...</string>
 
+    <!-- EncryptingSmsDatabase -->
+    <string name="EncryptingSmsDatabase_error_decrypting_message">Error decrypting message.</string>
+
+    <!-- ThreadDatabase -->
+    <string name="ThreadDatabase_error_decrypting_message">Error decrypting message.</string>
+
     <!-- MmsDatabase -->
     <string name="MmsDatabase_connecting_to_mms_server">Connecting to MMS server...</string>
     <string name="MmsDatabase_downloading_mms">Downloading MMS...</string>
     <string name="MmsDatabase_mms_download_failed">MMS download failed!</string>
     <string name="MmsDatabase_downloading">Downloading...</string>
     <string name="MmsDatabase_mms_pending_download">Tap and configure MMS settings to continue download.</string>
+    <string name="MmsDatabase_error_decrypting_message">Error decrypting message.</string>
 
     <!-- MmsMessageRecord -->
     <string name="MmsMessageRecord_decrypting_mms_please_wait">Decrypting MMS, please wait...</string>

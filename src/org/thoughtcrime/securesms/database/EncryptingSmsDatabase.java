@@ -22,6 +22,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import android.util.Pair;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.AsymmetricMasterCipher;
 import org.thoughtcrime.securesms.crypto.AsymmetricMasterSecret;
 import org.thoughtcrime.securesms.database.model.DisplayRecord;
@@ -175,7 +176,7 @@ public class EncryptingSmsDatabase extends SmsDatabase {
         }
       } catch (InvalidMessageException e) {
         Log.w("EncryptingSmsDatabase", e);
-        return new DisplayRecord.Body("Error decrypting message.", true);
+        return new DisplayRecord.Body(context.getString(R.string.EncryptingSmsDatabase_error_decrypting_message), true);
       }
     }
   }
