@@ -19,6 +19,10 @@ package org.thoughtcrime.securesms.mms;
 import android.content.Context;
 import android.util.Log;
 
+import org.w3c.dom.smil.SMILDocument;
+import org.w3c.dom.smil.SMILMediaElement;
+import org.w3c.dom.smil.SMILRegionElement;
+
 import java.io.UnsupportedEncodingException;
 
 import ws.com.google.android.mms.ContentType;
@@ -51,5 +55,15 @@ public class TextSlide extends Slide {
     part.setName(("Text"+System.currentTimeMillis()).getBytes());
         
     return part;
+  }
+
+  @Override
+  public SMILRegionElement getSmilRegion(SMILDocument document) {
+    return null;
+  }
+
+  @Override
+  public SMILMediaElement getMediaElement(SMILDocument document) {
+    return null;
   }
 }

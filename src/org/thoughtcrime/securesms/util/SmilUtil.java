@@ -116,7 +116,7 @@ public class SmilUtil {
                                                         : part.getName()));
   }
 
-  private static SMILMediaElement createMediaElement(String tag, SMILDocument document, String src) {
+  public static SMILMediaElement createMediaElement(String tag, SMILDocument document, String src) {
     SMILMediaElement mediaElement = (SMILMediaElement) document.createElement(tag);
     mediaElement.setSrc(escapeXML(src));
     return mediaElement;

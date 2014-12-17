@@ -36,6 +36,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.loaders.ConversationLoader;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -277,11 +278,35 @@ public class ConversationFragment extends ListFragment
     builder.show();
   }
 
-  private void handleForwardMessage(MessageRecord message) {
-    Intent composeIntent = new Intent(getActivity(), ShareActivity.class);
+  private void handleForwardMessage(final MessageRecord message) {
+    final MediaMmsMessageRecord mmsMessage = message.isMms() ? (MediaMmsMessageRecord)message : null;
+    final Intent composeIntent = new Intent(getActivity(), ShareActivity.class);
     composeIntent.putExtra(ConversationActivity.DRAFT_TEXT_EXTRA, message.getDisplayBody().toString());
     composeIntent.putExtra(ShareActivity.MASTER_SECRET_EXTRA, masterSecret);
-    startActivity(composeIntent);
+
+    if (mmsMessage != null && mmsMessage.containsMediaSlide()) {
+      mmsMessage.fetchMediaSlide(new FutureTaskListener<Slide>() {
+        @Override
+        public void onSuccess(Slide slide) {
+          if (slide.hasAudio() || slide.hasVideo() || slide.hasImage()) {
+            composeIntent.putExtra(ConversationActivity.DRAFT_MEDIA_EXTRA, PartAuthority.getPublicPartUri(slide.getUri()));
+            composeIntent.putExtra(ConversationActivity.DRAFT_MEDIA_TYPE_EXTRA, slide.getContentType());
+          }
+          startActivity(composeIntent);
+        }
+
+        @Override
+        public void onFailure(Throwable error) {
+          Log.w(TAG, "No slide with attachable media found, failing nicely.");
+          Log.w(TAG, error);
+          startActivity(composeIntent);
+        }
+
+      });
+    }
+    else {
+      startActivity(composeIntent);
+    }
   }
 
   private void handleResendMessage(final MessageRecord message) {

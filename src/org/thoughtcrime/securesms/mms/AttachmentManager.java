@@ -20,7 +20,9 @@ import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
@@ -35,6 +37,8 @@ import org.thoughtcrime.securesms.util.BitmapDecodingException;
 
 import java.io.File;
 import java.io.IOException;
+
+import ws.com.google.android.mms.ContentType;
 
 public class AttachmentManager {
   private final static String TAG = AttachmentManager.class.getSimpleName();
@@ -65,23 +69,11 @@ public class AttachmentManager {
     attachmentListener.onAttachmentChanged();
   }
 
+
   public void cleanup() {
     if (captureFile != null) captureFile.delete();
     captureFile = null;
   }
-
-  public void setImage(Uri image) throws IOException, BitmapDecodingException {
-    setMedia(new ImageSlide(context, image));
-  }
-
-  public void setVideo(Uri video) throws IOException, MediaTooLargeException {
-    setMedia(new VideoSlide(context, video));
-  }
-
-  public void setAudio(Uri audio) throws IOException, MediaTooLargeException {
-    setMedia(new AudioSlide(context, audio));
-  }
-
   public void setMedia(final Slide slide) {
     slideDeck.clear();
     slideDeck.addSlide(slide);
@@ -117,15 +109,15 @@ public class AttachmentManager {
   }
 
   public static void selectVideo(Activity activity, int requestCode) {
-    selectMediaType(activity, "video/*", requestCode);
+    selectMediaType(activity, ContentType.VIDEO_UNSPECIFIED, requestCode);
   }
 
   public static void selectImage(Activity activity, int requestCode) {
-    selectMediaType(activity, "image/*", requestCode);
+    selectMediaType(activity, ContentType.IMAGE_UNSPECIFIED, requestCode);
   }
 
   public static void selectAudio(Activity activity, int requestCode) {
-    selectMediaType(activity, "audio/*", requestCode);
+    selectMediaType(activity, ContentType.AUDIO_UNSPECIFIED, requestCode);
   }
 
   public static void selectContactInfo(Activity activity, int requestCode) {
@@ -155,7 +147,17 @@ public class AttachmentManager {
       Toast.makeText(activity, R.string.AttachmentManager_cant_open_media_selection, Toast.LENGTH_LONG).show();
     }
   }
+  public void setImage(Uri image) throws IOException, BitmapDecodingException {
+    setMedia(new ImageSlide(context, image));
+  }
 
+  public void setVideo(Uri video) throws IOException, MediaTooLargeException {
+    setMedia(new VideoSlide(context, video));
+  }
+
+  public void setAudio(Uri audio) throws IOException, MediaTooLargeException {
+    setMedia(new AudioSlide(context, audio));
+  }
   private class RemoveButtonListener implements View.OnClickListener {
     @Override
     public void onClick(View v) {

@@ -152,9 +152,8 @@ public class NewConversationActivity extends PassphraseRequiredActionBarActivity
       intent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, recipients.getIds());
       intent.putExtra(ConversationActivity.MASTER_SECRET_EXTRA, masterSecret);
       intent.putExtra(ConversationActivity.DRAFT_TEXT_EXTRA, getIntent().getStringExtra(ConversationActivity.DRAFT_TEXT_EXTRA));
-      intent.putExtra(ConversationActivity.DRAFT_AUDIO_EXTRA, getIntent().getParcelableExtra(ConversationActivity.DRAFT_AUDIO_EXTRA));
-      intent.putExtra(ConversationActivity.DRAFT_VIDEO_EXTRA, getIntent().getParcelableExtra(ConversationActivity.DRAFT_VIDEO_EXTRA));
-      intent.putExtra(ConversationActivity.DRAFT_IMAGE_EXTRA, getIntent().getParcelableExtra(ConversationActivity.DRAFT_IMAGE_EXTRA));
+      intent.putExtra(ConversationActivity.DRAFT_MEDIA_EXTRA, getIntent().getParcelableExtra(ConversationActivity.DRAFT_MEDIA_EXTRA));
+      intent.putExtra(ConversationActivity.DRAFT_MEDIA_TYPE_EXTRA, getIntent().getStringExtra(ConversationActivity.DRAFT_MEDIA_TYPE_EXTRA));
       long existingThread = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipients);
       intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, existingThread);
       intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT);

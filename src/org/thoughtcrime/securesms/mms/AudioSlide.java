@@ -1,6 +1,6 @@
-/** 
+/**
  * Copyright (C) 2011 Whisper Systems
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -10,11 +10,12 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package org.thoughtcrime.securesms.mms;
+
 
 import android.content.Context;
 import android.content.res.Resources.Theme;
@@ -25,37 +26,73 @@ import android.support.annotation.DrawableRes;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.util.ResUtil;
+import org.w3c.dom.smil.SMILDocument;
+import org.w3c.dom.smil.SMILMediaElement;
+import org.w3c.dom.smil.SMILRegionElement;
+
 
 import java.io.IOException;
+
+
+import ws.com.google.android.mms.ContentType;
+import ws.com.google.android.mms.pdu.PduPart;
+import android.util.Log;
+
+
 
 import ws.com.google.android.mms.pdu.PduPart;
 
 public class AudioSlide extends Slide {
 
+  private static final String TAG = AudioSlide.class.getSimpleName();
+
   public AudioSlide(Context context, Uri uri) throws IOException, MediaTooLargeException {
     super(context, constructPartFromUri(context, uri));
   }
-
-  public AudioSlide(Context context, MasterSecret masterSecret, PduPart part) {
-    super(context, masterSecret, part);
-  }
-
   @Override
   public boolean hasImage() {
     return true;
   }
-
   @Override
   public boolean hasAudio() {
     return true;
   }
-
+  public AudioSlide(Context context, MasterSecret masterSecret, PduPart part) {
+    super(context, masterSecret, part);
+  }
   @Override
   public @DrawableRes int getPlaceholderRes(Theme theme) {
     return R.drawable.ic_menu_add_sound;
   }
 
+  @Override
+  public SMILRegionElement getSmilRegion(SMILDocument document) {
+    return null;
+  }
+
+  @Override
+  public SMILMediaElement getMediaElement(SMILDocument document) {
+    return null;
+  }
+
+  private static PduPart constructPartFromUri(Context context, Uri uri, String contentType)
+      throws IOException, MediaTooLargeException {
+    PduPart part  = new PduPart();
+
+    assertMediaSize(context, uri);
+
+    if (contentType == null || ContentType.isUnspecified(contentType))
+      contentType = getContentTypeFromUri(context, uri, Audio.Media.MIME_TYPE);
+
+    Log.w(TAG, "Setting mime type: " + contentType);
+    part.setContentType(contentType.getBytes());
+
+    part.setDataUri(uri);
+    part.setContentId((System.currentTimeMillis()+"").getBytes());
+    part.setName(("Audio" + System.currentTimeMillis()).getBytes());
+
+    return part;
+  }
   public static PduPart constructPartFromUri(Context context, Uri uri) throws IOException, MediaTooLargeException {
     PduPart part = new PduPart();
 
@@ -73,7 +110,7 @@ public class AudioSlide extends Slide {
     } finally {
       if (cursor != null)
         cursor.close();
-    } 
+    }
 
     part.setDataUri(uri);
     part.setContentId((System.currentTimeMillis()+"").getBytes());
