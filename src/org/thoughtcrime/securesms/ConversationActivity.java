@@ -113,6 +113,8 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.List;
 
+import ws.com.google.android.mms.ContentType;
+
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import static org.thoughtcrime.securesms.recipients.Recipient.RecipientModifiedListener;
 import static org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.GroupContext;
@@ -134,9 +136,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   public static final String THREAD_ID_EXTRA         = "thread_id";
   public static final String MASTER_SECRET_EXTRA     = "master_secret";
   public static final String DRAFT_TEXT_EXTRA        = "draft_text";
-  public static final String DRAFT_IMAGE_EXTRA       = "draft_image";
-  public static final String DRAFT_AUDIO_EXTRA       = "draft_audio";
-  public static final String DRAFT_VIDEO_EXTRA       = "draft_video";
+  public static final String DRAFT_MEDIA_EXTRA       = "draft_media";
+  public static final String DRAFT_MEDIA_TYPE_EXTRA  = "draft_media_type";
   public static final String DISTRIBUTION_TYPE_EXTRA = "distribution_type";
 
   private static final int PICK_IMAGE        = 1;
@@ -246,13 +247,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     if (data == null || resultCode != RESULT_OK) return;
     switch (reqCode) {
     case PICK_IMAGE:
-      addAttachmentImage(data.getData());
+      addAttachmentMedia(data.getData(), ContentType.IMAGE_UNSPECIFIED);
       break;
     case PICK_VIDEO:
-      addAttachmentVideo(data.getData());
+      addAttachmentMedia(data.getData(), ContentType.VIDEO_UNSPECIFIED);
       break;
     case PICK_AUDIO:
-      addAttachmentAudio(data.getData());
+      addAttachmentMedia(data.getData(), ContentType.AUDIO_UNSPECIFIED);
       break;
     case PICK_CONTACT_INFO:
       addAttachmentContactInfo(data.getData());
@@ -618,17 +619,14 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void initializeDraft() {
-    String draftText  = getIntent().getStringExtra(DRAFT_TEXT_EXTRA);
-    Uri    draftImage = getIntent().getParcelableExtra(DRAFT_IMAGE_EXTRA);
-    Uri    draftAudio = getIntent().getParcelableExtra(DRAFT_AUDIO_EXTRA);
-    Uri    draftVideo = getIntent().getParcelableExtra(DRAFT_VIDEO_EXTRA);
+    String draftText   = getIntent().getStringExtra(DRAFT_TEXT_EXTRA);
+    Uri    draftMedia  = getIntent().getParcelableExtra(DRAFT_MEDIA_EXTRA);
+    String mediaType   = getIntent().getStringExtra(DRAFT_MEDIA_TYPE_EXTRA);
 
     if (draftText != null)  composeText.setText(draftText);
-    if (draftImage != null) addAttachmentImage(draftImage);
-    if (draftAudio != null) addAttachmentAudio(draftAudio);
-    if (draftVideo != null) addAttachmentVideo(draftVideo);
+    if (draftMedia != null) addAttachmentMedia(draftMedia, mediaType);
 
-    if (draftText == null && draftImage == null && draftAudio == null && draftVideo == null) {
+    if (draftText == null && draftMedia == null) {
       initializeDraftFromDatabase();
     }
   }
@@ -669,12 +667,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                                 TextView.BufferType.SPANNABLE);
           } else if (draft.getType().equals(Draft.TEXT)) {
             composeText.setText(draft.getValue());
-          } else if (draft.getType().equals(Draft.IMAGE)) {
-            addAttachmentImage(Uri.parse(draft.getValue()));
-          } else if (draft.getType().equals(Draft.AUDIO)) {
-            addAttachmentAudio(Uri.parse(draft.getValue()));
-          } else if (draft.getType().equals(Draft.VIDEO)) {
-            addAttachmentVideo(Uri.parse(draft.getValue()));
+          } else if (draft.isValidMediaDraft()) {
+            addAttachmentMedia(Uri.parse(draft.getValue()), draft.getType());
           }
         }
       }
@@ -828,49 +822,20 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
-  private void addAttachmentImage(Uri imageUri) {
+  private void addAttachmentMedia(Uri mediaUri, String contentType) {
     try {
-      attachmentManager.setImage(imageUri);
+      attachmentManager.setMedia(mediaUri, contentType);
     } catch (IOException | BitmapDecodingException e) {
       Log.w(TAG, e);
       attachmentManager.clear();
       Toast.makeText(this, R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
                      Toast.LENGTH_LONG).show();
-    }
-  }
-
-  private void addAttachmentVideo(Uri videoUri) {
-    try {
-      attachmentManager.setVideo(videoUri);
-    } catch (IOException e) {
-      attachmentManager.clear();
-      Toast.makeText(this, R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
-                     Toast.LENGTH_LONG).show();
-      Log.w("ComposeMessageActivity", e);
     } catch (MediaTooLargeException e) {
       attachmentManager.clear();
-
-      Toast.makeText(this, getString(R.string.ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions,
+      Toast.makeText(this, getString(R.string.ConversationActivity_sorry_the_selected_attachment_exceeds_message_size_restrictions,
                                      (MmsMediaConstraints.MAX_MESSAGE_SIZE/1024)),
                      Toast.LENGTH_LONG).show();
-      Log.w("ComposeMessageActivity", e);
-    }
-  }
-
-  private void addAttachmentAudio(Uri audioUri) {
-    try {
-      attachmentManager.setAudio(audioUri);
-    } catch (IOException e) {
-      attachmentManager.clear();
-      Toast.makeText(this, R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
-                     Toast.LENGTH_LONG).show();
-      Log.w("ComposeMessageActivity", e);
-    } catch (MediaTooLargeException e) {
-      attachmentManager.clear();
-      Toast.makeText(this, getString(R.string.ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions,
-                                     (MmsMediaConstraints.MAX_MESSAGE_SIZE/1024)),
-                     Toast.LENGTH_LONG).show();
-      Log.w("ComposeMessageActivity", e);
+      Log.w(TAG, e);
     }
   }
 

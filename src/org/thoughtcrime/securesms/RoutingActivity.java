@@ -12,6 +12,8 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 
+import ws.com.google.android.mms.ContentType;
+
 public class RoutingActivity extends PassphraseRequiredActionBarActivity {
 
   private static final int STATE_CREATE_PASSPHRASE        = 1;
@@ -133,9 +135,8 @@ public class RoutingActivity extends PassphraseRequiredActionBarActivity {
     intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, parameters.thread);
     intent.putExtra(ConversationActivity.MASTER_SECRET_EXTRA, masterSecret);
     intent.putExtra(ConversationActivity.DRAFT_TEXT_EXTRA, parameters.draftText);
-    intent.putExtra(ConversationActivity.DRAFT_IMAGE_EXTRA, parameters.draftImage);
-    intent.putExtra(ConversationActivity.DRAFT_AUDIO_EXTRA, parameters.draftAudio);
-    intent.putExtra(ConversationActivity.DRAFT_VIDEO_EXTRA, parameters.draftVideo);
+    intent.putExtra(ConversationActivity.DRAFT_MEDIA_EXTRA, parameters.draftMedia);
+    intent.putExtra(ConversationActivity.DRAFT_MEDIA_TYPE_EXTRA, parameters.draftMediaType);
 
     return intent;
   }
@@ -146,9 +147,8 @@ public class RoutingActivity extends PassphraseRequiredActionBarActivity {
 
     if (parameters != null) {
       intent.putExtra(ConversationActivity.DRAFT_TEXT_EXTRA, parameters.draftText);
-      intent.putExtra(ConversationActivity.DRAFT_IMAGE_EXTRA, parameters.draftImage);
-      intent.putExtra(ConversationActivity.DRAFT_AUDIO_EXTRA, parameters.draftAudio);
-      intent.putExtra(ConversationActivity.DRAFT_VIDEO_EXTRA, parameters.draftVideo);
+      intent.putExtra(ConversationActivity.DRAFT_MEDIA_EXTRA, parameters.draftMedia);
+      intent.putExtra(ConversationActivity.DRAFT_MEDIA_TYPE_EXTRA, parameters.draftMediaType);
     }
 
     return intent;
@@ -207,15 +207,13 @@ public class RoutingActivity extends PassphraseRequiredActionBarActivity {
       recipients = null;
     }
 
-    return new ConversationParameters(threadId, recipients, body, null, null, null);
+    return new ConversationParameters(threadId, recipients, body, null, null);
   }
 
   private ConversationParameters getConversationParametersForShareAction() {
-    String type      = getIntent().getType();
-    String draftText = getIntent().getStringExtra(Intent.EXTRA_TEXT);
-    Uri draftImage   = null;
-    Uri draftAudio   = null;
-    Uri draftVideo   = null;
+    String type       = getIntent().getType();
+    String draftText  = getIntent().getStringExtra(Intent.EXTRA_TEXT);
+    Uri    draftMedia = null;
 
     Uri streamExtra = getIntent().getParcelableExtra(Intent.EXTRA_STREAM);
 
@@ -223,15 +221,11 @@ public class RoutingActivity extends PassphraseRequiredActionBarActivity {
       type = getMimeType(streamExtra);
     }
 
-    if (type != null && type.startsWith("image/")) {
-      draftImage = streamExtra;
-    } else if (type != null && type.startsWith("audio/")) {
-      draftAudio = streamExtra;
-    } else if (type != null && type.startsWith("video/")) {
-      draftVideo = streamExtra;
+    if (ContentType.isAudioType(type) || ContentType.isVideoType(type) || ContentType.isImageType(type)) {
+      draftMedia = streamExtra;
     }
 
-    return new ConversationParameters(-1, null, draftText, draftImage, draftAudio, draftVideo);
+    return new ConversationParameters(-1, null, draftText, draftMedia, type);
   }
 
   private String getMimeType(Uri uri) {
@@ -250,7 +244,7 @@ public class RoutingActivity extends PassphraseRequiredActionBarActivity {
     long[] recipientIds   = getIntent().getLongArrayExtra("recipients");
     Recipients recipients = recipientIds == null ? null : RecipientFactory.getRecipientsForIds(this, recipientIds, true);
 
-    return new ConversationParameters(threadId, recipients, null, null, null, null);
+    return new ConversationParameters(threadId, recipients, null, null, null);
   }
 
   private boolean isShareAction() {
@@ -265,19 +259,17 @@ public class RoutingActivity extends PassphraseRequiredActionBarActivity {
     public final long       thread;
     public final Recipients recipients;
     public final String     draftText;
-    public final Uri        draftImage;
-    public final Uri        draftAudio;
-    public final Uri        draftVideo;
+    public final Uri        draftMedia;
+    public final String     draftMediaType;
 
     public ConversationParameters(long thread, Recipients recipients,
-                                  String draftText, Uri draftImage, Uri draftAudio, Uri draftVideo)
+                                  String draftText, Uri draftMedia, String draftMediaType)
     {
-     this.thread     = thread;
-     this.recipients = recipients;
-     this.draftText  = draftText;
-     this.draftImage = draftImage;
-     this.draftAudio = draftAudio;
-     this.draftVideo = draftVideo;
+      this.thread         = thread;
+      this.recipients     = recipients;
+      this.draftText      = draftText;
+      this.draftMedia     = draftMedia;
+      this.draftMediaType = draftMediaType;
     }
   }
 

@@ -109,6 +109,12 @@ public class DraftDatabase extends Database {
       default:    return null;
       }
     }
+
+  public Boolean isValidMediaDraft() {
+    return type.equals(Draft.IMAGE) ||
+           type.equals(Draft.AUDIO) ||
+           type.equals(Draft.VIDEO);
+    }
   }
 
   public static class Drafts extends LinkedList<Draft> {

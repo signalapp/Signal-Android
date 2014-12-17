@@ -1,6 +1,6 @@
-/** 
+/**
  * Copyright (C) 2011 Whisper Systems
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -10,7 +10,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -23,32 +23,33 @@ import org.thoughtcrime.securesms.util.SmilUtil;
 import org.w3c.dom.smil.SMILDocument;
 import org.w3c.dom.smil.SMILMediaElement;
 import org.w3c.dom.smil.SMILRegionElement;
-import org.w3c.dom.smil.SMILRegionMediaElement;
 
+import ws.com.google.android.mms.ContentType;
 import ws.com.google.android.mms.pdu.PduPart;
 import android.content.Context;
-import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.MediaStore.Audio;
+import android.util.Log;
 
 public class AudioSlide extends Slide {
+  private static final String TAG = AudioSlide.class.getSimpleName();
 
   public AudioSlide(Context context, PduPart part) {
     super(context, part);
   }
 
-  public AudioSlide(Context context, Uri uri) throws IOException, MediaTooLargeException {
-    super(context, constructPartFromUri(context, uri));
+  public AudioSlide(Context context, Uri uri, String contentType) throws IOException, MediaTooLargeException {
+    super(context, constructPartFromUri(context, uri, contentType));
   }
 
   @Override
-    public boolean hasImage() {
+  public boolean hasImage() {
     return true;
   }
 
   @Override
-    public boolean hasAudio() {
+  public boolean hasAudio() {
     return true;
   }
 
@@ -67,24 +68,17 @@ public class AudioSlide extends Slide {
     return context.getResources().getDrawable(R.drawable.ic_menu_add_sound);
   }
 
-  public static PduPart constructPartFromUri(Context context, Uri uri) throws IOException, MediaTooLargeException {
-    PduPart part = new PduPart();
+  private static PduPart constructPartFromUri(Context context, Uri uri, String contentType)
+      throws IOException, MediaTooLargeException {
+    PduPart part  = new PduPart();
 
     assertMediaSize(context, uri);
 
-    Cursor cursor = null;
+    if (contentType == null || ContentType.isUnspecified(contentType))
+      contentType = getContentTypeFromUri(context, uri, Audio.Media.MIME_TYPE);
 
-    try {
-      cursor = context.getContentResolver().query(uri, new String[]{Audio.Media.MIME_TYPE}, null, null, null);
-
-      if (cursor != null && cursor.moveToFirst())
-        part.setContentType(cursor.getString(0).getBytes());
-      else
-        throw new IOException("Unable to query content type.");
-    } finally {
-      if (cursor != null)
-        cursor.close();
-    } 
+    Log.w(TAG, "Setting mime type: " + contentType);
+    part.setContentType(contentType.getBytes());
 
     part.setDataUri(uri);
     part.setContentId((System.currentTimeMillis()+"").getBytes());
