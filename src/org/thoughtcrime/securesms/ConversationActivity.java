@@ -616,6 +616,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     if (draftText == null && draftImage == null && draftAudio == null && draftVideo == null) {
       initializeDraftFromDatabase();
     }
+    else {
+      clearDraftsFromDatabase();
+    }
   }
 
   private void initializeEnabledCheck() {
@@ -664,6 +667,19 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         }
       }
     }.execute();
+  }
+
+  private void clearDraftsFromDatabase() {
+    if (threadId != -1) {
+      new AsyncTask<Void, Void, Void>() {
+        @Override
+        protected Void doInBackground(Void... params) {
+          DraftDatabase draftDatabase = DatabaseFactory.getDraftDatabase(ConversationActivity.this);
+          draftDatabase.clearDrafts(threadId);
+          return null;
+        }
+      }.execute();
+    }
   }
 
   private void initializeSecurity() {
