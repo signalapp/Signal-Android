@@ -86,7 +86,7 @@ public class MessageNotifier {
     } else {
       Intent intent = new Intent(context, RoutingActivity.class);
       intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-      intent.putExtra("recipients", recipients);
+      intent.putExtra("recipients", recipients.getIds());
       intent.putExtra("thread_id", threadId);
       intent.setData((Uri.parse("custom://"+System.currentTimeMillis())));
 

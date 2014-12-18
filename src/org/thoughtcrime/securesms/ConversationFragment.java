@@ -79,10 +79,8 @@ public class ConversationFragment extends ListFragment
   }
 
   private void initializeResources() {
-    String recipientIds = this.getActivity().getIntent().getStringExtra("recipients");
-
     this.masterSecret = this.getActivity().getIntent().getParcelableExtra("master_secret");
-    this.recipients   = RecipientFactory.getRecipientsForIds(getActivity(), recipientIds, true);
+    this.recipients   = RecipientFactory.getRecipientsForIds(getActivity(), getActivity().getIntent().getLongArrayExtra("recipients"), true);
     this.threadId     = this.getActivity().getIntent().getLongExtra("thread_id", -1);
   }
 

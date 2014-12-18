@@ -20,10 +20,9 @@ public class SecurityEventListener implements TextSecureMessageSender.EventListe
 
   @Override
   public void onSecurityEvent(long recipientId) {
-    Recipients recipients = RecipientFactory.getRecipientsForIds(context, String.valueOf(recipientId), false);
+    Recipients recipients = RecipientFactory.getRecipientsForIds(context, new long[]{recipientId}, false);
     long       threadId   = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
 
     SecurityEvent.broadcastSecurityUpdateEvent(context, threadId);
   }
-
 }

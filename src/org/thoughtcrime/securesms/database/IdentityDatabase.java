@@ -143,8 +143,8 @@ public class IdentityDatabase extends Database {
     }
 
     public Identity getCurrent() {
-      long recipientId      = cursor.getLong(cursor.getColumnIndexOrThrow(RECIPIENT));
-      Recipients recipients = RecipientFactory.getRecipientsForIds(context, recipientId + "", true);
+      long       recipientId = cursor.getLong(cursor.getColumnIndexOrThrow(RECIPIENT));
+      Recipients recipients  = RecipientFactory.getRecipientsForIds(context, new long[]{recipientId}, true);
 
       try {
         String identityKeyString = cursor.getString(cursor.getColumnIndexOrThrow(IDENTITY_KEY));

@@ -152,7 +152,7 @@ public class NewConversationActivity extends PassphraseRequiredActionBarActivity
   private void openNewConversation(Recipients recipients) {
     if (recipients != null) {
       Intent intent = new Intent(this, ConversationActivity.class);
-      intent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, recipients.toIdString());
+      intent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, recipients.getIds());
       intent.putExtra(ConversationActivity.MASTER_SECRET_EXTRA, masterSecret);
       intent.putExtra(ConversationActivity.DRAFT_TEXT_EXTRA, getIntent().getStringExtra(ConversationActivity.DRAFT_TEXT_EXTRA));
       intent.putExtra(ConversationActivity.DRAFT_AUDIO_EXTRA, getIntent().getParcelableExtra(ConversationActivity.DRAFT_AUDIO_EXTRA));

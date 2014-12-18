@@ -74,8 +74,8 @@ public class NotificationItem {
     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
     if (recipients != null || threadRecipients != null) {
-      if (threadRecipients != null) intent.putExtra("recipients", threadRecipients);
-      else                          intent.putExtra("recipients", recipients);
+      if (threadRecipients != null) intent.putExtra("recipients", threadRecipients.getIds());
+      else                          intent.putExtra("recipients", recipients.getIds());
 
       intent.putExtra("thread_id", threadId);
     }

@@ -246,7 +246,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       addAttachmentContactInfo(data.getData());
       break;
     case GROUP_EDIT:
-      this.recipients = data.getParcelableExtra(GroupCreateActivity.GROUP_RECIPIENT_EXTRA);
+      this.recipients = RecipientFactory.getRecipientsForIds(this, data.getLongArrayExtra(GroupCreateActivity.GROUP_RECIPIENT_EXTRA), true);
       initializeTitleBar();
       break;
     }
@@ -349,7 +349,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void handleVerifyIdentity() {
     Intent verifyIdentityIntent = new Intent(this, VerifyIdentityActivity.class);
-    verifyIdentityIntent.putExtra("recipient", getRecipients().getPrimaryRecipient());
+    verifyIdentityIntent.putExtra("recipient", getRecipients().getPrimaryRecipient().getRecipientId());
     verifyIdentityIntent.putExtra("master_secret", masterSecret);
     startActivity(verifyIdentityIntent);
   }
@@ -458,7 +458,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void handleEditPushGroup() {
     Intent intent = new Intent(ConversationActivity.this, GroupCreateActivity.class);
     intent.putExtra(GroupCreateActivity.MASTER_SECRET_EXTRA, masterSecret);
-    intent.putExtra(GroupCreateActivity.GROUP_RECIPIENT_EXTRA, recipients);
+    intent.putExtra(GroupCreateActivity.GROUP_RECIPIENT_EXTRA, recipients.getIds());
     startActivityForResult(intent, GROUP_EDIT);
   }
 
@@ -719,7 +719,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void initializeResources() {
-    recipients          = RecipientFactory.getRecipientsForIds(this, getIntent().getStringExtra(RECIPIENTS_EXTRA), true);
+    recipients          = RecipientFactory.getRecipientsForIds(this, getIntent().getLongArrayExtra(RECIPIENTS_EXTRA), true);
     threadId            = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
     distributionType    = getIntent().getIntExtra(DISTRIBUTION_TYPE_EXTRA,
                                                   ThreadDatabase.DistributionTypes.DEFAULT);
@@ -779,7 +779,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       public void onReceive(Context context, Intent intent) {
         Log.w("ConversationActivity", "Group update received...");
         if (recipients != null) {
-          String ids = recipients.toIdString();
+          long[] ids = recipients.getIds();
           Log.w("ConversationActivity", "Looking up new recipients...");
           recipients = RecipientFactory.getRecipientsForIds(context, ids, false);
           initializeTitleBar();
