@@ -22,7 +22,7 @@ public class ConversationListLoader extends AbstractCursorLoader {
   public Cursor getCursor() {
     if (filter != null && filter.trim().length() != 0) {
       List<String> numbers = ContactAccessor.getInstance()
-          .getNumbersForThreadSearchFilter(filter, context.getContentResolver());
+          .getNumbersForThreadSearchFilter(filter, context);
 
       return DatabaseFactory.getThreadDatabase(context).getFilteredConversationList(numbers);
     } else {
