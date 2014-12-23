@@ -64,8 +64,8 @@ public class AttachmentManager {
     attachmentListener.onAttachmentChanged();
   }
 
-  public void setImage(MasterSecret masterSecret, Uri image) throws IOException, BitmapDecodingException {
-    setMedia(new ImageSlide(context, masterSecret, image), 345, 261);
+  public void setImage(Uri image) throws IOException, BitmapDecodingException {
+    setMedia(new ImageSlide(context, image), 345, 261);
   }
 
   public void setVideo(Uri video) throws IOException, MediaTooLargeException {

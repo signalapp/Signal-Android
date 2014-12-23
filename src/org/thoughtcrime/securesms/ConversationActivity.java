@@ -826,7 +826,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void addAttachmentImage(Uri imageUri) {
     try {
-      attachmentManager.setImage(masterSecret, imageUri);
+      attachmentManager.setImage(imageUri);
     } catch (IOException | BitmapDecodingException e) {
       Log.w(TAG, e);
       attachmentManager.clear();
