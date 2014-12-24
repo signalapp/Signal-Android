@@ -38,6 +38,8 @@ import android.widget.Toast;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.Recipient.RecipientModifiedListener;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.DateUtils;
@@ -101,22 +103,26 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity {
     super.onResume();
     dynamicLanguage.onResume(this);
 
+    final long recipientId = getIntent().getLongExtra(RECIPIENT_EXTRA, -1);
+
     masterSecret = getIntent().getParcelableExtra(MASTER_SECRET_EXTRA);
     mediaUri     = getIntent().getData();
     mediaType    = getIntent().getType();
-    recipient    = getIntent().getParcelableExtra(RECIPIENT_EXTRA);
     date         = getIntent().getLongExtra(DATE_EXTRA, -1);
 
-    final CharSequence relativeTimeSpan;
-    if (date > 0) {
-      relativeTimeSpan = DateUtils.getRelativeTimeSpanString(date,
-                                                             System.currentTimeMillis(),
-                                                             DateUtils.MINUTE_IN_MILLIS);
+    if (recipientId > -1) {
+      recipient = RecipientFactory.getRecipientForId(this, recipientId, true);
+      recipient.addListener(new RecipientModifiedListener() {
+        @Override
+        public void onModified(Recipient recipient) {
+          initializeActionBar();
+        }
+      });
     } else {
-      relativeTimeSpan = null;
+      recipient = null;
     }
-    getSupportActionBar().setTitle(recipient == null ? getString(R.string.MediaPreviewActivity_you) : recipient.getName());
-    getSupportActionBar().setSubtitle(relativeTimeSpan);
+
+    initializeActionBar();
 
     if (!isContentTypeSupported(mediaType)) {
       Log.w(TAG, "Unsupported media type sent to MediaPreviewActivity, finishing.");
@@ -129,6 +135,20 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity {
     if (mediaType != null && mediaType.startsWith("image/")) {
       displayImage();
     }
+  }
+
+  private void initializeActionBar() {
+    final CharSequence relativeTimeSpan;
+    if (date > 0) {
+      relativeTimeSpan = DateUtils.getRelativeTimeSpanString(date,
+                                                             System.currentTimeMillis(),
+                                                             DateUtils.MINUTE_IN_MILLIS);
+    } else {
+      relativeTimeSpan = null;
+    }
+    getSupportActionBar().setTitle(recipient == null ? getString(R.string.MediaPreviewActivity_you) : recipient.getName());
+    getSupportActionBar().setSubtitle(relativeTimeSpan);
+
   }
 
   private InputStream getMediaInputStream() throws IOException {
