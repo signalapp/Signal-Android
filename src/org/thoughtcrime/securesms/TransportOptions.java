@@ -9,6 +9,7 @@ import android.text.style.RelativeSizeSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -105,11 +106,19 @@ public class TransportOptions {
     setTransport(transport.key);
   }
 
-  public void showPopup(View parent) {
+  public void showPopup(final View parent) {
     initializeTransportPopup();
+    final int xoff = context.getResources().getDimensionPixelOffset(R.dimen.transport_selection_popup_xoff);
+    final int yoff = context.getResources().getDimensionPixelOffset(R.dimen.transport_selection_popup_yoff);
     transportPopup.showAsDropDown(parent,
-                                  context.getResources().getDimensionPixelOffset(R.dimen.transport_selection_popup_xoff),
-                                  context.getResources().getDimensionPixelOffset(R.dimen.transport_selection_popup_yoff));
+                                  xoff,
+                                  yoff);
+    parent.getViewTreeObserver().addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
+      @Override
+      public void onGlobalLayout() {
+        transportPopup.update(parent, xoff, yoff, -1, -1);
+      }
+    });
   }
 
   public void setDefaultTransport(String transportName) {
