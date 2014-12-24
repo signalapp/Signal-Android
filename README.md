@@ -38,7 +38,7 @@ whispersystems@lists.riseup.net
 https://lists.riseup.net/www/info/whispersystems
 
 ## Contributing Funds
-[![Donate](https://coinbase.com/assets/buttons/donation_large-6ec72b1a9eec516944e50a22aca7db35.png)](https://whispersystems.org/blog/bithub/)
+[![Donate](https://www.coinbase.com/assets/buttons/donation_large-36ee936185fdf9a88e3a28cc685fb9b7.png)](https://coinbase.com/checkouts/d29fd4c37ca442393e32fdcb95304701)
 
 You can add funds to BitHub to directly help further development efforts.
 
