@@ -345,7 +345,7 @@ public class PartDatabase extends Database {
         return writePartData(masterSecret, part, new ByteArrayInputStream(part.getData()));
       } else if (part.getDataUri() != null) {
         Log.w(TAG, "Writing part data from URI");
-        InputStream in = context.getContentResolver().openInputStream(part.getDataUri());
+        InputStream in = PartAuthority.getPartStream(context, masterSecret, part.getDataUri());
         return writePartData(masterSecret, part, in);
       } else {
         throw new MmsException("Part is empty!");
