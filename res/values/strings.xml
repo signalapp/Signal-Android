@@ -731,6 +731,8 @@
     <string name="preferences__sms_fallback_never_send_mms">Never send MMS</string>
     <string name="preferences__sms_fallback_non_push_users">Non-TextSecure users</string>
     <string name="preferences__sms_fallback_nobody">Nobody</string>
+    <string name="preferences__support_wifi_calling">\'WiFi Calling\' compatibility mode</string>
+    <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Enable if your device uses SMS/MMS delivery over WiFi (only enable when \'WiFi Calling\' is enabled on your device).</string>
 
     <!-- **************************************** -->
     <!-- menus -->

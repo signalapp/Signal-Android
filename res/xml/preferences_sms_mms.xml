@@ -24,6 +24,11 @@
                         android:summary="@string/preferences__request_a_delivery_report_for_each_sms_message_you_send"
                         android:title="@string/preferences__sms_delivery_reports" />
 
+    <CheckBoxPreference android:defaultValue="false"
+                        android:key="pref_wifi_sms"
+                        android:title="@string/preferences__support_wifi_calling"
+                        android:summary="@string/preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi"/>
+
     <Preference android:key="pref_mms_preferences"
                 android:title="@string/preferences__advanced_mms_access_point_names"/>
 
