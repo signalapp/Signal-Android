@@ -178,19 +178,28 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     initializeReceivers();
+    initializeViews();
     initializeResources();
-  }
-
-  @Override
-  protected void onStart() {
-    super.onStart();
     initializeDraft();
   }
 
   @Override
-  protected void onStop() {
-    super.onStop();
-    saveDraft();
+  protected void onNewIntent(Intent intent) {
+    if (!Util.isEmpty(composeText)) {
+      saveDraft();
+      composeText.setText("");
+    }
+
+    setIntent(intent);
+
+    initializeResources();
+    initializeDraft();
+
+    ConversationFragment fragment = getFragment();
+
+    if (fragment != null) {
+      fragment.onNewIntent();
+    }
   }
 
   @Override
@@ -220,6 +229,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   protected void onDestroy() {
+    saveDraft();
     unregisterReceiver(securityUpdateReceiver);
     unregisterReceiver(groupUpdateReceiver);
     MemoryCleaner.clean(masterSecret);
@@ -718,24 +728,19 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
-  private void initializeResources() {
-    recipients          = RecipientFactory.getRecipientsForIds(this, getIntent().getLongArrayExtra(RECIPIENTS_EXTRA), true);
-    threadId            = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
-    distributionType    = getIntent().getIntExtra(DISTRIBUTION_TYPE_EXTRA,
-                                                  ThreadDatabase.DistributionTypes.DEFAULT);
-    sendButton          = (SendButton)findViewById(R.id.send_button);
-    composeText         = (EditText)findViewById(R.id.embedded_text_editor);
-    masterSecret        = getIntent().getParcelableExtra(MASTER_SECRET_EXTRA);
-    charactersLeft      = (TextView)findViewById(R.id.space_left);
-    emojiDrawer         = (EmojiDrawer)findViewById(R.id.emoji_drawer);
-    emojiToggle         = (EmojiToggle)findViewById(R.id.emoji_toggle);
+  private void initializeViews() {
+    sendButton     = (SendButton) findViewById(R.id.send_button);
+    composeText    = (EditText) findViewById(R.id.embedded_text_editor);
+    charactersLeft = (TextView) findViewById(R.id.space_left);
+    emojiDrawer    = (EmojiDrawer) findViewById(R.id.emoji_drawer);
+    emojiToggle    = (EmojiToggle) findViewById(R.id.emoji_toggle);
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
       emojiToggle.setVisibility(View.GONE);
     }
 
-    attachmentAdapter   = new AttachmentTypeSelectorAdapter(this);
-    attachmentManager   = new AttachmentManager(this, this);
+    attachmentAdapter = new AttachmentTypeSelectorAdapter(this);
+    attachmentManager = new AttachmentManager(this, this);
 
     SendButtonListener        sendButtonListener        = new SendButtonListener();
     ComposeKeyPressedListener composeKeyPressedListener = new ComposeKeyPressedListener();
@@ -750,6 +755,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     composeText.setOnFocusChangeListener(composeKeyPressedListener);
     emojiDrawer.setComposeEditText(composeText);
     emojiToggle.setOnClickListener(new EmojiToggleListener());
+  }
+
+  private void initializeResources() {
+    recipients       = RecipientFactory.getRecipientsForIds(this, getIntent().getLongArrayExtra(RECIPIENTS_EXTRA), true);
+    threadId         = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
+    distributionType = getIntent().getIntExtra(DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT);
+    masterSecret     = getIntent().getParcelableExtra(MASTER_SECRET_EXTRA);
 
     recipients.addListener(new RecipientModifiedListener() {
       @Override
@@ -906,9 +918,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     if (this.threadId <= 0 || this.recipients == null || this.recipients.isEmpty())
       return;
 
-    final Drafts drafts = getDraftsForCurrentState();
-
-    final long thisThreadId             = this.threadId;
+    final Drafts       drafts           = getDraftsForCurrentState();
+    final long         thisThreadId     = this.threadId;
     final MasterSecret thisMasterSecret = this.masterSecret.parcelClone();
 
     new AsyncTask<Void, Void, Void>() {
@@ -1001,8 +1012,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     boolean refreshFragment = (threadId != this.threadId);
     this.threadId = threadId;
 
-    ConversationFragment fragment = (ConversationFragment) getSupportFragmentManager()
-        .findFragmentById(R.id.fragment_content);
+    ConversationFragment fragment = getFragment();
 
     if (fragment == null) {
       return;
@@ -1016,6 +1026,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     fragment.scrollToBottom();
+  }
+
+  private ConversationFragment getFragment() {
+    return (ConversationFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_content);
   }
 
   private void sendMessage() {
