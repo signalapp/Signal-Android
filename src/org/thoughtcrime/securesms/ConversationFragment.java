@@ -78,6 +78,16 @@ public class ConversationFragment extends ListFragment
     this.listener = (ConversationFragmentListener)activity;
   }
 
+  public void onNewIntent() {
+    if (actionMode != null) {
+      actionMode.finish();
+    }
+
+    initializeResources();
+    initializeListAdapter();
+    getLoaderManager().restartLoader(0, null, this);
+  }
+
   private void initializeResources() {
     this.masterSecret = this.getActivity().getIntent().getParcelableExtra("master_secret");
     this.recipients   = RecipientFactory.getRecipientsForIds(getActivity(), getActivity().getIntent().getLongArrayExtra("recipients"), true);
