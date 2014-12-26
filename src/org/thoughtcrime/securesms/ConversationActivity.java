@@ -179,12 +179,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     initializeReceivers();
     initializeResources();
+    initializeDraft();
   }
 
   @Override
   protected void onStart() {
     super.onStart();
-    initializeDraft();
   }
 
   @Override
