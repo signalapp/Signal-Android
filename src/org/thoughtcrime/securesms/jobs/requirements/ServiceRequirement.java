@@ -17,15 +17,10 @@ public class ServiceRequirement implements Requirement, ContextDependent {
 
   private static final String TAG = ServiceRequirement.class.getSimpleName();
 
-  private final transient ServiceRequirementProvider provider;
-
   private transient Context context;
 
   public ServiceRequirement(Context context) {
     this.context  = context;
-    this.provider = (ServiceRequirementProvider)ApplicationContext.getInstance(context)
-                                                                  .getJobManager()
-                                                                  .getRequirementProvider("telephony-service");
   }
 
   @Override

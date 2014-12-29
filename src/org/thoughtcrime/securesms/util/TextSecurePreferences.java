@@ -57,12 +57,17 @@ public class TextSecurePreferences {
   private static final String DIRECT_SMS_ALLOWED_PREF          = "pref_sms_non_data_out";
   private static final String FALLBACK_MMS_ENABLED_PREF        = "pref_mms_fallback_enabled";
   private static final String SIGNED_PREKEY_REGISTERED_PREF    = "pref_signed_prekey_registered";
+  private static final String WIFI_SMS_PREF                    = "pref_wifi_sms";
 
   private static final String GCM_REGISTRATION_ID_PREF         = "pref_gcm_registration_id";
   private static final String GCM_REGISTRATION_ID_VERSION_PREF = "pref_gcm_registration_id_version";
 
   private static final String PUSH_REGISTRATION_REMINDER_PREF  = "pref_push_registration_reminder";
   public  static final String REPEAT_ALERTS_PREF               = "pref_repeat_alerts";
+
+  public static boolean isWifiSmsEnabled(Context context) {
+    return getBooleanPreference(context, WIFI_SMS_PREF, false);
+  }
 
   public static int getRepeatAlertsCount(Context context) {
     try {
