@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.protocol.Tag;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libaxolotl.state.SessionStore;
@@ -65,7 +66,7 @@ public class AutoInitiateActivity extends Activity {
 
   private void initializeResources() {
     this.threadId     = this.getIntent().getLongExtra("threadId", -1);
-    this.recipient    = this.getIntent().getParcelableExtra("recipient");
+    this.recipient    = RecipientFactory.getRecipientForId(this, this.getIntent().getLongExtra("recipient", -1), true);
     this.masterSecret = this.getIntent().getParcelableExtra("masterSecret");
 
     ((Button)findViewById(R.id.initiate_button)).setOnClickListener(new OkListener());

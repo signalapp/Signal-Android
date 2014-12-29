@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
@@ -113,7 +114,7 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
   private void initializeResources() {
     this.localIdentityFingerprint  = (TextView)findViewById(R.id.you_read);
     this.remoteIdentityFingerprint = (TextView)findViewById(R.id.friend_reads);
-    this.recipient                 = this.getIntent().getParcelableExtra("recipient");
+    this.recipient                 = RecipientFactory.getRecipientForId(this, this.getIntent().getLongExtra("recipient", -1), true);
     this.masterSecret              = this.getIntent().getParcelableExtra("master_secret");
   }
 
