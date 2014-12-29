@@ -183,6 +183,12 @@
     <!-- GroupMembersDialog -->
     <string name="GroupMembersDialog_me">Me</string>
 
+    <!-- GroupUtil -->
+    <string name="GroupUtil_group_updated">Group updated.</string>
+    <string name="GroupUtil_joined_the_group">joined the group.</string>
+    <string name="GroupUtil_title_is_now">Title is now</string>
+    <string name="GroupUtil_you">You</string>
+
     <!-- ImportExportActivity -->
     <string name="ImportExportActivity_import">Import</string>
     <string name="ImportExportActivity_export">Export</string>
