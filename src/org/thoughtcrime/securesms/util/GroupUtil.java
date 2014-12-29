@@ -37,20 +37,21 @@ public class GroupUtil {
     }
 
     try {
-      String       description = "";
-      GroupContext groupContext  = GroupContext.parseFrom(Base64.decode(encodedGroup));
-      List<String> members     = groupContext.getMembersList();
-      String       title       = groupContext.getName();
+      StringBuilder description  = new StringBuilder();
+      GroupContext  groupContext = GroupContext.parseFrom(Base64.decode(encodedGroup));
+      List<String>  members      = groupContext.getMembersList();
+      String        title        = groupContext.getName();
 
       if (!members.isEmpty()) {
-        description += context.getString(R.string.GroupUtil_joined_the_group, Util.join(members, ", "));
+        description.append(context.getString(R.string.GroupUtil_joined_the_group, Util.join(members, ", ")));
       }
 
       if (title != null && !title.trim().isEmpty()) {
-        description += context.getString(R.string.GroupUtil_title_is_now, title);
+        if (description.length() > 0) description.append(" ");
+        description.append(context.getString(R.string.GroupUtil_title_is_now, title));
       }
 
-      return description;
+      return description.toString();
     } catch (InvalidProtocolBufferException e) {
       Log.w("GroupUtil", e);
       return context.getString(R.string.GroupUtil_group_updated);
