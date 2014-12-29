@@ -104,7 +104,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
     String                  destination   = message.getTo()[0].getString();
 
     try {
-      prepareMessageMedia(masterSecret, message, MediaConstraints.PUSH_CONSTRAINTS, false);
+      message = getResolvedMessage(masterSecret, message, MediaConstraints.PUSH_CONSTRAINTS, false);
 
       TextSecureAddress          address      = getPushAddress(destination);
       List<TextSecureAttachment> attachments  = getAttachments(masterSecret, message);

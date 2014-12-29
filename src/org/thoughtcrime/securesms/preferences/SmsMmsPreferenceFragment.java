@@ -3,6 +3,8 @@ package org.thoughtcrime.securesms.preferences;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Build.VERSION;
+import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
@@ -40,12 +42,13 @@ public class SmsMmsPreferenceFragment extends PreferenceFragment {
   }
 
   private void initializePlatformSpecificOptions() {
-    PreferenceScreen   preferenceScreen         = getPreferenceScreen();
-    Preference         defaultPreference        = findPreference(KITKAT_DEFAULT_PREF);
-    Preference         allSmsPreference         = findPreference(TextSecurePreferences.ALL_SMS_PREF);
-    Preference         allMmsPreference         = findPreference(TextSecurePreferences.ALL_MMS_PREF);
+    PreferenceScreen preferenceScreen    = getPreferenceScreen();
+    Preference       defaultPreference   = findPreference(KITKAT_DEFAULT_PREF);
+    Preference       allSmsPreference    = findPreference(TextSecurePreferences.ALL_SMS_PREF);
+    Preference       allMmsPreference    = findPreference(TextSecurePreferences.ALL_MMS_PREF);
+    Preference       manualMmsPreference = findPreference(MMS_PREF);
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT ) {
+    if (VERSION.SDK_INT >= VERSION_CODES.KITKAT) {
       if (allSmsPreference != null) preferenceScreen.removePreference(allSmsPreference);
       if (allMmsPreference != null) preferenceScreen.removePreference(allMmsPreference);
 
@@ -62,6 +65,10 @@ public class SmsMmsPreferenceFragment extends PreferenceFragment {
       }
     } else if (defaultPreference != null) {
       preferenceScreen.removePreference(defaultPreference);
+    }
+
+    if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP && manualMmsPreference != null) {
+      preferenceScreen.removePreference(manualMmsPreference);
     }
   }
 
