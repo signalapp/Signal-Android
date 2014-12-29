@@ -30,11 +30,6 @@ public class MasterSecretRequirementProvider implements RequirementProvider {
   }
 
   @Override
-  public String getName() {
-    return "master_secret";
-  }
-
-  @Override
   public void setListener(RequirementListener listener) {
     this.listener = listener;
   }

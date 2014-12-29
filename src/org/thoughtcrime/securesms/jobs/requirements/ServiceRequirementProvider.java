@@ -25,11 +25,6 @@ public class ServiceRequirementProvider implements RequirementProvider {
   }
 
   @Override
-  public String getName() {
-    return "telephony-service";
-  }
-
-  @Override
   public void setListener(RequirementListener requirementListener) {
     this.requirementListener = requirementListener;
   }
