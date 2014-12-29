@@ -469,7 +469,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void handleEditPushGroup() {
     Intent intent = new Intent(ConversationActivity.this, GroupCreateActivity.class);
     intent.putExtra(GroupCreateActivity.MASTER_SECRET_EXTRA, masterSecret);
-    intent.putExtra(GroupCreateActivity.GROUP_RECIPIENT_EXTRA, recipients.getIds());
+    intent.putExtra(GroupCreateActivity.GROUP_RECIPIENT_EXTRA, recipients.getPrimaryRecipient().getRecipientId());
     startActivityForResult(intent, GROUP_EDIT);
   }
 
