@@ -151,10 +151,6 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity {
 
   }
 
-  private InputStream getMediaInputStream() throws IOException {
-    return PartAuthority.getPartStream(this, masterSecret, mediaUri);
-  }
-
   @Override
   public void onPause() {
     super.onPause();
@@ -176,8 +172,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity {
           GLES20.glGetIntegerv(GLES20.GL_MAX_TEXTURE_SIZE, maxTextureSizeParams, 0);
           int maxTextureSize = Math.max(maxTextureSizeParams[0], 2048);
           Log.w(TAG, "reported GL_MAX_TEXTURE_SIZE: " + maxTextureSize);
-          return BitmapUtil.createScaledBitmap(getMediaInputStream(),
-                                               getMediaInputStream(),
+          return BitmapUtil.createScaledBitmap(MediaPreviewActivity.this, masterSecret, mediaUri,
                                                maxTextureSize, maxTextureSize);
         } catch (IOException | BitmapDecodingException e) {
           return null;
