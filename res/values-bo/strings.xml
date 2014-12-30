@@ -7,10 +7,11 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">ད་ལྟ།:%s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">ཁྱོད་ཀྱིས་གསང་ཚིག་བཟོས་མི་འདུག</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">གླེང་མོལ་རེ་རེའི་འཕྲིན་ཐུང་། </string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">ད་ལྟ་རང་འཕྲིན་ཐུང་རྙིང་པ་ཚང་མ་གསུབ་གི་ཡིན་ནམ། </string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">ཁྱེད་ཀྱིས་མྱུར་དུ་ཉེ་འཆར་གྱི་འཕྲིན་ཐུང་དེའི་སླད་དུ་གླེང་མོལ་གྱི་སྐུད་པ་ཚང་མ་གཙང་བཟོ་བྱེད་ཀྱི་ཡིན་ནམ། </string>
   <string name="ApplicationPreferencesActivity_delete">གསུབ། </string>
+  <!--AppProtectionPreferenceFragment-->
+  <!--DraftDatabase-->
   <!--AttchmentManager-->
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">འདྲ་པར།</string>
@@ -27,10 +28,9 @@
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">ཁྱོད་ཀྱིས་གླེང་མོལ་འདི་གཏན་དུ་གསུབ་རྒྱུ་ཡིན་ནམ། </string>
   <string name="ConversationActivity_add_attachment">ཟུར་སྣོན་ཁ་སྣོན་བྱོས། </string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">དགོངས་དག ཁྱོད་ཀྱི་ཟུར་སྣོན་ལ་སྒྲིག་བཟོ་བྱེད་པར་ནོར་འཁྲུལ་ཞིག་འདུག </string>
-  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">དགོངས་དག ཁྱོད་ཀྱིས་བདམས་པའི་བརྙན་རིས་དེ་གཏན་འཁེལ་བྱས་ཡོད་པའི་འཕྲིན་ཐུང་གི་ཚད་ལས་བརྒལ་འདུག</string>
-  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">ཁྱོད་ཀྱིས་བདམས་པའི་སྒྲ་ཟློས་དེ་འཕྲིན་ཐུང་གི་ཚད་ལས་བརྒལ་འདུག</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">གཏོང་ས་དེར་གློག་འཕྲིན་ཁ་བྱང་ངམ་འཕྲིན་ཐུང་(SMS) ཁ་བྱང་ཚད་ལྡན་མི་འདུག </string>
   <string name="ConversationActivity_message_is_empty_exclamation">འཕྲིན་ཐུང་སྟོང་པ་རེད་འདུག </string>
+  <string name="ConversationActivity_transport_textsecure">གཡག་འཕྲིན། </string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">འཕྲིན་ཐུང་གི་ཞིབ་ཆ།</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">ཁྱོད་ཀྱིས་དངོས་གནས་འཕྲིན་ཐུང་འདི་གཏན་དུ་གསུབ་རྒྱུ་ཡིན་ནམ།</string>
@@ -99,6 +99,8 @@
   <string name="MessageDisplayHelper_bad_encrypted_message">གསང་སྡོམ་འཕྲིན་ཐུང་ཕན་མེད་ཞིག </string>
   <string name="MessageDisplayHelper_decrypting_please_wait">གསང་སྡོམ་བཤིག་བཞིན་ཡོད། ཅུང་སྒུག་དང་།</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">རྙེད་རྒྱུ་མེད་པའི་སྡེ་ཚན་ཞིག་གི་ཆེད་དུ་འཕྲིན་ཐུང་གསང་སྡོམ་བྱས་ཡོད། </string>
+  <!--EncryptingSmsDatabase-->
+  <!--ThreadDatabase-->
   <!--MmsDatabase-->
   <string name="MmsDatabase_connecting_to_mms_server">བརྒྱུད་ལམ་སྣ་མང་ཅན་གྱི་འཕྲིན་ཐུང་ MMS ཞབས་ཞུའི་ཡོ་ཆས་ལ་མཐུད་བཞིན་ཡོད།</string>
   <string name="MmsDatabase_downloading_mms">བརྒྱུད་ལམ་སྣ་མང་ཅན་གྱི་འཕྲིན་ཐུང་ MMS ཕབ་ལེན་བྱེད་བཞིན་ཡོད།</string>
@@ -154,7 +156,7 @@
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">འདི་ལ་དུས་ཚོད་ཅུང་ཙམ་འགོར་སྲིད། བཟོད་སྒོམ་གནང་རོགས། ནང་འདྲེན་ལེགས་འགྲུབ་བྱུང་མཚམས་ང་ཚོས་ཁྱོད་ལ་བརྡ་གཏོང་གི་ཡིན། </string>
   <string name="database_migration_activity__importing">ནང་འདྲེན་བྱེད་བཞིན་པ། </string>
   <!--database_upgrade_activity-->
-  <!--mms_preferences_activity-->
+  <!--MmsPreferencesFragment-->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">སྒོ་ཕྱེས། </string>
   <!--prompt_mms_activity-->
@@ -199,7 +201,6 @@
   <string name="preferences__normal">སྤྱིར་བཏང་། </string>
   <string name="preferences__slow">དལ་བོ། </string>
   <string name="preferences__custom">ཡུལ་སྲོལ། </string>
-  <string name="preferences__passphrase">གསང་ཚིག</string>
   <string name="preferences__mmsc_url_required">MMSC URL(དགོས་ངེས་ཅན) </string>
   <string name="preferences__mms_proxy_host_optional">MMS Proxy Host (གདམ་ཀ་ཅན) </string>
   <string name="preferences__mms_proxy_port_optional">MMS Proxy Port (གདམ་ཀ་ཅན) </string>
@@ -207,7 +208,6 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">ཁྱེད་ཀྱིས་གཏོང་བའི་འཕྲིན་ཐུང་རེ་རེར་སྙན་ཐོ་སྐྱེལ་བའི་རེ་སྐུལ་བྱོས། </string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">གླེང་མོལ་གྱི་སྐུད་པའི་དམིགས་བསལ་རིང་ཚད་རྫོགས་མཚམས། རང་བཞིན་ནས་འཕྲིན་ཐུང་རྙིང་པ་དག་བསུབ་འགྲོ་གི་རེད། </string>
   <string name="preferences__delete_old_messages">འཕྲིན་ཐུང་རྙིང་པ་གསུབ། </string>
-  <string name="preferences__storage">ཉར་ས། </string>
   <string name="preferences__conversation_length_limit">གླེང་མོལ་གྱི་རིང་ཐུང་གི་ཚད། </string>
   <string name="preferences__trim_all_threads_now">སྐུད་པ་ཚང་མ་གཙང་བཟོ་བྱོས། </string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">གླེང་མོལ་གྱི་སྐུད་པ་ཚང་མ་གཙང་སེལ་དང་གླེང་མོལ་གྱི་རིང་ཚད་ནུས་ལྡན་དུ་ཐོངས། </string>
@@ -227,7 +227,7 @@
   <string name="conversation_context__menu_delete_message">འཕྲིན་ཐུང་གསུབ།</string>
   <string name="conversation_context__menu_forward_message">འཕྲིན་ཐུང་བརྒྱུད་འགྲེམ་བྱོས། </string>
   <!--conversation_context_image-->
-  <!--conversation_insecure-->
+  <!--conversation_insecure_no_push-->
   <!--conversation_list_batch-->
   <!--conversation_list-->
   <string name="conversation_list__menu_search">འཚོལ།</string>
@@ -236,6 +236,7 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">ཟུར་སྣོན་ཞོག </string>
   <string name="conversation__menu_delete_thread">འཕྲིན་ཐུང་སྐུད་རིམ་གསུབ།</string>
+  <!--conversation_callable-->
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">འཕྲིན་ཐུང་འབྱོར་ཡུལ་གྱི་ཐོ་གཞུང་། </string>
   <!--key_scanning-->

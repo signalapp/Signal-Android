@@ -1,6 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <!--ApplicationPreferencesActivity-->
+  <!--AppProtectionPreferenceFragment-->
+  <!--DraftDatabase-->
   <!--AttchmentManager-->
   <!--AttachmentTypeSelectorAdapter-->
   <!--ConversationItem-->
@@ -32,6 +34,8 @@
   <!--ViewIdentityActivity-->
   <!--KeyExchangeInitiator-->
   <!--MessageDisplayHelper-->
+  <!--EncryptingSmsDatabase-->
+  <!--ThreadDatabase-->
   <!--MmsDatabase-->
   <!--MmsMessageRecord-->
   <!--ApplicationMigrationService-->
@@ -54,7 +58,7 @@
   <!--log_submit_activity-->
   <!--database_migration_activity-->
   <!--database_upgrade_activity-->
-  <!--mms_preferences_activity-->
+  <!--MmsPreferencesFragment-->
   <!--prompt_passphrase_activity-->
   <!--prompt_mms_activity-->
   <!--receive_key_activity-->
@@ -76,11 +80,12 @@
   <!--conversation_callable-->
   <!--conversation_context-->
   <!--conversation_context_image-->
-  <!--conversation_insecure-->
+  <!--conversation_insecure_no_push-->
   <!--conversation_list_batch-->
   <!--conversation_list-->
   <!--conversation_secure_verified-->
   <!--conversation-->
+  <!--conversation_callable-->
   <!--conversation_group_options-->
   <!--key_scanning-->
   <!--text_secure_normal-->

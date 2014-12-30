@@ -7,7 +7,6 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Hiện thời: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Bạn chưa thiết lập mật khẩu!</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">mẫu tin cho mỗi cuộc chuyện trò</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Xóa tất cả tin nhắn cũ bây giờ?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Bạn có chắc là muốn thu ngắn tức thì các mạch chuyện trò xuống còn %s tin nhắn mới nhất?</string>
   <string name="ApplicationPreferencesActivity_delete">Xóa</string>
@@ -25,6 +24,8 @@ Thao tác này sẽ tắt tin nhắn đẩy bằng cách gỡ đăng ký bạn r
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Chạm vào để đổi ứng dụng SMS mặc định</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Không Cho SMS Gửi Vào</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Chạm vào để chọn TextSecure làm ứng dụng SMS mặc định</string>
+  <!--AppProtectionPreferenceFragment-->
+  <!--DraftDatabase-->
   <!--AttchmentManager-->
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Hình ảnh</string>
@@ -41,7 +42,6 @@ Thao tác này sẽ tắt tin nhắn đẩy bằng cách gỡ đăng ký bạn r
   <string name="ConversationItem_group_action_left">%1$s đã rời nhóm.</string>
   <string name="ConversationItem_click_to_approve_sms">Nhấn để trở lại SMS</string>
   <string name="ConversationItem_click_to_approve_mms">Chạm để hủy bỏ MMS</string>
-  <string name="ConversationItem_click_to_approve_unencrypted">Nhấn để trở lại dạng không an toàn</string>
   <string name="ConversationItem_click_to_approve_sms_dialog_title">Trở lại SMS?</string>
   <string name="ConversationItem_click_to_approve_mms_dialog_title">Hủy bỏ MMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Trở lại SMS không mã hóa?</string>
@@ -57,8 +57,6 @@ Thao tác này sẽ tắt tin nhắn đẩy bằng cách gỡ đăng ký bạn r
   <string name="ConversationActivity_select_contact_info">Chọn thông tin liên hệ</string>
   <string name="ConversationActivity_compose_message">Soạn nội dung</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Xin lỗi, có lỗi thiết đặt tập tin đính kèm của bạn.</string>
-  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Xin lỗi</string>
-  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Xin lỗi, clip âm thanh đã chọn vượt quá giới hạn về kích thước.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Nơi nhận không phải là SMS hay địa chỉ email có hiệu lực!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Tin nhắn trống không!</string>
   <string name="ConversationActivity_group_conversation_recipients">Gom nhóm theo người chat</string>
@@ -72,6 +70,7 @@ Thao tác này sẽ tắt tin nhắn đẩy bằng cách gỡ đăng ký bạn r
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Thiết bị này không hỗ trợ thao tác gọi.</string>
   <string name="ConversationActivity_leave_group">Rời nhóm?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Bạn có chắc là muốn rời nhóm?</string>
+  <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Chi tiết tin nhắn</string>
   <string name="ConversationFragment_confirm_message_delete">Xác nhận xóa tin</string>
@@ -229,6 +228,8 @@ Nhận thông tin về chìa khóa nhận diện không rõ. Bấm để xử l�
   <string name="MessageDisplayHelper_bad_encrypted_message">Tin nhắn mã hóa bị hỏng...</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">Đang giải mã, xin chờ...</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Tin nhắn được mã hóa cho phiên trao đổi không tồn tại...</string>
+  <!--EncryptingSmsDatabase-->
+  <!--ThreadDatabase-->
   <!--MmsDatabase-->
   <string name="MmsDatabase_connecting_to_mms_server">Đang kết nối vào máy chủ MMS...</string>
   <string name="MmsDatabase_downloading_mms">Đang tải xuống MMS...</string>
@@ -309,8 +310,8 @@ Xuất sao lưu thường tương thích với \'Sao Lưu và Phục Hồi SMS\'
 Phục hồi sao lưu TextSecure có mã hóa từng xuất ra trước đó.</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Nhập tập tin sao lưu thường-không mã hóa. Tương thích với \'Sao Lưu và Phục Hồi SMS\'.</string>
-  <!--mms_preferences_activity-->
-  <string name="mms_preferences_activity__manual_mms_settings_are_required">Phải làm thiết đặt MMS bằng tay cho điện thoại của bạn.</string>
+  <!--MmsPreferencesFragment-->
+  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Phải làm thiết đặt MMS bằng tay cho điện thoại của bạn.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Mở khóa</string>
   <!--prompt_mms_activity-->
@@ -371,6 +372,7 @@ TextSecure hết hạn chờ trong lúc đợi tin nhắn SMS xác nhận.</stri
   <string name="AndroidManifest__change_passphrase">Đổi mật khẩu</string>
   <!--arrays.xml-->
   <!--preferences.xml-->
+  <string name="preferences__general">Tổng quát</string>
   <string name="preferences__push_sms_category">Đẩy và SMS</string>
   <string name="preferences__pref_all_sms_title">Nhận tất cả SMS</string>
   <string name="preferences__pref_all_mms_title">Nhận tất cả MMS</string>
@@ -382,8 +384,6 @@ TextSecure hết hạn chờ trong lúc đợi tin nhắn SMS xác nhận.</stri
   <string name="preferences__change_passphrase">Đổi mật khẩu</string>
   <string name="preferences__change_my_passphrase">Đổi mật khẩu của tôi</string>
   <string name="preferences__complete_key_exchanges">Hoàn tất trao đổi chìa khóa</string>
-  <string name="preferences__disable_passphrase">Tắt mật khẩu</string>
-  <string name="preferences__disable_local_encryption_of_messages_and_keys">Tắt mã hóa lưu trữ tin nhắn và chìa khóa</string>
   <string name="preferences__screen_security">An ninh màn hình</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Tự động hoàn tất trao đổi chìa khóa cho các phiên mới hoặc cho các phiên hiện hành có cùng chìa khóa nhận diện</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Quên mật khẩu trong bộ nhớ sau một khoảng thời gian</string>
@@ -416,7 +416,6 @@ TextSecure hết hạn chờ trong lúc đợi tin nhắn SMS xác nhận.</stri
   <string name="preferences__slow">Chậm</string>
   <string name="preferences__custom">Tùy biến</string>
   <string name="preferences__advanced">Cao cấp</string>
-  <string name="preferences__passphrase">Mật khẩu</string>
   <string name="preferences__override_system_mms_settings">Thay các thiết đặt MMS của hệ thống bằng dữ liệu dưới đây.</string>
   <string name="preferences__mmsc_url_required">Địa chỉ MMSC (Phải có)</string>
   <string name="preferences__mms_proxy_host_optional">Máy Chủ Proxy MMS (Tùy ý)</string>
@@ -425,7 +424,6 @@ TextSecure hết hạn chờ trong lúc đợi tin nhắn SMS xác nhận.</stri
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Yêu cầu có báo cáo phân phối cho từng tin nhắn SMS gửi đi</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Tự động xóa các tin nhắn cũ một khi mạch chuyện trò vượt quá độ dài đã ấn định</string>
   <string name="preferences__delete_old_messages">Xóa tin nhắn cũ</string>
-  <string name="preferences__storage">Lưu trữ</string>
   <string name="preferences__conversation_length_limit">Giới hạn độ dài cuộc chuyện trò</string>
   <string name="preferences__trim_all_threads_now">Rút ngắn tất cả các mạch chuyện trò ngay bây giờ</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Xem xét các mạch chuyện trò và buộc tuân theo giới hạn độ dài</string>
@@ -438,12 +436,9 @@ TextSecure hết hạn chờ trong lúc đợi tin nhắn SMS xác nhận.</stri
   <string name="preferences__use_data_channel">Tin nhắn đẩy</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
 Tăng độ riêng tư và tránh cước SMS bằng cách dùng đường truyền internet để liên lạc với những người dùng TextSecure khác</string>
-  <string name="preferences__allow_sms_fallback">Cho phép gửi SMS đến</string>
   <string name="preferences__submit_debug_log">Nạp ký sự gỡ lỗi</string>
   <string name="preferences__sms_outgoing_push_users">Người dùng TextSecure</string>
-  <string name="preferences__sms_fallback_push_users_ask">(hỏi trước)</string>
   <string name="preferences__sms_outgoing_push_users_description">Gửi qua SMS an toàn nếu đường truyền mạng bị đứt</string>
-  <string name="preferences__sms_fallback_ask_fallback">Hỏi trước khi gửi SMS</string>
   <string name="preferences__sms_fallback_non_push_users">Người không dùng TextSecure</string>
   <string name="preferences__sms_fallback_nobody">Không ai</string>
   <!--****************************************-->
@@ -466,7 +461,7 @@ Tăng độ riêng tư và tránh cước SMS bằng cách dùng đường truy�
   <string name="conversation_context__menu_forward_message">Chuyển tiếp tin nhắn</string>
   <string name="conversation_context__menu_resend_message">Gửi lại tin nhắn</string>
   <!--conversation_context_image-->
-  <!--conversation_insecure-->
+  <!--conversation_insecure_no_push-->
   <!--conversation_list_batch-->
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Tìm kiếm</string>
@@ -475,8 +470,8 @@ Tăng độ riêng tư và tránh cước SMS bằng cách dùng đường truy�
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Thêm tập tin đính kèm</string>
   <string name="conversation__menu_update_group">Cập nhật nhóm</string>
-  <string name="conversation__menu_add_contact_info">Thêm thông tin liên hệ</string>
   <string name="conversation__menu_delete_thread">Xóa luồng</string>
+  <!--conversation_callable-->
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Danh sách người nhận</string>
   <string name="conversation_group_options__delivery">Phân phối</string>

@@ -7,7 +7,6 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">現在： %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">パスワードが登録されていません。</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">通のメッセージ（スレッド１本に対して）</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">全ての古いメッセージを今、削除しますか？</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">今すぐ全ての会話スレッドを最新メッセージ%s通にまで縮小（トリム）しますか？</string>
   <string name="ApplicationPreferencesActivity_delete">削除</string>
@@ -27,6 +26,8 @@
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">デフォルトSMSアップをタッチで変更</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS受信が無効です。</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">タッチでTextSecureをデフォルトのSMSアップにできます</string>
+  <!--AppProtectionPreferenceFragment-->
+  <!--DraftDatabase-->
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">メディアの選択用アプリが見つかりません。</string>
   <!--AttachmentTypeSelectorAdapter-->
@@ -44,14 +45,10 @@
   <string name="ConversationItem_group_action_left">%1$sがグループを抜けました。</string>
   <string name="ConversationItem_click_to_approve_sms">タップすれば代替としてSMSを使います。</string>
   <string name="ConversationItem_click_to_approve_mms">タップすれば代替としてMMSを使います。</string>
-  <string name="ConversationItem_click_to_approve_unencrypted">タップすれば代替として不安全通信を使います。</string>
   <string name="ConversationItem_click_to_approve_sms_dialog_title">代替としてSMSに切り替わりますか？</string>
   <string name="ConversationItem_click_to_approve_mms_dialog_title">代替としてMMSに切り替わりますか？</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">代替として暗号化されていないSMSに切り替わりますか？</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">代替として暗号化されていないMMSに切り替わりますか？</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">セキュア・セッションが構築できなかったため、このメッセージは暗号化<b>されません</b>。
-
-暗号化されていないメッセージを送信しますか?</string>
   <string name="ConversationItem_unable_to_open_media">このメディアに対応するアップが見つかりません。</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">セキュア・セッションを開始しますか？</string>
@@ -64,8 +61,6 @@
   <string name="ConversationActivity_select_contact_info">連絡先情報を選択</string>
   <string name="ConversationActivity_compose_message">メッセージ作成</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">添付中にエラーが発生しました。</string>
-  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">選択された動画は容量を超えています。</string>
-  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">選択された音声ファイルは容量を超えています。</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">受信先のSMS又はEメールアドレスが有効ではありません。</string>
   <string name="ConversationActivity_message_is_empty_exclamation">メッセージが空です。</string>
   <string name="ConversationActivity_group_conversation_recipients">グループチャットの宛先</string>
@@ -79,6 +74,7 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">お使いの端末は、ダイヤル機能に対応していないようです。</string>
   <string name="ConversationActivity_leave_group">グループを抜けますか？</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">このグループを本当に抜けますか？</string>
+  <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">メッセージの詳細</string>
   <string name="ConversationFragment_transport_s_sent_received_s">送信方法: %1$s\n送信/受信: %2$s</string>
@@ -261,6 +257,8 @@
   <string name="MessageDisplayHelper_bad_encrypted_message">メッセージが正しく暗号化されていません…</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">復号しています。お待ち下さい…</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">メッセージは存在しないセッションのために暗号化されています…</string>
+  <!--EncryptingSmsDatabase-->
+  <!--ThreadDatabase-->
   <!--MmsDatabase-->
   <string name="MmsDatabase_connecting_to_mms_server">MMSサーバーに接続中…</string>
   <string name="MmsDatabase_downloading_mms">MMSをダウンロード中…</string>
@@ -314,9 +312,7 @@
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">TextSecureメッセージを送信</string>
   <string name="conversation_activity__type_message_sms_secure">暗号化されているSMSを送信</string>
-  <string name="conversation_activity__type_message_sms_insecure">暗号化されていないSMSを送信</string>
   <string name="conversation_activity__type_message_mms_secure">暗号化されているMMSを送信</string>
-  <string name="conversation_activity__type_message_mms_insecure">暗号化されていないMMSを送信</string>
   <string name="conversation_activity__send">送信</string>
   <string name="conversation_activity__remove">削除</string>
   <string name="conversation_activity__window_description">%1$sとの会話</string>
@@ -367,8 +363,8 @@
   <string name="import_fragment__import_plaintext_backup">非暗号テキストのバックアップ・ファイルをインポート</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 暗号化されていないテキストのバックアップ・ファイルをインポートします。「SMSバックアップと復元」と互換可能です。</string>
-  <!--mms_preferences_activity-->
-  <string name="mms_preferences_activity__manual_mms_settings_are_required">この端末は、ご自分でMMS設定をする必要があります。</string>
+  <!--MmsPreferencesFragment-->
+  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">この端末は、ご自分でMMS設定をする必要があります。</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">ロック解除</string>
   <!--prompt_mms_activity-->
@@ -445,6 +441,7 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
   <string name="arrays__import_export">インポート／エクスポート</string>
   <string name="arrays__my_identity_key">自分の認証キー</string>
   <!--preferences.xml-->
+  <string name="preferences__general">一般設定</string>
   <string name="preferences__push_sms_category">プッシュとSMS</string>
   <string name="preferences__pref_all_sms_title">全てのSMSを受信</string>
   <string name="preferences__pref_all_mms_title">全てのMMSを受信</string>
@@ -461,8 +458,6 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
   <string name="preferences__change_passphrase">パスワードの変更</string>
   <string name="preferences__change_my_passphrase">パスワードの変更</string>
   <string name="preferences__complete_key_exchanges">鍵交換の自動完了</string>
-  <string name="preferences__disable_passphrase">パスワードを無効にする</string>
-  <string name="preferences__disable_local_encryption_of_messages_and_keys">携帯端末におけるメッセージ及び鍵の暗号化を無効にする</string>
   <string name="preferences__screen_security">スクリーンセキュリティ</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">同じIDネームとの新しいセッション、又は現在のセッションをするのに鍵交換を自動で完了させる</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">スクリーンショットをアプリ表示の場合防ぐ</string>
@@ -501,9 +496,6 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
   <string name="preferences__slow">遅い</string>
   <string name="preferences__custom">カスタム</string>
   <string name="preferences__advanced">詳細設定</string>
-  <string name="preferences__passphrase">パスワード</string>
-  <string name="preferences__advanced_mms_access_point_names">MMS設定</string>
-  <string name="preferences__enable_manual_mms">マニュアルMMSを有効にする</string>
   <string name="preferences__override_system_mms_settings">システムのMMS設定を下の設定で上書きする。</string>
   <string name="preferences__mmsc_url_required">MMSC URL (必須)</string>
   <string name="preferences__mms_proxy_host_optional">MMSプロキシ・ホスト（選択自由）</string>
@@ -512,12 +504,9 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">送信する全てのSMSに配信報告をつけます</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">会話スレッドが一定の長さを超えると、古いメッセージが自動的に削除されます</string>
   <string name="preferences__delete_old_messages">古いメッセージの削除</string>
-  <string name="preferences__storage">ストレージ</string>
   <string name="preferences__conversation_length_limit">会話の最大の長さ</string>
   <string name="preferences__trim_all_threads_now">全スレッドを今、トリムする</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">すべての会話スレッドをスキャンして、会話の長さの制限を強制します</string>
-  <string name="preferences__light_theme">明るいテーマ</string>
-  <string name="preferences__dark_theme">暗いテーマ</string>
   <string name="preferences__appearance">デザイン設定</string>
   <string name="preferences__theme">テーマ</string>
   <string name="preferences__default">初期設定の言語</string>
@@ -527,12 +516,9 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
   <string name="preferences__use_data_channel">プッシュメッセージ</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
 データーチャンネルを利用して他のTextSecureウーザーとの会話をする時、安全性を高めてSMS料金を避けますか？</string>
-  <string name="preferences__allow_sms_fallback">SMSの受信を許可する</string>
   <string name="preferences__submit_debug_log">デバッグログを提出</string>
   <string name="preferences__sms_outgoing_push_users">TextSecureウーザー</string>
-  <string name="preferences__sms_fallback_push_users_ask">(送信前に尋ねる)</string>
   <string name="preferences__sms_outgoing_push_users_description">データーチャンネルが使用不可能の時、暗号化されたSMSを送る</string>
-  <string name="preferences__sms_fallback_ask_fallback">SMSを送信する前に尋ねる</string>
   <string name="preferences__sms_fallback_non_push_users">TextSecureを使用しない方</string>
   <string name="preferences__sms_fallback_nobody">無人</string>
   <!--****************************************-->
@@ -551,9 +537,7 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
   <!--conversation_button_context-->
   <string name="conversation_button_context__send_textsecure_message">TextSecureメッセージを送信</string>
   <string name="conversation_button_context__send_secure_sms">暗号化されているSMSを送信</string>
-  <string name="conversation_button_context__send_insecure_sms">暗号化されていないSMSを送信</string>
   <string name="conversation_button_context__send_secure_mms">暗号化されているMMSを送信</string>
-  <string name="conversation_button_context__send_insecure_mms">暗号化されていないMMSを送信</string>
   <!--conversation_callable-->
   <string name="conversation_callable__menu_call">通話</string>
   <!--conversation_context-->
@@ -564,7 +548,7 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
   <string name="conversation_context__menu_resend_message">メッセージを再送信</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">添付を保存</string>
-  <!--conversation_insecure-->
+  <!--conversation_insecure_no_push-->
   <string name="conversation_insecure__menu_start_secure_session">セキュア・セッションを開始</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">選択したものを削除</string>
@@ -579,8 +563,8 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
   <string name="conversation__menu_add_attachment">添付</string>
   <string name="conversation__menu_update_group">グループを更新する</string>
   <string name="conversation__menu_leave_group">グループを抜ける</string>
-  <string name="conversation__menu_add_contact_info">連絡先情報を追加する</string>
   <string name="conversation__menu_delete_thread">スレッドを削除</string>
+  <!--conversation_callable-->
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">受信者リスト</string>
   <string name="conversation_group_options__delivery">配信</string>

@@ -7,7 +7,6 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">ಪ್ರಸ್ತುತ: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">ನೀವು ಇನ್ನೂ ಗುಪ್ತಪದವನ್ನು ಹೊಂದಿಸಿಲ್ಲ!</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">ಸಂದೇಶಗಳು ಪ್ರತಿ ಸಂವಾದವಕ್ಕೆ</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">ಈಗ ಎಲ್ಲಾ ಹಳೆಯ ಸಂದೇಶಗಳನ್ನು ಅಳಿಸಿ?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">ನೀವು ಈ  ಕ್ಷಣ ಎಲ್ಲಾ ಸಂಭಾಷಣೆಯ ಇತ್ತೀಚಿನ %s ಸಂದೇಶಗಳಿಗೆ ಮಿತಗೊಳಿಸಲು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?</string>
   <string name="ApplicationPreferencesActivity_delete">ಅಳಿಸಿಹಾಕು</string>
@@ -29,6 +28,8 @@
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">ನಿಮ್ಮ ಪೂರ್ವನಿಯೋಜಿತ ಎಸ್.ಎಮ್.ಎಸ್ ಅಪ್ಲಿಕೇಶನ್ನು ಬದಲಾಯಿಸಲು ಸ್ಪರ್ಶಿಸಿ</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">ಒಳಬರುವ ಎಸ್.ಎಮ್.ಎಸನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯೂರನ್ನು ನಿಮ್ಮ ಪೂರ್ವನಿಯೋಜಿತ ಎಸ್.ಎಮ್.ಎಸ್ ಅಪ್ಲಿಕೇಶನ್ನಾಗಿ ಬದಲಾಯಿಸಲು ಸ್ಪರ್ಶಿಸಿ</string>
+  <!--AppProtectionPreferenceFragment-->
+  <!--DraftDatabase-->
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">ಈ ಮೀಡಿಯಾ ತೆರೆಯಲು ಸಾಮರ್ಥ್ಯವಿರುವ ಅಪ್ಲಿಕೇಶನ್ ಹುಡುಕಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ.</string>
   <!--AttachmentTypeSelectorAdapter-->
@@ -46,12 +47,10 @@
   <string name="ConversationItem_group_action_left">%1$s ಸಮೂಹವನ್ನು ಬಿಟ್ಟಿದ್ದಾರೆ</string>
   <string name="ConversationItem_click_to_approve_sms">ಎಸ್ಎಂಎಸ್ ಹಿಮ್ಮರಳಿಕೆ ಟ್ಯಾಪ್ ಮಾಡಿ</string>
   <string name="ConversationItem_click_to_approve_mms">ಎಮೆಮ್ಎಸ್ ಹಿಮ್ಮರಳಿಕೆ ಟ್ಯಾಪ್ ಮಾಡಿ</string>
-  <string name="ConversationItem_click_to_approve_unencrypted">ಅಸುರಕ್ಷಿತ ಸಂವಾದದ ಹಿಮ್ಮರಳಿಕೆ ಟ್ಯಾಪ್ ಮಾಡಿ</string>
   <string name="ConversationItem_click_to_approve_sms_dialog_title">ಎಸ್.ಎಮ್.ಎಸ್ ಗೆ ಹಿಮ್ಮರಳಿ ?</string>
   <string name="ConversationItem_click_to_approve_mms_dialog_title">ಎಮ್.ಎಮ್.ಎಸ್ ಗೆ ಹಿಮ್ಮರಳಿ ?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">ಅಸುರಕ್ಶಿತ ಎಸ್.ಎಮ್.ಎಸ್ ಹಿಮ್ಮರಳಿ ?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">ಅಸುರಕ್ಶಿತ ಎಮ್.ಎಮ್.ಎಸ್ ಹಿಮ್ಮರಳಿ ?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">ಸುರಕ್ಷಿತ ಅಧಿವೇಶನ ಸ್ಥಾಪಿಸಲು ಸಾಧ್ಯವಾಗುತ್ತಿಲ್ಲ, ಈ ಕಾರಣ ಈ ಸಂದೇಶವನ್ನು ಎನ್ಕ್ರಿಪ್ಟ್  ಮಾಡಲು <b>ಸಾಧ್ಯವಿಲ್ಲ</b>. \n \n ಅಸುರಕ್ಷಿತ ಸಂದೇಶವನ್ನು ಕಳುಹಿಸಿ?</string>
   <string name="ConversationItem_unable_to_open_media">ಈ ಮೀಡಿಯಾ ತೆರೆಯಲು ಸಾಮರ್ಥ್ಯವಿರುವ ಅಪ್ಲಿಕೇಶನ್ ಹುಡುಕಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">ಸುರಕ್ಷಿತ ಸೆಷನ್ ಪ್ರಾರಂಭಿಸಿ?</string>
@@ -64,8 +63,6 @@
   <string name="ConversationActivity_select_contact_info">ಸಂಪರ್ಕದ ಮಾಹಿತಿಯನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
   <string name="ConversationActivity_compose_message">ಸಂದೇಶ ರಚಿಸಿ</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">ಕ್ಷಮಿಸಿ, ನಿಮ್ಮ ಲಗತ್ತನ್ನು ಹೊಂದಿಸುವಲ್ಲಿ ದೋಷ ಉಂಟಾಗಿದೆ.</string>
-  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">ಕ್ಷಮಿಸಿ, ಆಯ್ಕೆ ಮಾಡಿದ ವೀಡಿಯೊ ಸಂದೇಶ ಗಾತ್ರ ನಿರ್ಬಂಧಗಳನ್ನು ಮೀರಿದೆ.</string>
-  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">ಕ್ಷಮಿಸಿ, ಆಯ್ಕೆ ಶ್ರಾವ್ಯ ಸಂದೇಶ ಗಾತ್ರ ನಿರ್ಬಂಧಗಳನ್ನು ಮೀರಿದೆ.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">ಸ್ವೀಕರಿಸುವವರ ಎಸ್.ಎಮ್.ಎಸ್ ಅಥವಾ ಇಮೇಲ್ ವಿಳಾಸ ಮಾನ್ಯವಾದುದಲ್ಲ!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">ಸಂದೇಶ ಖಾಲಿಯಾಗಿದೆ!</string>
   <string name="ConversationActivity_group_conversation_recipients">ಸಮೂಹ ಸಂವಾದದ ಸ್ವೀಕೃತದಾರರು</string>
@@ -79,6 +76,7 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">ಈ ಸಾಧನದಲ್ಲಿ ಡಯಲ್ ಕ್ರಮಗಳ ಬೆಂಬಲ ಕಂಡುಬರುತ್ತಿಲ್ಲ.</string>
   <string name="ConversationActivity_leave_group">ಸಮೂಹವನ್ನು ಬಿಡುವಿರ?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">ಈ ಸಮೂಹ ಬಿಡವ ಬಯಕೆಯನ್ನು ನೀವು ಖಚಿತವಾಗಿರುವಿರಾ?</string>
+  <string name="ConversationActivity_transport_textsecure">ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯೂರ್ </string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">ಸಂದೇಶದ ವಿವರಗಳು</string>
   <string name="ConversationFragment_transport_s_sent_received_s">ರವಾನೆ: %1$s \nಕಳುಹಿಸಲಾಗಿದೆ/ಸ್ವೀಕರಿಸಲಾಗಿದೆ:%2$s</string>
@@ -259,6 +257,8 @@
   <string name="MessageDisplayHelper_bad_encrypted_message">ಕಳಪೆ ಗೂಢಲಿಪೀಕರಣಗೊಂಡ ಸಂದೇಶ...</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">ಅಸಂಕೇತಿಕರಣಗೊಳಿಸಲಾಗುತ್ತಿದೆ, ದಯವಿಟ್ಟು ನಿರೀಕ್ಷಿಸಿ ...</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">ಈ ಸಂದೇಶ ಅಸ್ತಿತ್ವದಲ್ಲಿರದ ಸೆಶನ್ನಿಗೆ ಗೂಢಲಿಪೀಕರಣಗೊಂಡಿದೆ ...</string>
+  <!--EncryptingSmsDatabase-->
+  <!--ThreadDatabase-->
   <!--MmsDatabase-->
   <string name="MmsDatabase_connecting_to_mms_server">ಎಮ್. ಎಮ್. ಎಸ್ ಸರ್ವರ್ ಕಂಪ್ಯೂಟರ್ನ್ನು ಸಂಪರ್ಕಿಸಲಾಗುತ್ತಿದೆ ...</string>
   <string name="MmsDatabase_downloading_mms">ಎಂ. ಎಂ. ಎಸ್ ಡೌನ್ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ...</string>
@@ -312,9 +312,7 @@
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯೂರ್ ಸಂದೇಶವನ್ನು ಕಳುಹಿಸಿ</string>
   <string name="conversation_activity__type_message_sms_secure">ಸುರಕ್ಷಿತ ಎಸ್ಎಂಎಸ್ ಕಳುಹಿಸಿ</string>
-  <string name="conversation_activity__type_message_sms_insecure">ಅಸುರಕ್ಷಿತ ಎಸ್ಎಂಎಸ್ ಕಳುಹಿಸಿ</string>
   <string name="conversation_activity__type_message_mms_secure">ಸುರಕ್ಷಿತ ಎಂಎಂಎಸ್ ಕಳುಹಿಸಿ</string>
-  <string name="conversation_activity__type_message_mms_insecure">ಅಸುರಕ್ಷಿತ ಎಂಎಂಎಸ್ ಕಳುಹಿಸಿ</string>
   <string name="conversation_activity__send">ಕಳುಹಿಸು</string>
   <string name="conversation_activity__remove">ತೆಗೆದುಹಾಕಿ</string>
   <string name="conversation_activity__window_description">%1$s ಅವರೊಂದಿಗೆ ಸಂವಾದ</string>
@@ -362,8 +360,8 @@
   <string name="import_fragment__import_plaintext_backup">ಸರಳಪಠ್ಯದ  ಬ್ಯಾಕಪ್ ಅನ್ನು ಆಮದು ಮಾಡಿಕೊಳ್ಳಿ</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 ಒಂದು ಸರಳಪಠ್ಯ ಬ್ಯಾಕಪ್ ಕಡತವನ್ನು ಆಮದು ಮಾಡಿಕೊಳ್ಳಿ . \'SMSBackup And Restore\' ಜೋತೆ ಹೊಂದಿಕೆಯಾಗುತ್ತದೆ.</string>
-  <!--mms_preferences_activity-->
-  <string name="mms_preferences_activity__manual_mms_settings_are_required">ನಿಮ್ಮ ದೂರವಾಣಿಗೆ ಹಸ್ತಚಾಲಿತ ಎಂ.ಎಂ.ಎಸ್ ಸೆಟ್ಟಿಂಗ್ಗಳ ಅಗತ್ಯವಿದೆ.</string>
+  <!--MmsPreferencesFragment-->
+  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">ನಿಮ್ಮ ದೂರವಾಣಿಗೆ ಹಸ್ತಚಾಲಿತ ಎಂ.ಎಂ.ಎಸ್ ಸೆಟ್ಟಿಂಗ್ಗಳ ಅಗತ್ಯವಿದೆ.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">ಅನ್ಲಾಕ್</string>
   <!--prompt_mms_activity-->
@@ -439,6 +437,7 @@
   <string name="arrays__import_export">ಆಮದು / ರಫ್ತು</string>
   <string name="arrays__my_identity_key">ನನ್ನ ಗುರುತಿನ ಕೀಲಿ</string>
   <!--preferences.xml-->
+  <string name="preferences__general">ಸಾಮಾನ್ಯ</string>
   <string name="preferences__push_sms_category">ಪುಶ್ ಮತ್ತು ಎಸ್ಎಮ್ಎಸ್</string>
   <string name="preferences__pref_all_sms_title">ಎಲ್ಲಾ ಎಸ್ ಎಂ ಎಸ್ ಪಡೆಯುವಿರಿ</string>
   <string name="preferences__pref_all_mms_title">ಎಲ್ಲಾ ಎಸ್ ಎಂ ಎಸ್ ಪಡೆಯುವಿರಿ</string>
@@ -454,8 +453,6 @@
   <string name="preferences__change_passphrase">ಗುಪ್ತಪದವನ್ನು ಬದಲಾಯಿಸಿ</string>
   <string name="preferences__change_my_passphrase">ನನ್ನ ಗುಪ್ತಪದವನ್ನು ಬದಲಿಸು</string>
   <string name="preferences__complete_key_exchanges">ಕೀಲಿ ವಿನಿಮಯ ಪೂರ್ಣಗೊಳಿಸಿ</string>
-  <string name="preferences__disable_passphrase">ಗುಪ್ತಪದವನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
-  <string name="preferences__disable_local_encryption_of_messages_and_keys">ಸಂದೇಶಗಳ ಮತ್ತು ಕೀಗಳ ಸ್ಥಳೀಯ ಗೂಢಲಿಪೀಕರಣವನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
   <string name="preferences__screen_security">ತೆರೆಯ ಸುರಕ್ಷತೆ</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಅದೇ ಗುರುತು ಕೀಲಿಯನ್ನು ಹೊಸ ಸೆಶನ್ಗಾಗಿ ಅಥವಾ ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ಸೆಶನ್ಗಾಗಿ ಕೀಲಿ ವಿನಿಮಯಸಿಕೊಳ್ಳಿ</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">ವಿರಾಮದ ನಂತರ ಸ್ಮರಣೆಯಿಂದ ಗುಪ್ತಪದವನ್ನು ಮರೆತುಬಿಡಿ</string>
@@ -490,9 +487,6 @@
   <string name="preferences__slow">ನಿಧಾನ</string>
   <string name="preferences__custom">ಇಚ್ಛೆಯಾದರಿತ</string>
   <string name="preferences__advanced">ಸುಧಾರಿತ</string>
-  <string name="preferences__passphrase">ಗುಪ್ತಪದ</string>
-  <string name="preferences__advanced_mms_access_point_names">ಎಂಎಂಎಸ್ ಆಯ್ಕೆಗಳು</string>
-  <string name="preferences__enable_manual_mms">ಹಸ್ತಚಾಲಿತ ಎಂಎಂಎಸ್ ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
   <string name="preferences__override_system_mms_settings">ವ್ಯವಸ್ಥೆಯ ಎಂ.ಎಂ.ಎಸ್ ಸೆಟ್ಟಿಂಗ್ಗಳನ್ನು ಕೆಳಗಿನ ಮಾಹಿತಿಯ ಪ್ರಕಾರ ಹೇರಿ.</string>
   <string name="preferences__mmsc_url_required">ಎಂ. ಎಂ. ಎಸ್. ಸಿ  ಯು. ಆರ್. ಎಲ್ (ಅಗತ್ಯವಿದೆ)</string>
   <string name="preferences__mms_proxy_host_optional">ಎಂ. ಎಂ. ಎಸ್ ಪ್ರಾಕ್ಸಿ ಹೋಸ್ಟ್ (ಐಚ್ಛಿಕ)</string>
@@ -501,12 +495,9 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">ನೀವು ಕಳುಹಿಸುವ ಪ್ರತಿ ಎಸ್.ಎಮ್.ಎಸ್ ಸಂದೇಶಕ್ಕೂ ವಿತರಣಾ ವರದಿಯನ್ನು ವಿನಂತಿಸಿ</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">ಒಂದು ಸಂಭಾಷಣೆಯ ಎಳೆ ಒಂದು ನಿಗದಿತ ಮಿತಿಯನ್ನು ಮೀರಿದ ಕೂಡಲೆ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಹಳೆಯ ಸಂದೇಶಗಳನ್ನು ಅಳಿಸಿ</string>
   <string name="preferences__delete_old_messages">ಹಳೆಯ ಸಂದೇಶಗಳನ್ನು ಅಳಿಸಿ</string>
-  <string name="preferences__storage">ಸಂಗ್ರಹ</string>
   <string name="preferences__conversation_length_limit">ಸಂವಾದದ ಉದ್ದ ಮಿತಿ</string>
   <string name="preferences__trim_all_threads_now">ಈಗ ಎಲ್ಲಾ ವಾದಗಳನ್ನು ತೆಗೆದು ಹಾಕಿ</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">ಎಲ್ಲಾ ಸಂಭಾಷಣೆಯ ಎಳೆಗಳನ್ನು ಮೇಲೆ ಸ್ಥೂಲವಾಗಿ ಕಣ್ಣು ಹಾಯಿಸು ಹಾಗು ಸಂಭಾಷಣೆಯ ಉದ್ದ ಮಿತಿಯನ್ನು ಜಾರಿಗೊಳಿಸು</string>
-  <string name="preferences__light_theme">ಲಘು ವಿನ್ಯಾಸ </string>
-  <string name="preferences__dark_theme">ಗಾಢಬಣ್ಣದ ವಿನ್ಯಾಸ</string>
   <string name="preferences__appearance">ಲಕ್ಷಣ</string>
   <string name="preferences__theme">ವಿನ್ಯಾಸ</string>
   <string name="preferences__default">ಪೂರ್ವನಿಯೋಜಿತ</string>
@@ -514,11 +505,8 @@
   <string name="preferences__make_default_sms_app">ಪೂರ್ವನಿಯೋಜಿತ ಎಸ್ಎಂಎಸ್ ಅಪ್ಲಿಕೇಶನ್ ಆಗಿ ಹೊಂದಿಸಿ</string>
   <string name="preferences__make_textsecure_the_default_sms_mms_app">ನಿಮ್ಮ ವ್ಯವಸ್ಥೆಯ ಪೂರ್ವನಿಯೋಜಿತ ಎಸ್ಎಂಎಸ್ / ಎಂಎಂಎಸ್ ಅಪ್ಲಿಕೇಶನ್ ಆಗಿ ಮಾಡಿ.</string>
   <string name="preferences__use_data_channel">ಪುಷ್ ಸಂದೇಶಗಳು</string>
-  <string name="preferences__allow_sms_fallback">ಹೊರಹೋಗುವ ಎಸ್ಎಮ್ಎಸ್ ಅನುಮತಿಸಿ </string>
   <string name="preferences__sms_outgoing_push_users">ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯೂರ್ ಬಳಕೆದಾರರು</string>
-  <string name="preferences__sms_fallback_push_users_ask">(ಮೊದಲು ಕೇಳಿ)</string>
   <string name="preferences__sms_outgoing_push_users_description">ಡೇಟಾ ಸಂಪರ್ಕ ಕಳೆದುಹೋದ ಸುರಕ್ಷಿತ ಎಸ್ಎಂಎಸ್ ಕಳುಹಿಸಿ</string>
-  <string name="preferences__sms_fallback_ask_fallback">ಎಸ್ಎಂಎಸ್ ಕಳುಹಿಸುವ ಮೊದಲು ಕೇಳಿ</string>
   <string name="preferences__sms_fallback_non_push_users">ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯೂರ್ ಬಳಕೆದಾರರಲ್ಲದವರು </string>
   <string name="preferences__sms_fallback_nobody">ಅಗಣ್ಯ</string>
   <!--****************************************-->
@@ -536,9 +524,7 @@
   <!--conversation_button_context-->
   <string name="conversation_button_context__send_textsecure_message">ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯೂರ್ ಸಂದೇಶವನ್ನು ಕಳುಹಿಸಿ</string>
   <string name="conversation_button_context__send_secure_sms">ಸುರಕ್ಷಿತ ಎಸ್ಎಂಎಸ್ ಕಳುಹಿಸಿ</string>
-  <string name="conversation_button_context__send_insecure_sms">ಅಸುರಕ್ಷಿತ ಎಸ್ಎಂಎಸ್ ಕಳುಹಿಸಿ</string>
   <string name="conversation_button_context__send_secure_mms">ಸುರಕ್ಷಿತ ಎಂಎಂಎಸ್ ಕಳುಹಿಸಿ</string>
-  <string name="conversation_button_context__send_insecure_mms">ಅಸುರಕ್ಷಿತ ಎಂಎಂಎಸ್ ಕಳುಹಿಸಿ</string>
   <!--conversation_callable-->
   <string name="conversation_callable__menu_call">ಕರೆ</string>
   <!--conversation_context-->
@@ -549,7 +535,7 @@
   <string name="conversation_context__menu_resend_message">ಸಂದೇಶ ಪುನಃ ಕಳುಹಿಸಿ</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">ಲಗತ್ತು ಉಳಿಸು</string>
-  <!--conversation_insecure-->
+  <!--conversation_insecure_no_push-->
   <string name="conversation_insecure__menu_start_secure_session">ಸುರಕ್ಷಿತ ಸೆಷನ್ ಪ್ರಾರಂಭಿಸು</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">ಆಯ್ಕೆಮಾಡಿದನ್ನು ಅಳಿಸಿ</string>
@@ -564,8 +550,8 @@
   <string name="conversation__menu_add_attachment">ಲಗತ್ತು ಸೇರಿಸಿ</string>
   <string name="conversation__menu_update_group">ಸಮೂಹವನ್ನು ನವೀಕರಿಸಿ</string>
   <string name="conversation__menu_leave_group">ಸಮೂಹವನ್ನು ಬಿಟ್ಟುಬಿಡಿ </string>
-  <string name="conversation__menu_add_contact_info">ಸಂಪರ್ಕ ಮಾಹಿತಿಯನ್ನು ಸೇರಿಸು</string>
   <string name="conversation__menu_delete_thread">ಸಂವಾದದ ಎಳೆಗಳನ್ನು ಅಳಿಸಿ </string>
+  <!--conversation_callable-->
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">ಸ್ವೀಕೃತದಾರರ ಪಟ್ಟಿ</string>
   <string name="conversation_group_options__delivery">ಬಟವಾಡೆ</string>

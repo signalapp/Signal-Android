@@ -4,10 +4,11 @@
   <string name="yes">Ja</string>
   <string name="no">Nei</string>
   <string name="delete">Slett</string>
+  <string name="please_wait">Vennligst vent...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Nå: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Du har ikke definert et passord ennå!</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">meldinger per samtale</string>
+  <string name="ApplicationPreferencesActivity_messages_per_conversation">%s meldinger pr samtale</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Slette alle gamle meldinger nå?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Er du sikker på at du ønsker å umiddelbart trimme alle samtaletrådene til de siste %s meldinger?</string>
   <string name="ApplicationPreferencesActivity_delete">Slett</string>
@@ -26,12 +27,28 @@ Du må registrere telefonnummeret ditt på nytt dersom du ønsker å benytte \'p
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Klikk for å endre standard SMS applikasjon</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Innkommende SMS deaktivert</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Klikk for å la TextSecure være din standard SMS applikasjon</string>
+  <string name="ApplicationPreferencesActivity_on">på</string>
+  <string name="ApplicationPreferencesActivity_On">På</string>
+  <string name="ApplicationPreferencesActivity_off">av</string>
+  <string name="ApplicationPreferencesActivity_Off">Av</string>
+  <string name="ApplicationPreferencesActivity_partial">delvis</string>
+  <string name="ApplicationPreferencesActivity_sms">SMS</string>
+  <string name="ApplicationPreferencesActivity_mms">MMS</string>
+  <string name="ApplicationPreferencesActivity_incoming_sms">Innkommende</string>
+  <string name="ApplicationPreferencesActivity_outgoing_sms">utgående</string>
+  <!--AppProtectionPreferenceFragment-->
+  <string name="AppProtectionPreferenceFragment_minutes">%d minutter</string>
+  <!--DraftDatabase-->
+  <string name="DraftDatabase_Draft_image_snippet">(bilde)</string>
+  <string name="DraftDatabase_Draft_audio_snippet">(lyd)</string>
+  <string name="DraftDatabase_Draft_video_snippet">(video)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Finner ikke en applikasjon for å velge media.</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Bilde</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
+  <string name="AttachmentTypeSelectorAdapter_contact">Kontaktinformasjon</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Meldingsstørrelse: %d KB</string>
   <string name="ConversationItem_expires_s">Utløper: %s</string>
@@ -48,7 +65,9 @@ Du må registrere telefonnummeret ditt på nytt dersom du ønsker å benytte \'p
   <string name="ConversationItem_click_to_approve_mms_dialog_title">Benytte MMS som alternativ?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">\"Fallback\" til ukryptert SMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Benytte ukryptert MMS som alternativ?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Denne melding vil <b>ikke</b> krypteres fordi det ikke var mulig å etablere en sikker sesjon.\n\nØnsker du fremdeles å sende meldingen?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Denne meldingen vil <b>ikke</b> krypteres fordi det ikke var mulig å etablere en sikker sesjon.
+
+Send usikret melding?</string>
   <string name="ConversationItem_unable_to_open_media">Finner ikke en applikasjon som kan åpne dette mediet.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Starte sikker sesjon?</string>
@@ -61,8 +80,8 @@ Du må registrere telefonnummeret ditt på nytt dersom du ønsker å benytte \'p
   <string name="ConversationActivity_select_contact_info">Velg kontaktinformasjon</string>
   <string name="ConversationActivity_compose_message">Skriv melding</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Beklager, en feil oppstod ved behandling av vedlegg.</string>
-  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Beklager, den valgte videofilen overstiger begrensningene til meldingsstørrelse.</string>
-  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Beklager, den valgte lydfilen overstiger begrensningene til meldingsstørrelse.</string>
+  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Beklager, den valgte videofilen overstiger restriksjonene på meldingsstørrelse (%1$skB).</string>
+  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Beklager, den valgte lydfilen overstiger restriksjonene på meldingsstørrelse (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Mottakeren er ikke en gyldig SMS- eller e-postadresse!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Meldingen er tom!</string>
   <string name="ConversationActivity_group_conversation_recipients">Mottakere i gruppen</string>
@@ -76,6 +95,13 @@ Du må registrere telefonnummeret ditt på nytt dersom du ønsker å benytte \'p
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Denne enheten ser ikke ut til å kunne initiere anrop.</string>
   <string name="ConversationActivity_leave_group">Forlat gruppen?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Er du sikker på at du ønsker å forlate denne gruppen?</string>
+  <string name="ConversationActivity_transport_insecure_sms">Usikret SMS</string>
+  <string name="ConversationActivity_transport_insecure_mms">Usikret MMS</string>
+  <string name="ConversationActivity_transport_secure_sms">Sikker SMS</string>
+  <string name="ConversationActivity_transport_secure_mms">Sikker MMS</string>
+  <string name="ConversationActivity_transport_textsecure">TextSecure</string>
+  <string name="ConversationActivity_get_with_it">Get with it: %s</string>
+  <string name="ConversationActivity_install_textsecure">Installere TextSecure: %s</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Meldingsdetaljer</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nSendt/Mottatt: %2$s</string>
@@ -89,6 +115,10 @@ Du må registrere telefonnummeret ditt på nytt dersom du ønsker å benytte \'p
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Kunne ikke skrive til lagringsenheten!</string>
   <string name="ConversationFragment_saving_attachment">Lagrer vedlegg</string>
   <string name="ConversationFragment_saving_attachment_to_sd_card">Lagrer vedlegg...</string>
+  <string name="ConversationFragment_pending">PÅVENTER</string>
+  <string name="ConversationFragment_push">PUSH</string>
+  <string name="ConversationFragment_mms">MMS</string>
+  <string name="ConversationFragment_sms">SMS</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Slette trådene?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Er du sikker på at du vil slette ALLE valgte samtaletråder?</string>
@@ -124,6 +154,8 @@ Du må registrere telefonnummeret ditt på nytt dersom du ønsker å benytte \'p
   <string name="GroupCreateActivity_avatar_content_description">Gruppeavatar</string>
   <string name="GroupCreateActivity_menu_create_title">Opprett gruppe</string>
   <string name="GroupCreateActivity_creating_group">Oppretter %1$s...</string>
+  <string name="GroupCreateActivity_updating_group">Oppdaterer %1$s...</string>
+  <string name="GroupCreateActivity_loading_group_details">Laster gruppedetaljer</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Kan ikke legge til ikke-Textsecure kontakter til en eksisterende TextSecure gruppe.</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Meg</string>
@@ -152,6 +184,8 @@ Gjenoppretting av en kryptert backup vil overskrive eksisterende nøkler, innsti
   <string name="ImportFragment_restore_complete">Gjenoppretting fullført!</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Ingen skannet nøkkel funnet!</string>
+  <string name="KeyScanningActivity_install_barcode_Scanner">Installere Barcode Scanner?</string>
+  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">TextSecure krever Barcode Scanner for å kunne lese QR koder.</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Feil ved lagring av MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Feil ved tilkobling til MMS tjeneste...</string>
@@ -235,6 +269,7 @@ Mottatt melding med ukjent ID nøkkel. Klikk for å prosessere og vise.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Forlot gruppen...</string>
   <string name="TheadRecord_secure_session_ended">Sikker sesjon avsluttet.</string>
+  <string name="ThreadRecord_draft">Kladd:</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Du har ingen ID-nøkkel.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Mottakeren har ingen ID-nøkkel.</string>
@@ -263,12 +298,17 @@ Mottatt melding med ukjent ID nøkkel. Klikk for å prosessere og vise.</string>
   <string name="MessageDisplayHelper_bad_encrypted_message">Ugyldig kryptert melding...</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">Dekrypterer, vennligst vent...</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Melding kryptert for en ikke-eksisterende sesjon...</string>
+  <!--EncryptingSmsDatabase-->
+  <string name="EncryptingSmsDatabase_error_decrypting_message">Feil ved dekryptering av meldingen.</string>
+  <!--ThreadDatabase-->
+  <string name="ThreadDatabase_error_decrypting_message">Feil ved dekryptering av meldingen.</string>
   <!--MmsDatabase-->
   <string name="MmsDatabase_connecting_to_mms_server">Kobler til MMS tjener...</string>
   <string name="MmsDatabase_downloading_mms">Laster ned MMS...</string>
   <string name="MmsDatabase_mms_download_failed">MMS nedlasting feilet!</string>
   <string name="MmsDatabase_downloading">Laster ned...</string>
   <string name="MmsDatabase_mms_pending_download">Trykk og konfigurer MMS innstillingene for å fortsette nedlastingen.</string>
+  <string name="MmsDatabase_error_decrypting_message">Feil ved dekryptering av meldingen.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Dekrypterer MMS, vennligst vent...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Ugyldig kryptert MMS...</string>
@@ -368,8 +408,13 @@ Gjenopprett en tidligere eksportert kryptert TextSecure backup.</string>
   <string name="import_fragment__import_plaintext_backup">Importer klartekst backup</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Importer en klartekst backup kompatibel med \'SMSBackup And Restore\'.</string>
-  <!--mms_preferences_activity-->
-  <string name="mms_preferences_activity__manual_mms_settings_are_required">Det er nødvendig med manuelle MMS innstillinger for din telefon.</string>
+  <!--MmsPreferencesFragment-->
+  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Det er nødvendig med manuelle MMS innstillinger for din telefon.</string>
+  <string name="MmsPreferencesFragment__enabled">Aktivert</string>
+  <string name="MmsPreferencesFragment__disabled">Deaktivert</string>
+  <string name="MmsPreferencesFragment__not_set">Ikke satt</string>
+  <string name="MmsPreferencesFragment__invalid_uri">Teksten som ble tastet inn var ikke en gyldig URI</string>
+  <string name="MmsPreferencesFragment__invalid_host">Teksten som ble tastet inn var ikke en gyldig vert</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Lås opp</string>
   <!--prompt_mms_activity-->
@@ -451,6 +496,8 @@ feilet.</string>
   <string name="arrays__import_export">Importere / eksportere</string>
   <string name="arrays__my_identity_key">Min ID-nøkkel</string>
   <!--preferences.xml-->
+  <string name="preferences__general">Generelt</string>
+  <string name="preferences__sms_mms">SMS og MMS</string>
   <string name="preferences__push_sms_category">\'Push\' og SMS</string>
   <string name="preferences__pref_all_sms_title">Motta alle SMS</string>
   <string name="preferences__pref_all_mms_title">Motta alle MMS</string>
@@ -467,8 +514,8 @@ feilet.</string>
   <string name="preferences__change_passphrase">Passordbytte</string>
   <string name="preferences__change_my_passphrase">Velg et nytt passord</string>
   <string name="preferences__complete_key_exchanges">Fullfør nøkkelutvekslinger</string>
-  <string name="preferences__disable_passphrase">Deaktiver passord</string>
-  <string name="preferences__disable_local_encryption_of_messages_and_keys">Deaktiver lokal kryptering av meldinger og nøkler</string>
+  <string name="preferences__enable_passphrase">Aktiver passord</string>
+  <string name="preferences__enable_local_encryption_of_messages_and_keys">Aktiver lokal kryptering av meldinger og nøkler</string>
   <string name="preferences__screen_security">Skjermsikkerhet</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Automatisk fullføre nøkkelutvekslinger for nye sesjoner eller sesjoner med samme ID-nøkkel</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokker skjermbilde i \"siste applikasjoner\" listen og i appliksjonen</string>
@@ -480,6 +527,7 @@ feilet.</string>
   <string name="preferences__notifications">Varsling</string>
   <string name="preferences__display_message_notifications_in_status_bar">Vis varsel om meldinger i status feltet</string>
   <string name="preferences__led_color">LED farge</string>
+  <string name="preferences__led_color_unknown">Ukjent</string>
   <string name="preferences__pref_led_blink_title">LED blinkemønster</string>
   <string name="preferences__pref_led_blink_custom_pattern_title">Angi tilpasset LED blinkemønster</string>
   <string name="preferences__pref_led_blink_custom_pattern_on_for">På for:</string>
@@ -506,9 +554,9 @@ feilet.</string>
   <string name="preferences__slow">Sakte</string>
   <string name="preferences__custom">Tilpasset</string>
   <string name="preferences__advanced">Avansert</string>
-  <string name="preferences__passphrase">Passord</string>
-  <string name="preferences__advanced_mms_access_point_names">MMS instillinger</string>
-  <string name="preferences__enable_manual_mms">Aktiver manuelt MMS oppsett</string>
+  <string name="preferences__app_protection">Appbeskyttelse</string>
+  <string name="preferences__advanced_mms_access_point_names">Manuelle MMS instillinger</string>
+  <string name="preferences__enable_manual_mms">Bruk manuelle MMS innstillinger</string>
   <string name="preferences__override_system_mms_settings">Overstyr systeminnstillingene for MMS med informasjonen under.</string>
   <string name="preferences__mmsc_url_required">MMSC URL (påkrevd)</string>
   <string name="preferences__mms_proxy_host_optional">MMS proxy host (valgfritt)</string>
@@ -519,12 +567,11 @@ feilet.</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Be om en leveringsrapport for hver SMS-melding du sender</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Slett eldre meldinger automatisk når en samtaletråd overskrider en spesifisert lengde</string>
   <string name="preferences__delete_old_messages">Slett gamle meldinger</string>
-  <string name="preferences__storage">Lagring</string>
   <string name="preferences__conversation_length_limit">Grense på samtalelengde</string>
   <string name="preferences__trim_all_threads_now">Trimme alle samtaletråder nå</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Gjennomgå alle samtaletrådene og håndhev grensen på samtalelengde </string>
-  <string name="preferences__light_theme">Lyst tema</string>
-  <string name="preferences__dark_theme">Mørkt tema</string>
+  <string name="preferences__light_theme">Lys</string>
+  <string name="preferences__dark_theme">Mørk</string>
   <string name="preferences__appearance">Utseende</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__default">Standard</string>
@@ -534,12 +581,14 @@ feilet.</string>
   <string name="preferences__use_data_channel">\'Push\' meldinger</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
 Styrk personvernet ditt og unngå SMS kostnader ved å benytte mobil data når du kommuniserer med andre TextSecure brukere.</string>
-  <string name="preferences__allow_sms_fallback">Tillat utgående SMS til</string>
+  <string name="preferences__sms_fallback">Utgående SMS/MMS</string>
   <string name="preferences__submit_debug_log">Send debug logg</string>
   <string name="preferences__sms_outgoing_push_users">TextSecure brukere</string>
-  <string name="preferences__sms_fallback_push_users_ask">(spør først)</string>
+  <string name="preferences__sms_fallback_push_users_ask">spør først</string>
+  <string name="preferences__sms_fallback_push_users_no_mms">ingen MMS</string>
   <string name="preferences__sms_outgoing_push_users_description">Send sikker SMS dersom mobil data er utilgjengelig</string>
-  <string name="preferences__sms_fallback_ask_fallback">Spør før SMS benyttes til å sende</string>
+  <string name="preferences__sms_fallback_ask_before_sending_sms_mms">Spør før utsendelse av SMS/MMS</string>
+  <string name="preferences__sms_fallback_never_send_mms">Aldri send MMS</string>
   <string name="preferences__sms_fallback_non_push_users">Brukere uten TextSecure</string>
   <string name="preferences__sms_fallback_nobody">Ingen</string>
   <!--****************************************-->
@@ -571,7 +620,7 @@ Styrk personvernet ditt og unngå SMS kostnader ved å benytte mobil data når d
   <string name="conversation_context__menu_resend_message">Send melding om igjen</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Lagre vedlegg</string>
-  <!--conversation_insecure-->
+  <!--conversation_insecure_no_push-->
   <string name="conversation_insecure__menu_start_secure_session">Start sikker sesjon</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Slett merkede</string>
@@ -586,8 +635,9 @@ Styrk personvernet ditt og unngå SMS kostnader ved å benytte mobil data når d
   <string name="conversation__menu_add_attachment">Legg til vedlegg</string>
   <string name="conversation__menu_update_group">Oppdater gruppe</string>
   <string name="conversation__menu_leave_group">Forlat gruppe</string>
-  <string name="conversation__menu_add_contact_info">Legg til kontaktinformasjon</string>
   <string name="conversation__menu_delete_thread">Slett tråd</string>
+  <!--conversation_callable-->
+  <string name="conversation_add_to_contacts__menu_add_to_contacts">Legg til kontakter</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Mottakerliste</string>
   <string name="conversation_group_options__delivery">Levering</string>

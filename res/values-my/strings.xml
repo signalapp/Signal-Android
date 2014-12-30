@@ -7,10 +7,11 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">လက်ရှိ: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">စကားဝှက်မသတ်မှတ်ရသေးပါ</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">စကားစမြည်ပြောချင်းအလိုက်စာတိုများ</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">စာတိုအဟောင်းများအားလံုးဖျက်မည်လား</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">စကားဝိုင်း၊ စကားတွဲများအားလုံးကို လတ်တလော စာသား %s ခုသာ သိမ်းထား၍ အခြားစာသားများကို ဖျက်မှာ သေချာရဲ့လား</string>
   <string name="ApplicationPreferencesActivity_delete">ဖျက်ရန်</string>
+  <!--AppProtectionPreferenceFragment-->
+  <!--DraftDatabase-->
   <!--AttchmentManager-->
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">ပုံ</string>
@@ -27,10 +28,9 @@
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">စကားစမြည်ပြောထားခြင်းကို အပြီးဖျက်မှာသေချာပြီလား</string>
   <string name="ConversationActivity_add_attachment">ပူးတွဲမှုအားပေါင်းထည့်</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">ပူးတွဲပါဖိုင်တွင် ဆက်တင်အမှားရှိ.</string>
-  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">ရွေးထားသော ဗွီဒီယိုသည် ကန့်သတ်ထားသော အရွယ်ကျော်နေ</string>
-  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">ရွေးထားသော အသံဖိုင်သည် ကန့်သတ်ထားသော အရွယ်ကျော်နေ</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">လက်ခံသူသည်　မှန်ကန်သော SMS(သို့)အီးမေးလိပ်စာ　မဟုတ်</string>
   <string name="ConversationActivity_message_is_empty_exclamation">စာတိုမရှိ</string>
+  <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">စာတို အသေးစိတ်အချက်အလက်များ</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">စာတိုကို အပြီးဖျက်ပစ်မည်မှာ သေချာလား</string>
@@ -97,6 +97,8 @@
   <string name="MessageDisplayHelper_bad_encrypted_message">ဝှက်သိမ်းမှုလွဲမှားနေသောစာသား...</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">ဝှက်စာအားဖေါ်နေသည်၊ ခေတ္တစောင့်ပါ...</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">စာသားများကို နဂိုမရှိသောဆက်ရှင်မားအတွက် ဝှက်သိမ်းထားပါသည်...</string>
+  <!--EncryptingSmsDatabase-->
+  <!--ThreadDatabase-->
   <!--MmsDatabase-->
   <string name="MmsDatabase_connecting_to_mms_server">MMS　ဆာဗာသို့ချိတ်ဆက်နေသည်...</string>
   <string name="MmsDatabase_downloading_mms">MMS အားကူးဆွဲနေသည်...</string>
@@ -152,7 +154,7 @@
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">ခေတ္တကြာပါလိမ့်မယ်။ တင်သွင်းမှု ပြီးဆုံးသွားရင် အကြောင်းကြားပေးပါမယ်။</string>
   <string name="database_migration_activity__importing">သွင်းယူနေ</string>
   <!--database_upgrade_activity-->
-  <!--mms_preferences_activity-->
+  <!--MmsPreferencesFragment-->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">ပိတ်ထားသည်ကိုဖွင့်</string>
   <!--prompt_mms_activity-->
@@ -201,7 +203,6 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">SMS တစ်ခုပို့ပြီးတိုင်း ပို့ပြီးကြောင်း အသိပေးပါ</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">သတ်မှတ်အရေအတွက်ထက်ကျော်လွန်ပါက စာတိုအဟောင်းများကို အလိုလျှောက်ဖျတ်ပါ</string>
   <string name="preferences__delete_old_messages">စာတိုအဟောင်းများကိုဖျတ်ပါ</string>
-  <string name="preferences__storage">သိမ်းဆည်းရာ</string>
   <string name="preferences__conversation_length_limit">စာလုံးရေအကန့်အသတ်</string>
   <string name="preferences__trim_all_threads_now">စာတွဲများအာလုံး တိပစ်ပါ</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">အကြောင်းအရာများအားလုံးကိုစစ်ဆေး၍စကားလုံးအရေအတွက်ကိုကန့်သတ်ပါ</string>
@@ -221,7 +222,7 @@
   <string name="conversation_context__menu_delete_message">စာတိုဖျက်ရန်</string>
   <string name="conversation_context__menu_forward_message">စာတိုဆက်ပို့ရန်</string>
   <!--conversation_context_image-->
-  <!--conversation_insecure-->
+  <!--conversation_insecure_no_push-->
   <!--conversation_list_batch-->
   <!--conversation_list-->
   <string name="conversation_list__menu_search">ရှာရန်</string>
@@ -230,6 +231,7 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">ပူးတွဲမှုအားပေါင်းထည့်</string>
   <string name="conversation__menu_delete_thread">စာတွဲကိုဖျက်ပါ</string>
+  <!--conversation_callable-->
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">လက်ခံမည့်သူစာရင်း</string>
   <!--key_scanning-->

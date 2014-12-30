@@ -4,10 +4,11 @@
   <string name="yes">Da</string>
   <string name="no">Ne</string>
   <string name="delete">Obriši</string>
+  <string name="please_wait">Sačekajte...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Trenutno: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Još niste postavili lozinku!</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">poruka po razgovoru</string>
+  <string name="ApplicationPreferencesActivity_messages_per_conversation">%s poruka po razgovoru</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Obriši sve stare poruke?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Jeste li sigurni da želite skratiti sve razgovore na %s najnovijih poruka?</string>
   <string name="ApplicationPreferencesActivity_delete">Obriši</string>
@@ -28,12 +29,26 @@ Trebat ćete ponovno registrirati vaš broj telefona kako biste koristili instan
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Pritisnite za promjenu zadane SMS aplikacije</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Dolazne SMS poruke onemogućene</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Pritisnite kako biste postavili TextSecure kao zadanu SMS aplikaciju</string>
+  <string name="ApplicationPreferencesActivity_on">uključeno</string>
+  <string name="ApplicationPreferencesActivity_On">Uključeno</string>
+  <string name="ApplicationPreferencesActivity_off">isključeno</string>
+  <string name="ApplicationPreferencesActivity_Off">Isključeno</string>
+  <string name="ApplicationPreferencesActivity_partial">djelomično</string>
+  <string name="ApplicationPreferencesActivity_sms">SMS</string>
+  <string name="ApplicationPreferencesActivity_mms">MMS</string>
+  <string name="ApplicationPreferencesActivity_incoming_sms">Dolazne</string>
+  <string name="ApplicationPreferencesActivity_outgoing_sms">odlazne</string>
+  <!--AppProtectionPreferenceFragment-->
+  <!--DraftDatabase-->
+  <string name="DraftDatabase_Draft_image_snippet">(slika)</string>
+  <string name="DraftDatabase_Draft_audio_snippet">(zvuk)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nije moguće pronaći aplikaciju za odabir medija.</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Slika</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
+  <string name="AttachmentTypeSelectorAdapter_contact">Kontakt informacije</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Veličina poruke: %d KB</string>
   <string name="ConversationItem_expires_s">Ističe: %s</string>
@@ -45,12 +60,10 @@ Trebat ćete ponovno registrirati vaš broj telefona kako biste koristili instan
   <string name="ConversationItem_group_action_left">%1$s je napustio grupu.</string>
   <string name="ConversationItem_click_to_approve_sms">Pritisnite za SMS kao rezervu</string>
   <string name="ConversationItem_click_to_approve_mms">Pritisnite za MMS kao rezervu</string>
-  <string name="ConversationItem_click_to_approve_unencrypted">Pritisnite za nesigurnu rezervu</string>
   <string name="ConversationItem_click_to_approve_sms_dialog_title">SMS kao rezerva?</string>
   <string name="ConversationItem_click_to_approve_mms_dialog_title">MMS kao rezerva?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Nekriptirani SMS kao rezerva?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Nekriptirani MMS kao rezerva?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ova poruka <b>neće</b> biti kodirana zato što sigurna sesija nije mogla biti uspostavljena.\n\nPošalji nesigurnu poruku?</string>
   <string name="ConversationItem_unable_to_open_media">Nije moguće pronaći aplikaciju za otvaranje ovog medija.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Započmi sigurnu sesiju?</string>
@@ -63,8 +76,6 @@ Trebat ćete ponovno registrirati vaš broj telefona kako biste koristili instan
   <string name="ConversationActivity_select_contact_info">Odaberite informacije kontakta</string>
   <string name="ConversationActivity_compose_message">Sastavi poruku</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Došlo je do greške prilikom postavljanja privitka.</string>
-  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Odabrani video prelazi ograničenje veličine poruke.</string>
-  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Odabrani audio prelazi ograničenje veličine poruke.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Primatelj nije valjana SMS ili adresa e-pošte!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Poruka je prazna!</string>
   <string name="ConversationActivity_group_conversation_recipients">Primatelji grupnog razgovora</string>
@@ -78,6 +89,11 @@ Trebat ćete ponovno registrirati vaš broj telefona kako biste koristili instan
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Ovaj uređaj možda ne podržava radnje pozivanja.</string>
   <string name="ConversationActivity_leave_group">Napusti grupu?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Jeste li sigurni da želite napustiti ovu grupu?</string>
+  <string name="ConversationActivity_transport_insecure_sms">Nesigurni SMS</string>
+  <string name="ConversationActivity_transport_insecure_mms">Nesigurni MMS</string>
+  <string name="ConversationActivity_transport_secure_sms">Sigurni SMS</string>
+  <string name="ConversationActivity_transport_secure_mms">Sigurni MMS</string>
+  <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalji poruke</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nPoslano/Primljeno: %2$s</string>
@@ -91,6 +107,8 @@ Trebat ćete ponovno registrirati vaš broj telefona kako biste koristili instan
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Nije moguće pisati na disk!</string>
   <string name="ConversationFragment_saving_attachment">Spremanje privitka</string>
   <string name="ConversationFragment_saving_attachment_to_sd_card">Spremanje privitka na disk...</string>
+  <string name="ConversationFragment_mms">MMS</string>
+  <string name="ConversationFragment_sms">SMS</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Obriši teme?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Jeste li sigurni da želite obrisati SVE odabrane teme?</string>
@@ -128,6 +146,8 @@ na SD karticu!</string>
   <string name="GroupCreateActivity_avatar_content_description">Grupni avatar</string>
   <string name="GroupCreateActivity_menu_create_title">Stvori grupu</string>
   <string name="GroupCreateActivity_creating_group">Stvaranje %1$s...</string>
+  <string name="GroupCreateActivity_updating_group">Ažuriranje %1$s...</string>
+  <string name="GroupCreateActivity_loading_group_details">Učitavanje detalja grupe</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Nije moguće dodati korisnike koji ne koriste TextSecure u TextSecure grupu</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Ja</string>
@@ -250,6 +270,7 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <!--ThreadRecord-->
   <string name="ThreadRecord_left_the_group">Napustio grupu...</string>
   <string name="TheadRecord_secure_session_ended">Sigurna sesija je završila.</string>
+  <string name="ThreadRecord_draft">Skica:</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Nemate ključ identiteta.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Primatelj nema ključ identiteta.</string>
@@ -278,6 +299,8 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <string name="MessageDisplayHelper_bad_encrypted_message">Loše kriptirana poruka...</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">Dekriptiranje, sačekajte...</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Poruka kriptirana za nepostojeću sesiju...</string>
+  <!--EncryptingSmsDatabase-->
+  <!--ThreadDatabase-->
   <!--MmsDatabase-->
   <string name="MmsDatabase_connecting_to_mms_server">Povezivanje na MMS poslužitelj...</string>
   <string name="MmsDatabase_downloading_mms">Preuzimanje MMSa...</string>
@@ -331,9 +354,7 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Pošalji TextSecure poruku</string>
   <string name="conversation_activity__type_message_sms_secure">Pošalji sigurni SMS</string>
-  <string name="conversation_activity__type_message_sms_insecure">Pošalji nesigurni SMS</string>
   <string name="conversation_activity__type_message_mms_secure">Pošalji sigurni MMS</string>
-  <string name="conversation_activity__type_message_mms_insecure">Pošalji nesigurni MMS</string>
   <string name="conversation_activity__send">Pošalji</string>
   <string name="conversation_activity__remove">Ukloni</string>
   <string name="conversation_activity__window_description">Razgovor sa %1$s</string>
@@ -385,8 +406,10 @@ Vrati prethodno izvezenu kriptiranu TextSecure kopiju.</string>
   <string name="import_fragment__import_plaintext_backup">Uvezi nekriptiranu kopiju</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Uvezi nekriptiranu kopiju kompatibilnu s \'SMSBackup And Restore\'.</string>
-  <!--mms_preferences_activity-->
-  <string name="mms_preferences_activity__manual_mms_settings_are_required">Ručne MMS postavke su potrebne za vaš telefon.</string>
+  <!--MmsPreferencesFragment-->
+  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Ručne MMS postavke su potrebne za vaš telefon.</string>
+  <string name="MmsPreferencesFragment__enabled">Omogućeno</string>
+  <string name="MmsPreferencesFragment__disabled">Onemogućeno</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Otključaj</string>
   <!--prompt_mms_activity-->
@@ -474,6 +497,8 @@ neuspješno.</string>
   <string name="arrays__import_export">Uvoz / izvoz</string>
   <string name="arrays__my_identity_key">Moj ključ identiteta</string>
   <!--preferences.xml-->
+  <string name="preferences__general">Općenito</string>
+  <string name="preferences__sms_mms">SMS i MMS</string>
   <string name="preferences__push_sms_category">Instant i SMS</string>
   <string name="preferences__pref_all_sms_title">Primi sve SMS</string>
   <string name="preferences__pref_all_mms_title">Primi sve MMS</string>
@@ -490,8 +515,8 @@ neuspješno.</string>
   <string name="preferences__change_passphrase">Izmjeni lozinku</string>
   <string name="preferences__change_my_passphrase">Izmjeni moju lozinku</string>
   <string name="preferences__complete_key_exchanges">Završi razmjene ključeva</string>
-  <string name="preferences__disable_passphrase">Onemogući lozinku</string>
-  <string name="preferences__disable_local_encryption_of_messages_and_keys">Onemogući lokalno kriptiranje ključeva i poruka</string>
+  <string name="preferences__enable_passphrase">Omogući lozinku</string>
+  <string name="preferences__enable_local_encryption_of_messages_and_keys">Omogući lokalno kriptiranje poruka i ključeva</string>
   <string name="preferences__screen_security">Sigurnost ekrana</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Automatski završi razmjene ključeva za nove sesije ili za postojeće sesije sa istim ključem identiteta</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Onemogući snimanje ekrana na popisu nedavnih i unutar aplikacije</string>
@@ -503,6 +528,7 @@ neuspješno.</string>
   <string name="preferences__notifications">Obavijesti</string>
   <string name="preferences__display_message_notifications_in_status_bar">Prikaži obavijesti o porukama u statusnoj traci</string>
   <string name="preferences__led_color">LED boja</string>
+  <string name="preferences__led_color_unknown">Nepoznato</string>
   <string name="preferences__pref_led_blink_title">LED uzorak treptanja</string>
   <string name="preferences__pref_led_blink_custom_pattern_title">Postavite prilagođeni LED uzorak treptanja</string>
   <string name="preferences__pref_led_blink_custom_pattern_on_for">Uključi za:</string>
@@ -529,9 +555,9 @@ neuspješno.</string>
   <string name="preferences__slow">Sporo</string>
   <string name="preferences__custom">Prilagodi</string>
   <string name="preferences__advanced">Napredno</string>
-  <string name="preferences__passphrase">Lozinka</string>
-  <string name="preferences__advanced_mms_access_point_names">MMS postavke</string>
-  <string name="preferences__enable_manual_mms">Omogući ručni MMS</string>
+  <string name="preferences__app_protection">Zaštita aplikacije</string>
+  <string name="preferences__advanced_mms_access_point_names">Ručne MMS postavke</string>
+  <string name="preferences__enable_manual_mms">Koristi ručne MMS postavke</string>
   <string name="preferences__override_system_mms_settings">Zaobiđi MMS postavke sustava sa niže navedenim postavkama.</string>
   <string name="preferences__mmsc_url_required">MMSC URL (potrebno)</string>
   <string name="preferences__mms_proxy_host_optional">MMS Proxy Host (neobavezno)</string>
@@ -542,12 +568,11 @@ neuspješno.</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Traži potvrdu isporuke za svaki poslani SMS</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Automatski obriši starije poruke nakon što razgovor pređe određenu duljinu</string>
   <string name="preferences__delete_old_messages">Obriši stare poruke</string>
-  <string name="preferences__storage">Pohrana</string>
   <string name="preferences__conversation_length_limit">Maksimalna duljina razgovora</string>
   <string name="preferences__trim_all_threads_now">Skrati sve teme sada</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Skeniraj sve teme i primijeni maksimalnu duljinu razgovora</string>
-  <string name="preferences__light_theme">Svijetla tema</string>
-  <string name="preferences__dark_theme">Tamna tema</string>
+  <string name="preferences__light_theme">Svijetla</string>
+  <string name="preferences__dark_theme">Tamna</string>
   <string name="preferences__appearance">Izgled</string>
   <string name="preferences__theme">Teme</string>
   <string name="preferences__default">Zadano</string>
@@ -557,12 +582,14 @@ neuspješno.</string>
   <string name="preferences__use_data_channel">Instant poruke</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
 Povećajte privatnost i izbjegnite SMS troškove koristeći podatkovni kanal za komunikaciju sa drugim TextSecure korisnicima</string>
-  <string name="preferences__allow_sms_fallback">Dozvoli odlazni SMS za</string>
+  <string name="preferences__sms_fallback">Odlazni SMS/MMS</string>
   <string name="preferences__submit_debug_log">Pošalji debug zapis</string>
   <string name="preferences__sms_outgoing_push_users">TextSecure korisnici</string>
-  <string name="preferences__sms_fallback_push_users_ask">(prvo pitajte)</string>
+  <string name="preferences__sms_fallback_push_users_ask">prvo pitaj</string>
+  <string name="preferences__sms_fallback_push_users_no_mms">bez MMS</string>
   <string name="preferences__sms_outgoing_push_users_description">Pošalji sigurni SMS ukoliko je podatkovna veza izgubljena</string>
-  <string name="preferences__sms_fallback_ask_fallback">Pitaj prije slanja SMSa</string>
+  <string name="preferences__sms_fallback_ask_before_sending_sms_mms">Pitaj prije slanja SMS/MMS</string>
+  <string name="preferences__sms_fallback_never_send_mms">Nikad ne šalji MMS</string>
   <string name="preferences__sms_fallback_non_push_users">Korisnici bez TextSecure</string>
   <string name="preferences__sms_fallback_nobody">Nitko</string>
   <!--****************************************-->
@@ -581,9 +608,7 @@ Povećajte privatnost i izbjegnite SMS troškove koristeći podatkovni kanal za 
   <!--conversation_button_context-->
   <string name="conversation_button_context__send_textsecure_message">Pošalji TextSecure poruku</string>
   <string name="conversation_button_context__send_secure_sms">Pošalji sigurni SMS</string>
-  <string name="conversation_button_context__send_insecure_sms">Pošalji nesigurni SMS</string>
   <string name="conversation_button_context__send_secure_mms">Pošalji sigurni MMS</string>
-  <string name="conversation_button_context__send_insecure_mms">Pošalji nesigurni MMS</string>
   <!--conversation_callable-->
   <string name="conversation_callable__menu_call">Nazovi</string>
   <!--conversation_context-->
@@ -594,7 +619,7 @@ Povećajte privatnost i izbjegnite SMS troškove koristeći podatkovni kanal za 
   <string name="conversation_context__menu_resend_message">Ponovno pošalji poruku</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Spremi privitak</string>
-  <!--conversation_insecure-->
+  <!--conversation_insecure_no_push-->
   <string name="conversation_insecure__menu_start_secure_session">Započmi sigurnu sesiju</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Obriši odabrano</string>
@@ -609,8 +634,9 @@ Povećajte privatnost i izbjegnite SMS troškove koristeći podatkovni kanal za 
   <string name="conversation__menu_add_attachment">Dodaj privitak</string>
   <string name="conversation__menu_update_group">Ažuriraj grupu</string>
   <string name="conversation__menu_leave_group">Napusti grupu</string>
-  <string name="conversation__menu_add_contact_info">Dodaj infomacije o kontaktu</string>
   <string name="conversation__menu_delete_thread">Obriši temu</string>
+  <!--conversation_callable-->
+  <string name="conversation_add_to_contacts__menu_add_to_contacts">Dodaj u kontakte</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Popis primatelja</string>
   <string name="conversation_group_options__delivery">Isporuka</string>

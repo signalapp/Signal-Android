@@ -7,7 +7,6 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Nuvarande: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Du har inte angivit ett lösenord än!</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">meddelanden per konversation</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Radera alla gamla meddelanden nu?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Är du säker på att du omeddelbart vill trimma alla konversationstrådar till de %s senaste meddelandena?</string>
   <string name="ApplicationPreferencesActivity_delete">Radera</string>
@@ -28,6 +27,8 @@ Det här kommer slå av pushmeddelanden genom att avregistrera dig från servern
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Tryck för att ändra din standardapp för SMS</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Inkommande SMS avslaget</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Tryck för att göra TextSecure till din standardapp för SMS</string>
+  <!--AppProtectionPreferenceFragment-->
+  <!--DraftDatabase-->
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Kan ej hitta app för att välja media.</string>
   <!--AttachmentTypeSelectorAdapter-->
@@ -45,12 +46,10 @@ Det här kommer slå av pushmeddelanden genom att avregistrera dig från servern
   <string name="ConversationItem_group_action_left">%1$s har lämnat gruppen.</string>
   <string name="ConversationItem_click_to_approve_sms">Tryck för SMS-fallback</string>
   <string name="ConversationItem_click_to_approve_mms">Tryck för MMS-fallback</string>
-  <string name="ConversationItem_click_to_approve_unencrypted">Tryck för osäkert fallback</string>
   <string name="ConversationItem_click_to_approve_sms_dialog_title">Använd SMS istället?</string>
   <string name="ConversationItem_click_to_approve_mms_dialog_title">Använd MMS istället?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Använd okrypterat SMS istället?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Använd okrypterat MMS istället?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Det här meddelandet kommer <b>inte</b> bli krypterat eftersom en säker session inte kunde etableras.\n\nSkicka osäkert meddelande?</string>
   <string name="ConversationItem_unable_to_open_media">Kan ej hitta app som kan öppna denna media.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Påbörja säker session?</string>
@@ -63,8 +62,6 @@ Det här kommer slå av pushmeddelanden genom att avregistrera dig från servern
   <string name="ConversationActivity_select_contact_info">Välj kontaktinformation</string>
   <string name="ConversationActivity_compose_message">Skriv meddelande</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Tyvärr uppstod det ett fel vid bifogning av din fil.</string>
-  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Tyvärr överskrider den valda videon storleksbegränsningen för meddelanden.</string>
-  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Tyvärr överskrider den valda ljudfilen storleksbegränsningen för meddelanden.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Mottagare är inte en giltig SMS eller e-postadress!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Meddelandet är tomt!</string>
   <string name="ConversationActivity_group_conversation_recipients">Mottagare för gruppkonversation</string>
@@ -78,6 +75,7 @@ Det här kommer slå av pushmeddelanden genom att avregistrera dig från servern
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Denna enhet verkar inte stödja ringa upp handlingar.</string>
   <string name="ConversationActivity_leave_group">Lämna grupp?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Är du säker på att du vill lämna den här gruppen?</string>
+  <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Meddelandedetaljer</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nSkickat/Mottagits: %2$s</string>
@@ -264,6 +262,8 @@ Tog emot meddelande med okänd identitetsnyckel. Tryck för att bearbeta och vis
   <string name="MessageDisplayHelper_bad_encrypted_message">Dåligt krypterat meddelande...</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">Dekrypterar, var vänlig vänta...</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Meddelande krypterat för icke-existerande session...</string>
+  <!--EncryptingSmsDatabase-->
+  <!--ThreadDatabase-->
   <!--MmsDatabase-->
   <string name="MmsDatabase_connecting_to_mms_server">Ansluter till MMS server...</string>
   <string name="MmsDatabase_downloading_mms">Laddar ner MMS...</string>
@@ -317,9 +317,7 @@ Tog emot meddelande med okänd identitetsnyckel. Tryck för att bearbeta och vis
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Skicka TextSecure-meddelande</string>
   <string name="conversation_activity__type_message_sms_secure">Skicka säkert SMS</string>
-  <string name="conversation_activity__type_message_sms_insecure">Skicka okrypterat SMS</string>
   <string name="conversation_activity__type_message_mms_secure">Skicka säkert MMS</string>
-  <string name="conversation_activity__type_message_mms_insecure">Skicka okrypterat MMS</string>
   <string name="conversation_activity__send">Skicka</string>
   <string name="conversation_activity__remove">Ta bort</string>
   <string name="conversation_activity__window_description">Meddelanden med %1$s</string>
@@ -367,8 +365,8 @@ från systemets standardapp för meddelanden.</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">Återställ en tidigare krypterad säkerhetskopia av TextSecure.</string>
   <string name="import_fragment__import_plaintext_backup">Importera okrypterad backup</string>
   <string name="import_fragment__import_a_plaintext_backup_file">Importera en okrypterad säkerhetskopia kompatibel med \'SMSBackup And Restore\'.</string>
-  <!--mms_preferences_activity-->
-  <string name="mms_preferences_activity__manual_mms_settings_are_required">Manuella MMS inställningar krävs för din telefon.</string>
+  <!--MmsPreferencesFragment-->
+  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Manuella MMS inställningar krävs för din telefon.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Lås upp</string>
   <!--prompt_mms_activity-->
@@ -449,6 +447,7 @@ TextSecure uppnådde tidsgränsen för sms-verifiering.</string>
   <string name="arrays__import_export">Importera / exportera</string>
   <string name="arrays__my_identity_key">Min identitetsnyckel</string>
   <!--preferences.xml-->
+  <string name="preferences__general">Allmänt</string>
   <string name="preferences__push_sms_category">Push och SMS</string>
   <string name="preferences__pref_all_sms_title">Använd för alla SMS</string>
   <string name="preferences__pref_all_mms_title">Använd för alla MMS</string>
@@ -465,8 +464,6 @@ TextSecure uppnådde tidsgränsen för sms-verifiering.</string>
   <string name="preferences__change_passphrase">Ändra lösenord</string>
   <string name="preferences__change_my_passphrase">Ändra mitt lösenord</string>
   <string name="preferences__complete_key_exchanges">Fullborda nyckelutbyten</string>
-  <string name="preferences__disable_passphrase">Inaktivera lösenord</string>
-  <string name="preferences__disable_local_encryption_of_messages_and_keys">Inaktivera lokal kryptering av meddelanden och nycklar</string>
   <string name="preferences__screen_security">Skärmsäkerhet</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Fullfölj nyckelutbyten automatiskt för nya sessioner eller för existerande sessioner med samma identitetsnyckel</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blockera skärmdumpar i Senaste-listen samt inuti appen</string>
@@ -504,9 +501,6 @@ TextSecure uppnådde tidsgränsen för sms-verifiering.</string>
   <string name="preferences__slow">Långsam</string>
   <string name="preferences__custom">Skräddarsydd</string>
   <string name="preferences__advanced">Avancerade</string>
-  <string name="preferences__passphrase">Lösenfras</string>
-  <string name="preferences__advanced_mms_access_point_names">MMS-inställningar</string>
-  <string name="preferences__enable_manual_mms">Aktivera manuell MMS</string>
   <string name="preferences__override_system_mms_settings">Åsidosätt systemets MMS-inställningar med nedanstående.</string>
   <string name="preferences__mmsc_url_required">MMSC URL (nödvändigt)</string>
   <string name="preferences__mms_proxy_host_optional">MMS Proxyvärd (valfritt)</string>
@@ -515,12 +509,9 @@ TextSecure uppnådde tidsgränsen för sms-verifiering.</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Begär en leveransrapport för varje SMS meddelande du skickar</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Radera automatiskt gamla meddelanden när en konversationstråd överstiger en specificerad längd</string>
   <string name="preferences__delete_old_messages">Radera gamla meddelanden</string>
-  <string name="preferences__storage">Lagring</string>
   <string name="preferences__conversation_length_limit">Konversationstrådslängd</string>
   <string name="preferences__trim_all_threads_now">Trimma alla trådar nu</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Skanna igenom alla konversationstrådar och framtvinga konversationstrådslängder.</string>
-  <string name="preferences__light_theme">Ljust tema</string>
-  <string name="preferences__dark_theme">Mörkt tema</string>
   <string name="preferences__appearance">Utseende</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__default">Standard</string>
@@ -530,12 +521,9 @@ TextSecure uppnådde tidsgränsen för sms-verifiering.</string>
   <string name="preferences__use_data_channel">Push-meddelanden</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
 Utöka sekretessen och undvik SMS-kostnader genom att använda datakanalen för att kommunicera med andra TextSecure-användare</string>
-  <string name="preferences__allow_sms_fallback">Tillåt utgående SMS till</string>
   <string name="preferences__submit_debug_log">Skicka in loggfilen för felsökning</string>
   <string name="preferences__sms_outgoing_push_users">TextSecure användare</string>
-  <string name="preferences__sms_fallback_push_users_ask">(fråga först)</string>
   <string name="preferences__sms_outgoing_push_users_description">Skicka säkert SMS om dataanslutningen är nere</string>
-  <string name="preferences__sms_fallback_ask_fallback">Fråga innan SMS skickas</string>
   <string name="preferences__sms_fallback_non_push_users">Icke-TextSecure användare</string>
   <string name="preferences__sms_fallback_nobody">Ingen</string>
   <!--****************************************-->
@@ -554,9 +542,7 @@ Utöka sekretessen och undvik SMS-kostnader genom att använda datakanalen för 
   <!--conversation_button_context-->
   <string name="conversation_button_context__send_textsecure_message">Skicka TextSecure-meddelande</string>
   <string name="conversation_button_context__send_secure_sms">Skicka säkert SMS</string>
-  <string name="conversation_button_context__send_insecure_sms">Skicka okrypterat SMS</string>
   <string name="conversation_button_context__send_secure_mms">Skicka säkert MMS</string>
-  <string name="conversation_button_context__send_insecure_mms">Skicka okrypterat MMS</string>
   <!--conversation_callable-->
   <string name="conversation_callable__menu_call">Ring</string>
   <!--conversation_context-->
@@ -567,7 +553,7 @@ Utöka sekretessen och undvik SMS-kostnader genom att använda datakanalen för 
   <string name="conversation_context__menu_resend_message">Skicka meddelande igen</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Spara bilaga</string>
-  <!--conversation_insecure-->
+  <!--conversation_insecure_no_push-->
   <string name="conversation_insecure__menu_start_secure_session">Starta säker session</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Radera markerade</string>
@@ -582,8 +568,8 @@ Utöka sekretessen och undvik SMS-kostnader genom att använda datakanalen för 
   <string name="conversation__menu_add_attachment">Bifoga fil</string>
   <string name="conversation__menu_update_group">Uppdatera grupp</string>
   <string name="conversation__menu_leave_group">Lämna grupp</string>
-  <string name="conversation__menu_add_contact_info">Lägg till kontaktinfo</string>
   <string name="conversation__menu_delete_thread">Radera tråd</string>
+  <!--conversation_callable-->
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Mottagare lista</string>
   <string name="conversation_group_options__delivery">Leverans</string>

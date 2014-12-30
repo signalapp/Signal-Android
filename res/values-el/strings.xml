@@ -4,10 +4,11 @@
   <string name="yes">Ναι</string>
   <string name="no">Όχι</string>
   <string name="delete">Διαγραφή</string>
+  <string name="please_wait">Παρακαλώ περιμένετε...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Αυτή τη στιγμή: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Δεν έχετε ορίσει συνθηματική φράση!</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">μηνύματα ανά συζήτηση</string>
+  <string name="ApplicationPreferencesActivity_messages_per_conversation">%s μηνύματα ανά συζήτηση</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Διαγραφή όλων των παλιών μηνυμάτων τώρα;</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Είστε σίγουροι πως θέλετε να μειωθούν όλες οι συζητήσεις στα %s πιο πρόσφατα μηνύματα;</string>
   <string name="ApplicationPreferencesActivity_delete">Διαγραφή</string>
@@ -30,6 +31,11 @@
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Προεπιλεγμένη εφαρμογή για SMS</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Απενεργοποίηση εισερχομένων </string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Προεπιλεγμένη εφαρμογή για SMS</string>
+  <string name="ApplicationPreferencesActivity_sms">SMS</string>
+  <string name="ApplicationPreferencesActivity_mms">MMS</string>
+  <string name="ApplicationPreferencesActivity_incoming_sms">Εισερχόμενα</string>
+  <!--AppProtectionPreferenceFragment-->
+  <!--DraftDatabase-->
   <!--AttchmentManager-->
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Εικόνα</string>
@@ -46,7 +52,6 @@
   <string name="ConversationItem_group_action_left">%1$s έφυγαν απο την ομάδα.</string>
   <string name="ConversationItem_click_to_approve_sms">Εναλλακτικά κανάλια για SMS</string>
   <string name="ConversationItem_click_to_approve_mms">Εναλλακτικά κανάλια για MMS</string>
-  <string name="ConversationItem_click_to_approve_unencrypted">Επιλέξτε ενα </string>
   <string name="ConversationItem_click_to_approve_sms_dialog_title">Χρήση SMS ως εναλλακτικού καναλιού;</string>
   <string name="ConversationItem_click_to_approve_mms_dialog_title">Χρήση MMS ως εναλλακτικού καναλιού?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Να γίνει αποστολή ΜΗ κρυπτογραφημενου μηνύματος?</string>
@@ -62,8 +67,6 @@
   <string name="ConversationActivity_select_contact_info">Επιλέξτε πληροφορίες επαφής</string>
   <string name="ConversationActivity_compose_message">Νέο μήνυμα</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Συγγνώμη, σφάλμα κατά τη σύναψη αρχείου.</string>
-  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Συγγνώμη, το επιλεγμένο βίντεο υπερβαίνει το μέγιστο μέγεθος μηνύματος.</string>
-  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Συγγνώμη, το επιλεγμένο αρχείο ήχου υπερβαίνει το μέγιστο μέγεθος μηνύματος.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Ο παραλήπτης δεν είναι έγκυρη διεύθυνση SMS ή email!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Το μήνυμα είναι κενό!</string>
   <string name="ConversationActivity_group_conversation_recipients">Παραλήπτες Ομαδικής Συζήτησης</string>
@@ -77,12 +80,17 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Αυτή η συσκευή δε φαίνεται να υποστηρίζει ενέργειες κλήσης.</string>
   <string name="ConversationActivity_leave_group">Αποχωρείτε απο την ομάδα;</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Είστε σίγουροι πως θέλετε να αποχωρήσετε απο την ομάδα;</string>
+  <string name="ConversationActivity_transport_secure_sms">Ασφαλό SMS</string>
+  <string name="ConversationActivity_transport_secure_mms">Ασφαλό MMS</string>
+  <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Στοιχεία μηνύματος</string>
   <string name="ConversationFragment_confirm_message_delete">Επιβεβαίωση Διαγραφής Μηνύματος</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Είστε σίγουροι πως θέλετε να διαγράψετε αυτό το μήνυμα για πάντα;</string>
   <string name="ConversationFragment_success_exclamation">Επιτυχία!</string>
   <string name="ConversationFragment_saving_attachment">Αποθήκευση συνημμένου</string>
+  <string name="ConversationFragment_mms">MMS</string>
+  <string name="ConversationFragment_sms">SMS</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Διαγραφή συζητήσεων;</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Είστε σίγουροι πως θέλετε να διαγράψετε ΟΛΕΣ τις επιλεγμένες συζητήσεις;</string>
@@ -280,6 +288,8 @@
   <string name="MessageDisplayHelper_bad_encrypted_message">Προβληματικό κρυπτογραφημένο μήνυμα...</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">Αποκρυπτογράφηση, παρακαλώ περιμένετε...</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Το μήνυμα κρυπτογραφήθηκε για ανύπαρκτη συζήτηση...</string>
+  <!--EncryptingSmsDatabase-->
+  <!--ThreadDatabase-->
   <!--MmsDatabase-->
   <string name="MmsDatabase_connecting_to_mms_server">Σύνδεση στο διακομιστή MMS...</string>
   <string name="MmsDatabase_downloading_mms">Γίνεται λήψη MMS...</string>
@@ -333,9 +343,7 @@
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Αποστολή μηνύματος TextSecure</string>
   <string name="conversation_activity__type_message_sms_secure">Αποστολή ασφαλούς SMS</string>
-  <string name="conversation_activity__type_message_sms_insecure">Αποστολή απροστάτευτου SMS</string>
   <string name="conversation_activity__type_message_mms_secure">Αποστολή ασφαλούς MMS</string>
-  <string name="conversation_activity__type_message_mms_insecure">Αποστολή απροστάτευτου MMS</string>
   <string name="conversation_activity__send">Αποστολή</string>
   <string name="conversation_activity__remove">Αφαίρεση</string>
   <!--conversation_item-->
@@ -381,8 +389,8 @@
   <string name="import_fragment__import_plaintext_backup">Εισαγωγή μη κρυπτογραφημένου αντιγράφου ασφαλείας</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
         Εισαγωγή μη κρυπτογραφημένου αντιγράφου ασφαλείας. Συμβατό με την εφαρμογή «SMSBackup And Restore».</string>
-  <!--mms_preferences_activity-->
-  <string name="mms_preferences_activity__manual_mms_settings_are_required">Απαιτούνται προσαρμοσμένες ρυθμίσεις MMS για το κινητό σας.</string>
+  <!--MmsPreferencesFragment-->
+  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Απαιτούνται προσαρμοσμένες ρυθμίσεις MMS για το κινητό σας.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Ξεκλείδωμα</string>
   <!--prompt_mms_activity-->
@@ -469,6 +477,7 @@
   <!--arrays.xml-->
   <string name="arrays__my_identity_key">Το Κλειδί Ταυτότητάς Μου</string>
   <!--preferences.xml-->
+  <string name="preferences__general">Γενικά</string>
   <string name="preferences__push_sms_category">Push (μέσω Internet) και SMS</string>
   <string name="preferences__pref_all_sms_title">Λήψη όλων των μηνυμάτων</string>
   <string name="preferences__pref_all_mms_title">Λήψη όλων των μηνυμάτων MMS</string>
@@ -485,8 +494,6 @@
   <string name="preferences__change_passphrase">Αλλαγή συνθηματικής φράσης</string>
   <string name="preferences__change_my_passphrase">Άλλαξε τη συνθηματική φράση μου</string>
   <string name="preferences__complete_key_exchanges">Να ολοκληρώνονται οι ανταλλαγές κλειδιών</string>
-  <string name="preferences__disable_passphrase">Απενεργοποίηση συνθηματικής φράσης</string>
-  <string name="preferences__disable_local_encryption_of_messages_and_keys">Απενεργοποίηση τοπικής κρυπτογράφησης όλων των μηνυμάτων και κλειδιών</string>
   <string name="preferences__screen_security">Ασφάλεια οθόνης</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Να χρησιμοποιείται αυτόματα το ίδιο κλειδί ταυτότητας για ανταλλαγές κλειδιών σε νέες ή υπάρχουσες συζητήσεις</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Να επιτρέπεται η καταγραφή της οθόνης (screenshots)</string>
@@ -524,9 +531,6 @@
   <string name="preferences__slow">Αργό</string>
   <string name="preferences__custom">Προσαρμοσμένο</string>
   <string name="preferences__advanced">Για προχωρημένους</string>
-  <string name="preferences__passphrase">Συνθηματική φράση</string>
-  <string name="preferences__advanced_mms_access_point_names">Προτιμήσεις MMS</string>
-  <string name="preferences__enable_manual_mms">Ενεργοποίηση Προσαρμοσμένου MMS</string>
   <string name="preferences__override_system_mms_settings">Να χρησιμοποιηθούν οι παρακάτω ρυθμίσεις MMS ασχέτως των ρυθμίσεων του συστήματος.</string>
   <string name="preferences__mmsc_url_required">Διεύθυνση MMSC (Απαραίτητη)</string>
   <string name="preferences__mms_proxy_host_optional">Διακομιστής Μεσολάβησης MMS (Προαιρετικός)</string>
@@ -535,12 +539,9 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Αίτημα αναφοράς παράδοσης για κάθε SMS που στέλνετε</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Αυτόματη διαγραφή παλιών μηνυμάτων όταν μια συζήτηση ξεπεράσει ένα προκαθορισμένο όριο μηνυμάτων</string>
   <string name="preferences__delete_old_messages">Διαγραφή παλιών μηνυμάτων</string>
-  <string name="preferences__storage">Αποθήκευση</string>
   <string name="preferences__conversation_length_limit">Όριο μεγέθους συζήτησης</string>
   <string name="preferences__trim_all_threads_now">Περικοπή όλων των συζητήσεων τώρα</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Ανάλυση όλων των συζητήσεων και επιβολή ορίου μεγέθους</string>
-  <string name="preferences__light_theme">Ανοιχτόχρωμο Θέμα</string>
-  <string name="preferences__dark_theme">Σκούρο θέμα</string>
   <string name="preferences__appearance">Εμφάνιση</string>
   <string name="preferences__theme">Θέμα</string>
   <string name="preferences__default">Προκαθορισμένη</string>
@@ -550,12 +551,9 @@
   <string name="preferences__use_data_channel">ΕΙδοποιήσεις Push</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
 Αυξήστε την ανωνυμία και αποφύγετε το κόστος του SMS χρησιμοποιώντας το κανάλι δεδομένων για επικοινωνία με τους άλλους χρήστες του TextSecure.</string>
-  <string name="preferences__allow_sms_fallback">Να επιτραπέι στα εξερχόμενα μηνύματα να</string>
   <string name="preferences__submit_debug_log">Αποστολή αρχείων καταγραφής αποσφαλμάτωσης</string>
   <string name="preferences__sms_outgoing_push_users">Χρήστες TextSecure</string>
-  <string name="preferences__sms_fallback_push_users_ask">(ρωτήστε πρώτα)</string>
   <string name="preferences__sms_outgoing_push_users_description">Αποστολή ασφαλούς μηνύματος εαν χαθεί η σύνδεση</string>
-  <string name="preferences__sms_fallback_ask_fallback">Να ερωτηθώ πριν γίνει η αποστολή μηνύματος</string>
   <string name="preferences__sms_fallback_non_push_users">Μη χρήστες TextSecure</string>
   <string name="preferences__sms_fallback_nobody">κανένας</string>
   <!--****************************************-->
@@ -574,9 +572,7 @@
   <!--conversation_button_context-->
   <string name="conversation_button_context__send_textsecure_message">Αποστολή μηνύματος TextSecure</string>
   <string name="conversation_button_context__send_secure_sms">Αποστολή ασφαλούς SMS</string>
-  <string name="conversation_button_context__send_insecure_sms">Αποστολή απροστάτευτου SMS</string>
   <string name="conversation_button_context__send_secure_mms">Αποστολή ασφαλούς MMS</string>
-  <string name="conversation_button_context__send_insecure_mms">Αποστολή απροστάτευτου MMS</string>
   <!--conversation_callable-->
   <string name="conversation_callable__menu_call">Κλήση</string>
   <!--conversation_context-->
@@ -587,7 +583,7 @@
   <string name="conversation_context__menu_resend_message">Αποστολή ξανά</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Αποθήκευση συνημμένου</string>
-  <!--conversation_insecure-->
+  <!--conversation_insecure_no_push-->
   <string name="conversation_insecure__menu_start_secure_session">Έναρξη Ασφαλούς Συζήτησης</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Διαγραφή Επιλεγμένων</string>
@@ -602,8 +598,9 @@
   <string name="conversation__menu_add_attachment">Προσθήκη συνημμένου</string>
   <string name="conversation__menu_update_group">Ενημέρωση ομάδας</string>
   <string name="conversation__menu_leave_group">Αποχωρήστε απο την ομάδα</string>
-  <string name="conversation__menu_add_contact_info">Προσθήκη πληροφοριών επαφής</string>
   <string name="conversation__menu_delete_thread">Διαγραφή συζήτησης</string>
+  <!--conversation_callable-->
+  <string name="conversation_add_to_contacts__menu_add_to_contacts">Προσθήκη στις επαφές</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Λίστα παραλήπτων</string>
   <string name="conversation_group_options__delivery">Παράδοση</string>
@@ -627,8 +624,14 @@
   <string name="reminder_header_push_title">Ενεργοποίηση μηνυμάτων TextSecure;</string>
   <string name="reminder_header_push_text">Άμεση παράδοση, περισσότερο απόρρητα, και χωρίς χρεώσεις SMS.</string>
   <!--MediaPreviewActivity-->
+  <string name="MediaPreviewActivity_you">Εσείς</string>
   <!--media_preview-->
+  <string name="media_preview__save_title">Αποθήκευση</string>
   <!--media_preview_activity-->
+  <string name="media_preview_activity__image_content_description">Προεπισκόπηση Εικόνας</string>
   <!--Trimmer-->
+  <string name="trimmer__deleting">Γίνεται διαγραφή...</string>
+  <string name="trimmer__deleting_old_messages">Τα παλία μηνύματα διαγράφονται...</string>
+  <string name="trimmer__old_messages_successfully_deleted">Τα παλιά μηνύματα διεγράφτηκαν επιτυχώς</string>
   <!--EOF-->
 </resources>

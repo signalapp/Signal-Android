@@ -7,7 +7,6 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Acum: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Nu ai setat inca o parola!</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">mesaje per conversație</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Şterge toate mesajele vechi acum?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Eşti sigur că doreşti să scurtezi toate conversaţiile la %s cele mai recente mesaje?</string>
   <string name="ApplicationPreferencesActivity_delete">Şterge</string>
@@ -21,6 +20,8 @@ Atenție, acestă acțiune va dezactiva stocarea criptată a tuturor mesajelor �
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Eroare de conectare cu serverul!</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Atingeţi pentru a schimba aplicaţia SMS implicită</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Atingeţi pentru a seta TextSecure ca şi aplicaţie SMS implicită</string>
+  <!--AppProtectionPreferenceFragment-->
+  <!--DraftDatabase-->
   <!--AttchmentManager-->
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Imagine</string>
@@ -37,12 +38,10 @@ Atenție, acestă acțiune va dezactiva stocarea criptată a tuturor mesajelor �
   <string name="ConversationItem_group_action_left">%1$s a ieșit din grup.</string>
   <string name="ConversationItem_click_to_approve_sms">Apăsaţi pentru revenirea la SMS ca soluţie de rezervă </string>
   <string name="ConversationItem_click_to_approve_mms">Apăsaţi pentru revenirea la MMS ca soluţie de rezervă </string>
-  <string name="ConversationItem_click_to_approve_unencrypted">Apăsaţi pentru revenirea la SMS ca soluţie de rezervă </string>
   <string name="ConversationItem_click_to_approve_sms_dialog_title">Reveniţi la SMS ca soluţie de rezervă?</string>
   <string name="ConversationItem_click_to_approve_mms_dialog_title">Reveniţi la SMS ca soluţie de rezervă?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Reveniţi la SMS necriptat ca soluţie de rezervă?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Reveniţi la MMS necriptat ca soluţie de rezervă?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Acest mesaj <b>nu</b> va fi criptat deoarece nu s-a putut realiza o sesiune securizată.\n\nTrimit mesaj nesecurizat?</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Initializez Sesiune Securizata?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Initializez Sesiune Securizata cu %s?</string>
@@ -54,8 +53,6 @@ Atenție, acestă acțiune va dezactiva stocarea criptată a tuturor mesajelor �
   <string name="ConversationActivity_select_contact_info">Selectează informații de contact</string>
   <string name="ConversationActivity_compose_message">Compune mesaj</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Ne pare rău, a apărut o eroare în setarea atașamentului tău.</string>
-  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Ne pare rău, fișierul video selectat depășește restricțiile de mărime pentru mesaje.</string>
-  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Ne pare rău, fișierul audio selectat depășește restricțiile de mărime pentru mesaje.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Destinatarul nu este o adresă validă de SMS sau e-mail.</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Mesajul este gol!</string>
   <string name="ConversationActivity_group_conversation_recipients">Grupează destinatarii conversaţiei</string>
@@ -69,6 +66,7 @@ Atenție, acestă acțiune va dezactiva stocarea criptată a tuturor mesajelor �
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Acest dispozitiv nu pare să ofere acţiuni pentru formarea numărului de telefon.</string>
   <string name="ConversationActivity_leave_group">Doriți să părăsiți grupul?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Sunteți sigur că doriți să părăsiți acest grup?</string>
+  <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalii mesaj</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nTrimis/Primit: %2$s</string>
@@ -242,6 +240,8 @@ Primit mesaj trimis cu o cheie de identitate necunoscută. Faceți click pentru 
   <string name="MessageDisplayHelper_bad_encrypted_message">Mesaj criptat incorect...</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">Se decripteaza, te rog asteapta...</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Mesaj criptat pentru o sesiune inexistentă...</string>
+  <!--EncryptingSmsDatabase-->
+  <!--ThreadDatabase-->
   <!--MmsDatabase-->
   <string name="MmsDatabase_connecting_to_mms_server">Se conecteaza la serverul MMS...</string>
   <string name="MmsDatabase_downloading_mms">Se descarca MMS...</string>
@@ -295,9 +295,7 @@ Primit mesaj trimis cu o cheie de identitate necunoscută. Faceți click pentru 
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Trimite mesaj TextSecure</string>
   <string name="conversation_activity__type_message_sms_secure">Trimite SMS securizat</string>
-  <string name="conversation_activity__type_message_sms_insecure">Trimite SMS nesecurizat</string>
   <string name="conversation_activity__type_message_mms_secure">Trimite MMS securizat</string>
-  <string name="conversation_activity__type_message_mms_insecure">Trimite MMS nesecurizat</string>
   <string name="conversation_activity__send">Trimite</string>
   <string name="conversation_activity__remove">Șterge</string>
   <string name="conversation_activity__window_description">Conversaţie cu %1$s</string>
@@ -347,8 +345,8 @@ Restaurează un backup criptat exportat anterior din TextSecure.</string>
   <string name="import_fragment__import_plaintext_backup">Importă backup text</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Importă un fișier de backup text. Compatibil cu \'SMSBackup And Restore.\'</string>
-  <!--mms_preferences_activity-->
-  <string name="mms_preferences_activity__manual_mms_settings_are_required">Pentru telefonul tău sunt necesare setări MMS manuale.</string>
+  <!--MmsPreferencesFragment-->
+  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Pentru telefonul tău sunt necesare setări MMS manuale.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Deblochează</string>
   <!--prompt_mms_activity-->
@@ -426,6 +424,7 @@ Operaţiunea iniţiată de TextSecure a expirat în timpul aşteptării primirii
   <string name="arrays__import_export">Importă / Exportă</string>
   <string name="arrays__my_identity_key">Cheia mea de identitate</string>
   <!--preferences.xml-->
+  <string name="preferences__general">General</string>
   <string name="preferences__push_sms_category">Push și SMS</string>
   <string name="preferences__pref_all_sms_title">Recepționează toate SMS-urile</string>
   <string name="preferences__pref_all_mms_title">Recepționează toate MMS-urile</string>
@@ -441,8 +440,6 @@ Operaţiunea iniţiată de TextSecure a expirat în timpul aşteptării primirii
   <string name="preferences__change_passphrase">Schimbă parola</string>
   <string name="preferences__change_my_passphrase">Schimbă parola</string>
   <string name="preferences__complete_key_exchanges">Încheie schimburile de chei</string>
-  <string name="preferences__disable_passphrase">Dezactivează parola</string>
-  <string name="preferences__disable_local_encryption_of_messages_and_keys">Dezactivează criptarea locală a mesajelor şi cheilor</string>
   <string name="preferences__screen_security">Securitate ecran</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Completează în mod automat schimburile de chei pentru sesiunile noi sau existente cu aceeaşi cheie de identitate.</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Şterge parolele din memorie după un interval de timp</string>
@@ -477,9 +474,6 @@ Operaţiunea iniţiată de TextSecure a expirat în timpul aşteptării primirii
   <string name="preferences__slow">Încet</string>
   <string name="preferences__custom">Specific</string>
   <string name="preferences__advanced">Avansat</string>
-  <string name="preferences__passphrase">Parola</string>
-  <string name="preferences__advanced_mms_access_point_names">Preferințe MMS</string>
-  <string name="preferences__enable_manual_mms">Activează MMS manual</string>
   <string name="preferences__override_system_mms_settings">Suprascrie setările MMS de sistem cu informațiile de mai jos.</string>
   <string name="preferences__mmsc_url_required">URL MMSC (Necesar)</string>
   <string name="preferences__mms_proxy_host_optional">Gazdă proxy MMS (Opţional)</string>
@@ -488,12 +482,9 @@ Operaţiunea iniţiată de TextSecure a expirat în timpul aşteptării primirii
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Cere o confirmare de livrare pentru fiecare SMS trimis</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Șterge automat mesajele vechi când conversația depășește mărimea specificată</string>
   <string name="preferences__delete_old_messages">Șterge mesajele vechi</string>
-  <string name="preferences__storage">Spaţiu stocare</string>
   <string name="preferences__conversation_length_limit">Limita mărime conversație</string>
   <string name="preferences__trim_all_threads_now">Scurtează toate conversaţiile acum</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Verifică toate conversațiile și aplică limite de mărime a conversației</string>
-  <string name="preferences__light_theme">Temă deschisă la culoare</string>
-  <string name="preferences__dark_theme">Temă închisă la culoare</string>
   <string name="preferences__appearance">Aspect</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__default">Implicit</string>
@@ -502,12 +493,9 @@ Operaţiunea iniţiată de TextSecure a expirat în timpul aşteptării primirii
   <string name="preferences__make_textsecure_the_default_sms_mms_app">Alege TextSecure ca aplicație SMS/MMS implicită pentru sistemul tău.</string>
   <string name="preferences__use_data_channel">Mesaje push</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">Sporește intimitatea și evită costurile de SMS folosind comunicarea prin canalul de date cu alți utilizatori TextSecure</string>
-  <string name="preferences__allow_sms_fallback">Permite SMS-uri expediate către</string>
   <string name="preferences__submit_debug_log">Trimite log-urile de depanare</string>
   <string name="preferences__sms_outgoing_push_users">Utilizatori TextSecure</string>
-  <string name="preferences__sms_fallback_push_users_ask">(întreabă mai întâi)</string>
   <string name="preferences__sms_outgoing_push_users_description">Trimite SMS securizat dacă conexiunea de dată este pierdută</string>
-  <string name="preferences__sms_fallback_ask_fallback">Întreabă înainte de a trimite SMS</string>
   <string name="preferences__sms_fallback_non_push_users">Utilizatori Non-TextSecure</string>
   <string name="preferences__sms_fallback_nobody">Nimeni</string>
   <!--****************************************-->
@@ -526,9 +514,7 @@ Operaţiunea iniţiată de TextSecure a expirat în timpul aşteptării primirii
   <!--conversation_button_context-->
   <string name="conversation_button_context__send_textsecure_message">Trimite mesaj TextSecure</string>
   <string name="conversation_button_context__send_secure_sms">Trimite SMS securizat</string>
-  <string name="conversation_button_context__send_insecure_sms">Trimite SMS nesecurizat</string>
   <string name="conversation_button_context__send_secure_mms">Trimite MMS securizat</string>
-  <string name="conversation_button_context__send_insecure_mms">Trimite MMS nesecurizat</string>
   <!--conversation_callable-->
   <string name="conversation_callable__menu_call">Sună</string>
   <!--conversation_context-->
@@ -539,7 +525,7 @@ Operaţiunea iniţiată de TextSecure a expirat în timpul aşteptării primirii
   <string name="conversation_context__menu_resend_message">Retrimite mesaj</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Salvează ataşamentul</string>
-  <!--conversation_insecure-->
+  <!--conversation_insecure_no_push-->
   <string name="conversation_insecure__menu_start_secure_session">Iniţializează Sesiune Securizată</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Şterge ce este selectat</string>
@@ -554,8 +540,8 @@ Operaţiunea iniţiată de TextSecure a expirat în timpul aşteptării primirii
   <string name="conversation__menu_add_attachment">Adaugă atașament</string>
   <string name="conversation__menu_update_group">Actualizează grup</string>
   <string name="conversation__menu_leave_group">Părăseşte grupul</string>
-  <string name="conversation__menu_add_contact_info">Adaugă informații de contact</string>
   <string name="conversation__menu_delete_thread">Șterge conversația</string>
+  <!--conversation_callable-->
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Lista recipienti</string>
   <string name="conversation_group_options__delivery">Trimitere</string>

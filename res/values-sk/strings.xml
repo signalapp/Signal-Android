@@ -7,7 +7,6 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Aktuálne: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Ešte ste si nenastavili heslo!</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">správ na konverzáciu</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Zmazať všetky staré správy?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Ste si istí, že chcete skrátiť všetky vlákna konverzácií na %s najnovších správ?</string>
   <string name="ApplicationPreferencesActivity_delete">Zmaž</string>
@@ -20,6 +19,8 @@ Upozornenie, toto vypne kryptovanie úložiska správ a kľúčov. Vaše bezpeč
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Chyba spojenia na server!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">Prichádzajúce SMS povolené</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Prichádzajúce SMS zakazané </string>
+  <!--AppProtectionPreferenceFragment-->
+  <!--DraftDatabase-->
   <!--AttchmentManager-->
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Obrázok</string>
@@ -44,8 +45,6 @@ Upozornenie, toto vypne kryptovanie úložiska správ a kľúčov. Vaše bezpeč
   <string name="ConversationActivity_select_contact_info">Vyber kontaktné informácie </string>
   <string name="ConversationActivity_compose_message">Vytvoriť správu</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Nastala chyba pri vytváraní prílohy.</string>
-  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Vybrané video prekračuje veľkostné obmedzenia správy.</string>
-  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Vybrané audio prekračuje veľkostné obmedzenia správy.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Príjemca nie je platná SMS alebo emailová adresa!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Správa je prázdna!</string>
   <string name="ConversationActivity_group_conversation_recipients">Príjemcovia skupinovej konverzácie</string>
@@ -58,6 +57,7 @@ Upozornenie, toto vypne kryptovanie úložiska správ a kľúčov. Vaše bezpeč
   <string name="ConversationActivity_calls_not_supported">Hovory nie sú podporované</string>
   <string name="ConversationActivity_leave_group">Opustiť skupinu?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Ste si istí že chcete opustiť túto skupinu?</string>
+  <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detaily správy</string>
   <string name="ConversationFragment_confirm_message_delete">Potvrď zmazanie správy</string>
@@ -206,6 +206,8 @@ telefónne číslo</string>
   <string name="MessageDisplayHelper_bad_encrypted_message">Nesprávne kryptovaná správa...</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">Prosím čakaj, dekryptujem...</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Správa zakryptovaná pre neexistujúcu session...</string>
+  <!--EncryptingSmsDatabase-->
+  <!--ThreadDatabase-->
   <!--MmsDatabase-->
   <string name="MmsDatabase_connecting_to_mms_server">Pripájam sa na MMS server...</string>
   <string name="MmsDatabase_downloading_mms">Sťahujem MMS...</string>
@@ -253,9 +255,7 @@ telefónne číslo</string>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Pošli TextSecure správu </string>
   <string name="conversation_activity__type_message_sms_secure">Pošli šifrovanú SMS</string>
-  <string name="conversation_activity__type_message_sms_insecure">Pošli nezašifrovanú SMS</string>
   <string name="conversation_activity__type_message_mms_secure">Pošli šifrovanú MMS</string>
-  <string name="conversation_activity__type_message_mms_insecure">Pošli nezašifrovanú MMS</string>
   <string name="conversation_activity__send">Odoslať</string>
   <string name="conversation_activity__remove">Odstrániť</string>
   <!--conversation_item-->
@@ -297,8 +297,8 @@ Obnoviť predtým exportovanú zakryptovanú TextSecure zálohu.</string>
   <string name="import_fragment__import_plaintext_backup">Importovať nezakryptovanú zálohu</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Importovať nezakryptovanú zálohu. Kompatibilné so \'SMSBackup And Restore\'.</string>
-  <!--mms_preferences_activity-->
-  <string name="mms_preferences_activity__manual_mms_settings_are_required">Manuálne MMS nastavenia sú vyžadované pre tvoj telefón.</string>
+  <!--MmsPreferencesFragment-->
+  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Manuálne MMS nastavenia sú vyžadované pre tvoj telefón.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Odomkni</string>
   <!--prompt_mms_activity-->
@@ -358,6 +358,7 @@ zlyhalo.
   <!--arrays.xml-->
   <string name="arrays__my_identity_key">Môj kľúč totožnosti</string>
   <!--preferences.xml-->
+  <string name="preferences__general">Všeobecné</string>
   <string name="preferences__pref_all_sms_title">Príjmy všetky SMS</string>
   <string name="preferences__pref_all_mms_title">Príjmy všetky MMS</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Použi TextSecure na zobrazenie a uloženie všetkých prichádzajúcich správ</string>
@@ -370,8 +371,6 @@ zlyhalo.
   <string name="preferences__change_passphrase">Zmeň heslo</string>
   <string name="preferences__change_my_passphrase">Zmeniť moje heslo</string>
   <string name="preferences__complete_key_exchanges">Dokončiť vzájomnú výmenu kľúčov</string>
-  <string name="preferences__disable_passphrase">Vypnúť heslo</string>
-  <string name="preferences__disable_local_encryption_of_messages_and_keys">Vypnúť lokálne kryptovanie správ a kľúčov</string>
   <string name="preferences__screen_security">Bezpečnosť obrazovky</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Automaticky dokonči vzájomné výmeny kľúčov pre nové session alebo pre existujúce session s rovnakým kľúčom totožnosti.</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Po určitom čase zmaž heslo z pamäte</string>
@@ -405,9 +404,6 @@ zlyhalo.
   <string name="preferences__slow">Pomaly</string>
   <string name="preferences__custom">Vlastné</string>
   <string name="preferences__advanced">Rozšírené</string>
-  <string name="preferences__passphrase">Heslo</string>
-  <string name="preferences__advanced_mms_access_point_names">MMS predvoľby</string>
-  <string name="preferences__enable_manual_mms">Povoľ manuálne MMS</string>
   <string name="preferences__mmsc_url_required">MMSC URL (nutné)</string>
   <string name="preferences__mms_proxy_host_optional">MMS Proxy (voliteľné)</string>
   <string name="preferences__mms_proxy_port_optional">MMS Proxy port (voliteľné)</string>
@@ -415,23 +411,17 @@ zlyhalo.
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Pre každú odoslanú SMS vyžiadaj správu o doručení</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Ak dĺžka vlákna presiahne nastavenú hranicu, automaticky zmaž najstaršie správy.</string>
   <string name="preferences__delete_old_messages">Zmaž staré správy</string>
-  <string name="preferences__storage">Úložisko</string>
   <string name="preferences__conversation_length_limit">Obmedzenie dĺžky konverzácie</string>
   <string name="preferences__trim_all_threads_now">Skráť všetky vlákna</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Skontroluj dĺžku vlákna všetkých konverzácií.</string>
-  <string name="preferences__light_theme">Svetlá téma</string>
-  <string name="preferences__dark_theme">Tmavá téma</string>
   <string name="preferences__appearance">Vzhľad</string>
   <string name="preferences__theme">Téma</string>
   <string name="preferences__default">Pôvodné</string>
   <string name="preferences__language">Jazyk</string>
   <string name="preferences__make_default_sms_app">Nastav ako predvolebnú SMS aplikáciu</string>
-  <string name="preferences__allow_sms_fallback">Povoliť odchádzajúce SMS do...</string>
   <string name="preferences__submit_debug_log">Odošli ladiaci log</string>
   <string name="preferences__sms_outgoing_push_users">TextSecure používatelia</string>
-  <string name="preferences__sms_fallback_push_users_ask">(najprv sa spýtaj)</string>
   <string name="preferences__sms_outgoing_push_users_description">Pošli bezpečnú SMS pokiaľ pripojenie je nedostupné </string>
-  <string name="preferences__sms_fallback_ask_fallback">Spýtaj sa pred odoslaním SMS</string>
   <string name="preferences__sms_fallback_non_push_users">Nie-TextSecure používatelia </string>
   <string name="preferences__sms_fallback_nobody">Nikto</string>
   <!--****************************************-->
@@ -450,9 +440,7 @@ zlyhalo.
   <!--conversation_button_context-->
   <string name="conversation_button_context__send_textsecure_message">Pošli TextSecure správu </string>
   <string name="conversation_button_context__send_secure_sms">Pošli šifrovanú SMS</string>
-  <string name="conversation_button_context__send_insecure_sms">Pošli nezašifrovanú SMS</string>
   <string name="conversation_button_context__send_secure_mms">Pošli šifrovanú MMS</string>
-  <string name="conversation_button_context__send_insecure_mms">Pošli nezašifrovanú MMS</string>
   <!--conversation_callable-->
   <string name="conversation_callable__menu_call">Volaj</string>
   <!--conversation_context-->
@@ -463,7 +451,7 @@ zlyhalo.
   <string name="conversation_context__menu_resend_message">Prepošli správu</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Uložiť prílohu </string>
-  <!--conversation_insecure-->
+  <!--conversation_insecure_no_push-->
   <string name="conversation_insecure__menu_start_secure_session">Začni bezpečnú reláciu</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Odstrániť označené</string>
@@ -478,8 +466,8 @@ zlyhalo.
   <string name="conversation__menu_add_attachment">Pridaj prílohu</string>
   <string name="conversation__menu_update_group">Aktualizuj skupinu</string>
   <string name="conversation__menu_leave_group">Opusti skupinu</string>
-  <string name="conversation__menu_add_contact_info">Pridaj kontaktné informácie</string>
   <string name="conversation__menu_delete_thread">Zmaž vlákno</string>
+  <!--conversation_callable-->
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Zoznam príjemcov</string>
   <string name="conversation_group_options__delivery">Doručenie</string>

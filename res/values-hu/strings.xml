@@ -7,7 +7,6 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Jelenleg: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Még nem állítottad be a jelszavadat!</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">üzenet beszélgetésenként</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Minden régi üzenet törlése?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Biztosan szeretnéd azonnal csonkolni az összes beszélgetésfolyamot a legutóbbi %s üzenetre?</string>
   <string name="ApplicationPreferencesActivity_delete">Törlés</string>
@@ -30,6 +29,8 @@ A telefonod újra regisztrálása szükséges az azonnali üzenetek jövőbeli h
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Érintsd meg az alapértelmezett SMS alkalmazás megváltoztatásához</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Bejövő SMS tiltva</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Érintsd meg a TextSecure alapértelmezett SMS alkalmzássá tételéhez</string>
+  <!--AppProtectionPreferenceFragment-->
+  <!--DraftDatabase-->
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nem található alkalmazás a média kiválasztásához</string>
   <!--AttachmentTypeSelectorAdapter-->
@@ -47,12 +48,10 @@ A telefonod újra regisztrálása szükséges az azonnali üzenetek jövőbeli h
   <string name="ConversationItem_group_action_left">%1$s elhagyta a csoportot.</string>
   <string name="ConversationItem_click_to_approve_sms">Koppints az SMS tartalék mód aktiválásához</string>
   <string name="ConversationItem_click_to_approve_mms">Koppints az MMS tartalék mód aktiválásához</string>
-  <string name="ConversationItem_click_to_approve_unencrypted">Koppints a nem biztonságos tartalék módhoz</string>
   <string name="ConversationItem_click_to_approve_sms_dialog_title">Legyen tartalék mód az SMS?</string>
   <string name="ConversationItem_click_to_approve_mms_dialog_title">Legyen tartalék mód az MMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Legyen tartalék mód a nem biztonságos SMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Legyen tartalék mód a nem biztonságos MMS?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ez az üzenet <b>nem lesz titkosítva</b> mert nem lehetséges a biztonságos kapcsolat létrehozása.\n\nKüldesz nem biztonságos üzenetet?</string>
   <string name="ConversationItem_unable_to_open_media">Nem található alkalmazás ennek a médiafájlnak a kinyitásához</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Biztonságos üzenetváltás indítása?</string>
@@ -65,8 +64,6 @@ A telefonod újra regisztrálása szükséges az azonnali üzenetek jövőbeli h
   <string name="ConversationActivity_select_contact_info">Válassz névjegy adatot!</string>
   <string name="ConversationActivity_compose_message">Üzenetírás</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Sajnos nem sikerült a melléklet csatolása.</string>
-  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Sajnos a megadott videó meghaladja a megengedett legnagyobb üzenet mérethatárát.</string>
-  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Sajnos a megadott hangállomány meghaladja a megengedett legnagyobb üzenet mérethatárát.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">A fogadó címe nem érvényes SMS vagy email cím!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Az üzenet üres!</string>
   <string name="ConversationActivity_group_conversation_recipients">Csoportos beszélgetés fogadói</string>
@@ -80,6 +77,7 @@ A telefonod újra regisztrálása szükséges az azonnali üzenetek jövőbeli h
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Úgy tűnik ez az eszköz nem támogatja a tárcsázási műveleteket.</string>
   <string name="ConversationActivity_leave_group">Elhagyod a csoportot?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Biztosan el akarod hagyni ezt a csoportot?</string>
+  <string name="ConversationActivity_transport_textsecure">TextSecure ikon</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Üzenet részletei</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Átviteli mód: %1$s\nKüldött/fogadott: %2$s</string>
@@ -298,6 +296,8 @@ Ismeretlen azonosító kulcsú üzenet érkezett. Kattints rá a feldolgozáshoz
   <string name="MessageDisplayHelper_bad_encrypted_message">Rosszul rejtjelezett üzenet...</string>
   <string name="MessageDisplayHelper_decrypting_please_wait">Dekódolás, várj kérlek...</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Az üzenet titkosításra került egy nem létező üzenetváltáshoz.</string>
+  <!--EncryptingSmsDatabase-->
+  <!--ThreadDatabase-->
   <!--MmsDatabase-->
   <string name="MmsDatabase_connecting_to_mms_server">Kapcsolódás az MMS szerverhez...</string>
   <string name="MmsDatabase_downloading_mms">MMS letöltése...</string>
@@ -351,9 +351,7 @@ Ismeretlen azonosító kulcsú üzenet érkezett. Kattints rá a feldolgozáshoz
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">TextSecure üzenet küldése</string>
   <string name="conversation_activity__type_message_sms_secure">Biztonságos SMS küldése</string>
-  <string name="conversation_activity__type_message_sms_insecure">Nem biztonságos SMS küldése</string>
   <string name="conversation_activity__type_message_mms_secure">Biztonságos MMS küldése</string>
-  <string name="conversation_activity__type_message_mms_insecure">Nem biztonságos MMS küldése</string>
   <string name="conversation_activity__send">Küldés</string>
   <string name="conversation_activity__remove">Törlés</string>
   <string name="conversation_activity__window_description">Beszélgetés vele: %1$s</string>
@@ -407,8 +405,8 @@ Egy korábbi exportált titkosított TextSecure biztonsági mentés visszaállí
   <string name="import_fragment__import_plaintext_backup">Titkosítatlan biztonsági mentés importálása</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Egy titkosítatlan biztonsági mentés fájl importálása. \"SMS biztonsági mentés és visszaállítás\" kompatibilis.</string>
-  <!--mms_preferences_activity-->
-  <string name="mms_preferences_activity__manual_mms_settings_are_required">Az MMS beállítások kézi megadása szükséges a telefonodon.</string>
+  <!--MmsPreferencesFragment-->
+  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Az MMS beállítások kézi megadása szükséges a telefonodon.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Zárás feloldása.</string>
   <!--prompt_mms_activity-->
@@ -514,6 +512,7 @@ sikertelen.
   <string name="arrays__import_export">Importálás / Exportálás</string>
   <string name="arrays__my_identity_key">Saját azonosító kulcs</string>
   <!--preferences.xml-->
+  <string name="preferences__general">Általános</string>
   <string name="preferences__push_sms_category">Azonnali és SMS üzenet</string>
   <string name="preferences__pref_all_sms_title">Minden SMS fogadása</string>
   <string name="preferences__pref_all_mms_title">Minden MMS fogadása</string>
@@ -530,8 +529,6 @@ sikertelen.
   <string name="preferences__change_passphrase">Jelszó megváltoztatása</string>
   <string name="preferences__change_my_passphrase">A saját jelszó megváltoztatása</string>
   <string name="preferences__complete_key_exchanges">Teljes kulcs-csere</string>
-  <string name="preferences__disable_passphrase">Jelszó tiltása</string>
-  <string name="preferences__disable_local_encryption_of_messages_and_keys">Üzenetek és kulcsok helyi titkosításának tiltása</string>
   <string name="preferences__screen_security">Képernyő biztonság</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Automatikus teljes kulcs-csere új üzenetváltások esetén vagy létező üzenetváltások esetén ugyanazzal az azonosító kulccsal.</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">A képernyőkép mentés tiltása a korábbi listákban és az alkalmazáson belül</string>
@@ -569,9 +566,6 @@ sikertelen.
   <string name="preferences__slow">Lassú</string>
   <string name="preferences__custom">Egyéni</string>
   <string name="preferences__advanced">Haladó</string>
-  <string name="preferences__passphrase">Jelszó</string>
-  <string name="preferences__advanced_mms_access_point_names">MMS beállítások</string>
-  <string name="preferences__enable_manual_mms">Manuális MMS engedélyezése</string>
   <string name="preferences__override_system_mms_settings">A rendszer MMS beállítások felülírása az alábbi információkkal.</string>
   <string name="preferences__mmsc_url_required">MMSC URL (szükséges)</string>
   <string name="preferences__mms_proxy_host_optional">MMS Proxy Host (választható)</string>
@@ -580,12 +574,9 @@ sikertelen.
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Kézbesítési jelentés kérése minden elküldött SMS esetén</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Régebbi üzenetek automatikus törlése, amikor egy beszélgetésfolyam túllép egy megadott hosszt</string>
   <string name="preferences__delete_old_messages">Régi üzenetek törlése</string>
-  <string name="preferences__storage">Tárolás</string>
   <string name="preferences__conversation_length_limit">Beszélgetés hosszának behatárolása</string>
   <string name="preferences__trim_all_threads_now">Minden beszélgetésfolyam csonkolása</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Minden beszélgetésfolyam átnézése és a beszélgetés határoló hossz érvényre juttatása</string>
-  <string name="preferences__light_theme">Világos téma</string>
-  <string name="preferences__dark_theme">Sötét téma</string>
   <string name="preferences__appearance">Megjelenés</string>
   <string name="preferences__theme">Téma</string>
   <string name="preferences__default">Alapértelmezett</string>
@@ -596,12 +587,9 @@ sikertelen.
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
 Növeld a biztonságodat és kerüld el az SMS díjak fizetését azzal, hogy adat csatornát használsz más TextSecure felhasználókkal való kommunikációhoz.
  </string>
-  <string name="preferences__allow_sms_fallback">Kimenő SMS engedélyezése...</string>
   <string name="preferences__submit_debug_log">Hibakeresési napló küldése</string>
   <string name="preferences__sms_outgoing_push_users">TextSecure felhasználók</string>
-  <string name="preferences__sms_fallback_push_users_ask">(először kérdezzen meg)</string>
   <string name="preferences__sms_outgoing_push_users_description">Biztonságos SMS küldése, ha a kapcsolat megszakad</string>
-  <string name="preferences__sms_fallback_ask_fallback">SMS küldése előtt rákérdezés</string>
   <string name="preferences__sms_fallback_non_push_users">Nem TextSecure felhasználók</string>
   <string name="preferences__sms_fallback_nobody">Senki</string>
   <!--****************************************-->
@@ -620,9 +608,7 @@ Növeld a biztonságodat és kerüld el az SMS díjak fizetését azzal, hogy ad
   <!--conversation_button_context-->
   <string name="conversation_button_context__send_textsecure_message">TextSecure üzenet küldése</string>
   <string name="conversation_button_context__send_secure_sms">Biztonságos SMS küldése</string>
-  <string name="conversation_button_context__send_insecure_sms">Nem biztonságos SMS küldése</string>
   <string name="conversation_button_context__send_secure_mms">Biztonságos MMS küldése</string>
-  <string name="conversation_button_context__send_insecure_mms">Nem biztonságos MMS küldése</string>
   <!--conversation_callable-->
   <string name="conversation_callable__menu_call">Hívás</string>
   <!--conversation_context-->
@@ -633,7 +619,7 @@ Növeld a biztonságodat és kerüld el az SMS díjak fizetését azzal, hogy ad
   <string name="conversation_context__menu_resend_message">Üzenet újraküldése</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Melléklet mentése</string>
-  <!--conversation_insecure-->
+  <!--conversation_insecure_no_push-->
   <string name="conversation_insecure__menu_start_secure_session">Biztonságos üzenetváltás indítása</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">A kijelölt elemek törlése</string>
@@ -648,8 +634,8 @@ Növeld a biztonságodat és kerüld el az SMS díjak fizetését azzal, hogy ad
   <string name="conversation__menu_add_attachment">Melléklet hozzáadása</string>
   <string name="conversation__menu_update_group">Csoport frissítése</string>
   <string name="conversation__menu_leave_group">Csoport elhagyása</string>
-  <string name="conversation__menu_add_contact_info">Névjegy adat hozzáadása</string>
   <string name="conversation__menu_delete_thread">Beszélgetésfolyam törlése</string>
+  <!--conversation_callable-->
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Címzettek listája</string>
   <string name="conversation_group_options__delivery">Kézbesítés</string>
