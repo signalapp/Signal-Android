@@ -73,17 +73,13 @@ public class RecipientProvider {
     else                  details = getRecipientDetails(context, number);
 
     if (details != null) {
-      recipient = new Recipient(details.name, details.number, recipientId, details.contactUri, details.avatar,
-                                details.croppedAvatar);
+      recipient = new Recipient(details.name, details.number, recipientId, details.contactUri, details.avatar);
     } else {
       final Bitmap defaultPhoto        = isGroupRecipient
                                            ? ContactPhotoFactory.getDefaultGroupPhoto(context)
                                            : ContactPhotoFactory.getDefaultContactPhoto(context);
-      final Bitmap defaultCroppedPhoto = isGroupRecipient
-                                           ? ContactPhotoFactory.getDefaultGroupPhotoCropped(context)
-                                           : ContactPhotoFactory.getDefaultContactPhotoCropped(context);
 
-      recipient = new Recipient(null, number, recipientId, null, defaultPhoto, defaultCroppedPhoto);
+      recipient = new Recipient(null, number, recipientId, null, defaultPhoto);
     }
 
     recipientCache.put(recipientId, recipient);
@@ -109,17 +105,14 @@ public class RecipientProvider {
     asyncRecipientResolver.submit(future);
 
     Bitmap contactPhoto;
-    Bitmap contactPhotoCropped;
 
     if (isGroupRecipient) {
       contactPhoto        = ContactPhotoFactory.getDefaultGroupPhoto(context);
-      contactPhotoCropped = ContactPhotoFactory.getDefaultGroupPhotoCropped(context);
     } else {
       contactPhoto        = ContactPhotoFactory.getDefaultContactPhoto(context);
-      contactPhotoCropped = ContactPhotoFactory.getDefaultContactPhotoCropped(context);
     }
 
-    Recipient recipient = new Recipient(number, contactPhoto, contactPhotoCropped, recipientId, future);
+    Recipient recipient = new Recipient(number, contactPhoto, recipientId, future);
     recipientCache.put(recipientId, recipient);
 
     return recipient;
@@ -144,8 +137,7 @@ public class RecipientProvider {
         Uri contactUri      = Contacts.getLookupUri(cursor.getLong(2), cursor.getString(1));
         Bitmap contactPhoto = ContactPhotoFactory.getContactPhoto(context, Uri.withAppendedPath(Contacts.CONTENT_URI,
                                                                                                 cursor.getLong(2)+""));
-        return new RecipientDetails(cursor.getString(0), cursor.getString(3), contactUri, contactPhoto,
-                                    BitmapUtil.getCircleCroppedBitmap(contactPhoto));
+        return new RecipientDetails(cursor.getString(0), cursor.getString(3), contactUri, contactPhoto);
       }
     } finally {
       if (cursor != null)
@@ -167,7 +159,7 @@ public class RecipientProvider {
         if (avatarBytes == null) avatar = ContactPhotoFactory.getDefaultGroupPhoto(context);
         else                     avatar = BitmapFactory.decodeByteArray(avatarBytes, 0, avatarBytes.length);
 
-        return new RecipientDetails(record.getTitle(), groupId, null, avatar, BitmapUtil.getCircleCroppedBitmap(avatar));
+        return new RecipientDetails(record.getTitle(), groupId, null, avatar);
       }
 
       return null;
@@ -181,14 +173,12 @@ public class RecipientProvider {
     public final String name;
     public final String number;
     public final Bitmap avatar;
-    public final Bitmap croppedAvatar;
     public final Uri    contactUri;
 
-    public RecipientDetails(String name, String number, Uri contactUri, Bitmap avatar, Bitmap croppedAvatar) {
+    public RecipientDetails(String name, String number, Uri contactUri, Bitmap avatar) {
       this.name          = name;
       this.number        = number;
       this.avatar        = avatar;
-      this.croppedAvatar = croppedAvatar;
       this.contactUri    = contactUri;
     }
   }

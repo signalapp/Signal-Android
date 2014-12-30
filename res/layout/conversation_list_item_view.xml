@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <org.thoughtcrime.securesms.ConversationListItem
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -15,11 +16,12 @@
                  android:paddingRight="10dp"
                  android:visibility="visible">
 
-        <org.thoughtcrime.securesms.components.ForegroundImageView
+        <com.makeramen.RoundedImageView
             android:id="@+id/contact_photo_image"
             android:foreground="@drawable/contact_photo_background"
             android:layout_width="60dp"
             android:layout_height="60dp"
+            app:riv_oval="true"
             android:cropToPadding="true"
             android:scaleType="centerCrop"
             android:visibility="gone"

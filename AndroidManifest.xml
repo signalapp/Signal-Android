@@ -212,6 +212,8 @@
               android:theme="@android:style/Theme.Translucent.NoTitleBar"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
+    <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
+
     <service android:enabled="true" android:name=".service.ApplicationMigrationService"/>
     <service android:enabled="true" android:name=".service.KeyCachingService"/>
     <service android:enabled="true" android:name=".service.RegistrationService"/>

@@ -30,12 +30,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.FilterQueryProvider;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.BitmapWorkerRunnable;
 import org.thoughtcrime.securesms.util.BitmapWorkerRunnable.AsyncDrawable;
 import org.thoughtcrime.securesms.util.TaggedFutureTask;
@@ -76,10 +74,9 @@ public class ContactSelectionListAdapter extends    CursorAdapter
   private final LayoutInflater li;
   private final TypedArray     drawables;
   private final Bitmap         defaultPhoto;
-  private final Bitmap         defaultCroppedPhoto;
   private final int            scaledPhotoSize;
 
-  private final HashMap<Long, ContactAccessor.ContactData> selectedContacts = new HashMap<Long, ContactAccessor.ContactData>();
+  private final HashMap<Long, ContactAccessor.ContactData> selectedContacts = new HashMap<>();
 
   public ContactSelectionListAdapter(Context context, Cursor cursor, boolean multiSelect) {
     super(context, cursor, 0);
@@ -89,7 +86,6 @@ public class ContactSelectionListAdapter extends    CursorAdapter
     this.multiSelect         = multiSelect;
     this.defaultPhoto        = ContactPhotoFactory.getDefaultContactPhoto(context);
     this.scaledPhotoSize     = context.getResources().getDimensionPixelSize(R.dimen.contact_selection_photo_size);
-    this.defaultCroppedPhoto = BitmapUtil.getScaledCircleCroppedBitmap(defaultPhoto, scaledPhotoSize);
   }
 
   public static class ViewHolder {
@@ -184,7 +180,7 @@ public class ContactSelectionListAdapter extends    CursorAdapter
       numberLabelSpan.setSpan(new ForegroundColorSpan(drawables.getColor(2, 0xff444444)), contactData.number.length(), numberWithLabel.length(), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
       holder.number.setText(numberLabelSpan);
     }
-    holder.contactPhoto.setImageBitmap(defaultCroppedPhoto);
+    holder.contactPhoto.setImageBitmap(defaultPhoto);
     if (contactData.id > -1) loadBitmap(contactData.number, holder.contactPhoto);
   }
 
@@ -237,7 +233,7 @@ public class ContactSelectionListAdapter extends    CursorAdapter
     if (cancelPotentialWork(number, imageView)) {
       final BitmapWorkerRunnable runnable = new BitmapWorkerRunnable(context, imageView, defaultPhoto, number, scaledPhotoSize);
       final TaggedFutureTask<?> task      = new TaggedFutureTask<Void>(runnable, null, number);
-      final AsyncDrawable asyncDrawable   = new AsyncDrawable(context.getResources(), defaultCroppedPhoto, task);
+      final AsyncDrawable asyncDrawable   = new AsyncDrawable(defaultPhoto, task);
 
       imageView.setImageDrawable(asyncDrawable);
       if (!task.isCancelled()) photoResolver.execute(new FutureTask<Void>(task, null));

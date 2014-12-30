@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <org.thoughtcrime.securesms.ConversationItem android:id="@+id/conversation_item"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:paddingRight="10dip"
-    android:orientation="vertical"
-    android:background="?conversation_item_background"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+                                             android:layout_width="fill_parent"
+                                             android:layout_height="wrap_content"
+                                             android:paddingRight="10dip"
+                                             android:orientation="vertical"
+                                             android:background="?conversation_item_background"
+                                             xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView android:id="@+id/group_message_status"
         android:layout_width="wrap_content"
@@ -26,11 +27,12 @@
         android:layout_marginRight="0dp"
         android:orientation="horizontal">
 
-        <org.thoughtcrime.securesms.components.ForegroundImageView
+        <com.makeramen.RoundedImageView
             android:id="@+id/contact_photo"
             android:foreground="@drawable/contact_photo_background"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            app:riv_oval="true"
             android:layout_marginRight="10dp"
             android:layout_alignParentLeft="true"
             android:cropToPadding="true"

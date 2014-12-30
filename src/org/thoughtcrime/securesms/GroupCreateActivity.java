@@ -40,6 +40,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.protobuf.ByteString;
+import com.soundcloud.android.crop.Crop;
 
 import org.thoughtcrime.securesms.components.PushRecipientsPanel;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
@@ -68,6 +69,7 @@ import org.thoughtcrime.securesms.database.NotInDirectoryException;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -282,9 +284,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
     avatar.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Intent photoPickerIntent = new Intent(Intent.ACTION_GET_CONTENT, null);
-        photoPickerIntent.setType("image/*");
-        startActivityForResult(photoPickerIntent, PICK_AVATAR);
+        Crop.pickImage(GroupCreateActivity.this);
       }
     });
 
@@ -373,6 +373,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
   @Override
   public void onActivityResult(int reqCode, int resultCode, Intent data) {
     super.onActivityResult(reqCode, resultCode, data);
+    Uri outputFile = Uri.fromFile(new File(getCacheDir(), "cropped"));
 
     if (data == null || resultCode != Activity.RESULT_OK)
       return;
@@ -398,9 +399,11 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
         syncAdapterWithSelectedContacts();
         break;
 
-      case PICK_AVATAR:
-        new DecodeCropAndSetAsyncTask(data.getData()).execute();
+      case Crop.REQUEST_PICK:
+        new Crop(data.getData()).output(outputFile).asSquare().start(this);
         break;
+      case Crop.REQUEST_CROP:
+        new DecodeCropAndSetAsyncTask(Crop.getOutput(data)).execute();
     }
   }
 
@@ -510,7 +513,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
     protected Bitmap doInBackground(Void... voids) {
       if (avatarUri != null) {
         try {
-          avatarBmp = BitmapUtil.getScaledCircleCroppedBitmap(GroupCreateActivity.this, masterSecret, avatarUri, AVATAR_SIZE);
+          avatarBmp = BitmapUtil.createScaledBitmap(GroupCreateActivity.this, masterSecret, avatarUri, AVATAR_SIZE, AVATAR_SIZE);
         } catch (IOException | BitmapDecodingException e) {
           Log.w(TAG, e);
           return null;
@@ -683,8 +686,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
         existingTitle = group.getTitle();
         final byte[] existingAvatar = group.getAvatar();
         if (existingAvatar != null) {
-          existingAvatarBmp = BitmapUtil.getCircleCroppedBitmap(
-              BitmapFactory.decodeByteArray(existingAvatar, 0, existingAvatar.length));
+          existingAvatarBmp = BitmapFactory.decodeByteArray(existingAvatar, 0, existingAvatar.length);
         }
       }
       return null;

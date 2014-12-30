@@ -25,6 +25,8 @@ import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.widget.ImageView;
 
+import com.makeramen.RoundedDrawable;
+
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
@@ -48,7 +50,7 @@ public class BitmapWorkerRunnable implements Runnable {
   public final  String                   number;
 
   public BitmapWorkerRunnable(Context context, ImageView imageView, Bitmap defaultPhoto, String number, int size) {
-    this.imageViewReference = new WeakReference<ImageView>(imageView);
+    this.imageViewReference = new WeakReference<>(imageView);
     this.context = context;
     this.defaultPhoto = defaultPhoto;
     this.size = size;
@@ -57,42 +59,36 @@ public class BitmapWorkerRunnable implements Runnable {
 
   @Override
   public void run() {
-    final Bitmap bitmap;
     try {
       final Recipient recipient = RecipientFactory.getRecipientsFromString(context, number, false).getPrimaryRecipient();
       final Bitmap contactPhoto = recipient.getContactPhoto();
       if (defaultPhoto == contactPhoto) {
         return;
       }
+      if (recipient.getContactPhoto() != null) {
+        final ImageView imageView                  = imageViewReference.get();
+        final TaggedFutureTask<?> bitmapWorkerTask = AsyncDrawable.getBitmapWorkerTask(imageView);
 
-      bitmap = BitmapUtil.getScaledCircleCroppedBitmap(contactPhoto, size);
+        if (bitmapWorkerTask.getTag().equals(number) && imageView != null) {
+          final BitmapDrawable drawable = new BitmapDrawable(context.getResources(), recipient.getContactPhoto());
+          imageView.post(new Runnable() {
+            @Override
+            public void run() {
+              imageView.setImageDrawable(drawable);
+            }
+          });
+        }
+      }
     } catch (RecipientFormattingException rfe) {
       Log.w(TAG, "Couldn't get recipient from string", rfe);
-      return;
-    }
-
-    if (bitmap != null) {
-      final ImageView imageView                  = imageViewReference.get();
-      final TaggedFutureTask<?> bitmapWorkerTask = AsyncDrawable.getBitmapWorkerTask(imageView);
-
-      if (bitmapWorkerTask.getTag().equals(number) && imageView != null) {
-        final BitmapDrawable drawable = new BitmapDrawable(context.getResources(), bitmap);
-        imageView.post(new Runnable() {
-          @Override
-          public void run() {
-            imageView.setImageDrawable(drawable);
-          }
-        });
-      }
     }
   }
 
-  public static class AsyncDrawable extends BitmapDrawable {
+  public static class AsyncDrawable extends RoundedDrawable {
     private final WeakReference<TaggedFutureTask<?>> bitmapWorkerTaskReference;
 
-    public AsyncDrawable(Resources res, Bitmap bitmap,
-                         TaggedFutureTask<?> bitmapWorkerTask) {
-      super(res, bitmap);
+    public AsyncDrawable(Bitmap bitmap, TaggedFutureTask<?> bitmapWorkerTask) {
+      super(bitmap);
       bitmapWorkerTaskReference =
           new WeakReference<TaggedFutureTask<?>>(bitmapWorkerTask);
     }
@@ -112,5 +108,4 @@ public class BitmapWorkerRunnable implements Runnable {
       return null;
     }
   }
-
 }

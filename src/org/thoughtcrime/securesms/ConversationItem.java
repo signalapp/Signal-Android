@@ -439,7 +439,7 @@ public class ConversationItem extends LinearLayout {
     if ((recipient.getContactPhoto() == ContactPhotoFactory.getDefaultContactPhoto(context)) && (groupThread)) {
       contactPhotoBitmap = recipient.getGeneratedAvatar(context);
     } else {
-      contactPhotoBitmap = recipient.getCircleCroppedContactPhoto();
+      contactPhotoBitmap = recipient.getContactPhoto();
     }
 
     contactPhoto.setImageBitmap(contactPhotoBitmap);

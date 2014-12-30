@@ -590,10 +590,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     } else if (isGroupConversation()) {
       if (isPushGroupConversation()) {
         final String groupName = recipient.getName();
-        final Bitmap avatar    = recipient.getContactPhoto();
-        if (avatar != null) {
-          getSupportActionBar().setIcon(new BitmapDrawable(getResources(), BitmapUtil.getCircleCroppedBitmap(avatar)));
-        }
 
         title    = (!TextUtils.isEmpty(groupName)) ? groupName : getString(R.string.ConversationActivity_unnamed_group);
         subtitle = null;

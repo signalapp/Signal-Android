@@ -41,16 +41,14 @@ public class Recipient {
   private String name;
 
   private Bitmap contactPhoto;
-  private Bitmap circleCroppedContactPhoto;
   private Bitmap generatedAvatar;
 
   private Uri    contactUri;
 
-  Recipient(String number, Bitmap contactPhoto, Bitmap circleCroppedContactPhoto,
+  Recipient(String number, Bitmap contactPhoto,
             long recipientId, ListenableFutureTask<RecipientDetails> future)
   {
     this.number                     = number;
-    this.circleCroppedContactPhoto  = circleCroppedContactPhoto;
     this.contactPhoto               = contactPhoto;
     this.recipientId                = recipientId;
     this.generatedAvatar            = null;
@@ -66,8 +64,7 @@ public class Recipient {
             Recipient.this.number                    = result.number;
             Recipient.this.contactUri                = result.contactUri;
             Recipient.this.contactPhoto              = result.avatar;
-            Recipient.this.circleCroppedContactPhoto = result.croppedAvatar;
-            
+
             localListeners                           = (HashSet<RecipientModifiedListener>) listeners.clone();
             listeners.clear();
           }
@@ -84,15 +81,12 @@ public class Recipient {
     });
   }
 
-  Recipient(String name, String number, long recipientId, Uri contactUri, Bitmap contactPhoto,
-            Bitmap circleCroppedContactPhoto)
-  {
+  Recipient(String name, String number, long recipientId, Uri contactUri, Bitmap contactPhoto) {
     this.number                     = number;
     this.recipientId                = recipientId;
     this.contactUri                 = contactUri;
     this.name                       = name;
     this.contactPhoto               = contactPhoto;
-    this.circleCroppedContactPhoto  = circleCroppedContactPhoto;
   }
 
   public synchronized Uri getContactUri() {
@@ -153,10 +147,6 @@ public class Recipient {
     return contactPhoto;
   }
 
-  public synchronized Bitmap getCircleCroppedContactPhoto() {
-    return this.circleCroppedContactPhoto;
-  }
-
   public synchronized Bitmap getGeneratedAvatar(Context context) {
     if (this.generatedAvatar == null)
       this.generatedAvatar = AvatarGenerator.generateFor(context, this);
@@ -166,8 +156,7 @@ public class Recipient {
 
   public static Recipient getUnknownRecipient(Context context) {
     return new Recipient("Unknown", "Unknown", -1, null,
-                         ContactPhotoFactory.getDefaultContactPhoto(context),
-                         ContactPhotoFactory.getDefaultContactPhotoCropped(context));
+                         ContactPhotoFactory.getDefaultContactPhoto(context));
   }
 
   @Override
