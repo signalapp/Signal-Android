@@ -153,7 +153,16 @@ public class Exif {
 
     private static boolean read(InputStream is, byte[] buf, int length) {
         try {
-            return is.read(buf, 0, length) == length;
+            int read;
+            int totalRead = 0;
+            while (totalRead != length) {
+                if ((read = is.read(buf, totalRead, length - totalRead)) < 0) {
+                  Log.w(TAG, "stream EOF'd prematurely");
+                  return false;
+                }
+                totalRead += read;
+            }
+          return true;
         } catch (IOException ex) {
             return false;
         }

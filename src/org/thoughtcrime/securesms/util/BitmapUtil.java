@@ -68,7 +68,15 @@ public class BitmapUtil {
   public static Bitmap createScaledBitmap(Context context, MasterSecret masterSecret, Uri uri, int maxWidth, int maxHeight)
       throws BitmapDecodingException, FileNotFoundException
   {
-    return createScaledBitmap(context, masterSecret, uri, maxWidth, maxHeight, false);
+    Bitmap bitmap;
+    try {
+      bitmap = createScaledBitmap(context, masterSecret, uri, maxWidth, maxHeight, false);
+    } catch(OutOfMemoryError oome) {
+      Log.w(TAG, "OutOfMemoryError when scaling precisely, doing rough scale to save memory instead");
+      bitmap = createScaledBitmap(context, masterSecret, uri, maxWidth, maxHeight, true);
+    }
+
+    return bitmap;
   }
 
   private static Bitmap createScaledBitmap(Context context, MasterSecret masterSecret, Uri uri, int maxWidth, int maxHeight, boolean constrainedMemory)
