@@ -1,11 +1,15 @@
 package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.recipients.Recipients;
 
+import java.util.Map;
+
 import ws.com.google.android.mms.pdu.PduBody;
+import ws.com.google.android.mms.pdu.PduPart;
 
 public class OutgoingMediaMessage {
 

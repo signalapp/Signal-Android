@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 
 import org.thoughtcrime.securesms.dom.smil.parser.SmilXmlSerializer;
 import org.thoughtcrime.securesms.util.SmilUtil;
@@ -24,8 +25,10 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 
 import java.io.ByteArrayOutputStream;
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import ws.com.google.android.mms.ContentType;
 import ws.com.google.android.mms.pdu.CharacterSets;

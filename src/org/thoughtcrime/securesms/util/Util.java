@@ -32,6 +32,8 @@ import android.text.TextUtils;
 import android.text.style.StyleSpan;
 import android.widget.EditText;
 
+import com.google.common.util.concurrent.SettableFuture;
+
 import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
 
@@ -47,6 +49,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 

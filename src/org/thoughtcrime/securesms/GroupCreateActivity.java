@@ -511,7 +511,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
       if (avatarUri != null) {
         try {
           avatarBmp = BitmapUtil.getScaledCircleCroppedBitmap(GroupCreateActivity.this, masterSecret, avatarUri, AVATAR_SIZE);
-        } catch (FileNotFoundException | BitmapDecodingException e) {
+        } catch (IOException | BitmapDecodingException e) {
           Log.w(TAG, e);
           return null;
         }
