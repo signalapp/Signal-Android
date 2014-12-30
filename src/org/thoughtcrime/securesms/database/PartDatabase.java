@@ -22,17 +22,20 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Pair;
 
-import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.DecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.EncryptingPartOutputStream;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.jobs.ThumbnailGenerateJob;
 import org.thoughtcrime.securesms.mms.PartAuthority;
+import org.thoughtcrime.securesms.util.BitmapDecodingException;
+import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.MediaUtil.ThumbnailData;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.VisibleForTesting;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -42,6 +45,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
 
 import ws.com.google.android.mms.ContentType;
 import ws.com.google.android.mms.MmsException;
@@ -85,6 +91,8 @@ public class PartDatabase extends Database {
     "CREATE INDEX IF NOT EXISTS pending_push_index ON " + TABLE_NAME + " (" + PENDING_PUSH_ATTACHMENT + ");",
   };
 
+  private final ExecutorService thumbnailExecutor = Util.newSingleThreadedLifoExecutor();
+
   public PartDatabase(Context context, SQLiteOpenHelper databaseHelper) {
     super(context, databaseHelper);
   }
@@ -93,12 +101,6 @@ public class PartDatabase extends Database {
       throws FileNotFoundException
   {
     return getDataStream(masterSecret, partId, DATA);
-  }
-
-  public InputStream getThumbnailStream(MasterSecret masterSecret, long partId)
-      throws FileNotFoundException
-  {
-    return getDataStream(masterSecret, partId, THUMBNAIL);
   }
 
   public void updateFailedDownloadedPart(long messageId, long partId, PduPart part)
@@ -199,12 +201,16 @@ public class PartDatabase extends Database {
 
   void insertParts(MasterSecret masterSecret, long mmsId, PduBody body) throws MmsException {
     for (int i=0;i<body.getPartsNum();i++) {
-      long partId = insertPart(masterSecret, body.getPart(i), mmsId);
+      PduPart part = body.getPart(i);
+      long partId = insertPart(masterSecret, part, mmsId, part.getThumbnail());
       Log.w(TAG, "Inserted part at ID: " + partId);
     }
   }
 
   private void getPartValues(PduPart part, Cursor cursor) {
+
+    part.setId(cursor.getLong(cursor.getColumnIndexOrThrow(ID)));
+
     int charsetColumn = cursor.getColumnIndexOrThrow(CHARSET);
 
     if (!cursor.isNull(charsetColumn))
@@ -249,12 +255,6 @@ public class PartDatabase extends Database {
 
     if (!cursor.isNull(pendingPushColumn))
       part.setPendingPush(cursor.getInt(pendingPushColumn) == 1);
-
-    int thumbnailColumn = cursor.getColumnIndexOrThrow(THUMBNAIL);
-
-    if (!cursor.isNull(thumbnailColumn))
-      part.setThumbnailUri(ContentUris.withAppendedId(PartAuthority.THUMB_CONTENT_URI,
-                                                      cursor.getLong(cursor.getColumnIndexOrThrow(ID))));
 
     int sizeColumn = cursor.getColumnIndexOrThrow(SIZE);
 
@@ -320,7 +320,7 @@ public class PartDatabase extends Database {
     return new EncryptingPartOutputStream(path, masterSecret);
   }
 
-  private InputStream getDataStream(MasterSecret masterSecret, long partId, String dataType)
+  @VisibleForTesting InputStream getDataStream(MasterSecret masterSecret, long partId, String dataType)
       throws FileNotFoundException
   {
     SQLiteDatabase database = databaseHelper.getReadableDatabase();
@@ -332,7 +332,7 @@ public class PartDatabase extends Database {
 
       if (cursor != null && cursor.moveToFirst()) {
         if (cursor.isNull(0)) {
-          throw new FileNotFoundException("No part data for id: " + partId);
+          return null;
         }
 
         return getPartInputStream(masterSecret, new File(cursor.getString(0)));
@@ -374,23 +374,39 @@ public class PartDatabase extends Database {
       } else {
         throw new MmsException("Part is empty!");
       }
-    } catch (FileNotFoundException e) {
+    } catch (IOException e) {
       throw new MmsException(e);
+    }
+  }
+
+  public InputStream getThumbnailStream(final MasterSecret masterSecret, final long partId) throws IOException {
+    Log.w(TAG, "getThumbnailStream(" + partId + ")");
+    final InputStream dataStream = getDataStream(masterSecret, partId, THUMBNAIL);
+    if (dataStream != null) {
+      return dataStream;
+    }
+
+    try {
+      return thumbnailExecutor.submit(new ThumbnailFetchCallable(masterSecret, partId)).get();
+    } catch (InterruptedException ie) {
+      throw new AssertionError("interrupted");
+    } catch (ExecutionException ee) {
+      Log.w(TAG, ee);
+      throw new IOException(ee);
     }
   }
 
   private PduPart getPart(Cursor cursor) {
     PduPart part   = new PduPart();
-    long    partId = cursor.getLong(cursor.getColumnIndexOrThrow(ID));
 
     getPartValues(part, cursor);
 
-    part.setDataUri(ContentUris.withAppendedId(PartAuthority.PART_CONTENT_URI, partId));
+    part.setDataUri(ContentUris.withAppendedId(PartAuthority.PART_CONTENT_URI, part.getId()));
 
     return part;
   }
 
-  private long insertPart(MasterSecret masterSecret, PduPart part, long mmsId) throws MmsException {
+  private long insertPart(MasterSecret masterSecret, PduPart part, long mmsId, Bitmap thumbnail) throws MmsException {
     Log.w(TAG, "inserting part to mms " + mmsId);
     SQLiteDatabase   database = databaseHelper.getWritableDatabase();
     Pair<File, Long> partData = null;
@@ -410,7 +426,13 @@ public class PartDatabase extends Database {
 
     long partId = database.insert(TABLE_NAME, null, contentValues);
 
-    ApplicationContext.getInstance(context).getJobManager().add(new ThumbnailGenerateJob(context, partId));
+    if (thumbnail != null) {
+      Log.w(TAG, "inserting pre-generated thumbnail");
+      ThumbnailData data = new ThumbnailData(thumbnail);
+      updatePartThumbnail(masterSecret, partId, part, data.toDataStream(), data.getAspectRatio());
+    } else if (!part.isPendingPush()) {
+      thumbnailExecutor.submit(new ThumbnailFetchCallable(masterSecret, partId));
+    }
 
     return partId;
   }
@@ -432,9 +454,9 @@ public class PartDatabase extends Database {
       values.put(SIZE, partData.second);
     }
 
-    database.update(TABLE_NAME, values, ID_WHERE, new String[] {partId+""});
+    database.update(TABLE_NAME, values, ID_WHERE, new String[]{partId+""});
 
-    ApplicationContext.getInstance(context).getJobManager().add(new ThumbnailGenerateJob(context, partId));
+    thumbnailExecutor.submit(new ThumbnailFetchCallable(masterSecret, partId));
 
     notifyConversationListeners(DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(messageId));
   }
@@ -452,6 +474,36 @@ public class PartDatabase extends Database {
     values.put(THUMBNAIL, thumbnailFile.first.getAbsolutePath());
     values.put(ASPECT_RATIO, aspectRatio);
 
-    database.update(TABLE_NAME, values, ID_WHERE, new String[] {partId + ""});
+    database.update(TABLE_NAME, values, ID_WHERE, new String[]{partId+""});
+  }
+
+  @VisibleForTesting class ThumbnailFetchCallable implements Callable<InputStream> {
+    private final MasterSecret masterSecret;
+    private final long         partId;
+
+    public ThumbnailFetchCallable(MasterSecret masterSecret, long partId) {
+      this.masterSecret = masterSecret;
+      this.partId       = partId;
+    }
+
+    @Override
+    public InputStream call() throws Exception {
+      final InputStream stream = getDataStream(masterSecret, partId, THUMBNAIL);
+      if (stream != null) {
+        return stream;
+      }
+
+      try {
+        PduPart part = getPart(partId);
+        ThumbnailData data = MediaUtil.generateThumbnail(context, masterSecret, part.getDataUri(), Util.toIsoString(part.getContentType()));
+        if (data == null) {
+          return null;
+        }
+        updatePartThumbnail(masterSecret, partId, part, data.toDataStream(), data.getAspectRatio());
+      } catch (BitmapDecodingException bde) {
+        throw new IOException(bde);
+      }
+      return getDataStream(masterSecret, partId, THUMBNAIL);
+    }
   }
 }

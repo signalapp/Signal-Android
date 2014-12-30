@@ -17,6 +17,7 @@
 
 package ws.com.google.android.mms.pdu;
 
+import android.graphics.Bitmap;
 import android.net.Uri;
 
 import org.thoughtcrime.securesms.util.Util;
@@ -125,10 +126,11 @@ public class PduPart {
 
      private static final String TAG = "PduPart";
 
-     private Uri     thumbnailUri;
+     private long    id = -1;
      private boolean isEncrypted;
      private boolean isPendingPush;
      private long    dataSize;
+     private Bitmap  thumbnail;
      
      /**
       * Empty Constructor.
@@ -154,20 +156,12 @@ public class PduPart {
      }
 
 
-  public void setPendingPush(boolean isPendingPush) {
+     public void setPendingPush(boolean isPendingPush) {
        this.isPendingPush = isPendingPush;
      }
 
      public boolean isPendingPush() {
        return isPendingPush;
-     }
-
-     public void setThumbnailUri(Uri thumbnailUri) {
-       this.thumbnailUri = thumbnailUri;
-     }
-
-     public Uri getThumbnailUri() {
-       return this.thumbnailUri;
      }
 
      /**
@@ -439,6 +433,22 @@ public class PduPart {
         } else {
             return new String(location);
         }
+    }
+
+    public long getId() {
+      return id;
+    }
+
+    public void setId(long id) {
+      this.id = id;
+    }
+
+    public Bitmap getThumbnail() {
+      return thumbnail;
+    }
+
+    public void setThumbnail(Bitmap thumbnail) {
+      this.thumbnail = thumbnail;
     }
 }
 

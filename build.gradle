@@ -16,7 +16,7 @@ apply plugin: 'witness'
 
 repositories {
     maven {
-        url "https://repo1.maven.org/maven2"
+        url "https://repo1.maven.org/maven2/"
     }
     maven {
         url "https://raw.github.com/whispersystems/maven/master/preferencefragment/releases/"

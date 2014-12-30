@@ -32,8 +32,8 @@ import android.text.TextUtils;
 import android.text.style.StyleSpan;
 import android.widget.EditText;
 
-import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
+import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
