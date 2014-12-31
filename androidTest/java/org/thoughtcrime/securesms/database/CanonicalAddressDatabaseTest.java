@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.database;
 
 import org.thoughtcrime.securesms.TextSecureTestCase;
 
-import static org.fest.assertions.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class CanonicalAddressDatabaseTest extends TextSecureTestCase {
   private static final String AMBIGUOUS_NUMBER = "222-3333";

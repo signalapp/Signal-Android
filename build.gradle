@@ -59,9 +59,19 @@ dependencies {
     compile 'org.whispersystems:jobmanager:0.10.0'
     compile 'org.whispersystems:libpastelog:1.0.4'
 
-    androidTestCompile 'com.squareup:fest-android:1.0.8'
-    androidTestCompile 'com.google.dexmaker:dexmaker:1.1'
-    androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.1'
+    androidTestCompile 'com.google.dexmaker:dexmaker:1.2'
+    androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.2'
+
+    androidTestCompile ('org.assertj:assertj-core:1.7.1') {
+        exclude group: 'org.hamcrest', module: 'hamcrest-core'
+    }
+    androidTestCompile ('com.squareup.assertj:assertj-android:1.0.0') {
+        exclude group: 'org.hamcrest', module: 'hamcrest-core'
+    }
+    androidTestCompile ('com.android.support.test.espresso:espresso-core:2.0') {
+        exclude group: 'javax.inject'
+    }
+    androidTestCompile 'com.android.support.test:testing-support-lib:0.1'
 
     compile project(':libtextsecure')
 }
@@ -112,12 +122,20 @@ android {
         minSdkVersion 9
         targetSdkVersion 19
 
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField "long", "BUILD_TIMESTAMP", System.currentTimeMillis() + "L"
     }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+    packagingOptions {
+        exclude 'LICENSE.txt'
+        exclude 'LICENSE'
+        exclude 'NOTICE'
+        exclude 'asm-license.txt'
     }
 
     signingConfigs {

@@ -7,7 +7,8 @@ import junit.framework.AssertionFailedError;
 import org.thoughtcrime.securesms.TextSecureTestCase;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
 import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
-import static org.fest.assertions.api.Assertions.assertThat;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class PhoneNumberFormatterTest extends TextSecureTestCase {
   private static final String LOCAL_NUMBER = "+15555555555";

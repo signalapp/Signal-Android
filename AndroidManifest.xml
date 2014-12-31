@@ -329,6 +329,5 @@
             <action android:name="org.thoughtcrime.securesms.MessageNotifier.DELETE_REMINDER_ACTION"/>
         </intent-filter>
     </receiver>
-       <uses-library android:name="android.test.runner" />
 </application>
 </manifest>
