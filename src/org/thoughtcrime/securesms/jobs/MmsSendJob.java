@@ -103,6 +103,10 @@ public class MmsSendJob extends MasterSecretJob {
   }
 
   private void populatePartData(PduPart part, MasterSecret masterSecret) throws IOException {
+    if (part.getDataUri() == null) {
+      return;
+    }
+
     ByteArrayOutputStream os = part.getDataSize() > 0 && part.getDataSize() < Integer.MAX_VALUE
                              ? new ByteArrayOutputStream((int)part.getDataSize())
                              : new ByteArrayOutputStream();
