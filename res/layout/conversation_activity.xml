@@ -90,7 +90,7 @@
                         android:paddingRight="0dp"
                         android:imeOptions="actionSend|flagNoEnterAction"
                         android:inputType="textShortMessage|textAutoCorrect|textCapSentences|textMultiLine"
-                        android:maxLength="1000"
+                        android:maxLength="10000"
                         android:maxLines="4"
                         android:nextFocusRight="@+id/send_button"
                         android:contentDescription="@string/conversation_activity__compose_description"
