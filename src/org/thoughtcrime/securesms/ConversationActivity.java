@@ -746,7 +746,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         new TransportOptions.OnTransportChangedListener() {
       @Override
       public void onChange(TransportOption newTransport) {
-        sendButton.setImageResource(newTransport.drawable);
+        sendButton.setImageResource(newTransport.drawableSendButtonIcon);
         sendButton.setContentDescription(newTransport.composeHint);
       }
     });
