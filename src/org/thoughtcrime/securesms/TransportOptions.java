@@ -28,13 +28,13 @@ import java.util.Map;
 public class TransportOptions {
   private static final String TAG = TransportOptions.class.getSimpleName();
 
-  private final Context                      context;
-  private       PopupWindow                  transportPopup;
-  private final List<String>                 enabledTransports = new ArrayList<String>();
-  private final Map<String, TransportOption> transportMetadata = new HashMap<String, TransportOption>();
-  private       String                       selectedTransport;
-  private       boolean                      transportOverride = false;
-  private       OnTransportChangedListener   listener;
+  private final Context                          context;
+  private       PopupWindow                      transportPopup;
+  private final List<String>                     enabledTransports = new ArrayList<String>();
+  private final Map<String, TransportOption>     transportMetadata = new HashMap<String, TransportOption>();
+  private       String                           selectedTransport;
+  private       boolean                          transportOverride = false;
+  private       List<OnTransportChangedListener> listeners = new ArrayList<>();
 
   public TransportOptions(Context context) {
     this.context = context;
@@ -142,13 +142,13 @@ public class TransportOptions {
   private void updateViews() {
     if (selectedTransport == null) return;
 
-    if (listener != null) {
+    for (OnTransportChangedListener listener : listeners) {
       listener.onChange(getSelectedTransport());
     }
   }
 
-  public void setOnTransportChangedListener(OnTransportChangedListener listener) {
-    this.listener = listener;
+  public void addOnTransportChangedListener(OnTransportChangedListener listener) {
+    listeners.add(listener);
   }
 
   public interface OnTransportChangedListener {
