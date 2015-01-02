@@ -13,24 +13,24 @@ import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.TransportOptions;
 import org.thoughtcrime.securesms.TransportOptions.OnTransportChangedListener;
 
-public class SendButton extends ImageButton {
+public class TransportButton extends ImageButton {
   private TransportOptions transportOptions;
   private EditText         composeText;
 
   @SuppressWarnings("unused")
-  public SendButton(Context context) {
+  public TransportButton(Context context) {
     super(context);
     initialize();
   }
 
   @SuppressWarnings("unused")
-  public SendButton(Context context, AttributeSet attrs) {
+  public TransportButton(Context context, AttributeSet attrs) {
     super(context, attrs);
     initialize();
   }
 
   @SuppressWarnings("unused")
-  public SendButton(Context context, AttributeSet attrs, int defStyle) {
+  public TransportButton(Context context, AttributeSet attrs, int defStyle) {
     super(context, attrs, defStyle);
     initialize();
   }
@@ -43,17 +43,21 @@ public class SendButton extends ImageButton {
         setImageResource(newTransport.drawable);
         setContentDescription(newTransport.composeHint);
         if (composeText != null) setComposeTextHint(newTransport.composeHint);
+        // Check the number of enabled transports
+        if(transportOptions.getEnabledTransports().size() > 1){
+          setClickable(true);
+        } else {
+          setClickable(false);
+        }
       }
     });
 
-    setOnLongClickListener(new OnLongClickListener() {
+    setOnClickListener(new OnClickListener() {
       @Override
-      public boolean onLongClick(View view) {
+      public void onClick(View view) {
         if (transportOptions.getEnabledTransports().size() > 1) {
-          transportOptions.showPopup(SendButton.this);
-          return true;
+          transportOptions.showPopup(TransportButton.this);
         }
-        return false;
       }
     });
   }
@@ -68,6 +72,10 @@ public class SendButton extends ImageButton {
 
   public TransportOption getSelectedTransport() {
     return transportOptions.getSelectedTransport();
+  }
+
+  public TransportOptions getTransportOptions() {
+    return transportOptions;
   }
 
   public void initializeAvailableTransports(boolean isMediaMessage) {
