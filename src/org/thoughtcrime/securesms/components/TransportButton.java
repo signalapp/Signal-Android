@@ -40,7 +40,7 @@ public class TransportButton extends ImageButton {
     transportOptions.addOnTransportChangedListener(new OnTransportChangedListener() {
       @Override
       public void onChange(TransportOption newTransport) {
-        setImageResource(newTransport.drawable);
+        setImageResource(newTransport.drawableButtonIcon);
         setContentDescription(newTransport.composeHint);
         if (composeText != null) setComposeTextHint(newTransport.composeHint);
         // Check the number of enabled transports

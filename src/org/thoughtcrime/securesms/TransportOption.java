@@ -1,16 +1,18 @@
 package org.thoughtcrime.securesms;
 
 public class TransportOption {
-  public int    drawable;
-  public String text;
-  public String key;
-  public String composeHint;
+  public final int    drawableButtonIcon;
+  public final int    drawableSendButtonIcon;
+  public final String text;
+  public final String key;
+  public final String composeHint;
 
-  public TransportOption(String key, int drawable, String text, String composeHint) {
-    this.key         = key;
-    this.drawable    = drawable;
-    this.text        = text;
-    this.composeHint = composeHint;
+  public TransportOption(String key, int drawableButtonIcon, int drawableSendButtonIcon, String text, String composeHint) {
+    this.key                    = key;
+    this.drawableButtonIcon     = drawableButtonIcon;
+    this.drawableSendButtonIcon = drawableSendButtonIcon;
+    this.text                   = text;
+    this.composeHint            = composeHint;
   }
 
   public boolean isForcedPlaintext() {

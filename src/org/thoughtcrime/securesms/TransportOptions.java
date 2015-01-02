@@ -3,25 +3,18 @@ package org.thoughtcrime.securesms;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.BitmapDrawable;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.RelativeSizeSpan;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -81,19 +74,32 @@ public class TransportOptions {
 
     final String[] valuesArray = context.getResources().getStringArray(R.array.transport_selection_values);
 
-    final int[]        attrs             = new int[]{R.attr.conversation_transport_indicators};
-    final TypedArray   iconArray         = context.obtainStyledAttributes(attrs);
-    final int          iconArrayResource = iconArray.getResourceId(0, -1);
-    final TypedArray   icons             = context.getResources().obtainTypedArray(iconArrayResource);
+    // Normal Button Icons (Transport Button)
+    final int[]        buttonAttrs             = new int[]{R.attr.conversation_transport_button_icons};
+    final TypedArray   buttonIconArray         = context.obtainStyledAttributes(buttonAttrs);
+    final TypedArray   buttonIcons             = context.getResources().obtainTypedArray(buttonIconArray.getResourceId(0, -1));
+
+    // Send Button Icons
+    final int[]        sendButtonAttrs       = new int[]{R.attr.conversation_transport_send_button_icons};
+    final TypedArray   sendButtonIconArray   = context.obtainStyledAttributes(sendButtonAttrs);
+    final TypedArray   sendButtonIcons       = context.getResources().obtainTypedArray(sendButtonIconArray.getResourceId(0, -1));
 
     enabledTransports.clear();
     for (int i=0; i<valuesArray.length; i++) {
       String key = valuesArray[i];
       enabledTransports.add(key);
-      transportMetadata.put(key, new TransportOption(key, icons.getResourceId(i, -1), entryArray[i], composeHintArray[i]));
+      transportMetadata.put(key, new TransportOption(
+          key,
+          buttonIcons.getResourceId(i, -1),
+          sendButtonIcons.getResourceId(i, -1),
+          entryArray[i],
+          composeHintArray[i]
+          ));
     }
-    iconArray.recycle();
-    icons.recycle();
+    buttonIconArray.recycle();
+    buttonIcons.recycle();
+    sendButtonIconArray.recycle();
+    sendButtonIcons.recycle();
     updateViews();
   }
 
