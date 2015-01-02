@@ -74,7 +74,10 @@ public class EmojiDrawer extends KeyboardAwareLinearLayout {
     inflater.inflate(R.layout.emoji_drawer, this, true);
 
     initializeResources();
-    initializeEmojiGrid();
+
+    if (!this.isInEditMode()) {
+      initializeEmojiGrid();
+    }
   }
 
   private void initializeResources() {
