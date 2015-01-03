@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.RelativeSizeSpan;
@@ -12,6 +13,7 @@ import android.widget.ImageButton;
 import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.TransportOptions;
 import org.thoughtcrime.securesms.TransportOptions.OnTransportChangedListener;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 
 public class TransportButton extends ImageButtonDivet {
   private TransportOptions transportOptions;
@@ -39,10 +41,11 @@ public class TransportButton extends ImageButtonDivet {
     transportOptions = new TransportOptions(getContext());
     transportOptions.addOnTransportChangedListener(new OnTransportChangedListener() {
       @Override
-      public void onChange(TransportOption newTransport) {
+      public void onChange(TransportOption newTransport, boolean userChange) {
         setImageResource(newTransport.drawableButtonIcon);
         setContentDescription(newTransport.composeHint);
         if (composeText != null) setComposeTextHint(newTransport.composeHint);
+
         // Check the number of enabled transports
         if(transportOptions.getEnabledTransports().size() > 1){
           setClickable(true);
@@ -84,8 +87,8 @@ public class TransportButton extends ImageButtonDivet {
     transportOptions.disableTransport(transport);
   }
 
-  public void setDefaultTransport(String transport) {
-    transportOptions.setDefaultTransport(transport);
+  public void setDefaultTransport(String transport, boolean overrideIfDefaultSet) {
+    transportOptions.setDefaultTransport(transport, overrideIfDefaultSet);
   }
 
   private void setComposeTextHint(String hint) {

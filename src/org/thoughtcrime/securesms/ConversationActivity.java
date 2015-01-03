@@ -700,11 +700,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     if (!isSecureDestination) transportButton.disableTransport("secure_sms");
 
     if (isPushDestination) {
-      transportButton.setDefaultTransport("textsecure");
+      transportButton.setDefaultTransport("textsecure", false);
     } else if (isSecureDestination) {
-      transportButton.setDefaultTransport("secure_sms");
+      transportButton.setDefaultTransport("secure_sms", false);
     } else {
-      transportButton.setDefaultTransport("insecure_sms");
+      transportButton.setDefaultTransport("insecure_sms", false);
     }
 
     calculateCharactersRemaining();
@@ -740,13 +740,31 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     emojiDrawer     = (EmojiDrawer) findViewById(R.id.emoji_drawer);
     emojiToggle     = (EmojiToggle) findViewById(R.id.emoji_toggle);
 
-    // Change send button icon when transport changes
+    // Set the default transport based on database
+    new AsyncTask<Void, Void, String>() {
+      @Override
+      protected String doInBackground(Void... params) {
+        return DatabaseFactory.getThreadDatabase(ConversationActivity.this).getTransportPreference(threadId);
+      }
+
+      @Override
+      protected void onPostExecute(String currentTransportPreference) {
+        transportButton.setDefaultTransport(currentTransportPreference, true);
+      }
+    }.execute();
+
+    // Change send button icon when transport changes, and save new transport in database
     transportButton.getTransportOptions().addOnTransportChangedListener(
         new TransportOptions.OnTransportChangedListener() {
       @Override
-      public void onChange(TransportOption newTransport) {
+      public void onChange(TransportOption newTransport, boolean userChange) {
         sendButton.setImageResource(newTransport.drawableSendButtonIcon);
         sendButton.setContentDescription(newTransport.composeHint);
+        // Only save in database if a user action triggered the transport change
+        if(userChange) {
+          System.out.println("SAVING CHANGE: " + newTransport.key);
+          DatabaseFactory.getThreadDatabase(ConversationActivity.this).setTransportPreference(threadId, newTransport.key);
+        }
       }
     });
 

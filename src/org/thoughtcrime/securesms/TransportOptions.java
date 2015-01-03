@@ -51,7 +51,7 @@ public class TransportOptions {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
           transportOverride = true;
-          setTransport((TransportOption) adapter.getItem(position));
+          setTransport((TransportOption) adapter.getItem(position), true);
           transportPopup.dismiss();
         }
       });
@@ -100,16 +100,16 @@ public class TransportOptions {
     buttonIcons.recycle();
     sendButtonIconArray.recycle();
     sendButtonIcons.recycle();
-    updateViews();
+    updateViews(false);
   }
 
-  public void setTransport(String transport) {
+  public void setTransport(String transport, boolean userChange) {
     selectedTransport = transport;
-    updateViews();
+    updateViews(userChange);
   }
 
-  private void setTransport(TransportOption transport) {
-    setTransport(transport.key);
+  private void setTransport(TransportOption transport, boolean userChange) {
+    setTransport(transport.key, userChange);
   }
 
   public void showPopup(final View parent) {
@@ -127,9 +127,10 @@ public class TransportOptions {
     });
   }
 
-  public void setDefaultTransport(String transportName) {
-    if (!transportOverride) {
-      setTransport(transportName);
+  public void setDefaultTransport(String transportName, boolean overrideIfDefaultSet) {
+    System.out.println("SET DEFAULT " + transportName);
+    if (transportName != null && !transportOverride && (overrideIfDefaultSet || selectedTransport == null)) {
+      setTransport(transportName, false);
     }
   }
 
@@ -145,11 +146,11 @@ public class TransportOptions {
     return enabledTransports;
   }
 
-  private void updateViews() {
+  private void updateViews(boolean userChange) {
     if (selectedTransport == null) return;
 
     for (OnTransportChangedListener listener : listeners) {
-      listener.onChange(getSelectedTransport());
+      listener.onChange(getSelectedTransport(), userChange);
     }
   }
 
@@ -158,6 +159,6 @@ public class TransportOptions {
   }
 
   public interface OnTransportChangedListener {
-    public void onChange(TransportOption newTransport);
+    public void onChange(TransportOption newTransport, boolean userChange);
   }
 }
