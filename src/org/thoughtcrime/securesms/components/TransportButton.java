@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.TransportOptions;
 import org.thoughtcrime.securesms.TransportOptions.OnTransportChangedListener;
 
-public class TransportButton extends ImageButton {
+public class TransportButton extends ImageButtonDivet {
   private TransportOptions transportOptions;
   private EditText         composeText;
 
@@ -46,8 +46,10 @@ public class TransportButton extends ImageButton {
         // Check the number of enabled transports
         if(transportOptions.getEnabledTransports().size() > 1){
           setClickable(true);
+          setDivetPosition(1);
         } else {
           setClickable(false);
+          setDivetPosition(0);
         }
       }
     });
