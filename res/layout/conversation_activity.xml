@@ -78,7 +78,7 @@
                     android:contentDescription="@string/conversation_activity__select_transport"
                     android:nextFocusRight="@+id/embedded_text_editor"
                     android:padding="12dp"
-                    android:src="?conversation_send_button_sms_insecure"
+                    android:src="@drawable/ic_transport_sms_insecure"
                     android:clickable="false"
                     android:enabled="false" />
 
