@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.crypto.MasterCipher;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 public class DraftDatabase extends Database {
 
@@ -49,6 +50,27 @@ public class DraftDatabase extends Database {
   public void clearDrafts(long threadId) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     db.delete(TABLE_NAME, THREAD_ID + " = ?", new String[] {threadId+""});
+  }
+
+  public void clearDrafts(Set<Long> threadIds) {
+    SQLiteDatabase db   = databaseHelper.getWritableDatabase();
+    StringBuilder where = new StringBuilder();
+
+    String[] whereArgs = new String[threadIds.size()];
+    int i = 0;
+    for (long threadId : threadIds) {
+      if (i > 0) where.append(" OR ");
+      where.append(THREAD_ID).append(" = ?");
+      whereArgs[i] = threadId+"";
+      i++;
+    }
+
+    db.delete(TABLE_NAME, where.toString(), whereArgs);
+  }
+
+  public void clearAllDrafts() {
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    db.delete(TABLE_NAME, null, null);
   }
 
   public List<Draft> getDrafts(MasterCipher masterCipher, long threadId) {
