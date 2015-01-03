@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.RelativeSizeSpan;
@@ -12,48 +13,56 @@ import android.widget.ImageButton;
 import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.TransportOptions;
 import org.thoughtcrime.securesms.TransportOptions.OnTransportChangedListener;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 
-public class SendButton extends ImageButton {
+public class TransportButton extends ImageButtonDivet {
   private TransportOptions transportOptions;
   private EditText         composeText;
 
   @SuppressWarnings("unused")
-  public SendButton(Context context) {
+  public TransportButton(Context context) {
     super(context);
     initialize();
   }
 
   @SuppressWarnings("unused")
-  public SendButton(Context context, AttributeSet attrs) {
+  public TransportButton(Context context, AttributeSet attrs) {
     super(context, attrs);
     initialize();
   }
 
   @SuppressWarnings("unused")
-  public SendButton(Context context, AttributeSet attrs, int defStyle) {
+  public TransportButton(Context context, AttributeSet attrs, int defStyle) {
     super(context, attrs, defStyle);
     initialize();
   }
 
   private void initialize() {
     transportOptions = new TransportOptions(getContext());
-    transportOptions.setOnTransportChangedListener(new OnTransportChangedListener() {
+    transportOptions.addOnTransportChangedListener(new OnTransportChangedListener() {
       @Override
-      public void onChange(TransportOption newTransport) {
-        setImageResource(newTransport.drawable);
+      public void onChange(TransportOption newTransport, boolean userChange) {
+        setImageResource(newTransport.drawableButtonIcon);
         setContentDescription(newTransport.composeHint);
         if (composeText != null) setComposeTextHint(newTransport.composeHint);
+
+        // Check the number of enabled transports
+        if(transportOptions.getEnabledTransports().size() > 1){
+          setClickable(true);
+          setDivetPosition(1);
+        } else {
+          setClickable(false);
+          setDivetPosition(0);
+        }
       }
     });
 
-    setOnLongClickListener(new OnLongClickListener() {
+    setOnClickListener(new OnClickListener() {
       @Override
-      public boolean onLongClick(View view) {
+      public void onClick(View view) {
         if (transportOptions.getEnabledTransports().size() > 1) {
-          transportOptions.showPopup(SendButton.this);
-          return true;
+          transportOptions.showPopup(TransportButton.this);
         }
-        return false;
       }
     });
   }
@@ -66,6 +75,10 @@ public class SendButton extends ImageButton {
     return transportOptions.getSelectedTransport();
   }
 
+  public TransportOptions getTransportOptions() {
+    return transportOptions;
+  }
+
   public void initializeAvailableTransports(boolean isMediaMessage) {
     transportOptions.initializeAvailableTransports(isMediaMessage);
   }
@@ -74,8 +87,8 @@ public class SendButton extends ImageButton {
     transportOptions.disableTransport(transport);
   }
 
-  public void setDefaultTransport(String transport) {
-    transportOptions.setDefaultTransport(transport);
+  public void setDefaultTransport(String transport, boolean overrideIfDefaultSet) {
+    transportOptions.setDefaultTransport(transport, overrideIfDefaultSet);
   }
 
   private void setComposeTextHint(String hint) {

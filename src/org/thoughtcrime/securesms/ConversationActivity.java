@@ -48,6 +48,7 @@ import android.view.View.OnKeyListener;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,7 +56,7 @@ import com.google.protobuf.ByteString;
 
 import org.thoughtcrime.securesms.components.EmojiDrawer;
 import org.thoughtcrime.securesms.components.EmojiToggle;
-import org.thoughtcrime.securesms.components.SendButton;
+import org.thoughtcrime.securesms.components.TransportButton;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 import org.thoughtcrime.securesms.crypto.KeyExchangeInitiator;
@@ -144,10 +145,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private static final int PICK_CONTACT_INFO = 4;
   private static final int GROUP_EDIT        = 5;
 
-  private MasterSecret masterSecret;
-  private EditText     composeText;
-  private SendButton   sendButton;
-  private TextView     charactersLeft;
+  private MasterSecret    masterSecret;
+  private EditText        composeText;
+  private ImageButton     sendButton;
+  private TransportButton transportButton;
+  private TextView        charactersLeft;
 
   private AttachmentTypeSelectorAdapter attachmentAdapter;
   private AttachmentManager             attachmentManager;
@@ -633,6 +635,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     boolean enabled = !(isPushGroupConversation() && !isActiveGroup());
     composeText.setEnabled(enabled);
     sendButton.setEnabled(enabled);
+    transportButton.setEnabled(enabled);
   }
 
   private void initializeCharactersLeftViewEnabledCheck() {
@@ -692,16 +695,16 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       this.characterCalculator     = new CharacterCalculator();
     }
 
-    sendButton.initializeAvailableTransports(!recipients.isSingleRecipient() || attachmentManager.isAttachmentPresent());
-    if (!isPushDestination  ) sendButton.disableTransport("textsecure");
-    if (!isSecureDestination) sendButton.disableTransport("secure_sms");
+    transportButton.initializeAvailableTransports(!recipients.isSingleRecipient() || attachmentManager.isAttachmentPresent());
+    if (!isPushDestination  ) transportButton.disableTransport("textsecure");
+    if (!isSecureDestination) transportButton.disableTransport("secure_sms");
 
     if (isPushDestination) {
-      sendButton.setDefaultTransport("textsecure");
+      transportButton.setDefaultTransport("textsecure", false);
     } else if (isSecureDestination) {
-      sendButton.setDefaultTransport("secure_sms");
+      transportButton.setDefaultTransport("secure_sms", false);
     } else {
-      sendButton.setDefaultTransport("insecure_sms");
+      transportButton.setDefaultTransport("insecure_sms", false);
     }
 
     calculateCharactersRemaining();
@@ -730,11 +733,40 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void initializeViews() {
-    sendButton     = (SendButton) findViewById(R.id.send_button);
-    composeText    = (EditText) findViewById(R.id.embedded_text_editor);
-    charactersLeft = (TextView) findViewById(R.id.space_left);
-    emojiDrawer    = (EmojiDrawer) findViewById(R.id.emoji_drawer);
-    emojiToggle    = (EmojiToggle) findViewById(R.id.emoji_toggle);
+    sendButton      = (ImageButton) findViewById(R.id.send_button);
+    transportButton = (TransportButton) findViewById(R.id.transport_button);
+    composeText     = (EditText) findViewById(R.id.embedded_text_editor);
+    charactersLeft  = (TextView) findViewById(R.id.space_left);
+    emojiDrawer     = (EmojiDrawer) findViewById(R.id.emoji_drawer);
+    emojiToggle     = (EmojiToggle) findViewById(R.id.emoji_toggle);
+
+    // Set the default transport based on database
+    new AsyncTask<Void, Void, String>() {
+      @Override
+      protected String doInBackground(Void... params) {
+        return DatabaseFactory.getThreadDatabase(ConversationActivity.this).getTransportPreference(threadId);
+      }
+
+      @Override
+      protected void onPostExecute(String currentTransportPreference) {
+        transportButton.setDefaultTransport(currentTransportPreference, true);
+      }
+    }.execute();
+
+    // Change send button icon when transport changes, and save new transport in database
+    transportButton.getTransportOptions().addOnTransportChangedListener(
+        new TransportOptions.OnTransportChangedListener() {
+      @Override
+      public void onChange(TransportOption newTransport, boolean userChange) {
+        sendButton.setImageResource(newTransport.drawableSendButtonIcon);
+        sendButton.setContentDescription(newTransport.composeHint);
+        // Only save in database if a user action triggered the transport change
+        if(userChange) {
+          System.out.println("SAVING CHANGE: " + newTransport.key);
+          DatabaseFactory.getThreadDatabase(ConversationActivity.this).setTransportPreference(threadId, newTransport.key);
+        }
+      }
+    });
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
       emojiToggle.setVisibility(View.GONE);
@@ -748,7 +780,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     sendButton.setOnClickListener(sendButtonListener);
     sendButton.setEnabled(true);
-    sendButton.setComposeTextView(composeText);
+    transportButton.setComposeTextView(composeText);
+    transportButton.setEnabled(true);
     composeText.setOnKeyListener(composeKeyPressedListener);
     composeText.addTextChangedListener(composeKeyPressedListener);
     composeText.setOnEditorActionListener(sendButtonListener);
@@ -1044,9 +1077,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       if ((!recipients.isSingleRecipient() || recipients.isEmailRecipient()) && !isMmsEnabled) {
         handleManualMmsRequired();
       } else if (attachmentManager.isAttachmentPresent() || !recipients.isSingleRecipient() || recipients.isGroupRecipient() || recipients.isEmailRecipient()) {
-        sendMediaMessage(sendButton.getSelectedTransport().isForcedPlaintext(), sendButton.getSelectedTransport().isForcedSms());
+        sendMediaMessage(transportButton.getSelectedTransport().isForcedPlaintext(), transportButton.getSelectedTransport().isForcedSms());
       } else {
-        sendTextMessage(sendButton.getSelectedTransport().isForcedPlaintext(), sendButton.getSelectedTransport().isForcedSms());
+        sendTextMessage(transportButton.getSelectedTransport().isForcedPlaintext(), transportButton.getSelectedTransport().isForcedSms());
       }
     } catch (RecipientFormattingException ex) {
       Toast.makeText(ConversationActivity.this,

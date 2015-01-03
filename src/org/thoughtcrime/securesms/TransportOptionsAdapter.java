@@ -64,7 +64,7 @@ public class TransportOptionsAdapter extends BaseAdapter {
     final ImageView imageView = (ImageView)view.findViewById(R.id.icon);
     final TextView  textView  = (TextView) view.findViewById(R.id.text);
 
-    imageView.setImageResource(transport.drawable);
+    imageView.setImageResource(transport.drawableButtonIcon);
     textView.setText(transport.text);
     return view;
   }

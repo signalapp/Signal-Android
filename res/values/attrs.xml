@@ -21,6 +21,8 @@
 
     <attr name="actionbar_icon" format="reference" />
     <attr name="lower_right_divet" format="reference" />
+    <attr name="divet_margin_h" format="integer" />
+    <attr name="divet_margin_v" format="integer" />
 
     <attr name="conversation_background" format="reference|color"/>
     <attr name="conversation_editor_background" format="reference"/>
@@ -29,7 +31,8 @@
     <attr name="conversation_send_button_sms_secure" format="reference"/>
     <attr name="conversation_send_button_sms_insecure" format="reference"/>
     <attr name="conversation_delivery_delivered" format="reference"/>
-    <attr name="conversation_transport_indicators" format="reference"/>
+    <attr name="conversation_transport_button_icons" format="reference"/>
+    <attr name="conversation_transport_send_button_icons" format="reference"/>
     <attr name="conversation_transport_popup_background" format="reference"/>
     <attr name="conversation_emoji_toggle" format="reference"/>
     <attr name="conversation_keyboard_toggle" format="reference"/>
