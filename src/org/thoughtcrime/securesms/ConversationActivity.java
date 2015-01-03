@@ -23,8 +23,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -92,7 +90,6 @@ import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.OutgoingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
-import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.CharacterCalculator;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
@@ -538,6 +535,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       public void onClick(DialogInterface dialog, int which) {
         if (threadId > 0) {
           DatabaseFactory.getThreadDatabase(ConversationActivity.this).deleteConversation(threadId);
+          threadId = -1;
           finish();
         }
       }
@@ -919,28 +917,34 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void saveDraft() {
-    if (this.threadId <= 0 || this.recipients == null || this.recipients.isEmpty())
+    if (this.recipients == null || this.recipients.isEmpty())
       return;
 
-    final Drafts       drafts           = getDraftsForCurrentState();
-    final long         thisThreadId     = this.threadId;
-    final MasterSecret thisMasterSecret = this.masterSecret.parcelClone();
+    final Drafts       drafts               = getDraftsForCurrentState();
+    final long         thisThreadId         = this.threadId;
+    final MasterSecret thisMasterSecret     = this.masterSecret.parcelClone();
+    final int          thisDistributionType = this.distributionType;
 
-    new AsyncTask<Void, Void, Void>() {
+    new AsyncTask<Long, Void, Void>() {
       @Override
-      protected Void doInBackground(Void... params) {
-        MasterCipher masterCipher = new MasterCipher(thisMasterSecret);
-        DatabaseFactory.getDraftDatabase(ConversationActivity.this).insertDrafts(masterCipher, thisThreadId, drafts);
+      protected Void doInBackground(Long... params) {
         ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(ConversationActivity.this);
+        DraftDatabase  draftDatabase  = DatabaseFactory.getDraftDatabase(ConversationActivity.this);
+        long           threadId       = params[0];
+
         if (drafts.size() > 0) {
-          threadDatabase.updateSnippet(thisThreadId, drafts.getSnippet(ConversationActivity.this), Types.BASE_DRAFT_TYPE);
-        } else {
-          threadDatabase.update(thisThreadId);
+          if (threadId == -1) threadId = threadDatabase.getThreadIdFor(getRecipients(), thisDistributionType);
+
+          draftDatabase.insertDrafts(new MasterCipher(thisMasterSecret), threadId, drafts);
+          threadDatabase.updateSnippet(threadId, drafts.getSnippet(ConversationActivity.this), Types.BASE_DRAFT_TYPE);
+        } else if (threadId > 0) {
+          threadDatabase.update(threadId);
         }
+
         MemoryCleaner.clean(thisMasterSecret);
         return null;
       }
-    }.execute();
+    }.execute(thisThreadId);
   }
 
   private void calculateCharactersRemaining() {
