@@ -80,7 +80,10 @@
                     android:padding="12dp"
                     android:src="@drawable/ic_transport_sms_insecure"
                     android:clickable="false"
-                    android:enabled="false" />
+                    android:enabled="false"
+                    divet_position="bottom_right"
+                    divet_margin_h="3"
+                    divet_margin_v="3" />
 
                 <org.thoughtcrime.securesms.components.EmojiToggle
                         android:id="@+id/emoji_toggle"

@@ -23,6 +23,8 @@
     <attr name="fab_color" format="reference|color" />
     <attr name="actionbar_icon" format="reference" />
     <attr name="lower_right_divet" format="reference" />
+    <attr name="divet_margin_h" format="integer" />
+    <attr name="divet_margin_v" format="integer" />
 
     <attr name="conversation_background" format="reference|color"/>
     <attr name="conversation_editor_background" format="reference"/>
