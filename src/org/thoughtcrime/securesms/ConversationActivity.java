@@ -574,41 +574,44 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   ///// Initializers
 
   private void initializeTitleBar() {
-    String title    = null;
-    String subtitle = null;
+    final String    title;
+    final String    subtitle;
+    final Recipient recipient = getRecipients().getPrimaryRecipient();
 
     if (isSingleConversation()) {
-      title = getRecipients().getPrimaryRecipient().getName();
-
-      if (title == null || title.trim().length() == 0) {
-        title = getRecipients().getPrimaryRecipient().getNumber();
+      if (TextUtils.isEmpty(recipient.getName())) {
+        title    = recipient.getNumber();
+        subtitle = null;
       } else {
-        subtitle = getRecipients().getPrimaryRecipient().getNumber();
+        title    = recipient.getName();
+        subtitle = PhoneNumberUtils.formatNumber(recipient.getNumber());
       }
     } else if (isGroupConversation()) {
       if (isPushGroupConversation()) {
-        final String groupName = getRecipients().getPrimaryRecipient().getName();
-        title = (!TextUtils.isEmpty(groupName)) ? groupName : getString(R.string.ConversationActivity_unnamed_group);
-        final Bitmap avatar = getRecipients().getPrimaryRecipient().getContactPhoto();
+        final String groupName = recipient.getName();
+        final Bitmap avatar    = recipient.getContactPhoto();
         if (avatar != null) {
           getSupportActionBar().setIcon(new BitmapDrawable(getResources(), BitmapUtil.getCircleCroppedBitmap(avatar)));
         }
+
+        title    = (!TextUtils.isEmpty(groupName)) ? groupName : getString(R.string.ConversationActivity_unnamed_group);
+        subtitle = null;
       } else {
-        title = getString(R.string.ConversationActivity_group_conversation);
-        int size = getRecipients().getRecipientsList().size();
+        final int size = getRecipients().getRecipientsList().size();
+
+        title    = getString(R.string.ConversationActivity_group_conversation);
         subtitle = (size == 1) ? getString(R.string.ConversationActivity_d_recipients_in_group_singular)
-            : String.format(getString(R.string.ConversationActivity_d_recipients_in_group), size);
+                               : String.format(getString(R.string.ConversationActivity_d_recipients_in_group), size);
       }
     } else {
       title    = getString(R.string.ConversationActivity_compose_message);
-      subtitle = "";
+      subtitle = null;
     }
 
-    this.getSupportActionBar().setTitle(title);
-    getWindow().getDecorView().setContentDescription(getString(R.string.conversation_activity__window_description, title));
+    getSupportActionBar().setTitle(title);
+    getSupportActionBar().setSubtitle(subtitle);
 
-    if (subtitle != null && !TextUtils.isEmpty(subtitle))
-      this.getSupportActionBar().setSubtitle(PhoneNumberUtils.formatNumber(subtitle));
+    getWindow().getDecorView().setContentDescription(getString(R.string.conversation_activity__window_description, title));
 
     this.supportInvalidateOptionsMenu();
   }
