@@ -107,8 +107,6 @@
 
             </LinearLayout>
 
-
-            <!-- displayed if message is longer than ConversationItem.DISPLAY_MAXLENGTH -->
             <TextView android:id="@+id/conversation_item_message_too_long_indicator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

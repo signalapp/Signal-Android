@@ -92,7 +92,6 @@ public class ConversationItem extends LinearLayout {
   private final static int SENT_PUSH_PENDING          = 6;
   private final static int SENT_PUSH_PENDING_TRIANGLE = 7;
 
-  // maximum length to display initially. complete message body can be shown through click on messageTooLongIndicator
   private final static int DISPLAY_MAXLENGTH          = 1024;
 
   private Handler       failedIconHandler;
@@ -272,15 +271,14 @@ public class ConversationItem extends LinearLayout {
     bodyText.setFocusable(false);
 
     SpannableString content = messageRecord.getDisplayBody();
-    // messageTooLongIndicator is only contained in the layout for received messages for now. sent messages will always be shown fully.
     if ( messageTooLongIndicator != null) {
-        if (foldAtMaximumLength && content.length() > ConversationItem.DISPLAY_MAXLENGTH) {
-            content = new SpannableString(content.subSequence(0, ConversationItem.DISPLAY_MAXLENGTH));
-            messageTooLongIndicator.setVisibility(View.VISIBLE);
-            messageTooLongIndicator.setOnClickListener(new MessageTooLongIndicatorClickListener());
-        } else {
-            messageTooLongIndicator.setVisibility(View.GONE);
-        }
+      if (foldAtMaximumLength && content.length() > ConversationItem.DISPLAY_MAXLENGTH) {
+        content = new SpannableString(content.subSequence(0, ConversationItem.DISPLAY_MAXLENGTH));
+        messageTooLongIndicator.setVisibility(View.VISIBLE);
+        messageTooLongIndicator.setOnClickListener(new MessageTooLongIndicatorClickListener());
+      } else {
+        messageTooLongIndicator.setVisibility(View.GONE);
+      }
     }
     content = Emoji.getInstance(context).emojify(content,
                   new Emoji.InvalidatingPageLoadedListener(bodyText));
@@ -607,32 +605,26 @@ public class ConversationItem extends LinearLayout {
   }
 
   private class MessageTooLongIndicatorClickListener implements OnClickListener {
-      //this handler should be fired only once even if the user somehow manages to fire it twice before it hides the setVisibility on the TextView
-      private boolean enabled = true;
+    private boolean enabled = true;
 
-      @Override
-      public void onClick(View v) {
+    @Override
+    public void onClick(View v) {
+      if (enabled) {
+        synchronized (this) {
           if (enabled) {
-              synchronized (this) {
-                  if (enabled) {
-                      enabled = false;
-                      ConversationItem.this.messageTooLongIndicator.setVisibility(View.GONE);
-                      ConversationItem.this.messageTooLongIndicator.setOnClickListener(null);
-                      // directly continuing will cause the system to hang without the UI having a chance to update.
-                      // the next step will most likely take multiple seconds so a short timeout to wait for the UI update should not hurt
-                      // and yes, there might be a more elegant way to do this.
-                      new Handler().postDelayed(new Runnable() {
-                          @Override
-                          public void run() {
-                              // set the body text for this item again, this time with the full content
-                              ConversationItem.this.setBodyText(ConversationItem.this.getMessageRecord(), false);
-                          }
-                      }, 100);
-
-                  }
+            enabled = false;
+            ConversationItem.this.messageTooLongIndicator.setVisibility(View.GONE);
+            ConversationItem.this.messageTooLongIndicator.setOnClickListener(null);
+            new Handler().postDelayed(new Runnable() {
+              @Override
+              public void run() {
+                ConversationItem.this.setBodyText(ConversationItem.this.getMessageRecord(), false);
               }
+            }, 100);
           }
+        }
       }
+    }
   }
 
   private void handleMessageApproval() {
