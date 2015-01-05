@@ -124,7 +124,7 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
 
   private File createTempFile() throws InvalidPartException {
     try {
-      File file = File.createTempFile("push-attachment", "tmp");
+      File file = File.createTempFile("push-attachment", "tmp", context.getCacheDir());
       file.deleteOnExit();
 
       return file;
