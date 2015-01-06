@@ -64,9 +64,8 @@ public class AudioSlide extends Slide {
   }
 
   @Override
-  public Drawable getThumbnail(int maxWidth, int maxHeight) {
-    //return resolveIcon(context, R.attr.dialog_info_icon);
-    return context.getResources().getDrawable(R.drawable.ic_audio_light);
+  public Drawable getThumbnail(Context context, int maxWidth, int maxHeight) {
+    return resolveIcon(context, R.attr.conversation_icon_attach_audio);
   }
 
   public static PduPart constructPartFromUri(Context context, Uri uri) throws IOException, MediaTooLargeException {

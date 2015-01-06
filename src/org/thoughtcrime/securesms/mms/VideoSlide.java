@@ -45,9 +45,8 @@ public class VideoSlide extends Slide {
   }
 
   @Override
-  public Drawable getThumbnail(int width, int height) {
-    // return resolveIcon(context, R.attr.dialog_info_icon);
-    return context.getResources().getDrawable(R.drawable.ic_video_light);
+  public Drawable getThumbnail(Context context, int width, int height) {
+    return resolveIcon(context, R.attr.conversation_icon_attach_video);
   }
 
   @Override

@@ -67,7 +67,7 @@ public class ImageSlide extends Slide {
   }
 
   @Override
-  public Drawable getThumbnail(int maxWidth, int maxHeight) {
+  public Drawable getThumbnail(Context context, int maxWidth, int maxHeight) {
     Drawable thumbnail = getCachedThumbnail();
 
     if (thumbnail != null) {
@@ -101,7 +101,7 @@ public class ImageSlide extends Slide {
   }
 
   @Override
-  public void setThumbnailOn(ImageView imageView) {
+  public void setThumbnailOn(final Context context, ImageView imageView) {
     Drawable thumbnail = getCachedThumbnail();
 
     if (thumbnail != null) {
@@ -124,7 +124,7 @@ public class ImageSlide extends Slide {
     MmsDatabase.slideResolver.execute(new Runnable() {
       @Override
       public void run() {
-        final Drawable bitmap = getThumbnail(maxWidth, maxHeight);
+        final Drawable bitmap = getThumbnail(context, maxWidth, maxHeight);
         final ImageView destination = weakImageView.get();
 
         if (destination != null && destination.getDrawable() == temporaryDrawable) {

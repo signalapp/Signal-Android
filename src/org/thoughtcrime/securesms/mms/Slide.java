@@ -73,12 +73,12 @@ public abstract class Slide {
     return part.getDataUri();
   }
 
-  public Drawable getThumbnail(int maxWidth, int maxHeight) {
+  public Drawable getThumbnail(Context context, int maxWidth, int maxHeight) {
     throw new AssertionError("getThumbnail() called on non-thumbnail producing slide!");
   }
 
-  public void setThumbnailOn(ImageView imageView) {
-    imageView.setImageDrawable(getThumbnail(imageView.getWidth(), imageView.getHeight()));
+  public void setThumbnailOn(Context context, ImageView imageView) {
+    imageView.setImageDrawable(getThumbnail(context, imageView.getWidth(), imageView.getHeight()));
   }
 
   public boolean hasImage() {
