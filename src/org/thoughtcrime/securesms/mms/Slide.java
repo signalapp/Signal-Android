@@ -30,6 +30,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.util.Log;
+import android.util.TypedValue;
 import android.widget.ImageView;
 
 import ws.com.google.android.mms.pdu.PduPart;
@@ -41,7 +42,7 @@ public abstract class Slide {
   protected final PduPart      part;
   protected final Context      context;
   protected       MasterSecret masterSecret;
-	
+
   public Slide(Context context, PduPart part) {
     this.part    = part;
     this.context = context;
@@ -124,5 +125,12 @@ public abstract class Slide {
       size += read;
       if (size > MAX_MESSAGE_SIZE) throw new MediaTooLargeException("Media exceeds maximum message size.");
     }
+  }
+
+  public static Drawable resolveIcon(Context c, int iconAttr)
+  {
+    TypedValue out = new TypedValue();
+    c.getTheme().resolveAttribute(iconAttr, out, true);
+    return c.getResources().getDrawable(out.resourceId);
   }
 }

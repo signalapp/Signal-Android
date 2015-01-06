@@ -27,6 +27,7 @@ import org.w3c.dom.smil.SMILRegionMediaElement;
 
 import ws.com.google.android.mms.pdu.PduPart;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -64,7 +65,8 @@ public class AudioSlide extends Slide {
 
   @Override
   public Drawable getThumbnail(int maxWidth, int maxHeight) {
-    return context.getResources().getDrawable(R.drawable.ic_menu_add_sound);
+    //return resolveIcon(context, R.attr.dialog_info_icon);
+    return context.getResources().getDrawable(R.drawable.ic_audio_light);
   }
 
   public static PduPart constructPartFromUri(Context context, Uri uri) throws IOException, MediaTooLargeException {

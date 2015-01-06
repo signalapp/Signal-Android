@@ -27,6 +27,7 @@ import org.w3c.dom.smil.SMILRegionElement;
 import ws.com.google.android.mms.pdu.PduPart;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -45,7 +46,8 @@ public class VideoSlide extends Slide {
 
   @Override
   public Drawable getThumbnail(int width, int height) {
-    return context.getResources().getDrawable(R.drawable.ic_launcher_video_player);
+    // return resolveIcon(context, R.attr.dialog_info_icon);
+    return context.getResources().getDrawable(R.drawable.ic_video_light);
   }
 
   @Override
