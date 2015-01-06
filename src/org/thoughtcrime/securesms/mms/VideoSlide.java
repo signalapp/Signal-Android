@@ -21,6 +21,7 @@ import java.io.IOException;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.SmilUtil;
+import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.w3c.dom.smil.SMILDocument;
 import org.w3c.dom.smil.SMILMediaElement;
 import org.w3c.dom.smil.SMILRegionElement;
@@ -28,6 +29,7 @@ import org.w3c.dom.smil.SMILRegionElement;
 import ws.com.google.android.mms.pdu.PduPart;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -45,8 +47,8 @@ public class VideoSlide extends Slide {
   }
 
   @Override
-  public Drawable getThumbnail(int width, int height) {
-    return context.getResources().getDrawable(R.drawable.ic_launcher_video_player);
+  public Drawable getThumbnail(Context context, int width, int height) {
+    return ThemeUtil.resolveIcon(context, R.attr.conversation_icon_attach_video);
   }
 
   @Override

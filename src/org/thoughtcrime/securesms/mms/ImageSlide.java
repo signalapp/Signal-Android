@@ -70,7 +70,7 @@ public class ImageSlide extends Slide {
   }
 
   @Override
-  public Drawable getThumbnail(int maxWidth, int maxHeight) {
+  public Drawable getThumbnail(Context context, int maxWidth, int maxHeight) {
     Drawable thumbnail = getCachedThumbnail();
 
     if (thumbnail != null) {
@@ -111,12 +111,12 @@ public class ImageSlide extends Slide {
   }
 
   @Override
-  public void setThumbnailOn(ImageView imageView) {
-    setThumbnailOn(imageView, imageView.getWidth(), imageView.getHeight(), new ColorDrawable(Color.TRANSPARENT));
+  public void setThumbnailOn(Context context, ImageView imageView) {
+    setThumbnailOn(context, imageView, imageView.getWidth(), imageView.getHeight(), new ColorDrawable(Color.TRANSPARENT));
   }
 
   @Override
-  public void setThumbnailOn(ImageView imageView, final int width, final int height, final Drawable placeholder) {
+  public void setThumbnailOn(Context context, ImageView imageView, final int width, final int height, final Drawable placeholder) {
     Drawable thumbnail = getCachedThumbnail();
 
     if (thumbnail != null) {
@@ -125,6 +125,7 @@ public class ImageSlide extends Slide {
       return;
     }
 
+    final WeakReference<Context>   weakContext   = new WeakReference<>(context);
     final WeakReference<ImageView> weakImageView = new WeakReference<>(imageView);
     final Handler handler                        = new Handler();
 
@@ -136,7 +137,13 @@ public class ImageSlide extends Slide {
     MmsDatabase.slideResolver.execute(new Runnable() {
       @Override
       public void run() {
-        final Drawable bitmap = getThumbnail(width, height);
+        final Context context = weakContext.get();
+        if (context == null) {
+          Log.w(TAG, "context SoftReference was null, leaving");
+          return;
+        }
+
+        final Drawable bitmap = getThumbnail(context, width, height);
         final ImageView destination = weakImageView.get();
 
         Log.w(TAG, "slide resolved, destination available? " + (destination == null));

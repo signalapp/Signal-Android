@@ -30,6 +30,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.util.Log;
+import android.util.TypedValue;
 import android.widget.ImageView;
 
 import ws.com.google.android.mms.pdu.PduPart;
@@ -70,16 +71,16 @@ public abstract class Slide {
     return part.getDataUri();
   }
 
-  public Drawable getThumbnail(int maxWidth, int maxHeight) {
+  public Drawable getThumbnail(Context context, int maxWidth, int maxHeight) {
     throw new AssertionError("getThumbnail() called on non-thumbnail producing slide!");
   }
 
-  public void setThumbnailOn(ImageView imageView) {
-    imageView.setImageDrawable(getThumbnail(imageView.getWidth(), imageView.getHeight()));
+  public void setThumbnailOn(Context context, ImageView imageView) {
+    imageView.setImageDrawable(getThumbnail(context, imageView.getWidth(), imageView.getHeight()));
   }
 
-  public void setThumbnailOn(ImageView imageView, int height, int width, Drawable placeholder) {
-    imageView.setImageDrawable(getThumbnail(width, height));
+  public void setThumbnailOn(Context context, ImageView imageView, int height, int width, Drawable placeholder) {
+    imageView.setImageDrawable(getThumbnail(context, width, height));
   }
 
   public Bitmap getGeneratedThumbnail() { return null; }

@@ -30,6 +30,18 @@ The following steps should help you (re)build TextSecure from the command line.
 
         ./gradlew build
 
+Visual assets
+----------------------
+
+Source assets tend to be large binary blobs, which are best stored outside of git repositories. We host ours in a [Pixelapse repository](https://www.pixelapse.com/openwhispersystems/projects/signal-android/). Some source files are SVGs that can be auto-colored and sized using a tool like [android-res-utils](https://github.com/sebkur/android-res-utils).
+
+Sample command for generating our audio placeholder image:
+
+```bash
+pngs_from_svg.py ic_audio.svg /path/to/TextSecure/res/ 150 "#000" 0.54 _light
+pngs_from_svg.py ic_audio.svg /path/to/TextSecure/res/ 150 "#fff" 1.0 _dark
+```
+
 Setting up a development environment
 ------------------------------------
 

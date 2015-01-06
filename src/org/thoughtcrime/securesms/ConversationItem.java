@@ -394,7 +394,7 @@ public class ConversationItem extends LinearLayout {
           public void run() {
             for (Slide slide : result.getSlides()) {
               if (slide.hasImage()) {
-                slide.setThumbnailOn(mmsThumbnail);
+                slide.setThumbnailOn(context, mmsThumbnail);
                 mmsThumbnail.setOnClickListener(new ThumbnailClickListener(slide));
                 mmsThumbnail.setVisibility(View.VISIBLE);
                 return;
