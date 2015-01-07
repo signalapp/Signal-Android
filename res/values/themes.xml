@@ -27,6 +27,12 @@
         <item name="actionbar_icon">@drawable/actionbar_icon_holo_light</item>
         <item name="lower_right_divet">@drawable/divet_lower_right_dark</item>
 
+        <item name="background_pattern_repeat">@drawable/background_pattern_repeat</item>
+        <item name="passphrase_input_background">@drawable/passphrase_input_background</item>
+        <item name="navigation_forward_icon">@drawable/ic_action_forward</item>
+
+        <item name="centered_app_title_color">#55000000</item>
+
         <item name="conversation_group_member_name">#99000000</item>
         <item name="conversation_sent_text_primary_color">#ffeeeeee</item>
         <item name="conversation_sent_text_secondary_color">#55000000</item>
@@ -133,6 +139,12 @@
 
         <item name="actionbar_icon">@drawable/actionbar_icon_holo_dark</item>
         <item name="lower_right_divet">@drawable/divet_lower_right_light</item>
+
+        <item name="background_pattern_repeat">@drawable/background_pattern_repeat_dark</item>
+        <item name="passphrase_input_background">@drawable/passphrase_input_background_dark</item>
+        <item name="navigation_forward_icon">@drawable/ic_action_forward_dark</item>
+
+        <item name="centered_app_title_color">#55ffffff</item>
 
         <item name="conversation_background">@color/black</item>
         <item name="conversation_editor_background">@drawable/textlines_dark</item>

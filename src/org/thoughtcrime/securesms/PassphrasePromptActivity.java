@@ -42,6 +42,7 @@ import android.widget.Toast;
 import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
+import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.Util;
@@ -53,13 +54,14 @@ import org.thoughtcrime.securesms.util.Util;
  */
 public class PassphrasePromptActivity extends PassphraseActivity {
 
+  private DynamicTheme dynamicTheme = new DynamicTheme();
   private DynamicLanguage dynamicLanguage = new DynamicLanguage();
-
   private EditText passphraseText;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
     dynamicLanguage.onCreate(this);
+    dynamicTheme.onCreate(this);
     super.onCreate(savedInstanceState);
 
     setContentView(R.layout.prompt_passphrase_activity);
@@ -114,7 +116,7 @@ public class PassphrasePromptActivity extends PassphraseActivity {
 
   private void initializeResources() {
     getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-    getSupportActionBar().setCustomView(R.layout.light_centered_app_title);
+    getSupportActionBar().setCustomView(R.layout.centered_app_title);
     mitigateAndroidTilingBug();
 
     ImageButton okButton = (ImageButton) findViewById(R.id.ok_button);
@@ -123,7 +125,6 @@ public class PassphrasePromptActivity extends PassphraseActivity {
 
     hint.setSpan(new RelativeSizeSpan(0.8f), 0, hint.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
     hint.setSpan(new TypefaceSpan("sans-serif"), 0, hint.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
-    hint.setSpan(new ForegroundColorSpan(0x66000000), 0, hint.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
     passphraseText.setHint(hint);
     okButton.setOnClickListener(new OkButtonClickListener());
     passphraseText.setOnEditorActionListener(new PassphraseActionListener());

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:layout_gravity="center">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/app_name"
+        android:textColor="?attr/centered_app_title_color"
+        android:fontFamily="sans-serif-light"
+        android:id="@+id/title"
+        android:textSize="23sp" />
+
+</LinearLayout>

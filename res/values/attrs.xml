@@ -22,6 +22,12 @@
     <attr name="actionbar_icon" format="reference" />
     <attr name="lower_right_divet" format="reference" />
 
+    <attr name="background_pattern_repeat" format="reference"></attr>
+    <attr name="passphrase_input_background" format="reference"></attr>
+    <attr name="navigation_forward_icon" format="reference"></attr>
+
+    <attr name="centered_app_title_color" format="reference|color" />
+
     <attr name="conversation_background" format="reference|color"/>
     <attr name="conversation_editor_background" format="reference"/>
     <attr name="conversation_editor_text_color" format="reference|color"/>
