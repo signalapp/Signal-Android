@@ -44,7 +44,8 @@
                       android:singleLine="true"
                       android:gravity="center"
                       android:inputType="phone"
-                      android:digits="0123456789" />
+                      android:digits="0123456789"
+                      android:maxLength="3" />
 
             <EditText android:id="@+id/number"
                       android:layout_width="0dip"
