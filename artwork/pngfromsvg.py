@@ -38,11 +38,11 @@ def create_images(name):
             data = f.read()
             f.close()
 
-            data = data.replace( \
-                "fill=\"#000000\"", \
+            data = data.replace(
+                "fill=\"#000000\"",
                 "fill=\"" + COLORS[t] + "\"")
             data = data.replace( \
-                "fill-opacity=\"1.0\"", \
+                "fill-opacity=\"1.0\"",
                 "fill-opacity=\"" + str(OPACITIES[t]) + "\"")
 
             f = open(tmp_svg, 'w')
