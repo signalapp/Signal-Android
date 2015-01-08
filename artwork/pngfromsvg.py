@@ -1,78 +1,75 @@
 #!/usr/bin/python3
 
 import os
-import re
-import functools
 import shlex, subprocess
 import tempfile
 import shutil
-import sys
 
-files = ["ic_video", "ic_audio"]
-dirs = ["drawable-mdpi", "drawable-hdpi", "drawable-xhdpi", "drawable-xxhdpi"]
-isize = 150
-sizes = [isize, isize * 1.5, isize * 2, isize * 3]
+FILES = ["ic_video", "ic_audio"]
+DIRS = ["drawable-mdpi", "drawable-hdpi", "drawable-xhdpi", "drawable-xxhdpi"]
+ISIZE = 150
+SIZES = [ISIZE, ISIZE * 1.5, ISIZE * 2, ISIZE * 3]
 
 # see http://www.google.com/design/spec/style/icons.html#icons-system-icons
 # bottom-most section
-suffixes = ["light", "dark"]
-colors = ["#000000", "#ffffff"]
-opacities = [0.54, 1.0]
+SUFFIXES = ["light", "dark"]
+COLORS = ["#000000", "#ffffff"]
+OPACITIES = [0.54, 1.0]
 
-dirPngs = "../res/"
+DIR_PNGS = "../res/"
 
-def createImages(name):
-    for s in range(len(sizes)):
-        size = sizes[s]
-        outputDir = dirPngs + dirs[s] + "/"
-        svg = name + ".svg"
+def create_images(name):
+    for s in range(len(SIZES)):
+        size = SIZES[s]
+        output_dir = DIR_PNGS + DIRS[s] + "/"
+        svg = name + '.svg'
 
-        if not os.path.isdir(outputDir):
-            os.makedirs(outputDir, exist_ok=True)
+        if not os.path.isdir(output_dir):
+            os.makedirs(output_dir, exist_ok=True)
 
-        for t in range(len(suffixes)):
-            suffix = suffixes[t]
-            output = outputDir + name + "_" + suffix + ".png"
-            print(svg + " -> " + output)
+        for t in range(len(SUFFIXES)):
+            suffix = SUFFIXES[t]
+            output = output_dir + name + "_" + suffix + ".png"
+            print (svg + ' -> ' + output)
 
-            tmpSvg = tempfile.mkstemp(".svg")[1]
+            tmp_svg = tempfile.mkstemp(".svg")[1]
 
-            f = open(svg,'r')
+            f = open(svg, 'r')
             data = f.read()
             f.close()
 
             data = data.replace( \
                 "fill=\"#000000\"", \
-                "fill=\"" + colors[t] + "\"");
+                "fill=\"" + COLORS[t] + "\"")
             data = data.replace( \
                 "fill-opacity=\"1.0\"", \
-                "fill-opacity=\"" + str(opacities[t]) + "\"");
+                "fill-opacity=\"" + str(OPACITIES[t]) + "\"")
 
-            f = open(tmpSvg,'w')
+            f = open(tmp_svg, 'w')
             f.write(data)
             f.close()
 
-            createPng(tmpSvg, output, size)
+            create_png(tmp_svg, output, size)
 
-            os.remove(tmpSvg)
+            os.remove(tmp_svg)
 
-def createPng(svg, output, size):
-        cmd = "inkscape -C -e " + output + " -h " + str(size) + " " + svg
-        args = shlex.split(cmd)
-        p = subprocess.call(args)
+def create_png(svg, output, size):
+    cmd = "inkscape -C -e " + output + " -h " + str(size) + " " + svg
+    args = shlex.split(cmd)
+    subprocess.call(args)
 
-        tmpPng = tempfile.mkstemp(".png")[1]
-        shutil.copyfile(output, tmpPng)
+    tmp_png = tempfile.mkstemp(".png")[1]
+    shutil.copyfile(output, tmp_png)
 
-        cmd = "pngcrush " + tmpPng + " " + output
-        args = shlex.split(cmd)
-        print(args)
-        p = subprocess.call(args)
+    cmd = "pngcrush " + tmp_png + " " + output
+    args = shlex.split(cmd)
+    print (args)
+    subprocess.call(args)
 
-        os.remove(tmpPng)
+    os.remove(tmp_png)
 
 if __name__ == "__main__":
 
-    for basename in files:
+    for basename in FILES:
         print (basename)
-        createImages(basename)
+        create_images(basename)
