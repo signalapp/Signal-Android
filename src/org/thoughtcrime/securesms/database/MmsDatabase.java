@@ -21,6 +21,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
@@ -52,7 +53,6 @@ import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.LRUCache;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Trimmer;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobManager;
 import org.whispersystems.libaxolotl.InvalidMessageException;
@@ -713,14 +713,14 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
 
     if (Types.isSymmetricEncryption(contentValues.getAsLong(MESSAGE_BOX))) {
       String messageText = PartParser.getMessageText(body);
-      body               = PartParser.getNonTextParts(body);
+      body               = PartParser.getSupportedMediaParts(body);
 
       if (!TextUtils.isEmpty(messageText)) {
         contentValues.put(BODY, new MasterCipher(masterSecret).encryptBody(messageText));
       }
     }
 
-    contentValues.put(PART_COUNT, PartParser.getDisplayablePartCount(body));
+    contentValues.put(PART_COUNT, PartParser.getSupportedMediaPartCount(body));
 
     long messageId = db.insert(TABLE_NAME, null, contentValues);
 

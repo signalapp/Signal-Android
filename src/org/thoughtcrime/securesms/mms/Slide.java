@@ -80,6 +80,8 @@ public abstract class Slide {
     imageView.setImageDrawable(getThumbnail(imageView.getWidth(), imageView.getHeight()));
   }
 
+  public Bitmap getGeneratedThumbnail() { return null; }
+
   public boolean hasImage() {
     return false;
   }

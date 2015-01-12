@@ -37,11 +37,11 @@ public class PartParser {
     return bodyText;
   }
 
-  public static PduBody getNonTextParts(PduBody body) {
+  public static PduBody getSupportedMediaParts(PduBody body) {
     PduBody stripped = new PduBody();
 
     for (int i=0;i<body.getPartsNum();i++) {
-      if (!ContentType.isTextType(Util.toIsoString(body.getPart(i).getContentType()))) {
+      if (isDisplayableMedia(Util.toIsoString(body.getPart(i).getContentType()))) {
         stripped.addPart(body.getPart(i));
       }
     }
@@ -49,20 +49,23 @@ public class PartParser {
     return stripped;
   }
 
-  public static int getDisplayablePartCount(PduBody body) {
+  public static int getSupportedMediaPartCount(PduBody body) {
     int partCount = 0;
 
     for (int i=0;i<body.getPartsNum();i++) {
       String contentType = Util.toIsoString(body.getPart(i).getContentType());
 
-      if (ContentType.isImageType(contentType) ||
-          ContentType.isAudioType(contentType) ||
-          ContentType.isVideoType(contentType))
-      {
+      if (isDisplayableMedia(contentType)) {
         partCount++;
       }
     }
 
     return partCount;
+  }
+
+  private static boolean isDisplayableMedia(String contentType) {
+    return ContentType.isImageType(contentType) ||
+           ContentType.isAudioType(contentType) ||
+           ContentType.isVideoType(contentType);
   }
 }

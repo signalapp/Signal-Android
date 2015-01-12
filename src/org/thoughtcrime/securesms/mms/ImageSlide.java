@@ -31,11 +31,14 @@ import android.util.Log;
 import android.widget.ImageView;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
-import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.LRUCache;
+import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.MediaUtil.ThumbnailData;
 import org.thoughtcrime.securesms.util.SmilUtil;
+import org.thoughtcrime.securesms.util.Util;
 import org.w3c.dom.smil.SMILDocument;
 import org.w3c.dom.smil.SMILMediaElement;
 import org.w3c.dom.smil.SMILRegionElement;
@@ -81,9 +84,19 @@ public class ImageSlide extends Slide {
     try {
       Bitmap thumbnailBitmap;
       long startDecode = System.currentTimeMillis();
-      Log.w(TAG, (part.getThumbnailUri() == null ? "generating" : "fetching pre-generated") + " thumbnail");
-      if (part.getThumbnailUri() != null) thumbnailBitmap = BitmapFactory.decodeStream(PartAuthority.getPartStream(context, masterSecret, part.getThumbnailUri()));
-      else                                thumbnailBitmap = BitmapUtil.createScaledBitmap(context, masterSecret, getUri(), maxWidth, maxHeight);
+
+      if (part.getDataUri() != null && part.getId() > -1) {
+        thumbnailBitmap = BitmapFactory.decodeStream(DatabaseFactory.getPartDatabase(context)
+                                                                    .getThumbnailStream(masterSecret, part.getId()));
+      } else if (part.getDataUri() != null) {
+        Log.w(TAG, "generating thumbnail for new part");
+        ThumbnailData thumbnailData = MediaUtil.generateThumbnail(context, masterSecret,
+                                                                  part.getDataUri(), Util.toIsoString(part.getContentType()));
+        thumbnailBitmap = thumbnailData.getBitmap();
+        part.setThumbnail(thumbnailBitmap);
+      } else {
+        throw new FileNotFoundException("no data location specified");
+      }
 
       Log.w(TAG, "thumbnail decode/generate time: " + (System.currentTimeMillis() - startDecode) + "ms");
 
@@ -91,11 +104,8 @@ public class ImageSlide extends Slide {
       thumbnailCache.put(part.getDataUri(), new SoftReference<>(thumbnail));
 
       return thumbnail;
-    } catch (FileNotFoundException e) {
-      Log.w("ImageSlide", e);
-      return context.getResources().getDrawable(R.drawable.ic_missing_thumbnail_picture);
-    } catch (BitmapDecodingException e) {
-      Log.w("ImageSlide", e);
+    } catch (IOException | BitmapDecodingException e) {
+      Log.w(TAG, e);
       return context.getResources().getDrawable(R.drawable.ic_missing_thumbnail_picture);
     }
   }

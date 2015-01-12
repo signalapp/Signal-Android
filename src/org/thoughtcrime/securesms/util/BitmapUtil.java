@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
@@ -20,6 +21,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 
 import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -66,7 +68,7 @@ public class BitmapUtil {
   }
 
   public static Bitmap createScaledBitmap(Context context, MasterSecret masterSecret, Uri uri, int maxWidth, int maxHeight)
-      throws BitmapDecodingException, FileNotFoundException
+      throws BitmapDecodingException, IOException
   {
     Bitmap bitmap;
     try {
@@ -80,7 +82,7 @@ public class BitmapUtil {
   }
 
   private static Bitmap createScaledBitmap(Context context, MasterSecret masterSecret, Uri uri, int maxWidth, int maxHeight, boolean constrainedMemory)
-      throws FileNotFoundException, BitmapDecodingException
+      throws IOException, BitmapDecodingException
   {
     return createScaledBitmap(PartAuthority.getPartStream(context, masterSecret, uri),
                               PartAuthority.getPartStream(context, masterSecret, uri),
@@ -221,7 +223,7 @@ public class BitmapUtil {
   }
 
   public static Bitmap getScaledCircleCroppedBitmap(Context context, MasterSecret masterSecret, Uri uri, int destSize)
-      throws FileNotFoundException, BitmapDecodingException
+      throws IOException, BitmapDecodingException
   {
     Bitmap bitmap = createScaledBitmap(context, masterSecret, uri, destSize, destSize);
     return getScaledCircleCroppedBitmap(bitmap, destSize);
@@ -247,6 +249,12 @@ public class BitmapUtil {
     paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
     canvas.drawBitmap(bitmap, srcRect, destRect, paint);
     return output;
+  }
+
+  public static InputStream toCompressedJpeg(Bitmap bitmap) {
+    ByteArrayOutputStream thumbnailBytes = new ByteArrayOutputStream();
+    bitmap.compress(CompressFormat.JPEG, 85, thumbnailBytes);
+    return new ByteArrayInputStream(thumbnailBytes.toByteArray());
   }
 
   public static byte[] toByteArray(Bitmap bitmap) {

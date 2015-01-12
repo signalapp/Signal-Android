@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.database.PartDatabase;
 import org.thoughtcrime.securesms.providers.PartProvider;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 
 public class PartAuthority {
@@ -33,7 +34,7 @@ public class PartAuthority {
   }
 
   public static InputStream getPartStream(Context context, MasterSecret masterSecret, Uri uri)
-      throws FileNotFoundException
+      throws IOException
   {
     PartDatabase partDatabase = DatabaseFactory.getPartDatabase(context);
     int          match        = uriMatcher.match(uri);
