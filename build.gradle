@@ -98,6 +98,8 @@ android {
     defaultConfig {
         minSdkVersion 9
         targetSdkVersion 19
+
+        buildConfigField "long", "BUILD_TIMESTAMP", System.currentTimeMillis() + "L"
     }
 
     compileOptions {
@@ -105,43 +107,38 @@ android {
         targetCompatibility JavaVersion.VERSION_1_7
     }
 
-    android {
-        buildTypes {
-            debug {
-                minifyEnabled false
-            }
-            release {
-                minifyEnabled false
-            }
-        }
-
-        sourceSets {
-            main {
-                manifest.srcFile 'AndroidManifest.xml'
-                java.srcDirs = ['src']
-                resources.srcDirs = ['src']
-                aidl.srcDirs = ['src']
-                renderscript.srcDirs = ['src']
-                res.srcDirs = ['res']
-                assets.srcDirs = ['assets']
-            }
-            androidTest {
-                java.srcDirs = ['androidTest/java']
-                resources.srcDirs = ['androidTest/java']
-                aidl.srcDirs = ['androidTest/java']
-                renderscript.srcDirs = ['androidTest/java']
-            }
-        }
-    }
-
     signingConfigs {
         release
     }
+
     buildTypes {
+        debug {
+            minifyEnabled false
+        }
         release {
+            minifyEnabled false
             signingConfig signingConfigs.release
         }
     }
+
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs = ['src']
+            resources.srcDirs = ['src']
+            aidl.srcDirs = ['src']
+            renderscript.srcDirs = ['src']
+            res.srcDirs = ['res']
+            assets.srcDirs = ['assets']
+        }
+        androidTest {
+            java.srcDirs = ['androidTest/java']
+            resources.srcDirs = ['androidTest/java']
+            aidl.srcDirs = ['androidTest/java']
+            renderscript.srcDirs = ['androidTest/java']
+        }
+    }
+
 
      lintOptions {
         abortOnError false

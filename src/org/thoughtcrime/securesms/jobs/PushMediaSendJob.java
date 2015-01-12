@@ -57,7 +57,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
   }
 
   @Override
-  public void onRun(MasterSecret masterSecret)
+  public void onSend(MasterSecret masterSecret)
       throws RetryLaterException, MmsException, NoSuchMessageException
   {
     MmsDatabase database = DatabaseFactory.getMmsDatabase(context);

@@ -816,6 +816,8 @@
     <string name="text_secure_normal__mark_all_as_read">Mark all read</string>
 
     <!-- reminder_header -->
+    <string name="reminder_header_expired_build">Your build of TextSecure has expired!</string>
+    <string name="reminder_header_expired_build_details">Messages will no longer send successfully, please update to the most recent version.</string>
     <string name="reminder_header_sms_default_title">Use as default SMS app?</string>
     <string name="reminder_header_sms_default_text">TextSecure is not currently your default SMS app.</string>
     <string name="reminder_header_sms_import_title">Import system SMS?</string>

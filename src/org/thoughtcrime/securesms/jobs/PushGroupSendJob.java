@@ -66,7 +66,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
   }
 
   @Override
-  public void onRun(MasterSecret masterSecret) throws MmsException, IOException, NoSuchMessageException {
+  public void onSend(MasterSecret masterSecret) throws MmsException, IOException, NoSuchMessageException {
     MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
     SendReq     message  = database.getOutgoingMessage(masterSecret, messageId);
 

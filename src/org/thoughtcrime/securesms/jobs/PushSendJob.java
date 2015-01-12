@@ -31,7 +31,7 @@ import ws.com.google.android.mms.ContentType;
 import ws.com.google.android.mms.pdu.PduPart;
 import ws.com.google.android.mms.pdu.SendReq;
 
-public abstract class PushSendJob extends MasterSecretJob {
+public abstract class PushSendJob extends SendJob {
 
   private static final String TAG = PushSendJob.class.getSimpleName();
 

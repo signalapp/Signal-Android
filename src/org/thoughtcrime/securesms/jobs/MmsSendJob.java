@@ -31,7 +31,6 @@ import org.whispersystems.libaxolotl.NoSessionException;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.util.Arrays;
 
 import ws.com.google.android.mms.MmsException;
@@ -43,7 +42,7 @@ import ws.com.google.android.mms.pdu.PduPart;
 import ws.com.google.android.mms.pdu.SendConf;
 import ws.com.google.android.mms.pdu.SendReq;
 
-public class MmsSendJob extends MasterSecretJob {
+public class MmsSendJob extends SendJob {
 
   private static final String TAG = MmsSendJob.class.getSimpleName();
 
@@ -66,7 +65,7 @@ public class MmsSendJob extends MasterSecretJob {
   }
 
   @Override
-  public void onRun(MasterSecret masterSecret) throws MmsException, NoSuchMessageException, IOException {
+  public void onSend(MasterSecret masterSecret) throws MmsException, NoSuchMessageException, IOException {
     MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
     SendReq     message  = database.getOutgoingMessage(masterSecret, messageId);
 
