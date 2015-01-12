@@ -39,6 +39,12 @@
     <color name="conversation_item_received_background_dark">#ff333333</color>
     <color name="conversation_item_received_shadow_light">#ffd5d5d5</color>
     <color name="conversation_item_received_shadow_dark">#ff222222</color>
+    <color name="import_export_item_background_light">#ffeeeeee</color>
+    <color name="import_export_item_background_dark">#ff333333</color>
+    <color name="import_export_item_background_shadow_light">#ffd5d5d5</color>
+    <color name="import_export_item_background_shadow_dark">#ff222222</color>
+    <color name="import_export_touch_highlight_light">#400099cc</color>
+    <color name="import_export_touch_highlight_dark">#40ffffff</color>
 
     <color name="emoji_tab_indicator">#66ffffff</color>
     <color name="emoji_tab_underline">#11ffffff</color>

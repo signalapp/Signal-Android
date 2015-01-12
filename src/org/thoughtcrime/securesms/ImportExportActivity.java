@@ -10,6 +10,7 @@ import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.util.DynamicTheme;
 
 
 public class ImportExportActivity extends PassphraseRequiredActionBarActivity {
@@ -18,8 +19,11 @@ public class ImportExportActivity extends PassphraseRequiredActionBarActivity {
   private ViewPager viewPager;
   private MasterSecret masterSecret;
 
+  private DynamicTheme dynamicTheme = new DynamicTheme();
+
   @Override
   public void onCreate(Bundle savedInstanceState) {
+    dynamicTheme.onCreate(this);
     super.onCreate(savedInstanceState);
     setContentView(R.layout.import_export_activity);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -27,6 +31,12 @@ public class ImportExportActivity extends PassphraseRequiredActionBarActivity {
     initializeResources();
     initializeViewPager();
     initializeTabs();
+  }
+
+  @Override
+  public void onResume() {
+      dynamicTheme.onResume(this);
+      super.onResume();
   }
 
   @Override
