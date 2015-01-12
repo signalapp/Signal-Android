@@ -21,7 +21,6 @@ import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.SecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
-import org.thoughtcrime.securesms.util.MediaUtil;
 import org.whispersystems.libaxolotl.state.AxolotlStore;
 import org.whispersystems.textsecure.api.TextSecureMessageSender;
 import org.whispersystems.textsecure.api.crypto.UntrustedIdentityException;
@@ -61,7 +60,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
 
   @Override
   public void onSend(MasterSecret masterSecret)
-      throws RetryLaterException, MmsException, NoSuchMessageException
+      throws RetryLaterException, MmsException, NoSuchMessageException, UndeliverableMessageException
   {
     MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
     SendReq     message  = database.getOutgoingMessage(masterSecret, messageId);
@@ -83,8 +82,6 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
     } catch (UntrustedIdentityException uie) {
       IncomingIdentityUpdateMessage identityUpdateMessage = IncomingIdentityUpdateMessage.createFor(message.getTo()[0].getString(), uie.getIdentityKey());
       DatabaseFactory.getEncryptingSmsDatabase(context).insertMessageInbox(masterSecret, identityUpdateMessage);
-      database.markAsSentFailed(messageId);
-    } catch (UndeliverableMessageException ume) {
       database.markAsSentFailed(messageId);
     }
   }
@@ -113,7 +110,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
     boolean                 isSmsFallbackSupported = isSmsFallbackSupported(context, destination, true);
 
     try {
-      MediaUtil.prepareMessageMedia(context, masterSecret, message, MediaConstraints.PUSH_CONSTRAINTS, false);
+      prepareMessageMedia(masterSecret, message, MediaConstraints.PUSH_CONSTRAINTS, false);
       Recipients                 recipients   = RecipientFactory.getRecipientsFromString(context, destination, false);
       PushAddress                address      = getPushAddress(recipients.getPrimaryRecipient());
       List<TextSecureAttachment> attachments  = getAttachments(masterSecret, message);

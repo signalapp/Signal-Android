@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.transport;
 
-public class UndeliverableMessageException extends Throwable {
+public class UndeliverableMessageException extends Exception {
   public UndeliverableMessageException() {
   }
 
