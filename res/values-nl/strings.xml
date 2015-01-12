@@ -100,12 +100,13 @@ U zal uw telefoonnummer opnieuw moeten registreren als u push berichten weer wil
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_get_with_it">Kom erbij: %s</string>
   <string name="ConversationActivity_install_textsecure">Installeer TextSecure: %s</string>
+  <string name="ConversationActivity_error_leaving_group">Er is een fout gebeurd bij het verlaten van de groep...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Berichtdetails</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Overdracht: %1$s\nVerzonden/Ontvangen: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Verzender: %1$s\nTransport: %2$s\nVerstuurd%3$s\n/Ontvangen:%4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Berichtverwijdering bevestigen</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Weet u zeker dat u dit bericht permanent wilt verwijderen?</string>
+  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Weet u zeker dat u de geselecteerde berichten permanent wilt verwijderen?</string>
   <string name="ConversationFragment_save_to_sd_card">Opslaan?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Het opslaan van dit mediabestand maakt het toegankelijke voor alle apps op je telefoon.t.\n\nDoorgaan?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Fout tijdens het opslaan van de bijlage!</string>
@@ -117,6 +118,8 @@ U zal uw telefoonnummer opnieuw moeten registreren als u push berichten weer wil
   <string name="ConversationFragment_push">DATA</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
+  <string name="ConversationFragment_deleting">Verwijderen...</string>
+  <string name="ConversationFragment_deleting_messages">Berichten verwijderen...</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Gesprekken verwijderen?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Weet je zeker dat u ALLE geselecteerde gesprekken wilt verwijderen?</string>
@@ -132,7 +135,7 @@ U zal uw telefoonnummer opnieuw moeten registreren als u push berichten weer wil
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Waarschuwing, dit exporteert de onversleutelde tekst van je berichten in Textsecure naar de SD-kaart.</string>
   <string name="ExportFragment_cancel">Annuleren</string>
   <string name="ExportFragment_exporting">Aan het exporteren</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Aan het exporteren naar de SD-kaart...</string>
+  <string name="ExportFragment_exporting_plaintext_to_sd_card">Onversleutelde tekst aan het exporteren naar de SD-kaart...</string>
   <string name="ExportFragment_error_unable_to_write_to_sd_card">Fout, SD-kaart niet beschrijfbaar!</string>
   <string name="ExportFragment_error_while_writing_to_sd_card">Fout tijdens het schrijven naar de SD-kaart.</string>
   <string name="ExportFragment_success">Succesvol!</string>
@@ -153,10 +156,11 @@ U zal uw telefoonnummer opnieuw moeten registreren als u push berichten weer wil
   <string name="GroupCreateActivity_menu_create_title">Groep aanmaken</string>
   <string name="GroupCreateActivity_creating_group">%1$s maken...</string>
   <string name="GroupCreateActivity_updating_group">Updating %1$s...</string>
-  <string name="GroupCreateActivity_loading_group_details">Groepsdetails laden...</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Je kunt geen niet-TextSecure gebruikers toevoegen aan een bestaande TextSecure groep</string>
+  <string name="GroupCreateActivity_loading_group_details">Groepsdetails laden...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">IK</string>
+  <string name="GroupMembersDialog_members">Leden...</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Importeer</string>
   <string name="ImportExportActivity_export">Exporteer</string>
@@ -192,6 +196,8 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimediabericht</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Dit bericht gebruikt verouderde versleuteling die niet meer ondersteund wordt. Vraag de afzender om TextSecure te updaten naar de meest recente versie en het bericht opnieuw te verzenden.</string>
+  <string name="MessageRecord_left_group">Je hebt de groep verlaten.</string>
+  <string name="MessageRecord_updated_group">Groep bijgewerkt.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Wachtwoorden komen niet overeen</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Incorrect oud wachtwoord!</string>
@@ -411,6 +417,10 @@ Importeer een niet-versleutelde back-up voor \'SMS Back-up En Herstellen\'.</str
   <string name="MmsPreferencesFragment__not_set">Niet ingesteld</string>
   <string name="MmsPreferencesFragment__invalid_uri">De ingevoerde tekst is geen geldige URI</string>
   <string name="MmsPreferencesFragment__invalid_host">De ingevoerde tekst is geen geldige host</string>
+  <!--GroupUtil-->
+  <string name="GroupUtil_joined_the_group">%1$s is toegetreden tot de groep.</string>
+  <string name="GroupUtil_group_updated">Groep bijgewerkt.</string>
+  <string name="GroupUtil_title_is_now">Titel is nu \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Ontgrendel</string>
   <!--prompt_mms_activity-->
@@ -585,6 +595,8 @@ Privacy verbeteren en SMS-kosten vermijden door het datakanaal te gebruiken voor
   <string name="preferences__sms_fallback_never_send_mms">Nooit MMS versturen</string>
   <string name="preferences__sms_fallback_non_push_users">Niet-TextSecure gebruikers</string>
   <string name="preferences__sms_fallback_nobody">Niemand</string>
+  <string name="preferences__support_wifi_calling">\'Bellen via WiFi\' compatibiliteitsmodus</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aanzetten als je toestel SMS/MMS ontvangst via WiFi gebruikt (enkel aanzetten als \'Bellen via WiFi\' aan staat).</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -657,6 +669,7 @@ Privacy verbeteren en SMS-kosten vermijden door het datakanaal te gebruiken voor
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Jij</string>
   <string name="MediaPreviewActivity_cant_display">Weergeven van deze afbeelding is mislukt</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">Niet ondersteund mediatype</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Opslaan</string>
   <!--media_preview_activity-->

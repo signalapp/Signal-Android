@@ -103,6 +103,7 @@ Tendrá que volver a registrar su número de teléfono para utilizar los mensaje
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_get_with_it">Hágase con él: %s</string>
   <string name="ConversationActivity_install_textsecure">Instale TextSecure: %s</string>
+  <string name="ConversationActivity_error_leaving_group">Error al dejar el grupo...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalles del mensaje</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transporte: %1$s
@@ -112,7 +113,7 @@ Transporte: %2$s
 Enviado: %3$s
 Recibido:%4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Confirmar borrado de mensaje</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">¿Está seguro que desea borrar permanentemente este mensaje?</string>
+  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">¿Está seguro/a de que quiere borrar permanentemente todos los mensajes seleccionados?</string>
   <string name="ConversationFragment_save_to_sd_card">¿Guardar en el almacenamiento?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Guardar este contenido en el almacenamiento permitirá acceder a él a cualquier otra aplicación en su teléfono.\n\n¿Continuar?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">¡Error al guardar adjunto en el almacenamiento!</string>
@@ -124,6 +125,8 @@ Recibido:%4$s</string>
   <string name="ConversationFragment_push">DATOS ACTIVOS (PUSH)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
+  <string name="ConversationFragment_deleting">Borrando...</string>
+  <string name="ConversationFragment_deleting_messages">Borrando mensajes...</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">¿Borrar las conversaciones?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">¿Está seguro de que quiere borrar TODAS las conversaciones seleccionadas?</string>
@@ -141,12 +144,11 @@ Recibido:%4$s</string>
     </string>
   <string name="ExportFragment_cancel">Cancelar</string>
   <string name="ExportFragment_exporting">Exportando</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Exportando mensajes en claro a la tarjeta SD...
-    </string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">Error, ¡no se puede escribir en la tarjeta SD!
+  <string name="ExportFragment_exporting_plaintext_to_sd_card">Exportando texto sin cifrar a la tarjeta SD....</string>
+  <string name="ExportFragment_error_unable_to_write_to_sd_card">Error, ¡no se pudo escribir en la tarjeta SD!
      
     </string>
-  <string name="ExportFragment_error_while_writing_to_sd_card">Se produjo un error mientras se escribía la tarjeta SD.
+  <string name="ExportFragment_error_while_writing_to_sd_card">Se produjo un error al escribir en la tarjeta SD.
     </string>
   <string name="ExportFragment_success">¡Éxito!</string>
   <!--GcmRefreshJob-->
@@ -166,10 +168,11 @@ Recibido:%4$s</string>
   <string name="GroupCreateActivity_menu_create_title">Crear grupo</string>
   <string name="GroupCreateActivity_creating_group">Creando %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Actualizando %1$s...</string>
-  <string name="GroupCreateActivity_loading_group_details">Cargando detalles de grupo</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">No se pudieron añadir contactos no-TextSecure a un grupo TextSecure existente</string>
+  <string name="GroupCreateActivity_loading_group_details">Cargando detalles de grupo...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Yo</string>
+  <string name="GroupMembersDialog_members">Miembros...</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Importar</string>
   <string name="ImportExportActivity_export">Exportar</string>
@@ -214,6 +217,8 @@ importarla de nuevo dará como resultado mensajes duplicados.</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Se recibió un mensaje cifrado con una versión antigua de TextSecure que ya no está soportada.
 Por favor pida al remitente que actualice a la versión más reciente y reenvíe el mensaje.</string>
+  <string name="MessageRecord_left_group">Has dejado el grupo.</string>
+  <string name="MessageRecord_updated_group">Grupo actualizado.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">¡Las frases contraseña no coinciden!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">¡Frase de contraseña anterior incorrecta!</string>
@@ -452,6 +457,10 @@ Se recibió un mensaje con una clave de identidad desconocida. Haga clic para pr
   <string name="MmsPreferencesFragment__not_set">No establecido</string>
   <string name="MmsPreferencesFragment__invalid_uri">El texto introducido no era una URI válida</string>
   <string name="MmsPreferencesFragment__invalid_host">El texto introducido no era un servidor (host) válido</string>
+  <!--GroupUtil-->
+  <string name="GroupUtil_joined_the_group">%1$s se ha unido al grupo.</string>
+  <string name="GroupUtil_group_updated">Grupo actualizado.</string>
+  <string name="GroupUtil_title_is_now">El título ahora es \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Desbloquear</string>
   <!--prompt_mms_activity-->
@@ -653,6 +662,8 @@ Incremente la privacidad y evite tarifas SMS al usar el canal de datos para la c
   <string name="preferences__sms_fallback_never_send_mms">Nunca enviar MMS</string>
   <string name="preferences__sms_fallback_non_push_users">Usuarios no-de-TextSecure</string>
   <string name="preferences__sms_fallback_nobody">Nadie</string>
+  <string name="preferences__support_wifi_calling">Modo de compatibilidad \'Llamada por WiFi\'</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Habilítelo si su dispositivo utiliza entrega de SMS/MMS por WiFi (actívelo sólo cuando \'Llamada por WiFi\' esté activada en su dispositivo).</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -725,6 +736,7 @@ Incremente la privacidad y evite tarifas SMS al usar el canal de datos para la c
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Usted</string>
   <string name="MediaPreviewActivity_cant_display">Fallo al previsualizar esta imagen</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">Tipo de medio no soportado</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Guardar</string>
   <!--media_preview_activity-->

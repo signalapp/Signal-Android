@@ -106,7 +106,6 @@ Avrai bisogno di registrare di nuovo il tuo numero di telefono per usare i messa
   <string name="ConversationFragment_transport_s_sent_received_s">Trasporto: %1$s\nInviato/Ricevuto: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Mittente: %1$s\nTrasporto: %2$s\nInviato: %3$s\nRicevuto: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Messaggio di conferma cancellazione</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Sicuro di voler cancellare definitivamente questo messaggio?</string>
   <string name="ConversationFragment_save_to_sd_card">Salvare in memoria?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Salvare quest\'immagine sulla memoria consentirà a qualunque applicazione sul tuo telefono di accedervi.\n\nContinuare?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Errore nel salvare l\'allegato in memoria!</string>
@@ -118,6 +117,7 @@ Avrai bisogno di registrare di nuovo il tuo numero di telefono per usare i messa
   <string name="ConversationFragment_push">PUSH</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
+  <string name="ConversationFragment_deleting">Cancellazione...</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Cancellare i threads?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Sei sicuro di voler cancellare TUTTE le conversazioni selezionate?</string>
@@ -135,10 +135,7 @@ Avrai bisogno di registrare di nuovo il tuo numero di telefono per usare i messa
     </string>
   <string name="ExportFragment_cancel">Annulla</string>
   <string name="ExportFragment_exporting">In esportazione</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Esporta il testo in formato PlainText sulla scheda SD?</string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">Errore, impossibile scrivere 
-sulla scheda SD!</string>
-  <string name="ExportFragment_error_while_writing_to_sd_card">Errore durante la scrittura sulla scheda SD.</string>
+  <string name="ExportFragment_error_while_writing_to_sd_card">Errore durante la scrittura su scheda SD.</string>
   <string name="ExportFragment_success">Completato!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_TextSecure_communication_failure">Comunicazione TextSecure fallita definitivamente!</string>
@@ -157,10 +154,11 @@ sulla scheda SD!</string>
   <string name="GroupCreateActivity_menu_create_title">Crea gruppo</string>
   <string name="GroupCreateActivity_creating_group">Creo %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Aggiornamento %1$s...</string>
-  <string name="GroupCreateActivity_loading_group_details">Caricamento dettagli del gruppo</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Impossibile aggiungere utenti che non usano TextSecure a un gruppo esistente</string>
+  <string name="GroupCreateActivity_loading_group_details">Caricamennto dettagli del gruppo...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Io</string>
+  <string name="GroupMembersDialog_members">Membri...</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Importa</string>
   <string name="ImportExportActivity_export">Esporta</string>
@@ -202,6 +200,7 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="NotificationMmsMessageRecord_multimedia_message">Messaggio multimediale</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Hai ricevuto un messaggio cifrato usando una vecchia versione di TextSecure che non è più supportata. Ti preghiamo di chiedere al mittente di aggiornare l\'app e rimandare il messaggio.</string>
+  <string name="MessageRecord_updated_group">Gruppo aggiornato.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Le password non corrispondono!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Vecchia password errata!</string>
@@ -427,6 +426,13 @@ Importo una copia in chiaro. Compatibile con \"SMSBackup And Restore\"</string>
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Impostazioni manuali degli MMS sono necessarie per il tuo telefono.</string>
   <string name="MmsPreferencesFragment__enabled">Attivato</string>
   <string name="MmsPreferencesFragment__disabled">Disattivato</string>
+  <string name="MmsPreferencesFragment__not_set">Non impostato</string>
+  <string name="MmsPreferencesFragment__invalid_uri">Il testo immesso non è un URI valdio</string>
+  <string name="MmsPreferencesFragment__invalid_host">Il testo immesso non è un host valido</string>
+  <!--GroupUtil-->
+  <string name="GroupUtil_joined_the_group">%1$s si unisce al gruppo.</string>
+  <string name="GroupUtil_group_updated">Gruppo aggiornato.</string>
+  <string name="GroupUtil_title_is_now">Il titolo è ora \"%1$s\".</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Sblocca</string>
   <!--prompt_mms_activity-->

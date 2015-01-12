@@ -103,12 +103,13 @@ Vai necessitar de re-registar o seu número de telefone se pretender utilizar es
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_get_with_it">Alinha: %s</string>
   <string name="ConversationActivity_install_textsecure">Instalar TextSecure: %s</string>
+  <string name="ConversationActivity_error_leaving_group">Erro a abandonar grupo...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalhes da mensagem</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transporte: %1$s\nEnviadas/Recebidas: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Remetente: %1$s\nTransporte: %2$s\nEnviado: %3$s\nRecebido: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Confirme apagar a mensagem</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Tem a certeza que pretende apagar permanentemente esta mensagem?</string>
+  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Tem a certeza que pretende apagar permanentemente todas as mensagens seleccionadas?</string>
   <string name="ConversationFragment_save_to_sd_card">Guardar para o armazenamento local?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Gravar este ficheiro para o armazenamento local vai permitir que qualquer outra app lhe possa aceder.\n\nContinuar?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Erro a gravar anexo para o armazenamento local!</string>
@@ -120,6 +121,8 @@ Vai necessitar de re-registar o seu número de telefone se pretender utilizar es
   <string name="ConversationFragment_push">PUSH</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
+  <string name="ConversationFragment_deleting">A apagar...</string>
+  <string name="ConversationFragment_deleting_messages">A apagar mensagens...</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Apagar conversas?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Tem a certeza que pretende apagar TODAS as conversas seleccionadas?</string>
@@ -137,12 +140,9 @@ irá exportar o conteúdo de texto das suas mensagens TextSecure para o cartão 
 </string>
   <string name="ExportFragment_cancel">Cancelar</string>
   <string name="ExportFragment_exporting">Exportar</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">A exportar texto simples para cartão SD</string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">Erro, não é possível escrever para o
-cartão SD!
-</string>
-  <string name="ExportFragment_error_while_writing_to_sd_card">Erro ao escrever para o cartão SD.
-</string>
+  <string name="ExportFragment_exporting_plaintext_to_sd_card">A exportar texto simples para cartão SD...</string>
+  <string name="ExportFragment_error_unable_to_write_to_sd_card">Erro, não é possível escrever para o cartão SD!</string>
+  <string name="ExportFragment_error_while_writing_to_sd_card">Erro ao escrever para o cartão SD.</string>
   <string name="ExportFragment_success">Sucesso!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_TextSecure_communication_failure">Falha de comunicação TextSecure permanente!</string>
@@ -161,10 +161,11 @@ cartão SD!
   <string name="GroupCreateActivity_menu_create_title">Criar grupo</string>
   <string name="GroupCreateActivity_creating_group">Criando %1$s...</string>
   <string name="GroupCreateActivity_updating_group">A actualizar %1$s...</string>
-  <string name="GroupCreateActivity_loading_group_details">A carregar detalhes do grupo...</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Não pode adicionar contactos não-TextSecure a um grupo TextSecure</string>
+  <string name="GroupCreateActivity_loading_group_details">A carregar detalhes do grupo...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Eu</string>
+  <string name="GroupMembersDialog_members">Membros...</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Importar</string>
   <string name="ImportExportActivity_export">Exportar</string>
@@ -207,6 +208,8 @@ importá-lo novamente resultará em mensagens duplicadas.</string>
   <string name="NotificationMmsMessageRecord_multimedia_message">Mensagem multimedia</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Recebeu uma mensagem cifrada através de uma versão anterior de TextSecure que já não é suportada. Por favor peça ao remetente para actualizar a aplicação para a versão mais actual e reenviar a mensagem.</string>
+  <string name="MessageRecord_left_group">Abandonou o grupo.</string>
+  <string name="MessageRecord_updated_group">Actualizou o grupo.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">As frases-chave não coincidem.</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Frase-chave anterior incorrecta!</string>
@@ -317,13 +320,16 @@ Recebida mensagem com chave de identidade desconhecida. Clique para processar e 
   <string name="MessageDisplayHelper_decrypting_please_wait">A decifrar, por favor aguarde...</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Mensagem cifrada para sessão inexistente...</string>
   <!--EncryptingSmsDatabase-->
+  <string name="EncryptingSmsDatabase_error_decrypting_message">Erro a decifrar a mensagem.</string>
   <!--ThreadDatabase-->
+  <string name="ThreadDatabase_error_decrypting_message">Erro a decifrar a mensagem.</string>
   <!--MmsDatabase-->
   <string name="MmsDatabase_connecting_to_mms_server">A ligar ao servidor de MMS...</string>
   <string name="MmsDatabase_downloading_mms">A transferir MMS...</string>
   <string name="MmsDatabase_mms_download_failed">Transferência de MMS falhou!</string>
   <string name="MmsDatabase_downloading">A transferir...</string>
   <string name="MmsDatabase_mms_pending_download">Clique para definir as configurações MMS para continuar o download.</string>
+  <string name="MmsDatabase_error_decrypting_message">Erro a decifrar a mensagem.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">A decifrar MMS, por favor, aguarde...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Mensagem MMS cifrada corrompida...</string>
@@ -434,6 +440,10 @@ Importar uma cópia de segurança de texto simples. Compatível com \'SMSBackup 
   <string name="MmsPreferencesFragment__not_set">Não configurado</string>
   <string name="MmsPreferencesFragment__invalid_uri">O texto introduzido não é uma URI válida</string>
   <string name="MmsPreferencesFragment__invalid_host">O texto introduzido não é um anfitrião válido</string>
+  <!--GroupUtil-->
+  <string name="GroupUtil_joined_the_group">%1$s juntou-se ao grupo.</string>
+  <string name="GroupUtil_group_updated">Grupo actualizado.</string>
+  <string name="GroupUtil_title_is_now">O título é agora \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Desbloquear</string>
   <!--prompt_mms_activity-->
@@ -620,6 +630,8 @@ Aumente a privacidade e evite custos de SMS ao utilizar o canal de dados para co
   <string name="preferences__sms_fallback_never_send_mms">Nunca enviar MMS</string>
   <string name="preferences__sms_fallback_non_push_users">Utilizadores que não usam TextSecure</string>
   <string name="preferences__sms_fallback_nobody">Ninguém</string>
+  <string name="preferences__support_wifi_calling">Modo de compatibilidade \"Chamada WiFi\"</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Activar se o seu dispositivo utiliza entrega SMS/MMS via WiFi (apenas active se \"Chamada WiFi\" está activa no seu dispositivo).</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -692,6 +704,7 @@ Aumente a privacidade e evite custos de SMS ao utilizar o canal de dados para co
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Você</string>
   <string name="MediaPreviewActivity_cant_display">A antevisão desta imagem falhou</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">Tipo de média não suportado</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Gravar</string>
   <!--media_preview_activity-->

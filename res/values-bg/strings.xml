@@ -108,7 +108,6 @@
   <string name="ConversationFragment_transport_s_sent_received_s">Транспорт: %1$s\nИзпратени/Получени: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Изпращач: %1$s\nТранспорт: %2$s\nИзпратено: %3$s\nПолучено:%4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Потвърди изтриване на съобщението</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Сигурен ли си, че искаш да изтриеш съобщението безвъзвратно?</string>
   <string name="ConversationFragment_save_to_sd_card">Запази на SD картата?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Запазване на този файл на SD картата ще разреши на всички други приложения да го виждат и променят.\n\nПродължи?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Грешка при запазване на прикачения файл на SD карта!</string>
@@ -120,6 +119,7 @@
   <string name="ConversationFragment_push">PUSH</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
+  <string name="ConversationFragment_deleting">Изтриване...</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Изтрий разговорите?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Сигурен ли си, че искаш да изтриеш ВСИЧКИ избрани разговори?</string>
@@ -136,10 +136,6 @@
 запише в разшифрован вид съдържанието на вашите TextSecure съобщения на SD карта. </string>
   <string name="ExportFragment_cancel">Отказ</string>
   <string name="ExportFragment_exporting">Изнасяне</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Изнасяне в разшифрован вид към SD карта...</string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">Грешка, неуспешен запис на SD
-картата!</string>
-  <string name="ExportFragment_error_while_writing_to_sd_card">Грешка при запис на SD картата.</string>
   <string name="ExportFragment_success">Успех!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_TextSecure_communication_failure">Перманентна TextSecure комуникационна грешка!</string>
@@ -158,7 +154,6 @@
   <string name="GroupCreateActivity_menu_create_title">Създай група</string>
   <string name="GroupCreateActivity_creating_group">Създаване на %1$s...</string>
   <string name="GroupCreateActivity_updating_group">Обновяване %1$s...</string>
-  <string name="GroupCreateActivity_loading_group_details">Зареждане на детайлите на групата</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Не е възможно добавянето на потребители не използващи TextSecure в съществуваща TextSecure група</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Аз</string>
@@ -432,6 +427,7 @@ SMS съобщенията от системната базата данни в 
   <string name="MmsPreferencesFragment__not_set">Не е избрано</string>
   <string name="MmsPreferencesFragment__invalid_uri">Въведеният текст не е валиден адрес</string>
   <string name="MmsPreferencesFragment__invalid_host">Въведеният текст не валиден host</string>
+  <!--GroupUtil-->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Отключи</string>
   <!--prompt_mms_activity-->

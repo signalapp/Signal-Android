@@ -102,12 +102,13 @@ Send usikret melding?</string>
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_get_with_it">Get with it: %s</string>
   <string name="ConversationActivity_install_textsecure">Installere TextSecure: %s</string>
+  <string name="ConversationActivity_error_leaving_group">Feil ved utmelding av gruppen...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Meldingsdetaljer</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nSendt/Mottatt: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Avsender: %1$s\nTransport: %2$s\nSendt: %3$s\nMottatt:%4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Bekreft sletting av melding</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Er du sikker på at du ønsker å slette denne meldingen?</string>
+  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Er du sikker på at du ønsker å slette alle de valgte meldingene?</string>
   <string name="ConversationFragment_save_to_sd_card">Lagre?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Lagring av dette mediet vil la andre applikasjoner på enheten din få tilgang til det.\n\nFortsett?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Feil ved lagring av vedlegg!</string>
@@ -119,6 +120,8 @@ Send usikret melding?</string>
   <string name="ConversationFragment_push">PUSH</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
+  <string name="ConversationFragment_deleting">Sletter...</string>
+  <string name="ConversationFragment_deleting_messages">Sletter meldinger...</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Slette trådene?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Er du sikker på at du vil slette ALLE valgte samtaletråder?</string>
@@ -135,7 +138,7 @@ Send usikret melding?</string>
   <string name="ExportFragment_cancel">Avbryt</string>
   <string name="ExportFragment_exporting">Eksporterer</string>
   <string name="ExportFragment_exporting_plaintext_to_sd_card">Eksporterer klartekst til SD-kort...</string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">En feil har oppstått; kan ikke skrive til SD-kort!</string>
+  <string name="ExportFragment_error_unable_to_write_to_sd_card">Feil, kan ikke skrive til SD-kort!</string>
   <string name="ExportFragment_error_while_writing_to_sd_card">En feil oppstod under lagring til SD-kort.</string>
   <string name="ExportFragment_success">Suksess!</string>
   <!--GcmRefreshJob-->
@@ -155,10 +158,11 @@ Send usikret melding?</string>
   <string name="GroupCreateActivity_menu_create_title">Opprett gruppe</string>
   <string name="GroupCreateActivity_creating_group">Oppretter %1$s...</string>
   <string name="GroupCreateActivity_updating_group">Oppdaterer %1$s...</string>
-  <string name="GroupCreateActivity_loading_group_details">Laster gruppedetaljer</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Kan ikke legge til ikke-Textsecure kontakter til en eksisterende TextSecure gruppe.</string>
+  <string name="GroupCreateActivity_loading_group_details">Laster gruppedetaljer...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Meg</string>
+  <string name="GroupMembersDialog_members">Medlemmer...</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Importere</string>
   <string name="ImportExportActivity_export">Eksportere</string>
@@ -194,6 +198,8 @@ Gjenoppretting av en kryptert backup vil overskrive eksisterende nøkler, innsti
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimediamelding</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Mottok en melding kryptert med en gammel versjon av TextSecure som ikke lenger er støttet. Vær vennlig å be avsenderen om å oppgradere til siste versjon og sende meldingen om igjen.</string>
+  <string name="MessageRecord_left_group">Du har forlatt gruppen.</string>
+  <string name="MessageRecord_updated_group">Gruppen er oppdatert.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passordene er ikke like!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Gammelt passord er feil!</string>
@@ -415,6 +421,10 @@ Importer en klartekst backup kompatibel med \'SMSBackup And Restore\'.</string>
   <string name="MmsPreferencesFragment__not_set">Ikke satt</string>
   <string name="MmsPreferencesFragment__invalid_uri">Teksten som ble tastet inn var ikke en gyldig URI</string>
   <string name="MmsPreferencesFragment__invalid_host">Teksten som ble tastet inn var ikke en gyldig vert</string>
+  <!--GroupUtil-->
+  <string name="GroupUtil_joined_the_group">%1$s sluttet seg til gruppen.</string>
+  <string name="GroupUtil_group_updated">Gruppen er oppdatert.</string>
+  <string name="GroupUtil_title_is_now">Tittelen er nå \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Lås opp</string>
   <!--prompt_mms_activity-->
@@ -591,6 +601,8 @@ Styrk personvernet ditt og unngå SMS kostnader ved å benytte mobil data når d
   <string name="preferences__sms_fallback_never_send_mms">Aldri send MMS</string>
   <string name="preferences__sms_fallback_non_push_users">Brukere uten TextSecure</string>
   <string name="preferences__sms_fallback_nobody">Ingen</string>
+  <string name="preferences__support_wifi_calling">\'WiFi anrop\' kompatibilititetsmodus</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktiver dersom din enhet benytter WiFi for å levere SMS/MMS  (velges kun dersom \'WiFi anrop\' er aktivert).</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -663,6 +675,7 @@ Styrk personvernet ditt og unngå SMS kostnader ved å benytte mobil data når d
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Du</string>
   <string name="MediaPreviewActivity_cant_display">Klarte ikke å forhåndsvise dette bildet</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">Media typen er ikke støttet.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Lagre</string>
   <!--media_preview_activity-->
