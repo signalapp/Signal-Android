@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.jobs;
 
 import android.test.AndroidTestCase;
 
+import org.thoughtcrime.securesms.TextSecureTestCase;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.dependencies.AxolotlStorageModule;
 import org.whispersystems.libaxolotl.ecc.Curve;
@@ -28,7 +29,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
-public class CleanPreKeysJobTest extends AndroidTestCase {
+public class CleanPreKeysJobTest extends TextSecureTestCase {
 
   public void testSignedPreKeyRotationNotRegistered() throws IOException, MasterSecretJob.RequirementNotMetException {
     TextSecureAccountManager accountManager    = mock(TextSecureAccountManager.class);

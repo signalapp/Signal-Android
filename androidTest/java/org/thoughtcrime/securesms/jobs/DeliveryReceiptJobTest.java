@@ -4,6 +4,7 @@ import android.test.AndroidTestCase;
 
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
+import org.thoughtcrime.securesms.TextSecureTestCase;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.whispersystems.textsecure.api.TextSecureMessageSender;
 import org.whispersystems.textsecure.api.push.PushAddress;
@@ -22,7 +23,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.thoughtcrime.securesms.dependencies.TextSecureCommunicationModule.TextSecureMessageSenderFactory;
 
-public class DeliveryReceiptJobTest extends AndroidTestCase {
+public class DeliveryReceiptJobTest extends TextSecureTestCase {
 
   public void testDelivery() throws IOException {
     TextSecureMessageSender textSecureMessageSender = mock(TextSecureMessageSender.class);
