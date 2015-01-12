@@ -1,22 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:id="@+id/drawer_layout"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+    android:id="@+id/drawer_layout"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <fragment
-            android:id="@+id/fragment_content"
-            android:name="org.thoughtcrime.securesms.ConversationListFragment"
+    <!-- <fragment
+         android:id="@+id/fragment_content"
+         android:name="org.thoughtcrime.securesms.ConversationListFragment"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"/>-->
+
+
+    <android.support.v4.view.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/pager_content">
+
+        <android.support.v4.view.PagerTabStrip
+            android:id="@+id/pager_tab_strip"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:textColor="#fff"
+            android:background="@color/gdata_red"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp" />
+    </android.support.v4.view.ViewPager>
 
     <!--<TextView android:id="@android:id/empty"-->
-              <!--android:layout_width="fill_parent"-->
-              <!--android:layout_height="fill_parent"-->
-              <!--android:gravity="center"-->
-              <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
-              <!--android:textColor="?conversation_text_secondary_color"-->
-              <!--android:text="Empty message list" />-->
+    <!--android:layout_width="fill_parent"-->
+    <!--android:layout_height="fill_parent"-->
+    <!--android:gravity="center"-->
+    <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
+    <!--android:textColor="?conversation_text_secondary_color"-->
+    <!--android:text="Empty message list" />-->
 
 </LinearLayout>

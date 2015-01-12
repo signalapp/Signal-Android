@@ -21,9 +21,13 @@ import android.database.ContentObserver;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.util.Log;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -40,15 +44,14 @@ import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
-
-public class ConversationListActivity extends PassphraseRequiredActionBarActivity
-    implements ConversationListFragment.ConversationSelectedListener
-  {
-  private final DynamicTheme    dynamicTheme    = new DynamicTheme   ();
+public class ConversationListActivity extends PassphraseRequiredActionBarActivity implements
+    ConversationListFragment.ConversationSelectedListener {
+  private final DynamicTheme dynamicTheme = new DynamicTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
-  private ConversationListFragment fragment;
-  private MasterSecret    masterSecret;
+  private ConversationListFragment conversationListFragment;
+  private ContactSelectionFragment contactSelectionFragment;
+  private MasterSecret masterSecret;
   private ContentObserver observer;
 
   @Override
@@ -60,11 +63,35 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     setContentView(R.layout.conversation_list_activity);
 
     getSupportActionBar().setTitle(R.string.app_name);
+    this.conversationListFragment = ConversationListFragment.newInstance(0, "");
+    this.contactSelectionFragment = ContactSelectionFragment.newInstance(1, "");
+    final ViewPager vpPager = (ViewPager) findViewById(R.id.pager_content);
+    PagerAdapter adapterViewPager = new PagerAdapter(getSupportFragmentManager());
+    vpPager.setAdapter(adapterViewPager);
 
     initializeResources();
     initializeContactUpdatesReceiver();
 
     DirectoryRefreshListener.schedule(this);
+
+
+    vpPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+      @Override
+      public void onPageScrolled(int i, float v, int i2) {
+
+      }
+
+      @Override
+      public void onPageSelected(int i) {
+
+      }
+
+      @Override
+      public void onPageScrollStateChanged(int i) {
+
+      }
+    });
+
   }
 
   @Override
@@ -75,6 +102,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   @Override
   public void onResume() {
     super.onResume();
+
     dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
   }
@@ -89,7 +117,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
   @Override
   public void onMasterSecretCleared() {
-//    this.fragment.setMasterSecret(null);
+    // this.conversationListFragment.setMasterSecret(null);
     startActivity(new Intent(this, RoutingActivity.class));
     super.onMasterSecretCleared();
   }
@@ -116,12 +144,12 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   }
 
   private void initializeSearch(MenuItem searchViewItem) {
-    SearchView searchView = (SearchView)MenuItemCompat.getActionView(searchViewItem);
+    SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchViewItem);
     searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
       @Override
       public boolean onQueryTextSubmit(String query) {
-        if (fragment != null) {
-          fragment.setQueryFilter(query);
+        if (conversationListFragment != null) {
+          conversationListFragment.setQueryFilter(query);
           return true;
         }
 
@@ -142,8 +170,8 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
       @Override
       public boolean onMenuItemActionCollapse(MenuItem menuItem) {
-        if (fragment != null) {
-          fragment.resetQueryFilter();
+        if (conversationListFragment != null) {
+          conversationListFragment.resetQueryFilter();
         }
 
         return true;
@@ -156,13 +184,27 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     super.onOptionsItemSelected(item);
 
     switch (item.getItemId()) {
-    case R.id.menu_new_message:       openSingleContactSelection();   return true;
-    case R.id.menu_new_group:         createGroup();                  return true;
-    case R.id.menu_settings:          handleDisplaySettings();        return true;
-    case R.id.menu_clear_passphrase:  handleClearPassphrase();        return true;
-    case R.id.menu_mark_all_read:     handleMarkAllRead();            return true;
-    case R.id.menu_import_export:     handleImportExport();           return true;
-    case R.id.menu_my_identity:       handleMyIdentity();             return true;
+      case R.id.menu_new_message:
+        openSingleContactSelection();
+        return true;
+      case R.id.menu_new_group:
+        createGroup();
+        return true;
+      case R.id.menu_settings:
+        handleDisplaySettings();
+        return true;
+      case R.id.menu_clear_passphrase:
+        handleClearPassphrase();
+        return true;
+      case R.id.menu_mark_all_read:
+        handleMarkAllRead();
+        return true;
+      case R.id.menu_import_export:
+        handleImportExport();
+        return true;
+      case R.id.menu_my_identity:
+        handleMyIdentity();
+        return true;
     }
 
     return false;
@@ -239,24 +281,41 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         // TODO only clear updated recipients from cache
         RecipientFactory.clearCache();
         ConversationListActivity.this.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                ((ConversationListAdapter)fragment.getListAdapter()).notifyDataSetChanged();
-              }
-          });
+          @Override
+          public void run() {
+            ((ConversationListAdapter) conversationListFragment.getListAdapter()).notifyDataSetChanged();
+          }
+        });
       }
     };
 
-    getContentResolver().registerContentObserver(ContactsContract.Contacts.CONTENT_URI,
-                                                 true, observer);
+    getContentResolver().registerContentObserver(ContactsContract.Contacts.CONTENT_URI, true, observer);
   }
 
   private void initializeResources() {
     this.masterSecret = getIntent().getParcelableExtra("master_secret");
-
-    this.fragment = (ConversationListFragment)this.getSupportFragmentManager()
-                                                  .findFragmentById(R.id.fragment_content);
-
-    this.fragment.setMasterSecret(masterSecret);
+    this.conversationListFragment.setMasterSecret(masterSecret);
   }
+
+  public class PagerAdapter extends FragmentPagerAdapter {
+    public PagerAdapter(FragmentManager fm) {
+      super(fm);
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+      return "Page " + (position + 1);
+    }
+
+    @Override
+    public int getCount() {
+      return 2;
+    }
+
+    @Override
+    public Fragment getItem(int position) {
+      return position == 0 ? conversationListFragment : contactSelectionFragment;
+    }
+  }
+
 }

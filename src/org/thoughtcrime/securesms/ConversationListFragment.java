@@ -26,13 +26,10 @@ import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
-import android.text.TextUtils;
-import android.support.v4.view.MenuItemCompat;
+import android.support.v4.widget.CursorAdapter;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.view.ActionMode;
-import android.support.v7.widget.SearchView;
-import android.util.Log;
-import android.support.v4.widget.CursorAdapter;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -46,25 +43,23 @@ import org.thoughtcrime.securesms.components.DefaultSmsReminder;
 import org.thoughtcrime.securesms.components.PushRegistrationReminder;
 import org.thoughtcrime.securesms.components.ReminderView;
 import org.thoughtcrime.securesms.components.SystemSmsImportReminder;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.loaders.ConversationListLoader;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.Dialogs;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 
 import java.util.Set;
 
-
-public class ConversationListFragment extends ListFragment
-  implements LoaderManager.LoaderCallbacks<Cursor>, ActionMode.Callback
-{
+public class ConversationListFragment extends ListFragment implements LoaderManager.LoaderCallbacks<Cursor>,
+    ActionMode.Callback {
 
   private ConversationSelectedListener listener;
-  private MasterSecret                 masterSecret;
-  private ActionMode                   actionMode;
-  private ReminderView                 reminderView;
-  private String                       queryFilter  = "";
+  private MasterSecret masterSecret;
+  private ActionMode actionMode;
+  private ReminderView reminderView;
+  private String queryFilter = "";
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -102,7 +97,7 @@ public class ConversationListFragment extends ListFragment
   @Override
   public void onAttach(Activity activity) {
     super.onAttach(activity);
-    this.listener = (ConversationSelectedListener)activity;
+    this.listener = (ConversationSelectedListener) activity;
   }
 
   @Override
@@ -111,16 +106,16 @@ public class ConversationListFragment extends ListFragment
       ConversationListItem headerView = (ConversationListItem) v;
       if (actionMode == null) {
         handleCreateConversation(headerView.getThreadId(), headerView.getRecipients(),
-                                 headerView.getDistributionType());
+            headerView.getDistributionType());
       } else {
-        ConversationListAdapter adapter = (ConversationListAdapter)getListAdapter();
+        ConversationListAdapter adapter = (ConversationListAdapter) getListAdapter();
         adapter.toggleThreadInBatchSet(headerView.getThreadId());
 
         if (adapter.getBatchSelections().size() == 0) {
           actionMode.finish();
         } else {
           actionMode.setSubtitle(getString(R.string.conversation_fragment_cab__batch_selection_amount,
-                                           adapter.getBatchSelections().size()));
+              adapter.getBatchSelections().size()));
         }
 
         adapter.notifyDataSetChanged();
@@ -131,7 +126,7 @@ public class ConversationListFragment extends ListFragment
   public void setMasterSecret(MasterSecret masterSecret) {
     if (this.masterSecret != masterSecret) {
       this.masterSecret = masterSecret;
-      initializeListAdapter();
+
     }
   }
 
@@ -150,8 +145,8 @@ public class ConversationListFragment extends ListFragment
     getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
       @Override
       public boolean onItemLongClick(AdapterView<?> arg0, View v, int position, long id) {
-        ConversationListAdapter adapter = (ConversationListAdapter)getListAdapter();
-        actionMode = ((ActionBarActivity)getActivity()).startSupportActionMode(ConversationListFragment.this);
+        ConversationListAdapter adapter = (ConversationListAdapter) getListAdapter();
+        actionMode = ((ActionBarActivity) getActivity()).startSupportActionMode(ConversationListFragment.this);
 
         adapter.initializeBatchMode(true);
         adapter.toggleThreadInBatchSet(((ConversationListItem) v).getThreadId());
@@ -176,7 +171,7 @@ public class ConversationListFragment extends ListFragment
 
   private void initializeListAdapter() {
     this.setListAdapter(new ConversationListAdapter(getActivity(), null, masterSecret));
-    getListView().setRecyclerListener((ConversationListAdapter)getListAdapter());
+    getListView().setRecyclerListener((ConversationListAdapter) getListAdapter());
     getLoaderManager().restartLoader(0, null, this);
   }
 
@@ -190,7 +185,7 @@ public class ConversationListFragment extends ListFragment
     alert.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialog, int which) {
-        final Set<Long> selectedConversations = ((ConversationListAdapter)getListAdapter())
+        final Set<Long> selectedConversations = ((ConversationListAdapter) getListAdapter())
             .getBatchSelections();
 
         if (!selectedConversations.isEmpty()) {
@@ -200,9 +195,9 @@ public class ConversationListFragment extends ListFragment
             @Override
             protected void onPreExecute() {
               dialog = ProgressDialog.show(getActivity(),
-                                           getActivity().getString(R.string.ConversationListFragment_deleting),
-                                           getActivity().getString(R.string.ConversationListFragment_deleting_selected_threads),
-                                           true, false);
+                  getActivity().getString(R.string.ConversationListFragment_deleting), getActivity()
+                      .getString(R.string.ConversationListFragment_deleting_selected_threads),
+                  true, false);
             }
 
             @Override
@@ -230,15 +225,15 @@ public class ConversationListFragment extends ListFragment
   }
 
   private void handleSelectAllThreads() {
-    ((ConversationListAdapter)this.getListAdapter()).selectAllThreads();
+    ((ConversationListAdapter) this.getListAdapter()).selectAllThreads();
     actionMode.setSubtitle(getString(R.string.conversation_fragment_cab__batch_selection_amount,
-                           ((ConversationListAdapter)this.getListAdapter()).getBatchSelections().size()));
+        ((ConversationListAdapter) this.getListAdapter()).getBatchSelections().size()));
   }
 
   private void handleUnselectAllThreads() {
-    ((ConversationListAdapter)this.getListAdapter()).selectAllThreads();
+    ((ConversationListAdapter) this.getListAdapter()).selectAllThreads();
     actionMode.setSubtitle(getString(R.string.conversation_fragment_cab__batch_selection_amount,
-                           ((ConversationListAdapter)this.getListAdapter()).getBatchSelections().size()));
+        ((ConversationListAdapter) this.getListAdapter()).getBatchSelections().size()));
   }
 
   private void handleCreateConversation(long threadId, Recipients recipients, int distributionType) {
@@ -252,17 +247,17 @@ public class ConversationListFragment extends ListFragment
 
   @Override
   public void onLoadFinished(Loader<Cursor> arg0, Cursor cursor) {
-    ((CursorAdapter)getListAdapter()).changeCursor(cursor);
+    ((CursorAdapter) getListAdapter()).changeCursor(cursor);
   }
 
   @Override
   public void onLoaderReset(Loader<Cursor> arg0) {
-    ((CursorAdapter)getListAdapter()).changeCursor(null);
+    ((CursorAdapter) getListAdapter()).changeCursor(null);
   }
 
   public interface ConversationSelectedListener {
     public void onCreateConversation(long threadId, Recipients recipients, int distributionType);
-}
+  }
 
   @Override
   public boolean onCreateActionMode(ActionMode mode, Menu menu) {
@@ -283,8 +278,12 @@ public class ConversationListFragment extends ListFragment
   @Override
   public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
     switch (item.getItemId()) {
-    case R.id.menu_select_all:      handleSelectAllThreads(); return true;
-    case R.id.menu_delete_selected: handleDeleteAllSelected(); return true;
+      case R.id.menu_select_all:
+        handleSelectAllThreads();
+        return true;
+      case R.id.menu_delete_selected:
+        handleDeleteAllSelected();
+        return true;
     }
 
     return false;
@@ -292,10 +291,17 @@ public class ConversationListFragment extends ListFragment
 
   @Override
   public void onDestroyActionMode(ActionMode mode) {
-    ((ConversationListAdapter)getListAdapter()).initializeBatchMode(false);
+    ((ConversationListAdapter) getListAdapter()).initializeBatchMode(false);
     actionMode = null;
   }
 
+  public static ConversationListFragment newInstance(int page, String title) {
+    ConversationListFragment fragmentFirst = new ConversationListFragment();
+    Bundle args = new Bundle();
+    args.putInt("pageInt", page);
+    args.putString("pageTitle", title);
+    fragmentFirst.setArguments(args);
+    return fragmentFirst;
+  }
+
 }
-
-
