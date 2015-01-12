@@ -6,13 +6,10 @@ import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
-import android.graphics.PorterDuff.Mode;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
-import android.graphics.RectF;
 import android.net.Uri;
 import android.util.Log;
 import android.util.Pair;
@@ -28,9 +25,6 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import com.android.gallery3d.data.Exif;
-
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.mms.PartAuthority;
 
 public class BitmapUtil {
   private static final String TAG = BitmapUtil.class.getSimpleName();
@@ -60,6 +54,8 @@ public class BitmapUtil {
 
       quality = Math.max((quality * maxSize) / baos.size(), MIN_COMPRESSION_QUALITY);
     } while (baos.size() > maxSize && attempts++ < MAX_COMPRESSION_ATTEMPTS);
+
+    Log.w(TAG, "createScaledBytes(" + uri + ") -> quality " + Math.min(quality, MAX_COMPRESSION_QUALITY) + ", " + attempts + " attempt(s)");
 
     bitmap.recycle();
 
@@ -214,6 +210,11 @@ public class BitmapUtil {
       Log.w(TAG, "failed to close the InputStream after reading image dimensions");
     }
     return options;
+  }
+
+  public static Pair<Integer, Integer> getDimensions(InputStream inputStream) {
+    BitmapFactory.Options options = getImageDimensions(inputStream);
+    return new Pair<>(options.outWidth, options.outHeight);
   }
 
   public static Bitmap getCircleCroppedBitmap(Bitmap bitmap) {

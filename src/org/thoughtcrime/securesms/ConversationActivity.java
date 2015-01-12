@@ -73,6 +73,7 @@ import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
 import org.thoughtcrime.securesms.mms.AttachmentTypeSelectorAdapter;
 import org.thoughtcrime.securesms.mms.MediaTooLargeException;
+import org.thoughtcrime.securesms.mms.MmsMediaConstraints;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingMmsConnection;
@@ -848,8 +849,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       Log.w("ComposeMessageActivity", e);
     } catch (MediaTooLargeException e) {
       attachmentManager.clear();
+
       Toast.makeText(this, getString(R.string.ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions,
-                                     (Slide.MAX_MESSAGE_SIZE/1024)),
+                                     (MmsMediaConstraints.MAX_MESSAGE_SIZE/1024)),
                      Toast.LENGTH_LONG).show();
       Log.w("ComposeMessageActivity", e);
     }
@@ -866,7 +868,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     } catch (MediaTooLargeException e) {
       attachmentManager.clear();
       Toast.makeText(this, getString(R.string.ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions,
-                                     (Slide.MAX_MESSAGE_SIZE/1024)),
+                                     (MmsMediaConstraints.MAX_MESSAGE_SIZE/1024)),
                      Toast.LENGTH_LONG).show();
       Log.w("ComposeMessageActivity", e);
     }

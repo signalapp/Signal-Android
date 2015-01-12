@@ -36,8 +36,6 @@ import ws.com.google.android.mms.pdu.PduPart;
 
 public abstract class Slide {
 
-  public static final int MAX_MESSAGE_SIZE = 280 * 1024;
-
   protected final PduPart      part;
   protected final Context      context;
   protected       MasterSecret masterSecret;
@@ -124,7 +122,7 @@ public abstract class Slide {
 
     while ((read = in.read(buffer)) != -1) {
       size += read;
-      if (size > MAX_MESSAGE_SIZE) throw new MediaTooLargeException("Media exceeds maximum message size.");
+      if (size > MmsMediaConstraints.MAX_MESSAGE_SIZE) throw new MediaTooLargeException("Media exceeds maximum message size.");
     }
   }
 }
