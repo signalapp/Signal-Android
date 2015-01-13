@@ -39,10 +39,14 @@ public class PartAuthority {
     PartDatabase partDatabase = DatabaseFactory.getPartDatabase(context);
     int          match        = uriMatcher.match(uri);
 
-    switch (match) {
+    try {
+      switch (match) {
       case PART_ROW:  return partDatabase.getPartStream(masterSecret, ContentUris.parseId(uri));
       case THUMB_ROW: return partDatabase.getThumbnailStream(masterSecret, ContentUris.parseId(uri));
       default:        return context.getContentResolver().openInputStream(uri);
+      }
+    } catch (SecurityException se) {
+      throw new IOException(se);
     }
   }
 
