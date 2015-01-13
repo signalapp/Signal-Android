@@ -66,7 +66,7 @@ public abstract class SendJob extends MasterSecretJob {
       resizedData = resizePart(masterSecret, constraints, part);
     }
 
-    if (toMemory) {
+    if (toMemory && part.getDataUri() != null) {
       part.setData(resizedData != null ? resizedData : MediaUtil.getPartData(context, masterSecret, part));
     }
 
