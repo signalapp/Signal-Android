@@ -149,6 +149,8 @@ public class MmsSendJob extends SendJob {
     String  number         = ((TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE)).getLine1Number();
     boolean upgradedSecure = false;
 
+    prepareMessageMedia(masterSecret, message, MediaConstraints.MMS_CONSTRAINTS, true);
+
     if (MmsDatabase.Types.isSecureType(message.getDatabaseMessageBox())) {
       message        = getEncryptedMessage(masterSecret, message);
       upgradedSecure = true;
@@ -158,10 +160,14 @@ public class MmsSendJob extends SendJob {
       message.setFrom(new EncodedStringValue(number));
     }
 
-    prepareMessageMedia(masterSecret, message, MediaConstraints.MMS_CONSTRAINTS, true);
-
     try {
-      OutgoingMmsConnection connection = new OutgoingMmsConnection(context, radio.getApnInformation(), new PduComposer(context, message).make());
+      byte[] pdu = new PduComposer(context, message).make();
+
+      if (pdu == null) {
+        throw new UndeliverableMessageException("PDU composition failed, null payload");
+      }
+
+      OutgoingMmsConnection connection = new OutgoingMmsConnection(context, radio.getApnInformation(), pdu);
       SendConf              conf       = connection.send(usingMmsRadio, useProxy);
 
       if (conf == null) {
@@ -179,7 +185,7 @@ public class MmsSendJob extends SendJob {
   }
 
   private SendReq getEncryptedMessage(MasterSecret masterSecret, SendReq pdu)
-      throws InsecureFallbackApprovalException
+      throws InsecureFallbackApprovalException, UndeliverableMessageException
   {
     try {
       MmsCipher cipher = new MmsCipher(new TextSecureAxolotlStore(context, masterSecret));
