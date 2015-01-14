@@ -82,7 +82,6 @@
         <item name="android:textSize">16.0sp</item>
         <item name="android:typeface">sans</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">#ff333333</item>
         <item name="android:gravity">left</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:shadowColor">#ffffff</item>
