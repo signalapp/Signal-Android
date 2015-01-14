@@ -24,6 +24,7 @@
 
     <attr name="conversation_background" format="reference|color"/>
     <attr name="conversation_editor_background" format="reference"/>
+    <attr name="conversation_editor_background_disabled" format="reference"/>
     <attr name="conversation_editor_text_color" format="reference|color"/>
     <attr name="conversation_send_button_push" format="reference"/>
     <attr name="conversation_send_button_sms_secure" format="reference"/>

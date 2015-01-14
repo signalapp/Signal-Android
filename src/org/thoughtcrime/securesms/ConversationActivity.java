@@ -149,6 +149,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private EditText     composeText;
   private SendButton   sendButton;
   private TextView     charactersLeft;
+  private View         bottomPanel;
 
   private AttachmentTypeSelectorAdapter attachmentAdapter;
   private AttachmentManager             attachmentManager;
@@ -156,6 +157,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private BroadcastReceiver             groupUpdateReceiver;
   private EmojiDrawer                   emojiDrawer;
   private EmojiToggle                   emojiToggle;
+  private TextView                      disabledLabel;
 
   private Recipients recipients;
   private long       threadId;
@@ -210,9 +212,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
 
+    initializeEnabledCheck();
     initializeSecurity();
     initializeTitleBar();
-    initializeEnabledCheck();
     initializeMmsEnabledCheck();
     initializeIme();
     initializeCharactersLeftViewEnabledCheck();
@@ -699,7 +701,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     sendButton.initializeAvailableTransports(!recipients.isSingleRecipient() || attachmentManager.isAttachmentPresent());
     if (!isPushDestination  ) sendButton.disableTransport("textsecure");
     if (!isSecureDestination) sendButton.disableTransport("secure_sms");
-
     if (isPushDestination) {
       sendButton.setDefaultTransport("textsecure");
     } else if (isSecureDestination) {
@@ -707,7 +708,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     } else {
       sendButton.setDefaultTransport("insecure_sms");
     }
-
+    if (!isSecureDestination && !TextSecurePreferences.isDirectSmsAllowed(this)) {
+        disabledLabel.setVisibility(View.VISIBLE);
+        bottomPanel.setVisibility(View.GONE);
+    }
     calculateCharactersRemaining();
   }
 
@@ -739,6 +743,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     charactersLeft = (TextView) findViewById(R.id.space_left);
     emojiDrawer    = (EmojiDrawer) findViewById(R.id.emoji_drawer);
     emojiToggle    = (EmojiToggle) findViewById(R.id.emoji_toggle);
+    bottomPanel    = findViewById(R.id.bottom_panel);
+    disabledLabel  = (TextView) findViewById(R.id.disabled_label);
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
       emojiToggle.setVisibility(View.GONE);
