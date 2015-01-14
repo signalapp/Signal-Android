@@ -92,9 +92,7 @@ public class MediaUtil {
     }
 
     public InputStream toDataStream() {
-      InputStream jpegStream  = BitmapUtil.toCompressedJpeg(bitmap);
-      bitmap.recycle();
-      return jpegStream;
+      return BitmapUtil.toCompressedJpeg(bitmap);
     }
   }
 }
