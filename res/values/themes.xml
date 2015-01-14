@@ -65,13 +65,6 @@
         <item name="conversation_item_sent_push_pending_background">@drawable/conversation_item_sent_push_pending_shape</item>
         <item name="conversation_item_sent_push_pending_triangle_background">@drawable/conversation_item_sent_push_pending_triangle_shape</item>
 
-        <item name="import_export_item_background_color">@color/import_export_item_background_light</item>
-        <item name="import_export_item_background_shadow_color">@color/import_export_item_background_shadow_light</item>
-        <item name="import_export_item_card_background">@drawable/clickable_card_light</item>
-        <item name="stock_sms">@drawable/stock_sms_light</item>
-        <item name="encrypted_backup">@drawable/encrypted_backup_light</item>
-        <item name="plaintext_backup">@drawable/plaintext_backup_light</item>
-
         <item name="menu_new_conversation_icon">@drawable/ic_action_new_holo_light</item>
         <item name="menu_new_group_icon">@drawable/ic_action_add_group_holo_light</item>
         <item name="menu_group_icon">@drawable/ic_menu_groups_holo_light</item>
@@ -137,13 +130,6 @@
         <item name="conversation_item_sent_pending_triangle_background">@drawable/conversation_item_sent_pending_triangle_shape_dark</item>
         <item name="conversation_item_sent_push_pending_background">@drawable/conversation_item_sent_push_pending_shape_dark</item>
         <item name="conversation_item_sent_push_pending_triangle_background">@drawable/conversation_item_sent_push_pending_triangle_shape_dark</item>
-
-        <item name="import_export_item_background_color">@color/import_export_item_background_dark</item>
-        <item name="import_export_item_background_shadow_color">@color/import_export_item_background_shadow_dark</item>
-        <item name="import_export_item_card_background">@drawable/clickable_card_dark</item>
-        <item name="stock_sms">@drawable/stock_sms_dark</item>
-        <item name="encrypted_backup">@drawable/encrypted_backup_dark</item>
-        <item name="plaintext_backup">@drawable/plaintext_backup_dark</item>
 
         <item name="actionbar_icon">@drawable/actionbar_icon_holo_dark</item>
         <item name="lower_right_divet">@drawable/divet_lower_right_light</item>
