@@ -16,10 +16,13 @@
  */
 package org.whispersystems.textsecure.internal.push;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
 public class StaleDevices {
 
+  @JsonProperty
   private List<Integer> staleDevices;
 
   public List<Integer> getStaleDevices() {

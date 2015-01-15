@@ -22,6 +22,7 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.mms.MediaNotFoundException;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
@@ -30,6 +31,7 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
 
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -52,10 +54,12 @@ public class MediaMmsMessageRecord extends MessageRecord {
                                long dateSent, long dateReceived, int deliveredCount,
                                long threadId, Body body,
                                ListenableFutureTask<SlideDeck> slideDeck,
-                               int partCount, long mailbox)
+                               int partCount, long mailbox,
+                               List<IdentityKeyMismatch> mismatches)
   {
     super(context, id, body, recipients, individualRecipient, recipientDeviceId,
-          dateSent, dateReceived, threadId, DELIVERY_STATUS_NONE, deliveredCount, mailbox);
+          dateSent, dateReceived, threadId, DELIVERY_STATUS_NONE, deliveredCount, mailbox,
+          mismatches);
 
     this.context             = context.getApplicationContext();
     this.partCount           = partCount;

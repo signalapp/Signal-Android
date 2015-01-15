@@ -59,6 +59,16 @@
     <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
     <string name="AttachmentTypeSelectorAdapter_contact">Contact info</string>
 
+    <!-- ConfirmIdentityDialog -->
+    <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">The
+        identifying key material for %1$s has changed. This could either mean that someone is trying to
+        intercept your communication, or that %2$s simply re-installed TextSecure and now has a new
+        identity key.
+    </string>
+    <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">You may wish to verify
+        this contact.
+    </string>
+
     <!-- ConversationItem -->
     <string name="ConversationItem_message_size_d_kb">Message size: %d KB</string>
     <string name="ConversationItem_expires_s">Expires: %s</string>

@@ -34,6 +34,8 @@ import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
+import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchList;
 import org.thoughtcrime.securesms.database.model.DisplayRecord;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -50,6 +52,7 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.GroupUtil;
+import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.LRUCache;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -59,10 +62,12 @@ import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.ref.SoftReference;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -88,7 +93,9 @@ import static org.thoughtcrime.securesms.util.Util.canonicalizeNumberOrGroup;
 // 2) How many queries do we make?  calling getMediaMessageForId() from within an existing query
 //    seems wasteful.
 
-public class MmsDatabase extends Database implements MmsSmsColumns {
+public class MmsDatabase extends MessagingDatabase {
+
+  private static final String TAG = MmsDatabase.class.getSimpleName();
 
   public  static final String TABLE_NAME         = "mms";
           static final String DATE_SENT          = "date";
@@ -132,7 +139,8 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
     STATUS + " INTEGER, " + TRANSACTION_ID + " TEXT, " + RETRIEVE_STATUS + " INTEGER, "         +
     RETRIEVE_TEXT + " TEXT, " + RETRIEVE_TEXT_CS + " INTEGER, " + READ_STATUS + " INTEGER, "    +
     CONTENT_CLASS + " INTEGER, " + RESPONSE_TEXT + " TEXT, " + DELIVERY_TIME + " INTEGER, "     +
-    RECEIPT_COUNT + " INTEGER DEFAULT 0, " + DELIVERY_REPORT + " INTEGER);";
+    RECEIPT_COUNT + " INTEGER DEFAULT 0, " + MISMATCHED_IDENTITIES + " TEXT DEFAULT NULL, "     +
+    DELIVERY_REPORT + " INTEGER);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS mms_thread_id_index ON " + TABLE_NAME + " (" + THREAD_ID + ");",
@@ -162,6 +170,11 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
   public MmsDatabase(Context context, SQLiteOpenHelper databaseHelper) {
     super(context, databaseHelper);
     this.jobManager = ApplicationContext.getInstance(context).getJobManager();
+  }
+
+  @Override
+  protected String getTableName() {
+    return TABLE_NAME;
   }
 
   public int getMessageCountForThread(long threadId) {
@@ -326,8 +339,8 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
   private void updateMailboxBitmask(long id, long maskOff, long maskOn) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     db.execSQL("UPDATE " + TABLE_NAME +
-               " SET " + MESSAGE_BOX + " = (" + MESSAGE_BOX + " & " + (Types.TOTAL_MASK - maskOff) + " | " + maskOn + " )" +
-               " WHERE " + ID + " = ?", new String[] {id + ""});
+                   " SET " + MESSAGE_BOX + " = (" + MESSAGE_BOX + " & " + (Types.TOTAL_MASK - maskOff) + " | " + maskOn + " )" +
+                   " WHERE " + ID + " = ?", new String[] {id + ""});
   }
 
   public void markAsOutbox(long messageId) {
@@ -1004,13 +1017,18 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
       int receiptCount        = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.RECEIPT_COUNT));
       DisplayRecord.Body body = getBody(cursor);
       int partCount           = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.PART_COUNT));
-      Recipients recipients   = getRecipientsFor(address);
+      String mismatchDocument = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.MISMATCHED_IDENTITIES));
+
+      Log.w(TAG, "Address: " + address);
+
+      Recipients                recipients = getRecipientsFor(address);
+      List<IdentityKeyMismatch> mismatches = getMismatchedIdentities(mismatchDocument);
 
       ListenableFutureTask<SlideDeck> slideDeck = getSlideDeck(masterSecret, id);
 
       return new MediaMmsMessageRecord(context, id, recipients, recipients.getPrimaryRecipient(),
                                        addressDeviceId, dateSent, dateReceived, receiptCount,
-                                       threadId, body, slideDeck, partCount, box);
+                                       threadId, body, slideDeck, partCount, box, mismatches);
     }
 
     private Recipients getRecipientsFor(String address) {
@@ -1030,6 +1048,18 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
         Log.w("MmsDatabase", e);
         return new Recipients(Recipient.getUnknownRecipient(context));
       }
+    }
+
+    private List<IdentityKeyMismatch> getMismatchedIdentities(String document) {
+      if (!TextUtils.isEmpty(document)) {
+        try {
+          return JsonUtils.fromJson(document, IdentityKeyMismatchList.class).getMismatches();
+        } catch (IOException e) {
+          Log.w(TAG, e);
+        }
+      }
+
+      return new LinkedList<>();
     }
 
     private DisplayRecord.Body getBody(Cursor cursor) {

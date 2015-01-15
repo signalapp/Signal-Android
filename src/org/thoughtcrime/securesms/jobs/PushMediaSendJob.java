@@ -16,7 +16,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.sms.IncomingIdentityUpdateMessage;
 import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.SecureFallbackApprovalException;
@@ -60,7 +59,8 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
 
   @Override
   public void onSend(MasterSecret masterSecret)
-      throws RetryLaterException, MmsException, NoSuchMessageException, UndeliverableMessageException
+      throws RetryLaterException, MmsException, NoSuchMessageException,
+             UndeliverableMessageException, RecipientFormattingException
   {
     MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
     SendReq     message  = database.getOutgoingMessage(masterSecret, messageId);
@@ -80,9 +80,13 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
       database.markAsPendingSecureSmsFallback(messageId);
       notifyMediaMessageDeliveryFailed(context, messageId);
     } catch (UntrustedIdentityException uie) {
-      IncomingIdentityUpdateMessage identityUpdateMessage = IncomingIdentityUpdateMessage.createFor(message.getTo()[0].getString(), uie.getIdentityKey());
-      DatabaseFactory.getEncryptingSmsDatabase(context).insertMessageInbox(masterSecret, identityUpdateMessage);
+      Log.w(TAG, uie);
+      Recipients recipients  = RecipientFactory.getRecipientsFromString(context, uie.getE164Number(), false);
+      long       recipientId = recipients.getPrimaryRecipient().getRecipientId();
+
+      database.addMismatchedIdentity(messageId, recipientId, uie.getIdentityKey());
       database.markAsSentFailed(messageId);
+      database.markAsPush(messageId);
     }
   }
 

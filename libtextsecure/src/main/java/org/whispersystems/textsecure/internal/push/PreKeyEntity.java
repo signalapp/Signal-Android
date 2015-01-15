@@ -16,14 +16,15 @@
  */
 package org.whispersystems.textsecure.internal.push;
 
-import com.google.thoughtcrimegson.GsonBuilder;
-import com.google.thoughtcrimegson.JsonDeserializationContext;
-import com.google.thoughtcrimegson.JsonDeserializer;
-import com.google.thoughtcrimegson.JsonElement;
-import com.google.thoughtcrimegson.JsonParseException;
-import com.google.thoughtcrimegson.JsonPrimitive;
-import com.google.thoughtcrimegson.JsonSerializationContext;
-import com.google.thoughtcrimegson.JsonSerializer;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.JsonSerializer;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import org.whispersystems.libaxolotl.InvalidKeyException;
 import org.whispersystems.libaxolotl.ecc.Curve;
@@ -31,11 +32,15 @@ import org.whispersystems.libaxolotl.ecc.ECPublicKey;
 import org.whispersystems.textsecure.internal.util.Base64;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
 
 public class PreKeyEntity {
 
-  private int         keyId;
+  @JsonProperty
+  private int keyId;
+
+  @JsonProperty
+  @JsonSerialize(using = ECPublicKeySerializer.class)
+  @JsonDeserialize(using = ECPublicKeyDeserializer.class)
   private ECPublicKey publicKey;
 
   public PreKeyEntity() {}
@@ -53,32 +58,21 @@ public class PreKeyEntity {
     return publicKey;
   }
 
-  public static GsonBuilder forBuilder(GsonBuilder builder) {
-    return builder.registerTypeAdapter(ECPublicKey.class, new ECPublicKeyJsonAdapter());
+  private static class ECPublicKeySerializer extends JsonSerializer<ECPublicKey> {
+    @Override
+    public void serialize(ECPublicKey value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
+      gen.writeString(Base64.encodeBytesWithoutPadding(value.serialize()));
+    }
   }
 
-
-  private static class ECPublicKeyJsonAdapter
-      implements JsonSerializer<ECPublicKey>, JsonDeserializer<ECPublicKey>
-  {
+  private static class ECPublicKeyDeserializer extends JsonDeserializer<ECPublicKey> {
     @Override
-    public JsonElement serialize(ECPublicKey preKeyPublic, Type type,
-                                 JsonSerializationContext jsonSerializationContext)
-    {
-      return new JsonPrimitive(Base64.encodeBytesWithoutPadding(preKeyPublic.serialize()));
-    }
-
-    @Override
-    public ECPublicKey deserialize(JsonElement jsonElement, Type type,
-                                    JsonDeserializationContext jsonDeserializationContext)
-        throws JsonParseException
-    {
+    public ECPublicKey deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
       try {
-        return Curve.decodePoint(Base64.decodeWithoutPadding(jsonElement.getAsJsonPrimitive().getAsString()), 0);
-      } catch (InvalidKeyException | IOException e) {
-        throw new JsonParseException(e);
+        return Curve.decodePoint(Base64.decodeWithoutPadding(p.getValueAsString()), 0);
+      } catch (InvalidKeyException e) {
+        throw new IOException(e);
       }
     }
   }
-
 }

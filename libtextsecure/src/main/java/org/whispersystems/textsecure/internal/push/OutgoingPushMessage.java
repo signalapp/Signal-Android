@@ -17,14 +17,20 @@
 package org.whispersystems.textsecure.internal.push;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import org.whispersystems.textsecure.api.push.PushAddress;
 import org.whispersystems.textsecure.internal.util.Base64;
 
 public class OutgoingPushMessage {
 
+  @JsonProperty
   private int    type;
+  @JsonProperty
   private int    destinationDeviceId;
+  @JsonProperty
   private int    destinationRegistrationId;
+  @JsonProperty
   private String body;
 
   public OutgoingPushMessage(PushAddress address, PushBody body) {

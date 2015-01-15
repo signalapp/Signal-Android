@@ -45,21 +45,22 @@ import ws.com.google.android.mms.ContentType;
 
 public class DatabaseFactory {
 
-  private static final int INTRODUCED_IDENTITIES_VERSION     = 2;
-  private static final int INTRODUCED_INDEXES_VERSION        = 3;
-  private static final int INTRODUCED_DATE_SENT_VERSION      = 4;
-  private static final int INTRODUCED_DRAFTS_VERSION         = 5;
-  private static final int INTRODUCED_NEW_TYPES_VERSION      = 6;
-  private static final int INTRODUCED_MMS_BODY_VERSION       = 7;
-  private static final int INTRODUCED_MMS_FROM_VERSION       = 8;
-  private static final int INTRODUCED_TOFU_IDENTITY_VERSION  = 9;
-  private static final int INTRODUCED_PUSH_DATABASE_VERSION  = 10;
-  private static final int INTRODUCED_GROUP_DATABASE_VERSION = 11;
-  private static final int INTRODUCED_PUSH_FIX_VERSION       = 12;
-  private static final int INTRODUCED_DELIVERY_RECEIPTS      = 13;
-  private static final int INTRODUCED_PART_DATA_SIZE_VERSION = 14;
-  private static final int INTRODUCED_THUMBNAILS_VERSION     = 15;
-  private static final int DATABASE_VERSION                  = 15;
+  private static final int INTRODUCED_IDENTITIES_VERSION      = 2;
+  private static final int INTRODUCED_INDEXES_VERSION         = 3;
+  private static final int INTRODUCED_DATE_SENT_VERSION       = 4;
+  private static final int INTRODUCED_DRAFTS_VERSION          = 5;
+  private static final int INTRODUCED_NEW_TYPES_VERSION       = 6;
+  private static final int INTRODUCED_MMS_BODY_VERSION        = 7;
+  private static final int INTRODUCED_MMS_FROM_VERSION        = 8;
+  private static final int INTRODUCED_TOFU_IDENTITY_VERSION   = 9;
+  private static final int INTRODUCED_PUSH_DATABASE_VERSION   = 10;
+  private static final int INTRODUCED_GROUP_DATABASE_VERSION  = 11;
+  private static final int INTRODUCED_PUSH_FIX_VERSION        = 12;
+  private static final int INTRODUCED_DELIVERY_RECEIPTS       = 13;
+  private static final int INTRODUCED_PART_DATA_SIZE_VERSION  = 14;
+  private static final int INTRODUCED_THUMBNAILS_VERSION      = 15;
+  private static final int INTRODUCED_IDENTITY_COLUMN_VERSION = 16;
+  private static final int DATABASE_VERSION                   = 16;
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
@@ -706,8 +707,13 @@ public class DatabaseFactory {
       }
 
       if (oldVersion < INTRODUCED_THUMBNAILS_VERSION) {
-        db.execSQL("ALTER TABLE part ADD COLUMN thumbnail TEXT");
-        db.execSQL("ALTER TABLE part ADD COLUMN aspect_ratio REAL");
+        db.execSQL("ALTER TABLE part ADD COLUMN thumbnail TEXT;");
+        db.execSQL("ALTER TABLE part ADD COLUMN aspect_ratio REAL;");
+      }
+
+      if (oldVersion < INTRODUCED_IDENTITY_COLUMN_VERSION) {
+        db.execSQL("ALTER TABLE sms ADD COLUMN mismatched_identities TEXT");
+        db.execSQL("ALTER TABLE mms ADD COLUMN mismatched_identities TEXT");
       }
 
       db.setTransactionSuccessful();

@@ -16,8 +16,11 @@
  */
 package org.whispersystems.textsecure.internal.push;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class PreKeyStatus {
 
+  @JsonProperty
   private int count;
 
   public PreKeyStatus() {}

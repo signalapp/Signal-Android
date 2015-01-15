@@ -28,6 +28,8 @@ import android.util.Log;
 import android.util.Pair;
 
 import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
+import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchList;
 import org.thoughtcrime.securesms.database.model.DisplayRecord;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.jobs.TrimThreadJob;
@@ -39,9 +41,15 @@ import org.thoughtcrime.securesms.sms.IncomingGroupMessage;
 import org.thoughtcrime.securesms.sms.IncomingKeyExchangeMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
+import org.thoughtcrime.securesms.util.JsonUtils;
 import org.whispersystems.jobqueue.JobManager;
+import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
 
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 import static org.thoughtcrime.securesms.util.Util.canonicalizeNumber;
@@ -52,7 +60,9 @@ import static org.thoughtcrime.securesms.util.Util.canonicalizeNumber;
  * @author Moxie Marlinspike
  */
 
-public class SmsDatabase extends Database implements MmsSmsColumns {
+public class SmsDatabase extends MessagingDatabase {
+
+  private static final String TAG = SmsDatabase.class.getSimpleName();
 
   public  static final String TABLE_NAME         = "sms";
   public  static final String PERSON             = "person";
@@ -70,7 +80,7 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
     DATE_RECEIVED  + " INTEGER, " + DATE_SENT + " INTEGER, " + PROTOCOL + " INTEGER, " + READ + " INTEGER DEFAULT 0, " +
     STATUS + " INTEGER DEFAULT -1," + TYPE + " INTEGER, " + REPLY_PATH_PRESENT + " INTEGER, " +
     RECEIPT_COUNT + " INTEGER DEFAULT 0," + SUBJECT + " TEXT, " + BODY + " TEXT, " +
-    SERVICE_CENTER + " TEXT);";
+    MISMATCHED_IDENTITIES + " TEXT DEFAULT NULL, " + SERVICE_CENTER + " TEXT);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS sms_thread_id_index ON " + TABLE_NAME + " (" + THREAD_ID + ");",
@@ -85,7 +95,8 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
       DATE_RECEIVED + " AS " + NORMALIZED_DATE_RECEIVED,
       DATE_SENT + " AS " + NORMALIZED_DATE_SENT,
       PROTOCOL, READ, STATUS, TYPE,
-      REPLY_PATH_PRESENT, SUBJECT, BODY, SERVICE_CENTER, RECEIPT_COUNT
+      REPLY_PATH_PRESENT, SUBJECT, BODY, SERVICE_CENTER, RECEIPT_COUNT,
+      MISMATCHED_IDENTITIES
   };
 
   private final JobManager jobManager;
@@ -93,6 +104,10 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
   public SmsDatabase(Context context, SQLiteOpenHelper databaseHelper) {
     super(context, databaseHelper);
     this.jobManager = ApplicationContext.getInstance(context).getJobManager();
+  }
+
+  protected String getTableName() {
+    return TABLE_NAME;
   }
 
   private void updateTypeBitmask(long id, long maskOff, long maskOn) {
@@ -303,9 +318,9 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
   protected void updateMessageBodyAndType(long messageId, String body, long maskOff, long maskOn) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     db.execSQL("UPDATE " + TABLE_NAME + " SET " + BODY + " = ?, " +
-               TYPE + " = (" + TYPE + " & " + (Types.TOTAL_MASK - maskOff) + " | " + maskOn + ") " +
-               "WHERE " + ID + " = ?",
-               new String[] {body, messageId+""});
+                   TYPE + " = (" + TYPE + " & " + (Types.TOTAL_MASK - maskOff) + " | " + maskOn + ") " +
+                   "WHERE " + ID + " = ?",
+               new String[] {body, messageId + ""});
 
     long threadId = getThreadIdForMessage(messageId);
 
@@ -516,7 +531,7 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
 
     where += (" ELSE " + DATE_RECEIVED + " < " + date + " END)");
 
-    db.delete(TABLE_NAME, where, new String[] {threadId+""});
+    db.delete(TABLE_NAME, where, new String[] {threadId + ""});
   }
 
   /*package*/ void deleteThreads(Set<Long> threadIds) {
@@ -606,14 +621,17 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
       long threadId           = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.THREAD_ID));
       int status              = cursor.getInt(cursor.getColumnIndexOrThrow(SmsDatabase.STATUS));
       int receiptCount        = cursor.getInt(cursor.getColumnIndexOrThrow(SmsDatabase.RECEIPT_COUNT));
-      Recipients recipients   = getRecipientsFor(address);
-      DisplayRecord.Body body = getBody(cursor);
+      String mismatchDocument = cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.MISMATCHED_IDENTITIES));
+
+      List<IdentityKeyMismatch> mismatches = getMismatches(mismatchDocument);
+      Recipients                recipients = getRecipientsFor(address);
+      DisplayRecord.Body        body       = getBody(cursor);
 
       return  new SmsMessageRecord(context, messageId, body, recipients,
                                    recipients.getPrimaryRecipient(),
                                    addressDeviceId,
                                    dateSent, dateReceived, receiptCount, type,
-                                   threadId, status);
+                                   threadId, status, mismatches);
     }
 
     private Recipients getRecipientsFor(String address) {
@@ -629,6 +647,19 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
         Log.w("EncryptingSmsDatabase", e);
         return new Recipients(Recipient.getUnknownRecipient(context));
       }
+    }
+
+    private List<IdentityKeyMismatch> getMismatches(String document) {
+      try {
+        if (!TextUtils.isEmpty(document)) {
+          return JsonUtils.fromJson(document, IdentityKeyMismatchList.class)
+                          .getMismatches();
+        }
+      } catch (IOException e) {
+        Log.w(TAG, e);
+      }
+
+      return new LinkedList<>();
     }
 
     protected DisplayRecord.Body getBody(Cursor cursor) {

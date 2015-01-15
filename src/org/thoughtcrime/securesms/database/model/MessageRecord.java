@@ -27,9 +27,12 @@ import android.text.style.TextAppearanceSpan;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;
+import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.GroupUtil;
+
+import java.util.List;
 
 /**
  * The base class for message record models that are displayed in
@@ -46,16 +49,18 @@ public abstract class MessageRecord extends DisplayRecord {
   public static final int DELIVERY_STATUS_PENDING  = 2;
   public static final int DELIVERY_STATUS_FAILED   = 3;
 
-  private final Recipient individualRecipient;
-  private final int       recipientDeviceId;
-  private final long      id;
-  private final int       deliveryStatus;
-  private final int       receiptCount;
+  private final Recipient                 individualRecipient;
+  private final int                       recipientDeviceId;
+  private final long                      id;
+  private final int                       deliveryStatus;
+  private final int                       receiptCount;
+  private final List<IdentityKeyMismatch> mismatches;
 
   MessageRecord(Context context, long id, Body body, Recipients recipients,
                 Recipient individualRecipient, int recipientDeviceId,
                 long dateSent, long dateReceived, long threadId,
-                int deliveryStatus, int receiptCount, long type)
+                int deliveryStatus, int receiptCount, long type,
+                List<IdentityKeyMismatch> mismatches)
   {
     super(context, body, recipients, dateSent, dateReceived, threadId, type);
     this.id                  = id;
@@ -63,6 +68,7 @@ public abstract class MessageRecord extends DisplayRecord {
     this.recipientDeviceId   = recipientDeviceId;
     this.deliveryStatus      = deliveryStatus;
     this.receiptCount        = receiptCount;
+    this.mismatches          = mismatches;
   }
 
   public abstract boolean isMms();
@@ -141,6 +147,10 @@ public abstract class MessageRecord extends DisplayRecord {
     return SmsDatabase.Types.isPendingSmsFallbackType(type);
   }
 
+  public boolean isIdentityMismatchFailure() {
+    return isFailed() && mismatches != null && !mismatches.isEmpty();
+  }
+
   public boolean isPendingSecureSmsFallback() {
     return SmsDatabase.Types.isPendingSecureSmsFallbackType(type);
   }
@@ -177,6 +187,10 @@ public abstract class MessageRecord extends DisplayRecord {
     return type;
   }
 
+  public List<IdentityKeyMismatch> getIdentityKeyMismatches() {
+    return mismatches;
+  }
+
   protected SpannableString emphasisAdded(String sequence) {
     SpannableString spannable = new SpannableString(sequence);
     spannable.setSpan(new RelativeSizeSpan(0.9f), 0, sequence.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -195,4 +209,5 @@ public abstract class MessageRecord extends DisplayRecord {
   public int hashCode() {
     return (int)getId();
   }
+
 }
