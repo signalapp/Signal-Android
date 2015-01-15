@@ -20,9 +20,10 @@ package org.thoughtcrime.securesms.crypto;
 import android.content.Context;
 import android.util.Log;
 
-import com.google.thoughtcrimegson.Gson;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import org.thoughtcrime.securesms.crypto.storage.TextSecurePreKeyStore;
+import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libaxolotl.IdentityKeyPair;
 import org.whispersystems.libaxolotl.InvalidKeyException;
@@ -30,10 +31,10 @@ import org.whispersystems.libaxolotl.InvalidKeyIdException;
 import org.whispersystems.libaxolotl.ecc.Curve;
 import org.whispersystems.libaxolotl.ecc.Curve25519;
 import org.whispersystems.libaxolotl.ecc.ECKeyPair;
-import org.whispersystems.libaxolotl.state.SignedPreKeyRecord;
-import org.whispersystems.libaxolotl.state.SignedPreKeyStore;
 import org.whispersystems.libaxolotl.state.PreKeyRecord;
 import org.whispersystems.libaxolotl.state.PreKeyStore;
+import org.whispersystems.libaxolotl.state.SignedPreKeyRecord;
+import org.whispersystems.libaxolotl.state.SignedPreKeyStore;
 import org.whispersystems.libaxolotl.util.Medium;
 
 import java.io.File;
@@ -109,7 +110,7 @@ public class PreKeyUtil {
     try {
       File             nextFile = new File(getPreKeysDirectory(context), PreKeyIndex.FILE_NAME);
       FileOutputStream fout     = new FileOutputStream(nextFile);
-      fout.write(new Gson().toJson(new PreKeyIndex(id)).getBytes());
+      fout.write(JsonUtils.toJson(new PreKeyIndex(id)).getBytes());
       fout.close();
     } catch (IOException e) {
       Log.w("PreKeyUtil", e);
@@ -120,7 +121,7 @@ public class PreKeyUtil {
     try {
       File             nextFile = new File(getSignedPreKeysDirectory(context), SignedPreKeyIndex.FILE_NAME);
       FileOutputStream fout     = new FileOutputStream(nextFile);
-      fout.write(new Gson().toJson(new SignedPreKeyIndex(id)).getBytes());
+      fout.write(JsonUtils.toJson(new SignedPreKeyIndex(id)).getBytes());
       fout.close();
     } catch (IOException e) {
       Log.w("PreKeyUtil", e);
@@ -135,7 +136,7 @@ public class PreKeyUtil {
         return Util.getSecureRandom().nextInt(Medium.MAX_VALUE);
       } else {
         InputStreamReader reader = new InputStreamReader(new FileInputStream(nextFile));
-        PreKeyIndex       index  = new Gson().fromJson(reader, PreKeyIndex.class);
+        PreKeyIndex       index  = JsonUtils.fromJson(reader, PreKeyIndex.class);
         reader.close();
         return index.nextPreKeyId;
       }
@@ -153,7 +154,7 @@ public class PreKeyUtil {
         return Util.getSecureRandom().nextInt(Medium.MAX_VALUE);
       } else {
         InputStreamReader reader = new InputStreamReader(new FileInputStream(nextFile));
-        SignedPreKeyIndex index  = new Gson().fromJson(reader, SignedPreKeyIndex.class);
+        SignedPreKeyIndex index  = JsonUtils.fromJson(reader, SignedPreKeyIndex.class);
         reader.close();
         return index.nextSignedPreKeyId;
       }
@@ -183,6 +184,7 @@ public class PreKeyUtil {
   private static class PreKeyIndex {
     public static final String FILE_NAME = "index.dat";
 
+    @JsonProperty
     private int nextPreKeyId;
 
     public PreKeyIndex() {}
@@ -195,6 +197,7 @@ public class PreKeyUtil {
   private static class SignedPreKeyIndex {
     public static final String FILE_NAME = "index.dat";
 
+    @JsonProperty
     private int nextSignedPreKeyId;
 
     public SignedPreKeyIndex() {}

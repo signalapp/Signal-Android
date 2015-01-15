@@ -17,4 +17,5 @@
     <dimen name="conversation_activity_compose_padding">12dp</dimen>
 
     <integer name="media_overview_cols">3</integer>
+    <dimen name="message_details_table_row_pad">10dp</dimen>
 </resources>

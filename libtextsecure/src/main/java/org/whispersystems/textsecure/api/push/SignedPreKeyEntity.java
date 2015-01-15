@@ -16,24 +16,28 @@
  */
 package org.whispersystems.textsecure.api.push;
 
-import com.google.thoughtcrimegson.GsonBuilder;
-import com.google.thoughtcrimegson.JsonDeserializationContext;
-import com.google.thoughtcrimegson.JsonDeserializer;
-import com.google.thoughtcrimegson.JsonElement;
-import com.google.thoughtcrimegson.JsonParseException;
-import com.google.thoughtcrimegson.JsonPrimitive;
-import com.google.thoughtcrimegson.JsonSerializationContext;
-import com.google.thoughtcrimegson.JsonSerializer;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.JsonSerializer;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import org.whispersystems.libaxolotl.ecc.ECPublicKey;
-import org.whispersystems.textsecure.internal.util.Base64;
 import org.whispersystems.textsecure.internal.push.PreKeyEntity;
+import org.whispersystems.textsecure.internal.util.Base64;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
 
 public class SignedPreKeyEntity extends PreKeyEntity {
 
+  @JsonProperty
+  @JsonSerialize(using = ByteArraySerializer.class)
+  @JsonDeserialize(using = ByteArrayDeserializer.class)
   private byte[] signature;
 
   public SignedPreKeyEntity() {}
@@ -47,42 +51,18 @@ public class SignedPreKeyEntity extends PreKeyEntity {
     return signature;
   }
 
-  public static String toJson(SignedPreKeyEntity entity) {
-    GsonBuilder builder = new GsonBuilder();
-    return forBuilder(builder).create().toJson(entity);
-  }
-
-  public static SignedPreKeyEntity fromJson(String serialized) {
-    GsonBuilder builder = new GsonBuilder();
-    return forBuilder(builder).create().fromJson(serialized, SignedPreKeyEntity.class);
-  }
-
-  public static GsonBuilder forBuilder(GsonBuilder builder) {
-    return PreKeyEntity.forBuilder(builder)
-                       .registerTypeAdapter(byte[].class, new ByteArrayJsonAdapter());
-
-  }
-
-  private static class ByteArrayJsonAdapter
-      implements JsonSerializer<byte[]>, JsonDeserializer<byte[]>
-  {
+  private static class ByteArraySerializer extends JsonSerializer<byte[]> {
     @Override
-    public JsonElement serialize(byte[] signature, Type type,
-                                 JsonSerializationContext jsonSerializationContext)
-    {
-      return new JsonPrimitive(Base64.encodeBytesWithoutPadding(signature));
+    public void serialize(byte[] value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
+      gen.writeString(Base64.encodeBytesWithoutPadding(value));
     }
+  }
+
+  private static class ByteArrayDeserializer extends JsonDeserializer<byte[]> {
 
     @Override
-    public byte[] deserialize(JsonElement jsonElement, Type type,
-                              JsonDeserializationContext jsonDeserializationContext)
-        throws JsonParseException
-    {
-      try {
-        return Base64.decodeWithoutPadding(jsonElement.getAsJsonPrimitive().getAsString());
-      } catch (IOException e) {
-        throw new JsonParseException(e);
-      }
+    public byte[] deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+      return Base64.decodeWithoutPadding(p.getValueAsString());
     }
   }
 }

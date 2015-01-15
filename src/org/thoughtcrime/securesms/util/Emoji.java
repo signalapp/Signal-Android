@@ -19,14 +19,12 @@ import android.util.Pair;
 import android.util.SparseArray;
 import android.view.View;
 
-import com.google.thoughtcrimegson.Gson;
-import com.google.thoughtcrimegson.reflect.TypeToken;
+import com.fasterxml.jackson.databind.type.TypeFactory;
 
 import org.thoughtcrime.securesms.R;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Type;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.concurrent.ExecutorService;
@@ -34,6 +32,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Emoji {
+
+  private static final String TAG = Emoji.class.getSimpleName();
 
   private static ExecutorService executor = Util.newSingleThreadedLifoExecutor();
 
@@ -303,9 +303,16 @@ public class Emoji {
       }
 
       String serialized = prefs.getString(EMOJI_LRU_PREFERENCE, "[]");
-      Type type = new TypeToken<LinkedHashSet<String>>() {
-      }.getType();
-      recentlyUsed = new Gson().fromJson(serialized, type);
+
+      try {
+        recentlyUsed = JsonUtils.getMapper().readValue(serialized, TypeFactory.defaultInstance()
+                                                                              .constructCollectionType(LinkedHashSet.class, String.class));
+      } catch (IOException e) {
+        Log.w(TAG, e);
+        recentlyUsed = new LinkedHashSet<>();
+      }
+
+      recentlyUsed = new LinkedHashSet<>();
     }
 
     public static String[] getRecentlyUsed(Context context) {
@@ -337,10 +344,15 @@ public class Emoji {
 
         @Override
         protected Void doInBackground(Void... params) {
-          String serialized = new Gson().toJson(latestRecentlyUsed);
-          prefs.edit()
-              .putString(EMOJI_LRU_PREFERENCE, serialized)
-              .apply();
+          try {
+            String serialized = JsonUtils.toJson(latestRecentlyUsed);
+            prefs.edit()
+                 .putString(EMOJI_LRU_PREFERENCE, serialized)
+                 .apply();
+          } catch (IOException e) {
+            Log.w(TAG, e);
+          }
+
           return null;
         }
       }.execute();

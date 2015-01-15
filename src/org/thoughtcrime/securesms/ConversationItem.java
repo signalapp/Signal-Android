@@ -43,6 +43,7 @@ import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -119,7 +120,6 @@ public class ConversationItem extends LinearLayout {
   private FutureTaskListener<SlideDeck>   slideDeckListener;
   private TypedArray                      backgroundDrawables;
 
-  private final FailedIconClickListener     failedIconClickListener     = new FailedIconClickListener();
   private final MmsDownloadClickListener    mmsDownloadClickListener    = new MmsDownloadClickListener();
   private final MmsPreferencesClickListener mmsPreferencesClickListener = new MmsPreferencesClickListener();
   private final ClickListener               clickListener               = new ClickListener();
@@ -158,20 +158,18 @@ public class ConversationItem extends LinearLayout {
     this.backgroundDrawables = context.obtainStyledAttributes(STYLE_ATTRIBUTES);
 
     setOnClickListener(clickListener);
-    if (failedImage != null)       failedImage.setOnClickListener(failedIconClickListener);
     if (mmsDownloadButton != null) mmsDownloadButton.setOnClickListener(mmsDownloadClickListener);
     if (mmsThumbnail != null)      mmsThumbnail.setOnLongClickListener(new MultiSelectLongClickListener());
   }
 
   public void set(MasterSecret masterSecret, MessageRecord messageRecord,
                   Set<MessageRecord> batchSelected, SelectionClickListener selectionClickListener,
-                  Handler failedIconHandler, boolean groupThread, boolean pushDestination)
+                  boolean groupThread, boolean pushDestination)
   {
     this.masterSecret           = masterSecret;
     this.messageRecord          = messageRecord;
     this.batchSelected          = batchSelected;
     this.selectionClickListener = selectionClickListener;
-    this.failedIconHandler      = failedIconHandler;
     this.groupThread            = groupThread;
     this.pushDestination        = pushDestination;
 
@@ -223,10 +221,10 @@ public class ConversationItem extends LinearLayout {
       if (messageRecord.isOutgoing()) {
         final int background;
         final int triangleBackground;
-        if (messageRecord.isPending() && pushDestination && !messageRecord.isForcedSms()) {
+        if ((messageRecord.isPending() || messageRecord.isFailed()) && pushDestination && !messageRecord.isForcedSms()) {
           background         = SENT_PUSH_PENDING;
           triangleBackground = SENT_PUSH_PENDING_TRIANGLE;
-        } else if (messageRecord.isPending() || messageRecord.isPendingSmsFallback()) {
+        } else if (messageRecord.isPending() || messageRecord.isFailed() || messageRecord.isPendingSmsFallback()) {
           background         = SENT_SMS_PENDING;
           triangleBackground = SENT_SMS_PENDING_TRIANGLE;
         } else if (messageRecord.isPush()) {
@@ -279,10 +277,9 @@ public class ConversationItem extends LinearLayout {
 
   private void setStatusIcons(MessageRecord messageRecord) {
     failedImage.setVisibility(messageRecord.isFailed() ? View.VISIBLE : View.GONE);
-    if (messageRecord.isOutgoing()) {
-      pendingIndicator.setVisibility(messageRecord.isPendingSmsFallback() ? View.VISIBLE : View.GONE);
-      indicatorText.setVisibility(messageRecord.isPendingSmsFallback() ? View.VISIBLE : View.GONE);
-    }
+//    pendingIndicator.setVisibility(View.GONE);
+    if (messageRecord.isOutgoing()) indicatorText.setVisibility(View.GONE);
+
     secureImage.setVisibility(messageRecord.isSecure() ? View.VISIBLE : View.GONE);
     bodyText.setCompoundDrawablesWithIntrinsicBounds(0, 0, messageRecord.isKeyExchange() ? R.drawable.ic_menu_login : 0, 0);
     deliveryImage.setVisibility(!messageRecord.isKeyExchange() && messageRecord.isDelivered() ? View.VISIBLE : View.GONE);
@@ -291,25 +288,37 @@ public class ConversationItem extends LinearLayout {
     mmsDownloadButton.setVisibility(View.GONE);
     mmsDownloadingLabel.setVisibility(View.GONE);
 
-    if (messageRecord.isFailed()) {
-      dateText.setText(R.string.ConversationItem_error_sending_message);
-    } else if (messageRecord.isPendingSmsFallback() && indicatorText != null) {
-      dateText.setText("");
-      if (messageRecord.isPendingSecureSmsFallback()) {
-        if (messageRecord.isMms()) indicatorText.setText(R.string.ConversationItem_click_to_approve_mms);
-        else                       indicatorText.setText(R.string.ConversationItem_click_to_approve_sms);
-      } else {
-        indicatorText.setText(R.string.ConversationItem_click_to_approve_unencrypted);
-      }
-    } else if (messageRecord.isPending()) {
-      dateText.setText(" ··· ");
+    if      (messageRecord.isFailed())             setFailedStatusIcons();
+    else if (messageRecord.isPendingSmsFallback()) setFallbackStatusIcons();
+    else if (messageRecord.isPending())            dateText.setText(" ··· ");
+    else                                           setSentStatusIcons();
+
+  }
+
+  private void setSentStatusIcons() {
+    final long timestamp;
+
+    if (messageRecord.isPush()) timestamp = messageRecord.getDateSent();
+    else                        timestamp = messageRecord.getDateReceived();
+
+    dateText.setText(DateUtils.getExtendedRelativeTimeSpanString(getContext(), timestamp));
+  }
+
+  private void setFailedStatusIcons() {
+    dateText.setText(R.string.ConversationItem_error_not_delivered);
+    indicatorText.setText(R.string.ConversationItem_click_for_details);
+    indicatorText.setVisibility(View.VISIBLE);
+  }
+
+  private void setFallbackStatusIcons() {
+    pendingIndicator.setVisibility(View.VISIBLE);
+    indicatorText.setVisibility(View.VISIBLE);
+
+    if (messageRecord.isPendingSecureSmsFallback()) {
+      if (messageRecord.isMms()) indicatorText.setText(R.string.ConversationItem_click_to_approve_mms);
+      else                       indicatorText.setText(R.string.ConversationItem_click_to_approve_sms);
     } else {
-      final long timestamp;
-
-      if (messageRecord.isPush()) timestamp = messageRecord.getDateSent();
-      else                        timestamp = messageRecord.getDateReceived();
-
-      dateText.setText(DateUtils.getExtendedRelativeTimeSpanString(getContext(), timestamp));
+      indicatorText.setText(R.string.ConversationItem_click_to_approve_unencrypted);
     }
   }
 
@@ -323,7 +332,9 @@ public class ConversationItem extends LinearLayout {
   }
 
   private void setEvents(MessageRecord messageRecord) {
-    setClickable(messageRecord.isPendingSmsFallback() ||
+    setClickable(messageRecord.isPendingSmsFallback()      ||
+                 messageRecord.hasNetworkFailures()        ||
+                 messageRecord.isIdentityMismatchFailure() ||
                  (messageRecord.isKeyExchange()            &&
                   !messageRecord.isCorruptedKeyExchange()  &&
                   !messageRecord.isOutgoing()));
@@ -529,7 +540,7 @@ public class ConversationItem extends LinearLayout {
   private class MmsDownloadClickListener implements View.OnClickListener {
     public void onClick(View v) {
       NotificationMmsMessageRecord notificationRecord = (NotificationMmsMessageRecord)messageRecord;
-      Log.w("MmsDownloadClickListener", "Content location: " + new String(notificationRecord.getContentLocation()));
+      Log.w(TAG, "Content location: " + new String(notificationRecord.getContentLocation()));
       mmsDownloadButton.setVisibility(View.GONE);
       mmsDownloadingLabel.setVisibility(View.VISIBLE);
 
@@ -562,13 +573,22 @@ public class ConversationItem extends LinearLayout {
 
   private class ClickListener implements View.OnClickListener {
     public void onClick(View v) {
-      if (messageRecord.isKeyExchange()           &&
-          !messageRecord.isOutgoing()             &&
-          !messageRecord.isProcessedKeyExchange() &&
-          !messageRecord.isStaleKeyExchange())
+      if (messageRecord.isIdentityMismatchFailure() || messageRecord.hasNetworkFailures()) {
+        Intent intent = new Intent(context, MessageDetailsActivity.class);
+        intent.putExtra(MessageDetailsActivity.MASTER_SECRET_EXTRA, masterSecret);
+        intent.putExtra(MessageDetailsActivity.MESSAGE_ID_EXTRA, messageRecord.getId());
+        intent.putExtra(MessageDetailsActivity.TYPE_EXTRA, messageRecord.isMms() ? MmsSmsDatabase.MMS_TRANSPORT : MmsSmsDatabase.SMS_TRANSPORT);
+        intent.putExtra(MessageDetailsActivity.PUSH_EXTRA, pushDestination);
+        context.startActivity(intent);
+      } else if (messageRecord.isKeyExchange()           &&
+                 !messageRecord.isOutgoing()             &&
+                 !messageRecord.isProcessedKeyExchange() &&
+                 !messageRecord.isStaleKeyExchange())
+      {
         handleKeyExchangeClicked();
-      else if (messageRecord.isPendingSmsFallback())
+      } else if (messageRecord.isPendingSmsFallback()) {
         handleMessageApproval();
+      }
     }
   }
 
