@@ -1,17 +1,29 @@
 package org.whispersystems.textsecure.internal.push;
 
-import com.google.thoughtcrimegson.GsonBuilder;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.textsecure.api.push.SignedPreKeyEntity;
+import org.whispersystems.textsecure.internal.util.JsonUtil;
 
 import java.util.List;
 
 public class PreKeyState {
 
+  @JsonProperty
+  @JsonSerialize(using = JsonUtil.IdentityKeySerializer.class)
+  @JsonDeserialize(using = JsonUtil.IdentityKeyDeserializer.class)
   private IdentityKey        identityKey;
+
+  @JsonProperty
   private List<PreKeyEntity> preKeys;
+
+  @JsonProperty
   private PreKeyEntity       lastResortKey;
+
+  @JsonProperty
   private SignedPreKeyEntity signedPreKey;
 
 
@@ -24,10 +36,4 @@ public class PreKeyState {
     this.identityKey   = identityKey;
   }
 
-  public static String toJson(PreKeyState state) {
-    GsonBuilder builder = new GsonBuilder();
-    return SignedPreKeyEntity.forBuilder(builder)
-                          .registerTypeAdapter(IdentityKey.class, new PreKeyResponse.IdentityKeyJsonAdapter())
-                          .create().toJson(state);
-  }
 }

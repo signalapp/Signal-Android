@@ -17,6 +17,10 @@
 package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
+import android.text.format.DateFormat;
+
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 import org.thoughtcrime.securesms.R;
 
@@ -71,4 +75,17 @@ public class DateUtils extends android.text.format.DateUtils {
       return DateUtils.formatDateTime(c, timestamp, formatFlags);
     }
   }
+
+  public static SimpleDateFormat getDetailedDateFormatter(Context context) {
+    String dateFormatPattern;
+
+    if (DateFormat.is24HourFormat(context)) {
+      dateFormatPattern = "MMM d, yyyy HH:mm:ss zzz";
+    } else {
+      dateFormatPattern = "MMM d, yyyy hh:mm:ssa zzz";
+    }
+
+    return new SimpleDateFormat(dateFormatPattern, Locale.getDefault());
+  }
+
 }

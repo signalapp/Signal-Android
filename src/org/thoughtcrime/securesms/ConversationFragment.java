@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
@@ -16,7 +15,6 @@ import android.support.v4.widget.CursorAdapter;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.view.ActionMode;
 import android.text.ClipboardManager;
-import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -30,6 +28,7 @@ import android.widget.Toast;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.loaders.ConversationLoader;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -44,8 +43,6 @@ import org.thoughtcrime.securesms.util.ProgressDialogAsyncTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -103,7 +100,6 @@ public class ConversationFragment extends ListFragment
   private void initializeListAdapter() {
     if (this.recipients != null && this.threadId != -1) {
       this.setListAdapter(new ConversationAdapter(getActivity(), masterSecret, selectionClickListener,
-                                                  new FailedIconClickHandler(),
                                                   (!this.recipients.isSingleRecipient()) || this.recipients.isGroupRecipient(),
                                                   DirectoryHelper.isPushDestination(getActivity(), this.recipients)));
       getListView().setRecyclerListener((ConversationAdapter)getListAdapter());
@@ -218,46 +214,11 @@ public class ConversationFragment extends ListFragment
   }
 
   private void handleDisplayDetails(MessageRecord message) {
-    long dateReceived = message.getDateReceived();
-    long dateSent     = message.getDateSent();
-
-    String transport;
-
-    if      (message.isPending()) transport = getString(R.string.ConversationFragment_pending);
-    else if (message.isPush())    transport = getString(R.string.ConversationFragment_push);
-    else if (message.isMms())     transport = getString(R.string.ConversationFragment_mms);
-    else                          transport = getString(R.string.ConversationFragment_sms);
-
-    String dateFormatPattern;
-
-    if (DateFormat.is24HourFormat(getActivity().getApplicationContext())) {
-      dateFormatPattern = "EEE MMM d, yyyy '-' HH:mm:ss zzz";
-    } else {
-      dateFormatPattern = "EEE MMM d, yyyy '-' hh:mm:ss a zzz";
-    }
-
-    SimpleDateFormat    dateFormatter = new SimpleDateFormat(dateFormatPattern);
-    AlertDialog.Builder builder       = new AlertDialog.Builder(getActivity());
-    builder.setTitle(R.string.ConversationFragment_message_details);
-    builder.setIcon(Dialogs.resolveIcon(getActivity(), R.attr.dialog_info_icon));
-    builder.setCancelable(true);
-
-    if (dateReceived == dateSent || message.isOutgoing()) {
-      builder.setMessage(String.format(getActivity()
-                                       .getString(R.string.ConversationFragment_transport_s_sent_received_s),
-                                       transport,
-                                       dateFormatter.format(new Date(dateSent))));
-    } else {
-      builder.setMessage(String.format(getActivity()
-                                       .getString(R.string.ConversationFragment_sender_s_transport_s_sent_s_received_s),
-                                       message.getIndividualRecipient().getNumber(),
-                                       transport,
-                                       dateFormatter.format(new Date(dateSent)),
-                                       dateFormatter.format(new Date(dateReceived))));
-    }
-
-    builder.setPositiveButton(android.R.string.ok, null);
-    builder.show();
+    Intent intent = new Intent(getActivity(), MessageDetailsActivity.class);
+    intent.putExtra(MessageDetailsActivity.MASTER_SECRET_EXTRA, masterSecret);
+    intent.putExtra(MessageDetailsActivity.MESSAGE_ID_EXTRA, message.getId());
+    intent.putExtra(MessageDetailsActivity.TYPE_EXTRA, message.isMms() ? MmsSmsDatabase.MMS_TRANSPORT : MmsSmsDatabase.SMS_TRANSPORT);
+    startActivity(intent);
   }
 
   private void handleForwardMessage(MessageRecord message) {
@@ -313,15 +274,6 @@ public class ConversationFragment extends ListFragment
   @Override
   public void onLoaderReset(Loader<Cursor> arg0) {
     ((CursorAdapter)getListAdapter()).changeCursor(null);
-  }
-
-  private class FailedIconClickHandler extends Handler {
-    @Override
-    public void handleMessage(android.os.Message message) {
-      if (listener != null) {
-        listener.setComposeText((String)message.obj);
-      }
-    }
   }
 
   public interface ConversationFragmentListener {

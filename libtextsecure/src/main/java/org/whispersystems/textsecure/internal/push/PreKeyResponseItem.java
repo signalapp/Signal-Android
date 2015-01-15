@@ -16,15 +16,22 @@
  */
 package org.whispersystems.textsecure.internal.push;
 
-import com.google.thoughtcrimegson.GsonBuilder;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import org.whispersystems.textsecure.api.push.SignedPreKeyEntity;
 
 public class PreKeyResponseItem {
 
+  @JsonProperty
   private int                deviceId;
+
+  @JsonProperty
   private int                registrationId;
+
+  @JsonProperty
   private SignedPreKeyEntity signedPreKey;
+
+  @JsonProperty
   private PreKeyEntity       preKey;
 
   public int getDeviceId() {
@@ -43,7 +50,4 @@ public class PreKeyResponseItem {
     return preKey;
   }
 
-  public static GsonBuilder forBuilder(GsonBuilder builder) {
-    return SignedPreKeyEntity.forBuilder(builder);
-  }
 }

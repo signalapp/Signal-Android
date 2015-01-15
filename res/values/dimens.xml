@@ -16,4 +16,5 @@
     <dimen name="preference_fragment_padding_side">8dp</dimen>
 
     <integer name="media_overview_cols">3</integer>
+    <dimen name="message_details_table_row_pad">10dp</dimen>
 </resources>

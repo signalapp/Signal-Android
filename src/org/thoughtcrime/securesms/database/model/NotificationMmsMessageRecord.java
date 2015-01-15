@@ -21,8 +21,12 @@ import android.text.SpannableString;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.database.documents.NetworkFailure;
+import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
+
+import java.util.LinkedList;
 
 /**
  * Represents the message record model for MMS messages that are
@@ -47,7 +51,8 @@ public class NotificationMmsMessageRecord extends MessageRecord {
                                       long expiry, int status, byte[] transactionId, long mailbox)
   {
     super(context, id, new Body("", true), recipients, individualRecipient, recipientDeviceId,
-          dateSent, dateReceived, threadId, DELIVERY_STATUS_NONE, receiptCount, mailbox);
+          dateSent, dateReceived, threadId, DELIVERY_STATUS_NONE, receiptCount, mailbox,
+          new LinkedList<IdentityKeyMismatch>(), new LinkedList<NetworkFailure>());
 
     this.contentLocation = contentLocation;
     this.messageSize     = messageSize;

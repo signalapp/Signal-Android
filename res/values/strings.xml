@@ -59,10 +59,20 @@
     <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
     <string name="AttachmentTypeSelectorAdapter_contact">Contact info</string>
 
+    <!-- ConfirmIdentityDialog -->
+    <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">The
+        identifying key material for %1$s has changed. This could either mean that someone is trying to
+        intercept your communication, or that %2$s simply re-installed TextSecure and now has a new
+        identity key.
+    </string>
+    <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">You may wish to verify
+        this contact.
+    </string>
+
     <!-- ConversationItem -->
     <string name="ConversationItem_message_size_d_kb">Message size: %d KB</string>
     <string name="ConversationItem_expires_s">Expires: %s</string>
-    <string name="ConversationItem_error_sending_message">Error sending message</string>
+    <string name="ConversationItem_error_not_delivered">Not delivered</string>
     <string name="ConversationItem_view_secure_media_question">View secure media?</string>
     <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">This media has been stored in an encrypted database. Unfortunately, to view it with an external content viewer currently requires the data to be temporarily decrypted and written to disk. Are you sure that you would like to do this?</string>
     <string name="ConversationItem_error_received_stale_key_exchange_message">Error, received stale key exchange message.</string>
@@ -70,6 +80,7 @@
     <string name="ConversationItem_group_action_left">%1$s has left the group.</string>
     <string name="ConversationItem_click_to_approve_sms">Tap for SMS fallback</string>
     <string name="ConversationItem_click_to_approve_mms">Tap for MMS fallback</string>
+    <string name="ConversationItem_click_for_details">Tap for details</string>
     <string name="ConversationItem_click_to_approve_unencrypted">Tap for unsecured fallback</string>
     <string name="ConversationItem_click_to_approve_sms_dialog_title">Fallback to SMS?</string>
     <string name="ConversationItem_click_to_approve_mms_dialog_title">Fallback to MMS?</string>
@@ -126,8 +137,8 @@
     <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Unable to write to storage!</string>
     <string name="ConversationFragment_saving_attachment">Saving attachment</string>
     <string name="ConversationFragment_saving_attachment_to_sd_card">Saving attachment to storage...</string>
-    <string name="ConversationFragment_pending">PENDING</string>
-    <string name="ConversationFragment_push">PUSH</string>
+    <string name="ConversationFragment_pending">Pending...</string>
+    <string name="ConversationFragment_push">Data (TextSecure)</string>
     <string name="ConversationFragment_mms">MMS</string>
     <string name="ConversationFragment_sms">SMS</string>
     <string name="ConversationFragment_deleting">Deleting...</string>
@@ -224,6 +235,10 @@
     <string name="KeyScanningActivity_no_scanned_key_found_exclamation">No scanned key found!</string>
     <string name="KeyScanningActivity_install_barcode_Scanner">Install Barcode Scanner?</string>
     <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">TextSecure needs Barcode Scanner for QR codes.</string>
+
+    <!-- MessageDetailsRecipient -->
+    <string name="MessageDetailsRecipient_failed_to_send">Failed to send</string>
+    <string name="MessageDetailsRecipient_new_identity">New identity</string>
 
     <!-- MmsDownloader -->
     <string name="MmsDownloader_error_storing_mms">Error storing MMS!</string>
@@ -641,6 +656,14 @@
     <!-- verify_identity_activity -->
     <string name="verify_identity_activity__their_identity_they_read">Their identity (they read):</string>
     <string name="verify_identity_activity__your_identity_you_read">Your identity (you read):</string>
+
+    <!-- message_details_header -->
+    <string name="message_details_header__sent">Sent</string>
+    <string name="message_details_header__received">Received</string>
+    <string name="message_details_header__via">Via</string>
+    <string name="message_details_header__to">To:</string>
+    <string name="message_details_header__from">From:</string>
+    <string name="message_details_header__with">With:</string>
 
     <!-- AndroidManifest.xml -->
     <string name="AndroidManifest__create_passphrase">Create passphrase</string>

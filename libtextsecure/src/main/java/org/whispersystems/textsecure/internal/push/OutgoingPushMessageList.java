@@ -16,16 +16,22 @@
  */
 package org.whispersystems.textsecure.internal.push;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
 public class OutgoingPushMessageList {
 
+  @JsonProperty
   private String destination;
 
+  @JsonProperty
   private String relay;
 
+  @JsonProperty
   private long timestamp;
 
+  @JsonProperty
   private List<OutgoingPushMessage> messages;
 
   public OutgoingPushMessageList(String destination, long timestamp, String relay,

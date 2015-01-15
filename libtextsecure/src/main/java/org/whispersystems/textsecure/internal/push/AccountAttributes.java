@@ -16,10 +16,17 @@
  */
 package org.whispersystems.textsecure.internal.push;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class AccountAttributes {
 
+  @JsonProperty
   private String  signalingKey;
+
+  @JsonProperty
   private boolean supportsSms;
+
+  @JsonProperty
   private int     registrationId;
 
   public AccountAttributes(String signalingKey, boolean supportsSms, int registrationId) {
