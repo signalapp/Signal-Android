@@ -91,10 +91,16 @@ public class AppProtectionPreferenceFragment extends PreferenceFragment {
 
     @Override
     public boolean onPreferenceClick(Preference preference) {
-      new HmsPickerBuilder().setFragmentManager(getFragmentManager())
-                            .setStyleResId(R.style.BetterPickersDialogFragment_Light)
-                            .addHmsPickerDialogHandler(this)
-                            .show();
+      HmsPickerBuilder hmsPicker = new HmsPickerBuilder().setFragmentManager(getFragmentManager())
+                                                         .addHmsPickerDialogHandler(this);
+
+      if (TextSecurePreferences.getTheme(getActivity()).equals("light")) {
+        hmsPicker.setStyleResId(R.style.BetterPickersDialogFragment_Light);
+      } else {
+        hmsPicker.setStyleResId(R.style.BetterPickersDialogFragment);
+      }
+
+      hmsPicker.show();
       return true;
     }
 
