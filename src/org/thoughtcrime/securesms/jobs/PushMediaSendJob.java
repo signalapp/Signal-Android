@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.crypto.storage.TextSecureAxolotlStore;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
+import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.PartParser;
@@ -54,7 +55,9 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
 
   @Override
   public void onAdded() {
-
+    MmsDatabase mmsDatabase = DatabaseFactory.getMmsDatabase(context);
+    mmsDatabase.markAsSending(messageId);
+    mmsDatabase.markAsPush(messageId);
   }
 
   @Override

@@ -113,14 +113,15 @@ public class MessageSender {
 
   public static void resend(Context context, MasterSecret masterSecret, MessageRecord messageRecord) {
     try {
-      Recipients recipients  = messageRecord.getRecipients();
       long       messageId   = messageRecord.getId();
       boolean    forceSms    = messageRecord.isForcedSms();
       boolean    keyExchange = messageRecord.isKeyExchange();
 
       if (messageRecord.isMms()) {
+        Recipients recipients = DatabaseFactory.getMmsAddressDatabase(context).getRecipientsForId(messageId);
         sendMediaMessage(context, masterSecret, recipients, forceSms, messageId);
       } else {
+        Recipients recipients  = messageRecord.getRecipients();
         sendTextMessage(context, recipients, forceSms, keyExchange, messageId);
       }
     } catch (MmsException e) {
