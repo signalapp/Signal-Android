@@ -21,6 +21,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
+import android.provider.Telephony;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -55,6 +56,29 @@ public class MmsSmsDatabase extends Database {
     String order           = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " ASC";
 
     String selection       = MmsSmsColumns.THREAD_ID + " = " + threadId;
+
+    Cursor cursor = queryTables(projection, selection, selection, order, null, null);
+    setNotifyConverationListeners(cursor, threadId);
+
+    return cursor;
+  }
+
+  public Cursor getIdentityConflictMessagesForThread(long threadId) {
+    String[] projection    = {MmsSmsColumns.ID, SmsDatabase.BODY, SmsDatabase.TYPE,
+                              MmsSmsColumns.THREAD_ID,
+                              SmsDatabase.ADDRESS, SmsDatabase.ADDRESS_DEVICE_ID, SmsDatabase.SUBJECT,
+                              MmsSmsColumns.NORMALIZED_DATE_SENT,
+                              MmsSmsColumns.NORMALIZED_DATE_RECEIVED,
+                              MmsDatabase.MESSAGE_TYPE, MmsDatabase.MESSAGE_BOX,
+                              SmsDatabase.STATUS, MmsDatabase.PART_COUNT,
+                              MmsDatabase.CONTENT_LOCATION, MmsDatabase.TRANSACTION_ID,
+                              MmsDatabase.MESSAGE_SIZE, MmsDatabase.EXPIRY,
+                              MmsDatabase.STATUS, MmsSmsColumns.RECEIPT_COUNT,
+                              MmsSmsColumns.MISMATCHED_IDENTITIES, TRANSPORT};
+
+    String order           = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " ASC";
+
+    String selection       = MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " + MmsSmsColumns.MISMATCHED_IDENTITIES + " IS NOT NULL";
 
     Cursor cursor = queryTables(projection, selection, selection, order, null, null);
     setNotifyConverationListeners(cursor, threadId);

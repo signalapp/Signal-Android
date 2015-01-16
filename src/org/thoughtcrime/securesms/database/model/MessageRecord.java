@@ -148,7 +148,7 @@ public abstract class MessageRecord extends DisplayRecord {
   }
 
   public boolean isIdentityMismatchFailure() {
-    return isFailed() && mismatches != null && !mismatches.isEmpty();
+    return mismatches != null && !mismatches.isEmpty();
   }
 
   public boolean isPendingSecureSmsFallback() {

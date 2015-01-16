@@ -4,19 +4,21 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.AsyncTask;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
@@ -24,7 +26,6 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.jobs.PushDecryptJob;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
@@ -86,35 +87,92 @@ public class ConfirmIdentityDialog extends AlertDialog {
 
     @Override
     public void onClick(DialogInterface dialog, int which) {
-      new AsyncTask<Void, Void, Void>() {
+      new AsyncTask<Void, Void, Void>()
+      {
         @Override
         protected Void doInBackground(Void... params) {
+          IdentityDatabase identityDatabase = DatabaseFactory.getIdentityDatabase(getContext());
 
-          if (messageRecord.isOutgoing()) processOutgoingMessage(messageRecord);
-          else                            Log.w(TAG, "Process incoming message hasn't moved over yet!");
+          identityDatabase.saveIdentity(masterSecret,
+                                        mismatch.getRecipientId(),
+                                        mismatch.getIdentityKey());
+
+          processMessageRecord(messageRecord);
+          processPendingMessageRecords(messageRecord.getThreadId(), mismatch);
 
           return null;
         }
+
+        private void processMessageRecord(MessageRecord messageRecord) {
+          if (messageRecord.isOutgoing()) processOutgoingMessageRecord(messageRecord);
+          else                            processIncomingMessageRecord(messageRecord);
+        }
+
+        private void processPendingMessageRecords(long threadId, IdentityKeyMismatch mismatch) {
+          MmsSmsDatabase        mmsSmsDatabase = DatabaseFactory.getMmsSmsDatabase(getContext());
+          Cursor                cursor         = mmsSmsDatabase.getIdentityConflictMessagesForThread(threadId);
+          MmsSmsDatabase.Reader reader         = mmsSmsDatabase.readerFor(cursor, masterSecret);
+          MessageRecord         record;
+
+          try {
+            while ((record = reader.getNext()) != null) {
+              for (IdentityKeyMismatch recordMismatch : record.getIdentityKeyMismatches()) {
+                if (mismatch.equals(recordMismatch)) {
+                  processMessageRecord(record);
+                }
+              }
+            }
+          } finally {
+            if (reader != null)
+              reader.close();
+          }
+        }
+
+        private void processOutgoingMessageRecord(MessageRecord messageRecord) {
+          SmsDatabase smsDatabase = DatabaseFactory.getSmsDatabase(getContext());
+          MmsDatabase mmsDatabase = DatabaseFactory.getMmsDatabase(getContext());
+
+          if (messageRecord.isMms()) {
+            mmsDatabase.removeMismatchedIdentity(messageRecord.getId(),
+                                                 mismatch.getRecipientId(),
+                                                 mismatch.getIdentityKey());
+          } else {
+            smsDatabase.removeMismatchedIdentity(messageRecord.getId(),
+                                                 mismatch.getRecipientId(),
+                                                 mismatch.getIdentityKey());
+          }
+
+          MessageSender.resend(getContext(), masterSecret, messageRecord);
+        }
+
+        private void processIncomingMessageRecord(MessageRecord messageRecord) {
+          try {
+            PushDatabase pushDatabase = DatabaseFactory.getPushDatabase(getContext());
+            SmsDatabase  smsDatabase  = DatabaseFactory.getSmsDatabase(getContext());
+
+            smsDatabase.removeMismatchedIdentity(messageRecord.getId(),
+                                                 mismatch.getRecipientId(),
+                                                 mismatch.getIdentityKey());
+
+            TextSecureEnvelope envelope = new TextSecureEnvelope(PushMessageProtos.IncomingPushMessageSignal.Type.PREKEY_BUNDLE_VALUE,
+                                                                 messageRecord.getIndividualRecipient().getNumber(),
+                                                                 messageRecord.getRecipientDeviceId(), "",
+                                                                 messageRecord.getDateSent(),
+                                                                 Base64.decode(messageRecord.getBody().getBody()));
+
+            long pushId = pushDatabase.insert(envelope);
+
+            ApplicationContext.getInstance(getContext())
+                              .getJobManager()
+                              .add(new PushDecryptJob(getContext(), pushId, messageRecord.getId()));
+          } catch (IOException e) {
+            throw new AssertionError(e);
+          }
+        }
+
       }.execute();
 
       if (callback != null) callback.onClick(null, 0);
-    }
-
-    private void processOutgoingMessage(MessageRecord messageRecord) {
-      SmsDatabase smsDatabase = DatabaseFactory.getSmsDatabase(getContext());
-      MmsDatabase mmsDatabase = DatabaseFactory.getMmsDatabase(getContext());
-
-      if (messageRecord.isMms()) {
-        mmsDatabase.removeMismatchedIdentity(messageRecord.getId(),
-                                             mismatch.getRecipientId(),
-                                             mismatch.getIdentityKey());
-      } else {
-        smsDatabase.removeMismatchedIdentity(messageRecord.getId(),
-                                             mismatch.getRecipientId(),
-                                             mismatch.getIdentityKey());
-      }
-
-      MessageSender.resend(getContext(), masterSecret, messageRecord);
     }
   }
 

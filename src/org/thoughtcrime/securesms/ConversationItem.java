@@ -579,17 +579,16 @@ public class ConversationItem extends LinearLayout {
 
   private class ClickListener implements View.OnClickListener {
     public void onClick(View v) {
-      Log.w(TAG, "onClick...");
-      if (messageRecord.isKeyExchange()           &&
-          !messageRecord.isOutgoing()             &&
-          !messageRecord.isProcessedKeyExchange() &&
-          !messageRecord.isStaleKeyExchange())
+      if (messageRecord.isIdentityMismatchFailure()) {
+        handleIdentityApproval();
+      } else if (messageRecord.isKeyExchange()           &&
+                 !messageRecord.isOutgoing()             &&
+                 !messageRecord.isProcessedKeyExchange() &&
+                 !messageRecord.isStaleKeyExchange())
       {
         handleKeyExchangeClicked();
       } else if (messageRecord.isPendingSmsFallback()) {
         handleMessageApproval();
-      } else if (messageRecord.isIdentityMismatchFailure()) {
-        handleIdentityApproval();
       }
     }
   }

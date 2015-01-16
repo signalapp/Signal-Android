@@ -5,7 +5,6 @@ import android.util.Log;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonSerializer;
@@ -13,8 +12,6 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.InvalidKeyException;
@@ -46,6 +43,21 @@ public class IdentityKeyMismatch {
 
   public IdentityKey getIdentityKey() {
     return identityKey;
+  }
+
+  @Override
+  public boolean equals(Object other) {
+    if (other == null || !(other instanceof IdentityKeyMismatch)) {
+      return false;
+    }
+
+    IdentityKeyMismatch that = (IdentityKeyMismatch)other;
+    return that.recipientId == this.recipientId && that.identityKey.equals(this.identityKey);
+  }
+
+  @Override
+  public int hashCode() {
+    return (int)recipientId ^ identityKey.hashCode();
   }
 
   private static class IdentityKeySerializer extends JsonSerializer<IdentityKey> {
