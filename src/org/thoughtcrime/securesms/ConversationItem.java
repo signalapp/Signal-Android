@@ -92,7 +92,7 @@ public class ConversationItem extends LinearLayout {
   private final static int SENT_PUSH_PENDING          = 6;
   private final static int SENT_PUSH_PENDING_TRIANGLE = 7;
 
-  private final static int DISPLAY_MAXLENGTH          = 1024;
+  private final static int DISPLAY_MAXLENGTH          = 1000;
 
   private Handler       failedIconHandler;
   private MessageRecord messageRecord;
@@ -102,7 +102,6 @@ public class ConversationItem extends LinearLayout {
 
   private  View      conversationParent;
   private  TextView  bodyText;
-  private  TextView  messageTooLongIndicator;
   private  TextView  dateText;
   private  TextView  indicatorText;
   private  TextView  groupStatusText;
@@ -145,7 +144,6 @@ public class ConversationItem extends LinearLayout {
     super.onFinishInflate();
 
     this.bodyText            = (TextView) findViewById(R.id.conversation_item_body);
-    this.messageTooLongIndicator = (TextView) findViewById(R.id.conversation_item_message_too_long_indicator);
     this.dateText            = (TextView) findViewById(R.id.conversation_item_date);
     this.indicatorText       = (TextView) findViewById(R.id.indicator_text);
     this.groupStatusText     = (TextView) findViewById(R.id.group_message_status);
@@ -262,24 +260,16 @@ public class ConversationItem extends LinearLayout {
 
     drawables.recycle();
   }
-    private void setBodyText(MessageRecord messageRecord) {
-        setBodyText(messageRecord, true);
-    }
 
-  private void setBodyText(MessageRecord messageRecord, boolean foldAtMaximumLength) {
+  private void setBodyText(MessageRecord messageRecord) {
     bodyText.setClickable(false);
     bodyText.setFocusable(false);
 
     SpannableString content = messageRecord.getDisplayBody();
-    if ( messageTooLongIndicator != null) {
-      if (foldAtMaximumLength && content.length() > ConversationItem.DISPLAY_MAXLENGTH) {
+    if (content.length() > ConversationItem.DISPLAY_MAXLENGTH) {
         content = new SpannableString(content.subSequence(0, ConversationItem.DISPLAY_MAXLENGTH));
-        messageTooLongIndicator.setVisibility(View.VISIBLE);
-        messageTooLongIndicator.setOnClickListener(new MessageTooLongIndicatorClickListener());
-      } else {
-        messageTooLongIndicator.setVisibility(View.GONE);
-      }
     }
+
     content = Emoji.getInstance(context).emojify(content,
                   new Emoji.InvalidatingPageLoadedListener(bodyText));
     bodyText.setText(content, TextView.BufferType.SPANNABLE);
@@ -601,29 +591,6 @@ public class ConversationItem extends LinearLayout {
     @Override
     public void onClick(View view) {
       selectionClickListener.onItemClick(null, ConversationItem.this, -1, -1);
-    }
-  }
-
-  private class MessageTooLongIndicatorClickListener implements OnClickListener {
-    private boolean enabled = true;
-
-    @Override
-    public void onClick(View v) {
-      if (enabled) {
-        synchronized (this) {
-          if (enabled) {
-            enabled = false;
-            ConversationItem.this.messageTooLongIndicator.setVisibility(View.GONE);
-            ConversationItem.this.messageTooLongIndicator.setOnClickListener(null);
-            new Handler().postDelayed(new Runnable() {
-              @Override
-              public void run() {
-                ConversationItem.this.setBodyText(ConversationItem.this.getMessageRecord(), false);
-              }
-            }, 100);
-          }
-        }
-      }
     }
   }
 
