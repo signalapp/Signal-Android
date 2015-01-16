@@ -177,6 +177,14 @@ public class SmsDatabase extends MessagingDatabase {
     return 0;
   }
 
+  public void markAsEndSession(long id) {
+    updateTypeBitmask(id, Types.KEY_EXCHANGE_MASK, Types.END_SESSION_BIT);
+  }
+
+  public void markAsPreKeyBundle(long id) {
+    updateTypeBitmask(id, Types.KEY_EXCHANGE_MASK, Types.KEY_EXCHANGE_BIT | Types.KEY_EXCHANGE_BUNDLE_BIT);
+  }
+
   public void markAsStaleKeyExchange(long id) {
     updateTypeBitmask(id, 0, Types.KEY_EXCHANGE_STALE_BIT);
   }

@@ -17,13 +17,20 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.jobs.PushDecryptJob;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
+import org.thoughtcrime.securesms.util.Base64;
+import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
+import org.whispersystems.textsecure.internal.push.PushMessageProtos;
+
+import java.io.IOException;
 
 public class ConfirmIdentityDialog extends AlertDialog {
 
@@ -82,24 +89,32 @@ public class ConfirmIdentityDialog extends AlertDialog {
       new AsyncTask<Void, Void, Void>() {
         @Override
         protected Void doInBackground(Void... params) {
-          SmsDatabase                 smsDatabase      = DatabaseFactory.getSmsDatabase(getContext());
-          MmsDatabase                 mmsDatabase      = DatabaseFactory.getMmsDatabase(getContext());
 
-          Log.w(TAG, "Resending to: " + messageRecord.getIndividualRecipient().getNumber());
-
-          if (messageRecord.isMms()) {
-            mmsDatabase.removeMismatchedIdentity(messageRecord.getId(), mismatch.getRecipientId(), mismatch.getIdentityKey());
-          } else {
-            smsDatabase.removeMismatchedIdentity(messageRecord.getId(), mismatch.getRecipientId(), mismatch.getIdentityKey());
-          }
-
-          MessageSender.resend(getContext(), masterSecret, messageRecord);
+          if (messageRecord.isOutgoing()) processOutgoingMessage(messageRecord);
+          else                            Log.w(TAG, "Process incoming message hasn't moved over yet!");
 
           return null;
         }
       }.execute();
 
       if (callback != null) callback.onClick(null, 0);
+    }
+
+    private void processOutgoingMessage(MessageRecord messageRecord) {
+      SmsDatabase smsDatabase = DatabaseFactory.getSmsDatabase(getContext());
+      MmsDatabase mmsDatabase = DatabaseFactory.getMmsDatabase(getContext());
+
+      if (messageRecord.isMms()) {
+        mmsDatabase.removeMismatchedIdentity(messageRecord.getId(),
+                                             mismatch.getRecipientId(),
+                                             mismatch.getIdentityKey());
+      } else {
+        smsDatabase.removeMismatchedIdentity(messageRecord.getId(),
+                                             mismatch.getRecipientId(),
+                                             mismatch.getIdentityKey());
+      }
+
+      MessageSender.resend(getContext(), masterSecret, messageRecord);
     }
   }
 

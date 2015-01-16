@@ -237,9 +237,7 @@ public class ReceiveKeyActivity extends Activity {
 
                 ApplicationContext.getInstance(context)
                                   .getJobManager()
-                                  .add(new PushDecryptJob(context, pushId));
-
-                smsDatabase.deleteMessage(messageId);
+                                  .add(new PushDecryptJob(context, pushId, messageId));
               } catch (IOException e) {
                 throw new AssertionError(e);
               }

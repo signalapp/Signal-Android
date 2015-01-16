@@ -279,8 +279,8 @@ public class ConversationItem extends LinearLayout {
 
   private void setStatusIcons(MessageRecord messageRecord) {
     failedImage.setVisibility(messageRecord.isFailed() ? View.VISIBLE : View.GONE);
-    pendingIndicator.setVisibility(View.GONE);
-    indicatorText.setVisibility(View.GONE);
+//    pendingIndicator.setVisibility(View.GONE);
+    if (messageRecord.isOutgoing()) indicatorText.setVisibility(View.GONE);
 
     secureImage.setVisibility(messageRecord.isSecure() ? View.VISIBLE : View.GONE);
     bodyText.setCompoundDrawablesWithIntrinsicBounds(0, 0, messageRecord.isKeyExchange() ? R.drawable.ic_menu_login : 0, 0);

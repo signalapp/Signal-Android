@@ -38,6 +38,7 @@ public interface MmsSmsColumns {
     protected static final long MESSAGE_FORCE_SMS_BIT  = 0x40;
 
     // Key Exchange Information
+    protected static final long KEY_EXCHANGE_MASK                = 0xFF00;
     protected static final long KEY_EXCHANGE_BIT                 = 0x8000;
     protected static final long KEY_EXCHANGE_STALE_BIT           = 0x4000;
     protected static final long KEY_EXCHANGE_PROCESSED_BIT       = 0x2000;
