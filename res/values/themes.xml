@@ -65,6 +65,9 @@
         <item name="conversation_item_sent_push_pending_background">@drawable/conversation_item_sent_push_pending_shape</item>
         <item name="conversation_item_sent_push_pending_triangle_background">@drawable/conversation_item_sent_push_pending_triangle_shape</item>
 
+        <item name="conversation_icon_attach_audio">@drawable/ic_audio_light</item>
+        <item name="conversation_icon_attach_video">@drawable/ic_video_light</item>
+
         <item name="menu_new_conversation_icon">@drawable/ic_action_new_holo_light</item>
         <item name="menu_new_group_icon">@drawable/ic_action_add_group_holo_light</item>
         <item name="menu_group_icon">@drawable/ic_menu_groups_holo_light</item>
@@ -145,6 +148,9 @@
         <item name="conversation_transport_popup_background">@color/black</item>
         <item name="conversation_emoji_toggle">@drawable/ic_emoji_light</item>
         <item name="conversation_keyboard_toggle">@drawable/ic_ime_light</item>
+
+        <item name="conversation_icon_attach_audio">@drawable/ic_audio_dark</item>
+        <item name="conversation_icon_attach_video">@drawable/ic_video_dark</item>
 
         <item name="menu_new_conversation_icon">@drawable/ic_action_new_holo_dark</item>
         <item name="menu_new_group_icon">@drawable/ic_action_add_group_holo_dark</item>

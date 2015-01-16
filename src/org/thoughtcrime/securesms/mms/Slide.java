@@ -30,6 +30,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.util.Log;
+import android.util.TypedValue;
 import android.widget.ImageView;
 
 import ws.com.google.android.mms.pdu.PduPart;
@@ -39,7 +40,7 @@ public abstract class Slide {
   protected final PduPart      part;
   protected final Context      context;
   protected       MasterSecret masterSecret;
-	
+
   public Slide(Context context, PduPart part) {
     this.part    = part;
     this.context = context;
@@ -70,12 +71,12 @@ public abstract class Slide {
     return part.getDataUri();
   }
 
-  public Drawable getThumbnail(int maxWidth, int maxHeight) {
+  public Drawable getThumbnail(Context context, int maxWidth, int maxHeight) {
     throw new AssertionError("getThumbnail() called on non-thumbnail producing slide!");
   }
 
-  public void setThumbnailOn(ImageView imageView) {
-    imageView.setImageDrawable(getThumbnail(imageView.getWidth(), imageView.getHeight()));
+  public void setThumbnailOn(Context context, ImageView imageView) {
+    imageView.setImageDrawable(getThumbnail(context, imageView.getWidth(), imageView.getHeight()));
   }
 
   public Bitmap getGeneratedThumbnail() { return null; }
@@ -124,5 +125,12 @@ public abstract class Slide {
       size += read;
       if (size > MmsMediaConstraints.MAX_MESSAGE_SIZE) throw new MediaTooLargeException("Media exceeds maximum message size.");
     }
+  }
+
+  public static Drawable resolveIcon(Context c, int iconAttr)
+  {
+    TypedValue out = new TypedValue();
+    c.getTheme().resolveAttribute(iconAttr, out, true);
+    return c.getResources().getDrawable(out.resourceId);
   }
 }

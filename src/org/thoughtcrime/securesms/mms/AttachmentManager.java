@@ -83,7 +83,7 @@ public class AttachmentManager {
 
       @Override
       protected Drawable doInBackground(Void... params) {
-        return slide.getThumbnail(thumbnailWidth, thumbnailHeight);
+        return slide.getThumbnail(context, thumbnailWidth, thumbnailHeight);
       }
 
       @Override

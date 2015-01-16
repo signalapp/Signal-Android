@@ -49,6 +49,9 @@
     <attr name="conversation_item_sent_push_pending_background" format="reference" />
     <attr name="conversation_item_sent_push_pending_triangle_background" format="reference" />
 
+    <attr name="conversation_icon_attach_audio" format="reference"/>
+    <attr name="conversation_icon_attach_video" format="reference" />
+
     <attr name="contact_selection_push_user" format="reference|color" />
     <attr name="contact_selection_lay_user" format="reference|color" />
     <attr name="contact_selection_label_text" format="reference|color" />
