@@ -39,6 +39,7 @@ import org.apache.http.message.BasicHeader;
 import org.thoughtcrime.securesms.database.ApnDatabase;
 import org.thoughtcrime.securesms.util.TelephonyUtil;
 import org.thoughtcrime.securesms.util.Conversions;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
@@ -53,6 +54,9 @@ import java.util.List;
 
 @SuppressWarnings("deprecation")
 public abstract class LegacyMmsConnection {
+
+  public static final String USER_AGENT = "Android-Mms/2.0";
+
   private static final String TAG = "MmsCommunication";
 
   protected final Context context;
@@ -124,8 +128,7 @@ public abstract class LegacyMmsConnection {
     return baos.toByteArray();
   }
 
-  protected CloseableHttpClient constructHttpClient()
-      throws IOException {
+  protected CloseableHttpClient constructHttpClient() throws IOException {
     RequestConfig config = RequestConfig.custom()
                                         .setConnectTimeout(20 * 1000)
                                         .setConnectionRequestTimeout(20 * 1000)
@@ -133,7 +136,7 @@ public abstract class LegacyMmsConnection {
                                         .setMaxRedirects(20)
                                         .build();
 
-    URL mmsc = new URL(apn.getMmsc());
+    URL                 mmsc          = new URL(apn.getMmsc());
     CredentialsProvider credsProvider = new BasicCredentialsProvider();
 
     if (apn.hasAuthentication()) {
@@ -144,7 +147,7 @@ public abstract class LegacyMmsConnection {
     return HttpClients.custom()
                       .setConnectionReuseStrategy(new NoConnectionReuseStrategyHC4())
                       .setRedirectStrategy(new LaxRedirectStrategy())
-                      .setUserAgent("Android-Mms/2.0")
+                      .setUserAgent(TextSecurePreferences.getMmsUserAgent(context, USER_AGENT))
                       .setConnectionManager(new BasicHttpClientConnectionManager())
                       .setDefaultRequestConfig(config)
                       .setDefaultCredentialsProvider(credsProvider)
