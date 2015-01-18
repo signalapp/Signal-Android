@@ -36,6 +36,7 @@ import org.apache.http.impl.conn.BasicHttpClientConnectionManager;
 import org.thoughtcrime.securesms.database.ApnDatabase;
 import org.thoughtcrime.securesms.util.TelephonyUtil;
 import org.thoughtcrime.securesms.util.Conversions;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
@@ -135,7 +136,7 @@ public abstract class MmsConnection {
     return HttpClients.custom()
                       .setConnectionReuseStrategy(new NoConnectionReuseStrategyHC4())
                       .setRedirectStrategy(new LaxRedirectStrategy())
-                      .setUserAgent("Android-Mms/2.0")
+                      .setUserAgent(TextSecurePreferences.getMmsUserAgent(context))
                       .setConnectionManager(new BasicHttpClientConnectionManager())
                       .setDefaultRequestConfig(config)
                       .setDefaultCredentialsProvider(credsProvider)

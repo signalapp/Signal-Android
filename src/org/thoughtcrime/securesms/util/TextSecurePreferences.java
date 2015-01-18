@@ -4,6 +4,8 @@ import android.content.Context;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.R;
+
 import java.io.IOException;
 
 public class TextSecurePreferences {
@@ -45,6 +47,7 @@ public class TextSecurePreferences {
   private static final String ENTER_SENDS_PREF                 = "pref_enter_sends";
   private static final String ENTER_PRESENT_PREF               = "pref_enter_key";
   private static final String SMS_DELIVERY_REPORT_PREF         = "pref_delivery_report_sms";
+  private static final String MMS_USER_AGENT                   = "pref_mms_user_agent";
   private static final String THREAD_TRIM_ENABLED              = "pref_trim_threads";
   private static final String LOCAL_NUMBER_PREF                = "pref_local_number";
   private static final String VERIFYING_STATE_PREF             = "pref_verifying";
@@ -369,6 +372,11 @@ public class TextSecurePreferences {
 
   public static boolean isSmsDeliveryReportsEnabled(Context context) {
     return getBooleanPreference(context, SMS_DELIVERY_REPORT_PREF, false);
+  }
+
+  public static String getMmsUserAgent(final Context context) {
+    return getStringPreference(context, MMS_USER_AGENT,
+            context.getString(R.string.preferences__default_mms_user_agent));
   }
 
   public static boolean hasPromptedPushRegistration(Context context) {
