@@ -21,7 +21,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
@@ -34,6 +33,8 @@ import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.documents.NetworkFailure;
+import org.thoughtcrime.securesms.database.documents.NetworkFailureList;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchList;
 import org.thoughtcrime.securesms.database.model.DisplayRecord;
@@ -126,6 +127,7 @@ public class MmsDatabase extends MessagingDatabase {
   private static final String DELIVERY_TIME      = "d_tm";
   private static final String DELIVERY_REPORT    = "d_rpt";
           static final String PART_COUNT         = "part_count";
+          static final String NETWORK_FAILURE    = "network_failures";
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID + " INTEGER PRIMARY KEY, "                          +
     THREAD_ID + " INTEGER, " + DATE_SENT + " INTEGER, " + DATE_RECEIVED + " INTEGER, " + MESSAGE_BOX + " INTEGER, " +
@@ -140,7 +142,7 @@ public class MmsDatabase extends MessagingDatabase {
     RETRIEVE_TEXT + " TEXT, " + RETRIEVE_TEXT_CS + " INTEGER, " + READ_STATUS + " INTEGER, "    +
     CONTENT_CLASS + " INTEGER, " + RESPONSE_TEXT + " TEXT, " + DELIVERY_TIME + " INTEGER, "     +
     RECEIPT_COUNT + " INTEGER DEFAULT 0, " + MISMATCHED_IDENTITIES + " TEXT DEFAULT NULL, "     +
-    DELIVERY_REPORT + " INTEGER);";
+    NETWORK_FAILURE + " TEXT DEFAULT NULL," + DELIVERY_REPORT + " INTEGER);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS mms_thread_id_index ON " + TABLE_NAME + " (" + THREAD_ID + ");",
@@ -158,7 +160,7 @@ public class MmsDatabase extends MessagingDatabase {
       MESSAGE_SIZE, PRIORITY, REPORT_ALLOWED, STATUS, TRANSACTION_ID, RETRIEVE_STATUS,
       RETRIEVE_TEXT, RETRIEVE_TEXT_CS, READ_STATUS, CONTENT_CLASS, RESPONSE_TEXT,
       DELIVERY_TIME, DELIVERY_REPORT, BODY, PART_COUNT, ADDRESS, ADDRESS_DEVICE_ID,
-      RECEIPT_COUNT
+      RECEIPT_COUNT, MISMATCHED_IDENTITIES, NETWORK_FAILURE
   };
 
   public static final ExecutorService slideResolver = org.thoughtcrime.securesms.util.Util.newSingleThreadedLifoExecutor();
@@ -192,6 +194,22 @@ public class MmsDatabase extends MessagingDatabase {
     }
 
     return 0;
+  }
+
+  public void addFailures(long messageId, List<NetworkFailure> failure) {
+    try {
+      addToDocument(messageId, NETWORK_FAILURE, failure, NetworkFailureList.class);
+    } catch (IOException e) {
+      Log.w(TAG, e);
+    }
+  }
+
+  public void removeFailure(long messageId, NetworkFailure failure) {
+    try {
+      removeFromDocument(messageId, NETWORK_FAILURE, failure, NetworkFailureList.class);
+    } catch (IOException e) {
+      Log.w(TAG, e);
+    }
   }
 
   public void incrementDeliveryReceiptCount(String address, long timestamp) {
@@ -1018,17 +1036,17 @@ public class MmsDatabase extends MessagingDatabase {
       DisplayRecord.Body body = getBody(cursor);
       int partCount           = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.PART_COUNT));
       String mismatchDocument = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.MISMATCHED_IDENTITIES));
+      String networkDocument  = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.NETWORK_FAILURE));
 
-      Log.w(TAG, "Address: " + address);
-
-      Recipients                recipients = getRecipientsFor(address);
-      List<IdentityKeyMismatch> mismatches = getMismatchedIdentities(mismatchDocument);
+      Recipients                recipients      = getRecipientsFor(address);
+      List<IdentityKeyMismatch> mismatches      = getMismatchedIdentities(mismatchDocument);
+      List<NetworkFailure>      networkFailures = getFailures(networkDocument);
 
       ListenableFutureTask<SlideDeck> slideDeck = getSlideDeck(masterSecret, id);
 
       return new MediaMmsMessageRecord(context, id, recipients, recipients.getPrimaryRecipient(),
                                        addressDeviceId, dateSent, dateReceived, receiptCount,
-                                       threadId, body, slideDeck, partCount, box, mismatches);
+                                       threadId, body, slideDeck, partCount, box, mismatches, networkFailures);
     }
 
     private Recipients getRecipientsFor(String address) {
@@ -1053,9 +1071,21 @@ public class MmsDatabase extends MessagingDatabase {
     private List<IdentityKeyMismatch> getMismatchedIdentities(String document) {
       if (!TextUtils.isEmpty(document)) {
         try {
-          return JsonUtils.fromJson(document, IdentityKeyMismatchList.class).getMismatches();
+          return JsonUtils.fromJson(document, IdentityKeyMismatchList.class).getList();
         } catch (IOException e) {
           Log.w(TAG, e);
+        }
+      }
+
+      return new LinkedList<>();
+    }
+
+    private List<NetworkFailure> getFailures(String document) {
+      if (!TextUtils.isEmpty(document)) {
+        try {
+          return JsonUtils.fromJson(document, NetworkFailureList.class).getList();
+        } catch (IOException ioe) {
+          Log.w(TAG, ioe);
         }
       }
 

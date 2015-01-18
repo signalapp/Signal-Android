@@ -21,11 +21,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
-import android.provider.Telephony;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.model.MessageRecord;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -51,7 +50,8 @@ public class MmsSmsDatabase extends Database {
                               MmsDatabase.CONTENT_LOCATION, MmsDatabase.TRANSACTION_ID,
                               MmsDatabase.MESSAGE_SIZE, MmsDatabase.EXPIRY,
                               MmsDatabase.STATUS, MmsSmsColumns.RECEIPT_COUNT,
-                              MmsSmsColumns.MISMATCHED_IDENTITIES, TRANSPORT};
+                              MmsSmsColumns.MISMATCHED_IDENTITIES,
+                              MmsDatabase.NETWORK_FAILURE, TRANSPORT};
 
     String order           = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " ASC";
 
@@ -74,7 +74,8 @@ public class MmsSmsDatabase extends Database {
                               MmsDatabase.CONTENT_LOCATION, MmsDatabase.TRANSACTION_ID,
                               MmsDatabase.MESSAGE_SIZE, MmsDatabase.EXPIRY,
                               MmsDatabase.STATUS, MmsSmsColumns.RECEIPT_COUNT,
-                              MmsSmsColumns.MISMATCHED_IDENTITIES, TRANSPORT};
+                              MmsSmsColumns.MISMATCHED_IDENTITIES,
+                              MmsDatabase.NETWORK_FAILURE, TRANSPORT};
 
     String order           = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " ASC";
 
@@ -97,7 +98,8 @@ public class MmsSmsDatabase extends Database {
                               MmsDatabase.CONTENT_LOCATION, MmsDatabase.TRANSACTION_ID,
                               MmsDatabase.MESSAGE_SIZE, MmsDatabase.EXPIRY,
                               MmsDatabase.STATUS, MmsSmsColumns.RECEIPT_COUNT,
-                              MmsSmsColumns.MISMATCHED_IDENTITIES, TRANSPORT};
+                              MmsSmsColumns.MISMATCHED_IDENTITIES,
+                              MmsDatabase.NETWORK_FAILURE, TRANSPORT};
 
     String order           = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " DESC";
     String selection       = MmsSmsColumns.THREAD_ID + " = " + threadId;
@@ -116,7 +118,8 @@ public class MmsSmsDatabase extends Database {
                               MmsDatabase.CONTENT_LOCATION, MmsDatabase.TRANSACTION_ID,
                               MmsDatabase.MESSAGE_SIZE, MmsDatabase.EXPIRY,
                               MmsDatabase.STATUS, MmsSmsColumns.RECEIPT_COUNT,
-                              MmsSmsColumns.MISMATCHED_IDENTITIES, TRANSPORT};
+                              MmsSmsColumns.MISMATCHED_IDENTITIES,
+                              MmsDatabase.NETWORK_FAILURE, TRANSPORT};
 
     String order           = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " ASC";
     String selection       = MmsSmsColumns.READ + " = 0";
@@ -144,7 +147,8 @@ public class MmsSmsDatabase extends Database {
                               MmsDatabase.MESSAGE_BOX, SmsDatabase.STATUS, MmsDatabase.PART_COUNT,
                               MmsDatabase.CONTENT_LOCATION, MmsDatabase.TRANSACTION_ID,
                               MmsDatabase.MESSAGE_SIZE, MmsDatabase.EXPIRY, MmsDatabase.STATUS,
-                              MmsSmsColumns.RECEIPT_COUNT, MmsSmsColumns.MISMATCHED_IDENTITIES, TRANSPORT};
+                              MmsSmsColumns.RECEIPT_COUNT, MmsSmsColumns.MISMATCHED_IDENTITIES,
+                              MmsDatabase.NETWORK_FAILURE, TRANSPORT};
 
     String[] smsProjection = {SmsDatabase.DATE_SENT + " * 1 AS " + MmsSmsColumns.NORMALIZED_DATE_SENT,
                               SmsDatabase.DATE_RECEIVED + " * 1 AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED,
@@ -153,7 +157,8 @@ public class MmsSmsDatabase extends Database {
                               MmsDatabase.MESSAGE_BOX, SmsDatabase.STATUS, MmsDatabase.PART_COUNT,
                               MmsDatabase.CONTENT_LOCATION, MmsDatabase.TRANSACTION_ID,
                               MmsDatabase.MESSAGE_SIZE, MmsDatabase.EXPIRY, MmsDatabase.STATUS,
-                              MmsSmsColumns.RECEIPT_COUNT, MmsSmsColumns.MISMATCHED_IDENTITIES, TRANSPORT};
+                              MmsSmsColumns.RECEIPT_COUNT, MmsSmsColumns.MISMATCHED_IDENTITIES,
+                              MmsDatabase.NETWORK_FAILURE, TRANSPORT};
 
 
     SQLiteQueryBuilder mmsQueryBuilder = new SQLiteQueryBuilder();
@@ -184,6 +189,7 @@ public class MmsSmsDatabase extends Database {
     mmsColumnsPresent.add(MmsDatabase.MESSAGE_SIZE);
     mmsColumnsPresent.add(MmsDatabase.EXPIRY);
     mmsColumnsPresent.add(MmsDatabase.STATUS);
+    mmsColumnsPresent.add(MmsDatabase.NETWORK_FAILURE);
 
     Set<String> smsColumnsPresent = new HashSet<String>();
     smsColumnsPresent.add(MmsSmsColumns.ID);

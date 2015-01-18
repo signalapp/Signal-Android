@@ -714,6 +714,7 @@ public class DatabaseFactory {
       if (oldVersion < INTRODUCED_IDENTITY_COLUMN_VERSION) {
         db.execSQL("ALTER TABLE sms ADD COLUMN mismatched_identities TEXT");
         db.execSQL("ALTER TABLE mms ADD COLUMN mismatched_identities TEXT");
+        db.execSQL("ALTER TABLE mms ADD COLUMN network_failures TEXT");
       }
 
       db.setTransactionSuccessful();

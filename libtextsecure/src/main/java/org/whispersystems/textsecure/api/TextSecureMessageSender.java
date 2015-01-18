@@ -34,6 +34,8 @@ import org.whispersystems.textsecure.api.messages.TextSecureGroup;
 import org.whispersystems.textsecure.api.messages.TextSecureMessage;
 import org.whispersystems.textsecure.api.push.PushAddress;
 import org.whispersystems.textsecure.api.push.TrustStore;
+import org.whispersystems.textsecure.api.push.exceptions.NetworkFailureException;
+import org.whispersystems.textsecure.api.push.exceptions.PushNetworkException;
 import org.whispersystems.textsecure.internal.push.MismatchedDevices;
 import org.whispersystems.textsecure.internal.push.OutgoingPushMessage;
 import org.whispersystems.textsecure.internal.push.OutgoingPushMessageList;
@@ -150,6 +152,7 @@ public class TextSecureMessageSender {
   {
     List<UntrustedIdentityException> untrustedIdentities = new LinkedList<>();
     List<UnregisteredUserException>  unregisteredUsers   = new LinkedList<>();
+    List<NetworkFailureException>    networkExceptions   = new LinkedList<>();
 
     for (PushAddress recipient : recipients) {
       try {
@@ -160,11 +163,14 @@ public class TextSecureMessageSender {
       } catch (UnregisteredUserException e) {
         Log.w(TAG, e);
         unregisteredUsers.add(e);
+      } catch (PushNetworkException e) {
+        Log.w(TAG, e);
+        networkExceptions.add(new NetworkFailureException(recipient.getNumber(), e));
       }
     }
 
-    if (!untrustedIdentities.isEmpty() || !unregisteredUsers.isEmpty()) {
-      throw new EncapsulatedExceptions(untrustedIdentities, unregisteredUsers);
+    if (!untrustedIdentities.isEmpty() || !unregisteredUsers.isEmpty() || !networkExceptions.isEmpty()) {
+      throw new EncapsulatedExceptions(untrustedIdentities, unregisteredUsers, networkExceptions);
     }
   }
 

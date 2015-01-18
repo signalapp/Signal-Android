@@ -512,9 +512,7 @@ public class PushServiceSocket {
       return connection;
     } catch (IOException e) {
       throw new PushNetworkException(e);
-    } catch (NoSuchAlgorithmException e) {
-      throw new AssertionError(e);
-    } catch (KeyManagementException e) {
+    } catch (NoSuchAlgorithmException | KeyManagementException e) {
       throw new AssertionError(e);
     }
   }

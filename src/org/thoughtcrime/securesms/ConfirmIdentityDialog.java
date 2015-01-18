@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
+import org.thoughtcrime.securesms.database.MmsAddressDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.PushDatabase;
@@ -26,6 +27,7 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.jobs.PushDecryptJob;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
@@ -129,20 +131,26 @@ public class ConfirmIdentityDialog extends AlertDialog {
         }
 
         private void processOutgoingMessageRecord(MessageRecord messageRecord) {
-          SmsDatabase smsDatabase = DatabaseFactory.getSmsDatabase(getContext());
-          MmsDatabase mmsDatabase = DatabaseFactory.getMmsDatabase(getContext());
+          SmsDatabase        smsDatabase        = DatabaseFactory.getSmsDatabase(getContext());
+          MmsDatabase        mmsDatabase        = DatabaseFactory.getMmsDatabase(getContext());
+          MmsAddressDatabase mmsAddressDatabase = DatabaseFactory.getMmsAddressDatabase(getContext());
 
           if (messageRecord.isMms()) {
             mmsDatabase.removeMismatchedIdentity(messageRecord.getId(),
                                                  mismatch.getRecipientId(),
                                                  mismatch.getIdentityKey());
+
+            Recipients recipients = mmsAddressDatabase.getRecipientsForId(messageRecord.getId());
+
+            if (recipients.isGroupRecipient()) MessageSender.resendGroupMessage(getContext(), masterSecret, messageRecord, mismatch.getRecipientId());
+            else                               MessageSender.resend(getContext(), masterSecret, messageRecord);
           } else {
             smsDatabase.removeMismatchedIdentity(messageRecord.getId(),
                                                  mismatch.getRecipientId(),
                                                  mismatch.getIdentityKey());
-          }
 
-          MessageSender.resend(getContext(), masterSecret, messageRecord);
+            MessageSender.resend(getContext(), masterSecret, messageRecord);
+          }
         }
 
         private void processIncomingMessageRecord(MessageRecord messageRecord) {

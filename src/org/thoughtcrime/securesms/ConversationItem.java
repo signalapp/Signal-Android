@@ -44,6 +44,8 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
+import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
+import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
@@ -54,12 +56,16 @@ import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.Emoji;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
+import org.thoughtcrime.securesms.util.Util;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -307,13 +313,27 @@ public class ConversationItem extends LinearLayout {
   }
 
   private void setFailedStatusIcons() {
+    List<String> tags = new LinkedList<>();
+
     dateText.setText(R.string.ConversationItem_error_sending_message);
 
-    Log.w(TAG, "Mismatch failure: " + messageRecord.isIdentityMismatchFailure());
+    if (messageRecord.hasNetworkFailures()) {
+      for (NetworkFailure networkFailure : messageRecord.getNetworkFailures()) {
+        Recipient recipient = RecipientFactory.getRecipientForId(getContext(), networkFailure.getRecipientId(), false);
+        tags.add(recipient.toShortString() + ": Network error, tap to retry...");
+      }
+    }
 
     if (messageRecord.isIdentityMismatchFailure()) {
+      for (IdentityKeyMismatch mismatch : messageRecord.getIdentityKeyMismatches()) {
+        Recipient recipient = RecipientFactory.getRecipientForId(getContext(), mismatch.getRecipientId(), false);
+        tags.add(recipient.toShortString() + ": Identity changed, tap for details...");
+      }
+    }
+
+    if (!tags.isEmpty()) {
       indicatorText.setVisibility(View.VISIBLE);
-      indicatorText.setText("Tap to verify identity...");
+      indicatorText.setText(Util.join(tags, "\n"));
     }
   }
 
@@ -340,6 +360,7 @@ public class ConversationItem extends LinearLayout {
 
   private void setEvents(MessageRecord messageRecord) {
     setClickable(messageRecord.isPendingSmsFallback()      ||
+                 messageRecord.hasNetworkFailures()        ||
                  messageRecord.isIdentityMismatchFailure() ||
                  (messageRecord.isKeyExchange()            &&
                   !messageRecord.isCorruptedKeyExchange()  &&
@@ -579,7 +600,7 @@ public class ConversationItem extends LinearLayout {
 
   private class ClickListener implements View.OnClickListener {
     public void onClick(View v) {
-      if (messageRecord.isIdentityMismatchFailure()) {
+      if (messageRecord.isIdentityMismatchFailure() || messageRecord.hasNetworkFailures()) {
         handleIdentityApproval();
       } else if (messageRecord.isKeyExchange()           &&
                  !messageRecord.isOutgoing()             &&

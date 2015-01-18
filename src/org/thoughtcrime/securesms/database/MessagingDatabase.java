@@ -8,12 +8,14 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.text.TextUtils;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.database.documents.Document;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchList;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.whispersystems.libaxolotl.IdentityKey;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -29,95 +31,115 @@ public abstract class MessagingDatabase extends Database implements MmsSmsColumn
   protected abstract String getTableName();
 
   public void addMismatchedIdentity(long messageId, long recipientId, IdentityKey identityKey) {
-    SQLiteDatabase database = databaseHelper.getWritableDatabase();
-    database.beginTransaction();
-
     try {
-      List<IdentityKeyMismatch> mismatches = getMismatchedIdentities(database, messageId);
-      mismatches.add(new IdentityKeyMismatch(recipientId, identityKey));
-
-      setMismatchedIdentities(database, messageId, mismatches);
-      database.setTransactionSuccessful();
-    } catch (IOException ioe) {
-      Log.w(TAG, ioe);
-    } finally {
-      database.endTransaction();
+      addToDocument(messageId, MISMATCHED_IDENTITIES,
+                    new IdentityKeyMismatch(recipientId, identityKey),
+                    IdentityKeyMismatchList.class);
+    } catch (IOException e) {
+      Log.w(TAG, e);
     }
   }
 
   public void removeMismatchedIdentity(long messageId, long recipientId, IdentityKey identityKey) {
+    try {
+      removeFromDocument(messageId, MISMATCHED_IDENTITIES,
+                         new IdentityKeyMismatch(recipientId, identityKey),
+                         IdentityKeyMismatchList.class);
+    } catch (IOException e) {
+      Log.w(TAG, e);
+    }
+  }
+
+  protected <D extends Document<I>, I> void removeFromDocument(long messageId, String column, I object, Class<D> clazz) throws IOException {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
     database.beginTransaction();
 
     try {
-      List<IdentityKeyMismatch>     mismatches = getMismatchedIdentities(database, messageId);
-      Iterator<IdentityKeyMismatch> iterator   = mismatches.iterator();
+      D           document = getDocument(database, messageId, column, clazz);
+      Iterator<I> iterator = document.getList().iterator();
 
       while (iterator.hasNext()) {
-        IdentityKeyMismatch mismatch = iterator.next();
+        I item = iterator.next();
 
-        if (mismatch.getRecipientId() == recipientId &&
-            mismatch.getIdentityKey().equals(identityKey))
-        {
+        if (item.equals(object)) {
           iterator.remove();
           break;
         }
       }
 
-      setMismatchedIdentities(database, messageId, mismatches);
+      setDocument(database, messageId, column, document);
       database.setTransactionSuccessful();
-    } catch (IOException e) {
-      Log.w(TAG, e);
     } finally {
       database.endTransaction();
     }
   }
 
-  public List<IdentityKeyMismatch> getMismatchedIdentities(long messageId) {
-    SQLiteDatabase database = databaseHelper.getReadableDatabase();
-    return getMismatchedIdentities(database, messageId);
+  protected <T extends Document<I>, I> void addToDocument(long messageId, String column, final I object, Class<T> clazz) throws IOException {
+    List<I> list = new ArrayList<I>() {{
+      add(object);
+    }};
+
+    addToDocument(messageId, column, list, clazz);
   }
 
-  private void setMismatchedIdentities(SQLiteDatabase database, long messageId, List<IdentityKeyMismatch> mismatches) throws IOException {
+  protected <T extends Document<I>, I> void addToDocument(long messageId, String column, List<I> objects, Class<T> clazz) throws IOException {
+    SQLiteDatabase database = databaseHelper.getWritableDatabase();
+    database.beginTransaction();
+
+    try {
+      T document = getDocument(database, messageId, column, clazz);
+      document.getList().addAll(objects);
+      setDocument(database, messageId, column, document);
+
+      database.setTransactionSuccessful();
+    } finally {
+      database.endTransaction();
+    }
+  }
+
+  private void setDocument(SQLiteDatabase database, long messageId, String column, Document document) throws IOException {
     ContentValues contentValues = new ContentValues();
 
-    if (mismatches == null || mismatches.isEmpty()) {
-      contentValues.put(MISMATCHED_IDENTITIES, (String)null);
+    if (document == null || document.size() == 0) {
+      contentValues.put(column, (String)null);
     } else {
-      contentValues.put(MISMATCHED_IDENTITIES, JsonUtils.toJson(new IdentityKeyMismatchList(mismatches)));
+      contentValues.put(column, JsonUtils.toJson(document));
     }
 
     database.update(getTableName(), contentValues, ID_WHERE, new String[] {String.valueOf(messageId)});
   }
 
-
-  private List<IdentityKeyMismatch> getMismatchedIdentities(SQLiteDatabase database, long messageId) {
+  private <D extends Document> D getDocument(SQLiteDatabase database, long messageId,
+                                             String column, Class<D> clazz)
+  {
     Cursor cursor = null;
 
     try {
-      cursor = database.query(getTableName(), new String[] {MISMATCHED_IDENTITIES},
+      cursor = database.query(getTableName(), new String[] {column},
                               ID_WHERE, new String[] {String.valueOf(messageId)},
                               null, null, null);
 
       if (cursor != null && cursor.moveToNext()) {
-        try {
-          String document = cursor.getString(cursor.getColumnIndexOrThrow(MISMATCHED_IDENTITIES));
+        String document = cursor.getString(cursor.getColumnIndexOrThrow(column));
 
+        try {
           if (!TextUtils.isEmpty(document)) {
-            IdentityKeyMismatchList mismatchList = JsonUtils.fromJson(document, IdentityKeyMismatchList.class);
-            return mismatchList.getMismatches();
+            return JsonUtils.fromJson(document, clazz);
           }
         } catch (IOException e) {
           Log.w(TAG, e);
         }
       }
 
-      return new LinkedList<>();
+      try {
+        return clazz.newInstance();
+      } catch (InstantiationException | IllegalAccessException e) {
+        throw new AssertionError(e);
+      }
+
     } finally {
       if (cursor != null)
         cursor.close();
     }
   }
-
-
 }

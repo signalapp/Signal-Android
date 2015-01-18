@@ -19,14 +19,13 @@ package org.thoughtcrime.securesms.database.model;
 import android.content.Context;
 import android.text.Spannable;
 import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
-import android.text.style.TextAppearanceSpan;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;
+import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -55,12 +54,14 @@ public abstract class MessageRecord extends DisplayRecord {
   private final int                       deliveryStatus;
   private final int                       receiptCount;
   private final List<IdentityKeyMismatch> mismatches;
+  private final List<NetworkFailure>      networkFailures;
 
   MessageRecord(Context context, long id, Body body, Recipients recipients,
                 Recipient individualRecipient, int recipientDeviceId,
                 long dateSent, long dateReceived, long threadId,
                 int deliveryStatus, int receiptCount, long type,
-                List<IdentityKeyMismatch> mismatches)
+                List<IdentityKeyMismatch> mismatches,
+                List<NetworkFailure> networkFailures)
   {
     super(context, body, recipients, dateSent, dateReceived, threadId, type);
     this.id                  = id;
@@ -69,6 +70,7 @@ public abstract class MessageRecord extends DisplayRecord {
     this.deliveryStatus      = deliveryStatus;
     this.receiptCount        = receiptCount;
     this.mismatches          = mismatches;
+    this.networkFailures     = networkFailures;
   }
 
   public abstract boolean isMms();
@@ -189,6 +191,14 @@ public abstract class MessageRecord extends DisplayRecord {
 
   public List<IdentityKeyMismatch> getIdentityKeyMismatches() {
     return mismatches;
+  }
+
+  public List<NetworkFailure> getNetworkFailures() {
+    return networkFailures;
+  }
+
+  public boolean hasNetworkFailures() {
+    return networkFailures != null && !networkFailures.isEmpty();
   }
 
   protected SpannableString emphasisAdded(String sequence) {

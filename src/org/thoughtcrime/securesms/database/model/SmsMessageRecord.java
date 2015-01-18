@@ -23,11 +23,13 @@ import android.text.SpannableString;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;
+import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.protocol.Tag;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -50,7 +52,7 @@ public class SmsMessageRecord extends MessageRecord {
   {
     super(context, id, body, recipients, individualRecipient, recipientDeviceId,
           dateSent, dateReceived, threadId, receiptCount, getGenericDeliveryStatus(status), type,
-          mismatches);
+          mismatches, new LinkedList<NetworkFailure>());
   }
 
   public long getType() {

@@ -43,11 +43,9 @@ import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.whispersystems.jobqueue.JobManager;
-import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
 
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -660,8 +658,7 @@ public class SmsDatabase extends MessagingDatabase {
     private List<IdentityKeyMismatch> getMismatches(String document) {
       try {
         if (!TextUtils.isEmpty(document)) {
-          return JsonUtils.fromJson(document, IdentityKeyMismatchList.class)
-                          .getMismatches();
+          return JsonUtils.fromJson(document, IdentityKeyMismatchList.class).getList();
         }
       } catch (IOException e) {
         Log.w(TAG, e);
