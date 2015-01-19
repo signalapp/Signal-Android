@@ -37,6 +37,18 @@
         <item name="subtitleTextStyle">@style/TextSecure.SubtitleTextStyle</item>
     </style>
 
+    <style name="TextSecure.DarkActionBar.TabBar"
+        parent="@style/Widget.AppCompat.ActionBar.TabBar">
+        <item name="background">@color/gray95</item>
+        <item name="android:background">@color/gray95</item>
+    </style>
+
+    <style name="TextSecure.LightActionBar.TabBar"
+        parent="@style/Widget.AppCompat.ActionBar.TabBar">
+        <item name="android:background">@color/gray5</item>
+        <item name="background">@color/gray5</item>
+    </style>
+
     <style name="TextSecure.ClearTitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textColor">@android:color/transparent</item>
     </style>
@@ -81,7 +93,6 @@
         <item name="android:textSize">16.0sp</item>
         <item name="android:typeface">sans</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">#ff333333</item>
         <item name="android:gravity">left</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:shadowColor">#ffffff</item>

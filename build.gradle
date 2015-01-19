@@ -53,7 +53,7 @@ dependencies {
     provided 'com.squareup.dagger:dagger-compiler:1.2.2'
 
     compile 'org.whispersystems:jobmanager:0.10.0'
-    compile 'org.whispersystems:libpastelog:1.0.2'
+    compile 'org.whispersystems:libpastelog:1.0.4'
 
     androidTestCompile 'com.squareup:fest-android:1.0.8'
     androidTestCompile 'com.google.dexmaker:dexmaker:1.1'
@@ -77,8 +77,8 @@ dependencyVerification {
             'com.android.support:support-v4-preferencefragment:5470f5872514a6226fa1fc6f4e000991f38805691c534cf0bd2778911fc773ad',
             'com.squareup.dagger:dagger:789aca24537022e49f91fc6444078d9de8f1dd99e1bfb090f18491b186967883',
             'com.doomonafireball.betterpickers:library:1c2dd66b0f4555e9e68427b28eed8826b7cd2e7074b8c038c88836a6aa9abe64',
-            'org.whispersystems:libpastelog:9798b3c93a91082c2c68542ce5b5c182e18556aebdcb7c8cebbd89eb48ac4047',
             'org.whispersystems:jobmanager:01f35586c43aa3806f1c18d3d6a5a972def98103ba1a5a9ca3eec08d15f974b7',
+            'org.whispersystems:libpastelog:3ccf00fe1597eb8ca1e5de99b17fc225387a1b80b5bbc00ec1bc4d4f3ea9cdde',
             'com.android.support:support-v4:81f2b1c2c94efd5a4ec7fcd97b6cdcd00e87a933905c5c86103c7319eb024572',
             'com.madgag.spongycastle:core:8d6240b974b0aca4d3da9c7dd44d42339d8a374358aca5fc98e50a995764511f',
             'javax.inject:javax.inject:91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff',
