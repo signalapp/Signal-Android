@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="gdata_selfdestroy_entrys">
+        <item>@string/ConversationActivity_gdata_selfdestroy_entry_five</item>
+        <item>@string/ConversationActivity_gdata_selfdestroy_entry_thirty</item>
+        <item>@string/ConversationActivity_gdata_selfdestroy_entry_hour</item>
+    </string-array>
+    <string-array name="gdata_selfdestroy_compose_entrys">
+        <item>@string/conversation_activity__type_message_mms_insecure</item>
+        <item>@string/conversation_activity__type_message_mms_secure</item>
+        <item>@string/conversation_activity__type_message_push</item>
+    </string-array>
+    <string-array name="gdata_selfdestroy_icons">
+        <item>@drawable/ic_menu_remove_holo_light</item>
+        <item>@drawable/ic_menu_remove_holo_light</item>
+        <item>@drawable/ic_menu_remove_holo_light</item>
+    </string-array>
+</resources>

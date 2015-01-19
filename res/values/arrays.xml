@@ -102,7 +102,7 @@
   </string-array>
 
   <string-array name="pref_theme_values" translatable="false">
-      <item>light</item>
+      <item>GData</item>
       <item>dark</item>
   </string-array>
 
@@ -154,8 +154,7 @@
     <item>@string/ConversationActivity_transport_secure_mms</item>
     <item>@string/ConversationActivity_transport_textsecure</item>
   </string-array>
-
-  <string-array name="transport_selection_entries_compose_text">
+    <string-array name="transport_selection_entries_compose_text">
     <item>@string/conversation_activity__type_message_sms_insecure</item>
     <item>@string/conversation_activity__type_message_sms_secure</item>
     <item>@string/conversation_activity__type_message_push</item>

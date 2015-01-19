@@ -298,11 +298,10 @@ public class ConversationListFragment extends ListFragment implements LoaderMana
     actionMode = null;
   }
 
-  public static ConversationListFragment newInstance(int page, String title) {
+  public static ConversationListFragment newInstance(String title) {
     ConversationListFragment fragmentFirst = new ConversationListFragment();
     Bundle args = new Bundle();
-    args.putInt("pageInt", page);
-    args.putString("pageTitle", title);
+    args.putString(ConversationListActivity.PagerAdapter.EXTRA_FRAGMENT_PAGE_TITLE, title);
     fragmentFirst.setArguments(args);
     return fragmentFirst;
   }

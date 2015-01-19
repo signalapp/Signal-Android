@@ -44,13 +44,15 @@ import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
+import de.gdata.messaging.GDataPreferences;
+
 public class ConversationListActivity extends PassphraseRequiredActionBarActivity implements
     ConversationListFragment.ConversationSelectedListener {
   private final DynamicTheme dynamicTheme = new DynamicTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
-  private ConversationListFragment conversationListFragment;
-  private ContactSelectionFragment contactSelectionFragment;
+  private static ConversationListFragment conversationListFragment;
+  private static ContactSelectionFragment contactSelectionFragment;
   private MasterSecret masterSecret;
   private ContentObserver observer;
 
@@ -60,15 +62,16 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     dynamicLanguage.onCreate(this);
     super.onCreate(icicle);
 
-    setContentView(R.layout.conversation_list_activity);
+    setContentView(R.layout.gdata_conversation_list_activity);
 
     getSupportActionBar().setTitle(R.string.app_name);
-    this.conversationListFragment = ConversationListFragment.newInstance(0, "");
-    this.contactSelectionFragment = ContactSelectionFragment.newInstance(1, "");
-    final ViewPager vpPager = (ViewPager) findViewById(R.id.pager_content);
+    conversationListFragment = ConversationListFragment.newInstance(getString(R.string.gdata_conversation_list_page_title));
+    contactSelectionFragment = ContactSelectionFragment.newInstance(getString(R.string.gdata_contact_selection_page_title));
+
+    final ViewPager vpPager = (ViewPager) findViewById(R.id.gdata_pager_content);
     PagerAdapter adapterViewPager = new PagerAdapter(getSupportFragmentManager());
     vpPager.setAdapter(adapterViewPager);
-
+    vpPager.setCurrentItem(new GDataPreferences(getApplicationContext()).getViewPagersLastPage());
     initializeResources();
     initializeContactUpdatesReceiver();
 
@@ -83,7 +86,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
       @Override
       public void onPageSelected(int i) {
-
+        new GDataPreferences(getApplicationContext()).setViewPagerLastPage(i);
       }
 
       @Override
@@ -298,13 +301,15 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   }
 
   public class PagerAdapter extends FragmentPagerAdapter {
+    public static final java.lang.String EXTRA_FRAGMENT_PAGE_TITLE = "pageTitle";
+
     public PagerAdapter(FragmentManager fm) {
       super(fm);
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
-      return "Page " + (position + 1);
+      return getItem(position).getArguments().getString(EXTRA_FRAGMENT_PAGE_TITLE);
     }
 
     @Override

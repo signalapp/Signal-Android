@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_five">5 minutes</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_thirty">30 minutes</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_hour">1 hour</string>
+
+    <!-- contact_selection_list -->
+    <string name="gdata_contact_selection_page_title">Contacts</string>
+
+    <!-- conversation_list -->
+    <string name="gdata_conversation_list_page_title">Conversations</string>
+
+
+</resources>

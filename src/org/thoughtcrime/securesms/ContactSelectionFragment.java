@@ -149,11 +149,10 @@ public class ContactSelectionFragment extends Fragment {
     }
   }
 
-  public static ContactSelectionFragment newInstance(int page, String title) {
+  public static ContactSelectionFragment newInstance(String title) {
     ContactSelectionFragment fragmentFirst = new ContactSelectionFragment();
     Bundle args = new Bundle();
-    args.putInt("pageInt", page);
-    args.putString("pageTitle", title);
+    args.putString(ConversationListActivity.PagerAdapter.EXTRA_FRAGMENT_PAGE_TITLE, title);
     fragmentFirst.setArguments(args);
     return fragmentFirst;
   }

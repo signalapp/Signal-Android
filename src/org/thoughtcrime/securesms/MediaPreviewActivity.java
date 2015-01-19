@@ -77,7 +77,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity {
 
   @Override
   protected void onCreate(Bundle bundle) {
-    this.setTheme(R.style.TextSecure_DarkTheme);
+    this.setTheme(R.style.GSecure_GDataTheme);
     dynamicLanguage.onCreate(this);
 
     super.onCreate(bundle);
