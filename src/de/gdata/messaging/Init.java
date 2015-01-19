@@ -7,20 +7,22 @@ import android.util.Log;
 
 public class Init {
     public static void init(Context context) {
-        Cursor c = context.getContentResolver().query(
+        Cursor cursor = context.getContentResolver().query(
                 Uri.parse("content://de.gdata.mobilesecurity.messaging.RegistrationContentProvider/details"),
                 new String[] {}, null, null, null);
 
-        //TODO: remove debug output
-        //TODO: save current state to preferences
-        if (c.moveToFirst()) {
-            do {
-                Log.d("GDATA", "ID: " + c.getInt(c.getColumnIndex("_id")));
-                Log.d("GDATA", "Value: " + c.getString(c.getColumnIndex("premium")));
-            } while (c.moveToNext());
-        }
-        Log.d("GDATA", "Count: " + c.getCount());
+        // TODO: remove debug output
+        // TODO: save current state to preferences
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                do {
+                    Log.d("GDATA", "ID: " + cursor.getInt(cursor.getColumnIndex("_id")));
+                    Log.d("GDATA", "Value: " + cursor.getString(cursor.getColumnIndex("premium")));
+                } while (cursor.moveToNext());
+            }
+            Log.d("GDATA", "Count: " + cursor.getCount());
 
-        c.close();
-     }
+            cursor.close();
+        }
+    }
 }
