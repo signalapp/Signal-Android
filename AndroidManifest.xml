@@ -37,6 +37,8 @@
                 android:protectionLevel="signature" />
     <uses-permission android:name="org.thoughtcrime.securesms.permission.C2D_MESSAGE" />
 
+    <uses-permission android:name="de.gdata.mobilesecurity.ACCESS_REGISTRATION_DATA_PROVIDER" />
+
     <application android:name=".ApplicationContext"
                  android:icon="@drawable/icon"
                  android:label="@string/app_name"
