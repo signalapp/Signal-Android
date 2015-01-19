@@ -12,11 +12,11 @@ import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.mms.ApnUnavailableException;
+import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.MmsRadio;
 import org.thoughtcrime.securesms.mms.MmsRadioException;
 import org.thoughtcrime.securesms.mms.MmsSendResult;
 import org.thoughtcrime.securesms.mms.OutgoingMmsConnection;
-import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -24,26 +24,21 @@ import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.NumberUtil;
-import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.libaxolotl.NoSessionException;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.util.Arrays;
 
 import ws.com.google.android.mms.MmsException;
 import ws.com.google.android.mms.pdu.EncodedStringValue;
-import ws.com.google.android.mms.pdu.PduBody;
 import ws.com.google.android.mms.pdu.PduComposer;
 import ws.com.google.android.mms.pdu.PduHeaders;
-import ws.com.google.android.mms.pdu.PduPart;
 import ws.com.google.android.mms.pdu.SendConf;
 import ws.com.google.android.mms.pdu.SendReq;
 
-public class MmsSendJob extends MasterSecretJob {
+public class MmsSendJob extends SendJob {
 
   private static final String TAG = MmsSendJob.class.getSimpleName();
 
@@ -66,11 +61,9 @@ public class MmsSendJob extends MasterSecretJob {
   }
 
   @Override
-  public void onRun(MasterSecret masterSecret) throws MmsException, NoSuchMessageException, IOException {
+  public void onSend(MasterSecret masterSecret) throws MmsException, NoSuchMessageException, IOException {
     MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
     SendReq     message  = database.getOutgoingMessage(masterSecret, messageId);
-
-    populatePartData(message.getBody(), masterSecret);
 
     try {
       MmsSendResult result = deliver(masterSecret, message);
@@ -100,24 +93,6 @@ public class MmsSendJob extends MasterSecretJob {
   public void onCanceled() {
     DatabaseFactory.getMmsDatabase(context).markAsSentFailed(messageId);
     notifyMediaMessageDeliveryFailed(context, messageId);
-  }
-
-  private void populatePartData(PduPart part, MasterSecret masterSecret) throws IOException {
-    if (part.getDataUri() == null) {
-      return;
-    }
-
-    ByteArrayOutputStream os = part.getDataSize() > 0 && part.getDataSize() < Integer.MAX_VALUE
-                             ? new ByteArrayOutputStream((int)part.getDataSize())
-                             : new ByteArrayOutputStream();
-    Util.copy(PartAuthority.getPartStream(context, masterSecret, part.getDataUri()), os);
-    part.setData(os.toByteArray());
-  }
-
-  private void populatePartData(PduBody body, MasterSecret masterSecret) throws IOException {
-    for (int i=body.getPartsNum()-1; i>=0; i--) {
-      populatePartData(body.getPart(i), masterSecret);
-    }
   }
 
   public MmsSendResult deliver(MasterSecret masterSecret, SendReq message)
@@ -174,6 +149,8 @@ public class MmsSendJob extends MasterSecretJob {
     String  number         = ((TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE)).getLine1Number();
     boolean upgradedSecure = false;
 
+    prepareMessageMedia(masterSecret, message, MediaConstraints.MMS_CONSTRAINTS, true);
+
     if (MmsDatabase.Types.isSecureType(message.getDatabaseMessageBox())) {
       message        = getEncryptedMessage(masterSecret, message);
       upgradedSecure = true;
@@ -184,12 +161,14 @@ public class MmsSendJob extends MasterSecretJob {
     }
 
     try {
-      OutgoingMmsConnection connection = new OutgoingMmsConnection(context, radio.getApnInformation(), new PduComposer(context, message).make());
-      SendConf conf = connection.send(usingMmsRadio, useProxy);
+      byte[] pdu = new PduComposer(context, message).make();
 
-      for (int i=0;i<message.getBody().getPartsNum();i++) {
-        Log.w(TAG, "Sent MMS part of content-type: " + new String(message.getBody().getPart(i).getContentType()));
+      if (pdu == null) {
+        throw new UndeliverableMessageException("PDU composition failed, null payload");
       }
+
+      OutgoingMmsConnection connection = new OutgoingMmsConnection(context, radio.getApnInformation(), pdu);
+      SendConf              conf       = connection.send(usingMmsRadio, useProxy);
 
       if (conf == null) {
         throw new UndeliverableMessageException("No M-Send.conf received in response to send.");
@@ -206,7 +185,7 @@ public class MmsSendJob extends MasterSecretJob {
   }
 
   private SendReq getEncryptedMessage(MasterSecret masterSecret, SendReq pdu)
-      throws InsecureFallbackApprovalException
+      throws InsecureFallbackApprovalException, UndeliverableMessageException
   {
     try {
       MmsCipher cipher = new MmsCipher(new TextSecureAxolotlStore(context, masterSecret));

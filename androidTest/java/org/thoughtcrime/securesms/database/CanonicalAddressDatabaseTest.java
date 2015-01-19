@@ -1,10 +1,10 @@
 package org.thoughtcrime.securesms.database;
 
-import android.test.InstrumentationTestCase;
+import org.thoughtcrime.securesms.TextSecureTestCase;
 
 import static org.fest.assertions.api.Assertions.assertThat;
 
-public class CanonicalAddressDatabaseTest extends InstrumentationTestCase {
+public class CanonicalAddressDatabaseTest extends TextSecureTestCase {
   private static final String AMBIGUOUS_NUMBER = "222-3333";
   private static final String SPECIFIC_NUMBER  = "+49 444 222 3333";
   private static final String EMAIL            = "a@b.fom";

@@ -46,4 +46,8 @@ public abstract class Reminder {
   public void setCancelListener(OnClickListener cancelListener) {
     this.cancelListener = cancelListener;
   }
+
+  public boolean isDismissable() {
+    return true;
+  }
 }

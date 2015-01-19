@@ -75,10 +75,12 @@ public class VideoSlide extends Slide {
     return SmilUtil.createMediaElement("video", document, new String(getPart().getName()));
   }
 
-  private static PduPart constructPartFromUri(Context context, Uri uri) throws IOException, MediaTooLargeException {
-    PduPart part             = new PduPart();
+  private static PduPart constructPartFromUri(Context context, Uri uri)
+      throws IOException, MediaTooLargeException
+  {
+    PduPart         part     = new PduPart();
     ContentResolver resolver = context.getContentResolver();
-    Cursor cursor            = null;
+    Cursor          cursor   = null;
 
     try {
       cursor = resolver.query(uri, new String[] {MediaStore.Video.Media.MIME_TYPE}, null, null, null);

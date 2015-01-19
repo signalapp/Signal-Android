@@ -99,12 +99,13 @@ Za ponovno uporabo potisnih sporočil se boste morali zopet prijaviti s svojo te
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_get_with_it">Ravnaj primerno: %s</string>
   <string name="ConversationActivity_install_textsecure">Namesti TextSecure: %s</string>
+  <string name="ConversationActivity_error_leaving_group">Napaka pri zapuščanju skupine...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Podrobnosti sporočila</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Način prenosa: %1$s\nPoslano/Prejeto: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Pošiljatelj: %1$s\nNačin prenosa: %2$s\nPoslano: %3$s\nPrejeto: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Potrdite izbris sporočila</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Ste prepričani, da želite dokonćno izbrisati sporočilo?</string>
+  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Ste prepričan, da želite trajno izbrisati vsa označena sporočila?</string>
   <string name="ConversationFragment_save_to_sd_card">Spravim v sistemsko shrambo?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">S shranitvijo datoteke v sistemsko shrambo bo ta dostopna tudi drugim aplikacijam.\n\nNadaljujem?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Napaka pri shranjevanju priponke v sistemsko shrambo!</string>
@@ -116,6 +117,8 @@ Za ponovno uporabo potisnih sporočil se boste morali zopet prijaviti s svojo te
   <string name="ConversationFragment_push">POTISNO</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
+  <string name="ConversationFragment_deleting">Brišem...</string>
+  <string name="ConversationFragment_deleting_messages">Brišem sporočila...</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Izbris pogovorov?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Ste prepričani, da želite izbrisati VSE izbrane pogovore?</string>
@@ -131,8 +134,8 @@ Za ponovno uporabo potisnih sporočil se boste morali zopet prijaviti s svojo te
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Pozor, s tem boste izvozili vsebino svojih sporočil na SD kartico v nešifrirani obliki.</string>
   <string name="ExportFragment_cancel">Prekliči</string>
   <string name="ExportFragment_exporting">Izvažam</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Izvažam na kartico SD nešifrirano...</string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">Napaka, ne morem pisati na kartico SD!</string>
+  <string name="ExportFragment_exporting_plaintext_to_sd_card">Izvažam nešifriran tekst na kartico SD...</string>
+  <string name="ExportFragment_error_unable_to_write_to_sd_card">Napaka - ne morem pisati na kartico SD!</string>
   <string name="ExportFragment_error_while_writing_to_sd_card">Napaka pri zapisovanju na kartico SD.</string>
   <string name="ExportFragment_success">Uspešno opravljeno!</string>
   <!--GcmRefreshJob-->
@@ -152,10 +155,11 @@ Za ponovno uporabo potisnih sporočil se boste morali zopet prijaviti s svojo te
   <string name="GroupCreateActivity_menu_create_title">Ustvari skupino</string>
   <string name="GroupCreateActivity_creating_group">Ustvarjam %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Posodabljam %1$s...</string>
-  <string name="GroupCreateActivity_loading_group_details">Nalagam podrobnosti o skupini</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Ne morem dodati neuporabnikov aplikacije TextSecure k obstoječi skupini TextSecure</string>
+  <string name="GroupCreateActivity_loading_group_details">Nalagam podatke o skupini...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Jaz</string>
+  <string name="GroupMembersDialog_members">Člani...</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Uvozi</string>
   <string name="ImportExportActivity_export">Izvozi</string>
@@ -190,6 +194,8 @@ Za ponovno uporabo potisnih sporočil se boste morali zopet prijaviti s svojo te
   <string name="NotificationMmsMessageRecord_multimedia_message">Večpredstavno sporočilo</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Prejeto je bilo sporočilo, šifrirano z zastarelo verziijo aplikacije TextSecure, ki ni več podprta. Obrnite se na pošiljatelja, naj posodobi aplikacijo TextSecure na zadnjo različico in ponovno pošlje sporočilo.</string>
+  <string name="MessageRecord_left_group">Zapustili ste skupino.</string>
+  <string name="MessageRecord_updated_group">Skupina je bila posodobljena.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Gesli se ne ujemata</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Napačno staro geslo!</string>
@@ -404,6 +410,10 @@ Prejeto sporočilo z neznanim identifikacijskim ključem. Kliknite za obdelavo i
   <string name="MmsPreferencesFragment__not_set">Ni določeno</string>
   <string name="MmsPreferencesFragment__invalid_uri">Vnesli ste neveljaven URI</string>
   <string name="MmsPreferencesFragment__invalid_host">Vnesli ste neveljaven naslov gostitelja</string>
+  <!--GroupUtil-->
+  <string name="GroupUtil_joined_the_group">Oseba %1$s se je pridružila skupini.</string>
+  <string name="GroupUtil_group_updated">Skupina je bila posodobljena.</string>
+  <string name="GroupUtil_title_is_now">Naslov je zdaj: \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Odkleni</string>
   <!--prompt_mms_activity-->
@@ -583,6 +593,8 @@ bila uspešna.</string>
   <string name="preferences__sms_fallback_never_send_mms">Nikoli ne pošiljaj sporočil MMS</string>
   <string name="preferences__sms_fallback_non_push_users">Neuporabnike TextSecure</string>
   <string name="preferences__sms_fallback_nobody">Nikogar</string>
+  <string name="preferences__support_wifi_calling">\'WiFi klicanje/WiFi Calling\' združljivostni način</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktivirajte, če vaša naprava uporablja dostavo SMS/MMS sporočil preko WiFi (samo, če imate vklopljeno WiFi klicanje/WiFi Calling)</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -655,6 +667,7 @@ bila uspešna.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Vi</string>
   <string name="MediaPreviewActivity_cant_display">Predogled te slike ni mogoč</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">Nepodprt medij</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Shrani</string>
   <!--media_preview_activity-->

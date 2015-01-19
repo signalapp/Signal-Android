@@ -6,7 +6,10 @@ import android.util.Log;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
+import org.thoughtcrime.securesms.mms.MmsMediaConstraints;
 import org.thoughtcrime.securesms.mms.PartAuthority;
+import org.thoughtcrime.securesms.mms.MediaConstraints;
+import org.thoughtcrime.securesms.mms.PushMediaConstraints;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -21,7 +24,6 @@ import org.thoughtcrime.securesms.database.TextSecureDirectory;
 import org.whispersystems.textsecure.api.push.PushAddress;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.LinkedList;
@@ -31,7 +33,7 @@ import ws.com.google.android.mms.ContentType;
 import ws.com.google.android.mms.pdu.PduPart;
 import ws.com.google.android.mms.pdu.SendReq;
 
-public abstract class PushSendJob extends MasterSecretJob {
+public abstract class PushSendJob extends SendJob {
 
   private static final String TAG = PushSendJob.class.getSimpleName();
 

@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms.database;
 
 import android.net.Uri;
-import android.test.InstrumentationTestCase;
 
+import org.thoughtcrime.securesms.TextSecureTestCase;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 
 import java.io.FileNotFoundException;
@@ -19,11 +19,10 @@ import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class PartDatabaseTest extends InstrumentationTestCase {
+public class PartDatabaseTest extends TextSecureTestCase {
   private static final long PART_ID = 1L;
 
   private PartDatabase database;

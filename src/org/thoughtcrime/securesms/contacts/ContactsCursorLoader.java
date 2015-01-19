@@ -41,6 +41,7 @@ public class ContactsCursorLoader extends CursorLoader {
 
   @Override
   public Cursor loadInBackground() {
+    ContactsDatabase.destroyInstance();
     db = ContactsDatabase.getInstance(context);
     return db.query(filter, pushOnly);
   }

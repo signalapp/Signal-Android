@@ -31,7 +31,7 @@ import org.whispersystems.libaxolotl.NoSessionException;
 
 import java.util.ArrayList;
 
-public class SmsSendJob extends MasterSecretJob {
+public class SmsSendJob extends SendJob {
 
   private static final String TAG = SmsSendJob.class.getSimpleName();
 
@@ -48,7 +48,7 @@ public class SmsSendJob extends MasterSecretJob {
   }
 
   @Override
-  public void onRun(MasterSecret masterSecret) throws NoSuchMessageException {
+  public void onSend(MasterSecret masterSecret) throws NoSuchMessageException {
     EncryptingSmsDatabase database = DatabaseFactory.getEncryptingSmsDatabase(context);
     SmsMessageRecord      record   = database.getMessage(masterSecret, messageId);
 

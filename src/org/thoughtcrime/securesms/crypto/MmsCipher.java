@@ -8,6 +8,7 @@ import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libaxolotl.DuplicateMessageException;
 import org.whispersystems.libaxolotl.InvalidMessageException;
@@ -84,13 +85,17 @@ public class MmsCipher {
   }
 
   public SendReq encrypt(Context context, SendReq message)
-      throws NoSessionException, RecipientFormattingException
+      throws NoSessionException, RecipientFormattingException, UndeliverableMessageException
   {
     EncodedStringValue[] encodedRecipient = message.getTo();
     String               recipientString  = encodedRecipient[0].getString();
     Recipients           recipients       = RecipientFactory.getRecipientsFromString(context, recipientString, false);
     long                 recipientId      = recipients.getPrimaryRecipient().getRecipientId();
     byte[]               pduBytes         = new PduComposer(context, message).make();
+
+    if (pduBytes == null) {
+      throw new UndeliverableMessageException("PDU composition failed, null payload");
+    }
 
     if (!axolotlStore.containsSession(recipientId, PushAddress.DEFAULT_DEVICE_ID)) {
       throw new NoSessionException("No session for: " + recipientId);

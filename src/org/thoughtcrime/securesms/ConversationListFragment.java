@@ -40,6 +40,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import org.thoughtcrime.securesms.components.DefaultSmsReminder;
+import org.thoughtcrime.securesms.components.ExpiredBuildReminder;
 import org.thoughtcrime.securesms.components.PushRegistrationReminder;
 import org.thoughtcrime.securesms.components.ReminderView;
 import org.thoughtcrime.securesms.components.SystemSmsImportReminder;
@@ -158,7 +159,9 @@ public class ConversationListFragment extends ListFragment implements LoaderMana
   }
 
   private void initializeReminders() {
-    if (DefaultSmsReminder.isEligible(getActivity())) {
+    if (ExpiredBuildReminder.isEligible(getActivity())) {
+      reminderView.showReminder(new ExpiredBuildReminder());
+    } else if (DefaultSmsReminder.isEligible(getActivity())) {
       reminderView.showReminder(new DefaultSmsReminder(getActivity()));
     } else if (SystemSmsImportReminder.isEligible(getActivity())) {
       reminderView.showReminder(new SystemSmsImportReminder(getActivity(), masterSecret));

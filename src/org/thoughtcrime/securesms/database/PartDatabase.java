@@ -461,6 +461,38 @@ public class PartDatabase extends Database {
     notifyConversationListeners(DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(messageId));
   }
 
+  public void updatePartData(MasterSecret masterSecret, PduPart part, InputStream data)
+      throws MmsException
+  {
+    SQLiteDatabase   database = databaseHelper.getWritableDatabase();
+    Pair<File, Long> partData = writePartData(masterSecret, part, data);
+
+    if (partData == null) throw new MmsException("couldn't update part data");
+
+    Cursor cursor = null;
+    try {
+      cursor = database.query(TABLE_NAME, new String[]{DATA}, ID_WHERE,
+                              new String[]{part.getId()+""}, null, null, null);
+
+      if (cursor != null && cursor.moveToFirst()) {
+        int dataColumn = cursor.getColumnIndexOrThrow(DATA);
+        if (!cursor.isNull(dataColumn) && !new File(cursor.getString(dataColumn)).delete()) {
+            Log.w(TAG, "Couldn't delete old part file");
+        }
+      }
+    } finally {
+      if (cursor != null) cursor.close();
+    }
+    ContentValues values = new ContentValues(2);
+    values.put(DATA, partData.first.getAbsolutePath());
+    values.put(SIZE, partData.second);
+
+    part.setDataSize(partData.second);
+
+    database.update(TABLE_NAME, values, ID_WHERE, new String[] {part.getId()+""});
+    Log.w(TAG, "updated data for part #" + part.getId());
+  }
+
   public void updatePartThumbnail(MasterSecret masterSecret, long partId, PduPart part, InputStream in, float aspectRatio)
       throws MmsException
   {

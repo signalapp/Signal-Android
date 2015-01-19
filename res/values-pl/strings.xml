@@ -100,12 +100,13 @@ Będziesz musiał ponownie zarejestrować swój numer, aby w przyszłości ponow
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_get_with_it">Weź z: %s</string>
   <string name="ConversationActivity_install_textsecure">Instaluj TextSecure: %s</string>
+  <string name="ConversationActivity_error_leaving_group">Błąd opuszczenia grupy...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Szczegóły wiadomości</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nWysłano/Otrzymano: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Nadawca: %1$s\nTransport: %2$s\nWysłano: %3$s\nOtrzymano: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Potwierdź usunięcie wiadomości</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Usunąć trwale wybraną wiadomość?</string>
+  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Czy jesteś pewien, że chcesz usunąć wszystkie zaznaczone wiadomości?</string>
   <string name="ConversationFragment_save_to_sd_card">Zapisać na dysk?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Zapisanie tych plików na dysku pozwoli innym aplikacjom na Twoim telefonie na dostęp do tych plików.\n\nKontynuować?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Błąd podczas zapisywania załącznika na dysk!</string>
@@ -117,6 +118,8 @@ Będziesz musiał ponownie zarejestrować swój numer, aby w przyszłości ponow
   <string name="ConversationFragment_push">PUSH</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
+  <string name="ConversationFragment_deleting">Usuwanie...</string>
+  <string name="ConversationFragment_deleting_messages">Usuwanie wiadomości...</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Skasować wątki?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Usunąć trwale wybrane wątki? </string>
@@ -132,9 +135,9 @@ Będziesz musiał ponownie zarejestrować swój numer, aby w przyszłości ponow
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Uwaga, wiadomości z Twojej zaszyfrowanej skrzynki odbiorczej TextSecure zostaną wyeksportowane w postaci jawnego tekstu na kartę SD.</string>
   <string name="ExportFragment_cancel">Anuluj</string>
   <string name="ExportFragment_exporting">Eksportowanie</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Eksportowanie jawnego tekstu na kartę SD...</string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">Błąd, nie można zapisać na kartę SD!</string>
-  <string name="ExportFragment_error_while_writing_to_sd_card">Błąd podczas zapisu na kartę SD.</string>
+  <string name="ExportFragment_exporting_plaintext_to_sd_card">Eksportowanie nieszyfrowanych na kartę SD</string>
+  <string name="ExportFragment_error_unable_to_write_to_sd_card">Błąd, nie udało się zapisać na kartę SD!</string>
+  <string name="ExportFragment_error_while_writing_to_sd_card">Wystąpił błąd w czasie zapisu na kartę SD.</string>
   <string name="ExportFragment_success">Sukces!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_TextSecure_communication_failure">Pernamentny błąd komunikacji TextSecure!</string>
@@ -153,10 +156,11 @@ Będziesz musiał ponownie zarejestrować swój numer, aby w przyszłości ponow
   <string name="GroupCreateActivity_menu_create_title">Utwórz grupę</string>
   <string name="GroupCreateActivity_creating_group">Trwa tworzenie %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Aktualizowanie %1$s...</string>
-  <string name="GroupCreateActivity_loading_group_details">Wczytywanie szeczółów grupy</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Nie można dodać użytkowników nie używających TextSecure do istniejącej grupy TextSecure</string>
+  <string name="GroupCreateActivity_loading_group_details">Wczytywanie szczegółów grupy...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Ja</string>
+  <string name="GroupMembersDialog_members">Członkowie...</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Import</string>
   <string name="ImportExportActivity_export">Eksport</string>
@@ -192,6 +196,8 @@ Przywracanie z zaszyfrowanej kopii zapasowej spowoduje nadpisanie Twoich istniej
   <string name="NotificationMmsMessageRecord_multimedia_message">Wiadomość multimedialna</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Otrzymano wiadomość zaszyfrowaną przy użyciu starej wersji TextSecure, która nie jest już wspierana. Poproś nadawcę o aktualizacje aplikacji do najnowszej wersji i przesłanie wiadomości ponownie.</string>
+  <string name="MessageRecord_left_group">Opuściłeś grupę.</string>
+  <string name="MessageRecord_updated_group">Zaktualizowano grupę.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Hasło niezgodne!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Nieprawidłowe stare hasło!</string>
@@ -416,6 +422,10 @@ Importuj niezaszyfrowany plik kopii zapasowej, kompatybilny z \'SMSBackup And Re
   <string name="MmsPreferencesFragment__not_set">Nie ustawiono</string>
   <string name="MmsPreferencesFragment__invalid_uri">Wpisany tekst nie zawierał poprawnego URI</string>
   <string name="MmsPreferencesFragment__invalid_host">Wpisany tekst nie zawierał ważnego hosta</string>
+  <!--GroupUtil-->
+  <string name="GroupUtil_joined_the_group">%1$s dołączył do grupy.</string>
+  <string name="GroupUtil_group_updated">Grupa została zaktualizowana.</string>
+  <string name="GroupUtil_title_is_now">Nazwa teraz to \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Odblokuj</string>
   <!--prompt_mms_activity-->
@@ -514,11 +524,11 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="preferences__screen_security">Ochrona ekranu</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Automatycznie zakończ wymianę kluczy dla nowej lub obecnej sesji używając tego samego klucza tożsamości</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokuj rzuty ekranu w obecnej liście oraz w aplikacji</string>
-  <string name="preferences__forget_passphrase_from_memory_after_some_interval">Zapomnij hasło z pamięci systemu po pewnym czasie</string>
-  <string name="preferences__timeout_passphrase">Limit czasu dla hasła</string>
-  <string name="preferences__pref_timeout_interval_dialogtitle">Czas wygaśnięcia hasła</string>
-  <string name="preferences__pref_timeout_interval_title">Czas wygaśnięcia</string>
-  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Ilość czasu zanim hasło wygaśnie z pamięci urządzenia</string>
+  <string name="preferences__forget_passphrase_from_memory_after_some_interval">Wymaż hasło z pamięci systemu po pewnym czasie</string>
+  <string name="preferences__timeout_passphrase">Limit czasu dla hasła?</string>
+  <string name="preferences__pref_timeout_interval_dialogtitle">Wybierz czas wygaśnięcia hasła</string>
+  <string name="preferences__pref_timeout_interval_title">Wybierz czas wygaśnięcia hasła</string>
+  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Ilość czasu zanim hasło zostanie wymazane z pamięci urządzenia</string>
   <string name="preferences__notifications">Powiadomienia</string>
   <string name="preferences__display_message_notifications_in_status_bar">Wyświetlaj powiadomienia wiadomości w pasku statusu</string>
   <string name="preferences__led_color">Kolor LED</string>
@@ -586,13 +596,15 @@ Zwiększ swoją prywatność i unikaj opłat za SMS używając transmisji danych
   <string name="preferences__sms_fallback_never_send_mms">Nigdy nie wysyłaj MMS</string>
   <string name="preferences__sms_fallback_non_push_users">Użytkowników bez-TextSecure</string>
   <string name="preferences__sms_fallback_nobody">Nikt</string>
+  <string name="preferences__support_wifi_calling">\'WiFi Calling\' tryb zgodności</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Włącz jeśli Twoje urządzenie używa dostarczanie SMS/MMS przez WiFi (włącz tylko wtedy gdy \'WiFi Calling\' jest włączone na Twoim urządzeniu).</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__menu_select_all">Zaznacz wszystko</string>
   <string name="contact_selection_list__menu_unselect_all">Odznacz wszystko</string>
-  <string name="contact_selection_list__header_textsecure_users">UŻYTKOWNICY TEXTSECURE</string>
+  <string name="contact_selection_list__header_textsecure_users">UŻYTKOWNICY Z TEXTSECURE</string>
   <string name="contact_selection_list__header_other">WSZYSTKIE KONTAKTY</string>
   <string name="contact_selection_list__unknown_contact">Nowa wiadomość do...</string>
   <!--contact_selection-->
@@ -658,6 +670,7 @@ Zwiększ swoją prywatność i unikaj opłat za SMS używając transmisji danych
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Ty</string>
   <string name="MediaPreviewActivity_cant_display">Podgląd tego obrazu nie udał się</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">Nieobsługiwany typ media</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Zapisz</string>
   <!--media_preview_activity-->
