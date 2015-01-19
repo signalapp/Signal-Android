@@ -112,6 +112,11 @@ public class ImageSlide extends Slide {
 
   @Override
   public void setThumbnailOn(ImageView imageView) {
+    setThumbnailOn(imageView, imageView.getWidth(), imageView.getHeight(), new ColorDrawable(Color.TRANSPARENT));
+  }
+
+  @Override
+  public void setThumbnailOn(ImageView imageView, final int width, final int height, final Drawable placeholder) {
     Drawable thumbnail = getCachedThumbnail();
 
     if (thumbnail != null) {
@@ -120,24 +125,22 @@ public class ImageSlide extends Slide {
       return;
     }
 
-    final ColorDrawable temporaryDrawable        = new ColorDrawable(Color.TRANSPARENT);
-    final WeakReference<ImageView> weakImageView = new WeakReference<ImageView>(imageView);
+    final WeakReference<ImageView> weakImageView = new WeakReference<>(imageView);
     final Handler handler                        = new Handler();
-    final int maxWidth                           = imageView.getWidth();
-    final int maxHeight                          = imageView.getHeight();
 
-    imageView.setImageDrawable(temporaryDrawable);
+    imageView.setImageDrawable(placeholder);
 
-    if (maxWidth == 0 || maxHeight == 0)
+    if (width == 0 || height == 0)
       return;
 
     MmsDatabase.slideResolver.execute(new Runnable() {
       @Override
       public void run() {
-        final Drawable bitmap = getThumbnail(maxWidth, maxHeight);
+        final Drawable bitmap = getThumbnail(width, height);
         final ImageView destination = weakImageView.get();
 
-        if (destination != null && destination.getDrawable() == temporaryDrawable) {
+        Log.w(TAG, "slide resolved, destination available? " + (destination == null));
+        if (destination != null && destination.getDrawable() == placeholder) {
           handler.post(new Runnable() {
             @Override
             public void run() {
@@ -156,7 +159,7 @@ public class ImageSlide extends Slide {
       imageView.setImageDrawable(thumbnail);
       ((AnimationDrawable)imageView.getDrawable()).start();
     } else {
-      TransitionDrawable fadingResult = new TransitionDrawable(new Drawable[]{new ColorDrawable(Color.TRANSPARENT), thumbnail});
+      TransitionDrawable fadingResult = new TransitionDrawable(new Drawable[]{imageView.getDrawable(), thumbnail});
       imageView.setImageDrawable(fadingResult);
       fadingResult.startTransition(300);
     }

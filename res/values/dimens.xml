@@ -14,4 +14,6 @@
     <dimen name="contact_selection_photo_size">50dp</dimen>
     <dimen name="thumbnail_max_size">230dp</dimen>
     <dimen name="preference_fragment_padding_side">8dp</dimen>
+
+    <integer name="media_overview_cols">3</integer>
 </resources>

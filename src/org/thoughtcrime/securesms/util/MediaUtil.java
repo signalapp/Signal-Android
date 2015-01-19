@@ -9,8 +9,13 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.PartDatabase;
+import org.thoughtcrime.securesms.mms.AudioSlide;
+import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
+import org.thoughtcrime.securesms.mms.MediaTooLargeException;
 import org.thoughtcrime.securesms.mms.PartAuthority;
+import org.thoughtcrime.securesms.mms.Slide;
+import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 
 import java.io.ByteArrayInputStream;
@@ -60,6 +65,19 @@ public class MediaUtil {
   {
     int maxSize = context.getResources().getDimensionPixelSize(R.dimen.thumbnail_max_size);
     return BitmapUtil.createScaledBitmap(context, masterSecret, uri, maxSize, maxSize);
+  }
+
+  public static Slide getSlideForPart(Context context, MasterSecret masterSecret, PduPart part, String contentType) {
+    Slide slide = null;
+    if (ContentType.isImageType(contentType)) {
+      slide = new ImageSlide(context, masterSecret, part);
+    } else if (ContentType.isVideoType(contentType)) {
+      slide = new VideoSlide(context, masterSecret, part);
+    } else if (ContentType.isAudioType(contentType)) {
+      slide = new AudioSlide(context, masterSecret, part);
+    }
+
+    return slide;
   }
 
   public static boolean isImage(PduPart part) {

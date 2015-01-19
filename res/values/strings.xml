@@ -526,6 +526,9 @@
     <string name="import_fragment__import_a_plaintext_backup_file">
         Import a plaintext backup file. Compatible with \'SMSBackup And Restore.\'</string>
 
+    <!-- media_overview_activity -->
+    <string name="media_overview_activity__no_images">No images</string>
+
     <!-- MmsPreferencesFragment -->
     <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Manual MMS settings are required for your phone.</string>
     <string name="MmsPreferencesFragment__enabled">Enabled</string>
@@ -650,6 +653,8 @@
     <string name="AndroidManifest__complete_key_exchange">Complete key exchange</string>
     <string name="AndroidManifest__log_submit">Submit debug logs</string>
     <string name="AndroidManifest__media_preview">Media Preview</string>
+    <string name="AndroidManifest__media_overview">All images</string>
+    <string name="AndroidManifest__media_overview_named">All images with %1$s</string>
 
     <!-- arrays.xml -->
     <string name="arrays__import_export">Import / export</string>
@@ -823,6 +828,7 @@
     <string name="conversation__menu_update_group">Update group</string>
     <string name="conversation__menu_leave_group">Leave group</string>
     <string name="conversation__menu_delete_thread">Delete thread</string>
+    <string name="conversation__menu_view_media">All images</string>
 
     <!-- conversation_callable -->
     <string name="conversation_add_to_contacts__menu_add_to_contacts">Add to contacts</string>

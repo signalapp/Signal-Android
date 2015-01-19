@@ -23,12 +23,14 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Pair;
 
 import org.thoughtcrime.securesms.crypto.DecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.EncryptingPartOutputStream;
+import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
@@ -91,6 +93,20 @@ public class PartDatabase extends Database {
     "CREATE INDEX IF NOT EXISTS pending_push_index ON " + TABLE_NAME + " (" + PENDING_PUSH_ATTACHMENT + ");",
   };
 
+  private final static String IMAGES_QUERY = "SELECT " + TABLE_NAME + "." + ID + ", "
+                                                       + TABLE_NAME + "." + CONTENT_TYPE + ", "
+                                                       + TABLE_NAME + "." + ASPECT_RATIO + ", "
+                                                       + MmsDatabase.TABLE_NAME + "." + MmsDatabase.NORMALIZED_DATE_RECEIVED + ", "
+                                                       + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ADDRESS + " "
+                                           + "FROM " + TABLE_NAME + " LEFT JOIN " + MmsDatabase.TABLE_NAME
+                                                                  + " ON " + TABLE_NAME + "." + MMS_ID + " = " + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID + " "
+                                           + "WHERE " + MMS_ID + " IN (SELECT " + MmsSmsColumns.ID
+                                                                   + " FROM " + MmsDatabase.TABLE_NAME
+                                                                   + " WHERE " + MmsDatabase.THREAD_ID + " = ?) AND "
+                                                      + CONTENT_TYPE + " LIKE 'image/%' "
+                                           + "ORDER BY " + TABLE_NAME + "." + ID + " DESC";
+
+
   private final ExecutorService thumbnailExecutor = Util.newSingleThreadedLifoExecutor();
 
   public PartDatabase(Context context, SQLiteOpenHelper databaseHelper) {
@@ -133,6 +149,13 @@ public class PartDatabase extends Database {
       if (cursor != null)
         cursor.close();
     }
+  }
+
+  public Cursor getImagesForThread(long threadId) {
+    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+    Cursor cursor = database.rawQuery(IMAGES_QUERY, new String[]{threadId+""});
+    setNotifyConverationListeners(cursor, threadId);
+    return cursor;
   }
 
   public List<Pair<Long, PduPart>> getParts(long mmsId) {
@@ -507,6 +530,47 @@ public class PartDatabase extends Database {
     values.put(ASPECT_RATIO, aspectRatio);
 
     database.update(TABLE_NAME, values, ID_WHERE, new String[]{partId+""});
+  }
+
+  public static class ImageRecord {
+    private long   partId;
+    private String contentType;
+    private String address;
+    private long   date;
+
+    private ImageRecord(long partId, String contentType, String address, long date) {
+      this.partId      = partId;
+      this.contentType = contentType;
+      this.address     = address;
+      this.date        = date;
+    }
+
+    public static ImageRecord from(Cursor cursor) {
+      return new ImageRecord(cursor.getLong(cursor.getColumnIndexOrThrow(ID)),
+                             cursor.getString(cursor.getColumnIndexOrThrow(CONTENT_TYPE)),
+                             cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.ADDRESS)),
+                             cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.NORMALIZED_DATE_RECEIVED)) * 1000);
+    }
+
+    public long getPartId() {
+      return partId;
+    }
+
+    public String getContentType() {
+      return contentType;
+    }
+
+    public String getAddress() {
+      return address;
+    }
+
+    public long getDate() {
+      return date;
+    }
+
+    public Uri getUri() {
+      return ContentUris.withAppendedId(PartAuthority.PART_CONTENT_URI, getPartId());
+    }
   }
 
   @VisibleForTesting class ThumbnailFetchCallable implements Callable<InputStream> {

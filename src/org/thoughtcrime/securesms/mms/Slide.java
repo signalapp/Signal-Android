@@ -39,7 +39,7 @@ public abstract class Slide {
   protected final PduPart      part;
   protected final Context      context;
   protected       MasterSecret masterSecret;
-	
+
   public Slide(Context context, PduPart part) {
     this.part    = part;
     this.context = context;
@@ -76,6 +76,10 @@ public abstract class Slide {
 
   public void setThumbnailOn(ImageView imageView) {
     imageView.setImageDrawable(getThumbnail(imageView.getWidth(), imageView.getHeight()));
+  }
+
+  public void setThumbnailOn(ImageView imageView, int height, int width, Drawable placeholder) {
+    imageView.setImageDrawable(getThumbnail(width, height));
   }
 
   public Bitmap getGeneratedThumbnail() { return null; }

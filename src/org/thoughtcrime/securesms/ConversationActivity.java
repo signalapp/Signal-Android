@@ -310,6 +310,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     case R.id.menu_call:                      handleDial(getRecipients().getPrimaryRecipient()); return true;
     case R.id.menu_delete_thread:             handleDeleteThread();                              return true;
     case R.id.menu_add_attachment:            handleAddAttachment();                             return true;
+    case R.id.menu_view_media:                handleViewMedia();                                 return true;
     case R.id.menu_add_to_contacts:           handleAddToContacts();                             return true;
     case R.id.menu_start_secure_session:      handleStartSecureSession();                        return true;
     case R.id.menu_abort_session:             handleAbortSecureSession();                        return true;
@@ -421,6 +422,14 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     });
     builder.setNegativeButton(R.string.no, null);
     builder.show();
+  }
+
+  private void handleViewMedia() {
+    Intent intent = new Intent(this, MediaOverviewActivity.class);
+    intent.putExtra(MediaOverviewActivity.THREAD_ID_EXTRA, threadId);
+    intent.putExtra(MediaOverviewActivity.RECIPIENT_EXTRA, recipients.getPrimaryRecipient().getRecipientId());
+    intent.putExtra(MediaOverviewActivity.MASTER_SECRET_EXTRA, masterSecret);
+    startActivity(intent);
   }
 
   private void handleLeavePushGroup() {

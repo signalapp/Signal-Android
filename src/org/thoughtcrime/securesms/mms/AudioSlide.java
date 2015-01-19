@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms.mms;
 import java.io.IOException;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.SmilUtil;
 import org.w3c.dom.smil.SMILDocument;
 import org.w3c.dom.smil.SMILMediaElement;
@@ -34,12 +35,12 @@ import android.provider.MediaStore.Audio;
 
 public class AudioSlide extends Slide {
 
-  public AudioSlide(Context context, PduPart part) {
-    super(context, part);
-  }
-
   public AudioSlide(Context context, Uri uri) throws IOException, MediaTooLargeException {
     super(context, constructPartFromUri(context, uri));
+  }
+
+  public AudioSlide(Context context, MasterSecret masterSecret, PduPart part) {
+    super(context, masterSecret, part);
   }
 
   @Override

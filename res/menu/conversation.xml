@@ -2,11 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:title="@string/conversation__menu_add_attachment"
-          android:id="@+id/menu_add_attachment"
-          android:icon="@drawable/ic_menu_attach" />
+          android:id="@+id/menu_add_attachment" />
+
+    <item android:title="@string/conversation__menu_view_media"
+          android:id="@+id/menu_view_media" />
 
     <item android:title="@string/conversation__menu_delete_thread"
-          android:id="@+id/menu_delete_thread"
-          android:icon="@android:drawable/ic_menu_delete" />
+          android:id="@+id/menu_delete_thread" />
 
 </menu>
