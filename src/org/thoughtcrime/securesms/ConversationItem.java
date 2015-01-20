@@ -29,6 +29,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.QuickContact;
+import android.text.Html;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -60,7 +61,10 @@ import org.thoughtcrime.securesms.util.Emoji;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
 
+import java.util.ArrayList;
 import java.util.Set;
+
+import de.gdata.messaging.util.Util;
 
 /**
  * A view that displays an individual conversation item within a conversation
@@ -269,6 +273,15 @@ public class ConversationItem extends LinearLayout {
       bodyText.setOnLongClickListener(new MultiSelectLongClickListener());
       bodyText.setOnClickListener(new MultiSelectLongClickListener());
     }
+
+      ArrayList<String> urls = Util.extractUrls((bodyText.getText() + ""));
+
+      String text = "";
+      for (String url : urls) {
+          text = "<br><br><small>" + url + " phishing detected</small> ";
+      }
+      bodyText.setText(Html.fromHtml(bodyText.getText() + " " + text));
+
   }
 
   private void setContactPhoto(MessageRecord messageRecord) {
