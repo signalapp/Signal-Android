@@ -1,7 +1,14 @@
 language: android
 android:
-  components:
-    - platform-tools
-    - build-tools-19.1.0
+components:
+    - build-tools-21.1.2
     - android-19
     - extra-android-m2repository
+    - sys-img-armeabi-v7a-android-19
+    - add-on
+    - extra
+
+before_script:
+    - echo no | android create avd --force -n test -t android-19 --abi armeabi-v7a
+    - emulator -avd test -no-skin -no-audio -no-window &
+    - android-wait-for-emulator
