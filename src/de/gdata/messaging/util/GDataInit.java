@@ -6,23 +6,24 @@ import android.net.Uri;
 import android.util.Log;
 
 public class GDataInit {
-    public static void init(Context context) {
-        Cursor cursor = context.getContentResolver().query(
-                Uri.parse("content://de.gdata.mobilesecurity.messaging.RegistrationContentProvider/details"),
-                new String[] {}, null, null, null);
+    private static final String REGISTRATION_DATA_CONTENT_URI_STRING = "content://de.gdata.mobilesecurity.messaging.RegistrationContentProvider/details";
+    private static final Uri REGISTRATION_DATA_CONTENT_URI = Uri.parse(REGISTRATION_DATA_CONTENT_URI_STRING);
 
-        // TODO: remove debug output
-        // TODO: save current state to preferences
+    public static void init(Context context) {
+        GDataPreferences preferences = new GDataPreferences(context);
+        Cursor cursor = context.getContentResolver().query(REGISTRATION_DATA_CONTENT_URI, new String[] {}, null, null,
+                null);
+
         if (cursor != null) {
             if (cursor.moveToFirst()) {
                 do {
-                    Log.d("GDATA", "ID: " + cursor.getInt(cursor.getColumnIndex("_id")));
-                    Log.d("GDATA", "Value: " + cursor.getString(cursor.getColumnIndex("premium")));
+                    preferences.setPremiumInstalled(Boolean.parseBoolean(cursor.getString(cursor
+                            .getColumnIndex("premium"))));
                 } while (cursor.moveToNext());
             }
-            Log.d("GDATA", "Count: " + cursor.getCount());
-
             cursor.close();
         }
+
+        Log.d("GDATA", "Premium installed: " + preferences.isPremiumInstalled());
     }
 }
