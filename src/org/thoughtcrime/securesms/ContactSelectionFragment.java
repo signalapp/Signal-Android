@@ -42,7 +42,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import de.gdata.messaging.util.MyUtil;
+import de.gdata.messaging.util.Util;
 
 import static org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 
@@ -74,7 +74,7 @@ public class ContactSelectionFragment extends Fragment {
 
   @Override
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-    return MyUtil.setFontForFragment(getActivity(), inflater.inflate(R.layout.new_conversation_activity, container, false));
+    return Util.setFontForFragment(getActivity(), inflater.inflate(R.layout.new_conversation_activity, container, false));
   }
 
   @Override

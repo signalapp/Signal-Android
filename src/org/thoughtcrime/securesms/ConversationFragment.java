@@ -49,7 +49,7 @@ import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.List;
 
-import de.gdata.messaging.util.MyUtil;
+import de.gdata.messaging.util.Util;
 
 public class ConversationFragment extends ListFragment
   implements LoaderManager.LoaderCallbacks<Cursor>
@@ -68,7 +68,7 @@ public class ConversationFragment extends ListFragment
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
-    return MyUtil.setFontForFragment(getActivity(),inflater.inflate(R.layout.conversation_fragment, container, false));
+    return Util.setFontForFragment(getActivity(), inflater.inflate(R.layout.conversation_fragment, container, false));
   }
 
   @Override

@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.util.Dialogs;
 
 import java.io.IOException;
 
-import de.gdata.messaging.util.MyUtil;
+import de.gdata.messaging.util.Util;
 
 
 public class ExportFragment extends Fragment {
@@ -56,7 +56,7 @@ public class ExportFragment extends Fragment {
       }
     });
 
-    return MyUtil.setFontForFragment(getActivity(), layout);
+    return Util.setFontForFragment(getActivity(), layout);
   }
 
 //  private void handleExportEncryptedBackup() {

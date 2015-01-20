@@ -53,7 +53,7 @@ import org.thoughtcrime.securesms.util.Dialogs;
 
 import java.util.Set;
 
-import de.gdata.messaging.util.MyUtil;
+import de.gdata.messaging.util.Util;
 
 public class ConversationListFragment extends ListFragment implements LoaderManager.LoaderCallbacks<Cursor>,
         ActionMode.Callback {
@@ -67,7 +67,7 @@ public class ConversationListFragment extends ListFragment implements LoaderMana
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
         final View view = inflater.inflate(R.layout.conversation_list_fragment, container, false);
-        MyUtil.setFontForFragment(getActivity(), view);
+        Util.setFontForFragment(getActivity(), view);
         reminderView = new ReminderView(getActivity());
         return view;
     }

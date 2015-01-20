@@ -13,7 +13,7 @@ import android.widget.TextView;
 /**
  * Created by jan on 20.01.15.
  */
-public class MyUtil {
+public class Util {
 
 
     public static final View setFontForFragment(Context context, View root) {

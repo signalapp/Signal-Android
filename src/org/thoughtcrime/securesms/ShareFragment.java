@@ -33,7 +33,7 @@ import org.thoughtcrime.securesms.database.loaders.ConversationListLoader;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 
-import de.gdata.messaging.util.MyUtil;
+import de.gdata.messaging.util.Util;
 
 /**
  * A fragment to select and share to open conversations
@@ -47,7 +47,7 @@ public class ShareFragment extends ListFragment implements LoaderManager.LoaderC
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
-    return MyUtil.setFontForFragment(getActivity(), inflater.inflate(R.layout.share_fragment, container, false));
+    return Util.setFontForFragment(getActivity(), inflater.inflate(R.layout.share_fragment, container, false));
   }
 
   @Override
