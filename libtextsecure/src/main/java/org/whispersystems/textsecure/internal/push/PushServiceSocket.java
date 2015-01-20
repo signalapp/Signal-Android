@@ -79,10 +79,14 @@ public class PushServiceSocket {
   private static final String CREATE_ACCOUNT_VOICE_PATH = "/v1/accounts/voice/code/%s";
   private static final String VERIFY_ACCOUNT_PATH       = "/v1/accounts/code/%s";
   private static final String REGISTER_GCM_PATH         = "/v1/accounts/gcm/";
+
   private static final String PREKEY_METADATA_PATH      = "/v2/keys/";
   private static final String PREKEY_PATH               = "/v2/keys/%s";
   private static final String PREKEY_DEVICE_PATH        = "/v2/keys/%s/%s";
   private static final String SIGNED_PREKEY_PATH        = "/v2/keys/signed";
+
+  private static final String PROVISIONING_CODE_PATH    = "/v1/devices/provisioning_code";
+  private static final String PROVISIONING_MESSAGE_PATH = "/v1/messages/provisioning/%s";
 
   private static final String DIRECTORY_TOKENS_PATH     = "/v1/directory/tokens";
   private static final String DIRECTORY_VERIFY_PATH     = "/v1/directory/%s";
@@ -90,7 +94,7 @@ public class PushServiceSocket {
   private static final String RECEIPT_PATH              = "/v1/receipt/%s/%d";
   private static final String ATTACHMENT_PATH           = "/v1/attachments/%s";
 
-  private static final boolean ENFORCE_SSL = true;
+  private static final boolean ENFORCE_SSL = false;
 
   private final String         serviceUrl;
   private final String         localNumber;
@@ -118,6 +122,16 @@ public class PushServiceSocket {
     AccountAttributes signalingKeyEntity = new AccountAttributes(signalingKey, supportsSms, registrationId);
     makeRequest(String.format(VERIFY_ACCOUNT_PATH, verificationCode),
                 "PUT", new Gson().toJson(signalingKeyEntity));
+  }
+
+  public String getNewDeviceVerificationCode() throws IOException {
+    String responseText = makeRequest(PROVISIONING_CODE_PATH, "GET", null);
+    return new Gson().fromJson(responseText, DeviceCode.class).getVerificationCode();
+  }
+
+  public void sendProvisioningMessage(String destination, byte[] body) throws IOException {
+    makeRequest(String.format(PROVISIONING_MESSAGE_PATH, destination), "PUT",
+                new Gson().toJson(new ProvisioningMessage(Base64.encodeBytes(body))));
   }
 
   public void sendReceipt(String destination, long messageId, String relay) throws IOException {
