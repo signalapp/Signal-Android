@@ -44,7 +44,7 @@ import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
-import de.gdata.messaging.GDataPreferences;
+import de.gdata.messaging.util.GDataPreferences;
 
 public class ConversationListActivity extends PassphraseRequiredActionBarActivity implements
     ConversationListFragment.ConversationSelectedListener {

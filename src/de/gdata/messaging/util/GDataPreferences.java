@@ -1,4 +1,4 @@
-package de.gdata.messaging;
+package de.gdata.messaging.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;

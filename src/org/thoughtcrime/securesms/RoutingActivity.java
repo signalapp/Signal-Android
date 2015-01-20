@@ -12,7 +12,7 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 
-import de.gdata.messaging.Init;
+import de.gdata.messaging.util.GDataInit;
 
 public class RoutingActivity extends PassphraseRequiredActionBarActivity {
 
@@ -41,7 +41,7 @@ public class RoutingActivity extends PassphraseRequiredActionBarActivity {
       finish();
     }
 
-    Init.init(this);
+    GDataInit.init(this);
 
     this.newIntent      = false;
     this.canceledResult = false;
