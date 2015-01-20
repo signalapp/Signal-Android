@@ -79,10 +79,14 @@ public class PushServiceSocket {
   private static final String CREATE_ACCOUNT_VOICE_PATH = "/v1/accounts/voice/code/%s";
   private static final String VERIFY_ACCOUNT_PATH       = "/v1/accounts/code/%s";
   private static final String REGISTER_GCM_PATH         = "/v1/accounts/gcm/";
+
   private static final String PREKEY_METADATA_PATH      = "/v2/keys/";
   private static final String PREKEY_PATH               = "/v2/keys/%s";
   private static final String PREKEY_DEVICE_PATH        = "/v2/keys/%s/%s";
   private static final String SIGNED_PREKEY_PATH        = "/v2/keys/signed";
+
+  private static final String PROVISIONING_CODE_PATH    = "/v1/devices/provisioning/code";
+  private static final String PROVISIONING_MESSAGE_PATH = "/v1/provisioning/%s";
 
   private static final String DIRECTORY_TOKENS_PATH     = "/v1/directory/tokens";
   private static final String DIRECTORY_VERIFY_PATH     = "/v1/directory/%s";
@@ -120,6 +124,16 @@ public class PushServiceSocket {
                 "PUT", new Gson().toJson(signalingKeyEntity));
   }
 
+  public String getNewDeviceVerificationCode() throws IOException {
+    String responseText = makeRequest(PROVISIONING_CODE_PATH, "GET", null);
+    return new Gson().fromJson(responseText, DeviceCode.class).getVerificationCode();
+  }
+
+  public void sendProvisioningMessage(String destination, byte[] body) throws IOException {
+    makeRequest(String.format(PROVISIONING_MESSAGE_PATH, destination), "PUT",
+                new Gson().toJson(new ProvisioningMessage(Base64.encodeBytes(body))));
+  }
+
   public void sendReceipt(String destination, long messageId, String relay) throws IOException {
     String path = String.format(RECEIPT_PATH, destination, messageId);
 
@@ -139,11 +153,15 @@ public class PushServiceSocket {
     makeRequest(REGISTER_GCM_PATH, "DELETE", null);
   }
 
-  public void sendMessage(OutgoingPushMessageList bundle)
+  public SendMessageResponse sendMessage(OutgoingPushMessageList bundle)
       throws IOException
   {
     try {
-      makeRequest(String.format(MESSAGE_PATH, bundle.getDestination()), "PUT", new Gson().toJson(bundle));
+      String responseText = makeRequest(String.format(MESSAGE_PATH, bundle.getDestination()), "PUT", new Gson().toJson(bundle));
+
+      if (responseText == null) return new SendMessageResponse(false);
+      else                      return new Gson().fromJson(responseText, SendMessageResponse.class);
+
     } catch (NotFoundException nfe) {
       throw new UnregisteredUserException(bundle.getDestination(), nfe);
     }
@@ -183,9 +201,9 @@ public class PushServiceSocket {
     return preKeyStatus.getCount();
   }
 
-  public List<PreKeyBundle> getPreKeys(PushAddress destination) throws IOException {
+  public List<PreKeyBundle> getPreKeys(PushAddress destination, int deviceIdInteger) throws IOException {
     try {
-      String deviceId = String.valueOf(destination.getDeviceId());
+      String deviceId = String.valueOf(deviceIdInteger);
 
       if (deviceId.equals("1"))
         deviceId = "*";
@@ -231,10 +249,10 @@ public class PushServiceSocket {
     }
   }
 
-  public PreKeyBundle getPreKey(PushAddress destination) throws IOException {
+  public PreKeyBundle getPreKey(PushAddress destination, int deviceId) throws IOException {
     try {
       String path = String.format(PREKEY_DEVICE_PATH, destination.getNumber(),
-                                  String.valueOf(destination.getDeviceId()));
+                                  String.valueOf(deviceId));
 
       if (!Util.isEmpty(destination.getRelay())) {
         path = path + "?relay=" + destination.getRelay();

@@ -244,6 +244,10 @@ public final class PushMessageProtos {
        * <code>RECEIPT = 5;</code>
        */
       RECEIPT(5, 5),
+      /**
+       * <code>COPY = 6;</code>
+       */
+      COPY(6, 6),
       ;
 
       /**
@@ -270,6 +274,10 @@ public final class PushMessageProtos {
        * <code>RECEIPT = 5;</code>
        */
       public static final int RECEIPT_VALUE = 5;
+      /**
+       * <code>COPY = 6;</code>
+       */
+      public static final int COPY_VALUE = 6;
 
 
       public final int getNumber() { return value; }
@@ -282,6 +290,7 @@ public final class PushMessageProtos {
           case 3: return PREKEY_BUNDLE;
           case 4: return PLAINTEXT;
           case 5: return RECEIPT;
+          case 6: return COPY;
           default: return null;
         }
       }
@@ -1187,6 +1196,20 @@ public final class PushMessageProtos {
      * <code>optional uint32 flags = 4;</code>
      */
     int getFlags();
+
+    // optional .textsecure.PushMessageContent.SyncMessageContext sync = 5;
+    /**
+     * <code>optional .textsecure.PushMessageContent.SyncMessageContext sync = 5;</code>
+     */
+    boolean hasSync();
+    /**
+     * <code>optional .textsecure.PushMessageContent.SyncMessageContext sync = 5;</code>
+     */
+    org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext getSync();
+    /**
+     * <code>optional .textsecure.PushMessageContent.SyncMessageContext sync = 5;</code>
+     */
+    org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContextOrBuilder getSyncOrBuilder();
   }
   /**
    * Protobuf type {@code textsecure.PushMessageContent}
@@ -1268,6 +1291,19 @@ public final class PushMessageProtos {
             case 32: {
               bitField0_ |= 0x00000004;
               flags_ = input.readUInt32();
+              break;
+            }
+            case 42: {
+              org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000008) == 0x00000008)) {
+                subBuilder = sync_.toBuilder();
+              }
+              sync_ = input.readMessage(org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(sync_);
+                sync_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000008;
               break;
             }
           }
@@ -3143,6 +3179,558 @@ public final class PushMessageProtos {
       // @@protoc_insertion_point(class_scope:textsecure.PushMessageContent.GroupContext)
     }
 
+    public interface SyncMessageContextOrBuilder
+        extends com.google.protobuf.MessageOrBuilder {
+
+      // optional string destination = 1;
+      /**
+       * <code>optional string destination = 1;</code>
+       */
+      boolean hasDestination();
+      /**
+       * <code>optional string destination = 1;</code>
+       */
+      java.lang.String getDestination();
+      /**
+       * <code>optional string destination = 1;</code>
+       */
+      com.google.protobuf.ByteString
+          getDestinationBytes();
+
+      // optional uint64 timestamp = 2;
+      /**
+       * <code>optional uint64 timestamp = 2;</code>
+       */
+      boolean hasTimestamp();
+      /**
+       * <code>optional uint64 timestamp = 2;</code>
+       */
+      long getTimestamp();
+    }
+    /**
+     * Protobuf type {@code textsecure.PushMessageContent.SyncMessageContext}
+     */
+    public static final class SyncMessageContext extends
+        com.google.protobuf.GeneratedMessage
+        implements SyncMessageContextOrBuilder {
+      // Use SyncMessageContext.newBuilder() to construct.
+      private SyncMessageContext(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+        super(builder);
+        this.unknownFields = builder.getUnknownFields();
+      }
+      private SyncMessageContext(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+      private static final SyncMessageContext defaultInstance;
+      public static SyncMessageContext getDefaultInstance() {
+        return defaultInstance;
+      }
+
+      public SyncMessageContext getDefaultInstanceForType() {
+        return defaultInstance;
+      }
+
+      private final com.google.protobuf.UnknownFieldSet unknownFields;
+      @java.lang.Override
+      public final com.google.protobuf.UnknownFieldSet
+          getUnknownFields() {
+        return this.unknownFields;
+      }
+      private SyncMessageContext(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        initFields();
+        int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              default: {
+                if (!parseUnknownField(input, unknownFields,
+                                       extensionRegistry, tag)) {
+                  done = true;
+                }
+                break;
+              }
+              case 10: {
+                bitField0_ |= 0x00000001;
+                destination_ = input.readBytes();
+                break;
+              }
+              case 16: {
+                bitField0_ |= 0x00000002;
+                timestamp_ = input.readUInt64();
+                break;
+              }
+            }
+          }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(
+              e.getMessage()).setUnfinishedMessage(this);
+        } finally {
+          this.unknownFields = unknownFields.build();
+          makeExtensionsImmutable();
+        }
+      }
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.whispersystems.textsecure.internal.push.PushMessageProtos.internal_static_textsecure_PushMessageContent_SyncMessageContext_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.whispersystems.textsecure.internal.push.PushMessageProtos.internal_static_textsecure_PushMessageContent_SyncMessageContext_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext.class, org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext.Builder.class);
+      }
+
+      public static com.google.protobuf.Parser<SyncMessageContext> PARSER =
+          new com.google.protobuf.AbstractParser<SyncMessageContext>() {
+        public SyncMessageContext parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return new SyncMessageContext(input, extensionRegistry);
+        }
+      };
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<SyncMessageContext> getParserForType() {
+        return PARSER;
+      }
+
+      private int bitField0_;
+      // optional string destination = 1;
+      public static final int DESTINATION_FIELD_NUMBER = 1;
+      private java.lang.Object destination_;
+      /**
+       * <code>optional string destination = 1;</code>
+       */
+      public boolean hasDestination() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional string destination = 1;</code>
+       */
+      public java.lang.String getDestination() {
+        java.lang.Object ref = destination_;
+        if (ref instanceof java.lang.String) {
+          return (java.lang.String) ref;
+        } else {
+          com.google.protobuf.ByteString bs = 
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            destination_ = s;
+          }
+          return s;
+        }
+      }
+      /**
+       * <code>optional string destination = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getDestinationBytes() {
+        java.lang.Object ref = destination_;
+        if (ref instanceof java.lang.String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          destination_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+
+      // optional uint64 timestamp = 2;
+      public static final int TIMESTAMP_FIELD_NUMBER = 2;
+      private long timestamp_;
+      /**
+       * <code>optional uint64 timestamp = 2;</code>
+       */
+      public boolean hasTimestamp() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional uint64 timestamp = 2;</code>
+       */
+      public long getTimestamp() {
+        return timestamp_;
+      }
+
+      private void initFields() {
+        destination_ = "";
+        timestamp_ = 0L;
+      }
+      private byte memoizedIsInitialized = -1;
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized != -1) return isInitialized == 1;
+
+        memoizedIsInitialized = 1;
+        return true;
+      }
+
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        getSerializedSize();
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          output.writeBytes(1, getDestinationBytes());
+        }
+        if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          output.writeUInt64(2, timestamp_);
+        }
+        getUnknownFields().writeTo(output);
+      }
+
+      private int memoizedSerializedSize = -1;
+      public int getSerializedSize() {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeBytesSize(1, getDestinationBytes());
+        }
+        if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeUInt64Size(2, timestamp_);
+        }
+        size += getUnknownFields().getSerializedSize();
+        memoizedSerializedSize = size;
+        return size;
+      }
+
+      private static final long serialVersionUID = 0L;
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
+          throws java.io.ObjectStreamException {
+        return super.writeReplace();
+      }
+
+      public static org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input);
+      }
+      public static org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input, extensionRegistry);
+      }
+      public static org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return PARSER.parseDelimitedFrom(input);
+      }
+      public static org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      }
+      public static org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input);
+      }
+      public static org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input, extensionRegistry);
+      }
+
+      public static Builder newBuilder() { return Builder.create(); }
+      public Builder newBuilderForType() { return newBuilder(); }
+      public static Builder newBuilder(org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext prototype) {
+        return newBuilder().mergeFrom(prototype);
+      }
+      public Builder toBuilder() { return newBuilder(this); }
+
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
+      /**
+       * Protobuf type {@code textsecure.PushMessageContent.SyncMessageContext}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessage.Builder<Builder>
+         implements org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContextOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return org.whispersystems.textsecure.internal.push.PushMessageProtos.internal_static_textsecure_PushMessageContent_SyncMessageContext_descriptor;
+        }
+
+        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return org.whispersystems.textsecure.internal.push.PushMessageProtos.internal_static_textsecure_PushMessageContent_SyncMessageContext_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext.class, org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext.Builder.class);
+        }
+
+        // Construct using org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext.newBuilder()
+        private Builder() {
+          maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+            com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          }
+        }
+        private static Builder create() {
+          return new Builder();
+        }
+
+        public Builder clear() {
+          super.clear();
+          destination_ = "";
+          bitField0_ = (bitField0_ & ~0x00000001);
+          timestamp_ = 0L;
+          bitField0_ = (bitField0_ & ~0x00000002);
+          return this;
+        }
+
+        public Builder clone() {
+          return create().mergeFrom(buildPartial());
+        }
+
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return org.whispersystems.textsecure.internal.push.PushMessageProtos.internal_static_textsecure_PushMessageContent_SyncMessageContext_descriptor;
+        }
+
+        public org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext getDefaultInstanceForType() {
+          return org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext.getDefaultInstance();
+        }
+
+        public org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext build() {
+          org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        public org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext buildPartial() {
+          org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext result = new org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext(this);
+          int from_bitField0_ = bitField0_;
+          int to_bitField0_ = 0;
+          if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+            to_bitField0_ |= 0x00000001;
+          }
+          result.destination_ = destination_;
+          if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+            to_bitField0_ |= 0x00000002;
+          }
+          result.timestamp_ = timestamp_;
+          result.bitField0_ = to_bitField0_;
+          onBuilt();
+          return result;
+        }
+
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext) {
+            return mergeFrom((org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext other) {
+          if (other == org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext.getDefaultInstance()) return this;
+          if (other.hasDestination()) {
+            bitField0_ |= 0x00000001;
+            destination_ = other.destination_;
+            onChanged();
+          }
+          if (other.hasTimestamp()) {
+            setTimestamp(other.getTimestamp());
+          }
+          this.mergeUnknownFields(other.getUnknownFields());
+          return this;
+        }
+
+        public final boolean isInitialized() {
+          return true;
+        }
+
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext parsedMessage = null;
+          try {
+            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            parsedMessage = (org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext) e.getUnfinishedMessage();
+            throw e;
+          } finally {
+            if (parsedMessage != null) {
+              mergeFrom(parsedMessage);
+            }
+          }
+          return this;
+        }
+        private int bitField0_;
+
+        // optional string destination = 1;
+        private java.lang.Object destination_ = "";
+        /**
+         * <code>optional string destination = 1;</code>
+         */
+        public boolean hasDestination() {
+          return ((bitField0_ & 0x00000001) == 0x00000001);
+        }
+        /**
+         * <code>optional string destination = 1;</code>
+         */
+        public java.lang.String getDestination() {
+          java.lang.Object ref = destination_;
+          if (!(ref instanceof java.lang.String)) {
+            java.lang.String s = ((com.google.protobuf.ByteString) ref)
+                .toStringUtf8();
+            destination_ = s;
+            return s;
+          } else {
+            return (java.lang.String) ref;
+          }
+        }
+        /**
+         * <code>optional string destination = 1;</code>
+         */
+        public com.google.protobuf.ByteString
+            getDestinationBytes() {
+          java.lang.Object ref = destination_;
+          if (ref instanceof String) {
+            com.google.protobuf.ByteString b = 
+                com.google.protobuf.ByteString.copyFromUtf8(
+                    (java.lang.String) ref);
+            destination_ = b;
+            return b;
+          } else {
+            return (com.google.protobuf.ByteString) ref;
+          }
+        }
+        /**
+         * <code>optional string destination = 1;</code>
+         */
+        public Builder setDestination(
+            java.lang.String value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+          destination_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>optional string destination = 1;</code>
+         */
+        public Builder clearDestination() {
+          bitField0_ = (bitField0_ & ~0x00000001);
+          destination_ = getDefaultInstance().getDestination();
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>optional string destination = 1;</code>
+         */
+        public Builder setDestinationBytes(
+            com.google.protobuf.ByteString value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+          destination_ = value;
+          onChanged();
+          return this;
+        }
+
+        // optional uint64 timestamp = 2;
+        private long timestamp_ ;
+        /**
+         * <code>optional uint64 timestamp = 2;</code>
+         */
+        public boolean hasTimestamp() {
+          return ((bitField0_ & 0x00000002) == 0x00000002);
+        }
+        /**
+         * <code>optional uint64 timestamp = 2;</code>
+         */
+        public long getTimestamp() {
+          return timestamp_;
+        }
+        /**
+         * <code>optional uint64 timestamp = 2;</code>
+         */
+        public Builder setTimestamp(long value) {
+          bitField0_ |= 0x00000002;
+          timestamp_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>optional uint64 timestamp = 2;</code>
+         */
+        public Builder clearTimestamp() {
+          bitField0_ = (bitField0_ & ~0x00000002);
+          timestamp_ = 0L;
+          onChanged();
+          return this;
+        }
+
+        // @@protoc_insertion_point(builder_scope:textsecure.PushMessageContent.SyncMessageContext)
+      }
+
+      static {
+        defaultInstance = new SyncMessageContext(true);
+        defaultInstance.initFields();
+      }
+
+      // @@protoc_insertion_point(class_scope:textsecure.PushMessageContent.SyncMessageContext)
+    }
+
     private int bitField0_;
     // optional string body = 1;
     public static final int BODY_FIELD_NUMBER = 1;
@@ -3261,11 +3849,34 @@ public final class PushMessageProtos {
       return flags_;
     }
 
+    // optional .textsecure.PushMessageContent.SyncMessageContext sync = 5;
+    public static final int SYNC_FIELD_NUMBER = 5;
+    private org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext sync_;
+    /**
+     * <code>optional .textsecure.PushMessageContent.SyncMessageContext sync = 5;</code>
+     */
+    public boolean hasSync() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    /**
+     * <code>optional .textsecure.PushMessageContent.SyncMessageContext sync = 5;</code>
+     */
+    public org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext getSync() {
+      return sync_;
+    }
+    /**
+     * <code>optional .textsecure.PushMessageContent.SyncMessageContext sync = 5;</code>
+     */
+    public org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContextOrBuilder getSyncOrBuilder() {
+      return sync_;
+    }
+
     private void initFields() {
       body_ = "";
       attachments_ = java.util.Collections.emptyList();
       group_ = org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.GroupContext.getDefaultInstance();
       flags_ = 0;
+      sync_ = org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext.getDefaultInstance();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -3291,6 +3902,9 @@ public final class PushMessageProtos {
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeUInt32(4, flags_);
       }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeMessage(5, sync_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -3315,6 +3929,10 @@ public final class PushMessageProtos {
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(4, flags_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(5, sync_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -3426,6 +4044,7 @@ public final class PushMessageProtos {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
           getAttachmentsFieldBuilder();
           getGroupFieldBuilder();
+          getSyncFieldBuilder();
         }
       }
       private static Builder create() {
@@ -3450,6 +4069,12 @@ public final class PushMessageProtos {
         bitField0_ = (bitField0_ & ~0x00000004);
         flags_ = 0;
         bitField0_ = (bitField0_ & ~0x00000008);
+        if (syncBuilder_ == null) {
+          sync_ = org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext.getDefaultInstance();
+        } else {
+          syncBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
 
@@ -3503,6 +4128,14 @@ public final class PushMessageProtos {
           to_bitField0_ |= 0x00000004;
         }
         result.flags_ = flags_;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        if (syncBuilder_ == null) {
+          result.sync_ = sync_;
+        } else {
+          result.sync_ = syncBuilder_.build();
+        }
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -3555,6 +4188,9 @@ public final class PushMessageProtos {
         }
         if (other.hasFlags()) {
           setFlags(other.getFlags());
+        }
+        if (other.hasSync()) {
+          mergeSync(other.getSync());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -4047,6 +4683,123 @@ public final class PushMessageProtos {
         return this;
       }
 
+      // optional .textsecure.PushMessageContent.SyncMessageContext sync = 5;
+      private org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext sync_ = org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext, org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext.Builder, org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContextOrBuilder> syncBuilder_;
+      /**
+       * <code>optional .textsecure.PushMessageContent.SyncMessageContext sync = 5;</code>
+       */
+      public boolean hasSync() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      /**
+       * <code>optional .textsecure.PushMessageContent.SyncMessageContext sync = 5;</code>
+       */
+      public org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext getSync() {
+        if (syncBuilder_ == null) {
+          return sync_;
+        } else {
+          return syncBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .textsecure.PushMessageContent.SyncMessageContext sync = 5;</code>
+       */
+      public Builder setSync(org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext value) {
+        if (syncBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          sync_ = value;
+          onChanged();
+        } else {
+          syncBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000010;
+        return this;
+      }
+      /**
+       * <code>optional .textsecure.PushMessageContent.SyncMessageContext sync = 5;</code>
+       */
+      public Builder setSync(
+          org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext.Builder builderForValue) {
+        if (syncBuilder_ == null) {
+          sync_ = builderForValue.build();
+          onChanged();
+        } else {
+          syncBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000010;
+        return this;
+      }
+      /**
+       * <code>optional .textsecure.PushMessageContent.SyncMessageContext sync = 5;</code>
+       */
+      public Builder mergeSync(org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext value) {
+        if (syncBuilder_ == null) {
+          if (((bitField0_ & 0x00000010) == 0x00000010) &&
+              sync_ != org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext.getDefaultInstance()) {
+            sync_ =
+              org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext.newBuilder(sync_).mergeFrom(value).buildPartial();
+          } else {
+            sync_ = value;
+          }
+          onChanged();
+        } else {
+          syncBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000010;
+        return this;
+      }
+      /**
+       * <code>optional .textsecure.PushMessageContent.SyncMessageContext sync = 5;</code>
+       */
+      public Builder clearSync() {
+        if (syncBuilder_ == null) {
+          sync_ = org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext.getDefaultInstance();
+          onChanged();
+        } else {
+          syncBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000010);
+        return this;
+      }
+      /**
+       * <code>optional .textsecure.PushMessageContent.SyncMessageContext sync = 5;</code>
+       */
+      public org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext.Builder getSyncBuilder() {
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return getSyncFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .textsecure.PushMessageContent.SyncMessageContext sync = 5;</code>
+       */
+      public org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContextOrBuilder getSyncOrBuilder() {
+        if (syncBuilder_ != null) {
+          return syncBuilder_.getMessageOrBuilder();
+        } else {
+          return sync_;
+        }
+      }
+      /**
+       * <code>optional .textsecure.PushMessageContent.SyncMessageContext sync = 5;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext, org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext.Builder, org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContextOrBuilder> 
+          getSyncFieldBuilder() {
+        if (syncBuilder_ == null) {
+          syncBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext, org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext.Builder, org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContextOrBuilder>(
+                  sync_,
+                  getParentForChildren(),
+                  isClean());
+          sync_ = null;
+        }
+        return syncBuilder_;
+      }
+
       // @@protoc_insertion_point(builder_scope:textsecure.PushMessageContent)
     }
 
@@ -4078,6 +4831,11 @@ public final class PushMessageProtos {
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_textsecure_PushMessageContent_GroupContext_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_textsecure_PushMessageContent_SyncMessageContext_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_textsecure_PushMessageContent_SyncMessageContext_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -4088,28 +4846,32 @@ public final class PushMessageProtos {
   static {
     java.lang.String[] descriptorData = {
       "\n\037IncomingPushMessageSignal.proto\022\ntexts" +
-      "ecure\"\224\002\n\031IncomingPushMessageSignal\0228\n\004t" +
+      "ecure\"\236\002\n\031IncomingPushMessageSignal\0228\n\004t" +
       "ype\030\001 \001(\0162*.textsecure.IncomingPushMessa" +
       "geSignal.Type\022\016\n\006source\030\002 \001(\t\022\024\n\014sourceD" +
       "evice\030\007 \001(\r\022\r\n\005relay\030\003 \001(\t\022\021\n\ttimestamp\030" +
-      "\005 \001(\004\022\017\n\007message\030\006 \001(\014\"d\n\004Type\022\013\n\007UNKNOW" +
+      "\005 \001(\004\022\017\n\007message\030\006 \001(\014\"n\n\004Type\022\013\n\007UNKNOW" +
       "N\020\000\022\016\n\nCIPHERTEXT\020\001\022\020\n\014KEY_EXCHANGE\020\002\022\021\n" +
       "\rPREKEY_BUNDLE\020\003\022\r\n\tPLAINTEXT\020\004\022\013\n\007RECEI" +
-      "PT\020\005\"\207\004\n\022PushMessageContent\022\014\n\004body\030\001 \001(" +
-      "\t\022E\n\013attachments\030\002 \003(\01320.textsecure.Push",
-      "MessageContent.AttachmentPointer\022:\n\005grou" +
-      "p\030\003 \001(\0132+.textsecure.PushMessageContent." +
-      "GroupContext\022\r\n\005flags\030\004 \001(\r\032A\n\021Attachmen" +
-      "tPointer\022\n\n\002id\030\001 \001(\006\022\023\n\013contentType\030\002 \001(" +
-      "\t\022\013\n\003key\030\003 \001(\014\032\363\001\n\014GroupContext\022\n\n\002id\030\001 " +
-      "\001(\014\022>\n\004type\030\002 \001(\01620.textsecure.PushMessa" +
-      "geContent.GroupContext.Type\022\014\n\004name\030\003 \001(" +
-      "\t\022\017\n\007members\030\004 \003(\t\022@\n\006avatar\030\005 \001(\01320.tex" +
-      "tsecure.PushMessageContent.AttachmentPoi" +
-      "nter\"6\n\004Type\022\013\n\007UNKNOWN\020\000\022\n\n\006UPDATE\020\001\022\013\n",
-      "\007DELIVER\020\002\022\010\n\004QUIT\020\003\"\030\n\005Flags\022\017\n\013END_SES" +
-      "SION\020\001B@\n+org.whispersystems.textsecure." +
-      "internal.pushB\021PushMessageProtos"
+      "PT\020\005\022\010\n\004COPY\020\006\"\206\005\n\022PushMessageContent\022\014\n" +
+      "\004body\030\001 \001(\t\022E\n\013attachments\030\002 \003(\01320.texts",
+      "ecure.PushMessageContent.AttachmentPoint" +
+      "er\022:\n\005group\030\003 \001(\0132+.textsecure.PushMessa" +
+      "geContent.GroupContext\022\r\n\005flags\030\004 \001(\r\022?\n" +
+      "\004sync\030\005 \001(\01321.textsecure.PushMessageCont" +
+      "ent.SyncMessageContext\032A\n\021AttachmentPoin" +
+      "ter\022\n\n\002id\030\001 \001(\006\022\023\n\013contentType\030\002 \001(\t\022\013\n\003" +
+      "key\030\003 \001(\014\032\363\001\n\014GroupContext\022\n\n\002id\030\001 \001(\014\022>" +
+      "\n\004type\030\002 \001(\01620.textsecure.PushMessageCon" +
+      "tent.GroupContext.Type\022\014\n\004name\030\003 \001(\t\022\017\n\007" +
+      "members\030\004 \003(\t\022@\n\006avatar\030\005 \001(\01320.textsecu",
+      "re.PushMessageContent.AttachmentPointer\"" +
+      "6\n\004Type\022\013\n\007UNKNOWN\020\000\022\n\n\006UPDATE\020\001\022\013\n\007DELI" +
+      "VER\020\002\022\010\n\004QUIT\020\003\032<\n\022SyncMessageContext\022\023\n" +
+      "\013destination\030\001 \001(\t\022\021\n\ttimestamp\030\002 \001(\004\"\030\n" +
+      "\005Flags\022\017\n\013END_SESSION\020\001B@\n+org.whispersy" +
+      "stems.textsecure.internal.pushB\021PushMess" +
+      "ageProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -4127,7 +4889,7 @@ public final class PushMessageProtos {
           internal_static_textsecure_PushMessageContent_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_textsecure_PushMessageContent_descriptor,
-              new java.lang.String[] { "Body", "Attachments", "Group", "Flags", });
+              new java.lang.String[] { "Body", "Attachments", "Group", "Flags", "Sync", });
           internal_static_textsecure_PushMessageContent_AttachmentPointer_descriptor =
             internal_static_textsecure_PushMessageContent_descriptor.getNestedTypes().get(0);
           internal_static_textsecure_PushMessageContent_AttachmentPointer_fieldAccessorTable = new
@@ -4140,6 +4902,12 @@ public final class PushMessageProtos {
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_textsecure_PushMessageContent_GroupContext_descriptor,
               new java.lang.String[] { "Id", "Type", "Name", "Members", "Avatar", });
+          internal_static_textsecure_PushMessageContent_SyncMessageContext_descriptor =
+            internal_static_textsecure_PushMessageContent_descriptor.getNestedTypes().get(2);
+          internal_static_textsecure_PushMessageContent_SyncMessageContext_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_textsecure_PushMessageContent_SyncMessageContext_descriptor,
+              new java.lang.String[] { "Destination", "Timestamp", });
           return null;
         }
       };

@@ -25,6 +25,19 @@ import java.security.SecureRandom;
 
 public class Util {
 
+  public static byte[] join(byte[]... input) {
+    try {
+      ByteArrayOutputStream baos = new ByteArrayOutputStream();
+      for (byte[] part : input) {
+        baos.write(part);
+      }
+
+      return baos.toByteArray();
+    } catch (IOException e) {
+      throw new AssertionError(e);
+    }
+  }
+
   public static byte[][] split(byte[] input, int firstLength, int secondLength) {
     byte[][] parts = new byte[2][];
 

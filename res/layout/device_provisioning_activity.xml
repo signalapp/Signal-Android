@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+    <LinearLayout android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:layout_centerInParent="true">
+
+        <TextView android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:textAppearance="?android:attr/textAppearanceLarge"
+                  android:gravity="center"
+                  android:text="Add device?"
+                  android:id="@+id/textView"/>
+
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textAppearance="?android:attr/textAppearanceMedium"
+                  android:gravity="left"
+                  android:text="The device you scanned will receive access to all incoming and outgoing messages."/>
+
+        <LinearLayout android:layout_width="wrap_content"
+                      android:layout_gravity="center"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal">
+
+            <Button android:id="@+id/cancel_button"
+                    android:layout_width="0dip"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Cancel"/>
+
+            <Button android:id="@+id/continue_button"
+                    android:layout_width="0dip"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Continue"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
