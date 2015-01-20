@@ -11,6 +11,8 @@ import android.widget.TextView;
 import java.util.List;
 import java.util.Map;
 
+import de.gdata.messaging.util.MyUtil;
+
 public class TransportOptionsAdapter extends BaseAdapter {
   private final Context                      context;
   private final LayoutInflater               inflater;
@@ -66,6 +68,6 @@ public class TransportOptionsAdapter extends BaseAdapter {
 
     imageView.setImageResource(transport.drawable);
     textView.setText(transport.text);
-    return view;
+    return MyUtil.setFontForFragment(context, view);
   }
 }

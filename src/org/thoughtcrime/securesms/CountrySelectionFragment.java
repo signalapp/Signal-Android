@@ -20,6 +20,8 @@ import org.thoughtcrime.securesms.database.loaders.CountryListLoader;
 import java.util.ArrayList;
 import java.util.Map;
 
+import de.gdata.messaging.util.MyUtil;
+
 public class CountrySelectionFragment extends ListFragment implements LoaderManager.LoaderCallbacks<ArrayList<Map<String, String>>> {
 
   private EditText countryFilter;
@@ -27,7 +29,7 @@ public class CountrySelectionFragment extends ListFragment implements LoaderMana
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
-    return inflater.inflate(R.layout.country_selection_fragment, container, false);
+    return MyUtil.setFontForFragment(getActivity(), inflater.inflate(R.layout.country_selection_fragment, container, false));
   }
 
   @Override

@@ -45,6 +45,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
+import de.gdata.messaging.util.MyUtil;
+
 /**
  * Activity for selecting a list of contacts. Displayed inside a ContactSelectionActivity tab frame, and ultimately
  * called by ComposeMessageActivity for selecting a list of destination contacts.
@@ -66,7 +68,7 @@ public class ContactSelectionListFragment extends ListFragment implements Loader
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    return inflater.inflate(R.layout.contact_selection_list_activity, container, false);
+    return MyUtil.setFontForFragment(getActivity(),inflater.inflate(R.layout.contact_selection_list_activity, container, false));
   }
 
   @Override

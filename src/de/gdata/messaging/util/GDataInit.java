@@ -11,6 +11,7 @@ public class GDataInit {
 
     public static void init(Context context) {
         GDataPreferences preferences = new GDataPreferences(context);
+        preferences.setApplicationFont("Roboto-Light.ttf");
         Cursor cursor = context.getContentResolver().query(REGISTRATION_DATA_CONTENT_URI, new String[] {}, null, null,
                 null);
 

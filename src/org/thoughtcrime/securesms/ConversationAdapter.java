@@ -41,6 +41,8 @@ import java.util.Set;
 
 import org.thoughtcrime.securesms.ConversationFragment.SelectionClickListener;
 
+import de.gdata.messaging.util.MyUtil;
+
 /**
  * A cursor adapter for a conversation thread.  Ultimately
  * used by ComposeMessageActivity to display a conversation
@@ -107,13 +109,13 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
 
     switch (type) {
       case ConversationAdapter.MESSAGE_TYPE_OUTGOING:
-        view = inflater.inflate(R.layout.conversation_item_sent, parent, false);
+        view = MyUtil.setFontForFragment(context, inflater.inflate(R.layout.conversation_item_sent, parent, false));
         break;
       case ConversationAdapter.MESSAGE_TYPE_INCOMING:
-        view = inflater.inflate(R.layout.conversation_item_received, parent, false);
+        view = MyUtil.setFontForFragment(context, inflater.inflate(R.layout.conversation_item_received, parent, false));
         break;
       case ConversationAdapter.MESSAGE_TYPE_GROUP_ACTION:
-        view = inflater.inflate(R.layout.conversation_item_activity, parent, false);
+        view = MyUtil.setFontForFragment(context, inflater.inflate(R.layout.conversation_item_activity, parent, false));
         break;
       default: throw new IllegalArgumentException("unsupported item view type given to ConversationAdapter");
     }

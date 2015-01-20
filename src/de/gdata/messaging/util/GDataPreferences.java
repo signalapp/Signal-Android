@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 public class GDataPreferences {
 
     private static final String VIEW_PAGER_LAST_PAGE = "VIEW_PAGER_LAST_PAGE";
+    private static final String APPLICATION_FONT = "APPLICATION_FONT";
     private static final String PREMIUM_INSTALLED = "PREMIUM_INSTALLED";
 
     private final SharedPreferences mPreferences;
@@ -31,5 +32,13 @@ public class GDataPreferences {
 
     public boolean isPremiumInstalled() {
         return mPreferences.getBoolean(PREMIUM_INSTALLED, false);
+    }
+
+    public void setApplicationFont(String applicationFont) {
+        mPreferences.edit().putString(APPLICATION_FONT, applicationFont).commit();
+    }
+
+    public String getApplicationFont() {
+        return mPreferences.getString(APPLICATION_FONT, "");
     }
 }

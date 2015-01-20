@@ -25,6 +25,8 @@ import org.thoughtcrime.securesms.util.Dialogs;
 
 import java.io.IOException;
 
+import de.gdata.messaging.util.MyUtil;
+
 
 public class ImportFragment extends Fragment {
 
@@ -67,7 +69,7 @@ public class ImportFragment extends Fragment {
       }
     });
 
-    return layout;
+    return MyUtil.setFontForFragment(getActivity(), layout);
   }
 
   @Override
