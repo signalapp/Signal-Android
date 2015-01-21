@@ -19,6 +19,7 @@ package org.whispersystems.textsecure.api;
 import android.util.Log;
 
 import com.google.protobuf.ByteString;
+import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.whispersystems.libaxolotl.InvalidKeyException;
 import org.whispersystems.libaxolotl.SessionBuilder;
@@ -40,6 +41,7 @@ import org.whispersystems.textsecure.internal.push.OutgoingPushMessageList;
 import org.whispersystems.textsecure.internal.push.PushAttachmentData;
 import org.whispersystems.textsecure.internal.push.PushBody;
 import org.whispersystems.textsecure.internal.push.PushServiceSocket;
+import org.whispersystems.textsecure.internal.push.SendMessageResponse;
 import org.whispersystems.textsecure.internal.push.StaleDevices;
 import org.whispersystems.textsecure.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.textsecure.api.push.exceptions.EncapsulatedExceptions;
@@ -62,14 +64,17 @@ public class TextSecureMessageSender {
 
   private final PushServiceSocket       socket;
   private final AxolotlStore            store;
+  private final PushAddress             syncAddress;
   private final Optional<EventListener> eventListener;
 
   public TextSecureMessageSender(String url, TrustStore trustStore,
-                                 String user, String password, AxolotlStore store,
+                                 String user, String password,
+                                 long userId, AxolotlStore store,
                                  Optional<EventListener> eventListener)
   {
     this.socket        = new PushServiceSocket(url, trustStore, user, password);
     this.store         = store;
+    this.syncAddress   = new PushAddress(userId, user, null);
     this.eventListener = eventListener;
   }
 
@@ -80,8 +85,14 @@ public class TextSecureMessageSender {
   public void sendMessage(PushAddress recipient, TextSecureMessage message)
       throws UntrustedIdentityException, IOException
   {
-    byte[] content = createMessageContent(message);
-    sendMessage(recipient, message.getTimestamp(), content);
+    byte[]              content   = createMessageContent(message);
+    long                timestamp = message.getTimestamp();
+    SendMessageResponse response  = sendMessage(recipient, timestamp, content);
+
+    if (response.getNeedsSync()) {
+      byte[] syncMessage = createSyncMessageContent(content, recipient, timestamp);
+      sendMessage(syncAddress, timestamp, syncMessage);
+    }
 
     if (message.isEndSession()) {
       store.deleteAllSessions(recipient.getRecipientId());
@@ -120,6 +131,20 @@ public class TextSecureMessageSender {
     }
 
     return builder.build().toByteArray();
+  }
+
+  private byte[] createSyncMessageContent(byte[] content, PushAddress recipient, long timestamp) {
+    try {
+      PushMessageContent.Builder builder = PushMessageContent.parseFrom(content).toBuilder();
+      builder.setSync(PushMessageContent.SyncMessageContext.newBuilder()
+                                                           .setDestination(recipient.getNumber())
+                                                           .setTimestamp(timestamp)
+                                                           .build());
+
+      return builder.build().toByteArray();
+    } catch (InvalidProtocolBufferException e) {
+      throw new AssertionError(e);
+    }
   }
 
   private GroupContext createGroupContent(TextSecureGroup group) throws IOException {
@@ -168,15 +193,13 @@ public class TextSecureMessageSender {
     }
   }
 
-  private void sendMessage(PushAddress recipient, long timestamp, byte[] content)
+  private SendMessageResponse sendMessage(PushAddress recipient, long timestamp, byte[] content)
       throws UntrustedIdentityException, IOException
   {
     for (int i=0;i<3;i++) {
       try {
         OutgoingPushMessageList messages = getEncryptedMessages(socket, recipient, timestamp, content);
-        socket.sendMessage(messages);
-
-        return;
+        return socket.sendMessage(messages);
       } catch (MismatchedDevicesException mde) {
         Log.w(TAG, mde);
         handleMismatchedDevices(socket, recipient, mde.getMismatchedDevices());
@@ -185,6 +208,8 @@ public class TextSecureMessageSender {
         handleStaleDevices(recipient, ste.getStaleDevices());
       }
     }
+
+    throw new IOException("Failed to resolve conflicts after 3 attempts!");
   }
 
   private List<AttachmentPointer> createAttachmentPointers(Optional<List<TextSecureAttachment>> attachments) throws IOException {
@@ -230,31 +255,31 @@ public class TextSecureMessageSender {
                                                        byte[] plaintext)
       throws IOException, UntrustedIdentityException
   {
-    PushBody masterBody = getEncryptedMessage(socket, recipient, plaintext);
-
     List<OutgoingPushMessage> messages = new LinkedList<>();
-    messages.add(new OutgoingPushMessage(recipient, masterBody));
+
+    if (!recipient.equals(syncAddress)) {
+      PushBody masterBody = getEncryptedMessage(socket, recipient, PushAddress.DEFAULT_DEVICE_ID, plaintext);
+      messages.add(new OutgoingPushMessage(recipient, PushAddress.DEFAULT_DEVICE_ID, masterBody));
+    }
 
     for (int deviceId : store.getSubDeviceSessions(recipient.getRecipientId())) {
-      PushAddress device = new PushAddress(recipient.getRecipientId(), recipient.getNumber(), deviceId, recipient.getRelay());
-      PushBody    body   = getEncryptedMessage(socket, device, plaintext);
-
-      messages.add(new OutgoingPushMessage(device, body));
+      PushBody body = getEncryptedMessage(socket, recipient, deviceId, plaintext);
+      messages.add(new OutgoingPushMessage(recipient, deviceId, body));
     }
 
     return new OutgoingPushMessageList(recipient.getNumber(), timestamp, recipient.getRelay(), messages);
   }
 
-  private PushBody getEncryptedMessage(PushServiceSocket socket, PushAddress recipient, byte[] plaintext)
+  private PushBody getEncryptedMessage(PushServiceSocket socket, PushAddress recipient, int deviceId, byte[] plaintext)
       throws IOException, UntrustedIdentityException
   {
-    if (!store.containsSession(recipient.getRecipientId(), recipient.getDeviceId())) {
+    if (!store.containsSession(recipient.getRecipientId(), deviceId)) {
       try {
-        List<PreKeyBundle> preKeys = socket.getPreKeys(recipient);
+        List<PreKeyBundle> preKeys = socket.getPreKeys(recipient, deviceId);
 
         for (PreKeyBundle preKey : preKeys) {
           try {
-            SessionBuilder sessionBuilder = new SessionBuilder(store, recipient.getRecipientId(), recipient.getDeviceId());
+            SessionBuilder sessionBuilder = new SessionBuilder(store, recipient.getRecipientId(), deviceId);
             sessionBuilder.process(preKey);
           } catch (org.whispersystems.libaxolotl.UntrustedIdentityException e) {
             throw new UntrustedIdentityException("Untrusted identity key!", recipient.getNumber(), preKey.getIdentityKey());
@@ -269,7 +294,7 @@ public class TextSecureMessageSender {
       }
     }
 
-    TextSecureCipher  cipher               = new TextSecureCipher(store, recipient.getRecipientId(), recipient.getDeviceId());
+    TextSecureCipher  cipher               = new TextSecureCipher(store, recipient.getRecipientId(), deviceId);
     CiphertextMessage message              = cipher.encrypt(plaintext);
     int               remoteRegistrationId = cipher.getRemoteRegistrationId();
 
@@ -292,12 +317,10 @@ public class TextSecureMessageSender {
       }
 
       for (int missingDeviceId : mismatchedDevices.getMissingDevices()) {
-        PushAddress  device = new PushAddress(recipient.getRecipientId(), recipient.getNumber(),
-                                              missingDeviceId, recipient.getRelay());
-        PreKeyBundle preKey = socket.getPreKey(device);
+        PreKeyBundle preKey = socket.getPreKey(recipient, missingDeviceId);
 
         try {
-          SessionBuilder sessionBuilder = new SessionBuilder(store, device.getRecipientId(), device.getDeviceId());
+          SessionBuilder sessionBuilder = new SessionBuilder(store, recipient.getRecipientId(), missingDeviceId);
           sessionBuilder.process(preKey);
         } catch (org.whispersystems.libaxolotl.UntrustedIdentityException e) {
           throw new UntrustedIdentityException("Untrusted identity key!", recipient.getNumber(), preKey.getIdentityKey());

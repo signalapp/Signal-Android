@@ -16,11 +16,15 @@ import org.thoughtcrime.securesms.jobs.PushTextSendJob;
 import org.thoughtcrime.securesms.jobs.RefreshPreKeysJob;
 import org.thoughtcrime.securesms.push.SecurityEventListener;
 import org.thoughtcrime.securesms.push.TextSecurePushTrustStore;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.TextSecureAccountManager;
 import org.whispersystems.textsecure.api.TextSecureMessageReceiver;
 import org.whispersystems.textsecure.api.TextSecureMessageSender;
+import org.whispersystems.textsecure.api.push.PushAddress;
 
 import dagger.Module;
 import dagger.Provides;
@@ -52,13 +56,21 @@ public class TextSecureCommunicationModule {
     return new TextSecureMessageSenderFactory() {
       @Override
       public TextSecureMessageSender create(MasterSecret masterSecret) {
-        return new TextSecureMessageSender(Release.PUSH_URL,
-                                           new TextSecurePushTrustStore(context),
-                                           TextSecurePreferences.getLocalNumber(context),
-                                           TextSecurePreferences.getPushServerPassword(context),
-                                           new TextSecureAxolotlStore(context, masterSecret),
-                                           Optional.of((TextSecureMessageSender.EventListener)
-                                                           new SecurityEventListener(context)));
+        try {
+          String    localNumber    = TextSecurePreferences.getLocalNumber(context);
+          Recipient localRecipient = RecipientFactory.getRecipientsFromString(context, localNumber, false).getPrimaryRecipient();
+
+          return new TextSecureMessageSender(Release.PUSH_URL,
+                                             new TextSecurePushTrustStore(context),
+                                             TextSecurePreferences.getLocalNumber(context),
+                                             TextSecurePreferences.getPushServerPassword(context),
+                                             localRecipient.getRecipientId(),
+                                             new TextSecureAxolotlStore(context, masterSecret),
+                                             Optional.of((TextSecureMessageSender.EventListener)
+                                                             new SecurityEventListener(context)));
+        } catch (RecipientFormattingException e) {
+          throw new AssertionError(e);
+        }
       }
     };
   }

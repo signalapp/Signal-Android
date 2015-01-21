@@ -22,13 +22,11 @@ public class PushAddress {
 
   private final long   recipientId;
   private final String e164number;
-  private final int    deviceId;
   private final String relay;
 
-  public PushAddress(long recipientId, String e164number, int deviceId, String relay) {
+  public PushAddress(long recipientId, String e164number, String relay) {
     this.recipientId = recipientId;
     this.e164number  = e164number;
-    this.deviceId    = deviceId;
     this.relay       = relay;
   }
 
@@ -44,7 +42,29 @@ public class PushAddress {
     return recipientId;
   }
 
-  public int getDeviceId() {
-    return deviceId;
+  @Override
+  public boolean equals(Object other) {
+    if (other == null || !(other instanceof PushAddress)) return false;
+
+    PushAddress that = (PushAddress)other;
+
+    return this.recipientId == that.recipientId &&
+           equals(this.e164number, that.e164number) &&
+           equals(this.relay, that.relay);
+  }
+
+  @Override
+  public int hashCode() {
+    int hashCode = (int)this.recipientId;
+
+    if (this.e164number != null) hashCode ^= this.e164number.hashCode();
+    if (this.relay != null)      hashCode ^= this.relay.hashCode();
+
+    return hashCode;
+  }
+
+  private boolean equals(String one, String two) {
+    if (one == null) return two == null;
+    return one.equals(two);
   }
 }

@@ -7,7 +7,6 @@ import org.whispersystems.libaxolotl.ecc.Curve;
 import org.whispersystems.libaxolotl.ecc.ECKeyPair;
 import org.whispersystems.libaxolotl.ecc.ECPublicKey;
 import org.whispersystems.libaxolotl.kdf.HKDFv3;
-import org.whispersystems.textsecure.internal.push.ProvisioningProtos;
 import org.whispersystems.textsecure.internal.util.Util;
 
 import java.security.NoSuchAlgorithmException;
@@ -25,6 +24,8 @@ import static org.whispersystems.textsecure.internal.push.ProvisioningProtos.Pro
 
 public class ProvisioningCipher {
 
+  private static final String TAG = ProvisioningCipher.class.getSimpleName();
+
   private final ECPublicKey theirPublicKey;
 
   public ProvisioningCipher(ECPublicKey theirPublicKey) {
@@ -34,7 +35,7 @@ public class ProvisioningCipher {
   public byte[] encrypt(ProvisionMessage message) throws InvalidKeyException {
     ECKeyPair ourKeyPair    = Curve.generateKeyPair();
     byte[]    sharedSecret  = Curve.calculateAgreement(theirPublicKey, ourKeyPair.getPrivateKey());
-    byte[]    derivedSecret = new HKDFv3().deriveSecrets(sharedSecret, theirPublicKey.serialize(), "TextSecure Provisioning Message".getBytes(), 64);
+    byte[]    derivedSecret = new HKDFv3().deriveSecrets(sharedSecret, "TextSecure Provisioning Message".getBytes(), 64);
     byte[][]  parts         = Util.split(derivedSecret, 32, 32);
 
     byte[] version    = {0x01};

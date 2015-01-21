@@ -27,9 +27,9 @@ public class OutgoingPushMessage {
   private int    destinationRegistrationId;
   private String body;
 
-  public OutgoingPushMessage(PushAddress address, PushBody body) {
+  public OutgoingPushMessage(PushAddress address, int deviceId, PushBody body) {
     this.type                      = body.getType();
-    this.destinationDeviceId       = address.getDeviceId();
+    this.destinationDeviceId       = deviceId;
     this.destinationRegistrationId = body.getRemoteRegistrationId();
     this.body                      = Base64.encodeBytes(body.getBody());
   }

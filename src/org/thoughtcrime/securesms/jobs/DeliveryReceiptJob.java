@@ -46,7 +46,7 @@ public class DeliveryReceiptJob extends ContextJob implements InjectableType {
   public void onRun() throws IOException {
     Log.w("DeliveryReceiptJob", "Sending delivery receipt...");
     TextSecureMessageSender messageSender = messageSenderFactory.create(null);
-    PushAddress             pushAddress   = new PushAddress(-1, destination, 1, relay);
+    PushAddress             pushAddress   = new PushAddress(-1, destination, relay);
 
     messageSender.sendDeliveryReceipt(pushAddress, timestamp);
   }
