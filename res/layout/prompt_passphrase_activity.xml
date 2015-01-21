@@ -4,8 +4,7 @@
             android:id="@+id/scroll_parent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fillViewport="true"
-            android:background="@drawable/background_pattern_repeat">
+            android:fillViewport="true">
 
     <RelativeLayout android:id="@+id/prompt_layout"
                     android:layout_width="match_parent"
@@ -32,7 +31,6 @@
                       android:layout_marginLeft="50dp"
                       android:layout_marginRight="50dp"
                       android:singleLine="true"
-                      android:background="@drawable/passphrase_input_background"
                       android:paddingLeft="10dp"
                       android:paddingRight="10dp"/>
 

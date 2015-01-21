@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -115,15 +116,14 @@ public class PassphrasePromptActivity extends PassphraseActivity {
   private void initializeResources() {
     getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
     getSupportActionBar().setCustomView(R.layout.light_centered_app_title);
-    mitigateAndroidTilingBug();
 
     ImageButton okButton = (ImageButton) findViewById(R.id.ok_button);
     passphraseText       = (EditText)    findViewById(R.id.passphrase_edit);
-    SpannableString hint = new SpannableString(getString(R.string.PassphrasePromptActivity_enter_passphrase));
-
-    hint.setSpan(new RelativeSizeSpan(0.8f), 0, hint.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+    SpannableString hint = new SpannableString("  " + getString(R.string.PassphrasePromptActivity_enter_passphrase));
+    hint.setSpan(new RelativeSizeSpan(0.9f), 0, hint.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
     hint.setSpan(new TypefaceSpan("sans-serif"), 0, hint.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
-    hint.setSpan(new ForegroundColorSpan(0x66000000), 0, hint.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+    hint.setSpan(new ForegroundColorSpan(0xcc000000), 0, hint.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+
     passphraseText.setHint(hint);
     okButton.setOnClickListener(new OkButtonClickListener());
     passphraseText.setOnEditorActionListener(new PassphraseActionListener());
@@ -147,15 +147,6 @@ public class PassphrasePromptActivity extends PassphraseActivity {
       }
 
       return false;
-    }
-  }
-
-  private void mitigateAndroidTilingBug() {
-    if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-      Drawable actionBarBackground = getResources().getDrawable(R.drawable.background_pattern_repeat);
-      Util.fixBackgroundRepeat(actionBarBackground);
-      getSupportActionBar().setBackgroundDrawable(actionBarBackground);
-      Util.fixBackgroundRepeat(findViewById(R.id.scroll_parent).getBackground());
     }
   }
 

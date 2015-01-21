@@ -86,7 +86,7 @@
                         android:autoText="true"
                         android:capitalize="sentences"
                         android:background="#00ffffff"
-                        android:padding="12dp"
+                        android:layout_margin="12dp"
                         android:paddingRight="0dp"
                         android:imeOptions="actionSend|flagNoEnterAction|flagNoExtractUi"
                         android:inputType="textShortMessage|textAutoCorrect|textCapSentences|textMultiLine"

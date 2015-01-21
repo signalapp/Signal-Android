@@ -2,8 +2,9 @@
 <org.thoughtcrime.securesms.ConversationListItem
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="70dp">
 
     <FrameLayout android:id="@+id/contact_photo_frame"
                  android:layout_width="wrap_content"
@@ -19,12 +20,13 @@
         <com.makeramen.RoundedImageView
             android:id="@+id/contact_photo_image"
             android:foreground="@drawable/contact_photo_background"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             app:riv_oval="true"
             android:cropToPadding="true"
             android:scaleType="centerCrop"
             android:visibility="gone"
+            tools:src="@drawable/ic_contact_picture"
             android:contentDescription="Contact Photo Image"
             android:layout_marginLeft="0dp" />
     </FrameLayout>
@@ -54,6 +56,7 @@
                       android:textAppearance="?android:attr/textAppearanceMedium"
                       android:textColor="?attr/conversation_list_item_contact_color"
                       android:singleLine="true"
+                      tools:text="Jules Bonnot"
                       android:ellipsize="marquee" />
 
             <ImageView android:id="@+id/attachment"
@@ -79,7 +82,9 @@
                       android:textAppearance="?android:attr/textAppearanceSmall"
                       android:textColor="?attr/conversation_list_item_date_color"
                       android:fontFamily="sans-serif-light"
-                      android:singleLine="true" />
+                      tools:text="30 mins"
+                      android:singleLine="true"
+                      android:layout_gravity="top" />
             </LinearLayout>
 
         <TextView android:id="@+id/subject"
@@ -89,6 +94,7 @@
                   android:textColor="?attr/conversation_list_item_subject_color"
                   android:fontFamily="sans-serif-light"
                   android:singleLine="true"
+                  tools:text="Wheels arrive at 3pm flat."
                   android:ellipsize="end" />
 
     </LinearLayout>

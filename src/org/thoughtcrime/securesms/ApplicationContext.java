@@ -74,7 +74,6 @@ public class ApplicationContext extends Application implements DependencyInjecto
 
 
   private void initializeRandomNumberFix() {
-    Security.insertProviderAt(new org.spongycastle.jce.provider.BouncyCastleProvider(), 1);
     PRNGFixes.apply();
   }
 

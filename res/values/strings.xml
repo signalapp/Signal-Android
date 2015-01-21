@@ -281,8 +281,7 @@
         require a Google account, but must have the Play Store app installed.
     </string>
     <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
-        We will now verify that the following number is associated with this device:\n\n%s\n\n
-        Is this number correct, or would you like to edit it before continuing?
+        Double-check that this is your number! We\'re about to verify it with an SMS.
     </string>
     <string name="RegistrationActivity_continue">Continue</string>
     <string name="RegistrationActivity_edit">Edit</string>
@@ -819,11 +818,11 @@
     <string name="reminder_header_expired_build">Your build of TextSecure has expired!</string>
     <string name="reminder_header_expired_build_details">Messages will no longer send successfully, please update to the most recent version.</string>
     <string name="reminder_header_sms_default_title">Use as default SMS app?</string>
-    <string name="reminder_header_sms_default_text">TextSecure is not currently your default SMS app.</string>
+    <string name="reminder_header_sms_default_text">Tap to make TextSecure your default SMS app.</string>
     <string name="reminder_header_sms_import_title">Import system SMS?</string>
-    <string name="reminder_header_sms_import_text">TextSecure can copy your phone\'s SMS messages into its encrypted database.</string>
+    <string name="reminder_header_sms_import_text">Tap to copy your phone\'s SMS messages into its encrypted database.</string>
     <string name="reminder_header_push_title">Enable TextSecure messages?</string>
-    <string name="reminder_header_push_text">Instant delivery, stronger privacy, and no SMS fees.</string>
+    <string name="reminder_header_push_text">Tap for instant delivery, stronger privacy, and no SMS fees.</string>
 
     <!-- MediaPreviewActivity -->
     <string name="MediaPreviewActivity_you">You</string>

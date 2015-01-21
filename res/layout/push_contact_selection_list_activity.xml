@@ -4,17 +4,25 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-    <EditText android:id="@+id/filter"
-        android:inputType="textPersonName"
-        android:layout_width="fill_parent"
-        android:layout_height="45sp"
-        android:hint="@string/recipients_panel__to"
-        android:paddingRight="45dip"
-        android:paddingLeft="15dp"
-        android:textColor="?conversation_editor_text_color"
-        android:background="?conversation_editor_background" />
+    <FrameLayout android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_gravity="center"
+                 android:background="?conversation_editor_background"
+                 android:paddingRight="15dp"
+                 android:paddingLeft="15dp">
 
-    <se.emilsjolander.stickylistheaders.StickyListHeadersListView android:id="@android:id/list"
+        <EditText android:id="@+id/filter"
+                  android:inputType="textPersonName"
+                  android:layout_width="match_parent"
+                  android:layout_height="45sp"
+                  android:hint="@string/recipients_panel__to"
+                  android:background="@null"
+                  android:textColor="?conversation_editor_text_color" />
+
+    </FrameLayout>
+
+    <se.emilsjolander.stickylistheaders.StickyListHeadersListView
+        android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

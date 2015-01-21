@@ -276,20 +276,6 @@ public class Util {
     }
   }
 
-
-  /*
-   * source: http://stackoverflow.com/a/9500334
-   */
-  public static void fixBackgroundRepeat(Drawable bg) {
-    if (bg != null) {
-      if (bg instanceof BitmapDrawable) {
-        BitmapDrawable bmp = (BitmapDrawable) bg;
-        bmp.mutate();
-        bmp.setTileModeXY(Shader.TileMode.REPEAT, Shader.TileMode.REPEAT);
-      }
-    }
-  }
-
   public static boolean isBuildFresh() {
     return BuildConfig.BUILD_TIMESTAMP + TimeUnit.DAYS.toMillis(180) > System.currentTimeMillis();
   }

@@ -20,6 +20,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -27,20 +28,20 @@ import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.text.TextUtils;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.view.ActionMode;
-import android.support.v7.widget.SearchView;
-import android.util.Log;
 import android.support.v4.widget.CursorAdapter;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+
+import com.melnykov.fab.FloatingActionButton;
 
 import org.thoughtcrime.securesms.components.DefaultSmsReminder;
 import org.thoughtcrime.securesms.components.ExpiredBuildReminder;
@@ -65,12 +66,14 @@ public class ConversationListFragment extends ListFragment
   private MasterSecret                 masterSecret;
   private ActionMode                   actionMode;
   private ReminderView                 reminderView;
+  private FloatingActionButton         fab;
   private String                       queryFilter  = "";
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
     final View view = inflater.inflate(R.layout.conversation_list_fragment, container, false);
     reminderView = new ReminderView(getActivity());
+    fab          = (FloatingActionButton) view.findViewById(R.id.fab);
     return view;
   }
 
@@ -87,6 +90,14 @@ public class ConversationListFragment extends ListFragment
     setHasOptionsMenu(true);
     getListView().setAdapter(null);
     getListView().addHeaderView(reminderView);
+    fab.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent intent = new Intent(getActivity(), NewConversationActivity.class);
+        intent.putExtra(NewConversationActivity.MASTER_SECRET_EXTRA, masterSecret);
+        startActivity(intent);
+      }
+    });
     initializeListAdapter();
     initializeBatchListener();
 
@@ -233,12 +244,6 @@ public class ConversationListFragment extends ListFragment
   }
 
   private void handleSelectAllThreads() {
-    ((ConversationListAdapter)this.getListAdapter()).selectAllThreads();
-    actionMode.setSubtitle(getString(R.string.conversation_fragment_cab__batch_selection_amount,
-                           ((ConversationListAdapter)this.getListAdapter()).getBatchSelections().size()));
-  }
-
-  private void handleUnselectAllThreads() {
     ((ConversationListAdapter)this.getListAdapter()).selectAllThreads();
     actionMode.setSubtitle(getString(R.string.conversation_fragment_cab__batch_selection_amount,
                            ((ConversationListAdapter)this.getListAdapter()).getBatchSelections().size()));
