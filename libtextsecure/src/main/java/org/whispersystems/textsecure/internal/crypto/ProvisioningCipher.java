@@ -41,7 +41,7 @@ public class ProvisioningCipher {
     byte[] version    = {0x01};
     byte[] ciphertext = getCiphertext(parts[0], message.toByteArray());
     byte[] mac        = getMac(parts[1], Util.join(version, ciphertext));
-    byte[] body =  Util.join(version, ciphertext, mac);
+    byte[] body       = Util.join(version, ciphertext, mac);
 
     return ProvisionEnvelope.newBuilder()
                             .setPublicKey(ByteString.copyFrom(ourKeyPair.getPublicKey().serialize()))
