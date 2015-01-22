@@ -89,7 +89,7 @@ public class TextSecureMessageSender {
     long                timestamp = message.getTimestamp();
     SendMessageResponse response  = sendMessage(recipient, timestamp, content);
 
-    if (response.getNeedsSync()) {
+    if (response != null && response.getNeedsSync()) {
       byte[] syncMessage = createSyncMessageContent(content, recipient, timestamp);
       sendMessage(syncAddress, timestamp, syncMessage);
     }

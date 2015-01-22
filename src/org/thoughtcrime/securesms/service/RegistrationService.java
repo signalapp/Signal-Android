@@ -16,8 +16,12 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.PreKeyUtil;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.jobs.GcmRefreshJob;
 import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -230,21 +234,27 @@ public class RegistrationService extends Service {
       throws IOException
   {
     setState(new RegistrationState(RegistrationState.STATE_GENERATING_KEYS, number));
-    IdentityKeyPair    identityKey  = IdentityKeyUtil.getIdentityKeyPair(this, masterSecret);
-    List<PreKeyRecord> records      = PreKeyUtil.generatePreKeys(this, masterSecret);
-    PreKeyRecord       lastResort   = PreKeyUtil.generateLastResortKey(this, masterSecret);
-    SignedPreKeyRecord signedPreKey = PreKeyUtil.generateSignedPreKey(this, masterSecret, identityKey);
-    accountManager.setPreKeys(identityKey.getPublicKey(),lastResort, signedPreKey, records);
+    try {
+      Recipient          self         = RecipientFactory.getRecipientsFromString(this, number, false).getPrimaryRecipient();
+      IdentityKeyPair    identityKey  = IdentityKeyUtil.getIdentityKeyPair(this, masterSecret);
+      List<PreKeyRecord> records      = PreKeyUtil.generatePreKeys(this, masterSecret);
+      PreKeyRecord       lastResort   = PreKeyUtil.generateLastResortKey(this, masterSecret);
+      SignedPreKeyRecord signedPreKey = PreKeyUtil.generateSignedPreKey(this, masterSecret, identityKey);
+      accountManager.setPreKeys(identityKey.getPublicKey(),lastResort, signedPreKey, records);
 
-    setState(new RegistrationState(RegistrationState.STATE_GCM_REGISTERING, number));
+      setState(new RegistrationState(RegistrationState.STATE_GCM_REGISTERING, number));
 
-    String gcmRegistrationId = GoogleCloudMessaging.getInstance(this).register(GcmRefreshJob.REGISTRATION_ID);
-    TextSecurePreferences.setGcmRegistrationId(this, gcmRegistrationId);
-    accountManager.setGcmId(Optional.of(gcmRegistrationId));
+      String gcmRegistrationId = GoogleCloudMessaging.getInstance(this).register(GcmRefreshJob.REGISTRATION_ID);
+      TextSecurePreferences.setGcmRegistrationId(this, gcmRegistrationId);
+      accountManager.setGcmId(Optional.of(gcmRegistrationId));
 
-    DirectoryHelper.refreshDirectory(this, accountManager, number);
+      DatabaseFactory.getIdentityDatabase(this).saveIdentity(masterSecret, self.getRecipientId(), identityKey.getPublicKey());
+      DirectoryHelper.refreshDirectory(this, accountManager, number);
 
-    DirectoryRefreshListener.schedule(this);
+      DirectoryRefreshListener.schedule(this);
+    } catch (RecipientFormattingException e) {
+      throw new IOException(e);
+    }
   }
 
   private synchronized String waitForChallenge() throws AccountVerificationTimeoutException {
