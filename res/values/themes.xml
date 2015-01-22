@@ -82,6 +82,7 @@
         <item name="menu_unlock_icon">@drawable/ic_unlocked_white_24dp</item>
         <item name="menu_lock_icon">@drawable/ic_lock_white_24dp</item>
         <item name="menu_lock_icon_small">@drawable/ic_lock_white_18dp</item>
+        <item name="menu_lock_icon_small_received">@drawable/ic_lock_black_18dp</item>
         <item name="menu_trash_icon">@drawable/ic_delete_white_24dp</item>
         <item name="menu_selectall_icon">@drawable/ic_select_all_white_24dp</item>
         <item name="menu_split_icon">@drawable/ic_call_split_white_24dp</item>
@@ -168,6 +169,7 @@
         <item name="menu_unlock_icon">@drawable/ic_unlocked_white_24dp</item>
         <item name="menu_lock_icon">@drawable/ic_lock_white_24dp</item>
         <item name="menu_lock_icon_small">@drawable/ic_lock_white_18dp</item>
+        <item name="menu_lock_icon_small_received">@drawable/ic_lock_white_18dp</item>
         <item name="menu_trash_icon">@drawable/ic_delete_white_24dp</item>
         <item name="menu_selectall_icon">@drawable/ic_select_all_white_24dp</item>
         <item name="menu_split_icon">@drawable/ic_call_split_white_24dp</item>
