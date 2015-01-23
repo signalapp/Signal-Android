@@ -5,7 +5,7 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:background="?conversation_item_background" >
+    android:background="?conversation_item_background">
 
     <RelativeLayout android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -189,7 +189,7 @@
             android:layout_marginRight="15dp"
             android:layout_marginTop="-2dp"
             android:textSize="12sp"
-            android:textColor="?conversation_sent_text_secondary_color"
+            android:textColor="?conversation_sent_text_indicator_tab_color"
             android:background="?conversation_item_sent_indicator_text_background"
             android:visibility="gone" />
 

@@ -32,6 +32,7 @@
         <item name="conversation_group_member_name">#99000000</item>
         <item name="conversation_sent_text_primary_color">#ffffffff</item>
         <item name="conversation_sent_text_secondary_color">#bbffffff</item>
+        <item name="conversation_sent_text_indicator_tab_color">#99000000</item>
         <item name="conversation_received_text_primary_color">#ff333333</item>
         <item name="conversation_received_text_secondary_color">#99333333</item>
 
@@ -116,6 +117,7 @@
         <item name="conversation_group_member_name">#99ffffff</item>
         <item name="conversation_sent_text_primary_color">#ffffffff</item>
         <item name="conversation_sent_text_secondary_color">#aaeeeeee</item>
+        <item name="conversation_sent_text_indicator_tab_color">#99ffffff</item>
         <item name="conversation_received_text_primary_color">#ffeeeeee</item>
         <item name="conversation_received_text_secondary_color">#44eeeeee</item>
 
