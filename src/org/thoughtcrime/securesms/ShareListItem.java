@@ -31,9 +31,10 @@ import android.text.TextUtils;
 import android.text.style.StyleSpan;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.makeramen.RoundedImageView;
 
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -59,7 +60,7 @@ public class ShareListItem extends RelativeLayout
   private long       threadId;
   private TextView   fromView;
 
-  private ImageView contactPhotoImage;
+  private RoundedImageView contactPhotoImage;
 
   private final Handler handler = new Handler();
   private int distributionType;
@@ -77,7 +78,7 @@ public class ShareListItem extends RelativeLayout
   @Override
   protected void onFinishInflate() {
     this.fromView          = (TextView)  findViewById(R.id.from);
-    this.contactPhotoImage = (ImageView) findViewById(R.id.contact_photo_image);
+    this.contactPhotoImage = (RoundedImageView) findViewById(R.id.contact_photo_image);
   }
 
   public void set(ThreadRecord thread) {
