@@ -86,7 +86,7 @@ public class GcmRefreshJob extends ContextJob {
     PendingIntent              pendingIntent = PendingIntent.getActivity(context, 1122, intent, PendingIntent.FLAG_CANCEL_CURRENT);
     NotificationCompat.Builder builder       = new NotificationCompat.Builder(context);
 
-    builder.setSmallIcon(R.drawable.icon_notification);
+    builder.setSmallIcon(R.drawable.icon_notification_gdata);
     builder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(),
                                                       R.drawable.ic_action_warning_red));
     builder.setContentTitle(context.getString(R.string.GcmRefreshJob_Permanent_TextSecure_communication_failure));

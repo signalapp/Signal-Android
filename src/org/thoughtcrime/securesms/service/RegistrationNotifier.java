@@ -15,7 +15,7 @@ public class RegistrationNotifier extends BroadcastReceiver {
   @Override
   public void onReceive(Context context, Intent intent) {
     NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
-    builder.setSmallIcon(R.drawable.icon_notification);
+    builder.setSmallIcon(R.drawable.icon_notification_gdata);
     builder.setContentTitle(intent.getStringExtra(RegistrationService.NOTIFICATION_TITLE));
     builder.setContentText(intent.getStringExtra(RegistrationService.NOTIFICATION_TEXT));
     builder.setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, RoutingActivity.class), 0));

@@ -91,7 +91,7 @@ public class MessageNotifier {
       intent.setData((Uri.parse("custom://"+System.currentTimeMillis())));
 
       NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
-      builder.setSmallIcon(R.drawable.icon_notification);
+      builder.setSmallIcon(R.drawable.icon_notification_gdata);
       builder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(),
                                                         R.drawable.ic_action_warning_red));
       builder.setContentTitle(context.getString(R.string.MessageNotifier_message_delivery_failed));
@@ -178,7 +178,7 @@ public class MessageNotifier {
     NotificationCompat.Builder builder  = new NotificationCompat.Builder(context);
     Recipient recipient                 = notifications.get(0).getIndividualRecipient();
 
-    builder.setSmallIcon(R.drawable.icon_notification);
+    builder.setSmallIcon(R.drawable.icon_notification_gdata);
     builder.setLargeIcon(recipient.getContactPhoto());
     builder.setContentTitle(recipient.toShortString());
     builder.setContentText(notifications.get(0).getText());
@@ -221,9 +221,9 @@ public class MessageNotifier {
     List<NotificationItem> notifications = notificationState.getNotifications();
     NotificationCompat.Builder builder   = new NotificationCompat.Builder(context);
 
-    builder.setSmallIcon(R.drawable.icon_notification);
+    builder.setSmallIcon(R.drawable.icon_notification_gdata);
     builder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(),
-                                                      R.drawable.icon_notification));
+                                                      R.drawable.icon_notification_gdata));
     builder.setContentTitle(String.format(context.getString(R.string.MessageNotifier_d_new_messages),
                                           notificationState.getMessageCount()));
     builder.setContentText(String.format(context.getString(R.string.MessageNotifier_most_recent_from_s),

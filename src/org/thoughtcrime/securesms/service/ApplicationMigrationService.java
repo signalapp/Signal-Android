@@ -122,8 +122,8 @@ public class ApplicationMigrationService extends Service
   private NotificationCompat.Builder initializeBackgroundNotification() {
     NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
 
-    builder.setSmallIcon(R.drawable.icon_notification);
-    builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.icon_notification));
+    builder.setSmallIcon(R.drawable.icon_notification_gdata);
+    builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.icon_notification_gdata));
     builder.setContentTitle(getString(R.string.ApplicationMigrationService_importing_text_messages));
     builder.setContentText(getString(R.string.ApplicationMigrationService_import_in_progress));
     builder.setOngoing(true);
@@ -181,7 +181,7 @@ public class ApplicationMigrationService extends Service
     @Override
     public void onReceive(Context context, Intent intent) {
       NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
-      builder.setSmallIcon(R.drawable.icon_notification);
+      builder.setSmallIcon(R.drawable.icon_notification_gdata);
       builder.setContentTitle("Import Complete");
       builder.setContentText("TextSecure system database import is complete.");
       builder.setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, RoutingActivity.class), 0));
