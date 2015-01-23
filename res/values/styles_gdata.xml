@@ -80,8 +80,8 @@
 
         <item name="android:windowBackground">@color/white</item>
 
-        <item name="logo">@drawable/actionbar_icon_holo_dark</item>
-        <item name="android:logo">@drawable/actionbar_icon_holo_dark</item>
+        <item name="logo">@drawable/actionbar_icon_gdata</item>
+        <item name="android:logo">@drawable/actionbar_icon_gdata</item>
 
         <item name="conversation_send_button_push">@drawable/ic_send_push</item>
         <item name="conversation_send_button_sms_secure">@drawable/ic_send_sms_secure</item>
@@ -111,7 +111,7 @@
         <item name="menu_forward_icon">@drawable/ic_action_forward_holo_dark</item>
         <item name="menu_save_icon">@drawable/ic_action_save_holo_dark</item>
 
-        <item name="actionbar_icon">@drawable/actionbar_icon_holo_dark</item>
+        <item name="actionbar_icon">@drawable/actionbar_icon_gdata</item>
         <item name="lower_right_divet">@drawable/divet_lower_right_light</item>
         <item name="conversation_list_item_background_selected">@drawable/list_selected_holo_dark
         </item>
@@ -146,12 +146,12 @@
     </style>
 
     <style name="GSecure.GDataActionBar" parent="@style/Widget.AppCompat.Light.ActionBar">
-        <item name="android:icon">@drawable/actionbar_icon_holo_dark</item>
-        <item name="icon">@drawable/actionbar_icon_holo_dark</item>
+        <item name="android:icon">@drawable/actionbar_icon_gdata</item>
+        <item name="icon">@drawable/actionbar_icon_gdata</item>
         <item name="android:background">@color/gdata_red</item>
         <item name="background">@color/gdata_red</item>
-        <item name="android:logo">@drawable/actionbar_icon_holo_dark</item>
-        <item name="logo">@drawable/actionbar_icon_holo_dark</item>
+        <item name="android:logo">@drawable/actionbar_icon_gdata</item>
+        <item name="logo">@drawable/actionbar_icon_gdata</item>
         <item name="android:titleTextStyle">@style/TextSecure.TitleTextStyle</item>
         <item name="titleTextStyle">@style/TextSecure.TitleTextStyle</item>
         <item name="android:subtitleTextStyle">@style/TextSecure.SubtitleTextStyle</item>
