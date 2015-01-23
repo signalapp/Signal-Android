@@ -1,1 +1,1 @@
-include ':libtextsecure'
+include ':libtextsecure', ':IsfaServerDefinitions'
