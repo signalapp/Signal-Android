@@ -47,15 +47,15 @@ public class DeviceProvisioningActivity extends PassphraseRequiredActionBarActiv
     initializeResources();
 
     SpannableStringBuilder content = new SpannableStringBuilder();
-    content.append(getString(R.string.DeviceProvisioning_content_intro))
+    content.append(getString(R.string.DeviceProvisioningActivity_content_intro))
            .append("\n")
-           .append(small(getString(R.string.DeviceProvisioning_content_bullets)));
+           .append(small(getString(R.string.DeviceProvisioningActivity_content_bullets)));
 
-    new Builder(this).title("Link this device?")
+    new Builder(this).title(getString(R.string.DeviceProvisioningActivity_link_this_device))
                      .iconRes(R.drawable.icon_dialog)
                      .content(content)
-                     .positiveText(R.string.DeviceProvisioning_continue)
-                     .negativeText(R.string.DeviceProvisioning_cancel)
+                     .positiveText(R.string.DeviceProvisioningActivity_continue)
+                     .negativeText(R.string.DeviceProvisioningActivity_cancel)
                      .positiveColorRes(R.color.textsecure_primary)
                      .negativeColorRes(R.color.gray50)
                      .autoDismiss(false)
@@ -91,8 +91,8 @@ public class DeviceProvisioningActivity extends PassphraseRequiredActionBarActiv
 
   private void handleProvisioning(final MaterialDialog dialog) {
     new ProgressDialogAsyncTask<Void, Void, Integer>(this,
-                                                     R.string.DeviceProvisioning_content_progress_title,
-                                                     R.string.DeviceProvisioning_content_progress_content)
+                                                     R.string.DeviceProvisioningActivity_content_progress_title,
+                                                     R.string.DeviceProvisioningActivity_content_progress_content)
     {
       private static final int SUCCESS       = 0;
       private static final int NO_DEVICE     = 1;
@@ -133,16 +133,16 @@ public class DeviceProvisioningActivity extends PassphraseRequiredActionBarActiv
 
         switch (result) {
           case SUCCESS:
-            Toast.makeText(context, R.string.DeviceProvisioning_content_progress_success, Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, R.string.DeviceProvisioningActivity_content_progress_success, Toast.LENGTH_SHORT).show();
             break;
           case NO_DEVICE:
-            Toast.makeText(context, R.string.DeviceProvisioning_content_progress_no_device, Toast.LENGTH_LONG).show();
+            Toast.makeText(context, R.string.DeviceProvisioningActivity_content_progress_no_device, Toast.LENGTH_LONG).show();
             break;
           case NETWORK_ERROR:
-            Toast.makeText(context, R.string.DeviceProvisioning_content_progress_network_error, Toast.LENGTH_LONG).show();
+            Toast.makeText(context, R.string.DeviceProvisioningActivity_content_progress_network_error, Toast.LENGTH_LONG).show();
             break;
           case KEY_ERROR:
-            Toast.makeText(context, R.string.DeviceProvisioning_content_progress_key_error, Toast.LENGTH_LONG).show();
+            Toast.makeText(context, R.string.DeviceProvisioningActivity_content_progress_key_error, Toast.LENGTH_LONG).show();
             break;
         }
         dialog.dismiss();
