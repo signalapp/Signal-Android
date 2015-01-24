@@ -13,6 +13,15 @@
         <item name="android:windowAnimationStyle">@null</item>
     </style>
 
+    <style name="TextSecure.DialogActivity" parent="Theme.AppCompat">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
     <!-- ActionBar styles -->
     <style name="TextSecure.DarkActionBar"
            parent="@style/Widget.AppCompat.ActionBar">

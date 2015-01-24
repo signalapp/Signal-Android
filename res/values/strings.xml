@@ -239,6 +239,22 @@
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passphrases don\'t match!</string>
     <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Incorrect old passphrase!</string>
 
+    <!-- DeviceProvisioningActivity -->
+    <string name="DeviceProvisioning_cancel">CANCEL</string>
+    <string name="DeviceProvisioning_continue">CONTINUE</string>
+    <string name="DeviceProvisioning_title">Link this device?</string>
+    <string name="DeviceProvisioning_content_intro">It will be able to</string>
+    <string name="DeviceProvisioning_content_bullets">
+        - Read all your messages
+        \n- Send messages in your name
+    </string>
+    <string name="DeviceProvisioning_content_progress_title">Adding device...</string>
+    <string name="DeviceProvisioning_content_progress_content">Adding new device...</string>
+    <string name="DeviceProvisioning_content_progress_success">Device added!</string>
+    <string name="DeviceProvisioning_content_progress_no_device">No device found.</string>
+    <string name="DeviceProvisioning_content_progress_network_error">Network error.</string>
+    <string name="DeviceProvisioning_content_progress_key_error">Invalid QR code.</string>
+
     <!-- PassphrasePromptActivity -->
     <string name="PassphrasePromptActivity_enter_passphrase">Enter passphrase</string>
     <string name="PassphrasePromptActivity_watermark_content_description">TextSecure icon</string>

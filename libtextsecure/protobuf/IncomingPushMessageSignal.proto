@@ -42,12 +42,18 @@ message PushMessageContent {
     optional AttachmentPointer avatar  = 5;
   }
 
+  message SyncMessageContext {
+    optional string destination = 1;
+    optional uint64 timestamp   = 2;
+  }
+
   enum Flags {
     END_SESSION = 1;
   }
 
-  optional string            body        = 1;
-  repeated AttachmentPointer attachments = 2;
-  optional GroupContext      group       = 3;
-  optional uint32            flags       = 4;
+  optional string             body        = 1;
+  repeated AttachmentPointer  attachments = 2;
+  optional GroupContext       group       = 3;
+  optional uint32             flags       = 4;
+  optional SyncMessageContext sync        = 5;
 }
