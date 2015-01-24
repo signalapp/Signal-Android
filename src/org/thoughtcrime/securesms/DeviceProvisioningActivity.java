@@ -1,12 +1,20 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnDismissListener;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
+import android.view.Window;
 import android.widget.Toast;
+
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.afollestad.materialdialogs.MaterialDialog.Builder;
+import com.afollestad.materialdialogs.MaterialDialog.ButtonCallback;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -22,21 +30,54 @@ import org.whispersystems.textsecure.api.push.exceptions.NotFoundException;
 
 import java.io.IOException;
 
+import static org.thoughtcrime.securesms.util.SpanUtil.small;
+
 public class DeviceProvisioningActivity extends PassphraseRequiredActionBarActivity {
 
   private static final String TAG = DeviceProvisioningActivity.class.getSimpleName();
 
-  private Button       continueButton;
-  private Button       cancelButton;
   private Uri          uri;
   private MasterSecret masterSecret;
 
   @Override
   public void onCreate(Bundle bundle) {
+    supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
     super.onCreate(bundle);
-    setContentView(R.layout.device_provisioning_activity);
-
+    getSupportActionBar().hide();
     initializeResources();
+
+    SpannableStringBuilder content = new SpannableStringBuilder();
+    content.append(getString(R.string.DeviceProvisioning_content_intro))
+           .append("\n")
+           .append(small(getString(R.string.DeviceProvisioning_content_bullets)));
+
+    new Builder(this).title("Link this device?")
+                     .iconRes(R.drawable.icon_dialog)
+                     .content(content)
+                     .positiveText(R.string.DeviceProvisioning_continue)
+                     .negativeText(R.string.DeviceProvisioning_cancel)
+                     .positiveColorRes(R.color.textsecure_primary)
+                     .negativeColorRes(R.color.gray50)
+                     .autoDismiss(false)
+                     .callback(new ButtonCallback() {
+                       @Override
+                       public void onPositive(MaterialDialog dialog) {
+                         handleProvisioning(dialog);
+                       }
+
+                       @Override
+                       public void onNegative(MaterialDialog dialog) {
+                         dialog.dismiss();
+                         finish();
+                       }
+                     })
+                     .dismissListener(new OnDismissListener() {
+                       @Override
+                       public void onDismiss(DialogInterface dialog) {
+                         finish();
+                       }
+                     })
+                     .show();
   }
 
   @Override
@@ -45,27 +86,14 @@ public class DeviceProvisioningActivity extends PassphraseRequiredActionBarActiv
   }
 
   private void initializeResources() {
-    this.continueButton = (Button)findViewById(R.id.continue_button);
-    this.cancelButton   = (Button)findViewById(R.id.cancel_button);
-    this.uri            = getIntent().getData();
-
-    this.continueButton.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        handleProvisioning();
-      }
-    });
-
-    this.cancelButton.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        finish();
-      }
-    });
+    this.uri = getIntent().getData();
   }
 
-  private void handleProvisioning() {
-    new ProgressDialogAsyncTask<Void, Void, Integer>(this, "Adding device...", "Adding new device...") {
+  private void handleProvisioning(final MaterialDialog dialog) {
+    new ProgressDialogAsyncTask<Void, Void, Integer>(this,
+                                                     R.string.DeviceProvisioning_content_progress_title,
+                                                     R.string.DeviceProvisioning_content_progress_content)
+    {
       private static final int SUCCESS       = 0;
       private static final int NO_DEVICE     = 1;
       private static final int NETWORK_ERROR = 2;
@@ -105,19 +133,19 @@ public class DeviceProvisioningActivity extends PassphraseRequiredActionBarActiv
 
         switch (result) {
           case SUCCESS:
-            Toast.makeText(context, "Device added!", Toast.LENGTH_SHORT).show();
-            finish();
+            Toast.makeText(context, R.string.DeviceProvisioning_content_progress_success, Toast.LENGTH_SHORT).show();
             break;
           case NO_DEVICE:
-            Toast.makeText(context, "No device found!", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, R.string.DeviceProvisioning_content_progress_no_device, Toast.LENGTH_LONG).show();
             break;
           case NETWORK_ERROR:
-            Toast.makeText(context, "Network error!", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, R.string.DeviceProvisioning_content_progress_network_error, Toast.LENGTH_LONG).show();
             break;
           case KEY_ERROR:
-            Toast.makeText(context, "Invalid QR code!", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, R.string.DeviceProvisioning_content_progress_key_error, Toast.LENGTH_LONG).show();
             break;
         }
+        dialog.dismiss();
       }
     }.execute();
   }
