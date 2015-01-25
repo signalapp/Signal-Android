@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <org.thoughtcrime.securesms.ConversationItem
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/conversation_item"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
@@ -17,7 +18,7 @@
 
         <LinearLayout android:id="@+id/indicators_parent"
                       android:layout_width="wrap_content"
-                      android:layout_height="match_parent"
+                      android:layout_height="wrap_content"
                       android:orientation="vertical"
                       android:gravity="left|center_vertical"
                       android:layout_marginLeft="6dp"
@@ -28,25 +29,28 @@
                 android:id="@+id/sms_failed_indicator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_action_warning_red"
+                android:src="@drawable/ic_error_red_24dp"
+                tools:visibility="visible"
                 android:visibility="gone"
-                android:contentDescription="@string/conversation_item_sent__send_failed_indicator_description"/>
+                android:contentDescription="@string/conversation_item_sent__send_failed_indicator_description" />
 
             <ImageView
                 android:id="@+id/pending_approval_indicator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_dialog_info_holo_light"
+                android:src="@drawable/ic_info_outline_grey600_24dp"
                 android:visibility="gone"
                 android:layout_gravity="center_vertical"
-                android:contentDescription="@string/conversation_item_sent__pending_approval_description"/>
+                android:contentDescription="@string/conversation_item_sent__pending_approval_description"
+                tools:visibility="visible" />
+
         </LinearLayout>
 
         <LinearLayout android:id="@+id/conversation_item_parent"
                       android:layout_width="wrap_content"
-                      android:layout_height="match_parent"
+                      android:layout_height="wrap_content"
                       android:layout_alignParentRight="true"
-                      android:background="?conversation_item_sent_background"
+                      android:background="?conversation_item_sent_push_background"
                       android:paddingRight="10dip"
                       android:paddingLeft="10dip"
                       android:layout_marginLeft="50dp"
@@ -62,7 +66,8 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="?conversation_sent_text_primary_color"
                 android:textColorLink="?conversation_sent_text_primary_color"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                tools:text="Lorem ipsum mango dolor coconut papaya" />
 
             <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/mms_view"
@@ -116,7 +121,7 @@
             </LinearLayout>
 
             <LinearLayout android:layout_width="wrap_content"
-                          android:layout_height="match_parent"
+                          android:layout_height="wrap_content"
                           android:orientation="horizontal"
                           android:paddingTop="0dip"
                           android:layout_gravity="right">

@@ -114,9 +114,15 @@
               android:launchMode="singleTask"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
-    <activity android:name=".GroupCreateActivity"
-              android:windowSoftInputMode="stateVisible"
+    <activity android:name=".MessageDetailsActivity"
+              android:label="Message Details"
+              android:windowSoftInputMode="stateUnchanged"
+              android:launchMode="singleTask"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+
+    <activity android:name=".GroupCreateActivity"
+          android:windowSoftInputMode="stateVisible"
+          android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".DatabaseMigrationActivity"
               android:theme="@style/NoAnimation.Theme.AppCompat.Light.DarkActionBar"

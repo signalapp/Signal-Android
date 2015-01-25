@@ -633,11 +633,11 @@ public class SmsDatabase extends MessagingDatabase {
       Recipients                recipients = getRecipientsFor(address);
       DisplayRecord.Body        body       = getBody(cursor);
 
-      return  new SmsMessageRecord(context, messageId, body, recipients,
-                                   recipients.getPrimaryRecipient(),
-                                   addressDeviceId,
-                                   dateSent, dateReceived, receiptCount, type,
-                                   threadId, status, mismatches);
+      return new SmsMessageRecord(context, messageId, body, recipients,
+                                  recipients.getPrimaryRecipient(),
+                                  addressDeviceId,
+                                  dateSent, dateReceived, receiptCount, type,
+                                  threadId, status, mismatches);
     }
 
     private Recipients getRecipientsFor(String address) {

@@ -45,7 +45,7 @@
 
         <LinearLayout android:id="@+id/conversation_item_parent"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_toRightOf="@id/triangle_tick"
             android:background="?conversation_item_received_background"
             android:orientation="vertical">
@@ -109,7 +109,7 @@
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:paddingTop="2dip"
                 android:paddingLeft="8dp"
                 android:paddingRight="5dp"
@@ -151,7 +151,7 @@
 
         <LinearLayout android:id="@+id/indicators_parent"
             android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:orientation="vertical"
             android:gravity="center_vertical"

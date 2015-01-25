@@ -43,9 +43,8 @@ import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
-import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
-import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
@@ -56,16 +55,12 @@ import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.Emoji;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
-import org.thoughtcrime.securesms.util.Util;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -125,7 +120,6 @@ public class ConversationItem extends LinearLayout {
   private FutureTaskListener<SlideDeck>   slideDeckListener;
   private TypedArray                      backgroundDrawables;
 
-  private final FailedIconClickListener     failedIconClickListener     = new FailedIconClickListener();
   private final MmsDownloadClickListener    mmsDownloadClickListener    = new MmsDownloadClickListener();
   private final MmsPreferencesClickListener mmsPreferencesClickListener = new MmsPreferencesClickListener();
   private final ClickListener               clickListener               = new ClickListener();
@@ -164,20 +158,18 @@ public class ConversationItem extends LinearLayout {
     this.backgroundDrawables = context.obtainStyledAttributes(STYLE_ATTRIBUTES);
 
     setOnClickListener(clickListener);
-    if (failedImage != null)       failedImage.setOnClickListener(failedIconClickListener);
     if (mmsDownloadButton != null) mmsDownloadButton.setOnClickListener(mmsDownloadClickListener);
     if (mmsThumbnail != null)      mmsThumbnail.setOnLongClickListener(new MultiSelectLongClickListener());
   }
 
   public void set(MasterSecret masterSecret, MessageRecord messageRecord,
                   Set<MessageRecord> batchSelected, SelectionClickListener selectionClickListener,
-                  Handler failedIconHandler, boolean groupThread, boolean pushDestination)
+                  boolean groupThread, boolean pushDestination)
   {
     this.masterSecret           = masterSecret;
     this.messageRecord          = messageRecord;
     this.batchSelected          = batchSelected;
     this.selectionClickListener = selectionClickListener;
-    this.failedIconHandler      = failedIconHandler;
     this.groupThread            = groupThread;
     this.pushDestination        = pushDestination;
 
@@ -229,7 +221,7 @@ public class ConversationItem extends LinearLayout {
       if (messageRecord.isOutgoing()) {
         final int background;
         final int triangleBackground;
-        if (messageRecord.isPending() && pushDestination && !messageRecord.isForcedSms()) {
+        if ((messageRecord.isPending() || messageRecord.isFailed()) && pushDestination && !messageRecord.isForcedSms()) {
           background         = SENT_PUSH_PENDING;
           triangleBackground = SENT_PUSH_PENDING_TRIANGLE;
         } else if (messageRecord.isPending() || messageRecord.isPendingSmsFallback()) {
@@ -313,28 +305,9 @@ public class ConversationItem extends LinearLayout {
   }
 
   private void setFailedStatusIcons() {
-    List<String> tags = new LinkedList<>();
-
     dateText.setText(R.string.ConversationItem_error_sending_message);
-
-    if (messageRecord.hasNetworkFailures()) {
-      for (NetworkFailure networkFailure : messageRecord.getNetworkFailures()) {
-        Recipient recipient = RecipientFactory.getRecipientForId(getContext(), networkFailure.getRecipientId(), false);
-        tags.add(recipient.toShortString() + ": Network error, tap to retry...");
-      }
-    }
-
-    if (messageRecord.isIdentityMismatchFailure()) {
-      for (IdentityKeyMismatch mismatch : messageRecord.getIdentityKeyMismatches()) {
-        Recipient recipient = RecipientFactory.getRecipientForId(getContext(), mismatch.getRecipientId(), false);
-        tags.add(recipient.toShortString() + ": Identity changed, tap for details...");
-      }
-    }
-
-    if (!tags.isEmpty()) {
-      indicatorText.setVisibility(View.VISIBLE);
-      indicatorText.setText(Util.join(tags, "\n"));
-    }
+    indicatorText.setText(R.string.ConversationItem_click_for_details);
+    indicatorText.setVisibility(View.VISIBLE);
   }
 
   private void setFallbackStatusIcons() {
@@ -567,7 +540,7 @@ public class ConversationItem extends LinearLayout {
   private class MmsDownloadClickListener implements View.OnClickListener {
     public void onClick(View v) {
       NotificationMmsMessageRecord notificationRecord = (NotificationMmsMessageRecord)messageRecord;
-      Log.w("MmsDownloadClickListener", "Content location: " + new String(notificationRecord.getContentLocation()));
+      Log.w(TAG, "Content location: " + new String(notificationRecord.getContentLocation()));
       mmsDownloadButton.setVisibility(View.GONE);
       mmsDownloadingLabel.setVisibility(View.VISIBLE);
 
@@ -601,7 +574,12 @@ public class ConversationItem extends LinearLayout {
   private class ClickListener implements View.OnClickListener {
     public void onClick(View v) {
       if (messageRecord.isIdentityMismatchFailure() || messageRecord.hasNetworkFailures()) {
-        handleIdentityApproval();
+        Intent intent = new Intent(context, MessageDetailsActivity.class);
+        intent.putExtra(MessageDetailsActivity.MASTER_SECRET_EXTRA, masterSecret);
+        intent.putExtra(MessageDetailsActivity.MESSAGE_ID_EXTRA, messageRecord.getId());
+        intent.putExtra(MessageDetailsActivity.TYPE_EXTRA, messageRecord.isMms() ? MmsSmsDatabase.MMS_TRANSPORT : MmsSmsDatabase.SMS_TRANSPORT);
+        intent.putExtra(MessageDetailsActivity.PUSH_EXTRA, pushDestination);
+        context.startActivity(intent);
       } else if (messageRecord.isKeyExchange()           &&
                  !messageRecord.isOutgoing()             &&
                  !messageRecord.isProcessedKeyExchange() &&
@@ -625,11 +603,6 @@ public class ConversationItem extends LinearLayout {
     public void onClick(View view) {
       selectionClickListener.onItemClick(null, ConversationItem.this, -1, -1);
     }
-  }
-
-  private void handleIdentityApproval() {
-    ConfirmIdentityHandler identityHandler = new ConfirmIdentityHandler(context, masterSecret, messageRecord);
-    identityHandler.onClick(null);
   }
 
   private void handleMessageApproval() {
