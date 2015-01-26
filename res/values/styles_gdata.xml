@@ -11,6 +11,17 @@
         <item name="android:actionOverflowButtonStyle">@style/Widget.AppCompat.ActionButton.Overflow</item>
         <item name="actionOverflowButtonStyle">@style/Widget.AppCompat.ActionButton.Overflow</item>
 
+
+        <item name="android:actionModeBackground">@drawable/cab_background_top</item>
+        <item name="actionModeBackground">@drawable/cab_background_top</item>
+        <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom</item>
+        <item name="actionModeSplitBackground">@drawable/cab_background_bottom</item>
+        <item name="android:actionModeCloseDrawable">@drawable/ic_cab_done_holo_dark</item>
+        <item name="actionModeCloseDrawable">@drawable/ic_cab_done_holo_dark</item>
+        <item name="android:actionModeStyle">@style/CustomActionMode</item>
+        <item name="actionModeStyle">@style/CustomActionMode</item>
+
+
         <item name="android:textColor">@color/gdata_text_color_theme</item>
         <item name="android:textColorSecondary">@color/gdata_text_color_secondary</item>
         <item name="conversation_list_item_background_read">
@@ -101,8 +112,8 @@
         <item name="menu_unlock_icon">@drawable/ic_menu_unlock_holo_dark</item>
         <item name="menu_lock_icon">@drawable/ic_menu_lock_holo_dark</item>
         <item name="menu_lock_icon_small">@drawable/ic_lock_white_18dp</item>
-        <item name="menu_trash_icon">@drawable/ic_menu_trash_holo_light</item>
-        <item name="menu_selectall_icon">@drawable/ic_menu_selectall_holo_light</item>
+        <item name="menu_trash_icon">@drawable/ic_menu_trash_holo_dark</item>
+        <item name="menu_selectall_icon">@drawable/ic_menu_selectall_holo_dark</item>
         <item name="menu_split_icon">@drawable/ic_menu_split_holo_dark</item>
         <item name="menu_accept_icon">@drawable/ic_menu_accept_holo_dark</item>
         <item name="menu_refresh_directory">@drawable/ic_menu_refresh_holo_dark</item>
@@ -118,7 +129,10 @@
         <item name="dialog_info_icon">@drawable/ic_dialog_info_dark</item>
         <item name="dialog_alert_icon">@drawable/ic_dialog_alert_dark</item>
     </style>
-
+    <!-- Widget.Sherlock.ActionButton.CloseMode -->
+    <style name="CustomActionMode" parent="Widget.AppCompat.Light.ActionMode.Inverse">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
     <style name="GSecure.Light.Dialog"
            parent="Theme.AppCompat.Light.DialogWhenLarge"
            tools:ignore="NewApi">
