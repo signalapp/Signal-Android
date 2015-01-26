@@ -221,10 +221,12 @@ public class PushDecryptJob extends MasterSecretJob {
   }
 
   private void handleDuplicateMessage(MasterSecret masterSecret, TextSecureEnvelope envelope) {
-    Pair<Long, Long> messageAndThreadId = insertPlaceholder(masterSecret, envelope);
-    DatabaseFactory.getEncryptingSmsDatabase(context).markAsDecryptDuplicate(messageAndThreadId.first);
+    // Let's start ignoring these now.
 
-    MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
+//    Pair<Long, Long> messageAndThreadId = insertPlaceholder(masterSecret, envelope);
+//    DatabaseFactory.getEncryptingSmsDatabase(context).markAsDecryptDuplicate(messageAndThreadId.first);
+//
+//    MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
   }
 
   private void handleUntrustedIdentityMessage(MasterSecret masterSecret, TextSecureEnvelope envelope) {

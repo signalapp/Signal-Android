@@ -61,9 +61,18 @@ public class TextSecurePreferences {
 
   private static final String GCM_REGISTRATION_ID_PREF         = "pref_gcm_registration_id";
   private static final String GCM_REGISTRATION_ID_VERSION_PREF = "pref_gcm_registration_id_version";
+  private static final String WEBSOCKET_REGISTERED_PREF        = "pref_websocket_registered";
 
   private static final String PUSH_REGISTRATION_REMINDER_PREF  = "pref_push_registration_reminder";
   public  static final String REPEAT_ALERTS_PREF               = "pref_repeat_alerts";
+
+  public static boolean isWebsocketRegistered(Context context) {
+    return getBooleanPreference(context, WEBSOCKET_REGISTERED_PREF, false);
+  }
+
+  public static void setWebsocketRegistered(Context context, boolean registered) {
+    setBooleanPreference(context, WEBSOCKET_REGISTERED_PREF, registered);
+  }
 
   public static boolean isWifiSmsEnabled(Context context) {
     return getBooleanPreference(context, WIFI_SMS_PREF, false);

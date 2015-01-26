@@ -102,4 +102,20 @@ public class Util {
     out.close();
   }
 
+  public static void sleep(long millis) {
+    try {
+      Thread.sleep(millis);
+    } catch (InterruptedException e) {
+      throw new AssertionError(e);
+    }
+  }
+
+  public static void wait(Object lock, long millis) {
+    try {
+      lock.wait(millis);
+    } catch (InterruptedException e) {
+      throw new AssertionError(e);
+    }
+  }
+
 }

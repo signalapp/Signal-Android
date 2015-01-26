@@ -47,6 +47,7 @@ import org.whispersystems.textsecure.api.push.exceptions.UnregisteredUserExcepti
 import org.whispersystems.textsecure.api.push.exceptions.EncapsulatedExceptions;
 import org.whispersystems.textsecure.internal.push.exceptions.MismatchedDevicesException;
 import org.whispersystems.textsecure.internal.push.exceptions.StaleDevicesException;
+import org.whispersystems.textsecure.internal.util.StaticCredentialsProvider;
 import org.whispersystems.textsecure.internal.util.Util;
 
 import java.io.IOException;
@@ -72,7 +73,7 @@ public class TextSecureMessageSender {
                                  long userId, AxolotlStore store,
                                  Optional<EventListener> eventListener)
   {
-    this.socket        = new PushServiceSocket(url, trustStore, user, password);
+    this.socket        = new PushServiceSocket(url, trustStore, new StaticCredentialsProvider(user, password, null));
     this.store         = store;
     this.syncAddress   = new PushAddress(userId, user, null);
     this.eventListener = eventListener;

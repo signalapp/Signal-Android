@@ -27,23 +27,24 @@ import org.whispersystems.libaxolotl.ecc.ECPublicKey;
 import org.whispersystems.libaxolotl.state.PreKeyBundle;
 import org.whispersystems.libaxolotl.state.PreKeyRecord;
 import org.whispersystems.libaxolotl.state.SignedPreKeyRecord;
-import org.whispersystems.textsecure.api.push.PushAddress;
 import org.whispersystems.textsecure.api.crypto.AttachmentCipherOutputStream;
 import org.whispersystems.textsecure.api.push.ContactTokenDetails;
+import org.whispersystems.textsecure.api.push.PushAddress;
 import org.whispersystems.textsecure.api.push.SignedPreKeyEntity;
 import org.whispersystems.textsecure.api.push.TrustStore;
-import org.whispersystems.textsecure.api.push.exceptions.UnregisteredUserException;
-import org.whispersystems.textsecure.internal.push.exceptions.MismatchedDevicesException;
-import org.whispersystems.textsecure.internal.push.exceptions.StaleDevicesException;
-import org.whispersystems.textsecure.internal.util.Base64;
-import org.whispersystems.textsecure.internal.util.Util;
 import org.whispersystems.textsecure.api.push.exceptions.AuthorizationFailedException;
 import org.whispersystems.textsecure.api.push.exceptions.ExpectationFailedException;
 import org.whispersystems.textsecure.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.textsecure.api.push.exceptions.NotFoundException;
 import org.whispersystems.textsecure.api.push.exceptions.PushNetworkException;
 import org.whispersystems.textsecure.api.push.exceptions.RateLimitException;
+import org.whispersystems.textsecure.api.push.exceptions.UnregisteredUserException;
+import org.whispersystems.textsecure.api.util.CredentialsProvider;
+import org.whispersystems.textsecure.internal.push.exceptions.MismatchedDevicesException;
+import org.whispersystems.textsecure.internal.push.exceptions.StaleDevicesException;
+import org.whispersystems.textsecure.internal.util.Base64;
 import org.whispersystems.textsecure.internal.util.BlacklistingTrustManager;
+import org.whispersystems.textsecure.internal.util.Util;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -54,10 +55,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.KeyManagementException;
-import java.security.KeyStore;
-import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
-import java.security.cert.CertificateException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -65,7 +63,6 @@ import java.util.Set;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
-import javax.net.ssl.TrustManagerFactory;
 
 /**
  *
@@ -96,23 +93,20 @@ public class PushServiceSocket {
 
   private static final boolean ENFORCE_SSL = true;
 
-  private final String         serviceUrl;
-  private final String         localNumber;
-  private final String         password;
-  private final TrustManager[] trustManagers;
+  private final String              serviceUrl;
+  private final TrustManager[]      trustManagers;
+  private final CredentialsProvider credentialsProvider;
 
-  public PushServiceSocket(String serviceUrl, TrustStore trustStore,
-                           String localNumber, String password)
+  public PushServiceSocket(String serviceUrl, TrustStore trustStore, CredentialsProvider credentialsProvider)
   {
-    this.serviceUrl    = serviceUrl;
-    this.localNumber   = localNumber;
-    this.password      = password;
-    this.trustManagers = initializeTrustManager(trustStore);
+    this.serviceUrl          = serviceUrl;
+    this.credentialsProvider = credentialsProvider;
+    this.trustManagers       = BlacklistingTrustManager.createFor(trustStore);
   }
 
   public void createAccount(boolean voice) throws IOException {
     String path = voice ? CREATE_ACCOUNT_VOICE_PATH : CREATE_ACCOUNT_SMS_PATH;
-    makeRequest(String.format(path, localNumber), "GET", null);
+    makeRequest(String.format(path, credentialsProvider.getUser()), "GET", null);
   }
 
   public void verifyAccount(String verificationCode, String signalingKey,
@@ -145,7 +139,7 @@ public class PushServiceSocket {
   }
 
   public void registerGcmId(String gcmRegistrationId) throws IOException {
-    GcmRegistrationId registration = new GcmRegistrationId(gcmRegistrationId);
+    GcmRegistrationId registration = new GcmRegistrationId(gcmRegistrationId, true);
     makeRequest(REGISTER_GCM_PATH, "PUT", new Gson().toJson(registration));
   }
 
@@ -510,7 +504,7 @@ public class PushServiceSocket {
       connection.setRequestMethod(method);
       connection.setRequestProperty("Content-Type", "application/json");
 
-      if (password != null) {
+      if (credentialsProvider.getPassword() != null) {
         connection.setRequestProperty("Authorization", getAuthorizationHeader());
       }
 
@@ -539,35 +533,21 @@ public class PushServiceSocket {
 
   private String getAuthorizationHeader() {
     try {
-      return "Basic " + Base64.encodeBytes((localNumber + ":" + password).getBytes("UTF-8"));
+      return "Basic " + Base64.encodeBytes((credentialsProvider.getUser() + ":" + credentialsProvider.getPassword()).getBytes("UTF-8"));
     } catch (UnsupportedEncodingException e) {
       throw new AssertionError(e);
     }
   }
 
-  private TrustManager[] initializeTrustManager(TrustStore trustStore) {
-    try {
-      InputStream keyStoreInputStream = trustStore.getKeyStoreInputStream();
-      KeyStore    keyStore            = KeyStore.getInstance("BKS");
-
-      keyStore.load(keyStoreInputStream, trustStore.getKeyStorePassword().toCharArray());
-
-      TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance("X509");
-      trustManagerFactory.init(keyStore);
-
-      return BlacklistingTrustManager.createFor(trustManagerFactory.getTrustManagers());
-    } catch (KeyStoreException | CertificateException | NoSuchAlgorithmException | IOException kse) {
-      throw new AssertionError(kse);
-    }
-  }
-
   private static class GcmRegistrationId {
     private String gcmRegistrationId;
+    private boolean webSocketChannel;
 
     public GcmRegistrationId() {}
 
-    public GcmRegistrationId(String gcmRegistrationId) {
+    public GcmRegistrationId(String gcmRegistrationId, boolean webSocketChannel) {
       this.gcmRegistrationId = gcmRegistrationId;
+      this.webSocketChannel  = webSocketChannel;
     }
   }
 

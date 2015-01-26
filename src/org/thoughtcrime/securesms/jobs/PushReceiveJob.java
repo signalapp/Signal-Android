@@ -22,6 +22,11 @@ public class PushReceiveJob extends ContextJob {
 
   private final String data;
 
+  public PushReceiveJob(Context context) {
+    super(context, JobParameters.newBuilder().create());
+    this.data = null;
+  }
+
   public PushReceiveJob(Context context, String data) {
     super(context, JobParameters.newBuilder()
                                 .withPersistence()
@@ -39,16 +44,7 @@ public class PushReceiveJob extends ContextJob {
       String             sessionKey = TextSecurePreferences.getSignalingKey(context);
       TextSecureEnvelope envelope   = new TextSecureEnvelope(data, sessionKey);
 
-      if (!isActiveNumber(context, envelope.getSource())) {
-        TextSecureDirectory directory           = TextSecureDirectory.getInstance(context);
-        ContactTokenDetails contactTokenDetails = new ContactTokenDetails();
-        contactTokenDetails.setNumber(envelope.getSource());
-
-        directory.setNumber(contactTokenDetails, true);
-      }
-
-      if (envelope.isReceipt()) handleReceipt(envelope);
-      else                     handleMessage(envelope);
+      handle(envelope, true);
     } catch (IOException | InvalidVersionException e) {
       Log.w(TAG, e);
     }
@@ -64,13 +60,28 @@ public class PushReceiveJob extends ContextJob {
     return false;
   }
 
-  private void handleMessage(TextSecureEnvelope envelope) {
+  public void handle(TextSecureEnvelope envelope, boolean sendExplicitReceipt) {
+    if (!isActiveNumber(context, envelope.getSource())) {
+      TextSecureDirectory directory           = TextSecureDirectory.getInstance(context);
+      ContactTokenDetails contactTokenDetails = new ContactTokenDetails();
+      contactTokenDetails.setNumber(envelope.getSource());
+
+      directory.setNumber(contactTokenDetails, true);
+    }
+
+    if (envelope.isReceipt()) handleReceipt(envelope);
+    else                      handleMessage(envelope, sendExplicitReceipt);
+  }
+
+  private void handleMessage(TextSecureEnvelope envelope, boolean sendExplicitReceipt) {
     JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
     long       messageId  = DatabaseFactory.getPushDatabase(context).insert(envelope);
 
-    jobManager.add(new DeliveryReceiptJob(context, envelope.getSource(),
-                                          envelope.getTimestamp(),
-                                          envelope.getRelay()));
+    if (sendExplicitReceipt) {
+      jobManager.add(new DeliveryReceiptJob(context, envelope.getSource(),
+                                            envelope.getTimestamp(),
+                                            envelope.getRelay()));
+    }
 
     jobManager.add(new PushDecryptJob(context, messageId));
   }
