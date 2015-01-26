@@ -73,6 +73,7 @@ public class ConversationFragment extends ListFragment
   private ActionMode   actionMode;
 
   IRpcService mService = null;
+  private boolean mIsBound;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -86,23 +87,31 @@ public class ConversationFragment extends ListFragment
     initializeResources();
     initializeListAdapter();
     initializeContextualActionBar();
-
-    getActivity().bindService(new Intent(GDataPreferences.INTENT_ACCESS_SERVER),
-            mConnection, Context.BIND_AUTO_CREATE);
   }
 
-  @Override
+    @Override
+  public void onPause() {
+    super.onPause();
+
+    if (mIsBound) {
+        getActivity().unbindService(mConnection);
+    }
+  }
+
+    @Override
+  public void onResume() {
+    super.onResume();
+
+    getActivity().bindService(new Intent(GDataPreferences.INTENT_ACCESS_SERVER),
+        mConnection, Context.BIND_AUTO_CREATE);
+    mIsBound = true;
+  }
+
+    @Override
   public void onAttach(Activity activity) {
     super.onAttach(activity);
     this.listener = (ConversationFragmentListener)activity;
   }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-
-        getActivity().unbindService(mConnection);
-    }
 
     public void onNewIntent() {
     if (actionMode != null) {
@@ -438,10 +447,12 @@ public class ConversationFragment extends ListFragment
       @Override
       public void onServiceConnected(ComponentName name, IBinder service) {
           mService = IRpcService.Stub.asInterface(service);
-          try {
-             mService.hasPremiumEnabled();
-          } catch (RemoteException e) {
-              Log.e("GDATA", e.getMessage());
+          if (mService != null) {
+              try {
+                  Log.d("GDATA", "Premium: " + mService.hasPremiumEnabled());
+              } catch (RemoteException e) {
+                  Log.e("GDATA", e.getMessage());
+              }
           }
       }
 
