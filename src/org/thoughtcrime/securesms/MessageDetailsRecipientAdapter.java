@@ -44,7 +44,7 @@ public class MessageDetailsRecipientAdapter extends BaseAdapter implements AbsLi
   @Override
   public View getView(int position, View convertView, ViewGroup parent) {
     if (convertView == null) {
-      convertView = LayoutInflater.from(context).inflate(R.layout.conversation_item_details_item, parent, false);
+      convertView = LayoutInflater.from(context).inflate(R.layout.message_details_recipient, parent, false);
     }
 
     ((MessageDetailsRecipient)convertView).set(masterSecret, record, recipients, position);

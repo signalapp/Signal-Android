@@ -87,14 +87,14 @@ public class MessageDetailsRecipient extends RelativeLayout
 
     setContactPhoto(recipient);
 
-    conflictButton.setVisibility(View.GONE);
-    resendButton.setVisibility(View.GONE);
-    errorDescription.setVisibility(View.GONE);
+    int conflictVisibility = View.GONE;
+    int resendVisibility = View.GONE;
+    int errorVisibility = View.GONE;
     if (record.hasNetworkFailures()) {
       for (final NetworkFailure failure : record.getNetworkFailures()) {
         if (failure.getRecipientId() == recipient.getRecipientId()) {
-          resendButton.setVisibility(View.VISIBLE);
-          errorDescription.setVisibility(View.VISIBLE);
+          resendVisibility = View.VISIBLE;
+          errorVisibility = View.VISIBLE;
           errorDescription.setText("Failed to send");
           resendButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -120,8 +120,8 @@ public class MessageDetailsRecipient extends RelativeLayout
     } else if (record.isIdentityMismatchFailure()) {
       for (final IdentityKeyMismatch mismatch : record.getIdentityKeyMismatches()) {
         if (mismatch.getRecipientId() == recipient.getRecipientId()) {
-          conflictButton.setVisibility(View.VISIBLE);
-          errorDescription.setVisibility(View.VISIBLE);
+          conflictVisibility = View.VISIBLE;
+          errorVisibility = View.VISIBLE;
           errorDescription.setText("New identity");
           conflictButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -132,6 +132,9 @@ public class MessageDetailsRecipient extends RelativeLayout
         }
       }
     }
+    resendButton.setVisibility(resendVisibility);
+    conflictButton.setVisibility(conflictVisibility);
+    errorDescription.setVisibility(errorVisibility);
   }
 
   public void unbind() {

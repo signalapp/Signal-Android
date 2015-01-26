@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Database;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.DateUtils;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -36,17 +37,23 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
   private MasterSecret     masterSecret;
   private MessageRecord    messageRecord;
   private ConversationItem item;
+  private ViewGroup        itemParent;
+  private ViewGroup        header;
+  private ViewGroup        parent;
   private boolean          pushDestination;
   private Recipients       recipients;
   private TextView         sentDate;
   private TextView         receivedDate;
+  private View             receivedContainer;
   private TextView         transport;
+  private TextView         toFrom;
   private ListView         recipientsList;
+  private LayoutInflater   li;
 
   @Override
   public void onCreate(Bundle bundle) {
     super.onCreate(bundle);
-    setContentView(R.layout.conversation_item_details);
+    setContentView(R.layout.message_details_activity);
 
     initializeResources();
 
@@ -59,16 +66,23 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
   }
 
   private void initializeResources() {
-    recipientsList = (ListView) findViewById(R.id.recipients_list);
-    sentDate       = (TextView) findViewById(R.id.sent_time      );
-    receivedDate   = (TextView) findViewById(R.id.received_time  );
-    transport      = (TextView) findViewById(R.id.transport      );
+    li              = LayoutInflater.from(this);
+    parent          = (ViewGroup) findViewById(R.id.container);
+    itemParent      = (ViewGroup) findViewById(R.id.item_container);
+    recipientsList  = (ListView)  findViewById(R.id.recipients_list);
 
     masterSecret    = getIntent().getParcelableExtra(MASTER_SECRET_EXTRA);
     pushDestination = getIntent().getBooleanExtra(PUSH_EXTRA, false);
   }
 
   private void initializeDates() {
+    if (messageRecord.isOutgoing() && messageRecord.isFailed()) {
+      transport.setText("-");
+      sentDate.setText("-");
+      receivedContainer.setVisibility(View.GONE);
+      return;
+    }
+
     final String transportText;
     if      (messageRecord.isPending()) transportText = getString(R.string.ConversationFragment_pending);
     else if (messageRecord.isPush())    transportText = getString(R.string.ConversationFragment_push);
@@ -77,27 +91,32 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
 
     transport.setText(transportText);
 
-    String dateFormatPattern;
-
-    if (DateFormat.is24HourFormat(getApplicationContext())) {
-      dateFormatPattern = "MMM d, yyyy HH:mm:ss zzz";
+    if (messageRecord.isPending() || messageRecord.isFailed()) {
+      sentDate.setText("-");
+      receivedContainer.setVisibility(View.GONE);
     } else {
-      dateFormatPattern = "MMM d, yyyy hh:mm:ssa zzz";
-    }
+      SimpleDateFormat dateFormatter = DateUtils.getDetailedDateFormatter(this);
+      sentDate.setText(dateFormatter.format(new Date(messageRecord.getDateSent())));
 
-    SimpleDateFormat dateFormatter = new SimpleDateFormat(dateFormatPattern, Locale.getDefault());
-
-    sentDate.setText(dateFormatter.format(new Date(messageRecord.getDateSent())));
-
-    if (messageRecord.getDateReceived() != messageRecord.getDateSent() && !messageRecord.isOutgoing()) {
-      receivedDate.setText(dateFormatter.format(new Date(messageRecord.getDateReceived())));
-      findViewById(R.id.received_container).setVisibility(View.VISIBLE);
-    } else {
-      findViewById(R.id.received_container).setVisibility(View.GONE);
+      if (messageRecord.getDateReceived() != messageRecord.getDateSent() && !messageRecord.isOutgoing()) {
+        receivedDate.setText(dateFormatter.format(new Date(messageRecord.getDateReceived())));
+        receivedContainer.setVisibility(View.VISIBLE);
+      } else {
+        receivedContainer.setVisibility(View.GONE);
+      }
     }
   }
 
   private void initializeRecipients() {
+    final int toFromRes;
+    if (messageRecord.isMms() && !messageRecord.isPush() && !messageRecord.isOutgoing()) {
+      toFromRes = R.string.message_details_header__with;
+    } else if (messageRecord.isOutgoing()) {
+      toFromRes = R.string.message_details_header__to;
+    } else {
+      toFromRes = R.string.message_details_header__from;
+    }
+    toFrom.setText(toFromRes);
     item.set(masterSecret, messageRecord, new HashSet<MessageRecord>(), null, recipients != messageRecord.getRecipients(), pushDestination);
     recipientsList.setAdapter(new MessageDetailsRecipientAdapter(this, masterSecret, messageRecord, recipients));
     getContentResolver().registerContentObserver(Uri.parse(Database.CONVERSATION_URI + messageRecord.getThreadId()),
@@ -120,15 +139,25 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     recipients    = data.second;
 
     if (item == null) {
-      ViewGroup parent = (ViewGroup) findViewById(R.id.item_container);
       if (messageRecord.isGroupAction()) {
-        item = (ConversationItem) LayoutInflater.from(this).inflate(R.layout.conversation_item_activity, parent, false);
+        item = (ConversationItem) li.inflate(R.layout.conversation_item_activity, itemParent, false);
       } else if (messageRecord.isOutgoing()) {
-        item = (ConversationItem) LayoutInflater.from(this).inflate(R.layout.conversation_item_sent, parent, false);
+        item = (ConversationItem) li.inflate(R.layout.conversation_item_sent, itemParent, false);
       } else {
-        item = (ConversationItem) LayoutInflater.from(this).inflate(R.layout.conversation_item_received, parent, false);
+        item = (ConversationItem) li.inflate(R.layout.conversation_item_received, itemParent, false);
       }
-      parent.addView(item);
+      itemParent.addView(item);
+    }
+
+    if (header == null) {
+      header            = (ViewGroup) li.inflate(R.layout.message_details_header, recipientsList, false);
+      sentDate          = (TextView ) header.findViewById(R.id.sent_time);
+      receivedContainer =             header.findViewById(R.id.received_container);
+      receivedDate      = (TextView ) header.findViewById(R.id.received_time     );
+      transport         = (TextView ) header.findViewById(R.id.transport         );
+      toFrom            = (TextView ) header.findViewById(R.id.tofrom            );
+      recipientsList.setHeaderDividersEnabled(false);
+      recipientsList.addHeaderView(header, null, false);
     }
 
     initializeRecipients();
