@@ -16,13 +16,21 @@
  */
 package org.whispersystems.textsecure.internal.util;
 
+import org.whispersystems.textsecure.api.push.TrustStore;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigInteger;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.LinkedList;
 import java.util.List;
 
 import javax.net.ssl.TrustManager;
+import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
 /**
@@ -49,6 +57,22 @@ public class BlacklistingTrustManager implements X509TrustManager {
     }
 
     throw new AssertionError("No X509 Trust Managers!");
+  }
+
+  public static TrustManager[] createFor(TrustStore trustStore) {
+    try {
+      InputStream keyStoreInputStream = trustStore.getKeyStoreInputStream();
+      KeyStore keyStore            = KeyStore.getInstance("BKS");
+
+      keyStore.load(keyStoreInputStream, trustStore.getKeyStorePassword().toCharArray());
+
+      TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance("X509");
+      trustManagerFactory.init(keyStore);
+
+      return BlacklistingTrustManager.createFor(trustManagerFactory.getTrustManagers());
+    } catch (KeyStoreException | CertificateException | IOException | NoSuchAlgorithmException e) {
+      throw new AssertionError(e);
+    }
   }
 
   private final X509TrustManager trustManager;

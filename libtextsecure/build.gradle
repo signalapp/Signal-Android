@@ -23,6 +23,7 @@ dependencies {
     compile 'com.googlecode.libphonenumber:libphonenumber:6.1'
     compile 'org.whispersystems:gson:2.2.4'
     compile 'org.whispersystems:axolotl-android:1.0.0'
+    compile 'com.squareup.okhttp:okhttp:2.2.0'
 }
 
 android {

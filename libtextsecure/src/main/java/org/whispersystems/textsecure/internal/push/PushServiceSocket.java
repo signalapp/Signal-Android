@@ -107,7 +107,7 @@ public class PushServiceSocket {
     this.serviceUrl    = serviceUrl;
     this.localNumber   = localNumber;
     this.password      = password;
-    this.trustManagers = initializeTrustManager(trustStore);
+    this.trustManagers = BlacklistingTrustManager.createFor(trustStore);
   }
 
   public void createAccount(boolean voice) throws IOException {
@@ -542,22 +542,6 @@ public class PushServiceSocket {
       return "Basic " + Base64.encodeBytes((localNumber + ":" + password).getBytes("UTF-8"));
     } catch (UnsupportedEncodingException e) {
       throw new AssertionError(e);
-    }
-  }
-
-  private TrustManager[] initializeTrustManager(TrustStore trustStore) {
-    try {
-      InputStream keyStoreInputStream = trustStore.getKeyStoreInputStream();
-      KeyStore    keyStore            = KeyStore.getInstance("BKS");
-
-      keyStore.load(keyStoreInputStream, trustStore.getKeyStorePassword().toCharArray());
-
-      TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance("X509");
-      trustManagerFactory.init(keyStore);
-
-      return BlacklistingTrustManager.createFor(trustManagerFactory.getTrustManagers());
-    } catch (KeyStoreException | CertificateException | NoSuchAlgorithmException | IOException kse) {
-      throw new AssertionError(kse);
     }
   }
 

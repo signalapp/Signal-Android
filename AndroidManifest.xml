@@ -228,6 +228,7 @@
     <service android:enabled="true" android:name=".service.ApplicationMigrationService"/>
     <service android:enabled="true" android:name=".service.KeyCachingService"/>
     <service android:enabled="true" android:name=".service.RegistrationService"/>
+    <service android:enabled="true" android:name=".service.MessageRetrievalService"/>
 
     <service android:name=".service.QuickResponseService"
              android:permission="android.permission.SEND_RESPOND_VIA_MESSAGE"

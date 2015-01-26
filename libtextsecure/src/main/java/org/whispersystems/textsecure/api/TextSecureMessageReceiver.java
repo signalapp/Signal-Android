@@ -17,23 +17,41 @@
 package org.whispersystems.textsecure.api;
 
 import org.whispersystems.libaxolotl.InvalidMessageException;
+import org.whispersystems.libaxolotl.InvalidVersionException;
 import org.whispersystems.textsecure.api.crypto.AttachmentCipherInputStream;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachmentPointer;
+import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 import org.whispersystems.textsecure.api.push.TrustStore;
 import org.whispersystems.textsecure.internal.push.PushServiceSocket;
+import org.whispersystems.textsecure.internal.websocket.WebSocketConnection;
+import org.whispersystems.textsecure.internal.websocket.WebSocketProtos;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+
+import static org.whispersystems.textsecure.internal.websocket.WebSocketProtos.WebSocketRequestMessage;
 
 public class TextSecureMessageReceiver {
 
   private final PushServiceSocket socket;
+  private final TrustStore        trustStore;
+  private final String            url;
+  private final String            user;
+  private final String            password;
+  private final String            signalingKey;
 
   public TextSecureMessageReceiver(String url, TrustStore trustStore,
-                                   String user, String password)
+                                   String user, String password, String signalingKey)
   {
-    this.socket = new PushServiceSocket(url, trustStore, user, password);
+    this.trustStore   = trustStore;
+    this.signalingKey = signalingKey;
+    this.url          = url;
+    this.user         = user;
+    this.password     = password;
+    this.socket       = new PushServiceSocket(url, trustStore, user, password);
   }
 
   public InputStream retrieveAttachment(TextSecureAttachmentPointer pointer, File destination)
@@ -41,6 +59,11 @@ public class TextSecureMessageReceiver {
   {
     socket.retrieveAttachment(pointer.getRelay().orNull(), pointer.getId(), destination);
     return new AttachmentCipherInputStream(destination, pointer.getKey());
+  }
+
+  public TextSecureMessagePipe createMessagePipe() {
+    WebSocketConnection webSocket = new WebSocketConnection(url, trustStore, user, password);
+    return new TextSecureMessagePipe(webSocket, signalingKey);
   }
 
 }
