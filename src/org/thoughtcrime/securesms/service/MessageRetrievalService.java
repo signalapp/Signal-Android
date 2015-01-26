@@ -32,7 +32,7 @@ public class MessageRetrievalService extends Service implements Runnable, Inject
   public static final  String ACTION_ACTIVITY_STARTED  = "ACTIVITY_STARTED";
   public static final  String ACTION_ACTIVITY_FINISHED = "ACTIVITY_FINISHED";
   public static final  String ACTION_PUSH_RECEIVED     = "PUSH_RECEIVED";
-  private static final long   REQUEST_TIMEOUT_MINUTES  = 1;
+  private static final long   REQUEST_TIMEOUT_MINUTES  = 2;
 
   private final ExecutorService executor = Executors.newSingleThreadExecutor(new NamedThreadFactory());
 
@@ -86,6 +86,8 @@ public class MessageRetrievalService extends Service implements Runnable, Inject
           decrementPushReceived();
         }
       } catch (IOException e) {
+        Log.w(TAG, e);
+      } catch (Exception e) {
         Log.w(TAG, e);
       } finally {
         Log.w(TAG, "Shutting down pipe...");

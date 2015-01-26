@@ -11,13 +11,16 @@ import com.squareup.okhttp.internal.ws.WebSocketListener;
 
 import org.whispersystems.textsecure.api.push.TrustStore;
 import org.whispersystems.textsecure.internal.util.BlacklistingTrustManager;
+import org.whispersystems.textsecure.internal.util.Util;
 
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.util.LinkedList;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
@@ -38,7 +41,8 @@ public class WebSocketConnection {
   private final String     wsUri;
   private final TrustStore trustStore;
 
-  private Client client;
+  private Client          client;
+  private KeepAliveSender keepAliveSender;
 
   public WebSocketConnection(String httpUri, TrustStore trustStore, String user, String password) {
     this.trustStore = trustStore;
@@ -59,6 +63,11 @@ public class WebSocketConnection {
       client.disconnect();
       client = null;
     }
+
+    if (keepAliveSender != null) {
+      keepAliveSender.shutdown();
+      keepAliveSender = null;
+    }
   }
 
   public synchronized WebSocketRequestMessage readRequest(long timeoutMillis)
@@ -68,22 +77,22 @@ public class WebSocketConnection {
       throw new IOException("Connection closed!");
     }
 
-    try {
-      long startTime = System.currentTimeMillis();
+    long startTime = System.currentTimeMillis();
 
-      while (client != null && incomingRequests.isEmpty() && elapsedTime(startTime) < timeoutMillis) {
-        wait(Math.max(1, timeoutMillis - elapsedTime(startTime)));
-      }
-
-      if      (incomingRequests.isEmpty() && client == null) throw new IOException("Connection closed!");
-      else if (incomingRequests.isEmpty())                   throw new TimeoutException("Timeout exceeded");
-      else                                                   return incomingRequests.removeFirst();
-    } catch (InterruptedException e) {
-      throw new AssertionError(e);
+    while (client != null && incomingRequests.isEmpty() && elapsedTime(startTime) < timeoutMillis) {
+      Util.wait(this, Math.max(1, timeoutMillis - elapsedTime(startTime)));
     }
+
+    if      (incomingRequests.isEmpty() && client == null) throw new IOException("Connection closed!");
+    else if (incomingRequests.isEmpty())                   throw new TimeoutException("Timeout exceeded");
+    else                                                   return incomingRequests.removeFirst();
   }
 
   public synchronized void sendResponse(WebSocketResponseMessage response) throws IOException {
+    if (client == null) {
+      throw new IOException("Connection closed!");
+    }
+
     WebSocketMessage message = WebSocketMessage.newBuilder()
                                                .setType(WebSocketMessage.Type.RESPONSE)
                                                .setResponse(response)
@@ -92,21 +101,26 @@ public class WebSocketConnection {
     client.sendMessage(message.toByteArray());
   }
 
-  public synchronized void sendRequest(WebSocketRequestMessage request) throws IOException {
-    WebSocketMessage message = WebSocketMessage.newBuilder()
-                                               .setType(WebSocketMessage.Type.REQUEST)
-                                               .setRequest(request)
-                                               .build();
-
-    client.sendMessage(message.toByteArray());
+  private synchronized void sendKeepAlive() throws IOException {
+    if (keepAliveSender != null) {
+      client.sendMessage(WebSocketMessage.newBuilder()
+                                         .setType(WebSocketMessage.Type.REQUEST)
+                                         .setRequest(WebSocketRequestMessage.newBuilder()
+                                         .setId(System.currentTimeMillis())
+                                         .setPath("/v1/keepalive")
+                                         .setVerb("GET")
+                                         .build()).build()
+                                         .toByteArray());
+    }
   }
 
   private synchronized void onMessage(byte[] payload) {
     try {
       WebSocketMessage message = WebSocketMessage.parseFrom(payload);
 
-      if      (message.hasRequest())  incomingRequests.add(message.getRequest());
-//      else if (message.hasResponse()) notifyResponseReceived(message.getResponse());
+      if (message.hasRequest())  {
+        incomingRequests.add(message.getRequest());
+      }
 
       notifyAll();
     } catch (InvalidProtocolBufferException e) {
@@ -120,7 +134,19 @@ public class WebSocketConnection {
       connect();
     }
 
+    if (keepAliveSender != null) {
+      keepAliveSender.shutdown();
+      keepAliveSender = null;
+    }
+
     notifyAll();
+  }
+
+  private synchronized void onConnected() {
+    if (client != null) {
+      keepAliveSender = new KeepAliveSender();
+      keepAliveSender.start();
+    }
   }
 
   private long elapsedTime(long startTime) {
@@ -132,25 +158,33 @@ public class WebSocketConnection {
     private final WebSocket webSocket;
 
     public Client(String uri, TrustStore trustStore) {
+      Log.w(TAG, "Connecting to: " + uri);
+
       this.webSocket = WebSocket.newWebSocket(new OkHttpClient().setSslSocketFactory(createTlsSocketFactory(trustStore)),
                                               new Request.Builder().url(uri).build());
-
-      Log.w(TAG, "Connecting to: " + uri);
     }
 
     public void connect() {
       new Thread() {
         @Override
         public void run() {
+          int attempt = 0;
+
           while (!webSocket.isClosed()) {
             try {
               Response response = webSocket.connect(Client.this);
 
-              if (response.code() == 101) return;
-              else                        Log.w(TAG, "WebSocket Response: " + response.code());
+              if (response.code() == 101) {
+                onConnected();
+                return;
+              }
+
+              Log.w(TAG, "WebSocket Response: " + response.code());
             } catch (IOException e) {
               Log.w(TAG, e);
             }
+
+            Util.sleep(Math.min(++attempt * 200, TimeUnit.SECONDS.toMillis(15)));
           }
         }
       }.start();
@@ -173,6 +207,8 @@ public class WebSocketConnection {
       if (type.equals(WebSocket.PayloadType.BINARY)) {
         WebSocketConnection.this.onMessage(payload.readByteArray());
       }
+
+      payload.close();
     }
 
     @Override
@@ -196,6 +232,30 @@ public class WebSocketConnection {
       } catch (NoSuchAlgorithmException | KeyManagementException e) {
         throw new AssertionError(e);
       }
+    }
+  }
+
+  private class KeepAliveSender extends Thread {
+
+    private AtomicBoolean stop = new AtomicBoolean(false);
+
+    public void run() {
+      while (!stop.get()) {
+        try {
+          Thread.sleep(TimeUnit.SECONDS.toMillis(15));
+
+          Log.w(TAG, "Sending keep alive...");
+          sendKeepAlive();
+        } catch (InterruptedException e) {
+          throw new AssertionError(e);
+        } catch (IOException e) {
+          Log.w(TAG, e);
+        }
+      }
+    }
+
+    public void shutdown() {
+      stop.set(true);
     }
   }
 }
