@@ -2,13 +2,17 @@ package org.thoughtcrime.securesms;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.IBinder;
+import android.os.RemoteException;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
@@ -49,6 +53,8 @@ import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.List;
 
+import de.gdata.messaging.isfaserverdefinitions.IRpcService;
+import de.gdata.messaging.util.GDataPreferences;
 import de.gdata.messaging.util.Util;
 
 public class ConversationFragment extends ListFragment
@@ -66,6 +72,8 @@ public class ConversationFragment extends ListFragment
   private long         threadId;
   private ActionMode   actionMode;
 
+  IRpcService mService = null;
+
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
     return Util.setFontForFragment(getActivity(), inflater.inflate(R.layout.conversation_fragment, container, false));
@@ -78,6 +86,9 @@ public class ConversationFragment extends ListFragment
     initializeResources();
     initializeListAdapter();
     initializeContextualActionBar();
+
+    getActivity().bindService(new Intent(GDataPreferences.INTENT_ACCESS_SERVER),
+            mConnection, Context.BIND_AUTO_CREATE);
   }
 
   @Override
@@ -86,7 +97,14 @@ public class ConversationFragment extends ListFragment
     this.listener = (ConversationFragmentListener)activity;
   }
 
-  public void onNewIntent() {
+    @Override
+    public void onDetach() {
+        super.onDetach();
+
+        getActivity().unbindService(mConnection);
+    }
+
+    public void onNewIntent() {
     if (actionMode != null) {
       actionMode.finish();
     }
@@ -414,5 +432,22 @@ public class ConversationFragment extends ListFragment
 
       return false;
     }
+  };
+
+  private ServiceConnection mConnection = new ServiceConnection() {
+      @Override
+      public void onServiceConnected(ComponentName name, IBinder service) {
+          mService = IRpcService.Stub.asInterface(service);
+          try {
+             mService.hasPremiumEnabled();
+          } catch (RemoteException e) {
+              Log.e("GDATA", e.getMessage());
+          }
+      }
+
+      @Override
+      public void onServiceDisconnected(ComponentName name) {
+        mService = null;
+      }
   };
 }

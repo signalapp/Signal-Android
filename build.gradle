@@ -60,6 +60,8 @@ dependencies {
     androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.1'
 
     compile project(':libtextsecure')
+
+    compile project(':IsfaServerDefinitions')
 }
 
 dependencyVerification {
