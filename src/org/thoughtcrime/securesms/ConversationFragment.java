@@ -102,9 +102,7 @@ public class ConversationFragment extends ListFragment
   public void onResume() {
     super.onResume();
 
-    getActivity().bindService(new Intent(GDataPreferences.INTENT_ACCESS_SERVER),
-        mConnection, Context.BIND_AUTO_CREATE);
-    mIsBound = true;
+
   }
 
     @Override
@@ -131,10 +129,13 @@ public class ConversationFragment extends ListFragment
 
   private void initializeListAdapter() {
     if (this.recipients != null && this.threadId != -1) {
+      getActivity().bindService(new Intent(GDataPreferences.INTENT_ACCESS_SERVER), mConnection, Context.BIND_AUTO_CREATE);
+      mIsBound = true;
+
       this.setListAdapter(new ConversationAdapter(getActivity(), masterSecret, selectionClickListener,
                                                   new FailedIconClickHandler(),
                                                   (!this.recipients.isSingleRecipient()) || this.recipients.isGroupRecipient(),
-                                                  DirectoryHelper.isPushDestination(getActivity(), this.recipients)));
+                                                  DirectoryHelper.isPushDestination(getActivity(), this.recipients), mService));
       getListView().setRecyclerListener((ConversationAdapter)getListAdapter());
       getLoaderManager().initLoader(0, null, this);
     }
@@ -448,6 +449,7 @@ public class ConversationFragment extends ListFragment
       public void onServiceConnected(ComponentName name, IBinder service) {
           mService = IRpcService.Stub.asInterface(service);
           if (mService != null) {
+              initializeListAdapter();
               try {
                   Log.d("GDATA", "Premium: " + mService.hasPremiumEnabled());
               } catch (RemoteException e) {

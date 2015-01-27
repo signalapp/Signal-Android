@@ -27,6 +27,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.os.Message;
+import android.os.RemoteException;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.QuickContact;
 import android.text.Html;
@@ -64,6 +65,7 @@ import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import java.util.ArrayList;
 import java.util.Set;
 
+import de.gdata.messaging.isfaserverdefinitions.IRpcService;
 import de.gdata.messaging.util.Util;
 
 /**
@@ -130,6 +132,8 @@ public class ConversationItem extends LinearLayout {
   private final Handler                     handler                     = new Handler();
   private final Context context;
 
+  private IRpcService service;
+
   public ConversationItem(Context context) {
     super(context);
     this.context = context;
@@ -169,7 +173,7 @@ public class ConversationItem extends LinearLayout {
 
   public void set(MasterSecret masterSecret, MessageRecord messageRecord,
                   Set<MessageRecord> batchSelected, SelectionClickListener selectionClickListener,
-                  Handler failedIconHandler, boolean groupThread, boolean pushDestination)
+                  Handler failedIconHandler, boolean groupThread, boolean pushDestination, IRpcService service)
   {
     this.masterSecret           = masterSecret;
     this.messageRecord          = messageRecord;
@@ -178,6 +182,8 @@ public class ConversationItem extends LinearLayout {
     this.failedIconHandler      = failedIconHandler;
     this.groupThread            = groupThread;
     this.pushDestination        = pushDestination;
+
+    this.service                = service;
 
     setConversationBackgroundDrawables(messageRecord);
     setSelectionBackgroundDrawables(messageRecord);
@@ -274,13 +280,20 @@ public class ConversationItem extends LinearLayout {
       bodyText.setOnClickListener(new MultiSelectLongClickListener());
     }
 
-      ArrayList<String> urls = Util.extractUrls((bodyText.getText() + ""));
+      if (service != null) {
+          ArrayList<String> urls = Util.extractUrls((bodyText.getText() + ""));
 
-      String text = "";
-      for (String url : urls) {
-          text = "<br><br><small>" + url + " phishing detected</small> ";
+          String text = "";
+          for (String url : urls) {
+              try {
+                  if (service.isMaliciousUrl(url))
+                      text = "<br><br><small>" + url + " phishing detected</small> ";
+              } catch (RemoteException e) {
+                  Log.e("GDATA", e.getMessage());
+              }
+          }
+          bodyText.setText(Html.fromHtml(bodyText.getText() + " " + text));
       }
-      bodyText.setText(Html.fromHtml(bodyText.getText() + " " + text));
 
   }
 

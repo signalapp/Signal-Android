@@ -19,12 +19,13 @@ package org.thoughtcrime.securesms;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.Handler;
+import android.support.v4.widget.CursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
-import android.support.v4.widget.CursorAdapter;
 
+import org.thoughtcrime.securesms.ConversationFragment.SelectionClickListener;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
@@ -39,8 +40,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import org.thoughtcrime.securesms.ConversationFragment.SelectionClickListener;
-
+import de.gdata.messaging.isfaserverdefinitions.IRpcService;
 import de.gdata.messaging.util.Util;
 
 /**
@@ -71,8 +71,10 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
   private final boolean                pushDestination;
   private final LayoutInflater         inflater;
 
+  private final IRpcService            service;
+
   public ConversationAdapter(Context context, MasterSecret masterSecret, SelectionClickListener selectionClickListener,
-                             Handler failedIconClickHandler, boolean groupThread, boolean pushDestination)
+                             Handler failedIconClickHandler, boolean groupThread, boolean pushDestination, IRpcService service)
   {
     super(context, null, 0);
     this.context                = context;
@@ -82,6 +84,7 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
     this.groupThread            = groupThread;
     this.pushDestination        = pushDestination;
     this.inflater               = LayoutInflater.from(context);
+    this.service                = service;
   }
 
   @Override
@@ -92,7 +95,7 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
     MessageRecord messageRecord = getMessageRecord(id, cursor, type);
 
     item.set(masterSecret, messageRecord, batchSelected, selectionClickListener,
-             failedIconClickHandler, groupThread, pushDestination);
+             failedIconClickHandler, groupThread, pushDestination, service);
   }
 
   @Override
