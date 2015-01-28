@@ -42,6 +42,9 @@
     <uses-permission android:name="org.thoughtcrime.securesms.permission.C2D_MESSAGE" />
 
     <uses-permission android:name="de.gdata.mobilesecurity.ACCESS_GISFA_DATA" />
+    <uses-permission android:name="de.gdata.mobilesecurity.ACCESS_REGISTRATION_DATA_PROVIDER" />
+    <uses-permission android:name="de.gdata.mobilesecurity.ACCESS_REGISTRATION_PRIVACY" />
+
 
     <application
         android:name=".ApplicationContext"

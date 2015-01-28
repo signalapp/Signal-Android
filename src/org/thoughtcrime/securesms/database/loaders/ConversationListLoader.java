@@ -9,6 +9,8 @@ import org.thoughtcrime.securesms.util.AbstractCursorLoader;
 
 import java.util.List;
 
+import de.gdata.messaging.util.GDataPreferences;
+
 public class ConversationListLoader extends AbstractCursorLoader {
 
   private final String filter;
@@ -24,6 +26,8 @@ public class ConversationListLoader extends AbstractCursorLoader {
       List<String> numbers = ContactAccessor.getInstance().getNumbersForThreadSearchFilter(context, filter);
 
       return DatabaseFactory.getThreadDatabase(context).getFilteredConversationList(numbers);
+    } else if (new GDataPreferences(context).isPrivacyActivated()) {
+      return DatabaseFactory.getThreadDatabase(context).getPrivacyConversationList();
     } else {
       return DatabaseFactory.getThreadDatabase(context).getConversationList();
     }

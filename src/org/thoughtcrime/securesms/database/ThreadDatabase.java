@@ -16,11 +16,14 @@
  */
 package org.thoughtcrime.securesms.database;
 
+import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.provider.Contacts;
+import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -34,10 +37,13 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import de.gdata.messaging.util.PrivacyBridge;
 
 public class ThreadDatabase extends Database {
 
@@ -283,6 +289,31 @@ public class ThreadDatabase extends Database {
   public Cursor getConversationList() {
     SQLiteDatabase db = databaseHelper.getReadableDatabase();
     Cursor cursor     =  db.query(TABLE_NAME, null, null, null, null, null, DATE + " DESC");
+    setNotifyConverationListListeners(cursor);
+    return cursor;
+  }
+
+  public Cursor getPrivacyConversationList() {
+    ArrayList<Recipient> recipients = PrivacyBridge.allHiddenRecipients(context);
+    ArrayList<Long> allIds = new ArrayList<>();
+
+    for(Recipient rec : recipients) {
+      allIds.add(rec.getRecipientId());
+    }
+
+    String selection       = RECIPIENT_IDS + " != ?";
+    String[] selectionArgs = new String[allIds.size()];
+
+    for (int i=0;i<allIds.size()-1;i++)
+      selection += (" AND " + RECIPIENT_IDS + " != ?");
+
+    int i= 0;
+    for (long id : allIds) {
+      selectionArgs[i++] = id+"";
+    }
+
+    SQLiteDatabase db = databaseHelper.getReadableDatabase();
+    Cursor cursor     = db.query(TABLE_NAME, null, selection, selectionArgs, null, null, DATE + " DESC");
     setNotifyConverationListListeners(cursor);
     return cursor;
   }

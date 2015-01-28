@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
 import android.telephony.SmsMessage;
+import android.util.Log;
 import android.util.Pair;
 
 import org.thoughtcrime.securesms.ApplicationContext;
@@ -20,6 +21,8 @@ import org.whispersystems.libaxolotl.util.guava.Optional;
 import java.util.LinkedList;
 import java.util.List;
 
+import de.gdata.messaging.util.PrivacyBridge;
+
 public class SmsReceiveJob extends ContextJob {
 
   private static final String TAG = SmsReceiveJob.class.getSimpleName();
@@ -30,22 +33,30 @@ public class SmsReceiveJob extends ContextJob {
 
   public SmsReceiveJob(Context context, Object[] pdus) {
     super(context, JobParameters.newBuilder()
-                                .withPersistence()
-                                .create());
+        .withPersistence()
+        .create());
 
     this.pdus = pdus;
   }
 
   @Override
-  public void onAdded() {}
+  public void onAdded() {
+  }
 
   @Override
   public void onRun() {
     Optional<IncomingTextMessage> message = assembleMessageFragments(pdus);
 
     if (message.isPresent()) {
+      Log.d("SMS JA", "JA SMS " + message.get().getSender());
       Pair<Long, Long> messageAndThreadId = storeMessage(message.get());
-      MessageNotifier.updateNotification(context, KeyCachingService.getMasterSecret(context), messageAndThreadId.second);
+      if (PrivacyBridge.shallSMSBeBlocked(context, message.get().getSender())) {
+        MessageNotifier.updateNotification(context, KeyCachingService.getMasterSecret(context), messageAndThreadId.second);
+        Log.d("SMS JA", "BLOCKED SMS " + PrivacyBridge.getRecipientForNumber(context, message.get().getSender()).getPrimaryRecipient().getName());
+      } else {
+        Log.d("SMS JA", "BLOCKED SMS " + message.get().getSender());
+        Log.d("SMS JA", "BLOCKED SMS " + PrivacyBridge.getRecipientForNumber(context, message.get().getSender()).getPrimaryRecipient().getName());
+      }
     }
   }
 
@@ -60,13 +71,13 @@ public class SmsReceiveJob extends ContextJob {
   }
 
   private Pair<Long, Long> storeMessage(IncomingTextMessage message) {
-    EncryptingSmsDatabase database     = DatabaseFactory.getEncryptingSmsDatabase(context);
-    MasterSecret          masterSecret = KeyCachingService.getMasterSecret(context);
+    EncryptingSmsDatabase database = DatabaseFactory.getEncryptingSmsDatabase(context);
+    MasterSecret masterSecret = KeyCachingService.getMasterSecret(context);
 
     Pair<Long, Long> messageAndThreadId;
 
     if (message.isSecureMessage()) {
-      messageAndThreadId = database.insertMessageInbox((MasterSecret)null, message);
+      messageAndThreadId = database.insertMessageInbox((MasterSecret) null, message);
     } else if (masterSecret == null) {
       messageAndThreadId = database.insertMessageInbox(MasterSecretUtil.getAsymmetricMasterSecret(context, null), message);
     } else {
@@ -75,8 +86,8 @@ public class SmsReceiveJob extends ContextJob {
 
     if (masterSecret == null || message.isSecureMessage() || message.isKeyExchange() || message.isEndSession()) {
       ApplicationContext.getInstance(context)
-                        .getJobManager()
-                        .add(new SmsDecryptJob(context, messageAndThreadId.first));
+          .getJobManager()
+          .add(new SmsDecryptJob(context, messageAndThreadId.first));
     } else {
       MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
     }
@@ -88,20 +99,19 @@ public class SmsReceiveJob extends ContextJob {
     List<IncomingTextMessage> messages = new LinkedList<>();
 
     for (Object pdu : pdus) {
-      messages.add(new IncomingTextMessage(SmsMessage.createFromPdu((byte[])pdu)));
+      messages.add(new IncomingTextMessage(SmsMessage.createFromPdu((byte[]) pdu)));
     }
 
     if (messages.isEmpty()) {
       return Optional.absent();
     }
 
-    IncomingTextMessage message =  new IncomingTextMessage(messages);
+    IncomingTextMessage message = new IncomingTextMessage(messages);
 
     if (WirePrefix.isEncryptedMessage(message.getMessageBody()) ||
-        WirePrefix.isKeyExchange(message.getMessageBody())      ||
-        WirePrefix.isPreKeyBundle(message.getMessageBody())     ||
-        WirePrefix.isEndSession(message.getMessageBody()))
-    {
+        WirePrefix.isKeyExchange(message.getMessageBody()) ||
+        WirePrefix.isPreKeyBundle(message.getMessageBody()) ||
+        WirePrefix.isEndSession(message.getMessageBody())) {
       return Optional.fromNullable(multipartMessageHandler.processPotentialMultipartMessage(message));
     } else {
       return Optional.of(message);
