@@ -30,7 +30,7 @@ public class PrivacyBridge {
 
 
   public static final String NAME_COLUMN = ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME;
-  public  static final String RECIPIENT_IDS   = "recipient_ids";
+  public static final String RECIPIENT_IDS = "recipient_ids";
 
   private static ArrayList<Recipient> allRecipients;
   private static ArrayList<Recipient> hiddenRecipients;
@@ -89,7 +89,7 @@ public class PrivacyBridge {
     if (hiddenRecipients == null) {
       hiddenRecipients = new GDataPreferences(context).getSavedHiddenRecipients();
     }
-    Log.d("hidden","mylog hidden " + (hiddenRecipients.size() +""));
+    Log.d("hidden", "mylog hidden " + (hiddenRecipients.size() + ""));
     return hiddenRecipients;
   }
 
@@ -128,10 +128,13 @@ public class PrivacyBridge {
     try {
       Type listType = new TypeToken<ArrayList<String>>() {
       }.getType();
-
       ArrayList<Recipient> recipients = getAllRecipients(mContext, false);
       ArrayList newHiddenRecipients = new ArrayList<Recipient>();
-      ArrayList<String> hiddenNumbers = new Gson().fromJson(mService.getSupressedNumbers(), listType);
+      String suppressedNumbers = mService.getSupressedNumbers();
+      ArrayList<String> hiddenNumbers = new ArrayList<String>();
+      if (suppressedNumbers != null) {
+        hiddenNumbers = new Gson().fromJson(suppressedNumbers, listType);
+      }
       for (Recipient recipient : recipients) {
         if (hiddenNumbers.contains(Util.normalizeNumber(recipient.getNumber()))) {
           newHiddenRecipients.add(recipient);
@@ -191,6 +194,7 @@ public class PrivacyBridge {
   public static String[] getContactSelectionArgs(Context context) {
     return new GDataPreferences(context).isPrivacyActivated() ? PrivacyBridge.getPrivacyContacts(context).get(1) : null;
   }
+
   /**
    * Removes hidden contacts from conversation cursor.
    *
@@ -203,19 +207,19 @@ public class PrivacyBridge {
     String[] selectionArgs;
     String[] selectionString = new String[1];
 
-    for(Recipient rec : recipients) {
+    for (Recipient rec : recipients) {
       allIds.add(rec.getRecipientId());
     }
 
-    String selection       = RECIPIENT_IDS + " != ?";
+    String selection = RECIPIENT_IDS + " != ?";
     selectionArgs = new String[allIds.size()];
 
-    for (int i=0;i<allIds.size()-1;i++)
+    for (int i = 0; i < allIds.size() - 1; i++)
       selection += (" AND " + RECIPIENT_IDS + " != ?");
 
-    int i= 0;
+    int i = 0;
     for (long id : allIds) {
-      selectionArgs[i++] = id+"";
+      selectionArgs[i++] = id + "";
     }
     selectionString[0] = selection;
     selectionArgsArray.add(selectionString);
@@ -226,6 +230,7 @@ public class PrivacyBridge {
     }
     return selectionArgsArray;
   }
+
   public static String getConversationSelection(Context context) {
     return new GDataPreferences(context).isPrivacyActivated() ? PrivacyBridge.getPrivacyConversationList(context).get(0)[0] : null;
   }
