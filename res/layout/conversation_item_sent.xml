@@ -58,7 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="5dip"
-                android:linksClickable="true"
+                android:linksClickable="false"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="?conversation_sent_text_primary_color"
                 android:textColorLink="?conversation_sent_text_primary_color"

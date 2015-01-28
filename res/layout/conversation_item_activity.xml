@@ -11,7 +11,7 @@
         android:autoLink="all"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:linksClickable="true"
+        android:linksClickable="false"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:gravity="center"
         android:textStyle="italic"

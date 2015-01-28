@@ -50,6 +50,7 @@ import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -102,8 +103,9 @@ public class ConversationFragment extends ListFragment
   public void onResume() {
     super.onResume();
 
-
-  }
+    getActivity().bindService(new Intent(GDataPreferences.INTENT_ACCESS_SERVER), mConnection, Context.BIND_AUTO_CREATE);
+    mIsBound = true;
+    }
 
     @Override
   public void onAttach(Activity activity) {
@@ -129,9 +131,6 @@ public class ConversationFragment extends ListFragment
 
   private void initializeListAdapter() {
     if (this.recipients != null && this.threadId != -1) {
-      getActivity().bindService(new Intent(GDataPreferences.INTENT_ACCESS_SERVER), mConnection, Context.BIND_AUTO_CREATE);
-      mIsBound = true;
-
       this.setListAdapter(new ConversationAdapter(getActivity(), masterSecret, selectionClickListener,
                                                   new FailedIconClickHandler(),
                                                   (!this.recipients.isSingleRecipient()) || this.recipients.isGroupRecipient(),
@@ -369,6 +368,22 @@ public class ConversationFragment extends ListFragment
         ((ConversationAdapter) getListAdapter()).notifyDataSetChanged();
 
         setCorrectMenuVisibility(actionMode.getMenu());
+      } else if (actionMode == null && view instanceof ConversationItem) {
+          boolean maliciousUrlFound = false;
+          MessageRecord messageRecord = ((ConversationItem)view).getMessageRecord();
+          ArrayList<String> urls = Util.extractUrls((messageRecord.getDisplayBody() + ""));
+          for (final String url : urls) {
+              try {
+                if (mService.isMaliciousUrl(url)) {
+                    maliciousUrlFound = true;
+                    break;
+                }
+              } catch (RemoteException e) {
+                  Log.e("GDATA", e.getMessage());
+              }
+          }
+          if (maliciousUrlFound) Log.d("GDATA", "Malicious URL found");
+
       }
     }
 
