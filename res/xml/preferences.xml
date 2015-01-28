@@ -4,23 +4,30 @@
     <CheckBoxPreference android:defaultValue="false"
                         android:key="pref_toggle_push_messaging"
                         android:title="@string/preferences__use_data_channel"
-                        android:summary="@string/preferences__use_the_data_channel_for_communication_with_other_textsecure_users"/>
+                        android:summary="@string/preferences__use_the_data_channel_for_communication_with_other_textsecure_users"
+                        android:icon="?pref_ic_push"/>
 
     <Preference android:key="preference_category_sms_mms"
-                android:title="@string/preferences__sms_mms"/>
+                android:title="@string/preferences__sms_mms"
+                android:icon="?pref_ic_sms_mms"/>
 
     <Preference android:key="preference_category_notifications"
-                android:title="@string/preferences__notifications"/>
+                android:title="@string/preferences__notifications"
+                android:icon="?pref_ic_notifications"/>
 
     <Preference android:key="preference_category_app_protection"
-                android:title="@string/preferences__app_protection"/>
+                android:title="@string/preferences__app_protection"
+                android:icon="?pref_ic_app_protection"/>
 
     <Preference android:key="preference_category_appearance"
-                android:title="@string/preferences__appearance"/>
+                android:title="@string/preferences__appearance"
+                android:icon="?pref_ic_appearance"/>
 
     <Preference android:key="preference_category_storage"
-                android:title="@string/preferences__delete_old_messages"/>
+                android:title="@string/preferences__delete_old_messages"
+                android:icon="?pref_ic_storage"/>
 
     <Preference android:key="preference_category_advanced"
-                android:title="@string/preferences__advanced"/>
+                android:title="@string/preferences__advanced"
+                android:icon="?pref_ic_advanced"/>
 </PreferenceScreen>
