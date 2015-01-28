@@ -4,6 +4,15 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.google.thoughtcrimegson.Gson;
+import com.google.thoughtcrimegson.reflect.TypeToken;
+
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+
 public class GDataPreferences {
 
   public static final String INTENT_ACCESS_SERVER = "de.gdata.mobilesecurity.ACCESS_SERVER";
@@ -11,6 +20,8 @@ public class GDataPreferences {
   private static final String APPLICATION_FONT = "APPLICATION_FONT";
   private static final String PREMIUM_INSTALLED = "PREMIUM_INSTALLED";
   private static final String PRIVACY_ACTIVATED = "PRIVACY_ACTIVATED";
+  private static final String SAVED_HIDDEN_RECIPIENTS = "SAVED_HIDDEN_RECIPIENTSAA";
+  private static final String SAVED_RECIPIENTS = "SAVED_HIDDEN_RECIPIENTSAA";
 
   private final SharedPreferences mPreferences;
   private final Context mContext;
@@ -35,9 +46,11 @@ public class GDataPreferences {
   public boolean isPremiumInstalled() {
     return mPreferences.getBoolean(PREMIUM_INSTALLED, false);
   }
+
   public void setPrivacyActivated(boolean activated) {
     mPreferences.edit().putBoolean(PRIVACY_ACTIVATED, activated).commit();
   }
+
   public boolean isPrivacyActivated() {
     return mPreferences.getBoolean(PRIVACY_ACTIVATED, false);
   }
@@ -46,8 +59,47 @@ public class GDataPreferences {
     mPreferences.edit().putString(APPLICATION_FONT, applicationFont).commit();
   }
 
+  public void saveHiddenRecipients(ArrayList<Recipient> hiddenRecipients) {
+    ArrayList<Long> recIds = new ArrayList<Long>();
+    for (Recipient recipient : hiddenRecipients) {
+      recIds.add(recipient.getRecipientId());
+    }
+    mPreferences.edit().putString(SAVED_HIDDEN_RECIPIENTS, new Gson().toJson(recIds)).commit();
+  }
+
+  public ArrayList<Recipient> getSavedHiddenRecipients() {
+    Type listType = new TypeToken<ArrayList<Long>>() {
+    }.getType();
+    ArrayList<Long> recipients = new Gson().fromJson(mPreferences.getString(SAVED_HIDDEN_RECIPIENTS, new Gson().toJson(new ArrayList<Long>())), listType);
+    ArrayList<Recipient> hiddenRecipients = new ArrayList<Recipient>();
+    for (Long recId : recipients) {
+      hiddenRecipients.add(RecipientFactory.getRecipientForId(mContext, recId, false));
+    }
+    return hiddenRecipients != null ? hiddenRecipients : new ArrayList<Recipient>();
+  }
+
+  public void saveAllRecipients(ArrayList<Recipient> hiddenRecipients) {
+    ArrayList<Long> recIds = new ArrayList<Long>();
+    for (Recipient recipient : hiddenRecipients) {
+      recIds.add(recipient.getRecipientId());
+    }
+    mPreferences.edit().putString(SAVED_RECIPIENTS, new Gson().toJson(recIds)).commit();
+  }
+
+  public ArrayList<Recipient> getSavedAllRecipients() {
+    Type listType = new TypeToken<ArrayList<Long>>() {
+    }.getType();
+    ArrayList<Long> recipients = new Gson().fromJson(mPreferences.getString(SAVED_RECIPIENTS, new Gson().toJson(new ArrayList<Long>())), listType);
+    ArrayList<Recipient> allRecipients = new ArrayList<Recipient>();
+    for (Long recId : recipients) {
+      allRecipients.add(RecipientFactory.getRecipientForId(mContext, recId, false));
+    }
+    return allRecipients != null ? allRecipients : new ArrayList<Recipient>();
+  }
+
   public String getApplicationFont() {
     return mPreferences.getString(APPLICATION_FONT, "");
   }
 
 }
+

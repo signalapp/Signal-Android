@@ -5,6 +5,8 @@ import android.support.v7.app.ActionBarActivity;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 
+import de.gdata.messaging.util.GDataInitPrivacy;
+
 public class PassphraseRequiredActionBarActivity extends ActionBarActivity implements PassphraseRequiredActivity {
 
   private final PassphraseRequiredMixin delegate = new PassphraseRequiredMixin();
@@ -12,6 +14,7 @@ public class PassphraseRequiredActionBarActivity extends ActionBarActivity imple
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    GDataInitPrivacy.init(getApplicationContext());
     delegate.onCreate(this);
   }
 

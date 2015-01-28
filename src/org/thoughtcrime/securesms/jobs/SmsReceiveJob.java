@@ -48,15 +48,10 @@ public class SmsReceiveJob extends ContextJob {
     Optional<IncomingTextMessage> message = assembleMessageFragments(pdus);
 
     if (message.isPresent()) {
-      Log.d("SMS JA", "JA SMS " + message.get().getSender());
       Pair<Long, Long> messageAndThreadId = storeMessage(message.get());
-      if (PrivacyBridge.shallSMSBeBlocked(context, message.get().getSender())) {
+      if (!PrivacyBridge.shallContactBeBlocked(context, message.get().getSender())) {
         MessageNotifier.updateNotification(context, KeyCachingService.getMasterSecret(context), messageAndThreadId.second);
-        Log.d("SMS JA", "BLOCKED SMS " + PrivacyBridge.getRecipientForNumber(context, message.get().getSender()).getPrimaryRecipient().getName());
-      } else {
-        Log.d("SMS JA", "BLOCKED SMS " + message.get().getSender());
-        Log.d("SMS JA", "BLOCKED SMS " + PrivacyBridge.getRecipientForNumber(context, message.get().getSender()).getPrimaryRecipient().getName());
-      }
+      } 
     }
   }
 

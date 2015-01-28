@@ -30,6 +30,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.NumberUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
@@ -37,6 +38,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
+import de.gdata.messaging.util.PrivacyBridge;
 
 /**
  * Database to supply all types of contacts that TextSecure needs to know about
@@ -48,6 +51,7 @@ public class ContactsDatabase {
   private final DatabaseOpenHelper dbHelper;
   private final Context            context;
 
+  public static final String RECIPIENT_SELECTION   = "recipient_ids" + " != ?";
   public static final String TABLE_NAME         = "CONTACTS";
   public static final String ID_COLUMN          = ContactsContract.CommonDataKinds.Phone._ID;
   public static final String NAME_COLUMN        = ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME;
@@ -127,7 +131,6 @@ public class ContactsDatabase {
     default: return new MergeCursor(cursors.toArray(new Cursor[]{}));
     }
   }
-
   private Cursor queryAndroidDb(String filter) {
     final Uri baseUri;
     if (!TextUtils.isEmpty(filter)) {
@@ -136,7 +139,8 @@ public class ContactsDatabase {
     } else {
       baseUri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
     }
-    Cursor cursor = context.getContentResolver().query(baseUri, ANDROID_PROJECTION, null, null, CONTACT_LIST_SORT);
+    Cursor cursor = context.getContentResolver().query(baseUri, ANDROID_PROJECTION,
+        PrivacyBridge.getContactSelection(context), PrivacyBridge.getContactSelectionArgs(context), CONTACT_LIST_SORT);
     return new TypedCursorWrapper(cursor);
   }
 

@@ -103,7 +103,7 @@ public class ConversationListFragment extends ListFragment
   @Override
   public void onResume() {
     super.onResume();
-
+    initializeListAdapter();
     initializeReminders();
   }
 
