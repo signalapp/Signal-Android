@@ -4,11 +4,13 @@
     <string name="ConversationActivity_gdata_selfdestroy_entry_thirty">30 minutes</string>
     <string name="ConversationActivity_gdata_selfdestroy_entry_hour">1 hour</string>
 
-    <!-- contact_selection_list -->
     <string name="gdata_contact_selection_page_title">Contacts</string>
 
-    <!-- conversation_list -->
     <string name="gdata_conversation_list_page_title">Conversations</string>
     <string name="show_hidden_convs">Versteckte anzeigen</string>
 
+    <string name="gd_dialog_fragment_phishing_title">Web protection</string>
+    <string name="gd_dialog_fragment_phishing_message">This site is a known phishing site. Only continue if you are certain it poses no threat to you.</string>
+    <string name="gd_dialog_fragment_phishing_block">Block</string>
+    <string name="gd_dialog_fragment_phishing_continue">Continue</string>
 </resources>

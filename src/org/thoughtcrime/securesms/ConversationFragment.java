@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -55,6 +56,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import de.gdata.messaging.isfaserverdefinitions.IRpcService;
+import de.gdata.messaging.util.GDDialogFragment;
 import de.gdata.messaging.util.GDataPreferences;
 import de.gdata.messaging.util.Util;
 
@@ -62,6 +64,8 @@ public class ConversationFragment extends ListFragment
   implements LoaderManager.LoaderCallbacks<Cursor>
 {
   private static final String TAG = ConversationFragment.class.getSimpleName();
+  private static final String HTTP_SCHEME = "http://";
+    private static final String HTTPS_SCHEME = "https://";
 
   private final ActionModeCallback     actionModeCallback     = new ActionModeCallback();
   private final SelectionClickListener selectionClickListener = new SelectionClickListener();
@@ -329,6 +333,29 @@ public class ConversationFragment extends ListFragment
     });
   }
 
+  private void handlePhishingDetection(final String url) {
+      GDDialogFragment dialogFragment = GDDialogFragment.newInstance(GDDialogFragment.TYPE_PHISHING_WARNING, new DialogInterface.OnClickListener() {
+          @Override
+          public void onClick(DialogInterface dialog, int which) {
+            //do nothing
+          }
+      }, new DialogInterface.OnClickListener() {
+          @Override
+          public void onClick(DialogInterface dialog, int which) {
+            handleOpenBrowser(url);
+          }
+      });
+      dialogFragment.show(getFragmentManager(), "dialog");
+  }
+
+  private void handleOpenBrowser(String url) {
+      if (!url.startsWith(HTTP_SCHEME) && !url.startsWith(HTTPS_SCHEME)) {
+          url = HTTP_SCHEME + url;
+      }
+      Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+      startActivity(intent);
+  }
+
   @Override
   public Loader<Cursor> onCreateLoader(int arg0, Bundle arg1) {
     return new ConversationLoader(getActivity(), threadId);
@@ -362,29 +389,38 @@ public class ConversationFragment extends ListFragment
   {
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-      if (actionMode != null && view instanceof ConversationItem) {
-        MessageRecord messageRecord = ((ConversationItem)view).getMessageRecord();
-        ((ConversationAdapter) getListAdapter()).toggleBatchSelected(messageRecord);
-        ((ConversationAdapter) getListAdapter()).notifyDataSetChanged();
+        if (actionMode != null && view instanceof ConversationItem) {
+            MessageRecord messageRecord = ((ConversationItem) view).getMessageRecord();
+            ((ConversationAdapter) getListAdapter()).toggleBatchSelected(messageRecord);
+            ((ConversationAdapter) getListAdapter()).notifyDataSetChanged();
 
-        setCorrectMenuVisibility(actionMode.getMenu());
-      } else if (actionMode == null && view instanceof ConversationItem) {
-          boolean maliciousUrlFound = false;
-          MessageRecord messageRecord = ((ConversationItem)view).getMessageRecord();
-          ArrayList<String> urls = Util.extractUrls((messageRecord.getDisplayBody() + ""));
-          for (final String url : urls) {
-              try {
-                if (mService.isMaliciousUrl(url)) {
-                    maliciousUrlFound = true;
-                    break;
+            setCorrectMenuVisibility(actionMode.getMenu());
+        } else if (actionMode == null && view instanceof ConversationItem) {
+            boolean maliciousUrlFound = false;
+            String lastUrl = "";
+            MessageRecord messageRecord = ((ConversationItem) view).getMessageRecord();
+            ArrayList<String> urls = Util.extractUrls((messageRecord.getDisplayBody() + ""));
+            for (final String url : urls) {
+                if (mService != null) {
+                    try {
+                        if (mService.isMaliciousUrl(url)) {
+                            mService.addPhishingException(url);
+                            maliciousUrlFound = true;
+                        }
+                    } catch (RemoteException e) {
+                        Log.e("GDATA", e.getMessage());
+                    }
+                    lastUrl = url;
                 }
-              } catch (RemoteException e) {
-                  Log.e("GDATA", e.getMessage());
-              }
-          }
-          if (maliciousUrlFound) Log.d("GDATA", "Malicious URL found");
-
-      }
+            }
+            if (maliciousUrlFound) {
+                handlePhishingDetection(lastUrl);
+            } else {
+                if (!"".equals(lastUrl)) {
+                    handleOpenBrowser(lastUrl);
+                }
+            }
+        }
     }
 
     @Override
@@ -464,7 +500,6 @@ public class ConversationFragment extends ListFragment
       public void onServiceConnected(ComponentName name, IBinder service) {
           mService = IRpcService.Stub.asInterface(service);
           if (mService != null) {
-              initializeListAdapter();
               try {
                   Log.d("GDATA", "Premium: " + mService.hasPremiumEnabled());
               } catch (RemoteException e) {
@@ -478,4 +513,6 @@ public class ConversationFragment extends ListFragment
         mService = null;
       }
   };
+
+
 }
