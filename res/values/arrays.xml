@@ -177,7 +177,11 @@
     <item>@drawable/ic_send_sms_secure</item>
     <item>@drawable/ic_send_push</item>
   </string-array>
-
+    <string-array name="transport_selection_icons_gdata">
+        <item>@drawable/ic_send_sms_gdata</item>
+        <item>@drawable/ic_send_sms_gdata</item>
+        <item>@drawable/ic_send_sms_gdata</item>
+    </string-array>
   <string-array name="transport_selection_icons_dark">
     <item>@drawable/ic_send_sms_insecure_dark</item>
     <item>@drawable/ic_send_sms_secure</item>

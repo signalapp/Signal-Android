@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
+import de.gdata.messaging.SlidingTabLayout;
 import de.gdata.messaging.util.GDataInitPrivacy;
 import de.gdata.messaging.util.GDataPreferences;
 
@@ -66,35 +67,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     setContentView(R.layout.gdata_conversation_list_activity);
 
     getSupportActionBar().setTitle(R.string.app_name);
-    conversationListFragment = ConversationListFragment.newInstance(getString(R.string.gdata_conversation_list_page_title));
-    contactSelectionFragment = ContactSelectionFragment.newInstance(getString(R.string.gdata_contact_selection_page_title));
-
-    final ViewPager vpPager = (ViewPager) findViewById(R.id.gdata_pager_content);
-    PagerAdapter adapterViewPager = new PagerAdapter(getSupportFragmentManager());
-    vpPager.setAdapter(adapterViewPager);
-    vpPager.setCurrentItem(new GDataPreferences(getApplicationContext()).getViewPagersLastPage());
-    initializeResources();
-    initializeContactUpdatesReceiver();
-
-    DirectoryRefreshListener.schedule(this);
-
-
-    vpPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-      @Override
-      public void onPageScrolled(int i, float v, int i2) {
-
-      }
-
-      @Override
-      public void onPageSelected(int i) {
-        new GDataPreferences(getApplicationContext()).setViewPagerLastPage(i);
-      }
-
-      @Override
-      public void onPageScrollStateChanged(int i) {
-
-      }
-    });
+    initViewPagerLayout();
   }
 
   @Override
@@ -134,7 +107,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
     menu.findItem(R.id.menu_clear_passphrase).setVisible(!TextSecurePreferences.isPasswordDisabled(this));
 
-    if (this.masterSecret != null) {
+    if (this.masterSecret != null && new GDataPreferences(getApplicationContext()).getViewPagersLastPage() == 0) {
       inflater.inflate(R.menu.conversation_list, menu);
       MenuItem menuItem = menu.findItem(R.id.menu_search);
       initializeSearch(menuItem);
@@ -322,5 +295,57 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
       return position == 0 ? conversationListFragment : contactSelectionFragment;
     }
   }
+  private void initViewPagerLayout() {
+    conversationListFragment = ConversationListFragment.newInstance(getString(R.string.gdata_conversation_list_page_title));
+    contactSelectionFragment = ContactSelectionFragment.newInstance(getString(R.string.gdata_contact_selection_page_title));
+
+    ViewPager vpPager = (ViewPager) findViewById(R.id.pager);
+    PagerAdapter adapterViewPager = new PagerAdapter(getSupportFragmentManager());
+    vpPager.setAdapter(adapterViewPager);
+    vpPager.setCurrentItem(new GDataPreferences(getApplicationContext()).getViewPagersLastPage());
+
+    SlidingTabLayout mSlidingTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
+    Integer[] iconResourceArray = {R.drawable.stock_sms_gray,
+        R.drawable.ic_tab_contacts};
+
+    mSlidingTabLayout.setIconResourceArray(iconResourceArray);
+    mSlidingTabLayout.setViewPager(vpPager);
+
+    initializeResources();
+    initializeContactUpdatesReceiver();
+
+    DirectoryRefreshListener.schedule(this);
+
+    mSlidingTabLayout.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
+
+      @Override
+      public int getIndicatorColor(int position) {
+        return getResources().getColor(R.color.white);    //define any color in xml resources and set it here, I have used white
+      }
+
+      @Override
+      public int getDividerColor(int position) {
+        return getResources().getColor(R.color.transparent);
+      }
+    });
+    mSlidingTabLayout.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+      @Override
+      public void onPageScrolled(int i, float v, int i2) {
+
+      }
+
+      @Override
+      public void onPageSelected(int i) {
+        new GDataPreferences(getApplicationContext()).setViewPagerLastPage(i);
+        invalidateOptionsMenu();
+      }
+
+      @Override
+      public void onPageScrollStateChanged(int i) {
+
+      }
+    });
+  }
+
 
 }

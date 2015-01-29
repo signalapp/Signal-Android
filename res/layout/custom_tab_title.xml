@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_weight="1"
+              android:paddingTop="10dp"
+              android:layout_height="40dp"
+              android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/tab_layout_icon"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="center"/>
+</LinearLayout>

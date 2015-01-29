@@ -77,6 +77,7 @@
                     android:contentDescription="@string/conversation_activity__send"
                     android:nextFocusLeft="@+id/embedded_text_editor"
                     android:padding="12dp"
+                    android:visibility="gone"
                     android:src="?conversation_send_button_sms_insecure"
                     android:clickable="false"
                     android:enabled="true" />

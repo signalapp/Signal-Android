@@ -5,7 +5,7 @@
     <item android:title="@string/text_secure_normal__menu_new_message"
           android:id="@+id/menu_new_message"
           android:icon="?attr/menu_new_conversation_icon"
-          app:showAsAction="always" />
+          app:showAsAction="never" />
 
     <item android:title="@string/text_secure_normal__menu_new_group"
           android:id="@+id/menu_new_group"
