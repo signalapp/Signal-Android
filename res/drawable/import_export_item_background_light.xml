@@ -4,14 +4,14 @@
     <item>
         <shape android:shape="rectangle">
             <solid android:color="@color/import_export_item_background_shadow_light" />
-            <corners android:radius="@dimen/conversation_item_corner_radius" />
+            <corners android:radius="@dimen/message_bubble_corner_radius" />
         </shape>
     </item>
 
-    <item android:bottom="@dimen/conversation_item_drop_shadow_dist">
+    <item android:bottom="@dimen/message_bubble_shadow_distance">
         <shape>
             <solid android:color="@color/import_export_item_background_light" />
-            <corners android:radius="@dimen/conversation_item_corner_radius" />
+            <corners android:radius="@dimen/message_bubble_corner_radius" />
         </shape>
     </item>
 

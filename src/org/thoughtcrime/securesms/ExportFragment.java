@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.database.PlaintextBackupExporter;
 import org.thoughtcrime.securesms.util.Dialogs;
+import org.thoughtcrime.securesms.util.ResUtil;
 
 import java.io.IOException;
 
@@ -59,7 +60,7 @@ public class ExportFragment extends Fragment {
 
 //  private void handleExportEncryptedBackup() {
 //    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-//    builder.setIcon(Dialogs.resolveIcon(getActivity(), R.attr.dialog_info_icon));
+//    builder.setIcon(Dialogs.getDrawable(getActivity(), R.attr.dialog_info_icon));
 //    builder.setTitle(getActivity().getString(R.string.ExportFragment_export_to_sd_card));
 //    builder.setMessage(getActivity().getString(R.string.ExportFragment_this_will_export_your_encrypted_keys_settings_and_messages));
 //    builder.setPositiveButton(getActivity().getString(R.string.ExportFragment_export), new Dialog.OnClickListener() {
@@ -74,7 +75,7 @@ public class ExportFragment extends Fragment {
 
   private void handleExportPlaintextBackup() {
     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-    builder.setIcon(Dialogs.resolveIcon(getActivity(), R.attr.dialog_alert_icon));
+    builder.setIcon(ResUtil.getDrawable(getActivity(), R.attr.dialog_alert_icon));
     builder.setTitle(getActivity().getString(R.string.ExportFragment_export_plaintext_to_sd_card));
     builder.setMessage(getActivity().getString(R.string.ExportFragment_warning_this_will_export_the_plaintext_contents));
     builder.setPositiveButton(getActivity().getString(R.string.ExportFragment_export), new Dialog.OnClickListener() {

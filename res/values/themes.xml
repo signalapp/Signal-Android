@@ -54,20 +54,23 @@
         <item name="conversation_keyboard_toggle">@drawable/ic_ime_dark</item>
 
         <item name="conversation_item_background">@drawable/conversation_item_background</item>
-        <item name="conversation_item_received_background">@drawable/conversation_item_received_shape</item>
-        <item name="conversation_item_received_triangle_background">@drawable/conversation_item_received_triangle_shape</item>
-        <item name="conversation_item_sent_background">@drawable/conversation_item_sent_shape</item>
-        <item name="conversation_item_sent_triangle_background">@drawable/conversation_item_sent_triangle_shape</item>
-        <item name="conversation_item_sent_push_background">@drawable/conversation_item_sent_push_shape</item>
-        <item name="conversation_item_sent_push_triangle_background">@drawable/conversation_item_sent_push_triangle_shape</item>
+        <item name="conversation_item_received_background">@color/conversation_item_received_background_light</item>
+        <item name="conversation_item_sent_background">@color/conversation_item_sent_background_light</item>
+        <item name="conversation_item_sent_push_background">@color/conversation_item_sent_push_background_light</item>
+        <item name="conversation_item_sent_pending_background">@color/conversation_item_sent_pending_background_light</item>
+        <item name="conversation_item_sent_push_pending_background">@color/conversation_item_sent_push_pending_background_light</item>
         <item name="conversation_item_sent_indicator_text_background">@drawable/conversation_item_sent_indicator_text_shape</item>
+        <item name="conversation_item_shadow">@color/conversation_item_received_shadow_light</item>
+        <item name="conversation_item_mms_pending_mask">#99ffffff</item>
+
+        <item name="triangle_tick_incoming">@drawable/triangle_tick_incoming_light</item>
+        <item name="triangle_tick_outgoing_sent_sms">@drawable/triangle_tick_outgoing_sent_sms_light</item>
+        <item name="triangle_tick_outgoing_sent_push">@drawable/triangle_tick_outgoing_sent_push_light</item>
+        <item name="triangle_tick_outgoing_pending_sms">@drawable/triangle_tick_outgoing_pending_sms_light</item>
+        <item name="triangle_tick_outgoing_pending_push">@drawable/triangle_tick_outgoing_pending_push_light</item>
 
         <item name="dialog_info_icon">@drawable/ic_dialog_info_light</item>
         <item name="dialog_alert_icon">@drawable/ic_dialog_alert_light</item>
-        <item name="conversation_item_sent_pending_background">@drawable/conversation_item_sent_pending_shape</item>
-        <item name="conversation_item_sent_pending_triangle_background">@drawable/conversation_item_sent_pending_triangle_shape</item>
-        <item name="conversation_item_sent_push_pending_background">@drawable/conversation_item_sent_push_pending_shape</item>
-        <item name="conversation_item_sent_push_pending_triangle_background">@drawable/conversation_item_sent_push_pending_triangle_shape</item>
 
         <item name="import_export_item_background_color">@color/import_export_item_background_light</item>
         <item name="import_export_item_background_shadow_color">@color/import_export_item_background_shadow_light</item>
@@ -141,19 +144,22 @@
         <item name="conversation_selection_header_text">#66eeeeee</item>
 
         <item name="conversation_item_background">@drawable/conversation_item_background_dark</item>
-        <item name="conversation_item_received_background">@drawable/conversation_item_received_shape_dark</item>
-        <item name="conversation_item_received_triangle_background">@drawable/conversation_item_received_triangle_shape_dark</item>
-        <item name="conversation_item_sent_background">@drawable/conversation_item_sent_shape_dark</item>
-        <item name="conversation_item_sent_triangle_background">@drawable/conversation_item_sent_triangle_shape_dark</item>
-        <item name="conversation_item_sent_push_background">@drawable/conversation_item_sent_push_shape_dark</item>
-        <item name="conversation_item_sent_push_triangle_background">@drawable/conversation_item_sent_push_triangle_shape_dark</item>
-        <item name="conversation_item_sent_indicator_text_background">@drawable/conversation_item_sent_indicator_text_shape_dark</item>
+        <item name="conversation_item_received_background">@color/conversation_item_received_background_dark</item>
+        <item name="conversation_item_sent_background">@color/conversation_item_sent_background_dark</item>
+        <item name="conversation_item_sent_push_background">@color/conversation_item_sent_push_background_dark</item>
+        <item name="conversation_item_sent_pending_background">@color/conversation_item_sent_pending_background_dark</item>
+        <item name="conversation_item_sent_push_pending_background">@color/conversation_item_sent_push_pending_background_dark</item>
+        <item name="conversation_item_shadow">@color/conversation_item_received_shadow_dark</item>
+        <item name="conversation_item_mms_pending_mask">#99000000</item>
+
+        <item name="triangle_tick_incoming">@drawable/triangle_tick_incoming_dark</item>
+        <item name="triangle_tick_outgoing_sent_sms">@drawable/triangle_tick_outgoing_sent_sms_dark</item>
+        <item name="triangle_tick_outgoing_sent_push">@drawable/triangle_tick_outgoing_sent_push_dark</item>
+        <item name="triangle_tick_outgoing_pending_sms">@drawable/triangle_tick_outgoing_pending_sms_dark</item>
+        <item name="triangle_tick_outgoing_pending_push">@drawable/triangle_tick_outgoing_pending_push_dark</item>
+
         <item name="dialog_info_icon">@drawable/ic_dialog_info_dark</item>
         <item name="dialog_alert_icon">@drawable/ic_dialog_alert_dark</item>
-        <item name="conversation_item_sent_pending_background">@drawable/conversation_item_sent_pending_shape_dark</item>
-        <item name="conversation_item_sent_pending_triangle_background">@drawable/conversation_item_sent_pending_triangle_shape_dark</item>
-        <item name="conversation_item_sent_push_pending_background">@drawable/conversation_item_sent_push_pending_shape_dark</item>
-        <item name="conversation_item_sent_push_pending_triangle_background">@drawable/conversation_item_sent_push_pending_triangle_shape_dark</item>
 
         <item name="import_export_item_background_color">@color/import_export_item_background_dark</item>
         <item name="import_export_item_background_shadow_color">@color/import_export_item_background_shadow_dark</item>

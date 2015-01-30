@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.util.Log;
 
@@ -48,6 +49,22 @@ public class MediaUtil {
     }
 
     return data;
+  }
+
+  public static Bitmap getOrGenerateThumbnail(Context context, MasterSecret masterSecret, PduPart part)
+      throws IOException, BitmapDecodingException
+  {
+    if (part.getDataUri() != null && part.getId() > -1) {
+      return BitmapFactory.decodeStream(DatabaseFactory.getPartDatabase(context)
+                                                       .getThumbnailStream(masterSecret, part.getId()));
+    } else if (part.getDataUri() != null) {
+      Log.w(TAG, "generating thumbnail for new part");
+      Bitmap bitmap = MediaUtil.generateThumbnail(context, masterSecret, part.getDataUri(), Util.toIsoString(part.getContentType())).getBitmap();
+      part.setThumbnail(bitmap);
+      return bitmap;
+    } else {
+      throw new FileNotFoundException("no data location specified");
+    }
   }
 
   public static byte[] getPartData(Context context, MasterSecret masterSecret, PduPart part)

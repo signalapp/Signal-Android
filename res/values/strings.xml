@@ -491,6 +491,7 @@
     <string name="conversation_activity__attachment_thumbnail">Attachment Thumbnail</string>
 
     <!-- conversation_item -->
+    <string name="conversation_item__mms_downloading_description">Media message downloading</string>
     <string name="conversation_item__mms_image_description">Media message</string>
     <string name="conversation_item__play_button_description">Play button</string>
     <string name="conversation_item__secure_message_description">Secure message</string>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/gray95">
@@ -11,16 +10,6 @@
                android:layout_height="match_parent"
                android:contentDescription="@string/media_preview_activity__image_content_description"
                android:visibility="gone"/>
-
-    <TextView android:id="@+id/loading_indicator"
-                 android:layout_width="50dp"
-                 android:layout_height="50dp"
-                 android:layout_centerInParent="true"
-                 android:text="···"
-                 android:textSize="30sp"
-                 android:textColor="@color/gray10"
-                 android:visibility="gone"
-                 tools:ignore="HardcodedText" />
 
     <TextView android:id="@+id/error"
               android:layout_width="wrap_content"

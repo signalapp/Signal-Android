@@ -33,6 +33,7 @@ import android.widget.Toast;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.ResUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Dialogs;
 
@@ -82,7 +83,7 @@ public class LedBlinkPatternListPreference extends ListPreference implements OnS
 
   private void initializeDialog(View view) {
     AlertDialog.Builder builder = new AlertDialog.Builder(context);
-    builder.setIcon(Dialogs.resolveIcon(context, R.attr.dialog_info_icon));
+    builder.setIcon(ResUtil.getDrawable(context, R.attr.dialog_info_icon));
     builder.setTitle(R.string.preferences__pref_led_blink_custom_pattern_title);
     builder.setView(view);
     builder.setOnCancelListener(new CustomDialogCancelListener());
