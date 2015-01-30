@@ -513,10 +513,10 @@ public class ConversationItem extends LinearLayout {
         intent.putExtra(MediaPreviewActivity.DATE_EXTRA, messageRecord.getDateReceived());
         context.startActivity(intent);
       } else if ( TextSecurePreferences.isMediaDecryptionWarningPreferred(context) ) {
-          showMediaDecryptionWarning();
+        showMediaDecryptionWarning();
       } else {
-          Log.d(TAG, "Not showing media decryption warning because of user preference.");
-          fireIntent();
+        Log.d(TAG, "Not showing media decryption warning because of user preference.");
+        fireIntent();
       }
     }
 
