@@ -53,7 +53,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.loaders.ConversationListLoader;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.Dialogs;
+import org.thoughtcrime.securesms.util.ResUtil;
 
 import java.util.Set;
 
@@ -197,7 +197,7 @@ public class ConversationListFragment extends ListFragment
 
   private void handleDeleteAllSelected() {
     AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
-    alert.setIcon(Dialogs.resolveIcon(getActivity(), R.attr.dialog_alert_icon));
+    alert.setIcon(ResUtil.getDrawable(getActivity(), R.attr.dialog_alert_icon));
     alert.setTitle(R.string.ConversationListFragment_delete_threads_question);
     alert.setMessage(R.string.ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads);
     alert.setCancelable(true);

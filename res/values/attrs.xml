@@ -39,18 +39,22 @@
 
     <attr name="conversation_item_background" format="reference"/>
     <attr name="conversation_item_received_background" format="reference" />
-    <attr name="conversation_item_received_triangle_background" format="reference" />
-    <attr name="conversation_item_sent_background" format="reference" />
-    <attr name="conversation_item_sent_triangle_background" format="reference" />
-    <attr name="conversation_item_sent_pending_background" format="reference" />
-    <attr name="conversation_item_sent_pending_triangle_background" format="reference" />
-    <attr name="conversation_item_sent_push_background" format="reference" />
-    <attr name="conversation_item_sent_push_triangle_background" format="reference" />
+    <attr name="conversation_item_sent_background" format="color" />
+    <attr name="conversation_item_sent_pending_background" format="color" />
+    <attr name="conversation_item_sent_push_background" format="color" />
     <attr name="conversation_item_sent_indicator_text_background" format="reference" />
+    <attr name="conversation_item_sent_push_pending_background" format="reference" />
+    <attr name="conversation_item_shadow" format="color" />
+    <attr name="conversation_item_mms_pending_mask" format="color" />
+
+    <attr name="triangle_tick_incoming" format="reference" />
+    <attr name="triangle_tick_outgoing_sent_sms" format="reference" />
+    <attr name="triangle_tick_outgoing_sent_push" format="reference" />
+    <attr name="triangle_tick_outgoing_pending_sms" format="reference" />
+    <attr name="triangle_tick_outgoing_pending_push" format="reference" />
+
     <attr name="dialog_info_icon" format="reference" />
     <attr name="dialog_alert_icon" format="reference" />
-    <attr name="conversation_item_sent_push_pending_background" format="reference" />
-    <attr name="conversation_item_sent_push_pending_triangle_background" format="reference" />
 
     <attr name="conversation_icon_attach_audio" format="reference"/>
     <attr name="conversation_icon_attach_video" format="reference" />

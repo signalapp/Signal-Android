@@ -47,6 +47,7 @@ import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.ProgressDialogAsyncTask;
+import org.thoughtcrime.securesms.util.ResUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.TextSecureAccountManager;
@@ -286,7 +287,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
       public boolean onPreferenceChange(final Preference preference, Object newValue) {
         if (((CheckBoxPreference)preference).isChecked()) {
           AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-          builder.setIcon(Dialogs.resolveIcon(getActivity(), R.attr.dialog_info_icon));
+          builder.setIcon(ResUtil.getDrawable(getActivity(), R.attr.dialog_info_icon));
           builder.setTitle(R.string.ApplicationPreferencesActivity_disable_push_messages);
           builder.setMessage(R.string.ApplicationPreferencesActivity_this_will_disable_push_messages);
           builder.setNegativeButton(android.R.string.cancel, null);
