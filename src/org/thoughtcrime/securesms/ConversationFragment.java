@@ -402,16 +402,21 @@ public class ConversationFragment extends ListFragment
             ArrayList<String> urls = Util.extractUrls((messageRecord.getDisplayBody() + ""));
             for (final String url : urls) {
                 if (mService != null) {
+                    if (!url.startsWith(HTTP_SCHEME) && !url.startsWith(HTTPS_SCHEME)) {
+                        lastUrl = HTTP_SCHEME + url;
+                    } else {
+                        lastUrl = url;
+                    }
                     try {
-                        if (mService.isMaliciousUrl(url)) {
-                            mService.addPhishingException(url);
+                        if (mService.isMaliciousUrl(lastUrl)) {
+                            mService.addPhishingException(lastUrl);
                             maliciousUrlFound = true;
                         }
                     } catch (RemoteException e) {
                         Log.e("GDATA", e.getMessage());
                     }
-                    lastUrl = url;
                 }
+                lastUrl = url;
             }
             if (maliciousUrlFound) {
                 handlePhishingDetection(lastUrl);
