@@ -515,7 +515,7 @@ public class ConversationItem extends LinearLayout {
       } else if ( TextSecurePreferences.isMediaDecryptionWarningPreferred(context) ) {
           showMediaDecryptionWarning();
       } else {
-          Log.w(TAG, "Not showing media decryption warning because of user preference.");
+          Log.d(TAG, "Not showing media decryption warning because of user preference.");
           fireIntent();
       }
     }
@@ -532,7 +532,7 @@ public class ConversationItem extends LinearLayout {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
           TextSecurePreferences.setMediaDecryptionWarningPreferred(context, !isChecked);
-          Log.w(TAG, "Media decryption warning preferred set to:" + !isChecked);
+          Log.d(TAG, "Media decryption warning preferred set to:" + !isChecked);
         }
       });
       builder.setView(checkBox);
