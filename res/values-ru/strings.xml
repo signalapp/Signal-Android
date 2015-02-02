@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">TextSecure</string>
+  <string name="app_name">SecureChat</string>
   <string name="yes">Да</string>
   <string name="no">Нет</string>
   <string name="delete">Удалить</string>
@@ -26,7 +26,7 @@
   <string name="ApplicationPreferencesActivity_sms_enabled">Входящие SMS включены</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Нажмите для выбора SMS-приложения по умолчанию</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Входящие SMS отключены</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Нажмите, чтобы использовать TextSecure для всех SMS</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Нажмите, чтобы использовать SecureChat для всех SMS</string>
   <string name="ApplicationPreferencesActivity_on">включено</string>
   <string name="ApplicationPreferencesActivity_On">Включено</string>
   <string name="ApplicationPreferencesActivity_off">выключено</string>
@@ -97,9 +97,9 @@
   <string name="ConversationActivity_transport_insecure_mms">Незащищённое MMS</string>
   <string name="ConversationActivity_transport_secure_sms">Защищённое MMS</string>
   <string name="ConversationActivity_transport_secure_mms">Защищённое MMS</string>
-  <string name="ConversationActivity_transport_textsecure">TextSecure</string>
+  <string name="ConversationActivity_transport_textsecure">SecureChat</string>
   <string name="ConversationActivity_get_with_it">Получить: %s</string>
-  <string name="ConversationActivity_install_textsecure">Установить TextSecure: %s</string>
+  <string name="ConversationActivity_install_textsecure">Установить SecureChat: %s</string>
   <string name="ConversationActivity_error_leaving_group">Ошибка при выходе из группы...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Подробности</string>
@@ -147,7 +147,7 @@
   <string name="GroupCreateActivity_actionbar_update_title">Обновить группу</string>
   <string name="GroupCreateActivity_group_name_hint">Название группы</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Новая MMS-группа</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Выбранный контакт не поддерживает TextSecure-группы, поэтому эта группа будет преобразована в MMS.</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Выбранный контакт не поддерживает SecureChat-группы, поэтому эта группа будет преобразована в MMS.</string>
   <string name="GroupCreateActivity_you_dont_support_push">Вы не зарегистрированы для использования канала передачи данных, поэтому группы отключены.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Непредвиденная ошибка не позволила создать группу.</string>
   <string name="GroupCreateActivity_contacts_no_members">Нужен как минимум один участник в группе!</string>
@@ -156,7 +156,7 @@
   <string name="GroupCreateActivity_menu_create_title">Создать группу</string>
   <string name="GroupCreateActivity_creating_group">Создаём %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Обновляем %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Нельзя добавить в TextSecure-группу собеседников, у которых TextSecure не установлен</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Нельзя добавить в SecureChat-группу собеседников, у которых SecureChat не установлен</string>
   <string name="GroupCreateActivity_loading_group_details">Загружаем подробности о группе...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Я</string>
@@ -166,12 +166,12 @@
   <string name="ImportExportActivity_export">Экспорт</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Импортировать системную базу SMS?</string>
-  <string name="ImportFragment_this_will_import_messages_from_the_system">Вы собираетесь импортировать SMS-сообщения из системной базы данных в TextSecure. Если вы уже это делали ранее, повторный импорт приведёт к дублированию сообщений.</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">Вы собираетесь импортировать SMS-сообщения из системной базы данных в SecureChat. Если вы уже это делали ранее, повторный импорт приведёт к дублированию сообщений.</string>
   <string name="ImportFragment_import">Импортировать</string>
   <string name="ImportFragment_cancel">Отмена</string>
   <string name="ImportFragment_restore_encrypted_backup">Восстановить из зашифрованной резервной копии?</string>
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
-Восстановление из зашифрованной резервной копии полностью заменит существующие ключи, настройки и сообщения. Вы потеряете всю информацию, которая сейчас содержится в TextSecure, но не в резервной копии.</string>
+Восстановление из зашифрованной резервной копии полностью заменит существующие ключи, настройки и сообщения. Вы потеряете всю информацию, которая сейчас содержится в SecureChat, но не в резервной копии.</string>
   <string name="ImportFragment_restore">Восстановить</string>
   <string name="ImportFragment_import_plaintext_backup">Импортировать из простой резервной копии?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Вы собираетесь импортировать сообщения из простой резервной копии. Если вы ранее уже импортировали сообщения из этой копии, повторный импорт приведёт к их дублированию.</string>
@@ -187,7 +187,7 @@
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">При сканировании ключ не обнаружен!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">Установить сканер штрих-кодов?</string>
-  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Приложению TextSecure необходим сканер штрих-кодов, чтобы читать QR-коды.</string>
+  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Приложению SecureChat необходим сканер штрих-кодов, чтобы читать QR-коды.</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Ошибка при сохранении MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Ошибка подключения к провайдеру MMS...</string>
@@ -195,7 +195,7 @@
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">MMS-сообщение</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Полученное сообщение зашифровано старой версией TextSecure, которая больше не поддерживается. Пожалуйста, попросите отправителя обновиться до последней версии и заново послать сообщение.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Полученное сообщение зашифровано старой версией SecureChat, которая больше не поддерживается. Пожалуйста, попросите отправителя обновиться до последней версии и заново послать сообщение.</string>
   <string name="MessageRecord_left_group">Вы покинули группу.</string>
   <string name="MessageRecord_updated_group">Группа обновлена.</string>
   <!--PassphraseChangeActivity-->
@@ -203,17 +203,17 @@
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Неверная старая парольная фраза!</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Введите парольную фразу</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">Иконка TextSecure</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Иконка SecureChat</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Подтвердить парольную фразу</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Неверная парольная фраза!</string>
   <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Подпись, полученная сейчас при обмене ключами, отличается от той, которой собеседник подписывался ранее. Это может означать, что кто-то пытается перехватить вашу переписку или что ваш собеседник переустановил TextSecure, и теперь у него новый личный ключ.</string>
+  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Подпись, полученная сейчас при обмене ключами, отличается от той, которой собеседник подписывался ранее. Это может означать, что кто-то пытается перехватить вашу переписку или что ваш собеседник переустановил SecureChat, и теперь у него новый личный ключ.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Возможно, вы захотите перепроверить этого собеседника.</string>
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">Подпись в этом обмене ключами является доверенной, но вы отключили в настройках автоматическое выполнение обменов.</string>
   <string name="ReceiveKeyActivity_processing">Обработка</string>
   <string name="ReceiveKeyActivity_processing_key_exchange">Обрабатываем обмен ключами...</string>
   <!--RegistrationActivity-->
-  <string name="RegistrationActivity_connect_with_textsecure">Подключение к TextSecure</string>
+  <string name="RegistrationActivity_connect_with_textsecure">Подключение к SecureChat</string>
   <string name="RegistrationActivity_select_your_country">Выберите страну</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Необходимо указать код страны</string>
   <string name="RegistrationActivity_you_must_specify_your_phone_number">Необходимо указать номер телефона</string>
@@ -249,12 +249,12 @@
   <string name="RegistrationProgressActivity_too_many_requests">Слишком много запросов!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Вы недавно уже запрашивали голосовой звонок. Запросить ещё один вы сможете через 20 минут.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Конфликт регистрации</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Этот номер уже зарегистрирован на другом сервере TextSecure (CyanogenMod?). Вам нужно удалить регистрацию там, что бы зарегистрироваться здесь.</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Этот номер уже зарегистрирован на другом сервере SecureChat (CyanogenMod?). Вам нужно удалить регистрацию там, что бы зарегистрироваться здесь.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Регистрация завершена</string>
-  <string name="RegistrationService_textsecure_registration_has_successfully_completed">Регистрация в TextSecure успешно завершена.</string>
+  <string name="RegistrationService_textsecure_registration_has_successfully_completed">Регистрация в SecureChat успешно завершена.</string>
   <string name="RegistrationService_registration_error">Ошибка регистрации</string>
-  <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">При регистрации в TextSecure возникла ошибка.</string>
+  <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">При регистрации в SecureChat возникла ошибка.</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Получено повреждённое
 сообщение обмена ключами!
@@ -320,7 +320,7 @@
   <!--KeyCachingService-->
   <string name="KeyCachingService_textsecure_passphrase_cached">Нажмите, чтобы открыть.</string>
   <string name="KeyCachingService_textsecure_passphrase_cached_with_lock">Нажмите, чтобы открыть. Чтобы закрыть, нажмите на замок.</string>
-  <string name="KeyCachingService_passphrase_cached">TextSecure разблокирован</string>
+  <string name="KeyCachingService_passphrase_cached">SecureChat разблокирован</string>
   <string name="KeyCachingService_lock">Заблокировать парольной фразой</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">Новых сообщений: %d</string>
@@ -333,9 +333,9 @@
   <string name="MessageNotifier_mark_all_as_read">Отметить все как прочитанные</string>
   <string name="MessageNotifier_mark_as_read">Отметить как прочитанное</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Извините, TextSecure пока не поддерживает быстрые ответы.</string>
+  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Извините, SecureChat пока не поддерживает быстрые ответы.</string>
   <!--auto_initiate_activity-->
-  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Вы получили сообщение от собеседника, поддерживающего зашифрованное общение при помощи TextSecure. Хотите начать защищённый сеанс?</string>
+  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Вы получили сообщение от собеседника, поддерживающего зашифрованное общение при помощи SecureChat. Хотите начать защищённый сеанс?</string>
   <string name="auto_initiate_activity__initiate_exchange">Начать обмен</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">СТАРАЯ ПАРОЛЬНАЯ ФРАЗА:</string>
@@ -355,7 +355,7 @@
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Нет недавних звонков.</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Отправить сообщение TextSecure</string>
+  <string name="conversation_activity__type_message_push">Отправить сообщение SecureChat</string>
   <string name="conversation_activity__type_message_sms_secure">Отправить защищённое SMS</string>
   <string name="conversation_activity__type_message_sms_insecure">Отправить незащищённое SMS</string>
   <string name="conversation_activity__type_message_mms_secure">Отправить защищённое MMS</string>
@@ -391,7 +391,7 @@
   <string name="log_submit_activity__submitting">Отправка</string>
   <string name="log_submit_activity__posting_logs">Отправляем логи на gist...</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Хотите ли вы импортировать имеющиеся текстовые сообщения в зашифрованную базу данных TextSecure?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Хотите ли вы импортировать имеющиеся текстовые сообщения в зашифрованную базу данных SecureChat?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Cистемная база данных изменена не будет.</string>
   <string name="database_migration_activity__skip">Пропустить</string>
   <string name="database_migration_activity__import">Импортировать</string>
@@ -406,7 +406,7 @@
   <string name="import_fragment__import_the_database_from_the_default_system">Импортировать сообщения из базы данных SMS-приложения, которое используется сейчас по умолчанию.</string>
   <string name="import_fragment__import_encrypted_backup">Импорт зашифрованной резервной копии</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">
-Восстановить из ранее экспортированной зашифрованной резервной копии TextSecure.</string>
+Восстановить из ранее экспортированной зашифрованной резервной копии SecureChat.</string>
   <string name="import_fragment__import_plaintext_backup">Импорт простой резервной копии</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Импортировать из простой резервной копии. Совместимо с приложением «SMSBackup And Restore».</string>
@@ -424,13 +424,13 @@
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Открыть</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">Приложению TextSecure необходимо знать настройки MMS вашего сотового оператора, чтобы отправлять и получать мультимедийные и групповые сообщения. Ваше устройство не даёт доступа к этой информации — так иногда бывает, если в телефоне запрещена смена SIM-карты и в некоторых иных случаях.</string>
+  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">Приложению SecureChat необходимо знать настройки MMS вашего сотового оператора, чтобы отправлять и получать мультимедийные и групповые сообщения. Ваше устройство не даёт доступа к этой информации — так иногда бывает, если в телефоне запрещена смена SIM-карты и в некоторых иных случаях.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Чтобы отправлять мультимедийные и групповые сообщения, нажмите «ОК» и настройте MMS. Это нужно сделать только один раз. Настройки для вашего оператора можно узнать в службе техподдержки или в интернете по запросу «ваш оператор APN».</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Выполнить</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-Регистрация бесплатна и повышает безопасность при общении с другими пользователями TextSecure. Пожалуйста, подтвердите ваш номер телефона.</string>
+Регистрация бесплатна и повышает безопасность при общении с другими пользователями SecureChat. Пожалуйста, подтвердите ваш номер телефона.</string>
   <string name="registration_activity__your_country">ВАША СТРАНА</string>
   <string name="registration_activity__your_country_code_and_phone_number">КОД ВАШЕЙ СТРАНЫ
 И НОМЕР ТЕЛЕФОНА</string>
@@ -442,7 +442,7 @@
   <string name="registration_problems__some_possible_problems_include">Возможные причины:</string>
   <string name="registration_problems__sms_interceptors">Обработчики SMS</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
-Некоторые SMS-приложения сторонних разработчиков (например, Handcent или GoSMS) ведут себя неправильно и перехватывают все входящие SMS-сообщения. Проверьте, не получали ли вы сообщение, начинающееся со слов «Your TextSecure verification code». Если да, то вам необходимо настроить ваше SMS-приложение так, чтобы оно пропускало сообщения дальше. </string>
+Некоторые SMS-приложения сторонних разработчиков (например, Handcent или GoSMS) ведут себя неправильно и перехватывают все входящие SMS-сообщения. Проверьте, не получали ли вы сообщение, начинающееся со слов «Your SecureChat verification code». Если да, то вам необходимо настроить ваше SMS-приложение так, чтобы оно пропускало сообщения дальше. </string>
   <string name="registration_problems__incorrect_number">Неверный номер.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
 Пожалуйста, убедитесь, правильно ли вы указали свой номер и соответствует ли его формат
@@ -450,30 +450,30 @@
 </string>
   <string name="registration_problems__google_voice">Google Voice.</string>
   <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">
-TextSecure не работает с номерами Google Voice.</string>
+SecureChat не работает с номерами Google Voice.</string>
   <!--registration_progress_activity-->
   <string name="registration_progress_activity__voice_verification">Голосовая проверка</string>
   <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">
-Для проверки вашего номера TextSecure также может вам позвонить. Нажмите «Позвонить мне», дождитесь звонка и введите ниже шесть цифр, которые вы услышите.</string>
+Для проверки вашего номера SecureChat также может вам позвонить. Нажмите «Позвонить мне», дождитесь звонка и введите ниже шесть цифр, которые вы услышите.</string>
   <string name="registration_progress_activity__verify">Проверить</string>
   <string name="registration_progress_activity__call_me">Позвонить мне</string>
   <string name="registration_progress_activity__edit_number">Изменить номер</string>
   <string name="registration_progress_activity__connectivity_error">Ошибка связи.</string>
   <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">
-TextSecure не смог соединиться с push-службой.</string>
+SecureChat не смог соединиться с push-службой.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Возможные 
 причины:
 </string>
   <string name="registration_progress_activity__no_network_connectivity">Нет соединения 
 с интернетом.
 </string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Для использования этой функции TextSecure необходимо подключение к интернету. Убедитесь, что ваше устройство подключено к 3G или Wi-Fi.</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">Для использования этой функции SecureChat необходимо подключение к интернету. Убедитесь, что ваше устройство подключено к 3G или Wi-Fi.</string>
   <string name="registration_progress_activity__restrictive_firewall">Ограничения брандмауэра.
 </string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
-Если вы подключены по Wi-Fi, возможно, в сети имеется брандмауэр, который блокирует доступ к серверу TextSecure. Попробуйте воспользоваться другой беспроводной сетью либо мобильным интернетом.</string>
+Если вы подключены по Wi-Fi, возможно, в сети имеется брандмауэр, который блокирует доступ к серверу SecureChat. Попробуйте воспользоваться другой беспроводной сетью либо мобильным интернетом.</string>
   <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
-Сейчас TextSecure автоматически проверит ваш номер телефона при помощи SMS-сообщения.
+Сейчас SecureChat автоматически проверит ваш номер телефона при помощи SMS-сообщения.
 </string>
   <string name="registration_progress_activity__connecting">Соединяемся...</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">Ожидаем
@@ -499,7 +499,7 @@ SMS-подтверждения...
   <string name="AndroidManifest__create_passphrase">Создать парольную фразу</string>
   <string name="AndroidManifest__enter_passphrase">Введите парольную фразу</string>
   <string name="AndroidManifest__select_contacts">Выбрать контакты</string>
-  <string name="AndroidManifest__textsecure_detected">Обнаружен TextSecure</string>
+  <string name="AndroidManifest__textsecure_detected">Обнаружен SecureChat</string>
   <string name="AndroidManifest__public_identity_key">Публичный ключ</string>
   <string name="AndroidManifest__change_passphrase">Изменить парольную фразу</string>
   <string name="AndroidManifest__verify_identity">Подтвердить личность</string>
@@ -515,8 +515,8 @@ SMS-подтверждения...
   <string name="preferences__push_sms_category">Push и SMS</string>
   <string name="preferences__pref_all_sms_title">Получать все SMS</string>
   <string name="preferences__pref_all_mms_title">Получать все MMS</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Использовать TextSecure для просмотра и хранения всех входящих текстовых сообщений</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Использовать TextSecure для просмотра и хранения всех входящих мультимедийных сообщений</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Использовать SecureChat для просмотра и хранения всех входящих текстовых сообщений</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Использовать SecureChat для просмотра и хранения всех входящих мультимедийных сообщений</string>
   <string name="preferences__input_settings">Настройки ввода</string>
   <string name="preferences__enable_enter_key_title">Включить клавишу «Ввод»</string>
   <string name="preferences__replace_smiley_with_enter_key">Заменить клавишу смайликов на «Ввод»</string>
@@ -591,19 +591,19 @@ SMS-подтверждения...
   <string name="preferences__default">По умолчанию</string>
   <string name="preferences__language">Язык (Language)</string>
   <string name="preferences__make_default_sms_app">SMS-приложение по умолчанию</string>
-  <string name="preferences__make_textsecure_the_default_sms_mms_app">Сделать TextSecure приложением по умолчанию для SMS и MMS.</string>
+  <string name="preferences__make_textsecure_the_default_sms_mms_app">Сделать SecureChat приложением по умолчанию для SMS и MMS.</string>
   <string name="preferences__use_data_channel">Push-сообщения</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
-Повысить безопасность и снизить расходы на SMS, используя передачу данных при общении с другими пользователями TextSecure</string>
+Повысить безопасность и снизить расходы на SMS, используя передачу данных при общении с другими пользователями SecureChat</string>
   <string name="preferences__sms_fallback">Исходящие SMS/MMS</string>
   <string name="preferences__submit_debug_log">Отправлять лог отладки</string>
-  <string name="preferences__sms_outgoing_push_users">Пользователи TextSecure</string>
+  <string name="preferences__sms_outgoing_push_users">Пользователи SecureChat</string>
   <string name="preferences__sms_fallback_push_users_ask">сначала спросить</string>
   <string name="preferences__sms_fallback_push_users_no_mms">кроме MMS</string>
   <string name="preferences__sms_outgoing_push_users_description">Отправлять защищённые SMS, если нет интернета</string>
   <string name="preferences__sms_fallback_ask_before_sending_sms_mms">Спросить перед отправкой SMS/MMS</string>
   <string name="preferences__sms_fallback_never_send_mms">Никогда не отправлять MMS</string>
-  <string name="preferences__sms_fallback_non_push_users">Пользователи без TextSecure</string>
+  <string name="preferences__sms_fallback_non_push_users">Пользователи без SecureChat</string>
   <string name="preferences__sms_fallback_nobody">Никто</string>
   <string name="preferences__support_wifi_calling">Режим совместимости с WiFi-звонками</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Включите, если ваше устройство отправляет и принимает SMS/MMS через WiFi (и если WiFi-звонки включены)</string>
@@ -613,7 +613,7 @@ SMS-подтверждения...
   <!--contact_selection_list-->
   <string name="contact_selection_list__menu_select_all">Выбрать все</string>
   <string name="contact_selection_list__menu_unselect_all">Снять выделение</string>
-  <string name="contact_selection_list__header_textsecure_users">ПОЛЬЗОВАТЕЛИ TEXTSECURE</string>
+  <string name="contact_selection_list__header_textsecure_users">ПОЛЬЗОВАТЕЛИ SECURECHAT</string>
   <string name="contact_selection_list__header_other">ВСЕ КОНТАКТЫ</string>
   <string name="contact_selection_list__unknown_contact">Новое сообщение для...</string>
   <!--contact_selection-->
@@ -621,7 +621,7 @@ SMS-подтверждения...
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Обновить контакты</string>
   <!--conversation_button_context-->
-  <string name="conversation_button_context__send_textsecure_message">Отправить сообщение TextSecure</string>
+  <string name="conversation_button_context__send_textsecure_message">Отправить сообщение SecureChat</string>
   <string name="conversation_button_context__send_secure_sms">Отправить защищённое SMS</string>
   <string name="conversation_button_context__send_insecure_sms">Отправить незащищенное SMS</string>
   <string name="conversation_button_context__send_secure_mms">Отправить защищённое MMS</string>
@@ -671,10 +671,10 @@ SMS-подтверждения...
   <string name="text_secure_normal__mark_all_as_read">Отметить все как прочитанные</string>
   <!--reminder_header-->
   <string name="reminder_header_sms_default_title">Использовать как SMS-приложение по умолчанию?</string>
-  <string name="reminder_header_sms_default_text">TextSecure сейчас не используется как ваше SMS-приложение по умолчанию</string>
+  <string name="reminder_header_sms_default_text">SecureChat сейчас не используется как ваше SMS-приложение по умолчанию</string>
   <string name="reminder_header_sms_import_title">Импортировать SMS из системы?</string>
-  <string name="reminder_header_sms_import_text">TextSecure может скопировать SMS из вашего телефона в свою зашифрованную базу.</string>
-  <string name="reminder_header_push_title">Включить общение через TextSecure?</string>
+  <string name="reminder_header_sms_import_text">SecureChat может скопировать SMS из вашего телефона в свою зашифрованную базу.</string>
+  <string name="reminder_header_push_title">Включить общение через SecureChat?</string>
   <string name="reminder_header_push_text">Мгновенная доставка, защита приватности и никакой платы за SMS.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Вы</string>

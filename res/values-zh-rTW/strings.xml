@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">TextSecure</string>
+  <string name="app_name">SecureChat</string>
   <string name="yes">是</string>
   <string name="no">否</string>
   <string name="delete">刪除</string>
@@ -28,7 +28,7 @@
   <string name="ApplicationPreferencesActivity_sms_enabled">已開啟手機簡訊接收功能</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">按這裡來變更您預設的手機簡訊APP</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">已關閉手機簡按這裡來變更您預設的手機簡訊APP訊接收功能</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">按這裡將 TextSecure 設為預設的手機簡訊APP</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">按這裡將 SecureChat 設為預設的手機簡訊APP</string>
   <!--AppProtectionPreferenceFragment-->
   <!--DraftDatabase-->
   <!--AttchmentManager-->
@@ -77,7 +77,7 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">您使用的裝置看來不支援撥號通話功能。</string>
   <string name="ConversationActivity_leave_group">離開群組？</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">您確定要離開此群組？</string>
-  <string name="ConversationActivity_transport_textsecure">TextSecure</string>
+  <string name="ConversationActivity_transport_textsecure">SecureChat</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">訊息細節</string>
   <string name="ConversationFragment_transport_s_sent_received_s">傳送狀態: %1$s\n已傳送/已接收: %2$s</string>
@@ -104,7 +104,7 @@
   <string name="ExportFragment_export">匯出</string>
   <string name="ExportFragment_export_plaintext_to_sd_card">以純文字（未加密）格式輸出至 SD 卡？</string>
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">警告！這將會
-        以未加密的格式將您的 TextSecure 訊息紀錄匯出到 SD 卡中！
+        以未加密的格式將您的 SecureChat 訊息紀錄匯出到 SD 卡中！
     </string>
   <string name="ExportFragment_cancel">取消</string>
   <string name="ExportFragment_exporting">正在匯出...</string>
@@ -113,22 +113,22 @@
   <string name="ExportFragment_error_while_writing_to_sd_card">寫入 SD 卡時發生錯誤。</string>
   <string name="ExportFragment_success">成功！</string>
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_TextSecure_communication_failure">TextSecure 持續發生傳輸異常！</string>
-  <string name="GcmRefreshJob_TextSecure_was_unable_to_register_with_Google_Play_Services">TextSecure 無法順利註冊為 Google Play Services。指定的傳輸通道已被停用。請試著從TextSecure 的設定選單中，重新註冊。</string>
+  <string name="GcmRefreshJob_Permanent_TextSecure_communication_failure">SecureChat 持續發生傳輸異常！</string>
+  <string name="GcmRefreshJob_TextSecure_was_unable_to_register_with_Google_Play_Services">SecureChat 無法順利註冊為 Google Play Services。指定的傳輸通道已被停用。請試著從TextSecure 的設定選單中，重新註冊。</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">新增群組</string>
   <string name="GroupCreateActivity_actionbar_update_title">更新群組</string>
   <string name="GroupCreateActivity_group_name_hint">群組的名稱</string>
   <string name="GroupCreateActivity_actionbar_mms_title">新的 MMS 群組</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">因您選擇加入未安裝 TextSecure 對話群組的連絡人，所以這個群組將被設定為 MMS-多媒體簡訊群組。</string>
-  <string name="GroupCreateActivity_you_dont_support_push">由於您為註冊使用加密的資料通道，所以 TextSecure 對話群組將被取消。</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">因您選擇加入未安裝 SecureChat 對話群組的連絡人，所以這個群組將被設定為 MMS-多媒體簡訊群組。</string>
+  <string name="GroupCreateActivity_you_dont_support_push">由於您為註冊使用加密的資料通道，所以 SecureChat 對話群組將被取消。</string>
   <string name="GroupCreateActivity_contacts_mms_exception">擲茭？ 無法成功建立群組。</string>
   <string name="GroupCreateActivity_contacts_no_members">建立群組至少需要加入一個連絡人！</string>
   <string name="GroupCreateActivity_contacts_invalid_number">群組中某個連絡人的號碼有誤，請更正或移除該名連絡人，並再試一次。</string>
   <string name="GroupCreateActivity_avatar_content_description">群組的大頭照</string>
   <string name="GroupCreateActivity_menu_create_title">建立群組</string>
   <string name="GroupCreateActivity_creating_group">%1$s 建立中…</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">無法加入未使用 TextSercure APP 的連絡人到既有的 TextSecure 群組中</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">無法加入未使用 TextSercure APP 的連絡人到既有的 SecureChat 群組中</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">我</string>
   <!--ImportExportActivity-->
@@ -137,8 +137,8 @@
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">匯入目前裝置上的手機簡訊？</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">這將會匯入
-        目前裝置上已收發的手機簡訊到 TextSecure APP 中。如果您之前已經做過，
-       再匯入一次手機簡訊將會使 TextSecure 中出現重複的簡訊。
+        目前裝置上已收發的手機簡訊到 SecureChat APP 中。如果您之前已經做過，
+       再匯入一次手機簡訊將會使 SecureChat 中出現重複的簡訊。
     </string>
   <string name="ImportFragment_import">匯入</string>
   <string name="ImportFragment_cancel">取消</string>
@@ -152,7 +152,7 @@
   <string name="ImportFragment_import_plaintext_backup">匯入未加密的備份資料庫？</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">這將會匯入
        未經加密的訊息紀錄備份檔案。 如果您之前已經做過，
-       再匯入一次訊息紀錄將會使 TextSecure 中出現重複的訊息紀錄。
+       再匯入一次訊息紀錄將會使 SecureChat 中出現重複的訊息紀錄。
     </string>
   <string name="ImportFragment_importing">匯入中</string>
   <string name="ImportFragment_import_plaintext_backup_elipse">匯入未加密的備份...</string>
@@ -172,20 +172,20 @@
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">多媒體訊息</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">您收到一則已加密的訊息，但採用的是舊版／不支援的 TextSecure。您須提醒該名連絡人更新 TextSecure 版本後再重送。</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">您收到一則已加密的訊息，但採用的是舊版／不支援的 SecureChat。您須提醒該名連絡人更新 SecureChat 版本後再重送。</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">輸入的「自訂密碼」不相符！</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">輸入的是舊的「自訂密碼」！</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">輸入「自訂密碼」</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">TextSecure 圖示</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">SecureChat 圖示</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">確認『自訂密碼』</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">無效的『自訂密碼』！</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">此次
         金鑰確認所使用的數位簽名與同一名連絡人上次金鑰確認時所用的值並不一致。
         這有可能是有不明人士試圖攔截您的通訊／對話內容。或
-        因為該名連絡人重新安裝過 TextSecure APP，以至於他的數位簽名值也跟著變更了。
+        因為該名連絡人重新安裝過 SecureChat APP，以至於他的數位簽名值也跟著變更了。
     </string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">您想要對這名連絡人
 進行認證嗎？</string>
@@ -196,7 +196,7 @@
   <string name="ReceiveKeyActivity_processing">處理中</string>
   <string name="ReceiveKeyActivity_processing_key_exchange">金鑰交換處理中...</string>
   <!--RegistrationActivity-->
-  <string name="RegistrationActivity_connect_with_textsecure">正在與 TextSecure 連線</string>
+  <string name="RegistrationActivity_connect_with_textsecure">正在與 SecureChat 連線</string>
   <string name="RegistrationActivity_select_your_country">選擇您的國家／地區</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">您必須輸入
 您的國碼</string>
@@ -208,7 +208,7 @@
     </string>
   <string name="RegistrationActivity_unsupported">不支援</string>
   <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">抱歉，
-        你目前使用裝置不支援 TextSecure 即時訊息功能。.採用早於 Android 4.0 或更舊版
+        你目前使用裝置不支援 SecureChat 即時訊息功能。.採用早於 Android 4.0 或更舊版
         必須登入已註冊的 Google Account. 採用 Android 4.0 或更新版
         的手機則無須 Google account，但須具備 Play Store APP。
     </string>
@@ -240,12 +240,12 @@
   <string name="RegistrationProgressActivity_too_many_requests">送出太多次要求！</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">您剛已接到一通語音驗證碼提示通話。須於20分鐘後再提出下一次通話需求。</string>
   <string name="RegistrationProgressActivity_registration_conflict">註冊發生衝突</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">您已用此組電話號碼註冊過 TextSecure (在 CyanogenMod或模擬器上？) 您必須回到該裝置上解除註冊後，才能於此裝置重新註冊。</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">您已用此組電話號碼註冊過 SecureChat (在 CyanogenMod或模擬器上？) 您必須回到該裝置上解除註冊後，才能於此裝置重新註冊。</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">註冊完成</string>
-  <string name="RegistrationService_textsecure_registration_has_successfully_completed">TextSecure 註冊程序已完成！</string>
+  <string name="RegistrationService_textsecure_registration_has_successfully_completed">SecureChat 註冊程序已完成！</string>
   <string name="RegistrationService_registration_error">註冊失敗</string>
-  <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">您的 TextSecure 註冊程序發生錯誤。</string>
+  <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">您的 SecureChat 註冊程序發生錯誤。</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">收到一組毀損的
 金鑰交換訊息！</string>
@@ -307,7 +307,7 @@
   <!--KeyCachingService-->
   <string name="KeyCachingService_textsecure_passphrase_cached">按一下開啟</string>
   <string name="KeyCachingService_textsecure_passphrase_cached_with_lock">按一下開啟，或按一下鎖住並關閉。</string>
-  <string name="KeyCachingService_passphrase_cached">TextSecure 已解除鎖定</string>
+  <string name="KeyCachingService_passphrase_cached">SecureChat 已解除鎖定</string>
   <string name="KeyCachingService_lock">以『自訂密碼』進行鎖定</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">%d 則新訊息</string>
@@ -320,9 +320,9 @@
   <string name="MessageNotifier_mark_all_as_read">全部標示為已讀</string>
   <string name="MessageNotifier_mark_as_read">標示已讀</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">抱歉，快速回覆（Quick Response）功能目前 TextSecure 還不支援！</string>
+  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">抱歉，快速回覆（Quick Response）功能目前 SecureChat 還不支援！</string>
   <!--auto_initiate_activity-->
-  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">您收到一則來自支援 TextSecure 加密連線的新訊息，您想與此新連絡人啟用安全連線？</string>
+  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">您收到一則來自支援 SecureChat 加密連線的新訊息，您想與此新連絡人啟用安全連線？</string>
   <string name="auto_initiate_activity__initiate_exchange">起始金鑰交換</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">舊的『自訂密碼』:</string>
@@ -333,7 +333,7 @@
   <string name="contact_selection_group_activity__no_contacts">沒有連絡人。</string>
   <string name="contact_selection_group_activity__finding_contacts">載入連絡人中...</string>
   <!--single_contact_selection_activity-->
-  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">您尚未註冊 TextSecure 的加密即時訊息功能...</string>
+  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">您尚未註冊 SecureChat 的加密即時訊息功能...</string>
   <string name="SingleContactSelectionActivity_updating_directory">正在更新連絡人目錄</string>
   <string name="SingleContactSelectionActivity_updating_push_directory">更新即時訊息目錄...</string>
   <string name="SingleContactSelectionActivity_contact_photo">連絡人的相片</string>
@@ -342,7 +342,7 @@
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">沒有最近通話。</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">傳送 TextSecure 加密訊息</string>
+  <string name="conversation_activity__type_message_push">傳送 SecureChat 加密訊息</string>
   <string name="conversation_activity__type_message_sms_secure">傳送加密的手機簡訊</string>
   <string name="conversation_activity__type_message_mms_secure">傳送加密的 MMS多媒體簡訊</string>
   <string name="conversation_activity__send">送出</string>
@@ -376,7 +376,7 @@
   <string name="log_submit_activity__submitting">上傳中</string>
   <string name="log_submit_activity__posting_logs">正在把登錄資料轉貼到gist上...</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">您想把裝置上既有的簡訊紀錄都匯入 TextSecure 的加密資料庫裡面嗎？</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">您想把裝置上既有的簡訊紀錄都匯入 SecureChat 的加密資料庫裡面嗎？</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">裝置上預設的資料庫將不會被做任何修改或變更。</string>
   <string name="database_migration_activity__skip">略過</string>
   <string name="database_migration_activity__import">匯入</string>
@@ -401,13 +401,13 @@
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">解鎖</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure 需要您通信業者的 MMS多媒體簡訊設定以發送媒體檔案與群組訊息。目前您的裝置並未提供完整的相關資訊，有時是因為裝置出廠時即被鎖定／限制該方面的功能。</string>
+  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">SecureChat 需要您通信業者的 MMS多媒體簡訊設定以發送媒體檔案與群組訊息。目前您的裝置並未提供完整的相關資訊，有時是因為裝置出廠時即被鎖定／限制該方面的功能。</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">傳送媒體檔案或群組訊息，請按下 \"OK\" 並完成必要的設定。您所使用電信業者相關的MMS多媒體簡訊設定可能羅列在 \'無線與網路／行動網路\'的設定項目內。且您只需設定一次。</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">完成</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-        註冊是完全免費的，同時可以與其他也使用 TextSecure 的朋友一起提生隱私性。請在此驗證您的手機號碼。
+        註冊是完全免費的，同時可以與其他也使用 SecureChat 的朋友一起提生隱私性。請在此驗證您的手機號碼。
     </string>
   <string name="registration_activity__your_country">您的國家／區域</string>
   <string name="registration_activity__your_country_code_and_phone_number">您的國碼與
@@ -422,7 +422,7 @@
   <string name="registration_problems__sms_interceptors">手機簡訊攔截</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
 某些第三方的手機簡訊程式，如 Handcent、GoSMS 對於接收手機簡訊的能力不盡理想。請嚐試看
-您是否能收到一個包含 \'Your TextSecure verification code:\' 的新簡訊，如果不能收到，
+您是否能收到一個包含 \'Your SecureChat verification code:\' 的新簡訊，如果不能收到，
 那麼您可能必須再調整這類簡訊程式的設定，好讓手機簡訊可以順利接收。</string>
   <string name="registration_problems__incorrect_number">手機號碼不正確</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
@@ -430,23 +430,23 @@
 給予正確的區碼／國碼。</string>
   <string name="registration_problems__google_voice">Google 語音輸入</string>
   <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">
-TextSecure 無法利用 Google語音輸入來撥號。</string>
+SecureChat 無法利用 Google語音輸入來撥號。</string>
   <!--registration_progress_activity-->
   <string name="registration_progress_activity__voice_verification">語音認證</string>
   <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">
-TextSecure 也可撥出電話到您的手機並告知您驗證碼。 按下 \'打給我\' 並且輸入您聽到的 6 位數驗證碼。</string>
+SecureChat 也可撥出電話到您的手機並告知您驗證碼。 按下 \'打給我\' 並且輸入您聽到的 6 位數驗證碼。</string>
   <string name="registration_progress_activity__verify">驗證</string>
   <string name="registration_progress_activity__call_me">打給我</string>
   <string name="registration_progress_activity__edit_number">輸入號碼</string>
   <string name="registration_progress_activity__connectivity_error">連線失敗。</string>
   <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">
-TextSecure 無法連線到即時訊息服務。</string>
+SecureChat 無法連線到即時訊息服務。</string>
   <string name="registration_progress_activity__some_possible_problems_include">幾個可能的
 問題點，包含:</string>
   <string name="registration_progress_activity__no_network_connectivity">沒有網路
 連線可用。</string>
   <string name="registration_progress_activity__your_device_needs_network_connectivity">您的
-裝置需要網際網路的連線能力，才能使用 TextSecure 的即時訊息功能。
+裝置需要網際網路的連線能力，才能使用 SecureChat 的即時訊息功能。
 請先確認您是否已透過 3G/4G 或 Wi-Fi 成功連上網際網路。</string>
   <string name="registration_progress_activity__restrictive_firewall">已被防火牆限制。</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
@@ -461,7 +461,7 @@ TextSecure將會發送一則包含確認碼的手機簡訊來自動驗證您的�
   <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">這
 可能花上一點時間。請耐心等候，將流程完成時，我們將告知您。</string>
   <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">
-TextSecure 等候驗證用的手機簡訊已逾時。</string>
+SecureChat 等候驗證用的手機簡訊已逾時。</string>
   <string name="registration_progress_activity__sms_verification_failed">手機簡訊驗證
 已失敗。</string>
   <string name="registration_progress_activity__generating_keys">產生新的金鑰中...</string>
@@ -475,7 +475,7 @@ TextSecure 等候驗證用的手機簡訊已逾時。</string>
   <string name="AndroidManifest__create_passphrase">新增『自訂密碼』</string>
   <string name="AndroidManifest__enter_passphrase">輸入「自訂密碼」</string>
   <string name="AndroidManifest__select_contacts">選擇多個連絡人</string>
-  <string name="AndroidManifest__textsecure_detected">偵測到使用 TextSecure</string>
+  <string name="AndroidManifest__textsecure_detected">偵測到使用 SecureChat</string>
   <string name="AndroidManifest__public_identity_key">公鑰／公開金鑰</string>
   <string name="AndroidManifest__change_passphrase">變更『自訂密碼』</string>
   <string name="AndroidManifest__verify_identity">驗證身分</string>
@@ -490,8 +490,8 @@ TextSecure 等候驗證用的手機簡訊已逾時。</string>
   <string name="preferences__push_sms_category">即時訊息與手機簡訊</string>
   <string name="preferences__pref_all_sms_title">接收所有手機簡訊</string>
   <string name="preferences__pref_all_mms_title">接收所有MMS多媒體簡訊</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">使用 TextSecure 來檢視與儲存所有接收到的文字簡訊</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">使用 TextSecure 來檢視與儲存所有接收到的多媒體簡訊</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">使用 SecureChat 來檢視與儲存所有接收到的文字簡訊</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">使用 SecureChat 來檢視與儲存所有接收到的多媒體簡訊</string>
   <string name="preferences__input_settings">輸入設定</string>
   <string name="preferences__enable_enter_key_title">啟用 Enter 鍵</string>
   <string name="preferences__replace_smiley_with_enter_key">把介面上的表情符號按鈕，換成 Enter 按鈕</string>
@@ -510,7 +510,7 @@ TextSecure 等候驗證用的手機簡訊已逾時。</string>
   <string name="preferences__timeout_passphrase">『自訂密碼』上鎖倒數</string>
   <string name="preferences__pref_timeout_interval_dialogtitle">選擇『自訂密碼』上鎖倒數的區間</string>
   <string name="preferences__pref_timeout_interval_title">倒數時間</string>
-  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">等候『自訂密碼』幫 TextSecure 上鎖的等候時間</string>
+  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">等候『自訂密碼』幫 SecureChat 上鎖的等候時間</string>
   <string name="preferences__notifications">通知</string>
   <string name="preferences__display_message_notifications_in_status_bar">在 Android 系統狀態列顯示通知</string>
   <string name="preferences__led_color">LED燈號顏色</string>
@@ -558,14 +558,14 @@ TextSecure 等候驗證用的手機簡訊已逾時。</string>
   <string name="preferences__default">預設</string>
   <string name="preferences__language">語言選項</string>
   <string name="preferences__make_default_sms_app">設定為預設的手機簡訊 APP</string>
-  <string name="preferences__make_textsecure_the_default_sms_mms_app">將 TextSecure 設定為您系統預設的 SMS/MMS 應用程式。</string>
+  <string name="preferences__make_textsecure_the_default_sms_mms_app">將 SecureChat 設定為您系統預設的 SMS/MMS 應用程式。</string>
   <string name="preferences__use_data_channel">即時訊息</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
-可提升隱私性，並且藉由與其他也使用 TextSecure 的使用這透過加密的連線通訊來節約手機簡訊費用。</string>
+可提升隱私性，並且藉由與其他也使用 SecureChat 的使用這透過加密的連線通訊來節約手機簡訊費用。</string>
   <string name="preferences__submit_debug_log">送出偵錯紀錄</string>
-  <string name="preferences__sms_outgoing_push_users">TextSecure 使用者</string>
+  <string name="preferences__sms_outgoing_push_users">SecureChat 使用者</string>
   <string name="preferences__sms_outgoing_push_users_description">如果網路斷線，改送出付費的加密手機簡訊</string>
-  <string name="preferences__sms_fallback_non_push_users">非 TextSecure 使用者</string>
+  <string name="preferences__sms_fallback_non_push_users">非 SecureChat 使用者</string>
   <string name="preferences__sms_fallback_nobody">無人</string>
   <!--****************************************-->
   <!--menus-->
@@ -573,7 +573,7 @@ TextSecure 等候驗證用的手機簡訊已逾時。</string>
   <!--contact_selection_list-->
   <string name="contact_selection_list__menu_select_all">全選</string>
   <string name="contact_selection_list__menu_unselect_all">取消全選</string>
-  <string name="contact_selection_list__header_textsecure_users">全部 TextSecure 使用者</string>
+  <string name="contact_selection_list__header_textsecure_users">全部 SECURECHAT 使用者</string>
   <string name="contact_selection_list__header_other">所有使用者</string>
   <string name="contact_selection_list__unknown_contact">傳送新訊息給...</string>
   <!--contact_selection-->
@@ -581,7 +581,7 @@ TextSecure 等候驗證用的手機簡訊已逾時。</string>
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">更新連絡人清單</string>
   <!--conversation_button_context-->
-  <string name="conversation_button_context__send_textsecure_message">傳送 TextSecure 加密訊息</string>
+  <string name="conversation_button_context__send_textsecure_message">傳送 SecureChat 加密訊息</string>
   <string name="conversation_button_context__send_secure_sms">傳送加密的手機簡訊</string>
   <string name="conversation_button_context__send_secure_mms">傳送加密的 MMS多媒體簡訊</string>
   <!--conversation_callable-->
@@ -628,10 +628,10 @@ TextSecure 等候驗證用的手機簡訊已逾時。</string>
   <string name="text_secure_normal__mark_all_as_read">全部標示為已讀</string>
   <!--reminder_header-->
   <string name="reminder_header_sms_default_title">設定為預設的手機簡訊 APP？</string>
-  <string name="reminder_header_sms_default_text">TextSecure 目前並非您預設的手機簡訊APP。</string>
+  <string name="reminder_header_sms_default_text">SecureChat 目前並非您預設的手機簡訊APP。</string>
   <string name="reminder_header_sms_import_title">匯入裝置上目前的手機簡訊？</string>
-  <string name="reminder_header_sms_import_text">TextSecure 可複製您裝置上目前的手機簡訊至加密的資料庫內。</string>
-  <string name="reminder_header_push_title">啟用 TextSecure 即時訊息功能？</string>
+  <string name="reminder_header_sms_import_text">SecureChat 可複製您裝置上目前的手機簡訊至加密的資料庫內。</string>
+  <string name="reminder_header_push_title">啟用 SecureChat 即時訊息功能？</string>
   <string name="reminder_header_push_text">即時傳遞、更高的隱私防護，並且完全免費。</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">您</string>
