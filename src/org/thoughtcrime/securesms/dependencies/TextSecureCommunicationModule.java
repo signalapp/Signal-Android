@@ -24,6 +24,7 @@ import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.TextSecureAccountManager;
 import org.whispersystems.textsecure.api.TextSecureMessageReceiver;
 import org.whispersystems.textsecure.api.TextSecureMessageSender;
+import org.whispersystems.textsecure.api.util.CredentialsProvider;
 
 import dagger.Module;
 import dagger.Provides;
@@ -77,14 +78,36 @@ public class TextSecureCommunicationModule {
 
   @Provides TextSecureMessageReceiver provideTextSecureMessageReceiver() {
     return new TextSecureMessageReceiver(Release.PUSH_URL,
-                                           new TextSecurePushTrustStore(context),
-                                           TextSecurePreferences.getLocalNumber(context),
-                                           TextSecurePreferences.getPushServerPassword(context),
-                                           TextSecurePreferences.getSignalingKey(context));
+                                         new TextSecurePushTrustStore(context),
+                                         new DynamicCredentialsProvider(context));
   }
 
   public static interface TextSecureMessageSenderFactory {
     public TextSecureMessageSender create(MasterSecret masterSecret);
+  }
+
+  private static class DynamicCredentialsProvider implements CredentialsProvider {
+
+    private final Context context;
+
+    private DynamicCredentialsProvider(Context context) {
+      this.context = context.getApplicationContext();
+    }
+
+    @Override
+    public String getUser() {
+      return TextSecurePreferences.getLocalNumber(context);
+    }
+
+    @Override
+    public String getPassword() {
+      return TextSecurePreferences.getPushServerPassword(context);
+    }
+
+    @Override
+    public String getSignalingKey() {
+      return TextSecurePreferences.getSignalingKey(context);
+    }
   }
 
 }

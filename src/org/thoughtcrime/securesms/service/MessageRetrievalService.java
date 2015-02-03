@@ -32,9 +32,7 @@ public class MessageRetrievalService extends Service implements Runnable, Inject
   public static final  String ACTION_ACTIVITY_STARTED  = "ACTIVITY_STARTED";
   public static final  String ACTION_ACTIVITY_FINISHED = "ACTIVITY_FINISHED";
   public static final  String ACTION_PUSH_RECEIVED     = "PUSH_RECEIVED";
-  private static final long   REQUEST_TIMEOUT_MINUTES  = 2;
-
-  private final ExecutorService executor = Executors.newSingleThreadExecutor(new NamedThreadFactory());
+  private static final long   REQUEST_TIMEOUT_MINUTES  = 1;
 
   private NetworkRequirement         networkRequirement;
   private NetworkRequirementProvider networkRequirementProvider;
@@ -54,10 +52,12 @@ public class MessageRetrievalService extends Service implements Runnable, Inject
     networkRequirementProvider = new NetworkRequirementProvider(this);
 
     networkRequirementProvider.setListener(this);
-    executor.submit(this);
+    new Thread(this, "MessageRetrievalService").start();
   }
 
   public int onStartCommand(Intent intent, int flags, int startId) {
+    if (intent == null) return START_STICKY;
+
     if      (ACTION_ACTIVITY_STARTED.equals(intent.getAction()))  incrementActive();
     else if (ACTION_ACTIVITY_FINISHED.equals(intent.getAction())) decrementActive();
     else if (ACTION_PUSH_RECEIVED.equals(intent.getAction()))     incrementPushReceived();
@@ -77,6 +77,7 @@ public class MessageRetrievalService extends Service implements Runnable, Inject
       try {
         while (isConnectionNecessary()) {
           try {
+            Log.w(TAG, "Reading message...");
             TextSecureEnvelope envelope = pipe.read(REQUEST_TIMEOUT_MINUTES, TimeUnit.MINUTES);
             Log.w(TAG, "Retrieved envelope! " + envelope.getSource());
           } catch (TimeoutException | InvalidVersionException e) {
@@ -85,9 +86,7 @@ public class MessageRetrievalService extends Service implements Runnable, Inject
 
           decrementPushReceived();
         }
-      } catch (IOException e) {
-        Log.w(TAG, e);
-      } catch (Exception e) {
+      } catch (Throwable e) {
         Log.w(TAG, e);
       } finally {
         Log.w(TAG, "Shutting down pipe...");
@@ -148,8 +147,8 @@ public class MessageRetrievalService extends Service implements Runnable, Inject
   private void shutdown(TextSecureMessagePipe pipe) {
     try {
       pipe.shutdown();
-    } catch (IOException ioe) {
-      Log.w(TAG, ioe);
+    } catch (Throwable t) {
+      Log.w(TAG, t);
     }
   }
 
@@ -165,10 +164,9 @@ public class MessageRetrievalService extends Service implements Runnable, Inject
     activity.startService(intent);
   }
 
-  private static class NamedThreadFactory implements ThreadFactory {
-    @Override
-    public Thread newThread(Runnable r) {
-      return new Thread(r, "MessageRetrievalService");
-    }
+  public static void registerPushReceived(Context context) {
+    Intent intent = new Intent(context, MessageRetrievalService.class);
+    intent.setAction(MessageRetrievalService.ACTION_PUSH_RECEIVED);
+    context.startService(intent);
   }
 }

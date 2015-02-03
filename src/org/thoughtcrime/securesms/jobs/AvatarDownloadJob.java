@@ -23,6 +23,7 @@ import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.textsecure.api.crypto.AttachmentCipherInputStream;
 import org.whispersystems.textsecure.internal.push.PushServiceSocket;
 import org.whispersystems.textsecure.api.push.exceptions.NonSuccessfulResponseCodeException;
+import org.whispersystems.textsecure.internal.util.StaticCredentialsProvider;
 
 import java.io.File;
 import java.io.IOException;
@@ -99,8 +100,9 @@ public class AvatarDownloadJob extends MasterSecretJob {
   private File downloadAttachment(String relay, long contentLocation) throws IOException {
     PushServiceSocket socket = new PushServiceSocket(Release.PUSH_URL,
                                                      new TextSecurePushTrustStore(context),
-                                                     TextSecurePreferences.getLocalNumber(context),
-                                                     TextSecurePreferences.getPushServerPassword(context));
+                                                     new StaticCredentialsProvider(TextSecurePreferences.getLocalNumber(context),
+                                                                                   TextSecurePreferences.getPushServerPassword(context),
+                                                                                   null));
 
     File destination = File.createTempFile("avatar", "tmp");
 

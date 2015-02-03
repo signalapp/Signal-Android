@@ -30,6 +30,7 @@ import org.whispersystems.textsecure.api.push.SignedPreKeyEntity;
 import org.whispersystems.textsecure.api.push.TrustStore;
 import org.whispersystems.textsecure.internal.crypto.ProvisioningCipher;
 import org.whispersystems.textsecure.internal.push.PushServiceSocket;
+import org.whispersystems.textsecure.internal.util.StaticCredentialsProvider;
 
 import java.io.IOException;
 import java.util.List;
@@ -45,7 +46,7 @@ public class TextSecureAccountManager {
   public TextSecureAccountManager(String url, TrustStore trustStore,
                                   String user, String password)
   {
-    this.pushServiceSocket = new PushServiceSocket(url, trustStore, user, password);
+    this.pushServiceSocket = new PushServiceSocket(url, trustStore, new StaticCredentialsProvider(user, password, null));
     this.user              = user;
   }
 

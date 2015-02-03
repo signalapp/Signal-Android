@@ -2,6 +2,7 @@ package org.whispersystems.textsecure.api;
 
 import org.whispersystems.libaxolotl.InvalidVersionException;
 import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
+import org.whispersystems.textsecure.api.util.CredentialsProvider;
 import org.whispersystems.textsecure.internal.websocket.WebSocketConnection;
 import org.whispersystems.textsecure.internal.websocket.WebSocketProtos;
 
@@ -14,11 +15,11 @@ import static org.whispersystems.textsecure.internal.websocket.WebSocketProtos.W
 public class TextSecureMessagePipe {
 
   private final WebSocketConnection websocket;
-  private final String              signalingKey;
+  private final CredentialsProvider credentialsProvider;
 
-  public TextSecureMessagePipe(WebSocketConnection websocket, String signalingKey) {
-    this.websocket    = websocket;
-    this.signalingKey = signalingKey;
+  public TextSecureMessagePipe(WebSocketConnection websocket, CredentialsProvider credentialsProvider) {
+    this.websocket           = websocket;
+    this.credentialsProvider = credentialsProvider;
 
     this.websocket.connect();
   }
@@ -36,7 +37,7 @@ public class TextSecureMessagePipe {
                                                                        .setMessage("OK")
                                                                        .build());
 
-        return new TextSecureEnvelope(request.getBody().toByteArray(), signalingKey);
+        return new TextSecureEnvelope(request.getBody().toByteArray(), credentialsProvider.getSignalingKey());
       }
     }
   }

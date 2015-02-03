@@ -10,11 +10,11 @@ import com.squareup.okhttp.internal.ws.WebSocket;
 import com.squareup.okhttp.internal.ws.WebSocketListener;
 
 import org.whispersystems.textsecure.api.push.TrustStore;
+import org.whispersystems.textsecure.api.util.CredentialsProvider;
 import org.whispersystems.textsecure.internal.util.BlacklistingTrustManager;
 import org.whispersystems.textsecure.internal.util.Util;
 
 import java.io.IOException;
-import java.net.URLEncoder;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.util.LinkedList;
@@ -38,27 +38,32 @@ public class WebSocketConnection {
 
   private final LinkedList<WebSocketRequestMessage> incomingRequests = new LinkedList<>();
 
-  private final String     wsUri;
-  private final TrustStore trustStore;
+  private final String              wsUri;
+  private final TrustStore          trustStore;
+  private final CredentialsProvider credentialsProvider;
 
   private Client          client;
   private KeepAliveSender keepAliveSender;
 
-  public WebSocketConnection(String httpUri, TrustStore trustStore, String user, String password) {
-    this.trustStore = trustStore;
-    this.wsUri      = String.format(httpUri.replace("https://", "wss://")
-                                           .replace("http://", "ws://") + "/v1/websocket/?login=%s&password=%s",
-                                    user, URLEncoder.encode(password));
+  public WebSocketConnection(String httpUri, TrustStore trustStore, CredentialsProvider credentialsProvider) {
+    this.trustStore          = trustStore;
+    this.credentialsProvider = credentialsProvider;
+    this.wsUri               = httpUri.replace("https://", "wss://")
+                                      .replace("http://", "ws://") + "/v1/websocket/?login=%s&password=%s";
   }
 
   public synchronized void connect() {
+    Log.w(TAG, "WSC connect()...");
+
     if (client == null) {
-      client = new Client(wsUri, trustStore);
+      client = new Client(wsUri, trustStore, credentialsProvider);
       client.connect();
     }
   }
 
   public synchronized void disconnect() throws IOException {
+    Log.w(TAG, "WSC disconnect()...");
+
     if (client != null) {
       client.disconnect();
       client = null;
@@ -115,10 +120,13 @@ public class WebSocketConnection {
   }
 
   private synchronized void onMessage(byte[] payload) {
+    Log.w(TAG, "WSC onMessage()");
     try {
       WebSocketMessage message = WebSocketMessage.parseFrom(payload);
 
-      if (message.hasRequest())  {
+      Log.w(TAG, "Message Type: " + message.getType().getNumber());
+
+      if (message.getType().getNumber() == WebSocketMessage.Type.REQUEST_VALUE)  {
         incomingRequests.add(message.getRequest());
       }
 
@@ -129,6 +137,8 @@ public class WebSocketConnection {
   }
 
   private synchronized void onClose() {
+    Log.w(TAG, "onClose()...");
+
     if (client != null) {
       client = null;
       connect();
@@ -155,13 +165,19 @@ public class WebSocketConnection {
 
   private class Client implements WebSocketListener {
 
-    private final WebSocket webSocket;
+    private final String              uri;
+    private final TrustStore          trustStore;
+    private final CredentialsProvider credentialsProvider;
 
-    public Client(String uri, TrustStore trustStore) {
+    private WebSocket webSocket;
+    private boolean   closed;
+
+    public Client(String uri, TrustStore trustStore, CredentialsProvider credentialsProvider) {
       Log.w(TAG, "Connecting to: " + uri);
 
-      this.webSocket = WebSocket.newWebSocket(new OkHttpClient().setSslSocketFactory(createTlsSocketFactory(trustStore)),
-                                              new Request.Builder().url(uri).build());
+      this.uri                 = uri;
+      this.trustStore          = trustStore;
+      this.credentialsProvider = credentialsProvider;
     }
 
     public void connect() {
@@ -170,7 +186,7 @@ public class WebSocketConnection {
         public void run() {
           int attempt = 0;
 
-          while (!webSocket.isClosed()) {
+          while (newSocket()) {
             try {
               Response response = webSocket.connect(Client.this);
 
@@ -190,9 +206,13 @@ public class WebSocketConnection {
       }.start();
     }
 
-    public void disconnect() {
+    public synchronized void disconnect() {
+      Log.w(TAG, "Calling disconnect()...");
       try {
-        webSocket.close(1000, "OK");
+        closed = true;
+        if (webSocket != null) {
+          webSocket.close(1000, "OK");
+        }
       } catch (IOException e) {
         Log.w(TAG, e);
       }
@@ -204,6 +224,7 @@ public class WebSocketConnection {
 
     @Override
     public void onMessage(BufferedSource payload, WebSocket.PayloadType type) throws IOException {
+      Log.w(TAG, "onMessage: " + type);
       if (type.equals(WebSocket.PayloadType.BINARY)) {
         WebSocketConnection.this.onMessage(payload.readByteArray());
       }
@@ -221,6 +242,18 @@ public class WebSocketConnection {
     public void onFailure(IOException e) {
       Log.w(TAG, e);
       WebSocketConnection.this.onClose();
+    }
+
+    private synchronized boolean newSocket() {
+      if (closed) return false;
+
+      String           filledUri     = String.format(uri, credentialsProvider.getUser(), credentialsProvider.getPassword());
+      SSLSocketFactory socketFactory = createTlsSocketFactory(trustStore);
+
+      this.webSocket = WebSocket.newWebSocket(new OkHttpClient().setSslSocketFactory(socketFactory),
+                                              new Request.Builder().url(filledUri).build());
+
+      return true;
     }
 
     private SSLSocketFactory createTlsSocketFactory(TrustStore trustStore) {
@@ -246,9 +279,7 @@ public class WebSocketConnection {
 
           Log.w(TAG, "Sending keep alive...");
           sendKeepAlive();
-        } catch (InterruptedException e) {
-          throw new AssertionError(e);
-        } catch (IOException e) {
+        } catch (Throwable e) {
           Log.w(TAG, e);
         }
       }
