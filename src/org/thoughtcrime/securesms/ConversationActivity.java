@@ -113,7 +113,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.List;
 
-import de.gdata.messaging.selfdestruction.DestroyButton;
+import de.gdata.messaging.components.SelectTransportButton;
 
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import static org.thoughtcrime.securesms.recipients.Recipient.RecipientModifiedListener;
@@ -148,7 +148,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private MasterSecret masterSecret;
   private EditText composeText;
   private SendButton sendButton;
-  private DestroyButton destroyButton;
+  private SelectTransportButton transportButton;
   private TextView charactersLeft;
 
   private AttachmentTypeSelectorAdapter attachmentAdapter;
@@ -170,9 +170,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   private DestroyButtonListener destroyButtonListener = new DestroyButtonListener();
-  private SelectProtocolListener selectProtocolListener = new SelectProtocolListener();
+  private SelectTransportListener selectTransportButtonListener = new SelectTransportListener();
   private SendButtonListener sendButtonListener = new SendButtonListener();
-  private AddAttachmentListener addAttachmentListener = new AddAttachmentListener();
+  private AddAttachmentListener addAttachmentButtonListener = new AddAttachmentListener();
 
   @Override
   protected void onCreate(Bundle state) {
@@ -732,18 +732,17 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       this.characterCalculator = new CharacterCalculator();
     }
 
-    sendButton.initializeAvailableTransports(!recipients.isSingleRecipient() || attachmentManager.isAttachmentPresent());
-    destroyButton.initializeAvailableTransports();
+    transportButton.initializeAvailableTransports(!recipients.isSingleRecipient() || attachmentManager.isAttachmentPresent());
 
-    if (!isPushDestination) sendButton.disableTransport("textsecure");
-    if (!isSecureDestination) sendButton.disableTransport("secure_sms");
+    if (!isPushDestination) transportButton.disableTransport("textsecure");
+    if (!isSecureDestination) transportButton.disableTransport("secure_sms");
 
     if (isPushDestination) {
-      sendButton.setDefaultTransport("textsecure");
+        transportButton.setDefaultTransport("textsecure");
     } else if (isSecureDestination) {
-      sendButton.setDefaultTransport("secure_sms");
+        transportButton.setDefaultTransport("secure_sms");
     } else {
-      sendButton.setDefaultTransport("insecure_sms");
+        transportButton.setDefaultTransport("insecure_sms");
     }
 
     calculateCharactersRemaining();
@@ -773,7 +772,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void initializeViews() {
     sendButton = (SendButton) findViewById(R.id.send_button);
-    destroyButton = (DestroyButton) findViewById(R.id.selfdestruction_button);
+    transportButton = (SelectTransportButton) findViewById(R.id.select_transport_button);
     composeText = (EditText) findViewById(R.id.embedded_text_editor);
     charactersLeft = (TextView) findViewById(R.id.space_left);
     emojiDrawer = (EmojiDrawer) findViewById(R.id.emoji_drawer);
@@ -851,23 +850,23 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void updateSendBarViews() {
       if (!"".equals(composeText.getText().toString())) {
-          destroyButton.setOnClickListener(destroyButtonListener);
-          destroyButton.setEnabled(true);
-          destroyButton.setComposeTextView(composeText);
-          destroyButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_person));
+          transportButton.setOnClickListener(destroyButtonListener);
+          transportButton.setEnabled(true);
+          transportButton.setComposeTextView(composeText);
+          transportButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_person));
 
           sendButton.setOnClickListener(sendButtonListener);
           sendButton.setEnabled(true);
           sendButton.setComposeTextView(composeText);
           sendButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_send_sms_gdata));
       } else {
-          destroyButton.setOnClickListener(selectProtocolListener);
-          destroyButton.setEnabled(true);
-          destroyButton.setComposeTextView(composeText);
-          destroyButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_forward));
+          transportButton.setOnClickListener(selectTransportButtonListener);
+          transportButton.setEnabled(true);
+          transportButton.setComposeTextView(composeText);
+          transportButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_forward));
 
 
-          sendButton.setOnClickListener(addAttachmentListener);
+          sendButton.setOnClickListener(addAttachmentButtonListener);
           sendButton.setEnabled(true);
           sendButton.setComposeTextView(composeText);
           sendButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_person));
@@ -1115,9 +1114,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       if ((!recipients.isSingleRecipient() || recipients.isEmailRecipient()) && !isMmsEnabled) {
         handleManualMmsRequired();
       } else if (attachmentManager.isAttachmentPresent() || !recipients.isSingleRecipient() || recipients.isGroupRecipient() || recipients.isEmailRecipient()) {
-        sendMediaMessage(sendButton.getSelectedTransport().isForcedPlaintext(), sendButton.getSelectedTransport().isForcedSms());
+        sendMediaMessage(transportButton.getSelectedTransport().isForcedPlaintext(), transportButton.getSelectedTransport().isForcedSms());
       } else {
-        sendTextMessage(sendButton.getSelectedTransport().isForcedPlaintext(), sendButton.getSelectedTransport().isForcedSms());
+        sendTextMessage(transportButton.getSelectedTransport().isForcedPlaintext(), transportButton.getSelectedTransport().isForcedSms());
       }
     } catch (RecipientFormattingException ex) {
       Toast.makeText(ConversationActivity.this,
@@ -1259,12 +1258,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
-    private class SelectProtocolListener implements OnClickListener, TextView.OnEditorActionListener {
+    private class SelectTransportListener implements OnClickListener, TextView.OnEditorActionListener {
         @Override
         public void onClick(View v) {
             Log.d("GDATA", "PROTOCOL CLICK");
-            TransportOptions transportOptions = new TransportOptions(destroyButton.getContext());
-            transportOptions.showPopup(destroyButton);
+            transportButton.performLongClick();
+            composeText.clearFocus();
         }
 
         @Override

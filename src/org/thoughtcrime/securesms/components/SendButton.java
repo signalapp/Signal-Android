@@ -5,7 +5,6 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.RelativeSizeSpan;
 import android.util.AttributeSet;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
@@ -43,17 +42,6 @@ public class SendButton extends ImageButton {
         setImageResource(newTransport.drawable);
         setContentDescription(newTransport.composeHint);
         if (composeText != null) setComposeTextHint(newTransport.composeHint);
-      }
-    });
-
-    setOnLongClickListener(new OnLongClickListener() {
-      @Override
-      public boolean onLongClick(View view) {
-        if (transportOptions.getEnabledTransports().size() > 1) {
-          transportOptions.showPopup(SendButton.this);
-          return true;
-        }
-        return false;
       }
     });
   }

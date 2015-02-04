@@ -68,8 +68,9 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:background="?conversation_editor_background">
-                <de.gdata.messaging.selfdestruction.DestroyButton
-                    android:id="@+id/selfdestruction_button"
+
+                <de.gdata.messaging.components.SelectTransportButton
+                    android:id="@+id/select_transport_button"
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
                     android:layout_gravity="center_vertical"
@@ -77,10 +78,10 @@
                     android:contentDescription="@string/conversation_activity__send"
                     android:nextFocusLeft="@+id/embedded_text_editor"
                     android:padding="12dp"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:src="?conversation_send_button_sms_insecure"
                     android:clickable="false"
-                    android:enabled="true" />
+                    android:enabled="false" />
 
                 <org.thoughtcrime.securesms.components.EmojiToggle
                         android:id="@+id/emoji_toggle"
