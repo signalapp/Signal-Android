@@ -169,6 +169,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private DynamicTheme dynamicTheme = new DynamicTheme();
   private DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
+  private DestroyButtonListener destroyButtonListener = new DestroyButtonListener();
+  private SelectProtocolListener selectProtocolListener = new SelectProtocolListener();
+  private SendButtonListener sendButtonListener = new SendButtonListener();
+  private AddAttachmentListener addAttachmentListener = new AddAttachmentListener();
+
   @Override
   protected void onCreate(Bundle state) {
     overridePendingTransition(R.anim.slide_from_right, R.anim.fade_scale_out);
@@ -781,17 +786,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     attachmentAdapter = new AttachmentTypeSelectorAdapter(this);
     attachmentManager = new AttachmentManager(this, this);
 
-    SendButtonListener sendButtonListener = new SendButtonListener();
-    DestroyButtonListener destroyButtonListener = new DestroyButtonListener();
     ComposeKeyPressedListener composeKeyPressedListener = new ComposeKeyPressedListener();
-
-    sendButton.setOnClickListener(sendButtonListener);
-    sendButton.setEnabled(true);
-    sendButton.setComposeTextView(composeText);
-
-    destroyButton.setOnClickListener(destroyButtonListener);
-    destroyButton.setEnabled(true);
-    destroyButton.setComposeTextView(composeText);
 
     composeText.setOnKeyListener(composeKeyPressedListener);
     composeText.addTextChangedListener(composeKeyPressedListener);
@@ -800,6 +795,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     composeText.setOnFocusChangeListener(composeKeyPressedListener);
     emojiDrawer.setComposeEditText(composeText);
     emojiToggle.setOnClickListener(new EmojiToggleListener());
+
+    updateSendBarViews();
   }
 
   private void initializeResources() {
@@ -850,6 +847,31 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     registerReceiver(groupUpdateReceiver,
         new IntentFilter(GroupDatabase.DATABASE_UPDATE_ACTION));
+  }
+
+  private void updateSendBarViews() {
+      if (!"".equals(composeText.getText().toString())) {
+          destroyButton.setOnClickListener(destroyButtonListener);
+          destroyButton.setEnabled(true);
+          destroyButton.setComposeTextView(composeText);
+          destroyButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_person));
+
+          sendButton.setOnClickListener(sendButtonListener);
+          sendButton.setEnabled(true);
+          sendButton.setComposeTextView(composeText);
+          sendButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_send_sms_gdata));
+      } else {
+          destroyButton.setOnClickListener(selectProtocolListener);
+          destroyButton.setEnabled(true);
+          destroyButton.setComposeTextView(composeText);
+          destroyButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_forward));
+
+
+          sendButton.setOnClickListener(addAttachmentListener);
+          sendButton.setEnabled(true);
+          sendButton.setComposeTextView(composeText);
+          sendButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_person));
+      }
   }
 
   //////// Helper Methods
@@ -1223,7 +1245,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private class DestroyButtonListener implements OnClickListener, TextView.OnEditorActionListener {
     @Override
     public void onClick(View v) {
-      Log.d("aaa", "destroy ME");
+      Log.d("GDATA", "DESTROY CLICK");
     }
 
     @Override
@@ -1236,6 +1258,43 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       return false;
     }
   }
+
+    private class SelectProtocolListener implements OnClickListener, TextView.OnEditorActionListener {
+        @Override
+        public void onClick(View v) {
+            Log.d("GDATA", "PROTOCOL CLICK");
+            TransportOptions transportOptions = new TransportOptions(destroyButton.getContext());
+            transportOptions.showPopup(destroyButton);
+        }
+
+        @Override
+        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            if (actionId == EditorInfo.IME_ACTION_SEND) {
+                sendButton.performClick();
+                composeText.clearFocus();
+                return true;
+            }
+            return false;
+        }
+    }
+
+    private class AddAttachmentListener implements OnClickListener, TextView.OnEditorActionListener {
+        @Override
+        public void onClick(View v) {
+            Log.d("GDATA", "ATTACHMENT CLICK");
+            handleAddAttachment();
+        }
+
+        @Override
+        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            if (actionId == EditorInfo.IME_ACTION_SEND) {
+                sendButton.performClick();
+                composeText.clearFocus();
+                return true;
+            }
+            return false;
+        }
+    }
 
   private class ComposeKeyPressedListener implements OnKeyListener, OnClickListener, TextWatcher, OnFocusChangeListener {
     @Override
@@ -1262,6 +1321,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     @Override
     public void afterTextChanged(Editable s) {
       calculateCharactersRemaining();
+
+      updateSendBarViews();
     }
 
     @Override
