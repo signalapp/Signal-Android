@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="minutes_ago">
+        <item quantity="one">@string/plurals__one_minute</item>
+        <item quantity="other">@string/plurals__many_minutes</item>
+    </plurals>
+
+    <plurals name="hours_ago">
+        <item quantity="one">@string/plurals__one_hour</item>
+        <item quantity="other">@string/plurals__many_hours</item>
+    </plurals>
+
+</resources>
