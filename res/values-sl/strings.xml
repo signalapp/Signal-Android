@@ -199,6 +199,21 @@ Za ponovno uporabo potisnih sporočil se boste morali zopet prijaviti s svojo te
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Gesli se ne ujemata</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Napačno staro geslo!</string>
+  <!--DeviceProvisioningActivity-->
+  <string name="DeviceProvisioningActivity_link_this_device">Povežem napravo?</string>
+  <string name="DeviceProvisioningActivity_cancel">PREKINI</string>
+  <string name="DeviceProvisioningActivity_continue">NADALJUJ</string>
+  <string name="DeviceProvisioningActivity_title">Povežem napravo?</string>
+  <string name="DeviceProvisioningActivity_content_intro">Lahko bo</string>
+  <string name="DeviceProvisioningActivity_content_bullets">
+- prebirala vsa vaša sporočila
+\n- pošiljala sporočila v vašem imenu</string>
+  <string name="DeviceProvisioningActivity_content_progress_title">Dodajam napravo...</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">Dodajam novo napravo...</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">Naprava dodana!</string>
+  <string name="DeviceProvisioningActivity_content_progress_no_device">Nobena naprava ni bila najdena.</string>
+  <string name="DeviceProvisioningActivity_content_progress_network_error">Napaka omrežja.</string>
+  <string name="DeviceProvisioningActivity_content_progress_key_error">Neveljavna koda QR.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Vnesite geslo</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Ikona TextSecure</string>
@@ -221,8 +236,7 @@ preveriti ta stik.</string>
   <string name="RegistrationActivity_unsupported">Nepodprto</string>
   <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Vaša naprava žal ne podpira podatkovnih sporočil. Naprave z Androidom različice starejše od 4.0 morajo imeti registriran Googlov račun. Naprave z Androidom različice 4.0 ali več ne potrebujejo računa Google, vendar morajo imeti nameščeno aplikacijo Play Store.</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
-Preverili bomo, če je spodnja številka povezana s to napravo:\n\n%s\n\n
-Je ta številka prava, ali jo želite pred nadaljevanjem postopka spremeniti?</string>
+Preverite, če je to zares vaša telefonska številka! Overili jo bomo s sporočilom SMS.</string>
   <string name="RegistrationActivity_continue">Nadaljuj</string>
   <string name="RegistrationActivity_edit">Uredi</string>
   <!--RegistrationProblemsActivity-->
@@ -658,12 +672,14 @@ bila uspešna.</string>
   <string name="text_secure_normal__menu_clear_passphrase">Zakleni</string>
   <string name="text_secure_normal__mark_all_as_read">Označi vse kot prebrano</string>
   <!--reminder_header-->
+  <string name="reminder_header_expired_build">Nameščena različica aplikacije TextSecure je potekla!</string>
+  <string name="reminder_header_expired_build_details">Pošiljanje sporočil ni več mogoče. Prosimo, posodobite aplikacijo na zadnjo različico.</string>
   <string name="reminder_header_sms_default_title">Uporabljam kot privzeto aplikacijo SMS?</string>
-  <string name="reminder_header_sms_default_text">TextSecure trenutno ni privzeta aplikacija SMS.</string>
+  <string name="reminder_header_sms_default_text">Z dotikom nastavite TexteScure za privzeto aplikacijo SMS</string>
   <string name="reminder_header_sms_import_title">Uvozim iz sistemske zbirke sporočil SMS?</string>
-  <string name="reminder_header_sms_import_text">TextSecure lahko prekopira sporočila SMS z vašega telefona v svojo šifrirano zbirko.</string>
+  <string name="reminder_header_sms_import_text">Tapnite za prenos sporočil SMS iz vašega telefona v šifrirano zbirko.</string>
   <string name="reminder_header_push_title">Vklopim sporočila TextSecure?</string>
-  <string name="reminder_header_push_text">Takojšnja dostava, večja zasebnost, brez stroškov SMS.</string>
+  <string name="reminder_header_push_text">Tapnite za takojšnjo dostavo in večjo zasebnost, brez dodatnih stroškov za sporočila SMS.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Vi</string>
   <string name="MediaPreviewActivity_cant_display">Predogled te slike ni mogoč</string>

@@ -213,6 +213,7 @@ Babeskopia hau lehenago inportatu baduzu, mezu bikoiztuak sortu daitezke.
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Pasahitzak ez datoz bat!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Pasahitz zahar ez zuzena!</string>
+  <!--DeviceProvisioningActivity-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Pasahitza sartu</string>
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure-ren ikonoa</string>
@@ -248,9 +249,6 @@ zenbakia (%s) baliogabea da.
   <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Sentitzen dugu,
 baina gailu honek ez dago onartuta datuen bidezko mezulararitzarako. Android 4.0 bertsioa baino zaharragoa duten gailuek Google Kontu bat izan behar dute. 
 Android 4.0 edo berriagoa badute, ez da beharrezkoa Google Kontu bat izatea, baina Play Store-eko aplikakzioa instalatuta eduki behar da.</string>
-  <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
-Oraintxe egiaztatuko dugu ondoko zenbakia dispositibo honekin lotuta dagoen:\n\n%s\n\n
-Zenbaki hau zuzena al da, edo nahiko zenuke editatu jarraitu baino lehenago?</string>
   <string name="RegistrationActivity_continue">Jarraitu</string>
   <string name="RegistrationActivity_edit">Editatu</string>
   <!--RegistrationProblemsActivity-->
@@ -699,11 +697,8 @@ Hobetu zure pribatutasuna eta ekidin SMS tasak datu kanala erabiliz TextSecure-e
   <string name="text_secure_normal__mark_all_as_read">Irakurritako gisa markatu guztiak</string>
   <!--reminder_header-->
   <string name="reminder_header_sms_default_title">Lehenetsitako SMS aplikazio gisa erabili?</string>
-  <string name="reminder_header_sms_default_text">TextSecure ez da zure SMS aplikazio lehenetsia</string>
   <string name="reminder_header_sms_import_title">Sistemaren SMSa inportatu?</string>
-  <string name="reminder_header_sms_import_text">TextSecure gai da zure telefonoaren SMS mezuak datubase enkriptatura kopiatzeko.</string>
   <string name="reminder_header_push_title">Gaitu TextSecure mezuak?</string>
-  <string name="reminder_header_push_text">Berehalako banaketa, pribatutasun indartsuagoa eta SMS tasarik ez.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Zu</string>
   <string name="MediaPreviewActivity_cant_display">Ezgai irudi honen aurrebista sortzeko</string>

@@ -23,7 +23,7 @@
   <string name="ApplicationPreferencesActivity_disable_push_messages">Онемогућити сигурне поруке?</string>
   <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">
 Ово ће да онемогући сигурне поруке одјављујући вас са сервера.
-Мораћете да поново региструјете ваш број телефона да бисте опет користили сигурне поруке.</string>
+Мораћете поново да пријавите ваш број телефона да бисте опет користили сигурне поруке.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Грешка повезивања на сервер!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">Долазни СМС омогућен</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Додирните да бисте променили подразумевану апликацију за СМС</string>
@@ -211,6 +211,21 @@
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Лозинке се не поклапају!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Нетачна стара лозинка!</string>
+  <!--DeviceProvisioningActivity-->
+  <string name="DeviceProvisioningActivity_link_this_device">Да поежем овај уређај?</string>
+  <string name="DeviceProvisioningActivity_cancel">ОДУСТАНИ</string>
+  <string name="DeviceProvisioningActivity_continue">НАСТАВИ</string>
+  <string name="DeviceProvisioningActivity_title">Повезати овај уређај?</string>
+  <string name="DeviceProvisioningActivity_content_intro">Моћи ће да</string>
+  <string name="DeviceProvisioningActivity_content_bullets">
+- чита све ваше поруке
+\n- шаље поруке у ваше име</string>
+  <string name="DeviceProvisioningActivity_content_progress_title">Додајем уређај...</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">Додајем нови уређај...</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">Уређај додат!</string>
+  <string name="DeviceProvisioningActivity_content_progress_no_device">Није нађен уређај.</string>
+  <string name="DeviceProvisioningActivity_content_progress_network_error">Грешка мреже.</string>
+  <string name="DeviceProvisioningActivity_content_progress_key_error">Неисправан бар-код.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Унесите лозинку</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Икона Сигурних порука</string>
@@ -244,8 +259,7 @@
 морају имати регистрован Гуглов налог. Уређаји на Андроидима 4.0 или новијим не захтевају
 Гуглов налог, али морају имати инсталирану Плеј продавницу.</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
-Сада ћемо оверити да је следећи број повезан са овим уређајем:\n\n%s\n\n
-Да ли је овај број тачан, или желите да га уредите пре настављања?</string>
+Проверите да ли је ово ваш број! Оверићемо га помоћу СМС поруке.</string>
   <string name="RegistrationActivity_continue">Настави</string>
   <string name="RegistrationActivity_edit">Уреди</string>
   <!--RegistrationProblemsActivity-->
@@ -688,12 +702,14 @@
   <string name="text_secure_normal__menu_clear_passphrase">Закључај</string>
   <string name="text_secure_normal__mark_all_as_read">Означи све прочитаним</string>
   <!--reminder_header-->
+  <string name="reminder_header_expired_build">Ваше издање Сигурних порука је истекло!</string>
+  <string name="reminder_header_expired_build_details">Више нећете моћи да шаљете поруке успешно, надоградите на најскорије издање.</string>
   <string name="reminder_header_sms_default_title">Користити као подразумевану СМС апликацију?</string>
-  <string name="reminder_header_sms_default_text">Сигурне поруке тренутно није ваша подразумевана СМС апликација.</string>
+  <string name="reminder_header_sms_default_text">Тапните да поставите Сигурне поруке као подразумевану апликацију за СМС</string>
   <string name="reminder_header_sms_import_title">Увести СМС поруке са система?</string>
-  <string name="reminder_header_sms_import_text">Сигурне поруке може да копира СМС поруке са вашег телефона у своју шифровану базу.</string>
+  <string name="reminder_header_sms_import_text">Тапните да копирате СМС поруке са вашег телефона у шифровану базу.</string>
   <string name="reminder_header_push_title">Омогућити сигурне поруке?</string>
-  <string name="reminder_header_push_text">Тренутна испорука, јача приватност и без накнада за СМС.</string>
+  <string name="reminder_header_push_text">Тапните за тренутну испоруку, јачу приватност и без накнада за СМС.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Ви</string>
   <string name="MediaPreviewActivity_cant_display">Неуспех приказа ове слике</string>

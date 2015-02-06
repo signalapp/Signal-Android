@@ -202,6 +202,7 @@
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">口令不符！</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">旧密码不正确！</string>
+  <!--DeviceProvisioningActivity-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">输入密钥</string>
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure 图标</string>
@@ -229,12 +230,7 @@
 4.0，并且已经注册了Google帐户。如果设备已经运行于Android 4.0或更高版本
 则不需要Google账户，但是必须已经安装 Play 商店。</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
-我们将会验证下列号码已经属于该设备：
-
-%s
-
-
-您确认该号码正确，或者您想在继续前先修改一下？</string>
+请仔细复查您的号码，我们将通过短信进行验证。</string>
   <string name="RegistrationActivity_continue">继续</string>
   <string name="RegistrationActivity_edit">编辑</string>
   <!--RegistrationProblemsActivity-->
@@ -677,12 +673,14 @@ TextSecure 在等待短信验证时超时。</string>
   <string name="text_secure_normal__menu_clear_passphrase">锁定</string>
   <string name="text_secure_normal__mark_all_as_read">全部标记为已读</string>
   <!--reminder_header-->
+  <string name="reminder_header_expired_build">您正在使用的 TextSecure 已经过期！</string>
+  <string name="reminder_header_expired_build_details">您的信息已经长时间没有成功发送了，请更新到最新版本。</string>
   <string name="reminder_header_sms_default_title">使用默认的SMS应用程序？</string>
-  <string name="reminder_header_sms_default_text">TextSecure 目前不是您默认的短信应用。</string>
+  <string name="reminder_header_sms_default_text">点击来将 TextSecure 设定为默认的短信应用</string>
   <string name="reminder_header_sms_import_title">导入系统短信？</string>
-  <string name="reminder_header_sms_import_text">TextSecure 可以将您手机中的短信息复制到加密的数据库中。</string>
+  <string name="reminder_header_sms_import_text">点击将手机中的短信息复制到 TextSecure 的加密的数据库中。</string>
   <string name="reminder_header_push_title">启用 TextSecure 信息？</string>
-  <string name="reminder_header_push_text">顷刻投递，私密存储，并且没有短信费用。</string>
+  <string name="reminder_header_push_text">点击以顷刻投递，私密存储，并且没有短信费用。</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">您</string>
   <string name="MediaPreviewActivity_cant_display">预览图片失败</string>

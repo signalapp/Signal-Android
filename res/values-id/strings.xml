@@ -56,7 +56,6 @@ dapat mengaksesnya</string>
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Rincian pesan</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Apakah anda yakin akan menghapus pesan ini secara permanen?</string>
   <string name="ConversationFragment_success_exclamation">Sukses!</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Hapus topik?</string>
@@ -72,13 +71,6 @@ dapat mengaksesnya</string>
 mengeksport konten pesan teks polos TextSecure anda ke kartu SD</string>
   <string name="ExportFragment_cancel">Batal</string>
   <string name="ExportFragment_exporting">Mengeksport</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Mengeksport teks polos ke kartu SD...
-</string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">Tidak dapat menyimpan ke kartu
-SD!
-</string>
-  <string name="ExportFragment_error_while_writing_to_sd_card">Gagal ketika menyimpan ke kartu SD.
-</string>
   <string name="ExportFragment_success">Sukses!</string>
   <!--GcmRefreshJob-->
   <!--GroupCreateActivity-->
@@ -127,6 +119,7 @@ telah mengimport basis data sistem SMS, hal ini akan menyebabkan adanya duplikas
   <!--MessageRecord-->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Kata kunci lama salah!</string>
+  <!--DeviceProvisioningActivity-->
   <!--PassphrasePromptActivity-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Isi
@@ -296,6 +289,7 @@ Pulihkan dari cadangan teracak TextSecure.
 Import cadangan dalam texks polos. Kompatibel dengan aplikasi \'SMSBackup And Restore\'.</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Telepon Anda membutuhkan pengaturan MMS secara manual.</string>
+  <!--GroupUtil-->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Buka Kunci</string>
   <!--prompt_mms_activity-->

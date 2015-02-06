@@ -101,11 +101,13 @@ Avrai bisogno di registrare di nuovo il tuo numero di telefono per usare i messa
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_get_with_it">Ottienilo con: %s</string>
   <string name="ConversationActivity_install_textsecure">Installa TextSecure: %s</string>
+  <string name="ConversationActivity_error_leaving_group">Errore nell\'abbandonare il gruppo...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Dettagli messaggio</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Trasporto: %1$s\nInviato/Ricevuto: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Mittente: %1$s\nTrasporto: %2$s\nInviato: %3$s\nRicevuto: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Messaggio di conferma cancellazione</string>
+  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Sei sicuro di voler cancellare definitivamente tutti i messaggi selezionati?</string>
   <string name="ConversationFragment_save_to_sd_card">Salvare in memoria?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Salvare quest\'immagine sulla memoria consentirà a qualunque applicazione sul tuo telefono di accedervi.\n\nContinuare?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Errore nel salvare l\'allegato in memoria!</string>
@@ -118,6 +120,7 @@ Avrai bisogno di registrare di nuovo il tuo numero di telefono per usare i messa
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Cancellazione...</string>
+  <string name="ConversationFragment_deleting_messages">Cancellazione messaggi...</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Cancellare i threads?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Sei sicuro di voler cancellare TUTTE le conversazioni selezionate?</string>
@@ -135,6 +138,8 @@ Avrai bisogno di registrare di nuovo il tuo numero di telefono per usare i messa
     </string>
   <string name="ExportFragment_cancel">Annulla</string>
   <string name="ExportFragment_exporting">In esportazione</string>
+  <string name="ExportFragment_exporting_plaintext_to_sd_card">Esportazione in chiaro sulla scheda SD...</string>
+  <string name="ExportFragment_error_unable_to_write_to_sd_card">Errore, impossibile scrivere sulla scheda SD</string>
   <string name="ExportFragment_error_while_writing_to_sd_card">Errore durante la scrittura su scheda SD.</string>
   <string name="ExportFragment_success">Completato!</string>
   <!--GcmRefreshJob-->
@@ -200,10 +205,26 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="NotificationMmsMessageRecord_multimedia_message">Messaggio multimediale</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Hai ricevuto un messaggio cifrato usando una vecchia versione di TextSecure che non è più supportata. Ti preghiamo di chiedere al mittente di aggiornare l\'app e rimandare il messaggio.</string>
+  <string name="MessageRecord_left_group">Hai lasciato il gruppo.</string>
   <string name="MessageRecord_updated_group">Gruppo aggiornato.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Le password non corrispondono!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Vecchia password errata!</string>
+  <!--DeviceProvisioningActivity-->
+  <string name="DeviceProvisioningActivity_link_this_device">Collegare questo dispositivo?</string>
+  <string name="DeviceProvisioningActivity_cancel">ANNULLA</string>
+  <string name="DeviceProvisioningActivity_continue">CONTINUA</string>
+  <string name="DeviceProvisioningActivity_title">Collegare questo dispositivo?</string>
+  <string name="DeviceProvisioningActivity_content_intro">Sarà in grado di</string>
+  <string name="DeviceProvisioningActivity_content_bullets">
+- Leggere tutti i tuoi messaggi
+\n- Inviare messaggi col tuo nome</string>
+  <string name="DeviceProvisioningActivity_content_progress_title">Aggiunta dispositivo...</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">Aggiunta nuovo dispositivo...</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">Dispositivo aggiunto!</string>
+  <string name="DeviceProvisioningActivity_content_progress_no_device">Nessun dispositivo trovato.</string>
+  <string name="DeviceProvisioningActivity_content_progress_network_error">Errore di rete.</string>
+  <string name="DeviceProvisioningActivity_content_progress_key_error">Codice QR non valido.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Inserire la password</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icona TextSecure</string>
@@ -236,8 +257,7 @@ questo dispositivo non è supportato per i messaggi push. I dispositivi che usan
 precedenti alla 4.0 devono avere un account Google registrato. I dispositivi che usano Android 4.0 o successivo
 non richiedono un account Google, ma devono avere l\'applicazione Play Store installata.</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
-Ora verificheremo se questo numero di telefono è associato con questo dispositivo:\n\n%s\n\n
-Il numero è corretto o vuoi modificarlo prima di continuare?</string>
+Assicurati che questo sia il tuo numero! Stiamo per verificarlo con un SMS.</string>
   <string name="RegistrationActivity_continue">Continua</string>
   <string name="RegistrationActivity_edit">Modifica</string>
   <!--RegistrationProblemsActivity-->
@@ -314,13 +334,16 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <string name="MessageDisplayHelper_decrypting_please_wait">Decifratura in corso...</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Messaggio cifrato per una sessione non esistente...</string>
   <!--EncryptingSmsDatabase-->
+  <string name="EncryptingSmsDatabase_error_decrypting_message">Errore nel decifrare il messaggio.</string>
   <!--ThreadDatabase-->
+  <string name="ThreadDatabase_error_decrypting_message">Errore nel decifrare il messaggio.</string>
   <!--MmsDatabase-->
   <string name="MmsDatabase_connecting_to_mms_server">Connessione al server MMS...</string>
   <string name="MmsDatabase_downloading_mms">Download MMS...</string>
   <string name="MmsDatabase_mms_download_failed">Download dell\'MMS fallito!</string>
   <string name="MmsDatabase_downloading">Scaricamento...</string>
   <string name="MmsDatabase_mms_pending_download">Tocca e configura le impstazioni MMS per continuare a scaricare.</string>
+  <string name="MmsDatabase_error_decrypting_message">Errore nel decifrare il messaggio.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Decifratura MMS in corso, attendere...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Cifratura MMS invalida..</string>
@@ -692,15 +715,18 @@ Aumenta la privacy ed evita i costi degli SMS usando la connettività dati per c
   <string name="text_secure_normal__menu_clear_passphrase">Blocca</string>
   <string name="text_secure_normal__mark_all_as_read">Segnala tutto come già letto</string>
   <!--reminder_header-->
+  <string name="reminder_header_expired_build">La tua versione di TextSecure è scaduta!</string>
+  <string name="reminder_header_expired_build_details">Non riesci più a mandare messaggi, per piacere aggiorna all\'ultima versione.</string>
   <string name="reminder_header_sms_default_title">Adotta come applicazione predefinita per SMS.</string>
-  <string name="reminder_header_sms_default_text">Attualmente TextSecure non è la tua applicazione predefinita per SMS.</string>
+  <string name="reminder_header_sms_default_text">Tocca per usare TextSecure come app di default per gli SMS.</string>
   <string name="reminder_header_sms_import_title">Vuoi importare gli SMS precedenti?</string>
-  <string name="reminder_header_sms_import_text">TextSecure può copiare i messaggi SMS del tuo telefono nella sua banca dati cifrata.</string>
+  <string name="reminder_header_sms_import_text">Tocca per copiare gli SMS del telefono nel database criptato.</string>
   <string name="reminder_header_push_title">Attivare i messaggi di TextSecure?</string>
-  <string name="reminder_header_push_text">Consegna istantanea, migliore privacy, e nessun costo SMS.</string>
+  <string name="reminder_header_push_text">Consegna istantanea, migliore privacy e nessun costo SMS.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Tu</string>
   <string name="MediaPreviewActivity_cant_display">Impossibile mostrare l\'anteprima</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">Tipo di media non supportato</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Salva</string>
   <!--media_preview_activity-->

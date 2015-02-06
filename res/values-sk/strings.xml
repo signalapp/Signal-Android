@@ -61,7 +61,6 @@ Upozornenie, toto vypne kryptovanie úložiska správ a kľúčov. Vaše bezpeč
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detaily správy</string>
   <string name="ConversationFragment_confirm_message_delete">Potvrď zmazanie správy</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Ste si istí že chcete úplne zmazať túto správu?</string>
   <string name="ConversationFragment_success_exclamation">Úspech!</string>
   <string name="ConversationFragment_saving_attachment">Ukladám prílohu</string>
   <!--ConversationListFragment-->
@@ -80,10 +79,6 @@ Upozornenie, toto vypne kryptovanie úložiska správ a kľúčov. Vaše bezpeč
 exportuje nekryptovaný obsah TextSecure správy na SD kartu.</string>
   <string name="ExportFragment_cancel">Zrušiť</string>
   <string name="ExportFragment_exporting">Exportujem</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Exportujem nekryptovaný text na SD kartu...</string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">Chyba, nemôžem zapísať na SD
-kartu!</string>
-  <string name="ExportFragment_error_while_writing_to_sd_card">Chyba pri zápise na SD kartu.</string>
   <string name="ExportFragment_success">Úspech!</string>
   <!--GcmRefreshJob-->
   <!--GroupCreateActivity-->
@@ -132,6 +127,7 @@ Obnovenie zakryptovanej zálohy prepíše všetky existujúce kryptovacie kľú�
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Heslá sa nezhodujú!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Nesprávne staré heslo!</string>
+  <!--DeviceProvisioningActivity-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Zadaj heslo</string>
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure ikonka</string>
@@ -299,6 +295,7 @@ Obnoviť predtým exportovanú zakryptovanú TextSecure zálohu.</string>
 Importovať nezakryptovanú zálohu. Kompatibilné so \'SMSBackup And Restore\'.</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Manuálne MMS nastavenia sú vyžadované pre tvoj telefón.</string>
+  <!--GroupUtil-->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Odomkni</string>
   <!--prompt_mms_activity-->

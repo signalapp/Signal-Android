@@ -15,18 +15,18 @@
   <string name="ApplicationPreferencesActivity_disable_storage_encryption">Opslagversleuteling uitschakelen?</string>
   <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
 Let op, dit schakelt opslagversleuteling uit voor alle berichten en sleutels. Je versleutelde sessies zullen blijven werken, maar iedereen met fysieke toegang tot je apparaat zal er toegang toe hebben.</string>
-  <string name="ApplicationPreferencesActivity_disable">Schakel uit</string>
+  <string name="ApplicationPreferencesActivity_disable">Uitschakelen</string>
   <string name="ApplicationPreferencesActivity_unregistering">Afmelden...</string>
   <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Afmelden voor datagebaseerde communicatie.</string>
-  <string name="ApplicationPreferencesActivity_disable_push_messages">Push berichten uitzetten?</string>
+  <string name="ApplicationPreferencesActivity_disable_push_messages">Pushberichten uitschakelen?</string>
   <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">
 Dit zal push berichten uitzetten door uw registratie bij de server ongedaan te maken.
 U zal uw telefoonnummer opnieuw moeten registreren als u push berichten weer wilt gebruiken.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Fout bij verbinden met de server!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">Inkomende SMS geactiveerd</string>
-  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Aanraken om uw standaard SMS applicatie te veranderen</string>
+  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Aanraken om uw standaard SMS-applicatie te veranderen</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Inkomende SMS uitgeschakeld</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Raak aan om TextSecure uw standaard SMS applicatie te maken</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Raak aan om TextSecure uw standaard SMS-applicatie te maken</string>
   <string name="ApplicationPreferencesActivity_on">aan</string>
   <string name="ApplicationPreferencesActivity_On">Aan</string>
   <string name="ApplicationPreferencesActivity_off">uit</string>
@@ -55,7 +55,7 @@ U zal uw telefoonnummer opnieuw moeten registreren als u push berichten weer wil
   <string name="ConversationItem_error_sending_message">Fout bij versturen van bericht</string>
   <string name="ConversationItem_view_secure_media_question">Bekijk beveiligde media?</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Deze media is opgeslagen in een versleutelde database. Om het weer te geven, zal het tijdelijk moeten worden ontsleuteld en naar het opslaggeheugen worden weggeschreven. Weet u zeker dat u dit wil doen?</string>
-  <string name="ConversationItem_error_received_stale_key_exchange_message">Fout, verouderd steuteluitwisselingsbericht ontvangen.</string>
+  <string name="ConversationItem_error_received_stale_key_exchange_message">Fout, verouderd sleuteluitwisselingsbericht ontvangen.</string>
   <string name="ConversationItem_received_key_exchange_message_click_to_process">Sleuteluitwisselingsbericht ontvangen, klik hier om te verwerken.</string>
   <string name="ConversationItem_group_action_left">%1$s heeft de groep verlaten.</string>
   <string name="ConversationItem_click_to_approve_sms">Tik voor terugvallen naar SMS</string>
@@ -100,7 +100,7 @@ U zal uw telefoonnummer opnieuw moeten registreren als u push berichten weer wil
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_get_with_it">Kom erbij: %s</string>
   <string name="ConversationActivity_install_textsecure">Installeer TextSecure: %s</string>
-  <string name="ConversationActivity_error_leaving_group">Er is een fout gebeurd bij het verlaten van de groep...</string>
+  <string name="ConversationActivity_error_leaving_group">Fout bij het verlaten van de groep...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Berichtdetails</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Overdracht: %1$s\nVerzonden/Ontvangen: %2$s</string>
@@ -201,6 +201,22 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Wachtwoorden komen niet overeen</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Incorrect oud wachtwoord!</string>
+  <!--DeviceProvisioningActivity-->
+  <string name="DeviceProvisioningActivity_link_this_device">Dit apparaat koppelen?</string>
+  <string name="DeviceProvisioningActivity_cancel">ANNULEREN</string>
+  <string name="DeviceProvisioningActivity_continue">DOORGAAN</string>
+  <string name="DeviceProvisioningActivity_title">Dit apparaat koppelen?</string>
+  <string name="DeviceProvisioningActivity_content_intro">Het kan</string>
+  <string name="DeviceProvisioningActivity_content_bullets">
+        - Al je berichten lezen
+        \n- Berichten versturen namens jou
+    </string>
+  <string name="DeviceProvisioningActivity_content_progress_title">Apparaat aan het koppelen...</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">Nieuw apparaat aan het toevoegen...</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">Apparaat toegevoegd!</string>
+  <string name="DeviceProvisioningActivity_content_progress_no_device">Geen apparaat gevonden.</string>
+  <string name="DeviceProvisioningActivity_content_progress_network_error">Netwerkfout!</string>
+  <string name="DeviceProvisioningActivity_content_progress_key_error">Ongeldige QR code.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Voer wachtwoord in</string>
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure icoon</string>
@@ -225,8 +241,8 @@ ingevoerd (%s) is ongeldig.</string>
   <string name="RegistrationActivity_unsupported">Niet ondersteund</string>
   <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Sorry, dit apparaat ondersteunt geen databerichten. Apparaten die een Androidversie ouder dan 4.0 draaien moeten aan een Google Account gekoppeld zijn. Apparaten die Android 4.0 of nieuwer draaien hoeven niet gekoppeld te zijn, maar moeten wel de Play Store app geïnstalleerd hebben.</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
-We gaan nu controleren of het volgende nummer bij dit apparaat hoort:\n\n%s\n\n
-Is dit nummer correct, of wil u het aanpassen alvorens door te gaan?</string>
+        Dubbelcheck dat dit je nummer is! We gaan dit verifiëren met een SMS.
+    </string>
   <string name="RegistrationActivity_continue">Doorgaan</string>
   <string name="RegistrationActivity_edit">Bewerken</string>
   <!--RegistrationProblemsActivity-->
@@ -558,7 +574,7 @@ TextSecure heeft te lang moeten wachten op het binnenkomen van de verificatie-SM
   <string name="preferences__slow">Langzaam</string>
   <string name="preferences__custom">Aangepast</string>
   <string name="preferences__advanced">Geavanceerd</string>
-  <string name="preferences__app_protection">App bescherming</string>
+  <string name="preferences__app_protection">App beveiliging</string>
   <string name="preferences__advanced_mms_access_point_names">Handmatige MMS instellingen</string>
   <string name="preferences__enable_manual_mms">Gebruik handmatige MMS instellingen</string>
   <string name="preferences__override_system_mms_settings">Gebruik onderstaande gegevens in plaats van de MMS instellingen van het systeem.</string>
@@ -660,12 +676,14 @@ Privacy verbeteren en SMS-kosten vermijden door het datakanaal te gebruiken voor
   <string name="text_secure_normal__menu_clear_passphrase">Vergrendel</string>
   <string name="text_secure_normal__mark_all_as_read">Markeer alles als gelezen</string>
   <!--reminder_header-->
+  <string name="reminder_header_expired_build">Je build van TextSecure is verlopen!</string>
+  <string name="reminder_header_expired_build_details">Berichten zullen niet langer verzonden worden, gelieve te updaten naar de recentste versie.</string>
   <string name="reminder_header_sms_default_title">Als standaard SMS-app gebruiken?</string>
-  <string name="reminder_header_sms_default_text">Textsecure is momenteel niet uw standaard SMS-app.</string>
+  <string name="reminder_header_sms_default_text">Raak aan om van TextSecure je standaard SMS applicatie te maken.</string>
   <string name="reminder_header_sms_import_title">SMS importeren uit systeem?</string>
-  <string name="reminder_header_sms_import_text">TextSecure kan uw SMS-berichten importeren in haar versleutelde database.</string>
+  <string name="reminder_header_sms_import_text">Raak aan om de SMS berichten in je telefoon te kopiëren naar een versleutelde database.</string>
   <string name="reminder_header_push_title">Activeer TextSecure berichten</string>
-  <string name="reminder_header_push_text">Directe aflevering, Sterkere privacy, en geen SMS kosten.</string>
+  <string name="reminder_header_push_text">Raak aan voor directe aflevering, sterkere privacy, en geen SMS kosten.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Jij</string>
   <string name="MediaPreviewActivity_cant_display">Weergeven van deze afbeelding is mislukt</string>

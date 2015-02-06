@@ -83,7 +83,6 @@
   <string name="ConversationFragment_transport_s_sent_received_s">傳送狀態: %1$s\n已傳送/已接收: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">傳送者: %1$s\n傳送狀態: %2$s\n已傳送: %3$s\n已接收: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">刪除訊息確認</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">您確認要永久刪除此訊息？</string>
   <string name="ConversationFragment_save_to_sd_card">儲存到儲存裝置？</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">將檔案儲存到儲存裝置，將會使得手機上的其他 APP 也能存取它。\n\n您要繼續嗎？</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">儲存檔案到儲存裝置時發生錯誤！</string>
@@ -91,6 +90,7 @@
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">無法寫入儲存裝置！</string>
   <string name="ConversationFragment_saving_attachment">正在儲存附件檔案</string>
   <string name="ConversationFragment_saving_attachment_to_sd_card">正在寫入儲存裝置中...</string>
+  <string name="ConversationFragment_deleting">刪除中...</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">刪除對話群組？</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">您確定要刪除已選擇的對話群組？</string>
@@ -108,9 +108,6 @@
     </string>
   <string name="ExportFragment_cancel">取消</string>
   <string name="ExportFragment_exporting">正在匯出...</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">正在以純文字格式匯出至 SD 卡...</string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">錯誤！無法寫入 SD 卡。</string>
-  <string name="ExportFragment_error_while_writing_to_sd_card">寫入 SD 卡時發生錯誤。</string>
   <string name="ExportFragment_success">成功！</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_TextSecure_communication_failure">TextSecure 持續發生傳輸異常！</string>
@@ -176,6 +173,7 @@
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">輸入的「自訂密碼」不相符！</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">輸入的是舊的「自訂密碼」！</string>
+  <!--DeviceProvisioningActivity-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">輸入「自訂密碼」</string>
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure 圖示</string>
@@ -211,10 +209,6 @@
         你目前使用裝置不支援 TextSecure 即時訊息功能。.採用早於 Android 4.0 或更舊版
         必須登入已註冊的 Google Account. 採用 Android 4.0 或更新版
         的手機則無須 Google account，但須具備 Play Store APP。
-    </string>
-  <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
-        現在我們要針對這個裝置與您輸入的門號進行認證:\n\n%s\n\n
-        您輸入的門號是正確的嗎？還是您想要再回頭更正一下？
     </string>
   <string name="RegistrationActivity_continue">繼續</string>
   <string name="RegistrationActivity_edit">更正</string>
@@ -398,6 +392,7 @@
 匯入一個未加密的備份資料。 相容於 \"SMSBackup And Restore\"。</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">您的手機需要手動設定 MMS多媒體簡訊。</string>
+  <!--GroupUtil-->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">解鎖</string>
   <!--prompt_mms_activity-->
@@ -628,11 +623,8 @@ TextSecure 等候驗證用的手機簡訊已逾時。</string>
   <string name="text_secure_normal__mark_all_as_read">全部標示為已讀</string>
   <!--reminder_header-->
   <string name="reminder_header_sms_default_title">設定為預設的手機簡訊 APP？</string>
-  <string name="reminder_header_sms_default_text">TextSecure 目前並非您預設的手機簡訊APP。</string>
   <string name="reminder_header_sms_import_title">匯入裝置上目前的手機簡訊？</string>
-  <string name="reminder_header_sms_import_text">TextSecure 可複製您裝置上目前的手機簡訊至加密的資料庫內。</string>
   <string name="reminder_header_push_title">啟用 TextSecure 即時訊息功能？</string>
-  <string name="reminder_header_push_text">即時傳遞、更高的隱私防護，並且完全免費。</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">您</string>
   <!--media_preview-->

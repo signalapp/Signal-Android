@@ -222,6 +222,22 @@ Por favor pida al remitente que actualice a la versión más reciente y reenvíe
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">¡Las frases contraseña no coinciden!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">¡Frase de contraseña anterior incorrecta!</string>
+  <!--DeviceProvisioningActivity-->
+  <string name="DeviceProvisioningActivity_link_this_device">¿Enlazar este dispositivo?</string>
+  <string name="DeviceProvisioningActivity_cancel">CANCELAR</string>
+  <string name="DeviceProvisioningActivity_continue">CONTINUAR</string>
+  <string name="DeviceProvisioningActivity_title">¿Enlazar este dispositivo?</string>
+  <string name="DeviceProvisioningActivity_content_intro">Será capaz de</string>
+  <string name="DeviceProvisioningActivity_content_bullets">
+        - Leer todos sus mensajes
+        \n- Enviar mensajes a su nombre
+    </string>
+  <string name="DeviceProvisioningActivity_content_progress_title">Agregando dispositivo...</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">Agregando dispositivo nuevo...</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">¡Dispositivo agregado!</string>
+  <string name="DeviceProvisioningActivity_content_progress_no_device">No se encontró ningun dispositivo.</string>
+  <string name="DeviceProvisioningActivity_content_progress_network_error">Error de red.</string>
+  <string name="DeviceProvisioningActivity_content_progress_key_error">Código QR no válido.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Introduzca frase contraseña</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icono de TextSecure</string>
@@ -254,12 +270,7 @@ que la 4.0, deben tener registrada una cuenta de Google. Los dispositivos que ej
 requieren una cuenta de Google, pero deben tener la aplicación de la Play Store instalada.
  </string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
-        Ahora verificaremos que el siguiente número esté asociado con este dispositivo:
-
-%s
-
-
-        ¿Es correcto este número, o preferiría cambiarlo antes de continuar?
+¡Compruebe dos veces que este es su número! Estamos a punto de verificarlo con un SMS.
     </string>
   <string name="RegistrationActivity_continue">Continuar</string>
   <string name="RegistrationActivity_edit">Editar</string>
@@ -727,12 +738,14 @@ Incremente la privacidad y evite tarifas SMS al usar el canal de datos para la c
   <string name="text_secure_normal__menu_clear_passphrase">Bloquear</string>
   <string name="text_secure_normal__mark_all_as_read">Marcar todos como leídos</string>
   <!--reminder_header-->
+  <string name="reminder_header_expired_build">¡Su versión de TextSecure ha expirado!</string>
+  <string name="reminder_header_expired_build_details">En adelante los mensajes ya no se enviarán con éxito, por favor, actualice a la versión más reciente.</string>
   <string name="reminder_header_sms_default_title">¿Usar como apllicación de SMS por defecto?</string>
-  <string name="reminder_header_sms_default_text">TextSecure actualmente no es su aplicación SMS por defecto.</string>
+  <string name="reminder_header_sms_default_text">Pulse para hacer que TextSecure sea su aplicación de SMS predeterminada.</string>
   <string name="reminder_header_sms_import_title">¿Importar SMS del sistema?</string>
-  <string name="reminder_header_sms_import_text">TextSecure puede copiar los mensajes SMS de su teléfono en la base de datos cifrada.</string>
+  <string name="reminder_header_sms_import_text">Pulse para copiar los mensajes SMS de su teléfono en su base de datos cifrada.</string>
   <string name="reminder_header_push_title">¿Habilitar mensajes de TextSecure?</string>
-  <string name="reminder_header_push_text">Entrega instantánea, privacidad más robusta, y sin cargos por SMS.</string>
+  <string name="reminder_header_push_text">Pulse para entrega instantánea, privacidad más robusta, y sin cargos por SMS.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Usted</string>
   <string name="MediaPreviewActivity_cant_display">Fallo al previsualizar esta imagen</string>

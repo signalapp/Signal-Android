@@ -12,9 +12,9 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Obriši sve stare poruke?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Jeste li sigurni da želite skratiti sve razgovore na %s najnovijih poruka?</string>
   <string name="ApplicationPreferencesActivity_delete">Obriši</string>
-  <string name="ApplicationPreferencesActivity_disable_storage_encryption">Onemogući kodiranje memorije?</string>
+  <string name="ApplicationPreferencesActivity_disable_storage_encryption">Onemogući kriptiranje memorije?</string>
   <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
-Ovo će onemogućiti kodiranje memorije za sve poruke i ključeve. Vaše kodirane
+Ovo će onemogućiti kriptiranje memorije za sve poruke i ključeve. Vaše kriptirane
 sesije će nastaviti raditi, ali svi sa fizičkim pristupom vašem uređaju će
 im moći pristupiti.</string>
   <string name="ApplicationPreferencesActivity_disable">Onemogući</string>
@@ -39,9 +39,11 @@ Trebat ćete ponovno registrirati vaš broj telefona kako biste koristili instan
   <string name="ApplicationPreferencesActivity_incoming_sms">Dolazne</string>
   <string name="ApplicationPreferencesActivity_outgoing_sms">odlazne</string>
   <!--AppProtectionPreferenceFragment-->
+  <string name="AppProtectionPreferenceFragment_minutes">%d minuta</string>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(slika)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(zvuk)</string>
+  <string name="DraftDatabase_Draft_video_snippet">(video)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nije moguće pronaći aplikaciju za odabir medija.</string>
   <!--AttachmentTypeSelectorAdapter-->
@@ -60,10 +62,12 @@ Trebat ćete ponovno registrirati vaš broj telefona kako biste koristili instan
   <string name="ConversationItem_group_action_left">%1$s je napustio grupu.</string>
   <string name="ConversationItem_click_to_approve_sms">Pritisnite za SMS kao rezervu</string>
   <string name="ConversationItem_click_to_approve_mms">Pritisnite za MMS kao rezervu</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">Pritisnite za nesigurnu rezervu</string>
   <string name="ConversationItem_click_to_approve_sms_dialog_title">SMS kao rezerva?</string>
   <string name="ConversationItem_click_to_approve_mms_dialog_title">MMS kao rezerva?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Nekriptirani SMS kao rezerva?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Nekriptirani MMS kao rezerva?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ova poruka <b>neće</b> biti kriptirana zato što nije bili moguće uspostaviti sigurnu sesiju.\n\nPošalji nesigurnu poruku?</string>
   <string name="ConversationItem_unable_to_open_media">Nije moguće pronaći aplikaciju za otvaranje ovog medija.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Započmi sigurnu sesiju?</string>
@@ -76,6 +80,8 @@ Trebat ćete ponovno registrirati vaš broj telefona kako biste koristili instan
   <string name="ConversationActivity_select_contact_info">Odaberite informacije kontakta</string>
   <string name="ConversationActivity_compose_message">Sastavi poruku</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Došlo je do greške prilikom postavljanja privitka.</string>
+  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Odabrani video prelazi ograničenje veličine poruke (%1$skB).</string>
+  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Odabrani audio prelazi ograničenje veličine poruke (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Primatelj nije valjana SMS ili adresa e-pošte!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Poruka je prazna!</string>
   <string name="ConversationActivity_group_conversation_recipients">Primatelji grupnog razgovora</string>
@@ -94,12 +100,15 @@ Trebat ćete ponovno registrirati vaš broj telefona kako biste koristili instan
   <string name="ConversationActivity_transport_secure_sms">Sigurni SMS</string>
   <string name="ConversationActivity_transport_secure_mms">Sigurni MMS</string>
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
+  <string name="ConversationActivity_get_with_it">Dohvati s njime: %s</string>
+  <string name="ConversationActivity_install_textsecure">Instaliraj TextSecure: %s</string>
+  <string name="ConversationActivity_error_leaving_group">Greška prilikom napuštanja grupe...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalji poruke</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nPoslano/Primljeno: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Pošiljatelj: %1$s\nTransport: %2$s\nPoslano: %3$s\nPrimljeno: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Potvrda brisanja poruke</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Jeste li sigurni da želite trajno obrisati ovu poruku?</string>
+  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Jeste li sigurni da želite trajno obrisati sve odabrane poruke?</string>
   <string name="ConversationFragment_save_to_sd_card">Spremi na disk?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Spremanje ovog medija na disk će omogućiti pristup mediju iz drugih aplikacija na vašem telefonu.\n\nNastavi?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Greška prilikom spremanja privitka na disk!</string>
@@ -107,8 +116,12 @@ Trebat ćete ponovno registrirati vaš broj telefona kako biste koristili instan
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Nije moguće pisati na disk!</string>
   <string name="ConversationFragment_saving_attachment">Spremanje privitka</string>
   <string name="ConversationFragment_saving_attachment_to_sd_card">Spremanje privitka na disk...</string>
+  <string name="ConversationFragment_pending">U TOKU</string>
+  <string name="ConversationFragment_push">INSTANT</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
+  <string name="ConversationFragment_deleting">Brisanje...</string>
+  <string name="ConversationFragment_deleting_messages">Brisanje poruka...</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Obriši teme?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Jeste li sigurni da želite obrisati SVE odabrane teme?</string>
@@ -125,9 +138,8 @@ Trebat ćete ponovno registrirati vaš broj telefona kako biste koristili instan
 nekriptirano izvesti sadržaj vaših TextSecure poruka na SD karticu.</string>
   <string name="ExportFragment_cancel">Odustani</string>
   <string name="ExportFragment_exporting">Izvoz</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Nekriptirani izvoz na SD karticu...</string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">Greška, nije moguće pisati
-na SD karticu!</string>
+  <string name="ExportFragment_exporting_plaintext_to_sd_card">Izvoz običnog teksta na SD karticu...</string>
+  <string name="ExportFragment_error_unable_to_write_to_sd_card">Greška, nije moguće pisati na SD karticu!</string>
   <string name="ExportFragment_error_while_writing_to_sd_card">Greška prilikom pisanja na SD karticu.</string>
   <string name="ExportFragment_success">Uspješno!</string>
   <!--GcmRefreshJob-->
@@ -147,10 +159,11 @@ na SD karticu!</string>
   <string name="GroupCreateActivity_menu_create_title">Stvori grupu</string>
   <string name="GroupCreateActivity_creating_group">Stvaranje %1$s...</string>
   <string name="GroupCreateActivity_updating_group">Ažuriranje %1$s...</string>
-  <string name="GroupCreateActivity_loading_group_details">Učitavanje detalja grupe</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Nije moguće dodati korisnike koji ne koriste TextSecure u TextSecure grupu</string>
+  <string name="GroupCreateActivity_loading_group_details">Učitavanje detalja grupe...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Ja</string>
+  <string name="GroupMembersDialog_members">Članovi...</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Uvoz</string>
   <string name="ImportExportActivity_export">Izvoz</string>
@@ -181,6 +194,8 @@ ponovno uvoženje će rezultirati duplim porukama.</string>
   <string name="ImportFragment_restore_complete">Vraćanje završeno!</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Skenirani ključ nije pronađen!</string>
+  <string name="KeyScanningActivity_install_barcode_Scanner">Instaliraj Barcode Scanner?</string>
+  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">TextSecure treba Barcode Scanner za QR kodove.</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Greška prilikom pohrane MMSa!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Greška prilikom povezivanja na MMS pružatelja usluge...</string>
@@ -189,9 +204,26 @@ ponovno uvoženje će rezultirati duplim porukama.</string>
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimedijalna poruka</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Primljena je poruka kriptirana starom TextSecure inačicom koja više nije podržana. Zamolite pošiljatelja da ažurira aplikaciju na najnoviju inačicu i ponovno pošalje poruku.</string>
+  <string name="MessageRecord_left_group">Napustili ste grupu.</string>
+  <string name="MessageRecord_updated_group">Grupa je ažurirana.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Lozinka ne odgovara!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Netočna stara lozinka!</string>
+  <!--DeviceProvisioningActivity-->
+  <string name="DeviceProvisioningActivity_link_this_device">Poveži ovaj uređaj?</string>
+  <string name="DeviceProvisioningActivity_cancel">ODUSTANI</string>
+  <string name="DeviceProvisioningActivity_continue">NASTAVI</string>
+  <string name="DeviceProvisioningActivity_title">Poveži ovaj uređaj?</string>
+  <string name="DeviceProvisioningActivity_content_intro">Moći će</string>
+  <string name="DeviceProvisioningActivity_content_bullets">
+- Čitati sve vaše poruke
+\n- Slati poruke u vaše ime</string>
+  <string name="DeviceProvisioningActivity_content_progress_title">Dodavanje uređaja...</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">Dodavanje novog uređaja...</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">Uređaj dodan!</string>
+  <string name="DeviceProvisioningActivity_content_progress_no_device">Uređaj nije pronađen.</string>
+  <string name="DeviceProvisioningActivity_content_progress_network_error">Mrežna greška.</string>
+  <string name="DeviceProvisioningActivity_content_progress_key_error">Neispravan QR kod.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Unesite lozinku</string>
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure ikona</string>
@@ -225,8 +257,7 @@ uređaj ne podržava podatkovne poruke. Uređaji sa Android inačicom starijom o
 moraju imati registrirani Google račun. Uređaji sa inačicom 4.0 ili novijom ne trebaju
 imati Google račun, ali moraju imati instaliranu aplikaciju Play trgovine.</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
-Sada ćemo provjeriti da li je sljedeći broj povezan sa ovim uređajem:\n\n%s\n\n
-Je li ovaj broj ispravan ili ga želite urediti prije nastavka?</string>
+Provjerite da li je ovo vaš broj telefona! Uskoro ćemo poslati SMS poruku na njega kako bi ga provjerili.</string>
   <string name="RegistrationActivity_continue">Nastavi</string>
   <string name="RegistrationActivity_edit">Uredi</string>
   <!--RegistrationProblemsActivity-->
@@ -300,13 +331,16 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <string name="MessageDisplayHelper_decrypting_please_wait">Dekriptiranje, sačekajte...</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Poruka kriptirana za nepostojeću sesiju...</string>
   <!--EncryptingSmsDatabase-->
+  <string name="EncryptingSmsDatabase_error_decrypting_message">Greška prilikom dekriptiranja poruke.</string>
   <!--ThreadDatabase-->
+  <string name="ThreadDatabase_error_decrypting_message">Greška prilikom dekriptiranja poruke.</string>
   <!--MmsDatabase-->
   <string name="MmsDatabase_connecting_to_mms_server">Povezivanje na MMS poslužitelj...</string>
   <string name="MmsDatabase_downloading_mms">Preuzimanje MMSa...</string>
   <string name="MmsDatabase_mms_download_failed">MMS preuzimanje nije uspjelo!</string>
   <string name="MmsDatabase_downloading">Preuzimanje...</string>
   <string name="MmsDatabase_mms_pending_download">Pritisnite i podesite MMS postavke kako biste nastavili preuzimanje.</string>
+  <string name="MmsDatabase_error_decrypting_message">Greška prilikom dekriptiranja poruke.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Dekriptiranje MMSa, sačekajte...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Loše kriptirana MMS poruka...</string>
@@ -354,7 +388,9 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Pošalji TextSecure poruku</string>
   <string name="conversation_activity__type_message_sms_secure">Pošalji sigurni SMS</string>
+  <string name="conversation_activity__type_message_sms_insecure">Pošalji nesigurni SMS</string>
   <string name="conversation_activity__type_message_mms_secure">Pošalji sigurni MMS</string>
+  <string name="conversation_activity__type_message_mms_insecure">Pošalji nesigurni MMS</string>
   <string name="conversation_activity__send">Pošalji</string>
   <string name="conversation_activity__remove">Ukloni</string>
   <string name="conversation_activity__window_description">Razgovor sa %1$s</string>
@@ -410,6 +446,13 @@ Uvezi nekriptiranu kopiju kompatibilnu s \'SMSBackup And Restore\'.</string>
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Ručne MMS postavke su potrebne za vaš telefon.</string>
   <string name="MmsPreferencesFragment__enabled">Omogućeno</string>
   <string name="MmsPreferencesFragment__disabled">Onemogućeno</string>
+  <string name="MmsPreferencesFragment__not_set">Nije postavljeno</string>
+  <string name="MmsPreferencesFragment__invalid_uri">Uneseni tekst nije ispravan URI</string>
+  <string name="MmsPreferencesFragment__invalid_host">Uneseni tekst nije ispravan poslužitelj</string>
+  <!--GroupUtil-->
+  <string name="GroupUtil_joined_the_group">%1$s se pridružio grupi.</string>
+  <string name="GroupUtil_group_updated">Grupa je ažurirana.</string>
+  <string name="GroupUtil_title_is_now">Naslov je sada \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Otključaj</string>
   <!--prompt_mms_activity-->
@@ -592,6 +635,8 @@ Povećajte privatnost i izbjegnite SMS troškove koristeći podatkovni kanal za 
   <string name="preferences__sms_fallback_never_send_mms">Nikad ne šalji MMS</string>
   <string name="preferences__sms_fallback_non_push_users">Korisnici bez TextSecure</string>
   <string name="preferences__sms_fallback_nobody">Nitko</string>
+  <string name="preferences__support_wifi_calling">\'WiFi Calling\' način kompatibilnosti</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Omogućite ukoliko vaš uređaj koristi WiFi isporuku SMS/MMS poruka (omogućeno jedino kada je \'WiFi Calling\' omogućen na vašem uređaju).</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -608,7 +653,9 @@ Povećajte privatnost i izbjegnite SMS troškove koristeći podatkovni kanal za 
   <!--conversation_button_context-->
   <string name="conversation_button_context__send_textsecure_message">Pošalji TextSecure poruku</string>
   <string name="conversation_button_context__send_secure_sms">Pošalji sigurni SMS</string>
+  <string name="conversation_button_context__send_insecure_sms">Pošalji nesigurni SMS</string>
   <string name="conversation_button_context__send_secure_mms">Pošalji sigurni MMS</string>
+  <string name="conversation_button_context__send_insecure_mms">Pošalji nesigurni MMS</string>
   <!--conversation_callable-->
   <string name="conversation_callable__menu_call">Nazovi</string>
   <!--conversation_context-->
@@ -653,15 +700,18 @@ Povećajte privatnost i izbjegnite SMS troškove koristeći podatkovni kanal za 
   <string name="text_secure_normal__menu_clear_passphrase">Zaključaj</string>
   <string name="text_secure_normal__mark_all_as_read">Označi sve pročitano</string>
   <!--reminder_header-->
+  <string name="reminder_header_expired_build">Vaša TextSecure inačica je istekla!</string>
+  <string name="reminder_header_expired_build_details">Poruke više neće biti moguće uspješno poslati, nadogradite na najnoviju dostupnu inačicu.</string>
   <string name="reminder_header_sms_default_title">Koristi kao zadanu SMS aplikaciju?</string>
-  <string name="reminder_header_sms_default_text">TextSecure trenutno nije vaša zadana SMS aplikacija.</string>
+  <string name="reminder_header_sms_default_text">Pritisnite kako biste postavili TextSecure kao zadanu SMS aplikaciju.</string>
   <string name="reminder_header_sms_import_title">Uvezi SMS poruke sustava?</string>
-  <string name="reminder_header_sms_import_text">TextSecure može kopirati SMS poruke sa vašeg telefona u svoju kodiranu bazu podataka.</string>
+  <string name="reminder_header_sms_import_text">Pritisnite kako biste kopirali SMS poruke telefona u kriptiranu bazu podataka.</string>
   <string name="reminder_header_push_title">Omogući TextSecure poruke?</string>
-  <string name="reminder_header_push_text">Instant isporuka, pojačana privatnost i bez SMS troškova.</string>
+  <string name="reminder_header_push_text">Pritisnite za instant isporuku, pojačanu privatnost i SMS bez troškova.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Vi</string>
   <string name="MediaPreviewActivity_cant_display">Pregled prikaza slike nije uspio.</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">Nepodržani tip medija</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Spremi</string>
   <!--media_preview_activity-->

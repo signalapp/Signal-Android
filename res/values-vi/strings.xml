@@ -74,7 +74,6 @@ Thao tác này sẽ tắt tin nhắn đẩy bằng cách gỡ đăng ký bạn r
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Chi tiết tin nhắn</string>
   <string name="ConversationFragment_confirm_message_delete">Xác nhận xóa tin</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Bạn có chắc là muốn xóa vĩnh viễn tin nhắn này?</string>
   <string name="ConversationFragment_success_exclamation">Thành công!</string>
   <string name="ConversationFragment_saving_attachment">Đang lưu lại phần đính kèm</string>
   <!--ConversationListFragment-->
@@ -92,9 +91,6 @@ Thao tác này sẽ tắt tin nhắn đẩy bằng cách gỡ đăng ký bạn r
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Cảnh báo, thao tác này sẽ xuất nội dung văn bản thường (không mã hóa) của các tin nhắn TextSecure ra thẻ nhớ SD.</string>
   <string name="ExportFragment_cancel">Hủy bỏ</string>
   <string name="ExportFragment_exporting">Đang xuất</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Đang xuất văn bản thường ra thẻ nhớ SD...</string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">Có lỗi, không thể chép ra thẻ nhớ SD!</string>
-  <string name="ExportFragment_error_while_writing_to_sd_card">Có lỗi khi chép ra thẻ nhớ SD.</string>
   <string name="ExportFragment_success">Thành công!</string>
   <!--GcmRefreshJob-->
   <!--GroupCreateActivity-->
@@ -148,6 +144,7 @@ Phục hồi bản sao lưu có mã hóa sẽ thay thế hoàn toàn các chìa 
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Cụm từ mã hóa không khớp nhau!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Mật khẩu cũ không đúng!</string>
+  <!--DeviceProvisioningActivity-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Điền vào cụm từ mã hóa</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Biểu tượng TextSecure</string>
@@ -312,6 +309,7 @@ Phục hồi sao lưu TextSecure có mã hóa từng xuất ra trước đó.</s
 Nhập tập tin sao lưu thường-không mã hóa. Tương thích với \'Sao Lưu và Phục Hồi SMS\'.</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Phải làm thiết đặt MMS bằng tay cho điện thoại của bạn.</string>
+  <!--GroupUtil-->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Mở khóa</string>
   <!--prompt_mms_activity-->

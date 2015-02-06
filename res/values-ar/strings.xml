@@ -96,6 +96,7 @@
   <string name="ConversationActivity_transport_secure_sms">رسالة نصية آمنة</string>
   <string name="ConversationActivity_transport_secure_mms">رسالة وسائط متعددة آمنة</string>
   <string name="ConversationActivity_transport_textsecure">تيكست سيكيور</string>
+  <string name="ConversationActivity_get_with_it">احصل معها: %s</string>
   <string name="ConversationActivity_install_textsecure">تثبيت تيكست سيكيور: %s</string>
   <string name="ConversationActivity_error_leaving_group">خطأ أثناء ترك المجموعة...</string>
   <!--ConversationFragment-->
@@ -111,6 +112,7 @@
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">تعذر الإضافة إلى الذاكرة!</string>
   <string name="ConversationFragment_saving_attachment">حفظ المرفق</string>
   <string name="ConversationFragment_saving_attachment_to_sd_card">جارٍ حفظ المرفق في الذاكرة...</string>
+  <string name="ConversationFragment_push">الدفع</string>
   <string name="ConversationFragment_mms">رسالة وسائط متعددة</string>
   <string name="ConversationFragment_sms">رسالة نصية قصيرة</string>
   <string name="ConversationFragment_deleting">الحذف جارٍ...</string>
@@ -196,6 +198,21 @@
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">العبارات السرية غير متطابقة!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">العبارة السرية القديمة غير صحيحة!</string>
+  <!--DeviceProvisioningActivity-->
+  <string name="DeviceProvisioningActivity_link_this_device">ربط هذا الجهاز؟</string>
+  <string name="DeviceProvisioningActivity_cancel">إلغاء</string>
+  <string name="DeviceProvisioningActivity_continue">استمر</string>
+  <string name="DeviceProvisioningActivity_title">ربط هذا الجهاز؟</string>
+  <string name="DeviceProvisioningActivity_content_intro">سوف يتمكن من</string>
+  <string name="DeviceProvisioningActivity_content_bullets">
+قراءة كل رسائلك.
+\n- استخدام أسمك للإرسال</string>
+  <string name="DeviceProvisioningActivity_content_progress_title">جارٍ إضافة الجهاز...</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">جارٍ إضافة جهاز جديد...</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">تم إضافة الجهاز!</string>
+  <string name="DeviceProvisioningActivity_content_progress_no_device">لم يتم العثور على جهاز.</string>
+  <string name="DeviceProvisioningActivity_content_progress_network_error">خطأ في الشبكة.</string>
+  <string name="DeviceProvisioningActivity_content_progress_key_error">الرمز غير صحيح.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">أدخل العبارة السرية</string>
   <string name="PassphrasePromptActivity_watermark_content_description">أيقونة تيكست سيكيور</string>
@@ -218,9 +235,8 @@
   <string name="RegistrationActivity_unsupported">غير مدعوم</string>
   <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">عذرا، هذا المحمول لا يدعم المراسلات عبر بيانات شبكة الجوال. الهواتف العاملة بأنظمة أقدم من أندرويد 4.0 يجب أن يكون لديها حساب جوجل مسجل. الهواتف العاملة بنظام أندرويد 4.0 أو الأعلى لا تطلب حساب جوجل ولكن يجب أن يكون مثبت بها تطبيق سوق بلاي.</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
-سنقوم الآن بالتحقق من أن الرقم التالى مرتبط بهذا الهاتف:\n\n%s\n\n.
-هل الرقم صحيح أم تود في تحريره قبل الاستمرار؟</string>
-  <string name="RegistrationActivity_continue">أستمر</string>
+رجاء التأكد من أنه رقمك! نحن على وشك التحقق بواسطة رسالة نصية.</string>
+  <string name="RegistrationActivity_continue">استمر</string>
   <string name="RegistrationActivity_edit">تحرير</string>
   <!--RegistrationProblemsActivity-->
   <string name="RegistrationProblemsActivity_possible_problems">مشاكل محتملة</string>
@@ -372,7 +388,7 @@
   <string name="conversation_item_received__contact_photo_description">صورة جهة الاتصال</string>
   <string name="conversation_item_received__downloading">التنزيل جارٍ...</string>
   <!--conversation_fragment_cab-->
-  <string name="conversation_fragment_cab__batch_selection_mode">,وضع اختيار الدفعات</string>
+  <string name="conversation_fragment_cab__batch_selection_mode">وضع اختيار الدفعات</string>
   <string name="conversation_fragment_cab__batch_selection_amount">%s اختيار</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">تحميل البلدان جارٍ ...</string>
@@ -647,12 +663,13 @@
   <string name="text_secure_normal__menu_clear_passphrase">أقفل</string>
   <string name="text_secure_normal__mark_all_as_read">اعتبارها رسائل مقروءة</string>
   <!--reminder_header-->
+  <string name="reminder_header_expired_build_details">رجاء التحديث لآخر إصداره من التطبيق. لن ترسل الرسائل بنجاح بعد الآن.</string>
   <string name="reminder_header_sms_default_title">اجعله التطبيق الافتراضي المستخدم للرسائل؟</string>
-  <string name="reminder_header_sms_default_text">تيكست سيكيور ليس التطبيق الافتراضي للرسائل الخاص بك.</string>
+  <string name="reminder_header_sms_default_text">أضغط لجعل تيكست سيكيورالتطبيق الافتراضي للرسائل.</string>
   <string name="reminder_header_sms_import_title">استيراد رسائل النظام؟</string>
-  <string name="reminder_header_sms_import_text">يستطيع تيكست سيكيور أن يقوم بنسخ الرسائل النصية من هاتفك إلى قاعدة البيانات المشفرة الخاصة بها.</string>
+  <string name="reminder_header_sms_import_text">أضغط لنسخ الرسائل النصية القصيرة على الهاتف إلى قاعدة البيانات المشفرة.</string>
   <string name="reminder_header_push_title">تفعيل رسائل تيكست سيكيور؟</string>
-  <string name="reminder_header_push_text">تراسل لحظي، خصوصية أقوى، وبدون رسوم الرسائل النصية القصيرة.</string>
+  <string name="reminder_header_push_text">أنقر من أجل تراسل لحظي،  خصوصية أقوي، وبدون رسوم رسائل نصية قصيرة.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">أنت</string>
   <string name="MediaPreviewActivity_cant_display">خطأ في معاينة هذه الصورة</string>

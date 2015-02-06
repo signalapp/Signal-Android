@@ -213,6 +213,7 @@ importá-lo novamente resultará em mensagens duplicadas.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">As frases-chave não coincidem.</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Frase-chave anterior incorrecta!</string>
+  <!--DeviceProvisioningActivity-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Introduza palavra-chave</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icon TextSecure</string>
@@ -243,9 +244,6 @@ especificou (%s) não é válido.</string>
 este dispositivo não é suportado para mensagens de dados. Os dispositivos com versões de Android anteriores
 à 4.0 devem ter uma Conta Google registada. Os dispositivos com Android 4.0 ou superior não
 precisam de uma Conta Google, mas devem ter a aplicação Play Store instalada.</string>
-  <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
-Vamos agora verificar que o seguinte número está associado com este dispsitivo:\n\n%s\n\n
-Este número encontra-se correcto ou pretende editá-lo antes de continuar?</string>
   <string name="RegistrationActivity_continue">Continuar</string>
   <string name="RegistrationActivity_edit">Editar</string>
   <!--RegistrationProblemsActivity-->
@@ -696,11 +694,8 @@ Aumente a privacidade e evite custos de SMS ao utilizar o canal de dados para co
   <string name="text_secure_normal__mark_all_as_read">Marcar todas como lidas</string>
   <!--reminder_header-->
   <string name="reminder_header_sms_default_title">Definir como aplicação SMS por omissão?</string>
-  <string name="reminder_header_sms_default_text">TextSecure não é actualmente a sua aplicação SMS por omissão.</string>
   <string name="reminder_header_sms_import_title">Importar as SMS do sistema?</string>
-  <string name="reminder_header_sms_import_text">TextSecure pode copiar as suas SMS para a base de dados TextSecure cifrada.</string>
   <string name="reminder_header_push_title">Habilitar mensagens TextSecure?</string>
-  <string name="reminder_header_push_text">Entrega instantânea, mais privacidade, e sem taxas de SMS.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Você</string>
   <string name="MediaPreviewActivity_cant_display">A antevisão desta imagem falhou</string>

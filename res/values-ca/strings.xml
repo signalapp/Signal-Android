@@ -56,7 +56,6 @@ Necessitaràs tornar a registrar el teu número de telèfon per utilitzar els mi
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalls del missatge</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Estàs segur que vols esborrar permanentment aquest missatge?</string>
   <string name="ConversationFragment_success_exclamation">Èxit!</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Esborrar fils de conversa?</string>
@@ -71,9 +70,6 @@ Necessitaràs tornar a registrar el teu número de telèfon per utilitzar els mi
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Alerta, això exportarà els continguts de text pla dels teus missatges TextSecure a la targeta SD.</string>
   <string name="ExportFragment_cancel">Cancel·la</string>
   <string name="ExportFragment_exporting">Exportant</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Exportant text pla a la targeta SD...</string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">Error, no s\'ha pogut escriure a la targeta SD!</string>
-  <string name="ExportFragment_error_while_writing_to_sd_card">Error mentre s\'escrivia a la targeta SD.</string>
   <string name="ExportFragment_success">Èxit!</string>
   <!--GcmRefreshJob-->
   <!--GroupCreateActivity-->
@@ -113,6 +109,7 @@ Necessitaràs tornar a registrar el teu número de telèfon per utilitzar els mi
   <!--MessageRecord-->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Frase contrasenya antiga incorrecta!</string>
+  <!--DeviceProvisioningActivity-->
   <!--PassphrasePromptActivity-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">La signatura en aquest intercanvi de claus és diferent que el que havies rebut prèviament d\'aquest contacte. Això pot voler dir tant que algú està intentant interceptar la teva comunicació, o que aquest contacte simplement ha re-instal·lat TextSecure i ara té una clau d\'identitat nova.</string>
@@ -258,6 +255,7 @@ des de l\'app de missatgeria predeterminada del sistema.</string>
   <string name="import_fragment__import_a_plaintext_backup_file">Importa un arxiu de còpia de seguretat en text pla. Compatible amb \'Còpia de seguretat i restauració d\'SMS\'.</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">En el teu telèfon són necessaris els ajustaments MMS manuals.</string>
+  <!--GroupUtil-->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Desbloqueja</string>
   <!--prompt_mms_activity-->

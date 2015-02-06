@@ -217,6 +217,22 @@ Tem certeza que deseja fazer isto?</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Frases-chave não coincidem!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Frase-chave anterior incorrecta!</string>
+  <!--DeviceProvisioningActivity-->
+  <string name="DeviceProvisioningActivity_link_this_device">Conectar este dispositivo?</string>
+  <string name="DeviceProvisioningActivity_cancel">CANCELAR</string>
+  <string name="DeviceProvisioningActivity_continue">CONTINUAR</string>
+  <string name="DeviceProvisioningActivity_title">Conectar este dispositivo?</string>
+  <string name="DeviceProvisioningActivity_content_intro">Ele será capaz de</string>
+  <string name="DeviceProvisioningActivity_content_bullets">
+        - Ler todas as suas mensagens
+        \n- Enviar mensagens em seu nome
+    </string>
+  <string name="DeviceProvisioningActivity_content_progress_title">Adicionando dispositivo...</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">Adicionando novo dispositivo...</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">Dispositivo adicionado!</string>
+  <string name="DeviceProvisioningActivity_content_progress_no_device">Nenhum dispositivo encontrado.</string>
+  <string name="DeviceProvisioningActivity_content_progress_network_error">Erro de rede.</string>
+  <string name="DeviceProvisioningActivity_content_progress_key_error">Código QR inválido.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Inserir frase-chave</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Ícone do TextSecure</string>
@@ -257,8 +273,7 @@ Tem certeza que deseja fazer isto?</string>
         precisam de uma Conta Google, mas devem ter o aplicativo Play Store instalado.
     </string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
-        Vamos agora verificar que o seguinte número está associado a este dispositivo:\n\n%s\n\n
-        O número está correto, ou deseja editá-lo antes de continuar?
+       Verifique novamente que este é o seu número! Estamos prestes a verificá-lo com um SMS.
     </string>
   <string name="RegistrationActivity_continue">Continuar</string>
   <string name="RegistrationActivity_edit">Editar</string>
@@ -719,12 +734,14 @@ falhou.</string>
   <string name="text_secure_normal__menu_clear_passphrase">Trancar</string>
   <string name="text_secure_normal__mark_all_as_read">Marcar todas como lidas</string>
   <!--reminder_header-->
+  <string name="reminder_header_expired_build">Sua versão do TextSecure expirou!</string>
+  <string name="reminder_header_expired_build_details">As mensagens não serão enviadas com sucesso, favor atualizar para a versão mais recente.</string>
   <string name="reminder_header_sms_default_title">Usar como app SMS padrão?</string>
-  <string name="reminder_header_sms_default_text">O TextSecure não é atualmente o seu app SMS padrão.</string>
+  <string name="reminder_header_sms_default_text">Clique para tornar o TextSecure o seu app padrão para SMS.</string>
   <string name="reminder_header_sms_import_title">Importar mensagens SMS do sistema?</string>
-  <string name="reminder_header_sms_import_text">O TextSecure pode copiar as mensagens SMS do seu dispositivo para a base de dados criptografada do TextSecure.</string>
+  <string name="reminder_header_sms_import_text">Clique para copiar as mensagens SMS do seu telefone para a base de dados criptografada.</string>
   <string name="reminder_header_push_title">Habilitar mensagens TextSecure?</string>
-  <string name="reminder_header_push_text">Entrega imediata, maior privacidade e sem despesas de SMS.</string>
+  <string name="reminder_header_push_text">Clique para ter entrega imediata, forte privacidade, e sem cobranças de SMS.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Você</string>
   <string name="MediaPreviewActivity_cant_display">Falha ao pré-visualizar esta imagem</string>

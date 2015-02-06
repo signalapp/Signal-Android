@@ -33,7 +33,6 @@
   <string name="ConversationActivity_transport_textsecure">གཡག་འཕྲིན། </string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">འཕྲིན་ཐུང་གི་ཞིབ་ཆ།</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">ཁྱོད་ཀྱིས་དངོས་གནས་འཕྲིན་ཐུང་འདི་གཏན་དུ་གསུབ་རྒྱུ་ཡིན་ནམ།</string>
   <string name="ConversationFragment_success_exclamation">ལེགས་འགྲུབ། </string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">འཕྲིན་ཐུང་སྐུད་རིམ་གསུབ་རྒྱུ་ཡིན་ནམ།</string>
@@ -65,6 +64,7 @@
   <!--MessageRecord-->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">གསང་ཚིག་རྙིང་པ་དེ་ནོར་འདུག </string>
+  <!--DeviceProvisioningActivity-->
   <!--PassphrasePromptActivity-->
   <!--ReceiveKeyActivity-->
   <!--RegistrationActivity-->
@@ -157,6 +157,7 @@
   <string name="database_migration_activity__importing">ནང་འདྲེན་བྱེད་བཞིན་པ། </string>
   <!--database_upgrade_activity-->
   <!--MmsPreferencesFragment-->
+  <!--GroupUtil-->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">སྒོ་ཕྱེས། </string>
   <!--prompt_mms_activity-->

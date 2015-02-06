@@ -95,7 +95,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Вы уверены, что хотите покинуть эту группу?</string>
   <string name="ConversationActivity_transport_insecure_sms">Незащищённое SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Незащищённое MMS</string>
-  <string name="ConversationActivity_transport_secure_sms">Защищённое MMS</string>
+  <string name="ConversationActivity_transport_secure_sms">Защищённое SMS</string>
   <string name="ConversationActivity_transport_secure_mms">Защищённое MMS</string>
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_get_with_it">Получить: %s</string>
@@ -201,6 +201,17 @@
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Парольные фразы не совпадают!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Неверная старая парольная фраза!</string>
+  <!--DeviceProvisioningActivity-->
+  <string name="DeviceProvisioningActivity_link_this_device">Привязать это устройство?</string>
+  <string name="DeviceProvisioningActivity_cancel">Отмена</string>
+  <string name="DeviceProvisioningActivity_continue">Продолжить</string>
+  <string name="DeviceProvisioningActivity_title">Привязать это устройство?</string>
+  <string name="DeviceProvisioningActivity_content_progress_title">Добавление устройства...</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">Добавление нового устройства...</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">Устройство добавлено!</string>
+  <string name="DeviceProvisioningActivity_content_progress_no_device">Устройства не найдены.</string>
+  <string name="DeviceProvisioningActivity_content_progress_network_error">Ошибка сети.</string>
+  <string name="DeviceProvisioningActivity_content_progress_key_error">Неверный QR-код</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Введите парольную фразу</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Иконка TextSecure</string>
@@ -223,8 +234,7 @@
   <string name="RegistrationActivity_unsupported">Устройство не поддерживается</string>
   <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">К сожалению, на вашем устройстве невозможен обмен сообщениями по каналу данных. На устройствах с Android версии ниже 4.0 должен быть зарегистрирован аккаунт Google. На устройствах с Android 4.0 или выше аккаунт Google необязателен, но должно иметься приложение «Play Маркет».</string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
-Сейчас мы проверим, что с этим устройством связан следующий номер телефона:\n\n%s\n\n
-Номер указан верно или вы хотите его изменить?</string>
+Дважды убедитесь, что это Ваш номер! На него будет отправлено SMS для проверки.</string>
   <string name="RegistrationActivity_continue">Продолжить</string>
   <string name="RegistrationActivity_edit">Изменить</string>
   <!--RegistrationProblemsActivity-->
@@ -670,12 +680,14 @@ SMS-подтверждения...
   <string name="text_secure_normal__menu_clear_passphrase">Заблокировать</string>
   <string name="text_secure_normal__mark_all_as_read">Отметить все как прочитанные</string>
   <!--reminder_header-->
+  <string name="reminder_header_expired_build">Вы используете устаревшую версию TextSecure!</string>
+  <string name="reminder_header_expired_build_details">Сообщения больше не будут успешно отправляться, пожалуйста, обновитесь до последней версии.</string>
   <string name="reminder_header_sms_default_title">Использовать как SMS-приложение по умолчанию?</string>
-  <string name="reminder_header_sms_default_text">TextSecure сейчас не используется как ваше SMS-приложение по умолчанию</string>
+  <string name="reminder_header_sms_default_text">Нажмите, чтобы сделать TextSecure клиентом SMS по умолчанию.</string>
   <string name="reminder_header_sms_import_title">Импортировать SMS из системы?</string>
-  <string name="reminder_header_sms_import_text">TextSecure может скопировать SMS из вашего телефона в свою зашифрованную базу.</string>
+  <string name="reminder_header_sms_import_text">Нажмите, чтобы скопировать SMS с Вашего устройства в зашифрованную базу данных.</string>
   <string name="reminder_header_push_title">Включить общение через TextSecure?</string>
-  <string name="reminder_header_push_text">Мгновенная доставка, защита приватности и никакой платы за SMS.</string>
+  <string name="reminder_header_push_text">Нажмите для мгновенной доставки, повышенной приватности, и отсутствия платы за SMS.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Вы</string>
   <string name="MediaPreviewActivity_cant_display">Не удалось просмотреть это изобажение</string>

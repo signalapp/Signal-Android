@@ -52,7 +52,6 @@
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Деталі повідомлення</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Ви дійсно хочете назавжди вилучити це повідомлення?</string>
   <string name="ConversationFragment_success_exclamation">Успішно!</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Видалити розмови?</string>
@@ -67,9 +66,6 @@
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Увага, цим Ви експортуєте на SD-карту свої повідомлення в незашифрованому вигляді.</string>
   <string name="ExportFragment_cancel">Скасувати</string>
   <string name="ExportFragment_exporting">Експортування</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">Експортує в текстовому форматі на SD карту\u2026</string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">Помилка, неможливо записати на SD-карту!</string>
-  <string name="ExportFragment_error_while_writing_to_sd_card">Сталась помилка під час запису на SD-карту!</string>
   <string name="ExportFragment_success">Успішно!</string>
   <!--GcmRefreshJob-->
   <!--GroupCreateActivity-->
@@ -104,6 +100,7 @@
   <!--MessageRecord-->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Невірна стара фраза!</string>
+  <!--DeviceProvisioningActivity-->
   <!--PassphrasePromptActivity-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Підпис цього обміну ключами відрізняється від отриманого раніше від цього контакту. Це може означати, що хтось намагається перехопити вашу переписку, або цей контакт перевстановив TextSecure і тепер у нього новий ідентифікаційний ключ.</string>
@@ -242,6 +239,7 @@
   <string name="import_fragment__import_a_plaintext_backup_file">Імпортувати з незашифрованої резервної копії. Сумісно з додатком \'SMSBackup And Restore\'.</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Параметри MMS для вашого телефону потрібно вказати вручну.</string>
+  <!--GroupUtil-->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Розблокувати</string>
   <!--prompt_mms_activity-->

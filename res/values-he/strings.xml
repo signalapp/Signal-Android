@@ -45,7 +45,6 @@
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">פרטי הודעה</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">אתה בטוח שאתה רוצה למחוק את ההודעה הזו לתמיד?</string>
   <string name="ConversationFragment_success_exclamation">הצליח!</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">למחוק שרשורים?</string>
@@ -62,13 +61,6 @@
 </string>
   <string name="ExportFragment_cancel">בטל</string>
   <string name="ExportFragment_exporting">מייצא</string>
-  <string name="ExportFragment_exporting_plaintext_to_sd_card">מייצא טקסט ללא הצפנה לכרטיס ה-SD...
-</string>
-  <string name="ExportFragment_error_unable_to_write_to_sd_card">שגיאה, לא ניתן לכתוב לכרטיס
-ה-SD!
-</string>
-  <string name="ExportFragment_error_while_writing_to_sd_card">שגיאה בכתיבה לכרטיס ה-SD.
-</string>
   <string name="ExportFragment_success">הצליח!</string>
   <!--GcmRefreshJob-->
   <!--GroupCreateActivity-->
@@ -107,6 +99,7 @@
   <!--MessageRecord-->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">סיסמה ישנה לא נכונה.</string>
+  <!--DeviceProvisioningActivity-->
   <!--PassphrasePromptActivity-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">החתימה
@@ -226,6 +219,7 @@
 יבא קובץ גיבוי לא מוצפן. תואם \'SMSBackup And Restore\'.</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">נדרשות הגדרות MMS ידניות עבור מכשירך.</string>
+  <!--GroupUtil-->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">פתח</string>
   <!--prompt_mms_activity-->
