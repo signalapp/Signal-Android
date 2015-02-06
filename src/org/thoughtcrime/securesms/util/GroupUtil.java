@@ -51,7 +51,11 @@ public class GroupUtil {
         description.append(context.getString(R.string.GroupUtil_title_is_now, title));
       }
 
-      return description.toString();
+      if (description.length() > 0) {
+        return description.toString();
+      } else {
+        return context.getString(R.string.GroupUtil_group_updated);
+      }
     } catch (InvalidProtocolBufferException e) {
       Log.w("GroupUtil", e);
       return context.getString(R.string.GroupUtil_group_updated);
