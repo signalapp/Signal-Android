@@ -787,6 +787,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     ComposeKeyPressedListener composeKeyPressedListener = new ComposeKeyPressedListener();
 
+    transportButton.setOnClickListener(selectTransportButtonListener);
+    transportButton.setEnabled(true);
+    transportButton.setComposeTextView(composeText);
+
     composeText.setOnKeyListener(composeKeyPressedListener);
     composeText.addTextChangedListener(composeKeyPressedListener);
     composeText.setOnEditorActionListener(sendButtonListener);
@@ -850,26 +854,15 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void updateSendBarViews() {
       if (!"".equals(composeText.getText().toString())) {
-          transportButton.setOnClickListener(destroyButtonListener);
-          transportButton.setEnabled(true);
-          transportButton.setComposeTextView(composeText);
-          transportButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_person));
-
           sendButton.setOnClickListener(sendButtonListener);
           sendButton.setEnabled(true);
           sendButton.setComposeTextView(composeText);
           sendButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_send_sms_gdata));
       } else {
-          transportButton.setOnClickListener(selectTransportButtonListener);
-          transportButton.setEnabled(true);
-          transportButton.setComposeTextView(composeText);
-          transportButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_forward));
-
-
           sendButton.setOnClickListener(addAttachmentButtonListener);
           sendButton.setEnabled(true);
           sendButton.setComposeTextView(composeText);
-          sendButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_person));
+          sendButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_attachment_gdata));
       }
   }
 

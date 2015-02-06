@@ -178,9 +178,9 @@
     <item>@drawable/ic_send_push</item>
   </string-array>
     <string-array name="transport_selection_icons_gdata">
-        <item>@drawable/ic_send_sms_gdata</item>
-        <item>@drawable/ic_send_sms_gdata</item>
-        <item>@drawable/ic_send_sms_gdata</item>
+        <item>@drawable/ic_action_sms_gdata</item>
+        <item>@drawable/ic_action_securesms_gdata</item>
+        <item>@drawable/ic_send_im_gdata</item>
     </string-array>
   <string-array name="transport_selection_icons_dark">
     <item>@drawable/ic_send_sms_insecure_dark</item>

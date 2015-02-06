@@ -46,6 +46,8 @@ public class SelectTransportButton extends ImageButton {
             }
         });
 
+        setHapticFeedbackEnabled(false);
+
         setOnLongClickListener(new OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {

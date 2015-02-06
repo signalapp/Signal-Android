@@ -94,9 +94,9 @@
         <item name="logo">@drawable/actionbar_icon_gdata</item>
         <item name="android:logo">@drawable/actionbar_icon_gdata</item>
 
-        <item name="conversation_send_button_push">@drawable/ic_send_sms_gdata</item>
-        <item name="conversation_send_button_sms_secure">@drawable/ic_send_sms_gdata</item>
-        <item name="conversation_send_button_sms_insecure">@drawable/ic_send_sms_gdata
+        <item name="conversation_send_button_push">@drawable/ic_send_im_gdata</item>
+        <item name="conversation_send_button_sms_secure">@drawable/ic_action_securesms_gdata</item>
+        <item name="conversation_send_button_sms_insecure">@drawable/ic_action_sms_gdata
         </item>
         <item name="conversation_delivery_delivered">@drawable/ic_delivery_delivered</item>
         <item name="conversation_transport_indicators">@array/transport_selection_icons_gdata</item>
