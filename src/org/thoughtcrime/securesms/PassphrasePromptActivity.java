@@ -43,6 +43,7 @@ import android.widget.Toast;
 import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
+import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.Util;
@@ -54,12 +55,14 @@ import org.thoughtcrime.securesms.util.Util;
  */
 public class PassphrasePromptActivity extends PassphraseActivity {
 
+  private final DynamicTheme dynamicTheme = new DynamicTheme();
   private DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   private EditText passphraseText;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
+    dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
     super.onCreate(savedInstanceState);
 
@@ -70,6 +73,7 @@ public class PassphrasePromptActivity extends PassphraseActivity {
   @Override
   public void onResume() {
     super.onResume();
+    dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
   }
 
