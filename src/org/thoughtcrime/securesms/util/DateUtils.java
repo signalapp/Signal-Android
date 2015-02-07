@@ -18,34 +18,57 @@ package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
 
+import org.thoughtcrime.securesms.R;
+
+import java.util.concurrent.TimeUnit;
+
 /**
  * Utility methods to help display dates in a nice, easily readable way.
  */
 public class DateUtils extends android.text.format.DateUtils {
 
-  private final static long DAY_IN_MILLIS  = 86400000L;
-  private final static long WEEK_IN_MILLIS = 7 * DAY_IN_MILLIS;
-  private final static long YEAR_IN_MILLIS = (long)(52.1775 * WEEK_IN_MILLIS);
-
-  private static boolean isWithinWeek(final long millis) {
-    return System.currentTimeMillis() - millis <= (WEEK_IN_MILLIS - DAY_IN_MILLIS);
+  private static boolean isWithin(final long millis, final long span, final TimeUnit unit) {
+    return System.currentTimeMillis() - millis <= unit.toMillis(span);
   }
 
-  private static boolean isWithinYear(final long millis) {
-    return System.currentTimeMillis() - millis <= YEAR_IN_MILLIS;
+  private static int convertDelta(final long millis, TimeUnit to) {
+    return (int) to.convert(System.currentTimeMillis() - millis, TimeUnit.MILLISECONDS);
   }
 
-  public static String getBetterRelativeTimeSpanString(final Context c, final long millis) {
-    int formatFlags = DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_ABBREV_TIME;
-    if (!isToday(millis)) {
-      if (isWithinWeek(millis)) {
+  public static String getBriefRelativeTimeSpanString(final Context c, final long timestamp) {
+    if (isWithin(timestamp, 1, TimeUnit.MINUTES)) {
+      return c.getString(R.string.DateUtils_now);
+    } else if (isWithin(timestamp, 1, TimeUnit.HOURS)) {
+      int mins = convertDelta(timestamp, TimeUnit.MINUTES);
+      return c.getResources().getQuantityString(R.plurals.minutes_ago, mins, mins);
+    } else if (isWithin(timestamp, 1, TimeUnit.DAYS)) {
+      int hours = convertDelta(timestamp, TimeUnit.HOURS);
+      return c.getResources().getQuantityString(R.plurals.hours_ago, hours, hours);
+    } else if (isWithin(timestamp, 6, TimeUnit.DAYS)) {
+      return formatDateTime(c, timestamp, DateUtils.FORMAT_SHOW_WEEKDAY | DateUtils.FORMAT_ABBREV_WEEKDAY);
+    } else if (isWithin(timestamp, 365, TimeUnit.DAYS)) {
+      return formatDateTime(c, timestamp, DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_NO_YEAR | DateUtils.FORMAT_ABBREV_ALL);
+    } else {
+      return formatDateTime(c, timestamp, DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
+    }
+  }
+
+  public static String getExtendedRelativeTimeSpanString(final Context c, final long timestamp) {
+    if (isWithin(timestamp, 1, TimeUnit.MINUTES)) {
+      return c.getString(R.string.DateUtils_now);
+    } else if (isWithin(timestamp, 1, TimeUnit.HOURS)) {
+      int mins = (int)TimeUnit.MINUTES.convert(System.currentTimeMillis() - timestamp, TimeUnit.MILLISECONDS);
+      return c.getResources().getQuantityString(R.plurals.minutes_ago, mins, mins);
+    } else {
+      int formatFlags = DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_ABBREV_TIME;
+      if (isWithin(timestamp, 6, TimeUnit.DAYS)) {
         formatFlags |= DateUtils.FORMAT_SHOW_WEEKDAY | DateUtils.FORMAT_ABBREV_WEEKDAY;
-      } else if (isWithinYear(millis)) {
+      } else if (isWithin(timestamp, 365, TimeUnit.DAYS)) {
         formatFlags |= DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_NO_YEAR | DateUtils.FORMAT_ABBREV_ALL;
       } else {
         formatFlags |= DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL;
       }
+      return DateUtils.formatDateTime(c, timestamp, formatFlags);
     }
-    return DateUtils.formatDateTime(c, millis, formatFlags);
   }
 }
