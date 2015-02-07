@@ -245,8 +245,10 @@ public class RegistrationService extends Service {
       setState(new RegistrationState(RegistrationState.STATE_GCM_REGISTERING, number));
 
       String gcmRegistrationId = GoogleCloudMessaging.getInstance(this).register(GcmRefreshJob.REGISTRATION_ID);
-      TextSecurePreferences.setGcmRegistrationId(this, gcmRegistrationId);
       accountManager.setGcmId(Optional.of(gcmRegistrationId));
+
+      TextSecurePreferences.setGcmRegistrationId(this, gcmRegistrationId);
+      TextSecurePreferences.setWebsocketRegistered(this, true);
 
       DatabaseFactory.getIdentityDatabase(this).saveIdentity(masterSecret, self.getRecipientId(), identityKey.getPublicKey());
       DirectoryHelper.refreshDirectory(this, accountManager, number);

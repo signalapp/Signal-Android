@@ -9,6 +9,7 @@ import android.util.Log;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobs.PushReceiveJob;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.jobqueue.requirements.NetworkRequirementProvider;
 import org.whispersystems.jobqueue.requirements.RequirementListener;
@@ -138,7 +139,9 @@ public class MessageRetrievalService extends Service implements Runnable, Inject
 
   private synchronized boolean isConnectionNecessary() {
     Log.w(TAG, "Network requirement: " + networkRequirement.isPresent());
-    return (activeActivities > 0 || pushPending) && networkRequirement.isPresent();
+    return TextSecurePreferences.isWebsocketRegistered(this) &&
+           (activeActivities > 0 || pushPending)             &&
+           networkRequirement.isPresent();
   }
 
   private synchronized void waitForConnectionNecessary() {
