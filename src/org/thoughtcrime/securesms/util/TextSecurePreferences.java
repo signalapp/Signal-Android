@@ -64,18 +64,18 @@ public class TextSecurePreferences {
 
   private static final String PUSH_REGISTRATION_REMINDER_PREF  = "pref_push_registration_reminder";
   public  static final String REPEAT_ALERTS_PREF               = "pref_repeat_alerts";
-  public  static final String REPEAT_MEDIA_DECRYPT_ALERTS_PREF = "pref_repeat_media_decrypt_alerts";
+  public  static final String MEDIA_PREVIEW_SAVE_WARN_PREF = "pref_media_preview_save_alerts";
 
   public static boolean isWifiSmsEnabled(Context context) {
     return getBooleanPreference(context, WIFI_SMS_PREF, false);
   }
 
-  public static boolean isMediaDecryptionWarningPreferred(Context context) {
-    return getBooleanPreference(context, REPEAT_MEDIA_DECRYPT_ALERTS_PREF, true);
+  public static boolean isMediaPreviewSaveWarningEnabled(Context context) {
+    return getBooleanPreference(context, MEDIA_PREVIEW_SAVE_WARN_PREF, true);
   }
 
-  public static void setMediaDecryptionWarningPreferred(Context context, boolean warn) {
-    setBooleanPreference(context, REPEAT_MEDIA_DECRYPT_ALERTS_PREF, warn);
+  public static void setMediaPreviewSaveWarningEnabled(Context context, boolean warn) {
+    setBooleanPreference(context, MEDIA_PREVIEW_SAVE_WARN_PREF, warn);
   }
 
   public static int getRepeatAlertsCount(Context context) {

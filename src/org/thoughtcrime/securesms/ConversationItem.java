@@ -512,7 +512,7 @@ public class ConversationItem extends LinearLayout {
         if (!messageRecord.isOutgoing()) intent.putExtra(MediaPreviewActivity.RECIPIENT_EXTRA, messageRecord.getIndividualRecipient().getRecipientId());
         intent.putExtra(MediaPreviewActivity.DATE_EXTRA, messageRecord.getDateReceived());
         context.startActivity(intent);
-      } else if ( TextSecurePreferences.isMediaDecryptionWarningPreferred(context) ) {
+      } else if ( TextSecurePreferences.isMediaPreviewSaveWarningEnabled(context) ) {
         showMediaDecryptionWarning();
       } else {
         Log.d(TAG, "Not showing media decryption warning because of user preference.");
@@ -531,7 +531,7 @@ public class ConversationItem extends LinearLayout {
       checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-          TextSecurePreferences.setMediaDecryptionWarningPreferred(context, !isChecked);
+          TextSecurePreferences.setMediaPreviewSaveWarningEnabled(context, !isChecked);
           Log.d(TAG, "Media decryption warning preferred set to:" + !isChecked);
         }
       });
