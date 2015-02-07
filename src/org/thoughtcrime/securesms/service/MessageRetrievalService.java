@@ -8,6 +8,7 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.jobs.PushReceiveJob;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.jobqueue.requirements.NetworkRequirementProvider;
 import org.whispersystems.jobqueue.requirements.RequirementListener;
@@ -16,10 +17,6 @@ import org.whispersystems.textsecure.api.TextSecureMessagePipe;
 import org.whispersystems.textsecure.api.TextSecureMessageReceiver;
 import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 
-import java.io.IOException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
@@ -78,13 +75,21 @@ public class MessageRetrievalService extends Service implements Runnable, Inject
         while (isConnectionNecessary()) {
           try {
             Log.w(TAG, "Reading message...");
-            TextSecureEnvelope envelope = pipe.read(REQUEST_TIMEOUT_MINUTES, TimeUnit.MINUTES);
-            Log.w(TAG, "Retrieved envelope! " + envelope.getSource());
+            pipe.read(REQUEST_TIMEOUT_MINUTES, TimeUnit.MINUTES,
+                      new TextSecureMessagePipe.MessagePipeCallback() {
+                        @Override
+                        public void onMessage(TextSecureEnvelope envelope) {
+                          Log.w(TAG, "Retrieved envelope! " + envelope.getSource());
+
+                          PushReceiveJob receiveJob = new PushReceiveJob(MessageRetrievalService.this);
+                          receiveJob.handle(envelope, false);
+
+                          decrementPushReceived();
+                        }
+                      });
           } catch (TimeoutException | InvalidVersionException e) {
             Log.w(TAG, e);
           }
-
-          decrementPushReceived();
         }
       } catch (Throwable e) {
         Log.w(TAG, e);
