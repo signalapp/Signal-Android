@@ -39,7 +39,7 @@ import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
  * @author Moxie Marlinspike
  *
  */
-public class RegistrationActivity extends ActionBarActivity {
+public class RegistrationActivity extends BaseActionBarActivity {
 
   private static final int PICK_COUNTRY = 1;
 

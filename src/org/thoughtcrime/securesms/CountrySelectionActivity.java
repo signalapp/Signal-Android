@@ -5,9 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
-import org.thoughtcrime.securesms.util.DynamicTheme;
-
-public class CountrySelectionActivity extends FragmentActivity
+public class CountrySelectionActivity extends BaseActivity
     implements CountrySelectionFragment.CountrySelectedListener
 
 {

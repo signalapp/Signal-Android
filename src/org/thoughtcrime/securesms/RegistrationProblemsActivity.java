@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.Button;
 
 
-public class RegistrationProblemsActivity extends ActionBarActivity {
+public class RegistrationProblemsActivity extends BaseActionBarActivity {
 
   @Override
   public void onCreate(Bundle bundle) {

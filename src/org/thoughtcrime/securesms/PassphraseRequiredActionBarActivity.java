@@ -1,11 +1,10 @@
 package org.thoughtcrime.securesms;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 
-public class PassphraseRequiredActionBarActivity extends ActionBarActivity implements PassphraseRequiredActivity {
+public class PassphraseRequiredActionBarActivity extends BaseActionBarActivity implements PassphraseRequiredActivity {
 
   private final PassphraseRequiredMixin delegate = new PassphraseRequiredMixin();
 
@@ -40,5 +39,4 @@ public class PassphraseRequiredActionBarActivity extends ActionBarActivity imple
 
   @Override
   public void onNewMasterSecret(MasterSecret masterSecret) {}
-
 }

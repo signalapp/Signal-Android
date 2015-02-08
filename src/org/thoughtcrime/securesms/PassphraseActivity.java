@@ -33,7 +33,7 @@ import org.thoughtcrime.securesms.util.MemoryCleaner;
  *
  * @author Moxie Marlinspike
  */
-public abstract class PassphraseActivity extends ActionBarActivity {
+public abstract class PassphraseActivity extends BaseActionBarActivity {
 
   private KeyCachingService keyCachingService;
   private MasterSecret masterSecret;
