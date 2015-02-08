@@ -16,7 +16,6 @@
  */
 package org.thoughtcrime.securesms;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -44,7 +43,7 @@ import org.whispersystems.textsecure.api.push.PushAddress;
  * @author Moxie Marlinspike
  *
  */
-public class AutoInitiateActivity extends Activity {
+public class AutoInitiateActivity extends BaseActivity {
 
   private long threadId;
   private Recipient recipient;

@@ -16,7 +16,6 @@
  */
 package org.thoughtcrime.securesms;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -68,7 +67,7 @@ import java.io.IOException;
  * @author Moxie Marlinspike
  */
 
-public class ReceiveKeyActivity extends Activity {
+public class ReceiveKeyActivity extends BaseActivity {
 
   private TextView descriptionText;
 
