@@ -656,11 +656,15 @@
     <string name="arrays__my_identity_key">My identity key</string>
 
     <!-- plurals.xml -->
-    <string name="plurals__one_minute">%d min</string>
-    <string name="plurals__many_minutes">%d mins</string>
-    <string name="plurals__one_hour">%d hour</string>
-    <string name="plurals__many_hours">%d hours</string>
+    <plurals name="minutes_ago">
+        <item quantity="one">%d min</item>
+        <item quantity="other">%d mins</item>
+    </plurals>
 
+    <plurals name="hours_ago">
+        <item quantity="one">%d hour</item>
+        <item quantity="other">%d hours</item>
+    </plurals>
 
     <!-- preferences.xml -->
     <string name="preferences__general">General</string>
