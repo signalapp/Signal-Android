@@ -1,38 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/scroll_parent"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true"
-            android:background="@drawable/background_pattern_repeat">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/prompt_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/textsecure_primary">
 
-  <RelativeLayout android:id="@+id/prompt_layout"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content">
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout="@layout/color_fragment" />
 
-    <ImageView android:id="@+id/watermark"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_centerHorizontal="true"
-               android:layout_marginBottom="20dp"
-               android:src="@drawable/lockscreen_watermark"
-               android:contentDescription="@string/PassphrasePromptActivity_watermark_content_description"
-               android:layout_marginTop="100dp"/>
+    <Button android:id="@+id/continue_button"
+            android:layout_width="140sp"
+            android:layout_height="wrap_content"
+            android:text="@string/create_passphrase_activity__continue"
+            android:visibility="invisible"
+            tools:visibility="visible"
+            style="@style/TextSecureButton"
+            android:layout_marginBottom="@dimen/onboarding_margin_vert"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
 
-    <RelativeLayout android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/watermark">
+    <me.relex.circleindicator.CircleIndicator
+        android:id="@+id/indicator"
+        android:layout_above="@id/continue_button"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp" />
 
-      <ProgressBar android:id="@+id/passphrase_edit"
-                   android:layout_width="75dp"
-                   android:layout_height="75dp"
-                   android:indeterminate="true"
-                   android:padding="10dp"
-                   android:layout_centerHorizontal="true"/>
-
-    </RelativeLayout>
-
-  </RelativeLayout>
-
-</ScrollView>
+</RelativeLayout>

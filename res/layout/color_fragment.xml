@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:background="#FF2090ea">
+
+    <ImageView android:id="@+id/watermark"
+               android:layout_width="@dimen/onboarding_watermark_size"
+               android:layout_height="@dimen/onboarding_watermark_size"
+               android:layout_centerHorizontal="true"
+               android:layout_marginBottom="20dp"
+               android:src="@drawable/onboard_logo"
+               tools:src="@drawable/onboard_logo"
+               android:contentDescription="@string/PassphrasePromptActivity_watermark_content_description"
+               android:layout_marginTop="@dimen/onboarding_margin_vert" />
+
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textAppearance="?android:attr/textAppearanceMedium"
+              android:id="@+id/blurb"
+              android:layout_below="@+id/watermark"
+              android:layout_centerHorizontal="true"
+              android:textSize="24sp"
+              android:textIsSelectable="false"
+              android:gravity="center_horizontal"
+              android:paddingLeft="20dp"
+              android:paddingRight="20dp"
+              android:fontFamily="sans-serif-light"
+              tools:text="@string/IntroFragment_one_title"
+              android:textColor="@android:color/white" />
+
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:id="@+id/subblurb"
+              android:layout_below="@id/blurb"
+              android:layout_centerHorizontal="true"
+              android:textSize="18sp"
+              android:textIsSelectable="false"
+              android:gravity="center_horizontal"
+              android:layout_marginTop="20dp"
+              android:paddingLeft="20dp"
+              android:paddingRight="20dp"
+              android:fontFamily="sans-serif-light"
+              tools:text="@string/IntroFragment_one_subtitle"
+              android:textColor="#ccffffff" />
+
+</RelativeLayout>

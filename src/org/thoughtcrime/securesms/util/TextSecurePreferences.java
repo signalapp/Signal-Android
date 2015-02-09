@@ -64,6 +64,7 @@ public class TextSecurePreferences {
 
   private static final String PUSH_REGISTRATION_REMINDER_PREF  = "pref_push_registration_reminder";
   public  static final String REPEAT_ALERTS_PREF               = "pref_repeat_alerts";
+  private static final String ONBOARDING_COMPLETED_PREF        = "pref_onboarding_completed";
 
   public static boolean isWifiSmsEnabled(Context context) {
     return getBooleanPreference(context, WIFI_SMS_PREF, false);
@@ -362,6 +363,14 @@ public class TextSecurePreferences {
 
   public static void setLastPushReminderTime(Context context, long time) {
     setLongPreference(context, PUSH_REGISTRATION_REMINDER_PREF, time);
+  }
+
+  public static boolean isOnboardingCompleted(Context context) {
+    return getBooleanPreference(context, ONBOARDING_COMPLETED_PREF, true);
+  }
+
+  public static void setOnboardingCompleted(Context context, boolean value) {
+    setBooleanPreference(context, ONBOARDING_COMPLETED_PREF, value);
   }
 
   private static void setBooleanPreference(Context context, String key, boolean value) {

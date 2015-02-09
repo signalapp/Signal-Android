@@ -259,6 +259,14 @@
     <string name="DeviceProvisioningActivity_content_progress_network_error">Network error.</string>
     <string name="DeviceProvisioningActivity_content_progress_key_error">Invalid QR code.</string>
 
+    <!-- IntroFragment -->
+    <string name="IntroFragment_one_title">Encryption worth a thousand words</string>
+    <string name="IntroFragment_one_subtitle">TextSecure lets you communicate with other users, all without SMS and MMS fees.</string>
+    <string name="IntroFragment_two_title">Say anything</string>
+    <string name="IntroFragment_two_subtitle">We use the latest techniques in secure communication to keep your messages safe.</string>
+    <string name="IntroFragment_three_title">Join the movement</string>
+    <string name="IntroFragment_three_subtitle">Welcome to TextSecure, a messaging application that you can trust.</string>
+
     <!-- PassphrasePromptActivity -->
     <string name="PassphrasePromptActivity_enter_passphrase">Enter passphrase</string>
     <string name="PassphrasePromptActivity_watermark_content_description">TextSecure icon</string>
@@ -828,6 +836,9 @@
     <string name="conversation_group_options__delivery">Delivery</string>
     <string name="conversation_group_options__conversation">Conversation</string>
     <string name="conversation_group_options__broadcast">Broadcast</string>
+
+    <!-- create_passphrase_activity -->
+    <string name="create_passphrase_activity__continue">CONTINUE</string>
 
     <!-- key_scanning -->
     <string name="key_scanning__menu_compare">Compare</string>
