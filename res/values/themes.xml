@@ -101,6 +101,7 @@
         <item name="logo">@drawable/actionbar_icon_holo_dark</item>
         <item name="actionBarStyle">@style/TextSecure.DarkActionBar</item>
         <item name="actionBarTabBarStyle">@style/TextSecure.DarkActionBar.TabBar</item>
+        <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
         <item name="android:textColor">@color/text_color_dark_theme</item>
         <item name="android:textColorSecondary">@color/text_color_secondary_dark_theme</item>
         <item name="conversation_list_item_background_read">@drawable/conversation_list_item_background_read_dark</item>
