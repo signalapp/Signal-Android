@@ -69,14 +69,6 @@ public class ConversationListFragment extends ListFragment
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
     final View view = inflater.inflate(R.layout.conversation_list_fragment, container, false);
-    CheckBox checkBoxPrivacy = (CheckBox) view.findViewById(R.id.checkBoxPrivacy);
-    checkBoxPrivacy.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-      @Override
-      public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        new GDataPreferences((getActivity())).setPrivacyActivated(!isChecked);
-        initializeListAdapter();
-      }
-    });
     reminderView = new ReminderView(getActivity());
     return view;
   }
@@ -311,6 +303,11 @@ public class ConversationListFragment extends ListFragment
     args.putString(ConversationListActivity.PagerAdapter.EXTRA_FRAGMENT_PAGE_TITLE, title);
     fragmentFirst.setArguments(args);
     return fragmentFirst;
+  }
+  public void reloadAdapter() {
+    if(isAdded()) {
+      getLoaderManager().restartLoader(0, null, this);
+    }
   }
 
 }

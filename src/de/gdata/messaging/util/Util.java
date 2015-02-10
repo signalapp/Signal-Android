@@ -162,4 +162,13 @@ public class Util {
     }
   }
 
+  public static String[] addStringArray(String[] a, String[] b) {
+    int aLen = a.length;
+    int bLen = b != null ? b.length : 0;
+    b = b == null ? new String[]{} : b;
+    String[] c = new String[aLen + bLen];
+    System.arraycopy(a, 0, c, 0, aLen);
+    System.arraycopy(b, 0, c, aLen, bLen);
+    return c;
+  }
 }

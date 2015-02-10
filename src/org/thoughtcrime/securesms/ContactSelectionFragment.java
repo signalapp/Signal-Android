@@ -159,4 +159,10 @@ public class ContactSelectionFragment extends Fragment {
     return fragmentFirst;
   }
 
+  public void reloadAdapter() {
+    if (isAdded()) {
+      contactsFragment.getLoaderManager().restartLoader(0, null, contactsFragment);
+    }
+  }
+
 }

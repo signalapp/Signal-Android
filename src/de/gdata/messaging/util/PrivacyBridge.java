@@ -1,10 +1,16 @@
 package de.gdata.messaging.util;
 
 import android.content.ComponentName;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.IBinder;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.os.RemoteException;
 import android.provider.ContactsContract;
 import android.util.Log;
@@ -12,6 +18,8 @@ import android.util.Log;
 import com.google.thoughtcrimegson.Gson;
 import com.google.thoughtcrimegson.reflect.TypeToken;
 
+import org.thoughtcrime.securesms.ConversationListActivity;
+import org.thoughtcrime.securesms.ConversationListFragment;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
@@ -19,6 +27,7 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 
 import de.gdata.messaging.isfaserverdefinitions.IRpcService;
 
@@ -28,7 +37,9 @@ import de.gdata.messaging.isfaserverdefinitions.IRpcService;
  */
 public class PrivacyBridge {
 
+  public static final String RESULT_KEY = "numberpicker_entries";
 
+  private final static String AUTHORITY = "de.gdata.mobilesecurity.privacy.provider";
   public static final String NAME_COLUMN = ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME;
   public static final String RECIPIENT_IDS = "recipient_ids";
 
@@ -75,7 +86,6 @@ public class PrivacyBridge {
   }
 
   public static void loadAllHiddenContacts(Context context) {
-
     mContext = context;
     if (!serviceIsConntected) {
       context.bindService(new Intent(GDataPreferences.INTENT_ACCESS_SERVER),
@@ -89,7 +99,6 @@ public class PrivacyBridge {
     if (hiddenRecipients == null) {
       hiddenRecipients = new GDataPreferences(context).getSavedHiddenRecipients();
     }
-    Log.d("hidden", "mylog hidden " + (hiddenRecipients.size() + ""));
     return hiddenRecipients;
   }
 
@@ -126,12 +135,14 @@ public class PrivacyBridge {
 
   public static void loadHiddenContactsPerService() {
     try {
+      new GDataPreferences(mContext).setPremiumInstalled(mService.hasPremiumEnabled());
       Type listType = new TypeToken<ArrayList<String>>() {
       }.getType();
       ArrayList<Recipient> recipients = getAllRecipients(mContext, false);
       ArrayList newHiddenRecipients = new ArrayList<Recipient>();
       String suppressedNumbers = mService.getSupressedNumbers();
       ArrayList<String> hiddenNumbers = new ArrayList<String>();
+
       if (suppressedNumbers != null) {
         hiddenNumbers = new Gson().fromJson(suppressedNumbers, listType);
       }
@@ -142,11 +153,14 @@ public class PrivacyBridge {
       }
       new GDataPreferences(mContext).saveHiddenRecipients(newHiddenRecipients);
       hiddenRecipients = newHiddenRecipients;
+      mContext.unbindService(mConnection);
+      serviceIsConntected = false;
+      ConversationListActivity.reloadAdapter();
     } catch (RemoteException e) {
       Log.e("GDATA", "Remote Service Exception");
     }
     GDataInitPrivacy.AsyncTaskLoadRecipients.isAlreadyLoading = false;
-    Log.d("PRIVACY", "mylog loading contacts done");
+    Log.d("PRIVACY", "Privacy loading contacts done");
   }
 
   /**
@@ -238,5 +252,145 @@ public class PrivacyBridge {
   public static String[] getConversationSelectionArgs(Context context) {
     return new GDataPreferences(context).isPrivacyActivated() ? PrivacyBridge.getPrivacyConversationList(context).get(1) : null;
   }
+
+  public static void addContactToPrivacy(String displayName, List<String> numbers, Long id) {
+    ArrayList<NumberEntry> entries = new ArrayList<>();
+    //entries.add(new Entry(displayName, numbers, id, Entry.TYPE_CONTACT));
+    new AddTask().execute(entries);
+  }
+  public static void addContactsToPrivacy(ArrayList<PrivacyBridge.NumberEntry> entries) {
+    new AddTask().execute(entries);
+  }
+  private static final class AddTask extends AsyncTask<List<NumberEntry>, Integer, Integer> {
+    @Override
+    protected Integer doInBackground(final List<NumberEntry>... arrayLists) {
+      final List<NumberEntry> entries = arrayLists[0];
+      Uri.Builder b = new Uri.Builder();
+      b.scheme(ContentResolver.SCHEME_CONTENT);
+      Uri hiddenContactsUri = b.authority(AUTHORITY).path("contacts/").build();
+      Uri hiddenNumbersUri = b.authority(AUTHORITY).path("numbers/").build();
+
+      if (entries == null || entries.size() == 0) return 0;
+
+      final ContentResolver contentResolver = mContext.getContentResolver();
+      List<ContentValues> contacts = new ArrayList<ContentValues>();
+      List<ContentValues> numbers = new ArrayList<ContentValues>();
+      for (final NumberEntry e : entries) {
+        final ContentValues cv = new ContentValues(3);
+        if (e.getNumbers().size() > 0) {
+          cv.put("number", e.getNumbers().get(0));
+        }
+        cv.put("id", e.getId());
+        if (e.isContact()) {
+          contacts.add(cv);
+        } else {
+          numbers.add(cv);
+        }
+      }
+      int cnt = 0;
+      if (contacts.size() > 0) {
+
+        cnt += contentResolver.bulkInsert(hiddenContactsUri.buildUpon().appendPath(String.valueOf(0)).build(),
+            contacts.toArray(new ContentValues[contacts.size()]));
+      }
+      if (numbers.size() > 0) {
+        cnt += contentResolver.bulkInsert(hiddenNumbersUri,
+            numbers.toArray(new ContentValues[numbers.size()]));
+      }
+      return cnt;
+
+    }
+  }
+  public interface NumberEntry extends Parcelable {
+    Long getId();
+
+    List<String> getNumbers();
+
+    String getName();
+
+    boolean isContact();
+  }
+
+  private class Entry implements NumberEntry {
+    Long m_id;
+    List<String> m_numbers;
+    String m_name;
+    int m_type;
+
+    public static final int TYPE_NUMBER = 0;
+    public static final int TYPE_CONTACT = 1;
+
+    @SuppressWarnings("unused")
+    public final Parcelable.Creator<Entry> CREATOR = new Parcelable.Creator<Entry>() {
+
+      @Override
+      public Entry[] newArray(int size) {
+        return new Entry[size];
+      }
+
+      @Override
+      public Entry createFromParcel(Parcel source) {
+        return new Entry(source);
+      }
+    };
+
+    private Entry(Parcel source) {
+      m_id = source.readLong();
+      m_name = source.readString();
+      m_numbers = new ArrayList<String>();
+      source.readStringList(m_numbers);
+      m_type = source.readInt();
+    }
+
+    public Entry(String name, List<String> numbers, Long tag, int type) {
+
+      m_id = tag;
+      m_numbers = numbers;
+      m_name = name;
+      m_type = type;
+    }
+
+    public Entry(String name, List<String> numbers) {
+      m_id = -1l;
+      m_numbers = numbers;
+      m_name = name;
+      m_type = TYPE_NUMBER;
+    }
+
+    @Override
+    public Long getId() {
+      return m_id;
+    }
+
+    @Override
+    public List<String> getNumbers() {
+      return m_numbers;
+    }
+
+    @Override
+    public String getName() {
+      return m_name;
+    }
+
+    @Override
+    public boolean isContact() {
+      return m_type == TYPE_CONTACT;
+    }
+
+    @Override
+    public int describeContents() {
+      return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+      dest.writeLong(m_id);
+      dest.writeString(m_name);
+      dest.writeStringList(m_numbers);
+      dest.writeInt(m_type);
+    }
+
+  }
+
 }
 

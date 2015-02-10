@@ -39,7 +39,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import de.gdata.messaging.util.GDataPreferences;
 import de.gdata.messaging.util.PrivacyBridge;
+import de.gdata.messaging.util.Util;
 
 /**
  * Database to supply all types of contacts that TextSecure needs to know about
@@ -148,12 +150,15 @@ public class ContactsDatabase {
     final String   selection;
     final String[] selectionArgs;
     final String   fuzzyFilter = "%" + filter + "%";
-    if (!TextUtils.isEmpty(filter)) {
+    if (!TextUtils.isEmpty(filter) && new GDataPreferences(context).isPrivacyActivated()) {
+      selection     = "(" + FILTER_SELECTION + ") AND (" + PrivacyBridge.getContactSelection(context)+")";
+      selectionArgs = Util.addStringArray(new String[]{fuzzyFilter, fuzzyFilter}, PrivacyBridge.getContactSelectionArgs(context));
+    } else if(new GDataPreferences(context).isPrivacyActivated()) {
+      selection     = PrivacyBridge.getContactSelection(context);
+      selectionArgs = PrivacyBridge.getContactSelectionArgs(context);
+    } else {
       selection     = FILTER_SELECTION;
       selectionArgs = new String[]{fuzzyFilter, fuzzyFilter};
-    } else {
-      selection     = null;
-      selectionArgs = null;
     }
     return queryLocalDb(selection, selectionArgs, null);
   }

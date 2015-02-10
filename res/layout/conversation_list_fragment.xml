@@ -5,14 +5,6 @@
               android:layout_height="fill_parent"
               android:orientation="vertical">
 
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/show_hidden_convs"
-        android:id="@+id/checkBoxPrivacy"
-        android:layout_gravity="right"
-        android:layout_margin="2dp"/>
-
     <ListView android:id="@android:id/list"
                   android:layout_width="fill_parent"
                   android:layout_height="match_parent"

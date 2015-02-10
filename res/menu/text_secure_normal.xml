@@ -27,6 +27,14 @@
           android:id="@+id/menu_my_identity"
           android:icon="@android:drawable/ic_menu_view" />
 
+    <item android:title="@string/menu_privacy"
+          android:id="@+id/menu_privacy"
+          android:icon="@android:drawable/ic_menu_view" />
+
+    <item android:title="@string/menu_privacy_hide"
+          android:id="@+id/menu_privacy_hide"
+          android:icon="@android:drawable/ic_menu_view" />
+
     <item android:title="@string/text_secure_normal__menu_settings"
           android:id="@+id/menu_settings"
           android:icon="@android:drawable/ic_menu_preferences" />

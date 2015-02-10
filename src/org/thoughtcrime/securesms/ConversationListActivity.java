@@ -16,21 +16,33 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.database.ContentObserver;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.IBinder;
+import android.os.RemoteException;
 import android.provider.ContactsContract;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.SearchView;
+import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -45,6 +57,8 @@ import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import de.gdata.messaging.SlidingTabLayout;
+import de.gdata.messaging.TextEncrypter;
+import de.gdata.messaging.isfaserverdefinitions.IRpcService;
 import de.gdata.messaging.util.GDataInitPrivacy;
 import de.gdata.messaging.util.GDataPreferences;
 
@@ -78,9 +92,15 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   @Override
   public void onResume() {
     super.onResume();
-    GDataInitPrivacy.refreshPrivacyData();
+    GDataInitPrivacy.refreshPrivacyData(false);
     dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
+  }
+
+  @Override
+  protected void onPause() {
+    super.onPause();
+    GDataInitPrivacy.refreshPrivacyData(true);
   }
 
   @Override
@@ -114,6 +134,15 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     } else {
       inflater.inflate(R.menu.conversation_list_empty, menu);
     }
+    MenuItem itemHide = menu.findItem(R.id.menu_privacy_hide);
+    MenuItem itemPrivacy = menu.findItem(R.id.menu_privacy);
+
+    boolean isPremiumInstalled = new GDataPreferences((getBaseContext())).isPremiumInstalled();
+    itemHide.setVisible(isPremiumInstalled);
+    itemPrivacy.setVisible(isPremiumInstalled);
+
+    itemHide.setTitle(new GDataPreferences((getBaseContext())).isPrivacyActivated()
+        ? getString(R.string.menu_privacy_unhide) : getString(R.string.menu_privacy_hide));
 
     super.onPrepareOptionsMenu(menu);
     return true;
@@ -178,11 +207,19 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
       case R.id.menu_import_export:
         handleImportExport();
         return true;
+      case R.id.menu_privacy:
+        CheckPasswordDialogFrag.ACTION_ID = CheckPasswordDialogFrag.ACTION_OPEN_PRIVACY;
+        new CheckPasswordDialogFrag().show(getSupportFragmentManager(), "PW_DIALOG_TAG");
+        return true;
+      case R.id.menu_privacy_hide:
+        CheckPasswordDialogFrag.ACTION_ID = CheckPasswordDialogFrag.ACTION_TOGGLE_VISIBILITY;
+        new CheckPasswordDialogFrag().show(getSupportFragmentManager(), "PW_DIALOG_TAG");
+
+        return true;
       case R.id.menu_my_identity:
         handleMyIdentity();
         return true;
     }
-
     return false;
   }
 
@@ -347,5 +384,95 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     });
   }
 
+  public static class CheckPasswordDialogFrag extends DialogFragment {
+    private EditText input;
+    private static final int ACTION_OPEN_PRIVACY = 0;
+    private static final int ACTION_TOGGLE_VISIBILITY = 1;
+    private static int ACTION_ID = 0;
+    private Context mContext;
 
+    CheckPasswordDialogFrag newInstance() {
+      input = new EditText(getActivity());
+      mContext = getActivity();
+      input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+      CheckPasswordDialogFrag fragment = new CheckPasswordDialogFrag();
+      return fragment;
+    }
+
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+      newInstance();
+      return new AlertDialog.Builder(getActivity())
+          .setIcon(R.drawable.icon_lock)
+          .setTitle(getString(R.string.privacy_pw_dialog_header))
+          .setView(input)
+          .setPositiveButton(getString(R.string.picker_set),
+              new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog,
+                                    int whichButton) {
+                  getActivity().bindService(new Intent(GDataPreferences.INTENT_ACCESS_SERVER), mConnection, Context.BIND_AUTO_CREATE);
+                }
+              })
+          .setNegativeButton(getString(R.string.picker_cancel),
+              new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog,
+                                    int whichButton) {
+
+                  dialog.cancel();
+                }
+              }).create();
+    }
+
+    private ServiceConnection mConnection = new ServiceConnection() {
+      public IRpcService mService;
+
+      @Override
+      public void onServiceConnected(ComponentName name, IBinder service) {
+        mService = IRpcService.Stub.asInterface(service);
+        if (mService != null) {
+          try {
+            TextEncrypter encrypter = new TextEncrypter();
+            boolean pwCorrect = mService.isPasswordCorrect(encrypter.encryptData(input.getText().toString()));
+            if (pwCorrect) {
+              if (CheckPasswordDialogFrag.ACTION_ID == CheckPasswordDialogFrag.ACTION_OPEN_PRIVACY) {
+                try {
+                  Intent intent = new Intent("de.gdata.mobilesecurity.privacy.PrivacyListActivity");
+                  intent.putExtra("title", getString(R.string.app_name));
+                  intent.putExtra("numberpicker_allow_wildcard", false);
+                  startActivityForResult(intent, 1);
+                } catch (Exception e) {
+                }
+              } else if (CheckPasswordDialogFrag.ACTION_ID == CheckPasswordDialogFrag.ACTION_TOGGLE_VISIBILITY) {
+                new GDataPreferences(mContext).setPrivacyActivated(!new GDataPreferences(mContext).isPrivacyActivated());
+                GDataInitPrivacy.refreshPrivacyData(false);
+                String toastText = new GDataPreferences(mContext).isPrivacyActivated()
+                    ? mContext.getString(R.string.privacy_pw_dialog_toast_hide) : mContext.getString(R.string.privacy_pw_dialog_toast_reload);
+
+                Toast.makeText(mContext, toastText, Toast.LENGTH_LONG).show();
+              }
+            } else {
+              Toast.makeText(getActivity(), getString(R.string.privacy_pw_dialog_toast_wrong), Toast.LENGTH_LONG).show();
+            }
+          } catch (RemoteException e) {
+            Log.e("GDATA", e.getMessage());
+          }
+          mContext.unbindService(mConnection);
+        }
+      }
+
+      @Override
+      public void onServiceDisconnected(ComponentName name) {
+        mService = null;
+      }
+    };
+  }
+
+  public static void reloadAdapter() {
+    if (conversationListFragment != null) {
+      conversationListFragment.reloadAdapter();
+    }
+    if (contactSelectionFragment != null) {
+      contactSelectionFragment.reloadAdapter();
+    }
+  }
 }
