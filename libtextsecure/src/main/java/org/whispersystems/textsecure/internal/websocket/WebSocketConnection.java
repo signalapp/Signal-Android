@@ -111,10 +111,10 @@ public class WebSocketConnection {
       client.sendMessage(WebSocketMessage.newBuilder()
                                          .setType(WebSocketMessage.Type.REQUEST)
                                          .setRequest(WebSocketRequestMessage.newBuilder()
-                                         .setId(System.currentTimeMillis())
-                                         .setPath("/v1/keepalive")
-                                         .setVerb("GET")
-                                         .build()).build()
+                                                                            .setId(System.currentTimeMillis())
+                                                                            .setPath("/v1/keepalive")
+                                                                            .setVerb("GET")
+                                                                            .build()).build()
                                          .toByteArray());
     }
   }
