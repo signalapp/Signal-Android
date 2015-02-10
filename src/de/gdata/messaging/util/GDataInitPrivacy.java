@@ -34,7 +34,7 @@ public class GDataInitPrivacy {
     @Override
     protected String doInBackground(Boolean... params) {
       if (isAlreadyLoading) return null;
-      Log.d("PRIVACY", "mylog loading contacts started " + params[0]);
+      Log.d("PRIVACY", "Privacy loading contacts started " + params[0]);
       isAlreadyLoading = true;
       PrivacyBridge.getAllRecipients(mContext, params[0]);
       PrivacyBridge.loadAllHiddenContacts(mContext);

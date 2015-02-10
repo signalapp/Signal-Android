@@ -38,9 +38,12 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.SearchView;
 import android.text.InputType;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -394,7 +397,10 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     CheckPasswordDialogFrag newInstance() {
       input = new EditText(getActivity());
       mContext = getActivity();
-      input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+      input.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
+      input.setGravity(Gravity.CENTER | Gravity.BOTTOM);
+      InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+      imm.showSoftInput((input), InputMethodManager.SHOW_IMPLICIT);
       CheckPasswordDialogFrag fragment = new CheckPasswordDialogFrag();
       return fragment;
     }
@@ -417,7 +423,6 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
               new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog,
                                     int whichButton) {
-
                   dialog.cancel();
                 }
               }).create();
