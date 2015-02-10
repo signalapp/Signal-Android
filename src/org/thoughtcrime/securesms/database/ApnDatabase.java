@@ -73,7 +73,7 @@ public class ApnDatabase {
   private static ApnDatabase instance = null;
 
   public synchronized static ApnDatabase getInstance(Context context) throws IOException {
-    if (instance == null) instance = new ApnDatabase(context);
+    if (instance == null) instance = new ApnDatabase(context.getApplicationContext());
     return instance;
   }
 

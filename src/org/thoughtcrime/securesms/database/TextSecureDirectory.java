@@ -47,7 +47,7 @@ public class TextSecureDirectory {
     if (instance == null) {
       synchronized (instanceLock) {
         if (instance == null) {
-          instance = new TextSecureDirectory(context);
+          instance = new TextSecureDirectory(context.getApplicationContext());
         }
       }
     }
