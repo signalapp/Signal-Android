@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms;
 
 import android.annotation.TargetApi;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.opengl.GLES20;
@@ -36,7 +37,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipient.RecipientModifiedListener;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
@@ -48,14 +48,13 @@ import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 import uk.co.senab.photoview.PhotoViewAttacher;
 
 /**
  * Activity for displaying media attachments in-app
  */
-public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity {
+public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity implements RecipientModifiedListener {
   private final static String TAG = MediaPreviewActivity.class.getSimpleName();
 
   public final static String MASTER_SECRET_EXTRA = "master_secret";
@@ -68,6 +67,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity {
 
   private View              loadingView;
   private TextView          errorText;
+  private Bitmap            bitmap;
   private ImageView         image;
   private PhotoViewAttacher imageAttacher;
   private Uri               mediaUri;
@@ -88,7 +88,9 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity {
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     setContentView(R.layout.media_preview_activity);
 
+    initializeViews();
     initializeResources();
+    initializeActionBar();
   }
 
   @TargetApi(VERSION_CODES.JELLY_BEAN)
@@ -99,42 +101,8 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity {
   }
 
   @Override
-  public void onResume() {
-    super.onResume();
-    dynamicLanguage.onResume(this);
-
-    final long recipientId = getIntent().getLongExtra(RECIPIENT_EXTRA, -1);
-
-    masterSecret = getIntent().getParcelableExtra(MASTER_SECRET_EXTRA);
-    mediaUri     = getIntent().getData();
-    mediaType    = getIntent().getType();
-    date         = getIntent().getLongExtra(DATE_EXTRA, -1);
-
-    if (recipientId > -1) {
-      recipient = RecipientFactory.getRecipientForId(this, recipientId, true);
-      recipient.addListener(new RecipientModifiedListener() {
-        @Override
-        public void onModified(Recipient recipient) {
-          initializeActionBar();
-        }
-      });
-    } else {
-      recipient = null;
-    }
-
+  public void onModified(Recipient recipient) {
     initializeActionBar();
-
-    if (!isContentTypeSupported(mediaType)) {
-      Log.w(TAG, "Unsupported media type sent to MediaPreviewActivity, finishing.");
-      Toast.makeText(getApplicationContext(), R.string.MediaPreviewActivity_unssuported_media_type, Toast.LENGTH_LONG).show();
-      finish();
-    }
-
-    Log.w(TAG, "Loading Part URI: " + mediaUri);
-
-    if (mediaType != null && mediaType.startsWith("image/")) {
-      displayImage();
-    }
   }
 
   private void initializeActionBar() {
@@ -148,20 +116,77 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity {
     }
     getSupportActionBar().setTitle(recipient == null ? getString(R.string.MediaPreviewActivity_you) : recipient.getName());
     getSupportActionBar().setSubtitle(relativeTimeSpan);
+  }
 
+  @Override
+  public void onResume() {
+    super.onResume();
+    dynamicLanguage.onResume(this);
+    if (recipient != null) recipient.addListener(this);
+    initializeMedia();
   }
 
   @Override
   public void onPause() {
     super.onPause();
+    if (recipient != null) recipient.removeListener(this);
+    cleanupMedia();
   }
 
-  private void initializeResources() {
+  @Override
+  protected void onNewIntent(Intent intent) {
+    super.onNewIntent(intent);
+    if (recipient != null) recipient.removeListener(this);
+    setIntent(intent);
+    initializeResources();
+    initializeActionBar();
+    initializeMedia();
+  }
+
+  private void initializeViews() {
     loadingView   =             findViewById(R.id.loading_indicator);
     errorText     = (TextView)  findViewById(R.id.error);
     image         = (ImageView) findViewById(R.id.image);
     imageAttacher = new PhotoViewAttacher(image);
-   }
+  }
+
+  private void initializeResources() {
+    final long recipientId = getIntent().getLongExtra(RECIPIENT_EXTRA, -1);
+
+    masterSecret = getIntent().getParcelableExtra(MASTER_SECRET_EXTRA);
+    mediaUri = getIntent().getData();
+    mediaType = getIntent().getType();
+    date = getIntent().getLongExtra(DATE_EXTRA, -1);
+
+    if (recipientId > -1) {
+      recipient = RecipientFactory.getRecipientForId(this, recipientId, true);
+      recipient.addListener(this);
+    } else {
+      recipient = null;
+    }
+  }
+
+  private void initializeMedia() {
+    if (!isContentTypeSupported(mediaType)) {
+      Log.w(TAG, "Unsupported media type sent to MediaPreviewActivity, finishing.");
+      Toast.makeText(getApplicationContext(), R.string.MediaPreviewActivity_unssuported_media_type, Toast.LENGTH_LONG).show();
+      finish();
+    }
+
+    Log.w(TAG, "Loading Part URI: " + mediaUri);
+
+    if (mediaType != null && mediaType.startsWith("image/")) {
+      displayImage();
+    }
+  }
+
+  private void cleanupMedia() {
+    image.setImageDrawable(null);
+    if (bitmap != null) {
+      bitmap.recycle();
+      bitmap = null;
+    }
+  }
 
   private void displayImage() {
     new AsyncTask<Void,Void,Bitmap>() {
@@ -192,6 +217,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity {
           errorText.setText(R.string.MediaPreviewActivity_cant_display);
           errorText.setVisibility(View.VISIBLE);
         } else {
+          MediaPreviewActivity.this.bitmap = bitmap;
           image.setImageBitmap(bitmap);
           image.setVisibility(View.VISIBLE);
           imageAttacher.update();
