@@ -59,10 +59,14 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
         return FAILURE;
       }
 
-      File mediaFile            = constructOutputFile(attachment.contentType, attachment.date);
-      InputStream inputStream   = PartAuthority.getPartStream(context, masterSecret, attachment.uri);
-      OutputStream outputStream = new FileOutputStream(mediaFile);
+      File        mediaFile   = constructOutputFile(attachment.contentType, attachment.date);
+      InputStream inputStream = PartAuthority.getPartStream(context, masterSecret, attachment.uri);
 
+      if (inputStream == null) {
+        return FAILURE;
+      }
+
+      OutputStream outputStream = new FileOutputStream(mediaFile);
       Util.copy(inputStream, outputStream);
 
       MediaScannerConnection.scanFile(context, new String[]{mediaFile.getAbsolutePath()},
