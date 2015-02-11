@@ -244,7 +244,9 @@ public class MmsSendJob extends SendJob {
     long       threadId   = DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(messageId);
     Recipients recipients = DatabaseFactory.getThreadDatabase(context).getRecipientsForThreadId(threadId);
 
-    MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId);
+    if (recipients != null) {
+      MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId);
+    }
   }
 
 
