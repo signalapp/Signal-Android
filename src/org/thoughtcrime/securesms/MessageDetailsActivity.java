@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
-import android.text.format.DateFormat;
 import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
@@ -24,7 +23,6 @@ import org.thoughtcrime.securesms.util.DateUtils;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.HashSet;
-import java.util.Locale;
 
 public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity implements LoaderCallbacks<Pair<MessageRecord,Recipients>> {
   private final static String TAG = MessageDetailsActivity.class.getSimpleName();
@@ -36,10 +34,9 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
 
   private MasterSecret     masterSecret;
   private MessageRecord    messageRecord;
-  private ConversationItem item;
+  private ConversationItem conversationItem;
   private ViewGroup        itemParent;
   private ViewGroup        header;
-  private ViewGroup        parent;
   private boolean          pushDestination;
   private Recipients       recipients;
   private TextView         sentDate;
@@ -48,7 +45,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
   private TextView         transport;
   private TextView         toFrom;
   private ListView         recipientsList;
-  private LayoutInflater   li;
+  private LayoutInflater   inflater;
 
   @Override
   public void onCreate(Bundle bundle) {
@@ -60,22 +57,16 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     getSupportLoaderManager().initLoader(0, null, this);
   }
 
-  @Override
-  public void onResume() {
-    super.onResume();
-  }
-
   private void initializeResources() {
-    li              = LayoutInflater.from(this);
-    parent          = (ViewGroup) findViewById(R.id.container);
-    itemParent      = (ViewGroup) findViewById(R.id.item_container);
-    recipientsList  = (ListView)  findViewById(R.id.recipients_list);
+    inflater       = LayoutInflater.from(this);
+    itemParent     = (ViewGroup) findViewById(R.id.item_container );
+    recipientsList = (ListView ) findViewById(R.id.recipients_list);
 
     masterSecret    = getIntent().getParcelableExtra(MASTER_SECRET_EXTRA);
     pushDestination = getIntent().getBooleanExtra(PUSH_EXTRA, false);
   }
 
-  private void initializeDates() {
+  private void initializeTimeAndTransport() {
     if (messageRecord.isOutgoing() && messageRecord.isFailed()) {
       transport.setText("-");
       sentDate.setText("-");
@@ -117,7 +108,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
       toFromRes = R.string.message_details_header__from;
     }
     toFrom.setText(toFromRes);
-    item.set(masterSecret, messageRecord, new HashSet<MessageRecord>(), null, recipients != messageRecord.getRecipients(), pushDestination);
+    conversationItem.set(masterSecret, messageRecord, new HashSet<MessageRecord>(), null, recipients != messageRecord.getRecipients(), pushDestination);
     recipientsList.setAdapter(new MessageDetailsRecipientAdapter(this, masterSecret, messageRecord, recipients));
     getContentResolver().registerContentObserver(Uri.parse(Database.CONVERSATION_URI + messageRecord.getThreadId()),
                                                  false,
@@ -138,19 +129,19 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     messageRecord = data.first;
     recipients    = data.second;
 
-    if (item == null) {
+    if (conversationItem == null) {
       if (messageRecord.isGroupAction()) {
-        item = (ConversationItem) li.inflate(R.layout.conversation_item_activity, itemParent, false);
+        conversationItem = (ConversationItem) inflater.inflate(R.layout.conversation_item_activity, itemParent, false);
       } else if (messageRecord.isOutgoing()) {
-        item = (ConversationItem) li.inflate(R.layout.conversation_item_sent, itemParent, false);
+        conversationItem = (ConversationItem) inflater.inflate(R.layout.conversation_item_sent, itemParent, false);
       } else {
-        item = (ConversationItem) li.inflate(R.layout.conversation_item_received, itemParent, false);
+        conversationItem = (ConversationItem) inflater.inflate(R.layout.conversation_item_received, itemParent, false);
       }
-      itemParent.addView(item);
+      itemParent.addView(conversationItem);
     }
 
     if (header == null) {
-      header            = (ViewGroup) li.inflate(R.layout.message_details_header, recipientsList, false);
+      header            = (ViewGroup) inflater.inflate(R.layout.message_details_header, recipientsList, false);
       sentDate          = (TextView ) header.findViewById(R.id.sent_time);
       receivedContainer =             header.findViewById(R.id.received_container);
       receivedDate      = (TextView ) header.findViewById(R.id.received_time     );
@@ -161,7 +152,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     }
 
     initializeRecipients();
-    initializeDates();
+    initializeTimeAndTransport();
   }
 
   @Override

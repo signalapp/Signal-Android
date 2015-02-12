@@ -224,7 +224,7 @@ public class ConversationItem extends LinearLayout {
         if ((messageRecord.isPending() || messageRecord.isFailed()) && pushDestination && !messageRecord.isForcedSms()) {
           background         = SENT_PUSH_PENDING;
           triangleBackground = SENT_PUSH_PENDING_TRIANGLE;
-        } else if (messageRecord.isPending() || messageRecord.isPendingSmsFallback()) {
+        } else if (messageRecord.isPending() || messageRecord.isFailed() || messageRecord.isPendingSmsFallback()) {
           background         = SENT_SMS_PENDING;
           triangleBackground = SENT_SMS_PENDING_TRIANGLE;
         } else if (messageRecord.isPush()) {
@@ -305,7 +305,7 @@ public class ConversationItem extends LinearLayout {
   }
 
   private void setFailedStatusIcons() {
-    dateText.setText(R.string.ConversationItem_error_sending_message);
+    dateText.setText(R.string.ConversationItem_error_not_delivered);
     indicatorText.setText(R.string.ConversationItem_click_for_details);
     indicatorText.setVisibility(View.VISIBLE);
   }
