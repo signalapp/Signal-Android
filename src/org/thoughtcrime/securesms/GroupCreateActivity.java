@@ -387,8 +387,9 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
               Recipient recipient = RecipientFactory.getRecipientsFromString(this, numberData.number, false)
                                                     .getPrimaryRecipient();
 
-              if (!selectedContacts.contains(recipient)
-                  && (existingContacts == null || !existingContacts.contains(recipient))) {
+              if (!selectedContacts.contains(recipient)                               &&
+                  (existingContacts == null || !existingContacts.contains(recipient)) &&
+                  recipient != null) {
                 addSelectedContact(recipient);
               }
             } catch (RecipientFormattingException e) {
