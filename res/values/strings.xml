@@ -233,6 +233,10 @@
     <string name="KeyScanningActivity_install_barcode_Scanner">Install Barcode Scanner?</string>
     <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">TextSecure needs Barcode Scanner for QR codes.</string>
 
+    <!-- MessageDetailsRecipient -->
+    <string name="MessageDetailsRecipient_failed_to_send">Failed to send</string>
+    <string name="MessageDetailsRecipient_new_identity">New identity</string>
+
     <!-- MmsDownloader -->
     <string name="MmsDownloader_error_storing_mms">Error storing MMS!</string>
     <string name="MmsDownloader_error_connecting_to_mms_provider">Error connecting to MMS provider...</string>
