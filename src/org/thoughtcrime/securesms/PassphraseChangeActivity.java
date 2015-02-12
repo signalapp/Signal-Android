@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.View;
@@ -53,6 +54,14 @@ public class PassphraseChangeActivity extends PassphraseActivity {
     setContentView(R.layout.change_passphrase_activity);
 
     initializeResources();
+  }
+
+  @Override
+  public void onDestroy() {
+    super.onDestroy();
+    this.originalPassphrase = null;
+    this.newPassphrase      = null;
+    this.repeatPassphrase   = null;
   }
 
   private void initializeResources() {
@@ -126,11 +135,10 @@ public class PassphraseChangeActivity extends PassphraseActivity {
   }
 
   @Override
-  protected void cleanup() {
-    this.originalPassphrase = null;
-    this.newPassphrase      = null;
-    this.repeatPassphrase   = null;
-
+  protected void onMasterSecretSet() {
     System.gc();
+    setResult(Activity.RESULT_OK);
+    finish();
+
   }
 }

@@ -169,7 +169,7 @@ public class RoutingActivity extends PassphraseRequiredActionBarActivity {
   }
 
   private int getApplicationState() {
-    if (!MasterSecretUtil.isPassphraseInitialized(this))
+    if (!MasterSecretUtil.isPassphraseInitialized(this) || !TextSecurePreferences.isOnboardingCompleted(this))
       return STATE_CREATE_PASSPHRASE;
 
     if (masterSecret == null)

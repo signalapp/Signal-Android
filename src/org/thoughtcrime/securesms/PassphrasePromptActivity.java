@@ -158,8 +158,10 @@ public class PassphrasePromptActivity extends PassphraseActivity {
   }
 
   @Override
-  protected void cleanup() {
+  protected void onMasterSecretSet() {
     this.passphraseText.setText("");
     System.gc();
+    setResult(Activity.RESULT_OK);
+    finish();
   }
 }

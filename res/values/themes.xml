@@ -6,6 +6,13 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
+    <style name="TextSecure.SplashTheme" parent="@style/Theme.AppCompat">
+        <item name="android:windowBackground">@color/textsecure_primary</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="actionBarStyle">@style/TextSecure.IntroActionBar</item>
+    </style>
+
     <style name="TextSecure.LightTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
         <item name="logo">@drawable/actionbar_icon_holo_light</item>
         <item name="actionBarStyle">@style/TextSecure.LightActionBar</item>

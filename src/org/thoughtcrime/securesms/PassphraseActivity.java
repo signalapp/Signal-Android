@@ -48,7 +48,7 @@ public abstract class PassphraseActivity extends BaseActionBarActivity {
     return masterSecret;
   }
 
-  protected abstract void cleanup();
+  protected abstract void onMasterSecretSet();
 
   private ServiceConnection serviceConnection = new ServiceConnection() {
       @Override
@@ -59,10 +59,7 @@ public abstract class PassphraseActivity extends BaseActionBarActivity {
         PassphraseActivity.this.unbindService(PassphraseActivity.this.serviceConnection);
 
         MemoryCleaner.clean(masterSecret);
-        cleanup();
-
-        PassphraseActivity.this.setResult(RESULT_OK);
-        PassphraseActivity.this.finish();
+        onMasterSecretSet();
       }
 
       @Override

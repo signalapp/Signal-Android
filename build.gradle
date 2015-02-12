@@ -46,8 +46,9 @@ dependencies {
     compile 'com.android.support:appcompat-v7:21.0.3'
     compile 'com.melnykov:floatingactionbutton:1.1.0'
     compile 'com.google.zxing:android-integration:3.1.0'
-    compile ('com.android.support:support-v4-preferencefragment:1.0.0@aar'){
-        exclude module: 'support-v4'
+    compile 'me.relex:circleindicator:1.0.0@aar'
+    compile('com.android.support:support-v4-preferencefragment:1.0.0@aar') {
+        exclude group: 'com.android.support', module: 'support-v4'
     }
     compile 'com.squareup.dagger:dagger:1.2.2'
     compile ("com.doomonafireball.betterpickers:library:1.5.3") {
