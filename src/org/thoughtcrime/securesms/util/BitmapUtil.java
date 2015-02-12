@@ -80,7 +80,9 @@ public class BitmapUtil {
   private static Bitmap createScaledBitmap(Context context, MasterSecret masterSecret, Uri uri, int maxWidth, int maxHeight, boolean constrainedMemory)
       throws IOException, BitmapDecodingException
   {
-    return createScaledBitmap(PartAuthority.getPartStream(context, masterSecret, uri),
+    InputStream is = PartAuthority.getPartStream(context, masterSecret, uri);
+    if (is == null) throw new IOException("Couldn't obtain InputStream");
+    return createScaledBitmap(is,
                               PartAuthority.getPartStream(context, masterSecret, uri),
                               PartAuthority.getPartStream(context, masterSecret, uri),
                               maxWidth, maxHeight, constrainedMemory);
