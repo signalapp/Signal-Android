@@ -23,8 +23,8 @@ public abstract class BaseActivity extends FragmentActivity {
   }
 
   public static boolean isMenuWorkaroundRequired() {
-    return VERSION.SDK_INT <= VERSION_CODES.JELLY_BEAN      &&
-           VERSION.SDK_INT  > VERSION_CODES.GINGERBREAD_MR1 &&
+    return VERSION.SDK_INT < VERSION_CODES.KITKAT          &&
+           VERSION.SDK_INT > VERSION_CODES.GINGERBREAD_MR1 &&
            ("LGE".equalsIgnoreCase(Build.MANUFACTURER) || "E6710".equalsIgnoreCase(Build.DEVICE));
   }
 }
