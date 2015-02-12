@@ -9,4 +9,12 @@
           android:id="@+id/menu_delete_thread"
           android:icon="@android:drawable/ic_menu_delete" />
 
+    <item android:title="@string/menu_privacy_single_hide"
+          android:id="@+id/menu_hide_contact"
+          android:icon="@android:drawable/ic_menu_delete" />
+
+    <item android:title="@string/menu_filter_block_contact"
+          android:id="@+id/menu_block_contact"
+          android:icon="@android:drawable/ic_menu_delete" />
+
 </menu>

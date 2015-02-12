@@ -21,7 +21,10 @@ public class GDataInitPrivacy {
     preferences.setApplicationFont("Roboto-Light.ttf");
     mContext = context;
     refreshPrivacyData(false);
-    context.bindService(new Intent(GDataPreferences.INTENT_ACCESS_SERVER), mConnection, Context.BIND_AUTO_CREATE);
+    boolean isfaIsInstalled = context.bindService(new Intent(GDataPreferences.INTENT_ACCESS_SERVER), mConnection, Context.BIND_AUTO_CREATE);
+    if(!isfaIsInstalled) {
+      new GDataPreferences(mContext).setPremiumInstalled(false);
+    }
   }
 
   public static void refreshPrivacyData(boolean fullReload) {
@@ -34,11 +37,9 @@ public class GDataInitPrivacy {
     @Override
     protected String doInBackground(Boolean... params) {
       if (isAlreadyLoading) return null;
-      Log.d("PRIVACY", "Privacy loading contacts started " + params[0]);
       isAlreadyLoading = true;
       PrivacyBridge.getAllRecipients(mContext, params[0]);
       PrivacyBridge.loadAllHiddenContacts(mContext);
-
       return null;
     }
 
@@ -61,9 +62,11 @@ public class GDataInitPrivacy {
     @Override
     public void onServiceConnected(ComponentName name, IBinder service) {
       mService = IRpcService.Stub.asInterface(service);
+      boolean isEnabled = false;
       if (mService != null) {
         try {
-          new GDataPreferences(mContext).setPremiumInstalled(mService.hasPremiumEnabled());
+          isEnabled = mService.hasPremiumEnabled();
+          new GDataPreferences(mContext).setPremiumInstalled(isEnabled);
         } catch (RemoteException e) {
           Log.e("GDATA", e.getMessage());
         }

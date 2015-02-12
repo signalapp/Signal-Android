@@ -58,7 +58,7 @@ import java.util.List;
 import de.gdata.messaging.isfaserverdefinitions.IRpcService;
 import de.gdata.messaging.util.GDDialogFragment;
 import de.gdata.messaging.util.GDataPreferences;
-import de.gdata.messaging.util.Util;
+import de.gdata.messaging.util.GUtil;
 
 public class ConversationFragment extends ListFragment
   implements LoaderManager.LoaderCallbacks<Cursor>
@@ -82,7 +82,7 @@ public class ConversationFragment extends ListFragment
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
-    return Util.setFontForFragment(getActivity(), inflater.inflate(R.layout.conversation_fragment, container, false));
+    return GUtil.setFontForFragment(getActivity(), inflater.inflate(R.layout.conversation_fragment, container, false));
   }
 
   @Override
@@ -399,7 +399,7 @@ public class ConversationFragment extends ListFragment
             boolean maliciousUrlFound = false;
             String lastUrl = "";
             MessageRecord messageRecord = ((ConversationItem) view).getMessageRecord();
-            ArrayList<String> urls = Util.extractUrls((messageRecord.getDisplayBody() + ""));
+            ArrayList<String> urls = GUtil.extractUrls((messageRecord.getDisplayBody() + ""));
             for (final String url : urls) {
                 if (mService != null) {
                     if (!url.startsWith(HTTP_SCHEME) && !url.startsWith(HTTPS_SCHEME)) {

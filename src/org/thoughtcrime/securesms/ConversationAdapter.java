@@ -41,7 +41,7 @@ import java.util.Map;
 import java.util.Set;
 
 import de.gdata.messaging.isfaserverdefinitions.IRpcService;
-import de.gdata.messaging.util.Util;
+import de.gdata.messaging.util.GUtil;
 
 /**
  * A cursor adapter for a conversation thread.  Ultimately
@@ -112,13 +112,13 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
 
     switch (type) {
       case ConversationAdapter.MESSAGE_TYPE_OUTGOING:
-        view = Util.setFontForFragment(context, inflater.inflate(R.layout.conversation_item_sent, parent, false));
+        view = GUtil.setFontForFragment(context, inflater.inflate(R.layout.conversation_item_sent, parent, false));
         break;
       case ConversationAdapter.MESSAGE_TYPE_INCOMING:
-        view = Util.setFontForFragment(context, inflater.inflate(R.layout.conversation_item_received, parent, false));
+        view = GUtil.setFontForFragment(context, inflater.inflate(R.layout.conversation_item_received, parent, false));
         break;
       case ConversationAdapter.MESSAGE_TYPE_GROUP_ACTION:
-        view = Util.setFontForFragment(context, inflater.inflate(R.layout.conversation_item_activity, parent, false));
+        view = GUtil.setFontForFragment(context, inflater.inflate(R.layout.conversation_item_activity, parent, false));
         break;
       default: throw new IllegalArgumentException("unsupported item view type given to ConversationAdapter");
     }

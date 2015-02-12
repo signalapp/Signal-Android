@@ -8,10 +8,13 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
+
+import org.thoughtcrime.securesms.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +25,7 @@ import java.util.regex.Pattern;
 /**
  * Created by jan on 20.01.15.
  */
-public class Util {
+public class GUtil {
 
 
   public static final View setFontForFragment(Context context, View root) {
@@ -132,6 +135,7 @@ public class Util {
     }
     return sb.toString();
   }
+
   public static void normalizeNumbers(String[] numbers) {
     String iso = Locale.getDefault().getLanguage().toUpperCase(Locale.getDefault());
     for (int i = 0; i < numbers.length; i++) {
@@ -139,6 +143,7 @@ public class Util {
       numbers[i] = normalizeNumber(phoneNo, iso);
     }
   }
+
   public static String normalizeNumber(String number, String iso) {
     PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
     String phoneNo = "";
@@ -150,16 +155,29 @@ public class Util {
     }
     return phoneNo;
   }
+
   public static String normalizeNumber(String number) {
     String iso = Locale.getDefault().getLanguage().toUpperCase(Locale.getDefault());
     return normalizeNumber(number, iso);
   }
+
   public static void normalizeNumbers(List<String> numbers) {
     String iso = Locale.getDefault().getLanguage().toUpperCase(Locale.getDefault());
     for (int i = 0; i < numbers.size(); i++) {
       String phoneNo = numbers.get(i);
       numbers.set(i, normalizeNumber(phoneNo, iso));
     }
+  }
+
+  public static boolean featureCheck(Context context, boolean toast) {
+    boolean isInstalled = new GDataPreferences(context).isPremiumInstalled();
+    if (!isInstalled) {
+      if (toast) {
+        Toast.makeText(context, context.getString(R.string.privacy_toast_install_premium),
+            Toast.LENGTH_LONG).show();
+      }
+    }
+    return isInstalled;
   }
 
   public static String[] addStringArray(String[] a, String[] b) {

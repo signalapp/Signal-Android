@@ -45,7 +45,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
-import de.gdata.messaging.util.Util;
+import de.gdata.messaging.util.GUtil;
 
 /**
  * Activity for selecting a list of contacts. Displayed inside a ContactSelectionActivity tab frame, and ultimately
@@ -68,7 +68,7 @@ public class ContactSelectionListFragment extends ListFragment implements Loader
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    return Util.setFontForFragment(getActivity(), inflater.inflate(R.layout.contact_selection_list_activity, container, false));
+    return GUtil.setFontForFragment(getActivity(), inflater.inflate(R.layout.contact_selection_list_activity, container, false));
   }
 
   @Override

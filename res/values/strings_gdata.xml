@@ -17,9 +17,14 @@
     <string name="menu_privacy">Kontakte verstecken</string>
     <string name="menu_privacy_unhide">Verstecke Kontakte anzeigen</string>
     <string name="menu_privacy_hide">Verstecke Kontakte ausblenden</string>
+    <string name="menu_privacy_single_hide">Kontakt verstecken</string>
+    <string name="menu_filter_block_contact">Kontakt blockieren</string>
 
     <string name="privacy_pw_dialog_header">Password eingeben: </string>
     <string name="privacy_pw_dialog_toast_wrong">Ihr eingegebenes Passwort stimmt nicht mit dem der Internet Security überein.</string>
     <string name="privacy_pw_dialog_toast_reload">Nachrichten und Kontakte werden wieder hergestellt...</string>
     <string name="privacy_pw_dialog_toast_hide">Nachrichten und Kontakte werden zum verstecken vorbereitet...</string>
+    <string name="privacy_pw_dialog_toast_hide_single">Kontakt wird versteckt...</string>
+
+    <string name="privacy_toast_install_premium">Für diese Funktion benötigten Sie die G Data Internet Security für Android</string>
 </resources>

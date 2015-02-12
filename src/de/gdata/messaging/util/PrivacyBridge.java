@@ -14,12 +14,13 @@ import android.os.Parcelable;
 import android.os.RemoteException;
 import android.provider.ContactsContract;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.thoughtcrimegson.Gson;
 import com.google.thoughtcrimegson.reflect.TypeToken;
 
 import org.thoughtcrime.securesms.ConversationListActivity;
-import org.thoughtcrime.securesms.ConversationListFragment;
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
@@ -51,7 +52,7 @@ public class PrivacyBridge {
     ArrayList<Recipient> hiddenRec = getAllHiddenRecipients(context);
     boolean shallBeBlocked = false;
     for (Recipient recipient : hiddenRec) {
-      if (Util.normalizeNumber(recipient.getNumber()).contains(Util.normalizeNumber(phoneNo))) {
+      if (GUtil.normalizeNumber(recipient.getNumber()).contains(GUtil.normalizeNumber(phoneNo))) {
         shallBeBlocked = true;
       }
     }
@@ -83,6 +84,18 @@ public class PrivacyBridge {
     new GDataPreferences(context).saveAllRecipients(listRecipients);
     allRecipients = listRecipients;
     return listRecipients;
+  }
+
+  public static Contact getPhoneContactForDisplayName(String name, Context context) {
+    ArrayList<Contact> listContacts = new ArrayList<Contact>();
+    listContacts = new ContactFetcher(context).fetchAll();
+    Contact foundContact = null;
+    for (Contact contact : listContacts) {
+      if (contact.name.equals(name)) {
+        foundContact = contact;
+      }
+    }
+    return foundContact;
   }
 
   public static void loadAllHiddenContacts(Context context) {
@@ -147,7 +160,7 @@ public class PrivacyBridge {
         hiddenNumbers = new Gson().fromJson(suppressedNumbers, listType);
       }
       for (Recipient recipient : recipients) {
-        if (hiddenNumbers.contains(Util.normalizeNumber(recipient.getNumber()))) {
+        if (hiddenNumbers.contains(GUtil.normalizeNumber(recipient.getNumber()))) {
           newHiddenRecipients.add(recipient);
         }
       }
@@ -253,14 +266,18 @@ public class PrivacyBridge {
     return new GDataPreferences(context).isPrivacyActivated() ? PrivacyBridge.getPrivacyConversationList(context).get(1) : null;
   }
 
-  public static void addContactToPrivacy(String displayName, List<String> numbers, Long id) {
-    ArrayList<NumberEntry> entries = new ArrayList<>();
-    //entries.add(new Entry(displayName, numbers, id, Entry.TYPE_CONTACT));
+  public static void addContactToPrivacy(String displayName, List<String> numbers) {
+    ArrayList<PrivacyBridge.NumberEntry> entries = new ArrayList<>();
+    Entry entry = new Entry(displayName, numbers, 0L, Entry.TYPE_CONTACT);
+    entries.add(entry);
+    Toast.makeText(mContext, mContext.getString(R.string.privacy_pw_dialog_toast_hide_single), Toast.LENGTH_LONG).show();
     new AddTask().execute(entries);
   }
+
   public static void addContactsToPrivacy(ArrayList<PrivacyBridge.NumberEntry> entries) {
     new AddTask().execute(entries);
   }
+
   private static final class AddTask extends AsyncTask<List<NumberEntry>, Integer, Integer> {
     @Override
     protected Integer doInBackground(final List<NumberEntry>... arrayLists) {
@@ -277,10 +294,12 @@ public class PrivacyBridge {
       List<ContentValues> numbers = new ArrayList<ContentValues>();
       for (final NumberEntry e : entries) {
         final ContentValues cv = new ContentValues(3);
+        Long contactId = Long.parseLong(PrivacyBridge.getPhoneContactForDisplayName(e.getName(), mContext).id);
         if (e.getNumbers().size() > 0) {
           cv.put("number", e.getNumbers().get(0));
         }
-        cv.put("id", e.getId());
+        cv.put("id", contactId);
+        Log.d("PRIVACY" , "HIDDEN " + contactId + " " + e.getName());
         if (e.isContact()) {
           contacts.add(cv);
         } else {
@@ -289,7 +308,6 @@ public class PrivacyBridge {
       }
       int cnt = 0;
       if (contacts.size() > 0) {
-
         cnt += contentResolver.bulkInsert(hiddenContactsUri.buildUpon().appendPath(String.valueOf(0)).build(),
             contacts.toArray(new ContentValues[contacts.size()]));
       }
@@ -301,6 +319,7 @@ public class PrivacyBridge {
 
     }
   }
+
   public interface NumberEntry extends Parcelable {
     Long getId();
 
@@ -311,7 +330,7 @@ public class PrivacyBridge {
     boolean isContact();
   }
 
-  private class Entry implements NumberEntry {
+  private static class Entry implements NumberEntry {
     Long m_id;
     List<String> m_numbers;
     String m_name;

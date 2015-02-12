@@ -64,6 +64,7 @@ import de.gdata.messaging.TextEncrypter;
 import de.gdata.messaging.isfaserverdefinitions.IRpcService;
 import de.gdata.messaging.util.GDataInitPrivacy;
 import de.gdata.messaging.util.GDataPreferences;
+import de.gdata.messaging.util.GUtil;
 
 public class ConversationListActivity extends PassphraseRequiredActionBarActivity implements
     ConversationListFragment.ConversationSelectedListener {
@@ -138,12 +139,6 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
       inflater.inflate(R.menu.conversation_list_empty, menu);
     }
     MenuItem itemHide = menu.findItem(R.id.menu_privacy_hide);
-    MenuItem itemPrivacy = menu.findItem(R.id.menu_privacy);
-
-    boolean isPremiumInstalled = new GDataPreferences((getBaseContext())).isPremiumInstalled();
-    itemHide.setVisible(isPremiumInstalled);
-    itemPrivacy.setVisible(isPremiumInstalled);
-
     itemHide.setTitle(new GDataPreferences((getBaseContext())).isPrivacyActivated()
         ? getString(R.string.menu_privacy_unhide) : getString(R.string.menu_privacy_hide));
 
@@ -211,13 +206,16 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         handleImportExport();
         return true;
       case R.id.menu_privacy:
-        CheckPasswordDialogFrag.ACTION_ID = CheckPasswordDialogFrag.ACTION_OPEN_PRIVACY;
-        new CheckPasswordDialogFrag().show(getSupportFragmentManager(), "PW_DIALOG_TAG");
+        if (GUtil.featureCheck(getApplicationContext(), true)) {
+          CheckPasswordDialogFrag.ACTION_ID = CheckPasswordDialogFrag.ACTION_OPEN_PRIVACY;
+          new CheckPasswordDialogFrag().show(getSupportFragmentManager(), "PW_DIALOG_TAG");
+        }
         return true;
       case R.id.menu_privacy_hide:
-        CheckPasswordDialogFrag.ACTION_ID = CheckPasswordDialogFrag.ACTION_TOGGLE_VISIBILITY;
-        new CheckPasswordDialogFrag().show(getSupportFragmentManager(), "PW_DIALOG_TAG");
-
+        if (GUtil.featureCheck(getApplicationContext(), true)) {
+          CheckPasswordDialogFrag.ACTION_ID = CheckPasswordDialogFrag.ACTION_TOGGLE_VISIBILITY;
+          new CheckPasswordDialogFrag().show(getSupportFragmentManager(), "PW_DIALOG_TAG");
+        }
         return true;
       case R.id.menu_my_identity:
         handleMyIdentity();
@@ -453,7 +451,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
                 String toastText = new GDataPreferences(mContext).isPrivacyActivated()
                     ? mContext.getString(R.string.privacy_pw_dialog_toast_hide) : mContext.getString(R.string.privacy_pw_dialog_toast_reload);
 
-                Toast.makeText(mContext, toastText, Toast.LENGTH_LONG).show();
+                Toast.makeText(mContext, toastText, Toast.LENGTH_SHORT).show();
               }
             } else {
               Toast.makeText(getActivity(), getString(R.string.privacy_pw_dialog_toast_wrong), Toast.LENGTH_LONG).show();

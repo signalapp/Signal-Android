@@ -30,7 +30,6 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.NumberUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
@@ -40,8 +39,8 @@ import java.util.Collection;
 import java.util.List;
 
 import de.gdata.messaging.util.GDataPreferences;
+import de.gdata.messaging.util.GUtil;
 import de.gdata.messaging.util.PrivacyBridge;
-import de.gdata.messaging.util.Util;
 
 /**
  * Database to supply all types of contacts that TextSecure needs to know about
@@ -152,7 +151,7 @@ public class ContactsDatabase {
     final String   fuzzyFilter = "%" + filter + "%";
     if (!TextUtils.isEmpty(filter) && new GDataPreferences(context).isPrivacyActivated()) {
       selection     = "(" + FILTER_SELECTION + ") AND (" + PrivacyBridge.getContactSelection(context)+")";
-      selectionArgs = Util.addStringArray(new String[]{fuzzyFilter, fuzzyFilter}, PrivacyBridge.getContactSelectionArgs(context));
+      selectionArgs = GUtil.addStringArray(new String[]{fuzzyFilter, fuzzyFilter}, PrivacyBridge.getContactSelectionArgs(context));
     } else if(new GDataPreferences(context).isPrivacyActivated()) {
       selection     = PrivacyBridge.getContactSelection(context);
       selectionArgs = PrivacyBridge.getContactSelectionArgs(context);

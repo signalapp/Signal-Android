@@ -111,9 +111,13 @@ import org.whispersystems.textsecure.api.push.PushAddress;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.List;
 
 import de.gdata.messaging.components.SelectTransportButton;
+import de.gdata.messaging.util.GDataPreferences;
+import de.gdata.messaging.util.GUtil;
+import de.gdata.messaging.util.PrivacyBridge;
 
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import static org.thoughtcrime.securesms.recipients.Recipient.RecipientModifiedListener;
@@ -307,6 +311,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     if (isSingleConversation() && getRecipients().getPrimaryRecipient().getContactUri() == null) {
       inflater.inflate(R.menu.conversation_add_to_contacts, menu);
     }
+    MenuItem itemHide = menu.findItem(R.id.menu_hide_contact);
+    MenuItem itemBlock = menu.findItem(R.id.menu_block_contact);
 
     super.onPrepareOptionsMenu(menu);
     return true;
@@ -324,6 +330,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         return true;
       case R.id.menu_add_attachment:
         handleAddAttachment();
+        return true;
+      case R.id.menu_hide_contact:
+          handleHideContact();
+        return true;
+      case R.id.menu_block_contact:
+        handleBlockContact();
         return true;
       case R.id.menu_add_to_contacts:
         handleAddToContacts();
@@ -361,6 +373,20 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     return false;
+  }
+
+  private void handleHideContact() {
+    if (GUtil.featureCheck(getApplicationContext(), true)) {
+      ArrayList<String> numbers = new ArrayList<>();
+      String number = recipients.getPrimaryRecipient().getNumber();
+      numbers.add(number);
+      PrivacyBridge.addContactToPrivacy(recipients.getPrimaryRecipient().getName(), numbers);
+    }
+  }
+  private void handleBlockContact() {
+    if (GUtil.featureCheck(getApplicationContext(), true)) {
+
+    }
   }
 
   @Override

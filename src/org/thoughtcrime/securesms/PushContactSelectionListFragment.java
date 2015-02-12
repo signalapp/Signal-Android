@@ -45,7 +45,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import de.gdata.messaging.util.Util;
+import de.gdata.messaging.util.GUtil;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
 /**
@@ -95,7 +95,7 @@ public class PushContactSelectionListFragment extends    Fragment
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    return Util.setFontForFragment(getActivity(), inflater.inflate(R.layout.push_contact_selection_list_activity, container, false));
+    return GUtil.setFontForFragment(getActivity(), inflater.inflate(R.layout.push_contact_selection_list_activity, container, false));
   }
 
   public List<ContactData> getSelectedContacts() {
