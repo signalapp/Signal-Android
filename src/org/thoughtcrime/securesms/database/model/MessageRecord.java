@@ -46,6 +46,8 @@ public abstract class MessageRecord extends DisplayRecord {
   public static final int DELIVERY_STATUS_PENDING  = 2;
   public static final int DELIVERY_STATUS_FAILED   = 3;
 
+  private static final int MAX_DISPLAY_LENGTH = 2000;
+
   private final Recipient individualRecipient;
   private final int       recipientDeviceId;
   private final long      id;
@@ -104,6 +106,8 @@ public abstract class MessageRecord extends DisplayRecord {
       return emphasisAdded(context.getString(R.string.MessageRecord_left_group));
     } else if (isGroupQuit()) {
       return emphasisAdded(context.getString(R.string.ConversationItem_group_action_left, getIndividualRecipient().toShortString()));
+    } else if (getBody().getBody().length() > MAX_DISPLAY_LENGTH) {
+      return new SpannableString(getBody().getBody().substring(0, MAX_DISPLAY_LENGTH));
     }
 
     return new SpannableString(getBody().getBody());
