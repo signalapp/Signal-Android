@@ -29,6 +29,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.QuickContact;
+import android.text.SpannableString;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -90,6 +91,8 @@ public class ConversationItem extends LinearLayout {
   private final static int SENT_SMS_PENDING_TRIANGLE  = 5;
   private final static int SENT_PUSH_PENDING          = 6;
   private final static int SENT_PUSH_PENDING_TRIANGLE = 7;
+
+  private final static int DISPLAY_MAXLENGTH          = 1000;
 
   private Handler       failedIconHandler;
   private MessageRecord messageRecord;
@@ -261,9 +264,15 @@ public class ConversationItem extends LinearLayout {
   private void setBodyText(MessageRecord messageRecord) {
     bodyText.setClickable(false);
     bodyText.setFocusable(false);
-    bodyText.setText(Emoji.getInstance(context).emojify(messageRecord.getDisplayBody(),
-                                                        new Emoji.InvalidatingPageLoadedListener(bodyText)),
-                     TextView.BufferType.SPANNABLE);
+
+    SpannableString content = messageRecord.getDisplayBody();
+    if (content.length() > ConversationItem.DISPLAY_MAXLENGTH) {
+        content = new SpannableString(content.subSequence(0, ConversationItem.DISPLAY_MAXLENGTH));
+    }
+
+    content = Emoji.getInstance(context).emojify(content,
+                  new Emoji.InvalidatingPageLoadedListener(bodyText));
+    bodyText.setText(content, TextView.BufferType.SPANNABLE);
 
     if (bodyText.isClickable() && bodyText.isFocusable()) {
       bodyText.setOnLongClickListener(new MultiSelectLongClickListener());
