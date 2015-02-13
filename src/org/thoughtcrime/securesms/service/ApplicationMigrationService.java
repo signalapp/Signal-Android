@@ -183,7 +183,7 @@ public class ApplicationMigrationService extends Service
       NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
       builder.setSmallIcon(R.drawable.icon_notification_gdata);
       builder.setContentTitle("Import Complete");
-      builder.setContentText("TextSecure system database import is complete.");
+      builder.setContentText("SecureChat system database import is complete.");
       builder.setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, RoutingActivity.class), 0));
       builder.setWhen(System.currentTimeMillis());
       builder.setDefaults(Notification.DEFAULT_VIBRATE);
