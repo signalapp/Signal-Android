@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
@@ -91,10 +92,16 @@ public class AppProtectionPreferenceFragment extends PreferenceFragment {
 
     @Override
     public boolean onPreferenceClick(Preference preference) {
+      int[]      attributes = {R.attr.app_protect_timeout_picker_color};
+      TypedArray hmsStyle   = getActivity().obtainStyledAttributes(attributes);
+
       new HmsPickerBuilder().setFragmentManager(getFragmentManager())
-                            .setStyleResId(R.style.BetterPickersDialogFragment_Light)
+                            .setStyleResId(hmsStyle.getResourceId(0, R.style.BetterPickersDialogFragment_Light))
                             .addHmsPickerDialogHandler(this)
                             .show();
+
+      hmsStyle.recycle();
+
       return true;
     }
 
