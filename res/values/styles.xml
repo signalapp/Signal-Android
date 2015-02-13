@@ -15,21 +15,21 @@
 
     <!-- ActionBar styles -->
     <style name="TextSecure.DarkActionBar" parent="@style/Widget.AppCompat.ActionBar">
-        <item name="android:icon">@drawable/actionbar_icon_holo_dark</item>
-        <item name="icon">@drawable/actionbar_icon_holo_dark</item>
+        <item name="android:icon">@drawable/actionbar_icon_gdata</item>
+        <item name="icon">@drawable/actionbar_icon_gdata</item>
         <item name="background">@color/gray95</item>
         <item name="android:background">@color/gray95</item>
-        <item name="android:logo">@drawable/actionbar_icon_holo_dark</item>
-        <item name="logo">@drawable/actionbar_icon_holo_dark</item>
+        <item name="android:logo">@drawable/actionbar_icon_gdata</item>
+        <item name="logo">@drawable/actionbar_icon_gdata</item>
     </style>
 
     <style name="TextSecure.LightActionBar" parent="@style/Widget.AppCompat.ActionBar">
-        <item name="android:icon">@drawable/actionbar_icon_holo_dark</item>
-        <item name="icon">@drawable/actionbar_icon_holo_dark</item>
+        <item name="android:icon">@drawable/actionbar_icon_gdata</item>
+        <item name="icon">@drawable/actionbar_icon_gdata</item>
         <item name="android:background">@color/gdata_red</item>
         <item name="background">@color/gdata_red</item>
-        <item name="android:logo">@drawable/actionbar_icon_holo_dark</item>
-        <item name="logo">@drawable/actionbar_icon_holo_dark</item>
+        <item name="android:logo">@drawable/actionbar_icon_gdata</item>
+        <item name="logo">@drawable/actionbar_icon_gdata</item>
         <item name="android:titleTextStyle">@style/TextSecure.TitleTextStyle</item>
         <item name="titleTextStyle">@style/TextSecure.TitleTextStyle</item>
         <item name="android:subtitleTextStyle">@style/TextSecure.SubtitleTextStyle</item>
