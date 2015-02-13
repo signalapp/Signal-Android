@@ -538,6 +538,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       public void onClick(DialogInterface dialog, int which) {
         if (threadId > 0) {
           DatabaseFactory.getThreadDatabase(ConversationActivity.this).deleteConversation(threadId);
+          threadId = -1;
           finish();
         }
       }
@@ -919,28 +920,40 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void saveDraft() {
-    if (this.threadId <= 0 || this.recipients == null || this.recipients.isEmpty())
+    if (this.recipients == null || this.recipients.isEmpty())
       return;
 
-    final Drafts       drafts           = getDraftsForCurrentState();
-    final long         thisThreadId     = this.threadId;
-    final MasterSecret thisMasterSecret = this.masterSecret.parcelClone();
+    new SaveDraftTask(getDraftsForCurrentState(), this.threadId, this.masterSecret.parcelClone()).execute();
+  }
 
-    new AsyncTask<Void, Void, Void>() {
-      @Override
-      protected Void doInBackground(Void... params) {
-        MasterCipher masterCipher = new MasterCipher(thisMasterSecret);
-        DatabaseFactory.getDraftDatabase(ConversationActivity.this).insertDrafts(masterCipher, thisThreadId, drafts);
-        ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(ConversationActivity.this);
-        if (drafts.size() > 0) {
-          threadDatabase.updateSnippet(thisThreadId, drafts.getSnippet(ConversationActivity.this), Types.BASE_DRAFT_TYPE);
-        } else {
-          threadDatabase.update(thisThreadId);
+  private class SaveDraftTask extends AsyncTask<Void, Void, Void> {
+    private Drafts drafts;
+    private long threadId;
+    private MasterSecret masterSecret;
+
+    SaveDraftTask(Drafts drafts, long threadId, MasterSecret masterSecret) {
+      this.drafts = drafts;
+      this.threadId = threadId;
+      this.masterSecret = masterSecret;
+    }
+
+    @Override
+    protected Void doInBackground(Void... params) {
+      ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(ConversationActivity.this);
+
+      if (drafts.size() > 0) {
+        if (threadId <= 0) {
+            threadId = threadDatabase.getThreadIdFor(getRecipients(), distributionType);
         }
-        MemoryCleaner.clean(thisMasterSecret);
-        return null;
+        MasterCipher masterCipher = new MasterCipher(masterSecret);
+        DatabaseFactory.getDraftDatabase(ConversationActivity.this).insertDrafts(masterCipher, threadId, drafts);
+        threadDatabase.updateSnippet(threadId, drafts.getSnippet(ConversationActivity.this), Types.BASE_DRAFT_TYPE);
+      } else if (threadId > 0) {
+          threadDatabase.update(threadId);
       }
-    }.execute();
+      MemoryCleaner.clean(masterSecret);
+      return null;
+    }
   }
 
   private void calculateCharactersRemaining() {

@@ -290,6 +290,7 @@ public class ThreadDatabase extends Database {
   public void deleteConversation(long threadId) {
     DatabaseFactory.getSmsDatabase(context).deleteThread(threadId);
     DatabaseFactory.getMmsDatabase(context).deleteThread(threadId);
+    DatabaseFactory.getDraftDatabase(context).clearDrafts(threadId);
     deleteThread(threadId);
     notifyConversationListeners(threadId);
     notifyConversationListListeners();
@@ -299,6 +300,7 @@ public class ThreadDatabase extends Database {
   public void deleteConversations(Set<Long> selectedConversations) {
     DatabaseFactory.getSmsDatabase(context).deleteThreads(selectedConversations);
     DatabaseFactory.getMmsDatabase(context).deleteThreads(selectedConversations);
+    DatabaseFactory.getDraftDatabase(context).clearDrafts(selectedConversations);
     deleteThreads(selectedConversations);
     notifyConversationListeners(selectedConversations);
     notifyConversationListListeners();
@@ -307,6 +309,7 @@ public class ThreadDatabase extends Database {
   public void deleteAllConversations() {
     DatabaseFactory.getSmsDatabase(context).deleteAllThreads();
     DatabaseFactory.getMmsDatabase(context).deleteAllThreads();
+    DatabaseFactory.getDraftDatabase(context).clearAllDrafts();
     deleteAllThreads();
   }
 
