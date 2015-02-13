@@ -46,6 +46,7 @@ public class PrivacyBridge {
 
   private static ArrayList<Recipient> allRecipients;
   private static ArrayList<Recipient> hiddenRecipients;
+  private static ArrayList<Contact> allPhoneContacts;
 
 
   public static boolean shallContactBeBlocked(final Context context, final String phoneNo) {
@@ -72,7 +73,7 @@ public class PrivacyBridge {
   public static ArrayList<Recipient> loadAllRecipients(Context context) {
     ArrayList<Contact> listContacts = new ArrayList<Contact>();
     ArrayList<Recipient> listRecipients = new ArrayList<Recipient>();
-    listContacts = new ContactFetcher(context).fetchAll();
+    listContacts = getAllPhoneContacts(context, false);
 
     for (Contact contact : listContacts) {
       Recipients recs = getRecipientForNumber(context, contact.numbers.size() > 0 ? contact.numbers.get(0).number + "" : "");
@@ -88,11 +89,12 @@ public class PrivacyBridge {
 
   public static Contact getPhoneContactForDisplayName(String name, Context context) {
     ArrayList<Contact> listContacts = new ArrayList<Contact>();
-    listContacts = new ContactFetcher(context).fetchAll();
+    listContacts = getAllPhoneContacts(context, false);
     Contact foundContact = null;
     for (Contact contact : listContacts) {
       if (contact.name.equals(name)) {
         foundContact = contact;
+        break;
       }
     }
     return foundContact;
@@ -278,7 +280,14 @@ public class PrivacyBridge {
     new AddTask().execute(entries);
   }
 
-  private static final class AddTask extends AsyncTask<List<NumberEntry>, Integer, Integer> {
+  public static ArrayList<Contact> getAllPhoneContacts(Context mContext, boolean reload) {
+    if (reload || allPhoneContacts == null) {
+      allPhoneContacts = new ContactFetcher(mContext).fetchAll();
+    }
+    return allPhoneContacts;
+  }
+
+  private static class AddTask extends AsyncTask<List<NumberEntry>, Integer, Integer> {
     @Override
     protected Integer doInBackground(final List<NumberEntry>... arrayLists) {
       final List<NumberEntry> entries = arrayLists[0];
@@ -294,12 +303,10 @@ public class PrivacyBridge {
       List<ContentValues> numbers = new ArrayList<ContentValues>();
       for (final NumberEntry e : entries) {
         final ContentValues cv = new ContentValues(3);
-        Long contactId = Long.parseLong(PrivacyBridge.getPhoneContactForDisplayName(e.getName(), mContext).id);
         if (e.getNumbers().size() > 0) {
           cv.put("number", e.getNumbers().get(0));
         }
-        cv.put("id", contactId);
-        Log.d("PRIVACY" , "HIDDEN " + contactId + " " + e.getName());
+        cv.put("id", new ContactFetcher(mContext).fetchContactsId(mContext, e.getNumbers().get(0)));
         if (e.isContact()) {
           contacts.add(cv);
         } else {

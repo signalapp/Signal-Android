@@ -1,9 +1,13 @@
 package de.gdata.messaging.util;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
+import android.net.Uri;
 import android.provider.ContactsContract;
 import android.support.v4.content.CursorLoader;
+import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -69,5 +73,32 @@ public class ContactFetcher {
     }
     phone.close();
   }
+  /*
+   * Returns the contactId related to the given number
+   */
+  public String fetchContactsId(Context context, String number) {
+    String contactid26 = "-1";
 
+    ContentResolver contentResolver = context.getContentResolver();
+
+    Uri uri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(number));
+
+    Cursor cursor =
+        contentResolver.query(
+            uri,
+            new String[] {ContactsContract.PhoneLookup.DISPLAY_NAME, ContactsContract.PhoneLookup._ID},
+            null,
+            null,
+            null);
+
+    if(cursor!=null) {
+      while(cursor.moveToNext()){
+        String contactName = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.PhoneLookup.DISPLAY_NAME));
+        contactid26 = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.PhoneLookup._ID));
+
+      }
+      cursor.close();
+    }
+return contactid26;
+  }
 }

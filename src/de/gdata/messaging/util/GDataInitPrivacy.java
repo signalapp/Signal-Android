@@ -28,7 +28,9 @@ public class GDataInitPrivacy {
   }
 
   public static void refreshPrivacyData(boolean fullReload) {
-    new AsyncTaskLoadRecipients().execute(fullReload);
+    if(!AsyncTaskLoadRecipients.isAlreadyLoading) {
+      new AsyncTaskLoadRecipients().execute(fullReload);
+    }
   }
 
   public static class AsyncTaskLoadRecipients extends AsyncTask<Boolean, Void, String> {
@@ -36,20 +38,14 @@ public class GDataInitPrivacy {
 
     @Override
     protected String doInBackground(Boolean... params) {
-      if (isAlreadyLoading) return null;
-      isAlreadyLoading = true;
       PrivacyBridge.getAllRecipients(mContext, params[0]);
       PrivacyBridge.loadAllHiddenContacts(mContext);
+      PrivacyBridge.getAllPhoneContacts(mContext, false);
       return null;
     }
-
-    @Override
-    protected void onPostExecute(String result) {
-    }
-
     @Override
     protected void onPreExecute() {
-
+      isAlreadyLoading = true;
     }
 
     @Override
