@@ -1,6 +1,6 @@
 # TextSecure [![Build Status](https://travis-ci.org/WhisperSystems/TextSecure.svg?branch=master)](https://travis-ci.org/WhisperSystems/TextSecure)
 
-TextSecure is a messaging app for easy private communicate with friends.
+TextSecure is a messaging app for easy and private communications with friends.
 
 TextSecure can use either data (WiFi/3G/4G) or SMS to communicate securely, and all TextSecure
 messages can also be encrypted locally on your device.
