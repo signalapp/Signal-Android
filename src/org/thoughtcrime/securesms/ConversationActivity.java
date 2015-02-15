@@ -535,6 +535,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       public void onClick(DialogInterface dialog, int which) {
         if (threadId > 0) {
           DatabaseFactory.getThreadDatabase(ConversationActivity.this).deleteConversation(threadId);
+          composeText.getText().clear();
           threadId = -1;
           finish();
         }
