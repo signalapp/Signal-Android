@@ -239,7 +239,7 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
     }
   }
 
-  private long getThreadIdFor(IncomingMediaMessage retrieved) throws RecipientFormattingException {
+  private long getThreadIdFor(IncomingMediaMessage retrieved) throws RecipientFormattingException, MmsException {
     if (retrieved.getGroupId() != null) {
       Recipients groupRecipients = RecipientFactory.getRecipientsFromString(context, retrieved.getGroupId(), true);
       return DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipients);
@@ -252,6 +252,10 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
       EncodedStringValue   encodedFrom   = headers.getEncodedStringValue(PduHeaders.FROM);
       EncodedStringValue[] encodedCcList = headers.getEncodedStringValues(PduHeaders.CC);
       EncodedStringValue[] encodedToList = headers.getEncodedStringValues(PduHeaders.TO);
+
+      if (encodedFrom == null) {
+        throw new MmsException("FROM value in PduHeaders did not exist.");
+      }
 
       group.add(new String(encodedFrom.getTextString(), CharacterSets.MIMENAME_ISO_8859_1));
 
