@@ -88,6 +88,11 @@ public abstract class MmsConnection {
       Log.w(TAG, "returning vacuous success since MMS radio is not in use");
       return true;
     }
+
+    if (inetAddress == null) {
+      throw new IOException("Unable to lookup host: InetAddress.getByName() returned null.");
+    }
+
     byte[] ipAddressBytes = inetAddress.getAddress();
     if (ipAddressBytes == null || ipAddressBytes.length != 4) {
       Log.w(TAG, "returning vacuous success since android.net package doesn't support IPv6");
