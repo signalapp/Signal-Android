@@ -130,7 +130,7 @@
         <item name="conversation_sent_text_secondary_color">#aaeeeeee</item>
         <item name="conversation_sent_text_indicator_tab_color">#99ffffff</item>
         <item name="conversation_received_text_primary_color">#ffeeeeee</item>
-        <item name="conversation_received_text_secondary_color">#44eeeeee</item>
+        <item name="conversation_received_text_secondary_color">#99eeeeee</item>
 
         <item name="contact_selection_push_user">#ffeeeeee</item>
         <item name="contact_selection_lay_user">#afeeeeee</item>
