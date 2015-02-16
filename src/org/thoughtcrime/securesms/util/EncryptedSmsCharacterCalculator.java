@@ -18,7 +18,7 @@ package org.thoughtcrime.securesms.util;
 
 import org.thoughtcrime.securesms.sms.SmsTransportDetails;
 
-public class EncryptedCharacterCalculator extends CharacterCalculator {
+public class EncryptedSmsCharacterCalculator extends CharacterCalculator {
 
   private CharacterState calculateSingleRecordCharacters(int charactersSpent) {
     int charactersRemaining = SmsTransportDetails.ENCRYPTED_SINGLE_MESSAGE_BODY_MAX_SIZE - charactersSpent;
@@ -41,7 +41,7 @@ public class EncryptedCharacterCalculator extends CharacterCalculator {
 
   @Override
   public CharacterState calculateCharacters(int charactersSpent) {
-    if (charactersSpent <= SmsTransportDetails.ENCRYPTED_SINGLE_MESSAGE_BODY_MAX_SIZE){
+    if (charactersSpent <= SmsTransportDetails.ENCRYPTED_SINGLE_MESSAGE_BODY_MAX_SIZE) {
       return calculateSingleRecordCharacters(charactersSpent);
     } else {
       return calculateMultiRecordCharacters(charactersSpent);

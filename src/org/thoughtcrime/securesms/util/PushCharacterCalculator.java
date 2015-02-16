@@ -16,20 +16,11 @@
  */
 package org.thoughtcrime.securesms.util;
 
-public abstract class CharacterCalculator {
-
-  public abstract CharacterState calculateCharacters(int charactersSpent);
-
-  public class CharacterState {
-    public int charactersRemaining;
-    public int messagesSpent;
-    public int maxMessageSize;
-
-    public CharacterState(int messagesSpent, int charactersRemaining, int maxMessageSize) {
-      this.messagesSpent       = messagesSpent;
-      this.charactersRemaining = charactersRemaining;
-      this.maxMessageSize      = maxMessageSize;
-    }
+public class PushCharacterCalculator extends CharacterCalculator {
+  private static final int MAX_SIZE = 2000;
+  @Override
+  public CharacterState calculateCharacters(int charactersSpent) {
+    return new CharacterState(1, MAX_SIZE - charactersSpent, MAX_SIZE);
   }
 }
 

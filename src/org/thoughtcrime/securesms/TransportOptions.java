@@ -3,18 +3,12 @@ package org.thoughtcrime.securesms;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.BitmapDrawable;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.RelativeSizeSpan;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 
@@ -28,13 +22,13 @@ import java.util.Map;
 public class TransportOptions {
   private static final String TAG = TransportOptions.class.getSimpleName();
 
-  private final Context                      context;
-  private       PopupWindow                  transportPopup;
-  private final List<String>                 enabledTransports = new ArrayList<String>();
-  private final Map<String, TransportOption> transportMetadata = new HashMap<String, TransportOption>();
-  private       String                       selectedTransport;
-  private       boolean                      transportOverride = false;
-  private       OnTransportChangedListener   listener;
+  private final Context                          context;
+  private       PopupWindow                      transportPopup;
+  private final List<String>                     enabledTransports = new ArrayList<>();
+  private final Map<String, TransportOption>     transportMetadata = new HashMap<>();
+  private       String                           selectedTransport;
+  private       boolean                          transportOverride = false;
+  private final List<OnTransportChangedListener> listeners         = new LinkedList<>();
 
   public TransportOptions(Context context) {
     this.context = context;
@@ -142,13 +136,13 @@ public class TransportOptions {
   private void updateViews() {
     if (selectedTransport == null) return;
 
-    if (listener != null) {
+    for (OnTransportChangedListener listener : listeners) {
       listener.onChange(getSelectedTransport());
     }
   }
 
-  public void setOnTransportChangedListener(OnTransportChangedListener listener) {
-    this.listener = listener;
+  public void addOnTransportChangedListener(OnTransportChangedListener listener) {
+    this.listeners.add(listener);
   }
 
   public interface OnTransportChangedListener {

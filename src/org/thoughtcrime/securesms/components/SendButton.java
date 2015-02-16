@@ -37,7 +37,7 @@ public class SendButton extends ImageButton {
 
   private void initialize() {
     transportOptions = new TransportOptions(getContext());
-    transportOptions.setOnTransportChangedListener(new OnTransportChangedListener() {
+    transportOptions.addOnTransportChangedListener(new OnTransportChangedListener() {
       @Override
       public void onChange(TransportOption newTransport) {
         setImageResource(newTransport.drawable);
@@ -56,6 +56,10 @@ public class SendButton extends ImageButton {
         return false;
       }
     });
+  }
+
+  public void addOnTransportChangedListener(OnTransportChangedListener listener) {
+    transportOptions.addOnTransportChangedListener(listener);
   }
 
   public void setComposeTextView(EditText composeText) {
