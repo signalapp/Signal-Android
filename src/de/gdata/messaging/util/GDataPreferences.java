@@ -21,8 +21,8 @@ public class GDataPreferences {
   private static final String APPLICATION_FONT = "APPLICATION_FONT";
   private static final String PREMIUM_INSTALLED = "PREMIUM_INSTALLED";
   private static final String PRIVACY_ACTIVATED = "PRIVACY_ACTIVATED";
-  private static final String SAVED_HIDDEN_RECIPIENTS = "SAVED_HIDDEN_RECIPIENTSAA";
-  private static final String SAVED_RECIPIENTS = "SAVED_HIDDEN_RECIPIENTSAA";
+  private static final String SAVED_HIDDEN_RECIPIENTS = "SAVED_HIDDEN_RECIPIENTSA";
+  private static final String SAVED_RECIPIENTS = "SAVED_HIDDEN_RECIPIENTSA";
 
   private final SharedPreferences mPreferences;
   private final Context mContext;
@@ -59,7 +59,12 @@ public class GDataPreferences {
   public void setApplicationFont(String applicationFont) {
     mPreferences.edit().putString(APPLICATION_FONT, applicationFont).commit();
   }
-
+  public void saveFilterGroupIdForContact(String phoneNo, long filterGroupId) {
+    mPreferences.edit().putLong(phoneNo, filterGroupId).commit();
+  }
+  public long getFilterGroupIdForContact(String phoneNo) {
+    return mPreferences.getLong(phoneNo, -1L);
+  }
   public void saveHiddenRecipients(ArrayList<Recipient> hiddenRecipients) {
     ArrayList<Long> recIds = new ArrayList<Long>();
     for (Recipient recipient : hiddenRecipients) {

@@ -148,6 +148,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private static final int PICK_AUDIO = 3;
   private static final int PICK_CONTACT_INFO = 4;
   private static final int GROUP_EDIT = 5;
+  private static final int SET_CALLFILTER = 10;
 
   private MasterSecret masterSecret;
   private EditText composeText;
@@ -255,6 +256,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     if (data == null || resultCode != RESULT_OK) return;
     switch (reqCode) {
+      case SET_CALLFILTER:
+        new GDataPreferences(getApplicationContext()).saveFilterGroupIdForContact(recipients.getPrimaryRecipient().getNumber(),data.getExtras().getLong("filterGroupId"));
+        break;
       case PICK_IMAGE:
         addAttachmentImage(data.getData());
         break;
@@ -385,10 +389,18 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
   private void handleBlockContact() {
     if (GUtil.featureCheck(getApplicationContext(), true)) {
-
+      try {
+        Intent intent = new Intent("de.gdata.mobilesecurity.activities.filter.NewFilterActivity");
+        intent.putExtra("title", getString(R.string.app_name));
+        intent.putExtra("phoneNo", recipients.getPrimaryRecipient().getNumber());
+        intent.putExtra("displayName", recipients.getPrimaryRecipient().getName());
+        intent.putExtra("filterGroupId", new GDataPreferences(getApplicationContext()).getFilterGroupIdForContact(recipients.getPrimaryRecipient().getNumber()));
+        startActivityForResult(intent, SET_CALLFILTER);
+      } catch (Exception e) {
+        Log.d("GDATA", "Activity not found "+e.toString());
+      }
     }
   }
-
   @Override
   public void onBackPressed() {
     if (emojiDrawer.getVisibility() == View.VISIBLE) {

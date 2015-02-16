@@ -31,6 +31,10 @@
           android:id="@+id/menu_privacy"
           android:icon="@android:drawable/ic_menu_view" />
 
+    <item android:title="@string/menu_filter"
+          android:id="@+id/menu_filter"
+          android:icon="@android:drawable/ic_menu_view" />
+
     <item android:title="@string/menu_privacy_hide"
           android:id="@+id/menu_privacy_hide"
           android:icon="@android:drawable/ic_menu_view" />

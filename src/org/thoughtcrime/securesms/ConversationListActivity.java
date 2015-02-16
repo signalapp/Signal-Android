@@ -217,6 +217,12 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
           new CheckPasswordDialogFrag().show(getSupportFragmentManager(), "PW_DIALOG_TAG");
         }
         return true;
+      case R.id.menu_filter:
+        if (GUtil.featureCheck(getApplicationContext(), true)) {
+          CheckPasswordDialogFrag.ACTION_ID = CheckPasswordDialogFrag.ACTION_OPEN_CALL_FILTER;
+          new CheckPasswordDialogFrag().show(getSupportFragmentManager(), "PW_DIALOG_TAG");
+        }
+        return true;
       case R.id.menu_my_identity:
         handleMyIdentity();
         return true;
@@ -389,6 +395,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     private EditText input;
     private static final int ACTION_OPEN_PRIVACY = 0;
     private static final int ACTION_TOGGLE_VISIBILITY = 1;
+    private static final int ACTION_OPEN_CALL_FILTER = 2;
     private static int ACTION_ID = 0;
     private Context mContext;
 
@@ -442,7 +449,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
                   Intent intent = new Intent("de.gdata.mobilesecurity.privacy.PrivacyListActivity");
                   intent.putExtra("title", getString(R.string.app_name));
                   intent.putExtra("numberpicker_allow_wildcard", false);
-                  startActivityForResult(intent, 1);
+                  startActivity(intent);
                 } catch (Exception e) {
                 }
               } else if (CheckPasswordDialogFrag.ACTION_ID == CheckPasswordDialogFrag.ACTION_TOGGLE_VISIBILITY) {
@@ -452,6 +459,14 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
                     ? mContext.getString(R.string.privacy_pw_dialog_toast_hide) : mContext.getString(R.string.privacy_pw_dialog_toast_reload);
 
                 Toast.makeText(mContext, toastText, Toast.LENGTH_SHORT).show();
+            } else  if (CheckPasswordDialogFrag.ACTION_ID == CheckPasswordDialogFrag.ACTION_OPEN_CALL_FILTER) {
+                try {
+                  Intent intent = new Intent("de.gdata.mobilesecurity.activities.filter.FilterListActivity");
+                  intent.putExtra("title", getString(R.string.app_name));
+                  startActivity(intent);
+                } catch (Exception e) {
+                  Log.d("GDATA", "Activity not found "+e.toString());
+                }
               }
             } else {
               Toast.makeText(getActivity(), getString(R.string.privacy_pw_dialog_toast_wrong), Toast.LENGTH_LONG).show();
