@@ -4,7 +4,9 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.util.Log;
+import android.util.TypedValue;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -66,7 +68,15 @@ public class GroupMembersDialog extends AsyncTask<Void, Void, Recipients> {
 
     AlertDialog.Builder builder = new AlertDialog.Builder(context);
     builder.setTitle(R.string.ConversationActivity_group_conversation_recipients);
-    builder.setIcon(R.drawable.ic_menu_groups_holo_dark);
+
+    if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.GINGERBREAD_MR1) {
+      builder.setIcon(R.drawable.ic_action_group_dark);
+    } else {
+      TypedValue typedValueAttr = new TypedValue();
+      context.getTheme().resolveAttribute(R.attr.group_members_dialog_icon, typedValueAttr, true);
+      builder.setIcon(typedValueAttr.resourceId);
+    }
+
     builder.setCancelable(true);
     builder.setItems(recipientStrings.toArray(new String[]{}), null);
     builder.setPositiveButton(android.R.string.ok, null);
