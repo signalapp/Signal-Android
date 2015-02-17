@@ -202,4 +202,15 @@
       <item>5</item>
       <item>10</item>
   </string-array>
+
+  <string-array name="default_or_custom_values" translatable="false">
+      <item>default</item>
+      <item>custom</item>
+  </string-array>
+
+  <string-array name="default_or_custom_entries">
+      <item>@string/arrays__use_default</item>
+      <item>@string/arrays__use_custom</item>
+  </string-array>
+
 </resources>
