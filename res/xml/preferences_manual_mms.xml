@@ -1,33 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <CheckBoxPreference android:key="pref_enable_manual_mms"
-                        android:defaultValue="false"
-                        android:title="@string/preferences__enable_manual_mms"
-                        android:summary="@string/preferences__override_system_mms_settings"/>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+                  xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <EditTextPreference android:key="pref_apn_mmsc_host"
-                        android:title="@string/preferences__mmsc_url_required"
-                        android:dependency="pref_enable_manual_mms"
-                        android:inputType="textUri" />
+    <org.thoughtcrime.securesms.components.CustomDefaultPreference
+            app:custom_pref_toggle="pref_apn_mmsc_custom_host"
+            android:key="pref_apn_mmsc_host"
+            android:title="@string/preferences__mmsc_url"
+            android:inputType="textUri" />
 
-    <EditTextPreference android:key="pref_apn_mms_proxy"
-                        android:title="@string/preferences__mms_proxy_host_optional"
-                        android:dependency="pref_enable_manual_mms"
-                        android:inputType="textUri" />
+    <org.thoughtcrime.securesms.components.CustomDefaultPreference
+            app:custom_pref_toggle="pref_apn_mms_custom_proxy"
+            android:key="pref_apn_mms_proxy"
+            android:title="@string/preferences__mms_proxy_host"
+            android:inputType="textUri" />
 
-    <EditTextPreference android:key="pref_apn_mms_proxy_port"
-                        android:title="@string/preferences__mms_proxy_port_optional"
-                        android:dependency="pref_enable_manual_mms"
-                        android:inputType="number" />
+    <org.thoughtcrime.securesms.components.CustomDefaultPreference
+            app:custom_pref_toggle="pref_apn_mms_custom_proxy_port"
+            android:key="pref_apn_mms_proxy_port"
+            android:title="@string/preferences__mms_proxy_port"
+            android:inputType="number"/>
 
-    <EditTextPreference android:key="pref_apn_mmsc_username"
-                        android:title="@string/preferences__mmsc_username_optional"
-                        android:dependency="pref_enable_manual_mms"
-                        android:inputType="textNoSuggestions" />
+    <org.thoughtcrime.securesms.components.CustomDefaultPreference
+            app:custom_pref_toggle="pref_apn_mmsc_custom_username"
+            android:key="pref_apn_mmsc_username"
+            android:title="@string/preferences__mmsc_username"
+            android:inputType="textNoSuggestions"/>
 
-    <EditTextPreference android:key="pref_apn_mmsc_password"
-                        android:title="@string/preferences__mmsc_password_optional"
-                        android:dependency="pref_enable_manual_mms"
-                        android:inputType="textVisiblePassword" />
+    <org.thoughtcrime.securesms.components.CustomDefaultPreference
+            app:custom_pref_toggle="pref_apn_mmsc_custom_password"
+            android:key="pref_apn_mmsc_password"
+            android:title="@string/preferences__mmsc_password"
+            android:inputType="textVisiblePassword"/>
+
 </PreferenceScreen>

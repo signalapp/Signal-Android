@@ -153,6 +153,11 @@
     <!-- ConversationListItem -->
     <string name="ConversationListItem_key_exchange_message">Key exchange message...</string>
 
+    <!-- CustomDefaultPreference -->
+    <string name="CustomDefaultPreference_using_custom">Using custom: %s</string>
+    <string name="CustomDefaultPreference_using_default">Using default: %s</string>
+    <string name="CustomDefaultPreference_none">None</string>
+
     <!-- DateUtils -->
     <string name="DateUtils_now">Now</string>
 
@@ -691,6 +696,8 @@
     <!-- arrays.xml -->
     <string name="arrays__import_export">Import / export</string>
     <string name="arrays__my_identity_key">My identity key</string>
+    <string name="arrays__use_default">Use default</string>
+    <string name="arrays__use_custom">Use custom</string>
 
     <!-- plurals.xml -->
     <plurals name="minutes_ago">
@@ -775,11 +782,11 @@
     <string name="preferences__advanced_mms_access_point_names">Manual MMS settings</string>
     <string name="preferences__enable_manual_mms">Use manual MMS settings</string>
     <string name="preferences__override_system_mms_settings">Override system MMS settings with the information below.</string>
-    <string name="preferences__mmsc_url_required">MMSC URL (Required)</string>
-    <string name="preferences__mms_proxy_host_optional">MMS Proxy Host (Optional)</string>
-    <string name="preferences__mms_proxy_port_optional">MMS Proxy Port (Optional)</string>
-    <string name="preferences__mmsc_username_optional">MMSC Username (Optional)</string>
-    <string name="preferences__mmsc_password_optional">MMSC Password (Optional)</string>
+    <string name="preferences__mmsc_url">MMSC URL</string>
+    <string name="preferences__mms_proxy_host">MMS Proxy Host</string>
+    <string name="preferences__mms_proxy_port">MMS Proxy Port</string>
+    <string name="preferences__mmsc_username">MMSC Username</string>
+    <string name="preferences__mmsc_password">MMSC Password</string>
     <string name="preferences__sms_delivery_reports">SMS delivery reports</string>
     <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Request a delivery report for each SMS message you send</string>
     <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Automatically delete older messages once a conversation thread exceeds a specified length</string>

@@ -101,7 +101,7 @@
         </intent-filter>
     </activity>
 
-    <activity android:name=".MmsPreferencesActivity"
+    <activity android:name=".preferences.MmsPreferencesActivity"
                android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".ShareActivity"

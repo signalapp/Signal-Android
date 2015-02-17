@@ -15,10 +15,15 @@ public class TextSecurePreferences {
   public  static final String DISABLE_PASSPHRASE_PREF          = "pref_disable_passphrase";
   public  static final String THEME_PREF                       = "pref_theme";
   public  static final String LANGUAGE_PREF                    = "pref_language";
+  private static final String MMSC_CUSTOM_HOST_PREF            = "pref_apn_mmsc_custom_host";
   public  static final String MMSC_HOST_PREF                   = "pref_apn_mmsc_host";
+  private static final String MMSC_CUSTOM_PROXY_PREF           = "pref_apn_mms_custom_proxy";
   public  static final String MMSC_PROXY_HOST_PREF             = "pref_apn_mms_proxy";
+  private static final String MMSC_CUSTOM_PROXY_PORT_PREF      = "pref_apn_mms_custom_proxy_port";
   public  static final String MMSC_PROXY_PORT_PREF             = "pref_apn_mms_proxy_port";
+  private static final String MMSC_CUSTOM_USERNAME_PREF        = "pref_apn_mmsc_custom_username";
   public  static final String MMSC_USERNAME_PREF               = "pref_apn_mmsc_username";
+  private static final String MMSC_CUSTOM_PASSWORD_PREF        = "pref_apn_mmsc_custom_password";
   public  static final String MMSC_PASSWORD_PREF               = "pref_apn_mmsc_password";
   public  static final String THREAD_TRIM_LENGTH               = "pref_trim_length";
   public  static final String THREAD_TRIM_NOW                  = "pref_trim_now";
@@ -206,24 +211,89 @@ public class TextSecurePreferences {
     setBooleanPreference(context, DISABLE_PASSPHRASE_PREF, disabled);
   }
 
+  public static boolean getUseCustomMmsc(Context context) {
+    boolean legacy = TextSecurePreferences.isLegacyUseLocalApnsEnabled(context);
+    return getBooleanPreference(context, MMSC_CUSTOM_HOST_PREF, legacy);
+  }
+
+  public static void setUseCustomMmsc(Context context, boolean value) {
+    setBooleanPreference(context, MMSC_CUSTOM_HOST_PREF, value);
+  }
+
   public static String getMmscUrl(Context context) {
     return getStringPreference(context, MMSC_HOST_PREF, "");
+  }
+
+  public static void setMmscUrl(Context context, String mmsc) {
+    setStringPreference(context, MMSC_HOST_PREF, mmsc);
+  }
+
+  public static boolean getUseCustomMmscProxy(Context context) {
+    boolean legacy = TextSecurePreferences.isLegacyUseLocalApnsEnabled(context);
+    return getBooleanPreference(context, MMSC_CUSTOM_PROXY_PREF, legacy);
+  }
+
+  public static void setUseCustomMmscProxy(Context context, boolean value) {
+    setBooleanPreference(context, MMSC_CUSTOM_PROXY_PREF, value);
   }
 
   public static String getMmscProxy(Context context) {
     return getStringPreference(context, MMSC_PROXY_HOST_PREF, "");
   }
 
+  public static void setMmscProxy(Context context, String value) {
+    setStringPreference(context, MMSC_PROXY_HOST_PREF, value);
+  }
+
+  public static boolean getUseCustomMmscProxyPort(Context context) {
+    boolean legacy = TextSecurePreferences.isLegacyUseLocalApnsEnabled(context);
+    return getBooleanPreference(context, MMSC_CUSTOM_PROXY_PORT_PREF, legacy);
+  }
+
+  public static void setUseCustomMmscProxyPort(Context context, boolean value) {
+    setBooleanPreference(context, MMSC_CUSTOM_PROXY_PORT_PREF, value);
+  }
+
   public static String getMmscProxyPort(Context context) {
     return getStringPreference(context, MMSC_PROXY_PORT_PREF, "");
+  }
+
+  public static void setMmscProxyPort(Context context, String value) {
+    setStringPreference(context, MMSC_PROXY_PORT_PREF, value);
+  }
+
+  public static boolean getUseCustomMmscUsername(Context context) {
+    boolean legacy = TextSecurePreferences.isLegacyUseLocalApnsEnabled(context);
+    return getBooleanPreference(context, MMSC_CUSTOM_USERNAME_PREF, legacy);
+  }
+
+  public static void setUseCustomMmscUsername(Context context, boolean value) {
+    setBooleanPreference(context, MMSC_CUSTOM_USERNAME_PREF, value);
   }
 
   public static String getMmscUsername(Context context) {
     return getStringPreference(context, MMSC_USERNAME_PREF, "");
   }
 
+  public static void setMmscUsername(Context context, String value) {
+    setStringPreference(context, MMSC_USERNAME_PREF, value);
+  }
+
+  public static boolean getUseCustomMmscPassword(Context context) {
+    boolean legacy = TextSecurePreferences.isLegacyUseLocalApnsEnabled(context);
+    return getBooleanPreference(context, MMSC_CUSTOM_PASSWORD_PREF, legacy);
+  }
+
+  public static void setUseCustomMmscPassword(Context context, boolean value) {
+    setBooleanPreference(context, MMSC_CUSTOM_PASSWORD_PREF, value);
+  }
+
   public static String getMmscPassword(Context context) {
     return getStringPreference(context, MMSC_PASSWORD_PREF, "");
+  }
+
+  public static void setMmscPassword(Context context, String value) {
+    setStringPreference(context, MMSC_PASSWORD_PREF, value);
   }
 
   public static String getIdentityContactUri(Context context) {
@@ -242,12 +312,8 @@ public class TextSecurePreferences {
     return getBooleanPreference(context, SCREEN_SECURITY_PREF, true);
   }
 
-  public static boolean isUseLocalApnsEnabled(Context context) {
+  public static boolean isLegacyUseLocalApnsEnabled(Context context) {
     return getBooleanPreference(context, ENABLE_MANUAL_MMS_PREF, false);
-  }
-
-  public static void setUseLocalApnsEnabled(Context context, boolean useLocal) {
-    setBooleanPreference(context, ENABLE_MANUAL_MMS_PREF, useLocal);
   }
 
   public static int getLastVersionCode(Context context) {
@@ -373,11 +439,11 @@ public class TextSecurePreferences {
     setLongPreference(context, PUSH_REGISTRATION_REMINDER_PREF, time);
   }
 
-  private static void setBooleanPreference(Context context, String key, boolean value) {
+  public static void setBooleanPreference(Context context, String key, boolean value) {
     PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean(key, value).apply();
   }
 
-  private static boolean getBooleanPreference(Context context, String key, boolean defaultValue) {
+  public static boolean getBooleanPreference(Context context, String key, boolean defaultValue) {
     return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(key, defaultValue);
   }
 
@@ -385,7 +451,7 @@ public class TextSecurePreferences {
     PreferenceManager.getDefaultSharedPreferences(context).edit().putString(key, value).apply();
   }
 
-  private static String getStringPreference(Context context, String key, String defaultValue) {
+  public static String getStringPreference(Context context, String key, String defaultValue) {
     return PreferenceManager.getDefaultSharedPreferences(context).getString(key, defaultValue);
   }
 

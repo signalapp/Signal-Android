@@ -15,7 +15,6 @@ import android.support.v4.preference.PreferenceFragment;
 import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
-import org.thoughtcrime.securesms.MmsPreferencesFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.OutgoingSmsPreference;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -46,8 +45,6 @@ public class SmsMmsPreferenceFragment extends PreferenceFragment {
   public void onResume() {
     super.onResume();
     ((ApplicationPreferencesActivity) getActivity()).getSupportActionBar().setTitle(R.string.preferences__sms_mms);
-    this.findPreference(MMS_PREF)
-      .setSummary(MmsPreferencesFragment.getSummary(getActivity()));
 
     initializePlatformSpecificOptions();
   }
