@@ -1,10 +1,11 @@
 package org.thoughtcrime.securesms;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+
+import com.afollestad.materialdialogs.MaterialDialog;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -64,13 +65,13 @@ public class GroupMembersDialog extends AsyncTask<Void, Void, Recipients> {
       }
     }
 
-    AlertDialog.Builder builder = new AlertDialog.Builder(context);
-    builder.setTitle(R.string.ConversationActivity_group_conversation_recipients);
-    builder.setIcon(R.drawable.ic_menu_groups_holo_dark);
-    builder.setCancelable(true);
-    builder.setItems(recipientStrings.toArray(new String[]{}), null);
-    builder.setPositiveButton(android.R.string.ok, null);
-    builder.show();
+    new MaterialDialog.Builder(context)
+                      .title(R.string.ConversationActivity_group_members)
+                      .iconAttr(R.attr.group_members_dialog_icon)
+                      .cancelable(true)
+                      .items(recipientStrings.toArray(new String[]{}))
+                      .positiveText(android.R.string.ok)
+                      .show();
   }
 
   public void display() {

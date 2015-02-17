@@ -106,4 +106,5 @@
         <attr name="custom_pref_toggle" format="string"/>
     </declare-styleable>
 
+    <attr name="group_members_dialog_icon" format="reference"/>
 </resources>
