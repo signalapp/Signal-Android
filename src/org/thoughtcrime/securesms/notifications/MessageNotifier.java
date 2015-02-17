@@ -94,6 +94,7 @@ public class MessageNotifier {
       builder.setSmallIcon(R.drawable.icon_notification);
       builder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(),
                                                         R.drawable.ic_action_warning_red));
+      builder.setColor(context.getResources().getColor(R.color.textsecure_primary));
       builder.setContentTitle(context.getString(R.string.MessageNotifier_message_delivery_failed));
       builder.setContentText(context.getString(R.string.MessageNotifier_failed_to_deliver_message));
       builder.setTicker(context.getString(R.string.MessageNotifier_error_delivering_message));
@@ -180,6 +181,7 @@ public class MessageNotifier {
 
     builder.setSmallIcon(R.drawable.icon_notification);
     builder.setLargeIcon(recipient.getContactPhoto());
+    builder.setColor(context.getResources().getColor(R.color.textsecure_primary));
     builder.setContentTitle(recipient.toShortString());
     builder.setContentText(notifications.get(0).getText());
     builder.setContentIntent(notifications.get(0).getPendingIntent(context));
@@ -224,6 +226,7 @@ public class MessageNotifier {
     builder.setSmallIcon(R.drawable.icon_notification);
     builder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(),
                                                       R.drawable.icon_notification));
+    builder.setColor(context.getResources().getColor(R.color.textsecure_primary));
     builder.setContentTitle(String.format(context.getString(R.string.MessageNotifier_d_new_messages),
                                           notificationState.getMessageCount()));
     builder.setContentText(String.format(context.getString(R.string.MessageNotifier_most_recent_from_s),
