@@ -98,4 +98,6 @@
     <attr name="pref_ic_advanced" format="reference" />
 
     <attr name="app_protect_timeout_picker_color" format="reference"/>
+
+    <attr name="group_members_dialog_icon" format="reference"/>
 </resources>
