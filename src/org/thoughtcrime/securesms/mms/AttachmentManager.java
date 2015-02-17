@@ -32,10 +32,11 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 
 import java.io.IOException;
+
+import ws.com.google.android.mms.ContentType;
 
 public class AttachmentManager {
   private final static String TAG = AttachmentManager.class.getSimpleName();
@@ -64,16 +65,13 @@ public class AttachmentManager {
     attachmentListener.onAttachmentChanged();
   }
 
-  public void setImage(Uri image) throws IOException, BitmapDecodingException {
-    setMedia(new ImageSlide(context, image), 345, 261);
-  }
-
-  public void setVideo(Uri video) throws IOException, MediaTooLargeException {
-    setMedia(new VideoSlide(context, video));
-  }
-
-  public void setAudio(Uri audio) throws IOException, MediaTooLargeException {
-    setMedia(new AudioSlide(context, audio));
+  public void setMedia(Uri media, String contentType) throws IOException, MediaTooLargeException, BitmapDecodingException {
+    if      (ContentType.isAudioType(contentType))
+      setMedia(new AudioSlide(context, media, contentType));
+    else if (ContentType.isVideoType(contentType))
+      setMedia(new VideoSlide(context, media, contentType));
+    else if (ContentType.isImageType(contentType))
+      setMedia(new ImageSlide(context, media), 345, 261);
   }
 
   public void setMedia(final Slide slide, final int thumbnailWidth, final int thumbnailHeight) {
@@ -108,15 +106,15 @@ public class AttachmentManager {
   }
 
   public static void selectVideo(Activity activity, int requestCode) {
-    selectMediaType(activity, "video/*", requestCode);
+    selectMediaType(activity, ContentType.VIDEO_UNSPECIFIED, requestCode);
   }
 
   public static void selectImage(Activity activity, int requestCode) {
-    selectMediaType(activity, "image/*", requestCode);
+    selectMediaType(activity, ContentType.IMAGE_UNSPECIFIED, requestCode);
   }
 
   public static void selectAudio(Activity activity, int requestCode) {
-    selectMediaType(activity, "audio/*", requestCode);
+    selectMediaType(activity, ContentType.AUDIO_UNSPECIFIED, requestCode);
   }
 
   public static void selectContactInfo(Activity activity, int requestCode) {

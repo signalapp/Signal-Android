@@ -1,6 +1,6 @@
-/** 
+/**
  * Copyright (C) 2011 Whisper Systems
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -10,7 +10,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -24,23 +24,23 @@ import org.w3c.dom.smil.SMILDocument;
 import org.w3c.dom.smil.SMILMediaElement;
 import org.w3c.dom.smil.SMILRegionElement;
 
+import ws.com.google.android.mms.ContentType;
 import ws.com.google.android.mms.pdu.PduPart;
-import android.content.ContentResolver;
 import android.content.Context;
-import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.provider.MediaStore;
+import android.provider.MediaStore.Video;
 import android.util.Log;
 
 public class VideoSlide extends Slide {
+  private static final String TAG = VideoSlide.class.getSimpleName();
 
   public VideoSlide(Context context, PduPart part) {
     super(context, part);
   }
 
-  public VideoSlide(Context context, Uri uri) throws IOException, MediaTooLargeException {
-    super(context, constructPartFromUri(context, uri));
+  public VideoSlide(Context context, Uri uri, String contentType) throws IOException, MediaTooLargeException {
+    super(context, constructPartFromUri(context, uri, contentType));
   }
 
   @Override
@@ -75,25 +75,19 @@ public class VideoSlide extends Slide {
     return SmilUtil.createMediaElement("video", document, new String(getPart().getName()));
   }
 
-  private static PduPart constructPartFromUri(Context context, Uri uri)
-      throws IOException, MediaTooLargeException
+  private static PduPart constructPartFromUri(Context context, Uri uri, String contentType)
+      throws IOException, MediaTooLargeException 
   {
-    PduPart         part     = new PduPart();
-    ContentResolver resolver = context.getContentResolver();
-    Cursor          cursor   = null;
-
-    try {
-      cursor = resolver.query(uri, new String[] {MediaStore.Video.Media.MIME_TYPE}, null, null, null);
-      if (cursor != null && cursor.moveToFirst()) {
-        Log.w("VideoSlide", "Setting mime type: " + cursor.getString(0));
-        part.setContentType(cursor.getString(0).getBytes());
-      }
-    } finally {
-      if (cursor != null)
-        cursor.close();
-    }
+    PduPart part  = new PduPart();
 
     assertMediaSize(context, uri);
+
+    if (contentType == null || ContentType.isUnspecified(contentType))
+      contentType = getContentTypeFromUri(context, uri, Video.Media.MIME_TYPE);
+
+    Log.w(TAG, "Setting mime type: " + contentType);
+    part.setContentType(contentType.getBytes());
+
     part.setDataUri(uri);
     part.setContentId((System.currentTimeMillis()+"").getBytes());
     part.setName(("Video" + System.currentTimeMillis()).getBytes());
