@@ -15,8 +15,10 @@
     <Preference android:key="preference_category_app_protection"
                 android:title="@string/preferences__app_protection"/>
 
+<!--
     <Preference android:key="preference_category_appearance"
                 android:title="@string/preferences__appearance"/>
+-->
 
     <Preference android:key="preference_category_storage"
                 android:title="@string/preferences__delete_old_messages"/>
