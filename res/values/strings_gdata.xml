@@ -28,4 +28,6 @@
     <string name="privacy_pw_dialog_toast_hide_single">Kontakt wird versteckt...</string>
 
     <string name="privacy_toast_install_premium">Für diese Funktion benötigten Sie die G Data Internet Security für Android</string>
+
+    <string name="conversation_activitiy_invite_link">https://www.gdatasoftware.com/</string>
 </resources>
