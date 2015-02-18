@@ -25,6 +25,9 @@ public class GDataLinkMovementMethod extends LinkMovementMethod {
 
     private static final String HTTP_SCHEME = "http://";
     private static final String HTTPS_SCHEME = "https://";
+    private static final String TEL_SCHEME = "tel";
+    private static final String MAIL_SCHEME = "mailto";
+
 
     public boolean onTouchEvent(android.widget.TextView widget, android.text.Spannable buffer,
             android.view.MotionEvent event) {
@@ -47,16 +50,13 @@ public class GDataLinkMovementMethod extends LinkMovementMethod {
             URLSpan[] link = buffer.getSpans(off, off, URLSpan.class);
             if (link.length != 0) {
                 String url = link[0].getURL();
-                if (url.startsWith("https") || url.startsWith("http")) {
+                if (url.startsWith(HTTPS_SCHEME) || url.startsWith(HTTP_SCHEME)) {
                     if (conversationFragment != null) {
                         IRpcService service = conversationFragment.getService();
 
                         boolean maliciousUrlFound = false;
 
                         if (service != null) {
-                            if (!url.startsWith(HTTP_SCHEME) && !url.startsWith(HTTPS_SCHEME)) {
-                                url = HTTP_SCHEME + url;
-                            }
                             try {
                                 if (service.isMaliciousUrl(url)) {
                                     service.addPhishingException(url);
@@ -75,10 +75,10 @@ public class GDataLinkMovementMethod extends LinkMovementMethod {
                             }
                         }
                     }
-                } else if (url.startsWith("tel")) {
+                } else if (url.startsWith(TEL_SCHEME)) {
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                     movementContext.startActivity(intent);
-                } else if (url.startsWith("mailto")) {
+                } else if (url.startsWith(MAIL_SCHEME)) {
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                     movementContext.startActivity(intent);
                 }
@@ -111,9 +111,6 @@ public class GDataLinkMovementMethod extends LinkMovementMethod {
     }
 
     private void handleOpenBrowser(String url) {
-        if (!url.startsWith(HTTP_SCHEME) && !url.startsWith(HTTPS_SCHEME)) {
-            url = HTTP_SCHEME + url;
-        }
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         movementContext.startActivity(intent);
     }
