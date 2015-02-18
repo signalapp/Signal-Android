@@ -92,6 +92,7 @@
                         android:inputType="textShortMessage|textAutoCorrect|textCapSentences|textMultiLine"
                         android:maxLength="1000"
                         android:maxLines="4"
+                        android:nextFocusForward="@+id/send_button"
                         android:nextFocusRight="@+id/send_button"
                         android:contentDescription="@string/conversation_activity__compose_description"
                         android:textColor="?conversation_editor_text_color" />
@@ -106,6 +107,7 @@
                     android:nextFocusLeft="@+id/embedded_text_editor"
                     android:padding="12dp"
                     android:src="?conversation_send_button_sms_insecure"
+                    android:focusable="true"
                     android:clickable="false"
                     android:enabled="false" />
 
