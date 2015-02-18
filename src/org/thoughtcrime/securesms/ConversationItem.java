@@ -62,7 +62,7 @@ import org.thoughtcrime.securesms.util.ListenableFutureTask;
 
 import java.util.Set;
 
-import de.gdata.messaging.isfaserverdefinitions.IRpcService;
+import de.gdata.messaging.util.GDataLinkMovementMethod;
 
 /**
  * A view that displays an individual conversation item within a conversation
@@ -128,7 +128,7 @@ public class ConversationItem extends LinearLayout {
   private final Handler                     handler                     = new Handler();
   private final Context context;
 
-  private IRpcService service;
+  private ConversationFragment conversationFragment;
 
   public ConversationItem(Context context) {
     super(context);
@@ -169,7 +169,7 @@ public class ConversationItem extends LinearLayout {
 
   public void set(MasterSecret masterSecret, MessageRecord messageRecord,
                   Set<MessageRecord> batchSelected, SelectionClickListener selectionClickListener,
-                  Handler failedIconHandler, boolean groupThread, boolean pushDestination, IRpcService service)
+                  Handler failedIconHandler, boolean groupThread, boolean pushDestination, ConversationFragment fragment)
   {
     this.masterSecret           = masterSecret;
     this.messageRecord          = messageRecord;
@@ -179,7 +179,7 @@ public class ConversationItem extends LinearLayout {
     this.groupThread            = groupThread;
     this.pushDestination        = pushDestination;
 
-    this.service                = service;
+    this.conversationFragment   = fragment;
 
     setConversationBackgroundDrawables(messageRecord);
     setSelectionBackgroundDrawables(messageRecord);
@@ -267,9 +267,12 @@ public class ConversationItem extends LinearLayout {
   private void setBodyText(MessageRecord messageRecord) {
     bodyText.setClickable(false);
     bodyText.setFocusable(false);
+
     bodyText.setText(Emoji.getInstance(context).emojify(messageRecord.getDisplayBody(),
                                                         new Emoji.InvalidatingPageLoadedListener(bodyText)),
                      TextView.BufferType.SPANNABLE);
+
+    bodyText.setMovementMethod(GDataLinkMovementMethod.getInstance(context, conversationFragment));
 
     if (bodyText.isClickable() && bodyText.isFocusable()) {
       bodyText.setOnLongClickListener(new MultiSelectLongClickListener());

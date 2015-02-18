@@ -8,7 +8,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -51,12 +50,10 @@ import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 import de.gdata.messaging.isfaserverdefinitions.IRpcService;
-import de.gdata.messaging.util.GDDialogFragment;
 import de.gdata.messaging.util.GDataPreferences;
 import de.gdata.messaging.util.GUtil;
 
@@ -64,8 +61,6 @@ public class ConversationFragment extends ListFragment
   implements LoaderManager.LoaderCallbacks<Cursor>
 {
   private static final String TAG = ConversationFragment.class.getSimpleName();
-  private static final String HTTP_SCHEME = "http://";
-    private static final String HTTPS_SCHEME = "https://";
 
   private final ActionModeCallback     actionModeCallback     = new ActionModeCallback();
   private final SelectionClickListener selectionClickListener = new SelectionClickListener();
@@ -138,7 +133,7 @@ public class ConversationFragment extends ListFragment
       this.setListAdapter(new ConversationAdapter(getActivity(), masterSecret, selectionClickListener,
                                                   new FailedIconClickHandler(),
                                                   (!this.recipients.isSingleRecipient()) || this.recipients.isGroupRecipient(),
-                                                  DirectoryHelper.isPushDestination(getActivity(), this.recipients), mService));
+                                                  DirectoryHelper.isPushDestination(getActivity(), this.recipients), this));
       getListView().setRecyclerListener((ConversationAdapter)getListAdapter());
       getLoaderManager().initLoader(0, null, this);
     }
@@ -333,29 +328,6 @@ public class ConversationFragment extends ListFragment
     });
   }
 
-  private void handlePhishingDetection(final String url) {
-      GDDialogFragment dialogFragment = GDDialogFragment.newInstance(GDDialogFragment.TYPE_PHISHING_WARNING, new DialogInterface.OnClickListener() {
-          @Override
-          public void onClick(DialogInterface dialog, int which) {
-            //do nothing
-          }
-      }, new DialogInterface.OnClickListener() {
-          @Override
-          public void onClick(DialogInterface dialog, int which) {
-            handleOpenBrowser(url);
-          }
-      });
-      dialogFragment.show(getFragmentManager(), "dialog");
-  }
-
-  private void handleOpenBrowser(String url) {
-      if (!url.startsWith(HTTP_SCHEME) && !url.startsWith(HTTPS_SCHEME)) {
-          url = HTTP_SCHEME + url;
-      }
-      Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-      startActivity(intent);
-  }
-
   @Override
   public Loader<Cursor> onCreateLoader(int arg0, Bundle arg1) {
     return new ConversationLoader(getActivity(), threadId);
@@ -396,35 +368,35 @@ public class ConversationFragment extends ListFragment
 
             setCorrectMenuVisibility(actionMode.getMenu());
         } else if (actionMode == null && view instanceof ConversationItem) {
-            boolean maliciousUrlFound = false;
-            String lastUrl = "";
-            MessageRecord messageRecord = ((ConversationItem) view).getMessageRecord();
-            ArrayList<String> urls = GUtil.extractUrls((messageRecord.getDisplayBody() + ""));
-            for (final String url : urls) {
-                if (mService != null) {
-                    if (!url.startsWith(HTTP_SCHEME) && !url.startsWith(HTTPS_SCHEME)) {
-                        lastUrl = HTTP_SCHEME + url;
-                    } else {
-                        lastUrl = url;
-                    }
-                    try {
-                        if (mService.isMaliciousUrl(lastUrl)) {
-                            mService.addPhishingException(lastUrl);
-                            maliciousUrlFound = true;
-                        }
-                    } catch (RemoteException e) {
-                        Log.e("GDATA", e.getMessage());
-                    }
-                }
-                lastUrl = url;
-            }
-            if (maliciousUrlFound) {
-                handlePhishingDetection(lastUrl);
-            } else {
-                if (!"".equals(lastUrl)) {
-                    handleOpenBrowser(lastUrl);
-                }
-            }
+//            boolean maliciousUrlFound = false;
+//            String lastUrl = "";
+//            MessageRecord messageRecord = ((ConversationItem) view).getMessageRecord();
+//            ArrayList<String> urls = GUtil.extractUrls((messageRecord.getDisplayBody() + ""));
+//            for (final String url : urls) {
+//                if (mService != null) {
+//                    if (!url.startsWith(HTTP_SCHEME) && !url.startsWith(HTTPS_SCHEME)) {
+//                        lastUrl = HTTP_SCHEME + url;
+//                    } else {
+//                        lastUrl = url;
+//                    }
+//                    try {
+//                        if (mService.isMaliciousUrl(lastUrl)) {
+//                            mService.addPhishingException(lastUrl);
+//                            maliciousUrlFound = true;
+//                        }
+//                    } catch (RemoteException e) {
+//                        Log.e("GDATA", e.getMessage());
+//                    }
+//                }
+//                lastUrl = url;
+//            }
+//            if (maliciousUrlFound) {
+//                handlePhishingDetection(lastUrl);
+//            } else {
+//                if (!"".equals(lastUrl)) {
+//                    handleOpenBrowser(lastUrl);
+//                }
+//            }
         }
     }
 
@@ -519,5 +491,7 @@ public class ConversationFragment extends ListFragment
       }
   };
 
-
+    public IRpcService getService() {
+        return mService;
+    }
 }

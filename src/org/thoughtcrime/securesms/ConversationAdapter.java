@@ -71,10 +71,10 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
   private final boolean                pushDestination;
   private final LayoutInflater         inflater;
 
-  private final IRpcService            service;
+  private final ConversationFragment   conversationFragment;
 
   public ConversationAdapter(Context context, MasterSecret masterSecret, SelectionClickListener selectionClickListener,
-                             Handler failedIconClickHandler, boolean groupThread, boolean pushDestination, IRpcService service)
+                             Handler failedIconClickHandler, boolean groupThread, boolean pushDestination, ConversationFragment fragment)
   {
     super(context, null, 0);
     this.context                = context;
@@ -84,7 +84,7 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
     this.groupThread            = groupThread;
     this.pushDestination        = pushDestination;
     this.inflater               = LayoutInflater.from(context);
-    this.service                = service;
+    this.conversationFragment   = fragment;
   }
 
   @Override
@@ -95,7 +95,7 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
     MessageRecord messageRecord = getMessageRecord(id, cursor, type);
 
     item.set(masterSecret, messageRecord, batchSelected, selectionClickListener,
-             failedIconClickHandler, groupThread, pushDestination, service);
+             failedIconClickHandler, groupThread, pushDestination, conversationFragment);
   }
 
   @Override
