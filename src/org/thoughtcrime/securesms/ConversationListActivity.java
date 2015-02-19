@@ -206,22 +206,13 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         handleImportExport();
         return true;
       case R.id.menu_privacy:
-        if (GUtil.featureCheck(getApplicationContext(), true)) {
-          CheckPasswordDialogFrag.ACTION_ID = CheckPasswordDialogFrag.ACTION_OPEN_PRIVACY;
-          new CheckPasswordDialogFrag().show(getSupportFragmentManager(), "PW_DIALOG_TAG");
-        }
+        openPasswordDialogWithAction(CheckPasswordDialogFrag.ACTION_OPEN_PRIVACY);
         return true;
       case R.id.menu_privacy_hide:
-        if (GUtil.featureCheck(getApplicationContext(), true)) {
-          CheckPasswordDialogFrag.ACTION_ID = CheckPasswordDialogFrag.ACTION_TOGGLE_VISIBILITY;
-          new CheckPasswordDialogFrag().show(getSupportFragmentManager(), "PW_DIALOG_TAG");
-        }
+        openPasswordDialogWithAction(CheckPasswordDialogFrag.ACTION_TOGGLE_VISIBILITY);
         return true;
       case R.id.menu_filter:
-        if (GUtil.featureCheck(getApplicationContext(), true)) {
-          CheckPasswordDialogFrag.ACTION_ID = CheckPasswordDialogFrag.ACTION_OPEN_CALL_FILTER;
-          new CheckPasswordDialogFrag().show(getSupportFragmentManager(), "PW_DIALOG_TAG");
-        }
+        openPasswordDialogWithAction(CheckPasswordDialogFrag.ACTION_OPEN_CALL_FILTER);
         return true;
       case R.id.menu_my_identity:
         handleMyIdentity();
@@ -229,7 +220,12 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     }
     return false;
   }
-
+  public void openPasswordDialogWithAction(int action) {
+    if (GUtil.featureCheck(getApplicationContext(), true)) {
+      CheckPasswordDialogFrag.ACTION_ID = action;
+      new CheckPasswordDialogFrag().show(getSupportFragmentManager(), "PW_DIALOG_TAG");
+    }
+  }
   @Override
   public void onCreateConversation(long threadId, Recipients recipients, int distributionType) {
     createConversation(threadId, recipients, distributionType);
