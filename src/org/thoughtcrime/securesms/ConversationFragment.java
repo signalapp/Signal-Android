@@ -367,36 +367,6 @@ public class ConversationFragment extends ListFragment
             ((ConversationAdapter) getListAdapter()).notifyDataSetChanged();
 
             setCorrectMenuVisibility(actionMode.getMenu());
-        } else if (actionMode == null && view instanceof ConversationItem) {
-//            boolean maliciousUrlFound = false;
-//            String lastUrl = "";
-//            MessageRecord messageRecord = ((ConversationItem) view).getMessageRecord();
-//            ArrayList<String> urls = GUtil.extractUrls((messageRecord.getDisplayBody() + ""));
-//            for (final String url : urls) {
-//                if (mService != null) {
-//                    if (!url.startsWith(HTTP_SCHEME) && !url.startsWith(HTTPS_SCHEME)) {
-//                        lastUrl = HTTP_SCHEME + url;
-//                    } else {
-//                        lastUrl = url;
-//                    }
-//                    try {
-//                        if (mService.isMaliciousUrl(lastUrl)) {
-//                            mService.addPhishingException(lastUrl);
-//                            maliciousUrlFound = true;
-//                        }
-//                    } catch (RemoteException e) {
-//                        Log.e("GDATA", e.getMessage());
-//                    }
-//                }
-//                lastUrl = url;
-//            }
-//            if (maliciousUrlFound) {
-//                handlePhishingDetection(lastUrl);
-//            } else {
-//                if (!"".equals(lastUrl)) {
-//                    handleOpenBrowser(lastUrl);
-//                }
-//            }
         }
     }
 
