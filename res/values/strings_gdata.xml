@@ -30,4 +30,11 @@
     <string name="privacy_toast_install_premium">Für diese Funktion benötigten Sie die G Data Internet Security für Android</string>
 
     <string name="conversation_activitiy_invite_link">https://www.gdatasoftware.com/</string>
+
+    <string name="preferences_notification_never">Never</string>
+    <string name="preferences_notification_one_time">One time</string>
+    <string name="preferences_notification_two_times">Two times</string>
+    <string name="preferences_notification_three_times">Three times</string>
+    <string name="preferences_notification_five_times">Five times</string>
+    <string name="preferences_notification_ten_times">Ten times</string>
 </resources>

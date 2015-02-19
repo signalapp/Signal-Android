@@ -189,12 +189,12 @@
   </string-array>
 
   <string-array name="pref_repeat_alerts_entries">
-      <item>Never</item>
-      <item>One time</item>
-      <item>Two times</item>
-      <item>Three times</item>
-      <item>Five times</item>
-      <item>Ten times</item>
+      <item>@string/preferences_notification_never</item>
+      <item>@string/preferences_notification_one_time</item>
+      <item>@string/preferences_notification_two_times</item>
+      <item>@string/preferences_notification_three_times</item>
+      <item>@string/preferences_notification_five_times</item>
+      <item>@string/preferences_notification_ten_times</item>
   </string-array>
 
   <string-array name="pref_repeat_alerts_values" translatable="false">
