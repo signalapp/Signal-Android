@@ -12,7 +12,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
-import android.os.RemoteException;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
@@ -446,13 +445,6 @@ public class ConversationFragment extends ListFragment
       @Override
       public void onServiceConnected(ComponentName name, IBinder service) {
           mService = IRpcService.Stub.asInterface(service);
-          if (mService != null) {
-              try {
-                  Log.d("GDATA", "Premium: " + mService.hasPremiumEnabled());
-              } catch (RemoteException e) {
-                  Log.e("GDATA", e.getMessage());
-              }
-          }
       }
 
       @Override
