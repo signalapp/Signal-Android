@@ -7,34 +7,34 @@
     <string name="gdata_contact_selection_page_title">Contacts</string>
 
     <string name="gdata_conversation_list_page_title">Conversations</string>
-    <string name="show_hidden_convs">Versteckte anzeigen</string>
 
     <string name="gd_dialog_fragment_phishing_title">Web protection</string>
     <string name="gd_dialog_fragment_phishing_message">This site is a known phishing site. Only continue if you are certain it poses no threat to you.</string>
     <string name="gd_dialog_fragment_phishing_block">Block</string>
     <string name="gd_dialog_fragment_phishing_continue">Continue</string>
 
-    <string name="menu_filter">Kontakte blockieren</string>
-    <string name="menu_privacy">Kontakte verstecken</string>
-    <string name="menu_privacy_unhide">Verstecke Kontakte anzeigen</string>
-    <string name="menu_privacy_hide">Verstecke Kontakte ausblenden</string>
-    <string name="menu_privacy_single_hide">Kontakt verstecken</string>
-    <string name="menu_filter_block_contact">Kontakt blockieren</string>
+    <string name="menu_filter">Block contacts</string>
+    <string name="menu_privacy">Hide contacts</string>
+    <string name="menu_privacy_unhide">Show hidden contacts</string>
+    <string name="menu_privacy_hide">Hide hidden contacts</string>
+    <string name="menu_privacy_single_hide">Hide contact</string>
+    <string name="menu_filter_block_contact">Block contact</string>
 
-    <string name="privacy_pw_dialog_header">Password eingeben: </string>
-    <string name="privacy_pw_dialog_toast_wrong">Ihr eingegebenes Passwort stimmt nicht mit dem der Internet Security überein.</string>
-    <string name="privacy_pw_dialog_toast_reload">Nachrichten und Kontakte werden wieder hergestellt...</string>
-    <string name="privacy_pw_dialog_toast_hide">Nachrichten und Kontakte werden zum verstecken vorbereitet...</string>
-    <string name="privacy_pw_dialog_toast_hide_single">Kontakt wird versteckt...</string>
+    <string name="privacy_pw_dialog_header">Enter password: </string>
+    <string name="privacy_pw_dialog_toast_wrong">The password you entered does not match that of the Internet Security.</string>
+    <string name="privacy_pw_dialog_toast_reload">Messages and contacts are being restored...</string>
+    <string name="privacy_pw_dialog_toast_hide">Messages and contacts are being prepared to be hidden...</string>
+    <string name="privacy_pw_dialog_toast_hide_single">Hiding contact...</string>
 
-    <string name="privacy_toast_install_premium">Für diese Funktion benötigten Sie die G Data Internet Security für Android</string>
+    <string name="privacy_toast_install_premium">You need the G DATA Internet Security, to use this feature.</string>
 
     <string name="conversation_activitiy_invite_link">https://www.gdatasoftware.com/</string>
 
     <string name="preferences_notification_never">Never</string>
-    <string name="preferences_notification_one_time">One time</string>
-    <string name="preferences_notification_two_times">Two times</string>
-    <string name="preferences_notification_three_times">Three times</string>
-    <string name="preferences_notification_five_times">Five times</string>
-    <string name="preferences_notification_ten_times">Ten times</string>
+    <string name="preferences_notification_one_time">1x</string>
+    <string name="preferences_notification_two_times">2x</string>
+    <string name="preferences_notification_three_times">3x</string>
+    <string name="preferences_notification_five_times">5x</string>
+    <string name="preferences_notification_ten_times">10x</string>
+    <string name="preferences_notification_title">Repeat alerts</string>
 </resources>

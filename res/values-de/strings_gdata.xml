@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_five">5 Minuten</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_thirty">30 Minuten</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_hour">1 Stunde</string>
+
+    <string name="gdata_contact_selection_page_title">Kontakte</string>
+
+    <string name="gdata_conversation_list_page_title">Unterhaltungen</string>
+
+    <string name="gd_dialog_fragment_phishing_title">Web-Schutz</string>
+    <string name="gd_dialog_fragment_phishing_message">Bei dieser Seite handelt es sich um eine bekannte Phishingseite. Fahren Sie nur fort, wenn Sie sicher sind, dass Sie damit kein Risiko eingehen.</string>
+    <string name="gd_dialog_fragment_phishing_block">Sperren</string>
+    <string name="gd_dialog_fragment_phishing_continue">Fortfahren</string>
+
+    <string name="menu_filter">Kontakte blockieren</string>
+    <string name="menu_privacy">Kontakte verstecken</string>
+    <string name="menu_privacy_unhide">Verstecke Kontakte anzeigen</string>
+    <string name="menu_privacy_hide">Verstecke Kontakte ausblenden</string>
+    <string name="menu_privacy_single_hide">Kontakt verstecken</string>
+    <string name="menu_filter_block_contact">Kontakt blockieren</string>
+
+    <string name="privacy_pw_dialog_header">Password eingeben: </string>
+    <string name="privacy_pw_dialog_toast_wrong">Ihr eingegebenes Passwort stimmt nicht mit dem der Internet Security überein.</string>
+    <string name="privacy_pw_dialog_toast_reload">Nachrichten und Kontakte werden wieder hergestellt...</string>
+    <string name="privacy_pw_dialog_toast_hide">Nachrichten und Kontakte werden zum Verstecken vorbereitet...</string>
+    <string name="privacy_pw_dialog_toast_hide_single">Kontakt wird versteckt...</string>
+
+    <string name="privacy_toast_install_premium">Für diese Funktion benötigen Sie die G DATA Internet Security für Android</string>
+
+    <string name="conversation_activitiy_invite_link">https://www.gdatasoftware.com/</string>
+
+    <string name="preferences_notification_never">Nie</string>
+    <string name="preferences_notification_one_time">1x</string>
+    <string name="preferences_notification_two_times">2x</string>
+    <string name="preferences_notification_three_times">3x</string>
+    <string name="preferences_notification_five_times">5x</string>
+    <string name="preferences_notification_ten_times">10x</string>
+    <string name="preferences_notification_title">Warnungen wiederholen</string>
+</resources>
