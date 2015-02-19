@@ -3,6 +3,7 @@ package de.gdata.messaging.util;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -16,6 +17,7 @@ import com.google.i18n.phonenumbers.Phonenumber;
 
 import org.thoughtcrime.securesms.R;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -178,6 +180,18 @@ public class GUtil {
       }
     }
     return isInstalled;
+  }
+
+  public static void forceOverFlowMenu(Context context) {
+    try {
+      ViewConfiguration config = ViewConfiguration.get(context);
+      Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
+
+      if (menuKeyField != null) {
+        menuKeyField.setAccessible(true);
+        menuKeyField.setBoolean(config, false);
+      }
+    } catch (Exception e) {}
   }
 
   public static String[] addStringArray(String[] a, String[] b) {

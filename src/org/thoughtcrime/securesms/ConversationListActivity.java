@@ -43,6 +43,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -58,6 +59,8 @@ import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+
+import java.lang.reflect.Field;
 
 import de.gdata.messaging.SlidingTabLayout;
 import de.gdata.messaging.TextEncrypter;
@@ -86,6 +89,8 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
     getSupportActionBar().setTitle(R.string.app_name);
     initViewPagerLayout();
+    GUtil.forceOverFlowMenu(getApplicationContext());
+
   }
 
   @Override
