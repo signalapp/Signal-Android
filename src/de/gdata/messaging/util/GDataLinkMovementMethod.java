@@ -99,7 +99,7 @@ public class GDataLinkMovementMethod extends LinkMovementMethod {
         GDDialogFragment dialogFragment = GDDialogFragment.newInstance(GDDialogFragment.TYPE_PHISHING_WARNING, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                //do nothing
+                dialog.dismiss();
             }
         }, new DialogInterface.OnClickListener() {
             @Override
