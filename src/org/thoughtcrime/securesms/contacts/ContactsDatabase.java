@@ -155,9 +155,12 @@ public class ContactsDatabase {
     } else if(new GDataPreferences(context).isPrivacyActivated()) {
       selection     = PrivacyBridge.getContactSelection(context);
       selectionArgs = PrivacyBridge.getContactSelectionArgs(context);
-    } else {
+    } else if(!TextUtils.isEmpty(filter)) {
       selection     = FILTER_SELECTION;
       selectionArgs = new String[]{fuzzyFilter, fuzzyFilter};
+    } else {
+      selection     = null;
+      selectionArgs = null;
     }
     return queryLocalDb(selection, selectionArgs, null);
   }
