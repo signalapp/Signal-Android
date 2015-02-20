@@ -188,7 +188,13 @@ public class WebSocketConnection {
 
           while (newSocket()) {
             try {
-              Response response = webSocket.connect(Client.this);
+              Response response;
+
+              try {
+                response = webSocket.connect(Client.this);
+              } catch (IllegalStateException e) {
+                throw new IOException(e);
+              }
 
               if (response.code() == 101) {
                 onConnected();
