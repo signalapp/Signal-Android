@@ -325,6 +325,12 @@ public class PrivacyBridge {
       return cnt;
 
     }
+
+    @Override
+    protected void onPostExecute(Integer integer) {
+      super.onPostExecute(integer);
+      ConversationListActivity.reloadAdapter();
+    }
   }
 
   public interface NumberEntry extends Parcelable {
