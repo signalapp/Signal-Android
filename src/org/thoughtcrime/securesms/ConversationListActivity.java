@@ -101,15 +101,8 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   @Override
   public void onResume() {
     super.onResume();
-    GDataInitPrivacy.refreshPrivacyData(false);
     dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
-  }
-
-  @Override
-  protected void onPause() {
-    super.onPause();
-    GDataInitPrivacy.refreshPrivacyData(true);
   }
 
   @Override
@@ -455,7 +448,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
                 }
               } else if (CheckPasswordDialogFrag.ACTION_ID == CheckPasswordDialogFrag.ACTION_TOGGLE_VISIBILITY) {
                 new GDataPreferences(mContext).setPrivacyActivated(!new GDataPreferences(mContext).isPrivacyActivated());
-                GDataInitPrivacy.refreshPrivacyData(false);
+                ConversationListActivity.reloadAdapter();
                 String toastText = new GDataPreferences(mContext).isPrivacyActivated()
                     ? mContext.getString(R.string.privacy_pw_dialog_toast_hide) : mContext.getString(R.string.privacy_pw_dialog_toast_reload);
 

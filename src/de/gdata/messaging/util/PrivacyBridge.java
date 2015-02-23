@@ -40,7 +40,7 @@ public class PrivacyBridge {
 
   public static final String RESULT_KEY = "numberpicker_entries";
 
-  private final static String AUTHORITY = "de.gdata.mobilesecurity.privacy.provider";
+  public final static String AUTHORITY = "de.gdata.mobilesecurity.privacy.provider";
   public static final String NAME_COLUMN = ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME;
   public static final String RECIPIENT_IDS = "recipient_ids";
 
@@ -137,7 +137,6 @@ public class PrivacyBridge {
       serviceIsConntected = true;
       mService = IRpcService.Stub.asInterface(service);
       loadHiddenContactsPerService();
-      //mContext.unbindService(mConnection);
     }
 
 
@@ -174,7 +173,6 @@ public class PrivacyBridge {
     } catch (RemoteException e) {
       Log.e("GDATA", "Remote Service Exception");
     }
-    GDataInitPrivacy.AsyncTaskLoadRecipients.isAlreadyLoading = false;
     Log.d("PRIVACY", "Privacy loading contacts done");
   }
 
