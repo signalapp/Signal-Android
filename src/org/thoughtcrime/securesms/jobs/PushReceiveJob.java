@@ -83,7 +83,7 @@ public class PushReceiveJob extends ContextJob {
                                             envelope.getRelay()));
     }
 
-    jobManager.add(new PushDecryptJob(context, messageId));
+    jobManager.add(new PushDecryptJob(context, messageId, envelope.getSource()));
   }
 
   private void handleReceipt(TextSecureEnvelope envelope) {

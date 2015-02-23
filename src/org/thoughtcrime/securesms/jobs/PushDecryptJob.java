@@ -53,10 +53,11 @@ public class PushDecryptJob extends MasterSecretJob {
 
   private final long messageId;
 
-  public PushDecryptJob(Context context, long messageId) {
+  public PushDecryptJob(Context context, long messageId, String sender) {
     super(context, JobParameters.newBuilder()
                                 .withPersistence()
                                 .withRequirement(new MasterSecretRequirement(context))
+                                .withGroupId(sender)
                                 .create());
     this.messageId = messageId;
   }

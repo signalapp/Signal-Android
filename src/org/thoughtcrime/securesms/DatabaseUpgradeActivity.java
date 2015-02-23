@@ -206,7 +206,9 @@ public class DatabaseUpgradeActivity extends BaseActivity {
           while ((pushReader != null && pushReader.moveToNext())) {
             ApplicationContext.getInstance(getApplicationContext())
                 .getJobManager()
-                .add(new PushDecryptJob(getApplicationContext(), pushReader.getLong(pushReader.getColumnIndexOrThrow(PushDatabase.ID))));
+                .add(new PushDecryptJob(getApplicationContext(),
+                                        pushReader.getLong(pushReader.getColumnIndexOrThrow(PushDatabase.ID)),
+                                        pushReader.getString(pushReader.getColumnIndexOrThrow(PushDatabase.SOURCE))));
           }
         } finally {
           if (pushReader != null)
