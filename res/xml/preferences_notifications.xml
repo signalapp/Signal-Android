@@ -45,7 +45,7 @@
     <ListPreference
         android:key="pref_repeat_alerts"
         android:defaultValue="0"
-        android:title="Repeat alerts"
+        android:title="@string/preferences__repeat_alerts"
         android:dependency="pref_key_enable_notifications"
         android:entries="@array/pref_repeat_alerts_entries"
         android:entryValues="@array/pref_repeat_alerts_values" />

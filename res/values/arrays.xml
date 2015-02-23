@@ -186,12 +186,12 @@
   </string-array>
 
   <string-array name="pref_repeat_alerts_entries">
-      <item>Never</item>
-      <item>One time</item>
-      <item>Two times</item>
-      <item>Three times</item>
-      <item>Five times</item>
-      <item>Ten times</item>
+      <item>@string/preferences__never</item>
+      <item>@string/preferences__one_time</item>
+      <item>@string/preferences__two_times</item>
+      <item>@string/preferences__three_times</item>
+      <item>@string/preferences__five_times</item>
+      <item>@string/preferences__ten_times</item>
   </string-array>
 
   <string-array name="pref_repeat_alerts_values" translatable="false">
