@@ -51,7 +51,7 @@ public class TextSecureMessagePipe {
     }
   }
 
-  public void shutdown() throws IOException {
+  public void shutdown() {
     websocket.disconnect();
   }
 
