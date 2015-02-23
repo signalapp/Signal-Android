@@ -713,6 +713,13 @@
     <string name="preferences__change_notification_sound">Change notification sound</string>
     <string name="preferences__inthread_notifications">In-thread notifications</string>
     <string name="preferences__play_inthread_notifications">Play notification sound when viewing an active conversation.</string>
+    <string name="preferences__repeat_alerts">Repeat alerts</string>
+    <string name="preferences__never">Never</string>
+    <string name="preferences__one_time">One time</string>
+    <string name="preferences__two_times">Two times</string>
+    <string name="preferences__three_times">Three times</string>
+    <string name="preferences__five_times">Five times</string>
+    <string name="preferences__ten_times">Ten times</string>
     <string name="preferences__vibrate">Vibrate</string>
     <string name="preferences__also_vibrate_when_notified">Also vibrate when notified</string>
     <string name="preferences__minutes">minutes</string>
