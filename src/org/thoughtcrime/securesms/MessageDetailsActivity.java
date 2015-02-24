@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DateUtils;
+import org.thoughtcrime.securesms.util.DirectoryHelper;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -37,7 +38,6 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
   private ConversationItem conversationItem;
   private ViewGroup        itemParent;
   private ViewGroup        header;
-  private boolean          pushDestination;
   private TextView         sentDate;
   private TextView         receivedDate;
   private View             receivedContainer;
@@ -70,7 +70,6 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     recipientsList = (ListView ) findViewById(R.id.recipients_list);
 
     masterSecret    = getIntent().getParcelableExtra(MASTER_SECRET_EXTRA);
-    pushDestination = getIntent().getBooleanExtra(PUSH_EXTRA, false);
 
     messageObserver = new MessageContentObserver(new Handler());
   }
@@ -119,7 +118,9 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
       toFromRes = R.string.message_details_header__from;
     }
     toFrom.setText(toFromRes);
-    conversationItem.set(masterSecret, messageRecord, new HashSet<MessageRecord>(), null, recipients != messageRecord.getRecipients(), pushDestination);
+    conversationItem.set(masterSecret, messageRecord, new HashSet<MessageRecord>(), null,
+                         recipients != messageRecord.getRecipients(),
+                         DirectoryHelper.isPushDestination(this, recipients));
     recipientsList.setAdapter(new MessageDetailsRecipientAdapter(this, masterSecret, messageRecord, recipients));
   }
 

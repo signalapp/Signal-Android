@@ -90,9 +90,9 @@ public class MessageDetailsRecipient extends RelativeLayout
     final NetworkFailure      networkFailure = getNetworkFailure(record);
     final IdentityKeyMismatch keyMismatch    = networkFailure == null ? getKeyMismatch(record) : null;
 
-    int errorText = -1;
+    String errorText = "";
     if (networkFailure != null) {
-      errorText = R.string.MessageDetailsRecipient_failed_to_send;
+      errorText = getContext().getString(R.string.MessageDetailsRecipient_failed_to_send);
       resendButton.setOnClickListener(new OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -100,7 +100,7 @@ public class MessageDetailsRecipient extends RelativeLayout
         }
       });
     } else if (keyMismatch != null) {
-      errorText = R.string.MessageDetailsRecipient_new_identity;
+      errorText = getContext().getString(R.string.MessageDetailsRecipient_new_identity);
       conflictButton.setOnClickListener(new OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -110,7 +110,7 @@ public class MessageDetailsRecipient extends RelativeLayout
     }
 
     errorDescription.setText(errorText);
-    errorDescription.setVisibility(errorText > -1 ? View.VISIBLE : View.GONE);
+    errorDescription.setVisibility(TextUtils.isEmpty(errorText) ? View.GONE : View.VISIBLE);
     resendButton.setVisibility(networkFailure != null ? View.VISIBLE : View.GONE);
     conflictButton.setVisibility(keyMismatch != null ? View.VISIBLE : View.GONE);
   }

@@ -59,7 +59,6 @@ public class ConversationFragment extends ListFragment
   private MasterSecret masterSecret;
   private Recipients   recipients;
   private long         threadId;
-  private boolean      pushDestination;
   private ActionMode   actionMode;
 
   @Override
@@ -99,11 +98,10 @@ public class ConversationFragment extends ListFragment
   }
 
   private void initializeListAdapter() {
-    pushDestination = DirectoryHelper.isPushDestination(getActivity(), this.recipients);
     if (this.recipients != null && this.threadId != -1) {
       this.setListAdapter(new ConversationAdapter(getActivity(), masterSecret, selectionClickListener,
                                                   (!this.recipients.isSingleRecipient()) || this.recipients.isGroupRecipient(),
-                                                  pushDestination));
+                                                  DirectoryHelper.isPushDestination(getActivity(), this.recipients)));
       getListView().setRecyclerListener((ConversationAdapter)getListAdapter());
       getLoaderManager().initLoader(0, null, this);
     }
@@ -220,7 +218,6 @@ public class ConversationFragment extends ListFragment
     intent.putExtra(MessageDetailsActivity.MASTER_SECRET_EXTRA, masterSecret);
     intent.putExtra(MessageDetailsActivity.MESSAGE_ID_EXTRA, message.getId());
     intent.putExtra(MessageDetailsActivity.TYPE_EXTRA, message.isMms() ? MmsSmsDatabase.MMS_TRANSPORT : MmsSmsDatabase.SMS_TRANSPORT);
-    intent.putExtra(MessageDetailsActivity.PUSH_EXTRA, pushDestination);
     startActivity(intent);
   }
 
