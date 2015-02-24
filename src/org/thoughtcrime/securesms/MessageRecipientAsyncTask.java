@@ -1,3 +1,19 @@
+/**
+ * Copyright (C) 2015 Open Whisper Systems
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package org.thoughtcrime.securesms;
 
 import android.content.Context;
@@ -27,29 +43,18 @@ public abstract class MessageRecipientAsyncTask extends AsyncTask<Void,Void,Resu
 
   private WeakReference<Context> weakContext;
   private MasterSecret           masterSecret;
+  private Cursor                 cursor;
   private String                 type;
-  private long                   messageId;
 
-  public MessageRecipientAsyncTask(Context context, MasterSecret masterSecret, String type, long messageId) {
+  public MessageRecipientAsyncTask(Context context, MasterSecret masterSecret, Cursor cursor, String type) {
     this.weakContext  = new WeakReference<>(context);
     this.masterSecret = masterSecret;
+    this.cursor       = cursor;
     this.type         = type;
-    this.messageId    = messageId;
   }
 
   protected Context getContext() {
     return weakContext.get();
-  }
-
-  private Cursor getCursor(Context context, String type, long messageId) {
-    switch (type) {
-      case MmsSmsDatabase.SMS_TRANSPORT:
-        return DatabaseFactory.getEncryptingSmsDatabase(context).getMessage(messageId);
-      case MmsSmsDatabase.MMS_TRANSPORT:
-        return DatabaseFactory.getMmsDatabase(context).getMessage(messageId);
-      default:
-        throw new AssertionError("no valid message type specified");
-    }
   }
 
   private MessageRecord getMessageRecord(Context context, Cursor cursor, String type) {
@@ -74,7 +79,6 @@ public abstract class MessageRecipientAsyncTask extends AsyncTask<Void,Void,Resu
       Log.w(TAG, "associated context is destroyed, finishing early");
     }
 
-    Cursor        cursor        = getCursor(context, type, messageId);
     MessageRecord messageRecord = getMessageRecord(context, cursor, type);
     Recipients    recipients;
 

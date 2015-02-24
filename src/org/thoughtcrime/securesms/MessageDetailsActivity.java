@@ -1,15 +1,26 @@
+/**
+ * Copyright (C) 2015 Open Whisper Systems
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package org.thoughtcrime.securesms;
 
-import android.database.ContentObserver;
 import android.database.Cursor;
-import android.database.DataSetObserver;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
 import android.util.Log;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +28,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.loaders.MessageDetailsLoader;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DateUtils;
@@ -26,7 +38,7 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.HashSet;
 
-public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity {
+public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity implements LoaderCallbacks<Cursor> {
   private final static String TAG = MessageDetailsActivity.class.getSimpleName();
 
   public final static String MASTER_SECRET_EXTRA = "master_secret";
@@ -45,8 +57,6 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
   private TextView         toFrom;
   private ListView         recipientsList;
   private LayoutInflater   inflater;
-  private Cursor           messageCursor;
-  private ContentObserver  messageObserver;
 
   @Override
   public void onCreate(Bundle bundle) {
@@ -55,23 +65,14 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
 
     initializeResources();
 
-    refreshContent();
-  }
-
-  @Override
-  public void onDestroy() {
-    super.onDestroy();
-    changeObservedCursor(null);
+    getSupportLoaderManager().initLoader(0, null, this);
   }
 
   private void initializeResources() {
     inflater       = LayoutInflater.from(this);
     itemParent     = (ViewGroup) findViewById(R.id.item_container );
     recipientsList = (ListView ) findViewById(R.id.recipients_list);
-
-    masterSecret    = getIntent().getParcelableExtra(MASTER_SECRET_EXTRA);
-
-    messageObserver = new MessageContentObserver(new Handler());
+    masterSecret   = getIntent().getParcelableExtra(MASTER_SECRET_EXTRA);
   }
 
   private void updateTransport(MessageRecord messageRecord) {
@@ -150,25 +151,21 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     }
   }
 
-  private void changeObservedCursor(Cursor newCursor) {
-    if (messageCursor != null) messageCursor.unregisterContentObserver(messageObserver);
-    if (newCursor != null)     newCursor.registerContentObserver(messageObserver);
-    messageCursor = newCursor;
+  @Override
+  public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+    return new MessageDetailsLoader(this, getIntent().getStringExtra(TYPE_EXTRA),
+                                    getIntent().getLongExtra(MESSAGE_ID_EXTRA, -1));
   }
 
-  private void refreshContent() {
-    new MessageRecipientAsyncTask(this, masterSecret,
-                                  getIntent().getStringExtra(TYPE_EXTRA),
-                                  getIntent().getLongExtra(MESSAGE_ID_EXTRA, -1))
-    {
+  @Override
+  public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+    new MessageRecipientAsyncTask(this, masterSecret, cursor, getIntent().getStringExtra(TYPE_EXTRA)) {
       @Override
       public void onPostExecute(Result result) {
         if (getContext() == null) {
           Log.w(TAG, "AsyncTask finished with a destroyed context, leaving early.");
           return;
         }
-
-        changeObservedCursor(result.cursor);
 
         inflateMessageViewIfAbsent(result.messageRecord);
         inflateHeaderIfAbsent();
@@ -180,15 +177,8 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     }.execute();
   }
 
-  private class MessageContentObserver extends ContentObserver {
-    private MessageContentObserver(Handler handler) {
-      super(handler);
-    }
-
-    @Override
-    public void onChange(boolean selfChange, Uri uri) {
-      super.onChange(selfChange, uri);
-      refreshContent();
-    }
+  @Override
+  public void onLoaderReset(Loader<Cursor> loader) {
+    recipientsList.setAdapter(null);
   }
 }
