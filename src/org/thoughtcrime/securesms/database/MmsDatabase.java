@@ -348,10 +348,11 @@ public class MmsDatabase extends MessagingDatabase {
 
   public Cursor getMessage(long messageId) {
     SQLiteDatabase db = databaseHelper.getReadableDatabase();
-    return db.query(TABLE_NAME, MMS_PROJECTION, ID_WHERE, new String[] {messageId+""},
-                    null, null, null);
+    Cursor cursor = db.query(TABLE_NAME, MMS_PROJECTION, ID_WHERE, new String[] {messageId+""},
+                             null, null, null);
+    setNotifyConverationListeners(cursor, getThreadIdForMessage(messageId));
+    return cursor;
   }
-
 
   public void updateResponseStatus(long messageId, int status) {
     SQLiteDatabase database     = databaseHelper.getWritableDatabase();

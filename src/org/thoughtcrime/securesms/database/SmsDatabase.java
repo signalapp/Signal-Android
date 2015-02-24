@@ -508,9 +508,11 @@ public class SmsDatabase extends MessagingDatabase {
   }
 
   public Cursor getMessage(long messageId) {
-    SQLiteDatabase db = databaseHelper.getReadableDatabase();
-    return db.query(TABLE_NAME, MESSAGE_PROJECTION, ID_WHERE, new String[] {messageId+""},
-                    null, null, null);
+    SQLiteDatabase db     = databaseHelper.getReadableDatabase();
+    Cursor         cursor = db.query(TABLE_NAME, MESSAGE_PROJECTION, ID_WHERE, new String[]{messageId + ""},
+                                     null, null, null);
+    setNotifyConverationListeners(cursor, getThreadIdForMessage(messageId));
+    return cursor;
   }
 
   public void deleteMessage(long messageId) {

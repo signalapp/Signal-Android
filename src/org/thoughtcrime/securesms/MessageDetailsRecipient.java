@@ -83,51 +83,58 @@ public class MessageDetailsRecipient extends RelativeLayout
     fromView.setText(formatFrom(recipient));
 
     setContactPhoto(recipient);
-
-    boolean hasNetworkFailures = populateNetworkFailures(masterSecret, record);
-    boolean hasConflicts       = !hasNetworkFailures && populateConflicts(masterSecret, record);
-
-    resendButton.setVisibility(hasNetworkFailures || hasConflicts ? View.VISIBLE : View.GONE);
-    conflictButton.setVisibility(hasConflicts ? View.VISIBLE : View.GONE);
-    errorDescription.setVisibility(hasNetworkFailures ? View.VISIBLE : View.GONE);
+    setIssueIndicators(masterSecret, record);
   }
 
-  private boolean populateNetworkFailures(final MasterSecret masterSecret, final MessageRecord record) {
-    boolean applicableFailures = false;
+  private void setIssueIndicators(final MasterSecret masterSecret, final MessageRecord record) {
+    final NetworkFailure      networkFailure = getNetworkFailure(record);
+    final IdentityKeyMismatch keyMismatch    = networkFailure == null ? getKeyMismatch(record) : null;
+
+    int errorText = -1;
+    if (networkFailure != null) {
+      errorText = R.string.MessageDetailsRecipient_failed_to_send;
+      resendButton.setOnClickListener(new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+          new ResendAsyncTask(masterSecret, record, networkFailure).execute();
+        }
+      });
+    } else if (keyMismatch != null) {
+      errorText = R.string.MessageDetailsRecipient_new_identity;
+      conflictButton.setOnClickListener(new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+          new ConfirmIdentityDialog(getContext(), masterSecret, record, keyMismatch).show();
+        }
+      });
+    }
+
+    errorDescription.setText(errorText);
+    errorDescription.setVisibility(errorText > -1 ? View.VISIBLE : View.GONE);
+    resendButton.setVisibility(networkFailure != null ? View.VISIBLE : View.GONE);
+    conflictButton.setVisibility(keyMismatch != null ? View.VISIBLE : View.GONE);
+  }
+
+  private NetworkFailure getNetworkFailure(final MessageRecord record) {
     if (record.hasNetworkFailures()) {
       for (final NetworkFailure failure : record.getNetworkFailures()) {
         if (failure.getRecipientId() == recipient.getRecipientId()) {
-          applicableFailures = true;
-          errorDescription.setText(R.string.MessageDetailsRecipient_failed_to_send);
-          resendButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-              new ResendAsyncTask(masterSecret, record, failure).execute();
-            }
-          });
+          return failure;
         }
       }
     }
-    return applicableFailures;
+    return null;
   }
 
-  private boolean populateConflicts(final MasterSecret masterSecret, final MessageRecord record) {
-    boolean applicableFailures = false;
+  private IdentityKeyMismatch getKeyMismatch(final MessageRecord record) {
     if (record.isIdentityMismatchFailure()) {
       for (final IdentityKeyMismatch mismatch : record.getIdentityKeyMismatches()) {
         if (mismatch.getRecipientId() == recipient.getRecipientId()) {
-          applicableFailures = true;
-          errorDescription.setText(R.string.MessageDetailsRecipient_new_identity);
-          conflictButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-              new ConfirmIdentityDialog(getContext(), masterSecret, record, mismatch).show();
-            }
-          });
+          return mismatch;
         }
       }
     }
-    return applicableFailures;
+    return null;
   }
 
   public void unbind() {
