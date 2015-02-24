@@ -463,7 +463,9 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
                 }
               }
             } else {
-              Toast.makeText(getActivity(), getString(R.string.privacy_pw_dialog_toast_wrong), Toast.LENGTH_LONG).show();
+              if(isAdded()) {
+                Toast.makeText(mContext, getString(R.string.privacy_pw_dialog_toast_wrong), Toast.LENGTH_LONG).show();
+              }
             }
           } catch (RemoteException e) {
             Log.e("GDATA", e.getMessage());
