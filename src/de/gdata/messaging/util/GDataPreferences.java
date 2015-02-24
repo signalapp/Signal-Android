@@ -72,7 +72,6 @@ public class GDataPreferences {
     }
     mPreferences.edit().putString(SAVED_HIDDEN_RECIPIENTS, new Gson().toJson(recIds)).commit();
   }
-
   public ArrayList<Recipient> getSavedHiddenRecipients() {
     Type listType = new TypeToken<ArrayList<Long>>() {
     }.getType();
@@ -83,26 +82,6 @@ public class GDataPreferences {
     }
     return hiddenRecipients != null ? hiddenRecipients : new ArrayList<Recipient>();
   }
-
-  public void saveAllRecipients(ArrayList<Recipient> hiddenRecipients) {
-    ArrayList<Long> recIds = new ArrayList<Long>();
-    for (Recipient recipient : hiddenRecipients) {
-      recIds.add(recipient.getRecipientId());
-    }
-    mPreferences.edit().putString(SAVED_RECIPIENTS, new Gson().toJson(recIds)).commit();
-  }
-
-  public ArrayList<Recipient> getSavedAllRecipients() {
-    Type listType = new TypeToken<ArrayList<Long>>() {
-    }.getType();
-    ArrayList<Long> recipients = new Gson().fromJson(mPreferences.getString(SAVED_RECIPIENTS, new Gson().toJson(new ArrayList<Long>())), listType);
-    ArrayList<Recipient> allRecipients = new ArrayList<Recipient>();
-    for (Long recId : recipients) {
-      allRecipients.add(RecipientFactory.getRecipientForId(mContext, recId, false));
-    }
-    return allRecipients != null ? allRecipients : new ArrayList<Recipient>();
-  }
-
   public String getApplicationFont() {
     return mPreferences.getString(APPLICATION_FONT, "");
   }

@@ -44,7 +44,6 @@ public class PrivacyBridge {
   public static final String NAME_COLUMN = ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME;
   public static final String RECIPIENT_IDS = "recipient_ids";
 
-  private static ArrayList<Recipient> allRecipients;
   private static ArrayList<Recipient> hiddenRecipients;
   private static ArrayList<Contact> allPhoneContacts;
 
@@ -69,24 +68,6 @@ public class PrivacyBridge {
     }
     return recipients;
   }
-
-  public static ArrayList<Recipient> loadAllRecipients(Context context) {
-    ArrayList<Contact> listContacts = new ArrayList<Contact>();
-    ArrayList<Recipient> listRecipients = new ArrayList<Recipient>();
-    listContacts = getAllPhoneContacts(context, false);
-
-    for (Contact contact : listContacts) {
-      Recipients recs = getRecipientForNumber(context, contact.numbers.size() > 0 ? contact.numbers.get(0).number + "" : "");
-
-      if (recs != null && recs.getPrimaryRecipient() != null && recs.getPrimaryRecipient().getNumber() != null) {
-        listRecipients.add(recs.getPrimaryRecipient());
-      }
-    }
-    new GDataPreferences(context).saveAllRecipients(listRecipients);
-    allRecipients = listRecipients;
-    return listRecipients;
-  }
-
   public static Contact getPhoneContactForDisplayName(String name, Context context) {
     ArrayList<Contact> listContacts = new ArrayList<Contact>();
     listContacts = getAllPhoneContacts(context, false);
@@ -116,17 +97,6 @@ public class PrivacyBridge {
     }
     return hiddenRecipients;
   }
-
-  public static ArrayList<Recipient> getAllRecipients(Context context, boolean fully) {
-    if (allRecipients == null) {
-      allRecipients = new GDataPreferences(context).getSavedAllRecipients();
-    }
-    if (allRecipients.size() <= 0 || fully) {
-      allRecipients = loadAllRecipients(context);
-    }
-    return allRecipients;
-  }
-
   private static IRpcService mService = null;
   private static boolean serviceIsConntected = false;
   private static Context mContext;
@@ -152,7 +122,7 @@ public class PrivacyBridge {
       new GDataPreferences(mContext).setPremiumInstalled(mService.hasPremiumEnabled());
       Type listType = new TypeToken<ArrayList<String>>() {
       }.getType();
-      ArrayList<Recipient> recipients = getAllRecipients(mContext, false);
+     // ArrayList<Recipient> recipients = getAllRecipients(mContext, false);
       ArrayList newHiddenRecipients = new ArrayList<Recipient>();
       String suppressedNumbers = mService.getSupressedNumbers();
       ArrayList<String> hiddenNumbers = new ArrayList<String>();
@@ -160,10 +130,8 @@ public class PrivacyBridge {
       if (suppressedNumbers != null) {
         hiddenNumbers = new Gson().fromJson(suppressedNumbers, listType);
       }
-      for (Recipient recipient : recipients) {
-        if (hiddenNumbers.contains(GUtil.normalizeNumber(recipient.getNumber()))) {
-          newHiddenRecipients.add(recipient);
-        }
+      for (String number : hiddenNumbers) {
+        newHiddenRecipients.add(getRecipientForNumber(mContext ,number).getPrimaryRecipient());
       }
       new GDataPreferences(mContext).saveHiddenRecipients(newHiddenRecipients);
       hiddenRecipients = newHiddenRecipients;
@@ -269,22 +237,19 @@ public class PrivacyBridge {
   public static void addContactToPrivacy(String displayName, List<String> numbers) {
     ArrayList<PrivacyBridge.NumberEntry> entries = new ArrayList<>();
     Entry entry = new Entry(displayName, numbers, 0L, Entry.TYPE_CONTACT);
+    if (GUtil.isValidPhoneNumber(displayName)) {
+      entry = new Entry("unknown", numbers);
+    }
     entries.add(entry);
-    Toast.makeText(mContext, mContext.getString(R.string.privacy_pw_dialog_toast_hide_single), Toast.LENGTH_LONG).show();
+    Toast.makeText(mContext, mContext.getString(R.string.privacy_pw_dialog_toast_hide_single) + " " + entry.getName(), Toast.LENGTH_LONG).show();
     new AddTask().execute(entries);
   }
-
-  public static void addContactsToPrivacy(ArrayList<PrivacyBridge.NumberEntry> entries) {
-    new AddTask().execute(entries);
-  }
-
   public static ArrayList<Contact> getAllPhoneContacts(Context mContext, boolean reload) {
     if (reload || allPhoneContacts == null) {
       allPhoneContacts = new ContactFetcher(mContext).fetchAll();
     }
     return allPhoneContacts;
   }
-
   private static class AddTask extends AsyncTask<List<NumberEntry>, Integer, Integer> {
     @Override
     protected Integer doInBackground(final List<NumberEntry>... arrayLists) {
@@ -296,15 +261,21 @@ public class PrivacyBridge {
 
       if (entries == null || entries.size() == 0) return 0;
 
+      String id = "";
+      String number = "";
       final ContentResolver contentResolver = mContext.getContentResolver();
       List<ContentValues> contacts = new ArrayList<ContentValues>();
       List<ContentValues> numbers = new ArrayList<ContentValues>();
       for (final NumberEntry e : entries) {
         final ContentValues cv = new ContentValues(3);
+        id = new ContactFetcher(mContext).fetchContactsId(mContext, e.getNumbers().get(0));
+        number = "";
+
         if (e.getNumbers().size() > 0) {
           cv.put("number", e.getNumbers().get(0));
+          number = e.getNumbers().get(0);
         }
-        cv.put("id", new ContactFetcher(mContext).fetchContactsId(mContext, e.getNumbers().get(0)));
+        cv.put("id", id);
         if (e.isContact()) {
           contacts.add(cv);
         } else {
@@ -312,14 +283,17 @@ public class PrivacyBridge {
         }
       }
       int cnt = 0;
-      if (contacts.size() > 0) {
-        cnt += contentResolver.bulkInsert(hiddenContactsUri.buildUpon().appendPath(String.valueOf(0)).build(),
-            contacts.toArray(new ContentValues[contacts.size()]));
+      if (GUtil.isValidPhoneNumber(number) && !id.equals("-1")) {
+        if (contacts.size() > 0) {
+          cnt += contentResolver.bulkInsert(hiddenContactsUri.buildUpon().appendPath(String.valueOf(0)).build(),
+              contacts.toArray(new ContentValues[contacts.size()]));
+        }
       }
       if (numbers.size() > 0) {
-        cnt += contentResolver.bulkInsert(hiddenNumbersUri,
+        cnt += contentResolver.bulkInsert(hiddenNumbersUri.buildUpon().appendPath(String.valueOf(0)).build(),
             numbers.toArray(new ContentValues[numbers.size()]));
       }
+
       return cnt;
 
     }

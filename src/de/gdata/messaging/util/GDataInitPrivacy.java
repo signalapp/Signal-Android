@@ -64,15 +64,12 @@ public class GDataInitPrivacy {
       new AsyncTaskLoadRecipients().execute(fullReload);
     }
   }
-
   public static class AsyncTaskLoadRecipients extends AsyncTask<Boolean, Void, String> {
     public static boolean isAlreadyLoading = false;
 
     @Override
     protected String doInBackground(Boolean... params) {
-      PrivacyBridge.getAllRecipients(mContext, params[0]);
       PrivacyBridge.loadAllHiddenContacts(mContext);
-      PrivacyBridge.getAllPhoneContacts(mContext, false);
       GDataInitPrivacy.AsyncTaskLoadRecipients.isAlreadyLoading = false;
       return null;
     }
@@ -86,7 +83,6 @@ public class GDataInitPrivacy {
     protected void onProgressUpdate(Void... values) {
     }
   }
-
   private ServiceConnection mConnection = new ServiceConnection() {
     public IRpcService mService;
 

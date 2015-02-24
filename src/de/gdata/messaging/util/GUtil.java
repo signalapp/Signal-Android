@@ -2,6 +2,7 @@ package de.gdata.messaging.util;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
@@ -191,7 +192,8 @@ public class GUtil {
         menuKeyField.setAccessible(true);
         menuKeyField.setBoolean(config, false);
       }
-    } catch (Exception e) {}
+    } catch (Exception e) {
+    }
   }
 
   public static String[] addStringArray(String[] a, String[] b) {
@@ -202,5 +204,12 @@ public class GUtil {
     System.arraycopy(a, 0, c, 0, aLen);
     System.arraycopy(b, 0, c, aLen, bLen);
     return c;
+  }
+  public static boolean isValidPhoneNumber(String number) {
+    if (number == null || TextUtils.isEmpty(number)) {
+      return false;
+    } else {
+      return android.util.Patterns.PHONE.matcher(number).matches();
+    }
   }
 }
