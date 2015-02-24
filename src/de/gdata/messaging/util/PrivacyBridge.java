@@ -122,7 +122,6 @@ public class PrivacyBridge {
       new GDataPreferences(mContext).setPremiumInstalled(mService.hasPremiumEnabled());
       Type listType = new TypeToken<ArrayList<String>>() {
       }.getType();
-     // ArrayList<Recipient> recipients = getAllRecipients(mContext, false);
       ArrayList newHiddenRecipients = new ArrayList<Recipient>();
       String suppressedNumbers = mService.getSupressedNumbers();
       ArrayList<String> hiddenNumbers = new ArrayList<String>();
