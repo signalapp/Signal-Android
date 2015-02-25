@@ -375,7 +375,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
       @Override
       public void onPageSelected(int i) {
         new GDataPreferences(getApplicationContext()).setViewPagerLastPage(i);
-        invalidateOptionsMenu();
+        supportInvalidateOptionsMenu();
       }
 
       @Override
