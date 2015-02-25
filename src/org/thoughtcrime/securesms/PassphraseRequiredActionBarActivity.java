@@ -14,7 +14,6 @@ public class PassphraseRequiredActionBarActivity extends ActionBarActivity imple
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    new GDataInitPrivacy().init(getApplicationContext());
     delegate.onCreate(this);
   }
 

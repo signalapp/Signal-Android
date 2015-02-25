@@ -90,7 +90,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     getSupportActionBar().setTitle(R.string.app_name);
     initViewPagerLayout();
     GUtil.forceOverFlowMenu(getApplicationContext());
-
+    new GDataInitPrivacy().init(getApplicationContext());
   }
 
   @Override

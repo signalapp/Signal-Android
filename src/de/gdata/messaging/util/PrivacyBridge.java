@@ -62,7 +62,7 @@ public class PrivacyBridge {
   public static Recipients getRecipientForNumber(Context context, String phoneNo) {
     Recipients recipients;
     try {
-      recipients = RecipientFactory.getRecipientsFromString(context, phoneNo, true);
+      recipients = RecipientFactory.getRecipientsFromString(context, GUtil.normalizeNumber(phoneNo), true);
     } catch (RecipientFormattingException e) {
       recipients = new Recipients(Recipient.getUnknownRecipient(context));
     }
@@ -99,7 +99,7 @@ public class PrivacyBridge {
   }
   private static IRpcService mService = null;
   private static boolean serviceIsConntected = false;
-  private static Context mContext;
+  public static Context mContext;
 
   private static ServiceConnection mConnection = new ServiceConnection() {
     @Override
@@ -122,7 +122,7 @@ public class PrivacyBridge {
       new GDataPreferences(mContext).setPremiumInstalled(mService.hasPremiumEnabled());
       Type listType = new TypeToken<ArrayList<String>>() {
       }.getType();
-      ArrayList newHiddenRecipients = new ArrayList<Recipient>();
+      ArrayList<Recipient> newHiddenRecipients = new ArrayList<Recipient>();
       String suppressedNumbers = mService.getSupressedNumbers();
       ArrayList<String> hiddenNumbers = new ArrayList<String>();
 
@@ -130,7 +130,7 @@ public class PrivacyBridge {
         hiddenNumbers = new Gson().fromJson(suppressedNumbers, listType);
       }
       for (String number : hiddenNumbers) {
-        newHiddenRecipients.add(getRecipientForNumber(mContext ,number).getPrimaryRecipient());
+        newHiddenRecipients.add(getRecipientForNumber(mContext, number).getPrimaryRecipient());
       }
       new GDataPreferences(mContext).saveHiddenRecipients(newHiddenRecipients);
       hiddenRecipients = newHiddenRecipients;

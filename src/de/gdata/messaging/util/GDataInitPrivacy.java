@@ -24,6 +24,7 @@ public class GDataInitPrivacy {
     GDataPreferences preferences = new GDataPreferences(context);
     preferences.setApplicationFont("Roboto-Light.ttf");
     mContext = context;
+    PrivacyBridge.mContext = context;
     boolean isfaIsInstalled = context.bindService(new Intent(GDataPreferences.INTENT_ACCESS_SERVER), mConnection, Context.BIND_AUTO_CREATE);
     if (!isfaIsInstalled) {
       new GDataPreferences(mContext).setPremiumInstalled(false);
@@ -54,9 +55,8 @@ public class GDataInitPrivacy {
               hiddenNumbersUri,
               true,
               privacyContentObserver);
-
-      refreshPrivacyData(false);
     }
+    refreshPrivacyData(false);
   }
 
   public static void refreshPrivacyData(boolean fullReload) {
