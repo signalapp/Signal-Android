@@ -100,10 +100,13 @@ public class ConversationFragment extends ListFragment
     @Override
   public void onResume() {
     super.onResume();
-
-    getActivity().bindService(new Intent(GDataPreferences.INTENT_ACCESS_SERVER), mConnection, Context.BIND_AUTO_CREATE);
+    try {
+      getActivity().bindService(new Intent(GDataPreferences.INTENT_ACCESS_SERVER), mConnection, Context.BIND_AUTO_CREATE);
+      } catch (java.lang.SecurityException e) {
+      Log.e("GDATA", "Remote Service Exception:  " + "wrong signatures " + e.getMessage());
+      }
     mIsBound = true;
-    }
+  }
 
     @Override
   public void onAttach(Activity activity) {

@@ -415,7 +415,11 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
               new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog,
                                     int whichButton) {
-                  getActivity().bindService(new Intent(GDataPreferences.INTENT_ACCESS_SERVER), mConnection, Context.BIND_AUTO_CREATE);
+                  try {
+                    getActivity().bindService(new Intent(GDataPreferences.INTENT_ACCESS_SERVER), mConnection, Context.BIND_AUTO_CREATE);
+                  } catch (java.lang.SecurityException e) {
+                    Log.e("GDATA", "Remote Service Exception:  " + "wrong signatures " + e.getMessage());
+                  }
                 }
               })
           .setNegativeButton(getString(R.string.picker_cancel),

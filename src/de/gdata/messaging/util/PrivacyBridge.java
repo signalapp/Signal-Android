@@ -84,8 +84,12 @@ public class PrivacyBridge {
   public static void loadAllHiddenContacts(Context context) {
     mContext = context;
     if (!serviceIsConntected) {
-      context.bindService(new Intent(GDataPreferences.INTENT_ACCESS_SERVER),
-          mConnection, Context.BIND_AUTO_CREATE);
+      try {
+        context.bindService(new Intent(GDataPreferences.INTENT_ACCESS_SERVER),
+            mConnection, Context.BIND_AUTO_CREATE);
+      } catch (java.lang.SecurityException e) {
+        Log.e("GDATA", "Remote Service Exception:  " + "wrong signatures " + e.getMessage());
+      }
     } else {
       loadHiddenContactsPerService();
     }

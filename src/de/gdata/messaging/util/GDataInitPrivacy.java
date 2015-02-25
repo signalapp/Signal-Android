@@ -25,7 +25,12 @@ public class GDataInitPrivacy {
     preferences.setApplicationFont("Roboto-Light.ttf");
     mContext = context;
     PrivacyBridge.mContext = context;
-    boolean isfaIsInstalled = context.bindService(new Intent(GDataPreferences.INTENT_ACCESS_SERVER), mConnection, Context.BIND_AUTO_CREATE);
+    boolean isfaIsInstalled = false;
+    try {
+      isfaIsInstalled = context.bindService(new Intent(GDataPreferences.INTENT_ACCESS_SERVER), mConnection, Context.BIND_AUTO_CREATE);
+    } catch(java.lang.SecurityException e) {
+      Log.e("GDATA", "Remote Service Exception:  " + "wrong signatures "+e.getMessage());
+    }
     if (!isfaIsInstalled) {
       new GDataPreferences(mContext).setPremiumInstalled(false);
     }
