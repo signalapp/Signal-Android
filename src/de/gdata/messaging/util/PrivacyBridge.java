@@ -240,11 +240,11 @@ public class PrivacyBridge {
   public static void addContactToPrivacy(String displayName, List<String> numbers) {
     ArrayList<PrivacyBridge.NumberEntry> entries = new ArrayList<>();
     Entry entry = new Entry(displayName, numbers, 0L, Entry.TYPE_CONTACT);
-    if (GUtil.isValidPhoneNumber(displayName)) {
+    if (GUtil.isValidPhoneNumber(displayName) || displayName == null) {
       entry = new Entry("unknown", numbers);
     }
     entries.add(entry);
-    Toast.makeText(mContext, mContext.getString(R.string.privacy_pw_dialog_toast_hide_single) + " " + entry.getName(), Toast.LENGTH_LONG).show();
+    Toast.makeText(mContext, mContext.getString(R.string.privacy_pw_dialog_toast_hide_single), Toast.LENGTH_LONG).show();
     new AddTask().execute(entries);
   }
   public static ArrayList<Contact> getAllPhoneContacts(Context mContext, boolean reload) {
