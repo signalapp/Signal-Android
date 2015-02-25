@@ -115,6 +115,27 @@ public class DirectoryHelper {
     }
   }
 
+  public static boolean isSmsFallbackAllowed(Context context, Recipients recipients) {
+    try {
+      if (recipients == null || !recipients.isSingleRecipient() || recipients.isGroupRecipient()) {
+        return false;
+      }
+
+      final String number = recipients.getPrimaryRecipient().getNumber();
+
+      if (number == null) {
+        return false;
+      }
+
+      final String e164number = Util.canonicalizeNumber(context, number);
+
+      return TextSecureDirectory.getInstance(context).isSmsFallbackSupported(e164number);
+    } catch (InvalidNumberException e) {
+      Log.w(TAG, e);
+      return false;
+    }
+  }
+
   public static interface DirectoryUpdateFinishedListener {
     public void onUpdateFinished();
   }

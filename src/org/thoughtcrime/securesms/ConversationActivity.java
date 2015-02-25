@@ -68,6 +68,7 @@ import org.thoughtcrime.securesms.database.DraftDatabase.Draft;
 import org.thoughtcrime.securesms.database.DraftDatabase.Drafts;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsColumns.Types;
+import org.thoughtcrime.securesms.database.TextSecureDirectory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
 import org.thoughtcrime.securesms.mms.AttachmentTypeSelectorAdapter;
@@ -681,25 +682,29 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void initializeSecurity() {
-    SessionStore sessionStore      = new TextSecureSessionStore(this, masterSecret);
-    Recipient  primaryRecipient    = getRecipients() == null ? null : getRecipients().getPrimaryRecipient();
-    boolean    isPushDestination   = DirectoryHelper.isPushDestination(this, getRecipients());
-    boolean    isSecureDestination = isSingleConversation() && sessionStore.containsSession(primaryRecipient.getRecipientId(),
-                                                                                            PushAddress.DEFAULT_DEVICE_ID);
+    SessionStore sessionStore           = new TextSecureSessionStore(this, masterSecret);
+    Recipient    primaryRecipient       = getRecipients() == null ? null : getRecipients().getPrimaryRecipient();
+    boolean      isPushDestination      = DirectoryHelper.isPushDestination(this, getRecipients());
+    boolean      isSecureSmsAllowed     = (!isPushDestination || DirectoryHelper.isSmsFallbackAllowed(this, getRecipients()));
+    boolean      isSecureSmsDestination = isSecureSmsAllowed     &&
+                                          isSingleConversation() &&
+                                          sessionStore.containsSession(primaryRecipient.getRecipientId(),
+                                                                         PushAddress.DEFAULT_DEVICE_ID);
 
-    if (isPushDestination || isSecureDestination) {
+    if (isPushDestination || isSecureSmsDestination) {
       this.isEncryptedConversation = true;
     } else {
       this.isEncryptedConversation = false;
     }
 
     sendButton.initializeAvailableTransports(!recipients.isSingleRecipient() || attachmentManager.isAttachmentPresent());
-    if (!isPushDestination  ) sendButton.disableTransport("textsecure");
-    if (!isSecureDestination) sendButton.disableTransport("secure_sms");
+    if (!isPushDestination           ) sendButton.disableTransport("textsecure");
+    if (!isSecureSmsDestination      ) sendButton.disableTransport("secure_sms");
+    if (recipients.isGroupRecipient()) sendButton.disableTransport("insecure_sms");
 
     if (isPushDestination) {
       sendButton.setDefaultTransport("textsecure");
-    } else if (isSecureDestination) {
+    } else if (isSecureSmsDestination) {
       sendButton.setDefaultTransport("secure_sms");
     } else {
       sendButton.setDefaultTransport("insecure_sms");
