@@ -17,20 +17,16 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Handler;
-import android.text.Spannable;
-import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
-import android.text.style.StyleSpan;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import org.thoughtcrime.securesms.components.RecipientListItem;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -42,14 +38,14 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
 
 /**
- * A simple view to show the recipients of an open conversation
+ * A simple view to show the recipients of a message
  *
  * @author Jake McGinty
  */
-public class MessageDetailsRecipient extends RelativeLayout
-                                  implements Recipient.RecipientModifiedListener
+public class MessageRecipientListItem extends RecipientListItem
+                                   implements Recipient.RecipientModifiedListener
 {
-  private final static String TAG = MessageDetailsRecipient.class.getSimpleName();
+  private final static String TAG = MessageRecipientListItem.class.getSimpleName();
 
   private Recipient  recipient;
   private TextView   fromView;
@@ -60,11 +56,11 @@ public class MessageDetailsRecipient extends RelativeLayout
 
   private final Handler handler = new Handler();
 
-  public MessageDetailsRecipient(Context context) {
+  public MessageRecipientListItem(Context context) {
     super(context);
   }
 
-  public MessageDetailsRecipient(Context context, AttributeSet attrs) {
+  public MessageRecipientListItem(Context context, AttributeSet attrs) {
     super(context, attrs);
   }
 
@@ -82,7 +78,7 @@ public class MessageDetailsRecipient extends RelativeLayout
     recipient.addListener(this);
     fromView.setText(formatFrom(recipient));
 
-    setContactPhoto(recipient);
+    setContactPhoto(contactPhotoImage, recipient, false);
     setIssueIndicators(masterSecret, record);
   }
 
@@ -141,38 +137,13 @@ public class MessageDetailsRecipient extends RelativeLayout
     if (this.recipient != null) this.recipient.removeListener(this);
   }
 
-  private void setContactPhoto(final Recipient recipient) {
-    if (recipient == null) return;
-    contactPhotoImage.setImageBitmap(recipient.getContactPhoto());
-  }
-
-  private CharSequence formatFrom(Recipient from) {
-    final String fromString;
-    final boolean isUnnamedGroup = from.isGroupRecipient() && TextUtils.isEmpty(from.getName());
-    if (isUnnamedGroup) {
-      fromString = getContext().getString(R.string.ConversationActivity_unnamed_group);
-    } else {
-      fromString = from.toShortString();
-    }
-    SpannableStringBuilder builder = new SpannableStringBuilder(fromString);
-
-    final int typeface;
-    if (isUnnamedGroup) typeface = Typeface.ITALIC;
-    else                typeface = Typeface.NORMAL;
-
-    builder.setSpan(new StyleSpan(typeface), 0, builder.length(),
-                    Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
-
-    return builder;
-  }
-
   @Override
   public void onModified(final Recipient recipient) {
     handler.post(new Runnable() {
       @Override
       public void run() {
         fromView.setText(formatFrom(recipient));
-        setContactPhoto(recipient);
+        setContactPhoto(contactPhotoImage, recipient, false);
       }
     });
   }

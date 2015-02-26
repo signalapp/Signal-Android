@@ -19,7 +19,6 @@ public class MessageDetailsRecipientAdapter extends BaseAdapter implements AbsLi
   private Recipients    recipients;
 
   public MessageDetailsRecipientAdapter(Context context, MasterSecret masterSecret, MessageRecord record, Recipients recipients) {
-    super();
     this.context      = context;
     this.masterSecret = masterSecret;
     this.record       = record;
@@ -47,13 +46,13 @@ public class MessageDetailsRecipientAdapter extends BaseAdapter implements AbsLi
       convertView = LayoutInflater.from(context).inflate(R.layout.message_details_recipient, parent, false);
     }
 
-    ((MessageDetailsRecipient)convertView).set(masterSecret, record, recipients, position);
+    ((MessageRecipientListItem)convertView).set(masterSecret, record, recipients, position);
     return convertView;
   }
 
   @Override
   public void onMovedToScrapHeap(View view) {
-    ((MessageDetailsRecipient)view).unbind();
+    ((MessageRecipientListItem)view).unbind();
   }
 
 }

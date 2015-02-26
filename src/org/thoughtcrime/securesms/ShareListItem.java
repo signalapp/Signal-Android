@@ -35,6 +35,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import org.thoughtcrime.securesms.components.RecipientListItem;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -49,8 +50,8 @@ import java.util.Set;
  *
  * @author Jake McGinty
  */
-public class ShareListItem extends RelativeLayout
-                                  implements Recipient.RecipientModifiedListener
+public class ShareListItem extends RecipientListItem
+                        implements Recipient.RecipientModifiedListener
 {
   private final static String TAG = ShareListItem.class.getSimpleName();
 
@@ -89,16 +90,11 @@ public class ShareListItem extends RelativeLayout
     this.fromView.setText(formatFrom(recipients));
 
     setBackground();
-    setContactPhoto(this.recipients.getPrimaryRecipient());
+    setContactPhoto(contactPhotoImage, this.recipients.getPrimaryRecipient(), false);
   }
 
   public void unbind() {
     if (this.recipients != null) this.recipients.removeListener(this);
-  }
-
-  private void setContactPhoto(final Recipient recipient) {
-    if (recipient == null) return;
-    contactPhotoImage.setImageBitmap(BitmapUtil.getCircleCroppedBitmap(recipient.getContactPhoto()));
   }
 
   private void setBackground() {
@@ -108,26 +104,6 @@ public class ShareListItem extends RelativeLayout
     setBackgroundDrawable(drawables.getDrawable(0));
 
     drawables.recycle();
-  }
-
-  private CharSequence formatFrom(Recipients from) {
-    final String fromString;
-    final boolean isUnnamedGroup = from.isGroupRecipient() && TextUtils.isEmpty(from.getPrimaryRecipient().getName());
-    if (isUnnamedGroup) {
-      fromString = context.getString(R.string.ConversationActivity_unnamed_group);
-    } else {
-      fromString = from.toShortString();
-    }
-    SpannableStringBuilder builder = new SpannableStringBuilder(fromString);
-
-    final int typeface;
-    if (isUnnamedGroup) typeface = Typeface.ITALIC;
-    else                typeface = Typeface.NORMAL;
-
-    builder.setSpan(new StyleSpan(typeface), 0, builder.length(),
-                    Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
-
-    return builder;
   }
 
   public Recipients getRecipients() {
@@ -148,7 +124,7 @@ public class ShareListItem extends RelativeLayout
       @Override
       public void run() {
         fromView.setText(formatFrom(recipients));
-        setContactPhoto(recipients.getPrimaryRecipient());
+        setContactPhoto(contactPhotoImage, recipients.getPrimaryRecipient(), false);
       }
     });
   }

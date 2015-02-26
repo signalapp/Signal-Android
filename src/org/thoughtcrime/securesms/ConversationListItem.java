@@ -17,25 +17,14 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.TypedArray;
-import android.graphics.Typeface;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Handler;
-import android.provider.Contacts.Intents;
-import android.provider.ContactsContract.QuickContact;
-import android.text.Spannable;
-import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
-import android.text.style.StyleSpan;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.components.RecipientListItem;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -43,7 +32,6 @@ import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Emoji;
 
 import java.util.Set;
-import java.util.concurrent.ThreadFactory;
 
 /**
  * A view that displays the element in a list of multiple conversation threads.
@@ -52,7 +40,7 @@ import java.util.concurrent.ThreadFactory;
  * @author Moxie Marlinspike
  */
 
-public class ConversationListItem extends RelativeLayout
+public class ConversationListItem extends RecipientListItem
                                   implements Recipient.RecipientModifiedListener
 {
   private final static String TAG = ConversationListItem.class.getSimpleName();
@@ -64,7 +52,6 @@ public class ConversationListItem extends RelativeLayout
   private TextView          subjectView;
   private TextView          fromView;
   private TextView          dateView;
-  private long              count;
   private boolean           read;
 
   private ImageView         contactPhotoImage;
@@ -97,12 +84,11 @@ public class ConversationListItem extends RelativeLayout
     this.selectedThreads  = selectedThreads;
     this.recipients       = thread.getRecipients();
     this.threadId         = thread.getThreadId();
-    this.count            = thread.getCount();
     this.read             = thread.isRead();
     this.distributionType = thread.getDistributionType();
 
     this.recipients.addListener(this);
-    this.fromView.setText(formatFrom(recipients, count, read));
+    this.fromView.setText(formatFrom(recipients, read));
 
     this.subjectView.setText(Emoji.getInstance(context).emojify(thread.getDisplayBody(),
                                                                 Emoji.EMOJI_SMALL,
@@ -113,7 +99,7 @@ public class ConversationListItem extends RelativeLayout
       this.dateView.setText(DateUtils.getBetterRelativeTimeSpanString(getContext(), thread.getDate()));
 
     setBackground(read, batchMode);
-    setContactPhoto(this.recipients.getPrimaryRecipient());
+    setContactPhoto(contactPhotoImage, recipients.getPrimaryRecipient(), true);
   }
 
   public void unbind() {
@@ -123,28 +109,6 @@ public class ConversationListItem extends RelativeLayout
 
   private void initializeContactWidgetVisibility() {
     contactPhotoImage.setVisibility(View.VISIBLE);
-  }
-
-  private void setContactPhoto(final Recipient recipient) {
-    if (recipient == null) return;
-
-    contactPhotoImage.setImageBitmap(recipient.getCircleCroppedContactPhoto());
-
-    if (!recipient.isGroupRecipient()) {
-      contactPhotoImage.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-          if (recipient.getContactUri() != null) {
-            QuickContact.showQuickContact(context, contactPhotoImage, recipient.getContactUri(), QuickContact.MODE_LARGE, null);
-          } else {
-            Intent intent = new Intent(Intents.SHOW_OR_CREATE_CONTACT,  Uri.fromParts("tel", recipient.getNumber(), null));
-            context.startActivity(intent);
-          }
-        }
-      });
-    } else {
-      contactPhotoImage.setOnClickListener(null);
-    }
   }
 
   private void setBackground(boolean read, boolean batch) {
@@ -165,38 +129,6 @@ public class ConversationListItem extends RelativeLayout
     drawables.recycle();
   }
 
-  private CharSequence formatFrom(Recipients from, long count, boolean read) {
-    int attributes[]  = new int[] {R.attr.conversation_list_item_count_color};
-    TypedArray colors = context.obtainStyledAttributes(attributes);
-
-    final String fromString;
-    final boolean isUnnamedGroup = from.isGroupRecipient() && TextUtils.isEmpty(from.getPrimaryRecipient().getName());
-    if (isUnnamedGroup) {
-      fromString = context.getString(R.string.ConversationActivity_unnamed_group);
-    } else {
-      fromString = from.toShortString();
-    }
-    SpannableStringBuilder builder = new SpannableStringBuilder(fromString);
-
-
-    final int typeface;
-    if (isUnnamedGroup) {
-      if (!read) typeface = Typeface.BOLD_ITALIC;
-      else       typeface = Typeface.ITALIC;
-    } else if (!read) {
-      typeface = Typeface.BOLD;
-    } else {
-      typeface = Typeface.NORMAL;
-    }
-
-    builder.setSpan(new StyleSpan(typeface), 0, builder.length(),
-                    Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
-
-
-    colors.recycle();
-    return builder;
-  }
-
   public Recipients getRecipients() {
     return recipients;
   }
@@ -214,8 +146,8 @@ public class ConversationListItem extends RelativeLayout
     handler.post(new Runnable() {
       @Override
       public void run() {
-        ConversationListItem.this.fromView.setText(formatFrom(recipients, count, read));
-        setContactPhoto(ConversationListItem.this.recipients.getPrimaryRecipient());
+        ConversationListItem.this.fromView.setText(formatFrom(recipients, read));
+        setContactPhoto(contactPhotoImage, recipients.getPrimaryRecipient(), true);
       }
     });
   }

@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
@@ -28,11 +29,17 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
+import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.database.MmsSmsDatabase;
+import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.loaders.MessageDetailsLoader;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
+import org.thoughtcrime.securesms.util.MessageRecipientAsyncTask;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -151,6 +158,22 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     }
   }
 
+  private MessageRecord getMessageRecord(Context context, Cursor cursor, String type) {
+    switch (type) {
+      case MmsSmsDatabase.SMS_TRANSPORT:
+        EncryptingSmsDatabase smsDatabase = DatabaseFactory.getEncryptingSmsDatabase(context);
+        SmsDatabase.Reader    reader      = smsDatabase.readerFor(masterSecret, cursor);
+        return reader.getNext();
+      case MmsSmsDatabase.MMS_TRANSPORT:
+        MmsDatabase mmsDatabase = DatabaseFactory.getMmsDatabase(context);
+        MmsDatabase.Reader mmsReader   = mmsDatabase.readerFor(masterSecret, cursor);
+        return mmsReader.getNext();
+      default:
+        throw new AssertionError("no valid message type specified");
+    }
+  }
+
+
   @Override
   public Loader<Cursor> onCreateLoader(int id, Bundle args) {
     return new MessageDetailsLoader(this, getIntent().getStringExtra(TYPE_EXTRA),
@@ -159,22 +182,23 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
 
   @Override
   public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-    new MessageRecipientAsyncTask(this, masterSecret, cursor, getIntent().getStringExtra(TYPE_EXTRA)) {
+    final MessageRecord messageRecord = getMessageRecord(this, cursor, getIntent().getStringExtra(TYPE_EXTRA));
+    new MessageRecipientAsyncTask(this) {
       @Override
-      public void onPostExecute(Result result) {
+      public void onPostExecute(Recipients recipients) {
         if (getContext() == null) {
           Log.w(TAG, "AsyncTask finished with a destroyed context, leaving early.");
           return;
         }
 
-        inflateMessageViewIfAbsent(result.messageRecord);
+        inflateMessageViewIfAbsent(messageRecord);
         inflateHeaderIfAbsent();
 
-        updateRecipients(result.messageRecord, result.recipients);
-        updateTransport(result.messageRecord);
-        updateTime(result.messageRecord);
+        updateRecipients(messageRecord, recipients);
+        updateTransport(messageRecord);
+        updateTime(messageRecord);
       }
-    }.execute();
+    }.execute(messageRecord);
   }
 
   @Override

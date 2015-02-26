@@ -14,72 +14,43 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms;
+package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.util.Pair;
 
-import org.thoughtcrime.securesms.MessageRecipientAsyncTask.Result;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
-import org.thoughtcrime.securesms.database.MmsDatabase;
-import org.thoughtcrime.securesms.database.MmsSmsDatabase;
-import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.GroupUtil;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.util.LinkedList;
 
-public abstract class MessageRecipientAsyncTask extends AsyncTask<Void,Void,Result> {
+public abstract class MessageRecipientAsyncTask extends AsyncTask<MessageRecord,Void,Recipients> {
   private static final String TAG = MessageRecipientAsyncTask.class.getSimpleName();
 
   private WeakReference<Context> weakContext;
-  private MasterSecret           masterSecret;
-  private Cursor                 cursor;
-  private String                 type;
 
-  public MessageRecipientAsyncTask(Context context, MasterSecret masterSecret, Cursor cursor, String type) {
+  public MessageRecipientAsyncTask(Context context) {
     this.weakContext  = new WeakReference<>(context);
-    this.masterSecret = masterSecret;
-    this.cursor       = cursor;
-    this.type         = type;
   }
 
   protected Context getContext() {
     return weakContext.get();
   }
 
-  private MessageRecord getMessageRecord(Context context, Cursor cursor, String type) {
-    switch (type) {
-      case MmsSmsDatabase.SMS_TRANSPORT:
-        EncryptingSmsDatabase smsDatabase = DatabaseFactory.getEncryptingSmsDatabase(context);
-        SmsDatabase.Reader    reader      = smsDatabase.readerFor(masterSecret, cursor);
-        return reader.getNext();
-      case MmsSmsDatabase.MMS_TRANSPORT:
-        MmsDatabase        mmsDatabase = DatabaseFactory.getMmsDatabase(context);
-        MmsDatabase.Reader mmsReader   = mmsDatabase.readerFor(masterSecret, cursor);
-        return mmsReader.getNext();
-      default:
-        throw new AssertionError("no valid message type specified");
-    }
-  }
-
   @Override
-  public Result doInBackground(Void... voids) {
+  public Recipients doInBackground(MessageRecord... messageRecords) {
+    if (messageRecords.length != 1) throw new AssertionError("one message record at at time");
+    MessageRecord messageRecord = messageRecords[0];
     Context context = getContext();
     if (context == null) {
       Log.w(TAG, "associated context is destroyed, finishing early");
     }
 
-    MessageRecord messageRecord = getMessageRecord(context, cursor, type);
     Recipients    recipients;
 
     final Recipients intermediaryRecipients;
@@ -103,18 +74,6 @@ public abstract class MessageRecipientAsyncTask extends AsyncTask<Void,Void,Resu
       }
     }
 
-    return new Result(messageRecord, recipients, cursor);
-  }
-
-  public static class Result {
-    public MessageRecord messageRecord;
-    public Recipients    recipients;
-    public Cursor        cursor;
-
-    public Result(MessageRecord messageRecord, Recipients recipients, Cursor cursor) {
-      this.messageRecord = messageRecord;
-      this.recipients = recipients;
-      this.cursor = cursor;
-    }
+    return recipients;
   }
 }
