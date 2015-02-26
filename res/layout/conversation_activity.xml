@@ -61,7 +61,16 @@
                     </LinearLayout>
                </LinearLayout>
             </ScrollView>
-
+            <TextView
+                android:id="@+id/disabled_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:text="@string/conversation_activity__type_message_disabled"
+                android:background="?conversation_editor_background_disabled"
+                android:padding="12dp"
+                android:textColor="@color/white"
+                android:ellipsize="marquee"/>
             <LinearLayout
                     android:id="@+id/bottom_panel"
                     android:layout_width="fill_parent"
