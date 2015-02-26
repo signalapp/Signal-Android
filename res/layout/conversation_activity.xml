@@ -69,6 +69,22 @@
                     android:orientation="horizontal"
                     android:background="?conversation_editor_background">
 
+                <org.thoughtcrime.securesms.components.TransportButton
+                    android:id="@+id/transport_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/touch_highlight_background"
+                    android:contentDescription="@string/conversation_activity__select_transport"
+                    android:nextFocusRight="@+id/embedded_text_editor"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_transport_sms_insecure"
+                    android:clickable="false"
+                    android:enabled="false"
+                    divet_position="bottom_right"
+                    divet_margin_h="3"
+                    divet_margin_v="3" />
+
                 <org.thoughtcrime.securesms.components.EmojiToggle
                         android:id="@+id/emoji_toggle"
                         android:layout_width="wrap_content"
@@ -92,11 +108,12 @@
                         android:maxLength="1000"
                         android:maxLines="4"
                         android:nextFocusForward="@+id/send_button"
+                        android:nextFocusLeft="@+id/transport_button"
                         android:nextFocusRight="@+id/send_button"
                         android:contentDescription="@string/conversation_activity__compose_description"
                         android:textColor="?conversation_editor_text_color" />
 
-                <org.thoughtcrime.securesms.components.SendButton
+                <ImageButton
                     android:id="@+id/send_button"
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"

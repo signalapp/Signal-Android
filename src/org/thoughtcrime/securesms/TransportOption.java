@@ -7,17 +7,19 @@ import org.thoughtcrime.securesms.util.PushCharacterCalculator;
 import org.thoughtcrime.securesms.util.SmsCharacterCalculator;
 
 public class TransportOption {
-  public int                 drawable;
+  public final int           drawableButtonIcon;
+  public final int           drawableSendButtonIcon;
   public String              text;
   public String              key;
   public String              composeHint;
   public CharacterCalculator characterCalculator;
 
-  public TransportOption(String key, int drawable, String text, String composeHint) {
-    this.key         = key;
-    this.drawable    = drawable;
-    this.text        = text;
-    this.composeHint = composeHint;
+  public TransportOption(String key, int drawableButtonIcon, int drawableSendButtonIcon, String text, String composeHint) {
+    this.key                    = key;
+    this.drawableButtonIcon     = drawableButtonIcon;
+    this.drawableSendButtonIcon = drawableSendButtonIcon;
+    this.text                   = text;
+    this.composeHint            = composeHint;
 
     if (isPlaintext() && isSms()) {
       this.characterCalculator = new SmsCharacterCalculator();

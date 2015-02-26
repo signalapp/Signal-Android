@@ -173,13 +173,25 @@
     <item>textsecure</item>
   </string-array>
 
-  <string-array name="transport_selection_icons_light">
+  <string-array name="transport_button_icons_light">
+    <item>@drawable/ic_transport_sms_insecure</item>
+    <item>@drawable/ic_transport_sms_secure</item>
+    <item>@drawable/ic_transport_push</item>
+  </string-array>
+
+  <string-array name="transport_button_icons_dark">
+    <item>@drawable/ic_transport_sms_insecure_dark</item>
+    <item>@drawable/ic_transport_sms_secure</item>
+    <item>@drawable/ic_transport_push</item>
+  </string-array>
+
+  <string-array name="transport_send_button_icons_light">
     <item>@drawable/ic_send_sms_insecure</item>
     <item>@drawable/ic_send_sms_secure</item>
     <item>@drawable/ic_send_push</item>
   </string-array>
 
-  <string-array name="transport_selection_icons_dark">
+  <string-array name="transport_send_button_icons_dark">
     <item>@drawable/ic_send_sms_insecure_dark</item>
     <item>@drawable/ic_send_sms_secure</item>
     <item>@drawable/ic_send_push</item>
