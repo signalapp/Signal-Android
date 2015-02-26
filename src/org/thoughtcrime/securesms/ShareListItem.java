@@ -17,40 +17,24 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.TypedArray;
-import android.graphics.Typeface;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Handler;
-import android.provider.Contacts.Intents;
-import android.provider.ContactsContract.QuickContact;
-import android.text.Spannable;
-import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
-import android.text.style.StyleSpan;
 import android.util.AttributeSet;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.components.RecipientListItem;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.BitmapUtil;
-import org.thoughtcrime.securesms.util.DateUtils;
-import org.thoughtcrime.securesms.util.Emoji;
-
-import java.util.Set;
+import org.thoughtcrime.securesms.util.RecipientViewUtil;
 
 /**
  * A simple view to show the recipients of an open conversation
  *
  * @author Jake McGinty
  */
-public class ShareListItem extends RecipientListItem
+public class ShareListItem extends RelativeLayout
                         implements Recipient.RecipientModifiedListener
 {
   private final static String TAG = ShareListItem.class.getSimpleName();
@@ -87,10 +71,10 @@ public class ShareListItem extends RecipientListItem
     this.distributionType = thread.getDistributionType();
 
     this.recipients.addListener(this);
-    this.fromView.setText(formatFrom(recipients));
+    this.fromView.setText(RecipientViewUtil.formatFrom(getContext(), recipients));
 
     setBackground();
-    setContactPhoto(contactPhotoImage, this.recipients.getPrimaryRecipient(), false);
+    RecipientViewUtil.setContactPhoto(getContext(), contactPhotoImage, this.recipients.getPrimaryRecipient(), false);
   }
 
   public void unbind() {
@@ -123,8 +107,8 @@ public class ShareListItem extends RecipientListItem
     handler.post(new Runnable() {
       @Override
       public void run() {
-        fromView.setText(formatFrom(recipients));
-        setContactPhoto(contactPhotoImage, recipients.getPrimaryRecipient(), false);
+        fromView.setText(RecipientViewUtil.formatFrom(getContext(), recipients));
+        RecipientViewUtil.setContactPhoto(getContext(), contactPhotoImage, recipients.getPrimaryRecipient(), false);
       }
     });
   }

@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components;
+package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,40 +11,30 @@ import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.style.StyleSpan;
-import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 
-public abstract class RecipientListItem extends RelativeLayout {
-  public RecipientListItem(Context context) {
-    super(context);
+public class RecipientViewUtil {
+  public static CharSequence formatFrom(Context context, Recipient recipient) {
+    return formatFrom(context, new Recipients(recipient));
   }
 
-  public RecipientListItem(Context context, AttributeSet attrs) {
-    super(context, attrs);
+  public static CharSequence formatFrom(Context context, Recipients from) {
+    return formatFrom(context, from, true);
   }
 
-  protected CharSequence formatFrom(Recipient recipient) {
-    return formatFrom(new Recipients(recipient));
-  }
-
-  protected CharSequence formatFrom(Recipients from) {
-    return formatFrom(from, true);
-  }
-
-  protected CharSequence formatFrom(Recipients from, boolean read) {
+  public static CharSequence formatFrom(Context context, Recipients from, boolean read) {
     int attributes[]  = new int[] {R.attr.conversation_list_item_count_color};
-    TypedArray colors = getContext().obtainStyledAttributes(attributes);
+    TypedArray colors = context.obtainStyledAttributes(attributes);
 
     final String fromString;
     final boolean isUnnamedGroup = from.isGroupRecipient() && TextUtils.isEmpty(from.getPrimaryRecipient().getName());
     if (isUnnamedGroup) {
-      fromString = getContext().getString(R.string.ConversationActivity_unnamed_group);
+      fromString = context.getString(R.string.ConversationActivity_unnamed_group);
     } else {
       fromString = from.toShortString();
     }
@@ -68,7 +58,7 @@ public abstract class RecipientListItem extends RelativeLayout {
     return builder;
   }
 
-  protected void setContactPhoto(final ImageView imageView, final Recipient recipient, boolean showQuickContact) {
+  public static void setContactPhoto(final Context context, final ImageView imageView, final Recipient recipient, boolean showQuickContact) {
     if (recipient == null) return;
 
     imageView.setImageBitmap(recipient.getCircleCroppedContactPhoto());
@@ -78,10 +68,10 @@ public abstract class RecipientListItem extends RelativeLayout {
         @Override
         public void onClick(View v) {
           if (recipient.getContactUri() != null) {
-            QuickContact.showQuickContact(getContext(), imageView, recipient.getContactUri(), QuickContact.MODE_LARGE, null);
+            QuickContact.showQuickContact(context, imageView, recipient.getContactUri(), QuickContact.MODE_LARGE, null);
           } else {
             Intent intent = new Intent(Intents.SHOW_OR_CREATE_CONTACT,  Uri.fromParts("tel", recipient.getNumber(), null));
-            getContext().startActivity(intent);
+            context.startActivity(intent);
           }
         }
       });

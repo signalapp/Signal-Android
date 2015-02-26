@@ -22,14 +22,15 @@ import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.components.RecipientListItem;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Emoji;
+import org.thoughtcrime.securesms.util.RecipientViewUtil;
 
 import java.util.Set;
 
@@ -40,7 +41,7 @@ import java.util.Set;
  * @author Moxie Marlinspike
  */
 
-public class ConversationListItem extends RecipientListItem
+public class ConversationListItem extends RelativeLayout
                                   implements Recipient.RecipientModifiedListener
 {
   private final static String TAG = ConversationListItem.class.getSimpleName();
@@ -88,7 +89,7 @@ public class ConversationListItem extends RecipientListItem
     this.distributionType = thread.getDistributionType();
 
     this.recipients.addListener(this);
-    this.fromView.setText(formatFrom(recipients, read));
+    this.fromView.setText(RecipientViewUtil.formatFrom(context, recipients, read));
 
     this.subjectView.setText(Emoji.getInstance(context).emojify(thread.getDisplayBody(),
                                                                 Emoji.EMOJI_SMALL,
@@ -99,7 +100,7 @@ public class ConversationListItem extends RecipientListItem
       this.dateView.setText(DateUtils.getBetterRelativeTimeSpanString(getContext(), thread.getDate()));
 
     setBackground(read, batchMode);
-    setContactPhoto(contactPhotoImage, recipients.getPrimaryRecipient(), true);
+    RecipientViewUtil.setContactPhoto(context, contactPhotoImage, recipients.getPrimaryRecipient(), true);
   }
 
   public void unbind() {
@@ -146,8 +147,8 @@ public class ConversationListItem extends RecipientListItem
     handler.post(new Runnable() {
       @Override
       public void run() {
-        ConversationListItem.this.fromView.setText(formatFrom(recipients, read));
-        setContactPhoto(contactPhotoImage, recipients.getPrimaryRecipient(), true);
+        ConversationListItem.this.fromView.setText(RecipientViewUtil.formatFrom(context, recipients, read));
+        RecipientViewUtil.setContactPhoto(context, contactPhotoImage, recipients.getPrimaryRecipient(), true);
       }
     });
   }

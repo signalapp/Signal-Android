@@ -24,9 +24,9 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.components.RecipientListItem;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -36,14 +36,15 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
+import org.thoughtcrime.securesms.util.RecipientViewUtil;
 
 /**
  * A simple view to show the recipients of a message
  *
  * @author Jake McGinty
  */
-public class MessageRecipientListItem extends RecipientListItem
-                                   implements Recipient.RecipientModifiedListener
+public class MessageRecipientListItem extends RelativeLayout
+    implements Recipient.RecipientModifiedListener
 {
   private final static String TAG = MessageRecipientListItem.class.getSimpleName();
 
@@ -76,9 +77,9 @@ public class MessageRecipientListItem extends RecipientListItem
   public void set(final MasterSecret masterSecret, final MessageRecord record, final Recipients recipients, final int position) {
     recipient = recipients.getRecipientsList().get(position);
     recipient.addListener(this);
-    fromView.setText(formatFrom(recipient));
+    fromView.setText(RecipientViewUtil.formatFrom(getContext(), recipient));
 
-    setContactPhoto(contactPhotoImage, recipient, false);
+    RecipientViewUtil.setContactPhoto(getContext(), contactPhotoImage, recipient, false);
     setIssueIndicators(masterSecret, record);
   }
 
@@ -142,8 +143,8 @@ public class MessageRecipientListItem extends RecipientListItem
     handler.post(new Runnable() {
       @Override
       public void run() {
-        fromView.setText(formatFrom(recipient));
-        setContactPhoto(contactPhotoImage, recipient, false);
+        fromView.setText(RecipientViewUtil.formatFrom(getContext(), recipient));
+        RecipientViewUtil.setContactPhoto(getContext(), contactPhotoImage, recipient, false);
       }
     });
   }

@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
@@ -36,14 +37,18 @@ import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.loaders.MessageDetailsLoader;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
-import org.thoughtcrime.securesms.util.MessageRecipientAsyncTask;
+import org.thoughtcrime.securesms.util.GroupUtil;
 
+import java.io.IOException;
+import java.lang.ref.WeakReference;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.HashSet;
+import java.util.LinkedList;
 
 public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity implements LoaderCallbacks<Cursor> {
   private final static String TAG = MessageDetailsActivity.class.getSimpleName();
@@ -178,25 +183,73 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
   @Override
   public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
     final MessageRecord messageRecord = getMessageRecord(this, cursor, getIntent().getStringExtra(TYPE_EXTRA));
-    new MessageRecipientAsyncTask(this) {
-      @Override
-      public void onPostExecute(Recipients recipients) {
-        if (getContext() == null) {
-          Log.w(TAG, "AsyncTask finished with a destroyed context, leaving early.");
-          return;
-        }
-
-        inflateMessageViewIfAbsent(messageRecord);
-
-        updateRecipients(messageRecord, recipients);
-        updateTransport(messageRecord);
-        updateTime(messageRecord);
-      }
-    }.execute(messageRecord);
+    new MessageRecipientAsyncTask(this, messageRecord).execute();
   }
 
   @Override
   public void onLoaderReset(Loader<Cursor> loader) {
     recipientsList.setAdapter(null);
+  }
+
+  private class MessageRecipientAsyncTask extends AsyncTask<Void,Void,Recipients> {
+    private WeakReference<Context> weakContext;
+    private MessageRecord          messageRecord;
+
+    public MessageRecipientAsyncTask(Context context, MessageRecord messageRecord) {
+      this.weakContext   = new WeakReference<>(context);
+      this.messageRecord = messageRecord;
+    }
+
+    protected Context getContext() {
+      return weakContext.get();
+    }
+
+    @Override
+    public Recipients doInBackground(Void... voids) {
+      Context context = getContext();
+      if (context == null) {
+        Log.w(TAG, "associated context is destroyed, finishing early");
+      }
+
+      Recipients recipients;
+
+      final Recipients intermediaryRecipients;
+      if (messageRecord.isMms()) {
+        intermediaryRecipients = DatabaseFactory.getMmsAddressDatabase(context).getRecipientsForId(messageRecord.getId());
+      } else {
+        intermediaryRecipients = messageRecord.getRecipients();
+      }
+
+      if (!intermediaryRecipients.isGroupRecipient()) {
+        Log.w(TAG, "Recipient is not a group, resolving members immediately.");
+        recipients = intermediaryRecipients;
+      } else {
+        try {
+          String groupId = intermediaryRecipients.getPrimaryRecipient().getNumber();
+          recipients = DatabaseFactory.getGroupDatabase(context)
+                                      .getGroupMembers(GroupUtil.getDecodedId(groupId), false);
+        } catch (IOException e) {
+          Log.w(TAG, e);
+         recipients = new Recipients(new LinkedList<Recipient>());
+        }
+      }
+
+      return recipients;
+    }
+
+    @Override
+    public void onPostExecute(Recipients recipients) {
+      if (getContext() == null) {
+        Log.w(TAG, "AsyncTask finished with a destroyed context, leaving early.");
+        return;
+      }
+
+      inflateMessageViewIfAbsent(messageRecord);
+
+      updateRecipients(messageRecord, recipients);
+      updateTransport(messageRecord);
+      updateTime(messageRecord);
+    }
+
   }
 }
