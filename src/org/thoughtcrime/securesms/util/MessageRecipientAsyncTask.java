@@ -35,7 +35,7 @@ public abstract class MessageRecipientAsyncTask extends AsyncTask<MessageRecord,
   private WeakReference<Context> weakContext;
 
   public MessageRecipientAsyncTask(Context context) {
-    this.weakContext  = new WeakReference<>(context);
+    this.weakContext = new WeakReference<>(context);
   }
 
   protected Context getContext() {
@@ -51,7 +51,7 @@ public abstract class MessageRecipientAsyncTask extends AsyncTask<MessageRecord,
       Log.w(TAG, "associated context is destroyed, finishing early");
     }
 
-    Recipients    recipients;
+    Recipients recipients;
 
     final Recipients intermediaryRecipients;
     if (messageRecord.isMms()) {

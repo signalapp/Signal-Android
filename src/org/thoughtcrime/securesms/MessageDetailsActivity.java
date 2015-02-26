@@ -56,7 +56,6 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
   private MasterSecret     masterSecret;
   private ConversationItem conversationItem;
   private ViewGroup        itemParent;
-  private ViewGroup        header;
   private TextView         sentDate;
   private TextView         receivedDate;
   private View             receivedContainer;
@@ -77,9 +76,18 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
 
   private void initializeResources() {
     inflater       = LayoutInflater.from(this);
-    itemParent     = (ViewGroup) findViewById(R.id.item_container );
-    recipientsList = (ListView ) findViewById(R.id.recipients_list);
-    masterSecret   = getIntent().getParcelableExtra(MASTER_SECRET_EXTRA);
+    View header = inflater.inflate(R.layout.message_details_header, recipientsList, false);
+
+    masterSecret      = getIntent().getParcelableExtra(MASTER_SECRET_EXTRA);
+    itemParent        = (ViewGroup) findViewById(R.id.item_container );
+    recipientsList    = (ListView ) findViewById(R.id.recipients_list);
+    sentDate          = (TextView ) header.findViewById(R.id.sent_time);
+    receivedContainer =             header.findViewById(R.id.received_container);
+    receivedDate      = (TextView ) header.findViewById(R.id.received_time);
+    transport         = (TextView ) header.findViewById(R.id.transport);
+    toFrom            = (TextView ) header.findViewById(R.id.tofrom);
+    recipientsList.setHeaderDividersEnabled(false);
+    recipientsList.addHeaderView(header, null, false);
   }
 
   private void updateTransport(MessageRecord messageRecord) {
@@ -145,19 +153,6 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     }
   }
 
-  private void inflateHeaderIfAbsent() {
-    if (header == null) {
-      header            = (ViewGroup) inflater.inflate(R.layout.message_details_header, recipientsList, false);
-      sentDate          = (TextView ) header.findViewById(R.id.sent_time);
-      receivedContainer =             header.findViewById(R.id.received_container);
-      receivedDate      = (TextView ) header.findViewById(R.id.received_time     );
-      transport         = (TextView ) header.findViewById(R.id.transport         );
-      toFrom            = (TextView ) header.findViewById(R.id.tofrom            );
-      recipientsList.setHeaderDividersEnabled(false);
-      recipientsList.addHeaderView(header, null, false);
-    }
-  }
-
   private MessageRecord getMessageRecord(Context context, Cursor cursor, String type) {
     switch (type) {
       case MmsSmsDatabase.SMS_TRANSPORT:
@@ -165,7 +160,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
         SmsDatabase.Reader    reader      = smsDatabase.readerFor(masterSecret, cursor);
         return reader.getNext();
       case MmsSmsDatabase.MMS_TRANSPORT:
-        MmsDatabase mmsDatabase = DatabaseFactory.getMmsDatabase(context);
+        MmsDatabase        mmsDatabase = DatabaseFactory.getMmsDatabase(context);
         MmsDatabase.Reader mmsReader   = mmsDatabase.readerFor(masterSecret, cursor);
         return mmsReader.getNext();
       default:
@@ -192,7 +187,6 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
         }
 
         inflateMessageViewIfAbsent(messageRecord);
-        inflateHeaderIfAbsent();
 
         updateRecipients(messageRecord, recipients);
         updateTransport(messageRecord);
