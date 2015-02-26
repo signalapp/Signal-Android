@@ -508,9 +508,11 @@ public class SmsDatabase extends MessagingDatabase {
   }
 
   public Cursor getMessage(long messageId) {
-    SQLiteDatabase db = databaseHelper.getReadableDatabase();
-    return db.query(TABLE_NAME, MESSAGE_PROJECTION, ID_WHERE, new String[] {messageId+""},
-                    null, null, null);
+    SQLiteDatabase db     = databaseHelper.getReadableDatabase();
+    Cursor         cursor = db.query(TABLE_NAME, MESSAGE_PROJECTION, ID_WHERE, new String[]{messageId + ""},
+                                     null, null, null);
+    setNotifyConverationListeners(cursor, getThreadIdForMessage(messageId));
+    return cursor;
   }
 
   public void deleteMessage(long messageId) {
@@ -633,11 +635,11 @@ public class SmsDatabase extends MessagingDatabase {
       Recipients                recipients = getRecipientsFor(address);
       DisplayRecord.Body        body       = getBody(cursor);
 
-      return  new SmsMessageRecord(context, messageId, body, recipients,
-                                   recipients.getPrimaryRecipient(),
-                                   addressDeviceId,
-                                   dateSent, dateReceived, receiptCount, type,
-                                   threadId, status, mismatches);
+      return new SmsMessageRecord(context, messageId, body, recipients,
+                                  recipients.getPrimaryRecipient(),
+                                  addressDeviceId,
+                                  dateSent, dateReceived, receiptCount, type,
+                                  threadId, status, mismatches);
     }
 
     private Recipients getRecipientsFor(String address) {

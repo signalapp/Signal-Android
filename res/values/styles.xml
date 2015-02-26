@@ -149,4 +149,19 @@
         <item name="android:textColor">#ff999999</item>
     </style>
 
+    <style name="MaterialButton">
+        <item name="android:elevation">1dp</item>
+        <item name="android:translationZ">1dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="InfoButton" parent="@style/MaterialButton">
+        <item name="android:background">@drawable/info_round</item>
+    </style>
+
+    <style name="ErrorButton" parent="@style/MaterialButton">
+        <item name="android:background">@drawable/error_round</item>
+    </style>
+
 </resources>
