@@ -2,7 +2,7 @@
 <resources>
     <color name="gdata_red">#a02020</color>
     <color name="gdata_conversation_list_item_background_read">#ffffff</color>
-    <color name="gdata_conversation_list_item_background_unread">@color/gray50</color>
+    <color name="gdata_conversation_list_item_background_unread">@color/gray5</color>
     <color name="gdata_conversation_list_divider">@color/gray5</color>
     <color name="gdata_conversation_item_sent_background">@color/gdata_red</color>
     <color name="gdata_conversation_item_sent_shadow">@color/gray5</color>
