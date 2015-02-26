@@ -563,7 +563,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void handleAddAttachment() {
     if (this.isMmsEnabled || DirectoryHelper.isPushDestination(this, getRecipients())) {
       AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.TextSecure_Light_Dialog));
-      builder.setIcon(R.drawable.ic_dialog_attach);
+      builder.setIcon(R.drawable.ic_attach_file);
       builder.setTitle(R.string.ConversationActivity_add_attachment);
       builder.setAdapter(attachmentAdapter, new AttachmentTypeListener());
       builder.show();

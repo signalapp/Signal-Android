@@ -70,10 +70,10 @@ public class AttachmentTypeSelectorAdapter extends ArrayAdapter<AttachmentTypeSe
 
   private static List<IconListItem> getItemList(Context context) {
     List<IconListItem> data = new ArrayList<>(4);
-    addItem(data, context.getString(R.string.AttachmentTypeSelectorAdapter_picture), R.drawable.ic_attach_picture_holo_light, ADD_IMAGE);
-    addItem(data, context.getString(R.string.AttachmentTypeSelectorAdapter_video), R.drawable.ic_attach_video_holo_light, ADD_VIDEO);
-    addItem(data, context.getString(R.string.AttachmentTypeSelectorAdapter_audio), R.drawable.ic_attach_audio_holo_light, ADD_SOUND);
-    addItem(data, context.getString(R.string.AttachmentTypeSelectorAdapter_contact), R.drawable.ic_action_person, ADD_CONTACT_INFO);
+    addItem(data, context.getString(R.string.AttachmentTypeSelectorAdapter_picture), R.drawable.ic_image, ADD_IMAGE);
+    addItem(data, context.getString(R.string.AttachmentTypeSelectorAdapter_video), R.drawable.ic_movie_creation, ADD_VIDEO);
+    addItem(data, context.getString(R.string.AttachmentTypeSelectorAdapter_audio), R.drawable.ic_volume_up, ADD_SOUND);
+    addItem(data, context.getString(R.string.AttachmentTypeSelectorAdapter_contact), R.drawable.ic_contact, ADD_CONTACT_INFO);
 
     return data;
   }
