@@ -104,6 +104,8 @@
         <item name="conversation_emoji_toggle">@drawable/ic_emoji_light</item>
         <item name="conversation_keyboard_toggle">@drawable/ic_ime_light</item>
 
+        <item name="homeAsUpIndicator">@drawable/abc_ic_ab_back_holo_dark</item>
+        <item name="android:homeAsUpIndicator">@drawable/abc_ic_ab_back_holo_dark</item>
         <item name="menu_new_conversation_icon">@drawable/ic_action_new_holo_dark</item>
         <item name="menu_new_group_icon">@drawable/ic_action_add_group_holo_dark</item>
         <item name="menu_group_icon">@drawable/ic_menu_groups_holo_dark</item>

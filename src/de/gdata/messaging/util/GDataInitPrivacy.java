@@ -13,6 +13,14 @@ import android.os.RemoteException;
 import android.provider.ContactsContract;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
+import org.thoughtcrime.securesms.util.DirectoryHelper;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.textsecure.api.TextSecureAccountManager;
+
+import java.io.IOException;
+
 import de.gdata.messaging.isfaserverdefinitions.IRpcService;
 
 public class GDataInitPrivacy {
@@ -75,6 +83,11 @@ public class GDataInitPrivacy {
     @Override
     protected String doInBackground(Boolean... params) {
       PrivacyBridge.loadAllHiddenContacts(mContext);
+      try {
+        DirectoryHelper.refreshDirectory(mContext, TextSecureCommunicationFactory.createManager(mContext));
+      } catch (IOException e) {
+        Log.d("GDATA", "Couldn`t load SecureChat contacts");
+      }
       GDataInitPrivacy.AsyncTaskLoadRecipients.isAlreadyLoading = false;
       return null;
     }
