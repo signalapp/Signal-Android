@@ -853,6 +853,9 @@
     <!-- conversation_list -->
     <string name="conversation_list__menu_search">Search</string>
 
+    <!-- conversation_list_fragment -->
+    <string name="conversation_list_fragment__fab_content_description">New conversation</string>
+
     <!-- conversation_secure_verified -->
     <string name="conversation_secure_verified__menu_security">Security</string>
     <string name="conversation_secure_verified__menu_verify_identity">Verify identity</string>

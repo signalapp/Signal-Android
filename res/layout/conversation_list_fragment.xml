@@ -17,6 +17,8 @@
                   android:headerDividersEnabled="false"
                   android:footerDividersEnabled="false"
                   android:dividerHeight="1px"
+                  android:nextFocusDown="@+id/fab"
+                  android:nextFocusForward="@+id/fab"
                   tools:listitem="@layout/conversation_list_item_view"/>
 
     <com.melnykov.fab.FloatingActionButton
@@ -26,6 +28,8 @@
         android:layout_gravity="bottom|right"
         android:layout_margin="16dp"
         android:src="@drawable/ic_add_white_24dp"
+        android:focusable="true"
+        android:contentDescription="@string/conversation_list_fragment__fab_content_description"
         fab:fab_colorNormal="?fab_color"
         fab:fab_colorPressed="@color/textsecure_primary_dark"
         fab:fab_colorRipple="@color/textsecure_primary_dark" />
