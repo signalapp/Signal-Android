@@ -67,7 +67,7 @@
                 android:paddingBottom="5dp"
                 android:layout_gravity="center_vertical"
                 android:drawableLeft="@drawable/ic_error_white_18dp"
-                android:text="FIX"
+                android:text="@string/message_recipients_list_item__verify"
                 android:visibility="gone"/>
 
         <Button android:id="@+id/resend_button"
@@ -80,7 +80,7 @@
                 android:paddingBottom="5dp"
                 android:layout_gravity="center_vertical"
                 android:drawableLeft="@drawable/ic_refresh_white_18dp"
-                android:text="RESEND"
+                android:text="@string/message_recipients_list_item__resend"
                 android:visibility="gone"/>
 
 

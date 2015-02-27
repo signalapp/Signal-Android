@@ -544,6 +544,10 @@
     <!-- media_overview_activity -->
     <string name="media_overview_activity__no_images">No images</string>
 
+    <!-- message_recipients_list_item -->
+    <string name="message_recipients_list_item__verify">VERIFY</string>
+    <string name="message_recipients_list_item__resend">RESEND</string>
+
     <!-- MmsPreferencesFragment -->
     <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Manual MMS settings are required for your phone.</string>
     <string name="MmsPreferencesFragment__enabled">Enabled</string>
@@ -658,6 +662,7 @@
     <string name="verify_identity_activity__your_identity_you_read">Your identity (you read):</string>
 
     <!-- message_details_header -->
+    <string name="message_details_header__issues_need_your_attention">Some issues need your attention.</string>
     <string name="message_details_header__sent">Sent</string>
     <string name="message_details_header__received">Received</string>
     <string name="message_details_header__via">Via</string>

@@ -1,76 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
 
-    <TableRow android:id="@+id/sent_container"
+    <TextView android:id="@+id/error_text"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:padding="@dimen/message_details_table_row_pad">
+              android:visibility="gone"
+              android:textColor="#FFF44336"
+              android:textSize="16sp"
+              android:padding="5dp"
+              tools:visibility="visible"
+              android:text="@string/message_details_header__issues_need_your_attention"
+              android:textStyle="bold|italic" />
 
-        <TextView android:layout_width="wrap_content"
+    <TableLayout android:id="@+id/metadata_container"
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent">
+
+        <TableRow android:id="@+id/sent_container"
+                  android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                  android:text="@string/message_details_header__sent"
-                  android:gravity="right"
-                  android:textStyle="bold" />
+                  android:padding="@dimen/message_details_table_row_pad">
 
-        <TextView android:id="@+id/sent_time"
-                  android:layout_width="wrap_content"
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="@string/message_details_header__sent"
+                      android:gravity="right"
+                      android:textStyle="bold" />
+
+            <TextView android:id="@+id/sent_time"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginLeft="@dimen/message_details_table_row_pad"
+                      tools:text="Jan 18, 9:29AM" />
+
+        </TableRow>
+
+        <TableRow android:id="@+id/received_container"
+                  android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                  android:layout_marginLeft="@dimen/message_details_table_row_pad"
-                  tools:text="Jan 18, 9:29AM" />
+                  android:padding="@dimen/message_details_table_row_pad">
 
-    </TableRow>
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="@string/message_details_header__received"
+                      android:gravity="right"
+                      android:textStyle="bold" />
 
-    <TableRow android:id="@+id/received_container"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:padding="@dimen/message_details_table_row_pad">
+            <TextView android:id="@+id/received_time"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginLeft="@dimen/message_details_table_row_pad"
+                      tools:text="Jan 18, 9:31AM" />
 
-        <TextView android:layout_width="wrap_content"
+        </TableRow>
+
+        <TableRow android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
-                  android:text="@string/message_details_header__received"
-                  android:gravity="right"
-                  android:textStyle="bold" />
+                  android:padding="@dimen/message_details_table_row_pad">
 
-        <TextView android:id="@+id/received_time"
-                  android:layout_width="wrap_content"
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="@string/message_details_header__via"
+                      android:gravity="right"
+                      android:textStyle="bold" />
+
+            <TextView android:id="@+id/transport"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginLeft="@dimen/message_details_table_row_pad"
+                      tools:text="Push (TextSecure)" />
+
+        </TableRow>
+
+        <TableRow android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
-                  android:layout_marginLeft="@dimen/message_details_table_row_pad"
-                  tools:text="Jan 18, 9:31AM" />
+                  android:padding="@dimen/message_details_table_row_pad">
 
-    </TableRow>
+            <TextView android:id="@+id/tofrom"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      tools:text="@string/message_details_header__to"
+                      android:textStyle="bold" />
 
-    <TableRow android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:padding="@dimen/message_details_table_row_pad">
+        </TableRow>
 
-        <TextView android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:text="@string/message_details_header__via"
-                  android:gravity="right"
-                  android:textStyle="bold" />
-
-        <TextView android:id="@+id/transport"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_marginLeft="@dimen/message_details_table_row_pad"
-                  tools:text="Push (TextSecure)" />
-
-    </TableRow>
-
-    <TableRow android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:padding="@dimen/message_details_table_row_pad">
-
-        <TextView android:id="@+id/tofrom"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  tools:text="@string/message_details_header__to"
-                  android:textStyle="bold" />
-
-    </TableRow>
-
-</TableLayout>
+    </TableLayout>
+    </LinearLayout>

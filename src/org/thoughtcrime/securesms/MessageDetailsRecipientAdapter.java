@@ -49,7 +49,7 @@ public class MessageDetailsRecipientAdapter extends BaseAdapter implements AbsLi
   @Override
   public View getView(int position, View convertView, ViewGroup parent) {
     if (convertView == null) {
-      convertView = LayoutInflater.from(context).inflate(R.layout.message_details_recipient, parent, false);
+      convertView = LayoutInflater.from(context).inflate(R.layout.message_recipient_list_item, parent, false);
     }
 
     Recipient recipient = recipients.getRecipientsList().get(position);
