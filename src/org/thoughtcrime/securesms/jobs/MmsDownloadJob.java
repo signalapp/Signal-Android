@@ -110,30 +110,31 @@ public class MmsDownloadJob extends MasterSecretJob {
       Log.w(TAG, "Changing radio to MMS mode..");
       radio.connect();
 
-      Log.w(TAG, "Downloading in MMS mode with proxy...");
-
       try {
-        retrieveAndStore(masterSecret, radio, messageId, threadId, contentLocation,
-                         transactionId, true, true);
-        radio.disconnect();
-        return;
-      } catch (IOException e) {
-        Log.w(TAG, e);
-      }
+        Log.w(TAG, "Downloading in MMS mode with proxy...");
 
-      Log.w(TAG, "Downloading in MMS mode without proxy...");
+        try {
+          retrieveAndStore(masterSecret, radio, messageId, threadId, contentLocation,
+                           transactionId, true, true);
+          return;
+        } catch (IOException e) {
+          Log.w(TAG, e);
+        }
 
-      try {
-        retrieveAndStore(masterSecret, radio, messageId, threadId,
-                         contentLocation, transactionId, true, false);
+        Log.w(TAG, "Downloading in MMS mode without proxy...");
+
+        try {
+          retrieveAndStore(masterSecret, radio, messageId, threadId,
+                           contentLocation, transactionId, true, false);
+        } catch (IOException e) {
+          Log.w(TAG, e);
+          handleDownloadError(masterSecret, messageId, threadId,
+                              MmsDatabase.Status.DOWNLOAD_SOFT_FAILURE,
+                              context.getString(R.string.MmsDownloader_error_connecting_to_mms_provider),
+                              automatic);
+        }
+      } finally {
         radio.disconnect();
-      } catch (IOException e) {
-        Log.w(TAG, e);
-        radio.disconnect();
-        handleDownloadError(masterSecret, messageId, threadId,
-                            MmsDatabase.Status.DOWNLOAD_SOFT_FAILURE,
-                            context.getString(R.string.MmsDownloader_error_connecting_to_mms_provider),
-                            automatic);
       }
 
     } catch (ApnUnavailableException e) {
