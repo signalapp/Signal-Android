@@ -93,13 +93,8 @@ Trebat ćete ponovno registrirati vaš broj telefona kako biste koristili instan
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Pošiljatelj: %1$s\nTransport: %2$s\nPoslano: %3$s\nPrimljeno: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Potvrda brisanja poruke</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Jeste li sigurni da želite trajno obrisati ovu poruku?</string>
-  <string name="ConversationFragment_save_to_sd_card">Spremi na disk?</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Spremanje ovog medija na disk će omogućiti pristup mediju iz drugih aplikacija na vašem telefonu.\n\nNastavi?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Greška prilikom spremanja privitka na disk!</string>
   <string name="ConversationFragment_success_exclamation">Uspješno!</string>
-  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Nije moguće pisati na disk!</string>
   <string name="ConversationFragment_saving_attachment">Spremanje privitka</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">Spremanje privitka na disk...</string>
   <!--ConversationListAdapter-->
   <string name="ConversationListAdapter_key_exchange_message">Poruka za razmjenu ključa...</string>
   <!--ConversationListFragment-->
@@ -463,14 +458,11 @@ Uvezi nekriptiranu kopiju kompatibilnu s \'SMSBackup And Restore\'.</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Završeno</string>
   <!--registration_activity-->
-  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-Registracija je besplatna i povećava privatnost prilikom slanja poruka drugim TextSecure korisnicima. Provjerite svoj broj telefona.</string>
   <string name="registration_activity__your_country">VAŠA ZEMLJA</string>
   <string name="registration_activity__your_country_code_and_phone_number">POZIVNI BROJ ZEMLJE I
 TELEFONSKI BROJ</string>
   <string name="registration_activity__phone_number">TELEFONSKI BROJ</string>
   <string name="registration_activity__register">Registriraj</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Registracija šalje neke informacije o kontaktima na poslužitelj. Podaci se ne pohranjuju trajno.</string>
   <string name="registration_activity__skip">Preskoči</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Neki mogući problemi
@@ -550,7 +542,6 @@ neuspješno.</string>
   <string name="AndroidManifest__manage_identity_keys">Upravljajte ključevima identiteta</string>
   <string name="AndroidManifest__complete_key_exchange">Završite razmjenu ključeva</string>
   <string name="AndroidManifest__log_submit">Pošaljite debug zapise</string>
-  <string name="AndroidManifest__media_preview">Prikaz medija</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Uvoz / izvoz</string>
   <string name="arrays__my_identity_key">Moj ključ identiteta</string>
@@ -727,10 +718,7 @@ Povećajte privatnost i izbjegnite SMS troškove koristeći podatkovni kanal za 
   <string name="reminder_header_push_title">Omogući TextSecure poruke?</string>
   <string name="reminder_header_push_text">Instant isporuka, pojačana privatnost i bez SMS troškova.</string>
   <!--MediaPreviewActivity-->
-  <string name="MediaPreviewActivity_you">Vi</string>
   <!--media_preview-->
-  <string name="media_preview__save_title">Spremi</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__image_content_description">Prikaz slike</string>
   <!--EOF-->
 </resources>

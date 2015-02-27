@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <style name="TextSecure.IntroTheme" parent="@style/Theme.AppCompat.Light">
-        <!--<item name="colorPrimary">@android:color/transparent</item>-->
+        <item name="colorPrimary">@android:color/transparent</item>
         <item name="actionBarStyle">@style/TextSecure.IntroActionBar</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
     <style name="TextSecure.LightTheme" parent="@style/Theme.AppCompat.Light">
-        <item name="logo">@drawable/actionbar_icon_holo_light</item>
-        <item name="android:logo">@drawable/actionbar_icon_holo_light</item>
-        <item name="android:actionBarStyle">@style/TextSecure.LightActionBar</item>
         <item name="actionBarStyle">@style/TextSecure.LightActionBar</item>
+        <item name="colorPrimary">@color/gray5</item>
+        <item name="colorPrimaryDark">@color/gray95</item>
+        <item name="colorAccent">#ff259b24</item>
+        <item name="android:windowContentOverlay">@drawable/compat_actionbar_shadow_background</item>
         <item name="conversation_list_item_background_read">@drawable/conversation_list_item_background_read_light</item>
         <item name="conversation_list_item_background_unread">@drawable/conversation_list_item_background_unread_light</item>
         <item name="conversation_list_item_background_selected">@drawable/list_selected_holo_light</item>
@@ -83,11 +84,10 @@
     </style>
 
     <style name="TextSecure.DarkTheme" parent="@style/Theme.AppCompat">
-        <item name="logo">@drawable/actionbar_icon_holo_dark</item>
-        <item name="android:logo">@drawable/actionbar_icon_holo_dark</item>
-
-        <item name="android:actionBarStyle">@style/TextSecure.DarkActionBar</item>
         <item name="actionBarStyle">@style/TextSecure.DarkActionBar</item>
+        <item name="colorPrimary">@color/gray95</item>
+        <item name="colorPrimaryDark">@color/gray95</item>
+        <item name="colorAccent">#ff259b24</item>
         <item name="conversation_list_item_background_read">@drawable/conversation_list_item_background_read_dark</item>
         <item name="conversation_list_item_background_unread">@drawable/conversation_list_item_background_unread_dark</item>
         <item name="conversation_list_item_background_selected">@drawable/list_selected_holo_dark</item>
@@ -160,7 +160,7 @@
     </style>
 
     <style name="TextSecure.Light.Dialog"
-           parent="Theme.AppCompat.Light.DialogWhenLarge"
+           parent="Theme.AppCompat.Light.Dialog"
            tools:ignore="NewApi">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowTitleStyle">@style/TextSecureDialogWindowTitle</item>

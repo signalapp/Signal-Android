@@ -28,7 +28,7 @@ U zal uw telefoonnummer opnieuw moeten registreren als u push berichten weer wil
   <string name="ApplicationPreferencesActivity_updating_directory">Contactpersonen updaten</string>
   <string name="ApplicationPreferencesActivity_updating_push_directory">Pushcontactpersonen updaten...</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">Inkomende SMS geactiveerd</string>
-  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Aanraken om uw standaard SMS applicatie te veranderen</string>
+  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Raak aan om uw standaard SMS applicatie te veranderen</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Inkomende SMS uitgeschakeld</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Raak aan om TextSecure uw standaard SMS applicatie te maken</string>
   <!--AttchmentManager-->
@@ -516,7 +516,7 @@ TextSecure heeft te lang moeten wachten op het binnenkomen van de verificatie-SM
   <string name="AndroidManifest__select_contact">Selecteer contact</string>
   <string name="AndroidManifest__textsecure_detected">TextSecure gedetecteerd</string>
   <string name="AndroidManifest__public_identity_key">Publieke identiteitssleutel</string>
-  <string name="AndroidManifest__change_passphrase">Wachtwoord veranderen</string>
+  <string name="AndroidManifest__change_passphrase">Verander wachtwoord</string>
   <string name="AndroidManifest__verify_session">Sessie verifiëren</string>
   <string name="AndroidManifest__verify_identity">Identiteit verifiëren</string>
   <string name="AndroidManifest__manage_identity_keys">Beheer identiteitssleutels</string>
@@ -541,9 +541,9 @@ TextSecure heeft te lang moeten wachten op het binnenkomen van de verificatie-SM
   <string name="preferences__display_settings">Beeldscherminstellingen</string>
   <string name="preferences__choose_identity">Identiteit kiezen</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Kies uw contactinformatie uit de contactpersonenlijst.</string>
-  <string name="preferences__change_passphrase">Wachtwoord veranderen</string>
+  <string name="preferences__change_passphrase">Verander wachtwoord</string>
   <string name="preferences__change_my_passphrase">Mijn wachtwoord veranderen</string>
-  <string name="preferences__complete_key_exchanges">Sleuteluitwisselingen voltooien</string>
+  <string name="preferences__complete_key_exchanges">Voltooi sleuteluitwisselingen</string>
   <string name="preferences__disable_passphrase">Wachtwoord uitschakelen</string>
   <string name="preferences__disable_local_encryption_of_messages_and_keys">Lokale versleuteling van berichten en sleutels uitschakelen</string>
   <string name="preferences__screen_security">Schermbeveiliging</string>
@@ -595,12 +595,12 @@ TextSecure heeft te lang moeten wachten op het binnenkomen van de verificatie-SM
   <string name="preferences__mms_proxy_host_optional">MMS Proxy Host (Optioneel)</string>
   <string name="preferences__mms_proxy_port_optional">MMS Proxy Poort (Optioneel)</string>
   <string name="preferences__sms_delivery_reports">SMS ontvangstbevestigingen</string>
-  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Verzoeken om een ontvangstbevestiging voor ieder verzonden SMS bericht</string>
+  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Verzoek om een ontvangstbevestiging voor ieder verzonden SMS bericht</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Automatisch oudere berichten verwijderen wanneer een gesprek meer dan een bepaald aantal berichten bevat</string>
   <string name="preferences__delete_old_messages">Verwijder oude berichten</string>
   <string name="preferences__storage">Opslag</string>
   <string name="preferences__conversation_length_limit">Gesprekslengte limiet</string>
-  <string name="preferences__trim_all_threads_now">Oude berichten nu verwijderen</string>
+  <string name="preferences__trim_all_threads_now">Oudere gespreksberichten nu verwijderen</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Alle gesprekken scannen en de maximale gesprekslengte toepassen</string>
   <string name="preferences__light_theme">Licht thema</string>
   <string name="preferences__dark_theme">Donker thema</string>
@@ -611,8 +611,7 @@ TextSecure heeft te lang moeten wachten op het binnenkomen van de verificatie-SM
   <string name="preferences__make_default_sms_app">Stel in als standaard SMS-app</string>
   <string name="preferences__make_textsecure_the_default_sms_mms_app">Stel TextSecure in als standaard SMS/MMS-applicatie voor uw systeem.</string>
   <string name="preferences__use_data_channel">Pushberichten</string>
-  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
-Privacy verbeteren en SMS-kosten vermijden door het datakanaal te gebruiken voor communicatie met andere TextSecure gebruikers</string>
+  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">Privacy verbeteren en SMS-kosten vermijden door het datakanaal te gebruiken om te communiceren met andere TextSecure gebruikers</string>
   <string name="preferences__allow_sms_fallback">SMS versturen naar</string>
   <string name="preferences__allow_sms_fallback_disabled_reason">TextSecure is momenteel uw standaard SMS applicatie. Selecteer alstublieft een andere SMS applicatie om deze voorkeur te veranderen.</string>
   <string name="preferences__refresh_push_directory">Pushcontacten verversen</string>

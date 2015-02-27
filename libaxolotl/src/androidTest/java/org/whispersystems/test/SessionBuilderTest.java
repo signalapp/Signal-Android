@@ -3,6 +3,7 @@ package org.whispersystems.test;
 import android.test.AndroidTestCase;
 
 import org.whispersystems.libaxolotl.DuplicateMessageException;
+import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.InvalidKeyException;
 import org.whispersystems.libaxolotl.InvalidKeyIdException;
 import org.whispersystems.libaxolotl.InvalidMessageException;
@@ -23,7 +24,10 @@ import org.whispersystems.libaxolotl.state.AxolotlStore;
 import org.whispersystems.libaxolotl.state.IdentityKeyStore;
 import org.whispersystems.libaxolotl.state.PreKeyBundle;
 import org.whispersystems.libaxolotl.state.PreKeyRecord;
+import org.whispersystems.libaxolotl.state.PreKeyStore;
+import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.libaxolotl.state.SignedPreKeyRecord;
+import org.whispersystems.libaxolotl.state.SignedPreKeyStore;
 import org.whispersystems.libaxolotl.util.Pair;
 
 import java.util.HashSet;
@@ -118,11 +122,11 @@ public class SessionBuilderTest extends AndroidTestCase {
     AxolotlStore   aliceStore          = new InMemoryAxolotlStore();
     SessionBuilder aliceSessionBuilder = new SessionBuilder(aliceStore, BOB_RECIPIENT_ID, 1);
 
-    final AxolotlStore bobStore                 = new InMemoryAxolotlStore();
-          ECKeyPair    bobPreKeyPair            = Curve.generateKeyPair();
-          ECKeyPair    bobSignedPreKeyPair      = Curve.generateKeyPair();
-          byte[]       bobSignedPreKeySignature = Curve.calculateSignature(bobStore.getIdentityKeyPair().getPrivateKey(),
-                                                                           bobSignedPreKeyPair.getPublicKey().serialize());
+    AxolotlStore bobStore                 = new InMemoryAxolotlStore();
+    ECKeyPair    bobPreKeyPair            = Curve.generateKeyPair();
+    ECKeyPair    bobSignedPreKeyPair      = Curve.generateKeyPair();
+    byte[]       bobSignedPreKeySignature = Curve.calculateSignature(bobStore.getIdentityKeyPair().getPrivateKey(),
+                                                                     bobSignedPreKeyPair.getPublicKey().serialize());
 
     PreKeyBundle bobPreKey = new PreKeyBundle(bobStore.getLocalRegistrationId(), 1,
                                               31337, bobPreKeyPair.getPublicKey(),
@@ -135,9 +139,9 @@ public class SessionBuilderTest extends AndroidTestCase {
     assertTrue(aliceStore.containsSession(BOB_RECIPIENT_ID, 1));
     assertTrue(aliceStore.loadSession(BOB_RECIPIENT_ID, 1).getSessionState().getSessionVersion() == 3);
 
-    final String            originalMessage    = "L'homme est condamné à être libre";
-          SessionCipher     aliceSessionCipher = new SessionCipher(aliceStore, BOB_RECIPIENT_ID, 1);
-          CiphertextMessage outgoingMessage    = aliceSessionCipher.encrypt(originalMessage.getBytes());
+    String            originalMessage    = "L'homme est condamné à être libre";
+    SessionCipher     aliceSessionCipher = new SessionCipher(aliceStore, BOB_RECIPIENT_ID, 1);
+    CiphertextMessage outgoingMessage    = aliceSessionCipher.encrypt(originalMessage.getBytes());
 
     assertTrue(outgoingMessage.getType() == CiphertextMessage.PREKEY_TYPE);
 
@@ -146,13 +150,8 @@ public class SessionBuilderTest extends AndroidTestCase {
     bobStore.storeSignedPreKey(22, new SignedPreKeyRecord(22, System.currentTimeMillis(), bobSignedPreKeyPair, bobSignedPreKeySignature));
 
     SessionCipher bobSessionCipher = new SessionCipher(bobStore, ALICE_RECIPIENT_ID, 1);
-    byte[] plaintext = bobSessionCipher.decrypt(incomingMessage, new SessionCipher.DecryptionCallback() {
-      @Override
-      public void handlePlaintext(byte[] plaintext) {
-        assertTrue(originalMessage.equals(new String(plaintext)));
-        assertFalse(bobStore.containsSession(ALICE_RECIPIENT_ID, 1));
-      }
-    });
+    byte[]        plaintext        = bobSessionCipher.decrypt(incomingMessage);
+
 
     assertTrue(bobStore.containsSession(ALICE_RECIPIENT_ID, 1));
     assertTrue(bobStore.loadSession(ALICE_RECIPIENT_ID, 1).getSessionState().getSessionVersion() == 3);
