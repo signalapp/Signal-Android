@@ -42,8 +42,6 @@ public class PassphraseChangeActivity extends PassphraseActivity {
   private EditText originalPassphrase;
   private EditText newPassphrase;
   private EditText repeatPassphrase;
-  private EditText newPassphrase2;
-  private EditText repeatPassphrase2;
   private TextView originalPassphraseLabel;
   private Button   okButton;
   private Button   cancelButton;
@@ -62,8 +60,6 @@ public class PassphraseChangeActivity extends PassphraseActivity {
     this.originalPassphrase      = (EditText) findViewById(R.id.old_passphrase      );
     this.newPassphrase           = (EditText) findViewById(R.id.new_passphrase      );
     this.repeatPassphrase        = (EditText) findViewById(R.id.repeat_passphrase   );
-    this.newPassphrase2 = (EditText) findViewById(R.id.new_duress          );
-    this.repeatPassphrase2 = (EditText) findViewById(R.id.repeat_duress       );
 
     this.okButton                = (Button  ) findViewById(R.id.ok_button           );
     this.cancelButton            = (Button  ) findViewById(R.id.cancel_button       );
@@ -84,36 +80,26 @@ public class PassphraseChangeActivity extends PassphraseActivity {
     Editable originalText = this.originalPassphrase.getText();
     Editable newText      = this.newPassphrase.getText();
     Editable repeatText   = this.repeatPassphrase.getText();
-    Editable newText2     = this.newPassphrase2.getText();
-    Editable repeatText2  = this.repeatPassphrase2.getText();
 
     String original         = (originalText == null ? "" : originalText.toString());
     String passphrase       = (newText == null ? "" : newText.toString());
     String passphraseRepeat = (repeatText == null ? "" : repeatText.toString());
-    String passphrase2           = (newText2 == null ? "" : newText2.toString());
-    String passphraseRepeat2     = (repeatText2 == null ? "" : repeatText2.toString());
 
     if (TextSecurePreferences.isPasswordDisabled(this)) {
       original = MasterSecretUtil.UNENCRYPTED_PASSPHRASE;
     }
 
     try {
-      if (!passphrase.equals(passphraseRepeat) || !passphrase2.equals(passphraseRepeat2)) {
+      if (!passphrase.equals(passphraseRepeat)) {
         Toast.makeText(getApplicationContext(),
                        R.string.PassphraseChangeActivity_passphrases_dont_match_exclamation,
                        Toast.LENGTH_SHORT).show();
         this.newPassphrase.setText("");
         this.repeatPassphrase.setText("");
-        this.newPassphrase2.setText("");
-        this.repeatPassphrase2.setText("");
       } else {
         MasterSecret masterSecret = MasterSecretUtil.changeMasterSecretPassphrase(this, original, passphrase);
-        MasterSecretUtil.generateMasterSecretDuress(this, passphrase2, masterSecret);
-
         TextSecurePreferences.setPasswordDisabled(this, false);
 
-        MemoryCleaner.clean(passphrase2);
-        MemoryCleaner.clean(passphraseRepeat2);
         MemoryCleaner.clean(original);
         MemoryCleaner.clean(passphrase);
         MemoryCleaner.clean(passphraseRepeat);
@@ -144,8 +130,6 @@ public class PassphraseChangeActivity extends PassphraseActivity {
     this.originalPassphrase = null;
     this.newPassphrase      = null;
     this.repeatPassphrase   = null;
-    this.newPassphrase2 = null;
-    this.repeatPassphrase2 = null;
 
     System.gc();
   }

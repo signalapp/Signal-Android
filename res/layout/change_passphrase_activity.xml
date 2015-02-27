@@ -10,7 +10,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:gravity="center" >
-
+        
         <LinearLayout android:paddingRight="16dip"
                       android:paddingLeft="16dip"
                       android:paddingTop="10dip"
@@ -19,13 +19,13 @@
                       android:layout_gravity="center"
                       android:visibility="visible"
                       android:orientation="vertical">
-
+                
             <TextView style="@style/Registration.Label"
                       android:id="@+id/old_passphrase_label"
                       android:layout_width="fill_parent"
                       android:textAllCaps="true"
                       android:text="@string/change_passphrase_activity__old_passphrase" />
-
+            
             <EditText android:id="@+id/old_passphrase"
                       android:layout_width="fill_parent"
                       android:layout_height="wrap_content"
@@ -37,41 +37,19 @@
                       android:layout_width="fill_parent"
                       android:textAllCaps="true"
                       android:text="@string/change_passphrase_activity__new_passphrase" />
-
+            
             <EditText android:id="@+id/new_passphrase"
                       android:layout_width="fill_parent"
                       android:layout_height="wrap_content"
                       android:inputType="textPassword"
                       android:singleLine="true"/>
 
-            <TextView style="@style/Registration.Label"
+           <TextView style="@style/Registration.Label"
                       android:layout_width="fill_parent"
                       android:textAllCaps="true"
                       android:text="@string/change_passphrase_activity__repeat_new_passphrase" />
-
+            
             <EditText android:id="@+id/repeat_passphrase"
-                      android:layout_width="fill_parent"
-                      android:layout_height="wrap_content"
-                      android:inputType="textPassword"
-                      android:singleLine="true"/>
-
-            <TextView style="@style/Registration.Label"
-                      android:layout_width="fill_parent"
-                      android:textAllCaps="true"
-                      android:text="@string/change_passphrase_activity__new_duress" />
-
-            <EditText android:id="@+id/new_duress"
-                      android:layout_width="fill_parent"
-                      android:layout_height="wrap_content"
-                      android:inputType="textPassword"
-                      android:singleLine="true"/>
-
-            <TextView style="@style/Registration.Label"
-                      android:layout_width="fill_parent"
-                      android:textAllCaps="true"
-                      android:text="@string/change_passphrase_activity__repeat_new_duress" />
-
-            <EditText android:id="@+id/repeat_duress"
                       android:layout_width="fill_parent"
                       android:layout_height="wrap_content"
                       android:inputType="textPassword"
@@ -82,21 +60,21 @@
                           android:layout_height="wrap_content"
                           android:layout_marginTop="30dip">
 
-                  <Button android:id="@+id/cancel_button"
-                          android:text="@android:string/cancel"
-                          android:layout_weight="1"
-                          android:layout_width="0dp"
-                          android:layout_height="wrap_content"
-                          android:layout_marginRight="7dip"
-                          android:textAppearance="?android:attr/textAppearanceMedium"/>
-
-                  <Button android:id="@+id/ok_button"
-                          android:text="@android:string/ok"
-                          android:layout_weight="1"
-                          android:layout_width="0dp"
-                          android:layout_height="wrap_content"
-                          android:textAppearance="?android:attr/textAppearanceMedium"/>
-            </LinearLayout>
+                <Button android:id="@+id/cancel_button"
+                        android:text="@android:string/cancel"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="7dip"
+                        android:textAppearance="?android:attr/textAppearanceMedium"/>
+                
+                <Button android:id="@+id/ok_button"
+                        android:text="@android:string/ok"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"/>                
+            </LinearLayout>                        
         </LinearLayout>
     </FrameLayout>
 </ScrollView>
