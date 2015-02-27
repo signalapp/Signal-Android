@@ -500,17 +500,6 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
     db.delete(TABLE_NAME, THREAD_ID + " = ?", new String[] {threadId+""});
   }
 
-  /*package */void deleteSecure() {
-    SQLiteDatabase db = databaseHelper.getWritableDatabase();
-    Cursor cursor = db.rawQuery("SELECT _id, type FROM sms",null);
-    while (cursor.moveToNext())
-    {
-      if ((cursor.getLong(cursor.getColumnIndexOrThrow("type")) & Types.SECURE_MESSAGE_BIT) != 0) {
-        deleteMessage(cursor.getLong(cursor.getColumnIndexOrThrow("_id")));
-      }
-    }
-  }
-
   /*package*/void deleteMessagesInThreadBeforeDate(long threadId, long date) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     String where      = THREAD_ID + " = ? AND (CASE " + TYPE;
