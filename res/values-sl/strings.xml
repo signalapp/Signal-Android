@@ -31,7 +31,6 @@ Za ponovno uporabo potisnih sporočil se boste morali zopet prijaviti s svojo te
   <string name="ApplicationPreferencesActivity_sms_disabled">Dohodna SMS sporočila izklopljena</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Z dotikom nastavi TexteScure za privzeto aplikacijo SMS</string>
   <!--AttchmentManager-->
-  <string name="AttachmentManager_cant_open_media_selection">Ne najdem aplikacije za izbor datotek.</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">Slika</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
@@ -57,7 +56,6 @@ Za ponovno uporabo potisnih sporočil se boste morali zopet prijaviti s svojo te
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Preklopim na nešifriran SMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Preklopim na nešifriran MMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">To sporočilo <b>ne bo</b> šifrirano, ker varna seja ne more biti vzpostavljena.\n\nPošljem nešifrirano sporočilo?</string>
-  <string name="ConversationItem_unable_to_open_media">Ne najdem aplikacije za odpiranje te vrste datotek.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Začnem varno sejo?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Začnem varno sejo z %s?</string>
@@ -90,13 +88,8 @@ Za ponovno uporabo potisnih sporočil se boste morali zopet prijaviti s svojo te
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Pošiljatelj: %1$s\nNačin prenosa: %2$s\nPoslano: %3$s\nPrejeto: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Potrdite izbris sporočila</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Ste prepričani, da želite dokonćno izbrisati sporočilo?</string>
-  <string name="ConversationFragment_save_to_sd_card">Spravim v sistemsko shrambo?</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">S shranitvijo datoteke v sistemsko shrambo bo ta dostopna tudi drugim aplikacijam.\n\nNadaljujem?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Napaka pri shranjevanju priponke v sistemsko shrambo!</string>
   <string name="ConversationFragment_success_exclamation">Uspešno opravljeno!</string>
-  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Ne morem shranjevati v sistemsko shrambo!</string>
   <string name="ConversationFragment_saving_attachment">Shranjujem priponko</string>
-  <string name="ConversationFragment_saving_attachment_to_sd_card">Shranjujem v sistemsko shrambo...</string>
   <!--ConversationListAdapter-->
   <string name="ConversationListAdapter_key_exchange_message">Sporočilo za izmenjavo ključev...</string>
   <!--ConversationListFragment-->
@@ -309,7 +302,7 @@ Prejeto sporočilo z neznanim identifikacijskim ključem. Kliknite za obdelavo i
   <string name="MessageNotifier_message_delivery_failed">Dostava sporočila ni uspela.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Neuspešna dostava sporočila.</string>
   <string name="MessageNotifier_error_delivering_message">Napaka pri dostavi sporočila.</string>
-  <string name="MessageNotifier_mark_all_as_read">Označi vse kot prebrano</string>
+  <string name="MessageNotifier_mark_all_as_read">Označi vsa kot prebrana</string>
   <string name="MessageNotifier_mark_as_read">Označi kot prebrano</string>
   <!--ViewLocalIdentityActivity-->
   <string name="ViewLocalIdentityActivity_regenerating">Ustvarjam nov ključ...</string>
@@ -430,14 +423,11 @@ Prejeto sporočilo z neznanim identifikacijskim ključem. Kliknite za obdelavo i
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Dokončaj</string>
   <!--registration_activity-->
-  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-Registracija je brezplačna in izboljša zasebnost pri pošiljanju sporočil drugim uporabnikom TextSecure. Prosim preverite svojo telefonsko številko.</string>
   <string name="registration_activity__your_country">VAŠA DRŽAVA</string>
   <string name="registration_activity__your_country_code_and_phone_number">KODA DRŽAVE IN VAŠA
 TELEFONSKA ŠTEVILKA</string>
   <string name="registration_activity__phone_number">TELEFONSKA ŠTEVILKA</string>
   <string name="registration_activity__register">Registriraj</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Pri registraciji se nekateri podatki uporabnika začasno posredujejo na strežnik.</string>
   <string name="registration_activity__skip">Preskoči</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Nekatere možni razlogi
@@ -515,10 +505,9 @@ bila uspešna.</string>
   <string name="AndroidManifest__manage_identity_keys">Upravljanje identifikacijskih ključev</string>
   <string name="AndroidManifest__complete_key_exchange">Dokončaj izmenjavo ključev</string>
   <string name="AndroidManifest__log_submit">Oddaj sistemsko zabeležbo</string>
-  <string name="AndroidManifest__media_preview">Ogled medija</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Uvoz/izvoz</string>
-  <string name="arrays__my_identity_key">Moja identifikacija</string>
+  <string name="arrays__import_export">Uvoz / izvoz</string>
+  <string name="arrays__my_identity_key">Moj identifikacijski ključ</string>
   <!--preferences.xml-->
   <string name="preferences__general">Splošno</string>
   <string name="preferences__push_sms_category">Pošiljanje in prejemanje</string>
@@ -691,10 +680,7 @@ bila uspešna.</string>
   <string name="reminder_header_push_title">Vklopim sporočila TextSecure?</string>
   <string name="reminder_header_push_text">Takojšnja dostava, večja zasebnost, brez stroškov SMS.</string>
   <!--MediaPreviewActivity-->
-  <string name="MediaPreviewActivity_you">Vi</string>
   <!--media_preview-->
-  <string name="media_preview__save_title">Shrani</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__image_content_description">Ogled slike</string>
   <!--EOF-->
 </resources>

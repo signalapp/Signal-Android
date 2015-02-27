@@ -138,7 +138,6 @@ public class SessionCipher {
    * Decrypt a message.
    *
    * @param  ciphertext The {@link PreKeyWhisperMessage} to decrypt.
-   *
    * @return The plaintext.
    * @throws InvalidMessageException if the input is not valid ciphertext.
    * @throws DuplicateMessageException if the input is a message that has already been received.
@@ -148,36 +147,9 @@ public class SessionCipher {
    *                               that corresponds to the PreKey ID in the message.
    * @throws InvalidKeyException when the message is formatted incorrectly.
    * @throws UntrustedIdentityException when the {@link IdentityKey} of the sender is untrusted.
+
    */
   public byte[] decrypt(PreKeyWhisperMessage ciphertext)
-      throws DuplicateMessageException, LegacyMessageException, InvalidMessageException,
-             InvalidKeyIdException, InvalidKeyException, UntrustedIdentityException
-  {
-    return decrypt(ciphertext, new NullDecryptionCallback());
-  }
-
-  /**
-   * Decrypt a message.
-   *
-   * @param  ciphertext The {@link PreKeyWhisperMessage} to decrypt.
-   * @param  callback   A callback that is triggered after decryption is complete,
-   *                    but before the updated session state has been committed to the session
-   *                    DB.  This allows some implementations to store the committed plaintext
-   *                    to a DB first, in case they are concerned with a crash happening between
-   *                    the time the session state is updated but before they're able to store
-   *                    the plaintext to disk.
-   *
-   * @return The plaintext.
-   * @throws InvalidMessageException if the input is not valid ciphertext.
-   * @throws DuplicateMessageException if the input is a message that has already been received.
-   * @throws LegacyMessageException if the input is a message formatted by a protocol version that
-   *                                is no longer supported.
-   * @throws InvalidKeyIdException when there is no local {@link org.whispersystems.libaxolotl.state.PreKeyRecord}
-   *                               that corresponds to the PreKey ID in the message.
-   * @throws InvalidKeyException when the message is formatted incorrectly.
-   * @throws UntrustedIdentityException when the {@link IdentityKey} of the sender is untrusted.
-   */
-  public byte[] decrypt(PreKeyWhisperMessage ciphertext, DecryptionCallback callback)
       throws DuplicateMessageException, LegacyMessageException, InvalidMessageException,
              InvalidKeyIdException, InvalidKeyException, UntrustedIdentityException
   {
@@ -185,8 +157,6 @@ public class SessionCipher {
       SessionRecord     sessionRecord    = sessionStore.loadSession(recipientId, deviceId);
       Optional<Integer> unsignedPreKeyId = sessionBuilder.process(sessionRecord, ciphertext);
       byte[]            plaintext        = decrypt(sessionRecord, ciphertext.getWhisperMessage());
-
-      callback.handlePlaintext(plaintext);
 
       sessionStore.storeSession(recipientId, deviceId, sessionRecord);
 
@@ -197,6 +167,7 @@ public class SessionCipher {
       return plaintext;
     }
   }
+
 
   /**
    * Decrypt a message.
@@ -212,31 +183,6 @@ public class SessionCipher {
    */
   public byte[] decrypt(WhisperMessage ciphertext)
       throws InvalidMessageException, DuplicateMessageException, LegacyMessageException,
-      NoSessionException
-  {
-    return decrypt(ciphertext, new NullDecryptionCallback());
-  }
-
-  /**
-   * Decrypt a message.
-   *
-   * @param  ciphertext The {@link WhisperMessage} to decrypt.
-   * @param  callback   A callback that is triggered after decryption is complete,
-   *                    but before the updated session state has been committed to the session
-   *                    DB.  This allows some implementations to store the committed plaintext
-   *                    to a DB first, in case they are concerned with a crash happening between
-   *                    the time the session state is updated but before they're able to store
-   *                    the plaintext to disk.
-   *
-   * @return The plaintext.
-   * @throws InvalidMessageException if the input is not valid ciphertext.
-   * @throws DuplicateMessageException if the input is a message that has already been received.
-   * @throws LegacyMessageException if the input is a message formatted by a protocol version that
-   *                                is no longer supported.
-   * @throws NoSessionException if there is no established session for this contact.
-   */
-  public byte[] decrypt(WhisperMessage ciphertext, DecryptionCallback callback)
-      throws InvalidMessageException, DuplicateMessageException, LegacyMessageException,
              NoSessionException
   {
     synchronized (SESSION_LOCK) {
@@ -247,8 +193,6 @@ public class SessionCipher {
 
       SessionRecord sessionRecord = sessionStore.loadSession(recipientId, deviceId);
       byte[]        plaintext     = decrypt(sessionRecord, ciphertext);
-
-      callback.handlePlaintext(plaintext);
 
       sessionStore.storeSession(recipientId, deviceId, sessionRecord);
 
@@ -380,7 +324,7 @@ public class SessionCipher {
       }
     }
 
-    if (counter - chainKey.getIndex() > 2000) {
+    if (chainKey.getIndex() - counter > 2000) {
       throw new InvalidMessageException("Over 2000 messages into the future!");
     }
 
@@ -456,14 +400,5 @@ public class SessionCipher {
     {
       throw new AssertionError(e);
     }
-  }
-
-  public static interface DecryptionCallback {
-    public void handlePlaintext(byte[] plaintext);
-  }
-
-  private static class NullDecryptionCallback implements DecryptionCallback {
-    @Override
-    public void handlePlaintext(byte[] plaintext) {}
   }
 }
