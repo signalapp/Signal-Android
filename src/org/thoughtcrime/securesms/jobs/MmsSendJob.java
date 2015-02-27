@@ -118,23 +118,22 @@ public class MmsSendJob extends SendJob {
       radio.connect();
 
       try {
-        MmsSendResult result = sendMms(masterSecret, radio, message, true, true);
-        radio.disconnect();
-        return result;
-      } catch (IOException e) {
-        Log.w(TAG, e);
-      }
+        try {
+          return sendMms(masterSecret, radio, message, true, true);
+        } catch (IOException e) {
+          Log.w(TAG, e);
+        }
 
-      Log.w(TAG, "Sending MMS with radio change and without proxy...");
+        Log.w(TAG, "Sending MMS with radio change and without proxy...");
 
-      try {
-        MmsSendResult result = sendMms(masterSecret, radio, message, true, false);
+        try {
+          return sendMms(masterSecret, radio, message, true, false);
+        } catch (IOException ioe) {
+          Log.w(TAG, ioe);
+          throw new UndeliverableMessageException(ioe);
+        }
+      } finally {
         radio.disconnect();
-        return result;
-      } catch (IOException ioe) {
-        Log.w(TAG, ioe);
-        radio.disconnect();
-        throw new UndeliverableMessageException(ioe);
       }
 
     } catch (MmsRadioException mre) {
