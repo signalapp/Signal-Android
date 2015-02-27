@@ -18,6 +18,13 @@ package org.whispersystems.textsecure.api.messages;
 
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
+/**
+ * Represents a received TextSecureMessage attachment "handle."  This
+ * is a pointer to the actual attachment content, which needs to be
+ * retrieved using {@link org.whispersystems.textsecure.api.TextSecureMessageReceiver#retrieveAttachment(TextSecureAttachmentPointer, java.io.File)}
+ *
+ * @author Moxie Marlinspike
+ */
 public class TextSecureAttachmentPointer extends TextSecureAttachment {
 
   private final long             id;

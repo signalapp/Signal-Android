@@ -16,6 +16,9 @@
  */
 package org.whispersystems.textsecure.api.push;
 
+/**
+ * A class representing a message destination or origin.
+ */
 public class PushAddress {
 
   public static final int DEFAULT_DEVICE_ID = 1;
@@ -24,6 +27,13 @@ public class PushAddress {
   private final String e164number;
   private final String relay;
 
+  /**
+   * Construct a PushAddress.
+   *
+   * @param recipientId The axolotl recipient ID of this destination.
+   * @param e164number The TextSecure username of this destination (eg e164 representation of a phone number).
+   * @param relay The TextSecure federated server this user is registered with (if not your own server).
+   */
   public PushAddress(long recipientId, String e164number, String relay) {
     this.recipientId = recipientId;
     this.e164number  = e164number;

@@ -16,6 +16,9 @@
  */
 package org.whispersystems.textsecure.api.push;
 
+/**
+ * A class that represents a contact's registration state.
+ */
 public class ContactTokenDetails {
 
   private String  token;
@@ -25,14 +28,23 @@ public class ContactTokenDetails {
 
   public ContactTokenDetails() {}
 
+  /**
+   * @return The "anonymized" token (truncated hash) that's transmitted to the server.
+   */
   public String getToken() {
     return token;
   }
 
+  /**
+   * @return The federated server this contact is registered with, or null if on your server.
+   */
   public String getRelay() {
     return relay;
   }
 
+  /**
+   * @return Whether this contact supports receiving encrypted SMS.
+   */
   public boolean isSupportsSms() {
     return supportsSms;
   }
@@ -41,6 +53,9 @@ public class ContactTokenDetails {
     this.number = number;
   }
 
+  /**
+   * @return This contact's username (e164 formatted number).
+   */
   public String getNumber() {
     return number;
   }

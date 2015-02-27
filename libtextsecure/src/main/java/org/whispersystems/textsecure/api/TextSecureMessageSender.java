@@ -61,6 +61,11 @@ import static org.whispersystems.textsecure.internal.push.PushMessageProtos.Push
 import static org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.AttachmentPointer;
 import static org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.GroupContext;
 
+/**
+ * The main interface for sending TextSecure messages.
+ *
+ * @author Moxie Marlinspike
+ */
 public class TextSecureMessageSender {
 
   private static final String TAG = TextSecureMessageSender.class.getSimpleName();
@@ -70,6 +75,18 @@ public class TextSecureMessageSender {
   private final PushAddress             syncAddress;
   private final Optional<EventListener> eventListener;
 
+  /**
+   * Construct a TextSecureMessageSender.
+   *
+   * @param url The URL of the TextSecure server.
+   * @param trustStore The trust store containing the TextSecure server's signing TLS certificate.
+   * @param user The TextSecure username (eg phone number).
+   * @param password The TextSecure user's password.
+   * @param userId The axolotl recipient id for the local TextSecure user.
+   * @param store The AxolotlStore.
+   * @param eventListener An optional event listener, which fires whenever sessions are
+   *                      setup or torn down for a recipient.
+   */
   public TextSecureMessageSender(String url, TrustStore trustStore,
                                  String user, String password,
                                  long userId, AxolotlStore store,
@@ -81,10 +98,25 @@ public class TextSecureMessageSender {
     this.eventListener = eventListener;
   }
 
+  /**
+   * Send a delivery receipt for a received message.  It is not necessary to call this
+   * when receiving messages through {@link org.whispersystems.textsecure.api.TextSecureMessagePipe}.
+   * @param recipient The sender of the received message you're acknowledging.
+   * @param messageId The message id of the received message you're acknowledging.
+   * @throws IOException
+   */
   public void sendDeliveryReceipt(PushAddress recipient, long messageId) throws IOException {
     this.socket.sendReceipt(recipient.getNumber(), messageId, recipient.getRelay());
   }
 
+  /**
+   * Send a message to a single recipient.
+   *
+   * @param recipient The message's destination.
+   * @param message The message.
+   * @throws UntrustedIdentityException
+   * @throws IOException
+   */
   public void sendMessage(PushAddress recipient, TextSecureMessage message)
       throws UntrustedIdentityException, IOException
   {
@@ -106,6 +138,14 @@ public class TextSecureMessageSender {
     }
   }
 
+  /**
+   * Send a message to a group.
+   *
+   * @param recipients The group members.
+   * @param message The group message.
+   * @throws IOException
+   * @throws EncapsulatedExceptions
+   */
   public void sendMessage(List<PushAddress> recipients, TextSecureMessage message)
       throws IOException, EncapsulatedExceptions
   {

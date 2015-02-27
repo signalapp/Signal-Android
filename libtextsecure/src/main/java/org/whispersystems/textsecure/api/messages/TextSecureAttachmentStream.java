@@ -18,6 +18,9 @@ package org.whispersystems.textsecure.api.messages;
 
 import java.io.InputStream;
 
+/**
+ * Represents a local TextSecureAttachment to be sent.
+ */
 public class TextSecureAttachmentStream extends TextSecureAttachment {
 
   private final InputStream inputStream;

@@ -45,7 +45,6 @@ import org.whispersystems.jobqueue.JobManager;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.TextSecureAccountManager;
 import org.whispersystems.textsecure.api.push.ContactTokenDetails;
-import org.thoughtcrime.securesms.util.DirectoryUtil;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
 
 import java.io.IOException;
@@ -283,8 +282,7 @@ public class MessageSender {
     } catch (NotInDirectoryException e) {
       try {
         TextSecureAccountManager      accountManager = TextSecureCommunicationFactory.createManager(context);
-        String                        contactToken   = DirectoryUtil.getDirectoryServerToken(destination);
-        Optional<ContactTokenDetails> registeredUser = accountManager.getContact(contactToken);
+        Optional<ContactTokenDetails> registeredUser = accountManager.getContact(destination);
 
         if (!registeredUser.isPresent()) {
           registeredUser = Optional.of(new ContactTokenDetails());

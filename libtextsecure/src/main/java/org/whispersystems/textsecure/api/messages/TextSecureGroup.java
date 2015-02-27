@@ -20,6 +20,19 @@ import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.util.List;
 
+/**
+ * Group information to include in TextSecureMessages destined to groups.
+ *
+ * This class represents a "context" that is included with textsecure messages
+ * to make them group messages.  There are three types of context:
+ *
+ * 1) Update -- Sent when either creating a group, or updating the properties
+ *    of a group (such as the avatar icon, membership list, or title).
+ * 2) Deliver -- Sent when a message is to be delivered to an existing group.
+ * 3) Quit -- Sent when the sender wishes to leave an existing group.
+ *
+ * @author Moxie Marlinspike
+ */
 public class TextSecureGroup {
 
   public enum Type {
@@ -36,10 +49,22 @@ public class TextSecureGroup {
   private final Optional<TextSecureAttachment> avatar;
 
 
+  /**
+   * Construct a DELIVER group context.
+   * @param groupId
+   */
   public TextSecureGroup(byte[] groupId) {
     this(Type.DELIVER, groupId, null, null, null);
   }
 
+  /**
+   * Construct a group context.
+   * @param type The group message type (update, deliver, quit).
+   * @param groupId The group ID.
+   * @param name The group title.
+   * @param members The group membership list.
+   * @param avatar The group avatar icon.
+   */
   public TextSecureGroup(Type type, byte[] groupId, String name,
                          List<String> members,
                          TextSecureAttachment avatar)

@@ -15,7 +15,6 @@ import org.whispersystems.textsecure.api.util.InvalidNumberException;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 public class DirectoryHelper {
@@ -67,13 +66,12 @@ public class DirectoryHelper {
   {
     TextSecureDirectory       directory              = TextSecureDirectory.getInstance(context);
     Set<String>               eligibleContactNumbers = directory.getPushEligibleContactNumbers(localNumber);
-    Map<String, String>       tokenMap               = DirectoryUtil.getDirectoryServerTokenMap(eligibleContactNumbers);
-    List<ContactTokenDetails> activeTokens           = accountManager.getContacts(tokenMap.keySet());
+    List<ContactTokenDetails> activeTokens           = accountManager.getContacts(eligibleContactNumbers);
 
     if (activeTokens != null) {
       for (ContactTokenDetails activeToken : activeTokens) {
-        eligibleContactNumbers.remove(tokenMap.get(activeToken.getToken()));
-        activeToken.setNumber(tokenMap.get(activeToken.getToken()));
+        eligibleContactNumbers.remove(activeToken.getNumber());
+        activeToken.setNumber(activeToken.getNumber());
       }
 
       directory.setNumbers(activeTokens, eligibleContactNumbers);

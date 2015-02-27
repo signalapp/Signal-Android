@@ -12,24 +12,59 @@ import java.util.concurrent.TimeoutException;
 import static org.whispersystems.textsecure.internal.websocket.WebSocketProtos.WebSocketRequestMessage;
 import static org.whispersystems.textsecure.internal.websocket.WebSocketProtos.WebSocketResponseMessage;
 
+/**
+ * A TextSecureMessagePipe represents a dedicated connection
+ * to the TextSecure server, which the server can push messages
+ * down.
+ */
 public class TextSecureMessagePipe {
 
   private final WebSocketConnection websocket;
   private final CredentialsProvider credentialsProvider;
 
-  public TextSecureMessagePipe(WebSocketConnection websocket, CredentialsProvider credentialsProvider) {
+  TextSecureMessagePipe(WebSocketConnection websocket, CredentialsProvider credentialsProvider) {
     this.websocket           = websocket;
     this.credentialsProvider = credentialsProvider;
 
     this.websocket.connect();
   }
 
+  /**
+   * A blocking call that reads a message off the pipe.  When this
+   * call returns, the message has been acknowledged and will not
+   * be retransmitted.
+   *
+   * @param timeout The timeout to wait for.
+   * @param unit The timeout time unit.
+   * @return A new message.
+   *
+   * @throws InvalidVersionException
+   * @throws IOException
+   * @throws TimeoutException
+   */
   public TextSecureEnvelope read(long timeout, TimeUnit unit)
       throws InvalidVersionException, IOException, TimeoutException
   {
     return read(timeout, unit, new NullMessagePipeCallback());
   }
 
+  /**
+   * A blocking call that reads a message off the pipe (see {@link #read(long, java.util.concurrent.TimeUnit)}
+   *
+   * Unlike {@link #read(long, java.util.concurrent.TimeUnit)}, this method allows you
+   * to specify a callback that will be called before the received message is acknowledged.
+   * This allows you to write the received message to durable storage before acknowledging
+   * receipt of it to the server.
+   *
+   * @param timeout The timeout to wait for.
+   * @param unit The timeout time unit.
+   * @param callback A callback that will be called before the message receipt is
+   *                 acknowledged to the server.
+   * @return The message read (same as the message sent through the callback).
+   * @throws TimeoutException
+   * @throws IOException
+   * @throws InvalidVersionException
+   */
   public TextSecureEnvelope read(long timeout, TimeUnit unit, MessagePipeCallback callback)
       throws TimeoutException, IOException, InvalidVersionException
   {
@@ -51,6 +86,9 @@ public class TextSecureMessagePipe {
     }
   }
 
+  /**
+   * Close this connection to the server.
+   */
   public void shutdown() {
     websocket.disconnect();
   }
@@ -75,6 +113,10 @@ public class TextSecureMessagePipe {
     }
   }
 
+  /**
+   * For receiving a callback when a new message has been
+   * received.
+   */
   public static interface MessagePipeCallback {
     public void onMessage(TextSecureEnvelope envelope);
   }

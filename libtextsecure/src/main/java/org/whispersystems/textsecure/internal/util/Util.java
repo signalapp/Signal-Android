@@ -50,6 +50,13 @@ public class Util {
     return parts;
   }
 
+  public static byte[] trim(byte[] input, int length) {
+    byte[] result = new byte[length];
+    System.arraycopy(input, 0, result, 0, result.length);
+
+    return result;
+  }
+
   public static boolean isEmpty(String value) {
     return value == null || value.trim().length() == 0;
   }

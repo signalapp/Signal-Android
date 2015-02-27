@@ -118,8 +118,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
         messageSender.sendMessage(address, new TextSecureMessage(message.getDateSent(), null,
                                                                  null, null, true, true));
       } else {
-        messageSender.sendMessage(address, new TextSecureMessage(message.getDateSent(), null,
-                                                                 message.getBody().getBody()));
+        messageSender.sendMessage(address, new TextSecureMessage(message.getDateSent(), message.getBody().getBody()));
       }
 
       return true;

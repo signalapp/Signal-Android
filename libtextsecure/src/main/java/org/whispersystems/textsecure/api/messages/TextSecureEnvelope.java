@@ -39,6 +39,14 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
+/**
+ * This class represents an encrypted TextSecure envelope.
+ *
+ * The envelope contains the wrapping information, such as the sender, the
+ * message timestamp, the encrypted message type, etc.
+ *
+  * @author  Moxie Marlinspike
+ */
 public class TextSecureEnvelope {
 
   private static final String TAG = TextSecureEnvelope.class.getSimpleName();
@@ -56,12 +64,29 @@ public class TextSecureEnvelope {
 
   private final IncomingPushMessageSignal signal;
 
+  /**
+   * Construct an envelope from a serialized, Base64 encoded TextSecureEnvelope, encrypted
+   * with a signaling key.
+   *
+   * @param message The serialized TextSecureEnvelope, base64 encoded and encrypted.
+   * @param signalingKey The signaling key.
+   * @throws IOException
+   * @throws InvalidVersionException
+   */
   public TextSecureEnvelope(String message, String signalingKey)
       throws IOException, InvalidVersionException
   {
     this(Base64.decode(message), signalingKey);
   }
 
+  /**
+   * Construct an envelope from a serialized TextSecureEnvelope, encrypted with a signaling key.
+   *
+   * @param ciphertext The serialized and encrypted TextSecureEnvelope.
+   * @param signalingKey The signaling key.
+   * @throws InvalidVersionException
+   * @throws IOException
+   */
   public TextSecureEnvelope(byte[] ciphertext, String signalingKey)
       throws InvalidVersionException, IOException
   {
@@ -89,42 +114,72 @@ public class TextSecureEnvelope {
                                            .build();
   }
 
+  /**
+   * @return The envelope's sender.
+   */
   public String getSource() {
     return signal.getSource();
   }
 
+  /**
+   * @return The envelope's sender device ID.
+   */
   public int getSourceDevice() {
     return signal.getSourceDevice();
   }
 
+  /**
+   * @return The envelope content type.
+   */
   public int getType() {
     return signal.getType().getNumber();
   }
 
+  /**
+   * @return The federated server this envelope came from.
+   */
   public String getRelay() {
     return signal.getRelay();
   }
 
+  /**
+   * @return The timestamp this envelope was sent.
+   */
   public long getTimestamp() {
     return signal.getTimestamp();
   }
 
+  /**
+   * @return The envelope's containing message.
+   */
   public byte[] getMessage() {
     return signal.getMessage().toByteArray();
   }
 
+  /**
+   * @return true if the containing message is a {@link org.whispersystems.libaxolotl.protocol.WhisperMessage}
+   */
   public boolean isWhisperMessage() {
     return signal.getType().getNumber() == IncomingPushMessageSignal.Type.CIPHERTEXT_VALUE;
   }
 
+  /**
+   * @return true if the containing message is a {@link org.whispersystems.libaxolotl.protocol.PreKeyWhisperMessage}
+   */
   public boolean isPreKeyWhisperMessage() {
     return signal.getType().getNumber() == IncomingPushMessageSignal.Type.PREKEY_BUNDLE_VALUE;
   }
 
+  /**
+   * @return true if the containing message is plaintext.
+   */
   public boolean isPlaintext() {
     return signal.getType().getNumber() == IncomingPushMessageSignal.Type.PLAINTEXT_VALUE;
   }
 
+  /**
+   * @return true if the containing message is a delivery receipt.
+   */
   public boolean isReceipt() {
     return signal.getType().getNumber() == IncomingPushMessageSignal.Type.RECEIPT_VALUE;
   }

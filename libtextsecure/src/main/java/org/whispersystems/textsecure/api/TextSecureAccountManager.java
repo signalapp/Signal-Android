@@ -30,19 +30,40 @@ import org.whispersystems.textsecure.api.push.SignedPreKeyEntity;
 import org.whispersystems.textsecure.api.push.TrustStore;
 import org.whispersystems.textsecure.internal.crypto.ProvisioningCipher;
 import org.whispersystems.textsecure.internal.push.PushServiceSocket;
+import org.whispersystems.textsecure.internal.util.Base64;
 import org.whispersystems.textsecure.internal.util.StaticCredentialsProvider;
+import org.whispersystems.textsecure.internal.util.Util;
 
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import static org.whispersystems.textsecure.internal.push.ProvisioningProtos.ProvisionMessage;
 
+/**
+ * The main interface for creating, registering, and
+ * managing a TextSecure account.
+ *
+ * @author Moxie Marlinspike
+ */
 public class TextSecureAccountManager {
 
   private final PushServiceSocket pushServiceSocket;
   private final String            user;
 
+  /**
+   * Construct a TextSecureAccountManager.
+   *
+   * @param url The URL for the TextSecure server.
+   * @param trustStore The {@link org.whispersystems.textsecure.api.push.TrustStore} for the TextSecure server's TLS certificate.
+   * @param user A TextSecure phone number.
+   * @param password A TextSecure password.
+   */
   public TextSecureAccountManager(String url, TrustStore trustStore,
                                   String user, String password)
   {
@@ -50,6 +71,12 @@ public class TextSecureAccountManager {
     this.user              = user;
   }
 
+  /**
+   * Register/Unregister a Google Cloud Messaging registration ID.
+   *
+   * @param gcmRegistrationId The GCM id to register.  A call with an absent value will unregister.
+   * @throws IOException
+   */
   public void setGcmId(Optional<String> gcmRegistrationId) throws IOException {
     if (gcmRegistrationId.isPresent()) {
       this.pushServiceSocket.registerGcmId(gcmRegistrationId.get());
@@ -58,14 +85,42 @@ public class TextSecureAccountManager {
     }
   }
 
+  /**
+   * Request an SMS verification code.  On success, the server will send
+   * an SMS verification code to this TextSecure user.
+   *
+   * @throws IOException
+   */
   public void requestSmsVerificationCode() throws IOException {
     this.pushServiceSocket.createAccount(false);
   }
 
+  /**
+   * Request a Voice verification code.  On success, the server will
+   * make a voice call to this TextSecure user.
+   *
+    * @throws IOException
+   */
   public void requestVoiceVerificationCode() throws IOException {
     this.pushServiceSocket.createAccount(true);
   }
 
+  /**
+   * Verify a TextSecure account.
+   *
+   * @param verificationCode The verification code received via SMS or Voice
+   *                         (see {@link #requestSmsVerificationCode} and
+   *                         {@link #requestVoiceVerificationCode}).
+   * @param signalingKey 52 random bytes.  A 32 byte AES key and a 20 byte Hmac256 key,
+   *                     concatenated.
+   * @param supportsSms Indicate whether this client is capable of supporting encrypted SMS.
+   * @param axolotlRegistrationId A random 14-bit number that identifies this TextSecure install.
+   *                              This value should remain consistent across registrations for the
+   *                              same install, but probabilistically differ across registrations
+   *                              for separate installs.
+   *
+   * @throws IOException
+   */
   public void verifyAccount(String verificationCode, String signalingKey,
                             boolean supportsSms, int axolotlRegistrationId)
       throws IOException
@@ -74,6 +129,17 @@ public class TextSecureAccountManager {
                                          supportsSms, axolotlRegistrationId);
   }
 
+  /**
+   * Register an identity key, last resort key, signed prekey, and list of one time prekeys
+   * with the server.
+   *
+   * @param identityKey The client's long-term identity keypair.
+   * @param lastResortKey The client's "last resort" prekey.
+   * @param signedPreKey The client's signed prekey.
+   * @param oneTimePreKeys The client's list of one-time prekeys.
+   *
+   * @throws IOException
+   */
   public void setPreKeys(IdentityKey identityKey, PreKeyRecord lastResortKey,
                          SignedPreKeyRecord signedPreKey, List<PreKeyRecord> oneTimePreKeys)
       throws IOException
@@ -81,26 +147,68 @@ public class TextSecureAccountManager {
     this.pushServiceSocket.registerPreKeys(identityKey, lastResortKey, signedPreKey, oneTimePreKeys);
   }
 
+  /**
+   * @return The server's count of currently available (eg. unused) prekeys for this user.
+   * @throws IOException
+   */
   public int getPreKeysCount() throws IOException {
     return this.pushServiceSocket.getAvailablePreKeys();
   }
 
+  /**
+   * Set the client's signed prekey.
+   *
+   * @param signedPreKey The client's new signed prekey.
+   * @throws IOException
+   */
   public void setSignedPreKey(SignedPreKeyRecord signedPreKey) throws IOException {
     this.pushServiceSocket.setCurrentSignedPreKey(signedPreKey);
   }
 
+  /**
+   * @return The server's view of the client's current signed prekey.
+   * @throws IOException
+   */
   public SignedPreKeyEntity getSignedPreKey() throws IOException {
     return this.pushServiceSocket.getCurrentSignedPreKey();
   }
 
-  public Optional<ContactTokenDetails> getContact(String contactToken) throws IOException {
-    return Optional.fromNullable(this.pushServiceSocket.getContactTokenDetails(contactToken));
+  /**
+   * Checks whether a contact is currently registered with the server.
+   *
+   * @param e164number The contact to check.
+   * @return An optional ContactTokenDetails, present if registered, absent if not.
+   * @throws IOException
+   */
+  public Optional<ContactTokenDetails> getContact(String e164number) throws IOException {
+    String              contactToken        = createDirectoryServerToken(e164number);
+    ContactTokenDetails contactTokenDetails = this.pushServiceSocket.getContactTokenDetails(contactToken);
+
+    if (contactTokenDetails != null) {
+      contactTokenDetails.setNumber(e164number);
+    }
+
+    return Optional.fromNullable(contactTokenDetails);
   }
 
-  public List<ContactTokenDetails> getContacts(Set<String> contactTokens)
+  /**
+   * Checks which contacts in a set are registered with the server.
+   *
+   * @param e164numbers The contacts to check.
+   * @return A list of ContactTokenDetails for the registered users.
+   * @throws IOException
+   */
+  public List<ContactTokenDetails> getContacts(Set<String> e164numbers)
       throws IOException
   {
-    return this.pushServiceSocket.retrieveDirectory(contactTokens);
+    Map<String, String>       contactTokensMap = createDirectoryServerTokenMap(e164numbers);
+    List<ContactTokenDetails> activeTokens     = this.pushServiceSocket.retrieveDirectory(contactTokensMap.keySet());
+
+    for (ContactTokenDetails activeToken : activeTokens) {
+      activeToken.setNumber(contactTokensMap.get(activeToken.getToken()));
+    }
+
+    return activeTokens;
   }
 
   public String getNewDeviceVerificationCode() throws IOException {
@@ -123,6 +231,26 @@ public class TextSecureAccountManager {
 
     byte[] ciphertext = cipher.encrypt(message);
     this.pushServiceSocket.sendProvisioningMessage(deviceIdentifier, ciphertext);
+  }
+
+  private String createDirectoryServerToken(String e164number) {
+    try {
+      MessageDigest digest = MessageDigest.getInstance("SHA1");
+      byte[]        token  = Util.trim(digest.digest(e164number.getBytes()), 10);
+      return Base64.encodeBytesWithoutPadding(token);
+    } catch (NoSuchAlgorithmException e) {
+      throw new AssertionError(e);
+    }
+  }
+
+  private Map<String, String> createDirectoryServerTokenMap(Collection<String> e164numbers) {
+    Map<String,String> tokenMap = new HashMap<>(e164numbers.size());
+
+    for (String number : e164numbers) {
+      tokenMap.put(createDirectoryServerToken(number), number);
+    }
+
+    return tokenMap;
   }
 
 }

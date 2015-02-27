@@ -44,6 +44,11 @@ import java.util.List;
 import static org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent;
 import static org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.GroupContext.Type.DELIVER;
 
+/**
+ * This is used to decrypt received {@link org.whispersystems.textsecure.api.messages.TextSecureEnvelope}s.
+ *
+ * @author Moxie Marlinspike
+ */
 public class TextSecureCipher {
 
   private final SessionCipher sessionCipher;
@@ -57,6 +62,20 @@ public class TextSecureCipher {
     return sessionCipher.encrypt(transportDetails.getPaddedMessageBody(unpaddedMessage));
   }
 
+  /**
+   * Decrypt a received {@link org.whispersystems.textsecure.api.messages.TextSecureEnvelope}
+   *
+   * @param envelope The received TextSecureEnvelope
+   * @return a decrypted TextSecureMessage
+   * @throws InvalidVersionException
+   * @throws InvalidMessageException
+   * @throws InvalidKeyException
+   * @throws DuplicateMessageException
+   * @throws InvalidKeyIdException
+   * @throws UntrustedIdentityException
+   * @throws LegacyMessageException
+   * @throws NoSessionException
+   */
   public TextSecureMessage decrypt(TextSecureEnvelope envelope)
       throws InvalidVersionException, InvalidMessageException, InvalidKeyException,
              DuplicateMessageException, InvalidKeyIdException, UntrustedIdentityException,

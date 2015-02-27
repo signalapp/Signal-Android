@@ -17,25 +17,23 @@
 package org.whispersystems.textsecure.api;
 
 import org.whispersystems.libaxolotl.InvalidMessageException;
-import org.whispersystems.libaxolotl.InvalidVersionException;
 import org.whispersystems.textsecure.api.crypto.AttachmentCipherInputStream;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachmentPointer;
-import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 import org.whispersystems.textsecure.api.push.TrustStore;
 import org.whispersystems.textsecure.api.util.CredentialsProvider;
 import org.whispersystems.textsecure.internal.push.PushServiceSocket;
 import org.whispersystems.textsecure.internal.util.StaticCredentialsProvider;
 import org.whispersystems.textsecure.internal.websocket.WebSocketConnection;
-import org.whispersystems.textsecure.internal.websocket.WebSocketProtos;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 
-import static org.whispersystems.textsecure.internal.websocket.WebSocketProtos.WebSocketRequestMessage;
-
+/**
+ * The primary interface for receiving TextSecure messages.
+ *
+ * @author Moxie Marlinspike
+ */
 public class TextSecureMessageReceiver {
 
   private final PushServiceSocket   socket;
@@ -43,12 +41,30 @@ public class TextSecureMessageReceiver {
   private final String              url;
   private final CredentialsProvider credentialsProvider;
 
+  /**
+   * Construct a TextSecureMessageReceiver.
+   *
+   * @param url The URL of the TextSecure server.
+   * @param trustStore The {@link org.whispersystems.textsecure.api.push.TrustStore} containing
+   *                   the server's TLS signing certificate.
+   * @param user The TextSecure user's username (eg. phone number).
+   * @param password The TextSecure user's password.
+   * @param signalingKey The 52 byte signaling key assigned to this user at registration.
+   */
   public TextSecureMessageReceiver(String url, TrustStore trustStore,
                                    String user, String password, String signalingKey)
   {
     this(url, trustStore, new StaticCredentialsProvider(user, password, signalingKey));
   }
 
+  /**
+   * Construct a TextSecureMessageReceiver.
+   *
+   * @param url The URL of the TextSecure server.
+   * @param trustStore The {@link org.whispersystems.textsecure.api.push.TrustStore} containing
+   *                   the server's TLS signing certificate.
+   * @param credentials The TextSecure user's credentials.
+   */
   public TextSecureMessageReceiver(String url, TrustStore trustStore, CredentialsProvider credentials) {
     this.url                 = url;
     this.trustStore          = trustStore;
@@ -56,6 +72,17 @@ public class TextSecureMessageReceiver {
     this.socket              = new PushServiceSocket(url, trustStore, credentials);
   }
 
+  /**
+   * Retrieves a TextSecure attachment.
+   *
+   * @param pointer The {@link org.whispersystems.textsecure.api.messages.TextSecureAttachmentPointer}
+   *                received in a {@link org.whispersystems.textsecure.api.messages.TextSecureMessage}.
+   * @param destination The download destination for this attachment.
+   *
+   * @return An InputStream that streams the plaintext attachment contents.
+   * @throws IOException
+   * @throws InvalidMessageException
+   */
   public InputStream retrieveAttachment(TextSecureAttachmentPointer pointer, File destination)
       throws IOException, InvalidMessageException
   {
@@ -63,6 +90,13 @@ public class TextSecureMessageReceiver {
     return new AttachmentCipherInputStream(destination, pointer.getKey());
   }
 
+  /**
+   * Creates a pipe for receiving TextSecure messages.
+   *
+   * Callers must call {@link TextSecureMessagePipe#shutdown()} when finished with the pipe.
+   *
+   * @return A TextSecureMessagePipe for receiving TextSecure messages.
+   */
   public TextSecureMessagePipe createMessagePipe() {
     WebSocketConnection webSocket = new WebSocketConnection(url, trustStore, credentialsProvider);
     return new TextSecureMessagePipe(webSocket, credentialsProvider);
