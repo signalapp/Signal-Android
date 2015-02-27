@@ -9,20 +9,26 @@ import android.widget.BaseAdapter;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 
 public class MessageDetailsRecipientAdapter extends BaseAdapter implements AbsListView.RecyclerListener {
 
-  private Context       context;
-  private MasterSecret  masterSecret;
-  private MessageRecord record;
-  private Recipients    recipients;
+  private final Context       context;
+  private final MasterSecret  masterSecret;
+  private final MessageRecord record;
+  private final Recipients    recipients;
+  private final boolean       isPushGroup;
 
-  public MessageDetailsRecipientAdapter(Context context, MasterSecret masterSecret, MessageRecord record, Recipients recipients) {
+  public MessageDetailsRecipientAdapter(Context context, MasterSecret masterSecret,
+                                        MessageRecord record, Recipients recipients,
+                                        boolean isPushGroup)
+  {
     this.context      = context;
     this.masterSecret = masterSecret;
     this.record       = record;
     this.recipients   = recipients;
+    this.isPushGroup  = isPushGroup;
   }
 
   @Override
@@ -46,7 +52,8 @@ public class MessageDetailsRecipientAdapter extends BaseAdapter implements AbsLi
       convertView = LayoutInflater.from(context).inflate(R.layout.message_details_recipient, parent, false);
     }
 
-    ((MessageRecipientListItem)convertView).set(masterSecret, record, recipients, position);
+    Recipient recipient = recipients.getRecipientsList().get(position);
+    ((MessageRecipientListItem)convertView).set(masterSecret, record, recipient, isPushGroup);
     return convertView;
   }
 

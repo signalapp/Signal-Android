@@ -34,7 +34,6 @@ import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.RecipientViewUtil;
 
@@ -74,29 +73,33 @@ public class MessageRecipientListItem extends RelativeLayout
     this.resendButton      = (Button)    findViewById(R.id.resend_button);
   }
 
-  public void set(final MasterSecret masterSecret, final MessageRecord record, final Recipients recipients, final int position) {
-    recipient = recipients.getRecipientsList().get(position);
+  public void set(final MasterSecret masterSecret,
+                  final MessageRecord record,
+                  final Recipient recipient,
+                  final boolean isPushGroup)
+  {
+    this.recipient = recipient;
+
     recipient.addListener(this);
     fromView.setText(RecipientViewUtil.formatFrom(getContext(), recipient));
 
     RecipientViewUtil.setContactPhoto(getContext(), contactPhotoImage, recipient, false);
-    setIssueIndicators(masterSecret, record);
+    setIssueIndicators(masterSecret, record, isPushGroup);
   }
 
-  private void setIssueIndicators(final MasterSecret masterSecret, final MessageRecord record) {
+  private void setIssueIndicators(final MasterSecret masterSecret,
+                                  final MessageRecord record,
+                                  final boolean isPushGroup)
+  {
     final NetworkFailure      networkFailure = getNetworkFailure(record);
     final IdentityKeyMismatch keyMismatch    = networkFailure == null ? getKeyMismatch(record) : null;
 
     String errorText = "";
-    if (networkFailure != null) {
-      errorText = getContext().getString(R.string.MessageDetailsRecipient_failed_to_send);
-      resendButton.setOnClickListener(new OnClickListener() {
-        @Override
-        public void onClick(View v) {
-          new ResendAsyncTask(masterSecret, record, networkFailure).execute();
-        }
-      });
-    } else if (keyMismatch != null) {
+
+    if (keyMismatch != null) {
+      resendButton.setVisibility(View.GONE);
+      conflictButton.setVisibility(View.VISIBLE);
+
       errorText = getContext().getString(R.string.MessageDetailsRecipient_new_identity);
       conflictButton.setOnClickListener(new OnClickListener() {
         @Override
@@ -104,12 +107,24 @@ public class MessageRecipientListItem extends RelativeLayout
           new ConfirmIdentityDialog(getContext(), masterSecret, record, keyMismatch).show();
         }
       });
+    } else if (networkFailure != null || (!isPushGroup && record.isFailed())) {
+      resendButton.setVisibility(View.VISIBLE);
+      conflictButton.setVisibility(View.GONE);
+
+      errorText = getContext().getString(R.string.MessageDetailsRecipient_failed_to_send);
+      resendButton.setOnClickListener(new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+          new ResendAsyncTask(masterSecret, record, networkFailure).execute();
+        }
+      });
+    } else {
+      resendButton.setVisibility(View.GONE);
+      conflictButton.setVisibility(View.GONE);
     }
 
     errorDescription.setText(errorText);
     errorDescription.setVisibility(TextUtils.isEmpty(errorText) ? View.GONE : View.VISIBLE);
-    resendButton.setVisibility(networkFailure != null ? View.VISIBLE : View.GONE);
-    conflictButton.setVisibility(keyMismatch != null ? View.VISIBLE : View.GONE);
   }
 
   private NetworkFailure getNetworkFailure(final MessageRecord record) {

@@ -67,7 +67,8 @@
                 android:paddingBottom="5dp"
                 android:layout_gravity="center_vertical"
                 android:drawableLeft="@drawable/ic_error_white_18dp"
-                android:text="FIX" />
+                android:text="FIX"
+                android:visibility="gone"/>
 
         <Button android:id="@+id/resend_button"
                 android:layout_width="85sp"
@@ -79,7 +80,8 @@
                 android:paddingBottom="5dp"
                 android:layout_gravity="center_vertical"
                 android:drawableLeft="@drawable/ic_refresh_white_18dp"
-                android:text="RESEND" />
+                android:text="RESEND"
+                android:visibility="gone"/>
 
 
     </LinearLayout>
