@@ -33,7 +33,7 @@ import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachmentStream;
 import org.whispersystems.textsecure.api.messages.TextSecureGroup;
 import org.whispersystems.textsecure.api.messages.TextSecureMessage;
-import org.whispersystems.textsecure.api.push.PushAddress;
+import org.whispersystems.textsecure.api.push.TextSecureAddress;
 import org.whispersystems.textsecure.api.push.TrustStore;
 import org.whispersystems.textsecure.api.push.exceptions.NetworkFailureException;
 import org.whispersystems.textsecure.api.push.exceptions.PushNetworkException;
@@ -72,7 +72,7 @@ public class TextSecureMessageSender {
 
   private final PushServiceSocket       socket;
   private final AxolotlStore            store;
-  private final PushAddress             syncAddress;
+  private final TextSecureAddress       syncAddress;
   private final Optional<EventListener> eventListener;
 
   /**
@@ -94,7 +94,7 @@ public class TextSecureMessageSender {
   {
     this.socket        = new PushServiceSocket(url, trustStore, new StaticCredentialsProvider(user, password, null));
     this.store         = store;
-    this.syncAddress   = new PushAddress(userId, user, null);
+    this.syncAddress   = new TextSecureAddress(userId, user, null);
     this.eventListener = eventListener;
   }
 
@@ -105,7 +105,7 @@ public class TextSecureMessageSender {
    * @param messageId The message id of the received message you're acknowledging.
    * @throws IOException
    */
-  public void sendDeliveryReceipt(PushAddress recipient, long messageId) throws IOException {
+  public void sendDeliveryReceipt(TextSecureAddress recipient, long messageId) throws IOException {
     this.socket.sendReceipt(recipient.getNumber(), messageId, recipient.getRelay());
   }
 
@@ -117,7 +117,7 @@ public class TextSecureMessageSender {
    * @throws UntrustedIdentityException
    * @throws IOException
    */
-  public void sendMessage(PushAddress recipient, TextSecureMessage message)
+  public void sendMessage(TextSecureAddress recipient, TextSecureMessage message)
       throws UntrustedIdentityException, IOException
   {
     byte[]              content   = createMessageContent(message);
@@ -146,7 +146,7 @@ public class TextSecureMessageSender {
    * @throws IOException
    * @throws EncapsulatedExceptions
    */
-  public void sendMessage(List<PushAddress> recipients, TextSecureMessage message)
+  public void sendMessage(List<TextSecureAddress> recipients, TextSecureMessage message)
       throws IOException, EncapsulatedExceptions
   {
     byte[] content = createMessageContent(message);
@@ -176,7 +176,7 @@ public class TextSecureMessageSender {
     return builder.build().toByteArray();
   }
 
-  private byte[] createSyncMessageContent(byte[] content, PushAddress recipient, long timestamp) {
+  private byte[] createSyncMessageContent(byte[] content, TextSecureAddress recipient, long timestamp) {
     try {
       PushMessageContent.Builder builder = PushMessageContent.parseFrom(content).toBuilder();
       builder.setSync(PushMessageContent.SyncMessageContext.newBuilder()
@@ -213,14 +213,14 @@ public class TextSecureMessageSender {
     return builder.build();
   }
 
-  private void sendMessage(List<PushAddress> recipients, long timestamp, byte[] content)
+  private void sendMessage(List<TextSecureAddress> recipients, long timestamp, byte[] content)
       throws IOException, EncapsulatedExceptions
   {
     List<UntrustedIdentityException> untrustedIdentities = new LinkedList<>();
     List<UnregisteredUserException>  unregisteredUsers   = new LinkedList<>();
     List<NetworkFailureException>    networkExceptions   = new LinkedList<>();
 
-    for (PushAddress recipient : recipients) {
+    for (TextSecureAddress recipient : recipients) {
       try {
         sendMessage(recipient, timestamp, content);
       } catch (UntrustedIdentityException e) {
@@ -240,7 +240,7 @@ public class TextSecureMessageSender {
     }
   }
 
-  private SendMessageResponse sendMessage(PushAddress recipient, long timestamp, byte[] content)
+  private SendMessageResponse sendMessage(TextSecureAddress recipient, long timestamp, byte[] content)
       throws UntrustedIdentityException, IOException
   {
     for (int i=0;i<3;i++) {
@@ -297,7 +297,7 @@ public class TextSecureMessageSender {
 
 
   private OutgoingPushMessageList getEncryptedMessages(PushServiceSocket socket,
-                                                       PushAddress recipient,
+                                                       TextSecureAddress recipient,
                                                        long timestamp,
                                                        byte[] plaintext)
       throws IOException, UntrustedIdentityException
@@ -305,8 +305,8 @@ public class TextSecureMessageSender {
     List<OutgoingPushMessage> messages = new LinkedList<>();
 
     if (!recipient.equals(syncAddress)) {
-      PushBody masterBody = getEncryptedMessage(socket, recipient, PushAddress.DEFAULT_DEVICE_ID, plaintext);
-      messages.add(new OutgoingPushMessage(recipient, PushAddress.DEFAULT_DEVICE_ID, masterBody));
+      PushBody masterBody = getEncryptedMessage(socket, recipient, TextSecureAddress.DEFAULT_DEVICE_ID, plaintext);
+      messages.add(new OutgoingPushMessage(recipient, TextSecureAddress.DEFAULT_DEVICE_ID, masterBody));
     }
 
     for (int deviceId : store.getSubDeviceSessions(recipient.getRecipientId())) {
@@ -317,7 +317,7 @@ public class TextSecureMessageSender {
     return new OutgoingPushMessageList(recipient.getNumber(), timestamp, recipient.getRelay(), messages);
   }
 
-  private PushBody getEncryptedMessage(PushServiceSocket socket, PushAddress recipient, int deviceId, byte[] plaintext)
+  private PushBody getEncryptedMessage(PushServiceSocket socket, TextSecureAddress recipient, int deviceId, byte[] plaintext)
       throws IOException, UntrustedIdentityException
   {
     if (!store.containsSession(recipient.getRecipientId(), deviceId)) {
@@ -354,7 +354,7 @@ public class TextSecureMessageSender {
     }
   }
 
-  private void handleMismatchedDevices(PushServiceSocket socket, PushAddress recipient,
+  private void handleMismatchedDevices(PushServiceSocket socket, TextSecureAddress recipient,
                                        MismatchedDevices mismatchedDevices)
       throws IOException, UntrustedIdentityException
   {
@@ -378,7 +378,7 @@ public class TextSecureMessageSender {
     }
   }
 
-  private void handleStaleDevices(PushAddress recipient, StaleDevices staleDevices) {
+  private void handleStaleDevices(TextSecureAddress recipient, StaleDevices staleDevices) {
     long recipientId = recipient.getRecipientId();
 
     for (int staleDeviceId : staleDevices.getStaleDevices()) {

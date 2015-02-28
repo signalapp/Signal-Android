@@ -19,7 +19,7 @@ package org.whispersystems.textsecure.internal.push;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import org.whispersystems.textsecure.api.push.PushAddress;
+import org.whispersystems.textsecure.api.push.TextSecureAddress;
 import org.whispersystems.textsecure.internal.util.Base64;
 
 public class OutgoingPushMessage {
@@ -33,7 +33,7 @@ public class OutgoingPushMessage {
   @JsonProperty
   private String body;
 
-  public OutgoingPushMessage(PushAddress address, int deviceId, PushBody body) {
+  public OutgoingPushMessage(TextSecureAddress address, int deviceId, PushBody body) {
     this.type                      = body.getType();
     this.destinationDeviceId       = deviceId;
     this.destinationRegistrationId = body.getRemoteRegistrationId();

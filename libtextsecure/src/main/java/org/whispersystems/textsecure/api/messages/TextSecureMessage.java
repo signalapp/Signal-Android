@@ -18,6 +18,7 @@ package org.whispersystems.textsecure.api.messages;
 
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -39,7 +40,11 @@ public class TextSecureMessage {
    * @param body The message contents.
    */
   public TextSecureMessage(long timestamp, String body) {
-    this(timestamp, null, body);
+    this(timestamp, (List<TextSecureAttachment>)null, body);
+  }
+
+  public TextSecureMessage(final long timestamp, final TextSecureAttachment attachment, final String body) {
+    this(timestamp, new LinkedList<TextSecureAttachment>() {{add(attachment);}}, body);
   }
 
   /**

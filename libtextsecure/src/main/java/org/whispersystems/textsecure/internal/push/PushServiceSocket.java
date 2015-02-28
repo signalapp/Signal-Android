@@ -28,7 +28,7 @@ import org.whispersystems.libaxolotl.state.PreKeyRecord;
 import org.whispersystems.libaxolotl.state.SignedPreKeyRecord;
 import org.whispersystems.textsecure.api.crypto.AttachmentCipherOutputStream;
 import org.whispersystems.textsecure.api.push.ContactTokenDetails;
-import org.whispersystems.textsecure.api.push.PushAddress;
+import org.whispersystems.textsecure.api.push.TextSecureAddress;
 import org.whispersystems.textsecure.api.push.SignedPreKeyEntity;
 import org.whispersystems.textsecure.api.push.TrustStore;
 import org.whispersystems.textsecure.api.push.exceptions.AuthorizationFailedException;
@@ -194,7 +194,7 @@ public class PushServiceSocket {
     return preKeyStatus.getCount();
   }
 
-  public List<PreKeyBundle> getPreKeys(PushAddress destination, int deviceIdInteger) throws IOException {
+  public List<PreKeyBundle> getPreKeys(TextSecureAddress destination, int deviceIdInteger) throws IOException {
     try {
       String deviceId = String.valueOf(deviceIdInteger);
 
@@ -242,7 +242,7 @@ public class PushServiceSocket {
     }
   }
 
-  public PreKeyBundle getPreKey(PushAddress destination, int deviceId) throws IOException {
+  public PreKeyBundle getPreKey(TextSecureAddress destination, int deviceId) throws IOException {
     try {
       String path = String.format(PREKEY_DEVICE_PATH, destination.getNumber(),
                                   String.valueOf(deviceId));

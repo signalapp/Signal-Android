@@ -9,7 +9,7 @@ import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.libaxolotl.state.SessionRecord;
 import org.whispersystems.libaxolotl.state.SessionState;
 import org.whispersystems.libaxolotl.state.SessionStore;
-import org.whispersystems.textsecure.api.push.PushAddress;
+import org.whispersystems.textsecure.api.push.TextSecureAddress;
 import org.thoughtcrime.securesms.util.Conversions;
 
 import java.io.File;
@@ -108,7 +108,7 @@ public class TextSecureSessionStore implements SessionStore {
   public void deleteAllSessions(long recipientId) {
     List<Integer> devices = getSubDeviceSessions(recipientId);
 
-    deleteSession(recipientId, PushAddress.DEFAULT_DEVICE_ID);
+    deleteSession(recipientId, TextSecureAddress.DEFAULT_DEVICE_ID);
 
     for (int device : devices) {
       deleteSession(recipientId, device);
@@ -156,7 +156,7 @@ public class TextSecureSessionStore implements SessionStore {
   }
 
   private String getSessionName(long recipientId, int deviceId) {
-    return recipientId + (deviceId == PushAddress.DEFAULT_DEVICE_ID ? "" : "." + deviceId);
+    return recipientId + (deviceId == TextSecureAddress.DEFAULT_DEVICE_ID ? "" : "." + deviceId);
   }
 
   private byte[] readBlob(FileInputStream in) throws IOException {

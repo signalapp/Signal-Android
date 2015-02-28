@@ -25,10 +25,9 @@ import org.whispersystems.textsecure.api.crypto.UntrustedIdentityException;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
 import org.whispersystems.textsecure.api.messages.TextSecureGroup;
 import org.whispersystems.textsecure.api.messages.TextSecureMessage;
-import org.whispersystems.textsecure.api.push.PushAddress;
+import org.whispersystems.textsecure.api.push.TextSecureAddress;
 import org.whispersystems.textsecure.api.push.exceptions.EncapsulatedExceptions;
 import org.whispersystems.textsecure.api.push.exceptions.NetworkFailureException;
-import org.whispersystems.textsecure.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
 import org.whispersystems.textsecure.internal.push.PushMessageProtos;
 
@@ -133,7 +132,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
     byte[]                     groupId       = GroupUtil.getDecodedId(message.getTo()[0].getString());
     Recipients                 recipients    = DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupId, false);
     List<TextSecureAttachment> attachments   = getAttachments(masterSecret, message);
-    List<PushAddress>          addresses;
+    List<TextSecureAddress>    addresses;
 
     if (filterRecipientId >= 0) addresses = getPushAddresses(filterRecipientId);
     else                        addresses = getPushAddresses(recipients);
@@ -161,8 +160,8 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
     }
   }
 
-  private List<PushAddress> getPushAddresses(Recipients recipients) throws InvalidNumberException {
-    List<PushAddress> addresses = new LinkedList<>();
+  private List<TextSecureAddress> getPushAddresses(Recipients recipients) throws InvalidNumberException {
+    List<TextSecureAddress> addresses = new LinkedList<>();
 
     for (Recipient recipient : recipients.getRecipientsList()) {
       addresses.add(getPushAddress(recipient));
@@ -171,8 +170,8 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
     return addresses;
   }
 
-  private List<PushAddress> getPushAddresses(long filterRecipientId) throws InvalidNumberException {
-    List<PushAddress> addresses = new LinkedList<>();
+  private List<TextSecureAddress> getPushAddresses(long filterRecipientId) throws InvalidNumberException {
+    List<TextSecureAddress> addresses = new LinkedList<>();
     addresses.add(getPushAddress(RecipientFactory.getRecipientForId(context, filterRecipientId, false)));
     return addresses;
   }

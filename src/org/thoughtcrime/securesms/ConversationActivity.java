@@ -68,7 +68,6 @@ import org.thoughtcrime.securesms.database.DraftDatabase.Draft;
 import org.thoughtcrime.securesms.database.DraftDatabase.Drafts;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsColumns.Types;
-import org.thoughtcrime.securesms.database.TextSecureDirectory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
 import org.thoughtcrime.securesms.mms.AttachmentTypeSelectorAdapter;
@@ -104,7 +103,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.libaxolotl.state.SessionStore;
-import org.whispersystems.textsecure.api.push.PushAddress;
+import org.whispersystems.textsecure.api.push.TextSecureAddress;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
@@ -689,7 +688,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     boolean      isSecureSmsDestination = isSecureSmsAllowed     &&
                                           isSingleConversation() &&
                                           sessionStore.containsSession(primaryRecipient.getRecipientId(),
-                                                                         PushAddress.DEFAULT_DEVICE_ID);
+                                                                         TextSecureAddress.DEFAULT_DEVICE_ID);
 
     if (isPushDestination || isSecureSmsDestination) {
       this.isEncryptedConversation = true;

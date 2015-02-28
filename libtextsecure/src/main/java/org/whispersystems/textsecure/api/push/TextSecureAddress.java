@@ -19,7 +19,7 @@ package org.whispersystems.textsecure.api.push;
 /**
  * A class representing a message destination or origin.
  */
-public class PushAddress {
+public class TextSecureAddress {
 
   public static final int DEFAULT_DEVICE_ID = 1;
 
@@ -34,7 +34,7 @@ public class PushAddress {
    * @param e164number The TextSecure username of this destination (eg e164 representation of a phone number).
    * @param relay The TextSecure federated server this user is registered with (if not your own server).
    */
-  public PushAddress(long recipientId, String e164number, String relay) {
+  public TextSecureAddress(long recipientId, String e164number, String relay) {
     this.recipientId = recipientId;
     this.e164number  = e164number;
     this.relay       = relay;
@@ -54,9 +54,9 @@ public class PushAddress {
 
   @Override
   public boolean equals(Object other) {
-    if (other == null || !(other instanceof PushAddress)) return false;
+    if (other == null || !(other instanceof TextSecureAddress)) return false;
 
-    PushAddress that = (PushAddress)other;
+    TextSecureAddress that = (TextSecureAddress)other;
 
     return this.recipientId == that.recipientId &&
            equals(this.e164number, that.e164number) &&

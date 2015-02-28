@@ -18,7 +18,7 @@ import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachmentStream;
-import org.whispersystems.textsecure.api.push.PushAddress;
+import org.whispersystems.textsecure.api.push.TextSecureAddress;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
 
 import java.io.IOException;
@@ -76,10 +76,10 @@ public abstract class PushSendJob extends SendJob {
     }
   }
 
-  protected PushAddress getPushAddress(Recipient recipient) throws InvalidNumberException {
+  protected TextSecureAddress getPushAddress(Recipient recipient) throws InvalidNumberException {
     String e164number = Util.canonicalizeNumber(context, recipient.getNumber());
     String relay      = TextSecureDirectory.getInstance(context).getRelay(e164number);
-    return new PushAddress(recipient.getRecipientId(), e164number, relay);
+    return new TextSecureAddress(recipient.getRecipientId(), e164number, relay);
   }
 
   protected boolean isSmsFallbackApprovalRequired(String destination, boolean media) {
