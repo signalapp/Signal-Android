@@ -1,0 +1,44 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.1.0'
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'maven'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'com.google.protobuf:protobuf-java:2.5.0'
+    compile 'com.googlecode.libphonenumber:libphonenumber:6.1'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.5.0'
+
+    compile 'org.whispersystems:axolotl-java:1.1.1'
+    compile 'com.squareup.okhttp:okhttp:2.2.0'
+}
+
+
+tasks.whenTaskAdded { task ->
+    if (task.name.equals("lint")) {
+        task.enabled = false
+    }
+}
+
+version '0.1'
+group 'org.whispersystems.textsecure'
+archivesBaseName = 'libtextsecure'
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: mavenLocal().getUrl())
+        }
+    }
+}
