@@ -1,9 +1,8 @@
 package org.whispersystems.textsecure.internal.websocket;
 
-import android.util.Log;
-
 import com.google.protobuf.InvalidProtocolBufferException;
 
+import org.whispersystems.libaxolotl.logging.Log;
 import org.whispersystems.textsecure.api.push.TrustStore;
 import org.whispersystems.textsecure.api.util.CredentialsProvider;
 import org.whispersystems.textsecure.internal.util.Util;

@@ -16,11 +16,10 @@
  */
 package org.whispersystems.textsecure.api.messages;
 
-import android.util.Log;
-
 import com.google.protobuf.ByteString;
 
 import org.whispersystems.libaxolotl.InvalidVersionException;
+import org.whispersystems.libaxolotl.logging.Log;
 import org.whispersystems.textsecure.internal.push.PushMessageProtos.IncomingPushMessageSignal;
 import org.whispersystems.textsecure.internal.util.Base64;
 import org.whispersystems.textsecure.internal.util.Hex;

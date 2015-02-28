@@ -22,6 +22,7 @@ dependencies {
 
     compile 'org.whispersystems:axolotl-java:1.1.1'
     compile 'com.squareup.okhttp:okhttp:2.2.0'
+    compile 'org.apache.httpcomponents:httpclient:4.4'
 }
 
 

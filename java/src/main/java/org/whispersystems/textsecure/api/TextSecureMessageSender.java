@@ -16,13 +16,12 @@
  */
 package org.whispersystems.textsecure.api;
 
-import android.util.Log;
-
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.whispersystems.libaxolotl.InvalidKeyException;
 import org.whispersystems.libaxolotl.SessionBuilder;
+import org.whispersystems.libaxolotl.logging.Log;
 import org.whispersystems.libaxolotl.protocol.CiphertextMessage;
 import org.whispersystems.libaxolotl.state.AxolotlStore;
 import org.whispersystems.libaxolotl.state.PreKeyBundle;

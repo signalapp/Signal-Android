@@ -16,12 +16,12 @@
  */
 package org.whispersystems.textsecure.api.util;
 
-import android.util.Log;
-
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.PhoneNumberUtil.PhoneNumberFormat;
 import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
+
+import org.whispersystems.libaxolotl.logging.Log;
 
 import java.util.Locale;
 

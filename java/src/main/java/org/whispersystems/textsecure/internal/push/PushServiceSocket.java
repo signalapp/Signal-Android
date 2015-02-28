@@ -16,13 +16,12 @@
  */
 package org.whispersystems.textsecure.internal.push;
 
-import android.util.Log;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import org.apache.http.conn.ssl.StrictHostnameVerifier;
 import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.ecc.ECPublicKey;
+import org.whispersystems.libaxolotl.logging.Log;
 import org.whispersystems.libaxolotl.state.PreKeyBundle;
 import org.whispersystems.libaxolotl.state.PreKeyRecord;
 import org.whispersystems.libaxolotl.state.SignedPreKeyRecord;
@@ -71,6 +70,8 @@ import javax.net.ssl.TrustManager;
  * @author Moxie Marlinspike
  */
 public class PushServiceSocket {
+
+  private static final String TAG = PushServiceSocket.class.getSimpleName();
 
   private static final String CREATE_ACCOUNT_SMS_PATH   = "/v1/accounts/sms/code/%s";
   private static final String CREATE_ACCOUNT_VOICE_PATH = "/v1/accounts/voice/code/%s";
@@ -289,7 +290,7 @@ public class PushServiceSocket {
       String responseText = makeRequest(SIGNED_PREKEY_PATH, "GET", null);
       return JsonUtil.fromJson(responseText, SignedPreKeyEntity.class);
     } catch (NotFoundException e) {
-      Log.w("PushServiceSocket", e);
+      Log.w(TAG, e);
       return null;
     }
   }
@@ -309,7 +310,7 @@ public class PushServiceSocket {
       throw new IOException("Server failed to allocate an attachment key!");
     }
 
-    Log.w("PushServiceSocket", "Got attachment content location: " + attachmentKey.getLocation());
+    Log.w(TAG, "Got attachment content location: " + attachmentKey.getLocation());
 
     uploadAttachment("PUT", attachmentKey.getLocation(), attachment.getData(),
                      attachment.getDataSize(), attachment.getKey());
@@ -327,7 +328,7 @@ public class PushServiceSocket {
     String               response   = makeRequest(path, "GET", null);
     AttachmentDescriptor descriptor = JsonUtil.fromJson(response, AttachmentDescriptor.class);
 
-    Log.w("PushServiceSocket", "Attachment: " + attachmentId + " is at: " + descriptor.getLocation());
+    Log.w(TAG, "Attachment: " + attachmentId + " is at: " + descriptor.getLocation());
 
     downloadExternalFile(descriptor.getLocation(), destination);
   }
@@ -375,7 +376,7 @@ public class PushServiceSocket {
       }
 
       output.close();
-      Log.w("PushServiceSocket", "Downloaded: " + url + " to: " + localDestination.getAbsolutePath());
+      Log.w(TAG, "Downloaded: " + url + " to: " + localDestination.getAbsolutePath());
     } catch (IOException ioe) {
       throw new PushNetworkException(ioe);
     } finally {
@@ -490,8 +491,8 @@ public class PushServiceSocket {
       context.init(null, trustManagers, null);
 
       URL url = new URL(String.format("%s%s", serviceUrl, urlFragment));
-      Log.w("PushServiceSocket", "Push service URL: " + serviceUrl);
-      Log.w("PushServiceSocket", "Opening URL: " + url);
+      Log.w(TAG, "Push service URL: " + serviceUrl);
+      Log.w(TAG, "Opening URL: " + url);
 
       HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
@@ -514,7 +515,7 @@ public class PushServiceSocket {
       connection.connect();
 
       if (body != null) {
-        Log.w("PushServiceSocket", method + "  --  " + body);
+        Log.w(TAG, method + "  --  " + body);
         OutputStream out = connection.getOutputStream();
         out.write(body.getBytes());
         out.close();

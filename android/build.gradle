@@ -20,6 +20,7 @@ dependencies {
     compile 'org.whispersystems:axolotl-android:1.1.1'
     compile (project(':java')) {
         exclude group: 'org.whispersystems', module: 'axolotl-java'
+        exclude group: 'org.apache.httpcomponents', module: 'httpclient'
     }
 }
 

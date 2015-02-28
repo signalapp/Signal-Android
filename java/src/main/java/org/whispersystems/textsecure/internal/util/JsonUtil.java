@@ -1,6 +1,5 @@
 package org.whispersystems.textsecure.internal.util;
 
-import android.util.Log;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
@@ -14,6 +13,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 
 import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.InvalidKeyException;
+import org.whispersystems.libaxolotl.logging.Log;
 
 import java.io.IOException;
 

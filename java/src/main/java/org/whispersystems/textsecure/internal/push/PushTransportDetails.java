@@ -16,9 +16,12 @@
  */
 package org.whispersystems.textsecure.internal.push;
 
-import android.util.Log;
+
+import org.whispersystems.libaxolotl.logging.Log;
 
 public class PushTransportDetails {
+
+  private static final String TAG = PushTransportDetails.class.getSimpleName();
 
   private final int messageVersion;
 
@@ -37,7 +40,7 @@ public class PushTransportDetails {
         paddingStart = i;
         break;
       } else if (messageWithPadding[i] != (byte)0x00) {
-        Log.w("PushTransportDetails", "Padding byte is malformed, returning unstripped padding.");
+        Log.w(TAG, "Padding byte is malformed, returning unstripped padding.");
         return messageWithPadding;
       }
     }

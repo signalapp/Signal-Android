@@ -1,13 +1,12 @@
 package org.whispersystems.textsecure.internal.websocket;
 
-import android.util.Log;
-
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 import com.squareup.okhttp.internal.ws.WebSocket;
 import com.squareup.okhttp.internal.ws.WebSocketListener;
 
+import org.whispersystems.libaxolotl.logging.Log;
 import org.whispersystems.textsecure.api.push.TrustStore;
 import org.whispersystems.textsecure.api.util.CredentialsProvider;
 import org.whispersystems.textsecure.internal.util.BlacklistingTrustManager;
