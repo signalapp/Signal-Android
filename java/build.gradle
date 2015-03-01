@@ -1,18 +1,15 @@
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-
-    dependencies {
-        classpath 'com.android.tools.build:gradle:1.1.0'
-    }
-}
-
 apply plugin: 'java'
 apply plugin: 'maven'
+apply plugin: 'signing'
+
+sourceCompatibility = 1.7
+archivesBaseName    = "textsecure-java"
+version             = version_number
+group               = group_info
 
 repositories {
     mavenCentral()
+    mavenLocal()
 }
 
 dependencies {
@@ -20,13 +17,12 @@ dependencies {
     compile 'com.googlecode.libphonenumber:libphonenumber:6.1'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.5.0'
 
-    compile 'org.whispersystems:axolotl-java:1.1.1'
+    compile "org.whispersystems:axolotl-java:${axolotl_version}"
     compile 'com.squareup.okhttp:okhttp:2.2.0'
     compile 'org.apache.httpcomponents:httpclient:4.4'
 
     testCompile 'junit:junit:3.8.2'
 }
-
 
 tasks.whenTaskAdded { task ->
     if (task.name.equals("lint")) {
@@ -34,14 +30,73 @@ tasks.whenTaskAdded { task ->
     }
 }
 
-version '0.1'
-group 'org.whispersystems.textsecure'
-archivesBaseName = 'libtextsecure'
+signing {
+    required { has("release") && gradle.taskGraph.hasTask("uploadArchives") }
+    sign configurations.archives
+}
 
 uploadArchives {
-    repositories {
-        mavenDeployer {
-            repository(url: mavenLocal().getUrl())
+    configuration = configurations.archives
+    repositories.mavenDeployer {
+        beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+        repository(url: sonatypeRepo) {
+            authentication(userName: whisperSonatypeUsername, password: whisperSonatypePassword)
+        }
+
+        pom.project {
+            name 'textscure-java'
+            packaging 'jar'
+            description 'TetSecure library for Java'
+            url 'https://github.com/WhisperSystems/libtextsecure-java'
+
+            scm {
+                url 'scm:git@github.com:WhisperSystems/libtextsecure-java.git'
+                connection 'scm:git@github.com:WhisperSystems/libtextsecure-java.git'
+                developerConnection 'scm:git@github.com:WhisperSystems/libtextsecure-java.git'
+            }
+
+            licenses {
+                license {
+                    name 'GPLv3'
+                    url 'https://www.gnu.org/licenses/gpl-3.0.txt'
+                    distribution 'repo'
+                }
+            }
+
+            developers {
+                developer {
+                    name 'Moxie Marlinspike'
+                }
+            }
         }
     }
+}
+
+task installArchives(type: Upload) {
+    description "Installs the artifacts to the local Maven repository."
+    configuration = configurations['archives']
+    repositories {
+        mavenDeployer {
+            repository url: "file://${System.properties['user.home']}/.m2/repository"
+        }
+    }
+}
+
+task packageJavadoc(type: Jar, dependsOn: 'javadoc') {
+    from javadoc.destinationDir
+    classifier = 'javadoc'
+}
+
+task packageSources(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+
+artifacts {
+    archives(packageJavadoc) {
+        type = 'javadoc'
+    }
+
+    archives packageSources
 }
