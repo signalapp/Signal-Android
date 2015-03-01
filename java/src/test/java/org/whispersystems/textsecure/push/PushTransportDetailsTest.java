@@ -1,10 +1,10 @@
 package org.whispersystems.textsecure.push;
 
-import android.test.AndroidTestCase;
+import junit.framework.TestCase;
 
 import org.whispersystems.textsecure.internal.push.PushTransportDetails;
 
-public class PushTransportDetailsTest extends AndroidTestCase {
+public class PushTransportDetailsTest extends TestCase {
 
   private final PushTransportDetails transportV2 = new PushTransportDetails(2);
   private final PushTransportDetails transportV3 = new PushTransportDetails(3);
