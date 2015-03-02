@@ -75,6 +75,8 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
 
   private static final String PUSH_MESSAGING_PREF = "pref_toggle_push_messaging";
 
+  private static final String DISPLAY_PREFERENCE_CATEGORY_APPEARANCE = "display_preference_category_appearance";
+
   private final DynamicTheme    dynamicTheme    = new DynamicTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
@@ -91,6 +93,15 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
     fragmentTransaction.replace(android.R.id.content, fragment);
     fragmentTransaction.commit();
+
+    if (getIntent().getBooleanExtra(DISPLAY_PREFERENCE_CATEGORY_APPEARANCE, false)) {
+      fragment            = new AppearancePreferenceFragment();
+      fragmentTransaction = fragmentManager.beginTransaction();
+      fragmentTransaction.replace(android.R.id.content, fragment);
+      fragmentTransaction.addToBackStack(null);
+      fragmentTransaction.commit();
+      getIntent().removeExtra(DISPLAY_PREFERENCE_CATEGORY_APPEARANCE);
+    }
   }
 
   @Override
@@ -131,8 +142,10 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
   @Override
   public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
     if (key.equals(TextSecurePreferences.THEME_PREF)) {
+      getIntent().putExtra(DISPLAY_PREFERENCE_CATEGORY_APPEARANCE, true);
       dynamicTheme.onResume(this);
     } else if (key.equals(TextSecurePreferences.LANGUAGE_PREF)) {
+      getIntent().putExtra(DISPLAY_PREFERENCE_CATEGORY_APPEARANCE, true);
       dynamicLanguage.onResume(this);
 
       Intent intent = new Intent(this, KeyCachingService.class);
