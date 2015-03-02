@@ -29,7 +29,6 @@ import org.whispersystems.libaxolotl.IdentityKeyPair;
 import org.whispersystems.libaxolotl.InvalidKeyException;
 import org.whispersystems.libaxolotl.InvalidKeyIdException;
 import org.whispersystems.libaxolotl.ecc.Curve;
-import org.whispersystems.libaxolotl.ecc.Curve25519;
 import org.whispersystems.libaxolotl.ecc.ECKeyPair;
 import org.whispersystems.libaxolotl.state.PreKeyRecord;
 import org.whispersystems.libaxolotl.state.PreKeyStore;
@@ -56,7 +55,7 @@ public class PreKeyUtil {
 
     for (int i=0;i<BATCH_SIZE;i++) {
       int          preKeyId = (preKeyIdOffset + i) % Medium.MAX_VALUE;
-      ECKeyPair    keyPair  = Curve25519.generateKeyPair();
+      ECKeyPair    keyPair  = Curve.generateKeyPair();
       PreKeyRecord record   = new PreKeyRecord(preKeyId, keyPair);
 
       preKeyStore.storePreKey(preKeyId, record);
@@ -73,7 +72,7 @@ public class PreKeyUtil {
     try {
       SignedPreKeyStore  signedPreKeyStore = new TextSecurePreKeyStore(context, masterSecret);
       int                signedPreKeyId    = getNextSignedPreKeyId(context);
-      ECKeyPair          keyPair           = Curve25519.generateKeyPair();
+      ECKeyPair          keyPair           = Curve.generateKeyPair();
       byte[]             signature         = Curve.calculateSignature(identityKeyPair.getPrivateKey(), keyPair.getPublicKey().serialize());
       SignedPreKeyRecord record            = new SignedPreKeyRecord(signedPreKeyId, System.currentTimeMillis(), keyPair, signature);
 
@@ -98,7 +97,7 @@ public class PreKeyUtil {
       }
     }
 
-    ECKeyPair    keyPair = Curve25519.generateKeyPair();
+    ECKeyPair    keyPair = Curve.generateKeyPair();
     PreKeyRecord record  = new PreKeyRecord(Medium.MAX_VALUE, keyPair);
 
     preKeyStore.storePreKey(Medium.MAX_VALUE, record);

@@ -31,6 +31,8 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.JobManager;
 import org.whispersystems.jobqueue.dependencies.DependencyInjector;
 import org.whispersystems.jobqueue.requirements.NetworkRequirementProvider;
+import org.whispersystems.libaxolotl.logging.AxolotlLoggerProvider;
+import org.whispersystems.libaxolotl.util.AndroidAxolotlLogger;
 
 import java.security.Security;
 
@@ -56,6 +58,7 @@ public class ApplicationContext extends Application implements DependencyInjecto
   @Override
   public void onCreate() {
     initializeRandomNumberFix();
+    initializeLogging();
     initializeDependencyInjection();
     initializeJobManager();
     initializeGcmCheck();
@@ -74,6 +77,10 @@ public class ApplicationContext extends Application implements DependencyInjecto
 
   private void initializeRandomNumberFix() {
     PRNGFixes.apply();
+  }
+
+  private void initializeLogging() {
+    AxolotlLoggerProvider.setProvider(new AndroidAxolotlLogger());
   }
 
   private void initializeJobManager() {
