@@ -91,6 +91,18 @@ public class ConversationFragment extends ListFragment
     getLoaderManager().restartLoader(0, null, this);
   }
 
+  @Override
+  public void onResume() {
+    super.onResume();
+    getLoaderManager().initLoader(0, null, this);
+  }
+
+  @Override
+  public void onPause() {
+    super.onPause();
+    getLoaderManager().destroyLoader(0);
+  }
+
   private void initializeResources() {
     this.masterSecret = this.getActivity().getIntent().getParcelableExtra("master_secret");
     this.recipients   = RecipientFactory.getRecipientsForIds(getActivity(), getActivity().getIntent().getLongArrayExtra("recipients"), true);
@@ -103,7 +115,6 @@ public class ConversationFragment extends ListFragment
                                                   (!this.recipients.isSingleRecipient()) || this.recipients.isGroupRecipient(),
                                                   DirectoryHelper.isPushDestination(getActivity(), this.recipients)));
       getListView().setRecyclerListener((ConversationAdapter)getListAdapter());
-      getLoaderManager().initLoader(0, null, this);
     }
   }
 
@@ -159,6 +170,7 @@ public class ConversationFragment extends ListFragment
     this.threadId   = threadId;
 
     initializeListAdapter();
+    getLoaderManager().restartLoader(0, null, this);
   }
 
   public void scrollToBottom() {
@@ -268,12 +280,16 @@ public class ConversationFragment extends ListFragment
 
   @Override
   public void onLoadFinished(Loader<Cursor> arg0, Cursor cursor) {
-    ((CursorAdapter)getListAdapter()).changeCursor(cursor);
+    if (this.recipients != null && this.threadId != -1) {
+      ((CursorAdapter) getListAdapter()).changeCursor(cursor);
+    }
   }
 
   @Override
   public void onLoaderReset(Loader<Cursor> arg0) {
-    ((CursorAdapter)getListAdapter()).changeCursor(null);
+    if (this.recipients != null && this.threadId != -1) {
+      ((CursorAdapter) getListAdapter()).changeCursor(null);
+    }
   }
 
   public interface ConversationFragmentListener {
