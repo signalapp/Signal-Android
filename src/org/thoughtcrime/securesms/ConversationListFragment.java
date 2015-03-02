@@ -100,15 +100,19 @@ public class ConversationListFragment extends ListFragment
     });
     initializeListAdapter();
     initializeBatchListener();
-
-    getLoaderManager().initLoader(0, null, this);
   }
 
   @Override
   public void onResume() {
     super.onResume();
-
+    getLoaderManager().initLoader(0, null, this);
     initializeReminders();
+  }
+
+  @Override
+  public void onPause() {
+    super.onPause();
+    getLoaderManager().destroyLoader(0);
   }
 
   @Override
@@ -143,7 +147,6 @@ public class ConversationListFragment extends ListFragment
   public void setMasterSecret(MasterSecret masterSecret) {
     if (this.masterSecret != masterSecret) {
       this.masterSecret = masterSecret;
-      initializeListAdapter();
     }
   }
 
@@ -191,7 +194,6 @@ public class ConversationListFragment extends ListFragment
   private void initializeListAdapter() {
     this.setListAdapter(new ConversationListAdapter(getActivity(), null, masterSecret));
     getListView().setRecyclerListener((ConversationListAdapter)getListAdapter());
-    getLoaderManager().restartLoader(0, null, this);
   }
 
   private void handleDeleteAllSelected() {
