@@ -39,8 +39,8 @@
     <string name="ApplicationPreferencesActivity_partial">partial</string>
     <string name="ApplicationPreferencesActivity_sms">SMS</string>
     <string name="ApplicationPreferencesActivity_mms">MMS</string>
-    <string name="ApplicationPreferencesActivity_incoming_sms">Incoming</string>
-    <string name="ApplicationPreferencesActivity_outgoing_sms">outgoing</string>
+    <string name="ApplicationPreferencesActivity_incoming_sms_summary">Incoming %s</string>
+    <string name="ApplicationPreferencesActivity_outgoing_sms_summary">outgoing %s</string>
 
     <!-- AppProtectionPreferenceFragment -->
     <string name="AppProtectionPreferenceFragment_minutes">%d minutes</string>
@@ -723,8 +723,10 @@
     <string name="preferences__change_my_passphrase">Change my passphrase</string>
     <string name="preferences__complete_key_exchanges">Complete key exchanges</string>
     <string name="preferences__enable_passphrase">Enable passphrase</string>
+    <string name="preferences__passphrase_summary">Passphrase %s</string>
     <string name="preferences__enable_local_encryption_of_messages_and_keys">Enable local encryption of messages and keys</string>
     <string name="preferences__screen_security">Screen security</string>
+    <string name="preferences__screen_security_summary">Screen security %s</string>
     <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Automatically complete key exchanges for new sessions or for existing sessions with the same identity key</string>
     <string name="preferences__disable_screen_security_to_allow_screen_shots">Block screenshots in the recents list and inside the app</string>
     <string name="preferences__forget_passphrase_from_memory_after_some_interval">Forget passphrase from memory after some interval</string>
@@ -789,8 +791,10 @@
     <string name="preferences__dark_theme">Dark</string>
     <string name="preferences__appearance">Appearance</string>
     <string name="preferences__theme">Theme</string>
+    <string name="preferences__theme_summary">Theme %s</string>
     <string name="preferences__default">Default</string>
     <string name="preferences__language">Language</string>
+    <string name="preferences__language_summary">Language %s</string>
     <string name="preferences__make_default_sms_app">Set as default SMS app</string>
     <string name="preferences__make_textsecure_the_default_sms_mms_app">Make TextSecure the default SMS/MMS application for your system.</string>
     <string name="preferences__use_data_channel">Push messages</string>
