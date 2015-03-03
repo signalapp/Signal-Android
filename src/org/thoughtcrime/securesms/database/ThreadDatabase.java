@@ -21,44 +21,62 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.Pair;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.DraftDatabase.Draft;
 import org.thoughtcrime.securesms.database.model.DisplayRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
+import org.thoughtcrime.securesms.mms.AudioSlide;
+import org.thoughtcrime.securesms.mms.ImageSlide;
+import org.thoughtcrime.securesms.mms.Slide;
+import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.BitmapDecodingException;
+import org.thoughtcrime.securesms.util.ListenableFutureTask;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.Callable;
+
+import ws.com.google.android.mms.ContentType;
+import ws.com.google.android.mms.pdu.PduPart;
 
 public class ThreadDatabase extends Database {
 
-          static final String TABLE_NAME      = "thread";
-  public  static final String ID              = "_id";
-  public  static final String DATE            = "date";
-  public  static final String MESSAGE_COUNT   = "message_count";
-  public  static final String RECIPIENT_IDS   = "recipient_ids";
-  public  static final String SNIPPET         = "snippet";
-  private static final String SNIPPET_CHARSET = "snippet_cs";
-  public  static final String READ            = "read";
-  private static final String TYPE            = "type";
-  private static final String ERROR           = "error";
-  private static final String HAS_ATTACHMENT  = "has_attachment";
-  public  static final String SNIPPET_TYPE    = "snippet_type";
+          static final String TABLE_NAME        = "thread";
+  public  static final String ID                = "_id";
+  public  static final String DATE              = "date";
+  public  static final String MESSAGE_COUNT     = "message_count";
+  public  static final String RECIPIENT_IDS     = "recipient_ids";
+  public  static final String SNIPPET           = "snippet";
+  private static final String SNIPPET_CHARSET   = "snippet_cs";
+  public  static final String READ              = "read";
+  private static final String TYPE              = "type";
+  private static final String ERROR             = "error";
+  private static final String HAS_ATTACHMENT    = "has_attachment";
+  public  static final String SNIPPET_TYPE      = "snippet_type";
+  public  static final String SNIPPET_PART_URI  = "snippet_part_uri";
+  public  static final String SNIPPET_PART_TYPE = "snippet_part_type";
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID + " INTEGER PRIMARY KEY, "                             +
     DATE + " INTEGER DEFAULT 0, " + MESSAGE_COUNT + " INTEGER DEFAULT 0, "                         +
     RECIPIENT_IDS + " TEXT, " + SNIPPET + " TEXT, " + SNIPPET_CHARSET + " INTEGER DEFAULT 0, "     +
     READ + " INTEGER DEFAULT 1, " + TYPE + " INTEGER DEFAULT 0, " + ERROR + " INTEGER DEFAULT 0, " +
-    SNIPPET_TYPE + " INTEGER DEFAULT 0);";
+    SNIPPET_TYPE + " INTEGER DEFAULT 0, " + SNIPPET_PART_URI + " TEXT, "                           +
+    SNIPPET_PART_TYPE + " TEXT);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS thread_recipient_ids_index ON " + TABLE_NAME + " (" + RECIPIENT_IDS + ");",
@@ -114,23 +132,27 @@ public class ThreadDatabase extends Database {
     return db.insert(TABLE_NAME, null, contentValues);
   }
 
-  private void updateThread(long threadId, long count, String body, long date, long type)
+  private void updateThread(long threadId, long count, String body, long date, long type, String partUri, String partType)
   {
     ContentValues contentValues = new ContentValues(4);
     contentValues.put(DATE, date - date % 1000);
     contentValues.put(MESSAGE_COUNT, count);
     contentValues.put(SNIPPET, body);
     contentValues.put(SNIPPET_TYPE, type);
+    contentValues.put(SNIPPET_PART_URI, partUri);
+    contentValues.put(SNIPPET_PART_TYPE, partType);
 
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     db.update(TABLE_NAME, contentValues, ID + " = ?", new String[] {threadId + ""});
     notifyConversationListListeners();
   }
 
-  public void updateSnippet(long threadId, String snippet, long type) {
+  public void updateSnippet(long threadId, String snippet, long type, String partUri, String partType) {
     ContentValues contentValues = new ContentValues(3);
     contentValues.put(SNIPPET, snippet);
     contentValues.put(SNIPPET_TYPE, type);
+    contentValues.put(SNIPPET_PART_URI, partUri);
+    contentValues.put(SNIPPET_PART_TYPE, partType);
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     db.update(TABLE_NAME, contentValues, ID + " = ?", new String[] {threadId + ""});
     notifyConversationListListeners();
@@ -378,6 +400,17 @@ public class ThreadDatabase extends Database {
     return null;
   }
 
+  private PduPart getPartForMessageRecordSnippet(MessageRecord record) {
+    if (record.isMms() && !record.isMmsNotification()) {
+      PartDatabase              partDatabase = DatabaseFactory.getPartDatabase(context);
+      List<Pair<Long, PduPart>> recordParts  = partDatabase.getParts(record.getId());
+
+      if (!recordParts.isEmpty()) return recordParts.get(0).second;
+    }
+
+    return null;
+  }
+
   public void update(long threadId) {
     MmsSmsDatabase mmsSmsDatabase = DatabaseFactory.getMmsSmsDatabase(context);
     long count                    = mmsSmsDatabase.getConversationCount(threadId);
@@ -400,7 +433,16 @@ public class ThreadDatabase extends Database {
         if (record.isPush()) timestamp = record.getDateSent();
         else                 timestamp = record.getDateReceived();
 
-        updateThread(threadId, count, record.getBody().getBody(), timestamp, record.getType());
+              String  snippetPartUri  = null;
+              String  snippetPartType = null;
+        final PduPart snippetPart     = getPartForMessageRecordSnippet(record);
+
+        if (snippetPart != null) {
+          snippetPartUri  = snippetPart.getDataUri().toString();
+          snippetPartType = Util.toIsoString(snippetPart.getContentType());
+        }
+
+        updateThread(threadId, count, record.getBody().getBody(), timestamp, record.getType(), snippetPartUri, snippetPartType);
       } else {
         deleteThread(threadId);
       }
@@ -416,8 +458,8 @@ public class ThreadDatabase extends Database {
     public void onProgress(int complete, int total);
   }
 
-  public Reader readerFor(Cursor cursor, MasterCipher masterCipher) {
-    return new Reader(cursor, masterCipher);
+  public Reader readerFor(Cursor cursor, MasterSecret masterSecret) {
+    return new Reader(cursor, masterSecret);
   }
 
   public static class DistributionTypes {
@@ -429,11 +471,15 @@ public class ThreadDatabase extends Database {
   public class Reader {
 
     private final Cursor       cursor;
+    private final MasterSecret masterSecret;
     private final MasterCipher masterCipher;
 
-    public Reader(Cursor cursor, MasterCipher masterCipher) {
+    public Reader(Cursor cursor, MasterSecret masterSecret) {
       this.cursor       = cursor;
-      this.masterCipher = masterCipher;
+      this.masterSecret = masterSecret;
+
+      if (masterSecret != null) this.masterCipher = new MasterCipher(masterSecret);
+      else                      this.masterCipher = null;
     }
 
     public ThreadRecord getNext() {
@@ -454,9 +500,14 @@ public class ThreadDatabase extends Database {
       long read               = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.READ));
       long type               = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.SNIPPET_TYPE));
       int distributionType    = cursor.getInt(cursor.getColumnIndexOrThrow(ThreadDatabase.TYPE));
+      String snippetPartUri   = cursor.getString(cursor.getColumnIndexOrThrow(ThreadDatabase.SNIPPET_PART_URI));
+      String snippetPartType  = cursor.getString(cursor.getColumnIndexOrThrow(ThreadDatabase.SNIPPET_PART_TYPE));
+
+      ListenableFutureTask<Slide> snippetSlide =
+          getSnippetSlide(masterSecret, type, snippetPartUri, snippetPartType);
 
       return new ThreadRecord(context, body, recipients, date, count,
-                              read == 1, threadId, type, distributionType);
+                              read == 1, threadId, type, distributionType, snippetSlide);
     }
 
     private DisplayRecord.Body getPlaintextBody(Cursor cursor) {
@@ -475,6 +526,67 @@ public class ThreadDatabase extends Database {
         Log.w("ThreadDatabase", e);
         return new DisplayRecord.Body(context.getString(R.string.ThreadDatabase_error_decrypting_message), true);
       }
+    }
+
+    private boolean snippetPartIsImage(long snippetType, String snippetPartType) {
+      if (snippetType == MmsSmsColumns.Types.BASE_DRAFT_TYPE) {
+        return snippetPartType.equals(Draft.IMAGE);
+      } else {
+        return ContentType.isImageType(snippetPartType);
+      }
+    }
+
+    private boolean snippetPartIsAudio(long snippetType, String snippetPartType) {
+      if (snippetType == MmsSmsColumns.Types.BASE_DRAFT_TYPE) {
+        return snippetPartType.equals(Draft.AUDIO);
+      } else {
+        return ContentType.isAudioType(snippetPartType);
+      }
+    }
+
+    private boolean snippetPartIsVideo(long snippetType, String snippetPartType) {
+      if (snippetType == MmsSmsColumns.Types.BASE_DRAFT_TYPE) {
+        return snippetPartType.equals(Draft.VIDEO);
+      } else {
+        return ContentType.isVideoType(snippetPartType);
+      }
+    }
+
+    private ListenableFutureTask<Slide> getSnippetSlide(final MasterSecret masterSecret,
+                                                        final long         snippetType,
+                                                        final String       snippetPartUri,
+                                                        final String       snippetPartType)
+    {
+      if (snippetPartUri == null || snippetPartType == null) {
+        return null;
+      }
+
+      Callable<Slide> task = new Callable<Slide>() {
+        @Override
+        public Slide call() throws Exception {
+          try {
+
+            if (snippetPartIsImage(snippetType, snippetPartType)) {
+              return new ImageSlide(context, masterSecret, Uri.parse(snippetPartUri));
+            } else if (snippetPartIsAudio(snippetType, snippetPartType)) {
+              return new AudioSlide(context, masterSecret, Uri.parse(snippetPartUri));
+            } else if (snippetPartIsVideo(snippetType, snippetPartType)) {
+              return new VideoSlide(context, masterSecret, Uri.parse(snippetPartUri));
+            } else {
+              return null;
+            }
+
+          } catch (BitmapDecodingException e) {
+            Log.e("ThreadDatabase", "unable to build slide for snippet", e);
+            return null;
+          }
+        }
+      };
+
+      ListenableFutureTask<Slide> future = new ListenableFutureTask<>(task);
+      MmsDatabase.slideResolver.execute(future);
+
+      return future;
     }
 
     public void close() {

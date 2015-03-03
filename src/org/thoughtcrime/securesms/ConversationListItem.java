@@ -19,18 +19,25 @@ package org.thoughtcrime.securesms;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.util.Pair;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import org.thoughtcrime.securesms.components.ForegroundImageView;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
+import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Emoji;
+import org.thoughtcrime.securesms.util.FutureTaskListener;
+import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.RecipientViewUtil;
 
 import java.util.Set;
@@ -52,18 +59,25 @@ public class ConversationListItem extends RelativeLayout
   private final static Typeface BOLD_TYPEFACE  = Typeface.create("sans-serif", Typeface.BOLD);
   private final static Typeface LIGHT_TYPEFACE = Typeface.create("sans-serif-light", Typeface.NORMAL);
 
-  private Context           context;
-  private Set<Long>         selectedThreads;
-  private Recipients        recipients;
-  private long              threadId;
-  private TextView          subjectView;
-  private TextView          fromView;
-  private TextView          dateView;
-  private boolean           read;
-  private ImageView         contactPhotoImage;
+  private Context    context;
+  private long       threadId;
+  private Recipients recipients;
+  private boolean    read;
+  private int        distributionType;
+  private Set<Long>  selectedThreads;
+
+  private ListenableFutureTask<Slide>                  snippetSlideFuture;
+  private FutureTaskListener<Slide>                    snippetSlideListener;
+  private ListenableFutureTask<Pair<Drawable,Boolean>> snippetThumbnailFuture;
+  private SnippetThumbnailListener                     snippetThumbnailListener;
+
+  private TextView            subjectView;
+  private TextView            fromView;
+  private TextView            dateView;
+  private ImageView           contactPhotoImage;
+  private ForegroundImageView mediaPreviewImage;
 
   private final Handler handler = new Handler();
-  private int distributionType;
 
   public ConversationListItem(Context context) {
     super(context);
@@ -82,6 +96,7 @@ public class ConversationListItem extends RelativeLayout
     this.dateView          = (TextView) findViewById(R.id.date);
 
     this.contactPhotoImage = (ImageView) findViewById(R.id.contact_photo_image);
+    this.mediaPreviewImage = (ForegroundImageView) findViewById(R.id.media_preview);
 
     initializeContactWidgetVisibility();
   }
@@ -110,11 +125,26 @@ public class ConversationListItem extends RelativeLayout
 
     setBackground(read, batchMode);
     RecipientViewUtil.setContactPhoto(context, contactPhotoImage, recipients.getPrimaryRecipient(), true);
+
+    mediaPreviewImage.reset();
+    if (thread.getSnippetSlide() != null) {
+      setSnippetSlideAttributes(thread);
+    } else {
+      mediaPreviewImage.hide();
+    }
   }
 
   public void unbind() {
     if (this.recipients != null)
       this.recipients.removeListener(this);
+
+    if (snippetSlideFuture != null && snippetSlideListener != null) {
+      snippetSlideFuture.removeListener(snippetSlideListener);
+    }
+
+    if (snippetThumbnailFuture != null && snippetThumbnailListener != null) {
+      snippetThumbnailFuture.removeListener(snippetThumbnailListener);
+    }
   }
 
   private void initializeContactWidgetVisibility() {
@@ -139,6 +169,13 @@ public class ConversationListItem extends RelativeLayout
     drawables.recycle();
   }
 
+  private void setSnippetSlideAttributes(ThreadRecord thread) {
+    snippetSlideFuture   = thread.getSnippetSlide();
+    snippetSlideListener = new SnippetSlideListener();
+
+    snippetSlideFuture.addListener(snippetSlideListener);
+  }
+
   public Recipients getRecipients() {
     return recipients;
   }
@@ -160,5 +197,54 @@ public class ConversationListItem extends RelativeLayout
         RecipientViewUtil.setContactPhoto(context, contactPhotoImage, recipients.getPrimaryRecipient(), true);
       }
     });
+  }
+
+  private class SnippetSlideListener implements FutureTaskListener<Slide> {
+    @Override
+    public void onSuccess(final Slide slideResult) {
+      if (slideResult == null) {
+        this.onFailure(null);
+        return;
+      }
+
+      snippetThumbnailFuture   = slideResult.getThumbnail(context);
+      snippetThumbnailListener = new SnippetThumbnailListener();
+
+      snippetThumbnailFuture.addListener(snippetThumbnailListener);
+    }
+
+    @Override
+    public void onFailure(Throwable error) {
+      Log.w(TAG, "snippet thumbnail error", error);
+      handler.post(new Runnable() {
+        @Override
+        public void run() {
+          mediaPreviewImage.hide();
+        }
+      });
+    }
+  }
+
+  private class SnippetThumbnailListener implements FutureTaskListener<Pair<Drawable, Boolean>> {
+    @Override
+    public void onSuccess(final Pair<Drawable, Boolean> result) {
+      handler.post(new Runnable() {
+        @Override
+        public void run() {
+          mediaPreviewImage.show(result.first, result.second);
+        }
+      });
+    }
+
+    @Override
+    public void onFailure(final Throwable error) {
+      handler.post(new Runnable() {
+        @Override
+        public void run() {
+          Log.w(TAG, "snippet thumbnail error", error);
+          mediaPreviewImage.hide();
+        }
+      });
+    }
   }
 }

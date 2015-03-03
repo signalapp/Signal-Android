@@ -24,8 +24,8 @@ import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.ResUtil;
 
 import ws.com.google.android.mms.pdu.PduPart;
+
 import android.content.Context;
-import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.MediaStore.Audio;
@@ -35,6 +35,12 @@ public class AudioSlide extends Slide {
 
   public AudioSlide(Context context, Uri uri) throws IOException, MediaTooLargeException {
     super(context, constructPartFromUri(context, uri));
+  }
+
+  public AudioSlide(Context context, MasterSecret masterSecret, Uri uri)
+      throws IOException, MediaTooLargeException
+  {
+    super(context, masterSecret, constructPartFromUri(context, uri));
   }
 
   public AudioSlide(Context context, MasterSecret masterSecret, PduPart part) {
@@ -59,21 +65,12 @@ public class AudioSlide extends Slide {
   public static PduPart constructPartFromUri(Context context, Uri uri) throws IOException, MediaTooLargeException {
     PduPart part = new PduPart();
 
-    assertMediaSize(context, uri);
-
-    Cursor cursor = null;
-
-    try {
-      cursor = context.getContentResolver().query(uri, new String[]{Audio.Media.MIME_TYPE}, null, null, null);
-
-      if (cursor != null && cursor.moveToFirst())
-        part.setContentType(cursor.getString(0).getBytes());
-      else
-        throw new IOException("Unable to query content type.");
-    } finally {
-      if (cursor != null)
-        cursor.close();
-    } 
+    if (isAuthorityPartDb(uri)) {
+      part.setContentType(getContentTypeForPartInDb(context, uri));
+    } else {
+      assertMediaSize(context, uri);
+      part.setContentType(getContentTypeForPartOutsideDb(context, uri, Audio.Media.MIME_TYPE));
+    }
 
     part.setDataUri(uri);
     part.setContentId((System.currentTimeMillis()+"").getBytes());

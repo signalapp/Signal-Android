@@ -482,6 +482,7 @@ public class PartDatabase extends Database {
     thumbnailExecutor.submit(new ThumbnailFetchCallable(masterSecret, partId));
 
     notifyConversationListeners(DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(messageId));
+    notifyConversationListListeners();
   }
 
   public void updatePartData(MasterSecret masterSecret, PduPart part, InputStream data)
