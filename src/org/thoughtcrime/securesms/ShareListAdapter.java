@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 public class ShareListAdapter extends CursorAdapter implements AbsListView.RecyclerListener {
 
   private final ThreadDatabase threadDatabase;
+  private final MasterSecret   masterSecret;
   private final MasterCipher   masterCipher;
   private final Context        context;
   private final LayoutInflater inflater;
@@ -49,6 +50,7 @@ public class ShareListAdapter extends CursorAdapter implements AbsListView.Recyc
     else                      this.masterCipher = null;
 
     this.context        = context;
+    this.masterSecret   = masterSecret;
     this.threadDatabase = DatabaseFactory.getThreadDatabase(context);
     this.inflater       = LayoutInflater.from(context);
   }
@@ -60,8 +62,8 @@ public class ShareListAdapter extends CursorAdapter implements AbsListView.Recyc
 
   @Override
   public void bindView(View view, Context context, Cursor cursor) {
-    if (masterCipher != null) {
-      ThreadDatabase.Reader reader = threadDatabase.readerFor(cursor, masterCipher);
+    if (masterSecret != null && masterCipher != null) {
+      ThreadDatabase.Reader reader = threadDatabase.readerFor(cursor, masterSecret, masterCipher);
       ThreadRecord          record = reader.getCurrent();
 
       ((ShareListItem)view).set(record);

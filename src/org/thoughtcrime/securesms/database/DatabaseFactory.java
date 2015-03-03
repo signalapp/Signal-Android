@@ -60,7 +60,8 @@ public class DatabaseFactory {
   private static final int INTRODUCED_PART_DATA_SIZE_VERSION  = 14;
   private static final int INTRODUCED_THUMBNAILS_VERSION      = 15;
   private static final int INTRODUCED_IDENTITY_COLUMN_VERSION = 16;
-  private static final int DATABASE_VERSION                   = 16;
+  private static final int INTRODUCED_SNIPPET_PART_VERSION    = 17;
+  private static final int DATABASE_VERSION                   = 17;
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
@@ -715,6 +716,11 @@ public class DatabaseFactory {
         db.execSQL("ALTER TABLE sms ADD COLUMN mismatched_identities TEXT");
         db.execSQL("ALTER TABLE mms ADD COLUMN mismatched_identities TEXT");
         db.execSQL("ALTER TABLE mms ADD COLUMN network_failures TEXT");
+      }
+
+      if (oldVersion < INTRODUCED_SNIPPET_PART_VERSION) {
+        db.execSQL("ALTER TABLE thread ADD COLUMN snippet_part_uri TEXT");
+        db.execSQL("ALTER TABLE thread ADD COLUMN snippet_part_type TEXT");
       }
 
       db.setTransactionSuccessful();

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.ConversationListItem
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="70dp">
+
+    <FrameLayout android:id="@+id/contact_photo_frame"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_centerVertical="true"
+                 android:layout_alignParentLeft="true"
+                 android:paddingTop="3dp"
+                 android:paddingBottom="3dp"
+                 android:paddingLeft="10dp"
+                 android:paddingRight="10dp"
+                 android:visibility="visible">
+
+        <com.makeramen.RoundedImageView
+            android:id="@+id/contact_photo_image"
+            android:foreground="@drawable/contact_photo_background"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:riv_oval="true"
+            android:cropToPadding="true"
+            android:scaleType="centerCrop"
+            android:visibility="gone"
+            tools:src="@drawable/ic_contact_picture"
+            android:contentDescription="Contact Photo Image"
+            android:layout_marginLeft="0dp" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="4dip"
+        android:layout_marginLeft="4dip"
+        android:layout_marginRight="8dip"
+        android:layout_marginBottom="4dip"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/contact_photo_frame"
+        android:orientation="horizontal">
+
+        <LinearLayout android:layout_weight="1"
+                      android:layout_width="0dp"
+                      android:layout_height="wrap_content"
+                      android:orientation="vertical"
+                      android:layout_gravity="center_vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView android:id="@+id/from"
+                          android:layout_weight="1"
+                          android:layout_width="0dp"
+                          android:layout_height="wrap_content"
+                          android:textAppearance="?android:attr/textAppearanceMedium"
+                          android:textColor="?attr/conversation_list_item_contact_color"
+                          android:singleLine="true"
+                          tools:text="Jules Bonnot"
+                          android:ellipsize="marquee" />
+
+                <TextView android:id="@+id/date"
+                          android:layout_height="wrap_content"
+                          android:layout_width="wrap_content"
+                          android:gravity="end"
+                          android:textAppearance="?android:attr/textAppearanceSmall"
+                          android:textColor="?attr/conversation_list_item_date_color"
+                          android:fontFamily="sans-serif-light"
+                          tools:text="30 mins"
+                          android:singleLine="true" />
+
+            </LinearLayout>
+
+            <TextView android:id="@+id/subject"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:textAppearance="?android:attr/textAppearanceSmall"
+                      android:textColor="?attr/conversation_list_item_subject_color"
+                      android:fontFamily="sans-serif-light"
+                      android:singleLine="true"
+                      tools:text="Wheels arrive at 3pm flat."
+                      android:ellipsize="end" />
+
+        </LinearLayout>
+
+        <ImageView android:id="@+id/media_preview"
+                   android:layout_width="70dp"
+                   android:layout_height="match_parent"
+                   android:layout_marginLeft="4dp"
+                   android:gravity="end"
+                   android:src="@drawable/ic_attach_picture_holo_light"
+                   android:scaleType="centerCrop"/>
+
+    </LinearLayout>
+</org.thoughtcrime.securesms.ConversationListItem>

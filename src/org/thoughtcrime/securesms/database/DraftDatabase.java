@@ -136,7 +136,7 @@ public class DraftDatabase extends Database {
   public static class Drafts extends LinkedList<Draft> {
     private Draft getDraftOfType(String type) {
       for (Draft draft : this) {
-        if (Draft.TEXT.equals(draft.getType())) {
+        if (type.equals(draft.getType())) {
           return draft;
         }
       }
@@ -152,6 +152,20 @@ public class DraftDatabase extends Database {
       } else {
         return "";
       }
+    }
+
+    public Draft getDraftForSnippetSlide() {
+      Draft snippetSlideDraft = getDraftOfType(Draft.IMAGE);
+      if (snippetSlideDraft != null) {
+        return snippetSlideDraft;
+      }
+
+      snippetSlideDraft = getDraftOfType(Draft.VIDEO);
+      if (snippetSlideDraft != null) {
+        return snippetSlideDraft;
+      }
+
+      return getDraftOfType(Draft.AUDIO);
     }
   }
 }

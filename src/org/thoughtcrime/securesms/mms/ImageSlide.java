@@ -65,6 +65,12 @@ public class ImageSlide extends Slide {
     super(context, masterSecret, part);
   }
 
+  public ImageSlide(Context context, MasterSecret masterSecret, Uri uri)
+      throws IOException, BitmapDecodingException
+  {
+    super(context, masterSecret, constructPartFromUri(uri));
+  }
+
   public ImageSlide(Context context, Uri uri) throws IOException, BitmapDecodingException {
     super(context, constructPartFromUri(uri));
   }

@@ -24,6 +24,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 
+import org.thoughtcrime.securesms.ConversationListFragment.ConversationClickListener;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -41,38 +42,80 @@ import java.util.Set;
  */
 public class ConversationListAdapter extends CursorAdapter implements AbsListView.RecyclerListener {
 
-  private final ThreadDatabase threadDatabase;
-  private final MasterCipher   masterCipher;
-  private final Context        context;
-  private final LayoutInflater inflater;
+  private static final int VIEW_TYPE_BASE               = 0;
+  private static final int VIEW_TYPE_WITH_MEDIA_PREVIEW = 1;
+
+  private final ThreadDatabase            threadDatabase;
+  private final MasterCipher              masterCipher;
+  private final MasterSecret              masterSecret;
+  private final Context                   context;
+  private final ConversationClickListener clickListener;
+  private final LayoutInflater            inflater;
 
   private final Set<Long> batchSet  = Collections.synchronizedSet(new HashSet<Long>());
   private       boolean   batchMode = false;
 
-  public ConversationListAdapter(Context context, Cursor cursor, MasterSecret masterSecret) {
+  public ConversationListAdapter(Context context, Cursor cursor, MasterSecret masterSecret,
+                                 ConversationClickListener clickListener)
+  {
     super(context, cursor, 0);
 
     if (masterSecret != null) this.masterCipher = new MasterCipher(masterSecret);
     else                      this.masterCipher = null;
 
+    this.masterSecret   = masterSecret;
     this.context        = context;
+    this.clickListener  = clickListener;
     this.threadDatabase = DatabaseFactory.getThreadDatabase(context);
     this.inflater       = LayoutInflater.from(context);
   }
 
   @Override
   public View newView(Context context, Cursor cursor, ViewGroup parent) {
-    return inflater.inflate(R.layout.conversation_list_item_view, parent, false);
+    switch (getItemViewType(cursor)) {
+      case VIEW_TYPE_BASE:
+        return inflater.inflate(R.layout.conversation_list_item_view, parent, false);
+
+      case VIEW_TYPE_WITH_MEDIA_PREVIEW:
+        return inflater.inflate(R.layout.conversation_list_item_with_media_preview_view, parent, false);
+
+      default:
+        throw new IllegalArgumentException("unsupported item view type given to ConversationListAdapter");
+    }
   }
 
   @Override
   public void bindView(View view, Context context, Cursor cursor) {
-    if (masterCipher != null) {
-      ThreadDatabase.Reader reader = threadDatabase.readerFor(cursor, masterCipher);
+    if (masterSecret != null && masterCipher != null) {
+      ThreadDatabase.Reader reader = threadDatabase.readerFor(cursor, masterSecret, masterCipher);
       ThreadRecord          record = reader.getCurrent();
 
-      ((ConversationListItem)view).set(record, batchSet, batchMode);
+      ((ConversationListItem)view).set(masterSecret, record, batchSet, clickListener, batchMode);
     }
+  }
+
+  @Override
+  public int getViewTypeCount() {
+    return 2;
+  }
+
+  private int getItemViewType(Cursor cursor) {
+    if (masterSecret != null && masterCipher != null) {
+      ThreadDatabase.Reader reader = threadDatabase.readerFor(cursor, masterSecret, masterCipher);
+      ThreadRecord          record = reader.getCurrent();
+
+      if (record.getSnippetSlide() != null) {
+        return VIEW_TYPE_WITH_MEDIA_PREVIEW;
+      }
+    }
+
+    return VIEW_TYPE_BASE;
+  }
+
+  @Override
+  public int getItemViewType(int position) {
+    Cursor cursor = (Cursor)getItem(position);
+    return getItemViewType(cursor);
   }
 
   public void toggleThreadInBatchSet(long threadId) {

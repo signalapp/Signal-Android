@@ -39,7 +39,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ListView;
 
 import com.melnykov.fab.FloatingActionButton;
 
@@ -62,12 +61,13 @@ public class ConversationListFragment extends ListFragment
   implements LoaderManager.LoaderCallbacks<Cursor>, ActionMode.Callback
 {
 
-  private ConversationSelectedListener listener;
   private MasterSecret                 masterSecret;
   private ActionMode                   actionMode;
   private ReminderView                 reminderView;
   private FloatingActionButton         fab;
-  private String                       queryFilter  = "";
+  private ConversationSelectedListener selectListener;
+  private ConversationClickListener    clickListener = new ConversationClickListener();
+  private String                       queryFilter   = "";
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -114,30 +114,7 @@ public class ConversationListFragment extends ListFragment
   @Override
   public void onAttach(Activity activity) {
     super.onAttach(activity);
-    this.listener = (ConversationSelectedListener)activity;
-  }
-
-  @Override
-  public void onListItemClick(ListView l, View v, int position, long id) {
-    if (v instanceof ConversationListItem) {
-      ConversationListItem headerView = (ConversationListItem) v;
-      if (actionMode == null) {
-        handleCreateConversation(headerView.getThreadId(), headerView.getRecipients(),
-                                 headerView.getDistributionType());
-      } else {
-        ConversationListAdapter adapter = (ConversationListAdapter)getListAdapter();
-        adapter.toggleThreadInBatchSet(headerView.getThreadId());
-
-        if (adapter.getBatchSelections().size() == 0) {
-          actionMode.finish();
-        } else {
-          actionMode.setSubtitle(getString(R.string.conversation_fragment_cab__batch_selection_amount,
-                                           adapter.getBatchSelections().size()));
-        }
-
-        adapter.notifyDataSetChanged();
-      }
-    }
+    this.selectListener = (ConversationSelectedListener)activity;
   }
 
   public void setMasterSecret(MasterSecret masterSecret) {
@@ -159,19 +136,8 @@ public class ConversationListFragment extends ListFragment
   }
 
   private void initializeBatchListener() {
-    getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-      @Override
-      public boolean onItemLongClick(AdapterView<?> arg0, View v, int position, long id) {
-        ConversationListAdapter adapter = (ConversationListAdapter)getListAdapter();
-        actionMode = ((ActionBarActivity)getActivity()).startSupportActionMode(ConversationListFragment.this);
-
-        adapter.initializeBatchMode(true);
-        adapter.toggleThreadInBatchSet(((ConversationListItem) v).getThreadId());
-        adapter.notifyDataSetChanged();
-
-        return true;
-      }
-    });
+    getListView().setOnItemClickListener(clickListener);
+    getListView().setOnItemLongClickListener(clickListener);
   }
 
   private void initializeReminders() {
@@ -189,9 +155,52 @@ public class ConversationListFragment extends ListFragment
   }
 
   private void initializeListAdapter() {
-    this.setListAdapter(new ConversationListAdapter(getActivity(), null, masterSecret));
+    this.setListAdapter(new ConversationListAdapter(getActivity(), null, masterSecret, clickListener));
     getListView().setRecyclerListener((ConversationListAdapter)getListAdapter());
     getLoaderManager().restartLoader(0, null, this);
+  }
+
+  public class ConversationClickListener
+      implements AdapterView.OnItemLongClickListener, AdapterView.OnItemClickListener
+  {
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+      if (view instanceof ConversationListItem) {
+        ConversationListItem headerView = (ConversationListItem) view;
+
+        if (actionMode == null) {
+          selectListener.onCreateConversation(headerView.getThreadId(), headerView.getRecipients(),
+                                              headerView.getDistributionType());
+        } else {
+          ConversationListAdapter adapter = (ConversationListAdapter)getListAdapter();
+          adapter.toggleThreadInBatchSet(headerView.getThreadId());
+
+          if (adapter.getBatchSelections().size() == 0) {
+            actionMode.finish();
+          } else {
+            actionMode.setSubtitle(getString(R.string.conversation_fragment_cab__batch_selection_amount,
+                                   adapter.getBatchSelections().size()));
+          }
+
+          adapter.notifyDataSetChanged();
+        }
+      }
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+      if (view instanceof ConversationListItem) {
+        actionMode = ((ActionBarActivity)getActivity()).startSupportActionMode(ConversationListFragment.this);
+        ConversationListAdapter adapter = (ConversationListAdapter)getListAdapter();
+
+        adapter.initializeBatchMode(true);
+        adapter.toggleThreadInBatchSet(((ConversationListItem) view).getThreadId());
+        adapter.notifyDataSetChanged();
+        return true;
+      }
+
+      return false;
+    }
   }
 
   private void handleDeleteAllSelected() {
@@ -247,10 +256,6 @@ public class ConversationListFragment extends ListFragment
     ((ConversationListAdapter)this.getListAdapter()).selectAllThreads();
     actionMode.setSubtitle(getString(R.string.conversation_fragment_cab__batch_selection_amount,
                            ((ConversationListAdapter)this.getListAdapter()).getBatchSelections().size()));
-  }
-
-  private void handleCreateConversation(long threadId, Recipients recipients, int distributionType) {
-    listener.onCreateConversation(threadId, recipients, distributionType);
   }
 
   @Override
