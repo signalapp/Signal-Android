@@ -96,12 +96,8 @@ public class GroupDatabase extends Database {
       if (!includeSelf && member.equals(localNumber))
         continue;
 
-      try {
-        recipients.addAll(RecipientFactory.getRecipientsFromString(context, member, false)
-                                          .getRecipientsList());
-      } catch (RecipientFormattingException e) {
-        Log.w("GroupDatabase", e);
-      }
+      recipients.addAll(RecipientFactory.getRecipientsFromString(context, member, false)
+                                        .getRecipientsList());
     }
 
     return new Recipients(recipients);

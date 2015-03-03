@@ -234,29 +234,25 @@ public class RegistrationService extends Service {
       throws IOException
   {
     setState(new RegistrationState(RegistrationState.STATE_GENERATING_KEYS, number));
-    try {
-      Recipient          self         = RecipientFactory.getRecipientsFromString(this, number, false).getPrimaryRecipient();
-      IdentityKeyPair    identityKey  = IdentityKeyUtil.getIdentityKeyPair(this, masterSecret);
-      List<PreKeyRecord> records      = PreKeyUtil.generatePreKeys(this, masterSecret);
-      PreKeyRecord       lastResort   = PreKeyUtil.generateLastResortKey(this, masterSecret);
-      SignedPreKeyRecord signedPreKey = PreKeyUtil.generateSignedPreKey(this, masterSecret, identityKey);
-      accountManager.setPreKeys(identityKey.getPublicKey(),lastResort, signedPreKey, records);
+    Recipient          self         = RecipientFactory.getRecipientsFromString(this, number, false).getPrimaryRecipient();
+    IdentityKeyPair    identityKey  = IdentityKeyUtil.getIdentityKeyPair(this, masterSecret);
+    List<PreKeyRecord> records      = PreKeyUtil.generatePreKeys(this, masterSecret);
+    PreKeyRecord       lastResort   = PreKeyUtil.generateLastResortKey(this, masterSecret);
+    SignedPreKeyRecord signedPreKey = PreKeyUtil.generateSignedPreKey(this, masterSecret, identityKey);
+    accountManager.setPreKeys(identityKey.getPublicKey(),lastResort, signedPreKey, records);
 
-      setState(new RegistrationState(RegistrationState.STATE_GCM_REGISTERING, number));
+    setState(new RegistrationState(RegistrationState.STATE_GCM_REGISTERING, number));
 
-      String gcmRegistrationId = GoogleCloudMessaging.getInstance(this).register(GcmRefreshJob.REGISTRATION_ID);
-      accountManager.setGcmId(Optional.of(gcmRegistrationId));
+    String gcmRegistrationId = GoogleCloudMessaging.getInstance(this).register(GcmRefreshJob.REGISTRATION_ID);
+    accountManager.setGcmId(Optional.of(gcmRegistrationId));
 
-      TextSecurePreferences.setGcmRegistrationId(this, gcmRegistrationId);
-      TextSecurePreferences.setWebsocketRegistered(this, true);
+    TextSecurePreferences.setGcmRegistrationId(this, gcmRegistrationId);
+    TextSecurePreferences.setWebsocketRegistered(this, true);
 
-      DatabaseFactory.getIdentityDatabase(this).saveIdentity(masterSecret, self.getRecipientId(), identityKey.getPublicKey());
-      DirectoryHelper.refreshDirectory(this, accountManager, number);
+    DatabaseFactory.getIdentityDatabase(this).saveIdentity(masterSecret, self.getRecipientId(), identityKey.getPublicKey());
+    DirectoryHelper.refreshDirectory(this, accountManager, number);
 
-      DirectoryRefreshListener.schedule(this);
-    } catch (RecipientFormattingException e) {
-      throw new IOException(e);
-    }
+    DirectoryRefreshListener.schedule(this);
   }
 
   private synchronized String waitForChallenge() throws AccountVerificationTimeoutException {

@@ -57,21 +57,13 @@ public class TextSecureCommunicationModule {
     return new TextSecureMessageSenderFactory() {
       @Override
       public TextSecureMessageSender create(MasterSecret masterSecret) {
-        try {
-          String    localNumber    = TextSecurePreferences.getLocalNumber(context);
-          Recipient localRecipient = RecipientFactory.getRecipientsFromString(context, localNumber, false).getPrimaryRecipient();
-
-          return new TextSecureMessageSender(Release.PUSH_URL,
-                                             new TextSecurePushTrustStore(context),
-                                             TextSecurePreferences.getLocalNumber(context),
-                                             TextSecurePreferences.getPushServerPassword(context),
-                                             localRecipient.getRecipientId(),
-                                             new TextSecureAxolotlStore(context, masterSecret),
-                                             Optional.of((TextSecureMessageSender.EventListener)
-                                                             new SecurityEventListener(context)));
-        } catch (RecipientFormattingException e) {
-          throw new AssertionError(e);
-        }
+        return new TextSecureMessageSender(Release.PUSH_URL,
+                                           new TextSecurePushTrustStore(context),
+                                           TextSecurePreferences.getLocalNumber(context),
+                                           TextSecurePreferences.getPushServerPassword(context),
+                                           new TextSecureAxolotlStore(context, masterSecret),
+                                           Optional.of((TextSecureMessageSender.EventListener)
+                                                           new SecurityEventListener(context)));
       }
     };
   }

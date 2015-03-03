@@ -383,17 +383,13 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
         List<ContactData> selected = data.getParcelableArrayListExtra("contacts");
         for (ContactData contact : selected) {
           for (ContactAccessor.NumberData numberData : contact.numbers) {
-            try {
-              Recipient recipient = RecipientFactory.getRecipientsFromString(this, numberData.number, false)
-                                                    .getPrimaryRecipient();
+            Recipient recipient = RecipientFactory.getRecipientsFromString(this, numberData.number, false)
+                                                  .getPrimaryRecipient();
 
-              if (!selectedContacts.contains(recipient)                               &&
-                  (existingContacts == null || !existingContacts.contains(recipient)) &&
-                  recipient != null) {
-                addSelectedContact(recipient);
-              }
-            } catch (RecipientFormattingException e) {
-              Log.w(TAG, e);
+            if (!selectedContacts.contains(recipient)                               &&
+                (existingContacts == null || !existingContacts.contains(recipient)) &&
+                recipient != null) {
+              addSelectedContact(recipient);
             }
           }
         }
@@ -455,25 +451,20 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
                                                      Set<String> e164numbers)
       throws InvalidNumberException
   {
+    String     groupRecipientId = GroupUtil.getEncodedId(groupId);
+    Recipients groupRecipient   = RecipientFactory.getRecipientsFromString(this, groupRecipientId, false);
 
-    try {
-      String     groupRecipientId = GroupUtil.getEncodedId(groupId);
-      Recipients groupRecipient   = RecipientFactory.getRecipientsFromString(this, groupRecipientId, false);
+    GroupContext context = GroupContext.newBuilder()
+                                       .setId(ByteString.copyFrom(groupId))
+                                       .setType(GroupContext.Type.UPDATE)
+                                       .setName(groupName)
+                                       .addAllMembers(e164numbers)
+                                       .build();
 
-      GroupContext context = GroupContext.newBuilder()
-                                         .setId(ByteString.copyFrom(groupId))
-                                         .setType(GroupContext.Type.UPDATE)
-                                         .setName(groupName)
-                                         .addAllMembers(e164numbers)
-                                         .build();
+    OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(this, groupRecipient, context, avatar);
+    long                      threadId        = MessageSender.send(this, masterSecret, outgoingMessage, -1, false);
 
-      OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(this, groupRecipient, context, avatar);
-      long                      threadId        = MessageSender.send(this, masterSecret, outgoingMessage, -1, false);
-
-      return new Pair<>(threadId, groupRecipient);
-    } catch (RecipientFormattingException e) {
-      throw new AssertionError(e);
-    }
+    return new Pair<>(threadId, groupRecipient);
   }
 
   private long handleCreateMmsGroup(Set<Recipient> members) {

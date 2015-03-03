@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.JobParameters;
+import org.whispersystems.libaxolotl.AxolotlAddress;
 import org.whispersystems.libaxolotl.DuplicateMessageException;
 import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.InvalidKeyException;
@@ -98,15 +99,13 @@ public class PushDecryptJob extends MasterSecretJob {
 
   private void handleMessage(MasterSecret masterSecret, TextSecureEnvelope envelope, long smsMessageId) {
     try {
-      Recipients       recipients   = RecipientFactory.getRecipientsFromString(context, envelope.getSource(), false);
-      long             recipientId  = recipients.getPrimaryRecipient().getRecipientId();
       int              deviceId     = envelope.getSourceDevice();
       AxolotlStore     axolotlStore = new TextSecureAxolotlStore(context, masterSecret);
-      TextSecureCipher cipher       = new TextSecureCipher(axolotlStore, recipientId, deviceId);
+      TextSecureCipher cipher       = new TextSecureCipher(axolotlStore, new AxolotlAddress(envelope.getSource(), deviceId));
 
       TextSecureMessage message = cipher.decrypt(envelope);
 
-      if      (message.isEndSession())               handleEndSessionMessage(masterSecret, recipientId, envelope, message, smsMessageId);
+      if      (message.isEndSession())               handleEndSessionMessage(masterSecret, envelope, message, smsMessageId);
       else if (message.isGroupUpdate())              handleGroupMessage(masterSecret, envelope, message, smsMessageId);
       else if (message.getAttachments().isPresent()) handleMediaMessage(masterSecret, envelope, message, smsMessageId);
       else                                           handleTextMessage(masterSecret, envelope, message, smsMessageId);
@@ -117,7 +116,7 @@ public class PushDecryptJob extends MasterSecretJob {
     } catch (InvalidVersionException e) {
       Log.w(TAG, e);
       handleInvalidVersionMessage(masterSecret, envelope, smsMessageId);
-    } catch (InvalidMessageException | InvalidKeyIdException | InvalidKeyException | MmsException | RecipientFormattingException e) {
+    } catch (InvalidMessageException | InvalidKeyIdException | InvalidKeyException | MmsException e) {
       Log.w(TAG, e);
       handleCorruptMessage(masterSecret, envelope, smsMessageId);
     } catch (NoSessionException e) {
@@ -135,9 +134,8 @@ public class PushDecryptJob extends MasterSecretJob {
     }
   }
 
-  private void handleEndSessionMessage(MasterSecret masterSecret, long recipientId,
-                                       TextSecureEnvelope envelope, TextSecureMessage message,
-                                       long smsMessageId)
+  private void handleEndSessionMessage(MasterSecret masterSecret, TextSecureEnvelope envelope,
+                                       TextSecureMessage message, long smsMessageId)
   {
     EncryptingSmsDatabase smsDatabase         = DatabaseFactory.getEncryptingSmsDatabase(context);
     IncomingTextMessage   incomingTextMessage = new IncomingTextMessage(envelope.getSource(),
@@ -157,7 +155,7 @@ public class PushDecryptJob extends MasterSecretJob {
     }
 
     SessionStore sessionStore = new TextSecureSessionStore(context, masterSecret);
-    sessionStore.deleteAllSessions(recipientId);
+    sessionStore.deleteAllSessions(envelope.getSource());
 
     SecurityEvent.broadcastSecurityUpdateEvent(context, threadId);
     MessageNotifier.updateNotification(context, masterSecret, threadId);
@@ -309,7 +307,7 @@ public class PushDecryptJob extends MasterSecretJob {
         database.markAsPreKeyBundle(smsMessageId);
         database.addMismatchedIdentity(smsMessageId, recipientId, identityKey);
       }
-    } catch (RecipientFormattingException | InvalidMessageException | InvalidVersionException e) {
+    } catch (InvalidMessageException | InvalidVersionException e) {
       throw new AssertionError(e);
     }
   }

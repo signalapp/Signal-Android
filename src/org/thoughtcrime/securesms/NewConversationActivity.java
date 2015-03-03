@@ -136,14 +136,10 @@ public class NewConversationActivity extends PassphraseRequiredActionBarActivity
     Recipients recipients = new Recipients(new LinkedList<Recipient>());
     for (ContactAccessor.NumberData numberData : contactData.numbers) {
       if (NumberUtil.isValidSmsOrEmailOrGroup(numberData.number)) {
-        try {
-          Recipients recipientsForNumber = RecipientFactory.getRecipientsFromString(NewConversationActivity.this,
-                                                                                    numberData.number,
-                                                                                    false);
-          recipients.getRecipientsList().addAll(recipientsForNumber.getRecipientsList());
-        } catch (RecipientFormattingException rfe) {
-          Log.w(TAG, "Caught RecipientFormattingException when trying to convert a selected number to a Recipient.", rfe);
-        }
+        Recipients recipientsForNumber = RecipientFactory.getRecipientsFromString(NewConversationActivity.this,
+                                                                                  numberData.number,
+                                                                                  false);
+        recipients.getRecipientsList().addAll(recipientsForNumber.getRecipientsList());
       }
     }
     return recipients;

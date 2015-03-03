@@ -5,11 +5,10 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.mms.TextTransport;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
-import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.libaxolotl.AxolotlAddress;
 import org.whispersystems.libaxolotl.DuplicateMessageException;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.libaxolotl.LegacyMessageException;
@@ -49,9 +48,7 @@ public class MmsCipher {
              NoSessionException
   {
     try {
-      Recipients    recipients    = RecipientFactory.getRecipientsFromString(context, pdu.getFrom().getString(), false);
-      long          recipientId   = recipients.getPrimaryRecipient().getRecipientId();
-      SessionCipher sessionCipher = new SessionCipher(axolotlStore, recipientId, 1);
+      SessionCipher sessionCipher = new SessionCipher(axolotlStore, new AxolotlAddress(pdu.getFrom().getString(), TextSecureAddress.DEFAULT_DEVICE_ID));
       Optional<byte[]> ciphertext = getEncryptedData(pdu);
 
       if (!ciphertext.isPresent()) {
@@ -83,7 +80,7 @@ public class MmsCipher {
 
       MultimediaMessagePdu plaintextGenericPdu = (MultimediaMessagePdu) new PduParser(plaintext).parse();
       return new RetrieveConf(plaintextGenericPdu.getPduHeaders(), plaintextGenericPdu.getBody());
-    } catch (RecipientFormattingException | IOException e) {
+    } catch (IOException e) {
       throw new InvalidMessageException(e);
     }
   }
@@ -93,19 +90,17 @@ public class MmsCipher {
   {
     EncodedStringValue[] encodedRecipient = message.getTo();
     String               recipientString  = encodedRecipient[0].getString();
-    Recipients           recipients       = RecipientFactory.getRecipientsFromString(context, recipientString, false);
-    long                 recipientId      = recipients.getPrimaryRecipient().getRecipientId();
     byte[]               pduBytes         = new PduComposer(context, message).make();
 
     if (pduBytes == null) {
       throw new UndeliverableMessageException("PDU composition failed, null payload");
     }
 
-    if (!axolotlStore.containsSession(recipientId, TextSecureAddress.DEFAULT_DEVICE_ID)) {
-      throw new NoSessionException("No session for: " + recipientId);
+    if (!axolotlStore.containsSession(new AxolotlAddress(recipientString, TextSecureAddress.DEFAULT_DEVICE_ID))) {
+      throw new NoSessionException("No session for: " + recipientString);
     }
 
-    SessionCipher     cipher            = new SessionCipher(axolotlStore, recipientId, TextSecureAddress.DEFAULT_DEVICE_ID);
+    SessionCipher     cipher            = new SessionCipher(axolotlStore, new AxolotlAddress(recipientString, TextSecureAddress.DEFAULT_DEVICE_ID));
     CiphertextMessage ciphertextMessage = cipher.encrypt(pduBytes);
     byte[]            encryptedPduBytes = textTransport.getEncodedMessage(ciphertextMessage.serialize());
 

@@ -55,35 +55,31 @@ public class PlaintextBackupImporter {
       XmlBackup.XmlBackupItem item;
 
       while ((item = backup.getNext()) != null) {
-        try {
-          Recipients      recipients = RecipientFactory.getRecipientsFromString(context, item.getAddress(), false);
-          long            threadId   = threads.getThreadIdFor(recipients);
-          SQLiteStatement statement  = db.createInsertStatement(transaction);
+        Recipients      recipients = RecipientFactory.getRecipientsFromString(context, item.getAddress(), false);
+        long            threadId   = threads.getThreadIdFor(recipients);
+        SQLiteStatement statement  = db.createInsertStatement(transaction);
 
-          if (item.getAddress() == null || item.getAddress().equals("null"))
-            continue;
+        if (item.getAddress() == null || item.getAddress().equals("null"))
+          continue;
 
-          if (!isAppropriateTypeForImport(item.getType()))
-            continue;
+        if (!isAppropriateTypeForImport(item.getType()))
+          continue;
 
-          addStringToStatement(statement, 1, item.getAddress());
-          addNullToStatement(statement, 2);
-          addLongToStatement(statement, 3, item.getDate());
-          addLongToStatement(statement, 4, item.getDate());
-          addLongToStatement(statement, 5, item.getProtocol());
-          addLongToStatement(statement, 6, item.getRead());
-          addLongToStatement(statement, 7, item.getStatus());
-          addTranslatedTypeToStatement(statement, 8, item.getType());
-          addNullToStatement(statement, 9);
-          addStringToStatement(statement, 10, item.getSubject());
-          addEncryptedStingToStatement(masterCipher, statement, 11, item.getBody());
-          addStringToStatement(statement, 12, item.getServiceCenter());
-          addLongToStatement(statement, 13, threadId);
-          modifiedThreads.add(threadId);
-          statement.execute();
-        } catch (RecipientFormattingException rfe) {
-          Log.w("PlaintextBackupImporter", rfe);
-        }
+        addStringToStatement(statement, 1, item.getAddress());
+        addNullToStatement(statement, 2);
+        addLongToStatement(statement, 3, item.getDate());
+        addLongToStatement(statement, 4, item.getDate());
+        addLongToStatement(statement, 5, item.getProtocol());
+        addLongToStatement(statement, 6, item.getRead());
+        addLongToStatement(statement, 7, item.getStatus());
+        addTranslatedTypeToStatement(statement, 8, item.getType());
+        addNullToStatement(statement, 9);
+        addStringToStatement(statement, 10, item.getSubject());
+        addEncryptedStingToStatement(masterCipher, statement, 11, item.getBody());
+        addStringToStatement(statement, 12, item.getServiceCenter());
+        addLongToStatement(statement, 13, threadId);
+        modifiedThreads.add(threadId);
+        statement.execute();
       }
 
       for (long threadId : modifiedThreads) {

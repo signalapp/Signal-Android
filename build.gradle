@@ -57,7 +57,7 @@ dependencies {
 
     compile 'org.whispersystems:jobmanager:0.10.0'
     compile 'org.whispersystems:libpastelog:1.0.4'
-    compile 'org.whispersystems:textsecure-android:1.0.0'
+    compile 'org.whispersystems:textsecure-android:1.1.0'
 
     androidTestCompile 'com.google.dexmaker:dexmaker:1.2'
     androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.2'
@@ -96,14 +96,14 @@ dependencyVerification {
             'com.madgag.spongycastle:prov:b8c3fec3a59aac1aa04ccf4dad7179351e54ef7672f53f508151b614c131398a',
             'org.whispersystems:jobmanager:01f35586c43aa3806f1c18d3d6a5a972def98103ba1a5a9ca3eec08d15f974b7',
             'org.whispersystems:libpastelog:3ccf00fe1597eb8ca1e5de99b17fc225387a1b80b5bbc00ec1bc4d4f3ea9cdde',
-            'org.whispersystems:textsecure-android:af67cb5d8770de6a2ae9c3d64b5ad06b63b24d2d9fb6dc3c4298d7acc60caa2a',
+            'org.whispersystems:textsecure-android:d2a8630a796222459163effba01456a322f6f15a63668393fb1203f89180a21a',
             'com.android.support:support-annotations:fdee2354787ef66b268e75958de3f7f6c4f8f325510a6dac9f49c929f83a63de',
             'com.nineoldandroids:library:68025a14e3e7673d6ad2f95e4b46d78d7d068343aa99256b686fe59de1b3163a',
             'javax.inject:javax.inject:91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff',
             'com.madgag.spongycastle:core:8d6240b974b0aca4d3da9c7dd44d42339d8a374358aca5fc98e50a995764511f',
-            'org.whispersystems:axolotl-android:9cc3328b5a6ca6d407543f3072fd0fbf9080e1ca13ba9d7745f6475d076c2856',
-            'org.whispersystems:textsecure-java:bf101047ef41ece9e4dcffdbb0506e185a888c42693d9cb78754d93f01d0c4c7',
-            'org.whispersystems:axolotl-java:793556b1397da323ad61d5b6a3efaba464972315d4e3f2e771a9183415aeceaf',
+            'org.whispersystems:axolotl-android:68e81fcb2d54626925574740263b8c2501e96f557dabedeeba7fa414deccef99',
+            'org.whispersystems:textsecure-java:f552a3cfee5ba111057c700cbe5208a4c7fe31488d17ddf49f01dd974026b00d',
+            'org.whispersystems:axolotl-java:4af04115903cbc5581b32ce82d0518a704dd039f48138d26eb518fa3a2bfee91',
             'org.whispersystems:curve25519-android:3c29a4131a69b0d16baaa3d707678deb39602c3a3ffd75805ce7f9db252e5d0d',
             'com.googlecode.libphonenumber:libphonenumber:eba17eae81dd622ea89a00a3a8c025b2f25d342e0d9644c5b62e16f15687c3ab',
             'com.google.protobuf:protobuf-java:e0c1c64575c005601725e7c6a02cebf9e1285e888f756b2a1d73ffa8d725cc74',

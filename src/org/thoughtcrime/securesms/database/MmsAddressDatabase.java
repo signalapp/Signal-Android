@@ -140,12 +140,8 @@ public class MmsAddressDatabase extends Database {
 
     for (String number : numbers) {
       if (!PduHeaders.FROM_INSERT_ADDRESS_TOKEN_STR.equals(number)) {
-        try {
-          results.add(RecipientFactory.getRecipientsFromString(context, number, false)
-                                      .getPrimaryRecipient());
-        } catch (RecipientFormattingException e) {
-          Log.w(TAG, e);
-        }
+        results.add(RecipientFactory.getRecipientsFromString(context, number, false)
+                                    .getPrimaryRecipient());
       }
     }
 

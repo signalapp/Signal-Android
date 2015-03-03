@@ -49,7 +49,6 @@ import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -311,18 +310,10 @@ public class MessageNotifier {
       reader = DatabaseFactory.getPushDatabase(context).readerFor(cursor);
 
       while ((envelope = reader.getNext()) != null) {
-        Recipients recipients;
-
-        try {
-          recipients = RecipientFactory.getRecipientsFromString(context, envelope.getSource(), false);
-        } catch (RecipientFormattingException e) {
-          Log.w("MessageNotifier", e);
-          recipients = new Recipients(Recipient.getUnknownRecipient(context));
-        }
-
-        Recipient       recipient = recipients.getPrimaryRecipient();
-        long            threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
-        SpannableString body      = new SpannableString(context.getString(R.string.MessageNotifier_encrypted_message));
+        Recipients      recipients = RecipientFactory.getRecipientsFromString(context, envelope.getSource(), false);
+        Recipient       recipient  = recipients.getPrimaryRecipient();
+        long            threadId   = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
+        SpannableString body       = new SpannableString(context.getString(R.string.MessageNotifier_encrypted_message));
         body.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), 0, body.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         notificationState.addNotification(new NotificationItem(recipient, recipients, null, threadId, body, null));

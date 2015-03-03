@@ -61,7 +61,7 @@ import org.thoughtcrime.securesms.crypto.KeyExchangeInitiator;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
-import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
+import org.thoughtcrime.securesms.crypto.SessionUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.DraftDatabase;
 import org.thoughtcrime.securesms.database.DraftDatabase.Draft;
@@ -102,8 +102,6 @@ import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libaxolotl.InvalidMessageException;
-import org.whispersystems.libaxolotl.state.SessionStore;
-import org.whispersystems.textsecure.api.push.TextSecureAddress;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
@@ -681,14 +679,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void initializeSecurity() {
-    SessionStore sessionStore           = new TextSecureSessionStore(this, masterSecret);
     Recipient    primaryRecipient       = getRecipients() == null ? null : getRecipients().getPrimaryRecipient();
     boolean      isPushDestination      = DirectoryHelper.isPushDestination(this, getRecipients());
     boolean      isSecureSmsAllowed     = (!isPushDestination || DirectoryHelper.isSmsFallbackAllowed(this, getRecipients()));
     boolean      isSecureSmsDestination = isSecureSmsAllowed     &&
                                           isSingleConversation() &&
-                                          sessionStore.containsSession(primaryRecipient.getRecipientId(),
-                                                                         TextSecureAddress.DEFAULT_DEVICE_ID);
+                                          SessionUtil.hasSession(this, masterSecret, primaryRecipient);
 
     if (isPushDestination || isSecureSmsDestination) {
       this.isEncryptedConversation = true;

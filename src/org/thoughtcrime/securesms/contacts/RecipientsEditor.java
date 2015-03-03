@@ -128,13 +128,7 @@ public class RecipientsEditor extends MultiAutoCompleteTextView {
     }
 
     public Recipients constructContactsFromInput() {
-    	Recipients r = null;
-        try {
-			r = RecipientFactory.getRecipientsFromString(mContext, mTokenizer.getRawString(), false);
-		} catch (RecipientFormattingException e) {
-			Log.w( "RecipientsEditor", e);
-		}
-		return r;
+      return RecipientFactory.getRecipientsFromString(mContext, mTokenizer.getRawString(), false);
     }
 
     private boolean isValidAddress(String number, boolean isMms) {
