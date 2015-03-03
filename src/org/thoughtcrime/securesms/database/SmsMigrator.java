@@ -150,13 +150,8 @@ public class SmsMigrator {
       sb.append(address);
     }
 
-    try {
-      if (sb.length() == 0) return null;
-      else                  return RecipientFactory.getRecipientsFromString(context, sb.toString(), true);
-    } catch (RecipientFormattingException rfe) {
-      Log.w("SmsMigrator", rfe);
-      return null;
-    }
+    if (sb.length() == 0) return null;
+    else                  return RecipientFactory.getRecipientsFromString(context, sb.toString(), true);
   }
 
   private static String encrypt(MasterSecret masterSecret, String body)

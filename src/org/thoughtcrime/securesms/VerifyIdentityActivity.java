@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
+import org.whispersystems.libaxolotl.AxolotlAddress;
 import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.state.SessionRecord;
 import org.whispersystems.libaxolotl.state.SessionStore;
@@ -183,9 +184,9 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
   }
 
   private IdentityKey getRemoteIdentityKey(MasterSecret masterSecret, Recipient recipient) {
-    SessionStore  sessionStore = new TextSecureSessionStore(this, masterSecret);
-    SessionRecord record       = sessionStore.loadSession(recipient.getRecipientId(),
-                                                          TextSecureAddress.DEFAULT_DEVICE_ID);
+    SessionStore   sessionStore   = new TextSecureSessionStore(this, masterSecret);
+    AxolotlAddress axolotlAddress = new AxolotlAddress(recipient.getNumber(), TextSecureAddress.DEFAULT_DEVICE_ID);
+    SessionRecord  record         = sessionStore.loadSession(axolotlAddress);
 
     if (record == null) {
       return null;

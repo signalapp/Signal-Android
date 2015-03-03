@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingKeyExchangeMessage;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.Dialogs;
+import org.whispersystems.libaxolotl.AxolotlAddress;
 import org.whispersystems.libaxolotl.SessionBuilder;
 import org.whispersystems.libaxolotl.protocol.KeyExchangeMessage;
 import org.whispersystems.libaxolotl.state.IdentityKeyStore;
@@ -67,8 +68,8 @@ public class KeyExchangeInitiator {
     IdentityKeyStore  identityKeyStore  = new TextSecureIdentityKeyStore(context, masterSecret);
 
     SessionBuilder    sessionBuilder    = new SessionBuilder(sessionStore, preKeyStore, signedPreKeyStore,
-                                                             identityKeyStore, recipient.getRecipientId(),
-                                                             TextSecureAddress.DEFAULT_DEVICE_ID);
+                                                             identityKeyStore, new AxolotlAddress(recipient.getNumber(),
+                                                                                                  TextSecureAddress.DEFAULT_DEVICE_ID));
 
     KeyExchangeMessage         keyExchangeMessage = sessionBuilder.process();
     String                     serializedMessage  = Base64.encodeBytesWithoutPadding(keyExchangeMessage.serialize());
@@ -81,7 +82,7 @@ public class KeyExchangeInitiator {
                                              Recipient recipient)
   {
     SessionStore  sessionStore  = new TextSecureSessionStore(context, masterSecret);
-    SessionRecord sessionRecord = sessionStore.loadSession(recipient.getRecipientId(), TextSecureAddress.DEFAULT_DEVICE_ID);
+    SessionRecord sessionRecord = sessionStore.loadSession(new AxolotlAddress(recipient.getNumber(), TextSecureAddress.DEFAULT_DEVICE_ID));
 
     return sessionRecord.getSessionState().hasPendingKeyExchange();
   }

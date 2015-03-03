@@ -390,24 +390,19 @@ public class SmsDatabase extends MessagingDatabase {
 
     Recipients recipients;
 
-    try {
+    if (message.getSender() != null) {
       recipients = RecipientFactory.getRecipientsFromString(context, message.getSender(), true);
-    } catch (RecipientFormattingException e) {
-      Log.w("SmsDatabase", e);
+    } else {
+      Log.w(TAG, "Sender is null, returning unknown recipient");
       recipients = new Recipients(Recipient.getUnknownRecipient(context));
     }
 
     Recipients groupRecipients;
 
-    try {
-      if (message.getGroupId() == null) {
-        groupRecipients = null;
-      } else {
-        groupRecipients = RecipientFactory.getRecipientsFromString(context, message.getGroupId(), true);
-      }
-    } catch (RecipientFormattingException e) {
-      Log.w("SmsDatabase", e);
+    if (message.getGroupId() == null) {
       groupRecipients = null;
+    } else {
+      groupRecipients = RecipientFactory.getRecipientsFromString(context, message.getGroupId(), true);
     }
 
     boolean    unread     = org.thoughtcrime.securesms.util.Util.isDefaultSmsProvider(context) ||
@@ -643,7 +638,7 @@ public class SmsDatabase extends MessagingDatabase {
     }
 
     private Recipients getRecipientsFor(String address) {
-      try {
+      if (address != null) {
         Recipients recipients = RecipientFactory.getRecipientsFromString(context, address, false);
 
         if (recipients == null || recipients.isEmpty()) {
@@ -651,8 +646,8 @@ public class SmsDatabase extends MessagingDatabase {
         }
 
         return recipients;
-      } catch (RecipientFormattingException e) {
-        Log.w("EncryptingSmsDatabase", e);
+      } else {
+        Log.w(TAG, "getRecipientsFor() address is null");
         return new Recipients(Recipient.getUnknownRecipient(context));
       }
     }

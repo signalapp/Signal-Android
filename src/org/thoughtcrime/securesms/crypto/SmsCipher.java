@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.sms.OutgoingKeyExchangeMessage;
 import org.thoughtcrime.securesms.sms.OutgoingPrekeyBundleMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.sms.SmsTransportDetails;
+import org.whispersystems.libaxolotl.AxolotlAddress;
 import org.whispersystems.libaxolotl.DuplicateMessageException;
 import org.whispersystems.libaxolotl.InvalidKeyException;
 import org.whispersystems.libaxolotl.InvalidKeyIdException;
@@ -49,20 +50,18 @@ public class SmsCipher {
              DuplicateMessageException, NoSessionException
   {
     try {
-      Recipients     recipients     = RecipientFactory.getRecipientsFromString(context, message.getSender(), false);
-      long           recipientId    = recipients.getPrimaryRecipient().getRecipientId();
       byte[]         decoded        = transportDetails.getDecodedMessage(message.getMessageBody().getBytes());
       WhisperMessage whisperMessage = new WhisperMessage(decoded);
-      SessionCipher  sessionCipher  = new SessionCipher(axolotlStore, recipientId, 1);
+      SessionCipher  sessionCipher  = new SessionCipher(axolotlStore, new AxolotlAddress(message.getSender(), TextSecureAddress.DEFAULT_DEVICE_ID));
       byte[]         padded         = sessionCipher.decrypt(whisperMessage);
       byte[]         plaintext      = transportDetails.getStrippedPaddingMessageBody(padded);
 
       if (message.isEndSession() && "TERMINATE".equals(new String(plaintext))) {
-        axolotlStore.deleteSession(recipientId, 1);
+        axolotlStore.deleteSession(new AxolotlAddress(message.getSender(), TextSecureAddress.DEFAULT_DEVICE_ID));
       }
 
       return message.withMessageBody(new String(plaintext));
-    } catch (RecipientFormattingException | IOException e) {
+    } catch (IOException e) {
       throw new InvalidMessageException(e);
     }
   }
@@ -72,28 +71,27 @@ public class SmsCipher {
              UntrustedIdentityException, LegacyMessageException
   {
     try {
-      Recipients           recipients    = RecipientFactory.getRecipientsFromString(context, message.getSender(), false);
       byte[]               decoded       = transportDetails.getDecodedMessage(message.getMessageBody().getBytes());
       PreKeyWhisperMessage preKeyMessage = new PreKeyWhisperMessage(decoded);
-      SessionCipher        sessionCipher = new SessionCipher(axolotlStore, recipients.getPrimaryRecipient().getRecipientId(), 1);
+      SessionCipher        sessionCipher = new SessionCipher(axolotlStore, new AxolotlAddress(message.getSender(), TextSecureAddress.DEFAULT_DEVICE_ID));
       byte[]               padded        = sessionCipher.decrypt(preKeyMessage);
       byte[]               plaintext     = transportDetails.getStrippedPaddingMessageBody(padded);
 
       return new IncomingEncryptedMessage(message, new String(plaintext));
-    } catch (RecipientFormattingException | IOException | InvalidKeyException | InvalidKeyIdException e) {
+    } catch (IOException | InvalidKeyException | InvalidKeyIdException e) {
       throw new InvalidMessageException(e);
     }
   }
 
   public OutgoingTextMessage encrypt(OutgoingTextMessage message) throws NoSessionException {
-    byte[] paddedBody  = transportDetails.getPaddedMessageBody(message.getMessageBody().getBytes());
-    long   recipientId = message.getRecipients().getPrimaryRecipient().getRecipientId();
+    byte[] paddedBody      = transportDetails.getPaddedMessageBody(message.getMessageBody().getBytes());
+    String recipientNumber = message.getRecipients().getPrimaryRecipient().getNumber();
 
-    if (!axolotlStore.containsSession(recipientId, TextSecureAddress.DEFAULT_DEVICE_ID)) {
-      throw new NoSessionException("No session for: " + recipientId);
+    if (!axolotlStore.containsSession(new AxolotlAddress(recipientNumber, TextSecureAddress.DEFAULT_DEVICE_ID))) {
+      throw new NoSessionException("No session for: " + recipientNumber);
     }
 
-    SessionCipher     cipher            = new SessionCipher(axolotlStore, recipientId, TextSecureAddress.DEFAULT_DEVICE_ID);
+    SessionCipher     cipher            = new SessionCipher(axolotlStore, new AxolotlAddress(recipientNumber, TextSecureAddress.DEFAULT_DEVICE_ID));
     CiphertextMessage ciphertextMessage = cipher.encrypt(paddedBody);
     String            encodedCiphertext = new String(transportDetails.getEncodedMessage(ciphertextMessage.serialize()));
 
@@ -110,8 +108,9 @@ public class SmsCipher {
   {
     try {
       Recipient          recipient       = RecipientFactory.getRecipientsFromString(context, message.getSender(), false).getPrimaryRecipient();
+      AxolotlAddress     axolotlAddress  = new AxolotlAddress(message.getSender(), TextSecureAddress.DEFAULT_DEVICE_ID);
       KeyExchangeMessage exchangeMessage = new KeyExchangeMessage(transportDetails.getDecodedMessage(message.getMessageBody().getBytes()));
-      SessionBuilder     sessionBuilder  = new SessionBuilder(axolotlStore, recipient.getRecipientId(), 1);
+      SessionBuilder     sessionBuilder  = new SessionBuilder(axolotlStore, axolotlAddress);
 
       KeyExchangeMessage response        = sessionBuilder.process(exchangeMessage);
 
@@ -121,7 +120,7 @@ public class SmsCipher {
       } else {
         return null;
       }
-    } catch (RecipientFormattingException | IOException | InvalidKeyException e) {
+    } catch (IOException | InvalidKeyException e) {
       throw new InvalidMessageException(e);
     }
   }

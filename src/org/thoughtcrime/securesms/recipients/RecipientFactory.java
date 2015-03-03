@@ -17,13 +17,13 @@
 package org.thoughtcrime.securesms.recipients;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.database.CanonicalAddressDatabase;
 
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -67,14 +67,8 @@ public class RecipientFactory {
     return provider.getRecipient(context, recipientId, asynchronous);
   }
 
-  public static Recipients getRecipientsFromString(Context context, String rawText, boolean asynchronous)
-      throws RecipientFormattingException
-  {
-    if (rawText == null) {
-      throw new RecipientFormattingException("Null recipient string specified");
-    }
-
-    List<Recipient> results   = new LinkedList<Recipient>();
+  public static Recipients getRecipientsFromString(Context context, @NonNull String rawText, boolean asynchronous) {
+    List<Recipient> results   = new LinkedList<>();
     StringTokenizer tokenizer = new StringTokenizer(rawText, ",");
 
     while (tokenizer.hasMoreTokens()) {

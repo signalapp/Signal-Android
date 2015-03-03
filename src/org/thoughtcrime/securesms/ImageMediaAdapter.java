@@ -99,15 +99,11 @@ public class ImageMediaAdapter extends CursorRecyclerViewAdapter<ViewHolder> {
       intent.putExtra(MediaPreviewActivity.DATE_EXTRA, record.getDate());
 
       if (!TextUtils.isEmpty(record.getAddress())) {
-        try {
-          Recipients recipients = RecipientFactory.getRecipientsFromString(getContext(),
-                                                                           record.getAddress(),
-                                                                           true);
-          if (recipients != null && recipients.getPrimaryRecipient() != null) {
-            intent.putExtra(MediaPreviewActivity.RECIPIENT_EXTRA, recipients.getPrimaryRecipient().getRecipientId());
-          }
-        } catch (RecipientFormattingException rfe) {
-          Log.w(TAG, rfe);
+        Recipients recipients = RecipientFactory.getRecipientsFromString(getContext(),
+                                                                         record.getAddress(),
+                                                                         true);
+        if (recipients != null && recipients.getPrimaryRecipient() != null) {
+          intent.putExtra(MediaPreviewActivity.RECIPIENT_EXTRA, recipients.getPrimaryRecipient().getRecipientId());
         }
       }
       intent.setDataAndType(record.getUri(), record.getContentType());

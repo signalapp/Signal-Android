@@ -1062,22 +1062,17 @@ public class MmsDatabase extends MessagingDatabase {
     }
 
     private Recipients getRecipientsFor(String address) {
-      try {
-        if (TextUtils.isEmpty(address) || address.equals("insert-address-token")) {
-          return new Recipients(Recipient.getUnknownRecipient(context));
-        }
-
-        Recipients recipients =  RecipientFactory.getRecipientsFromString(context, address, false);
-
-        if (recipients == null || recipients.isEmpty()) {
-          return new Recipients(Recipient.getUnknownRecipient(context));
-        }
-
-        return recipients;
-      } catch (RecipientFormattingException e) {
-        Log.w("MmsDatabase", e);
+      if (TextUtils.isEmpty(address) || address.equals("insert-address-token")) {
         return new Recipients(Recipient.getUnknownRecipient(context));
       }
+
+      Recipients recipients =  RecipientFactory.getRecipientsFromString(context, address, false);
+
+      if (recipients == null || recipients.isEmpty()) {
+        return new Recipients(Recipient.getUnknownRecipient(context));
+      }
+
+      return recipients;
     }
 
     private List<IdentityKeyMismatch> getMismatchedIdentities(String document) {

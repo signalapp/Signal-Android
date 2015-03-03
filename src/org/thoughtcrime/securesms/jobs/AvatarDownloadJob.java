@@ -72,13 +72,9 @@ public class AvatarDownloadJob extends MasterSecretJob {
 
         database.updateAvatar(groupId, avatar);
 
-        try {
-          Recipient groupRecipient = RecipientFactory.getRecipientsFromString(context, GroupUtil.getEncodedId(groupId), true)
-                                                     .getPrimaryRecipient();
-          groupRecipient.setContactPhoto(avatar);
-        } catch (RecipientFormattingException e) {
-          Log.w("AvatarDownloader", e);
-        }
+        Recipient groupRecipient = RecipientFactory.getRecipientsFromString(context, GroupUtil.getEncodedId(groupId), true)
+                                                   .getPrimaryRecipient();
+        groupRecipient.setContactPhoto(avatar);
       }
     } catch (InvalidMessageException | BitmapDecodingException | NonSuccessfulResponseCodeException e) {
       Log.w(TAG, e);
