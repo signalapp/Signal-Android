@@ -43,7 +43,7 @@
                             android:layout_width="0dp"
                             android:layout_height="150dip"
                             android:layout_weight="1"
-                            android:contentDescription="Attachment Thumbnail"/>
+                            android:contentDescription="@string/conversation_activity__attachment_thumbnail"/>
 
                     <LinearLayout
                             android:orientation="vertical"

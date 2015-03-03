@@ -27,7 +27,7 @@
             android:scaleType="centerCrop"
             android:visibility="gone"
             tools:src="@drawable/ic_contact_picture"
-            android:contentDescription="Contact Photo Image"
+            android:contentDescription="@string/conversation_list_item_view__contact_photo_image"
             android:layout_marginLeft="0dp" />
     </FrameLayout>
 
@@ -65,7 +65,7 @@
                        android:layout_width="20sp"
                        android:visibility="gone"
                        android:src="@drawable/ic_attachment_universal_small"
-                       android:contentDescription="Attachment Indicator" />
+                       android:contentDescription="@string/conversation_list_item_view__attachment_indicator" />
 
             <ImageView android:id="@+id/error"
                        android:layout_marginLeft="3dip"
@@ -73,7 +73,7 @@
                        android:layout_width="20sp"
                        android:visibility="gone"
                        android:src="@drawable/ic_action_warning_red"
-                       android:contentDescription="Error Alert" />
+                       android:contentDescription="@string/conversation_list_item_view__error_alert" />
 
             <TextView android:id="@+id/date"
                       android:layout_marginLeft="3dip"
