@@ -102,6 +102,8 @@ android {
         targetSdkVersion 19
 
         buildConfigField "long", "BUILD_TIMESTAMP", System.currentTimeMillis() + "L"
+        
+        applicationId 'de.gdata.mobilesecurity'
     }
 
     compileOptions {
