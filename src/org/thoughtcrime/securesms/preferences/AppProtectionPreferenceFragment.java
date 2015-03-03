@@ -11,7 +11,6 @@ import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
 import android.support.v4.preference.PreferenceFragment;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.doomonafireball.betterpickers.hmspicker.HmsPickerBuilder;
@@ -153,10 +152,25 @@ public class AppProtectionPreferenceFragment extends PreferenceFragment {
     }
   }
 
-  public static CharSequence getSummary(Context context) {
-    final int onCapsResId  = R.string.ApplicationPreferencesActivity_On;
-    final int offCapsResId = R.string.ApplicationPreferencesActivity_Off;
+  private static CharSequence getPassphraseSummary(Context context) {
+    final int passphraseResId = R.string.preferences__passphrase;
+    final int onResId         = R.string.ApplicationPreferencesActivity_on;
+    final int offResId        = R.string.ApplicationPreferencesActivity_off;
 
-    return context.getString(TextSecurePreferences.isPasswordDisabled(context) ? offCapsResId : onCapsResId);
+    return context.getString(passphraseResId) + " " +
+           context.getString((TextSecurePreferences.isPasswordDisabled(context) ? offResId : onResId));
+  }
+
+  private static CharSequence getScreenSecuritySummary(Context context) {
+    final int screenSecurityResId = R.string.preferences__screen_security;
+    final int onResId             = R.string.ApplicationPreferencesActivity_on;
+    final int offResId            = R.string.ApplicationPreferencesActivity_off;
+
+    return context.getString(screenSecurityResId) + " " +
+           context.getString((TextSecurePreferences.isScreenSecurityEnabled(context) ? onResId : offResId));
+  }
+
+  public static CharSequence getSummary(Context context) {
+    return getPassphraseSummary(context) + ", " + getScreenSecuritySummary(context);
   }
 }

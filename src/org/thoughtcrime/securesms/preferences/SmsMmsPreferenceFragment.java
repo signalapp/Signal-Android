@@ -161,7 +161,7 @@ public class SmsMmsPreferenceFragment extends PreferenceFragment {
       else if (!preKitkatSMS && preKitkatMMS) incomingSmsSummary = mmsResId;
       else                                    incomingSmsSummary = offResId;
     }
-    return context.getString(incomingSmsResId) + ": " + context.getString(incomingSmsSummary);
+    return context.getString(incomingSmsResId) + " " + context.getString(incomingSmsSummary);
   }
 
   private static CharSequence getOutgoingSmsSummary(Context context) {
@@ -178,6 +178,6 @@ public class SmsMmsPreferenceFragment extends PreferenceFragment {
     } else {
       outgoingSmsSummary = offResId;
     }
-    return context.getString(outgoingSmsResId) + ": " + context.getString(outgoingSmsSummary);
+    return context.getString(outgoingSmsResId) + " " + context.getString(outgoingSmsSummary);
   }
 }

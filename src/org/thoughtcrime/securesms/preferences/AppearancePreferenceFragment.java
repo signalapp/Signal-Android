@@ -50,7 +50,7 @@ public class AppearancePreferenceFragment extends ListSummaryPreferenceFragment 
     int langIndex  = Arrays.asList(languageEntryValues).indexOf(TextSecurePreferences.getLanguage(context));
     int themeIndex = Arrays.asList(themeEntryValues).indexOf(TextSecurePreferences.getTheme(context));
 
-    return context.getString(R.string.preferences__theme)    + ": " + themeEntries[themeIndex] + ", " +
-           context.getString(R.string.preferences__language) + ": " + languageEntries[langIndex];
+    return context.getString(R.string.preferences__theme)    + " " + themeEntries[themeIndex] + ", " +
+           context.getString(R.string.preferences__language) + " " + languageEntries[langIndex];
   }
 }
