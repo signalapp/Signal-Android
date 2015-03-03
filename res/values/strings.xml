@@ -483,6 +483,7 @@
     <string name="conversation_activity__window_description">Conversation with %1$s</string>
     <string name="conversation_activity__compose_description">Message composition</string>
     <string name="conversation_activity__emoji_toggle_description">Toggle emoji keyboard</string>
+    <string name="conversation_activity__attachment_thumbnail">Attachment Thumbnail</string>
 
     <!-- conversation_item -->
     <string name="conversation_item__mms_image_description">Media message</string>
@@ -652,6 +653,9 @@
         failed.
     </string>
     <string name="registration_progress_activity__generating_keys">Generating keys...</string>
+    <string name="registration_progress_activity__alert">Alert</string>
+    <string name="registration_progress_activity__telephone">Telephone</string>
+    <string name="registration_progress_activity__check">Check</string>
 
     <!-- recipients_panel -->
     <string name="recipients_panel__to"><small>Enter a name or number</small></string>
@@ -843,8 +847,12 @@
     <!-- conversation_context_image -->
     <string name="conversation_context_image__save_attachment">Save attachment</string>
 
+    <!-- conversation_insecure -->
+    <string name="conversation_insecure__invite">Invite</string>
+
     <!-- conversation_insecure_no_push -->
     <string name="conversation_insecure__menu_start_secure_session">Start secure session</string>
+    <string name="conversation_insecure__security">Security</string>
 
     <!-- conversation_list_batch -->
     <string name="conversation_list_batch__menu_delete_selected">Delete selected</string>
@@ -852,6 +860,11 @@
 
     <!-- conversation_list -->
     <string name="conversation_list__menu_search">Search</string>
+
+    <!-- conversation_list_item_view -->
+    <string name="conversation_list_item_view__contact_photo_image">Contact Photo Image</string>
+    <string name="conversation_list_item_view__attachment_indicator">Attachment Indicator</string>
+    <string name="conversation_list_item_view__error_alert">Error alert</string>
 
     <!-- conversation_list_fragment -->
     <string name="conversation_list_fragment__fab_content_description">New conversation</string>
@@ -914,6 +927,9 @@
     <string name="trimmer__deleting">Deleting...</string>
     <string name="trimmer__deleting_old_messages">Deleting old messages...</string>
     <string name="trimmer__old_messages_successfully_deleted">Old messages successfully deleted</string>
+
+    <!-- transport_selection_list_item -->
+    <string name="transport_selection_list_item__transport_icon">Transport icon</string>
 
     <!-- EOF -->
 

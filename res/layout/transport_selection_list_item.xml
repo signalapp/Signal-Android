@@ -10,7 +10,7 @@
     <ImageView android:id="@+id/icon"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:contentDescription="Transport icon"/>
+               android:contentDescription="@string/transport_selection_list_item__transport_icon"/>
     <TextView android:id="@+id/text"
               android:paddingLeft="10dp"
               android:fontFamily="sans-serif-light"
