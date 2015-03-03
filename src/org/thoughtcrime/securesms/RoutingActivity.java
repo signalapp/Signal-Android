@@ -198,10 +198,10 @@ public class RoutingActivity extends PassphraseRequiredActionBarActivity {
     Recipients recipients;
     String body     = getIntent().getStringExtra("sms_body");
     long   threadId = getIntent().getLongExtra("thread_id", -1);
-    String data     = getIntent().getData().getSchemeSpecificPart();
+    Uri    data     = getIntent().getData();
 
-    if (data != null) {
-      recipients = RecipientFactory.getRecipientsFromString(this, data, false);
+    if (data != null && data.getSchemeSpecificPart() != null) {
+      recipients = RecipientFactory.getRecipientsFromString(this, data.getSchemeSpecificPart(), false);
       threadId   = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipients);
     } else {
       recipients = null;
