@@ -19,6 +19,7 @@ package org.whispersystems.textsecure.api;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 
+import org.whispersystems.libaxolotl.AxolotlAddress;
 import org.whispersystems.libaxolotl.InvalidKeyException;
 import org.whispersystems.libaxolotl.SessionBuilder;
 import org.whispersystems.libaxolotl.logging.Log;
@@ -81,19 +82,18 @@ public class TextSecureMessageSender {
    * @param trustStore The trust store containing the TextSecure server's signing TLS certificate.
    * @param user The TextSecure username (eg phone number).
    * @param password The TextSecure user's password.
-   * @param userId The axolotl recipient id for the local TextSecure user.
    * @param store The AxolotlStore.
    * @param eventListener An optional event listener, which fires whenever sessions are
    *                      setup or torn down for a recipient.
    */
   public TextSecureMessageSender(String url, TrustStore trustStore,
                                  String user, String password,
-                                 long userId, AxolotlStore store,
+                                 AxolotlStore store,
                                  Optional<EventListener> eventListener)
   {
     this.socket        = new PushServiceSocket(url, trustStore, new StaticCredentialsProvider(user, password, null));
     this.store         = store;
-    this.syncAddress   = new TextSecureAddress(userId, user, null);
+    this.syncAddress   = new TextSecureAddress(user);
     this.eventListener = eventListener;
   }
 
@@ -129,10 +129,10 @@ public class TextSecureMessageSender {
     }
 
     if (message.isEndSession()) {
-      store.deleteAllSessions(recipient.getRecipientId());
+      store.deleteAllSessions(recipient.getNumber());
 
       if (eventListener.isPresent()) {
-        eventListener.get().onSecurityEvent(recipient.getRecipientId());
+        eventListener.get().onSecurityEvent(recipient);
       }
     }
   }
@@ -308,24 +308,27 @@ public class TextSecureMessageSender {
       messages.add(new OutgoingPushMessage(recipient, TextSecureAddress.DEFAULT_DEVICE_ID, masterBody));
     }
 
-    for (int deviceId : store.getSubDeviceSessions(recipient.getRecipientId())) {
+    for (int deviceId : store.getSubDeviceSessions(recipient.getNumber())) {
       PushBody body = getEncryptedMessage(socket, recipient, deviceId, plaintext);
       messages.add(new OutgoingPushMessage(recipient, deviceId, body));
     }
 
-    return new OutgoingPushMessageList(recipient.getNumber(), timestamp, recipient.getRelay(), messages);
+    return new OutgoingPushMessageList(recipient.getNumber(), timestamp, recipient.getRelay().orNull(), messages);
   }
 
   private PushBody getEncryptedMessage(PushServiceSocket socket, TextSecureAddress recipient, int deviceId, byte[] plaintext)
       throws IOException, UntrustedIdentityException
   {
-    if (!store.containsSession(recipient.getRecipientId(), deviceId)) {
+    AxolotlAddress axolotlAddress = new AxolotlAddress(recipient.getNumber(), deviceId);
+
+    if (!store.containsSession(axolotlAddress)) {
       try {
         List<PreKeyBundle> preKeys = socket.getPreKeys(recipient, deviceId);
 
         for (PreKeyBundle preKey : preKeys) {
           try {
-            SessionBuilder sessionBuilder = new SessionBuilder(store, recipient.getRecipientId(), deviceId);
+            AxolotlAddress preKeyAddress  = new AxolotlAddress(recipient.getNumber(), preKey.getDeviceId());
+            SessionBuilder sessionBuilder = new SessionBuilder(store, preKeyAddress);
             sessionBuilder.process(preKey);
           } catch (org.whispersystems.libaxolotl.UntrustedIdentityException e) {
             throw new UntrustedIdentityException("Untrusted identity key!", recipient.getNumber(), preKey.getIdentityKey());
@@ -333,14 +336,14 @@ public class TextSecureMessageSender {
         }
 
         if (eventListener.isPresent()) {
-          eventListener.get().onSecurityEvent(recipient.getRecipientId());
+          eventListener.get().onSecurityEvent(recipient);
         }
       } catch (InvalidKeyException e) {
         throw new IOException(e);
       }
     }
 
-    TextSecureCipher  cipher               = new TextSecureCipher(store, recipient.getRecipientId(), deviceId);
+    TextSecureCipher  cipher               = new TextSecureCipher(store, axolotlAddress);
     CiphertextMessage message              = cipher.encrypt(plaintext);
     int               remoteRegistrationId = cipher.getRemoteRegistrationId();
 
@@ -359,14 +362,14 @@ public class TextSecureMessageSender {
   {
     try {
       for (int extraDeviceId : mismatchedDevices.getExtraDevices()) {
-        store.deleteSession(recipient.getRecipientId(), extraDeviceId);
+        store.deleteSession(new AxolotlAddress(recipient.getNumber(), extraDeviceId));
       }
 
       for (int missingDeviceId : mismatchedDevices.getMissingDevices()) {
         PreKeyBundle preKey = socket.getPreKey(recipient, missingDeviceId);
 
         try {
-          SessionBuilder sessionBuilder = new SessionBuilder(store, recipient.getRecipientId(), missingDeviceId);
+          SessionBuilder sessionBuilder = new SessionBuilder(store, new AxolotlAddress(recipient.getNumber(), missingDeviceId));
           sessionBuilder.process(preKey);
         } catch (org.whispersystems.libaxolotl.UntrustedIdentityException e) {
           throw new UntrustedIdentityException("Untrusted identity key!", recipient.getNumber(), preKey.getIdentityKey());
@@ -378,15 +381,13 @@ public class TextSecureMessageSender {
   }
 
   private void handleStaleDevices(TextSecureAddress recipient, StaleDevices staleDevices) {
-    long recipientId = recipient.getRecipientId();
-
     for (int staleDeviceId : staleDevices.getStaleDevices()) {
-      store.deleteSession(recipientId, staleDeviceId);
+      store.deleteSession(new AxolotlAddress(recipient.getNumber(), staleDeviceId));
     }
   }
 
   public static interface EventListener {
-    public void onSecurityEvent(long recipientId);
+    public void onSecurityEvent(TextSecureAddress address);
   }
 
 }

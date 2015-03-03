@@ -16,6 +16,8 @@
  */
 package org.whispersystems.textsecure.api.push;
 
+import org.whispersystems.libaxolotl.util.guava.Optional;
+
 /**
  * A class representing a message destination or origin.
  */
@@ -23,33 +25,30 @@ public class TextSecureAddress {
 
   public static final int DEFAULT_DEVICE_ID = 1;
 
-  private final long   recipientId;
   private final String e164number;
-  private final String relay;
+  private final Optional<String> relay;
 
   /**
    * Construct a PushAddress.
    *
-   * @param recipientId The axolotl recipient ID of this destination.
    * @param e164number The TextSecure username of this destination (eg e164 representation of a phone number).
    * @param relay The TextSecure federated server this user is registered with (if not your own server).
    */
-  public TextSecureAddress(long recipientId, String e164number, String relay) {
-    this.recipientId = recipientId;
+  public TextSecureAddress(String e164number, Optional<String> relay) {
     this.e164number  = e164number;
     this.relay       = relay;
+  }
+
+  public TextSecureAddress(String e164number) {
+    this(e164number, Optional.<String>absent());
   }
 
   public String getNumber() {
     return e164number;
   }
 
-  public String getRelay() {
+  public Optional<String> getRelay() {
     return relay;
-  }
-
-  public long getRecipientId() {
-    return recipientId;
   }
 
   @Override
@@ -58,17 +57,16 @@ public class TextSecureAddress {
 
     TextSecureAddress that = (TextSecureAddress)other;
 
-    return this.recipientId == that.recipientId &&
-           equals(this.e164number, that.e164number) &&
+    return equals(this.e164number, that.e164number) &&
            equals(this.relay, that.relay);
   }
 
   @Override
   public int hashCode() {
-    int hashCode = (int)this.recipientId;
+    int hashCode = 0;
 
     if (this.e164number != null) hashCode ^= this.e164number.hashCode();
-    if (this.relay != null)      hashCode ^= this.relay.hashCode();
+    if (this.relay.isPresent())  hashCode ^= this.relay.get().hashCode();
 
     return hashCode;
   }
@@ -76,5 +74,10 @@ public class TextSecureAddress {
   private boolean equals(String one, String two) {
     if (one == null) return two == null;
     return one.equals(two);
+  }
+
+  private boolean equals(Optional<String> one, Optional<String> two) {
+    if (one.isPresent()) return two.isPresent() && one.get().equals(two.get());
+    else                 return !two.isPresent();
   }
 }

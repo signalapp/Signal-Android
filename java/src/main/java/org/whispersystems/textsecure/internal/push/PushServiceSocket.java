@@ -25,6 +25,7 @@ import org.whispersystems.libaxolotl.logging.Log;
 import org.whispersystems.libaxolotl.state.PreKeyBundle;
 import org.whispersystems.libaxolotl.state.PreKeyRecord;
 import org.whispersystems.libaxolotl.state.SignedPreKeyRecord;
+import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.crypto.AttachmentCipherOutputStream;
 import org.whispersystems.textsecure.api.push.ContactTokenDetails;
 import org.whispersystems.textsecure.api.push.TextSecureAddress;
@@ -129,11 +130,11 @@ public class PushServiceSocket {
                 JsonUtil.toJson(new ProvisioningMessage(Base64.encodeBytes(body))));
   }
 
-  public void sendReceipt(String destination, long messageId, String relay) throws IOException {
+  public void sendReceipt(String destination, long messageId, Optional<String> relay) throws IOException {
     String path = String.format(RECEIPT_PATH, destination, messageId);
 
-    if (!Util.isEmpty(relay)) {
-      path += "?relay=" + relay;
+    if (relay.isPresent()) {
+      path += "?relay=" + relay.get();
     }
 
     makeRequest(path, "PUT", null);
@@ -204,8 +205,8 @@ public class PushServiceSocket {
 
       String path = String.format(PREKEY_DEVICE_PATH, destination.getNumber(), deviceId);
 
-      if (!Util.isEmpty(destination.getRelay())) {
-        path = path + "?relay=" + destination.getRelay();
+      if (destination.getRelay().isPresent()) {
+        path = path + "?relay=" + destination.getRelay().get();
       }
 
       String             responseText = makeRequest(path, "GET", null);
@@ -248,8 +249,8 @@ public class PushServiceSocket {
       String path = String.format(PREKEY_DEVICE_PATH, destination.getNumber(),
                                   String.valueOf(deviceId));
 
-      if (!Util.isEmpty(destination.getRelay())) {
-        path = path + "?relay=" + destination.getRelay();
+      if (destination.getRelay().isPresent()) {
+        path = path + "?relay=" + destination.getRelay().get();
       }
 
       String         responseText = makeRequest(path, "GET", null);

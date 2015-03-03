@@ -18,6 +18,7 @@ package org.whispersystems.textsecure.api.crypto;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 
+import org.whispersystems.libaxolotl.AxolotlAddress;
 import org.whispersystems.libaxolotl.DuplicateMessageException;
 import org.whispersystems.libaxolotl.InvalidKeyException;
 import org.whispersystems.libaxolotl.InvalidKeyIdException;
@@ -53,8 +54,8 @@ public class TextSecureCipher {
 
   private final SessionCipher sessionCipher;
 
-  public TextSecureCipher(AxolotlStore axolotlStore, long recipientId, int deviceId) {
-    this.sessionCipher = new SessionCipher(axolotlStore, recipientId, deviceId);
+  public TextSecureCipher(AxolotlStore axolotlStore, AxolotlAddress destination) {
+    this.sessionCipher = new SessionCipher(axolotlStore, destination);
   }
 
   public CiphertextMessage encrypt(byte[] unpaddedMessage) {
