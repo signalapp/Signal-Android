@@ -90,10 +90,6 @@
               android:windowSoftInputMode="stateUnchanged"              
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
-    <activity android:name=".ConfirmIdentityActivity"
-              android:theme="@style/TextSecure.Light.Dialog"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
-
     <activity android:name=".DeviceProvisioningActivity"
               android:theme="@style/TextSecure.DialogActivity"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize">
