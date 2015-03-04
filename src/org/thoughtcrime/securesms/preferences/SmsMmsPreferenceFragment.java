@@ -15,7 +15,6 @@ import android.support.v4.preference.PreferenceFragment;
 import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
-import org.thoughtcrime.securesms.MmsPreferencesFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.OutgoingSmsPreference;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;

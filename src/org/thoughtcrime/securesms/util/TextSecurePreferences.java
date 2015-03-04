@@ -434,11 +434,11 @@ public class TextSecurePreferences {
     setLongPreference(context, PUSH_REGISTRATION_REMINDER_PREF, time);
   }
 
-  private static void setBooleanPreference(Context context, String key, boolean value) {
+  public static void setBooleanPreference(Context context, String key, boolean value) {
     PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean(key, value).apply();
   }
 
-  private static boolean getBooleanPreference(Context context, String key, boolean defaultValue) {
+  public static boolean getBooleanPreference(Context context, String key, boolean defaultValue) {
     return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(key, defaultValue);
   }
 
@@ -446,7 +446,7 @@ public class TextSecurePreferences {
     PreferenceManager.getDefaultSharedPreferences(context).edit().putString(key, value).apply();
   }
 
-  private static String getStringPreference(Context context, String key, String defaultValue) {
+  public static String getStringPreference(Context context, String key, String defaultValue) {
     return PreferenceManager.getDefaultSharedPreferences(context).getString(key, defaultValue);
   }
 

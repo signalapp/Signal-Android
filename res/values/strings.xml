@@ -153,6 +153,11 @@
     <!-- ConversationListItem -->
     <string name="ConversationListItem_key_exchange_message">Key exchange message...</string>
 
+    <!-- CustomDefaultPreference -->
+    <string name="CustomDefaultPreference_using_custom">Using custom: %s</string>
+    <string name="CustomDefaultPreference_using_default">Using default: %s</string>
+    <string name="CustomDefaultPreference_none">None</string>
+
     <!-- DateUtils -->
     <string name="DateUtils_now">Now</string>
 
