@@ -67,8 +67,7 @@ public class ConversationListFragment extends ListFragment
   private ActionMode                   actionMode;
   private ReminderView                 reminderView;
   private FloatingActionButton         fab;
-  private String                       queryFilter         = "";
-  private boolean                      isListRefreshNeeded = false;
+  private String                       queryFilter  = "";
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -108,17 +107,7 @@ public class ConversationListFragment extends ListFragment
     super.onResume();
 
     initializeReminders();
-
-    if (isListRefreshNeeded) {
-      ((ConversationListAdapter) getListAdapter()).notifyDataSetChanged();
-    }
-    isListRefreshNeeded = false;
-  }
-
-  @Override
-  public void onPause() {
-    super.onPause();
-    isListRefreshNeeded = true;
+    ((ConversationListAdapter) getListAdapter()).notifyDataSetChanged();
   }
 
   @Override

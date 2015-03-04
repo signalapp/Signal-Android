@@ -60,7 +60,6 @@ public class ConversationFragment extends ListFragment
   private Recipients   recipients;
   private long         threadId;
   private ActionMode   actionMode;
-  private boolean      isListRefreshNeeded = false;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -95,16 +94,9 @@ public class ConversationFragment extends ListFragment
   public void onResume() {
     super.onResume();
 
-    if (getListAdapter() != null && isListRefreshNeeded) {
+    if (getListAdapter() != null) {
       ((ConversationAdapter) getListAdapter()).notifyDataSetChanged();
     }
-    isListRefreshNeeded = false;
-  }
-
-  @Override
-  public void onPause() {
-    super.onPause();
-    isListRefreshNeeded = true;
   }
 
   private void initializeResources() {
