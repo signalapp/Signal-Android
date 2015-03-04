@@ -103,7 +103,7 @@ android {
 
         buildConfigField "long", "BUILD_TIMESTAMP", System.currentTimeMillis() + "L"
         
-        applicationId 'de.gdata.mobilesecurity'
+        applicationId 'de.gdata.securechat'
     }
 
     compileOptions {
