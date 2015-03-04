@@ -86,12 +86,6 @@
     <attr name="menu_forward_icon" format="reference" />
     <attr name="menu_save_icon" format="reference" />
 
-    <declare-styleable name="ForegroundImageView">
-        <attr name="android:foreground" />
-        <attr name="android:foregroundInsidePadding" />
-        <attr name="android:foregroundGravity" />
-    </declare-styleable>
-
     <attr name="pref_ic_push" format="reference" />
     <attr name="pref_ic_sms_mms" format="reference" />
     <attr name="pref_ic_notifications" format="reference" />
