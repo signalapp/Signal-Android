@@ -19,6 +19,6 @@
               android:layout_height="wrap_content"
               android:paddingLeft="10dp"
               android:paddingRight="10dp"
-              tools:listitem="@layout/conversation_item_details_item" />
+              tools:listitem="@layout/message_recipient_list_item" />
 
 </LinearLayout>
