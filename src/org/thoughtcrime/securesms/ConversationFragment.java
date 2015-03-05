@@ -81,6 +81,15 @@ public class ConversationFragment extends ListFragment
     this.listener = (ConversationFragmentListener)activity;
   }
 
+  @Override
+  public void onResume() {
+    super.onResume();
+
+    if (getListAdapter() != null) {
+      ((ConversationListAdapter) getListAdapter()).notifyDataSetChanged();
+    }
+  }
+
   public void onNewIntent() {
     if (actionMode != null) {
       actionMode.finish();
