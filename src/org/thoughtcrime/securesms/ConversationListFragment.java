@@ -109,6 +109,7 @@ public class ConversationListFragment extends ListFragment
     super.onResume();
 
     initializeReminders();
+    ((ConversationListAdapter)getListAdapter()).notifyDataSetChanged();
   }
 
   @Override
