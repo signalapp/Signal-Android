@@ -94,6 +94,10 @@ public class TextSecureMessage {
     }
   }
 
+  public static Builder newBuilder() {
+    return new Builder();
+  }
+
   /**
    * @return The message timestamp.
    */
@@ -132,5 +136,56 @@ public class TextSecureMessage {
 
   public boolean isGroupUpdate() {
     return group.isPresent() && group.get().getType() != TextSecureGroup.Type.DELIVER;
+  }
+
+  public static class Builder {
+
+    private List<TextSecureAttachment> attachments = new LinkedList<>();
+    private long                       timestamp;
+    private TextSecureGroup            group;
+    private String                     body;
+    private boolean                    endSession;
+
+    private Builder() {}
+
+    public Builder withTimestamp(long timestamp) {
+      this.timestamp = timestamp;
+      return this;
+    }
+
+    public Builder asGroupMessage(TextSecureGroup group) {
+      this.group = group;
+      return this;
+    }
+
+    public Builder withAttachment(TextSecureAttachment attachment) {
+      this.attachments.add(attachment);
+      return this;
+    }
+
+    public Builder withAttachments(List<TextSecureAttachment> attachments) {
+      this.attachments.addAll(attachments);
+      return this;
+    }
+
+    public Builder withBody(String body) {
+      this.body = body;
+      return this;
+    }
+
+    public Builder asEndSessionMessage() {
+      this.endSession = true;
+      return this;
+    }
+
+    public Builder asEndSessionMessage(boolean endSession) {
+      this.endSession = endSession;
+      return this;
+    }
+
+    public TextSecureMessage build() {
+      if (timestamp == 0) timestamp = System.currentTimeMillis();
+      return new TextSecureMessage(timestamp, group, attachments, body, true, endSession);
+    }
   }
 }

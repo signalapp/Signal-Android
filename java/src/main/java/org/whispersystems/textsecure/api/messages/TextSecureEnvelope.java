@@ -20,6 +20,8 @@ import com.google.protobuf.ByteString;
 
 import org.whispersystems.libaxolotl.InvalidVersionException;
 import org.whispersystems.libaxolotl.logging.Log;
+import org.whispersystems.libaxolotl.util.guava.Optional;
+import org.whispersystems.textsecure.api.push.TextSecureAddress;
 import org.whispersystems.textsecure.internal.push.PushMessageProtos.IncomingPushMessageSignal;
 import org.whispersystems.textsecure.internal.util.Base64;
 import org.whispersystems.textsecure.internal.util.Hex;
@@ -125,6 +127,15 @@ public class TextSecureEnvelope {
    */
   public int getSourceDevice() {
     return signal.getSourceDevice();
+  }
+
+  /**
+   * @return The envelope's sender as a TextSecureAddress.
+   */
+  public TextSecureAddress getSourceAddress() {
+    return new TextSecureAddress(signal.getSource(),
+                                 signal.hasRelay() ? Optional.fromNullable(signal.getRelay()) :
+                                                     Optional.<String>absent());
   }
 
   /**

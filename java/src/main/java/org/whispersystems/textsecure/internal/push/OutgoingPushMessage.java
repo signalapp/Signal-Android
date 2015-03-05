@@ -33,11 +33,15 @@ public class OutgoingPushMessage {
   @JsonProperty
   private String body;
 
-  public OutgoingPushMessage(TextSecureAddress address, int deviceId, PushBody body) {
-    this.type                      = body.getType();
-    this.destinationDeviceId       = deviceId;
-    this.destinationRegistrationId = body.getRemoteRegistrationId();
-    this.body                      = Base64.encodeBytes(body.getBody());
+  public OutgoingPushMessage(int type,
+                             int destinationDeviceId,
+                             int destinationRegistrationId,
+                             String body)
+  {
+    this.type                      = type;
+    this.destinationDeviceId       = destinationDeviceId;
+    this.destinationRegistrationId = destinationRegistrationId;
+    this.body                      = body;
   }
 
   public int getDestinationDeviceId() {

@@ -23,7 +23,6 @@ import org.whispersystems.libaxolotl.AxolotlAddress;
 import org.whispersystems.libaxolotl.InvalidKeyException;
 import org.whispersystems.libaxolotl.SessionBuilder;
 import org.whispersystems.libaxolotl.logging.Log;
-import org.whispersystems.libaxolotl.protocol.CiphertextMessage;
 import org.whispersystems.libaxolotl.state.AxolotlStore;
 import org.whispersystems.libaxolotl.state.PreKeyBundle;
 import org.whispersystems.libaxolotl.util.guava.Optional;
@@ -35,18 +34,17 @@ import org.whispersystems.textsecure.api.messages.TextSecureGroup;
 import org.whispersystems.textsecure.api.messages.TextSecureMessage;
 import org.whispersystems.textsecure.api.push.TextSecureAddress;
 import org.whispersystems.textsecure.api.push.TrustStore;
+import org.whispersystems.textsecure.api.push.exceptions.EncapsulatedExceptions;
 import org.whispersystems.textsecure.api.push.exceptions.NetworkFailureException;
 import org.whispersystems.textsecure.api.push.exceptions.PushNetworkException;
+import org.whispersystems.textsecure.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.textsecure.internal.push.MismatchedDevices;
 import org.whispersystems.textsecure.internal.push.OutgoingPushMessage;
 import org.whispersystems.textsecure.internal.push.OutgoingPushMessageList;
 import org.whispersystems.textsecure.internal.push.PushAttachmentData;
-import org.whispersystems.textsecure.internal.push.PushBody;
 import org.whispersystems.textsecure.internal.push.PushServiceSocket;
 import org.whispersystems.textsecure.internal.push.SendMessageResponse;
 import org.whispersystems.textsecure.internal.push.StaleDevices;
-import org.whispersystems.textsecure.api.push.exceptions.UnregisteredUserException;
-import org.whispersystems.textsecure.api.push.exceptions.EncapsulatedExceptions;
 import org.whispersystems.textsecure.internal.push.exceptions.MismatchedDevicesException;
 import org.whispersystems.textsecure.internal.push.exceptions.StaleDevicesException;
 import org.whispersystems.textsecure.internal.util.StaticCredentialsProvider;
@@ -56,7 +54,6 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.whispersystems.textsecure.internal.push.PushMessageProtos.IncomingPushMessageSignal.Type;
 import static org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent;
 import static org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.AttachmentPointer;
 import static org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.GroupContext;
@@ -304,22 +301,21 @@ public class TextSecureMessageSender {
     List<OutgoingPushMessage> messages = new LinkedList<>();
 
     if (!recipient.equals(syncAddress)) {
-      PushBody masterBody = getEncryptedMessage(socket, recipient, TextSecureAddress.DEFAULT_DEVICE_ID, plaintext);
-      messages.add(new OutgoingPushMessage(recipient, TextSecureAddress.DEFAULT_DEVICE_ID, masterBody));
+      messages.add(getEncryptedMessage(socket, recipient, TextSecureAddress.DEFAULT_DEVICE_ID, plaintext));
     }
 
     for (int deviceId : store.getSubDeviceSessions(recipient.getNumber())) {
-      PushBody body = getEncryptedMessage(socket, recipient, deviceId, plaintext);
-      messages.add(new OutgoingPushMessage(recipient, deviceId, body));
+      messages.add(getEncryptedMessage(socket, recipient, deviceId, plaintext));
     }
 
     return new OutgoingPushMessageList(recipient.getNumber(), timestamp, recipient.getRelay().orNull(), messages);
   }
 
-  private PushBody getEncryptedMessage(PushServiceSocket socket, TextSecureAddress recipient, int deviceId, byte[] plaintext)
+  private OutgoingPushMessage getEncryptedMessage(PushServiceSocket socket, TextSecureAddress recipient, int deviceId, byte[] plaintext)
       throws IOException, UntrustedIdentityException
   {
-    AxolotlAddress axolotlAddress = new AxolotlAddress(recipient.getNumber(), deviceId);
+    AxolotlAddress   axolotlAddress = new AxolotlAddress(recipient.getNumber(), deviceId);
+    TextSecureCipher cipher         = new TextSecureCipher(store);
 
     if (!store.containsSession(axolotlAddress)) {
       try {
@@ -343,17 +339,7 @@ public class TextSecureMessageSender {
       }
     }
 
-    TextSecureCipher  cipher               = new TextSecureCipher(store, axolotlAddress);
-    CiphertextMessage message              = cipher.encrypt(plaintext);
-    int               remoteRegistrationId = cipher.getRemoteRegistrationId();
-
-    if (message.getType() == CiphertextMessage.PREKEY_TYPE) {
-      return new PushBody(Type.PREKEY_BUNDLE_VALUE, remoteRegistrationId, message.serialize());
-    } else if (message.getType() == CiphertextMessage.WHISPER_TYPE) {
-      return new PushBody(Type.CIPHERTEXT_VALUE, remoteRegistrationId, message.serialize());
-    } else {
-      throw new AssertionError("Unknown ciphertext type: " + message.getType());
-    }
+    return cipher.encrypt(axolotlAddress, plaintext);
   }
 
   private void handleMismatchedDevices(PushServiceSocket socket, TextSecureAddress recipient,

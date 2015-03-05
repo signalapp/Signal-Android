@@ -96,4 +96,56 @@ public class TextSecureGroup {
     return avatar;
   }
 
+  public static Builder newUpdateBuilder() {
+    return new Builder(Type.UPDATE);
+  }
+
+  public static Builder newBuilder(Type type) {
+    return new Builder(type);
+  }
+
+  public static class Builder {
+
+    private Type                 type;
+    private byte[]               id;
+    private String               name;
+    private List<String>         members;
+    private TextSecureAttachment avatar;
+
+    private Builder(Type type) {
+      this.type = type;
+    }
+
+    public Builder withId(byte[] id) {
+      this.id = id;
+      return this;
+    }
+
+    public Builder withName(String name) {
+      this.name = name;
+      return this;
+    }
+
+    public Builder withMembers(List<String> members) {
+      this.members = members;
+      return this;
+    }
+
+    public Builder withAvatar(TextSecureAttachment avatar) {
+      this.avatar = avatar;
+      return this;
+    }
+
+    public TextSecureGroup build() {
+      if (id == null) throw new IllegalArgumentException("No group ID specified!");
+
+      if (type == Type.UPDATE && name == null && members == null && avatar == null) {
+        throw new IllegalArgumentException("Group update with no updates!");
+      }
+
+      return new TextSecureGroup(type, id, name, members, avatar);
+    }
+
+  }
+
 }

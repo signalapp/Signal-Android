@@ -37,11 +37,15 @@ import org.whispersystems.textsecure.api.messages.TextSecureAttachmentPointer;
 import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 import org.whispersystems.textsecure.api.messages.TextSecureGroup;
 import org.whispersystems.textsecure.api.messages.TextSecureMessage;
+import org.whispersystems.textsecure.internal.push.OutgoingPushMessage;
+import org.whispersystems.textsecure.internal.push.PushMessageProtos;
 import org.whispersystems.textsecure.internal.push.PushTransportDetails;
+import org.whispersystems.textsecure.internal.util.Base64;
 
 import java.util.LinkedList;
 import java.util.List;
 
+import static org.whispersystems.textsecure.internal.push.PushMessageProtos.IncomingPushMessageSignal.Type;
 import static org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent;
 import static org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.GroupContext.Type.DELIVER;
 
@@ -52,15 +56,28 @@ import static org.whispersystems.textsecure.internal.push.PushMessageProtos.Push
  */
 public class TextSecureCipher {
 
-  private final SessionCipher sessionCipher;
+  private final AxolotlStore axolotlStore;
 
-  public TextSecureCipher(AxolotlStore axolotlStore, AxolotlAddress destination) {
-    this.sessionCipher = new SessionCipher(axolotlStore, destination);
+  public TextSecureCipher(AxolotlStore axolotlStore) {
+    this.axolotlStore = axolotlStore;
   }
 
-  public CiphertextMessage encrypt(byte[] unpaddedMessage) {
-    PushTransportDetails transportDetails = new PushTransportDetails(sessionCipher.getSessionVersion());
-    return sessionCipher.encrypt(transportDetails.getPaddedMessageBody(unpaddedMessage));
+  public OutgoingPushMessage encrypt(AxolotlAddress destination, byte[] unpaddedMessage) {
+    SessionCipher        sessionCipher        = new SessionCipher(axolotlStore, destination);
+    PushTransportDetails transportDetails     = new PushTransportDetails(sessionCipher.getSessionVersion());
+    CiphertextMessage    message              = sessionCipher.encrypt(transportDetails.getPaddedMessageBody(unpaddedMessage));
+    int                  remoteRegistrationId = sessionCipher.getRemoteRegistrationId();
+    String               body                 = Base64.encodeBytes(message.serialize());
+
+    int type;
+
+    switch (message.getType()) {
+      case CiphertextMessage.PREKEY_TYPE:  type = Type.PREKEY_BUNDLE_VALUE; break;
+      case CiphertextMessage.WHISPER_TYPE: type = Type.CIPHERTEXT_VALUE;    break;
+      default: throw new AssertionError("Bad type: " + message.getType());
+    }
+
+    return new OutgoingPushMessage(type, destination.getDeviceId(), remoteRegistrationId, body);
   }
 
   /**
@@ -83,6 +100,9 @@ public class TextSecureCipher {
              LegacyMessageException, NoSessionException
   {
     try {
+      AxolotlAddress sourceAddress = new AxolotlAddress(envelope.getSource(), envelope.getSourceDevice());
+      SessionCipher  sessionCipher = new SessionCipher(axolotlStore, sourceAddress);
+
       byte[] paddedMessage;
 
       if (envelope.isPreKeyWhisperMessage()) {
@@ -102,10 +122,6 @@ public class TextSecureCipher {
     } catch (InvalidProtocolBufferException e) {
       throw new InvalidMessageException(e);
     }
-  }
-
-  public int getRemoteRegistrationId() {
-    return sessionCipher.getRemoteRegistrationId();
   }
 
   private TextSecureMessage createTextSecureMessage(TextSecureEnvelope envelope, PushMessageContent content) {
