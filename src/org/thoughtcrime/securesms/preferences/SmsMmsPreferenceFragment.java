@@ -146,7 +146,7 @@ public class SmsMmsPreferenceFragment extends PreferenceFragment {
     final int offResId         = R.string.ApplicationPreferencesActivity_off;
     final int smsResId         = R.string.ApplicationPreferencesActivity_sms;
     final int mmsResId         = R.string.ApplicationPreferencesActivity_mms;
-    final int incomingSmsResId = R.string.ApplicationPreferencesActivity_incoming_sms;
+    final int incomingSmsResId = R.string.ApplicationPreferencesActivity_incoming_sms_summary;
 
     final int incomingSmsSummary;
     boolean postKitkatSMS = Util.isDefaultSmsProvider(context);
@@ -161,14 +161,14 @@ public class SmsMmsPreferenceFragment extends PreferenceFragment {
       else if (!preKitkatSMS && preKitkatMMS) incomingSmsSummary = mmsResId;
       else                                    incomingSmsSummary = offResId;
     }
-    return context.getString(incomingSmsResId) + " " + context.getString(incomingSmsSummary);
+    return context.getString(incomingSmsResId, context.getString(incomingSmsSummary));
   }
 
   private static CharSequence getOutgoingSmsSummary(Context context) {
     final int onResId          = R.string.ApplicationPreferencesActivity_on;
     final int offResId         = R.string.ApplicationPreferencesActivity_off;
     final int partialResId     = R.string.ApplicationPreferencesActivity_partial;
-    final int outgoingSmsResId = R.string.ApplicationPreferencesActivity_outgoing_sms;
+    final int outgoingSmsResId = R.string.ApplicationPreferencesActivity_outgoing_sms_summary;
 
     final int outgoingSmsSummary;
     if (TextSecurePreferences.isFallbackSmsAllowed(context) && TextSecurePreferences.isDirectSmsAllowed(context)) {
@@ -178,6 +178,6 @@ public class SmsMmsPreferenceFragment extends PreferenceFragment {
     } else {
       outgoingSmsSummary = offResId;
     }
-    return context.getString(outgoingSmsResId) + " " + context.getString(outgoingSmsSummary);
+    return context.getString(outgoingSmsResId, context.getString(outgoingSmsSummary));
   }
 }

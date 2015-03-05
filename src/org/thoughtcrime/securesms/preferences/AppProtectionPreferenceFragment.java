@@ -153,21 +153,25 @@ public class AppProtectionPreferenceFragment extends PreferenceFragment {
   }
 
   private static CharSequence getPassphraseSummary(Context context) {
-    final int passphraseResId = R.string.preferences__passphrase;
-    final int onResId         = R.string.ApplicationPreferencesActivity_on;
-    final int offResId        = R.string.ApplicationPreferencesActivity_off;
+    final int    passphraseResId = R.string.preferences__passphrase_summary;
+    final String onRes           = context.getString(R.string.ApplicationPreferencesActivity_on);
+    final String offRes          = context.getString(R.string.ApplicationPreferencesActivity_off);
 
-    return context.getString(passphraseResId) + " " +
-           context.getString((TextSecurePreferences.isPasswordDisabled(context) ? offResId : onResId));
+    if (TextSecurePreferences.isPasswordDisabled(context))
+      return context.getString(passphraseResId, offRes);
+
+    return context.getString(passphraseResId, onRes);
   }
 
   private static CharSequence getScreenSecuritySummary(Context context) {
-    final int screenSecurityResId = R.string.preferences__screen_security;
-    final int onResId             = R.string.ApplicationPreferencesActivity_on;
-    final int offResId            = R.string.ApplicationPreferencesActivity_off;
+    final int    screenSecurityResId = R.string.preferences__screen_security_summary;
+    final String onRes               = context.getString(R.string.ApplicationPreferencesActivity_on);
+    final String offRes              = context.getString(R.string.ApplicationPreferencesActivity_off);
 
-    return context.getString(screenSecurityResId) + " " +
-           context.getString((TextSecurePreferences.isScreenSecurityEnabled(context) ? onResId : offResId));
+    if (TextSecurePreferences.isScreenSecurityEnabled(context))
+      return context.getString(screenSecurityResId, onRes);
+
+    return context.getString(screenSecurityResId, offRes);
   }
 
   public static CharSequence getSummary(Context context) {
