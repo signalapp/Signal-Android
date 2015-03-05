@@ -125,10 +125,7 @@
               android:label="Message Details"
               android:windowSoftInputMode="stateUnchanged"
               android:launchMode="singleTask"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-              android:parentActivityName=".ConversationListActivity">
-        <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".ConversationListActivity" />
-    </activity>
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".GroupCreateActivity"
           android:windowSoftInputMode="stateVisible"

@@ -25,6 +25,7 @@ import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -80,6 +81,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
 
     initializeResources();
 
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     getSupportLoaderManager().initLoader(0, null, this);
   }
 
@@ -197,6 +199,17 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
   @Override
   public void onLoaderReset(Loader<Cursor> loader) {
     recipientsList.setAdapter(null);
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    super.onOptionsItemSelected(item);
+
+    switch (item.getItemId()) {
+      case android.R.id.home: finish(); return true;
+    }
+
+    return false;
   }
 
   private class MessageRecipientAsyncTask extends AsyncTask<Void,Void,Recipients> {
