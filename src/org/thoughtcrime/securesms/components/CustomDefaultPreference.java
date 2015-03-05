@@ -44,15 +44,14 @@ public class CustomDefaultPreference extends DialogPreference {
   public CustomDefaultPreference(Context context, AttributeSet attrs) {
     super(context, attrs);
 
-    int[]      attributeNames = new int[]{android.R.attr.inputType, android.R.attr.key, R.attr.custom_pref_toggle};
+    int[]      attributeNames = new int[]{android.R.attr.inputType, R.attr.custom_pref_toggle};
     TypedArray attributes     = context.obtainStyledAttributes(attrs, attributeNames);
 
     this.inputType        = attributes.getInt(0, 0);
-    this.customPreference = attributes.getString(1);
-    this.customToggle     = attributes.getString(2);
+    this.customPreference = getKey();
+    this.customToggle     = attributes.getString(1);
     this.validator        = new NullValidator();
 
-    Log.w(TAG, "Custom toggle: " + customToggle);
     attributes.recycle();
 
     setPersistent(false);
