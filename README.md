@@ -46,11 +46,10 @@ TextSecureMessageSender messageSender = new TextSecureMessageSender(URL, TRUST_S
                                                                     localRecipientId, new MyAxolotlStore(),
                                                                     Optional.absent());
 
-long              recipientId = getRecipientIdFor("+14159998888");
-TextSecureAddress destination = new TextSecureAddress(recipientId, "+14159998888", null);
-TextSecureMessage message     = new TextSecureMessage(System.currentTimeMillis(), "Hello, world!");
-
-messageSender.sendMessage(destination, message);
+messageSender.sendMessage(new TextSecureAddress("+14159998888"),
+                          TextSecureMessage.newBuilder()
+                                           .withBody("Hello, world!")
+                                           .build());
 `````
 
 ## Sending media messages
@@ -60,15 +59,19 @@ TextSecureMessageSender messageSender = new TextSecureMessageSender(URL, TRUST_S
                                                                     localRecipientId, new MyAxolotlStore(),
                                                                     Optional.absent());
 
-long              recipientId = getRecipientIdFor("+14159998888");
-TextSecureAddress destination = new TextSecureAddress(recipientId, "+14159998888", null);
-
 File                 myAttachment     = new File("/path/to/my.attachment");
 FileInputStream      attachmentStream = new FileInputStream(myAttachment);
-TextSecureAttachment attachment       = new TextSecureAttachmentStream(attachmentStream, "image/png", myAttachment.size());
-TextSecureMessage    message          = new TextSecureMessage(System.currentTimeMillis(), attachment, "Hello, world!");
+TextSecureAttachment attachment       = TextSecureAttachment.newStreamBuilder()
+                                                            .withStream(attachmentStream)
+                                                            .withContentType("image/png")
+                                                            .withLength(myAttachment.size())
+                                                            .build();
 
-messageSender.sendMessage(destination, message);
+messageSender.sendMessage(new TextSecureAddress("+14159998888"),
+                          TextSecureMessage.newBuilder()
+                                           .withBody("An attachment!")
+                                           .withAttachment(attachment)
+                                           .build());
 
 `````
 
@@ -83,9 +86,7 @@ try {
 
   while (listeningForMessages) {
     TextSecureEnvelope envelope = messagePipe.read(timeout, timeoutTimeUnit);
-    TextSecureCipher   cipher   = new TextSecureCipher(new MyAxolotlStore(),
-                                                       getRecipientIdFor(envelope.getSource()),
-                                                       envelope.getSourceDevice());
+    TextSecureCipher   cipher   = new TextSecureCipher(new MyAxolotlStore());
     TextSecureMessage message   = cipher.decrypt(envelope);
 
     System.out.println("Received message: " + message.getBody().get());
