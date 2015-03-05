@@ -157,10 +157,11 @@ public class AppProtectionPreferenceFragment extends PreferenceFragment {
     final String onRes           = context.getString(R.string.ApplicationPreferencesActivity_on);
     final String offRes          = context.getString(R.string.ApplicationPreferencesActivity_off);
 
-    if (TextSecurePreferences.isPasswordDisabled(context))
+    if (TextSecurePreferences.isPasswordDisabled(context)) {
       return context.getString(passphraseResId, offRes);
-
-    return context.getString(passphraseResId, onRes);
+    } else {
+      return context.getString(passphraseResId, onRes);
+    }
   }
 
   private static CharSequence getScreenSecuritySummary(Context context) {
@@ -168,10 +169,11 @@ public class AppProtectionPreferenceFragment extends PreferenceFragment {
     final String onRes               = context.getString(R.string.ApplicationPreferencesActivity_on);
     final String offRes              = context.getString(R.string.ApplicationPreferencesActivity_off);
 
-    if (TextSecurePreferences.isScreenSecurityEnabled(context))
+    if (TextSecurePreferences.isScreenSecurityEnabled(context)) {
       return context.getString(screenSecurityResId, onRes);
-
-    return context.getString(screenSecurityResId, offRes);
+    } else {
+      return context.getString(screenSecurityResId, offRes);
+    }
   }
 
   public static CharSequence getSummary(Context context) {
