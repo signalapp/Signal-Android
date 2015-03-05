@@ -100,8 +100,6 @@ public class ConversationListFragment extends ListFragment
     });
     initializeListAdapter();
     initializeBatchListener();
-
-    getLoaderManager().initLoader(0, null, this);
   }
 
   @Override
@@ -109,6 +107,7 @@ public class ConversationListFragment extends ListFragment
     super.onResume();
 
     initializeReminders();
+    ((ConversationListAdapter) getListAdapter()).notifyDataSetChanged();
   }
 
   @Override
@@ -143,7 +142,6 @@ public class ConversationListFragment extends ListFragment
   public void setMasterSecret(MasterSecret masterSecret) {
     if (this.masterSecret != masterSecret) {
       this.masterSecret = masterSecret;
-      initializeListAdapter();
     }
   }
 

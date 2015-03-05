@@ -88,7 +88,15 @@ public class ConversationFragment extends ListFragment
 
     initializeResources();
     initializeListAdapter();
-    getLoaderManager().restartLoader(0, null, this);
+  }
+
+  @Override
+  public void onResume() {
+    super.onResume();
+
+    if (getListAdapter() != null) {
+      ((ConversationAdapter) getListAdapter()).notifyDataSetChanged();
+    }
   }
 
   private void initializeResources() {
@@ -103,7 +111,7 @@ public class ConversationFragment extends ListFragment
                                                   (!this.recipients.isSingleRecipient()) || this.recipients.isGroupRecipient(),
                                                   DirectoryHelper.isPushDestination(getActivity(), this.recipients)));
       getListView().setRecyclerListener((ConversationAdapter)getListAdapter());
-      getLoaderManager().initLoader(0, null, this);
+      getLoaderManager().restartLoader(0, null, this);
     }
   }
 
@@ -113,12 +121,9 @@ public class ConversationFragment extends ListFragment
   }
 
   private void setCorrectMenuVisibility(Menu menu) {
-    ConversationAdapter adapter        = (ConversationAdapter) getListAdapter();
     List<MessageRecord> messageRecords = getSelectedMessageRecords();
 
     if (actionMode != null && messageRecords.size() == 0) {
-      adapter.getBatchSelected().clear();
-      adapter.notifyDataSetChanged();
       actionMode.finish();
       return;
     }
@@ -155,10 +160,14 @@ public class ConversationFragment extends ListFragment
   }
 
   public void reload(Recipients recipients, long threadId) {
+    boolean threadIdChanged = this.threadId != threadId;
+
     this.recipients = recipients;
     this.threadId   = threadId;
 
-    initializeListAdapter();
+    if (threadIdChanged) {
+      initializeListAdapter();
+    }
   }
 
   public void scrollToBottom() {
