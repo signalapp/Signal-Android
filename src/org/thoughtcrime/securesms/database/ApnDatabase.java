@@ -95,7 +95,7 @@ public class ApnDatabase {
                                           SQLiteDatabase.OPEN_READONLY | SQLiteDatabase.NO_LOCALIZED_COLLATORS);
   }
 
-  private Apn getCustomApnParameters() { //throws ApnUnavailableException {
+  private Apn getCustomApnParameters() {
       String mmsc = TextSecurePreferences.getMmscUrl(context).trim();
 
       if (!TextUtils.isEmpty(mmsc) && !mmsc.startsWith("http"))
@@ -112,7 +112,7 @@ public class ApnDatabase {
   public Apn getDefaultApnParameters(String mccmnc, String apn) {
     if (mccmnc == null) {
       Log.w(TAG, "mccmnc was null, returning null");
-      return new Apn("", "", "", "", "");
+      return Apn.EMPTY;
     }
 
     Cursor cursor = null;
@@ -147,7 +147,7 @@ public class ApnDatabase {
 
       Log.w(TAG, "No matching APNs found, returning null");
 
-      return new Apn("", "", "", "", "");
+      return Apn.EMPTY;
     } finally {
       if (cursor != null) cursor.close();
     }

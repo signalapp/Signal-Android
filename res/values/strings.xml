@@ -692,8 +692,8 @@
     <!-- arrays.xml -->
     <string name="arrays__import_export">Import / export</string>
     <string name="arrays__my_identity_key">My identity key</string>
-    <string name="arrays__use_default">Use Default</string>
-    <string name="arrays__use_custom">Use Custom</string>
+    <string name="arrays__use_default">Use default</string>
+    <string name="arrays__use_custom">Use custom</string>
 
     <!-- plurals.xml -->
     <plurals name="minutes_ago">

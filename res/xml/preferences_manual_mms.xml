@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-                  xmlns:textsecure="http://schemas.android.com/apk/res-auto">
+                  xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <org.thoughtcrime.securesms.components.CustomDefaultPreference
-            textsecure:custom_pref_toggle="pref_apn_mmsc_custom_host"
+            app:custom_pref_toggle="pref_apn_mmsc_custom_host"
             android:key="pref_apn_mmsc_host"
             android:title="@string/preferences__mmsc_url"
             android:inputType="textUri" />
 
     <org.thoughtcrime.securesms.components.CustomDefaultPreference
-            textsecure:custom_pref_toggle="pref_apn_mms_custom_proxy"
+            app:custom_pref_toggle="pref_apn_mms_custom_proxy"
             android:key="pref_apn_mms_proxy"
             android:title="@string/preferences__mms_proxy_host"
             android:inputType="textUri" />
 
     <org.thoughtcrime.securesms.components.CustomDefaultPreference
-            textsecure:custom_pref_toggle="pref_apn_mms_custom_proxy_port"
+            app:custom_pref_toggle="pref_apn_mms_custom_proxy_port"
             android:key="pref_apn_mms_proxy_port"
             android:title="@string/preferences__mms_proxy_port"
             android:inputType="number"/>
 
     <org.thoughtcrime.securesms.components.CustomDefaultPreference
-            textsecure:custom_pref_toggle="pref_apn_mmsc_custom_username"
+            app:custom_pref_toggle="pref_apn_mmsc_custom_username"
             android:key="pref_apn_mmsc_username"
             android:title="@string/preferences__mmsc_username"
             android:inputType="textNoSuggestions"/>
 
     <org.thoughtcrime.securesms.components.CustomDefaultPreference
-            textsecure:custom_pref_toggle="pref_apn_mmsc_custom_password"
+            app:custom_pref_toggle="pref_apn_mmsc_custom_password"
             android:key="pref_apn_mmsc_password"
             android:title="@string/preferences__mmsc_password"
             android:inputType="textVisiblePassword"/>

@@ -170,6 +170,8 @@ public abstract class MmsConnection {
 
   public static class Apn {
 
+    public static Apn EMPTY = new Apn("", "", "", "", "");
+
     private final String mmsc;
     private final String proxy;
     private final String port;
