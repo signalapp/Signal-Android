@@ -84,7 +84,6 @@ public class ContactSelectionFragment extends Fragment {
     dynamicLanguage.onResume(getActivity());
     //  getSupportActionBar().setTitle(R.string.AndroidManifest__select_contacts);
     masterSecret = getActivity().getIntent().getParcelableExtra(MASTER_SECRET_EXTRA);
-    reloadAdapter();
   }
 
   private void initializeResources() {
