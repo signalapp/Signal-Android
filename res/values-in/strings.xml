@@ -29,10 +29,13 @@ dapat mengaksesnya</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Gambar</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
+  <!--ConfirmIdentityDialog-->
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Anda mungkin ingin memverifikasi
+kontak ini.
+</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Ukuran pesan: %d KB</string>
   <string name="ConversationItem_expires_s">Berakhir: %s</string>
-  <string name="ConversationItem_error_sending_message">Gagal mengirim pesan</string>
   <string name="ConversationItem_view_secure_media_question">Tampilkan media aman?</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Media ini disimpan dalam basis data terenkripsi. Namun, untuk melihatnya dengan aplikasi eksternal akan memerlukan berkas di deskripsi dan disimpan. Apa anda yakin ingin melakukan ini?</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Gagal, menerima pesan pertukaran kunci terhenti.</string>
@@ -64,6 +67,9 @@ dapat mengaksesnya</string>
   <string name="ConversationListFragment_deleting_selected_threads">Menghapus percakapan yang dipilih ...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Pesan pertukaran kunci...</string>
+  <!--CustomDefaultPreference-->
+  <string name="CustomDefaultPreference_none">Kosong</string>
+  <!--DateUtils-->
   <!--ShareActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export">Eksport</string>
@@ -111,6 +117,7 @@ telah mengimport basis data sistem SMS, hal ini akan menyebabkan adanya duplikas
   <string name="ImportFragment_restore_complete">Pemulihan selesai!</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Pemindai kunci tidak ditemukan!</string>
+  <!--MessageDetailsRecipient-->
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Kesalahan dalam menyimpan MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Kesalahan dalam menghubungi penyedia layanan MMS...</string>
@@ -287,6 +294,8 @@ Pulihkan dari cadangan teracak TextSecure.
 </string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Import cadangan dalam texks polos. Kompatibel dengan aplikasi \'SMSBackup And Restore\'.</string>
+  <!--media_overview_activity-->
+  <!--message_recipients_list_item-->
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Telepon Anda membutuhkan pengaturan MMS secara manual.</string>
   <!--GroupUtil-->
@@ -348,9 +357,11 @@ Telah gagal
   <!--verify_identity_activity-->
   <string name="verify_identity_activity__their_identity_they_read">Identitas mereka (terbaca):</string>
   <string name="verify_identity_activity__your_identity_you_read">Identitas anda (terbaca):</string>
+  <!--message_details_header-->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__change_passphrase">Ganti Kata Kunci</string>
   <!--arrays.xml-->
+  <!--plurals.xml-->
   <!--preferences.xml-->
   <string name="preferences__general">Umum</string>
   <string name="preferences__pref_all_sms_title">Terima semua SMS</string>
@@ -396,9 +407,6 @@ Telah gagal
   <string name="preferences__custom">Spesifik</string>
   <string name="preferences__advanced">Lanjutan</string>
   <string name="preferences__override_system_mms_settings">Ganti pengaturan MMS dengan informasi berikut.</string>
-  <string name="preferences__mmsc_url_required">URL MMSC (Diperlukan)</string>
-  <string name="preferences__mms_proxy_host_optional">Host Proxy MMS (Opsional)</string>
-  <string name="preferences__mms_proxy_port_optional">Port Proxy MMS (Opsional)</string>
   <string name="preferences__sms_delivery_reports">Laporan pengiriman SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Minta laporan pengiriman untuk tiap SMS yang dikirim</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Secara otomatis hapus pesan yang lebih lama ketika percakapan telah melebihi jumlah yang ditentukan</string>
@@ -434,10 +442,14 @@ Telah gagal
   <string name="conversation_context__menu_forward_message">Teruskan pesan</string>
   <string name="conversation_context__menu_resend_message">Kirim ulang </string>
   <!--conversation_context_image-->
+  <!--conversation_insecure-->
   <!--conversation_insecure_no_push-->
+  <string name="conversation_insecure__security">Keamanan</string>
   <!--conversation_list_batch-->
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Cari</string>
+  <!--conversation_list_item_view-->
+  <!--conversation_list_fragment-->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Keamanan</string>
   <!--conversation-->
@@ -461,5 +473,6 @@ Telah gagal
   <!--media_preview-->
   <!--media_preview_activity-->
   <!--Trimmer-->
+  <!--transport_selection_list_item-->
   <!--EOF-->
 </resources>

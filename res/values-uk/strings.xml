@@ -25,10 +25,11 @@
   <string name="AttachmentTypeSelectorAdapter_picture">Зображення</string>
   <string name="AttachmentTypeSelectorAdapter_video">Відео</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Аудіо</string>
+  <!--ConfirmIdentityDialog-->
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Можливо, вам потрібно перевірити цей контакт.</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Розмір повідомленя: %d KБ</string>
   <string name="ConversationItem_expires_s">Минає: %s</string>
-  <string name="ConversationItem_error_sending_message">Помилка відправлення повідомлення</string>
   <string name="ConversationItem_view_secure_media_question">Переглянути захищений медіа-файл?</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Цей медіа-файл зберігається в зашифрованій базі даних. Через технічні обмеження для того, щоб переглянути його через сторонній додаток, необхідно його тимчасово розшифрувати і записати на диск. Ви впевнені, що хочете це зробити?</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Помилка, отримано застаріле повідомлення обміну ключами.</string>
@@ -60,6 +61,8 @@
   <string name="ConversationListFragment_deleting_selected_threads">Видалення обраних бесід\u2026</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Повідомлення обміну ключами\u2026</string>
+  <!--CustomDefaultPreference-->
+  <!--DateUtils-->
   <!--ShareActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export">Експортувати</string>
@@ -92,6 +95,7 @@
   <string name="ImportFragment_restore_complete">Відновлення завершено!</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">При скануванні ключ невиявлений!</string>
+  <!--MessageDetailsRecipient-->
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Помилка при збереженні MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Помилка підключення до MMS провайдеру\u2026</string>
@@ -237,6 +241,8 @@
   <string name="import_fragment__import_the_database_from_the_default_system">Імпортувати базу даних з SMS-додатку, який використовується зараз за замовчуванням.</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">Відновити з раніше експортованої зашифрованої резервної копії TextSecure</string>
   <string name="import_fragment__import_a_plaintext_backup_file">Імпортувати з незашифрованої резервної копії. Сумісно з додатком \'SMSBackup And Restore\'.</string>
+  <!--media_overview_activity-->
+  <!--message_recipients_list_item-->
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Параметри MMS для вашого телефону потрібно вказати вручну.</string>
   <!--GroupUtil-->
@@ -283,9 +289,11 @@
   <!--verify_identity_activity-->
   <string name="verify_identity_activity__their_identity_they_read">Cпіврозмовник (він читає):</string>
   <string name="verify_identity_activity__your_identity_you_read">Ви (ви читаєте):</string>
+  <!--message_details_header-->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__change_passphrase">Змінити фразу-ключ</string>
   <!--arrays.xml-->
+  <!--plurals.xml-->
   <!--preferences.xml-->
   <string name="preferences__general">Загальні</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Використовувати TextSecure для перегляду та зберігання всіх вхідних текстових повідомлень</string>
@@ -324,9 +332,6 @@
   <string name="preferences__custom">Користувацький</string>
   <string name="preferences__advanced">Додаткові функції</string>
   <string name="preferences__override_system_mms_settings">Перезаписати системні налаштування MMS вказаними нижче.</string>
-  <string name="preferences__mmsc_url_required">MMSC URL (обов’язково):</string>
-  <string name="preferences__mms_proxy_host_optional">Хост MMS проксі (не обов’язково)</string>
-  <string name="preferences__mms_proxy_port_optional">Порт MMS проксі (не обов’язково)</string>
   <string name="preferences__sms_delivery_reports">Звіти про доставку SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Запитувати звіт про доставку для кожного відісланого вами SMS</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Автоматично видаляти старі повідомлення, коли довжина розмови перевищує задану</string>
@@ -360,10 +365,14 @@
   <string name="conversation_context__menu_forward_message">Переслати повідомлення</string>
   <string name="conversation_context__menu_resend_message">Переслати повідомлення</string>
   <!--conversation_context_image-->
+  <!--conversation_insecure-->
   <!--conversation_insecure_no_push-->
+  <string name="conversation_insecure__security">Безпека</string>
   <!--conversation_list_batch-->
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Пошук</string>
+  <!--conversation_list_item_view-->
+  <!--conversation_list_fragment-->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Безпека</string>
   <!--conversation-->
@@ -387,5 +396,6 @@
   <!--media_preview-->
   <!--media_preview_activity-->
   <!--Trimmer-->
+  <!--transport_selection_list_item-->
   <!--EOF-->
 </resources>

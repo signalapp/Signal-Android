@@ -25,10 +25,13 @@
   <string name="AttachmentTypeSelectorAdapter_picture">תמונה</string>
   <string name="AttachmentTypeSelectorAdapter_video">וידאו</string>
   <string name="AttachmentTypeSelectorAdapter_audio">שמע</string>
+  <!--ConfirmIdentityDialog-->
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">ייתכן שתרצה לאמת
+את איש הקשר הזה.
+</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">גודל ההודעה: %d KB</string>
   <string name="ConversationItem_expires_s">פג: %s</string>
-  <string name="ConversationItem_error_sending_message">שגיאה בשליחת ההודעה</string>
   <string name="ConversationItem_view_secure_media_question">לצפות במדיה מאובטחת?</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">שגיאה, התקבלה הודעת החלפת מפתח מיושנת.</string>
   <string name="ConversationItem_received_key_exchange_message_click_to_process">התקבלה הודעת החלפת מפתח, לחץ כדי להמשיך</string>
@@ -53,6 +56,8 @@
   <string name="ConversationListFragment_deleting_selected_threads">מוחק שרשורים שנבחרו...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">הודעת החלפת מפתח...</string>
+  <!--CustomDefaultPreference-->
+  <!--DateUtils-->
   <!--ShareActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export">יצא</string>
@@ -91,6 +96,7 @@
   <string name="ImportFragment_restore_complete">השחזור הסתיים!</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">לא נמצא מפתח סרוק!</string>
+  <!--MessageDetailsRecipient-->
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">שגיאה באחסון ה-MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">שגיאה בהתחברות לספק ה-MMS...</string>
@@ -217,6 +223,8 @@
 </string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 יבא קובץ גיבוי לא מוצפן. תואם \'SMSBackup And Restore\'.</string>
+  <!--media_overview_activity-->
+  <!--message_recipients_list_item-->
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">נדרשות הגדרות MMS ידניות עבור מכשירך.</string>
   <!--GroupUtil-->
@@ -235,9 +243,11 @@
   <!--verify_identity_activity-->
   <string name="verify_identity_activity__their_identity_they_read">הזהות שלהם (הם קוראים):</string>
   <string name="verify_identity_activity__your_identity_you_read">הזהות שלך (אתה קורא):</string>
+  <!--message_details_header-->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__change_passphrase">שנה סיסמה</string>
   <!--arrays.xml-->
+  <!--plurals.xml-->
   <!--preferences.xml-->
   <string name="preferences__general">כללי</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">השתמש ב-TextSecure לצפייה ואחסון של כל הודעות הטקסט</string>
@@ -275,9 +285,6 @@
   <string name="preferences__custom">מותאם אישית</string>
   <string name="preferences__advanced">מתקדם</string>
   <string name="preferences__override_system_mms_settings">החלף את הגדרות ה-MMS של המערכת עם המידע הבא.</string>
-  <string name="preferences__mmsc_url_required">כתובת MMSC (חובה)</string>
-  <string name="preferences__mms_proxy_host_optional">שרת Proxy של MMS (לא חובה)</string>
-  <string name="preferences__mms_proxy_port_optional">יציאת MMS (לא חובה)</string>
   <string name="preferences__sms_delivery_reports">דוחות מסירה של SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">בקש דוח מסירה לכל SMS שאתה שולח</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">מחק אוטומטית הודעות ישנות יותר כששרשור השיחה עולה על אורך מסויים</string>
@@ -306,10 +313,14 @@
   <string name="conversation_context__menu_forward_message">העבר הודעה</string>
   <string name="conversation_context__menu_resend_message">שלח הודעה מחדש</string>
   <!--conversation_context_image-->
+  <!--conversation_insecure-->
   <!--conversation_insecure_no_push-->
+  <string name="conversation_insecure__security">אבטחה</string>
   <!--conversation_list_batch-->
   <!--conversation_list-->
   <string name="conversation_list__menu_search">חפש</string>
+  <!--conversation_list_item_view-->
+  <!--conversation_list_fragment-->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">אבטחה</string>
   <!--conversation-->
@@ -332,5 +343,6 @@
   <!--media_preview-->
   <!--media_preview_activity-->
   <!--Trimmer-->
+  <!--transport_selection_list_item-->
   <!--EOF-->
 </resources>

@@ -17,10 +17,10 @@
   <string name="AttachmentTypeSelectorAdapter_picture">ပုံ</string>
   <string name="AttachmentTypeSelectorAdapter_video">ဗွီဒီယို</string>
   <string name="AttachmentTypeSelectorAdapter_audio">အသံ</string>
+  <!--ConfirmIdentityDialog-->
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">စာတိုအရွယ်အစား: %d KB</string>
   <string name="ConversationItem_expires_s">သက်တမ်းကုန်: %s</string>
-  <string name="ConversationItem_error_sending_message">မှာကြားချက်ပို့ခြင်းအမှား</string>
   <string name="ConversationItem_view_secure_media_question">လံုခြုံသောမီဒီယာကိုကြည့်မည်လား</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">ပြဿနာ၊ ရရှိလာတဲ့ ကီးအလဲအလှယ်စာသား လွဲနေပါသည်။</string>
   <!--ConversationActivity-->
@@ -41,6 +41,8 @@
   <string name="ConversationListFragment_deleting_selected_threads">ရွေးချယ်ထားသောစကားဝိုင်းကိုဖျက်နေသည်...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">ကီးပြောင်းလဲခြင်းစာတို...</string>
+  <!--CustomDefaultPreference-->
+  <!--DateUtils-->
   <!--ShareActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export">ထုတ်ယူ</string>
@@ -55,6 +57,7 @@
   <string name="ImportFragment_import">သွင်းယူ</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">စိစစ်ထားသောကီးရှာမတွေ့</string>
+  <!--MessageDetailsRecipient-->
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">MMS အားသိမ်းဆည်းခြင်းအမှား</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">MMS ထောက်ပံ့သူသို့ဆက်သွယ်ခြင်းအမှား...</string>
@@ -154,6 +157,8 @@
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">ခေတ္တကြာပါလိမ့်မယ်။ တင်သွင်းမှု ပြီးဆုံးသွားရင် အကြောင်းကြားပေးပါမယ်။</string>
   <string name="database_migration_activity__importing">သွင်းယူနေ</string>
   <!--database_upgrade_activity-->
+  <!--media_overview_activity-->
+  <!--message_recipients_list_item-->
   <!--MmsPreferencesFragment-->
   <!--GroupUtil-->
   <!--prompt_passphrase_activity-->
@@ -168,8 +173,10 @@
   <!--verify_identity_activity-->
   <string name="verify_identity_activity__their_identity_they_read">သူများ အိုင်ဒီ (သူများ အမြင်) - </string>
   <string name="verify_identity_activity__your_identity_you_read">အသင့်အိုင်ဒီ (အသင့်အမြင်) - </string>
+  <!--message_details_header-->
   <!--AndroidManifest.xml-->
   <!--arrays.xml-->
+  <!--plurals.xml-->
   <!--preferences.xml-->
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">textsecure ကိုဝင်လာသောစာတိုများကိုကြည့်ရန်/သိမ်းရန်အတွက်သုံးပါ</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">textsecure ကိုဝင်လာသောမာတီမီဒီယာစာတိုများကိုကြည့်ရန်/သိမ်းရန်အတွက်သုံးပါ</string>
@@ -197,9 +204,6 @@
   <string name="preferences__normal">ပုံမှန်</string>
   <string name="preferences__slow">အနှေး</string>
   <string name="preferences__custom">စိတ်ကြိုက်</string>
-  <string name="preferences__mmsc_url_required">MMSC URL (အရေးကြီး)</string>
-  <string name="preferences__mms_proxy_host_optional">MMS ပရောက်ဇီ အိမ်ရှင်စက် (အရေးမကြီး)</string>
-  <string name="preferences__mms_proxy_port_optional">MMS ပရောက်ဇီ Port (အရေးမကြီး)</string>
   <string name="preferences__sms_delivery_reports">SMS ပို့ပြီးကြောင်းအသိပေးခြင်း</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">SMS တစ်ခုပို့ပြီးတိုင်း ပို့ပြီးကြောင်း အသိပေးပါ</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">သတ်မှတ်အရေအတွက်ထက်ကျော်လွန်ပါက စာတိုအဟောင်းများကို အလိုလျှောက်ဖျတ်ပါ</string>
@@ -223,10 +227,14 @@
   <string name="conversation_context__menu_delete_message">စာတိုဖျက်ရန်</string>
   <string name="conversation_context__menu_forward_message">စာတိုဆက်ပို့ရန်</string>
   <!--conversation_context_image-->
+  <!--conversation_insecure-->
   <!--conversation_insecure_no_push-->
+  <string name="conversation_insecure__security">လုံခြုံရေး</string>
   <!--conversation_list_batch-->
   <!--conversation_list-->
   <string name="conversation_list__menu_search">ရှာရန်</string>
+  <!--conversation_list_item_view-->
+  <!--conversation_list_fragment-->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">လုံခြုံရေး</string>
   <!--conversation-->
@@ -246,5 +254,6 @@
   <!--media_preview-->
   <!--media_preview_activity-->
   <!--Trimmer-->
+  <!--transport_selection_list_item-->
   <!--EOF-->
 </resources>

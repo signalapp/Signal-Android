@@ -35,8 +35,6 @@
   <string name="ApplicationPreferencesActivity_partial">一部</string>
   <string name="ApplicationPreferencesActivity_sms">SMS</string>
   <string name="ApplicationPreferencesActivity_mms">MMS</string>
-  <string name="ApplicationPreferencesActivity_incoming_sms">受信</string>
-  <string name="ApplicationPreferencesActivity_outgoing_sms">送信</string>
   <!--AppProtectionPreferenceFragment-->
   <string name="AppProtectionPreferenceFragment_minutes">%d 分</string>
   <!--DraftDatabase-->
@@ -50,10 +48,17 @@
   <string name="AttachmentTypeSelectorAdapter_video">動画</string>
   <string name="AttachmentTypeSelectorAdapter_audio">音声</string>
   <string name="AttachmentTypeSelectorAdapter_contact">連絡先情報</string>
+  <!--ConfirmIdentityDialog-->
+  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">この
+鍵IDの内容である %1$s が変化しています。誰かがあなたの通信を
+傍受しようとしている、もしくは %2$s が単にTextSecureを再インストールしたため、新しい
+認証キーを取得した可能性があります。</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">この連絡先を
+照合することが推奨されています。</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">メッセージのサイズ： %d KB</string>
   <string name="ConversationItem_expires_s">有効期限： %s</string>
-  <string name="ConversationItem_error_sending_message">メッセージが送信できませんでした。</string>
+  <string name="ConversationItem_error_not_delivered">未送信</string>
   <string name="ConversationItem_view_secure_media_question">暗号化されたファイルを表示しますか？</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">このファイルは暗号化されたデータベースに保存されています。外部コンテンツのビューアで見るには、データを一時的に復号し、ディスクに書き込まなければなりません。この作業を実行してもいいですか？</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">エラー、古い鍵交換のメッセージを受信してしまいました。</string>
@@ -61,6 +66,7 @@
   <string name="ConversationItem_group_action_left">%1$sがグループを抜けました。</string>
   <string name="ConversationItem_click_to_approve_sms">タップすれば代替としてSMSを使います。</string>
   <string name="ConversationItem_click_to_approve_mms">タップすれば代替としてMMSを使います。</string>
+  <string name="ConversationItem_click_for_details">タップして詳細</string>
   <string name="ConversationItem_click_to_approve_unencrypted">タップしてセキュアでない通信を行う</string>
   <string name="ConversationItem_click_to_approve_sms_dialog_title">代替としてSMSに切り替わりますか？</string>
   <string name="ConversationItem_click_to_approve_mms_dialog_title">代替としてMMSに切り替わりますか？</string>
@@ -115,8 +121,8 @@
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">メモリに書き込めませんでした。</string>
   <string name="ConversationFragment_saving_attachment">添付ファイルを保存しています</string>
   <string name="ConversationFragment_saving_attachment_to_sd_card">メモリに添付ファイルを保存中…</string>
-  <string name="ConversationFragment_pending">保留</string>
-  <string name="ConversationFragment_push">送信</string>
+  <string name="ConversationFragment_pending">ペンディング</string>
+  <string name="ConversationFragment_push">データ (TextSecure)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">削除...</string>
@@ -128,6 +134,10 @@
   <string name="ConversationListFragment_deleting_selected_threads">選択したスレッドを削除中…</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">鍵交換のメッセージ…</string>
+  <!--CustomDefaultPreference-->
+  <string name="CustomDefaultPreference_none">無し</string>
+  <!--DateUtils-->
+  <string name="DateUtils_now">今</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">共有</string>
   <!--ExportFragment-->
@@ -142,7 +152,7 @@
   <string name="ExportFragment_success">成功しました。</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_TextSecure_communication_failure">永続的なTextSecureでの通信失敗!</string>
-  <string name="GcmRefreshJob_TextSecure_was_unable_to_register_with_Google_Play_Services">TextSecure の Google Play Servicesへの登録ができませんでした。データチャネルでの通信が無効にされます、 TextSecure の設定メニューから際登録をしてください。</string>
+  <string name="GcmRefreshJob_TextSecure_was_unable_to_register_with_Google_Play_Services">TextSecure の Google Play Servicesへの登録ができませんでした。データチャンネルでの通信が無効にされます、 TextSecure の設定メニューから際登録をしてください。</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">新規グループ</string>
   <string name="GroupCreateActivity_actionbar_update_title">グループを更新する</string>
@@ -189,6 +199,9 @@
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">スキャンした鍵はありません。</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">バーコードスキャナをインストールする?</string>
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">TextSecureではQRコードはバーコードスキャナが必要です</string>
+  <!--MessageDetailsRecipient-->
+  <string name="MessageDetailsRecipient_failed_to_send">送信に失敗</string>
+  <string name="MessageDetailsRecipient_new_identity">新規の認証キー</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">MMS保存中にエラーがありました。</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">MMSのプロバイダー接続中にエラーが発生しました…</string>
@@ -384,6 +397,7 @@
   <string name="conversation_activity__window_description">%1$sとの会話</string>
   <string name="conversation_activity__compose_description">メッセージ新規作成</string>
   <string name="conversation_activity__emoji_toggle_description">絵文字キーボードを切り替え</string>
+  <string name="conversation_activity__attachment_thumbnail">添付のサムネイル</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">メディアーメッセージ</string>
   <string name="conversation_item__play_button_description">再生ボタン</string>
@@ -430,6 +444,11 @@
   <string name="import_fragment__import_plaintext_backup">非暗号テキストのバックアップ・ファイルをインポート</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 暗号化されていないテキストのバックアップ・ファイルをインポートします。「SMSバックアップと復元」と互換可能です。</string>
+  <!--media_overview_activity-->
+  <string name="media_overview_activity__no_images">画像なし</string>
+  <!--message_recipients_list_item-->
+  <string name="message_recipients_list_item__verify">検証</string>
+  <string name="message_recipients_list_item__resend">再送</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">この端末は、ご自分でMMS設定をする必要があります。</string>
   <string name="MmsPreferencesFragment__enabled">有効</string>
@@ -497,12 +516,23 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
 検証SMSを待っている間、TextSecureがタイムアウトしました。</string>
   <string name="registration_progress_activity__sms_verification_failed">SMSでの検証が失敗しました。</string>
   <string name="registration_progress_activity__generating_keys">鍵を作成中...</string>
+  <string name="registration_progress_activity__alert">アラート</string>
+  <string name="registration_progress_activity__telephone">電話</string>
+  <string name="registration_progress_activity__check">チェック</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>名前または番号を入力して下さい</small></string>
   <string name="recipients_panel__add_member">参加者を追加する</string>
   <!--verify_identity_activity-->
   <string name="verify_identity_activity__their_identity_they_read">相手の認証キー（通信相手が読む）:</string>
   <string name="verify_identity_activity__your_identity_you_read">自分の認証キー（自分が読む）:</string>
+  <!--message_details_header-->
+  <string name="message_details_header__issues_need_your_attention">いくつかの問題に着目する必要があります。</string>
+  <string name="message_details_header__sent">送信</string>
+  <string name="message_details_header__received">受信</string>
+  <string name="message_details_header__via">経由</string>
+  <string name="message_details_header__to">To:</string>
+  <string name="message_details_header__from">From:</string>
+  <string name="message_details_header__with">With:</string>
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">パスワードの作成</string>
   <string name="AndroidManifest__enter_passphrase">パスワード入力</string>
@@ -514,9 +544,18 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
   <string name="AndroidManifest__complete_key_exchange">鍵交換を自動的に実行</string>
   <string name="AndroidManifest__log_submit">デバッグログを提出</string>
   <string name="AndroidManifest__media_preview">メディアのプレビュー表示</string>
+  <string name="AndroidManifest__media_overview">すべての画像</string>
+  <string name="AndroidManifest__media_overview_named">%1$s とすべての画像</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">インポート／エクスポート</string>
   <string name="arrays__my_identity_key">自分の認証キー</string>
+  <!--plurals.xml-->
+  <plurals name="minutes_ago">
+    <item quantity="other">%d 分</item>
+  </plurals>
+  <plurals name="hours_ago">
+    <item quantity="other">%d 時間</item>
+  </plurals>
   <!--preferences.xml-->
   <string name="preferences__general">一般設定</string>
   <string name="preferences__sms_mms">SMSとMMS</string>
@@ -560,6 +599,13 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
   <string name="preferences__change_notification_sound">通知音を変更</string>
   <string name="preferences__inthread_notifications">スレッド内通知</string>
   <string name="preferences__play_inthread_notifications">会話を表示している間、通知音を再生する。</string>
+  <string name="preferences__repeat_alerts">アラートの繰り返し</string>
+  <string name="preferences__never">なし</string>
+  <string name="preferences__one_time">1回</string>
+  <string name="preferences__two_times">2回</string>
+  <string name="preferences__three_times">3回</string>
+  <string name="preferences__five_times">5回</string>
+  <string name="preferences__ten_times">10回</string>
   <string name="preferences__vibrate">振動</string>
   <string name="preferences__also_vibrate_when_notified">通知する時に振動もする</string>
   <string name="preferences__minutes">分</string>
@@ -581,11 +627,6 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
   <string name="preferences__advanced_mms_access_point_names">手動MMS設定</string>
   <string name="preferences__enable_manual_mms">手動MMS設定を使う</string>
   <string name="preferences__override_system_mms_settings">システムのMMS設定を下の設定で上書きする。</string>
-  <string name="preferences__mmsc_url_required">MMSC URL (必須)</string>
-  <string name="preferences__mms_proxy_host_optional">MMSプロキシ・ホスト（選択自由）</string>
-  <string name="preferences__mms_proxy_port_optional">MMSプロキシ・ポート（選択自由）</string>
-  <string name="preferences__mmsc_username_optional">MMSCユーザ名 (オプション)</string>
-  <string name="preferences__mmsc_password_optional">MMSCパスワード (オプション)</string>
   <string name="preferences__sms_delivery_reports">SMS配信報告</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">送信する全てのSMSに配信報告をつけます</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">会話スレッドが一定の長さを超えると、古いメッセージが自動的に削除されます</string>
@@ -603,7 +644,7 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
   <string name="preferences__make_textsecure_the_default_sms_mms_app">お使いの端末で、TextSecureをSMS／MMSの標準アプリにする</string>
   <string name="preferences__use_data_channel">プッシュメッセージ</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
-他のTextSecureユーザと会話する時、安全性を高めつつSMS料金がかからないようにデータチャネルを使いますか?</string>
+他のTextSecureユーザと会話する時、安全性を高めつつSMS料金がかからないようにデータチャンネルを使いますか?</string>
   <string name="preferences__sms_fallback">SMS/MMS送信</string>
   <string name="preferences__submit_debug_log">デバッグログを提出</string>
   <string name="preferences__sms_outgoing_push_users">TextSecureユーザ</string>
@@ -615,7 +656,7 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
   <string name="preferences__sms_fallback_non_push_users">TextSecureを使用しない方</string>
   <string name="preferences__sms_fallback_nobody">無人</string>
   <string name="preferences__support_wifi_calling">\'WiFi Calling\' 互換モード</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">あなたのデバイスで  WiFi (ただし \'WiFi Calling\' があんたのデバイスで有効になっている場合のみ)での SMS/MMS の配送を有効にする。</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">あなたのデバイスで  WiFi (ただし \'WiFi Calling\' があなたのデバイスで有効になっている場合のみ)での SMS/MMS の配送を有効にする。</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -645,13 +686,22 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
   <string name="conversation_context__menu_resend_message">メッセージを再送信</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">添付を保存</string>
+  <!--conversation_insecure-->
+  <string name="conversation_insecure__invite">招待</string>
   <!--conversation_insecure_no_push-->
   <string name="conversation_insecure__menu_start_secure_session">セキュア・セッションを開始</string>
+  <string name="conversation_insecure__security">セキュリティ</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">選択したものを削除</string>
   <string name="conversation_list_batch__menu_select_all">すべて選択</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">検索</string>
+  <!--conversation_list_item_view-->
+  <string name="conversation_list_item_view__contact_photo_image">連絡先の画像</string>
+  <string name="conversation_list_item_view__attachment_indicator">添付のインジケータ</string>
+  <string name="conversation_list_item_view__error_alert">エラーアラート</string>
+  <!--conversation_list_fragment-->
+  <string name="conversation_list_fragment__fab_content_description">新しい会話</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">セキュリティ</string>
   <string name="conversation_secure_verified__menu_verify_identity">認証検証</string>
@@ -661,6 +711,7 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
   <string name="conversation__menu_update_group">グループを更新する</string>
   <string name="conversation__menu_leave_group">グループを抜ける</string>
   <string name="conversation__menu_delete_thread">スレッドを削除</string>
+  <string name="conversation__menu_view_media">すべての画像</string>
   <!--conversation_callable-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">連絡帳に追加</string>
   <!--conversation_group_options-->
@@ -699,5 +750,7 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
   <string name="trimmer__deleting">削除...</string>
   <string name="trimmer__deleting_old_messages">古いメッセージを削除...</string>
   <string name="trimmer__old_messages_successfully_deleted">古いメッセージの削除に成功</string>
+  <!--transport_selection_list_item-->
+  <string name="transport_selection_list_item__transport_icon">転送アイコン</string>
   <!--EOF-->
 </resources>

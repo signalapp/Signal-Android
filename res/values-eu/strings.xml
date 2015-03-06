@@ -37,8 +37,6 @@ Zure telefono zenbakia bererregistratu beharko duzu push mezuak berriro erabili 
   <string name="ApplicationPreferencesActivity_partial">partziala</string>
   <string name="ApplicationPreferencesActivity_sms">SMS</string>
   <string name="ApplicationPreferencesActivity_mms">MMS</string>
-  <string name="ApplicationPreferencesActivity_incoming_sms">Hartzekoa</string>
-  <string name="ApplicationPreferencesActivity_outgoing_sms">bidaltzekoa</string>
   <!--AppProtectionPreferenceFragment-->
   <string name="AppProtectionPreferenceFragment_minutes">%d minutu</string>
   <!--DraftDatabase-->
@@ -52,10 +50,11 @@ Zure telefono zenbakia bererregistratu beharko duzu push mezuak berriro erabili 
   <string name="AttachmentTypeSelectorAdapter_video">Bideoa</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Audioa</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Kontaktuaren informazioa</string>
+  <!--ConfirmIdentityDialog-->
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Agian kontaktu hau egiaztatu beharko zenuke.</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Mezuaren tamaina: %d KB</string>
   <string name="ConversationItem_expires_s">Iraingutuko da: %s</string>
-  <string name="ConversationItem_error_sending_message">Errorea mezua bidaltzen</string>
   <string name="ConversationItem_view_secure_media_question">Euskarri segurua ikusi?</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Media hau enkriptatutako datubase batean gorde da. Tamalez, aplikazioaz kanpoko edukien ikusle bat erabili ahal izateko, datuak tenporalki desenkriptatu behar dira eta diskoan gorde. Ziur zaude hau egin nahi izateaz?</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Errorea, jaso da iraungita dagoen datu-trukerako gakoaren mezua.</string>
@@ -117,8 +116,6 @@ Zure telefono zenbakia bererregistratu beharko duzu push mezuak berriro erabili 
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Ezgai biltegian idazteko!</string>
   <string name="ConversationFragment_saving_attachment">Eranskina gordetzen</string>
   <string name="ConversationFragment_saving_attachment_to_sd_card">Eranskina biltegian gordetzen...</string>
-  <string name="ConversationFragment_pending">EGITEKE</string>
-  <string name="ConversationFragment_push">PUSH</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Ezabatzen...</string>
@@ -130,6 +127,9 @@ Zure telefono zenbakia bererregistratu beharko duzu push mezuak berriro erabili 
   <string name="ConversationListFragment_deleting_selected_threads">Aukeratutako hariak ezabatzen...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Gakoaren datu-trukerako mezua...</string>
+  <!--CustomDefaultPreference-->
+  <string name="CustomDefaultPreference_none">Bat ere ez</string>
+  <!--DateUtils-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Norekin konpartitu</string>
   <!--ExportFragment-->
@@ -200,6 +200,7 @@ Babeskopia hau lehenago inportatu baduzu, mezu bikoiztuak sortu daitezke.
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Ez da topatu eskaneatutako gakorik!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">Barcode Scanner instalatu?</string>
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">TextSecure-ek Barcode Scanner behar du QR kodeak irakurri ahal izateko.</string>
+  <!--MessageDetailsRecipient-->
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Errorea MMS gordetzen!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Errorea MMS hornitzailearekin konentatzerakoan...</string>
@@ -436,6 +437,8 @@ Aurretik enkriptatu eta esportatu den TextSecure babeskopia leheneratu.
   <string name="import_fragment__import_plaintext_backup">Enkriptatu gabeko babeskopia inportatu</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Enkriptatu gabeko babeskopia bat inportatu. Bateragarria \'SMSBackup Eta Restore\'-ekin.</string>
+  <!--media_overview_activity-->
+  <!--message_recipients_list_item-->
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">MMS eskuzko ezarpenak behar dira zure telefonorako.</string>
   <string name="MmsPreferencesFragment__enabled">Gaituta</string>
@@ -521,6 +524,7 @@ huts egin du.
   <!--verify_identity_activity-->
   <string name="verify_identity_activity__their_identity_they_read">Beraien nortasuna (beraiek irakurri dezatela):</string>
   <string name="verify_identity_activity__your_identity_you_read">Zure nortasuna (zuk irakurri):</string>
+  <!--message_details_header-->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Pasahitza sortu</string>
   <string name="AndroidManifest__enter_passphrase">Pasahitza sartu</string>
@@ -535,6 +539,7 @@ huts egin du.
   <!--arrays.xml-->
   <string name="arrays__import_export">Inportatu / esportatu</string>
   <string name="arrays__my_identity_key">Nire nortasunerako gakoa</string>
+  <!--plurals.xml-->
   <!--preferences.xml-->
   <string name="preferences__general">Orokorra</string>
   <string name="preferences__sms_mms">SMS eta MMS</string>
@@ -598,11 +603,6 @@ huts egin du.
   <string name="preferences__advanced_mms_access_point_names">MMS eskuzko ezarpenak</string>
   <string name="preferences__enable_manual_mms">MMS eskuzko ezarpenak erabili</string>
   <string name="preferences__override_system_mms_settings">Jaramonik ez sistemaren MMS ezarpenei azpian dagoen informazioa erabiliz.</string>
-  <string name="preferences__mmsc_url_required">MMSC URL (Beharrezkoa)</string>
-  <string name="preferences__mms_proxy_host_optional">MMS Proxy Host (Aukerazkoa)</string>
-  <string name="preferences__mms_proxy_port_optional">MMS Proxy Port (Aukerazkoa)</string>
-  <string name="preferences__mmsc_username_optional">MMSC Erabiltzaile izena (Aukerazkoa)</string>
-  <string name="preferences__mmsc_password_optional">MMSC Pasahitza (Aukerazkoa)</string>
   <string name="preferences__sms_delivery_reports">SMS banaketaren txostenak</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Bidaltzen duzun SMS mezu bakoitzeko banaketa txosten bat eskatu</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Automatikoki ezabatu mezu zaharragoak behin solasaldi hari batek ezarritako luzera gainditutakoan</string>
@@ -662,13 +662,17 @@ Hobetu zure pribatutasuna eta ekidin SMS tasak datu kanala erabiliz TextSecure-e
   <string name="conversation_context__menu_resend_message">Mezua berbidali</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Eraskina gorde</string>
+  <!--conversation_insecure-->
   <!--conversation_insecure_no_push-->
   <string name="conversation_insecure__menu_start_secure_session">Saio segurua hasi</string>
+  <string name="conversation_insecure__security">Segurtasuna</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Hautatutakoak ezabatu</string>
   <string name="conversation_list_batch__menu_select_all">Denak hautatu</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Bilatu</string>
+  <!--conversation_list_item_view-->
+  <!--conversation_list_fragment-->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Segurtasuna</string>
   <string name="conversation_secure_verified__menu_verify_identity">Nortasuna egiaztatu</string>
@@ -711,5 +715,6 @@ Hobetu zure pribatutasuna eta ekidin SMS tasak datu kanala erabiliz TextSecure-e
   <string name="trimmer__deleting">Ezabatzen...</string>
   <string name="trimmer__deleting_old_messages">Mezu zaharrak ezabatzen...</string>
   <string name="trimmer__old_messages_successfully_deleted">Mezu zaharrak ondo ezabatu dira</string>
+  <!--transport_selection_list_item-->
   <!--EOF-->
 </resources>

@@ -26,10 +26,10 @@ Upozornenie, toto vypne kryptovanie úložiska správ a kľúčov. Vaše bezpeč
   <string name="AttachmentTypeSelectorAdapter_picture">Obrázok</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
+  <!--ConfirmIdentityDialog-->
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Veľkosť správy: %d KB</string>
   <string name="ConversationItem_expires_s">Vyprší: %s</string>
-  <string name="ConversationItem_error_sending_message">Chyba pri posielaní správy</string>
   <string name="ConversationItem_view_secure_media_question">Zobraziť kryptované údaje?</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Chyba, prijal som zaseknutú správu vzájomnej výmeny kľúčov.</string>
   <string name="ConversationItem_received_key_exchange_message_click_to_process">Prijal som správu vzájomnej výmeny kľúčov, kliknite pre spracovanie.</string>
@@ -70,6 +70,9 @@ Upozornenie, toto vypne kryptovanie úložiska správ a kľúčov. Vaše bezpeč
   <string name="ConversationListFragment_deleting_selected_threads">Mažem vybrané konverzácie...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Správa vzájomnej výmeny kľúčov...</string>
+  <!--CustomDefaultPreference-->
+  <string name="CustomDefaultPreference_none">Žiadna</string>
+  <!--DateUtils-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Zdieľaj s</string>
   <!--ExportFragment-->
@@ -118,6 +121,7 @@ Obnovenie zakryptovanej zálohy prepíše všetky existujúce kryptovacie kľú�
   <string name="ImportFragment_restore_complete">Obnova dokončená!</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Nenašiel som scannovaný kľúč!</string>
+  <!--MessageDetailsRecipient-->
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Chyba pri ukladaní MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Chyba spojenia s poskytovateľom MMS...</string>
@@ -293,6 +297,8 @@ Obnoviť predtým exportovanú zakryptovanú TextSecure zálohu.</string>
   <string name="import_fragment__import_plaintext_backup">Importovať nezakryptovanú zálohu</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Importovať nezakryptovanú zálohu. Kompatibilné so \'SMSBackup And Restore\'.</string>
+  <!--media_overview_activity-->
+  <!--message_recipients_list_item-->
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Manuálne MMS nastavenia sú vyžadované pre tvoj telefón.</string>
   <!--GroupUtil-->
@@ -342,6 +348,7 @@ zlyhalo.
   <!--verify_identity_activity-->
   <string name="verify_identity_activity__their_identity_they_read">Ich totožnosť (oni vidia):</string>
   <string name="verify_identity_activity__your_identity_you_read">Vaša totožnosť (vy vidíte):</string>
+  <!--message_details_header-->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Vytvor heslo</string>
   <string name="AndroidManifest__enter_passphrase">Zadaj heslo</string>
@@ -354,6 +361,7 @@ zlyhalo.
   <string name="AndroidManifest__log_submit">Odošli ladiaci log</string>
   <!--arrays.xml-->
   <string name="arrays__my_identity_key">Môj kľúč totožnosti</string>
+  <!--plurals.xml-->
   <!--preferences.xml-->
   <string name="preferences__general">Všeobecné</string>
   <string name="preferences__pref_all_sms_title">Príjmy všetky SMS</string>
@@ -401,9 +409,6 @@ zlyhalo.
   <string name="preferences__slow">Pomaly</string>
   <string name="preferences__custom">Vlastné</string>
   <string name="preferences__advanced">Rozšírené</string>
-  <string name="preferences__mmsc_url_required">MMSC URL (nutné)</string>
-  <string name="preferences__mms_proxy_host_optional">MMS Proxy (voliteľné)</string>
-  <string name="preferences__mms_proxy_port_optional">MMS Proxy port (voliteľné)</string>
   <string name="preferences__sms_delivery_reports">Správy o doručení SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Pre každú odoslanú SMS vyžiadaj správu o doručení</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Ak dĺžka vlákna presiahne nastavenú hranicu, automaticky zmaž najstaršie správy.</string>
@@ -448,13 +453,17 @@ zlyhalo.
   <string name="conversation_context__menu_resend_message">Prepošli správu</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Uložiť prílohu </string>
+  <!--conversation_insecure-->
   <!--conversation_insecure_no_push-->
   <string name="conversation_insecure__menu_start_secure_session">Začni bezpečnú reláciu</string>
+  <string name="conversation_insecure__security">Bezpečnosť</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Odstrániť označené</string>
   <string name="conversation_list_batch__menu_select_all">Označ všetko</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Hľadaj</string>
+  <!--conversation_list_item_view-->
+  <!--conversation_list_fragment-->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Bezpečnosť</string>
   <string name="conversation_secure_verified__menu_verify_identity">Over totožnosť</string>
@@ -485,5 +494,6 @@ zlyhalo.
   <!--media_preview-->
   <!--media_preview_activity-->
   <!--Trimmer-->
+  <!--transport_selection_list_item-->
   <!--EOF-->
 </resources>

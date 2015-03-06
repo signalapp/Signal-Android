@@ -17,10 +17,10 @@
   <string name="AttachmentTypeSelectorAdapter_picture">འདྲ་པར།</string>
   <string name="AttachmentTypeSelectorAdapter_video">བརྙན་པར།</string>
   <string name="AttachmentTypeSelectorAdapter_audio">སྒྲ་ཟློས། </string>
+  <!--ConfirmIdentityDialog-->
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">འཕྲིན་ཐུང་ཆེ་ཆུང་།%d KB</string>
   <string name="ConversationItem_expires_s">དུས་ཚོད་རྫོགས།%s</string>
-  <string name="ConversationItem_error_sending_message">གཏོང་བཞིན་པའི་འཕྲིན་ཐུང་དེར་ནོར་འཁྲུལ་ཞིག་འདུག </string>
   <string name="ConversationItem_view_secure_media_question">ཉེན་སྲུང་ཡོད་པའི་བརྒྱུད་ལམ་ལ་ལྟོས། </string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">ནོར་འཁྲུལ། ལྡེ་མིག་རྙིང་པ་བརྗེ་ལེན་བྱེད་རྒྱུའི་བརྡ་ལན་འབྱོར་ཚར། དེ་རུ་ནོར་འཁྲུལ་འདུག </string>
   <!--ConversationActivity-->
@@ -41,6 +41,8 @@
   <string name="ConversationListFragment_deleting_selected_threads">འཕྲིན་ཐུང་སྐུད་རིམ་རྣམས་གསུབ་བཞིན་ཡོད།</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">ལྡེ་མིག་བརྗེ་ལེན་བྱེད་རྒྱུའི་བརྡ་ལན།</string>
+  <!--CustomDefaultPreference-->
+  <!--DateUtils-->
   <!--ShareActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export">ཕྱི་འདྲེན་བྱོས། </string>
@@ -57,6 +59,7 @@
   <string name="ImportFragment_cancel">ཕྱིར་འཐེན་བྱེད།</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">ཞིབ་བརྟག་བྱས་པའི་ལྡེ་མིག་རྙེད་མི་ཐུབ།</string>
+  <!--MessageDetailsRecipient-->
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">སྣ་མང་བརྒྱུད་ལམ་ཅན་གྱི་འཕྲིན་ཐུང་གསོག་ཉར་ལ་སྐྱོན་འདུག </string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">སྣ་མང་བརྒྱུད་ལམ་ཅན་གྱི་འཕྲིན་ཐུང་མཁོ་སྤྲོད་བྱེད་མཁན་ལ་འབྲེལ་ཐག་གི་སྐྱོན་འདུག </string>
@@ -156,6 +159,8 @@
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">འདི་ལ་དུས་ཚོད་ཅུང་ཙམ་འགོར་སྲིད། བཟོད་སྒོམ་གནང་རོགས། ནང་འདྲེན་ལེགས་འགྲུབ་བྱུང་མཚམས་ང་ཚོས་ཁྱོད་ལ་བརྡ་གཏོང་གི་ཡིན། </string>
   <string name="database_migration_activity__importing">ནང་འདྲེན་བྱེད་བཞིན་པ། </string>
   <!--database_upgrade_activity-->
+  <!--media_overview_activity-->
+  <!--message_recipients_list_item-->
   <!--MmsPreferencesFragment-->
   <!--GroupUtil-->
   <!--prompt_passphrase_activity-->
@@ -170,9 +175,11 @@
   <!--verify_identity_activity-->
   <string name="verify_identity_activity__their_identity_they_read">གཞན་གྱི་ངོས་འཛིན། (ཁོང་ཚོས་ཀློགས)</string>
   <string name="verify_identity_activity__your_identity_you_read">ཁྱེད་ཀྱི་ངོས་འཛིན། (ཁྱེད་ཀྱིས་ཀློགས)</string>
+  <!--message_details_header-->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__change_passphrase">གསང་ཚིག་བརྗེ་བོ་རྒྱོབས།</string>
   <!--arrays.xml-->
+  <!--plurals.xml-->
   <!--preferences.xml-->
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">ནང་ཡོང་འཕྲིན་ཐུང་ཚང་མར་བལྟ་བ་དང་ཉར་བ་ལ་གཡག་འཕྲིན་བེད་སྤྱོད་ཐོངས།</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">ནང་ཡོང་སྣ་མང་འཕྲིན་ཐུང་རིགས་ལ་ཉར་ཚགས་དང་ཞིབ་ལྟའི་ཆེད་དུ་གཡག་འཕྲིན་བེད་སྤྱོད་ཐོངས།</string>
@@ -202,9 +209,6 @@
   <string name="preferences__normal">སྤྱིར་བཏང་། </string>
   <string name="preferences__slow">དལ་བོ། </string>
   <string name="preferences__custom">ཡུལ་སྲོལ། </string>
-  <string name="preferences__mmsc_url_required">MMSC URL(དགོས་ངེས་ཅན) </string>
-  <string name="preferences__mms_proxy_host_optional">MMS Proxy Host (གདམ་ཀ་ཅན) </string>
-  <string name="preferences__mms_proxy_port_optional">MMS Proxy Port (གདམ་ཀ་ཅན) </string>
   <string name="preferences__sms_delivery_reports">སྣ་མང་བརྒྱུད་ལམ་ཅན་གྱི་འཕྲིན་ཐུང་གིས་སྙན་ཐོ་སྐྱེལ། </string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">ཁྱེད་ཀྱིས་གཏོང་བའི་འཕྲིན་ཐུང་རེ་རེར་སྙན་ཐོ་སྐྱེལ་བའི་རེ་སྐུལ་བྱོས། </string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">གླེང་མོལ་གྱི་སྐུད་པའི་དམིགས་བསལ་རིང་ཚད་རྫོགས་མཚམས། རང་བཞིན་ནས་འཕྲིན་ཐུང་རྙིང་པ་དག་བསུབ་འགྲོ་གི་རེད། </string>
@@ -228,10 +232,14 @@
   <string name="conversation_context__menu_delete_message">འཕྲིན་ཐུང་གསུབ།</string>
   <string name="conversation_context__menu_forward_message">འཕྲིན་ཐུང་བརྒྱུད་འགྲེམ་བྱོས། </string>
   <!--conversation_context_image-->
+  <!--conversation_insecure-->
   <!--conversation_insecure_no_push-->
+  <string name="conversation_insecure__security">ཉེན་སྲུང་།</string>
   <!--conversation_list_batch-->
   <!--conversation_list-->
   <string name="conversation_list__menu_search">འཚོལ།</string>
+  <!--conversation_list_item_view-->
+  <!--conversation_list_fragment-->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">ཉེན་སྲུང་།</string>
   <!--conversation-->
@@ -251,5 +259,6 @@
   <!--media_preview-->
   <!--media_preview_activity-->
   <!--Trimmer-->
+  <!--transport_selection_list_item-->
   <!--EOF-->
 </resources>

@@ -37,8 +37,6 @@
   <string name="ApplicationPreferencesActivity_partial">частично</string>
   <string name="ApplicationPreferencesActivity_sms">SMS</string>
   <string name="ApplicationPreferencesActivity_mms">MMS</string>
-  <string name="ApplicationPreferencesActivity_incoming_sms">Входящи</string>
-  <string name="ApplicationPreferencesActivity_outgoing_sms">изходящи</string>
   <!--AppProtectionPreferenceFragment-->
   <string name="AppProtectionPreferenceFragment_minutes">%d минути</string>
   <!--DraftDatabase-->
@@ -52,10 +50,14 @@
   <string name="AttachmentTypeSelectorAdapter_video">Видео</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Аудио</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Информация за контакта</string>
+  <!--ConfirmIdentityDialog-->
+  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Индефициращият материал за %1$s е променен. Това означава или че някой се опитва да прехване комуникацията ви, или просто че %2$s е преинсталирал TextSecure и има нов ключ.</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Може би е добре да се провери ⏎
+този контакт. ⏎</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Размер на съобщението: %d KB</string>
   <string name="ConversationItem_expires_s">Изтича: %s</string>
-  <string name="ConversationItem_error_sending_message">Грешка при изпращане на съобщението</string>
+  <string name="ConversationItem_error_not_delivered">Недоставен</string>
   <string name="ConversationItem_view_secure_media_question">Искаш ли да видиш подсигурения медиен файл?</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Тази информация се съхранява в криптирана база данни. За съжаление, за да я видиш в момента се изисква данните да бъдат временно разшифровани и записани на диска. Сигурен ли си, че искаш да направиш това?</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Грешка, загубил давност ключ е получен при обмяна на ключовете.</string>
@@ -63,6 +65,7 @@
   <string name="ConversationItem_group_action_left">%1$s напусна групата.</string>
   <string name="ConversationItem_click_to_approve_sms">Натисни, за да разрешиш преминавене към не криптирани SMS-и в краен случай</string>
   <string name="ConversationItem_click_to_approve_mms">Натисни, за да разрешиш преминавене към не криптирани MMS-и в краен случай</string>
+  <string name="ConversationItem_click_for_details">Натисни за повече информация</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Натисни, за да разрешиш преминавене към не криптирани съобщения в краен случай</string>
   <string name="ConversationItem_click_to_approve_sms_dialog_title">Разреши преминавене към SMS-и?</string>
   <string name="ConversationItem_click_to_approve_mms_dialog_title">Разреши преминавене към MMS-и?</string>
@@ -117,8 +120,8 @@
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Неуспеше запис на SD карта!</string>
   <string name="ConversationFragment_saving_attachment">Запазване на прикачения файл</string>
   <string name="ConversationFragment_saving_attachment_to_sd_card">Запазване на прикачения файл на SD карта...</string>
-  <string name="ConversationFragment_pending">В ОЧАКВАНЕ</string>
-  <string name="ConversationFragment_push">PUSH</string>
+  <string name="ConversationFragment_pending">Предстоящ...</string>
+  <string name="ConversationFragment_push">Данни (TextSecure)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Изтриване...</string>
@@ -130,6 +133,10 @@
   <string name="ConversationListFragment_deleting_selected_threads">Изтриване на избраните разговори...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Съобщение за обмяна на ключовете...</string>
+  <!--CustomDefaultPreference-->
+  <string name="CustomDefaultPreference_none">Няма</string>
+  <!--DateUtils-->
+  <string name="DateUtils_now">Сега</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Сподели с</string>
   <!--ExportFragment-->
@@ -198,6 +205,9 @@ SMS съобщенията от системната базата данни в 
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Не е намерен сканиран ключ!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">Инсталирай скенер за баркодове?</string>
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">TextSecure се нуждае от скенер за баркодове, за да може да обработва QR кодове.</string>
+  <!--MessageDetailsRecipient-->
+  <string name="MessageDetailsRecipient_failed_to_send">Неуспешно изпращане</string>
+  <string name="MessageDetailsRecipient_new_identity">Нова самоличност</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Грешка при съхраняване на MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Грешка при свързването с MMS доставчика...</string>
@@ -444,6 +454,11 @@ SMS съобщенията от системната базата данни в 
   <string name="import_fragment__import_plaintext_backup">Внеси разшифрован архив </string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Внасяне на разшифрован архив. Съвместимо с \'SMSBackup And Restore.\'</string>
+  <!--media_overview_activity-->
+  <string name="media_overview_activity__no_images">Няма изображения</string>
+  <!--message_recipients_list_item-->
+  <string name="message_recipients_list_item__verify">ПОТВЪРДИ</string>
+  <string name="message_recipients_list_item__resend">ИЗПРАТИ ПОВТОРНО</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Налагат се ръчни MMS настройки за твоя телефон.</string>
   <string name="MmsPreferencesFragment__enabled">Включено</string>
@@ -535,6 +550,14 @@ TextSecure чака твърде дълго за SMS потвърждение.
   <!--verify_identity_activity-->
   <string name="verify_identity_activity__their_identity_they_read">Тяхната самоличност (те четат):</string>
   <string name="verify_identity_activity__your_identity_you_read">Твоята самоличност (ти чети):</string>
+  <!--message_details_header-->
+  <string name="message_details_header__issues_need_your_attention">Няколко проблема изискват вашето внимание.</string>
+  <string name="message_details_header__sent">Изпратен</string>
+  <string name="message_details_header__received">Получен</string>
+  <string name="message_details_header__via">През</string>
+  <string name="message_details_header__to">До:</string>
+  <string name="message_details_header__from">От:</string>
+  <string name="message_details_header__with">С:</string>
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Създай парола</string>
   <string name="AndroidManifest__enter_passphrase">Въведи парола</string>
@@ -546,9 +569,20 @@ TextSecure чака твърде дълго за SMS потвърждение.
   <string name="AndroidManifest__complete_key_exchange">Извърши обмяна на ключове</string>
   <string name="AndroidManifest__log_submit">Изпрати доклад</string>
   <string name="AndroidManifest__media_preview">Преглед на файла</string>
+  <string name="AndroidManifest__media_overview">Всички изображения</string>
+  <string name="AndroidManifest__media_overview_named">Всички изображения с %1$s</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Внасяне / изнасяне</string>
   <string name="arrays__my_identity_key">Моят ключ за самоличност</string>
+  <!--plurals.xml-->
+  <plurals name="minutes_ago">
+    <item quantity="one">%d минута</item>
+    <item quantity="other">%d минути</item>
+  </plurals>
+  <plurals name="hours_ago">
+    <item quantity="one">%d час</item>
+    <item quantity="other">%d часа</item>
+  </plurals>
   <!--preferences.xml-->
   <string name="preferences__general">Общо</string>
   <string name="preferences__sms_mms">SMS и MMS</string>
@@ -591,6 +625,13 @@ TextSecure чака твърде дълго за SMS потвърждение.
   <string name="preferences__change_notification_sound">Промени звуков сигнал за известие</string>
   <string name="preferences__inthread_notifications">Известия по време на разговор</string>
   <string name="preferences__play_inthread_notifications">Използвай звуков сигнал по време на активен разговор.</string>
+  <string name="preferences__repeat_alerts">Повтарящи се аларми</string>
+  <string name="preferences__never">Никога</string>
+  <string name="preferences__one_time">Само веднъж</string>
+  <string name="preferences__two_times">Два пъти</string>
+  <string name="preferences__three_times">Три пъти</string>
+  <string name="preferences__five_times">Пет пъти</string>
+  <string name="preferences__ten_times">Десет пъти</string>
   <string name="preferences__vibrate">Вибрация</string>
   <string name="preferences__also_vibrate_when_notified">Вибрирай при ново известие</string>
   <string name="preferences__minutes">минути</string>
@@ -612,11 +653,6 @@ TextSecure чака твърде дълго за SMS потвърждение.
   <string name="preferences__advanced_mms_access_point_names">Ръчни MMS настройки</string>
   <string name="preferences__enable_manual_mms">Използвай ръчни MMS настройки</string>
   <string name="preferences__override_system_mms_settings">Промени системните MMS настройки със следната инфромация.</string>
-  <string name="preferences__mmsc_url_required">MMSC URL (Задължително)</string>
-  <string name="preferences__mms_proxy_host_optional">MMS Прокси Сървър (По избор)</string>
-  <string name="preferences__mms_proxy_port_optional">MMS Прокси Порт (По избор)</string>
-  <string name="preferences__mmsc_username_optional">MMSC потребителско име(Незадължително)</string>
-  <string name="preferences__mmsc_password_optional">MMSC парола (Незадължително)</string>
   <string name="preferences__sms_delivery_reports">SMS потвърждения за получаване</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Поискай потвърждение при получаване за всяко изпратено SMS съобщение</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Автоматично изтрий най-старите съобщения, когато разговорът превиши определена дължина</string>
@@ -676,13 +712,18 @@ TextSecure чака твърде дълго за SMS потвърждение.
   <string name="conversation_context__menu_resend_message">Повторно изпращане</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Запази прикачения файл</string>
+  <!--conversation_insecure-->
   <!--conversation_insecure_no_push-->
   <string name="conversation_insecure__menu_start_secure_session">Започни сигурна сесия</string>
+  <string name="conversation_insecure__security">Сигурност</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Изтрий избраното</string>
   <string name="conversation_list_batch__menu_select_all">Избери всичко</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Търси</string>
+  <!--conversation_list_item_view-->
+  <!--conversation_list_fragment-->
+  <string name="conversation_list_fragment__fab_content_description">Нов разговор</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Сигурност</string>
   <string name="conversation_secure_verified__menu_verify_identity">Провери самоличността</string>
@@ -692,6 +733,7 @@ TextSecure чака твърде дълго за SMS потвърждение.
   <string name="conversation__menu_update_group">Промени група</string>
   <string name="conversation__menu_leave_group">Напусни група</string>
   <string name="conversation__menu_delete_thread">Изтрий разговора</string>
+  <string name="conversation__menu_view_media">Всички изображения</string>
   <!--conversation_callable-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Добави в контакти</string>
   <!--conversation_group_options-->
@@ -730,5 +772,6 @@ TextSecure чака твърде дълго за SMS потвърждение.
   <string name="trimmer__deleting">Изтриване...</string>
   <string name="trimmer__deleting_old_messages">Изтриване на стари съобщения...</string>
   <string name="trimmer__old_messages_successfully_deleted">Старите съобщения бяха успешно изтрити</string>
+  <!--transport_selection_list_item-->
   <!--EOF-->
 </resources>

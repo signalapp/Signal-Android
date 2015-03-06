@@ -33,8 +33,6 @@ Du skal registrere dit telefonnummer påny hvis du vil bruge \'push\' beskeder i
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Brug TextSecure som dit standard SMS program</string>
   <string name="ApplicationPreferencesActivity_sms">SMS</string>
   <string name="ApplicationPreferencesActivity_mms">MMS</string>
-  <string name="ApplicationPreferencesActivity_incoming_sms">Indkommende</string>
-  <string name="ApplicationPreferencesActivity_outgoing_sms">Udgående</string>
   <!--AppProtectionPreferenceFragment-->
   <string name="AppProtectionPreferenceFragment_minutes">%d minutter</string>
   <!--DraftDatabase-->
@@ -48,10 +46,12 @@ Du skal registrere dit telefonnummer påny hvis du vil bruge \'push\' beskeder i
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Lyd</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Kontakt information</string>
+  <!--ConfirmIdentityDialog-->
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Du bør verificere
+denne kontakt.</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Besked størrelse: %d KB</string>
   <string name="ConversationItem_expires_s">Udløber: %s</string>
-  <string name="ConversationItem_error_sending_message">Kunne ikke sende besked</string>
   <string name="ConversationItem_view_secure_media_question">Gennemse sikret data?</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Denne fil er gemt i en krypteret database. For at se den i et eksternt program kræves det, desværre, at filen midlertidigt dekrypteres og gemmes. Er du sikker på at du vil gøre det?</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Fejl! Modtog en gammel udvekslingsnøgle.</string>
@@ -103,7 +103,6 @@ Du skal registrere dit telefonnummer påny hvis du vil bruge \'push\' beskeder i
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Er du sikker på at du vil slette ALLE valgte beskeder permanent?</string>
   <string name="ConversationFragment_success_exclamation">Fuldført!</string>
   <string name="ConversationFragment_saving_attachment">Gem vedhæftning</string>
-  <string name="ConversationFragment_pending">AFVENTER</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Sletter...</string>
@@ -115,6 +114,9 @@ Du skal registrere dit telefonnummer påny hvis du vil bruge \'push\' beskeder i
   <string name="ConversationListFragment_deleting_selected_threads">Sletter valgte tråde</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Udvekslingsnøgle...</string>
+  <!--CustomDefaultPreference-->
+  <string name="CustomDefaultPreference_none">Ingen</string>
+  <!--DateUtils-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Del med</string>
   <!--ExportFragment-->
@@ -172,6 +174,7 @@ Genoprettelse af en krypteret backup vil overskrive eksisterende nøgler, indsti
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Ingen skannet nøgle fundet!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">Installer Barcode Skanner?</string>
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">TextSecure skal bruge en Barcode Skanner til QR koder.</string>
+  <!--MessageDetailsRecipient-->
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Fejl ved lagring af MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Fejl! Ingen forbindelse til MMS tjenesten...</string>
@@ -396,6 +399,8 @@ Genopret en tidligere eksporteret krypteret TextSecure backup.</string>
   <string name="import_fragment__import_plaintext_backup">Importer klartekst backup</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Importer en klartekst backup fil. Kompatibel med \'SMSBackup og Restore\'.</string>
+  <!--media_overview_activity-->
+  <!--message_recipients_list_item-->
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Din telefon kræver manuel indtastning af MMS-indstillinger.</string>
   <!--GroupUtil-->
@@ -464,6 +469,7 @@ fejlede.
   <!--verify_identity_activity-->
   <string name="verify_identity_activity__their_identity_they_read">Deres identitet (de læser):</string>
   <string name="verify_identity_activity__your_identity_you_read">Din identitet (du læser):</string>
+  <!--message_details_header-->
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Indtast kodeord</string>
   <string name="AndroidManifest__enter_passphrase">Opret kodeord</string>
@@ -477,6 +483,7 @@ fejlede.
   <!--arrays.xml-->
   <string name="arrays__import_export">Importer / eksporter</string>
   <string name="arrays__my_identity_key">Min ID-nøgle</string>
+  <!--plurals.xml-->
   <!--preferences.xml-->
   <string name="preferences__general">Generelt</string>
   <string name="preferences__push_sms_category">\'Push\' og SMS</string>
@@ -533,9 +540,6 @@ fejlede.
   <string name="preferences__custom">Tilpasset</string>
   <string name="preferences__advanced">Avanceret</string>
   <string name="preferences__override_system_mms_settings">Brug nedenstående MMS-indstillinger i stedet for systemets</string>
-  <string name="preferences__mmsc_url_required">MMSC URL (påkrævet)</string>
-  <string name="preferences__mms_proxy_host_optional">MMS proxy host (valgfrit)</string>
-  <string name="preferences__mms_proxy_port_optional">MMS proxy port (valgfrit)</string>
   <string name="preferences__sms_delivery_reports">Leveringsrapport for SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Bed om en leveringsrapport for hver SMS-besked du sender</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Slet gamle beskeder automatisk når en besked tråd overskrider en specificeret størrelse</string>
@@ -584,13 +588,17 @@ Styrk sikkerheden af din data kommunikation og undgå SMS gebyrer ved at bruge m
   <string name="conversation_context__menu_resend_message">Send besked igen</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Gem vedhæftning</string>
+  <!--conversation_insecure-->
   <!--conversation_insecure_no_push-->
   <string name="conversation_insecure__menu_start_secure_session">Start sikker forbindelse</string>
+  <string name="conversation_insecure__security">Sikkerhed</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Slet markeret</string>
   <string name="conversation_list_batch__menu_select_all">Marker alle</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Søg</string>
+  <!--conversation_list_item_view-->
+  <!--conversation_list_fragment-->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Sikkerhed</string>
   <string name="conversation_secure_verified__menu_verify_identity">Verificer identitet</string>
@@ -624,5 +632,6 @@ Styrk sikkerheden af din data kommunikation og undgå SMS gebyrer ved at bruge m
   <!--media_preview-->
   <!--media_preview_activity-->
   <!--Trimmer-->
+  <!--transport_selection_list_item-->
   <!--EOF-->
 </resources>
