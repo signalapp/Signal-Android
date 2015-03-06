@@ -475,7 +475,6 @@
     <!-- conversation_item -->
     <string name="conversation_item__mms_downloading_description">Media message downloading</string>
     <string name="conversation_item__mms_image_description">Media message</string>
-    <string name="conversation_item__play_button_description">Play button</string>
     <string name="conversation_item__secure_message_description">Secure message</string>
 
     <!-- conversation_item_sent -->
@@ -834,7 +833,6 @@
 
     <!-- conversation_list_item_view -->
     <string name="conversation_list_item_view__contact_photo_image">Contact Photo Image</string>
-    <string name="conversation_list_item_view__attachment_indicator">Attachment Indicator</string>
     <string name="conversation_list_item_view__error_alert">Error alert</string>
 
     <!-- conversation_list_fragment -->
