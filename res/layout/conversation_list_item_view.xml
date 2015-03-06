@@ -59,6 +59,22 @@
                       tools:text="Jules Bonnot"
                       android:ellipsize="marquee" />
 
+            <ImageView android:id="@+id/attachment"
+                       android:layout_marginLeft="3dip"
+                       android:layout_height="match_parent"
+                       android:layout_width="20sp"
+                       android:visibility="gone"
+                       android:src="@drawable/ic_attachment_universal_small"
+                       android:contentDescription="Attachment Indicator" />
+
+            <ImageView android:id="@+id/error"
+                       android:layout_marginLeft="3dip"
+                       android:layout_height="match_parent"
+                       android:layout_width="20sp"
+                       android:visibility="gone"
+                       android:src="@drawable/ic_action_warning_red"
+                       android:contentDescription="Error Alert" />
+
             <TextView android:id="@+id/date"
                       android:layout_marginLeft="3dip"
                       android:layout_height="wrap_content"
