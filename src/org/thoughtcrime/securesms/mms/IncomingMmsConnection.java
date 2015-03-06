@@ -20,6 +20,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.util.Log;
 
+import org.apache.http.Header;
 import org.apache.http.HttpHost;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpGetHC4;
@@ -41,7 +42,9 @@ public class IncomingMmsConnection extends MmsConnection {
   @Override
   protected HttpUriRequest constructRequest(boolean useProxy) throws IOException {
     HttpGetHC4 request = new HttpGetHC4(apn.getMmsc());
-    request.addHeader("Accept", "*/*, application/vnd.wap.mms-message, application/vnd.wap.sic");
+    for (Header header : getBaseHeaders()) {
+      request.addHeader(header);
+    }
     if (useProxy) {
       HttpHost proxy = new HttpHost(apn.getProxy(), apn.getPort());
       request.setConfig(RequestConfig.custom().setProxy(proxy).build());

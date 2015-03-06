@@ -20,13 +20,18 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.telephony.TelephonyManager;
+import android.text.TextUtils;
 import android.util.Log;
 
+import org.apache.http.Header;
 import org.apache.http.HttpHost;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpPostHC4;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.entity.ByteArrayEntityHC4;
+import org.thoughtcrime.securesms.util.TelephonyUtil;
+import org.thoughtcrime.securesms.util.Util;
 
 import java.io.IOException;
 
@@ -49,9 +54,10 @@ public class OutgoingMmsConnection extends MmsConnection {
   {
     try {
       HttpPostHC4 request = new HttpPostHC4(apn.getMmsc());
-      request.addHeader("Accept", "*/*, application/vnd.wap.mms-message, application/vnd.wap.sic");
-      request.addHeader("x-wap-profile", "http://www.google.com/oha/rdf/ua-profile-kila.xml");
-      request.addHeader("Content-Type", "application/vnd.wap.mms-message");
+      for (Header header : getBaseHeaders()) {
+        request.addHeader(header);
+      }
+
       request.setEntity(new ByteArrayEntityHC4(mms));
       if (useProxy) {
         HttpHost proxy = new HttpHost(apn.getProxy(), apn.getPort());
