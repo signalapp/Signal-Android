@@ -378,6 +378,24 @@ public class ThreadDatabase extends Database {
     return null;
   }
 
+  public long getMessageCountForThreadId(long threadId) {
+    SQLiteDatabase db = databaseHelper.getReadableDatabase();
+    Cursor cursor     = null;
+
+    try {
+      cursor = db.query(TABLE_NAME, null, ID + " = ?", new String[] {threadId+""}, null, null, null);
+
+      if (cursor != null && cursor.moveToFirst()) {
+        return cursor.getLong(cursor.getColumnIndexOrThrow(MESSAGE_COUNT));
+      }
+    } finally {
+      if (cursor != null)
+        cursor.close();
+    }
+
+    return -1L;
+  }
+
   public void update(long threadId) {
     MmsSmsDatabase mmsSmsDatabase = DatabaseFactory.getMmsSmsDatabase(context);
     long count                    = mmsSmsDatabase.getConversationCount(threadId);
