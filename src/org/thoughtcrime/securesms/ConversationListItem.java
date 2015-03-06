@@ -16,31 +16,21 @@
  */
 package org.thoughtcrime.securesms;
 
-import android.app.AlertDialog;
-import android.content.ActivityNotFoundException;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
 import android.os.Handler;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import org.thoughtcrime.securesms.ConversationListFragment.ConversationClickListener;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
-import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DateUtils;
-import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.Emoji;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
@@ -66,9 +56,7 @@ public class ConversationListItem extends RelativeLayout
   private final static Typeface LIGHT_TYPEFACE = Typeface.create("sans-serif-light", Typeface.NORMAL);
 
   private Context                     context;
-  private MasterSecret                masterSecret;
   private Set<Long>                   selectedThreads;
-  private ConversationClickListener   clickListener;
   private ListenableFutureTask<Slide> snippetSlide;
   private FutureTaskListener<Slide>   snippetSlideListener;
 
@@ -107,12 +95,8 @@ public class ConversationListItem extends RelativeLayout
     initializeContactWidgetVisibility();
   }
 
-  public void set(MasterSecret masterSecret, ThreadRecord thread, Set<Long> selectedThreads,
-                  ConversationClickListener clickListener, boolean batchMode)
-  {
-    this.masterSecret     = masterSecret;
+  public void set(ThreadRecord thread, Set<Long> selectedThreads, boolean batchMode) {
     this.selectedThreads  = selectedThreads;
-    this.clickListener    = clickListener;
     this.threadId         = thread.getThreadId();
     this.recipients       = thread.getRecipients();
     this.read             = thread.isRead();
@@ -181,18 +165,12 @@ public class ConversationListItem extends RelativeLayout
           return;
 
         handler.post(new Runnable() {
-
           @Override
           public void run() {
             if (result.hasImage()) {
               result.setThumbnailOn(context, mediaPreviewImage);
-
-              ThumbnailClickListener listener = new ThumbnailClickListener(result);
-              mediaPreviewImage.setOnClickListener(listener);
-              mediaPreviewImage.setOnLongClickListener(listener);
             }
           }
-
         });
       }
 
@@ -223,57 +201,5 @@ public class ConversationListItem extends RelativeLayout
         RecipientViewUtil.setContactPhoto(context, contactPhotoImage, recipients.getPrimaryRecipient(), true);
       }
     });
-  }
-
-  private class ThumbnailClickListener implements View.OnClickListener, OnLongClickListener {
-    private final Slide slide;
-
-    public ThumbnailClickListener(Slide slide) {
-      this.slide = slide;
-    }
-
-    private void fireViewIntent() {
-      Log.w(TAG, "Clicked: " + slide.getUri() + " , " + slide.getContentType());
-      Intent intent = new Intent(Intent.ACTION_VIEW);
-      intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-      intent.setDataAndType(PartAuthority.getPublicPartUri(slide.getUri()), slide.getContentType());
-      try {
-        context.startActivity(intent);
-      } catch (ActivityNotFoundException anfe) {
-        Log.w(TAG, "No activity existed to view the media.");
-        Toast.makeText(context, R.string.ConversationItem_unable_to_open_media, Toast.LENGTH_LONG).show();
-      }
-    }
-
-    @Override
-    public void onClick(View v) {
-      if (!selectedThreads.isEmpty()) {
-        clickListener.onItemClick(null, ConversationListItem.this, -1, -1);
-      } else if (MediaPreviewActivity.isContentTypeSupported(slide.getContentType())) {
-        Intent intent = new Intent(context, MediaPreviewActivity.class);
-        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        intent.setDataAndType(slide.getUri(), slide.getContentType());
-        intent.putExtra(MediaPreviewActivity.MASTER_SECRET_EXTRA, masterSecret);
-        context.startActivity(intent);
-      } else {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle(R.string.ConversationItem_view_secure_media_question);
-        builder.setIcon(Dialogs.resolveIcon(context, R.attr.dialog_alert_icon));
-        builder.setCancelable(true);
-        builder.setMessage(R.string.ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning);
-        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-          public void onClick(DialogInterface dialog, int which) {
-            fireViewIntent();
-          }
-        });
-        builder.setNegativeButton(R.string.no, null);
-        builder.show();
-      }
-    }
-
-    @Override
-    public boolean onLongClick(View v) {
-      return clickListener.onItemLongClick(null, ConversationListItem.this, -1, -1);
-    }
   }
 }

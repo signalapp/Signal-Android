@@ -24,7 +24,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 
-import org.thoughtcrime.securesms.ConversationListFragment.ConversationClickListener;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
@@ -44,23 +43,19 @@ public class ConversationListAdapter extends CursorAdapter implements AbsListVie
   private static final int VIEW_TYPE_BASE               = 0;
   private static final int VIEW_TYPE_WITH_MEDIA_PREVIEW = 1;
 
-  private final ThreadDatabase            threadDatabase;
-  private final MasterSecret              masterSecret;
-  private final Context                   context;
-  private final ConversationClickListener clickListener;
-  private final LayoutInflater            inflater;
+  private final ThreadDatabase threadDatabase;
+  private final MasterSecret   masterSecret;
+  private final Context        context;
+  private final LayoutInflater inflater;
 
   private final Set<Long> batchSet  = Collections.synchronizedSet(new HashSet<Long>());
   private       boolean   batchMode = false;
 
-  public ConversationListAdapter(Context context, Cursor cursor, MasterSecret masterSecret,
-                                 ConversationClickListener clickListener)
-  {
+  public ConversationListAdapter(Context context, Cursor cursor, MasterSecret masterSecret) {
     super(context, cursor, 0);
 
     this.masterSecret   = masterSecret;
     this.context        = context;
-    this.clickListener  = clickListener;
     this.threadDatabase = DatabaseFactory.getThreadDatabase(context);
     this.inflater       = LayoutInflater.from(context);
   }
@@ -85,7 +80,7 @@ public class ConversationListAdapter extends CursorAdapter implements AbsListVie
       ThreadDatabase.Reader reader = threadDatabase.readerFor(cursor, masterSecret);
       ThreadRecord          record = reader.getCurrent();
 
-      ((ConversationListItem)view).set(masterSecret, record, batchSet, clickListener, batchMode);
+      ((ConversationListItem)view).set(record, batchSet, batchMode);
     }
   }
 
