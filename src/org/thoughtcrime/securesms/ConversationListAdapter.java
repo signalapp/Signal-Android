@@ -25,7 +25,6 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 
 import org.thoughtcrime.securesms.ConversationListFragment.ConversationClickListener;
-import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
@@ -46,7 +45,6 @@ public class ConversationListAdapter extends CursorAdapter implements AbsListVie
   private static final int VIEW_TYPE_WITH_MEDIA_PREVIEW = 1;
 
   private final ThreadDatabase            threadDatabase;
-  private final MasterCipher              masterCipher;
   private final MasterSecret              masterSecret;
   private final Context                   context;
   private final ConversationClickListener clickListener;
@@ -59,9 +57,6 @@ public class ConversationListAdapter extends CursorAdapter implements AbsListVie
                                  ConversationClickListener clickListener)
   {
     super(context, cursor, 0);
-
-    if (masterSecret != null) this.masterCipher = new MasterCipher(masterSecret);
-    else                      this.masterCipher = null;
 
     this.masterSecret   = masterSecret;
     this.context        = context;
@@ -86,8 +81,8 @@ public class ConversationListAdapter extends CursorAdapter implements AbsListVie
 
   @Override
   public void bindView(View view, Context context, Cursor cursor) {
-    if (masterSecret != null && masterCipher != null) {
-      ThreadDatabase.Reader reader = threadDatabase.readerFor(cursor, masterSecret, masterCipher);
+    if (masterSecret != null) {
+      ThreadDatabase.Reader reader = threadDatabase.readerFor(cursor, masterSecret);
       ThreadRecord          record = reader.getCurrent();
 
       ((ConversationListItem)view).set(masterSecret, record, batchSet, clickListener, batchMode);
@@ -100,8 +95,8 @@ public class ConversationListAdapter extends CursorAdapter implements AbsListVie
   }
 
   private int getItemViewType(Cursor cursor) {
-    if (masterSecret != null && masterCipher != null) {
-      ThreadDatabase.Reader reader = threadDatabase.readerFor(cursor, masterSecret, masterCipher);
+    if (masterSecret != null) {
+      ThreadDatabase.Reader reader = threadDatabase.readerFor(cursor, masterSecret);
       ThreadRecord          record = reader.getCurrent();
 
       if (record.getSnippetSlide() != null) {

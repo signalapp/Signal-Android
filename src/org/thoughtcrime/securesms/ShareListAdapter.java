@@ -27,7 +27,6 @@ import android.widget.AbsListView;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
-import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 
 /**
@@ -39,15 +38,11 @@ public class ShareListAdapter extends CursorAdapter implements AbsListView.Recyc
 
   private final ThreadDatabase threadDatabase;
   private final MasterSecret   masterSecret;
-  private final MasterCipher   masterCipher;
   private final Context        context;
   private final LayoutInflater inflater;
 
   public ShareListAdapter(Context context, Cursor cursor, MasterSecret masterSecret) {
     super(context, cursor, 0);
-
-    if (masterSecret != null) this.masterCipher = new MasterCipher(masterSecret);
-    else                      this.masterCipher = null;
 
     this.context        = context;
     this.masterSecret   = masterSecret;
@@ -62,8 +57,8 @@ public class ShareListAdapter extends CursorAdapter implements AbsListView.Recyc
 
   @Override
   public void bindView(View view, Context context, Cursor cursor) {
-    if (masterSecret != null && masterCipher != null) {
-      ThreadDatabase.Reader reader = threadDatabase.readerFor(cursor, masterSecret, masterCipher);
+    if (masterSecret != null) {
+      ThreadDatabase.Reader reader = threadDatabase.readerFor(cursor, masterSecret);
       ThreadRecord          record = reader.getCurrent();
 
       ((ShareListItem)view).set(record);
