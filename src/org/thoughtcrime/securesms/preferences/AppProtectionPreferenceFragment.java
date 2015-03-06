@@ -11,7 +11,6 @@ import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
 import android.support.v4.preference.PreferenceFragment;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.doomonafireball.betterpickers.hmspicker.HmsPickerBuilder;
@@ -153,10 +152,31 @@ public class AppProtectionPreferenceFragment extends PreferenceFragment {
     }
   }
 
-  public static CharSequence getSummary(Context context) {
-    final int onCapsResId  = R.string.ApplicationPreferencesActivity_On;
-    final int offCapsResId = R.string.ApplicationPreferencesActivity_Off;
+  private static CharSequence getPassphraseSummary(Context context) {
+    final int    passphraseResId = R.string.preferences__passphrase_summary;
+    final String onRes           = context.getString(R.string.ApplicationPreferencesActivity_on);
+    final String offRes          = context.getString(R.string.ApplicationPreferencesActivity_off);
 
-    return context.getString(TextSecurePreferences.isPasswordDisabled(context) ? offCapsResId : onCapsResId);
+    if (TextSecurePreferences.isPasswordDisabled(context)) {
+      return context.getString(passphraseResId, offRes);
+    } else {
+      return context.getString(passphraseResId, onRes);
+    }
+  }
+
+  private static CharSequence getScreenSecuritySummary(Context context) {
+    final int    screenSecurityResId = R.string.preferences__screen_security_summary;
+    final String onRes               = context.getString(R.string.ApplicationPreferencesActivity_on);
+    final String offRes              = context.getString(R.string.ApplicationPreferencesActivity_off);
+
+    if (TextSecurePreferences.isScreenSecurityEnabled(context)) {
+      return context.getString(screenSecurityResId, onRes);
+    } else {
+      return context.getString(screenSecurityResId, offRes);
+    }
+  }
+
+  public static CharSequence getSummary(Context context) {
+    return getPassphraseSummary(context) + ", " + getScreenSecuritySummary(context);
   }
 }
