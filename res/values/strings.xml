@@ -40,7 +40,7 @@
     <string name="ApplicationPreferencesActivity_sms">SMS</string>
     <string name="ApplicationPreferencesActivity_mms">MMS</string>
     <string name="ApplicationPreferencesActivity_incoming_sms_summary">Incoming %s</string>
-    <string name="ApplicationPreferencesActivity_outgoing_sms_summary">outgoing %s</string>
+    <string name="ApplicationPreferencesActivity_outgoing_sms_summary">Outgoing %s</string>
 
     <!-- AppProtectionPreferenceFragment -->
     <string name="AppProtectionPreferenceFragment_minutes">%d minutes</string>
