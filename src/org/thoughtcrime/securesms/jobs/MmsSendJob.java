@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.NumberUtil;
+import org.thoughtcrime.securesms.util.TelephonyUtil;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.libaxolotl.NoSessionException;
@@ -146,7 +147,7 @@ public class MmsSendJob extends SendJob {
                                 boolean usingMmsRadio, boolean useProxy)
       throws IOException, UndeliverableMessageException, InsecureFallbackApprovalException
   {
-    String  number         = ((TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE)).getLine1Number();
+    String  number         = TelephonyUtil.getManager(context).getLine1Number();
     boolean upgradedSecure = false;
 
     prepareMessageMedia(masterSecret, message, MediaConstraints.MMS_CONSTRAINTS, true);
