@@ -212,7 +212,8 @@ public class TextSecurePreferences {
   }
 
   public static boolean getUseCustomMmsc(Context context) {
-    return getBooleanPreference(context, MMSC_CUSTOM_HOST_PREF, false);
+    boolean legacy = TextSecurePreferences.isLegacyUseLocalApnsEnabled(context);
+    return getBooleanPreference(context, MMSC_CUSTOM_HOST_PREF, legacy);
   }
 
   public static void setUseCustomMmsc(Context context, boolean value) {
@@ -228,7 +229,8 @@ public class TextSecurePreferences {
   }
 
   public static boolean getUseCustomMmscProxy(Context context) {
-    return getBooleanPreference(context, MMSC_CUSTOM_PROXY_PREF, false);
+    boolean legacy = TextSecurePreferences.isLegacyUseLocalApnsEnabled(context);
+    return getBooleanPreference(context, MMSC_CUSTOM_PROXY_PREF, legacy);
   }
 
   public static void setUseCustomMmscProxy(Context context, boolean value) {
@@ -244,7 +246,8 @@ public class TextSecurePreferences {
   }
 
   public static boolean getUseCustomMmscProxyPort(Context context) {
-    return getBooleanPreference(context, MMSC_CUSTOM_PROXY_PORT_PREF, false);
+    boolean legacy = TextSecurePreferences.isLegacyUseLocalApnsEnabled(context);
+    return getBooleanPreference(context, MMSC_CUSTOM_PROXY_PORT_PREF, legacy);
   }
 
   public static void setUseCustomMmscProxyPort(Context context, boolean value) {
@@ -260,7 +263,8 @@ public class TextSecurePreferences {
   }
 
   public static boolean getUseCustomMmscUsername(Context context) {
-    return getBooleanPreference(context, MMSC_CUSTOM_USERNAME_PREF, false);
+    boolean legacy = TextSecurePreferences.isLegacyUseLocalApnsEnabled(context);
+    return getBooleanPreference(context, MMSC_CUSTOM_USERNAME_PREF, legacy);
   }
 
   public static void setUseCustomMmscUsername(Context context, boolean value) {
@@ -276,7 +280,8 @@ public class TextSecurePreferences {
   }
 
   public static boolean getUseCustomMmscPassword(Context context) {
-    return getBooleanPreference(context, MMSC_CUSTOM_PASSWORD_PREF, false);
+    boolean legacy = TextSecurePreferences.isLegacyUseLocalApnsEnabled(context);
+    return getBooleanPreference(context, MMSC_CUSTOM_PASSWORD_PREF, legacy);
   }
 
   public static void setUseCustomMmscPassword(Context context, boolean value) {

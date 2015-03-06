@@ -59,7 +59,6 @@ public class DatabaseUpgradeActivity extends BaseActivity {
   public static final int NO_V1_VERSION                        = 83;
   public static final int SIGNED_PREKEY_VERSION                = 83;
   public static final int NO_DECRYPT_QUEUE_VERSION             = 84;
-  public static final int GRANULAR_MMS_PREFERENCES             = 85;
 
   private static final SortedSet<Integer> UPGRADE_VERSIONS = new TreeSet<Integer>() {{
     add(NO_MORE_KEY_EXCHANGE_PREFIX_VERSION);
@@ -69,7 +68,6 @@ public class DatabaseUpgradeActivity extends BaseActivity {
     add(NO_V1_VERSION);
     add(SIGNED_PREKEY_VERSION);
     add(NO_DECRYPT_QUEUE_VERSION);
-    add(GRANULAR_MMS_PREFERENCES);
   }};
 
   private MasterSecret masterSecret;
@@ -216,16 +214,6 @@ public class DatabaseUpgradeActivity extends BaseActivity {
         } finally {
           if (pushReader != null)
             pushReader.close();
-        }
-      }
-
-      if (params[0] < GRANULAR_MMS_PREFERENCES) {
-        if (TextSecurePreferences.isLegacyUseLocalApnsEnabled(getApplicationContext())) {
-          TextSecurePreferences.setUseCustomMmsc(getApplicationContext(), true);
-          TextSecurePreferences.setUseCustomMmscProxy(getApplicationContext(), true);
-          TextSecurePreferences.setUseCustomMmscProxyPort(getApplicationContext(), true);
-          TextSecurePreferences.setUseCustomMmscUsername(getApplicationContext(), true);
-          TextSecurePreferences.setUseCustomMmscPassword(getApplicationContext(), true);
         }
       }
 
