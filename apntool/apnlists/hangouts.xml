@@ -562,6 +562,7 @@
     <apn mcc="310" mnc="0" carrier="Sprint" apn="cinet.spcs" mmsc="http://mms.sprintpcs.com" mmsproxy="68.28.31.7" mmsport="80" type="default,mms" user="none" password="none" bearer="9" server="*" />
     <apn mcc="310" mnc="0" carrier="Sprint" apn="cinet.spcs" mmsc="http://mms.sprintpcs.com" mmsproxy="68.28.31.7" mmsport="80" type="default,mms" user="none" password="none" bearer="3" server="*" />
     <apn mcc="310" mnc="0" carrier="Sprint" apn="cinet.spcs" mmsc="http://mms.sprintpcs.com" mmsproxy="68.28.31.7" mmsport="80" type="default,mms" user="none" password="none" bearer="1" server="*" />
+    <apn mcc="310" mnc="000" carrier="Verizon CDMA HRPD" mmsc="http://mms.vzwreseller.com/servlets/mms" type="default,mms,hipri,dun,supl" authtype="3" mvno_type="spn" mvno_match_data="Tracfone" />
     <apn mcc="310" mnc="4" carrier="Verizon CBS" apn="VZWAPP" mmsc="http://mms.vtext.com/servlets/mms" type="cbs,hipri" protocol="IPV4V6" bearer="13" roaming_protocol="IPV4V6" carrier_enabled="TRUE" />
     <apn mcc="310" mnc="4" carrier="Verizon CBS" apn="VZWAPP" mmsc="http://mms.vtext.com/servlets/mms" type="cbs,hipri" protocol="IPV4V6" bearer="14" roaming_protocol="IPV4V6" carrier_enabled="TRUE" />
     <apn mcc="310" mnc="4" carrier="Verizon CDMA HRPD" apn="CdmaNai" mmsc="http://mms.vtext.com/servlets/mms" type="default,mms,hipri,dun,stdhipri,supl" protocol="IPV4V6" bearer="6" carrier_enabled="FALSE" />
@@ -1717,8 +1718,6 @@
     <apn mcc="434" mnc="4" carrier="Beeline-UZB MMS" apn="mms.beeline.uz" mmsc="http://mms" mmsproxy="172.30.30.166" mmsport="8080" type="mms" user="beeline" password="beeline" authtype="1" />
     <apn mcc="434" mnc="5" carrier="UCELL MMS" apn="mms" mmsc="http://mmsc:8002/" mmsproxy="10.64.164.10" mmsport="8080" type="mms" />
     <apn mcc="434" mnc="07" carrier="MTS-UZB MMS" apn="mms.mts.uz" mmsc="http://mmsc/was" mmsproxy="10.10.0.10" mmsport="8080" type="mms" />
-    <apn mcc="440" mnc="20" carrier="Application" apn="plus.acs.jp" mmsc="http://mms-s" mmsproxy="andmms.plusacs.ne.jp" mmsport="8080" type="default,mms,supl" user="plusw6q9tattkmpk" password="msfbbam83bsdetxb" authtype="2" />
-    <apn mcc="440" mnc="20" carrier="Application" apn="andoworld.softbank.ne.jp" mmsc="http://mms/" mmsproxy="andmms.softbank.ne.jp" mmsport="8080" type="default,mms,supl,hpri" authtype="0" />
     <apn mcc="450" mnc="5" carrier="SKT LTE INTERNET" apn="lte.sktelecom.com" mmsc="http://omms.nate.com:9082/oma_mms" mmsproxy="smart.nate.com" mmsport="9093" type="default,mms,supl,fota,cbs" authtype="0" server="*" />
     <apn mcc="450" mnc="5" carrier="SKT-Home" apn="lte.sktelecom.com" mmsc="http://omms.nate.com:9082/oma_mms" mmsproxy="smart.nate.com" mmsport="9093" type="default,mms" authtype="0" server="*" />
     <apn mcc="450" mnc="05" carrier="SKT LTE INTERNET" apn="lte.sktelecom.com" mmsc="http://omms.nate.com:9082/oma_mms" mmsproxy="smart.nate.com" mmsport="9093" type="ia,default,mms,supl,fota,cbs" server="*" />
