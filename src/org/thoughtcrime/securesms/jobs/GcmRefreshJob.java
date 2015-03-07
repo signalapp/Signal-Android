@@ -66,6 +66,7 @@ public class GcmRefreshJob extends ContextJob {
         String gcmId = GoogleCloudMessaging.getInstance(context).register(REGISTRATION_ID);
         accountManager.setGcmId(Optional.of(gcmId));
         TextSecurePreferences.setGcmRegistrationId(context, gcmId);
+        TextSecurePreferences.setWebsocketRegistered(context, true);
       }
     }
   }
