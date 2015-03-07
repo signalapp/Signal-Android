@@ -40,6 +40,7 @@ import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ProgressDialogAsyncTask;
+import org.thoughtcrime.securesms.util.ResUtil;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
 
@@ -192,7 +193,7 @@ public class ConversationFragment extends ListFragment
   private void handleDeleteMessages(final List<MessageRecord> messageRecords) {
     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
     builder.setTitle(R.string.ConversationFragment_confirm_message_delete);
-    builder.setIcon(Dialogs.resolveIcon(getActivity(), R.attr.dialog_alert_icon));
+    builder.setIcon(ResUtil.getDrawable(getActivity(), R.attr.dialog_alert_icon));
     builder.setCancelable(true);
     builder.setMessage(R.string.ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages);
     builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {

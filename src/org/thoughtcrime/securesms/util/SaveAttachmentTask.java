@@ -152,7 +152,7 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
   public static void showWarningDialog(Context context, OnClickListener onAcceptListener) {
     AlertDialog.Builder builder = new AlertDialog.Builder(context);
     builder.setTitle(R.string.ConversationFragment_save_to_sd_card);
-    builder.setIcon(Dialogs.resolveIcon(context, R.attr.dialog_alert_icon));
+    builder.setIcon(ResUtil.getDrawable(context, R.attr.dialog_alert_icon));
     builder.setCancelable(true);
     builder.setMessage(R.string.ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning);
     builder.setPositiveButton(R.string.yes, onAcceptListener);

@@ -18,38 +18,32 @@ package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.TransitionDrawable;
 import android.net.Uri;
-import android.os.Handler;
+import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.ImageView;
+import android.util.Pair;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.LRUCache;
+import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.MediaUtil.ThumbnailData;
+import org.thoughtcrime.securesms.util.ResUtil;
 import org.thoughtcrime.securesms.util.SmilUtil;
-import org.thoughtcrime.securesms.util.Util;
 import org.w3c.dom.smil.SMILDocument;
 import org.w3c.dom.smil.SMILMediaElement;
 import org.w3c.dom.smil.SMILRegionElement;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
 import java.util.Collections;
 import java.util.Map;
+import java.util.concurrent.Callable;
 
 import ws.com.google.android.mms.ContentType;
 import ws.com.google.android.mms.pdu.PduPart;
@@ -70,106 +64,50 @@ public class ImageSlide extends Slide {
   }
 
   @Override
-  public Drawable getThumbnail(Context context, int maxWidth, int maxHeight) {
+  public ListenableFutureTask<Pair<Drawable,Boolean>> getThumbnail(Context context) {
+    if (getPart().isPendingPush()) {
+      return new ListenableFutureTask<>(new Pair<>(context.getResources().getDrawable(R.drawable.stat_sys_download), true));
+    }
+
     Drawable thumbnail = getCachedThumbnail();
-
     if (thumbnail != null) {
-      return thumbnail;
+      Log.w(TAG, "getThumbnail() returning cached thumbnail");
+      return new ListenableFutureTask<>(new Pair<>(thumbnail, true));
     }
 
-    if (part.isPendingPush()) {
-      return context.getResources().getDrawable(R.drawable.stat_sys_download);
-    }
-
-    try {
-      Bitmap thumbnailBitmap;
-      long startDecode = System.currentTimeMillis();
-
-      if (part.getDataUri() != null && part.getId() > -1) {
-        thumbnailBitmap = BitmapFactory.decodeStream(DatabaseFactory.getPartDatabase(context)
-                                                                    .getThumbnailStream(masterSecret, part.getId()));
-      } else if (part.getDataUri() != null) {
-        Log.w(TAG, "generating thumbnail for new part");
-        ThumbnailData thumbnailData = MediaUtil.generateThumbnail(context, masterSecret,
-                                                                  part.getDataUri(), Util.toIsoString(part.getContentType()));
-        thumbnailBitmap = thumbnailData.getBitmap();
-        part.setThumbnail(thumbnailBitmap);
-      } else {
-        throw new FileNotFoundException("no data location specified");
-      }
-
-      Log.w(TAG, "thumbnail decode/generate time: " + (System.currentTimeMillis() - startDecode) + "ms");
-
-      thumbnail = new BitmapDrawable(context.getResources(), thumbnailBitmap);
-      thumbnailCache.put(part.getDataUri(), new SoftReference<>(thumbnail));
-
-      return thumbnail;
-    } catch (IOException | BitmapDecodingException e) {
-      Log.w(TAG, e);
-      return context.getResources().getDrawable(R.drawable.ic_missing_thumbnail_picture);
-    }
+    Log.w(TAG, "getThumbnail() resolving thumbnail, as it wasn't cached");
+    return resolveThumbnail(context);
   }
 
-  @Override
-  public void setThumbnailOn(Context context, ImageView imageView) {
-    setThumbnailOn(context, imageView, imageView.getWidth(), imageView.getHeight(), new ColorDrawable(Color.TRANSPARENT));
-  }
+  private ListenableFutureTask<Pair<Drawable,Boolean>> resolveThumbnail(Context context) {
+    final WeakReference<Context> weakContext = new WeakReference<>(context);
 
-  @Override
-  public void setThumbnailOn(Context context, ImageView imageView, final int width, final int height, final Drawable placeholder) {
-    Drawable thumbnail = getCachedThumbnail();
-
-    if (thumbnail != null) {
-      Log.w("ImageSlide", "Setting cached thumbnail...");
-      setThumbnailOn(imageView, thumbnail, true);
-      return;
-    }
-
-    final WeakReference<Context>   weakContext   = new WeakReference<>(context);
-    final WeakReference<ImageView> weakImageView = new WeakReference<>(imageView);
-    final Handler handler                        = new Handler();
-
-    imageView.setImageDrawable(placeholder);
-
-    if (width == 0 || height == 0)
-      return;
-
-    MmsDatabase.slideResolver.execute(new Runnable() {
+    Callable<Pair<Drawable,Boolean>> slideCallable = new Callable<Pair<Drawable, Boolean>>() {
       @Override
-      public void run() {
+      public Pair<Drawable, Boolean> call() throws Exception {
         final Context context = weakContext.get();
         if (context == null) {
           Log.w(TAG, "context SoftReference was null, leaving");
-          return;
+          return null;
         }
 
-        final Drawable bitmap = getThumbnail(context, width, height);
-        final ImageView destination = weakImageView.get();
+        try {
+          final long     startDecode     = System.currentTimeMillis();
+          final Bitmap   thumbnailBitmap = MediaUtil.getOrGenerateThumbnail(context, masterSecret, part);
+          final Drawable thumbnail       = new BitmapDrawable(context.getResources(), thumbnailBitmap);
+          Log.w(TAG, "thumbnail decode/generate time: " + (System.currentTimeMillis() - startDecode) + "ms");
 
-        Log.w(TAG, "slide resolved, destination available? " + (destination == null));
-        if (destination != null && destination.getDrawable() == placeholder) {
-          handler.post(new Runnable() {
-            @Override
-            public void run() {
-              setThumbnailOn(destination, bitmap, false);
-            }
-          });
+          thumbnailCache.put(part.getDataUri(), new SoftReference<>(thumbnail));
+          return new Pair<>(thumbnail, false);
+        } catch (IOException | BitmapDecodingException e) {
+          Log.w(TAG, e);
+          return new Pair<>(context.getResources().getDrawable(R.drawable.ic_missing_thumbnail_picture), false);
         }
       }
-    });
-  }
-
-  private void setThumbnailOn(ImageView imageView, Drawable thumbnail, boolean fromMemory) {
-    if (fromMemory) {
-      imageView.setImageDrawable(thumbnail);
-    } else if (thumbnail instanceof AnimationDrawable) {
-      imageView.setImageDrawable(thumbnail);
-      ((AnimationDrawable)imageView.getDrawable()).start();
-    } else {
-      TransitionDrawable fadingResult = new TransitionDrawable(new Drawable[]{imageView.getDrawable(), thumbnail});
-      imageView.setImageDrawable(fadingResult);
-      fadingResult.startTransition(300);
-    }
+    };
+    ListenableFutureTask<Pair<Drawable,Boolean>> futureTask = new ListenableFutureTask<>(slideCallable);
+    MmsDatabase.slideResolver.execute(futureTask);
+    return futureTask;
   }
 
   private Drawable getCachedThumbnail() {

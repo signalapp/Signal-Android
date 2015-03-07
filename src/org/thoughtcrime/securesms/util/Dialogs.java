@@ -28,22 +28,17 @@ public class Dialogs {
     AlertDialog.Builder dialog = new AlertDialog.Builder(context);
     dialog.setTitle(title);
     dialog.setMessage(message);
-    dialog.setIcon(resolveIcon(context, R.attr.dialog_alert_icon));
-    dialog.setPositiveButton(android.R.string.ok, null);
-    dialog.show();
-  }
-  public static void showInfoDialog(Context context, String title, String message) {
-    AlertDialog.Builder dialog = new AlertDialog.Builder(context);
-    dialog.setTitle(title);
-    dialog.setMessage(message);
-    dialog.setIcon(resolveIcon(context, R.attr.dialog_info_icon));
+    dialog.setIcon(ResUtil.getDrawable(context, R.attr.dialog_alert_icon));
     dialog.setPositiveButton(android.R.string.ok, null);
     dialog.show();
   }
 
-  public static Drawable resolveIcon(Context c, int iconAttr) {
-    TypedValue out = new TypedValue();
-    c.getTheme().resolveAttribute(iconAttr, out, true);
-    return c.getResources().getDrawable(out.resourceId);
+  public static void showInfoDialog(Context context, String title, String message) {
+    AlertDialog.Builder dialog = new AlertDialog.Builder(context);
+    dialog.setTitle(title);
+    dialog.setMessage(message);
+    dialog.setIcon(ResUtil.getDrawable(context, R.attr.dialog_info_icon));
+    dialog.setPositiveButton(android.R.string.ok, null);
+    dialog.show();
   }
 }

@@ -35,9 +35,9 @@
     <color name="conversation_item_sent_pending_background_light">#5564A926</color>
     <color name="conversation_item_sent_pending_background_dark">#55284e0a</color>
     <color name="conversation_item_sent_push_background_light">#ff2090ea</color>
-    <color name="conversation_item_sent_push_background_dark">#ff213b77</color>
-    <color name="conversation_item_sent_push_pending_background_light">#ff528ff2</color>
-    <color name="conversation_item_sent_push_pending_background_dark">#55213b77</color>
+    <color name="conversation_item_sent_push_background_dark">#ff183b7a</color>
+    <color name="conversation_item_sent_push_pending_background_light">#ff5cace6</color>
+    <color name="conversation_item_sent_push_pending_background_dark">#ff122d5e</color>
     <color name="conversation_item_received_background_light">#fff3f3f3</color>
     <color name="conversation_item_received_background_dark">#ff333333</color>
     <color name="conversation_item_received_shadow_light">#ffefefef</color>

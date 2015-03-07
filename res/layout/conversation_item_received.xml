@@ -6,28 +6,27 @@
                                              android:orientation="vertical"
                                              android:background="?conversation_item_background"
                                              xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:tools="http://schemas.android.com/tools"
                                              xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView android:id="@+id/group_message_status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="5dp"
-        android:fontFamily="sans-serif-light"
-        android:textSize="13sp"
-        android:textColor="?attr/conversation_group_member_name"
-        android:visibility="gone" />
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginLeft="15dp"
+              android:layout_marginTop="5dp"
+              android:fontFamily="sans-serif-light"
+              android:textSize="13sp"
+              android:textColor="?attr/conversation_group_member_name"
+              android:visibility="gone" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:layout_marginLeft="9dp"
-        android:layout_marginBottom="6dp"
-        android:layout_marginRight="0dp"
-        android:orientation="horizontal">
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginLeft="9dp"
+                    android:layout_marginBottom="6dp"
+                    android:layout_marginRight="0dp">
 
-        <com.makeramen.RoundedImageView
+        <org.thoughtcrime.securesms.components.ForegroundImageView
             android:id="@+id/contact_photo"
             android:foreground="@drawable/contact_photo_background"
             android:layout_width="40dp"
@@ -38,118 +37,12 @@
             android:cropToPadding="true"
             android:contentDescription="@string/conversation_item_received__contact_photo_description"
             android:scaleType="centerCrop" />
-        <View android:id="@+id/triangle_tick"
-            android:layout_width="12dp"
-            android:layout_height="15dp"
-            android:layout_marginTop="12dp"
-            android:layout_alignRight="@id/contact_photo"
-            android:background="?conversation_item_received_triangle_background" />
 
-        <LinearLayout android:id="@+id/conversation_item_parent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/triangle_tick"
-            android:background="?conversation_item_received_background"
-            android:orientation="vertical">
-
-            <TextView android:id="@+id/conversation_item_body"
+        <org.thoughtcrime.securesms.components.IncomingBubbleContainer
+                android:id="@+id/bubble"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="5dip"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="?conversation_received_text_primary_color"
-                android:textSize="16sp"
-                android:autoLink="all"
-                android:linksClickable="true" />
-
-            <FrameLayout android:id="@+id/mms_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone">
-
-                <ImageView android:id="@+id/image_view"
-                    android:layout_width="230dip"
-                    android:layout_height="174dip"
-                    android:layout_gravity="center"
-                    android:scaleType="centerInside"
-                    android:adjustViewBounds="true"
-                    android:contentDescription="@string/conversation_item__mms_image_description"
-                    android:visibility="gone" />
-                <ImageButton android:id="@+id/play_slideshow_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/mms_play_btn"
-                    android:contentDescription="@string/conversation_item__play_button_description"
-                    android:visibility="gone" />
-            </FrameLayout>
-
-            <LinearLayout android:id="@+id/mms_download_controls"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Button android:id="@+id/mms_download_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="@string/conversation_item_received__download"
-                    android:visibility="gone" />
-
-                <TextView android:id="@+id/mms_label_downloading"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:gravity="center"
-                    android:text="@string/conversation_item_received__downloading"
-                    android:visibility="gone" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingTop="2dip"
-                android:paddingLeft="8dp"
-                android:paddingRight="5dp"
-                android:paddingBottom="5dp"
-                android:orientation="horizontal"
-                android:gravity="left">
-
-                <ImageView android:id="@+id/delivered_indicator"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingRight="3dip"
-                    android:src="?conversation_delivery_delivered"
-                    android:contentDescription="@string/conversation_item_sent__delivered_description"
-                    android:visibility="gone" />
-
-                <ImageView android:id="@+id/sms_secure_indicator"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:paddingRight="4dp"
-                    android:paddingTop="2dp"
-                    android:src="?menu_lock_icon_small_received"
-                    android:contentDescription="@string/conversation_item__secure_message_description"
-                    android:visibility="gone" />
-
-                <TextView android:id="@+id/conversation_item_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:paddingTop="1dip"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="?conversation_received_text_secondary_color"
-                    android:textSize="@dimen/conversation_item_date_text_size"
-                    android:fontFamily="sans-serif-light"
-                    android:autoLink="none"
-                    android:linksClickable="false" />
-		    </LinearLayout>
-        </LinearLayout>
+                android:layout_marginLeft="29dp" />
 
         <LinearLayout android:id="@+id/indicators_parent"
             android:layout_width="wrap_content"

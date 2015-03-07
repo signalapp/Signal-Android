@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingKeyExchangeMessage;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.Dialogs;
+import org.thoughtcrime.securesms.util.ResUtil;
 import org.whispersystems.libaxolotl.AxolotlAddress;
 import org.whispersystems.libaxolotl.SessionBuilder;
 import org.whispersystems.libaxolotl.protocol.KeyExchangeMessage;
@@ -47,7 +48,7 @@ public class KeyExchangeInitiator {
       AlertDialog.Builder dialog = new AlertDialog.Builder(context);
       dialog.setTitle(R.string.KeyExchangeInitiator_initiate_despite_existing_request_question);
       dialog.setMessage(R.string.KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure);
-      dialog.setIcon(Dialogs.resolveIcon(context, R.attr.dialog_alert_icon));
+      dialog.setIcon(ResUtil.getDrawable(context, R.attr.dialog_alert_icon));
       dialog.setCancelable(true);
       dialog.setPositiveButton(R.string.KeyExchangeInitiator_send, new DialogInterface.OnClickListener() {
         public void onClick(DialogInterface dialog, int which) {

@@ -9,12 +9,17 @@
     <dimen name="transport_selection_popup_width">200sp</dimen>
     <dimen name="transport_selection_popup_xoff">0dp</dimen>
     <dimen name="transport_selection_popup_yoff">1dp</dimen>
-    <dimen name="conversation_item_corner_radius">4dp</dimen>
-    <dimen name="conversation_item_drop_shadow_dist">1.5dp</dimen>
     <dimen name="contact_selection_photo_size">50dp</dimen>
     <dimen name="thumbnail_max_size">230dp</dimen>
     <dimen name="preference_fragment_padding_side">8dp</dimen>
     <dimen name="conversation_activity_compose_padding">12dp</dimen>
+
+    <dimen name="message_bubble_end_padding">50dp</dimen>
+    <dimen name="message_bubble_corner_radius">4dp</dimen>
+    <dimen name="message_bubble_shadow_distance">1.5dp</dimen>
+    <dimen name="media_bubble_height">210dp</dimen>
+    <dimen name="media_bubble_border_width">3dp</dimen>
+
 
     <integer name="media_overview_cols">3</integer>
     <dimen name="message_details_table_row_pad">10dp</dimen>
