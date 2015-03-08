@@ -29,6 +29,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.QuickContact;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -162,8 +163,10 @@ public class ConversationItem extends LinearLayout {
     if (mmsThumbnail != null)      mmsThumbnail.setOnLongClickListener(new MultiSelectLongClickListener());
   }
 
-  public void set(MasterSecret masterSecret, MessageRecord messageRecord,
-                  Set<MessageRecord> batchSelected, SelectionClickListener selectionClickListener,
+  public void set(@NonNull MasterSecret masterSecret,
+                  @NonNull MessageRecord messageRecord,
+                  @NonNull Set<MessageRecord> batchSelected,
+                  @NonNull SelectionClickListener selectionClickListener,
                   boolean groupThread, boolean pushDestination)
   {
     this.masterSecret           = masterSecret;

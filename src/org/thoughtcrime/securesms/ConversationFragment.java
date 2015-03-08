@@ -52,7 +52,7 @@ public class ConversationFragment extends ListFragment
   private static final String TAG = ConversationFragment.class.getSimpleName();
 
   private final ActionModeCallback     actionModeCallback     = new ActionModeCallback();
-  private final SelectionClickListener selectionClickListener = new SelectionClickListener();
+  private final SelectionClickListener selectionClickListener = new ConversationFragmentSelectionClickListener();
 
   private ConversationFragmentListener listener;
 
@@ -289,8 +289,11 @@ public class ConversationFragment extends ListFragment
     public void setComposeText(String text);
   }
 
-  public class SelectionClickListener
-      implements AdapterView.OnItemLongClickListener, AdapterView.OnItemClickListener
+  public interface SelectionClickListener extends
+      AdapterView.OnItemLongClickListener, AdapterView.OnItemClickListener {}
+
+  private class ConversationFragmentSelectionClickListener
+      implements SelectionClickListener
   {
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
