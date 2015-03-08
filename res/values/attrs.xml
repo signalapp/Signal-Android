@@ -24,6 +24,9 @@
     <attr name="actionbar_icon" format="reference" />
     <attr name="lower_right_divet" format="reference" />
 
+    <attr name="centered_app_title_color" format="reference|color" />
+    <attr name="ic_arrow_forward" format="reference" />
+
     <attr name="conversation_background" format="reference|color"/>
     <attr name="conversation_editor_background" format="reference"/>
     <attr name="conversation_editor_text_color" format="reference|color"/>
@@ -113,4 +116,5 @@
     </declare-styleable>
 
     <attr name="group_members_dialog_icon" format="reference"/>
+    <attr name="lockscreen_watermark" format="reference" />
 </resources>

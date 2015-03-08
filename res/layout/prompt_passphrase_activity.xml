@@ -15,7 +15,7 @@
                    android:layout_height="wrap_content"
                    android:layout_centerHorizontal="true"
                    android:layout_marginBottom="50dp"
-                   android:src="@drawable/lockscreen_watermark"
+                   android:src="?lockscreen_watermark"
                    android:contentDescription="@string/PassphrasePromptActivity_watermark_content_description"
                    android:layout_marginTop="30dp"/>
 
@@ -35,7 +35,7 @@
                       android:paddingRight="10dp"/>
 
             <ImageButton android:id="@+id/ok_button"
-                         android:src="@drawable/ic_action_forward"
+                         android:src="?ic_arrow_forward"
                          android:contentDescription="@string/PassphrasePromptActivity_ok_button_content_description"
                          android:background="@null"
                          android:text="@string/prompt_passphrase_activity__unlock"
