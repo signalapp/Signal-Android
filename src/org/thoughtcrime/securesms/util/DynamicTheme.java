@@ -2,11 +2,7 @@ package org.thoughtcrime.securesms.util;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.preference.PreferenceManager;
 
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
-import org.thoughtcrime.securesms.ConversationActivity;
-import org.thoughtcrime.securesms.ConversationListActivity;
 import org.thoughtcrime.securesms.R;
 
 public class DynamicTheme {
@@ -28,7 +24,7 @@ public class DynamicTheme {
     }
   }
 
-  private static int getSelectedTheme(Activity activity) {
+  protected int getSelectedTheme(Activity activity) {
     String theme = TextSecurePreferences.getTheme(activity);
 
     if (theme.equals("dark")) return R.style.TextSecure_DarkTheme;
