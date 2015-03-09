@@ -195,6 +195,9 @@ public class MessageNotifier {
     builder.setDeleteIntent(PendingIntent.getBroadcast(context, 0, new Intent(DeleteReceiver.DELETE_REMINDER_ACTION), 0));
     if (recipient.getContactUri() != null) builder.addPerson(recipient.getContactUri().toString());
 
+    long timestamp = notifications.get(0).getTimestamp();
+    if (timestamp != 0) builder.setWhen(timestamp);
+
     if (masterSecret != null) {
       builder.addAction(R.drawable.check, context.getString(R.string.MessageNotifier_mark_as_read),
                         notificationState.getMarkAsReadIntent(context, masterSecret));
@@ -242,6 +245,9 @@ public class MessageNotifier {
     builder.setContentInfo(String.valueOf(notificationState.getMessageCount()));
     builder.setNumber(notificationState.getMessageCount());
     builder.setCategory(NotificationCompat.CATEGORY_MESSAGE);
+
+    long timestamp = notifications.get(0).getTimestamp();
+    if (timestamp != 0) builder.setWhen(timestamp);
 
     builder.setDeleteIntent(PendingIntent.getBroadcast(context, 0, new Intent(DeleteReceiver.DELETE_REMINDER_ACTION), 0));
 
@@ -330,7 +336,7 @@ public class MessageNotifier {
         SpannableString body       = new SpannableString(context.getString(R.string.MessageNotifier_encrypted_message));
         body.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), 0, body.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-        notificationState.addNotification(new NotificationItem(recipient, recipients, null, threadId, body, null));
+        notificationState.addNotification(new NotificationItem(recipient, recipients, null, threadId, body, null, 0));
       }
     } finally {
       if (reader != null)
@@ -356,6 +362,10 @@ public class MessageNotifier {
       CharSequence    body             = record.getDisplayBody();
       Uri             image            = null;
       Recipients      threadRecipients = null;
+      long            timestamp;
+
+      if (record.isPush()) timestamp = record.getDateSent();
+      else                 timestamp = record.getDateReceived();
 
       if (threadId != -1) {
         threadRecipients = DatabaseFactory.getThreadDatabase(context).getRecipientsForThreadId(threadId);
@@ -371,7 +381,7 @@ public class MessageNotifier {
         body = SpanUtil.italic(message, italicLength);
       }
 
-      notificationState.addNotification(new NotificationItem(recipient, recipients, threadRecipients, threadId, body, image));
+      notificationState.addNotification(new NotificationItem(recipient, recipients, threadRecipients, threadId, body, image, timestamp));
     }
 
     reader.close();
