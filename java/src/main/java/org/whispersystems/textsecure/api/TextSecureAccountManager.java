@@ -16,6 +16,7 @@
  */
 package org.whispersystems.textsecure.api;
 
+
 import com.google.protobuf.ByteString;
 
 import org.whispersystems.libaxolotl.IdentityKey;
@@ -181,7 +182,7 @@ public class TextSecureAccountManager {
    * @throws IOException
    */
   public Optional<ContactTokenDetails> getContact(String e164number) throws IOException {
-    String              contactToken        = createDirectoryServerToken(e164number);
+    String              contactToken        = createDirectoryServerToken(e164number, true);
     ContactTokenDetails contactTokenDetails = this.pushServiceSocket.getContactTokenDetails(contactToken);
 
     if (contactTokenDetails != null) {
@@ -233,11 +234,14 @@ public class TextSecureAccountManager {
     this.pushServiceSocket.sendProvisioningMessage(deviceIdentifier, ciphertext);
   }
 
-  private String createDirectoryServerToken(String e164number) {
+  private String createDirectoryServerToken(String e164number, boolean urlSafe) {
     try {
-      MessageDigest digest = MessageDigest.getInstance("SHA1");
-      byte[]        token  = Util.trim(digest.digest(e164number.getBytes()), 10);
-      return Base64.encodeBytesWithoutPadding(token);
+      MessageDigest digest  = MessageDigest.getInstance("SHA1");
+      byte[]        token   = Util.trim(digest.digest(e164number.getBytes()), 10);
+      String        encoded = Base64.encodeBytesWithoutPadding(token);
+
+      if (urlSafe) return encoded.replace('+', '-').replace('/', '_');
+      else         return encoded;
     } catch (NoSuchAlgorithmException e) {
       throw new AssertionError(e);
     }
@@ -247,7 +251,7 @@ public class TextSecureAccountManager {
     Map<String,String> tokenMap = new HashMap<>(e164numbers.size());
 
     for (String number : e164numbers) {
-      tokenMap.put(createDirectoryServerToken(number), number);
+      tokenMap.put(createDirectoryServerToken(number, false), number);
     }
 
     return tokenMap;
