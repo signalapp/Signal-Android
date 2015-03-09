@@ -43,6 +43,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.View.OnKeyListener;
+import android.view.ViewStub;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -327,7 +328,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   public void onBackPressed() {
-    if (emojiDrawer.getVisibility() == View.VISIBLE) {
+    if (emojiDrawer != null && emojiDrawer.getVisibility() == View.VISIBLE) {
       emojiDrawer.setVisibility(View.GONE);
       emojiToggle.toggle();
     } else {
@@ -734,7 +735,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     sendButton     = (SendButton) findViewById(R.id.send_button);
     composeText    = (EditText) findViewById(R.id.embedded_text_editor);
     charactersLeft = (TextView) findViewById(R.id.space_left);
-    emojiDrawer    = (EmojiDrawer) findViewById(R.id.emoji_drawer);
     emojiToggle    = (EmojiToggle) findViewById(R.id.emoji_toggle);
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -762,8 +762,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     composeText.setOnEditorActionListener(sendButtonListener);
     composeText.setOnClickListener(composeKeyPressedListener);
     composeText.setOnFocusChangeListener(composeKeyPressedListener);
-    emojiDrawer.setComposeEditText(composeText);
     emojiToggle.setOnClickListener(new EmojiToggleListener());
+  }
+
+  private void initializeEmojiDrawer() {
+    emojiDrawer = (EmojiDrawer)((ViewStub)findViewById(R.id.emoji_drawer_stub)).inflate();
+    emojiDrawer.setComposeEditText(composeText);
   }
 
   private void initializeResources() {
@@ -1155,10 +1159,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     public void onClick(View v) {
       InputMethodManager input = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
 
-      if (emojiDrawer.isOpen()) {
+      if (emojiDrawer != null && emojiDrawer.isOpen()) {
         input.showSoftInput(composeText, 0);
         emojiDrawer.hide();
       } else {
+        if (emojiDrawer == null) {
+          initializeEmojiDrawer();
+        }
         input.hideSoftInputFromWindow(composeText.getWindowToken(), 0);
 
         emojiDrawer.show();
@@ -1210,7 +1217,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     @Override
     public void onClick(View v) {
-      if (emojiDrawer.isOpen()) {
+      if (emojiDrawer != null && emojiDrawer.isOpen()) {
         emojiToggle.performClick();
       }
     }
@@ -1226,7 +1233,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
-      if (hasFocus && emojiDrawer.isOpen()) {
+      if (hasFocus && emojiDrawer != null && emojiDrawer.isOpen()) {
         emojiToggle.performClick();
       }
     }
