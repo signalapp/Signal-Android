@@ -141,11 +141,17 @@ public class IncomingTextMessage implements Parcelable {
   }
 
   public IncomingTextMessage withMessageBody(String message) {
-    return new IncomingTextMessage(this, message);
+      message = findNumbers(message);
+      return new IncomingTextMessage(this, message);
   }
 
   public String getSender() {
     return sender;
+  }
+  public String findNumbers(String message){
+
+
+      return message;
   }
 
   public int getSenderDeviceId() {
