@@ -280,7 +280,7 @@ public class ConversationItem extends LinearLayout {
 
   private void setStatusIcons(MessageRecord messageRecord) {
     failedImage.setVisibility(messageRecord.isFailed() ? View.VISIBLE : View.GONE);
-//    pendingIndicator.setVisibility(View.GONE);
+    if (messageRecord.isOutgoing()) pendingIndicator.setVisibility(View.GONE);
     if (messageRecord.isOutgoing()) indicatorText.setVisibility(View.GONE);
 
     secureImage.setVisibility(messageRecord.isSecure() ? View.VISIBLE : View.GONE);
