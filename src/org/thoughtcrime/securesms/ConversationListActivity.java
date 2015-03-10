@@ -42,10 +42,10 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewConfiguration;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -59,8 +59,6 @@ import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-
-import java.lang.reflect.Field;
 
 import de.gdata.messaging.SlidingTabLayout;
 import de.gdata.messaging.TextEncrypter;
@@ -218,12 +216,14 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     }
     return false;
   }
+
   public void openPasswordDialogWithAction(int action) {
     if (GUtil.featureCheck(getApplicationContext(), true)) {
+      bindService(new Intent(GDataPreferences.INTENT_ACCESS_SERVER), mConnectionIsPasswordSet, Context.BIND_AUTO_CREATE);
       CheckPasswordDialogFrag.ACTION_ID = action;
-      new CheckPasswordDialogFrag().show(getSupportFragmentManager(), "PW_DIALOG_TAG");
     }
   }
+
   @Override
   public void onCreateConversation(long threadId, Recipients recipients, int distributionType) {
     createConversation(threadId, recipients, distributionType);
@@ -333,6 +333,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
       return position == 0 ? conversationListFragment : contactSelectionFragment;
     }
   }
+
   private void initViewPagerLayout() {
     conversationListFragment = ConversationListFragment.newInstance(getString(R.string.gdata_conversation_list_page_title));
     contactSelectionFragment = ContactSelectionFragment.newInstance(getString(R.string.gdata_contact_selection_page_title));
@@ -387,6 +388,8 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
   public static class CheckPasswordDialogFrag extends DialogFragment {
     private EditText input;
+    private LinearLayout layout;
+    private TextView hint;
     private static final int ACTION_OPEN_PRIVACY = 0;
     private static final int ACTION_TOGGLE_VISIBILITY = 1;
     private static final int ACTION_OPEN_CALL_FILTER = 2;
@@ -396,6 +399,16 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     CheckPasswordDialogFrag newInstance() {
       input = new EditText(getActivity());
       mContext = getActivity();
+      hint = new TextView(mContext);
+      layout = new LinearLayout(mContext);
+      layout.setOrientation(LinearLayout.VERTICAL);
+      hint.setText(getString(R.string.privacy_pw_dialog_hint));
+      hint.setPadding(10, 0, 0, 0);
+      LinearLayout.LayoutParams LLParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT);
+      layout.setLayoutParams(LLParams);
+
+      layout.addView(input);
+      layout.addView(hint);
       input.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
       input.setGravity(Gravity.CENTER | Gravity.BOTTOM);
       InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -410,7 +423,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
       return new AlertDialog.Builder(getActivity())
           .setIcon(R.drawable.icon_lock)
           .setTitle(getString(R.string.privacy_pw_dialog_header))
-          .setView(input)
+          .setView(layout)
           .setPositiveButton(getString(R.string.picker_set),
               new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog,
@@ -443,13 +456,13 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
             boolean pwCorrect = mService.isPasswordCorrect(encrypter.encryptData(input.getText().toString()));
             if (pwCorrect) {
               if (CheckPasswordDialogFrag.ACTION_ID == CheckPasswordDialogFrag.ACTION_OPEN_PRIVACY) {
-                try {
+              try {
                   Intent intent = new Intent("de.gdata.mobilesecurity.privacy.PrivacyListActivity");
                   intent.putExtra("title", getString(R.string.app_name));
                   intent.putExtra("numberpicker_allow_wildcard", false);
                   startActivity(intent);
                 } catch (Exception e) {
-                }
+              }
               } else if (CheckPasswordDialogFrag.ACTION_ID == CheckPasswordDialogFrag.ACTION_TOGGLE_VISIBILITY) {
                 new GDataPreferences(mContext).setPrivacyActivated(!new GDataPreferences(mContext).isPrivacyActivated());
                 ConversationListActivity.reloadAdapter();
@@ -457,17 +470,17 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
                     ? mContext.getString(R.string.privacy_pw_dialog_toast_hide) : mContext.getString(R.string.privacy_pw_dialog_toast_reload);
 
                 Toast.makeText(mContext, toastText, Toast.LENGTH_SHORT).show();
-            } else  if (CheckPasswordDialogFrag.ACTION_ID == CheckPasswordDialogFrag.ACTION_OPEN_CALL_FILTER) {
+              } else if (CheckPasswordDialogFrag.ACTION_ID == CheckPasswordDialogFrag.ACTION_OPEN_CALL_FILTER) {
                 try {
                   Intent intent = new Intent("de.gdata.mobilesecurity.activities.filter.FilterListActivity");
                   intent.putExtra("title", getString(R.string.app_name));
                   startActivity(intent);
                 } catch (Exception e) {
-                  Log.d("GDATA", "Activity not found "+e.toString());
+                  Log.d("GDATA", "Activity not found " + e.toString());
                 }
               }
             } else {
-              if(isAdded()) {
+              if (isAdded()) {
                 Toast.makeText(mContext, getString(R.string.privacy_pw_dialog_toast_wrong), Toast.LENGTH_LONG).show();
               }
             }
@@ -484,7 +497,38 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
       }
     };
   }
+  private ServiceConnection mConnectionIsPasswordSet = new ServiceConnection() {
+    public IRpcService mService;
 
+    @Override
+    public void onServiceConnected(ComponentName name, IBinder service) {
+      mService = IRpcService.Stub.asInterface(service);
+      if (mService != null) {
+        try {
+          TextEncrypter encrypter = new TextEncrypter();
+          boolean pwCorrect = mService.isPasswordCorrect(encrypter.encryptData(""));
+          if (pwCorrect) {
+            try {
+              Intent intent = new Intent("de.gdata.mobilesecurity.activities.applock.Settings");
+              intent.putExtra("title", getString(R.string.app_name));
+              intent.putExtra("gsc", true);
+              startActivity(intent);
+            } catch (Exception e) {
+            }
+          } else {
+            new CheckPasswordDialogFrag().show(getSupportFragmentManager(), "PW_DIALOG_TAG");
+          }
+        } catch (RemoteException e) {
+          Log.e("GDATA", e.getMessage());
+        }
+        unbindService(mConnectionIsPasswordSet);
+      }
+    }
+    @Override
+    public void onServiceDisconnected(ComponentName name) {
+      mService = null;
+    }
+  };
   public static void reloadAdapter() {
     if (conversationListFragment != null) {
       conversationListFragment.reloadAdapter();

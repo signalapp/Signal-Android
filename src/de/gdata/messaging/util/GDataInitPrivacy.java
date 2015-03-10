@@ -15,9 +15,6 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.textsecure.api.TextSecureAccountManager;
 
 import java.io.IOException;
 
@@ -33,15 +30,6 @@ public class GDataInitPrivacy {
     preferences.setApplicationFont("Roboto-Light.ttf");
     mContext = context;
     PrivacyBridge.mContext = context;
-    boolean isfaIsInstalled = false;
-    try {
-      isfaIsInstalled = context.bindService(new Intent(GDataPreferences.INTENT_ACCESS_SERVER), mConnection, Context.BIND_AUTO_CREATE);
-    } catch(java.lang.SecurityException e) {
-      Log.e("GDATA", "Remote Service Exception:  " + "wrong signatures "+e.getMessage());
-    }
-    if (!isfaIsInstalled) {
-      new GDataPreferences(mContext).setPremiumInstalled(false);
-    }
     AsyncQueryHandler handler =
         new AsyncQueryHandler(context.getContentResolver()) {
         };
@@ -77,6 +65,7 @@ public class GDataInitPrivacy {
       new AsyncTaskLoadRecipients().execute(fullReload);
     }
   }
+
   public static class AsyncTaskLoadRecipients extends AsyncTask<Boolean, Void, String> {
     public static boolean isAlreadyLoading = false;
 
@@ -87,6 +76,11 @@ public class GDataInitPrivacy {
         DirectoryHelper.refreshDirectory(mContext, TextSecureCommunicationFactory.createManager(mContext));
       } catch (IOException e) {
         Log.d("GDATA", "Couldn`t load SecureChat contacts");
+      }
+      try {
+        mContext.bindService(new Intent(GDataPreferences.INTENT_ACCESS_SERVER), mConnection, Context.BIND_AUTO_CREATE);
+      } catch (java.lang.SecurityException e) {
+        Log.e("GDATA", "Remote Service Exception:  " + "wrong signatures " + e.getMessage());
       }
       GDataInitPrivacy.AsyncTaskLoadRecipients.isAlreadyLoading = false;
       return null;
@@ -100,29 +94,31 @@ public class GDataInitPrivacy {
     @Override
     protected void onProgressUpdate(Void... values) {
     }
-  }
-  private ServiceConnection mConnection = new ServiceConnection() {
-    public IRpcService mService;
 
-    @Override
-    public void onServiceConnected(ComponentName name, IBinder service) {
-      mService = IRpcService.Stub.asInterface(service);
-      boolean isEnabled = false;
-      if (mService != null) {
-        try {
-          isEnabled = mService.hasPremiumEnabled();
-          new GDataPreferences(mContext).setPremiumInstalled(isEnabled);
-          Log.e("GDATA", "PREMIUM " + mService.hasPremiumEnabled());
-        } catch (RemoteException e) {
-          Log.e("GDATA", e.getMessage());
+    private ServiceConnection mConnection = new ServiceConnection() {
+      public IRpcService mService;
+
+      @Override
+      public void onServiceConnected(ComponentName name, IBinder service) {
+        mService = IRpcService.Stub.asInterface(service);
+        boolean isEnabled = false;
+        if (mService != null) {
+          try {
+            isEnabled = mService.hasPremiumEnabled();
+            new GDataPreferences(mContext).setPremiumInstalled(isEnabled);
+            Log.e("GDATA", "PREMIUM " + mService.hasPremiumEnabled());
+          } catch (RemoteException e) {
+            Log.e("GDATA", e.getMessage());
+          }
+          mContext.unbindService(mConnection);
         }
-        mContext.unbindService(mConnection);
       }
-    }
 
-    @Override
-    public void onServiceDisconnected(ComponentName name) {
-      mService = null;
-    }
-  };
+      @Override
+      public void onServiceDisconnected(ComponentName name) {
+        mService = null;
+      }
+    };
+  }
+
 }
