@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.notifications.MessageNotifier.NotificationStateChangeListener;
 
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -18,7 +19,21 @@ public class NotificationState {
   private final LinkedList<NotificationItem> notifications = new LinkedList<NotificationItem>();
   private final Set<Long>                    threads       = new HashSet<Long>();
 
-  private int notificationCount = 0;
+  private final boolean signal;
+  private final int     reminderCount;
+  private       int     notificationCount = 0;
+
+  private NotificationStateChangeListener stateChangeListener;
+
+  public NotificationState(Context      context,
+                           MasterSecret masterSecret,
+                           boolean      signal,
+                           int          reminderCount)
+  {
+    this.signal              = signal;
+    this.reminderCount       = reminderCount;
+    this.stateChangeListener = new NotificationStateChangeListener(context, masterSecret);
+  }
 
   public void addNotification(NotificationItem item) {
     notifications.addFirst(item);
@@ -40,6 +55,18 @@ public class NotificationState {
 
   public Bitmap getContactPhoto() {
     return notifications.get(0).getIndividualRecipient().getContactPhoto();
+  }
+
+  public boolean getSignal() {
+    return signal;
+  }
+
+  public int getReminderCount() {
+    return reminderCount;
+  }
+
+  public NotificationStateChangeListener getListener() {
+    return stateChangeListener;
   }
 
   public PendingIntent getMarkAsReadIntent(Context context, MasterSecret masterSecret) {
