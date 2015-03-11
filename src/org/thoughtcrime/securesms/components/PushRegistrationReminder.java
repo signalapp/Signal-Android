@@ -11,7 +11,6 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 
 public class PushRegistrationReminder extends Reminder {
-  public static final long REMINDER_INTERVAL_MS = 3 * 24 * 60 * 60 * 1000;
 
   public PushRegistrationReminder(final Context context, final MasterSecret masterSecret) {
     super(R.drawable.ic_push_registration_reminder,
@@ -27,18 +26,16 @@ public class PushRegistrationReminder extends Reminder {
         context.startActivity(intent);
       }
     };
-    final OnClickListener cancelListener = new OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        TextSecurePreferences.setLastPushReminderTime(context, System.currentTimeMillis());
-      }
-    };
+
     setOkListener(okListener);
-    setCancelListener(cancelListener);
+  }
+
+  @Override
+  public boolean isDismissable() {
+    return false;
   }
 
   public static boolean isEligible(Context context) {
-    return !TextSecurePreferences.isPushRegistered(context) &&
-        (TextSecurePreferences.getLastPushReminderTime(context) + REMINDER_INTERVAL_MS < System.currentTimeMillis());
+    return !TextSecurePreferences.isPushRegistered(context);
   }
 }

@@ -8,8 +8,6 @@ import android.telephony.SmsManager;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.crypto.SmsCipher;
-import org.thoughtcrime.securesms.crypto.storage.TextSecureAxolotlStore;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
@@ -20,14 +18,11 @@ import org.thoughtcrime.securesms.jobs.requirements.ServiceRequirement;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.SmsDeliveryListener;
-import org.thoughtcrime.securesms.sms.MultipartSmsMessageHandler;
-import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.NumberUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.JobParameters;
-import org.whispersystems.libaxolotl.NoSessionException;
 
 import java.util.ArrayList;
 
@@ -55,14 +50,10 @@ public class SmsSendJob extends SendJob {
     try {
       Log.w(TAG, "Sending message: " + messageId);
 
-      deliver(masterSecret, record);
+      deliver(record);
     } catch (UndeliverableMessageException ude) {
       Log.w(TAG, ude);
       DatabaseFactory.getSmsDatabase(context).markAsSentFailed(record.getId());
-      MessageNotifier.notifyMessageDeliveryFailed(context, record.getRecipients(), record.getThreadId());
-    } catch (InsecureFallbackApprovalException ifae) {
-      Log.w(TAG, ifae);
-      DatabaseFactory.getSmsDatabase(context).markAsPendingInsecureSmsFallback(record.getId());
       MessageNotifier.notifyMessageDeliveryFailed(context, record.getRecipients(), record.getThreadId());
     }
   }
@@ -82,61 +73,17 @@ public class SmsSendJob extends SendJob {
     MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId);
   }
 
-  private void deliver(MasterSecret masterSecret, SmsMessageRecord record)
-      throws UndeliverableMessageException, InsecureFallbackApprovalException
-  {
-    if (!NumberUtil.isValidSmsOrEmail(record.getIndividualRecipient().getNumber())) {
-      throw new UndeliverableMessageException("Not a valid SMS destination! " + record.getIndividualRecipient().getNumber());
-    }
-
-    if (record.isSecure() || record.isKeyExchange() || record.isEndSession()) {
-      deliverSecureMessage(masterSecret, record);
-    } else {
-      deliverPlaintextMessage(record);
-    }
-  }
-
-  private void deliverSecureMessage(MasterSecret masterSecret, SmsMessageRecord message)
-      throws UndeliverableMessageException, InsecureFallbackApprovalException
-  {
-    MultipartSmsMessageHandler multipartMessageHandler = new MultipartSmsMessageHandler();
-    OutgoingTextMessage        transportMessage        = OutgoingTextMessage.from(message);
-
-    if (message.isSecure() || message.isEndSession()) {
-      transportMessage = getAsymmetricEncrypt(masterSecret, transportMessage);
-    }
-
-    ArrayList<String> messages                = multipartMessageHandler.divideMessage(transportMessage);
-    ArrayList<PendingIntent> sentIntents      = constructSentIntents(message.getId(), message.getType(), messages, message.isSecure());
-    ArrayList<PendingIntent> deliveredIntents = constructDeliveredIntents(message.getId(), message.getType(), messages);
-
-    Log.w("SmsTransport", "Secure divide into message parts: " + messages.size());
-
-    for (int i=0;i<messages.size();i++) {
-      // NOTE 11/04/14 -- There's apparently a bug where for some unknown recipients
-      // and messages, this will throw an NPE.  We have no idea why, so we're just
-      // catching it and marking the message as a failure.  That way at least it
-      // doesn't repeatedly crash every time you start the app.
-      try {
-        SmsManager.getDefault().sendTextMessage(message.getIndividualRecipient().getNumber(), null, messages.get(i),
-                                                sentIntents.get(i),
-                                                deliveredIntents == null ? null : deliveredIntents.get(i));
-      } catch (NullPointerException npe) {
-        Log.w(TAG, npe);
-        Log.w(TAG, "Recipient: " + message.getIndividualRecipient().getNumber());
-        Log.w(TAG, "Message Total Parts/Current: " + messages.size() + "/" + i);
-        Log.w(TAG, "Message Part Length: " + messages.get(i).getBytes().length);
-        throw new UndeliverableMessageException(npe);
-      } catch (IllegalArgumentException iae) {
-        Log.w(TAG, iae);
-        throw new UndeliverableMessageException(iae);
-      }
-    }
-  }
-
-  private void deliverPlaintextMessage(SmsMessageRecord message)
+  private void deliver(SmsMessageRecord message)
       throws UndeliverableMessageException
   {
+    if (!NumberUtil.isValidSmsOrEmail(message.getIndividualRecipient().getNumber())) {
+      throw new UndeliverableMessageException("Not a valid SMS destination! " + message.getIndividualRecipient().getNumber());
+    }
+
+    if (message.isSecure() || message.isKeyExchange() || message.isEndSession()) {
+      throw new UndeliverableMessageException("Trying to send a secure SMS?");
+    }
+
     ArrayList<String> messages                = SmsManager.getDefault().divideMessage(message.getBody().getBody());
     ArrayList<PendingIntent> sentIntents      = constructSentIntents(message.getId(), message.getType(), messages, false);
     ArrayList<PendingIntent> deliveredIntents = constructDeliveredIntents(message.getId(), message.getType(), messages);
@@ -163,17 +110,6 @@ public class SmsSendJob extends SendJob {
         Log.w(TAG, npe);
         throw new UndeliverableMessageException(npe2);
       }
-    }
-  }
-
-  private OutgoingTextMessage getAsymmetricEncrypt(MasterSecret masterSecret,
-                                                   OutgoingTextMessage message)
-      throws InsecureFallbackApprovalException
-  {
-    try {
-      return new SmsCipher(new TextSecureAxolotlStore(context, masterSecret)).encrypt(message);
-    } catch (NoSessionException e) {
-      throw new InsecureFallbackApprovalException(e);
     }
   }
 

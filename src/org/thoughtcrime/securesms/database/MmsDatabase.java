@@ -383,11 +383,6 @@ public class MmsDatabase extends MessagingDatabase {
     notifyConversationListeners(getThreadIdForMessage(messageId));
   }
 
-  public void markAsPendingSecureSmsFallback(long messageId) {
-    updateMailboxBitmask(messageId, Types.BASE_TYPE_MASK, Types.BASE_PENDING_SECURE_SMS_FALLBACK);
-    notifyConversationListeners(getThreadIdForMessage(messageId));
-  }
-
   public void markAsPendingInsecureSmsFallback(long messageId) {
     updateMailboxBitmask(messageId, Types.BASE_TYPE_MASK, Types.BASE_PENDING_INSECURE_SMS_FALLBACK);
     notifyConversationListeners(getThreadIdForMessage(messageId));

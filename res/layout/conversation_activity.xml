@@ -78,7 +78,7 @@
                         android:contentDescription="@string/conversation_activity__emoji_toggle_description"
                         android:padding="10dp"/>
 
-                <EditText
+                <org.thoughtcrime.securesms.components.ComposeText
                         android:id="@+id/embedded_text_editor"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -89,7 +89,7 @@
                         android:paddingRight="0dp"
                         android:imeOptions="actionSend|flagNoEnterAction|flagNoExtractUi"
                         android:inputType="textShortMessage|textAutoCorrect|textCapSentences|textMultiLine"
-                        android:maxLength="1000"
+                        android:maxLength="2000"
                         android:maxLines="4"
                         android:nextFocusForward="@+id/send_button"
                         android:nextFocusRight="@+id/send_button"

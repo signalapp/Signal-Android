@@ -78,15 +78,11 @@
     <string name="ConversationItem_error_received_stale_key_exchange_message">Error, received stale key exchange message.</string>
     <string name="ConversationItem_received_key_exchange_message_click_to_process">Received key exchange message, click to process.</string>
     <string name="ConversationItem_group_action_left">%1$s has left the group.</string>
-    <string name="ConversationItem_click_to_approve_sms">Tap for SMS fallback</string>
-    <string name="ConversationItem_click_to_approve_mms">Tap for MMS fallback</string>
     <string name="ConversationItem_click_for_details">Tap for details</string>
     <string name="ConversationItem_click_to_approve_unencrypted">Tap for unsecured fallback</string>
-    <string name="ConversationItem_click_to_approve_sms_dialog_title">Fallback to SMS?</string>
-    <string name="ConversationItem_click_to_approve_mms_dialog_title">Fallback to MMS?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Fallback to unencrypted SMS?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Fallback to unencrypted MMS?</string>
-    <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">This message will <b>not</b> be encrypted because a secure session could not be established.\n\nSend unsecured message?</string>
+    <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">This message will <b>not</b> be encrypted because the recipient is no longer a TextSecure user.\n\nSend unsecured message?</string>
     <string name="ConversationItem_unable_to_open_media">Can\'t find an app able to open this media.</string>
 
     <!-- ConversationActivity -->
@@ -117,8 +113,6 @@
     <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Are you sure you want to leave this group?</string>
     <string name="ConversationActivity_transport_insecure_sms">Insecure SMS</string>
     <string name="ConversationActivity_transport_insecure_mms">Insecure MMS</string>
-    <string name="ConversationActivity_transport_secure_sms">Secure SMS</string>
-    <string name="ConversationActivity_transport_secure_mms">Secure MMS</string>
     <string name="ConversationActivity_transport_textsecure">TextSecure</string>
     <string name="ConversationActivity_get_with_it">Get with it: %s</string>
     <string name="ConversationActivity_install_textsecure">Install TextSecure: %s</string>
@@ -581,7 +575,7 @@
 
     <!-- registration_activity -->
     <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-        Registering is free and increases privacy when messaging other TextSecure users. Please verify your phone number.
+        Verify your phone number to connect with TextSecure.
     </string>
     <string name="registration_activity__your_country">YOUR COUNTRY</string>
     <string name="registration_activity__your_country_code_and_phone_number">YOUR COUNTRY CODE AND
@@ -590,7 +584,6 @@
     <string name="registration_activity__phone_number">PHONE NUMBER</string>
     <string name="registration_activity__register">Register</string>
     <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Registration transmits some contact information to the server. It is not stored.</string>
-    <string name="registration_activity__skip">Skip</string>
 
     <!-- registration_problems -->
     <string name="registration_problems__some_possible_problems_include">Some possible problems
@@ -839,13 +832,6 @@
 
     <!-- refreshing push directory from menu -->
     <string name="push_directory__menu_refresh">Refresh contact list</string>
-
-    <!-- conversation_button_context -->
-    <string name="conversation_button_context__send_textsecure_message">Send TextSecure message</string>
-    <string name="conversation_button_context__send_secure_sms">Send secure SMS</string>
-    <string name="conversation_button_context__send_insecure_sms">Send unsecured SMS</string>
-    <string name="conversation_button_context__send_secure_mms">Send secure MMS</string>
-    <string name="conversation_button_context__send_insecure_mms">Send unsecured MMS</string>
 
     <!-- conversation_callable -->
     <string name="conversation_callable__menu_call">Call</string>

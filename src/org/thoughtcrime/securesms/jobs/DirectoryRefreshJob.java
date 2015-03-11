@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 import android.os.PowerManager;
 
+import org.thoughtcrime.securesms.crypto.SecurityEvent;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
@@ -30,6 +31,7 @@ public class DirectoryRefreshJob extends ContextJob {
     try {
       wakeLock.acquire();
       DirectoryHelper.refreshDirectory(context);
+      SecurityEvent.broadcastSecurityUpdateEvent(context);
     } finally {
       if (wakeLock.isHeld()) wakeLock.release();
     }

@@ -2,147 +2,136 @@ package org.thoughtcrime.securesms;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.drawable.BitmapDrawable;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewTreeObserver.OnGlobalLayoutListener;
-import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ListView;
-import android.widget.PopupWindow;
 
+import org.thoughtcrime.securesms.util.MmsCharacterCalculator;
+import org.thoughtcrime.securesms.util.PushCharacterCalculator;
+import org.thoughtcrime.securesms.util.SmsCharacterCalculator;
+import org.whispersystems.libaxolotl.util.guava.Optional;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
+
+import static org.thoughtcrime.securesms.TransportOption.Type;
 
 public class TransportOptions {
+
   private static final String TAG = TransportOptions.class.getSimpleName();
 
+  private final List<OnTransportChangedListener> listeners = new LinkedList<>();
   private final Context                          context;
-  private       PopupWindow                      transportPopup;
-  private final List<String>                     enabledTransports = new ArrayList<>();
-  private final Map<String, TransportOption>     transportMetadata = new HashMap<>();
-  private       String                           selectedTransport;
-  private       boolean                          transportOverride = false;
-  private final List<OnTransportChangedListener> listeners         = new LinkedList<>();
+  private final List<TransportOption>            enabledTransports;
 
-  public TransportOptions(Context context) {
-    this.context = context;
+  private Type    selectedType;
+  private boolean manuallySelected;
+
+  public TransportOptions(Context context, boolean media) {
+    this.context           = context;
+    this.enabledTransports = initializeAvailableTransports(media);
+
+    setDefaultTransport(Type.SMS);
   }
 
-  private void initializeTransportPopup() {
-    if (transportPopup == null) {
-      final View selectionMenu = LayoutInflater.from(context).inflate(R.layout.transport_selection, null);
-      final ListView list      = (ListView) selectionMenu.findViewById(R.id.transport_selection_list);
+  public void reset(boolean media) {
+    List<TransportOption> transportOptions = initializeAvailableTransports(media);
+    this.enabledTransports.clear();
+    this.enabledTransports.addAll(transportOptions);
 
-      final TransportOptionsAdapter adapter = new TransportOptionsAdapter(context, enabledTransports, transportMetadata);
-
-      list.setAdapter(adapter);
-      transportPopup = new PopupWindow(selectionMenu);
-      transportPopup.setFocusable(true);
-      transportPopup.setBackgroundDrawable(new BitmapDrawable(context.getResources(), ""));
-      transportPopup.setOutsideTouchable(true);
-      transportPopup.setWindowLayoutMode(0, WindowManager.LayoutParams.WRAP_CONTENT);
-      transportPopup.setWidth(context.getResources().getDimensionPixelSize(R.dimen.transport_selection_popup_width));
-      list.setOnItemClickListener(new OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-          transportOverride = true;
-          setTransport((TransportOption) adapter.getItem(position));
-          transportPopup.dismiss();
-        }
-      });
+    if (!find(selectedType).isPresent()) {
+      this.manuallySelected = false;
+      setTransport(Type.SMS);
     } else {
-      final ListView                list    = (ListView) transportPopup.getContentView().findViewById(R.id.transport_selection_list);
-      final TransportOptionsAdapter adapter = (TransportOptionsAdapter) list.getAdapter();
-      adapter.setEnabledTransports(enabledTransports);
-      adapter.notifyDataSetInvalidated();
+      notifyTransportChangeListeners();
     }
   }
 
-  public void initializeAvailableTransports(boolean isMediaMessage) {
-    String[] entryArray = (isMediaMessage)
-                          ? context.getResources().getStringArray(R.array.transport_selection_entries_media)
-                          : context.getResources().getStringArray(R.array.transport_selection_entries_text);
-
-    String[] composeHintArray = (isMediaMessage)
-                                ? context.getResources().getStringArray(R.array.transport_selection_entries_compose_media)
-                                : context.getResources().getStringArray(R.array.transport_selection_entries_compose_text);
-
-    final String[] valuesArray = context.getResources().getStringArray(R.array.transport_selection_values);
-
-    final int[]        attrs             = new int[]{R.attr.conversation_transport_indicators};
-    final TypedArray   iconArray         = context.obtainStyledAttributes(attrs);
-    final int          iconArrayResource = iconArray.getResourceId(0, -1);
-    final TypedArray   icons             = context.getResources().obtainTypedArray(iconArrayResource);
-
-    enabledTransports.clear();
-    for (int i=0; i<valuesArray.length; i++) {
-      String key = valuesArray[i];
-      enabledTransports.add(key);
-      transportMetadata.put(key, new TransportOption(key, icons.getResourceId(i, -1), entryArray[i], composeHintArray[i]));
+  public void setDefaultTransport(Type type) {
+    if (!this.manuallySelected) {
+      setTransport(type);
     }
-    iconArray.recycle();
-    icons.recycle();
-    updateViews();
   }
 
-  public void setTransport(String transport) {
-    selectedTransport = transport;
-    updateViews();
+  public void setSelectedTransport(Type type) {
+    this.manuallySelected= true;
+    setTransport(type);
   }
 
-  private void setTransport(TransportOption transport) {
-    setTransport(transport.key);
-  }
-
-  public void showPopup(final View parent) {
-    initializeTransportPopup();
-    final int xoff = context.getResources().getDimensionPixelOffset(R.dimen.transport_selection_popup_xoff);
-    final int yoff = context.getResources().getDimensionPixelOffset(R.dimen.transport_selection_popup_yoff);
-    transportPopup.showAsDropDown(parent,
-                                  xoff,
-                                  yoff);
-    parent.getViewTreeObserver().addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
-      @Override
-      public void onGlobalLayout() {
-        transportPopup.update(parent, xoff, yoff, -1, -1);
-      }
-    });
-  }
-
-  public void setDefaultTransport(String transportName) {
-    if (!transportOverride) {
-      setTransport(transportName);
-    }
+  public boolean isManualSelection() {
+    return manuallySelected;
   }
 
   public TransportOption getSelectedTransport() {
-    return transportMetadata.get(selectedTransport);
+    Optional<TransportOption> option =  find(selectedType);
+
+    if (option.isPresent()) return option.get();
+    else                    throw new AssertionError("Selected type isn't present!");
   }
 
-  public void disableTransport(String transportName) {
-    enabledTransports.remove(transportName);
+  public void disableTransport(Type type) {
+    Optional<TransportOption> option = find(type);
+    if (option.isPresent()) {
+      enabledTransports.remove(option.get());
+    }
   }
 
-  public List<String> getEnabledTransports() {
+  public List<TransportOption> getEnabledTransports() {
     return enabledTransports;
   }
 
-  private void updateViews() {
-    if (selectedTransport == null) return;
+  public void addOnTransportChangedListener(OnTransportChangedListener listener) {
+    this.listeners.add(listener);
+  }
 
+  private List<TransportOption> initializeAvailableTransports(boolean isMediaMessage) {
+    List<TransportOption> results          = new LinkedList<>();
+    int[]                 attributes       = new int[]{R.attr.conversation_transport_sms_indicator,
+                                                       R.attr.conversation_transport_push_indicator};
+    TypedArray            iconArray        = context.obtainStyledAttributes(attributes);
+    int                   smsIconResource  = iconArray.getResourceId(0, -1);
+    int                   pushIconResource = iconArray.getResourceId(1, -1);
+
+    if (isMediaMessage) {
+      results.add(new TransportOption(Type.SMS, smsIconResource,
+                                      context.getString(R.string.ConversationActivity_transport_insecure_mms),
+                                      context.getString(R.string.conversation_activity__type_message_mms_insecure),
+                                      new MmsCharacterCalculator()));
+    } else {
+      results.add(new TransportOption(Type.SMS, smsIconResource,
+                                      context.getString(R.string.ConversationActivity_transport_insecure_sms),
+                                      context.getString(R.string.conversation_activity__type_message_sms_insecure),
+                                      new SmsCharacterCalculator()));
+    }
+
+    results.add(new TransportOption(Type.TEXTSECURE, pushIconResource,
+                                    context.getString(R.string.ConversationActivity_transport_textsecure),
+                                    context.getString(R.string.conversation_activity__type_message_push),
+                                    new PushCharacterCalculator()));
+
+    iconArray.recycle();
+
+    return results;
+  }
+
+
+  private void setTransport(Type type) {
+    this.selectedType = type;
+
+    notifyTransportChangeListeners();
+  }
+
+  private void notifyTransportChangeListeners() {
     for (OnTransportChangedListener listener : listeners) {
       listener.onChange(getSelectedTransport());
     }
   }
 
-  public void addOnTransportChangedListener(OnTransportChangedListener listener) {
-    this.listeners.add(listener);
+  private Optional<TransportOption> find(Type type) {
+    for (TransportOption option : enabledTransports) {
+      if (option.isType(type)) {
+        return Optional.of(option);
+      }
+    }
+
+    return Optional.absent();
   }
 
   public interface OnTransportChangedListener {

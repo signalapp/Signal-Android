@@ -12,20 +12,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.preference.PreferenceFragment;
-import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.OutgoingSmsPreference;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 
-import java.util.LinkedList;
-import java.util.List;
-
 public class SmsMmsPreferenceFragment extends PreferenceFragment {
   private static final String KITKAT_DEFAULT_PREF = "pref_set_default";
-  private static final String OUTGOING_SMS_PREF   = "pref_outgoing_sms";
   private static final String MMS_PREF            = "pref_mms_preferences";
 
   @Override
@@ -33,12 +27,8 @@ public class SmsMmsPreferenceFragment extends PreferenceFragment {
     super.onCreate(paramBundle);
     addPreferencesFromResource(R.xml.preferences_sms_mms);
 
-    this.findPreference(OUTGOING_SMS_PREF)
-      .setOnPreferenceChangeListener(new OutgoingSmsPreferenceListener());
     this.findPreference(MMS_PREF)
       .setOnPreferenceClickListener(new ApnPreferencesClickListener());
-
-    initializeOutgoingSmsSummary((OutgoingSmsPreference) findPreference(OUTGOING_SMS_PREF));
   }
 
   @Override
@@ -75,50 +65,6 @@ public class SmsMmsPreferenceFragment extends PreferenceFragment {
     }
   }
 
-  private void initializeOutgoingSmsSummary(OutgoingSmsPreference pref) {
-    pref.setSummary(buildOutgoingSmsDescription());
-  }
-
-  private class OutgoingSmsPreferenceListener implements Preference.OnPreferenceChangeListener {
-
-    @Override
-    public boolean onPreferenceChange(final Preference preference, Object newValue) {
-
-      preference.setSummary(buildOutgoingSmsDescription());
-      return false;
-    }
-  }
-
-  private String buildOutgoingSmsDescription() {
-    final StringBuilder builder         = new StringBuilder();
-    final boolean       dataFallback    = TextSecurePreferences.isFallbackSmsAllowed(getActivity());
-    final boolean       dataFallbackAsk = TextSecurePreferences.isFallbackSmsAskRequired(getActivity());
-    final boolean       mmsFallback     = TextSecurePreferences.isFallbackMmsEnabled(getActivity());
-    final boolean       nonData         = TextSecurePreferences.isDirectSmsAllowed(getActivity());
-
-    if (dataFallback) {
-      builder.append(getString(R.string.preferences__sms_outgoing_push_users));
-
-      List<String> fallbackOptions = new LinkedList<>();
-      if (dataFallbackAsk) fallbackOptions.add(getString(R.string.preferences__sms_fallback_push_users_ask));
-      if (!mmsFallback)    fallbackOptions.add(getString(R.string.preferences__sms_fallback_push_users_no_mms));
-
-      if (fallbackOptions.size() > 0) {
-        builder.append(" (")
-               .append(TextUtils.join(", ", fallbackOptions))
-               .append(")");
-      }
-    }
-    if (nonData) {
-      if (dataFallback) builder.append(", ");
-      builder.append(getString(R.string.preferences__sms_fallback_non_push_users));
-    }
-    if (!dataFallback && !nonData) {
-      builder.append(getString(R.string.preferences__sms_fallback_nobody));
-    }
-    return builder.toString();
-  }
-
   private class ApnPreferencesClickListener implements Preference.OnPreferenceClickListener {
 
     @Override
@@ -135,7 +81,7 @@ public class SmsMmsPreferenceFragment extends PreferenceFragment {
   }
 
   public static CharSequence getSummary(Context context) {
-    return getIncomingSmsSummary(context) + ", " + getOutgoingSmsSummary(context);
+    return getIncomingSmsSummary(context);
   }
 
   private static CharSequence getIncomingSmsSummary(Context context) {
@@ -159,22 +105,5 @@ public class SmsMmsPreferenceFragment extends PreferenceFragment {
       else                                    incomingSmsSummary = offResId;
     }
     return context.getString(incomingSmsResId, context.getString(incomingSmsSummary));
-  }
-
-  private static CharSequence getOutgoingSmsSummary(Context context) {
-    final int onResId          = R.string.ApplicationPreferencesActivity_on;
-    final int offResId         = R.string.ApplicationPreferencesActivity_off;
-    final int partialResId     = R.string.ApplicationPreferencesActivity_partial;
-    final int outgoingSmsResId = R.string.ApplicationPreferencesActivity_outgoing_sms_summary;
-
-    final int outgoingSmsSummary;
-    if (TextSecurePreferences.isFallbackSmsAllowed(context) && TextSecurePreferences.isDirectSmsAllowed(context)) {
-      outgoingSmsSummary = onResId;
-    } else if (TextSecurePreferences.isFallbackSmsAllowed(context) ^ TextSecurePreferences.isDirectSmsAllowed(context)) {
-      outgoingSmsSummary = partialResId;
-    } else {
-      outgoingSmsSummary = offResId;
-    }
-    return context.getString(outgoingSmsResId, context.getString(outgoingSmsSummary));
   }
 }

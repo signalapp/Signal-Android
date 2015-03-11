@@ -5,8 +5,6 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.crypto.MmsCipher;
-import org.thoughtcrime.securesms.crypto.storage.TextSecureAxolotlStore;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
@@ -18,7 +16,6 @@ import org.thoughtcrime.securesms.mms.MmsRadioException;
 import org.thoughtcrime.securesms.mms.MmsSendResult;
 import org.thoughtcrime.securesms.mms.OutgoingMmsConnection;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
@@ -27,7 +24,6 @@ import org.thoughtcrime.securesms.util.NumberUtil;
 import org.thoughtcrime.securesms.util.TelephonyUtil;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
-import org.whispersystems.libaxolotl.NoSessionException;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -68,10 +64,6 @@ public class MmsSendJob extends SendJob {
 
     try {
       MmsSendResult result = deliver(masterSecret, message);
-
-      if (result.isUpgradedSecure()) {
-        database.markAsSecure(messageId);
-      }
 
       database.markAsSent(messageId, result.getMessageId(), result.getResponseStatus());
     } catch (UndeliverableMessageException e) {
@@ -146,14 +138,12 @@ public class MmsSendJob extends SendJob {
                                 boolean usingMmsRadio, boolean useProxy)
       throws IOException, UndeliverableMessageException, InsecureFallbackApprovalException
   {
-    String  number         = TelephonyUtil.getManager(context).getLine1Number();
-    boolean upgradedSecure = false;
+    String number = TelephonyUtil.getManager(context).getLine1Number();
 
     prepareMessageMedia(masterSecret, message, MediaConstraints.MMS_CONSTRAINTS, true);
 
     if (MmsDatabase.Types.isSecureType(message.getDatabaseMessageBox())) {
-      message        = getEncryptedMessage(masterSecret, message);
-      upgradedSecure = true;
+      throw new UndeliverableMessageException("Attempt to send encrypted MMS?");
     }
 
     if (number != null && number.trim().length() != 0) {
@@ -177,23 +167,10 @@ public class MmsSendJob extends SendJob {
       } else if (isInconsistentResponse(message, conf)) {
         throw new UndeliverableMessageException("Mismatched response!");
       } else {
-        return new MmsSendResult(conf.getMessageId(), conf.getResponseStatus(), upgradedSecure, false);
+        return new MmsSendResult(conf.getMessageId(), conf.getResponseStatus());
       }
     } catch (ApnUnavailableException aue) {
       throw new IOException("no APN was retrievable");
-    }
-  }
-
-  private SendReq getEncryptedMessage(MasterSecret masterSecret, SendReq pdu)
-      throws InsecureFallbackApprovalException, UndeliverableMessageException
-  {
-    try {
-      MmsCipher cipher = new MmsCipher(new TextSecureAxolotlStore(context, masterSecret));
-      return cipher.encrypt(context, pdu);
-    } catch (NoSessionException e) {
-      throw new InsecureFallbackApprovalException(e);
-    } catch (RecipientFormattingException e) {
-      throw new AssertionError(e);
     }
   }
 

@@ -7,36 +7,60 @@ import org.thoughtcrime.securesms.util.PushCharacterCalculator;
 import org.thoughtcrime.securesms.util.SmsCharacterCalculator;
 
 public class TransportOption {
-  public int                 drawable;
-  public String              text;
-  public String              key;
-  public String              composeHint;
-  public CharacterCalculator characterCalculator;
 
-  public TransportOption(String key, int drawable, String text, String composeHint) {
-    this.key         = key;
-    this.drawable    = drawable;
-    this.text        = text;
-    this.composeHint = composeHint;
+  public enum Type {
+    SMS,
+    TEXTSECURE
+  }
 
-    if (isPlaintext() && isSms()) {
-      this.characterCalculator = new SmsCharacterCalculator();
-    } else if (isSms()) {
-      this.characterCalculator = new EncryptedSmsCharacterCalculator();
-    } else {
-      this.characterCalculator = new PushCharacterCalculator();
-    }
+  private int                 drawable;
+  private String              text;
+  private Type                type;
+  private String              composeHint;
+  private CharacterCalculator characterCalculator;
+
+  public TransportOption(Type type,
+                         int drawable,
+                         String text,
+                         String composeHint,
+                         CharacterCalculator characterCalculator)
+  {
+    this.type                = type;
+    this.drawable            = drawable;
+    this.text                = text;
+    this.composeHint         = composeHint;
+    this.characterCalculator = characterCalculator;
+  }
+
+  public Type getType() {
+    return type;
+  }
+
+  public boolean isType(Type type) {
+    return this.type == type;
   }
 
   public boolean isPlaintext() {
-    return key.equals("insecure_sms");
+    return type == Type.SMS;
   }
 
   public boolean isSms() {
-    return key.equals("insecure_sms") || key.equals("secure_sms");
+    return type == Type.SMS;
   }
 
   public CharacterState calculateCharacters(int charactersSpent) {
     return characterCalculator.calculateCharacters(charactersSpent);
+  }
+
+  public int getDrawable() {
+    return drawable;
+  }
+
+  public String getComposeHint() {
+    return composeHint;
+  }
+
+  public String getDescription() {
+    return text;
   }
 }

@@ -164,10 +164,6 @@ public class IncomingTextMessage implements Parcelable {
     return replyPathPresent;
   }
 
-  public boolean isKeyExchange() {
-    return false;
-  }
-
   public boolean isSecureMessage() {
     return false;
   }

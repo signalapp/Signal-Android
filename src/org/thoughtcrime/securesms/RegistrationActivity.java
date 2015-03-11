@@ -88,7 +88,9 @@ public class RegistrationActivity extends BaseActionBarActivity {
     this.skipButton.setOnClickListener(new CancelButtonListener());
 
     if (getIntent().getBooleanExtra("cancel_button", false)) {
-      this.skipButton.setText(android.R.string.cancel);
+      this.skipButton.setVisibility(View.VISIBLE);
+    } else {
+      this.skipButton.setVisibility(View.INVISIBLE);
     }
   }
 

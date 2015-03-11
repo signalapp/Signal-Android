@@ -80,7 +80,8 @@ public abstract class MessageRecord extends DisplayRecord {
 
   public boolean isFailed() {
     return
-        MmsSmsColumns.Types.isFailedMessageType(type) ||
+        MmsSmsColumns.Types.isFailedMessageType(type)            ||
+        MmsSmsColumns.Types.isPendingSecureSmsFallbackType(type) ||
         getDeliveryStatus() == DELIVERY_STATUS_FAILED;
   }
 
@@ -149,20 +150,12 @@ public abstract class MessageRecord extends DisplayRecord {
     return SmsDatabase.Types.isProcessedKeyExchange(type);
   }
 
-  public boolean isPendingSmsFallback() {
-    return SmsDatabase.Types.isPendingSmsFallbackType(type);
+  public boolean isPendingInsecureSmsFallback() {
+    return SmsDatabase.Types.isPendingInsecureSmsFallbackType(type);
   }
 
   public boolean isIdentityMismatchFailure() {
     return mismatches != null && !mismatches.isEmpty();
-  }
-
-  public boolean isPendingSecureSmsFallback() {
-    return SmsDatabase.Types.isPendingSecureSmsFallbackType(type);
-  }
-
-  public boolean isPendingInsecureSmsFallback() {
-    return SmsDatabase.Types.isPendingInsecureSmsFallbackType(type);
   }
 
   public boolean isBundleKeyExchange() {
