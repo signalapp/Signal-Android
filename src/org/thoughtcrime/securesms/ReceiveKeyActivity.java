@@ -34,15 +34,11 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureIdentityKeyStore;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.jobs.PushDecryptJob;
-import org.thoughtcrime.securesms.jobs.SmsDecryptJob;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.sms.IncomingIdentityUpdateMessage;
-import org.thoughtcrime.securesms.sms.IncomingKeyExchangeMessage;
 import org.thoughtcrime.securesms.sms.IncomingPreKeyBundleMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.util.Base64;
@@ -52,7 +48,6 @@ import org.whispersystems.libaxolotl.InvalidKeyException;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.libaxolotl.InvalidVersionException;
 import org.whispersystems.libaxolotl.LegacyMessageException;
-import org.whispersystems.libaxolotl.protocol.KeyExchangeMessage;
 import org.whispersystems.libaxolotl.protocol.PreKeyWhisperMessage;
 import org.whispersystems.libaxolotl.state.IdentityKeyStore;
 import org.whispersystems.libaxolotl.util.guava.Optional;
@@ -78,9 +73,9 @@ public class ReceiveKeyActivity extends BaseActivity {
   private int       recipientDeviceId;
   private long      messageId;
 
-  private MasterSecret               masterSecret;
-  private IncomingKeyExchangeMessage message;
-  private IdentityKey                identityKey;
+  private MasterSecret                masterSecret;
+  private IncomingPreKeyBundleMessage message;
+  private IdentityKey                 identityKey;
 
   @Override
   protected void onCreate(Bundle state) {
@@ -151,14 +146,7 @@ public class ReceiveKeyActivity extends BaseActivity {
                                                           getIntent().getStringExtra("body"),
                                                           Optional.<TextSecureGroup>absent());
 
-    if (getIntent().getBooleanExtra("is_bundle", false)) {
-      this.message = new IncomingPreKeyBundleMessage(message, message.getMessageBody());
-    } else if (getIntent().getBooleanExtra("is_identity_update", false)) {
-      this.message = new IncomingIdentityUpdateMessage(message, message.getMessageBody());
-    } else {
-      this.message = new IncomingKeyExchangeMessage(message, message.getMessageBody());
-    }
-
+    this.message     = new IncomingPreKeyBundleMessage(message, message.getMessageBody());
     this.identityKey = getIdentityKey(this.message);
   }
 
@@ -177,21 +165,12 @@ public class ReceiveKeyActivity extends BaseActivity {
     this.cancelButton.setOnClickListener(new CancelListener());
   }
 
-  private IdentityKey getIdentityKey(IncomingKeyExchangeMessage message)
+  private IdentityKey getIdentityKey(IncomingPreKeyBundleMessage message)
       throws InvalidKeyException, InvalidVersionException,
              InvalidMessageException, LegacyMessageException
   {
     try {
-      if (message.isIdentityUpdate()) {
-        return new IdentityKey(Base64.decodeWithoutPadding(message.getMessageBody()), 0);
-      } else if (message.isPreKeyBundle()) {
-        boolean isPush = getIntent().getBooleanExtra("is_push", false);
-
-        if (isPush) return new PreKeyWhisperMessage(Base64.decode(message.getMessageBody())).getIdentityKey();
-        else        return new PreKeyWhisperMessage(Base64.decodeWithoutPadding(message.getMessageBody())).getIdentityKey();
-      } else {
-        return new KeyExchangeMessage(Base64.decodeWithoutPadding(message.getMessageBody())).getIdentityKey();
-      }
+      return new PreKeyWhisperMessage(Base64.decode(message.getMessageBody())).getIdentityKey();
     } catch (IOException e) {
       throw new AssertionError(e);
     }
@@ -213,37 +192,25 @@ public class ReceiveKeyActivity extends BaseActivity {
 
         @Override
         protected Void doInBackground(Void... params) {
-          Context               context          = ReceiveKeyActivity.this;
-          IdentityDatabase      identityDatabase = DatabaseFactory.getIdentityDatabase(context);
-          EncryptingSmsDatabase smsDatabase      = DatabaseFactory.getEncryptingSmsDatabase(context);
-          PushDatabase          pushDatabase     = DatabaseFactory.getPushDatabase(context);
+          Context          context          = ReceiveKeyActivity.this;
+          IdentityDatabase identityDatabase = DatabaseFactory.getIdentityDatabase(context);
+          PushDatabase     pushDatabase     = DatabaseFactory.getPushDatabase(context);
 
           identityDatabase.saveIdentity(masterSecret, recipient.getRecipientId(), identityKey);
+          try {
+            byte[]             body     = Base64.decode(message.getMessageBody());
+            TextSecureEnvelope envelope = new TextSecureEnvelope(3, message.getSender(),
+                                                                 message.getSenderDeviceId(), "",
+                                                                 message.getSentTimestampMillis(),
+                                                                 body);
 
-          if (message.isIdentityUpdate()) {
-            smsDatabase.markAsProcessedKeyExchange(messageId);
-          } else {
-            if (getIntent().getBooleanExtra("is_push", false)) {
-              try {
-                byte[]             body     = Base64.decode(message.getMessageBody());
-                TextSecureEnvelope envelope = new TextSecureEnvelope(3, message.getSender(),
-                                                                     message.getSenderDeviceId(), "",
-                                                                     message.getSentTimestampMillis(),
-                                                                     body);
+            long pushId = pushDatabase.insert(envelope);
 
-                long pushId = pushDatabase.insert(envelope);
-
-                ApplicationContext.getInstance(context)
-                                  .getJobManager()
-                                  .add(new PushDecryptJob(context, pushId, messageId, message.getSender()));
-              } catch (IOException e) {
-                throw new AssertionError(e);
-              }
-            } else {
-              ApplicationContext.getInstance(context)
-                                .getJobManager()
-                                .add(new SmsDecryptJob(context, messageId));
-            }
+            ApplicationContext.getInstance(context)
+                              .getJobManager()
+                              .add(new PushDecryptJob(context, pushId, messageId, message.getSender()));
+          } catch (IOException e) {
+            throw new AssertionError(e);
           }
 
           return null;

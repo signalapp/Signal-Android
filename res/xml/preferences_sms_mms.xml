@@ -15,10 +15,6 @@
                 android:title="@string/preferences__make_default_sms_app"
                 android:summary="@string/preferences__make_textsecure_the_default_sms_mms_app" />
 
-    <org.thoughtcrime.securesms.components.OutgoingSmsPreference
-        android:key="pref_outgoing_sms"
-        android:title="@string/preferences__sms_fallback" />
-
     <CheckBoxPreference android:defaultValue="false"
                         android:key="pref_delivery_report_sms"
                         android:summary="@string/preferences__request_a_delivery_report_for_each_sms_message_you_send"

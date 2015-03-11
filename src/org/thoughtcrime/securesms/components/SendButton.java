@@ -1,94 +1,101 @@
 package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.RelativeSizeSpan;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageButton;
 
 import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.TransportOptions;
 import org.thoughtcrime.securesms.TransportOptions.OnTransportChangedListener;
+import org.thoughtcrime.securesms.TransportOptionsPopup;
 
-public class SendButton extends ImageButton {
-  private TransportOptions transportOptions;
-  private EditText         composeText;
+public class SendButton extends ImageButton
+    implements TransportOptions.OnTransportChangedListener,
+               TransportOptionsPopup.SelectedListener,
+               View.OnLongClickListener
+{
+
+  private final TransportOptions      transportOptions;
+  private final TransportOptionsPopup transportOptionsPopup;
 
   @SuppressWarnings("unused")
   public SendButton(Context context) {
     super(context);
-    initialize();
+    this.transportOptions      = initializeTransportOptions(false);
+    this.transportOptionsPopup = initializeTransportOptionsPopup();
   }
 
   @SuppressWarnings("unused")
   public SendButton(Context context, AttributeSet attrs) {
     super(context, attrs);
-    initialize();
+    this.transportOptions      = initializeTransportOptions(false);
+    this.transportOptionsPopup = initializeTransportOptionsPopup();
   }
 
   @SuppressWarnings("unused")
   public SendButton(Context context, AttributeSet attrs, int defStyle) {
     super(context, attrs, defStyle);
-    initialize();
+    this.transportOptions      = initializeTransportOptions(false);
+    this.transportOptionsPopup = initializeTransportOptionsPopup();
   }
 
-  private void initialize() {
-    transportOptions = new TransportOptions(getContext());
-    transportOptions.addOnTransportChangedListener(new OnTransportChangedListener() {
-      @Override
-      public void onChange(TransportOption newTransport) {
-        setImageResource(newTransport.drawable);
-        setContentDescription(newTransport.composeHint);
-        if (composeText != null) setComposeTextHint(newTransport.composeHint);
-      }
-    });
+  private TransportOptions initializeTransportOptions(boolean media) {
+    TransportOptions transportOptions = new TransportOptions(getContext(), media);
+    transportOptions.addOnTransportChangedListener(this);
 
-    setOnLongClickListener(new OnLongClickListener() {
-      @Override
-      public boolean onLongClick(View view) {
-        if (transportOptions.getEnabledTransports().size() > 1) {
-          transportOptions.showPopup(SendButton.this);
-          return true;
-        }
-        return false;
-      }
-    });
+    setOnLongClickListener(this);
+
+    return transportOptions;
+  }
+
+  private TransportOptionsPopup initializeTransportOptionsPopup() {
+    return new TransportOptionsPopup(getContext(), this);
+  }
+
+  public boolean isManualSelection() {
+    return transportOptions.isManualSelection();
   }
 
   public void addOnTransportChangedListener(OnTransportChangedListener listener) {
     transportOptions.addOnTransportChangedListener(listener);
   }
 
-  public void setComposeTextView(EditText composeText) {
-    this.composeText = composeText;
-  }
-
   public TransportOption getSelectedTransport() {
     return transportOptions.getSelectedTransport();
   }
 
-  public void initializeAvailableTransports(boolean isMediaMessage) {
-    transportOptions.initializeAvailableTransports(isMediaMessage);
+  public void resetAvailableTransports(boolean isMediaMessage) {
+    transportOptions.reset(isMediaMessage);
   }
 
-  public void disableTransport(String transport) {
-    transportOptions.disableTransport(transport);
+  public void disableTransport(TransportOption.Type type) {
+    transportOptions.disableTransport(type);
   }
 
-  public void setDefaultTransport(String transport) {
-    transportOptions.setDefaultTransport(transport);
+  public void setDefaultTransport(TransportOption.Type type) {
+    transportOptions.setDefaultTransport(type);
   }
 
-  private void setComposeTextHint(String hint) {
-    if (hint == null) {
-      this.composeText.setHint(null);
-    } else {
-      SpannableString span = new SpannableString(hint);
-      span.setSpan(new RelativeSizeSpan(0.8f), 0, hint.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-      this.composeText.setHint(span);
+  @Override
+  public void onSelected(TransportOption option) {
+    transportOptions.setSelectedTransport(option.getType());
+    transportOptionsPopup.dismiss();
+  }
+
+  @Override
+  public void onChange(TransportOption newTransport) {
+    setImageResource(newTransport.getDrawable());
+    setContentDescription(newTransport.getDescription());
+  }
+
+  @Override
+  public boolean onLongClick(View v) {
+    if (transportOptions.getEnabledTransports().size() > 1) {
+      transportOptionsPopup.display(getContext(), SendButton.this, transportOptions.getEnabledTransports());
+      return true;
     }
+
+    return false;
   }
 }

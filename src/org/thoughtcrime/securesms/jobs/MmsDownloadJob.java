@@ -8,8 +8,6 @@ import android.util.Pair;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.crypto.MmsCipher;
-import org.thoughtcrime.securesms.crypto.storage.TextSecureAxolotlStore;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
@@ -35,7 +33,6 @@ import java.io.IOException;
 
 import ws.com.google.android.mms.InvalidHeaderValueException;
 import ws.com.google.android.mms.MmsException;
-import ws.com.google.android.mms.pdu.MultimediaMessagePdu;
 import ws.com.google.android.mms.pdu.NotificationInd;
 import ws.com.google.android.mms.pdu.NotifyRespInd;
 import ws.com.google.android.mms.pdu.PduComposer;
@@ -212,24 +209,14 @@ public class MmsDownloadJob extends MasterSecretJob {
     Pair<Long, Long> messageAndThreadId;
 
     if (retrieved.getSubject() != null && WirePrefix.isEncryptedMmsSubject(retrieved.getSubject().getString())) {
-      MmsCipher            mmsCipher          = new MmsCipher(new TextSecureAxolotlStore(context, masterSecret));
-      MultimediaMessagePdu plaintextPdu       = mmsCipher.decrypt(context, retrieved);
-      RetrieveConf         plaintextRetrieved = new RetrieveConf(plaintextPdu.getPduHeaders(), plaintextPdu.getBody());
-      IncomingMediaMessage plaintextMessage   = new IncomingMediaMessage(plaintextRetrieved);
-
-      messageAndThreadId = database.insertSecureDecryptedMessageInbox(masterSecret, plaintextMessage,
-                                                                      threadId);
-
-//      if (masterSecret != null)
-//        DecryptingQueue.scheduleDecryption(context, masterSecret, messageAndThreadId.first,
-//                                           messageAndThreadId.second, retrieved);
-
+      database.markAsLegacyVersion(messageId, threadId);
+      messageAndThreadId = new Pair<>(messageId, threadId);
     } else {
       messageAndThreadId = database.insertMessageInbox(masterSecret, message,
                                                        contentLocation, threadId);
+      database.delete(messageId);
     }
 
-    database.delete(messageId);
     MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
   }
 
@@ -262,8 +249,6 @@ public class MmsDownloadJob extends MasterSecretJob {
       db.markIncomingNotificationReceived(threadId);
       MessageNotifier.updateNotification(context, masterSecret, threadId);
     }
-//
-//    toastHandler.makeToast(error);
   }
 
   private boolean isCdmaNetwork() {

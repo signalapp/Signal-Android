@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,41 +10,33 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
-import java.util.Map;
 
 public class TransportOptionsAdapter extends BaseAdapter {
-  private final Context                      context;
-  private final LayoutInflater               inflater;
-  private       List<String>                 enabledTransports;
-  private final Map<String, TransportOption> transportMetadata;
 
-  public TransportOptionsAdapter(final Context context,
-                                 final List<String> enabledTransports,
-                                 final Map<String, TransportOption> transportMetadata) {
+  private final LayoutInflater inflater;
+
+  private List<TransportOption> enabledTransports;
+
+  public TransportOptionsAdapter(@NonNull Context context,
+                                 @NonNull List<TransportOption> enabledTransports)
+  {
     super();
-    this.context           = context;
     this.inflater          = LayoutInflater.from(context);
     this.enabledTransports = enabledTransports;
-    this.transportMetadata = transportMetadata;
   }
 
-  public TransportOptionsAdapter(final Context context,
-                                 final Map<String, TransportOption> transportMetadata) {
-    this(context, null, transportMetadata);
-  }
-
-  public void setEnabledTransports(final List<String> enabledTransports) {
+  public void setEnabledTransports(List<TransportOption> enabledTransports) {
     this.enabledTransports = enabledTransports;
   }
 
   @Override
   public int getCount() {
-    return enabledTransports == null ? 0 : enabledTransports.size();
+    return enabledTransports.size();
   }
 
   @Override
   public Object getItem(int position) {
-    return transportMetadata.get(enabledTransports.get(position));
+    return enabledTransports.get(position);
   }
 
   @Override
@@ -53,19 +46,17 @@ public class TransportOptionsAdapter extends BaseAdapter {
 
   @Override
   public View getView(int position, View convertView, ViewGroup parent) {
-    final View view;
     if (convertView == null) {
-      view = inflater.inflate(R.layout.transport_selection_list_item, parent, false);
-    } else {
-      view = convertView;
+      convertView = inflater.inflate(R.layout.transport_selection_list_item, parent, false);
     }
 
     TransportOption transport = (TransportOption) getItem(position);
-    final ImageView imageView = (ImageView)view.findViewById(R.id.icon);
-    final TextView  textView  = (TextView) view.findViewById(R.id.text);
+    ImageView       imageView = (ImageView) convertView.findViewById(R.id.icon);
+    TextView        textView  = (TextView) convertView.findViewById(R.id.text);
 
-    imageView.setImageResource(transport.drawable);
-    textView.setText(transport.text);
-    return view;
+    imageView.setImageResource(transport.getDrawable());
+    textView.setText(transport.getDescription());
+
+    return convertView;
   }
 }

@@ -4,7 +4,8 @@ public class InsecureFallbackApprovalException extends Exception {
   public InsecureFallbackApprovalException(String detailMessage) {
     super(detailMessage);
   }
-  public InsecureFallbackApprovalException(Exception e) {
+
+  public InsecureFallbackApprovalException(Throwable e) {
     super(e);
   }
 }

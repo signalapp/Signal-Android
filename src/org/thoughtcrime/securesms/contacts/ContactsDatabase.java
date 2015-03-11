@@ -97,7 +97,11 @@ public class ContactsDatabase {
   }
 
   public Cursor query(String filter, boolean pushOnly) {
-    final boolean      includeAndroidContacts = !pushOnly && TextSecurePreferences.isDirectSmsAllowed(context);
+    // FIXME: This doesn't make sense to me.  You pass in pushOnly, but then
+    // conditionally check to see whether other contacts should be included
+    // in the query method itself? I don't think this method should have any
+    // understanding of that stuff.
+    final boolean      includeAndroidContacts = !pushOnly && TextSecurePreferences.isSmsEnabled(context);
     final Cursor       localCursor            = queryLocalDb(filter);
     final Cursor       androidCursor;
     final MatrixCursor newNumberCursor;

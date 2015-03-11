@@ -227,7 +227,7 @@ public class ConversationItem extends LinearLayout {
         if ((messageRecord.isPending() || messageRecord.isFailed()) && pushDestination && !messageRecord.isForcedSms()) {
           background         = SENT_PUSH_PENDING;
           triangleBackground = SENT_PUSH_PENDING_TRIANGLE;
-        } else if (messageRecord.isPending() || messageRecord.isFailed() || messageRecord.isPendingSmsFallback()) {
+        } else if (messageRecord.isPending() || messageRecord.isFailed() || messageRecord.isPendingInsecureSmsFallback()) {
           background         = SENT_SMS_PENDING;
           triangleBackground = SENT_SMS_PENDING_TRIANGLE;
         } else if (messageRecord.isPush()) {
@@ -291,11 +291,10 @@ public class ConversationItem extends LinearLayout {
     mmsDownloadButton.setVisibility(View.GONE);
     mmsDownloadingLabel.setVisibility(View.GONE);
 
-    if      (messageRecord.isFailed())             setFailedStatusIcons();
-    else if (messageRecord.isPendingSmsFallback()) setFallbackStatusIcons();
-    else if (messageRecord.isPending())            dateText.setText(" ··· ");
-    else                                           setSentStatusIcons();
-
+    if      (messageRecord.isFailed())                     setFailedStatusIcons();
+    else if (messageRecord.isPendingInsecureSmsFallback()) setFallbackStatusIcons();
+    else if (messageRecord.isPending())                    dateText.setText(" ··· ");
+    else                                                   setSentStatusIcons();
   }
 
   private void setSentStatusIcons() {
@@ -316,13 +315,7 @@ public class ConversationItem extends LinearLayout {
   private void setFallbackStatusIcons() {
     pendingIndicator.setVisibility(View.VISIBLE);
     indicatorText.setVisibility(View.VISIBLE);
-
-    if (messageRecord.isPendingSecureSmsFallback()) {
-      if (messageRecord.isMms()) indicatorText.setText(R.string.ConversationItem_click_to_approve_mms);
-      else                       indicatorText.setText(R.string.ConversationItem_click_to_approve_sms);
-    } else {
-      indicatorText.setText(R.string.ConversationItem_click_to_approve_unencrypted);
-    }
+    indicatorText.setText(R.string.ConversationItem_click_to_approve_unencrypted);
   }
 
   private void setMinimumWidth() {
@@ -335,20 +328,9 @@ public class ConversationItem extends LinearLayout {
   }
 
   private void setEvents(MessageRecord messageRecord) {
-    setClickable(messageRecord.isFailed()||
-                 messageRecord.isPendingSmsFallback()      ||
-                 (messageRecord.isKeyExchange()            &&
-                  !messageRecord.isCorruptedKeyExchange()  &&
-                  !messageRecord.isOutgoing()));
-
-    if (!messageRecord.isOutgoing()                       &&
-        messageRecord.getRecipients().isSingleRecipient() &&
-        !messageRecord.isSecure())
-    {
-      checkForAutoInitiate(messageRecord.getIndividualRecipient(),
-                           messageRecord.getBody().getBody(),
-                           messageRecord.getThreadId());
-    }
+    setClickable(messageRecord.isFailed()                     ||
+                 messageRecord.isPendingInsecureSmsFallback() ||
+                 messageRecord.isBundleKeyExchange());
   }
 
   private void setGroupMessageStatus(MessageRecord messageRecord) {
@@ -426,23 +408,6 @@ public class ConversationItem extends LinearLayout {
   }
 
   /// Helper Methods
-
-  private void checkForAutoInitiate(Recipient recipient, String body, long threadId) {
-    if (!groupThread &&
-        AutoInitiateActivity.isValidAutoInitiateSituation(context, masterSecret, recipient,
-                                                          body, threadId))
-    {
-      AutoInitiateActivity.exemptThread(context, threadId);
-
-      Intent intent = new Intent();
-      intent.setClass(context, AutoInitiateActivity.class);
-      intent.putExtra("threadId", threadId);
-      intent.putExtra("masterSecret", masterSecret);
-      intent.putExtra("recipient", recipient.getRecipientId());
-
-      context.startActivity(intent);
-    }
-  }
 
   private void setContactPhotoForRecipient(final Recipient recipient) {
     if (contactPhoto == null) return;
@@ -588,7 +553,7 @@ public class ConversationItem extends LinearLayout {
                  !messageRecord.isStaleKeyExchange())
       {
         handleKeyExchangeClicked();
-      } else if (messageRecord.isPendingSmsFallback()) {
+      } else if (messageRecord.isPendingInsecureSmsFallback()) {
         handleMessageApproval();
       }
     }
@@ -611,17 +576,10 @@ public class ConversationItem extends LinearLayout {
     final int title;
     final int message;
 
-    if (messageRecord.isPendingSecureSmsFallback()) {
-      if (messageRecord.isMms()) title = R.string.ConversationItem_click_to_approve_mms_dialog_title;
-      else                       title = R.string.ConversationItem_click_to_approve_sms_dialog_title;
+    if (messageRecord.isMms()) title = R.string.ConversationItem_click_to_approve_unencrypted_mms_dialog_title;
+    else                       title = R.string.ConversationItem_click_to_approve_unencrypted_sms_dialog_title;
 
-      message = -1;
-    } else {
-      if (messageRecord.isMms()) title = R.string.ConversationItem_click_to_approve_unencrypted_mms_dialog_title;
-      else                       title = R.string.ConversationItem_click_to_approve_unencrypted_sms_dialog_title;
-
-      message = R.string.ConversationItem_click_to_approve_unencrypted_dialog_message;
-    }
+    message = R.string.ConversationItem_click_to_approve_unencrypted_dialog_message;
 
     AlertDialog.Builder builder = new AlertDialog.Builder(context);
     builder.setTitle(title);
@@ -633,9 +591,7 @@ public class ConversationItem extends LinearLayout {
       public void onClick(DialogInterface dialogInterface, int i) {
         if (messageRecord.isMms()) {
           MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
-          if (messageRecord.isPendingInsecureSmsFallback()) {
-            database.markAsInsecure(messageRecord.getId());
-          }
+          database.markAsInsecure(messageRecord.getId());
           database.markAsOutbox(messageRecord.getId());
           database.markAsForcedSms(messageRecord.getId());
 
@@ -644,9 +600,7 @@ public class ConversationItem extends LinearLayout {
                             .add(new MmsSendJob(context, messageRecord.getId()));
         } else {
           SmsDatabase database = DatabaseFactory.getSmsDatabase(context);
-          if (messageRecord.isPendingInsecureSmsFallback()) {
-            database.markAsInsecure(messageRecord.getId());
-          }
+          database.markAsInsecure(messageRecord.getId());
           database.markAsOutbox(messageRecord.getId());
           database.markAsForcedSms(messageRecord.getId());
 

@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
@@ -40,7 +41,6 @@ public class TextSecurePreferences {
   public  static final String ALL_SMS_PREF                     = "pref_all_sms";
   public  static final String PASSPHRASE_TIMEOUT_INTERVAL_PREF = "pref_timeout_interval";
   private static final String PASSPHRASE_TIMEOUT_PREF          = "pref_timeout_passphrase";
-  private static final String AUTO_KEY_EXCHANGE_PREF           = "pref_auto_complete_key_exchange";
   public  static final String SCREEN_SECURITY_PREF             = "pref_screen_security";
   private static final String ENTER_SENDS_PREF                 = "pref_enter_sends";
   private static final String ENTER_PRESENT_PREF               = "pref_enter_key";
@@ -57,10 +57,6 @@ public class TextSecurePreferences {
   private static final String IN_THREAD_NOTIFICATION_PREF      = "pref_key_inthread_notifications";
 
   private static final String LOCAL_REGISTRATION_ID_PREF       = "pref_local_registration_id";
-  private static final String FALLBACK_SMS_ALLOWED_PREF        = "pref_allow_sms_traffic_out";
-  private static final String FALLBACK_SMS_ASK_REQUIRED_PREF   = "pref_sms_fallback_ask";
-  private static final String DIRECT_SMS_ALLOWED_PREF          = "pref_sms_non_data_out";
-  private static final String FALLBACK_MMS_ENABLED_PREF        = "pref_mms_fallback_enabled";
   private static final String SIGNED_PREKEY_REGISTERED_PREF    = "pref_signed_prekey_registered";
   private static final String WIFI_SMS_PREF                    = "pref_wifi_sms";
 
@@ -68,7 +64,6 @@ public class TextSecurePreferences {
   private static final String GCM_REGISTRATION_ID_VERSION_PREF = "pref_gcm_registration_id_version";
   private static final String WEBSOCKET_REGISTERED_PREF        = "pref_websocket_registered";
 
-  private static final String PUSH_REGISTRATION_REMINDER_PREF  = "pref_push_registration_reminder";
   public  static final String REPEAT_ALERTS_PREF               = "pref_repeat_alerts";
 
   public static boolean isWebsocketRegistered(Context context) {
@@ -119,36 +114,12 @@ public class TextSecurePreferences {
     }
   }
 
-  public static boolean isFallbackSmsAllowed(Context context) {
-    return getBooleanPreference(context, FALLBACK_SMS_ALLOWED_PREF, true);
-  }
-
-  public static void setFallbackSmsAllowed(Context context, boolean allowed) {
-    setBooleanPreference(context, FALLBACK_SMS_ALLOWED_PREF, allowed);
-  }
-
-  public static boolean isFallbackSmsAskRequired(Context context) {
-    return getBooleanPreference(context, FALLBACK_SMS_ASK_REQUIRED_PREF, false);
-  }
-
-  public static void setFallbackSmsAskRequired(Context context, boolean required) {
-    setBooleanPreference(context, FALLBACK_SMS_ASK_REQUIRED_PREF, required);
-  }
-
-  public static boolean isFallbackMmsEnabled(Context context) {
-    return getBooleanPreference(context, FALLBACK_MMS_ENABLED_PREF, true);
-  }
-
-  public static void setFallbackMmsEnabled(Context context, boolean enabled) {
-    setBooleanPreference(context, FALLBACK_MMS_ENABLED_PREF, enabled);
-  }
-
-  public static boolean isDirectSmsAllowed(Context context) {
-    return getBooleanPreference(context, DIRECT_SMS_ALLOWED_PREF, true);
-  }
-
-  public static void setDirectSmsAllowed(Context context, boolean allowed) {
-    setBooleanPreference(context, DIRECT_SMS_ALLOWED_PREF, allowed);
+  public static boolean isSmsEnabled(Context context) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+      return Util.isDefaultSmsProvider(context);
+    } else {
+      return isInterceptAllSmsEnabled(context);
+    }
   }
 
   public static int getLocalRegistrationId(Context context) {
@@ -304,10 +275,6 @@ public class TextSecurePreferences {
     setStringPreference(context, IDENTITY_PREF, identityUri);
   }
 
-  public static boolean isAutoRespondKeyExchangeEnabled(Context context) {
-    return getBooleanPreference(context, AUTO_KEY_EXCHANGE_PREF, true);
-  }
-
   public static boolean isScreenSecurityEnabled(Context context) {
     return getBooleanPreference(context, SCREEN_SECURITY_PREF, true);
   }
@@ -429,14 +396,6 @@ public class TextSecurePreferences {
 
   public static int getThreadTrimLength(Context context) {
     return Integer.parseInt(getStringPreference(context, THREAD_TRIM_LENGTH, "500"));
-  }
-
-  public static long getLastPushReminderTime(Context context) {
-    return getLongPreference(context, PUSH_REGISTRATION_REMINDER_PREF, 0L);
-  }
-
-  public static void setLastPushReminderTime(Context context, long time) {
-    setLongPreference(context, PUSH_REGISTRATION_REMINDER_PREF, time);
   }
 
   public static void setBooleanPreference(Context context, String key, boolean value) {

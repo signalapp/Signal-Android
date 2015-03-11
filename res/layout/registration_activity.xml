@@ -77,7 +77,8 @@
                       android:orientation="horizontal">
 
             <Button android:id="@+id/skipButton"
-                    android:text="@string/registration_activity__skip"
+                    android:visibility="gone"
+                    android:text="@android:string/cancel"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="5dip"

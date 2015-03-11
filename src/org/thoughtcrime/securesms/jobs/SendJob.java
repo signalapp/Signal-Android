@@ -40,6 +40,7 @@ public abstract class SendJob extends MasterSecretJob {
 
   protected abstract void onSend(MasterSecret masterSecret) throws Exception;
 
+  // FIXME: This should return a value rather than modifying one.
   protected void prepareMessageMedia(MasterSecret masterSecret, SendReq message,
                                      MediaConstraints constraints, boolean toMemory)
       throws IOException, UndeliverableMessageException

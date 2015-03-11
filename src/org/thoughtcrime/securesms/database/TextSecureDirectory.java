@@ -143,7 +143,7 @@ public class TextSecureDirectory {
 
     try {
       for (ContactTokenDetails token : activeTokens) {
-        Log.w("Directory", "Adding active token: " + token);
+        Log.w("Directory", "Adding active token: " + token.getNumber() + ", " + token.getToken());
         ContentValues values = new ContentValues();
         values.put(NUMBER, token.getNumber());
         values.put(REGISTERED, 1);
