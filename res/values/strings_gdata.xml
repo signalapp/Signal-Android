@@ -21,7 +21,7 @@
     <string name="menu_filter_block_contact">Block contact</string>
 
     <string name="privacy_pw_dialog_header">Enter password: </string>
-    <string name="privacy_pw_dialog_hint">Hint: Its the password you have set within the Internet Security for android.</string>
+    <string name="privacy_pw_dialog_hint">Hint: Its the password you have set within the Internet Security for Android.</string>
     <string name="privacy_pw_dialog_toast_wrong">The password you entered does not match that of the Internet Security.</string>
     <string name="privacy_pw_dialog_toast_reload">Messages and contacts are being restored...</string>
     <string name="privacy_pw_dialog_toast_hide">Messages and contacts are being prepared to be hidden...</string>

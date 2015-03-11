@@ -21,7 +21,7 @@
     <string name="menu_filter_block_contact">Kontakt blockieren</string>
 
     <string name="privacy_pw_dialog_header">Passwort eingeben: </string>
-    <string name="privacy_pw_dialog_hint">Hinweis: Es handelt sich um das von Ihnen gewählte Passwort in der Internet Security.</string>
+    <string name="privacy_pw_dialog_hint">Hinweis: Es handelt sich um das von Ihnen gewählte Passwort in der Internet Security für Android.</string>
     <string name="privacy_pw_dialog_toast_wrong">Ihr eingegebenes Passwort stimmt nicht mit dem der Internet Security überein.</string>
     <string name="privacy_pw_dialog_toast_reload">Nachrichten und Kontakte werden wieder hergestellt...</string>
     <string name="privacy_pw_dialog_toast_hide">Nachrichten und Kontakte werden zum Verstecken vorbereitet...</string>
