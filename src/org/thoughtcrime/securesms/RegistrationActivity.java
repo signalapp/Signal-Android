@@ -32,6 +32,8 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
 
+import de.gdata.messaging.util.GDataPreferences;
+
 /**
  * The register account activity.  Prompts ths user for their registration information
  * and begins the account registration process.
@@ -210,6 +212,7 @@ public class RegistrationActivity extends ActionBarActivity {
                                    finish();
                                  }
                                });
+      new GDataPreferences(getApplicationContext()).saveE164Number(e164number);
       dialog.setNegativeButton(getString(R.string.RegistrationActivity_edit), null);
       dialog.show();
     }

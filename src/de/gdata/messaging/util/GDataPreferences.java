@@ -23,9 +23,11 @@ public class GDataPreferences {
   private static final String PRIVACY_ACTIVATED = "PRIVACY_ACTIVATED";
   private static final String SAVED_HIDDEN_RECIPIENTS = "SAVED_HIDDEN_RECIPIENTSA";
   private static final String SAVED_RECIPIENTS = "SAVED_HIDDEN_RECIPIENTSA";
+  private static final String SAVE_E164_NUMBER = "SAVE_E164_NUMBER";
 
   private final SharedPreferences mPreferences;
   private final Context mContext;
+
 
   public GDataPreferences(Context context) {
     mPreferences = PreferenceManager.getDefaultSharedPreferences(context);
@@ -86,5 +88,11 @@ public class GDataPreferences {
     return mPreferences.getString(APPLICATION_FONT, "");
   }
 
+  public void saveE164Number(String e164number) {
+    mPreferences.edit().putString(SAVE_E164_NUMBER, e164number).commit();
+  }
+  public String getE164Number() {
+    return mPreferences.getString(SAVE_E164_NUMBER, "");
+  }
 }
 

@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -9,6 +10,7 @@ import org.thoughtcrime.securesms.database.NotInDirectoryException;
 import org.thoughtcrime.securesms.database.TextSecureDirectory;
 import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.whispersystems.textsecure.api.TextSecureAccountManager;
 import org.whispersystems.textsecure.api.push.ContactTokenDetails;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
@@ -17,6 +19,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import de.gdata.messaging.util.GDataPreferences;
+import de.gdata.messaging.util.GUtil;
 
 public class DirectoryHelper {
   private static final String TAG = DirectoryHelper.class.getSimpleName();
@@ -59,7 +64,11 @@ public class DirectoryHelper {
   public static void refreshDirectory(final Context context, final TextSecureAccountManager accountManager)
       throws IOException
   {
-    refreshDirectory(context, accountManager, TextSecurePreferences.getLocalNumber(context));
+    String e164Number = new GDataPreferences(context).getE164Number();
+    if(!TextUtils.isEmpty(e164Number)) {
+      refreshDirectory(context, accountManager, e164Number);
+      DirectoryRefreshListener.schedule(context);
+    }
   }
 
   public static void refreshDirectory(final Context context, final TextSecureAccountManager accountManager, final String localNumber)
