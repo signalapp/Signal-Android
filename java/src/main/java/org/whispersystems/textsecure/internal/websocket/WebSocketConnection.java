@@ -156,7 +156,7 @@ public class WebSocketConnection implements WebSocketEventListener {
     public void run() {
       while (!stop.get()) {
         try {
-          Thread.sleep(TimeUnit.SECONDS.toMillis(15));
+          Thread.sleep(TimeUnit.SECONDS.toMillis(55));
 
           Log.w(TAG, "Sending keep alive...");
           sendKeepAlive();
