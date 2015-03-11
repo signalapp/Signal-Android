@@ -138,7 +138,9 @@ public class MessageRetrievalService extends Service implements Runnable, Inject
   }
 
   private synchronized boolean isConnectionNecessary() {
-    Log.w(TAG, "Network requirement: " + networkRequirement.isPresent());
+    Log.w(TAG, String.format("Network requirement: %s, active activities: %s, push pending: %s",
+                             networkRequirement.isPresent(), activeActivities, pushPending));
+
     return TextSecurePreferences.isWebsocketRegistered(this) &&
            (activeActivities > 0 || pushPending)             &&
            networkRequirement.isPresent();

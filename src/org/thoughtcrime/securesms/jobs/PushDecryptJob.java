@@ -99,9 +99,8 @@ public class PushDecryptJob extends MasterSecretJob {
 
   private void handleMessage(MasterSecret masterSecret, TextSecureEnvelope envelope, long smsMessageId) {
     try {
-      int              deviceId     = envelope.getSourceDevice();
       AxolotlStore     axolotlStore = new TextSecureAxolotlStore(context, masterSecret);
-      TextSecureCipher cipher       = new TextSecureCipher(axolotlStore, new AxolotlAddress(envelope.getSource(), deviceId));
+      TextSecureCipher cipher       = new TextSecureCipher(axolotlStore);
 
       TextSecureMessage message = cipher.decrypt(envelope);
 
