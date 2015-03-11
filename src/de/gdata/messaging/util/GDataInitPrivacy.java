@@ -24,9 +24,10 @@ public class GDataInitPrivacy {
 
   private static Context mContext;
   private static PrivacyContentObserver privacyContentObserver;
+  private static GDataPreferences preferences;
 
   public void init(Context context) {
-    GDataPreferences preferences = new GDataPreferences(context);
+    preferences = new GDataPreferences(context);
     preferences.setApplicationFont("Roboto-Light.ttf");
     mContext = context;
     PrivacyBridge.mContext = context;
@@ -105,7 +106,7 @@ public class GDataInitPrivacy {
         if (mService != null) {
           try {
             isEnabled = mService.hasPremiumEnabled();
-            new GDataPreferences(mContext).setPremiumInstalled(isEnabled);
+            preferences.setPremiumInstalled(isEnabled);
             Log.e("GDATA", "PREMIUM " + mService.hasPremiumEnabled());
           } catch (RemoteException e) {
             Log.e("GDATA", e.getMessage());

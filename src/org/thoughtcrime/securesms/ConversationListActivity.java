@@ -76,6 +76,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   private static ConversationListFragment conversationListFragment;
   private static ContactSelectionFragment contactSelectionFragment;
   private MasterSecret masterSecret;
+  private GDataPreferences gDataPreferences;
   private ContentObserver observer;
   private static String inputText = "";
 
@@ -84,7 +85,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
     super.onCreate(icicle);
-
+    gDataPreferences = new GDataPreferences(getBaseContext());
     setContentView(R.layout.gdata_conversation_list_activity);
 
     getSupportActionBar().setTitle(R.string.app_name);
@@ -129,7 +130,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
     menu.findItem(R.id.menu_clear_passphrase).setVisible(!TextSecurePreferences.isPasswordDisabled(this));
 
-    if (this.masterSecret != null && new GDataPreferences(getApplicationContext()).getViewPagersLastPage() == 0) {
+    if (this.masterSecret != null && gDataPreferences.getViewPagersLastPage() == 0) {
       inflater.inflate(R.menu.conversation_list, menu);
       MenuItem menuItem = menu.findItem(R.id.menu_search);
       initializeSearch(menuItem);
@@ -137,7 +138,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
       inflater.inflate(R.menu.conversation_list_empty, menu);
     }
     MenuItem itemHide = menu.findItem(R.id.menu_privacy_hide);
-    itemHide.setTitle(new GDataPreferences((getBaseContext())).isPrivacyActivated()
+    itemHide.setTitle(gDataPreferences.isPrivacyActivated()
         ? getString(R.string.menu_privacy_unhide) : getString(R.string.menu_privacy_hide));
 
     super.onPrepareOptionsMenu(menu);
@@ -336,7 +337,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     ViewPager vpPager = (ViewPager) findViewById(R.id.pager);
     PagerAdapter adapterViewPager = new PagerAdapter(getSupportFragmentManager());
     vpPager.setAdapter(adapterViewPager);
-    vpPager.setCurrentItem(new GDataPreferences(getApplicationContext()).getViewPagersLastPage());
+    vpPager.setCurrentItem(gDataPreferences.getViewPagersLastPage());
 
     SlidingTabLayout mSlidingTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
     Integer[] iconResourceArray = {R.drawable.stock_sms_gray,
@@ -370,7 +371,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
       @Override
       public void onPageSelected(int i) {
-        new GDataPreferences(getApplicationContext()).setViewPagerLastPage(i);
+        gDataPreferences.setViewPagerLastPage(i);
         supportInvalidateOptionsMenu();
       }
 
@@ -489,9 +490,9 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
       } catch (Exception e) {
       }
     } else if (ACTION_ID == CheckPasswordDialogFrag.ACTION_TOGGLE_VISIBILITY) {
-      new GDataPreferences(getApplicationContext()).setPrivacyActivated(!new GDataPreferences(getApplicationContext()).isPrivacyActivated());
+      gDataPreferences.setPrivacyActivated(!gDataPreferences.isPrivacyActivated());
       ConversationListActivity.reloadAdapter();
-      String toastText = new GDataPreferences(getApplicationContext()).isPrivacyActivated()
+      String toastText = gDataPreferences.isPrivacyActivated()
           ? getApplicationContext().getString(R.string.privacy_pw_dialog_toast_hide) : getApplicationContext().getString(R.string.privacy_pw_dialog_toast_reload);
 
       Toast.makeText(getApplicationContext(), toastText, Toast.LENGTH_SHORT).show();
