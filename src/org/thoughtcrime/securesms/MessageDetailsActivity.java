@@ -27,7 +27,6 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -285,9 +284,9 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
 
   private static class NullSelectionListener implements ConversationFragment.SelectionClickListener {
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {}
+    public void onClick(View view) {}
     @Override
-    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+    public boolean onLongClick(View view) {
       return false;
     }
   }

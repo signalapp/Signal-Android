@@ -179,6 +179,7 @@ public class ConversationItem extends LinearLayout {
     setConversationBackgroundDrawables(messageRecord);
     setSelectionBackgroundDrawables(messageRecord);
     setBodyText(messageRecord);
+    setOnLongClickListener(selectionClickListener);
 
     if (!messageRecord.isGroupAction()) {
       setStatusIcons(messageRecord);
@@ -265,11 +266,6 @@ public class ConversationItem extends LinearLayout {
     bodyText.setText(Emoji.getInstance(context).emojify(messageRecord.getDisplayBody(),
                                                         new Emoji.InvalidatingPageLoadedListener(bodyText)),
                      TextView.BufferType.SPANNABLE);
-
-    if (bodyText.isClickable() && bodyText.isFocusable()) {
-      bodyText.setOnLongClickListener(new MultiSelectLongClickListener());
-      bodyText.setOnClickListener(new MultiSelectLongClickListener());
-    }
   }
 
   private void setContactPhoto(MessageRecord messageRecord) {
@@ -513,7 +509,7 @@ public class ConversationItem extends LinearLayout {
 
     public void onClick(View v) {
       if (!batchSelected.isEmpty()) {
-        selectionClickListener.onItemClick(null, ConversationItem.this, -1, -1);
+        selectionClickListener.onClick(ConversationItem.this);
       } else if (MediaPreviewActivity.isContentTypeSupported(slide.getContentType())) {
         Intent intent = new Intent(context, MediaPreviewActivity.class);
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -575,7 +571,10 @@ public class ConversationItem extends LinearLayout {
 
   private class ClickListener implements View.OnClickListener {
     public void onClick(View v) {
-      if (messageRecord.isFailed()) {
+      if (!batchSelected.isEmpty()) {
+        selectionClickListener.onClick(ConversationItem.this);
+      }
+      else if (messageRecord.isFailed()) {
         Intent intent = new Intent(context, MessageDetailsActivity.class);
         intent.putExtra(MessageDetailsActivity.MASTER_SECRET_EXTRA, masterSecret);
         intent.putExtra(MessageDetailsActivity.MESSAGE_ID_EXTRA, messageRecord.getId());
@@ -594,16 +593,10 @@ public class ConversationItem extends LinearLayout {
     }
   }
 
-  private class MultiSelectLongClickListener implements OnLongClickListener, OnClickListener {
+  private class MultiSelectLongClickListener implements OnLongClickListener {
     @Override
     public boolean onLongClick(View view) {
-      selectionClickListener.onItemLongClick(null, ConversationItem.this, -1, -1);
-      return true;
-    }
-
-    @Override
-    public void onClick(View view) {
-      selectionClickListener.onItemClick(null, ConversationItem.this, -1, -1);
+      return ConversationItem.this.performLongClick();
     }
   }
 
