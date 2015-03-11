@@ -22,7 +22,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -72,7 +71,6 @@ public class ConversationFragment extends ListFragment
 
     initializeResources();
     initializeListAdapter();
-    initializeContextualActionBar();
   }
 
   @Override
@@ -114,11 +112,6 @@ public class ConversationFragment extends ListFragment
       getListView().setRecyclerListener((ConversationAdapter)getListAdapter());
       getLoaderManager().initLoader(0, null, this);
     }
-  }
-
-  private void initializeContextualActionBar() {
-    getListView().setOnItemClickListener(selectionClickListener);
-    getListView().setOnItemLongClickListener(selectionClickListener);
   }
 
   private void setCorrectMenuVisibility(Menu menu) {
@@ -290,13 +283,13 @@ public class ConversationFragment extends ListFragment
   }
 
   public interface SelectionClickListener extends
-      AdapterView.OnItemLongClickListener, AdapterView.OnItemClickListener {}
+      View.OnLongClickListener, View.OnClickListener {}
 
   private class ConversationFragmentSelectionClickListener
       implements SelectionClickListener
   {
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+    public void onClick(View view) {
       if (actionMode != null && view instanceof ConversationItem) {
         MessageRecord messageRecord = ((ConversationItem)view).getMessageRecord();
         ((ConversationAdapter) getListAdapter()).toggleBatchSelected(messageRecord);
@@ -307,7 +300,7 @@ public class ConversationFragment extends ListFragment
     }
 
     @Override
-    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+    public boolean onLongClick(View view) {
       if (actionMode == null && view instanceof ConversationItem) {
         MessageRecord messageRecord = ((ConversationItem)view).getMessageRecord();
         ((ConversationAdapter) getListAdapter()).toggleBatchSelected(messageRecord);
@@ -376,5 +369,5 @@ public class ConversationFragment extends ListFragment
 
       return false;
     }
-  };
+  }
 }
