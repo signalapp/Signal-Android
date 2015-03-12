@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
 import android.telephony.SmsMessage;
-import android.util.Log;
 import android.util.Pair;
 
 import org.thoughtcrime.securesms.ApplicationContext;
@@ -21,7 +20,7 @@ import org.whispersystems.libaxolotl.util.guava.Optional;
 import java.util.LinkedList;
 import java.util.List;
 
-import de.gdata.messaging.util.PrivacyBridge;
+import de.gdata.messaging.util.GDataInitPrivacy;
 
 public class SmsReceiveJob extends ContextJob {
 
@@ -35,7 +34,6 @@ public class SmsReceiveJob extends ContextJob {
     super(context, JobParameters.newBuilder()
         .withPersistence()
         .create());
-
     this.pdus = pdus;
   }
 
@@ -46,12 +44,13 @@ public class SmsReceiveJob extends ContextJob {
   @Override
   public void onRun() {
     Optional<IncomingTextMessage> message = assembleMessageFragments(pdus);
-
     if (message.isPresent()) {
-      Pair<Long, Long> messageAndThreadId = storeMessage(message.get());
-      if (!PrivacyBridge.shallContactBeBlocked(context, message.get().getSender())) {
+      if (!GDataInitPrivacy.shallBeBlockedByFilter(message.get().getSender(), 1, 1) && !GDataInitPrivacy.shallBeBlockedByPrivacy(message.get().getSender())) {
+        Pair<Long, Long> messageAndThreadId = storeMessage(message.get(),false);
         MessageNotifier.updateNotification(context, KeyCachingService.getMasterSecret(context), messageAndThreadId.second);
-      } 
+      } if(GDataInitPrivacy.shallBeBlockedByPrivacy(message.get().getSender()) && !GDataInitPrivacy.shallBeBlockedByFilter(message.get().getSender(), 1, 1)) {
+        storeMessage(message.get(),true);
+      }
     }
   }
 
@@ -65,7 +64,7 @@ public class SmsReceiveJob extends ContextJob {
     return false;
   }
 
-  private Pair<Long, Long> storeMessage(IncomingTextMessage message) {
+  private Pair<Long, Long> storeMessage(IncomingTextMessage message, boolean hidden) {
     EncryptingSmsDatabase database = DatabaseFactory.getEncryptingSmsDatabase(context);
     MasterSecret masterSecret = KeyCachingService.getMasterSecret(context);
 
@@ -84,7 +83,9 @@ public class SmsReceiveJob extends ContextJob {
           .getJobManager()
           .add(new SmsDecryptJob(context, messageAndThreadId.first));
     } else {
-      MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
+      if(!hidden) {
+        MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
+      }
     }
 
     return messageAndThreadId;

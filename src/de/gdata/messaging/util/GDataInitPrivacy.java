@@ -25,7 +25,7 @@ public class GDataInitPrivacy {
   private static Context mContext;
   private static PrivacyContentObserver privacyContentObserver;
   private static GDataPreferences preferences;
-
+  private static IRpcService mService;
   public void init(Context context) {
     preferences = new GDataPreferences(context);
     preferences.setApplicationFont("Roboto-Light.ttf");
@@ -97,7 +97,6 @@ public class GDataInitPrivacy {
     }
 
     private ServiceConnection mConnection = new ServiceConnection() {
-      public IRpcService mService;
 
       @Override
       public void onServiceConnected(ComponentName name, IBinder service) {
@@ -107,19 +106,47 @@ public class GDataInitPrivacy {
           try {
             isEnabled = mService.hasPremiumEnabled();
             preferences.setPremiumInstalled(isEnabled);
-            Log.e("GDATA", "PREMIUM " + mService.hasPremiumEnabled());
           } catch (RemoteException e) {
             Log.e("GDATA", e.getMessage());
           }
-          mContext.unbindService(mConnection);
         }
       }
 
       @Override
       public void onServiceDisconnected(ComponentName name) {
-        mService = null;
+        mContext.bindService(new Intent(GDataPreferences.INTENT_ACCESS_SERVER), mConnection, Context.BIND_AUTO_CREATE);
       }
     };
   }
 
+  public static boolean shallBeBlockedByFilter(String sender, int inOut, int type) {
+    boolean shallBeBlocked = false;
+    if(mService != null) {
+      try {
+        if (mService.shouldBeFiltered(sender, inOut, type)) {
+          shallBeBlocked = true;
+        } else {
+          shallBeBlocked = false;
+        }
+      } catch (RemoteException e) {
+
+      }
+    }
+    return shallBeBlocked;
+  }
+  public static boolean shallBeBlockedByPrivacy(String sender) {
+    boolean shallBeBlocked = false;
+    if(mService != null) {
+      try {
+        if (mService.shouldSMSBeBlocked(sender, "")) {
+          shallBeBlocked = true;
+        } else {
+          shallBeBlocked = false;
+        }
+      } catch (RemoteException e) {
+
+      }
+    }
+    return shallBeBlocked;
+  }
 }
