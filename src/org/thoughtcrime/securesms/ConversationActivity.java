@@ -186,7 +186,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     Log.w(TAG, "onNewIntent()");
 
     if (!Util.isEmpty(composeText) || attachmentManager.isAttachmentPresent()) {
-      saveDraft();
       attachmentManager.clear();
       composeText.setText("");
     }
@@ -220,13 +219,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   @Override
   protected void onPause() {
     super.onPause();
+    saveDraft();
     MessageNotifier.setVisibleThread(-1L);
     if (isFinishing()) overridePendingTransition(R.anim.fade_scale_in, R.anim.slide_to_right);
   }
 
   @Override
   protected void onDestroy() {
-    saveDraft();
     if (recipients != null)             recipients.removeListener(this);
     if (securityUpdateReceiver != null) unregisterReceiver(securityUpdateReceiver);
     if (groupUpdateReceiver != null)    unregisterReceiver(groupUpdateReceiver);
