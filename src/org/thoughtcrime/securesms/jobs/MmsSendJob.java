@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.NumberUtil;
 import org.thoughtcrime.securesms.util.TelephonyUtil;
+import org.thoughtcrime.securesms.util.SmilUtil;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 
@@ -98,6 +99,7 @@ public class MmsSendJob extends SendJob {
     MmsRadio radio = MmsRadio.getInstance(context);
 
     try {
+      prepareMessageMedia(masterSecret, message, MediaConstraints.MMS_CONSTRAINTS, true);
       if (isCdmaDevice()) {
         Log.w(TAG, "Sending MMS directly without radio change...");
         try {
@@ -129,9 +131,9 @@ public class MmsSendJob extends SendJob {
         radio.disconnect();
       }
 
-    } catch (MmsRadioException mre) {
-      Log.w(TAG, mre);
-      throw new UndeliverableMessageException(mre);
+    } catch (MmsRadioException | IOException e) {
+      Log.w(TAG, e);
+      throw new UndeliverableMessageException(e);
     }
   }
 
@@ -140,8 +142,6 @@ public class MmsSendJob extends SendJob {
       throws IOException, UndeliverableMessageException, InsecureFallbackApprovalException
   {
     String number = TelephonyUtil.getManager(context).getLine1Number();
-
-    prepareMessageMedia(masterSecret, message, MediaConstraints.MMS_CONSTRAINTS, true);
 
     if (MmsDatabase.Types.isSecureType(message.getDatabaseMessageBox())) {
       throw new UndeliverableMessageException("Attempt to send encrypted MMS?");
@@ -227,6 +227,12 @@ public class MmsSendJob extends SendJob {
     }
   }
 
-
+  @Override
+  protected void prepareMessageMedia(MasterSecret masterSecret, SendReq message,
+                                     MediaConstraints constraints, boolean toMemory)
+      throws IOException, UndeliverableMessageException {
+    super.prepareMessageMedia(masterSecret, message, constraints, toMemory);
+    message.setBody(SmilUtil.getSmilBody(message.getBody()));
+  }
 
 }

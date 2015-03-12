@@ -21,9 +21,6 @@ import java.io.InputStream;
 
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.Util;
-import org.w3c.dom.smil.SMILDocument;
-import org.w3c.dom.smil.SMILMediaElement;
-import org.w3c.dom.smil.SMILRegionElement;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 
 import android.content.Context;
@@ -102,10 +99,6 @@ public abstract class Slide {
   public PduPart getPart() {
     return part;
   }
-
-  public abstract SMILRegionElement getSmilRegion(SMILDocument document);
-
-  public abstract SMILMediaElement getMediaElement(SMILDocument document);
 
   protected static void assertMediaSize(Context context, Uri uri)
       throws MediaTooLargeException, IOException

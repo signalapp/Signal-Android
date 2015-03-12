@@ -68,15 +68,6 @@ public class SlideDeck {
       body.addPart(slide.getPart());
     }
 
-    ByteArrayOutputStream out = new ByteArrayOutputStream();
-    SmilXmlSerializer.serialize(SmilUtil.createSmilDocument(this), out);
-    PduPart smilPart = new PduPart();
-    smilPart.setContentId("smil".getBytes());
-    smilPart.setContentLocation("smil.xml".getBytes());
-    smilPart.setContentType(ContentType.APP_SMIL.getBytes());
-    smilPart.setData(out.toByteArray());
-    body.addPart(0, smilPart);
-
     return body;
   }
 
