@@ -79,7 +79,9 @@ public class GDataInitPrivacy {
         Log.d("GDATA", "Couldn`t load SecureChat contacts");
       }
       try {
-        mContext.bindService(new Intent(GDataPreferences.INTENT_ACCESS_SERVER), mConnection, Context.BIND_AUTO_CREATE);
+        if(mService == null) {
+          mContext.bindService(new Intent(GDataPreferences.INTENT_ACCESS_SERVER), mConnection, Context.BIND_AUTO_CREATE);
+        }
       } catch (java.lang.SecurityException e) {
         Log.e("GDATA", "Remote Service Exception:  " + "wrong signatures " + e.getMessage());
       }
@@ -114,7 +116,7 @@ public class GDataInitPrivacy {
 
       @Override
       public void onServiceDisconnected(ComponentName name) {
-        mContext.bindService(new Intent(GDataPreferences.INTENT_ACCESS_SERVER), mConnection, Context.BIND_AUTO_CREATE);
+        mService = null;
       }
     };
   }
