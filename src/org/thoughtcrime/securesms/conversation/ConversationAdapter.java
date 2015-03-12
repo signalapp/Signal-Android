@@ -14,17 +14,19 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms;
+package org.thoughtcrime.securesms.conversation;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.os.Handler;
+import android.support.v4.widget.CursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
-import android.support.v4.widget.CursorAdapter;
 
+import org.thoughtcrime.securesms.ConversationItem;
+import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.conversation.ConversationFragment.SelectionClickListener;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
@@ -38,8 +40,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-
-import org.thoughtcrime.securesms.ConversationFragment.SelectionClickListener;
 
 /**
  * A cursor adapter for a conversation thread.  Ultimately

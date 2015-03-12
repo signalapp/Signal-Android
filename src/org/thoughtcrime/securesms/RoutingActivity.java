@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.webkit.MimeTypeMap;
 
+import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;

@@ -39,7 +39,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.thoughtcrime.securesms.ConversationFragment.SelectionClickListener;
+import org.thoughtcrime.securesms.conversation.ConversationFragment.SelectionClickListener;
 import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;

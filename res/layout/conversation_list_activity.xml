@@ -8,7 +8,7 @@
 
     <fragment
             android:id="@+id/fragment_content"
-            android:name="org.thoughtcrime.securesms.ConversationListFragment"
+            android:name="org.thoughtcrime.securesms.conversation.ConversationListFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:layout="@layout/conversation_list_fragment" />

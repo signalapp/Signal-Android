@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms;
+package org.thoughtcrime.securesms.conversation;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -26,6 +26,10 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import org.thoughtcrime.securesms.ConversationItem;
+import org.thoughtcrime.securesms.MessageDetailsActivity;
+import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.ShareActivity;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;

@@ -29,6 +29,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import org.thoughtcrime.securesms.conversation.ConversationActivity;
+import org.thoughtcrime.securesms.conversation.ConversationListFragment;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
@@ -58,11 +60,12 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     dynamicLanguage.onCreate(this);
     super.onCreate(icicle);
 
-    getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
+    android.support.v7.app.ActionBar supportActionBar = getSupportActionBar();
+    supportActionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
 
     setContentView(R.layout.conversation_list_activity);
 
-    getSupportActionBar().setTitle(R.string.app_name);
+    supportActionBar.setTitle(R.string.app_name);
 
     initializeResources();
     initializeContactUpdatesReceiver();

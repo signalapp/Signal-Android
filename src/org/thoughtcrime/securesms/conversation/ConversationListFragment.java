@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms;
+package org.thoughtcrime.securesms.conversation;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -43,6 +43,9 @@ import android.widget.ListView;
 
 import com.melnykov.fab.FloatingActionButton;
 
+import org.thoughtcrime.securesms.ConversationListAdapter;
+import org.thoughtcrime.securesms.NewConversationActivity;
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.DefaultSmsReminder;
 import org.thoughtcrime.securesms.components.ExpiredBuildReminder;
 import org.thoughtcrime.securesms.components.PushRegistrationReminder;

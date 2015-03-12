@@ -24,6 +24,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
+import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;

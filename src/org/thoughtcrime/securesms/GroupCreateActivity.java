@@ -45,6 +45,7 @@ import com.soundcloud.android.crop.Crop;
 import org.thoughtcrime.securesms.components.PushRecipientsPanel;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.RecipientsEditor;
+import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;

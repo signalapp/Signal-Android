@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms;
+package org.thoughtcrime.securesms.conversation;
 
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
@@ -51,7 +51,16 @@ import android.widget.Toast;
 
 import com.google.protobuf.ByteString;
 
+import org.thoughtcrime.securesms.ConversationListActivity;
+import org.thoughtcrime.securesms.GroupCreateActivity;
+import org.thoughtcrime.securesms.GroupMembersDialog;
+import org.thoughtcrime.securesms.MediaOverviewActivity;
+import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
+import org.thoughtcrime.securesms.PromptMmsActivity;
+import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.TransportOptions.OnTransportChangedListener;
+import org.thoughtcrime.securesms.VerifyIdentityActivity;
 import org.thoughtcrime.securesms.components.EmojiDrawer;
 import org.thoughtcrime.securesms.components.EmojiToggle;
 import org.thoughtcrime.securesms.components.SendButton;
