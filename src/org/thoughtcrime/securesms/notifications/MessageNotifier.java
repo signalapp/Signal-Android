@@ -51,6 +51,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 
@@ -339,7 +340,7 @@ public class MessageNotifier {
       Recipient       recipient        = record.getIndividualRecipient();
       Recipients      recipients       = record.getRecipients();
       long            threadId         = record.getThreadId();
-      SpannableString body             = record.getDisplayBody();
+      CharSequence    body             = record.getDisplayBody();
       Uri             image            = null;
       Recipients      threadRecipients = null;
 
@@ -348,8 +349,13 @@ public class MessageNotifier {
       }
 
       if (SmsDatabase.Types.isDecryptInProgressType(record.getType()) || !record.getBody().isPlaintext()) {
-        body = new SpannableString(context.getString(R.string.MessageNotifier_encrypted_message));
-        body.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), 0, body.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        body = SpanUtil.italic(context.getString(R.string.MessageNotifier_encrypted_message));
+      } else if (record.isMms() && TextUtils.isEmpty(body)) {
+        body = SpanUtil.italic(context.getString(R.string.MessageNotifier_media_message));
+      } else if (record.isMms()) {
+        String message      = context.getString(R.string.MessageNotifier_media_message_with_text, body);
+        int    italicLength = message.length() - body.length();
+        body = SpanUtil.italic(message, italicLength);
       }
 
       notificationState.addNotification(new NotificationItem(recipient, recipients, threadRecipients, threadId, body, image));

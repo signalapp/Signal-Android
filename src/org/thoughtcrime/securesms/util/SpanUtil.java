@@ -10,8 +10,12 @@ import android.text.style.StyleSpan;
 public class SpanUtil {
 
   public static CharSequence italic(CharSequence sequence) {
+    return italic(sequence, sequence.length());
+  }
+
+  public static CharSequence italic(CharSequence sequence, int length) {
     SpannableString spannable = new SpannableString(sequence);
-    spannable.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), 0, sequence.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+    spannable.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), 0, length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
     return spannable;
   }
 

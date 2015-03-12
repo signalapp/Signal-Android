@@ -441,12 +441,14 @@
     <string name="MessageNotifier_d_new_messages">%d new messages</string>
     <string name="MessageNotifier_most_recent_from_s">Most recent from: %s</string>
     <string name="MessageNotifier_encrypted_message">Encrypted message...</string>
+    <string name="MessageNotifier_media_message_with_text">Media message: %s</string>
     <string name="MessageNotifier_no_subject">(No subject)</string>
     <string name="MessageNotifier_message_delivery_failed">Message delivery failed.</string>
     <string name="MessageNotifier_failed_to_deliver_message">Failed to deliver message.</string>
     <string name="MessageNotifier_error_delivering_message">Error delivering message.</string>
     <string name="MessageNotifier_mark_all_as_read">Mark all as read</string>
     <string name="MessageNotifier_mark_as_read">Mark as read</string>
+    <string name="MessageNotifier_media_message">Media message</string>
 
     <!-- QuickResponseService -->
     <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Sorry, Quick Response is not yet supported by TextSecure!</string>
