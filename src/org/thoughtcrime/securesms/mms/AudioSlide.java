@@ -22,10 +22,6 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.ResUtil;
-import org.thoughtcrime.securesms.util.SmilUtil;
-import org.w3c.dom.smil.SMILDocument;
-import org.w3c.dom.smil.SMILMediaElement;
-import org.w3c.dom.smil.SMILRegionElement;
 
 import ws.com.google.android.mms.pdu.PduPart;
 import android.content.Context;
@@ -53,16 +49,6 @@ public class AudioSlide extends Slide {
   @Override
     public boolean hasAudio() {
     return true;
-  }
-
-  @Override
-  public SMILRegionElement getSmilRegion(SMILDocument document) {
-    return null;
-  }
-
-  @Override
-  public SMILMediaElement getMediaElement(SMILDocument document) {
-    return SmilUtil.createMediaElement("audio", document, new String(getPart().getName()));
   }
 
   @Override
