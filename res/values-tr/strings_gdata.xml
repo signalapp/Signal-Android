@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_five">5 dakika</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_thirty">30 dakika</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_hour">1 saat</string>
+
+    <string name="gdata_contact_selection_page_title">Rehber girişleri</string>
+
+    <string name="gdata_conversation_list_page_title">Eğlence</string>
+
+    <string name="gd_dialog_fragment_phishing_title">Web Koruması</string>
+    <string name="gd_dialog_fragment_phishing_message">Bu site, bilinen bir olta atma sitesi. Ancak riske girmediğinizden eminseniz devam edin.</string>
+    <string name="gd_dialog_fragment_phishing_block">Engelle</string>
+    <string name="gd_dialog_fragment_phishing_continue">Devam</string>
+
+    <string name="menu_filter">Rehber girişlerini engelle</string>
+    <string name="menu_privacy">Rehber girişlerini sakla</string>
+    <string name="menu_privacy_unhide">Saklanan rehber girişlerini göster</string>
+    <string name="menu_privacy_hide">Saklanan rehber girişlerini gizle</string>
+    <string name="menu_privacy_single_hide">Rehber girişini sakla</string>
+    <string name="menu_filter_block_contact">Rehber girişini engelle</string>
+
+    <string name="privacy_pw_dialog_header">Parola girin: </string>
+    <string name="privacy_pw_dialog_toast_wrong">Girdiğiniz parola, Internet Security parolasıyla aynı değil.</string>
+    <string name="privacy_pw_dialog_toast_reload">Mesajlar ve rehber girişleri geri yüklenecek...</string>
+    <string name="privacy_pw_dialog_toast_hide">Mesajlar ve rehber girişleri saklanmak üzere hazırlanıyor...</string>
+    <string name="privacy_pw_dialog_toast_hide_single">Rehber girişi saklanıyor...</string>
+
+    <string name="privacy_toast_install_premium">Bu işlev için, Android için G DATA Internet Security uygulaması gereklidir</string>
+
+    <string name="conversation_activitiy_invite_link">https://www.gdatasoftware.com/</string>
+
+    <string name="preferences_notification_never">Hiçbir zaman</string>
+    <string name="preferences_notification_one_time">1x</string>
+    <string name="preferences_notification_two_times">2x</string>
+    <string name="preferences_notification_three_times">3x</string>
+    <string name="preferences_notification_five_times">5x</string>
+    <string name="preferences_notification_ten_times">10x</string>
+    <string name="preferences_notification_title">Uyarıları yinele</string>
+</resources>

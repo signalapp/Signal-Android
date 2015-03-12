@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_five">5 минут</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_thirty">30 минут</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_hour">1 час</string>
+
+    <string name="gdata_contact_selection_page_title">Контакты</string>
+
+    <string name="gdata_conversation_list_page_title">Развлечения</string>
+
+    <string name="gd_dialog_fragment_phishing_title">Веб-защита</string>
+    <string name="gd_dialog_fragment_phishing_message">Данная страница является известной фишинг-страницей. Продолжайте работу только в том случае, если вы уверены, что не подвергаетесь риску.</string>
+    <string name="gd_dialog_fragment_phishing_block">Заблокировать</string>
+    <string name="gd_dialog_fragment_phishing_continue">Продолжить</string>
+
+    <string name="menu_filter">Заблокировать контакты</string>
+    <string name="menu_privacy">Скрыть контакты</string>
+    <string name="menu_privacy_unhide">Показать скрытые контакты</string>
+    <string name="menu_privacy_hide">Не показывать скрытые контакты</string>
+    <string name="menu_privacy_single_hide">Скрыть контакт</string>
+    <string name="menu_filter_block_contact">Заблокировать контакт</string>
+
+    <string name="privacy_pw_dialog_header">Ввести пароль: </string>
+    <string name="privacy_pw_dialog_toast_wrong">Введен неверный пароль для Internet Security.</string>
+    <string name="privacy_pw_dialog_toast_reload">Выполняется восстановление сообщений и контактов...</string>
+    <string name="privacy_pw_dialog_toast_hide">Выполняется подготовка сообщений и контактов для скрытия...</string>
+    <string name="privacy_pw_dialog_toast_hide_single">Выполняется скрытие контакта...</string>
+
+    <string name="privacy_toast_install_premium">Для использования данной функции необходима версия G DATA Internet Security для ОС Android</string>
+
+    <string name="conversation_activitiy_invite_link">https://www.gdatasoftware.com/</string>
+
+    <string name="preferences_notification_never">Никогда</string>
+    <string name="preferences_notification_one_time">1x</string>
+    <string name="preferences_notification_two_times">2x</string>
+    <string name="preferences_notification_three_times">3x</string>
+    <string name="preferences_notification_five_times">5x</string>
+    <string name="preferences_notification_ten_times">10x</string>
+    <string name="preferences_notification_title">Повторять предупреждения</string>
+</resources>

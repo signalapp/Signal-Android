@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_five">5 分</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_thirty">30 分</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_hour">1 時間</string>
+
+    <string name="gdata_contact_selection_page_title">連絡先</string>
+
+    <string name="gdata_conversation_list_page_title">チャット</string>
+
+    <string name="gd_dialog_fragment_phishing_title">ウェブ保護</string>
+    <string name="gd_dialog_fragment_phishing_message">このサイトはフィッシングサイト、詐欺、悪質サイトの疑いがあります。アクセスを行いたい場合は、このサイトが安全と判断できる場合のみ、以下の「続行」ボタンをタップし、ご自身の責任においてアクセスを行ってください。</string>
+    <string name="gd_dialog_fragment_phishing_block">拒否</string>
+    <string name="gd_dialog_fragment_phishing_continue">続行</string>
+
+    <string name="menu_filter">連絡先をブロック</string>
+    <string name="menu_privacy">連絡先を隠す</string>
+    <string name="menu_privacy_unhide">隠した連絡先を表示</string>
+    <string name="menu_privacy_hide">隠した連絡先を非表示</string>
+    <string name="menu_privacy_single_hide">連絡先を隠す</string>
+    <string name="menu_filter_block_contact">連絡先をブロック</string>
+
+    <string name="privacy_pw_dialog_header">パスワードの入力: </string>
+    <string name="privacy_pw_dialog_toast_wrong">入力されたパスワードが Internet Security のものと一致していません。</string>
+    <string name="privacy_pw_dialog_toast_reload">メッセージと連絡先を復元しています...</string>
+    <string name="privacy_pw_dialog_toast_hide">メッセージと連絡先を隠す準備をしています...</string>
+    <string name="privacy_pw_dialog_toast_hide_single">連絡先を隠しています...</string>
+
+    <string name="privacy_toast_install_premium">この機能を利用するには、G DATA Internet Security for Android が必要です。</string>
+
+    <string name="conversation_activitiy_invite_link">https://www.gdatasoftware.com/</string>
+
+    <string name="preferences_notification_never">常に非表示</string>
+    <string name="preferences_notification_one_time">1 回</string>
+    <string name="preferences_notification_two_times">2 回</string>
+    <string name="preferences_notification_three_times">3 回</string>
+    <string name="preferences_notification_five_times">5 回</string>
+    <string name="preferences_notification_ten_times">10 回</string>
+    <string name="preferences_notification_title">警告の繰り返し表示</string>
+</resources>
