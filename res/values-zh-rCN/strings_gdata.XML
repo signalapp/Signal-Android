@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_five">5分钟</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_thirty">30分钟</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_hour">1小时</string>
+
+    <string name="gdata_contact_selection_page_title">通讯录</string>
+
+    <string name="gdata_conversation_list_page_title">消息</string>
+
+    <string name="gd_dialog_fragment_phishing_title">网页保护</string>
+    <string name="gd_dialog_fragment_phishing_message">此网站是钓鱼诈骗网站，请确认没有安全风险后再选择继续。</string>
+    <string name="gd_dialog_fragment_phishing_block">禁用</string>
+    <string name="gd_dialog_fragment_phishing_continue">继续</string>
+
+    <string name="menu_filter">阻止联系人</string>
+    <string name="menu_privacy">隐藏联系人</string>
+    <string name="menu_privacy_unhide">显示隐藏的联系人</string>
+    <string name="menu_privacy_hide">不显示隐藏的联系人</string>
+    <string name="menu_privacy_single_hide">隐藏联系人</string>
+    <string name="menu_filter_block_contact">阻止联系人</string>
+
+    <string name="privacy_pw_dialog_header">输入密码: </string>
+    <string name="privacy_pw_dialog_toast_wrong">您输入的密码和移动安全软件的密码不一致。</string>
+    <string name="privacy_pw_dialog_toast_reload">恢复短信和联系人中......</string>
+    <string name="privacy_pw_dialog_toast_hide">隐藏短信和联系人中......</string>
+    <string name="privacy_pw_dialog_toast_hide_single">隐藏联系人中...</string>
+
+    <string name="privacy_toast_install_premium">使用此功能须安装G DATA移动安全软件</string>
+
+    <string name="conversation_activitiy_invite_link">https://www.gdatasoftware.com/</string>
+
+    <string name="preferences_notification_never">从不</string>
+    <string name="preferences_notification_one_time">一次</string>
+    <string name="preferences_notification_two_times">两次</string>
+    <string name="preferences_notification_three_times">三次</string>
+    <string name="preferences_notification_five_times">五次</string>
+    <string name="preferences_notification_ten_times">十次</string>
+    <string name="preferences_notification_title">重复提醒</string>
+</resources>
