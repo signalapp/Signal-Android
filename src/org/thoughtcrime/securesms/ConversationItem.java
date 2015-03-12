@@ -32,6 +32,7 @@ import android.provider.ContactsContract.QuickContact;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -115,6 +116,7 @@ public class ConversationItem extends LinearLayout {
   private SelectionClickListener          selectionClickListener;
   private View                            mmsContainer;
   private ImageView                       mmsThumbnail;
+  private Set<Integer>                    mmsThumbnailActions;
   private Button                          mmsDownloadButton;
   private TextView                        mmsDownloadingLabel;
   private ListenableFutureTask<SlideDeck> slideDeck;
@@ -167,7 +169,7 @@ public class ConversationItem extends LinearLayout {
                   @NonNull MessageRecord messageRecord,
                   @NonNull Set<MessageRecord> batchSelected,
                   @NonNull SelectionClickListener selectionClickListener,
-                  boolean groupThread, boolean pushDestination)
+                  boolean groupThread, boolean pushDestination, Set<Integer> mmsThumbnailActions)
   {
     this.masterSecret           = masterSecret;
     this.messageRecord          = messageRecord;
@@ -175,6 +177,7 @@ public class ConversationItem extends LinearLayout {
     this.selectionClickListener = selectionClickListener;
     this.groupThread            = groupThread;
     this.pushDestination        = pushDestination;
+    this.mmsThumbnailActions    = mmsThumbnailActions;
 
     setConversationBackgroundDrawables(messageRecord);
     setSelectionBackgroundDrawables(messageRecord);
@@ -394,6 +397,14 @@ public class ConversationItem extends LinearLayout {
       mmsThumbnail.setVisibility(View.GONE);
       mmsContainer.setVisibility(View.GONE);
     }
+
+    mmsThumbnail.setOnTouchListener(new OnTouchListener() {
+      @Override
+      public boolean onTouch(View view, MotionEvent event) {
+        mmsThumbnailActions.add(event.getAction());
+        return false;
+      }
+    });
 
     slideDeck = messageRecord.getSlideDeckFuture();
     slideDeckListener = new FutureTaskListener<SlideDeck>() {

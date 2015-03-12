@@ -153,7 +153,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     toFrom.setText(toFromRes);
     conversationItem.set(masterSecret, messageRecord, new HashSet<MessageRecord>(), new NullSelectionListener(),
                          recipients != messageRecord.getRecipients(),
-                         DirectoryHelper.isPushDestination(this, recipients));
+                         DirectoryHelper.isPushDestination(this, recipients), new HashSet<Integer>());
     recipientsList.setAdapter(new MessageDetailsRecipientAdapter(this, masterSecret, messageRecord,
                                                                  recipients, isPushGroup));
   }

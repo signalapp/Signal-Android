@@ -20,7 +20,9 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -43,8 +45,10 @@ import org.thoughtcrime.securesms.util.ProgressDialogAsyncTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 public class ConversationFragment extends ListFragment
   implements LoaderManager.LoaderCallbacks<Cursor>
@@ -60,6 +64,9 @@ public class ConversationFragment extends ListFragment
   private Recipients   recipients;
   private long         threadId;
   private ActionMode   actionMode;
+
+  private Set<Integer> listTouchActions = new HashSet<>();
+  private Set<Integer> itemTouchActions = new HashSet<>();
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -110,7 +117,8 @@ public class ConversationFragment extends ListFragment
     if (this.recipients != null && this.threadId != -1) {
       this.setListAdapter(new ConversationAdapter(getActivity(), masterSecret, selectionClickListener,
                                                   (!this.recipients.isSingleRecipient()) || this.recipients.isGroupRecipient(),
-                                                  DirectoryHelper.isPushDestination(getActivity(), this.recipients)));
+                                                  DirectoryHelper.isPushDestination(getActivity(), this.recipients),
+                                                  itemTouchActions));
       getListView().setRecyclerListener((ConversationAdapter)getListAdapter());
       getLoaderManager().initLoader(0, null, this);
     }
@@ -119,6 +127,28 @@ public class ConversationFragment extends ListFragment
   private void initializeContextualActionBar() {
     getListView().setOnItemClickListener(selectionClickListener);
     getListView().setOnItemLongClickListener(selectionClickListener);
+    getListView().setOnTouchListener(new OnTouchListener() {
+      @Override
+      public boolean onTouch(View v, MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_UP) {
+          if (itemTouchActions.contains(MotionEvent.ACTION_CANCEL) &&
+              !itemTouchActions.contains(MotionEvent.ACTION_MOVE) &&
+              !listTouchActions.contains(MotionEvent.ACTION_DOWN))
+          {
+            Log.d(TAG, "ignoring spurious ACTION_UP to prevent ghost onItemClick from surfacing");
+            listTouchActions.clear();
+            itemTouchActions.clear();
+            return true;
+          }
+
+          listTouchActions.clear();
+          itemTouchActions.clear();
+        }
+
+        listTouchActions.add(event.getAction());
+        return false;
+      }
+    });
   }
 
   private void setCorrectMenuVisibility(Menu menu) {
