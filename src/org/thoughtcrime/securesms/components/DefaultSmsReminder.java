@@ -33,7 +33,7 @@ public class DefaultSmsReminder extends Reminder {
     final OnClickListener cancelListener = new OnClickListener() {
       @Override
       public void onClick(View v) {
-        TextSecurePreferences.setPromptedDefaultSmsProvider(context, true);
+        TextSecurePreferences.setPromptedDefaultSmsProvider(context, false);
       }
     };
     setOkListener(okListener);
@@ -44,8 +44,8 @@ public class DefaultSmsReminder extends Reminder {
     final boolean isDefault = Util.isDefaultSmsProvider(context);
     if (isDefault) {
       TextSecurePreferences.setPromptedDefaultSmsProvider(context, false);
+      return false;
     }
-
-    return !isDefault && !TextSecurePreferences.hasPromptedDefaultSmsProvider(context);
+    return !TextSecurePreferences.hasPromptedDefaultSmsProvider(context);
   }
 }
