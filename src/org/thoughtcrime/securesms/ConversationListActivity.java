@@ -131,9 +131,10 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     menu.findItem(R.id.menu_clear_passphrase).setVisible(!TextSecurePreferences.isPasswordDisabled(this));
 
     if (this.masterSecret != null && gDataPreferences.getViewPagersLastPage() == 0) {
-      inflater.inflate(R.menu.conversation_list, menu);
-      MenuItem menuItem = menu.findItem(R.id.menu_search);
-      initializeSearch(menuItem);
+    //removed for now until we found better approach ()
+    //      inflater.inflate(R.menu.conversation_list, menu);
+    //      MenuItem menuItem = menu.findItem(R.id.menu_search);
+    //      initializeSearch(menuItem);
     } else {
       inflater.inflate(R.menu.conversation_list_empty, menu);
     }
