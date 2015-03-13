@@ -51,7 +51,6 @@ import android.widget.Toast;
 
 import com.google.protobuf.ByteString;
 
-import org.thoughtcrime.securesms.ConversationListActivity;
 import org.thoughtcrime.securesms.GroupCreateActivity;
 import org.thoughtcrime.securesms.GroupMembersDialog;
 import org.thoughtcrime.securesms.MediaOverviewActivity;

@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms;
+package org.thoughtcrime.securesms.conversation;
 
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
@@ -39,6 +39,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.AutoInitiateActivity;
+import org.thoughtcrime.securesms.MediaPreviewActivity;
+import org.thoughtcrime.securesms.MessageDetailsActivity;
+import org.thoughtcrime.securesms.PromptMmsActivity;
+import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.ReceiveKeyActivity;
 import org.thoughtcrime.securesms.conversation.ConversationFragment.SelectionClickListener;
 import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -430,7 +437,7 @@ public class ConversationItem extends LinearLayout {
   private void checkForAutoInitiate(Recipient recipient, String body, long threadId) {
     if (!groupThread &&
         AutoInitiateActivity.isValidAutoInitiateSituation(context, masterSecret, recipient,
-                                                          body, threadId))
+                body, threadId))
     {
       AutoInitiateActivity.exemptThread(context, threadId);
 

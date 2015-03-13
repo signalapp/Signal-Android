@@ -24,7 +24,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 
-import org.thoughtcrime.securesms.ConversationItem;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.conversation.ConversationFragment.SelectionClickListener;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
