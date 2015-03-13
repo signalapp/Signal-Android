@@ -34,6 +34,8 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -61,6 +63,7 @@ import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.Emoji;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.Set;
 
@@ -487,20 +490,37 @@ public class ConversationItem extends LinearLayout {
         if (!messageRecord.isOutgoing()) intent.putExtra(MediaPreviewActivity.RECIPIENT_EXTRA, messageRecord.getIndividualRecipient().getRecipientId());
         intent.putExtra(MediaPreviewActivity.DATE_EXTRA, messageRecord.getDateReceived());
         context.startActivity(intent);
+      } else if ( TextSecurePreferences.isMediaPreviewSaveWarningEnabled(context) ) {
+        showMediaDecryptionWarning();
       } else {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle(R.string.ConversationItem_view_secure_media_question);
-        builder.setIcon(Dialogs.resolveIcon(context, R.attr.dialog_alert_icon));
-        builder.setCancelable(true);
-        builder.setMessage(R.string.ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning);
-        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-          public void onClick(DialogInterface dialog, int which) {
-            fireIntent();
-          }
-        });
-        builder.setNegativeButton(R.string.no, null);
-        builder.show();
+        Log.d(TAG, "Not showing media decryption warning because of user preference.");
+        fireIntent();
       }
+    }
+
+    private void showMediaDecryptionWarning(){
+      AlertDialog.Builder builder = new AlertDialog.Builder(context);
+      builder.setTitle(R.string.ConversationItem_view_secure_media_question);
+      builder.setIcon(Dialogs.resolveIcon(context, R.attr.dialog_alert_icon));
+      builder.setCancelable(true);
+      builder.setMessage(R.string.ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning);
+      CheckBox checkBox = new CheckBox(context);
+      checkBox.setText(R.string.ConversationFragment_do_not_show_this_message_again);
+      checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        @Override
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+          TextSecurePreferences.setMediaPreviewSaveWarningEnabled(context, !isChecked);
+          Log.d(TAG, "Media decryption warning preferred set to:" + !isChecked);
+        }
+      });
+      builder.setView(checkBox);
+      builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, int which) {
+          fireIntent();
+        }
+      });
+      builder.setNegativeButton(R.string.no, null);
+      builder.show();
     }
   }
 

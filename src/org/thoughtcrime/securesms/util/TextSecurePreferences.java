@@ -65,6 +65,7 @@ public class TextSecurePreferences {
   private static final String WEBSOCKET_REGISTERED_PREF        = "pref_websocket_registered";
 
   public  static final String REPEAT_ALERTS_PREF               = "pref_repeat_alerts";
+  public  static final String MEDIA_PREVIEW_SAVE_WARN_PREF = "pref_media_preview_save_alerts";
 
   public static boolean isWebsocketRegistered(Context context) {
     return getBooleanPreference(context, WEBSOCKET_REGISTERED_PREF, false);
@@ -76,6 +77,14 @@ public class TextSecurePreferences {
 
   public static boolean isWifiSmsEnabled(Context context) {
     return getBooleanPreference(context, WIFI_SMS_PREF, false);
+  }
+
+  public static boolean isMediaPreviewSaveWarningEnabled(Context context) {
+    return getBooleanPreference(context, MEDIA_PREVIEW_SAVE_WARN_PREF, true);
+  }
+
+  public static void setMediaPreviewSaveWarningEnabled(Context context, boolean warn) {
+    setBooleanPreference(context, MEDIA_PREVIEW_SAVE_WARN_PREF, warn);
   }
 
   public static int getRepeatAlertsCount(Context context) {
