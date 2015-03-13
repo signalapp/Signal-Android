@@ -109,12 +109,14 @@ public class MessageRecipientListItem extends RelativeLayout
       });
     } else if (networkFailure != null || (!isPushGroup && record.isFailed())) {
       resendButton.setVisibility(View.VISIBLE);
+      resendButton.setEnabled(true);
       conflictButton.setVisibility(View.GONE);
 
       errorText = getContext().getString(R.string.MessageDetailsRecipient_failed_to_send);
       resendButton.setOnClickListener(new OnClickListener() {
         @Override
         public void onClick(View v) {
+          resendButton.setEnabled(false);
           new ResendAsyncTask(masterSecret, record, networkFailure).execute();
         }
       });

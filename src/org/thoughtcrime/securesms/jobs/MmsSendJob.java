@@ -54,7 +54,8 @@ public class MmsSendJob extends SendJob {
 
   @Override
   public void onAdded() {
-
+    MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
+    database.markAsSending(messageId);
   }
 
   @Override
