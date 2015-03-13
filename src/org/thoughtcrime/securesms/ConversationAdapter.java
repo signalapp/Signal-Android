@@ -18,7 +18,6 @@ package org.thoughtcrime.securesms;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,10 +65,11 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
   private final MasterSecret           masterSecret;
   private final boolean                groupThread;
   private final boolean                pushDestination;
+  private final Set<Integer>           itemTouchActions;
   private final LayoutInflater         inflater;
 
   public ConversationAdapter(Context context, MasterSecret masterSecret, SelectionClickListener selectionClickListener,
-                             boolean groupThread, boolean pushDestination)
+                             boolean groupThread, boolean pushDestination, Set<Integer> itemTouchActions)
   {
     super(context, null, 0);
     this.context                = context;
@@ -77,6 +77,7 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
     this.selectionClickListener = selectionClickListener;
     this.groupThread            = groupThread;
     this.pushDestination        = pushDestination;
+    this.itemTouchActions       = itemTouchActions;
     this.inflater               = LayoutInflater.from(context);
   }
 
@@ -88,7 +89,7 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
     MessageRecord messageRecord = getMessageRecord(id, cursor, type);
 
     item.set(masterSecret, messageRecord, batchSelected, selectionClickListener,
-             groupThread, pushDestination);
+             groupThread, pushDestination, itemTouchActions);
   }
 
   @Override
