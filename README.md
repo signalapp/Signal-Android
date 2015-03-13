@@ -14,6 +14,16 @@ We use GitHub for bug tracking. Please search the existing issues for your bug a
 
 https://github.com/WhisperSystems/TextSecure/issues
 
+## Joining the Beta
+Want to live life on the bleeding edge and help out with testing?
+
+You can subscribe to TextSecure Beta releases in two steps:
+ 
+1. Join the [TextSecure Beta Google+ Community](https://plus.google.com/communities/114424213916773497091).
+1. After you've joined the community, [subscribe to the beta](https://play.google.com/apps/testing/org.thoughtcrime.securesms).
+
+If you're interesting a life of peace and tranquility, stick with the standard releases.
+
 ## Contributing Translations
 Interested in helping to translate TextSecure? Contribute here:
 
