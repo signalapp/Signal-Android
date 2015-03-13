@@ -10,7 +10,7 @@
 
         <item name="android:actionOverflowButtonStyle">@style/Widget.AppCompat.ActionButton.Overflow</item>
         <item name="actionOverflowButtonStyle">@style/Widget.AppCompat.ActionButton.Overflow</item>
-
+        <item name="android:windowContentOverlay">@null</item>
 
         <item name="android:actionModeBackground">@drawable/cab_background_top</item>
         <item name="actionModeBackground">@drawable/cab_background_top</item>
@@ -159,7 +159,7 @@
         <item name="android:listPreferredItemPaddingRight">16dip</item>
         <item name="android:listPreferredItemPaddingStart">16dip</item>
         <item name="android:listPreferredItemPaddingEnd">16dip</item>
-    </style>
+    </style>geh mal auf die sonnen bank
 
     <style name="GSecure.GDataActionBar" parent="@style/Widget.AppCompat.Light.ActionBar">
         <item name="android:icon">@drawable/actionbar_icon_gdata</item>
@@ -176,6 +176,7 @@
         <item name="android:colorPrimary">@color/gdata_red</item>
         <item name="android:actionBarWidgetTheme">@style/Theme.AppCompat.Light</item>
         <item name="actionBarWidgetTheme">@style/Theme.AppCompat.Light</item>
+        <item name="android:windowContentOverlay">@null</item>
     </style>
 
     <!-- For Holo Light Dialog Activity Styling Emulation -->
@@ -192,5 +193,4 @@
     <style name="GDataDialogPrimaryText">
         <item name="android:textColor">@color/white</item>
     </style>
-
 </resources>
