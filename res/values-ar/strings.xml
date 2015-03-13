@@ -60,15 +60,10 @@
   <string name="ConversationItem_error_received_stale_key_exchange_message">خطأ. تم استقبال رسالة تبادل مفاتيح غير صالحة.</string>
   <string name="ConversationItem_received_key_exchange_message_click_to_process">تم استلام رسالة تبادل المفاتيح، أنقر للمتابعة.</string>
   <string name="ConversationItem_group_action_left">%1$s تَرك المجموعة.</string>
-  <string name="ConversationItem_click_to_approve_sms">أنقر لاستعاضة الرسالة</string>
-  <string name="ConversationItem_click_to_approve_mms">أنقر لاستعاضة رسالة وسائط متعددة</string>
   <string name="ConversationItem_click_for_details">إضغط للتفاصيل</string>
   <string name="ConversationItem_click_to_approve_unencrypted">أنقر من أجل استعاضة غير آمنة</string>
-  <string name="ConversationItem_click_to_approve_sms_dialog_title">الاستعاضة برسالة؟</string>
-  <string name="ConversationItem_click_to_approve_mms_dialog_title">الاستعاضة برسالة وسائط متعددة؟</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">الاستعاضة برسالة غير مشفرة؟</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">الاستعاضة برسالة وسائط متعددة غير مشفرة؟</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">هذه الرسالة <b>لن تكون</b> مشفرة بسبب تعذر بدء اتصال مشفر.\n\n أرسل رسالة غير مشفرة؟</string>
   <string name="ConversationItem_unable_to_open_media">لم يتم العثور على تطبيق قادر على فتح الملف.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">بدء محادثة آمنة؟</string>
@@ -98,8 +93,6 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">هل أنت متأكد من ترك المجموعة؟</string>
   <string name="ConversationActivity_transport_insecure_sms">رسالة نصية غير آمنة</string>
   <string name="ConversationActivity_transport_insecure_mms">رسالة وسائط متعددة غير آمنة</string>
-  <string name="ConversationActivity_transport_secure_sms">رسالة نصية آمنة</string>
-  <string name="ConversationActivity_transport_secure_mms">رسالة وسائط متعددة آمنة</string>
   <string name="ConversationActivity_transport_textsecure">تيكست سيكيور</string>
   <string name="ConversationActivity_get_with_it">احصل معها: %s</string>
   <string name="ConversationActivity_install_textsecure">تثبيت تيكست سيكيور: %s</string>
@@ -235,7 +228,6 @@
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">المفتاح لجهة الاتصال هذه مختلف عن المرة السابقة. هذا قد يعني ان هناك محاولة لاعتراض اتصالاتك، أو ان جهة الاتصال قام\قامت بإعادة تنصيب تكست سيكيور لديهم.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">ربما تود التحقق من جهة الاتصال هذه.</string>
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">التوقيع لجهة الاتصال هذه معتمد لديك، لكنك قمت بتعطيل خاصية اكمال تبادل المفاتيح اوتوماتيكياً</string>
   <string name="ReceiveKeyActivity_processing">جاري العمل</string>
   <string name="ReceiveKeyActivity_processing_key_exchange">جاري تبادل المفاتيح...</string>
   <!--RegistrationActivity-->
@@ -354,11 +346,9 @@
   <string name="MessageNotifier_error_delivering_message">خطأ بالارسال</string>
   <string name="MessageNotifier_mark_all_as_read">اعتبر جميع الرسائل مقروءة</string>
   <string name="MessageNotifier_mark_as_read">اعتبرها مقروءة</string>
+  <string name="MessageNotifier_media_message">رسالة وسائط متعددة</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">عذرا، الاستجابة السريعة ليست مدعمة من تيكست سيكيور حتى الآن!</string>
-  <!--auto_initiate_activity-->
-  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">تلقيت رسالة من شخص يمكنه دعم رسائل تيكست سيكيور مشفرة. هل تريد بدء محادثة مشفرة حتى يكون الاتصال آمن؟</string>
-  <string name="auto_initiate_activity__initiate_exchange">أبدا التبادل</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">العبارة السرية القديمة:</string>
   <string name="change_passphrase_activity__new_passphrase">العبارة السرية الجديدة:</string>
@@ -457,14 +447,11 @@
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">انتهاء</string>
   <!--registration_activity-->
-  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-التسجيل مجاني وييزيد خصوصية التراسل مع مستخدمي تيكست سيكيور. رجاء التحقق من رقم هاتفك المحمول.</string>
   <string name="registration_activity__your_country">بلدك</string>
   <string name="registration_activity__your_country_code_and_phone_number">رمز دولتك ورقم هاتفك</string>
   <string name="registration_activity__phone_number">رقم الهاتف</string>
   <string name="registration_activity__register">سجل</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">يتم نقل بعض بيانات الاتصال إلى الخادم أثناء التسجيل، ولا يتم حفظها.</string>
-  <string name="registration_activity__skip">تخطى</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">بعض المشاكل المحتملة
 وتتضمن:</string>
@@ -529,7 +516,6 @@
   <string name="AndroidManifest__public_identity_key">مفتاح الهوية العلني</string>
   <string name="AndroidManifest__change_passphrase">غير العبارة السرية</string>
   <string name="AndroidManifest__verify_identity">تحقق من الهوية</string>
-  <string name="AndroidManifest__complete_key_exchange">أكمل تبادل المفاتيح</string>
   <string name="AndroidManifest__log_submit">أرسل سجلات التصحيح</string>
   <string name="AndroidManifest__media_preview">معاينة الوسائط</string>
   <string name="AndroidManifest__media_overview">جميع الصور</string>
@@ -574,13 +560,11 @@
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">اختر جهة الاتصال من القائمة</string>
   <string name="preferences__change_passphrase">غير العبارة السرية</string>
   <string name="preferences__change_my_passphrase">غير عبارتي السرية</string>
-  <string name="preferences__complete_key_exchanges">أكمل تبادل المفاتيح</string>
   <string name="preferences__enable_passphrase">تفعيل العبارة السرية</string>
   <string name="preferences__passphrase_summary">عبارة سرية %s</string>
   <string name="preferences__enable_local_encryption_of_messages_and_keys">تفعيل تشفير تخزين الرسائل والمفاتيح</string>
   <string name="preferences__screen_security">تأمين الشاشة</string>
   <string name="preferences__screen_security_summary">تأمين الشاشة %s</string>
-  <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">أكمل تبادل المفاتيح آليا لمحادثات جديدة او قديمة بنفس مفتاح الهوية</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">امنع لقطات الشاشة داخل التطبيق وفي قائمة Recents</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">انسى العبارة السرية من ذاكرة الجهاز بعد فترة</string>
   <string name="preferences__timeout_passphrase">نسيان العبارة السرية بعد فترة</string>
@@ -678,12 +662,6 @@
   <string name="contact_selection__menu_finished">تم الانتهاء</string>
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">تحيدث قائمة الاتصال</string>
-  <!--conversation_button_context-->
-  <string name="conversation_button_context__send_textsecure_message">أرسل رسالة تيكست سيكيور</string>
-  <string name="conversation_button_context__send_secure_sms">أرسل رسالة آمنة</string>
-  <string name="conversation_button_context__send_insecure_sms">أرسل رسالة نصية غير آمنة</string>
-  <string name="conversation_button_context__send_secure_mms">أرسل رسالة وسائط متعددة آمنة</string>
-  <string name="conversation_button_context__send_insecure_mms">أرسل رسالة وسائط متعددة غير آمنة</string>
   <!--conversation_callable-->
   <string name="conversation_callable__menu_call">أتصل</string>
   <!--conversation_context-->

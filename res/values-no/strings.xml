@@ -35,7 +35,7 @@ Du må registrere telefonnummeret ditt på nytt dersom du ønsker å benytte \'p
   <string name="ApplicationPreferencesActivity_sms">SMS</string>
   <string name="ApplicationPreferencesActivity_mms">MMS</string>
   <string name="ApplicationPreferencesActivity_incoming_sms_summary">Innkommende %s</string>
-  <string name="ApplicationPreferencesActivity_outgoing_sms_summary">Utgående %s</string>
+  <string name="ApplicationPreferencesActivity_outgoing_sms_summary">utgående %s</string>
   <!--AppProtectionPreferenceFragment-->
   <string name="AppProtectionPreferenceFragment_minutes">%d minutter</string>
   <!--DraftDatabase-->
@@ -62,17 +62,11 @@ denne kontakten.</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Feil, fikk en gammel nøkkelutvekslingsmelding.</string>
   <string name="ConversationItem_received_key_exchange_message_click_to_process">Nøkkelutveksling melding mottatt, klikk for å behandle.</string>
   <string name="ConversationItem_group_action_left">%1$s har forlatt gruppen.</string>
-  <string name="ConversationItem_click_to_approve_sms">Klikk for \'SMS fallback\'</string>
-  <string name="ConversationItem_click_to_approve_mms">Klikk for \'MMS fallback\'</string>
   <string name="ConversationItem_click_for_details">Klikk for detaljer</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Tast for usikret \"fallback\"</string>
-  <string name="ConversationItem_click_to_approve_sms_dialog_title">Benytte SMS som alternativ?</string>
-  <string name="ConversationItem_click_to_approve_mms_dialog_title">Benytte MMS som alternativ?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">\"Fallback\" til ukryptert SMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Benytte ukryptert MMS som alternativ?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Denne meldingen vil <b>ikke</b> krypteres fordi det ikke var mulig å etablere en sikker sesjon.
-
-Send usikret melding?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Denne meldingen vil <b>ikke</b> bli kryptert fordi mottageren ikke lenger er en TextSecure bruker.\n\nSend ukryptert melding?</string>
   <string name="ConversationItem_unable_to_open_media">Finner ikke en applikasjon som kan åpne dette mediet.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Starte sikker sesjon?</string>
@@ -102,8 +96,6 @@ Send usikret melding?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Er du sikker på at du ønsker å forlate denne gruppen?</string>
   <string name="ConversationActivity_transport_insecure_sms">Usikret SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Usikret MMS</string>
-  <string name="ConversationActivity_transport_secure_sms">Sikker SMS</string>
-  <string name="ConversationActivity_transport_secure_mms">Sikker MMS</string>
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_get_with_it">Last ned, bli med: %s</string>
   <string name="ConversationActivity_install_textsecure">Installere TextSecure: %s</string>
@@ -244,8 +236,6 @@ kontakten. Det kan enten bety at noen prøver å avskjære kommunikasjonen din e
 at denne kontakten har installert TextSecure på nytt og dermed fått en ny identitetsnøkkel.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Du bør verifisere
 denne kontakten.</string>
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">Signaturen på denne nøkkelutvekslingen er til å stole på, men du har deaktivert innstillingen
-\'fullfør nøkkelutvekslinger automatisk\'.</string>
   <string name="ReceiveKeyActivity_processing">Prosesserer</string>
   <string name="ReceiveKeyActivity_processing_key_exchange">Prosesserer nøkkelutveksling...</string>
   <!--RegistrationActivity-->
@@ -361,17 +351,16 @@ Mottatt melding med ukjent ID nøkkel. Klikk for å prosessere og vise.</string>
   <string name="MessageNotifier_d_new_messages">(%d) Nye meldinger</string>
   <string name="MessageNotifier_most_recent_from_s">Sist mottatt fra: %s</string>
   <string name="MessageNotifier_encrypted_message">Kryptert melding...</string>
+  <string name="MessageNotifier_media_message_with_text">Media melding: %s</string>
   <string name="MessageNotifier_no_subject">(Mangler emne)</string>
   <string name="MessageNotifier_message_delivery_failed">Levering av meldingen mislyktes.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Klarte ikke å levere meldingen.</string>
   <string name="MessageNotifier_error_delivering_message">Feil ved levering av meldingen.</string>
   <string name="MessageNotifier_mark_all_as_read">Marker alle som lest</string>
   <string name="MessageNotifier_mark_as_read">Marker som lest</string>
+  <string name="MessageNotifier_media_message">Multimediamelding</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Beklager, \"Rask Respons\" er ennå ikke støttet av TextSecure!</string>
-  <!--auto_initiate_activity-->
-  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Du har mottatt en melding fra noen som støtter TextSecure krypterte sesjoner. Ønsker du å initiere en sikker sesjon?</string>
-  <string name="auto_initiate_activity__initiate_exchange">Start nøkkelutveksling</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Gammelt passord:</string>
   <string name="change_passphrase_activity__new_passphrase">Nytt passord:</string>
@@ -402,6 +391,7 @@ Mottatt melding med ukjent ID nøkkel. Klikk for å prosessere og vise.</string>
   <string name="conversation_activity__emoji_toggle_description">Emoji tastatur av/på</string>
   <string name="conversation_activity__attachment_thumbnail">Vedleggsikon</string>
   <!--conversation_item-->
+  <string name="conversation_item__mms_downloading_description">Media melding lastes ned</string>
   <string name="conversation_item__mms_image_description">Multimediamelding</string>
   <string name="conversation_item__play_button_description">Avspill knapp</string>
   <string name="conversation_item__secure_message_description">Sikret melding</string>
@@ -470,7 +460,7 @@ Importer en klartekst backup kompatibel med \'SMSBackup And Restore\'.</string>
   <string name="receive_key_activity__complete">Complete</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-Registrering er gratis og øker personvernet når du sender meldinger til andre TextSecure brukere. Vær vennlig å verifiser telefonnummeret ditt.
+Verifiser telefonnummeret dit for å koble til TextSecure.
 </string>
   <string name="registration_activity__your_country">DITT LAND</string>
   <string name="registration_activity__your_country_code_and_phone_number">DIN LANDSKODE OG
@@ -478,7 +468,6 @@ TELEFONNUMMER</string>
   <string name="registration_activity__phone_number">TELEFONNUMMER</string>
   <string name="registration_activity__register">Registrer</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Registrering sender noe kontaktinformasjon til serveren. Det blir ikke lagret.</string>
-  <string name="registration_activity__skip">Hopp over</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Noen mulige problemer
 inkluderer:</string>
@@ -546,7 +535,6 @@ feilet.</string>
   <string name="AndroidManifest__public_identity_key">Offentlig ID-nøkkel</string>
   <string name="AndroidManifest__change_passphrase">Passordbytte</string>
   <string name="AndroidManifest__verify_identity">Bekreft identitet</string>
-  <string name="AndroidManifest__complete_key_exchange">Fullfør nøkkelutveksling</string>
   <string name="AndroidManifest__log_submit">Send debug logger</string>
   <string name="AndroidManifest__media_preview">Forhåndsvisning av media</string>
   <string name="AndroidManifest__media_overview">Alle bilder</string>
@@ -583,13 +571,11 @@ feilet.</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Velg din kontakt fra kontaktlisten.</string>
   <string name="preferences__change_passphrase">Passordbytte</string>
   <string name="preferences__change_my_passphrase">Velg et nytt passord</string>
-  <string name="preferences__complete_key_exchanges">Fullfør nøkkelutvekslinger</string>
   <string name="preferences__enable_passphrase">Aktiver passord</string>
   <string name="preferences__passphrase_summary">Passord %s</string>
   <string name="preferences__enable_local_encryption_of_messages_and_keys">Aktiver lokal kryptering av meldinger og nøkler</string>
   <string name="preferences__screen_security">Skjermsikkerhet</string>
   <string name="preferences__screen_security_summary">Skjermsikkerhet %s</string>
-  <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Automatisk fullføre nøkkelutvekslinger for nye sesjoner eller sesjoner med samme ID-nøkkel</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokker skjermbilde i \"siste applikasjoner\" listen og i appliksjonen</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Fjern passord fra minnet etter et gitt intervall</string>
   <string name="preferences__timeout_passphrase">Passordtimeout</string>
@@ -687,12 +673,6 @@ Styrk personvernet ditt og unngå SMS kostnader ved å benytte mobil data når d
   <string name="contact_selection__menu_finished">Avslutt</string>
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Oppdater kontaktliste</string>
-  <!--conversation_button_context-->
-  <string name="conversation_button_context__send_textsecure_message">Send TextSecure melding</string>
-  <string name="conversation_button_context__send_secure_sms">Send sikker SMS</string>
-  <string name="conversation_button_context__send_insecure_sms">Send usikret SMS</string>
-  <string name="conversation_button_context__send_secure_mms">Send sikker MMS</string>
-  <string name="conversation_button_context__send_insecure_mms">Send usikret MMS</string>
   <!--conversation_callable-->
   <string name="conversation_callable__menu_call">Ring</string>
   <!--conversation_context-->

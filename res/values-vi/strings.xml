@@ -43,10 +43,6 @@ Thao tác này sẽ tắt tin nhắn đẩy bằng cách gỡ đăng ký bạn r
   <string name="ConversationItem_error_received_stale_key_exchange_message">Có lỗi, nhận thông tin cũ về trao đổi chìa khóa</string>
   <string name="ConversationItem_received_key_exchange_message_click_to_process">Nhận thông tin trao đổi chìa khóa, bấm để tiếp tục.</string>
   <string name="ConversationItem_group_action_left">%1$s đã rời nhóm.</string>
-  <string name="ConversationItem_click_to_approve_sms">Nhấn để trở lại SMS</string>
-  <string name="ConversationItem_click_to_approve_mms">Chạm để hủy bỏ MMS</string>
-  <string name="ConversationItem_click_to_approve_sms_dialog_title">Trở lại SMS?</string>
-  <string name="ConversationItem_click_to_approve_mms_dialog_title">Hủy bỏ MMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Trở lại SMS không mã hóa?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Hủy bỏ MMS chưa được mã hóa?</string>
   <!--ConversationActivity-->
@@ -162,7 +158,6 @@ Phục hồi bản sao lưu có mã hóa sẽ thay thế hoàn toàn các chìa 
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Bạn có thể muốn kiểm chứng
 địa chỉ liên lạc này.
     </string>
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">Chữ ký của việc trao đổi chìa khóa này thì tin cẩn, nhưng bạn để tắt thiết đặt \'tự động hoàn tất trao đổi chìa khóa\'.</string>
   <string name="ReceiveKeyActivity_processing">Đang xử lý</string>
   <string name="ReceiveKeyActivity_processing_key_exchange">Xử lý trao đổi chìa khóa...</string>
   <!--RegistrationActivity-->
@@ -261,8 +256,6 @@ Nhận thông tin về chìa khóa nhận diện không rõ. Bấm để xử l�
   <string name="MessageNotifier_mark_as_read">Đánh dấu đã đọc</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Xin lỗi, Hồi Âm Nhanh chưa được TextSecure hỗ trợ!</string>
-  <!--auto_initiate_activity-->
-  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Bạn nhận được tin nhắn từ một người có dùng phiên trao đổi mã hóa TextSecure. Bạn có muốn khởi tạo một phiên trao đổi có mã hóa?</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">MẬT KHẨU CŨ:</string>
   <string name="change_passphrase_activity__new_passphrase">MẬT KHẨU MỚI:</string>
@@ -332,7 +325,6 @@ Nhập tập tin sao lưu thường-không mã hóa. Tương thích với \'Sao 
 SỐ ĐIỆN THOẠI BẠN</string>
   <string name="registration_activity__phone_number">SỐ ĐIỆN THOẠI</string>
   <string name="registration_activity__register">Đăng ký</string>
-  <string name="registration_activity__skip">Bỏ qua</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Một số vấn đề có thể gặp
 bao gồm:</string>
@@ -392,9 +384,7 @@ TextSecure hết hạn chờ trong lúc đợi tin nhắn SMS xác nhận.</stri
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Chọn khoản mục liên lạc của bạn trong danh sách liên lạc.</string>
   <string name="preferences__change_passphrase">Đổi mật khẩu</string>
   <string name="preferences__change_my_passphrase">Đổi mật khẩu của tôi</string>
-  <string name="preferences__complete_key_exchanges">Hoàn tất trao đổi chìa khóa</string>
   <string name="preferences__screen_security">An ninh màn hình</string>
-  <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Tự động hoàn tất trao đổi chìa khóa cho các phiên mới hoặc cho các phiên hiện hành có cùng chìa khóa nhận diện</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Quên mật khẩu trong bộ nhớ sau một khoảng thời gian</string>
   <string name="preferences__timeout_passphrase">Hết hạn nhớ mật khẩu</string>
   <string name="preferences__pref_timeout_interval_title">Thời gian hết hạn</string>
@@ -457,7 +447,6 @@ Tăng độ riêng tư và tránh cước SMS bằng cách dùng đường truy�
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">Xong</string>
   <!--refreshing push directory from menu-->
-  <!--conversation_button_context-->
   <!--conversation_callable-->
   <string name="conversation_callable__menu_call">Gọi</string>
   <!--conversation_context-->

@@ -63,15 +63,10 @@ ten kontakt.
   <string name="ConversationItem_error_received_stale_key_exchange_message">Błąd, otrzymano nieprawidłową wiadomość wymiany kluczy. </string>
   <string name="ConversationItem_received_key_exchange_message_click_to_process">Otrzymano wiadomość wymiany kluczy, kliknij aby kontynuować.</string>
   <string name="ConversationItem_group_action_left">%1$s opuścił grupę.</string>
-  <string name="ConversationItem_click_to_approve_sms">Naciśnij dla SMS fallbck</string>
-  <string name="ConversationItem_click_to_approve_mms">Naciśnij dla MMS fallback</string>
   <string name="ConversationItem_click_for_details">Dotknij, aby zobaczyć szczegóły</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Dotknij w celu użycia niezabezpieczonej alternatywy</string>
-  <string name="ConversationItem_click_to_approve_sms_dialog_title">Fallback do SMS?</string>
-  <string name="ConversationItem_click_to_approve_mms_dialog_title">Fallback do SMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Fallback do nieszyfrowanej wiadomości SMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Fallback do nieszyfrowanych wiadomości MMS?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ta wiadomość <b>nie będzie</b> szyfrowana ponieważ nie udało się ustanowić bezpiecznego połączenia. \n\n\Wysłać niezaszyfrowaną wiadomość?</string>
   <string name="ConversationItem_unable_to_open_media">Nie można znaleźć aplikacji, aby otworzyć te media.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Rozpocząć bezpieczną sesję?</string>
@@ -101,8 +96,6 @@ ten kontakt.
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Czy na pewno chcesz opuścić grupę?</string>
   <string name="ConversationActivity_transport_insecure_sms">Nieszyfrowany SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Nieszyfrowany MMS</string>
-  <string name="ConversationActivity_transport_secure_sms">Bezpieczny SMS</string>
-  <string name="ConversationActivity_transport_secure_mms">Bezpieczny MMS</string>
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_get_with_it">Weź z: %s</string>
   <string name="ConversationActivity_install_textsecure">Instaluj TextSecure: %s</string>
@@ -134,6 +127,8 @@ ten kontakt.
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Wiadomość wymiany kluczy...</string>
   <!--CustomDefaultPreference-->
+  <string name="CustomDefaultPreference_using_custom">Używa własnych: %s</string>
+  <string name="CustomDefaultPreference_using_default">Używa domyślnych: %s</string>
   <string name="CustomDefaultPreference_none">Brak</string>
   <!--DateUtils-->
   <string name="DateUtils_now">Teraz</string>
@@ -243,7 +238,6 @@ Twój kontakt przeinstalował program TextSecure i posiada teraz nowy klucz toż
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Możesz chcieć zweryfikować 
 ten kontakt.
 </string>
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">Podpis pod tą wymianą kluczy jest zaufany, ale masz wyłączoną opcję \'automatyczna wymiana klucza\'.</string>
   <string name="ReceiveKeyActivity_processing">Przetwarzanie</string>
   <string name="ReceiveKeyActivity_processing_key_exchange">Przetwarzanie wymiany kluczy...</string>
   <!--RegistrationActivity-->
@@ -365,11 +359,9 @@ Otrzymano wiadomość z nieznanym kluczem tożsamości. Kliknij aby przetworzyć
   <string name="MessageNotifier_error_delivering_message">Błąd przy wysyłaniu wiadomości.</string>
   <string name="MessageNotifier_mark_all_as_read">Oznacz wszystkie jako przeczytane</string>
   <string name="MessageNotifier_mark_as_read">Oznacz jako przeczytane</string>
+  <string name="MessageNotifier_media_message">Wiadomość multimedialna</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Przepraszamy, Szybka Odpowiedź nie jest jeszcze wspierana przez TextSecure!</string>
-  <!--auto_initiate_activity-->
-  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Dostałeś wiadomość od kogoś kto obsługuje szyfrowane sesje TextSecure. Czy chcesz rozpocząć bezpieczną sesję?</string>
-  <string name="auto_initiate_activity__initiate_exchange">Rozpocznij wymianę</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">STARE HASŁO:</string>
   <string name="change_passphrase_activity__new_passphrase">NOWE HASŁO:</string>
@@ -469,15 +461,12 @@ Importuj niezaszyfrowany plik kopii zapasowej, kompatybilny z \'SMSBackup And Re
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Zakończono</string>
   <!--registration_activity-->
-  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-Rejestracja jest darmowa i zwiększa prywatność podczas pisania do innych użytkowników TextSecure. Proszę zweryfikuj swój numer.</string>
   <string name="registration_activity__your_country">TWÓJ KRAJ</string>
   <string name="registration_activity__your_country_code_and_phone_number">KOD TWOJEGO KRAJU I 
 NUMER TELEFONU</string>
   <string name="registration_activity__phone_number">NUMER TELEFONU</string>
   <string name="registration_activity__register">Rejestracja</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Podczas rejestracji, niektóre informacje o kontakcie zostaną przesłane tymczasowo na serwer. Nie będą one zapisane.</string>
-  <string name="registration_activity__skip">Pomiń</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Niektóre możliwe problemy:</string>
   <string name="registration_problems__sms_interceptors">Przechwytywanie SMS.</string>
@@ -540,7 +529,6 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="AndroidManifest__public_identity_key">Publiczny klucz tożsamości</string>
   <string name="AndroidManifest__change_passphrase">Zmień hasło</string>
   <string name="AndroidManifest__verify_identity">Zweryfikuj tożsamość</string>
-  <string name="AndroidManifest__complete_key_exchange">Ukończ wymianę kluczy</string>
   <string name="AndroidManifest__log_submit">Wyślij logi debugowania</string>
   <string name="AndroidManifest__media_preview">Podgląd pliku</string>
   <string name="AndroidManifest__media_overview">Wszystkie obrazy</string>
@@ -548,6 +536,8 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Import / eksport</string>
   <string name="arrays__my_identity_key">Mój klucz tożsamości</string>
+  <string name="arrays__use_default">Użyj domyślnych</string>
+  <string name="arrays__use_custom">Użyj własnych</string>
   <!--plurals.xml-->
   <plurals name="minutes_ago">
     <item quantity="one">%d minuta</item>
@@ -577,13 +567,11 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Wybierz swój kontakt z listy kontaktów.</string>
   <string name="preferences__change_passphrase">Zmień hasło</string>
   <string name="preferences__change_my_passphrase">Zmień moje hasło</string>
-  <string name="preferences__complete_key_exchanges">Ukończenie wymiany kluczy</string>
   <string name="preferences__enable_passphrase">Włącz hasło</string>
   <string name="preferences__passphrase_summary">Hasło %s</string>
   <string name="preferences__enable_local_encryption_of_messages_and_keys">Włącz lokalne szyfrowanie wiadomości i kluczy</string>
   <string name="preferences__screen_security">Ochrona ekranu</string>
   <string name="preferences__screen_security_summary">Ochrona ekranu %s</string>
-  <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Automatycznie zakończ wymianę kluczy dla nowej lub obecnej sesji używając tego samego klucza tożsamości</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokuj rzuty ekranu w obecnej liście oraz w aplikacji</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Wymaż hasło z pamięci systemu po pewnym czasie</string>
   <string name="preferences__timeout_passphrase">Limit czasu dla hasła?</string>
@@ -631,8 +619,9 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="preferences__advanced_mms_access_point_names">Manualne ustawienia MMS</string>
   <string name="preferences__enable_manual_mms">Użyj manualnych ustawień MMS</string>
   <string name="preferences__override_system_mms_settings">Zastąp ustawienia systemowe MMS poniższymi informacjami.</string>
-  <string name="preferences__mms_proxy_host">Host Proxy dla MMS\'a </string>
-  <string name="preferences__mms_proxy_port">Port Proxy dla MMS\'a </string>
+  <string name="preferences__mmsc_url">MMSC URL</string>
+  <string name="preferences__mms_proxy_host">Host Proxy MMS\'a </string>
+  <string name="preferences__mms_proxy_port">Port Proxy MMS\'a </string>
   <string name="preferences__mmsc_username">Użytkownik MMSC</string>
   <string name="preferences__mmsc_password">Hasło MMSC</string>
   <string name="preferences__sms_delivery_reports">Raporty dostarczenia SMS</string>
@@ -646,7 +635,7 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="preferences__dark_theme">Ciemny</string>
   <string name="preferences__appearance">Wygląd</string>
   <string name="preferences__theme">Motyw</string>
-  <string name="preferences__theme_summary">Skórka %s</string>
+  <string name="preferences__theme_summary">Wygląd %s</string>
   <string name="preferences__default">Domyślne</string>
   <string name="preferences__language">Język</string>
   <string name="preferences__language_summary">Język %s</string>
@@ -680,12 +669,6 @@ Zwiększ swoją prywatność i unikaj opłat za SMS używając transmisji danych
   <string name="contact_selection__menu_finished">Zakończono</string>
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Odśwież listę kontaktów</string>
-  <!--conversation_button_context-->
-  <string name="conversation_button_context__send_textsecure_message">Wyślij wiadomość TextSecure</string>
-  <string name="conversation_button_context__send_secure_sms">Wyślij szyfrowany SMS</string>
-  <string name="conversation_button_context__send_insecure_sms">Wyślij nieszyfrowany SMS</string>
-  <string name="conversation_button_context__send_secure_mms">Wyślij szyfrowany MMS</string>
-  <string name="conversation_button_context__send_insecure_mms">Wyślij nieszyfrowany MMS</string>
   <!--conversation_callable-->
   <string name="conversation_callable__menu_call">Zadzwoń</string>
   <!--conversation_context-->

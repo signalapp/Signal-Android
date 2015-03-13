@@ -118,7 +118,6 @@ Necessitaràs tornar a registrar el teu número de telèfon per utilitzar els mi
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">La signatura en aquest intercanvi de claus és diferent que el que havies rebut prèviament d\'aquest contacte. Això pot voler dir tant que algú està intentant interceptar la teva comunicació, o que aquest contacte simplement ha re-instal·lat TextSecure i ara té una clau d\'identitat nova.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Pot ser que vulguis verificar aquest contacte.</string>
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">La signatura en aquest intercanvi de claus és de confiança, però tens l\'ajustament \'completa els intercanvis de claus automàticament\' desactivat.</string>
   <string name="ReceiveKeyActivity_processing">Processant</string>
   <string name="ReceiveKeyActivity_processing_key_exchange">Processant intercanvi de clau...</string>
   <!--RegistrationActivity-->
@@ -212,8 +211,6 @@ Necessitaràs tornar a registrar el teu número de telèfon per utilitzar els mi
   <string name="MessageNotifier_mark_as_read">Marca com a llegit</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Ho sento, La resposta ràpida encara no està suportada per TextSecure!</string>
-  <!--auto_initiate_activity-->
-  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Has rebut un missatge d\'algú que suporta sessions de TextSecure encriptades. Vols iniciar una sessió segura?</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">FRASE CONTRASENYA ANTIGA:</string>
   <string name="change_passphrase_activity__new_passphrase">NOVA FRASE CONTRASENYA:</string>
@@ -274,7 +271,6 @@ des de l\'app de missatgeria predeterminada del sistema.</string>
   <string name="registration_activity__your_country_code_and_phone_number">EL TEU CODI DE PAÍS I NÚMERO DE TELÈFON</string>
   <string name="registration_activity__phone_number">NÚMERO DE TELÈFON</string>
   <string name="registration_activity__register">Registra</string>
-  <string name="registration_activity__skip">Salta</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Alguns possibles problemes inclouen:</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">Alguns clients de missatgeria de text de tercers, com ara Handcent o GoSMS, es comporten inadequadament i intercepten tots els missatges SMS entrants. Verifica per veure si has rebut un missatge de text que comença per \'Your TextSecure verification code:\', en aquest cas necessitaràs configurar la teva app de missatgeria de tercers per deixar passar els missatges de text.</string>
@@ -317,9 +313,7 @@ des de l\'app de missatgeria predeterminada del sistema.</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Escull el teu contacte de la llista de contactes</string>
   <string name="preferences__change_passphrase">Canvia frase contrasenya</string>
   <string name="preferences__change_my_passphrase">Canvia la meva frase contrasenya</string>
-  <string name="preferences__complete_key_exchanges">Completa intercanvis de claus</string>
   <string name="preferences__screen_security">Seguretat de pantalla</string>
-  <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Completa els intercanvis de claus automàticament en les noves sessions o en les sessions existents amb la mateixa clau d\'identitat</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Oblida la frase contrasenya de la memòria després d\'un interval de temps</string>
   <string name="preferences__timeout_passphrase">Temps d\'espera de la frase contrasenya</string>
   <string name="preferences__pref_timeout_interval_title">Interval del temps d\'espera</string>
@@ -374,7 +368,6 @@ Augmenta la privacitat i evita els càrrecs d\'SMS utilitzant el canal de dades 
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">Finalitzat</string>
   <!--refreshing push directory from menu-->
-  <!--conversation_button_context-->
   <!--conversation_callable-->
   <string name="conversation_callable__menu_call">Truca</string>
   <!--conversation_context-->

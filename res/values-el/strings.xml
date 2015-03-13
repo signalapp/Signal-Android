@@ -69,17 +69,10 @@
   <string name="ConversationItem_error_received_stale_key_exchange_message">Σφάλμα, λάβαμε παλιό μήνυμα ανταλλαγής κλειδιών.</string>
   <string name="ConversationItem_received_key_exchange_message_click_to_process">Ελήφθη μήνυμα ανταλλαγής κλειδιών, κάνετε κλικ για να επεξεργαστεί.</string>
   <string name="ConversationItem_group_action_left">%1$s έφυγαν απο την ομάδα.</string>
-  <string name="ConversationItem_click_to_approve_sms">Εναλλακτικά κανάλια για SMS</string>
-  <string name="ConversationItem_click_to_approve_mms">Εναλλακτικά κανάλια για MMS</string>
   <string name="ConversationItem_click_for_details">Πατήστε για λεπτομέρειες</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Πατήστε για ακάλυπτη εναλλακτική</string>
-  <string name="ConversationItem_click_to_approve_sms_dialog_title">Χρήση SMS ως εναλλακτικού καναλιού;</string>
-  <string name="ConversationItem_click_to_approve_mms_dialog_title">Χρήση MMS ως εναλλακτικού καναλιού?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Να γίνει αποστολή ΜΗ κρυπτογραφημενου μηνύματος?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Χρήση απροστάτευτου MMS ως εναλλακτικό κανάλι?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Αυτό το μήνυμα <b>δεν</b> θα προστατευτεί επειδή δε μπορέσαμε να ξεκινήσουμε ασφαλή συζήτηση με τον παραλήπτη.
-
-Να σταλεί το μήνυμα απροστάτευτο;</string>
   <string name="ConversationItem_unable_to_open_media">Δεν μπορεί να βρεθεί μια εφαρμογή που είναι σε θέση να ανοίξει αυτό το μέσο.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Εκκίνηση ασφαλούς συνεδρίας;</string>
@@ -109,8 +102,6 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Είστε σίγουροι πως θέλετε να αποχωρήσετε απο την ομάδα;</string>
   <string name="ConversationActivity_transport_insecure_sms">Μη ασφαλές SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Μη ασφαλές MMS</string>
-  <string name="ConversationActivity_transport_secure_sms">Ασφαλό SMS</string>
-  <string name="ConversationActivity_transport_secure_mms">Ασφαλό MMS</string>
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_get_with_it">Αποκτήστε το με αυτό: %s</string>
   <string name="ConversationActivity_install_textsecure">Εγκατάσταση του TextSecure: %s</string>
@@ -268,10 +259,6 @@
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Προτείνεται να επιβεβαιώσετε
         αυτήν την επαφή.
     </string>
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">Η
-        υπογραφή αυτής της ανταλλαγής κλειδιών είναι έμπιστη, αλλά η ρύθμιση «Να ολοκληρώνονται
-        οι ανταλλαγές κλειδιών» είναι απενεργοποιημένη.
-    </string>
   <string name="ReceiveKeyActivity_processing">Γίνεται επεξεργασία</string>
   <string name="ReceiveKeyActivity_processing_key_exchange">Επεξεργάζεται η ανταλλαγή κλειδιών...</string>
   <!--RegistrationActivity-->
@@ -403,11 +390,9 @@
   <string name="MessageNotifier_error_delivering_message">Σφάλμα κατά τη παράδοση του μηνύματος.</string>
   <string name="MessageNotifier_mark_all_as_read">Επισήμανση όλων ως αναγνωσμένα</string>
   <string name="MessageNotifier_mark_as_read">Επισήμανση ως αναγνωσμένο</string>
+  <string name="MessageNotifier_media_message">Μήνυμα πολυμέσων</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Λυπούμαστε, η Άμεση Απάντηση δεν υποστηρίζεται ακόμα από το TextSecure!</string>
-  <!--auto_initiate_activity-->
-  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Λάβατε μήνυμα από κάποιον που υποστηρίζει κρυπτογραφημένες συζητήσεις με TextSecure. Εκκίνηση ασφαλούς συζήτησης;</string>
-  <string name="auto_initiate_activity__initiate_exchange">Έναρξη Ανταλλαγής Κλειδιών</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">ΠΑΛΙΑ ΣΥΝΘΗΜΑΤΙΚΗ ΦΡΑΣΗ</string>
   <string name="change_passphrase_activity__new_passphrase">ΝΕΑ ΣΥΝΘΗΜΑΤΙΚΗ ΦΡΑΣΗ:</string>
@@ -509,18 +494,12 @@
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Ολοκληρώθηκε</string>
   <!--registration_activity-->
-  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-
-
-
-Η εγγραφή είναι δωρεάν και αυξάνει την προστασία ιδιωτικής ζωής κατά ανταλλαγής μηνυμάτων με άλλους χρήστες του TextSecure. Παρακαλούμε επιβεβαιώστε τον αριθμό του τηλεφώνου σας</string>
   <string name="registration_activity__your_country">Η ΧΩΡΑ ΣΑΣ</string>
   <string name="registration_activity__your_country_code_and_phone_number">Ο ΚΩΔΙΚΟΣ ΧΩΡΑΣ ΣΑΣ
 ΚΑΙ ΑΡΙΘΜΟΣ ΚΙΝΗΤΟΥ ΤΗΛΕΦΩΝΟΥ</string>
   <string name="registration_activity__phone_number">ΑΡΙΘΜΟΣ ΚΙΝΗΤΟΥ</string>
   <string name="registration_activity__register">Εγγραφή</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Η εγγραφή θα μεταφέρει προσωρινά μερικά δεδομένα στον διακομιστή.</string>
-  <string name="registration_activity__skip">Παράληψη</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Μερικά ενδεχόμενα προβλήματα
 συμπεριλαμβάνουν:
@@ -599,7 +578,6 @@
   <string name="AndroidManifest__public_identity_key">Δημόσιο Κλειδί Ταυτότητας</string>
   <string name="AndroidManifest__change_passphrase">Αλλαγή συνθηματικής φράσης</string>
   <string name="AndroidManifest__verify_identity">Επιβεβαίωση Ταυτότητας</string>
-  <string name="AndroidManifest__complete_key_exchange">Ολοκλήρωση Ανταλλαγής Κλειδιών</string>
   <string name="AndroidManifest__log_submit">Υποβολή διαγνωστικού αρχείου.</string>
   <string name="AndroidManifest__media_preview">Προεπισκόπηση  Πολυμέσων</string>
   <string name="AndroidManifest__media_overview">Όλες οι εικόνες</string>
@@ -634,11 +612,9 @@
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Επιλέξτε την επαφή σας από τη λίστα επαφών.</string>
   <string name="preferences__change_passphrase">Αλλαγή συνθηματικής φράσης</string>
   <string name="preferences__change_my_passphrase">Άλλαξε τη συνθηματική φράση μου</string>
-  <string name="preferences__complete_key_exchanges">Να ολοκληρώνονται οι ανταλλαγές κλειδιών</string>
   <string name="preferences__enable_passphrase">Ενεργοποίηση συνθηματικής φράσης</string>
   <string name="preferences__enable_local_encryption_of_messages_and_keys">Ενεργοποίηση τοπικής κρυπτογράφησης όλων των μηνυμάτων και κλειδιών</string>
   <string name="preferences__screen_security">Ασφάλεια οθόνης</string>
-  <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Να χρησιμοποιείται αυτόματα το ίδιο κλειδί ταυτότητας για ανταλλαγές κλειδιών σε νέες ή υπάρχουσες συζητήσεις</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Να επιτρέπεται η καταγραφή της οθόνης (screenshots)</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Να σβήνεται η συνθηματική φράση από τη μνήμη μετά από κάποιο διάστημα</string>
   <string name="preferences__timeout_passphrase">Χρονικό όριο συνθηματικής φράσης</string>
@@ -729,12 +705,6 @@
   <string name="contact_selection__menu_finished">Ολοκληρώθηκε</string>
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Ανανέωση της λίστας επαφών</string>
-  <!--conversation_button_context-->
-  <string name="conversation_button_context__send_textsecure_message">Αποστολή μηνύματος TextSecure</string>
-  <string name="conversation_button_context__send_secure_sms">Αποστολή ασφαλούς SMS</string>
-  <string name="conversation_button_context__send_insecure_sms">Αποστολή μη εξασφαλισμένων SMS</string>
-  <string name="conversation_button_context__send_secure_mms">Αποστολή ασφαλούς MMS</string>
-  <string name="conversation_button_context__send_insecure_mms">Αποστολή μη εξασφαλισμένων MMS</string>
   <!--conversation_callable-->
   <string name="conversation_callable__menu_call">Κλήση</string>
   <!--conversation_context-->

@@ -109,7 +109,6 @@
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Підпис цього обміну ключами відрізняється від отриманого раніше від цього контакту. Це може означати, що хтось намагається перехопити вашу переписку, або цей контакт перевстановив TextSecure і тепер у нього новий ідентифікаційний ключ.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Можливо, вам потрібно перевірити цей контакт.</string>
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">Підпис цього обміну ключами довірений, але ви відключили настройку \'автоматично завершувати обмін ключами\'.</string>
   <string name="ReceiveKeyActivity_processing">Обробка</string>
   <string name="ReceiveKeyActivity_processing_key_exchange">Виконується обмін ключами...</string>
   <!--RegistrationActivity-->
@@ -197,8 +196,6 @@
   <string name="MessageNotifier_mark_all_as_read">Позначити все як прочитане</string>
   <string name="MessageNotifier_mark_as_read">Позначити як прочитане</string>
   <!--QuickResponseService-->
-  <!--auto_initiate_activity-->
-  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Ви отримали повідомлення від співрозмовника, який підтримує зашифроване спілкування за допомогою TextSecure. </string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">СТАРА ФРАЗА-КЛЮЧ:</string>
   <string name="change_passphrase_activity__new_passphrase">НОВА ФРАЗА-КЛЮЧ:</string>
@@ -259,7 +256,6 @@
     </string>
   <string name="registration_activity__phone_number">НОМЕР ТЕЛЕФОНУ</string>
   <string name="registration_activity__register">Реєстрація</string>
-  <string name="registration_activity__skip">Пропустити</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Можливі проблеми:</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">Деякі програми повідомлень інших розробників, такі як Handcent або GoSMS, спрацьовують некоректно і перехоплюють всі вхідні SMS-повідомлення. Перевірте наявність отриманих повідомлень, які починаються з \'Ваш код доступу TextSecure\', якщо такі повідомлення є, вам потрібно налаштувати ваш додаток повідомлень інших розробників для пропуску текстових повідомлень.</string>
@@ -301,8 +297,6 @@
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Виберіть себе із списку контактів.</string>
   <string name="preferences__change_passphrase">Змінити фразу-ключ</string>
   <string name="preferences__change_my_passphrase">Змінити мою фразу-ключ</string>
-  <string name="preferences__complete_key_exchanges">Виконувати обміни ключами</string>
-  <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Автоматично завершувати обмін ключами для нових або ж існуючих сесій з тими ж ключами ідентифікації</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Стирати з пам’яті фразу-ключ через деякий час</string>
   <string name="preferences__timeout_passphrase">Забувати фразу-ключ</string>
   <string name="preferences__pref_timeout_interval_title">Термін зберігання</string>
@@ -355,7 +349,6 @@
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">Завершено</string>
   <!--refreshing push directory from menu-->
-  <!--conversation_button_context-->
   <!--conversation_callable-->
   <string name="conversation_callable__menu_call">Виклик</string>
   <!--conversation_context-->

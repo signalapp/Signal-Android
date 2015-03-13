@@ -4,6 +4,7 @@
   <string name="yes">Ya</string>
   <string name="no">Tidak</string>
   <string name="delete">Hapus</string>
+  <string name="please_wait">Harap tunggu....</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Sekarang: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Anda belum mengatur kata kunci!</string>
@@ -15,12 +16,14 @@
 Peringatan, ini akan menonaktifkan penyimpanan terenkripsi untuk semua pesan dan kunci. Sesi enkripsi
 anda selanjutnya akan berfungsi, tapi siapa saja yang mempunyai akses pisik ke perangkat anda
 dapat mengaksesnya</string>
-  <string name="ApplicationPreferencesActivity_disable">Dinon aktifkan</string>
+  <string name="ApplicationPreferencesActivity_disable">non aktif</string>
   <string name="ApplicationPreferencesActivity_unregistering">Keluar...</string>
   <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Keluar dari komunikasi berbasis data</string>
   <string name="ApplicationPreferencesActivity_disable_push_messages">Jangan gunakan push message</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Kesalahan dalam menghubungkan ke server!</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">SMS Terima Aktif</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Sentuh untuk mengubah aplikasi SMS default</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">SMS Terima Non Aktif</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Sentuh untuk membuat TextSecure sebagai aplikasi SMS default</string>
   <!--AppProtectionPreferenceFragment-->
   <!--DraftDatabase-->
@@ -136,10 +139,6 @@ kontak ini telah menginstall ulang TextSecure dan sekarang memiliki kunci identi
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Anda mungkin ingin memverifikasi
 kontak ini.
 </string>
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">Isi
-tanda tangan pertukaran kunci ini dipercaya, tetapi anda
-menonaktifkan \'selesaikan perturakan kunci
-secara otomatis\'</string>
   <string name="ReceiveKeyActivity_processing">Memproses</string>
   <string name="ReceiveKeyActivity_processing_key_exchange">Memproses pertukaran kunci...</string>
   <!--RegistrationActivity-->
@@ -243,8 +242,6 @@ Menerima pesan dengan identitas kunci tidak diketahui. Klik untuk memproses dan 
   <string name="MessageNotifier_mark_as_read">Tandai telah dibaca</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Maaf, Jawaban cepat masih belum didukung oleh TextSecure!</string>
-  <!--auto_initiate_activity-->
-  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Anda telah menerima pesan dari perangkat yang mendukung sesi terenkripsi oleh TextSecure. Apakah anda ingin memulai koneksi aman?</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">KATA KUNCI LAMA</string>
   <string name="change_passphrase_activity__new_passphrase">KATA KUNCI BARU</string>
@@ -312,7 +309,6 @@ Import cadangan dalam texks polos. Kompatibel dengan aplikasi \'SMSBackup And Re
 NOMOR TELEPON</string>
   <string name="registration_activity__phone_number">NOMOR TELEPON</string>
   <string name="registration_activity__register">Daftar</string>
-  <string name="registration_activity__skip">Lewati</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Beberapa masalah yang mungkin
 termasuk:
@@ -373,9 +369,7 @@ Telah gagal
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Pilih kontak anda dari daftar kontak yang ada.</string>
   <string name="preferences__change_passphrase">Ganti Kata Kunci</string>
   <string name="preferences__change_my_passphrase">Ganti kata kunci saya</string>
-  <string name="preferences__complete_key_exchanges">Pertukaran kunci berhasil</string>
   <string name="preferences__screen_security">Keamanan Layar</string>
-  <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Secara otomatis lakukan pertukaran kunci untuk sesi yang baru atau untuk sesi yang sudah ada dengan kunci identitas yang sama</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Lupakan kata kunci dari memori setelah beberapa saat</string>
   <string name="preferences__timeout_passphrase">Kata kunci kadaluarsa</string>
   <string name="preferences__pref_timeout_interval_title">Interval Kadaluarsa</string>
@@ -432,7 +426,6 @@ Telah gagal
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">Selesai</string>
   <!--refreshing push directory from menu-->
-  <!--conversation_button_context-->
   <!--conversation_callable-->
   <string name="conversation_callable__menu_call">Panggil</string>
   <!--conversation_context-->

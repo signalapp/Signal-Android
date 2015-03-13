@@ -123,8 +123,6 @@
   <string name="MessageNotifier_failed_to_deliver_message">འཕྲིན་ཐུང་གཏོང་ཐུབ་མ་སོང་། </string>
   <string name="MessageNotifier_error_delivering_message">འཕྲིན་ཐུང་གཏོང་བར་སྐྱོན་ཤོར་འདུག </string>
   <!--QuickResponseService-->
-  <!--auto_initiate_activity-->
-  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">གཡག་འཕྲིན་གྱི་བདེ་འཇགས་གླེང་མོལ་ལ་རྒྱབ་སྐྱོར་བྱེད་མཁན་ཞིག་ནས་ཁྱེད་ལ་འཕྲིན་ཐུང་ཅིག་འབྱོར་འདུག ཁོང་གི་ལྷན་དུ་འབྲེལ་བ་བརྟན་པོ་ཡོང་ཆེད་ལྡེ་མིག་བརྗེ་ལེན་རྒྱུ་ཡིན་ནམ།</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">གསང་ཚིག་རྙིང་པ།</string>
   <string name="change_passphrase_activity__new_passphrase">གསང་ཚིག་གསར་པ།</string>
@@ -168,7 +166,6 @@
   <!--prompt_mms_activity-->
   <!--receive_key_activity-->
   <!--registration_activity-->
-  <string name="registration_activity__skip">བསྐྱུར། </string>
   <!--registration_problems-->
   <!--registration_progress_activity-->
   <!--recipients_panel-->
@@ -187,8 +184,6 @@
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">འབྲེལ་ཐོ་ནས་ཁྱེད་ཀྱིས་འབྲེལ་བ་བྱེད་ས་དེ་གདེམས། </string>
   <string name="preferences__change_passphrase">གསང་ཚིག་བརྗེ་བོ་རྒྱོབས།</string>
   <string name="preferences__change_my_passphrase">ངའི་གསང་ཚིག་བརྗེ་བོ་རྒྱོབས།</string>
-  <string name="preferences__complete_key_exchanges">ལྡེ་མིག་བརྗེ་ལེན་རྣམས་ཚར་བ་བྱོས། </string>
-  <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">ལྡེ་མིག་གི་ངོས་འཛིན་གཅིག་པའི་ད་ཡོད་སྡེ་ཚན་ཞིག་གམ་ཡང་ན་སྡེ་ཚན་གསར་བ་ཞིག་གི་སླད་དུ། རང་བཞིན་ནས་ལྡེ་མིག་བརྗེ་ལེན་དེ་འགྲུབ་པ་བྱོས།</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">དུས་བརྒལ་གྱི་དབར་དྲན་ཐོ་ནས་གསང་ཚིག་བརྗེད། </string>
   <string name="preferences__timeout_passphrase">གསང་ཚིག་གི་དུས་ཚོད་ཡོལ་འདུག</string>
   <string name="preferences__pref_timeout_interval_title">བར་སེང་མཚམས་ཞོག </string>
@@ -223,7 +218,6 @@
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">མཇུག་རྫོགས་སོ།</string>
   <!--refreshing push directory from menu-->
-  <!--conversation_button_context-->
   <!--conversation_callable-->
   <string name="conversation_callable__menu_call">ཁ་པར་ཐོངས། </string>
   <!--conversation_context-->

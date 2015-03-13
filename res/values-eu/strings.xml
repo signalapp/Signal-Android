@@ -60,14 +60,9 @@ Zure telefono zenbakia bererregistratu beharko duzu push mezuak berriro erabili 
   <string name="ConversationItem_error_received_stale_key_exchange_message">Errorea, jaso da iraungita dagoen datu-trukerako gakoaren mezua.</string>
   <string name="ConversationItem_received_key_exchange_message_click_to_process">Jaso da gakoaren datu-trukatzearen mezua, klik egin prozesatzeko</string>
   <string name="ConversationItem_group_action_left">%1$s taldea utzi du</string>
-  <string name="ConversationItem_click_to_approve_sms">Ukitu SMSra jotzeko beste aukerarik ez dagoenean</string>
-  <string name="ConversationItem_click_to_approve_mms">Tap egin MMSra jotzeko beste aukerarik ez dagoenean</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Tap egin segurtasunik gabeko alternatibarako</string>
-  <string name="ConversationItem_click_to_approve_sms_dialog_title">SMSra pasatu aukera gisa?</string>
-  <string name="ConversationItem_click_to_approve_mms_dialog_title">MMSra pasatu aukera gisa?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Enkriptatzerik gabeko SMSra pasatu aukera gisa?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Enkriptatzerik gabeko MMSra pasatu aukera gisa?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Mezu hau <b>ez</b> da enkriptatuko zeren eta saio seguru bat ezin izan baita ezarri.\n\nSegurtasunik gabeko mezua bidali?</string>
   <string name="ConversationItem_unable_to_open_media">Ezin dut aurkitu euskarri hau irekitzeko gai den aplikaziorik</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Hasi saio segurua?</string>
@@ -97,8 +92,6 @@ Zure telefono zenbakia bererregistratu beharko duzu push mezuak berriro erabili 
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Ziur zaude talde hau utzi nahi izateaz?</string>
   <string name="ConversationActivity_transport_insecure_sms">SMS ez segurua</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS ez segurua</string>
-  <string name="ConversationActivity_transport_secure_sms">SMS segurua</string>
-  <string name="ConversationActivity_transport_secure_mms">SMS segurua</string>
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_get_with_it">Ondokoa lortu: %s</string>
   <string name="ConversationActivity_install_textsecure">TextSecure instalatu: %s</string>
@@ -227,10 +220,6 @@ Izan daiteke norbait zure komunikazioaren erdian egotea edo, era berean, posible
 
 </string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Agian kontaktu hau egiaztatu beharko zenuke.</string>
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">Gakoaren
-datu-trukatze honetako sinadura fidatzekoa da, baina 
-\'gako elkar-trukatzeak automatikoki 
-osatu\' ezarpena desgaituta daukazu</string>
   <string name="ReceiveKeyActivity_processing">Prozesatzen</string>
   <string name="ReceiveKeyActivity_processing_key_exchange">Gakoaren datu-elkartrukea prozesatzen...</string>
   <!--RegistrationActivity-->
@@ -358,11 +347,9 @@ Nortasun gako ezezagun batekin jaso da mezua. Klik egin prozesatzeko eta erakust
   <string name="MessageNotifier_error_delivering_message">Errorea mezua banatzen.</string>
   <string name="MessageNotifier_mark_all_as_read">Denak irrakurritako gisa markatu</string>
   <string name="MessageNotifier_mark_as_read">Irakurritako gisa markatu</string>
+  <string name="MessageNotifier_media_message">Media mezua</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Barkatu, Quick Response momentuz ez dago onartuta TextSecuren!</string>
-  <!--auto_initiate_activity-->
-  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">TextSecure enkriptatutako saioak onartzen dituen norbaiten mezu bat jaso duzu. Saio seguru bat hasi nahi duzu?</string>
-  <string name="auto_initiate_activity__initiate_exchange">Datu-trukatzea abiatu.</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">PASAHITZ ZAHARRA:</string>
   <string name="change_passphrase_activity__new_passphrase">PASAHITZ BERRIA:</string>
@@ -458,8 +445,6 @@ Enkriptatu gabeko babeskopia bat inportatu. Bateragarria \'SMSBackup Eta Restore
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Osatuta</string>
   <!--registration_activity-->
-  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-Erregistratzea doan da eta pribatutasuna hobetzen du beste TextSecure-eko erabiltzaile batzuekin aritzeko. Mesedez, egiazta ezazu zure telefono zenbakia.</string>
   <string name="registration_activity__your_country">ZURE HERRIALDEA</string>
   <string name="registration_activity__your_country_code_and_phone_number">ZURE HERRIALDEA ETA 
 TELEFONO ZENBAKIA
@@ -467,7 +452,6 @@ TELEFONO ZENBAKIA
   <string name="registration_activity__phone_number">TELEFONO ZENBAKIA</string>
   <string name="registration_activity__register">Erregistratu</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Erregistratzeak kontakturako informazioa igortzen du zerbitzarira. Ez da gordetzen.</string>
-  <string name="registration_activity__skip">Saltatu</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Aurreikusi daitezkeen arazo 
 batzuk ondokoak dira:
@@ -533,7 +517,6 @@ huts egin du.
   <string name="AndroidManifest__public_identity_key">Gako publikoaren nortasuna</string>
   <string name="AndroidManifest__change_passphrase">Pasahitza aldatu</string>
   <string name="AndroidManifest__verify_identity">Nortasuna egiaztatu</string>
-  <string name="AndroidManifest__complete_key_exchange">Gakoaren datu-trukatzea osatuta</string>
   <string name="AndroidManifest__log_submit">Arazketa logak bidali</string>
   <string name="AndroidManifest__media_preview">Mediaren Aurrebista</string>
   <!--arrays.xml-->
@@ -558,11 +541,9 @@ huts egin du.
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Hautatu zure kontaktua kontaktuen zerrendatik.</string>
   <string name="preferences__change_passphrase">Pasahitza aldatu</string>
   <string name="preferences__change_my_passphrase">Nire pasahitza aldatu</string>
-  <string name="preferences__complete_key_exchanges">Gakoen datu-trukatzea osatu</string>
   <string name="preferences__enable_passphrase">Pasahitza gaitu</string>
   <string name="preferences__enable_local_encryption_of_messages_and_keys">Mezuen eta gakoen enkriptatze lokala gaitu</string>
   <string name="preferences__screen_security">Pantailaren segurtasuna</string>
-  <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Automatikoki osatu gakoen datu-trukatzeak saio berrietarako edo gako bera duten esistitzen diren saioetarako</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokeatu pantailazoak arestikoen zerrendan eta aplikazioaren barruan</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Ahaztu pasahitza memoriatik denbora tarte bat pasa ondoren</string>
   <string name="preferences__timeout_passphrase">Denbora tartearen pasahitza</string>
@@ -646,12 +627,6 @@ Hobetu zure pribatutasuna eta ekidin SMS tasak datu kanala erabiliz TextSecure-e
   <string name="contact_selection__menu_finished">Bukatua</string>
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Freskatu kontaktuen zerrenda</string>
-  <!--conversation_button_context-->
-  <string name="conversation_button_context__send_textsecure_message">Bidali TextSecure-eko mezua</string>
-  <string name="conversation_button_context__send_secure_sms">SMS mezu segurua bidali</string>
-  <string name="conversation_button_context__send_insecure_sms">Segurtasunik gabeko SMSa bidali</string>
-  <string name="conversation_button_context__send_secure_mms">MMS mezu segurua bidali</string>
-  <string name="conversation_button_context__send_insecure_mms">Segurtasunik gabeko MMSa bidali</string>
   <!--conversation_callable-->
   <string name="conversation_callable__menu_call">Deitu</string>
   <!--conversation_context-->

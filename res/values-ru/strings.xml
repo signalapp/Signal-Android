@@ -61,15 +61,10 @@
   <string name="ConversationItem_error_received_stale_key_exchange_message">Ошибка: получено устаревшее сообщение обмена ключами.</string>
   <string name="ConversationItem_received_key_exchange_message_click_to_process">Получено сообщение обмена ключами. Нажмите, чтобы его обработать.</string>
   <string name="ConversationItem_group_action_left">%1$s покинул группу.</string>
-  <string name="ConversationItem_click_to_approve_sms">Отправить как SMS</string>
-  <string name="ConversationItem_click_to_approve_mms">Отправить как MMS</string>
   <string name="ConversationItem_click_for_details">Нажмите для подробностей</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Отправить незащищённым</string>
-  <string name="ConversationItem_click_to_approve_sms_dialog_title">Отправить как SMS?</string>
-  <string name="ConversationItem_click_to_approve_mms_dialog_title">Отправить как MMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Отправить как незашифрованное SMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Отправить как незашифрованное MMS?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Это сообщение <b>не будет</b> зашифровано, так как не удалось установить защищённый сеанс.\n\nОтправить сообщение незащищённым?</string>
   <string name="ConversationItem_unable_to_open_media">Не найдено приложение, которое может открыть этот медиа-файл.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Начать защищённый сеанс?</string>
@@ -99,8 +94,6 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Вы уверены, что хотите покинуть эту группу?</string>
   <string name="ConversationActivity_transport_insecure_sms">Незащищённое SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Незащищённое MMS</string>
-  <string name="ConversationActivity_transport_secure_sms">Защищённое SMS</string>
-  <string name="ConversationActivity_transport_secure_mms">Защищённое MMS</string>
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_get_with_it">Получить: %s</string>
   <string name="ConversationActivity_install_textsecure">Установить TextSecure: %s</string>
@@ -233,7 +226,6 @@
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Подпись, полученная сейчас при обмене ключами, отличается от той, которой собеседник подписывался ранее. Это может означать, что кто-то пытается перехватить вашу переписку или что ваш собеседник переустановил TextSecure, и теперь у него новый личный ключ.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Возможно, вы захотите перепроверить этого собеседника.</string>
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">Подпись в этом обмене ключами является доверенной, но вы отключили в настройках автоматическое выполнение обменов.</string>
   <string name="ReceiveKeyActivity_processing">Обработка</string>
   <string name="ReceiveKeyActivity_processing_key_exchange">Обрабатываем обмен ключами...</string>
   <!--RegistrationActivity-->
@@ -355,11 +347,9 @@
   <string name="MessageNotifier_error_delivering_message">Ошибка при доставке сообщения.</string>
   <string name="MessageNotifier_mark_all_as_read">Отметить все как прочитанные</string>
   <string name="MessageNotifier_mark_as_read">Отметить как прочитанное</string>
+  <string name="MessageNotifier_media_message">MMS-сообщение</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Извините, TextSecure пока не поддерживает быстрые ответы.</string>
-  <!--auto_initiate_activity-->
-  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Вы получили сообщение от собеседника, поддерживающего зашифрованное общение при помощи TextSecure. Хотите начать защищённый сеанс?</string>
-  <string name="auto_initiate_activity__initiate_exchange">Начать обмен</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">СТАРАЯ ПАРОЛЬНАЯ ФРАЗА:</string>
   <string name="change_passphrase_activity__new_passphrase">НОВАЯ ПАРОЛЬНАЯ ФРАЗА:</string>
@@ -458,15 +448,12 @@
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Выполнить</string>
   <!--registration_activity-->
-  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-Регистрация бесплатна и повышает безопасность при общении с другими пользователями TextSecure. Пожалуйста, подтвердите ваш номер телефона.</string>
   <string name="registration_activity__your_country">ВАША СТРАНА</string>
   <string name="registration_activity__your_country_code_and_phone_number">КОД ВАШЕЙ СТРАНЫ
 И НОМЕР ТЕЛЕФОНА</string>
   <string name="registration_activity__phone_number">НОМЕР ТЕЛЕФОНА</string>
   <string name="registration_activity__register">Зарегистрироваться</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">При регистрации на сервер передаётся некоторая контактная информация. Она не будет на нём сохранена.</string>
-  <string name="registration_activity__skip">Пропустить</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Возможные причины:</string>
   <string name="registration_problems__sms_interceptors">Обработчики SMS</string>
@@ -540,7 +527,6 @@ SMS-подтверждения...
   <string name="AndroidManifest__public_identity_key">Публичный ключ</string>
   <string name="AndroidManifest__change_passphrase">Изменить парольную фразу</string>
   <string name="AndroidManifest__verify_identity">Подтвердить личность</string>
-  <string name="AndroidManifest__complete_key_exchange">Выполнить обмен ключами</string>
   <string name="AndroidManifest__log_submit">Отправлять отладочные логи</string>
   <string name="AndroidManifest__media_preview">Предпросмотр</string>
   <string name="AndroidManifest__media_overview">Все изображения</string>
@@ -578,11 +564,9 @@ SMS-подтверждения...
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Выберите себя из списка контактов.</string>
   <string name="preferences__change_passphrase">Изменить парольную фразу</string>
   <string name="preferences__change_my_passphrase">Изменить мою парольную фразу</string>
-  <string name="preferences__complete_key_exchanges">Выполнять обмены ключами</string>
   <string name="preferences__enable_passphrase">Включить парольную фразу</string>
   <string name="preferences__enable_local_encryption_of_messages_and_keys">Включить шифрование при хранении сообщений и ключей</string>
   <string name="preferences__screen_security">Защита экрана</string>
-  <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Автоматически выполнять обмен ключами в новых сеансах, а также в существующих сеансах с не изменившимся личным ключом</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Блокировать снимки экрана внутри приложения</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Стирать из памяти парольную фразу через некоторое время</string>
   <string name="preferences__timeout_passphrase">Забывать парольную фразу</string>
@@ -675,12 +659,6 @@ SMS-подтверждения...
   <string name="contact_selection__menu_finished">Закончено</string>
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Обновить контакты</string>
-  <!--conversation_button_context-->
-  <string name="conversation_button_context__send_textsecure_message">Отправить сообщение TextSecure</string>
-  <string name="conversation_button_context__send_secure_sms">Отправить защищённое SMS</string>
-  <string name="conversation_button_context__send_insecure_sms">Отправить незащищенное SMS</string>
-  <string name="conversation_button_context__send_secure_mms">Отправить защищённое MMS</string>
-  <string name="conversation_button_context__send_insecure_mms">Отправить незащищённое MMS</string>
   <!--conversation_callable-->
   <string name="conversation_callable__menu_call">Звонок</string>
   <!--conversation_context-->

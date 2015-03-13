@@ -57,14 +57,9 @@ U zal uw telefoonnummer opnieuw moeten registreren als u push berichten weer wil
   <string name="ConversationItem_error_received_stale_key_exchange_message">Fout, verouderd sleuteluitwisselingsbericht ontvangen.</string>
   <string name="ConversationItem_received_key_exchange_message_click_to_process">Sleuteluitwisselingsbericht ontvangen, klik hier om te verwerken.</string>
   <string name="ConversationItem_group_action_left">%1$s heeft de groep verlaten.</string>
-  <string name="ConversationItem_click_to_approve_sms">Tik voor terugvallen naar SMS</string>
-  <string name="ConversationItem_click_to_approve_mms">Tik voor terugvallen naar MMS</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Tik voor terugvallen naar onbeveiligd</string>
-  <string name="ConversationItem_click_to_approve_sms_dialog_title">Terugvallen naar SMS?</string>
-  <string name="ConversationItem_click_to_approve_mms_dialog_title">Terugvallen naar MMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Terugvallen naar onversleutelde SMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Terugvallen naar onversleutelde MMS?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Dit bericht zal <b>niet</b> versleuteld worden, omdat een veilige sessie niet opgezet kon worden.\n\nBericht onbeveiligd versturen?</string>
   <string name="ConversationItem_unable_to_open_media">Geen app gevonden om dit bestand te openen.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Veilige sessie initiëren?</string>
@@ -94,8 +89,6 @@ U zal uw telefoonnummer opnieuw moeten registreren als u push berichten weer wil
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Weet u zeker dat u deze groep wil verlaten?</string>
   <string name="ConversationActivity_transport_insecure_sms">Onveilige SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Onveilige MMS</string>
-  <string name="ConversationActivity_transport_secure_sms">Veilige SMS</string>
-  <string name="ConversationActivity_transport_secure_mms">Veilige MMS</string>
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_get_with_it">Kom erbij: %s</string>
   <string name="ConversationActivity_install_textsecure">Installeer TextSecure: %s</string>
@@ -227,7 +220,6 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">De handtekening op deze sleuteluitwisseling is anders dan wat u eerder ontvangen heeft van dit contact. Dit kan betekenen dat iemand probeert uw communicatie the onderscheppen, of dat dit contact gewoon TextSecure opnieuw geïnstalleerd heeft en nu een nieuwe identiteitssleutel heeft.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">U kunt wensen dit contact te verifiëren.</string>
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">De handtekening op deze sleuteluitwisseling is vertrouwd, maar u heeft de \'automatisch aanvullen sleuteluitwisselingen\' instelling uitgeschakeld.</string>
   <string name="ReceiveKeyActivity_processing">Aan het verwerken</string>
   <string name="ReceiveKeyActivity_processing_key_exchange">Sleuteluitwisseling verwerken...</string>
   <!--RegistrationActivity-->
@@ -350,11 +342,9 @@ Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en 
   <string name="MessageNotifier_error_delivering_message">Fout bij afleveren bericht.</string>
   <string name="MessageNotifier_mark_all_as_read">Markeer alles als gelezen</string>
   <string name="MessageNotifier_mark_as_read">Markeer als gelezen</string>
+  <string name="MessageNotifier_media_message">Mediabericht</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Sorry, Quick Response wordt nog niet ondersteund door TextSecure!</string>
-  <!--auto_initiate_activity-->
-  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Je hebt een bericht ontvangen van iemand die versleutelde TextSecure sessies ondersteunt. Wil je een beveiligde sessie starten?</string>
-  <string name="auto_initiate_activity__initiate_exchange">Uitwisseling initiëren</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Oud wachtwoord:</string>
   <string name="change_passphrase_activity__new_passphrase">Nieuw wachtwoord:</string>
@@ -450,15 +440,12 @@ Importeer een niet-versleutelde back-up voor \'SMS Back-up En Herstellen\'.</str
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Voltooid</string>
   <!--registration_activity-->
-  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-Registreren is gratis en verbetert je privacy als je chat met andere TextSecure gebruikers.</string>
   <string name="registration_activity__your_country">UW LAND</string>
   <string name="registration_activity__your_country_code_and_phone_number">UW LANDCODE EN
 TELEFOONNUMMER</string>
   <string name="registration_activity__phone_number">TELEFOONNUMMER</string>
   <string name="registration_activity__register">Registreren</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Registreren deelt tijdelijk enige informatie met de server. Het wordt niet bewaard.</string>
-  <string name="registration_activity__skip">Overslaan</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Mogelijke problemen
 zijn:</string>
@@ -520,7 +507,6 @@ TextSecure heeft te lang moeten wachten op het binnenkomen van de verificatie-SM
   <string name="AndroidManifest__public_identity_key">Publieke identiteitssleutel</string>
   <string name="AndroidManifest__change_passphrase">Wachtwoord veranderen</string>
   <string name="AndroidManifest__verify_identity">Identiteit verifiëren</string>
-  <string name="AndroidManifest__complete_key_exchange">Sleuteluitwisseling voltooien</string>
   <string name="AndroidManifest__log_submit">Debug logs indienen</string>
   <string name="AndroidManifest__media_preview">Media Voorvertoning</string>
   <string name="AndroidManifest__media_overview">Alle afbeeldingen</string>
@@ -555,11 +541,9 @@ TextSecure heeft te lang moeten wachten op het binnenkomen van de verificatie-SM
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Kies uw contactinformatie uit de contactpersonenlijst.</string>
   <string name="preferences__change_passphrase">Wachtwoord veranderen</string>
   <string name="preferences__change_my_passphrase">Mijn wachtwoord veranderen</string>
-  <string name="preferences__complete_key_exchanges">Sleuteluitwisselingen voltooien</string>
   <string name="preferences__enable_passphrase">Wachtwoord inschakelen</string>
   <string name="preferences__enable_local_encryption_of_messages_and_keys">Lokale versleuteling van berichten en sleutels inschakelen</string>
   <string name="preferences__screen_security">Schermbeveiliging</string>
-  <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Automatisch sleuteluitwisselingen voltooien voor nieuwe sessies of voor bestaande sessies met dezelfde identiteitssleutel</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Screenshots onmogelijk maken in deze app en de recente lijst</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Wachtwoord na een bepaalde tijd uit het geheugen vergeten</string>
   <string name="preferences__timeout_passphrase">Time-out wachtwoord</string>
@@ -650,12 +634,6 @@ Privacy verbeteren en SMS-kosten vermijden door het datakanaal te gebruiken voor
   <string name="contact_selection__menu_finished">Voltooid</string>
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Contactenlijst verversen</string>
-  <!--conversation_button_context-->
-  <string name="conversation_button_context__send_textsecure_message">TextSecure bericht versturen</string>
-  <string name="conversation_button_context__send_secure_sms">Verstuur beveiligde SMS</string>
-  <string name="conversation_button_context__send_insecure_sms">Verstuur onbeveiligde SMS</string>
-  <string name="conversation_button_context__send_secure_mms">Verstuur beveiligde MMS</string>
-  <string name="conversation_button_context__send_insecure_mms">Verstuur onbeveiligde MMS</string>
   <!--conversation_callable-->
   <string name="conversation_callable__menu_call">Bel</string>
   <!--conversation_context-->

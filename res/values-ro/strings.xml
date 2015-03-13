@@ -58,13 +58,8 @@ Atenție, acestă acțiune va dezactiva stocarea criptată a tuturor mesajelor �
   <string name="ConversationItem_error_received_stale_key_exchange_message">Eroare, mesajul pentru schimbul de chei este vechi.</string>
   <string name="ConversationItem_received_key_exchange_message_click_to_process">Am recepționat un mesaj \"schimb de cheie\", tastați pentru a-l procesa.</string>
   <string name="ConversationItem_group_action_left">%1$s a ieșit din grup.</string>
-  <string name="ConversationItem_click_to_approve_sms">Apăsaţi pentru revenirea la SMS ca soluţie de rezervă </string>
-  <string name="ConversationItem_click_to_approve_mms">Apăsaţi pentru revenirea la MMS ca soluţie de rezervă </string>
-  <string name="ConversationItem_click_to_approve_sms_dialog_title">Reveniţi la SMS ca soluţie de rezervă?</string>
-  <string name="ConversationItem_click_to_approve_mms_dialog_title">Reveniţi la SMS ca soluţie de rezervă?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Reveniţi la SMS necriptat ca soluţie de rezervă?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Reveniţi la MMS necriptat ca soluţie de rezervă?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Acest mesaj <b>nu</b> va fi criptat deoarece nu s-a putut realiza o sesiune securizată.\n\nTrimit mesaj nesecurizat?</string>
   <string name="ConversationItem_unable_to_open_media">Nu a fost găsită o aplicație pentru a deschide acest tip media.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Initializez Sesiune Securizata?</string>
@@ -94,8 +89,6 @@ Atenție, acestă acțiune va dezactiva stocarea criptată a tuturor mesajelor �
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Sunteți sigur că doriți să părăsiți acest grup?</string>
   <string name="ConversationActivity_transport_insecure_sms">SMS nesecurizat</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS nesecurizat</string>
-  <string name="ConversationActivity_transport_secure_sms">SMS securizat</string>
-  <string name="ConversationActivity_transport_secure_mms">MMS securizat</string>
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_get_with_it">Descarcă-l de aici: %s</string>
   <string name="ConversationActivity_install_textsecure">Instalează TextSecure: %s</string>
@@ -216,7 +209,6 @@ Restaurarea unui backup criptat va înlocui complet cheile existente, setările 
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Semnătura digitală din acest schimb de chei este diferită fața de ce ai primit anterior de la această persoană. Asta poate însemna că cineva încearcă să intercepteze comunicația sau că această persoană a reinstalat TextSecure și acum are o nouă cheie de identitate.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Probabil ca doresti sa verifici aceasta persoana.</string>
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">Semnătura din acest schimb de chei este de încredere, dar opțiunea \"încheie automat schimburile de chei\" este dezactivată.</string>
   <string name="ReceiveKeyActivity_processing">Procesare</string>
   <string name="ReceiveKeyActivity_processing_key_exchange">Se proceseaza schimbul de chei...</string>
   <!--RegistrationActivity-->
@@ -338,11 +330,9 @@ Primit mesaj trimis cu o cheie de identitate necunoscută. Faceți click pentru 
   <string name="MessageNotifier_error_delivering_message">A aparut o eroare la trimiterea mesajului.</string>
   <string name="MessageNotifier_mark_all_as_read">Marchează tot ca citit</string>
   <string name="MessageNotifier_mark_as_read">Marchează ca citit</string>
+  <string name="MessageNotifier_media_message">Mesaj media</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Ne pare rău, funcția Răspuns Rapid nu este momentan implementată în TextSecure!</string>
-  <!--auto_initiate_activity-->
-  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Ai primit un mesaj de la un dispozitiv care suportă sesiuni criptate TextSecure. Dorești să inițiezi o sesiune securizată?</string>
-  <string name="auto_initiate_activity__initiate_exchange">Iniţializează schimb</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">PAROLA VECHE:</string>
   <string name="change_passphrase_activity__new_passphrase">NOUA PAROLĂ:</string>
@@ -444,7 +434,6 @@ NUMĂRUL DE TELEFON</string>
   <string name="registration_activity__phone_number">NUMĂRUL DE TELEFON</string>
   <string name="registration_activity__register">Inregistrare</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Înregistrarea transmite unele informații despre contact către server. Acestea nu sunt stocate.</string>
-  <string name="registration_activity__skip">Treci peste</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Unele probleme posibile
 sunt:</string>
@@ -503,7 +492,6 @@ Operaţiunea iniţiată de TextSecure a expirat în timpul aşteptării primirii
   <string name="AndroidManifest__public_identity_key">Cheia de identitate publică</string>
   <string name="AndroidManifest__change_passphrase">Schimbă parola</string>
   <string name="AndroidManifest__verify_identity">Verifică identitatea</string>
-  <string name="AndroidManifest__complete_key_exchange">Încheie schimburile de chei</string>
   <string name="AndroidManifest__log_submit">Trimite log-urile de depanare</string>
   <string name="AndroidManifest__media_preview">Previzualizare media</string>
   <!--arrays.xml-->
@@ -538,11 +526,9 @@ Operaţiunea iniţiată de TextSecure a expirat în timpul aşteptării primirii
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Selectează persoana din lista de contacte.</string>
   <string name="preferences__change_passphrase">Schimbă parola</string>
   <string name="preferences__change_my_passphrase">Schimbă parola</string>
-  <string name="preferences__complete_key_exchanges">Încheie schimburile de chei</string>
   <string name="preferences__enable_passphrase">Activează parola</string>
   <string name="preferences__enable_local_encryption_of_messages_and_keys">Activează criptarea locală a mesajelor și a cheilor</string>
   <string name="preferences__screen_security">Securitate ecran</string>
-  <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Completează în mod automat schimburile de chei pentru sesiunile noi sau existente cu aceeaşi cheie de identitate.</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blochează screenshot-urile în lista cu aplicaţii recente şi în interiorul applicaţiei</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Şterge parolele din memorie după un interval de timp</string>
   <string name="preferences__timeout_passphrase">Expiră parola</string>
@@ -624,12 +610,6 @@ Operaţiunea iniţiată de TextSecure a expirat în timpul aşteptării primirii
   <string name="contact_selection__menu_finished">Terminat</string>
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Actualizează lista de contacte</string>
-  <!--conversation_button_context-->
-  <string name="conversation_button_context__send_textsecure_message">Trimite mesaj TextSecure</string>
-  <string name="conversation_button_context__send_secure_sms">Trimite SMS securizat</string>
-  <string name="conversation_button_context__send_insecure_sms">Trimite SMS nesecurizat</string>
-  <string name="conversation_button_context__send_secure_mms">Trimite MMS securizat</string>
-  <string name="conversation_button_context__send_insecure_mms">Trimite MMS nesecurizat</string>
   <!--conversation_callable-->
   <string name="conversation_callable__menu_call">Sună</string>
   <!--conversation_context-->

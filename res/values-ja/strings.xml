@@ -35,6 +35,8 @@
   <string name="ApplicationPreferencesActivity_partial">一部</string>
   <string name="ApplicationPreferencesActivity_sms">SMS</string>
   <string name="ApplicationPreferencesActivity_mms">MMS</string>
+  <string name="ApplicationPreferencesActivity_incoming_sms_summary">受信 %s</string>
+  <string name="ApplicationPreferencesActivity_outgoing_sms_summary">送信 %s</string>
   <!--AppProtectionPreferenceFragment-->
   <string name="AppProtectionPreferenceFragment_minutes">%d 分</string>
   <!--DraftDatabase-->
@@ -64,15 +66,10 @@
   <string name="ConversationItem_error_received_stale_key_exchange_message">エラー、古い鍵交換のメッセージを受信してしまいました。</string>
   <string name="ConversationItem_received_key_exchange_message_click_to_process">鍵交換のメッセージを受信しました。クリックして実行してください。</string>
   <string name="ConversationItem_group_action_left">%1$sがグループを抜けました。</string>
-  <string name="ConversationItem_click_to_approve_sms">タップすれば代替としてSMSを使います。</string>
-  <string name="ConversationItem_click_to_approve_mms">タップすれば代替としてMMSを使います。</string>
   <string name="ConversationItem_click_for_details">タップして詳細</string>
   <string name="ConversationItem_click_to_approve_unencrypted">タップしてセキュアでない通信を行う</string>
-  <string name="ConversationItem_click_to_approve_sms_dialog_title">代替としてSMSに切り替わりますか？</string>
-  <string name="ConversationItem_click_to_approve_mms_dialog_title">代替としてMMSに切り替わりますか？</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">代替として暗号化されていないSMSに切り替わりますか？</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">代替として暗号化されていないMMSに切り替わりますか？</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">このメッセージは暗号化されて<b>いない</b> なぜならセキュア・セッションを確立できなかったため。\n\n安全ではないメッセージの送信を行うか?</string>
   <string name="ConversationItem_unable_to_open_media">このメディアを開くことができるアプリが見つかりません。</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">セキュア・セッションを開始しますか？</string>
@@ -102,8 +99,6 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">このグループを本当に抜けますか？</string>
   <string name="ConversationActivity_transport_insecure_sms">暗号化されていないSMS</string>
   <string name="ConversationActivity_transport_insecure_mms">暗号化されていないMMS</string>
-  <string name="ConversationActivity_transport_secure_sms">暗号化されているSMS</string>
-  <string name="ConversationActivity_transport_secure_mms">暗号化されているMMS</string>
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_get_with_it">一緒に取得: %s</string>
   <string name="ConversationActivity_install_textsecure">TextSecureをインストール: %s</string>
@@ -135,6 +130,8 @@
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">鍵交換のメッセージ…</string>
   <!--CustomDefaultPreference-->
+  <string name="CustomDefaultPreference_using_custom">カスタム利用: %s</string>
+  <string name="CustomDefaultPreference_using_default">デフォルト利用: %s</string>
   <string name="CustomDefaultPreference_none">無し</string>
   <!--DateUtils-->
   <string name="DateUtils_now">今</string>
@@ -243,9 +240,6 @@
 単にこの連絡先がTextSecureを再インストールしたため、認証キーが新しくなった可能性があります。</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">この連絡先を
 照合することが推奨されています。</string>
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">この
-鍵交換の電子署名は信用されていますが、「自動で鍵交換を完了する」設定は
-無効になっています。</string>
   <string name="ReceiveKeyActivity_processing">処理中</string>
   <string name="ReceiveKeyActivity_processing_key_exchange">鍵交換を処理中...</string>
   <!--RegistrationActivity-->
@@ -364,11 +358,9 @@
   <string name="MessageNotifier_error_delivering_message">メッセージ配信中にエラーがありました。</string>
   <string name="MessageNotifier_mark_all_as_read">すべて既読にする</string>
   <string name="MessageNotifier_mark_as_read">既読にする</string>
+  <string name="MessageNotifier_media_message">メディアーメッセージ</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">申し訳ありませんが、クイック返信はTextSecureではまだできません！</string>
-  <!--auto_initiate_activity-->
-  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">TextSecure暗号化セッションをサポートする人からメッセージが来ています。セキュア・セッションを開始しますか？</string>
-  <string name="auto_initiate_activity__initiate_exchange">交換開始</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">既存のパスワード：</string>
   <string name="change_passphrase_activity__new_passphrase">新規のパスワード：</string>
@@ -468,14 +460,11 @@
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">完了</string>
   <!--registration_activity-->
-  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-登録は無料で他のTextSecureユーザーとの通信の場合、私事権を最もよく守ります。携帯番号を検証してください。</string>
   <string name="registration_activity__your_country">あなたの国</string>
   <string name="registration_activity__your_country_code_and_phone_number">あなたの国番号と電話番号</string>
   <string name="registration_activity__phone_number">電話番号</string>
   <string name="registration_activity__register">登録</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">登録にはサーバーへのコンタクト情報の送信が必要です。その情報は保存されません。</string>
-  <string name="registration_activity__skip">スキップする</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">いくつかの問題の可能性があります
 原因:</string>
@@ -541,7 +530,6 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
   <string name="AndroidManifest__public_identity_key">公共認証キー</string>
   <string name="AndroidManifest__change_passphrase">パスワードの変更</string>
   <string name="AndroidManifest__verify_identity">認証検証</string>
-  <string name="AndroidManifest__complete_key_exchange">鍵交換を自動的に実行</string>
   <string name="AndroidManifest__log_submit">デバッグログを提出</string>
   <string name="AndroidManifest__media_preview">メディアのプレビュー表示</string>
   <string name="AndroidManifest__media_overview">すべての画像</string>
@@ -549,6 +537,8 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
   <!--arrays.xml-->
   <string name="arrays__import_export">インポート／エクスポート</string>
   <string name="arrays__my_identity_key">自分の認証キー</string>
+  <string name="arrays__use_default">デフォルトを利用する</string>
+  <string name="arrays__use_custom">カスタムを利用する</string>
   <!--plurals.xml-->
   <plurals name="minutes_ago">
     <item quantity="other">%d 分</item>
@@ -574,11 +564,11 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">連絡先リストからあなたの連絡先を選んでください。</string>
   <string name="preferences__change_passphrase">パスワードの変更</string>
   <string name="preferences__change_my_passphrase">パスワードの変更</string>
-  <string name="preferences__complete_key_exchanges">鍵交換の自動完了</string>
   <string name="preferences__enable_passphrase">パスフレーズが有効</string>
+  <string name="preferences__passphrase_summary">パスフレーズ %s</string>
   <string name="preferences__enable_local_encryption_of_messages_and_keys">メッセージと鍵のローカル暗号化を有効にする</string>
   <string name="preferences__screen_security">スクリーンセキュリティ</string>
-  <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">同じIDネームとの新しいセッション、又は現在のセッションをするのに鍵交換を自動で完了させる</string>
+  <string name="preferences__screen_security_summary">スクリーンセキュリティ %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">スクリーンショットをアプリ表示の場合防ぐ</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">一定時間経過するとメモリからパスワードを消去する</string>
   <string name="preferences__timeout_passphrase">パスワードの
@@ -627,6 +617,11 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
   <string name="preferences__advanced_mms_access_point_names">手動MMS設定</string>
   <string name="preferences__enable_manual_mms">手動MMS設定を使う</string>
   <string name="preferences__override_system_mms_settings">システムのMMS設定を下の設定で上書きする。</string>
+  <string name="preferences__mmsc_url">MMSC URL</string>
+  <string name="preferences__mms_proxy_host">MMSプロキシ・ホスト</string>
+  <string name="preferences__mms_proxy_port">MMSプロキシ・ポート</string>
+  <string name="preferences__mmsc_username">MMSCユーザ名</string>
+  <string name="preferences__mmsc_password">MMSCパスワード</string>
   <string name="preferences__sms_delivery_reports">SMS配信報告</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">送信する全てのSMSに配信報告をつけます</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">会話スレッドが一定の長さを超えると、古いメッセージが自動的に削除されます</string>
@@ -638,8 +633,10 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
   <string name="preferences__dark_theme">ダーク</string>
   <string name="preferences__appearance">デザイン設定</string>
   <string name="preferences__theme">テーマ</string>
+  <string name="preferences__theme_summary">テーマ %s</string>
   <string name="preferences__default">初期設定の言語</string>
   <string name="preferences__language">言語</string>
+  <string name="preferences__language_summary">言語 %s</string>
   <string name="preferences__make_default_sms_app">標準のSMSアプリに設定する</string>
   <string name="preferences__make_textsecure_the_default_sms_mms_app">お使いの端末で、TextSecureをSMS／MMSの標準アプリにする</string>
   <string name="preferences__use_data_channel">プッシュメッセージ</string>
@@ -670,12 +667,6 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
   <string name="contact_selection__menu_finished">終了</string>
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">連絡先リストを更新</string>
-  <!--conversation_button_context-->
-  <string name="conversation_button_context__send_textsecure_message">TextSecureメッセージを送信</string>
-  <string name="conversation_button_context__send_secure_sms">暗号化されているSMSを送信</string>
-  <string name="conversation_button_context__send_insecure_sms">セキュアでないSMSを送信</string>
-  <string name="conversation_button_context__send_secure_mms">暗号化されているMMSを送信</string>
-  <string name="conversation_button_context__send_insecure_mms">セキュアでないMMSを送信</string>
   <!--conversation_callable-->
   <string name="conversation_callable__menu_call">通話</string>
   <!--conversation_context-->

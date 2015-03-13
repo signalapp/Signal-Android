@@ -62,15 +62,10 @@
   <string name="ConversationItem_error_received_stale_key_exchange_message">错误，收到旧密钥交换消息。</string>
   <string name="ConversationItem_received_key_exchange_message_click_to_process">已经收到密钥交换信息，点击并处理。</string>
   <string name="ConversationItem_group_action_left">%1$s 已经离开了该群组。</string>
-  <string name="ConversationItem_click_to_approve_sms">点击退回短信</string>
-  <string name="ConversationItem_click_to_approve_mms">点击退回彩信</string>
   <string name="ConversationItem_click_for_details">点击查看详情</string>
   <string name="ConversationItem_click_to_approve_unencrypted">点击退回不安全的通信</string>
-  <string name="ConversationItem_click_to_approve_sms_dialog_title">退回短信吗？</string>
-  <string name="ConversationItem_click_to_approve_mms_dialog_title">退回彩信？</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">退回未加密的短信？</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">退回到未加密的彩信？</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">此消息将<b>不会</b>被加密，因为无法建立安全会话连接\n\n是否发送不安全的短信？</string>
   <string name="ConversationItem_unable_to_open_media">无法找到能打开该媒体的应用。</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">发起安全会话？</string>
@@ -100,8 +95,6 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">您确定想要离开此群组？</string>
   <string name="ConversationActivity_transport_insecure_sms">不安全的短信</string>
   <string name="ConversationActivity_transport_insecure_mms">不安全的彩信</string>
-  <string name="ConversationActivity_transport_secure_sms">安全短信</string>
-  <string name="ConversationActivity_transport_secure_mms">安全彩信</string>
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_get_with_it">已获得： %s</string>
   <string name="ConversationActivity_install_textsecure">安装 TextSecure： %s</string>
@@ -239,7 +232,6 @@
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">此人当前签名所使用的密钥与之前所接收到的密钥不一致，这可能是由于某人正试图拦截您的通信，或者此人重新安装TextSecure而有了新密钥。</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">您可能希望验证这个联系人。</string>
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">在此密钥交换上签名可信，但是“设置”中的“自动完成密钥交换”已经被您禁用。</string>
   <string name="ReceiveKeyActivity_processing">处理中</string>
   <string name="ReceiveKeyActivity_processing_key_exchange">正在处理密钥交换</string>
   <!--RegistrationActivity-->
@@ -363,11 +355,9 @@
   <string name="MessageNotifier_error_delivering_message">发送信息错误。</string>
   <string name="MessageNotifier_mark_all_as_read">全部标记为已读</string>
   <string name="MessageNotifier_mark_as_read">标记为已读</string>
+  <string name="MessageNotifier_media_message">媒体信息</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">抱歉，TextSecure目前还不支持快速回复。</string>
-  <!--auto_initiate_activity-->
-  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">您从支持 TextSecure 加密会话的人那里收到一条消息。是否要启动安全会话？</string>
-  <string name="auto_initiate_activity__initiate_exchange">初始化交换</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">旧密码：</string>
   <string name="change_passphrase_activity__new_passphrase">新密码：</string>
@@ -465,15 +455,12 @@
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">完成</string>
   <!--registration_activity-->
-  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-注册 TextSecure 完全免费，并且和其他 TextSecure 通信时更具备了隐私功能。请验证您的手机号码。</string>
   <string name="registration_activity__your_country">国家或地区</string>
   <string name="registration_activity__your_country_code_and_phone_number">您的国家代码和
 电话号码</string>
   <string name="registration_activity__phone_number">电话号码</string>
   <string name="registration_activity__register">注册人</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">注册将会传输一些联系人信息到服务器。这些信息不会被存储。</string>
-  <string name="registration_activity__skip">略过</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">可能的问题
 包括：</string>
@@ -551,7 +538,6 @@ TextSecure 在等待短信验证时超时。</string>
   <string name="AndroidManifest__public_identity_key">身份公钥</string>
   <string name="AndroidManifest__change_passphrase"> 修改密码</string>
   <string name="AndroidManifest__verify_identity">验证身份</string>
-  <string name="AndroidManifest__complete_key_exchange">完成密钥交换</string>
   <string name="AndroidManifest__log_submit">发送调试日志</string>
   <string name="AndroidManifest__media_preview">媒体预览</string>
   <string name="AndroidManifest__media_overview">所有图片</string>
@@ -586,13 +572,11 @@ TextSecure 在等待短信验证时超时。</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">从联系人列表选择您的联系人条目。</string>
   <string name="preferences__change_passphrase"> 修改密码</string>
   <string name="preferences__change_my_passphrase">更改我的密码</string>
-  <string name="preferences__complete_key_exchanges">完成密钥交换</string>
   <string name="preferences__enable_passphrase">启用密码</string>
   <string name="preferences__passphrase_summary">密码 %s</string>
   <string name="preferences__enable_local_encryption_of_messages_and_keys">启用本地加密的信息和密钥</string>
   <string name="preferences__screen_security">屏幕安全性</string>
   <string name="preferences__screen_security_summary">屏幕安全性 %s</string>
-  <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">使用同一身份密钥自动完成新会话或现有会话的密钥交换</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">屏蔽下列应用和内置应用的截屏功能</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">在一段时间后忘记内存中的密码</string>
   <string name="preferences__timeout_passphrase">超时密码</string>
@@ -690,12 +674,6 @@ TextSecure 在等待短信验证时超时。</string>
   <string name="contact_selection__menu_finished">已完成</string>
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">刷新联系人列表</string>
-  <!--conversation_button_context-->
-  <string name="conversation_button_context__send_textsecure_message">发送 TextSecure 信息</string>
-  <string name="conversation_button_context__send_secure_sms">发送安全短信</string>
-  <string name="conversation_button_context__send_insecure_sms">发送不安全的短信</string>
-  <string name="conversation_button_context__send_secure_mms">发送安全彩信</string>
-  <string name="conversation_button_context__send_insecure_mms">发送不安全的彩信</string>
   <!--conversation_callable-->
   <string name="conversation_callable__menu_call">呼叫</string>
   <!--conversation_context-->

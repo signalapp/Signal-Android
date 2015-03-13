@@ -117,10 +117,6 @@
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">ייתכן שתרצה לאמת
 את איש הקשר הזה.
 </string>
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">החתימה
-על החלפת המפתח הזו אמינה, אבל ביטלת את האפשרות של \"השלם החלפת
- מפתח אוטומטית\" בהגדרות.
-</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_continue">המשך</string>
   <!--RegistrationProblemsActivity-->
@@ -177,8 +173,6 @@
   <string name="MessageNotifier_mark_all_as_read">סמן הכל כנקרא</string>
   <string name="MessageNotifier_mark_as_read">סמן כנקרא</string>
   <!--QuickResponseService-->
-  <!--auto_initiate_activity-->
-  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">קיבלת הודעה ממישהו שתומך בחיבור מאובטח של TextSecure. האם ברצונך להתחיל חיבור מאובטח? </string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">סיסמה ישנה:</string>
   <string name="change_passphrase_activity__new_passphrase">סיסמה חדשה:</string>
@@ -236,7 +230,6 @@
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">השלם</string>
   <!--registration_activity-->
-  <string name="registration_activity__skip">דלג</string>
   <!--registration_problems-->
   <!--registration_progress_activity-->
   <!--recipients_panel-->
@@ -256,8 +249,6 @@
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">בחר איש קשר מאנשי הקשר.</string>
   <string name="preferences__change_passphrase">שנה סיסמה</string>
   <string name="preferences__change_my_passphrase">שנה סיסמה</string>
-  <string name="preferences__complete_key_exchanges">השלם החלפות מפתח</string>
-  <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">השלם אוטומטית החלפות מפתח לחיבורים חדשים או קיימים עם אותו מפתח הזהות</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">שכח את הסיסמה מהזיכרון לאחר זמן מסויים </string>
   <string name="preferences__timeout_passphrase">זמן תוקף לסיסמה</string>
   <string name="preferences__pref_timeout_interval_title">זמן התוקף</string>
@@ -303,7 +294,6 @@
   <!--contact_selection-->
   <string name="contact_selection__menu_finished">הושלם</string>
   <!--refreshing push directory from menu-->
-  <!--conversation_button_context-->
   <!--conversation_callable-->
   <string name="conversation_callable__menu_call">התקשר</string>
   <!--conversation_context-->

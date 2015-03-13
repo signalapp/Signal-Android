@@ -48,10 +48,6 @@
   <string name="ConversationItem_error_received_stale_key_exchange_message">錯誤，收到的是過期的金鑰交換訊息。</string>
   <string name="ConversationItem_received_key_exchange_message_click_to_process">接收到金鑰交換訊息，按一下開始更新。</string>
   <string name="ConversationItem_group_action_left">%1$s 已經離開群組。</string>
-  <string name="ConversationItem_click_to_approve_sms">按此撤回手機簡訊</string>
-  <string name="ConversationItem_click_to_approve_mms">按此撤回多媒體簡訊</string>
-  <string name="ConversationItem_click_to_approve_sms_dialog_title">撤回手機簡訊？</string>
-  <string name="ConversationItem_click_to_approve_mms_dialog_title">撤回多媒體簡訊？</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">撤回未加密的手機簡訊？</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">撤回未加密的多媒體簡訊？</string>
   <string name="ConversationItem_unable_to_open_media">找不到合適的 APP 來開啟媒體檔案。</string>
@@ -193,10 +189,6 @@
     </string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">您想要對這名連絡人
 進行認證嗎？</string>
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">此次
-        金鑰確認所用的數位簽名已被成功驗證。但您目前將「自動金鑰交換」的功能
-        給取消了。
-    </string>
   <string name="ReceiveKeyActivity_processing">處理中</string>
   <string name="ReceiveKeyActivity_processing_key_exchange">金鑰交換處理中...</string>
   <!--RegistrationActivity-->
@@ -319,11 +311,9 @@
   <string name="MessageNotifier_error_delivering_message">傳送訊息發生失誤。</string>
   <string name="MessageNotifier_mark_all_as_read">全部標示為已讀</string>
   <string name="MessageNotifier_mark_as_read">標示已讀</string>
+  <string name="MessageNotifier_media_message">媒體訊息</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">抱歉，快速回覆（Quick Response）功能目前 TextSecure 還不支援！</string>
-  <!--auto_initiate_activity-->
-  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">您收到一則來自支援 TextSecure 加密連線的新訊息，您想與此新連絡人啟用安全連線？</string>
-  <string name="auto_initiate_activity__initiate_exchange">起始金鑰交換</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">舊的『自訂密碼』:</string>
   <string name="change_passphrase_activity__new_passphrase">新的『自訂密碼』:</string>
@@ -409,16 +399,12 @@
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">完成</string>
   <!--registration_activity-->
-  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-        註冊是完全免費的，同時可以與其他也使用 TextSecure 的朋友一起提生隱私性。請在此驗證您的手機號碼。
-    </string>
   <string name="registration_activity__your_country">您的國家／區域</string>
   <string name="registration_activity__your_country_code_and_phone_number">您的國碼與
 手機號碼</string>
   <string name="registration_activity__phone_number">手機號碼</string>
   <string name="registration_activity__register">註冊</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">註冊過程中將會傳送某些您手機上的連絡人資訊到我們的伺服器端。不過它們不會被保存在伺服器上。</string>
-  <string name="registration_activity__skip">略過</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">某些可能的問題
 包含：</string>
@@ -483,7 +469,6 @@ TextSecure 等候驗證用的手機簡訊已逾時。</string>
   <string name="AndroidManifest__public_identity_key">公鑰／公開金鑰</string>
   <string name="AndroidManifest__change_passphrase">變更『自訂密碼』</string>
   <string name="AndroidManifest__verify_identity">驗證身分</string>
-  <string name="AndroidManifest__complete_key_exchange">金鑰交換完成</string>
   <string name="AndroidManifest__log_submit">送出偵錯紀錄</string>
   <string name="AndroidManifest__media_preview">預覽檔案</string>
   <!--arrays.xml-->
@@ -507,9 +492,7 @@ TextSecure 等候驗證用的手機簡訊已逾時。</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">從您的連絡人清單中選擇連絡人。</string>
   <string name="preferences__change_passphrase">變更『自訂密碼』</string>
   <string name="preferences__change_my_passphrase">變更我的『自訂密碼』</string>
-  <string name="preferences__complete_key_exchanges">金鑰交換完成</string>
   <string name="preferences__screen_security">螢幕安全設定</string>
-  <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">自動完成新連線金鑰交換，或套用目前已存在連線同樣的身分識別金鑰</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">停用畫面擷取功能，在對話清單或APP內</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">若閒置太久沒用，讓『自訂密碼』自動幫 TextSecure上鎖</string>
   <string name="preferences__timeout_passphrase">『自訂密碼』上鎖倒數</string>
@@ -580,10 +563,6 @@ TextSecure 等候驗證用的手機簡訊已逾時。</string>
   <string name="contact_selection__menu_finished">完成</string>
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">更新連絡人清單</string>
-  <!--conversation_button_context-->
-  <string name="conversation_button_context__send_textsecure_message">傳送 TextSecure 加密訊息</string>
-  <string name="conversation_button_context__send_secure_sms">傳送加密的手機簡訊</string>
-  <string name="conversation_button_context__send_secure_mms">傳送加密的 MMS多媒體簡訊</string>
   <!--conversation_callable-->
   <string name="conversation_callable__menu_call">撥出</string>
   <!--conversation_context-->

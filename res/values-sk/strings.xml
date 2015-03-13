@@ -235,9 +235,6 @@ telefónne číslo</string>
   <string name="MessageNotifier_mark_all_as_read">Označ všetko ako prečítané</string>
   <string name="MessageNotifier_mark_as_read">Označ ako prečítané</string>
   <!--QuickResponseService-->
-  <!--auto_initiate_activity-->
-  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Dostali ste správu od klienta podporujúceho TextSecure bezpečnú session.  Želáte si vytvoriť bezpečnú session?</string>
-  <string name="auto_initiate_activity__initiate_exchange">Začni vzájomnú výmenu</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Staré heslo:</string>
   <string name="change_passphrase_activity__new_passphrase">Nové heslo:</string>
@@ -313,7 +310,6 @@ Importovať nezakryptovanú zálohu. Kompatibilné so \'SMSBackup And Restore\'.
 telefónne číslo</string>
   <string name="registration_activity__phone_number">TELEFÓNNE ČÍSLO </string>
   <string name="registration_activity__register">Registrovať</string>
-  <string name="registration_activity__skip">Preskoč</string>
   <!--registration_problems-->
   <string name="registration_problems__incorrect_number">Nesprávne číslo.</string>
   <string name="registration_problems__google_voice">Google hlas</string>
@@ -357,7 +353,6 @@ zlyhalo.
   <string name="AndroidManifest__public_identity_key">Kľúč verejnej totožnosti</string>
   <string name="AndroidManifest__change_passphrase">Zmeň heslo</string>
   <string name="AndroidManifest__verify_identity">Over totožnosť</string>
-  <string name="AndroidManifest__complete_key_exchange">Dokončiť vzájomnú výmenu kľúčov</string>
   <string name="AndroidManifest__log_submit">Odošli ladiaci log</string>
   <!--arrays.xml-->
   <string name="arrays__my_identity_key">Môj kľúč totožnosti</string>
@@ -375,9 +370,7 @@ zlyhalo.
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Vyberte Váš kontakt zo zoznamu kontaktov.</string>
   <string name="preferences__change_passphrase">Zmeň heslo</string>
   <string name="preferences__change_my_passphrase">Zmeniť moje heslo</string>
-  <string name="preferences__complete_key_exchanges">Dokončiť vzájomnú výmenu kľúčov</string>
   <string name="preferences__screen_security">Bezpečnosť obrazovky</string>
-  <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Automaticky dokonči vzájomné výmeny kľúčov pre nové session alebo pre existujúce session s rovnakým kľúčom totožnosti.</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Po určitom čase zmaž heslo z pamäte</string>
   <string name="preferences__timeout_passphrase">Doba zapamätania hesla</string>
   <string name="preferences__pref_timeout_interval_dialogtitle">Vyber dobu zapamätania hesla</string>
@@ -439,10 +432,6 @@ zlyhalo.
   <string name="contact_selection__menu_finished">Hotovo</string>
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Obnov kontakty</string>
-  <!--conversation_button_context-->
-  <string name="conversation_button_context__send_textsecure_message">Pošli TextSecure správu </string>
-  <string name="conversation_button_context__send_secure_sms">Pošli šifrovanú SMS</string>
-  <string name="conversation_button_context__send_secure_mms">Pošli šifrovanú MMS</string>
   <!--conversation_callable-->
   <string name="conversation_callable__menu_call">Volaj</string>
   <!--conversation_context-->
