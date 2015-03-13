@@ -288,10 +288,6 @@
     <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">You may wish to verify
         this contact.
     </string>
-    <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">The
-        signature on this key exchange is trusted, but you have the \'automatically complete key
-        exchanges\' setting disabled.
-    </string>
     <string name="ReceiveKeyActivity_processing">Processing</string>
     <string name="ReceiveKeyActivity_processing_key_exchange">Processing key exchange…</string>
 
@@ -446,10 +442,6 @@
 
     <!-- QuickResponseService -->
     <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Sorry, Quick Response is not yet supported by TextSecure!</string>
-
-    <!-- auto_initiate_activity -->
-    <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">You have received a message from someone who supports TextSecure encrypted sessions.  Would you like to initiate a secure session?</string>
-    <string name="auto_initiate_activity__initiate_exchange">Initiate exchange</string>
 
     <!-- change_passphrase_activity -->
     <string name="change_passphrase_activity__old_passphrase">OLD PASSPHRASE:</string>
@@ -682,7 +674,6 @@
     <string name="AndroidManifest__public_identity_key">Public identity key</string>
     <string name="AndroidManifest__change_passphrase">Change passphrase</string>
     <string name="AndroidManifest__verify_identity">Verify identity</string>
-    <string name="AndroidManifest__complete_key_exchange">Complete key exchange</string>
     <string name="AndroidManifest__log_submit">Submit debug logs</string>
     <string name="AndroidManifest__media_preview">Media Preview</string>
     <string name="AndroidManifest__media_overview">All images</string>
@@ -723,13 +714,11 @@
     <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Choose your contact entry from the contacts list.</string>
     <string name="preferences__change_passphrase">Change passphrase</string>
     <string name="preferences__change_my_passphrase">Change my passphrase</string>
-    <string name="preferences__complete_key_exchanges">Complete key exchanges</string>
     <string name="preferences__enable_passphrase">Enable passphrase</string>
     <string name="preferences__passphrase_summary">Passphrase %s</string>
     <string name="preferences__enable_local_encryption_of_messages_and_keys">Enable local encryption of messages and keys</string>
     <string name="preferences__screen_security">Screen security</string>
     <string name="preferences__screen_security_summary">Screen security %s</string>
-    <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Automatically complete key exchanges for new sessions or for existing sessions with the same identity key</string>
     <string name="preferences__disable_screen_security_to_allow_screen_shots">Block screenshots in the recents list and inside the app</string>
     <string name="preferences__forget_passphrase_from_memory_after_some_interval">Forget passphrase from memory after some interval</string>
     <string name="preferences__timeout_passphrase">Timeout passphrase</string>
