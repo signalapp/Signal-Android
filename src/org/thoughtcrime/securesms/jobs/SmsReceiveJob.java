@@ -79,7 +79,7 @@ public class SmsReceiveJob extends ContextJob {
     return messageAndThreadId;
   }
 
-  private Optional<IncomingTextMessage> assembleMessageFragments(Object[] pdus)  {
+  private Optional<IncomingTextMessage> assembleMessageFragments(Object[] pdus) {
     List<IncomingTextMessage> messages = new LinkedList<>();
 
     for (Object pdu : pdus) {
