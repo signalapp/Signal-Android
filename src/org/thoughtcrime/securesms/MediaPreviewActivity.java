@@ -193,13 +193,6 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   }
 
   private void displayImage() {
-    try {
-      image.setImageBitmap(BitmapFactory.decodeStream(PartAuthority.getThumbnail(this, masterSecret, mediaUri)));
-      image.setVisibility(View.VISIBLE);
-    } catch (IOException fnfe) {
-      Log.w(TAG, "tried to render thumbnail, but it wasn't found. carrying on.");
-    }
-
     new AsyncTask<Void,Void,Bitmap>() {
       @Override
       protected Bitmap doInBackground(Void... params) {
