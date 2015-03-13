@@ -27,10 +27,10 @@ import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
-import android.text.TextUtils;
+import android.support.v4.widget.CursorAdapter;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.view.ActionMode;
-import android.support.v4.widget.CursorAdapter;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -43,7 +43,6 @@ import android.widget.ListView;
 
 import com.melnykov.fab.FloatingActionButton;
 
-import org.thoughtcrime.securesms.ConversationListAdapter;
 import org.thoughtcrime.securesms.NewConversationActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.DefaultSmsReminder;
@@ -51,12 +50,12 @@ import org.thoughtcrime.securesms.components.ExpiredBuildReminder;
 import org.thoughtcrime.securesms.components.PushRegistrationReminder;
 import org.thoughtcrime.securesms.components.ReminderView;
 import org.thoughtcrime.securesms.components.SystemSmsImportReminder;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.loaders.ConversationListLoader;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.Dialogs;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 
 import java.util.Set;
 

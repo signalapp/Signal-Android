@@ -30,7 +30,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
-import org.thoughtcrime.securesms.ConversationListAdapter;
 import org.thoughtcrime.securesms.GroupCreateActivity;
 import org.thoughtcrime.securesms.ImportExportActivity;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
