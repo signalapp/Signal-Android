@@ -458,11 +458,7 @@ public class ConversationItem extends LinearLayout {
         if (!messageRecord.isOutgoing()) intent.putExtra(MediaPreviewActivity.RECIPIENT_EXTRA, messageRecord.getIndividualRecipient().getRecipientId());
         intent.putExtra(MediaPreviewActivity.DATE_EXTRA, messageRecord.getDateReceived());
 
-        if (VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN) {
-          context.startActivity(intent, mediaThumbnail.getThumbnailTransition().toBundle());
-        } else {
-          context.startActivity(intent);
-        }
+        context.startActivity(intent);
       } else {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(R.string.ConversationItem_view_secure_media_question);
