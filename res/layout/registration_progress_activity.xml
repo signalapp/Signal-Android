@@ -47,7 +47,8 @@
                         android:paddingRight="8.0dip"
                         android:text="@string/registration_progress_activity__sms_verification_failed"
                         android:textColor="#333333"
-                        android:textSize="16.0sp" />
+                        android:textSize="16.0sp"
+                        android:singleLine="true"/>
 
                 <TextView
                         android:id="@+id/sms_failed_text"
