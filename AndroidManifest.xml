@@ -165,11 +165,6 @@
           android:windowSoftInputMode="stateHidden"
           android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
-    <activity android:name=".AutoInitiateActivity"
-              android:theme="@style/TextSecure.Light.Dialog"
-              android:label="@string/AndroidManifest__textsecure_detected"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
-
     <activity android:name=".ViewIdentityActivity"
               android:label="@string/AndroidManifest__public_identity_key"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
@@ -186,7 +181,6 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".ReceiveKeyActivity"
-              android:label="@string/AndroidManifest__complete_key_exchange"
               android:theme="@style/TextSecure.Light.Dialog"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
     

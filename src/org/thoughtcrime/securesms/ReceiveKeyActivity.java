@@ -32,7 +32,6 @@ import android.widget.TextView;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.crypto.storage.TextSecureIdentityKeyStore;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.PushDatabase;
@@ -49,7 +48,6 @@ import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.libaxolotl.InvalidVersionException;
 import org.whispersystems.libaxolotl.LegacyMessageException;
 import org.whispersystems.libaxolotl.protocol.PreKeyWhisperMessage;
-import org.whispersystems.libaxolotl.state.IdentityKeyStore;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 import org.whispersystems.textsecure.api.messages.TextSecureGroup;
@@ -100,18 +98,6 @@ public class ReceiveKeyActivity extends BaseActivity {
   }
 
   private void initializeText() {
-    if (isTrusted(this.identityKey)) {
-      initializeTrustedText();
-    } else {
-      initializeUntrustedText();
-    }
-  }
-
-  private void initializeTrustedText() {
-    descriptionText.setText(getString(R.string.ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but));
-  }
-
-  private void initializeUntrustedText() {
     SpannableString spannableString = new SpannableString(getString(R.string.ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different) + " " +
                                                           getString(R.string.ReceiveKeyActivity_you_may_wish_to_verify_this_contact));
     spannableString.setSpan(new ClickableSpan() {
@@ -128,12 +114,6 @@ public class ReceiveKeyActivity extends BaseActivity {
 
     descriptionText.setText(spannableString);
     descriptionText.setMovementMethod(LinkMovementMethod.getInstance());
-  }
-
-  private boolean isTrusted(IdentityKey identityKey) {
-    IdentityKeyStore identityKeyStore = new TextSecureIdentityKeyStore(this, masterSecret);
-
-    return identityKeyStore.isTrustedIdentity(recipient.getNumber(), identityKey);
   }
 
   private void initializeKey()
