@@ -160,8 +160,6 @@ public class RegistrationActivity extends BaseActionBarActivity {
     public void onClick(View v) {
       final RegistrationActivity self = RegistrationActivity.this;
 
-      TextSecurePreferences.setPromptedPushRegistration(self, true);
-
       if (TextUtils.isEmpty(countryCode.getText())) {
         Toast.makeText(self,
                        getString(R.string.RegistrationActivity_you_must_specify_your_country_code),
