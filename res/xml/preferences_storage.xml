@@ -4,7 +4,8 @@
     <CheckBoxPreference android:defaultValue="false"
                         android:key="pref_trim_threads"
                         android:summary="@string/preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length"
-                        android:title="@string/preferences__delete_old_messages" />
+                        android:title="@string/preferences__delete_old_messages"
+                        android:widgetLayout="@layout/switch_compat_preference"/>
 
     <EditTextPreference android:defaultValue="500"
                         android:key="pref_trim_length"

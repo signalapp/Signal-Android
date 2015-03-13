@@ -4,7 +4,8 @@
     <CheckBoxPreference android:key="pref_enable_passphrase_temporary"
                         android:defaultValue="true"
                         android:title="@string/preferences__enable_passphrase"
-                        android:summary="@string/preferences__enable_local_encryption_of_messages_and_keys"/>
+                        android:summary="@string/preferences__enable_local_encryption_of_messages_and_keys"
+                        android:widgetLayout="@layout/switch_compat_preference"/>
 
     <Preference android:key="pref_change_passphrase"
                 android:title="@string/preferences__change_passphrase"

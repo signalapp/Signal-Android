@@ -4,7 +4,8 @@
     <CheckBoxPreference android:key="pref_key_enable_notifications"
                         android:title="@string/preferences__notifications"
                         android:summary="@string/preferences__display_message_notifications_in_status_bar"
-                        android:defaultValue="true" />
+                        android:defaultValue="true"
+                        android:widgetLayout="@layout/switch_compat_preference"/>
 
     <RingtonePreference android:dependency="pref_key_enable_notifications"
                         android:key="pref_key_ringtone"

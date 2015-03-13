@@ -41,7 +41,7 @@ dependencies {
     compile 'com.makeramen:roundedimageview:1.5.0'
     compile 'com.afollestad:material-dialogs:0.6.1.5'
     compile 'com.soundcloud.android:android-crop:0.9.10@aar'
-    compile 'com.android.support:appcompat-v7:21.0.3'
+    compile 'com.android.support:appcompat-v7:22.0.0'
     compile 'com.android.support:recyclerview-v7:21.0.3'
     compile 'com.melnykov:floatingactionbutton:1.1.0'
     compile 'com.google.zxing:android-integration:3.1.0'
@@ -86,7 +86,7 @@ dependencyVerification {
             'com.makeramen:roundedimageview:7dda2e78c406760e5c356ccce59b0df46b5b171cf18abb891998594405021548',
             'com.afollestad:material-dialogs:ccb013e6572c86cfcca433855cf0dbfbff9b5e7bb9d1f504b761a6bc6f467b60',
             'com.soundcloud.android:android-crop:ffd4b973cf6e97f7d64118a0dc088df50e9066fd5634fe6911dd0c0c5d346177',
-            'com.android.support:appcompat-v7:5dbeb5316d0a6027d646ae552804c3baa5e3bd53f7f33db50904d51505c8a0e5',
+            'com.android.support:appcompat-v7:40114cb756fecffa4a51c5645593cf64509c576594f77e41e801368051115c7b',
             'com.android.support:recyclerview-v7:e525ad3f33c84bb12b73d2dc975b55364a53f0f2d0697e043efba59ba73e22d2',
             'com.melnykov:floatingactionbutton:0679ad9f7d61eb7aeab91e8dc56358cdedd5b1c1b9c48464499ffa05c40d3985',
             'com.google.zxing:android-integration:89e56aadf1164bd71e57949163c53abf90af368b51669c0d4a47a163335f95c4',
@@ -97,7 +97,7 @@ dependencyVerification {
             'org.whispersystems:jobmanager:01f35586c43aa3806f1c18d3d6a5a972def98103ba1a5a9ca3eec08d15f974b7',
             'org.whispersystems:libpastelog:550d33c565380d90f4c671e7b8ed5f3a6da55a9fda468373177106b2eb5220b2',
             'org.whispersystems:textsecure-android:a5e81ff87a4f531ea4997b9a18437fa5d2679e846a4b9b0b1d85371d77189e44',
-            'com.android.support:support-annotations:fdee2354787ef66b268e75958de3f7f6c4f8f325510a6dac9f49c929f83a63de',
+            'com.android.support:support-annotations:ab6b131ab0e1edd165d21fb4c3edadeacbee9539aa166f7f7cbae05b60dc207a',
             'com.nineoldandroids:library:68025a14e3e7673d6ad2f95e4b46d78d7d068343aa99256b686fe59de1b3163a',
             'javax.inject:javax.inject:91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff',
             'com.madgag.spongycastle:core:8d6240b974b0aca4d3da9c7dd44d42339d8a374358aca5fc98e50a995764511f',
@@ -113,7 +113,7 @@ dependencyVerification {
             'com.fasterxml.jackson.core:jackson-annotations:0ca408c24202a7626ec8b861e99d85eca5e38b73311dd6dd12e3e9deecc3fe94',
             'com.fasterxml.jackson.core:jackson-core:cbf4604784b4de226262845447a1ad3bb38a6728cebe86562e2c5afada8be2c0',
             'org.whispersystems:curve25519-java:9ccef8f5aba05d9942336f023c589d6278b4f9135bdc34a7bade1f4e7ad65fa3',
-            'com.android.support:support-v4:703572d3015a088cc5604b7e38885af3d307c829d0c5ceaf8654ff41c71cd160',
+            'com.android.support:support-v4:355a11466727e8ba00e239416aec55ac3cd3fb4ffc9d20c4a33373085c050bd1',
     ]
 }
 
