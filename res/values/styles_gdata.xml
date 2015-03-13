@@ -159,7 +159,7 @@
         <item name="android:listPreferredItemPaddingRight">16dip</item>
         <item name="android:listPreferredItemPaddingStart">16dip</item>
         <item name="android:listPreferredItemPaddingEnd">16dip</item>
-    </style>geh mal auf die sonnen bank
+    </style>
 
     <style name="GSecure.GDataActionBar" parent="@style/Widget.AppCompat.Light.ActionBar">
         <item name="android:icon">@drawable/actionbar_icon_gdata</item>
