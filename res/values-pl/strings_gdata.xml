@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_five">5 min.</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_thirty">30 min.</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_hour">1 min.</string>
+
+    <string name="gdata_contact_selection_page_title">Kontakty</string>
+
+    <string name="gdata_conversation_list_page_title">Rozmowy</string>
+
+    <string name="gd_dialog_fragment_phishing_title">Ochrona aplikacji</string>
+    <string name="gd_dialog_fragment_phishing_message">Jest to znana strona wyłudzająca dane. Kontynuuj tylko wtedy, gdy masz pewność, że nie ryzykujesz.</string>
+    <string name="gd_dialog_fragment_phishing_block">Zablokuj</string>
+    <string name="gd_dialog_fragment_phishing_continue">Kontynuuj</string>
+
+    <string name="menu_filter">Zablokuj kontakty</string>
+    <string name="menu_privacy">Ukryj kontakty</string>
+    <string name="menu_privacy_unhide">Pokaż ukryte kontakty</string>
+    <string name="menu_privacy_hide">Nie pokazuj ukrytych</string>
+    <string name="menu_privacy_single_hide">Ukryj kontakt</string>
+    <string name="menu_filter_block_contact">Zablokuj kontakt</string>
+
+    <string name="privacy_pw_dialog_header">Podaj hasło: </string>
+    <string name="privacy_pw_dialog_toast_wrong">To nie jest hasło do aplikacji Internet Security.</string>
+    <string name="privacy_pw_dialog_toast_reload">Tworzenie listy rozmów i kontaktów...</string>
+    <string name="privacy_pw_dialog_toast_hide">Przygotowuję rozmowy i kontakty do ukrycia...</string>
+    <string name="privacy_pw_dialog_toast_hide_single">Ukrywanie kontaktu...</string>
+
+    <string name="privacy_toast_install_premium">Ta funkcjonalność wymaga aplikacji G DATA Internet Security for Android</string>
+
+    <string name="conversation_activity_invite_link">https://secure.gd/scg</string>
+
+    <string name="preferences_notification_never">Nigdy</string>
+    <string name="preferences_notification_one_time">1x</string>
+    <string name="preferences_notification_two_times">2x</string>
+    <string name="preferences_notification_three_times">3x</string>
+    <string name="preferences_notification_five_times">5x</string>
+    <string name="preferences_notification_ten_times">10x</string>
+    <string name="preferences_notification_title">Powtarzaj ostrzeżenia</string>
+</resources>

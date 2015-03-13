@@ -28,7 +28,7 @@
 
     <string name="privacy_toast_install_premium">この機能を利用するには、G DATA Internet Security for Android が必要です。</string>
 
-    <string name="conversation_activitiy_invite_link">https://www.gdatasoftware.com/</string>
+    <string name="conversation_activity_invite_link">https://secure.gd/scg</string>
 
     <string name="preferences_notification_never">常に非表示</string>
     <string name="preferences_notification_one_time">1 回</string>
