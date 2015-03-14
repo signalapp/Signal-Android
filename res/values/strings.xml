@@ -28,19 +28,15 @@
         You will need to re-register your phone number to use push messages again in the future.
     </string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Error connecting to server!</string>
-    <string name="ApplicationPreferencesActivity_sms_enabled">Incoming SMS Enabled</string>
+    <string name="ApplicationPreferencesActivity_sms_enabled">SMS Enabled</string>
     <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Touch to change your default SMS app</string>
-    <string name="ApplicationPreferencesActivity_sms_disabled">Incoming SMS Disabled</string>
+    <string name="ApplicationPreferencesActivity_sms_disabled">SMS Disabled</string>
     <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Touch to make TextSecure your default SMS app</string>
     <string name="ApplicationPreferencesActivity_on">on</string>
     <string name="ApplicationPreferencesActivity_On">On</string>
     <string name="ApplicationPreferencesActivity_off">off</string>
     <string name="ApplicationPreferencesActivity_Off">Off</string>
-    <string name="ApplicationPreferencesActivity_partial">partial</string>
-    <string name="ApplicationPreferencesActivity_sms">SMS</string>
-    <string name="ApplicationPreferencesActivity_mms">MMS</string>
-    <string name="ApplicationPreferencesActivity_incoming_sms_summary">Incoming %s</string>
-    <string name="ApplicationPreferencesActivity_outgoing_sms_summary">outgoing %s</string>
+    <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
 
     <!-- AppProtectionPreferenceFragment -->
     <string name="AppProtectionPreferenceFragment_minutes">%d minutes</string>
@@ -467,9 +463,7 @@
 
     <!-- conversation_activity -->
     <string name="conversation_activity__type_message_push">Send TextSecure message</string>
-    <string name="conversation_activity__type_message_sms_secure">Send secure SMS</string>
     <string name="conversation_activity__type_message_sms_insecure">Send unsecured SMS</string>
-    <string name="conversation_activity__type_message_mms_secure">Send secure MMS</string>
     <string name="conversation_activity__type_message_mms_insecure">Send unsecured MMS</string>
     <string name="conversation_activity__send">Send</string>
     <string name="conversation_activity__remove">Remove</string>
@@ -700,11 +694,10 @@
     <!-- preferences.xml -->
     <string name="preferences__general">General</string>
     <string name="preferences__sms_mms">SMS and MMS</string>
-    <string name="preferences__push_sms_category">Push and SMS</string>
     <string name="preferences__pref_all_sms_title">Receive all SMS</string>
     <string name="preferences__pref_all_mms_title">Receive all MMS</string>
-    <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Use TextSecure for viewing and storing all incoming text messages</string>
-    <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Use TextSecure for viewing and storing all incoming multimedia messages</string>
+    <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Use TextSecure for all incoming text messages</string>
+    <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Use TextSecure for all incoming multimedia messages</string>
     <string name="preferences__input_settings">Input Settings</string>
     <string name="preferences__enable_enter_key_title">Enable Enter key</string>
     <string name="preferences__replace_smiley_with_enter_key">Replace the smiley key with an Enter key</string>
@@ -787,22 +780,11 @@
     <string name="preferences__default">Default</string>
     <string name="preferences__language">Language</string>
     <string name="preferences__language_summary">Language %s</string>
-    <string name="preferences__make_default_sms_app">Set as default SMS app</string>
-    <string name="preferences__make_textsecure_the_default_sms_mms_app">Make TextSecure the default SMS/MMS application for your system.</string>
-    <string name="preferences__use_data_channel">Push messages</string>
+    <string name="preferences__textsecure_messages">TextSecure messages</string>
     <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
-        Increase privacy and avoid SMS fees by using the data channel for communication with other TextSecure users
+        Free private messaging to TextSecure and Signal users
     </string>
-    <string name="preferences__sms_fallback">Outgoing SMS/MMS</string>
     <string name="preferences__submit_debug_log">Submit debug log</string>
-    <string name="preferences__sms_outgoing_push_users">TextSecure users</string>
-    <string name="preferences__sms_fallback_push_users_ask">ask first</string>
-    <string name="preferences__sms_fallback_push_users_no_mms">no MMS</string>
-    <string name="preferences__sms_outgoing_push_users_description">Send secure SMS if data connectivity is lost</string>
-    <string name="preferences__sms_fallback_ask_before_sending_sms_mms">Ask before sending SMS/MMS</string>
-    <string name="preferences__sms_fallback_never_send_mms">Never send MMS</string>
-    <string name="preferences__sms_fallback_non_push_users">Non-TextSecure users</string>
-    <string name="preferences__sms_fallback_nobody">Nobody</string>
     <string name="preferences__support_wifi_calling">\'WiFi Calling\' compatibility mode</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Enable if your device uses SMS/MMS delivery over WiFi (only enable when \'WiFi Calling\' is enabled on your device).</string>
 

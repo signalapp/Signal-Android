@@ -81,29 +81,23 @@ public class SmsMmsPreferenceFragment extends PreferenceFragment {
   }
 
   public static CharSequence getSummary(Context context) {
-    return getIncomingSmsSummary(context);
-  }
+    final String on                 = context.getString(R.string.ApplicationPreferencesActivity_on);
+    final String onCaps             = context.getString(R.string.ApplicationPreferencesActivity_On);
+    final String off                = context.getString(R.string.ApplicationPreferencesActivity_off);
+    final String offCaps            = context.getString(R.string.ApplicationPreferencesActivity_Off);
+    final int    smsMmsSummaryResId = R.string.ApplicationPreferencesActivity_sms_mms_summary;
 
-  private static CharSequence getIncomingSmsSummary(Context context) {
-    final int onResId          = R.string.ApplicationPreferencesActivity_on;
-    final int offResId         = R.string.ApplicationPreferencesActivity_off;
-    final int smsResId         = R.string.ApplicationPreferencesActivity_sms;
-    final int mmsResId         = R.string.ApplicationPreferencesActivity_mms;
-    final int incomingSmsResId = R.string.ApplicationPreferencesActivity_incoming_sms_summary;
-
-    final int incomingSmsSummary;
     boolean postKitkatSMS = Util.isDefaultSmsProvider(context);
     boolean preKitkatSMS  = TextSecurePreferences.isInterceptAllSmsEnabled(context);
     boolean preKitkatMMS  = TextSecurePreferences.isInterceptAllMmsEnabled(context);
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-      if (postKitkatSMS)                      incomingSmsSummary = onResId;
-      else                                    incomingSmsSummary = offResId;
+      if (postKitkatSMS)                      return onCaps;
+      else                                    return offCaps;
     } else {
-      if      (preKitkatSMS && preKitkatMMS)  incomingSmsSummary = onResId;
-      else if (preKitkatSMS && !preKitkatMMS) incomingSmsSummary = smsResId;
-      else if (!preKitkatSMS && preKitkatMMS) incomingSmsSummary = mmsResId;
-      else                                    incomingSmsSummary = offResId;
+      if      (preKitkatSMS && preKitkatMMS)  return onCaps;
+      else if (preKitkatSMS && !preKitkatMMS) return context.getString(smsMmsSummaryResId, on,  off);
+      else if (!preKitkatSMS && preKitkatMMS) return context.getString(smsMmsSummaryResId, off, on);
+      else                                    return offCaps;
     }
-    return context.getString(incomingSmsResId, context.getString(incomingSmsSummary));
   }
 }
