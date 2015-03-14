@@ -97,7 +97,6 @@
         <attr name="android:foregroundGravity" />
     </declare-styleable>
 
-    <attr name="pref_ic_push" format="reference" />
     <attr name="pref_ic_sms_mms" format="reference" />
     <attr name="pref_ic_notifications" format="reference" />
     <attr name="pref_ic_app_protection" format="reference" />

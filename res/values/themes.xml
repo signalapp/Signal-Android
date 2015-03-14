@@ -103,7 +103,6 @@
 
         <item name="reminder_header_background">#ff1d85d7</item>
 
-        <item name="pref_ic_push">@drawable/ic_push_black</item>
         <item name="pref_ic_sms_mms">@drawable/ic_message_black</item>
         <item name="pref_ic_notifications">@drawable/ic_notifications_black</item>
         <item name="pref_ic_app_protection">@drawable/ic_app_protection_black</item>
@@ -210,7 +209,6 @@
 
         <item name="reminder_header_background">@color/textsecure_primary_dark</item>
 
-        <item name="pref_ic_push">@drawable/ic_push_gray</item>
         <item name="pref_ic_sms_mms">@drawable/ic_message_gray</item>
         <item name="pref_ic_notifications">@drawable/ic_notifications_gray</item>
         <item name="pref_ic_app_protection">@drawable/ic_app_protection_gray</item>
