@@ -150,6 +150,7 @@
         <item name="conversation_item_sent_push_background">@color/conversation_item_sent_push_background_dark</item>
         <item name="conversation_item_sent_pending_background">@color/conversation_item_sent_pending_background_dark</item>
         <item name="conversation_item_sent_push_pending_background">@color/conversation_item_sent_push_pending_background_dark</item>
+        <item name="conversation_item_sent_indicator_text_background">@drawable/conversation_item_sent_indicator_text_shape_dark</item>
         <item name="conversation_item_shadow">@color/conversation_item_received_shadow_dark</item>
         <item name="conversation_item_mms_pending_mask">#99000000</item>
 
