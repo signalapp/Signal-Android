@@ -248,7 +248,9 @@ public class ConversationItem extends LinearLayout {
   }
 
   private boolean hasMedia(MessageRecord messageRecord) {
-    return messageRecord.isMms() && ((MediaMmsMessageRecord)messageRecord).getPartCount() > 0;
+    return messageRecord.isMms()              &&
+           !messageRecord.isMmsNotification() &&
+           ((MediaMmsMessageRecord)messageRecord).getPartCount() > 0;
   }
 
   private void setBodyText(MessageRecord messageRecord) {
