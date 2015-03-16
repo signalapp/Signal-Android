@@ -14,18 +14,18 @@
     <string name="gd_dialog_fragment_phishing_continue">Continue</string>
 
     <string name="menu_filter">Block contacts</string>
-    <string name="menu_privacy">Hide contacts</string>
-    <string name="menu_privacy_unhide">Show hidden contacts</string>
-    <string name="menu_privacy_hide">Hide hidden contacts</string>
-    <string name="menu_privacy_single_hide">Hide contact</string>
+    <string name="menu_privacy">Hide conversations</string>
+    <string name="menu_privacy_unhide">Show hidden conversations</string>
+    <string name="menu_privacy_hide">Do not show hidden conversations</string>
+    <string name="menu_privacy_single_hide">Hide conversation</string>
     <string name="menu_filter_block_contact">Block contact</string>
 
     <string name="privacy_pw_dialog_header">Enter password: </string>
-    <string name="privacy_pw_dialog_hint">Hint: Its the password you have set within the Internet Security for Android.</string>
+    <string name="privacy_pw_dialog_hint">Note: this is the password you defined in Internet Security for Android.</string>
     <string name="privacy_pw_dialog_toast_wrong">The password you entered does not match that of the Internet Security.</string>
-    <string name="privacy_pw_dialog_toast_reload">Messages and contacts are being restored...</string>
-    <string name="privacy_pw_dialog_toast_hide">Messages and contacts are being prepared to be hidden...</string>
-    <string name="privacy_pw_dialog_toast_hide_single">Hiding contact...</string>
+    <string name="privacy_pw_dialog_toast_reload">Restoring conversations...</string>
+    <string name="privacy_pw_dialog_toast_hide">Hiding conversations...</string>
+    <string name="privacy_pw_dialog_toast_hide_single">Hiding conversation...</string>
 
     <string name="privacy_toast_install_premium">You need the G DATA Internet Security, to use this feature.</string>
 
