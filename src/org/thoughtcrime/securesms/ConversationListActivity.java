@@ -26,6 +26,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.database.ContentObserver;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
@@ -497,6 +498,11 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
           ? getApplicationContext().getString(R.string.privacy_pw_dialog_toast_hide) : getApplicationContext().getString(R.string.privacy_pw_dialog_toast_reload);
 
       Toast.makeText(getApplicationContext(), toastText, Toast.LENGTH_SHORT).show();
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+       invalidateOptionsMenu();
+      } else {
+       supportInvalidateOptionsMenu();
+      }
     } else if (ACTION_ID == CheckPasswordDialogFrag.ACTION_OPEN_CALL_FILTER) {
       try {
         Intent intent = new Intent("de.gdata.mobilesecurity.activities.filter.FilterListActivity");
