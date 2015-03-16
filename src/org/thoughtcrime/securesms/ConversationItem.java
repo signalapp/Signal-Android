@@ -334,9 +334,10 @@ public class ConversationItem extends LinearLayout {
   }
 
   private void setEvents(MessageRecord messageRecord) {
-    setClickable(messageRecord.isFailed()                     ||
-                 messageRecord.isPendingInsecureSmsFallback() ||
-                 messageRecord.isBundleKeyExchange());
+    setClickable(batchSelected.isEmpty() &&
+                 (messageRecord.isFailed()                     ||
+                  messageRecord.isPendingInsecureSmsFallback() ||
+                  messageRecord.isBundleKeyExchange()));
   }
 
   private void setGroupMessageStatus(MessageRecord messageRecord) {
