@@ -82,7 +82,7 @@ public class DateUtils extends android.text.format.DateUtils {
     if (DateFormat.is24HourFormat(context)) {
       dateFormatPattern = "MMM d, yyyy HH:mm:ss zzz";
     } else {
-      dateFormatPattern = "MMM d, yyyy hh:mm:ssa zzz";
+      dateFormatPattern = "MMM d, yyyy hh:mm:ss a zzz";
     }
 
     return new SimpleDateFormat(dateFormatPattern, Locale.getDefault());
