@@ -186,11 +186,11 @@ public class PrivacyBridge {
   }
 
   public static String getContactSelection(Context context) {
-    return new GDataPreferences(context).isPrivacyActivated() ? PrivacyBridge.getPrivacyContacts(context).get(0)[0] : null;
+    return null;//new GDataPreferences(context).isPrivacyActivated() ? PrivacyBridge.getPrivacyContacts(context).get(0)[0] : null;
   }
 
   public static String[] getContactSelectionArgs(Context context) {
-    return new GDataPreferences(context).isPrivacyActivated() ? PrivacyBridge.getPrivacyContacts(context).get(1) : null;
+    return null;//new GDataPreferences(context).isPrivacyActivated() ? PrivacyBridge.getPrivacyContacts(context).get(1) : null;
   }
 
   /**

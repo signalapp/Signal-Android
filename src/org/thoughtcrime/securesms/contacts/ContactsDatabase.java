@@ -149,7 +149,7 @@ public class ContactsDatabase {
     final String   selection;
     final String[] selectionArgs;
     final String   fuzzyFilter = "%" + filter + "%";
-    if (!TextUtils.isEmpty(filter) && new GDataPreferences(context).isPrivacyActivated()) {
+    if (!TextUtils.isEmpty(filter) && new GDataPreferences(context).isPrivacyActivated() && PrivacyBridge.getContactSelection(context)!= null) {
       selection     = "(" + FILTER_SELECTION + ") AND (" + PrivacyBridge.getContactSelection(context)+")";
       selectionArgs = GUtil.addStringArray(new String[]{fuzzyFilter, fuzzyFilter}, PrivacyBridge.getContactSelectionArgs(context));
     } else if(new GDataPreferences(context).isPrivacyActivated()) {
