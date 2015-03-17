@@ -36,8 +36,8 @@ public class SmsMmsPreferenceFragment extends PreferenceFragment {
 
     this.findPreference(OUTGOING_SMS_PREF)
       .setOnPreferenceChangeListener(new OutgoingSmsPreferenceListener());
-    this.findPreference(MMS_PREF)
-      .setOnPreferenceClickListener(new ApnPreferencesClickListener());
+//    this.findPreference(MMS_PREF)
+//      .setOnPreferenceClickListener(new ApnPreferencesClickListener());
 
     initializeOutgoingSmsSummary((OutgoingSmsPreference) findPreference(OUTGOING_SMS_PREF));
   }
@@ -46,8 +46,8 @@ public class SmsMmsPreferenceFragment extends PreferenceFragment {
   public void onResume() {
     super.onResume();
     ((ApplicationPreferencesActivity) getActivity()).getSupportActionBar().setTitle(R.string.preferences__sms_mms);
-    this.findPreference(MMS_PREF)
-      .setSummary(MmsPreferencesFragment.getSummary(getActivity()));
+//    this.findPreference(MMS_PREF)
+//      .setSummary(MmsPreferencesFragment.getSummary(getActivity()));
 
     initializePlatformSpecificOptions();
   }
