@@ -14,17 +14,18 @@
     <string name="gd_dialog_fragment_phishing_continue">Continuar</string>
 
     <string name="menu_filter">Bloquear os contatos</string>
-    <string name="menu_privacy">Esconder os contatos</string>
-    <string name="menu_privacy_unhide">Exibir os contatos escondidos</string>
-    <string name="menu_privacy_hide">Ocultar os contatos escondidos</string>
-    <string name="menu_privacy_single_hide">Esconder o contato</string>
+    <string name="menu_privacy">Ocultar conversas</string>
+    <string name="menu_privacy_unhide">Mostrar as conversas selecionadas</string>
+    <string name="menu_privacy_hide">Ocultar as conversas selecionadas</string>
+    <string name="menu_privacy_single_hide">Ocultar conversa</string>
     <string name="menu_filter_block_contact">Bloquear o contato</string>
 
     <string name="privacy_pw_dialog_header">Inserir senha: </string>
     <string name="privacy_pw_dialog_toast_wrong">A senha inserida não corresponde à senha da Internet Security.</string>
-    <string name="privacy_pw_dialog_toast_reload">Recuperando as mensagens e os contatos...</string>
-    <string name="privacy_pw_dialog_toast_hide">Preparando as mensagens e os contatos para ocultar...</string>
-    <string name="privacy_pw_dialog_toast_hide_single">Escondendo o contato...</string>
+    <string name="privacy_pw_dialog_toast_reload">Restaurando conversas…</string>
+    <string name="privacy_pw_dialog_toast_hide">Preparando-se para ocultar conversas…</string>
+    <string name="privacy_pw_dialog_toast_hide_single">Ocultando a conversa...</string>
+    <string name="privacy_pw_dialog_hint">Nota: Esta é a senha que você selecionou no Internet Security para Android.</string>
 
     <string name="privacy_toast_install_premium">Para esta função, você precisa do G DATA Internet Security para Android</string>
 
