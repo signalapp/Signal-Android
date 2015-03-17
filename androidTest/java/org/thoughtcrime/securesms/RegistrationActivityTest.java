@@ -1,11 +1,11 @@
 package org.thoughtcrime.securesms;
 
-import static android.support.test.espresso.Espresso.*;
-import static android.support.test.espresso.action.ViewActions.*;
-import static android.support.test.espresso.matcher.ViewMatchers.*;
-import static android.support.test.espresso.assertion.ViewAssertions.*;
-
 import android.test.suitebuilder.annotation.LargeTest;
+
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
 @LargeTest
 public class RegistrationActivityTest extends RoutedInstrumentationTestCase {
@@ -16,9 +16,9 @@ public class RegistrationActivityTest extends RoutedInstrumentationTestCase {
   }
 
   @SuppressWarnings("unchecked")
-  public void testRegistrationButtons() throws Exception {
+  public void testLayout() throws Exception {
     waitOn(RegistrationActivity.class);
     onView(withId(R.id.registerButton)).check(matches(isDisplayed()));
-    onView(withId(R.id.skipButton)).check(matches(isDisplayed())).perform(click());
   }
+
 }
