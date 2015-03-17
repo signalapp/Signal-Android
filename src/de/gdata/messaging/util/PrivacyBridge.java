@@ -123,7 +123,6 @@ public class PrivacyBridge {
 
   public static void loadHiddenContactsPerService() {
     try {
-      new GDataPreferences(mContext).setPremiumInstalled(mService.hasPremiumEnabled());
       Type listType = new TypeToken<ArrayList<String>>() {
       }.getType();
       ArrayList<Recipient> newHiddenRecipients = new ArrayList<Recipient>();

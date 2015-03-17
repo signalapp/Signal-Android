@@ -42,14 +42,6 @@ public class GDataPreferences {
     return mPreferences.getInt(VIEW_PAGER_LAST_PAGE, 0);
   }
 
-  public void setPremiumInstalled(boolean installed) {
-    mPreferences.edit().putBoolean(PREMIUM_INSTALLED, installed).commit();
-  }
-
-  public boolean isPremiumInstalled() {
-    return mPreferences.getBoolean(PREMIUM_INSTALLED, false);
-  }
-
   public void setPrivacyActivated(boolean activated) {
     mPreferences.edit().putBoolean(PRIVACY_ACTIVATED, activated).commit();
   }

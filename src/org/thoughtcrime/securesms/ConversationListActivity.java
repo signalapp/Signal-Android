@@ -384,12 +384,13 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     });
   }
 
-  public void startServiceForCheckingPassword() {
-    try {
-      bindService(new Intent(GDataPreferences.INTENT_ACCESS_SERVER), mConntectionIsPasswordCorrect, Context.BIND_AUTO_CREATE);
-    } catch (java.lang.SecurityException e) {
-      Log.e("GDATA", "Remote Service Exception:  " + "wrong signatures " + e.getMessage());
-    }
+  public void startCheckingPassword() {
+      boolean pwCorrect = GDataInitPrivacy.isPasswordCorrect(inputText);
+      if (pwCorrect || CURRENTLY_NO_PASSWORT_SET) {
+        openISFAActivity();
+      } else {
+        Toast.makeText(getApplicationContext(), getString(R.string.privacy_pw_dialog_toast_wrong), Toast.LENGTH_LONG).show();
+      }
   }
 
   private static int ACTION_ID = 0;
@@ -439,7 +440,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
                 public void onClick(DialogInterface dialog,
                                     int whichButton) {
                   inputText = input.getText().toString();
-                  startServiceForCheckingPassword();
+                  startCheckingPassword();
                 }
               })
           .setNegativeButton(getString(R.string.picker_cancel),
@@ -453,35 +454,6 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
 
   }
-
-  private ServiceConnection mConntectionIsPasswordCorrect = new ServiceConnection() {
-    public IRpcService mService;
-
-    @Override
-    public void onServiceConnected(ComponentName name, IBinder service) {
-      mService = IRpcService.Stub.asInterface(service);
-      if (mService != null) {
-        try {
-          TextEncrypter encrypter = new TextEncrypter();
-          boolean pwCorrect = mService.isPasswordCorrect(encrypter.encryptData(inputText));
-          if (pwCorrect || CURRENTLY_NO_PASSWORT_SET) {
-            openISFAActivity();
-          } else {
-            Toast.makeText(getApplicationContext(), getString(R.string.privacy_pw_dialog_toast_wrong), Toast.LENGTH_LONG).show();
-          }
-        } catch (RemoteException e) {
-          Log.e("GDATA", e.getMessage());
-        }
-        unbindService(mConntectionIsPasswordCorrect);
-      }
-    }
-
-    @Override
-    public void onServiceDisconnected(ComponentName name) {
-      mService = null;
-    }
-  };
-
   private void openISFAActivity() {
     if (ACTION_ID == CheckPasswordDialogFrag.ACTION_OPEN_PRIVACY) {
       try {
@@ -513,51 +485,18 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
       }
     }
   }
-
-  private ServiceConnection mConnectionIsPasswordSet = new ServiceConnection() {
-    public IRpcService mService;
-
-    @Override
-    public void onServiceConnected(ComponentName name, IBinder service) {
-      mService = IRpcService.Stub.asInterface(service);
-      if (mService != null) {
-        try {
-          TextEncrypter encrypter = new TextEncrypter();
-          boolean pwCorrect = mService.isPasswordCorrect(encrypter.encryptData(""));
-          if (pwCorrect) {
-            CURRENTLY_NO_PASSWORT_SET = true;
-           /* try {
-              Intent intent = new Intent("de.gdata.mobilesecurity.activities.applock.Settings");
-              intent.putExtra("title", getString(R.string.app_name));
-              intent.putExtra("gsc", true);
-              startActivity(intent);
-            } catch (Exception e) {
-            }*/
-          } /*else {
-            new CheckPasswordDialogFrag().show(getSupportFragmentManager(), "PW_DIALOG_TAG");
-          }*/
-        } catch (RemoteException e) {
-          Log.e("GDATA", e.getMessage());
-        }
-        unbindService(mConnectionIsPasswordSet);
-        if (CURRENTLY_NO_PASSWORT_SET) {
-          startServiceForCheckingPassword();
-        } else {
-          new CheckPasswordDialogFrag().show(getSupportFragmentManager(), "PW_DIALOG_TAG");
-        }
-      }
-    }
-
-    @Override
-    public void onServiceDisconnected(ComponentName name) {
-      mService = null;
-    }
-  };
-
   public void openPasswordDialogWithAction(int action) {
     if (GUtil.featureCheck(getApplicationContext(), true)) {
-      bindService(new Intent(GDataPreferences.INTENT_ACCESS_SERVER), mConnectionIsPasswordSet, Context.BIND_AUTO_CREATE);
+      boolean pwCorrect = GDataInitPrivacy.isPasswordCorrect("");
+      if (pwCorrect) {
+        CURRENTLY_NO_PASSWORT_SET = true;
+      }
       ACTION_ID = action;
+      if (CURRENTLY_NO_PASSWORT_SET) {
+        startCheckingPassword();
+      } else {
+        new CheckPasswordDialogFrag().show(getSupportFragmentManager(), "PW_DIALOG_TAG");
+      }
     }
   }
 

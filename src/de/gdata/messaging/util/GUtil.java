@@ -139,14 +139,6 @@ public class GUtil {
     return sb.toString();
   }
 
-  public static void normalizeNumbers(String[] numbers) {
-    String iso = Locale.getDefault().getLanguage().toUpperCase(Locale.getDefault());
-    for (int i = 0; i < numbers.length; i++) {
-      String phoneNo = numbers[i];
-      numbers[i] = normalizeNumber(phoneNo, iso);
-    }
-  }
-
   public static String normalizeNumber(String number, String iso) {
     PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
     String phoneNo = "";
@@ -163,17 +155,8 @@ public class GUtil {
     String iso = Locale.getDefault().getLanguage().toUpperCase(Locale.getDefault());
     return normalizeNumber(number, iso);
   }
-
-  public static void normalizeNumbers(List<String> numbers) {
-    String iso = Locale.getDefault().getLanguage().toUpperCase(Locale.getDefault());
-    for (int i = 0; i < numbers.size(); i++) {
-      String phoneNo = numbers.get(i);
-      numbers.set(i, normalizeNumber(phoneNo, iso));
-    }
-  }
-
   public static boolean featureCheck(Context context, boolean toast) {
-    boolean isInstalled = new GDataPreferences(context).isPremiumInstalled();
+    boolean isInstalled = GDataInitPrivacy.isPremiumEnabled();
     if (!isInstalled) {
       if (toast) {
         Toast.makeText(context, context.getString(R.string.privacy_toast_install_premium),
