@@ -14,17 +14,18 @@
     <string name="gd_dialog_fragment_phishing_continue">Devam</string>
 
     <string name="menu_filter">Rehber girişlerini engelle</string>
-    <string name="menu_privacy">Rehber girişlerini sakla</string>
-    <string name="menu_privacy_unhide">Saklanan rehber girişlerini göster</string>
-    <string name="menu_privacy_hide">Saklanan rehber girişlerini gizle</string>
-    <string name="menu_privacy_single_hide">Rehber girişini sakla</string>
+    <string name="menu_privacy">Sohbetleri gizle</string>
+    <string name="menu_privacy_unhide">Gizli sohbetleri göster</string>
+    <string name="menu_privacy_hide">Gizli sohbetleri sakla</string>
+    <string name="menu_privacy_single_hide">Sohbeti gizle</string>
     <string name="menu_filter_block_contact">Rehber girişini engelle</string>
 
     <string name="privacy_pw_dialog_header">Parola girin: </string>
     <string name="privacy_pw_dialog_toast_wrong">Girdiğiniz parola, Internet Security parolasıyla aynı değil.</string>
-    <string name="privacy_pw_dialog_toast_reload">Mesajlar ve rehber girişleri geri yüklenecek...</string>
-    <string name="privacy_pw_dialog_toast_hide">Mesajlar ve rehber girişleri saklanmak üzere hazırlanıyor...</string>
-    <string name="privacy_pw_dialog_toast_hide_single">Rehber girişi saklanıyor...</string>
+    <string name="privacy_pw_dialog_toast_reload">Sohbetler yeniden yükleniyor...</string>
+    <string name="privacy_pw_dialog_toast_hide">Sohbetler gizlenmek için hazırlanılıyorlar...</string>
+    <string name="privacy_pw_dialog_toast_hide_single">Sohbet gizleniliyor...</string>
+    <string name="privacy_pw_dialog_hint">Not: Android icin Internet Securityde ilgili olan sectiginiz sifre'yi kullaniniz Uyari: Android icin Internet Securityde sectiginiz sifre</string>
 
     <string name="privacy_toast_install_premium">Bu işlev için, Android için G DATA Internet Security uygulaması gereklidir</string>
 
