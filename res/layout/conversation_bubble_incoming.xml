@@ -12,28 +12,34 @@
           android:layout_alignParentLeft="true"
           android:layout_alignParentStart="true" />
 
-    <org.thoughtcrime.securesms.components.ForegroundImageView
-            android:id="@+id/image_view"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/media_bubble_height"
-            android:layout_marginRight="@dimen/message_bubble_end_padding"
-            android:visibility="gone"
-            android:layout_toRightOf="@id/triangle_tick"
-            android:layout_toEndOf="@id/triangle_tick"
-            android:layout_gravity="center"
-            android:scaleType="centerCrop"
-            android:adjustViewBounds="true"
-            android:contentDescription="@string/conversation_item__mms_image_description"
-            app:riv_corner_radius="@dimen/message_bubble_corner_radius"
-            app:riv_border_width="@dimen/media_bubble_border_width"
-            tools:src="@drawable/ic_video_light" />
+    <LinearLayout android:id="@+id/thumbnail_container"
+                  android:layout_toRightOf="@id/triangle_tick"
+                  android:layout_toEndOf="@id/triangle_tick"
+                  android:layout_gravity="center"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content">
+
+        <org.thoughtcrime.securesms.components.ForegroundImageView
+                android:id="@+id/image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/media_bubble_height"
+                android:layout_marginRight="@dimen/message_bubble_end_padding"
+                android:visibility="gone"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/conversation_item__mms_image_description"
+                app:riv_corner_radius="@dimen/message_bubble_corner_radius"
+                app:riv_border_width="@dimen/media_bubble_border_width"
+                tools:src="@drawable/ic_video_light" />
+    </LinearLayout>
 
     <LinearLayout android:id="@+id/body_bubble"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:layout_toRightOf="@id/triangle_tick"
                   android:layout_toEndOf="@id/triangle_tick"
-                  android:layout_below="@id/image_view"
+                  android:layout_below="@id/thumbnail_container"
                   android:orientation="vertical">
 
         <TextView android:id="@+id/conversation_item_body"

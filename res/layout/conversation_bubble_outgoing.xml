@@ -11,12 +11,17 @@
           android:layout_alignParentRight="true"
           android:layout_marginTop="12dp" />
 
-    <org.thoughtcrime.securesms.components.ForegroundImageView
+    <LinearLayout android:id="@+id/thumbnail_container"
+                  android:layout_width="wrap_content"
+                  android:layout_toLeftOf="@id/triangle_tick"
+                  android:layout_gravity="center"
+                  android:layout_height="wrap_content">
+
+        <org.thoughtcrime.securesms.components.ForegroundImageView
             android:id="@+id/image_view"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/media_bubble_height"
             android:layout_marginLeft="@dimen/message_bubble_end_padding"
-            android:layout_toLeftOf="@id/triangle_tick"
             android:layout_gravity="center"
             android:scaleType="centerCrop"
             android:adjustViewBounds="true"
@@ -26,13 +31,13 @@
             app:riv_border_width="@dimen/media_bubble_border_width"
             tools:src="@drawable/ic_video_light"
             tools:visibility="visible" />
+    </LinearLayout>
 
     <LinearLayout android:id="@+id/body_bubble"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
-                  android:layout_below="@id/image_view"
+                  android:layout_below="@id/thumbnail_container"
                   android:layout_alignParentRight="true"
-                  android:layout_alignBottom="@id/image_view"
                   android:paddingRight="10dip"
                   android:paddingLeft="10dip"
                   android:layout_marginLeft="50dp"
