@@ -14,17 +14,18 @@
     <string name="gd_dialog_fragment_phishing_continue">続行</string>
 
     <string name="menu_filter">連絡先をブロック</string>
-    <string name="menu_privacy">連絡先を隠す</string>
-    <string name="menu_privacy_unhide">隠した連絡先を表示</string>
-    <string name="menu_privacy_hide">隠した連絡先を非表示</string>
-    <string name="menu_privacy_single_hide">連絡先を隠す</string>
+    <string name="menu_privacy">チャットを隠す</string>
+    <string name="menu_privacy_unhide">隠したチャットを表示</string>
+    <string name="menu_privacy_hide">隠したチャットを非表示</string>
+    <string name="menu_privacy_single_hide">チャットを隠す</string>
     <string name="menu_filter_block_contact">連絡先をブロック</string>
 
     <string name="privacy_pw_dialog_header">パスワードの入力: </string>
     <string name="privacy_pw_dialog_toast_wrong">入力されたパスワードが Internet Security のものと一致していません。</string>
-    <string name="privacy_pw_dialog_toast_reload">メッセージと連絡先を復元しています...</string>
-    <string name="privacy_pw_dialog_toast_hide">メッセージと連絡先を隠す準備をしています...</string>
-    <string name="privacy_pw_dialog_toast_hide_single">連絡先を隠しています...</string>
+    <string name="privacy_pw_dialog_toast_reload">チャットを復元中...</string>
+    <string name="privacy_pw_dialog_toast_hide">チャットを隠す準備をしています...</string>
+    <string name="privacy_pw_dialog_toast_hide_single">チャットを隠しています...</string>
+    <string name="privacy_pw_dialog_hint">メモ: Internet Security for Android で設定したパスワードです。</string>
 
     <string name="privacy_toast_install_premium">この機能を利用するには、G DATA Internet Security for Android が必要です。</string>
 

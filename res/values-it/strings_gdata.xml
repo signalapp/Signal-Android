@@ -14,17 +14,18 @@
     <string name="gd_dialog_fragment_phishing_continue">Prosegui</string>
 
     <string name="menu_filter">Blocca contatti</string>
-    <string name="menu_privacy">Nascondi contatti</string>
-    <string name="menu_privacy_unhide">Mostra contatti nascosti</string>
-    <string name="menu_privacy_hide">Nascondi contatti nascosti</string>
-    <string name="menu_privacy_single_hide">Nascondi contatto</string>
+    <string name="menu_privacy">Nascondi conversazioni</string>
+    <string name="menu_privacy_unhide">Mostra conversazioni nascoste</string>
+    <string name="menu_privacy_hide">Chiudi conversazioni nascoste</string>
+    <string name="menu_privacy_single_hide">Nascondi conversazione</string>
     <string name="menu_filter_block_contact">Blocca contatto</string>
 
     <string name="privacy_pw_dialog_header">Inserire la password: </string>
     <string name="privacy_pw_dialog_toast_wrong">La password immessa non corrisponde a quella di Internet Security.</string>
-    <string name="privacy_pw_dialog_toast_reload">Messaggi e contatti vengono ripristinati...</string>
-    <string name="privacy_pw_dialog_toast_hide">Messaggi e contatti vengono preparati per essere nascosti...</string>
-    <string name="privacy_pw_dialog_toast_hide_single">Il contatto viene nascosto...</string>
+    <string name="privacy_pw_dialog_toast_reload">Le conversazioni vengono ripristinate...</string>
+    <string name="privacy_pw_dialog_toast_hide">Le conversazioni sono pronte per essere nascoste ...</string>
+    <string name="privacy_pw_dialog_toast_hide_single">La conversazione sarà nascosta ...</string>
+    <string name="privacy_pw_dialog_hint">Nota: Questa è la password che hai selezionato in Internet Security per Android.</string>
 
     <string name="privacy_toast_install_premium">Per questa funzione è necessario disporre di G DATA Internet Security per Android</string>
 

@@ -14,17 +14,18 @@
     <string name="gd_dialog_fragment_phishing_continue">Kontynuuj</string>
 
     <string name="menu_filter">Zablokuj kontakty</string>
-    <string name="menu_privacy">Ukryj kontakty</string>
-    <string name="menu_privacy_unhide">Pokaż ukryte kontakty</string>
-    <string name="menu_privacy_hide">Nie pokazuj ukrytych</string>
-    <string name="menu_privacy_single_hide">Ukryj kontakt</string>
+    <string name="menu_privacy">Ukryj rozmowy</string>
+    <string name="menu_privacy_unhide">Pokaż ukryte rozmowy</string>
+    <string name="menu_privacy_hide">Nie pokazuj ukrytych rozmów</string>
+    <string name="menu_privacy_single_hide">Ukryj rozmowę</string>
     <string name="menu_filter_block_contact">Zablokuj kontakt</string>
 
     <string name="privacy_pw_dialog_header">Podaj hasło: </string>
     <string name="privacy_pw_dialog_toast_wrong">To nie jest hasło do aplikacji Internet Security.</string>
-    <string name="privacy_pw_dialog_toast_reload">Tworzenie listy rozmów i kontaktów...</string>
-    <string name="privacy_pw_dialog_toast_hide">Przygotowuję rozmowy i kontakty do ukrycia...</string>
-    <string name="privacy_pw_dialog_toast_hide_single">Ukrywanie kontaktu...</string>
+    <string name="privacy_pw_dialog_toast_reload">Przywracanie listy rozmów...</string>
+    <string name="privacy_pw_dialog_toast_hide">Przygotowuję rozmowy do ukrycia...</string>
+    <string name="privacy_pw_dialog_toast_hide_single">Ukrywanie rozmowy...</string>
+    <string name="privacy_pw_dialog_hint">Wskazówka: Chodzi o hasło dla programu G DATA Internet Security for Android.</string>
 
     <string name="privacy_toast_install_premium">Ta funkcjonalność wymaga aplikacji G DATA Internet Security for Android</string>
 
