@@ -121,6 +121,13 @@ public class GDataInitPrivacy {
     };
   }
 
+  /**
+   *
+   * @param sender
+   * @param inOut 1 input 0 output
+   * @param type 1 sms 0 call
+   * @return
+   */
   public static boolean shallBeBlockedByFilter(String sender, int inOut, int type) {
     boolean shallBeBlocked = false;
     if(mService != null) {
