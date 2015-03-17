@@ -38,6 +38,9 @@ import org.whispersystems.textsecure.api.messages.TextSecureGroup;
 
 import java.io.IOException;
 
+import de.gdata.messaging.util.GDataInitPrivacy;
+import de.gdata.messaging.util.PrivacyBridge;
+
 public class SmsDecryptJob extends MasterSecretJob {
 
   private static final String TAG = SmsDecryptJob.class.getSimpleName();
@@ -70,13 +73,14 @@ public class SmsDecryptJob extends MasterSecretJob {
       long                messageId = record.getId();
       long                threadId  = record.getThreadId();
 
-      if      (message.isSecureMessage()) handleSecureMessage(masterSecret, messageId, threadId, message);
+      if      (message.isSecureMessage() && !GDataInitPrivacy.shallBeBlockedByFilter(message.getSender(),1,1)) handleSecureMessage(masterSecret, messageId, threadId, message);
       else if (message.isPreKeyBundle())  handlePreKeyWhisperMessage(masterSecret, messageId, threadId, (IncomingPreKeyBundleMessage) message);
       else if (message.isKeyExchange())   handleKeyExchangeMessage(masterSecret, messageId, threadId, (IncomingKeyExchangeMessage) message);
       else if (message.isEndSession())    handleSecureMessage(masterSecret, messageId, threadId, message);
       else                                database.updateMessageBody(masterSecret, messageId, message.getMessageBody());
-
-      MessageNotifier.updateNotification(context, masterSecret);
+      if(!(message.isSecureMessage() && GDataInitPrivacy.shallBeBlockedByPrivacy(message.getSender()))) {
+        MessageNotifier.updateNotification(context, masterSecret);
+      }
     } catch (LegacyMessageException e) {
       Log.w(TAG, e);
       database.markAsLegacyVersion(messageId);
