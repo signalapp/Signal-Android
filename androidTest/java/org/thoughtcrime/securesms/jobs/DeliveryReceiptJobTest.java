@@ -39,7 +39,7 @@ public class DeliveryReceiptJobTest extends TextSecureTestCase {
     ArgumentCaptor<TextSecureAddress> captor = ArgumentCaptor.forClass(TextSecureAddress.class);
     verify(textSecureMessageSender).sendDeliveryReceipt(captor.capture(), eq(timestamp));
 
-    assertTrue(captor.getValue().getRelay().equals("foo"));
+    assertTrue(captor.getValue().getRelay().get().equals("foo"));
     assertTrue(captor.getValue().getNumber().equals("+14152222222"));
   }
 
