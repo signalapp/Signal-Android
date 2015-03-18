@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms.gcm;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.content.WakefulBroadcastReceiver;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.jobs.PushReceiveJob;
 import org.thoughtcrime.securesms.service.MessageRetrievalService;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
-public class GcmBroadcastReceiver extends BroadcastReceiver {
+public class GcmBroadcastReceiver extends WakefulBroadcastReceiver {
 
   private static final String TAG = GcmBroadcastReceiver.class.getSimpleName();
 
@@ -46,6 +46,8 @@ public class GcmBroadcastReceiver extends BroadcastReceiver {
   }
 
   private void handleReceivedNotification(Context context) {
-    MessageRetrievalService.registerPushReceived(context);
+    Intent intent = new Intent(context, MessageRetrievalService.class);
+    intent.setAction(MessageRetrievalService.ACTION_PUSH_RECEIVED);
+    startWakefulService(context, intent);
   }
 }

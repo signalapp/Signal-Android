@@ -30,6 +30,7 @@ import org.whispersystems.libaxolotl.NoSessionException;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import ws.com.google.android.mms.InvalidHeaderValueException;
 import ws.com.google.android.mms.MmsException;
@@ -55,6 +56,7 @@ public class MmsDownloadJob extends MasterSecretJob {
                                 .withRequirement(new MasterSecretRequirement(context))
                                 .withRequirement(new NetworkRequirement(context))
                                 .withGroupId("mms-operation")
+                                .withWakeLock(true, 30, TimeUnit.SECONDS)
                                 .create());
 
     this.messageId = messageId;

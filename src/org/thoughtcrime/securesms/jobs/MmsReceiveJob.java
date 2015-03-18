@@ -22,6 +22,7 @@ public class MmsReceiveJob extends ContextJob {
 
   public MmsReceiveJob(Context context, byte[] data) {
     super(context, JobParameters.newBuilder()
+                                .withWakeLock(true)
                                 .withPersistence().create());
 
     this.data = data;

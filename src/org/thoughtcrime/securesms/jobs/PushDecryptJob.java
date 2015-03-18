@@ -46,6 +46,8 @@ import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 import org.whispersystems.textsecure.api.messages.TextSecureGroup;
 import org.whispersystems.textsecure.api.messages.TextSecureMessage;
 
+import java.util.concurrent.TimeUnit;
+
 import ws.com.google.android.mms.MmsException;
 
 public class PushDecryptJob extends MasterSecretJob {
@@ -64,6 +66,7 @@ public class PushDecryptJob extends MasterSecretJob {
                                 .withPersistence()
                                 .withRequirement(new MasterSecretRequirement(context))
                                 .withGroupId(sender)
+                                .withWakeLock(true, 5, TimeUnit.SECONDS)
                                 .create());
     this.messageId    = pushMessageId;
     this.smsMessageId = smsMessageId;
