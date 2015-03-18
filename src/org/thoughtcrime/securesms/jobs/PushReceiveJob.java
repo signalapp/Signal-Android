@@ -30,6 +30,7 @@ public class PushReceiveJob extends ContextJob {
   public PushReceiveJob(Context context, String data) {
     super(context, JobParameters.newBuilder()
                                 .withPersistence()
+                                .withWakeLock(true)
                                 .create());
 
     this.data = data;

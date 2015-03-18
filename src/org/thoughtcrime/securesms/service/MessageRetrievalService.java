@@ -8,6 +8,7 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.gcm.GcmBroadcastReceiver;
 import org.thoughtcrime.securesms.jobs.PushReceiveJob;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
@@ -18,6 +19,8 @@ import org.whispersystems.textsecure.api.TextSecureMessagePipe;
 import org.whispersystems.textsecure.api.TextSecureMessageReceiver;
 import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
@@ -38,8 +41,8 @@ public class MessageRetrievalService extends Service implements Runnable, Inject
   @Inject
   public TextSecureMessageReceiver receiver;
 
-  private int     activeActivities = 0;
-  private boolean pushPending      = false;
+  private int          activeActivities = 0;
+  private List<Intent> pushPending      = new LinkedList<>();
 
   @Override
   public void onCreate() {
@@ -58,7 +61,7 @@ public class MessageRetrievalService extends Service implements Runnable, Inject
 
     if      (ACTION_ACTIVITY_STARTED.equals(intent.getAction()))  incrementActive();
     else if (ACTION_ACTIVITY_FINISHED.equals(intent.getAction())) decrementActive();
-    else if (ACTION_PUSH_RECEIVED.equals(intent.getAction()))     incrementPushReceived();
+    else if (ACTION_PUSH_RECEIVED.equals(intent.getAction()))     incrementPushReceived(intent);
 
     return START_STICKY;
   }
@@ -127,22 +130,25 @@ public class MessageRetrievalService extends Service implements Runnable, Inject
     notifyAll();
   }
 
-  private synchronized void incrementPushReceived() {
-    pushPending = true;
+  private synchronized void incrementPushReceived(Intent intent) {
+    pushPending.add(intent);
     notifyAll();
   }
 
   private synchronized void decrementPushReceived() {
-    pushPending = false;
-    notifyAll();
+    if (!pushPending.isEmpty()) {
+      Intent intent = pushPending.remove(0);
+      GcmBroadcastReceiver.completeWakefulIntent(intent);
+      notifyAll();
+    }
   }
 
   private synchronized boolean isConnectionNecessary() {
     Log.w(TAG, String.format("Network requirement: %s, active activities: %s, push pending: %s",
-                             networkRequirement.isPresent(), activeActivities, pushPending));
+                             networkRequirement.isPresent(), activeActivities, pushPending.size()));
 
     return TextSecurePreferences.isWebsocketRegistered(this) &&
-           (activeActivities > 0 || pushPending)             &&
+           (activeActivities > 0 || !pushPending.isEmpty())  &&
            networkRequirement.isPresent();
   }
 
@@ -172,11 +178,5 @@ public class MessageRetrievalService extends Service implements Runnable, Inject
     Intent intent = new Intent(activity, MessageRetrievalService.class);
     intent.setAction(MessageRetrievalService.ACTION_ACTIVITY_FINISHED);
     activity.startService(intent);
-  }
-
-  public static void registerPushReceived(Context context) {
-    Intent intent = new Intent(context, MessageRetrievalService.class);
-    intent.setAction(MessageRetrievalService.ACTION_PUSH_RECEIVED);
-    context.startService(intent);
   }
 }
