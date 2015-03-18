@@ -170,8 +170,14 @@ public class ContactsDatabase {
     final Cursor localCursor;
     if (localDb != null) localCursor = localDb.query(TABLE_NAME, columns, selection, selectionArgs, null, null, CONTACT_LIST_SORT);
     else                 localCursor = null;
+    try {
     if (localCursor != null && !localCursor.moveToFirst()) {
       localCursor.close();
+      return null;
+    }
+    } catch(IllegalStateException ex) {
+      //Randomly and rarely appearing error while opening and closing the application fast after another Bug #43946
+      //Couldn`t find the trigger
       return null;
     }
     return localCursor;
