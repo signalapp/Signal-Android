@@ -73,7 +73,9 @@ public class GDataInitPrivacy {
     boolean isInstalled = true;
     try {
       if (mService == null) {
-        isInstalled = mContext.bindService(new Intent(GDataPreferences.INTENT_ACCESS_SERVER), mConnection, Context.BIND_AUTO_CREATE);
+        if(mContext != null) {
+          isInstalled = mContext.bindService(new Intent(GDataPreferences.INTENT_ACCESS_SERVER), mConnection, Context.BIND_AUTO_CREATE);
+        }
       }
     } catch (java.lang.SecurityException e) {
       Log.e("GDATA", "Remote Service Exception:  " + "wrong signatures " + e.getMessage());
