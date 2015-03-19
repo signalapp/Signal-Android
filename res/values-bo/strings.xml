@@ -178,8 +178,6 @@
   <!--arrays.xml-->
   <!--plurals.xml-->
   <!--preferences.xml-->
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">ནང་ཡོང་འཕྲིན་ཐུང་ཚང་མར་བལྟ་བ་དང་ཉར་བ་ལ་གཡག་འཕྲིན་བེད་སྤྱོད་ཐོངས།</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">ནང་ཡོང་སྣ་མང་འཕྲིན་ཐུང་རིགས་ལ་ཉར་ཚགས་དང་ཞིབ་ལྟའི་ཆེད་དུ་གཡག་འཕྲིན་བེད་སྤྱོད་ཐོངས།</string>
   <string name="preferences__input_settings">ནང་འཇུག་སྒྲིག་བཟོ། </string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">འབྲེལ་ཐོ་ནས་ཁྱེད་ཀྱིས་འབྲེལ་བ་བྱེད་ས་དེ་གདེམས། </string>
   <string name="preferences__change_passphrase">གསང་ཚིག་བརྗེ་བོ་རྒྱོབས།</string>

@@ -307,8 +307,6 @@ des de l\'app de missatgeria predeterminada del sistema.</string>
   <!--plurals.xml-->
   <!--preferences.xml-->
   <string name="preferences__general">General</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Utilitza TextSecure per veure i emmagatzemar tots els missatges de text entrants</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Utilitza TextSecure per veure i emmagatzemar tots els missatges multimèdia entrants</string>
   <string name="preferences__enable_enter_key_title">Habilita la tecla Enter</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Escull el teu contacte de la llista de contactes</string>
   <string name="preferences__change_passphrase">Canvia frase contrasenya</string>
@@ -355,11 +353,6 @@ des de l\'app de missatgeria predeterminada del sistema.</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__default">Predeterminat</string>
   <string name="preferences__language">Idioma</string>
-  <string name="preferences__make_default_sms_app">Estableix com a app d\'SMS predeterminada</string>
-  <string name="preferences__make_textsecure_the_default_sms_mms_app">Fes TextSecure l\'aplicació d\'SMS/MMS predeterminada del teu sistema.</string>
-  <string name="preferences__use_data_channel">Missatges Push</string>
-  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
-Augmenta la privacitat i evita els càrrecs d\'SMS utilitzant el canal de dades per comunicar-se amb altres usuaris de TextSecure</string>
   <string name="preferences__submit_debug_log">Envia un registre de depuració</string>
   <!--****************************************-->
   <!--menus-->

@@ -23,19 +23,15 @@ Ihre verschlüsselten Unterhaltungen werden weiterhin funktionieren, aber jemand
   <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">
 Durch das Deaktivieren von TextSecure-Nachrichten wird Ihre Registrierung bei TextSecure aufgehoben. Um zukünftig wieder TextSecure-Nachrichten nutzen zu können, muss Ihre Rufnummer erneut registriert werden.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Fehler beim Verbinden zum Server!</string>
-  <string name="ApplicationPreferencesActivity_sms_enabled">Eingehende SMS aktiviert</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">SMS aktiviert</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Standard-SMS-App ändern</string>
-  <string name="ApplicationPreferencesActivity_sms_disabled">Eingehende SMS deaktiviert</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">SMS deaktiviert</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">TextSecure als Standard-SMS-App verwenden</string>
   <string name="ApplicationPreferencesActivity_on">an</string>
   <string name="ApplicationPreferencesActivity_On">An</string>
   <string name="ApplicationPreferencesActivity_off">aus</string>
   <string name="ApplicationPreferencesActivity_Off">Aus</string>
-  <string name="ApplicationPreferencesActivity_partial">teilweise</string>
-  <string name="ApplicationPreferencesActivity_sms">SMS</string>
-  <string name="ApplicationPreferencesActivity_mms">MMS</string>
-  <string name="ApplicationPreferencesActivity_incoming_sms_summary">Eingehend %s</string>
-  <string name="ApplicationPreferencesActivity_outgoing_sms_summary">ausgehend %s</string>
+  <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <string name="AppProtectionPreferenceFragment_minutes">%d Minuten</string>
   <!--DraftDatabase-->
@@ -376,9 +372,7 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Fortfahren antippen.</string
   <string name="contact_selection_recent_activity__no_recent_calls">Keine letzten Anrufe</string>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">TextSecure-Nachricht senden</string>
-  <string name="conversation_activity__type_message_sms_secure">Sichere SMS senden</string>
   <string name="conversation_activity__type_message_sms_insecure">Unsichere SMS senden</string>
-  <string name="conversation_activity__type_message_mms_secure">Sichere MMS senden</string>
   <string name="conversation_activity__type_message_mms_insecure">Unsichere MMS senden</string>
   <string name="conversation_activity__send">Senden</string>
   <string name="conversation_activity__remove">Löschen</string>
@@ -546,11 +540,10 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <!--preferences.xml-->
   <string name="preferences__general">Allgemein</string>
   <string name="preferences__sms_mms">SMS und MMS</string>
-  <string name="preferences__push_sms_category">TextSecure-Nachrichten, SMS &amp; MMS</string>
   <string name="preferences__pref_all_sms_title">Für SMS-Empfang benutzen</string>
   <string name="preferences__pref_all_mms_title">Für MMS-Empfang benutzen</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">TextSecure zur Anzeige und Speicherung aller eingehenden SMS verwenden</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">TextSecure zur Anzeige und Speicherung aller eingehenden MMS verwenden</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">TextSecure für alle eingehenden SMS verwenden</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">TextSecure für alle eingehenden MMS verwenden</string>
   <string name="preferences__input_settings">Eingabe</string>
   <string name="preferences__enable_enter_key_title">Eingabetaste aktivieren</string>
   <string name="preferences__replace_smiley_with_enter_key">Emoji-Taste durch Eingabetaste ersetzen</string>
@@ -587,11 +580,11 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="preferences__play_inthread_notifications">Benachrichtigungston während aktiver Unterhaltungen abspielen</string>
   <string name="preferences__repeat_alerts">Benachrichtigungen wiederholen</string>
   <string name="preferences__never">Nie</string>
-  <string name="preferences__one_time">Ein Mal</string>
-  <string name="preferences__two_times">Zwei Mal</string>
-  <string name="preferences__three_times">Drei Mal</string>
-  <string name="preferences__five_times">Fünf Mal</string>
-  <string name="preferences__ten_times">Zehn Mal</string>
+  <string name="preferences__one_time">Einmal</string>
+  <string name="preferences__two_times">Zweimal</string>
+  <string name="preferences__three_times">Dreimal</string>
+  <string name="preferences__five_times">Fünfmal</string>
+  <string name="preferences__ten_times">Zehnmal</string>
   <string name="preferences__vibrate">Vibration</string>
   <string name="preferences__also_vibrate_when_notified">Bei Benachrichtigungen vibrieren</string>
   <string name="preferences__minutes">Minuten</string>
@@ -633,21 +626,10 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="preferences__default">Standard</string>
   <string name="preferences__language">Sprache</string>
   <string name="preferences__language_summary">Sprache %s</string>
-  <string name="preferences__make_default_sms_app">Als Standard-SMS-Anwendung einrichten</string>
-  <string name="preferences__make_textsecure_the_default_sms_mms_app">TextSecure als Standard-SMS/MMS-Anwendung einrichten.</string>
-  <string name="preferences__use_data_channel">TextSecure-Nachrichten</string>
+  <string name="preferences__textsecure_messages">TextSecure-Nachrichten</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
-Mehr Privatsphäre und keine SMS-Kosten durch Nutzung der Datenverbindung zur Kommunikation mit anderen TextSecure-Nutzern</string>
-  <string name="preferences__sms_fallback">Ausgehende SMS/MMS</string>
+Kostenlos verschlüsselte Nachrichten mit TextSecure- und Signal-Nutzern austauschen</string>
   <string name="preferences__submit_debug_log">Diagnoseprotokoll übermitteln</string>
-  <string name="preferences__sms_outgoing_push_users">TextSecure-Kontakte</string>
-  <string name="preferences__sms_fallback_push_users_ask">vorher fragen</string>
-  <string name="preferences__sms_fallback_push_users_no_mms">keine MMS</string>
-  <string name="preferences__sms_outgoing_push_users_description">Verschlüsselte SMS senden, falls kein Internetzugriff möglich ist</string>
-  <string name="preferences__sms_fallback_ask_before_sending_sms_mms">Vor dem Senden von SMS/MMS nachfragen</string>
-  <string name="preferences__sms_fallback_never_send_mms">Niemals MMS senden</string>
-  <string name="preferences__sms_fallback_non_push_users">Kontakte ohne TextSecure-Registrierung</string>
-  <string name="preferences__sms_fallback_nobody">Niemand</string>
   <string name="preferences__support_wifi_calling">Kompatibilität WLAN-Telefonie</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktivieren, falls das Gerät SMS/MMS über WLAN nutzt (nur bei aktivierter WLAN-Telefonie)</string>
   <!--****************************************-->

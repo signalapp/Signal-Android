@@ -22,19 +22,15 @@
   <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">
 هذا سيقوم بتعطيل دفع الوصول إلى الرسائل من خلال إلغاء تسجيلك في الخادم. سيتوجب عليك إعادة تسجيل رقم هاتفك المحمول لاستخدام دفع وصول الرسائل في المستقبل.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">خطأ في الاتصال بالخادم!</string>
-  <string name="ApplicationPreferencesActivity_sms_enabled">تفعيل ورود الرسائل</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">الرسائل النصية مفعلة</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">أضغط لتغيير التطبيق الافتراضي للرسائل</string>
-  <string name="ApplicationPreferencesActivity_sms_disabled">تعطيل ورود الرسائل</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">الرسائل النصية معطلة</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">أضغط لجعل تيكست سيكيورالتطبيق الافتراضي للرسائل</string>
   <string name="ApplicationPreferencesActivity_on">يعمل</string>
   <string name="ApplicationPreferencesActivity_On">يعمل</string>
   <string name="ApplicationPreferencesActivity_off">مغلق</string>
   <string name="ApplicationPreferencesActivity_Off">مغلق</string>
-  <string name="ApplicationPreferencesActivity_partial">جزئي</string>
-  <string name="ApplicationPreferencesActivity_sms">رسالة نصية قصيرة</string>
-  <string name="ApplicationPreferencesActivity_mms">رسالة وسائط متعددة</string>
-  <string name="ApplicationPreferencesActivity_incoming_sms_summary">وارد %s</string>
-  <string name="ApplicationPreferencesActivity_outgoing_sms_summary">صادر %s</string>
+  <string name="ApplicationPreferencesActivity_sms_mms_summary">رسائل نصية %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <string name="AppProtectionPreferenceFragment_minutes">%d دقائق</string>
   <!--DraftDatabase-->
@@ -50,7 +46,7 @@
   <string name="AttachmentTypeSelectorAdapter_contact">بيانات الاتصال</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">لقد تغير المفتاح التعريفي الخاص بـ%1$s. وهذا يعني أن شخص ما يحاول اعتراض المحادثة أو %2$s  قام بإعادة تثبيت تيكست سيكيور وأصبح لديه مفتاح تعريفي جديد.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">ربما تود التحقق من جهة الاتصال هذه.</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">ربما تود التحقق من جهة الاتصال.</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">حجم الرسالة: %d كيلوبايت</string>
   <string name="ConversationItem_expires_s">تاريخ الانتهاء: %s</string>
@@ -64,6 +60,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted">أنقر من أجل استعاضة غير آمنة</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">الاستعاضة برسالة غير مشفرة؟</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">الاستعاضة برسالة وسائط متعددة غير مشفرة؟</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">هذه الرسالة <b>لن تكون</b> مشفرة لأن المستلم لم يعد مستخدم تيكست سيكيور. .\n\nهل ترغب في إرسال رسالة غير مشفرة؟</string>
   <string name="ConversationItem_unable_to_open_media">لم يتم العثور على تطبيق قادر على فتح الملف.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">بدء محادثة آمنة؟</string>
@@ -110,9 +107,10 @@
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">تعذر الإضافة إلى الذاكرة!</string>
   <string name="ConversationFragment_saving_attachment">حفظ المرفق</string>
   <string name="ConversationFragment_saving_attachment_to_sd_card">جارٍ حفظ المرفق في الذاكرة...</string>
+  <string name="ConversationFragment_pending">معلق...</string>
   <string name="ConversationFragment_push">بيانات (تيكست سيكيور)</string>
   <string name="ConversationFragment_mms">رسالة وسائط متعددة</string>
-  <string name="ConversationFragment_sms">رسالة نصية قصيرة</string>
+  <string name="ConversationFragment_sms">رسالة نصية</string>
   <string name="ConversationFragment_deleting">الحذف جارٍ...</string>
   <string name="ConversationFragment_deleting_messages">حذف الرسائل جارٍ...</string>
   <!--ConversationListFragment-->
@@ -170,7 +168,7 @@
   <string name="ImportFragment_this_will_import_messages_from_the_system">هذه الخاصية ستستورد الرسائل النصية من النظام إلى تيكست سيكيور. إذا قمت بهذا من قبل، فأن الاستيراد مرة أخرى سيتسبب في تكرار الرسائل.</string>
   <string name="ImportFragment_import">استيراد</string>
   <string name="ImportFragment_cancel">إلغاء</string>
-  <string name="ImportFragment_restore_encrypted_backup">استعادة نسخة احيتاطية مشفرة؟</string>
+  <string name="ImportFragment_restore_encrypted_backup">استرداد نسخة احيتاطية مشفرة؟</string>
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
 استرجاع نسخة احتياطية مشفرة سيستبدل بالكامل المفاتيح حالية والإعدادات والرسائل. ستفقد المعلومات الموجودة الآن في تيكست سيكيور وغير موجودة في النسخة الاحتياطية.</string>
   <string name="ImportFragment_restore">استعادة</string>
@@ -340,6 +338,7 @@
   <string name="MessageNotifier_d_new_messages">(%d) رسائل جديدة</string>
   <string name="MessageNotifier_most_recent_from_s">آخر رسالة من: %s</string>
   <string name="MessageNotifier_encrypted_message">رسالة مشفرة...</string>
+  <string name="MessageNotifier_media_message_with_text">رسالة وسائط متعددة: %s</string>
   <string name="MessageNotifier_no_subject">(بلا عنوان)</string>
   <string name="MessageNotifier_message_delivery_failed">فشل توصيل الرسالة.</string>
   <string name="MessageNotifier_failed_to_deliver_message">فشل توصيل الرسالة.</string>
@@ -368,9 +367,7 @@
   <string name="contact_selection_recent_activity__no_recent_calls">لا توجد مكالمات حديثة.</string>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">أرسل رسالة تيكست سيكيور</string>
-  <string name="conversation_activity__type_message_sms_secure">أرسل رسالة آمنة</string>
   <string name="conversation_activity__type_message_sms_insecure">أرسل رسالة نصية غير آمنة</string>
-  <string name="conversation_activity__type_message_mms_secure">أرسل رسالة وسائط متعددة آمنة</string>
   <string name="conversation_activity__type_message_mms_insecure">أرسل رسالة وسائط متعددة غير آمنة</string>
   <string name="conversation_activity__send">أرسل</string>
   <string name="conversation_activity__remove">إزالة</string>
@@ -379,6 +376,7 @@
   <string name="conversation_activity__emoji_toggle_description">تبديل لوحة مفاتيح إيموجي</string>
   <string name="conversation_activity__attachment_thumbnail"> المرفق</string>
   <!--conversation_item-->
+  <string name="conversation_item__mms_downloading_description">جارٍ تنزيل رسالة الوسائط</string>
   <string name="conversation_item__mms_image_description">رسالة وسائط متعددة</string>
   <string name="conversation_item__play_button_description">زر التشغيل</string>
   <string name="conversation_item__secure_message_description">رسالة آمنة</string>
@@ -447,6 +445,8 @@
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">انتهاء</string>
   <!--registration_activity-->
+  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
+تحقق من رقم تليفونك للاتصال بتيكست سيكيور</string>
   <string name="registration_activity__your_country">بلدك</string>
   <string name="registration_activity__your_country_code_and_phone_number">رمز دولتك ورقم هاتفك</string>
   <string name="registration_activity__phone_number">رقم الهاتف</string>
@@ -455,7 +455,7 @@
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">بعض المشاكل المحتملة
 وتتضمن:</string>
-  <string name="registration_problems__sms_interceptors">القائمون باعتراض الرسائل النصية القصيرة</string>
+  <string name="registration_problems__sms_interceptors">القائمون باعتراض الرسائل النصية.</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
 بعض عملاء التراسل اللحظي العاملة بواسطة طرف ثالث، مثل Handcent أو GoSMS، تتصرف بشكل سيء وتعترض الرسائل النصية القصيرة الواردة. تحقق من استلامك رسالة نصية تبدأ  بـ\"كود تحقق تيكست سيكيور الخاص بك:\". في حالة عدم تلقيها سوف تحتاج إلي ضبط عميل التراسل اللحظي الخاص بالطرف الثالث للسماح بمرور الرسائل النصية.</string>
   <string name="registration_problems__incorrect_number"> رقم غير صحيح.</string>
@@ -482,7 +482,7 @@
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
 إذا كنت متصل ببواسطة Wi-Fi من المحتمل وجود جدار ناري يمنع النفاذ إلى خادم تيكست سيكيور. قم بتجربة شبكة أخرى أو بيانات شبكة الجوال.</string>
   <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
-سيتم الآن التحقق من رقم هاتفك آليا بواسطة رسالة نصية قصيرة.</string>
+سيتم الآن التحقق من رقم هاتفك آليا بواسطة رسالة نصية.</string>
   <string name="registration_progress_activity__connecting">الاتصال جارِ...</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">انتظار رسالة التحقق...</string>
   <string name="registration_progress_activity__registering_with_server">التسجيل مع الخادم جارِ...</string>
@@ -544,12 +544,11 @@
   </plurals>
   <!--preferences.xml-->
   <string name="preferences__general">عام</string>
-  <string name="preferences__sms_mms">رسالة نصية قصيرة ورسالة وسائط متعددة</string>
-  <string name="preferences__push_sms_category">خدمة دفع الرسائل والرسائل النصية القصيرة</string>
-  <string name="preferences__pref_all_sms_title">اإستقبال كل الرسائل النصية القصيرة</string>
+  <string name="preferences__sms_mms">رسالة نصية ورسالة وسائط متعددة</string>
+  <string name="preferences__pref_all_sms_title">اإستقبال كل الرسائل النصية</string>
   <string name="preferences__pref_all_mms_title">استقبال كل رسائل الوسائط المتعددة</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">استخدم تيكست سيكيور لعرض وحفظ كل الرسائل القصيرة الواردة</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">استخدم تيكست سيكيور لعرض وحفظ كل رسائل الوسائط المتعددة الواردة</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">استخدم تيكست سيكيور لجميع الرسائل النصية الواردة</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">استخدم تيكست سيكيور لجميع رسائل الوسائط المتعددة الواردة</string>
   <string name="preferences__input_settings">خيارات الإدخال</string>
   <string name="preferences__enable_enter_key_title">تفعيل مفتاح الإدخال</string>
   <string name="preferences__replace_smiley_with_enter_key">استبدال مفتاح الابتسامة بمفتاح الدخول</string>
@@ -632,21 +631,10 @@
   <string name="preferences__default">افتراضي</string>
   <string name="preferences__language">اللغة</string>
   <string name="preferences__language_summary">اللغة %s</string>
-  <string name="preferences__make_default_sms_app">ضبط تيكست سيكيور كتطبيق الرسائل الافتراضي</string>
-  <string name="preferences__make_textsecure_the_default_sms_mms_app">اجعل تيكست سيكيور التطبيق الافتراضي للرسائل القصيرة ورسائل الوسائط المتعددة.</string>
-  <string name="preferences__use_data_channel">دفع وصول الرسائل</string>
+  <string name="preferences__textsecure_messages">رسائل تيكست سيكيور</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
-زيادة الخصوصية وتجنب رسوم الرسائل القصيرة مع مستخدمين تيكست سيكيور آخرين باستخدام الاتصال ببيانات شبكة الجوال</string>
-  <string name="preferences__sms_fallback">رسالة نصية\وسائط متعددة صادرة</string>
+رسائل مجانية وآمنة مع مستخدمي تيكست سيكيور وسيجنال</string>
   <string name="preferences__submit_debug_log">إرسال سجل التصحيح</string>
-  <string name="preferences__sms_outgoing_push_users">مستخدمين تيكست سيكيور</string>
-  <string name="preferences__sms_fallback_push_users_ask">أسئل أولا</string>
-  <string name="preferences__sms_fallback_push_users_no_mms">لا يوجد رسالة وسائط متعددة</string>
-  <string name="preferences__sms_outgoing_push_users_description">أرسل رسالة مؤمنة في حال فقدان الاتصال ببيانات شبكة الجوال</string>
-  <string name="preferences__sms_fallback_ask_before_sending_sms_mms">أسئل قبل إرسال رسالة نصية\وسائط متعددة</string>
-  <string name="preferences__sms_fallback_never_send_mms">عدم إرسال رسالة وسائط متعددة أبدأ</string>
-  <string name="preferences__sms_fallback_non_push_users">غير مستخدمين تيكست سيكيور</string>
-  <string name="preferences__sms_fallback_nobody">لا أحد</string>
   <string name="preferences__support_wifi_calling">وضع التوافق مع \'مكالمات الواي فاي\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">مكن في حال كان جهازك يستخدم خاصية الرسالة القصيرة أو الرسائل الوسائط المتعددة بإستخدام الواي-فاي (مكن فقط في حال تفعيل خاصية \'مكالمات الواي-فاي\' في جهزك)</string>
   <!--****************************************-->

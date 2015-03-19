@@ -25,19 +25,15 @@
 Ово ће да онемогући сигурне поруке одјављујући вас са сервера.
 Мораћете поново да пријавите ваш број телефона да бисте опет користили сигурне поруке.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Грешка повезивања на сервер!</string>
-  <string name="ApplicationPreferencesActivity_sms_enabled">Долазни СМС омогућен</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">СМС омогућен</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Додирните да бисте променили подразумевану апликацију за СМС</string>
-  <string name="ApplicationPreferencesActivity_sms_disabled">Долазни СМС онемогућен</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">СМС онемогућен</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Додирните да бисте поставили Сигурне поруке као подразумевану апликацију за СМС</string>
   <string name="ApplicationPreferencesActivity_on">укључена</string>
   <string name="ApplicationPreferencesActivity_On">Укључена</string>
   <string name="ApplicationPreferencesActivity_off">искључена</string>
   <string name="ApplicationPreferencesActivity_Off">Искључена</string>
-  <string name="ApplicationPreferencesActivity_partial">делимично</string>
-  <string name="ApplicationPreferencesActivity_sms">СМС</string>
-  <string name="ApplicationPreferencesActivity_mms">ММС</string>
-  <string name="ApplicationPreferencesActivity_incoming_sms_summary">Долазна %s</string>
-  <string name="ApplicationPreferencesActivity_outgoing_sms_summary">одлазна %s</string>
+  <string name="ApplicationPreferencesActivity_sms_mms_summary">СМС %1$s, ММС %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <string name="AppProtectionPreferenceFragment_minutes">%d минута</string>
   <!--DraftDatabase-->
@@ -396,9 +392,7 @@
   <string name="contact_selection_recent_activity__no_recent_calls">Нема недавних позива.</string>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Пошаљи сигурну поруку</string>
-  <string name="conversation_activity__type_message_sms_secure">Пошаљи обезбеђени СМС</string>
   <string name="conversation_activity__type_message_sms_insecure">Пошаљи необезбеђени СМС</string>
-  <string name="conversation_activity__type_message_mms_secure">Пошаљи обезбеђени ММС</string>
   <string name="conversation_activity__type_message_mms_insecure">Пошаљи необезбеђени ММС</string>
   <string name="conversation_activity__send">Пошаљи</string>
   <string name="conversation_activity__remove">Уклони</string>
@@ -583,11 +577,10 @@
   <!--preferences.xml-->
   <string name="preferences__general">Опште</string>
   <string name="preferences__sms_mms">СМС и ММС</string>
-  <string name="preferences__push_sms_category">Сигурне и СМС поруке</string>
   <string name="preferences__pref_all_sms_title">Примај све СМС</string>
   <string name="preferences__pref_all_mms_title">Примај све ММС</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Користи Сигурне поруке за приказ и складиштење свих долазних текстуалних порука</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Користи Сигурне поруке за приказ и складиштење свих долазних мултимедијалних порука</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Користи Сигурне поруке за све долазне текстуалне поруке</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Користи Сигурне поруке за све долазне мултимедијалне поруке</string>
   <string name="preferences__input_settings">Поставке уноса</string>
   <string name="preferences__enable_enter_key_title">Омогући Ентер тастер</string>
   <string name="preferences__replace_smiley_with_enter_key">Замени тастер емотикона Ентер тастером</string>
@@ -670,21 +663,10 @@
   <string name="preferences__default">Подразумеван</string>
   <string name="preferences__language">Језик</string>
   <string name="preferences__language_summary">Језик %s</string>
-  <string name="preferences__make_default_sms_app">Постави подразумевано за СМС</string>
-  <string name="preferences__make_textsecure_the_default_sms_mms_app">Поставите Сигурне поруке за подразумевану СМС/ММС апликацију на вашем систему.</string>
-  <string name="preferences__use_data_channel">Сигурне поруке</string>
+  <string name="preferences__textsecure_messages">Сигурне поруке</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
-Повећајте приватност и избегните трошак СМС порука користећи интернет за комуникацију са осталим корисницима Сигурних порука</string>
-  <string name="preferences__sms_fallback">Одлазни СМС/ММС</string>
+Бесплатне приватне поруке корисницима Сигурних порука и Сигнала</string>
   <string name="preferences__submit_debug_log">Пошаљи дневник исправљања грешака</string>
-  <string name="preferences__sms_outgoing_push_users">корисницима Сигурних порука</string>
-  <string name="preferences__sms_fallback_push_users_ask">прво питај</string>
-  <string name="preferences__sms_fallback_push_users_no_mms">без ММС-а</string>
-  <string name="preferences__sms_outgoing_push_users_description">Пошаљи обезбеђени СМС ако нема мрежне везе</string>
-  <string name="preferences__sms_fallback_ask_before_sending_sms_mms">Питај пре слања СМС/ММС поруке</string>
-  <string name="preferences__sms_fallback_never_send_mms">Никад не шаљи ММС</string>
-  <string name="preferences__sms_fallback_non_push_users">осталим контактима</string>
-  <string name="preferences__sms_fallback_nobody">никога</string>
   <string name="preferences__support_wifi_calling">Компатибилност са „бежичним позивањем“</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Омогућите ако ваш уређај доставља СМС/ММС преко бежичне мреже (омогућите само ако је омогућено на вашем уређају).</string>
   <!--****************************************-->

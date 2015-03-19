@@ -27,12 +27,8 @@ Dette vil deaktivere \'push\' beskeder, og afregistrerer dig fra tjenesten.
 Du skal registrere dit telefonnummer påny hvis du vil bruge \'push\' beskeder i fremtiden.
 </string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Kunne ikke oprette forbindelse til serveren!</string>
-  <string name="ApplicationPreferencesActivity_sms_enabled">SMS aktiveret</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Brug som standard SMS program</string>
-  <string name="ApplicationPreferencesActivity_sms_disabled">SMS deaktiveret</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Brug TextSecure som dit standard SMS program</string>
-  <string name="ApplicationPreferencesActivity_sms">SMS</string>
-  <string name="ApplicationPreferencesActivity_mms">MMS</string>
   <!--AppProtectionPreferenceFragment-->
   <string name="AppProtectionPreferenceFragment_minutes">%d minutter</string>
   <!--DraftDatabase-->
@@ -337,9 +333,7 @@ Modtog en besked med en ukendt identitetsnøgle. Klik for at se og behandle den.
   <string name="contact_selection_recent_activity__no_recent_calls">Ingen nye samtaler.</string>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Send TextSecure besked</string>
-  <string name="conversation_activity__type_message_sms_secure">Send krypteret SMS</string>
   <string name="conversation_activity__type_message_sms_insecure">Send usikker (ikke krypteret) SMS</string>
-  <string name="conversation_activity__type_message_mms_secure">Send krypteret MMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Send usikker (ikke krypteret) SMS</string>
   <string name="conversation_activity__send">Send</string>
   <string name="conversation_activity__remove">Slet</string>
@@ -474,11 +468,8 @@ fejlede.
   <!--plurals.xml-->
   <!--preferences.xml-->
   <string name="preferences__general">Generelt</string>
-  <string name="preferences__push_sms_category">\'Push\' og SMS</string>
   <string name="preferences__pref_all_sms_title">Modtag alle SMS</string>
   <string name="preferences__pref_all_mms_title">Modtag alle MMS</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Brug TextSecure til at læse og gemme alle indkommende SMS beskeder.</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Brug TextSecure til at læse og gemme alle indkommende MMS beskeder.</string>
   <string name="preferences__input_settings">Indstillinger</string>
   <string name="preferences__enable_enter_key_title">Slå enter-knap til</string>
   <string name="preferences__replace_smiley_with_enter_key">Erstat \\"Smiley-knap\\" med en \\"Enter-knap\\"</string>
@@ -537,16 +528,7 @@ fejlede.
   <string name="preferences__theme">Tema</string>
   <string name="preferences__default">Standard</string>
   <string name="preferences__language">Sprog</string>
-  <string name="preferences__make_default_sms_app">Brug som standard SMS-app</string>
-  <string name="preferences__make_textsecure_the_default_sms_mms_app">Gør TextSecure til standard SMS/MMS-applikationen for dit system.</string>
-  <string name="preferences__use_data_channel">Push besked</string>
-  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
-Styrk sikkerheden af din data kommunikation og undgå SMS gebyrer ved at bruge mobil data når du kommunikerer med andre TextSecure brugere.</string>
   <string name="preferences__submit_debug_log">Indsend fejlfindings log</string>
-  <string name="preferences__sms_outgoing_push_users">TextSecure brugere</string>
-  <string name="preferences__sms_outgoing_push_users_description">Send sikker sms, hvis data-forbindelse er tabt</string>
-  <string name="preferences__sms_fallback_non_push_users">Brugere uden TextSecure</string>
-  <string name="preferences__sms_fallback_nobody">Ingen</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

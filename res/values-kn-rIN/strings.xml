@@ -26,17 +26,15 @@
 
 </string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">ಸರ್ವರ್ಗೆ ಸಂಪರ್ಕಿಸುವಾಗ ದೋಷ!</string>
-  <string name="ApplicationPreferencesActivity_sms_enabled">ಒಳಬರುವ ಎಸ್.ಎಮ್.ಎಸನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">ಎಸ್.ಎಮ್.ಎಸನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">ನಿಮ್ಮ ಪೂರ್ವನಿಯೋಜಿತ ಎಸ್.ಎಮ್.ಎಸ್ ಅಪ್ಲಿಕೇಶನ್ನು ಬದಲಾಯಿಸಲು ಸ್ಪರ್ಶಿಸಿ</string>
-  <string name="ApplicationPreferencesActivity_sms_disabled">ಒಳಬರುವ ಎಸ್.ಎಮ್.ಎಸನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">ಎಸ್.ಎಮ್.ಎಸನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯೂರನ್ನು ನಿಮ್ಮ ಪೂರ್ವನಿಯೋಜಿತ ಎಸ್.ಎಮ್.ಎಸ್ ಅಪ್ಲಿಕೇಶನ್ನಾಗಿ ಬದಲಾಯಿಸಲು ಸ್ಪರ್ಶಿಸಿ</string>
   <string name="ApplicationPreferencesActivity_on">ಆನ್ </string>
   <string name="ApplicationPreferencesActivity_On">ಆನ್</string>
   <string name="ApplicationPreferencesActivity_off">ಆಫ಼್</string>
   <string name="ApplicationPreferencesActivity_Off">ಆಫ಼್</string>
-  <string name="ApplicationPreferencesActivity_partial">ಅಪೂರ್ಣ</string>
-  <string name="ApplicationPreferencesActivity_sms">ಎಸ್ಎಂಎಸ್</string>
-  <string name="ApplicationPreferencesActivity_mms">ಎಮ್ ಎಮ್ ಎಸ್ </string>
+  <string name="ApplicationPreferencesActivity_sms_mms_summary">ಎಸ್.ಎಮ್.ಎಎಸ್ %1$s, ಎಮ್.ಎಮ್.ಎಸ್ %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <string name="AppProtectionPreferenceFragment_minutes">%d ನಿಮಿಷಗಳು</string>
   <!--DraftDatabase-->
@@ -56,11 +54,13 @@
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">ಸಂದೇಶದ ಗಾತ್ರ: %d ಕೆ.ಬಿ</string>
   <string name="ConversationItem_expires_s">ಮುಕ್ತಾಯದ ಅವಧಿ: %s</string>
+  <string name="ConversationItem_error_not_delivered">ತಲುಪಿಸಲು ಆಗಲಿಲ್ಲ</string>
   <string name="ConversationItem_view_secure_media_question">ಸುರಕ್ಷಿತ ಮಾಧ್ಯಮವನ್ನು ವೀಕ್ಷಿಸಬೇಕೆ?</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">ಈ ಕಡತವನ್ನು ಗೂಢಲಿಪೀಕರಣಗೊಂಡ ದತ್ತಾಂಶದಲ್ಲಿ ಸಂಗ್ರಹಿಸಲಾಗಿದೆ. ದುರದೃಷ್ಟವಶಾತ್, ಬಾಹ್ಯ ವೀಕ್ಷಕದಲ್ಲಿ ಇದನ್ನು ವೀಕ್ಷಿಸಲು ತಾತ್ಕಾಲಿಕವಾಗಿ ಇದನ್ನು ಅಸಂಕೇತಿಕರಿಸಿ ಡಿಸ್ಕಿಗೆ ಬರೆಯಲಾಗುತ್ತದೆ. ನೀವು ಇದನ್ನು ಮಾಡಲು ಬಯಸುತ್ತೀರ?</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">ದೋಷ, ಹಳತಾದ ಕೀಲಿ ವಿನಿಮಯ ಸಂದೇಶವನ್ನು ಸ್ವೀಕರಿಸಲಾಗಿದೆ.</string>
   <string name="ConversationItem_received_key_exchange_message_click_to_process">ಕೀಲಿ ವಿನಿಮಯ ಸಂದೇಶ ಸ್ವೀಕರಿಸಲಾಗಿದೆ, ಪ್ರಕ್ರಿಯೆಗೊಳಿಸಲು ಕ್ಲಿಕ್ ಮಾಡಿ.</string>
   <string name="ConversationItem_group_action_left">%1$s ಸಮೂಹವನ್ನು ಬಿಟ್ಟಿದ್ದಾರೆ</string>
+  <string name="ConversationItem_click_for_details">ವಿವರಗಳಿಗೆ ಟ್ಯಾಪ್ ಮಾಡಿ</string>
   <string name="ConversationItem_click_to_approve_unencrypted">ಅಸುರಕ್ಷಿತ ಸಂವಾದದ ಹಿಮ್ಮರಳಿಕೆ ಟ್ಯಾಪ್ ಮಾಡಿ</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">ಅಸುರಕ್ಶಿತ ಎಸ್.ಎಮ್.ಎಸ್ ಹಿಮ್ಮರಳಿ ?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">ಅಸುರಕ್ಶಿತ ಎಮ್.ಎಮ್.ಎಸ್ ಹಿಮ್ಮರಳಿ ?</string>
@@ -110,6 +110,8 @@
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">ಸಂಗ್ರಹಕ್ಕೆ ಬರೆಯಲು ಸಾಧ್ಯವಿಲ್ಲ!</string>
   <string name="ConversationFragment_saving_attachment">ಲಗತ್ತು ಉಳಿಸಲಾಗುತ್ತಿದೆ</string>
   <string name="ConversationFragment_saving_attachment_to_sd_card">ಸಂಗ್ರಹಕ್ಕೆ ಲಗತ್ತನ್ನು ಉಳಿಸಲಾಗುತ್ತಿದೆ...</string>
+  <string name="ConversationFragment_pending">ಬಾಕಿ ಉಳಿದಿರುವುದು...</string>
+  <string name="ConversationFragment_push">ದತ್ತಾಂಶ (ಟೆಕ್ಸ್ಟ್  ಸೆಕ್ಯೂರ್)</string>
   <string name="ConversationFragment_mms">ಎಮ್ ಎಮ್ ಎಸ್</string>
   <string name="ConversationFragment_sms">ಎಸ್ ಎಮ್ ಎಸ್</string>
   <string name="ConversationFragment_deleting">ಅಳಿಸಲಾಗುತ್ತಿದೆ...</string>
@@ -373,9 +375,7 @@
   <string name="contact_selection_recent_activity__no_recent_calls">ಯಾವುದೇ ಇತ್ತೀಚಿನ ಕರೆಗಳಿಲ್ಲ.</string>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯೂರ್ ಸಂದೇಶವನ್ನು ಕಳುಹಿಸಿ</string>
-  <string name="conversation_activity__type_message_sms_secure">ಸುರಕ್ಷಿತ ಎಸ್ಎಂಎಸ್ ಕಳುಹಿಸಿ</string>
   <string name="conversation_activity__type_message_sms_insecure">ಅಸುರಕ್ಷಿತ ಎಸ್ಎಂಎಸ್ ಕಳುಹಿಸಿ</string>
-  <string name="conversation_activity__type_message_mms_secure">ಸುರಕ್ಷಿತ ಎಂಎಂಎಸ್ ಕಳುಹಿಸಿ</string>
   <string name="conversation_activity__type_message_mms_insecure">ಅಸುರಕ್ಷಿತ ಎಂಎಂಎಸ್ ಕಳುಹಿಸಿ</string>
   <string name="conversation_activity__send">ಕಳುಹಿಸು</string>
   <string name="conversation_activity__remove">ತೆಗೆದುಹಾಕಿ</string>
@@ -501,6 +501,8 @@
   <string name="registration_progress_activity__sms_verification_failed">ಎಸ್ ಎಂ ಎಸ್ ಪರಿಶೀಲನೆ 
 ವಿಫಲವಾಗಿದೆ. </string>
   <string name="registration_progress_activity__generating_keys">ಕೀಲಿಗಳನ್ನು ರಚಿಸಲಾಗುತ್ತಿದೆ ...</string>
+  <string name="registration_progress_activity__telephone">ದೂರವಾಣಿ</string>
+  <string name="registration_progress_activity__check">ಪರಿಶೀಲಿಸು</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>ಹೆಸರು ಅಥವಾ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ</small></string>
   <string name="recipients_panel__add_member">ಸದಸ್ಯರನ್ನು ಸೇರಿಸಿ </string>
@@ -508,6 +510,10 @@
   <string name="verify_identity_activity__their_identity_they_read">ಅವರ ಗುರುತು (ಅವರು ಓದುವುದು):</string>
   <string name="verify_identity_activity__your_identity_you_read">ನಿಮ್ಮ ಗುರುತು (ನೀವು ಓದುವುದು):</string>
   <!--message_details_header-->
+  <string name="message_details_header__sent">ಕಳುಹಿಸಲಾಗಿದೆ</string>
+  <string name="message_details_header__to">ಗೆ:</string>
+  <string name="message_details_header__from">ಇಂದ:</string>
+  <string name="message_details_header__with">ಜೋತೆಗೆ:</string>
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">ಗುಪ್ತಪದ ರಚಿಸಿ</string>
   <string name="AndroidManifest__enter_passphrase">ಗುಪ್ತಪದ ನಮೂದಿಸಿ</string>
@@ -533,11 +539,8 @@
   <!--preferences.xml-->
   <string name="preferences__general">ಸಾಮಾನ್ಯ</string>
   <string name="preferences__sms_mms">ಎಸ್ಎಮ್ಎಸ್ ಮತ್ತು ಎಮ್ಎಮ್ಎಸ್</string>
-  <string name="preferences__push_sms_category">ಪುಶ್ ಮತ್ತು ಎಸ್ಎಮ್ಎಸ್</string>
   <string name="preferences__pref_all_sms_title">ಎಲ್ಲಾ ಎಸ್ ಎಂ ಎಸ್ ಪಡೆಯುವಿರಿ</string>
   <string name="preferences__pref_all_mms_title">ಎಲ್ಲಾ ಎಸ್ ಎಂ ಎಸ್ ಪಡೆಯುವಿರಿ</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">ಎಲ್ಲಾ ಒಳಬರುವ ಪಠ್ಯ ಸಂದೇಶಗಳನ್ನು ವೀಕ್ಷಿಸಲು ಮತ್ತು ಸಂಗ್ರಹಿಸಲು ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯೂರ್ ಬಳಸಿ</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">ಎಲ್ಲಾ ಒಳಬರುವ ಪಠ್ಯ ಸಂದೇಶಗಳನ್ನು ವೀಕ್ಷಿಸಲು ಮತ್ತು ಸಂಗ್ರಹಿಸಲು ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯೂರ್ ಬಳಸಿ</string>
   <string name="preferences__input_settings">ಇನ್ಪುಟ್ ಸೆಟ್ಟಿಂಗ್ಗಳು</string>
   <string name="preferences__enable_enter_key_title">ಎಂಟರ್ ಕೀಲಿಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
   <string name="preferences__replace_smiley_with_enter_key">ಸ್ಮೈಲಿ ಕೀಲಿ ಬದಲಿಗೆ ಎಂಟರ್ ಕೀಲಿ ಹಾಕಿ</string>
@@ -604,20 +607,7 @@
   <string name="preferences__theme">ವಿನ್ಯಾಸ</string>
   <string name="preferences__default">ಪೂರ್ವನಿಯೋಜಿತ</string>
   <string name="preferences__language">ಭಾಷೆ</string>
-  <string name="preferences__make_default_sms_app">ಪೂರ್ವನಿಯೋಜಿತ ಎಸ್ಎಂಎಸ್ ಅಪ್ಲಿಕೇಶನ್ ಆಗಿ ಹೊಂದಿಸಿ</string>
-  <string name="preferences__make_textsecure_the_default_sms_mms_app">ನಿಮ್ಮ ವ್ಯವಸ್ಥೆಯ ಪೂರ್ವನಿಯೋಜಿತ ಎಸ್ಎಂಎಸ್ / ಎಂಎಂಎಸ್ ಅಪ್ಲಿಕೇಶನ್ ಆಗಿ ಮಾಡಿ.</string>
-  <string name="preferences__use_data_channel">ಪುಷ್ ಸಂದೇಶಗಳು</string>
-  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">ಖಾಸಗಿತನವನ್ನು ಹೆಚ್ಚಿಸಲು ಹಾಗು ಎಸ್ಎಂಎಸ್ ಶುಲ್ಕ ತಪ್ಪಿಸಲು ಇತರೆ ಟೆಕ್ಸ್ಟ್-ಸೆಕ್ಯೂರ್ ಬಳಕೆದಾರರ ಜೋತೆ ಮಾಹಿತಿ ಕಾಲುವೆ ಬಳಸಿ</string>
-  <string name="preferences__sms_fallback">ಹೊರಹೋಗುವ  ಎಸ್ಎಂಎಸ್/ಎಂಎಂಎಸ್</string>
   <string name="preferences__submit_debug_log">ಡೀಬಗ್ ಲಾಗ್ ಸಲ್ಲಿಸಿ</string>
-  <string name="preferences__sms_outgoing_push_users">ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯೂರ್ ಬಳಕೆದಾರರು</string>
-  <string name="preferences__sms_fallback_push_users_ask">ಮೊದಲು ಕೇಳಿ</string>
-  <string name="preferences__sms_fallback_push_users_no_mms">ಎಮ್ ಎಮ್ ಎಸ್ ಇಲ್ಲ </string>
-  <string name="preferences__sms_outgoing_push_users_description">ಡೇಟಾ ಸಂಪರ್ಕ ಕಳೆದುಹೋದ ಸುರಕ್ಷಿತ ಎಸ್ಎಂಎಸ್ ಕಳುಹಿಸಿ</string>
-  <string name="preferences__sms_fallback_ask_before_sending_sms_mms">ಎಸ್ಎಂಎಸ್/ಎಂಎಂಎಸ್ ಕಳುಹಿಸುವ ಮೊದಲು ಕೇಳಿ</string>
-  <string name="preferences__sms_fallback_never_send_mms">ಎಂಎಂಎಸ್ ಎಂದಿಗೂ ಕಳುಹಿಸಬೇಡಿ</string>
-  <string name="preferences__sms_fallback_non_push_users">ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯೂರ್ ಬಳಕೆದಾರರಲ್ಲದವರು </string>
-  <string name="preferences__sms_fallback_nobody">ಅಗಣ್ಯ</string>
   <string name="preferences__support_wifi_calling">\'ವೈಫೈ ಕಾಲಿಂಗ್\' ಹೊಂದಾಣಿಕೆ ಮೋಡ್</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">ನಿಮ್ಮ ಸಾಧನ ಎಸ್ಎಂಎಸ್ / ಎಂಎಂಎಸ್ನ್ನು ವೈಫೈ ಮೇಲೆ ಬಳಸಿದರೆ ಇದನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ (\'ವೈಫೈ ಕಾಲಿಂಗ್\' ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿ ಸಕ್ರಿಯಗೊಳಿಸಿದ್ದಾಗ ಮಾತ್ರ) </string>
   <!--****************************************-->

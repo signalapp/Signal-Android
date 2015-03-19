@@ -292,8 +292,6 @@
   <!--plurals.xml-->
   <!--preferences.xml-->
   <string name="preferences__general">Загальні</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Використовувати TextSecure для перегляду та зберігання всіх вхідних текстових повідомлень</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Використовувати TextSecure для перегляду та зберігання всіх вхідних мультимедійних повідомлень</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Виберіть себе із списку контактів.</string>
   <string name="preferences__change_passphrase">Змінити фразу-ключ</string>
   <string name="preferences__change_my_passphrase">Змінити мою фразу-ключ</string>
@@ -337,10 +335,6 @@
   <string name="preferences__theme">Тема</string>
   <string name="preferences__default">Типово</string>
   <string name="preferences__language">Мова</string>
-  <string name="preferences__make_default_sms_app">Встановити типовою програмою для SMS</string>
-  <string name="preferences__make_textsecure_the_default_sms_mms_app">Зробити TextSecure типовою програмою SMS/MMS вашої системи.</string>
-  <string name="preferences__use_data_channel">Використовувати передачу даних</string>
-  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">Використовувати мобільний інтернет для зв’язку з іншими користувачами TextSecure</string>
   <string name="preferences__submit_debug_log">Відіслати журнал відлагодження</string>
   <!--****************************************-->
   <!--menus-->

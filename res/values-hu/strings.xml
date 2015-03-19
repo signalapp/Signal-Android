@@ -27,19 +27,12 @@ Ez letiltja az azonnali üzeneteket a regisztrációd törlésével a kiszolgál
 A telefonod újra regisztrálása szükséges az azonnali üzenetek jövőbeli használatához.
  </string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Hiba a kiszolgálóhoz való kapcsolódáskor!</string>
-  <string name="ApplicationPreferencesActivity_sms_enabled">Bejövő SMS engedélyezve</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Érintsd meg az alapértelmezett SMS alkalmazás megváltoztatásához</string>
-  <string name="ApplicationPreferencesActivity_sms_disabled">Bejövő SMS tiltva</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Érintsd meg a TextSecure alapértelmezett SMS alkalmzássá tételéhez</string>
   <string name="ApplicationPreferencesActivity_on">be</string>
   <string name="ApplicationPreferencesActivity_On">Be</string>
   <string name="ApplicationPreferencesActivity_off">ki</string>
   <string name="ApplicationPreferencesActivity_Off">Ki</string>
-  <string name="ApplicationPreferencesActivity_partial">részleges</string>
-  <string name="ApplicationPreferencesActivity_sms">SMS</string>
-  <string name="ApplicationPreferencesActivity_mms">MMS</string>
-  <string name="ApplicationPreferencesActivity_incoming_sms_summary">Bejövő %s</string>
-  <string name="ApplicationPreferencesActivity_outgoing_sms_summary">kimenő %s</string>
   <!--AppProtectionPreferenceFragment-->
   <string name="AppProtectionPreferenceFragment_minutes">%d perc</string>
   <!--DraftDatabase-->
@@ -73,6 +66,9 @@ ezt a névjegyet.
   <string name="ConversationItem_click_to_approve_unencrypted">Koppints a nem biztonságos tartalék mód aktiválásához</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Legyen tartalék mód a nem biztonságos SMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Legyen tartalék mód a nem biztonságos MMS?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ez az üzenet &lt;b&gt;nem&lt;b&gt; kerül titkosításra mivel a fogadó fél már nem TextSecure felhasználó.
+
+Elküldöd a titkosítatlan üzenetet?</string>
   <string name="ConversationItem_unable_to_open_media">Nem található alkalmazás ezen médiafájl megnyitásához.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Biztonságos üzenetváltás indítása?</string>
@@ -379,6 +375,7 @@ Ismeretlen azonosító kulcsú üzenet érkezett. Kattints rá a feldolgozáshoz
   <string name="MessageNotifier_d_new_messages">%d új üzenet</string>
   <string name="MessageNotifier_most_recent_from_s">Legutóbbi tőle: %s</string>
   <string name="MessageNotifier_encrypted_message">Biztonságos üzenet...</string>
+  <string name="MessageNotifier_media_message_with_text">Média üzenet: %s</string>
   <string name="MessageNotifier_no_subject">(Nincs tárgy)</string>
   <string name="MessageNotifier_message_delivery_failed">Üzenet kézbesítése sikertelen!</string>
   <string name="MessageNotifier_failed_to_deliver_message">Nem sikerült az üzenet kézbesítése!</string>
@@ -407,9 +404,7 @@ Ismeretlen azonosító kulcsú üzenet érkezett. Kattints rá a feldolgozáshoz
   <string name="contact_selection_recent_activity__no_recent_calls">A híváslista üres.</string>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">TextSecure üzenet küldése</string>
-  <string name="conversation_activity__type_message_sms_secure">Biztonságos SMS küldése</string>
   <string name="conversation_activity__type_message_sms_insecure">Nem biztonságos SMS küldése</string>
-  <string name="conversation_activity__type_message_mms_secure">Biztonságos MMS küldése</string>
   <string name="conversation_activity__type_message_mms_insecure">Nem biztonságos MMS küldése</string>
   <string name="conversation_activity__send">Küldés</string>
   <string name="conversation_activity__remove">Törlés</string>
@@ -418,6 +413,7 @@ Ismeretlen azonosító kulcsú üzenet érkezett. Kattints rá a feldolgozáshoz
   <string name="conversation_activity__emoji_toggle_description">Váltás a hangulatjelek beviteléhez</string>
   <string name="conversation_activity__attachment_thumbnail">Melléklet előnézet</string>
   <!--conversation_item-->
+  <string name="conversation_item__mms_downloading_description">Média üzenet letöltése</string>
   <string name="conversation_item__mms_image_description">Média üzenet</string>
   <string name="conversation_item__play_button_description">Lejátszás gomb</string>
   <string name="conversation_item__secure_message_description">Biztonságos üzenet</string>
@@ -489,6 +485,8 @@ Egy titkosítatlan biztonsági mentés fájl importálása. \"SMS biztonsági me
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Befejezés</string>
   <!--registration_activity-->
+  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
+Ellenőrizd a telefonszámodat a TextSecure alkalmazással történő kapcsolódáshoz.</string>
   <string name="registration_activity__your_country">SAJÁT ORSZÁGOD</string>
   <string name="registration_activity__your_country_code_and_phone_number">SAJÁT ORSZÁG HÍVÓSZÁM
 TELEFONSZÁM
@@ -608,11 +606,8 @@ sikertelen.
   <!--preferences.xml-->
   <string name="preferences__general">Általános</string>
   <string name="preferences__sms_mms">SMS és MMS</string>
-  <string name="preferences__push_sms_category">Azonnali és SMS üzenet</string>
   <string name="preferences__pref_all_sms_title">Minden SMS fogadása</string>
   <string name="preferences__pref_all_mms_title">Minden MMS fogadása</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">TextSecure használata minden bejövő SMS üzenet megtekintéséhez és tárolásához</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">TextSecure használata minden bejövő MMS üzenet megtekintéséhez és tárolásához</string>
   <string name="preferences__input_settings">Beviteli beállítások</string>
   <string name="preferences__enable_enter_key_title">Enter gomb engedélyezése</string>
   <string name="preferences__replace_smiley_with_enter_key">A mosoly emotikon gomb helyettesítése egy Enter gombbal</string>
@@ -695,22 +690,7 @@ sikertelen.
   <string name="preferences__default">Alapértelmezett</string>
   <string name="preferences__language">Nyelv</string>
   <string name="preferences__language_summary">Nyelv %s</string>
-  <string name="preferences__make_default_sms_app">Beállítás alapértelmezett SMS alkalmazásként</string>
-  <string name="preferences__make_textsecure_the_default_sms_mms_app">Legyen a TextSecure az alapértelmezett SMS/MMS alkalmazás a rendszerben.</string>
-  <string name="preferences__use_data_channel">Azonnali üzenetek</string>
-  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
-Növeld a biztonságodat és kerüld el az SMS díjak fizetését azzal, hogy adat csatornát használsz más TextSecure felhasználókkal való kommunikációhoz.
- </string>
-  <string name="preferences__sms_fallback">Kimenő SMS/MMS</string>
   <string name="preferences__submit_debug_log">Hibakeresési napló küldése</string>
-  <string name="preferences__sms_outgoing_push_users">TextSecure felhasználók</string>
-  <string name="preferences__sms_fallback_push_users_ask">először kérdezzen meg</string>
-  <string name="preferences__sms_fallback_push_users_no_mms">nincs MMS</string>
-  <string name="preferences__sms_outgoing_push_users_description">Biztonságos SMS küldése, ha a kapcsolat megszakad</string>
-  <string name="preferences__sms_fallback_ask_before_sending_sms_mms">SMS/MMS küldése előtt rákérdezés</string>
-  <string name="preferences__sms_fallback_never_send_mms">Soha ne küldjön MMS-t</string>
-  <string name="preferences__sms_fallback_non_push_users">Nem TextSecure felhasználók</string>
-  <string name="preferences__sms_fallback_nobody">Senki</string>
   <string name="preferences__support_wifi_calling">\'WiFi hívás\' kompatibilitási mód</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Engedélyezd, ha az eszköz SMS/MMS kézbesítése WiFi-n keresztül végzi (csak akkor engedélyezd ha a \'WiFi hívás\' opció engedélyezve van az eszközön).</string>
   <!--****************************************-->

@@ -24,19 +24,12 @@ Questo disabiliterà i messaggi push e annullerà la tua registrazione sul serve
 Avrai bisogno di registrare di nuovo il tuo numero di telefono per usare i messaggi push in futuro.
 </string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Errore durante la connessione al server!</string>
-  <string name="ApplicationPreferencesActivity_sms_enabled">SMS in entrata abilitati</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Premi per cambiare l\'applicazione predefinita per gli SMS</string>
-  <string name="ApplicationPreferencesActivity_sms_disabled">SMS in entrata disabilitati</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Tocca per rendere TextSecure l\'applicazione predefinita per gli SMS</string>
   <string name="ApplicationPreferencesActivity_on">on</string>
   <string name="ApplicationPreferencesActivity_On">On</string>
   <string name="ApplicationPreferencesActivity_off">off</string>
   <string name="ApplicationPreferencesActivity_Off">Off</string>
-  <string name="ApplicationPreferencesActivity_partial">parziale</string>
-  <string name="ApplicationPreferencesActivity_sms">SMS</string>
-  <string name="ApplicationPreferencesActivity_mms">MMS</string>
-  <string name="ApplicationPreferencesActivity_incoming_sms_summary">In arrivo %s</string>
-  <string name="ApplicationPreferencesActivity_outgoing_sms_summary">in uscita %s</string>
   <!--AppProtectionPreferenceFragment-->
   <string name="AppProtectionPreferenceFragment_minutes">%d minuti</string>
   <!--DraftDatabase-->
@@ -67,6 +60,7 @@ questo contatto.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Selezione per tornare alla comunicazione non sicura</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Ripiegare su SMS non cifrati?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Ripiegare su MMS non cifrati?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Questo messaggio <b>non</b> sarà criptato perché il destinatario non usa più TextSecure.\n\nInvio un messaggio non sicuro?</string>
   <string name="ConversationItem_unable_to_open_media">Impossibile trovare un\'app per aprire questo file.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Iniziare sessione sicura?</string>
@@ -364,6 +358,7 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <string name="MessageNotifier_d_new_messages">(%d) nuovi messaggi</string>
   <string name="MessageNotifier_most_recent_from_s">Più recente da: %s</string>
   <string name="MessageNotifier_encrypted_message">Messaggio cifrato...</string>
+  <string name="MessageNotifier_media_message_with_text">Messaggio multimediale: %s</string>
   <string name="MessageNotifier_no_subject">(Nessun oggetto)</string>
   <string name="MessageNotifier_message_delivery_failed">Non è riuscito l\'invio del messaggio</string>
   <string name="MessageNotifier_failed_to_deliver_message">Non è riuscito l\'invio del messaggio</string>
@@ -392,9 +387,7 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <string name="contact_selection_recent_activity__no_recent_calls">Nessuna chiamata recente.</string>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Invia messaggio TextSecure</string>
-  <string name="conversation_activity__type_message_sms_secure">Manda SMS sicuro</string>
   <string name="conversation_activity__type_message_sms_insecure">Invia SMS non cifrato</string>
-  <string name="conversation_activity__type_message_mms_secure">Manda MMS sicuro</string>
   <string name="conversation_activity__type_message_mms_insecure">Invia MMS non cifrato</string>
   <string name="conversation_activity__send">Invia</string>
   <string name="conversation_activity__remove">Elimina</string>
@@ -403,6 +396,7 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <string name="conversation_activity__emoji_toggle_description">Dis/attiva la tastiera emoji</string>
   <string name="conversation_activity__attachment_thumbnail">Anteprima allegato</string>
   <!--conversation_item-->
+  <string name="conversation_item__mms_downloading_description">Sto scaricando un messaggio multimediale</string>
   <string name="conversation_item__mms_image_description">Messaggio multimediale</string>
   <string name="conversation_item__play_button_description">Pulsante Play</string>
   <string name="conversation_item__secure_message_description">Messaggio sicuro</string>
@@ -472,6 +466,9 @@ Importo una copia in chiaro. Compatibile con \"SMSBackup And Restore\"</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Completato</string>
   <!--registration_activity-->
+  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
+        Verifica il tuo numero di telefono per connetterti a TextSecure.
+    </string>
   <string name="registration_activity__your_country">PAESE</string>
   <string name="registration_activity__your_country_code_and_phone_number">CODICE DEL PAESE E
 NUMERO DI TELEFONO</string>
@@ -586,11 +583,8 @@ non riuscita.
   <!--preferences.xml-->
   <string name="preferences__general">Generale</string>
   <string name="preferences__sms_mms">SMS e MMS</string>
-  <string name="preferences__push_sms_category">Push e SMS</string>
   <string name="preferences__pref_all_sms_title">Utilizza per tutti gli SMS</string>
   <string name="preferences__pref_all_mms_title">Utilizza per tutti gli MMS</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Usa TextSecure per vedere e salvare tutti i messaggi in arrivo</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Usa TextSecure per vedere e salvare tutti gli MMS in arrivo</string>
   <string name="preferences__input_settings">Impostazioni di Input</string>
   <string name="preferences__enable_enter_key_title">Abilita il tasto Invio</string>
   <string name="preferences__replace_smiley_with_enter_key">Sostituisci il tasto smiley con il tasto Inivio</string>
@@ -673,22 +667,7 @@ non riuscita.
   <string name="preferences__default">Predefinito</string>
   <string name="preferences__language">Lingua</string>
   <string name="preferences__language_summary">Lingua %s</string>
-  <string name="preferences__make_default_sms_app">Imposta come applicazione SMS predefinita.</string>
-  <string name="preferences__make_textsecure_the_default_sms_mms_app">Rendi TextSecure l\'applicazione predefinita per SMS/MMS.</string>
-  <string name="preferences__use_data_channel">Messaggi push</string>
-  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
-Aumenta la privacy ed evita i costi degli SMS usando la connettività dati per comunicare con altri utenti TextSecure
-</string>
-  <string name="preferences__sms_fallback">SMS/MMS in uscita</string>
   <string name="preferences__submit_debug_log">Invia log di debug</string>
-  <string name="preferences__sms_outgoing_push_users">Utenti TextSecure</string>
-  <string name="preferences__sms_fallback_push_users_ask">chiedi prima</string>
-  <string name="preferences__sms_fallback_push_users_no_mms">no MMS</string>
-  <string name="preferences__sms_outgoing_push_users_description">Manda SMS sicuri se la connettività dati è assente</string>
-  <string name="preferences__sms_fallback_ask_before_sending_sms_mms">Chiedi prima di inviare SMS/MMS</string>
-  <string name="preferences__sms_fallback_never_send_mms">Non inviare mai MMS</string>
-  <string name="preferences__sms_fallback_non_push_users">Utenti Non-TextSecure</string>
-  <string name="preferences__sms_fallback_nobody">Nessuno</string>
   <string name="preferences__support_wifi_calling">Modalità di compatibilità \'WiFi Calling\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Attiva questa opzione se il tuo dispositivo invia SMS/MMS tramite WiFi (attiva solo quando \'WiFi Calling\' è attivo sul tuo dispositivo).</string>
   <!--****************************************-->

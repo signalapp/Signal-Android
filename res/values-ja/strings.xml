@@ -24,19 +24,15 @@
 サーバーから登録を取消し、プッシュメッセージを無効化します。
 再びプッシュメッセージを使用するには、</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">サーバー接続中にエラーが発生しました！</string>
-  <string name="ApplicationPreferencesActivity_sms_enabled">SMSの受信が有効</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">SMS 有効</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">タッチしてデフォルトSMSアプリを変更</string>
-  <string name="ApplicationPreferencesActivity_sms_disabled">SMS受信が無効です</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">SMS 無効</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">タッチしてTextSecureをデフォルトSMSアプリにできます</string>
   <string name="ApplicationPreferencesActivity_on">オン</string>
   <string name="ApplicationPreferencesActivity_On">オン</string>
   <string name="ApplicationPreferencesActivity_off">オフ</string>
   <string name="ApplicationPreferencesActivity_Off">オフ</string>
-  <string name="ApplicationPreferencesActivity_partial">一部</string>
-  <string name="ApplicationPreferencesActivity_sms">SMS</string>
-  <string name="ApplicationPreferencesActivity_mms">MMS</string>
-  <string name="ApplicationPreferencesActivity_incoming_sms_summary">受信 %s</string>
-  <string name="ApplicationPreferencesActivity_outgoing_sms_summary">送信 %s</string>
+  <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <string name="AppProtectionPreferenceFragment_minutes">%d 分</string>
   <!--DraftDatabase-->
@@ -70,6 +66,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted">タップしてセキュアでない通信を行う</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">代替として暗号化されていないSMSに切り替わりますか？</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">代替として暗号化されていないMMSに切り替わりますか？</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">このメッセージは暗号化されて<b>いません</b>、なぜなら受信者はTextSecureユーザーではなくなったためです。\n\n安全ではないメッセージの送信を行いますか?</string>
   <string name="ConversationItem_unable_to_open_media">このメディアを開くことができるアプリが見つかりません。</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">セキュア・セッションを開始しますか？</string>
@@ -352,6 +349,7 @@
   <string name="MessageNotifier_d_new_messages">%d 新しいメッセージ</string>
   <string name="MessageNotifier_most_recent_from_s">最新の送信者： %s</string>
   <string name="MessageNotifier_encrypted_message">暗号化されたメッセージ…</string>
+  <string name="MessageNotifier_media_message_with_text">メディアメッセージ: %s</string>
   <string name="MessageNotifier_no_subject">（無題）</string>
   <string name="MessageNotifier_message_delivery_failed">メッセージの配信に失敗しました。</string>
   <string name="MessageNotifier_failed_to_deliver_message">メッセージの配信に失敗しました。</string>
@@ -380,9 +378,7 @@
   <string name="contact_selection_recent_activity__no_recent_calls">最近の通話はありません。</string>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">TextSecureメッセージを送信</string>
-  <string name="conversation_activity__type_message_sms_secure">暗号化されているSMSを送信</string>
   <string name="conversation_activity__type_message_sms_insecure">セキュアではないSMSを送信</string>
-  <string name="conversation_activity__type_message_mms_secure">暗号化されているMMSを送信</string>
   <string name="conversation_activity__type_message_mms_insecure">セキュアではないMMSを送信</string>
   <string name="conversation_activity__send">送信</string>
   <string name="conversation_activity__remove">削除</string>
@@ -391,6 +387,7 @@
   <string name="conversation_activity__emoji_toggle_description">絵文字キーボードを切り替え</string>
   <string name="conversation_activity__attachment_thumbnail">添付のサムネイル</string>
   <!--conversation_item-->
+  <string name="conversation_item__mms_downloading_description">メディアメッセージダウンロード</string>
   <string name="conversation_item__mms_image_description">メディアーメッセージ</string>
   <string name="conversation_item__play_button_description">再生ボタン</string>
   <string name="conversation_item__secure_message_description">暗号化されたメッセージ</string>
@@ -460,6 +457,9 @@
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">完了</string>
   <!--registration_activity-->
+  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
+        あなたの電話番号をTextSecureに接続するための検証。
+    </string>
   <string name="registration_activity__your_country">あなたの国</string>
   <string name="registration_activity__your_country_code_and_phone_number">あなたの国番号と電話番号</string>
   <string name="registration_activity__phone_number">電話番号</string>
@@ -549,11 +549,10 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
   <!--preferences.xml-->
   <string name="preferences__general">一般設定</string>
   <string name="preferences__sms_mms">SMSとMMS</string>
-  <string name="preferences__push_sms_category">プッシュとSMS</string>
   <string name="preferences__pref_all_sms_title">全てのSMSを受信</string>
   <string name="preferences__pref_all_mms_title">全てのMMSを受信</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">受信する全てのSMS（テキストメッセージ）の表示、及び保存にTextSecureを使用します</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">受信する全てのMMS（ファイル付きメッセージ）の表示、及び保存にTextSecureを使用します</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">受信する全てのSMS（テキスト・メッセージ）にTextSecureを使用します</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">受信する全てのMMS（ファイル付きメッセージ）にTextSecureを使用します</string>
   <string name="preferences__input_settings">設定入力</string>
   <string name="preferences__enable_enter_key_title">エンターキーを使えるようにする</string>
   <string name="preferences__replace_smiley_with_enter_key">顔文字キーをエンターキーに変える</string>
@@ -637,21 +636,11 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
   <string name="preferences__default">初期設定の言語</string>
   <string name="preferences__language">言語</string>
   <string name="preferences__language_summary">言語 %s</string>
-  <string name="preferences__make_default_sms_app">標準のSMSアプリに設定する</string>
-  <string name="preferences__make_textsecure_the_default_sms_mms_app">お使いの端末で、TextSecureをSMS／MMSの標準アプリにする</string>
-  <string name="preferences__use_data_channel">プッシュメッセージ</string>
+  <string name="preferences__textsecure_messages">TextSecureメッセージ</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
-他のTextSecureユーザと会話する時、安全性を高めつつSMS料金がかからないようにデータチャンネルを使いますか?</string>
-  <string name="preferences__sms_fallback">SMS/MMS送信</string>
+        TextSecureとSignalユーザへのフリーのプライベートメッセージ
+    </string>
   <string name="preferences__submit_debug_log">デバッグログを提出</string>
-  <string name="preferences__sms_outgoing_push_users">TextSecureユーザ</string>
-  <string name="preferences__sms_fallback_push_users_ask">送信前に確認</string>
-  <string name="preferences__sms_fallback_push_users_no_mms">MMSなし</string>
-  <string name="preferences__sms_outgoing_push_users_description">データチャンネルが使用不可能の時、暗号化されたSMSを送る</string>
-  <string name="preferences__sms_fallback_ask_before_sending_sms_mms">SMS/MMSを送信する前に尋ねる</string>
-  <string name="preferences__sms_fallback_never_send_mms">MMSを送信しない</string>
-  <string name="preferences__sms_fallback_non_push_users">TextSecureを使用しない方</string>
-  <string name="preferences__sms_fallback_nobody">無人</string>
   <string name="preferences__support_wifi_calling">\'WiFi Calling\' 互換モード</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">あなたのデバイスで  WiFi (ただし \'WiFi Calling\' があなたのデバイスで有効になっている場合のみ)での SMS/MMS の配送を有効にする。</string>
   <!--****************************************-->

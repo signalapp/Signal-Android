@@ -3,15 +3,15 @@
   <string name="app_name">TextSecure</string>
   <string name="yes">Ano</string>
   <string name="no">Ne</string>
-  <string name="delete">Vymazat</string>
+  <string name="delete">Smazat</string>
   <string name="please_wait">Prosím čekejte...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Aktuálně: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Dosud nemáte nastavené heslo!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">%s zpráv na konverzaci</string>
-  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Vymazat všechny staré zprávy?</string>
+  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Smazat všechny staré zprávy?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Opravdu chcete všechny konverzace zkrátit na posledních %s zpráv?</string>
-  <string name="ApplicationPreferencesActivity_delete">Vymazat</string>
+  <string name="ApplicationPreferencesActivity_delete">Smazat</string>
   <string name="ApplicationPreferencesActivity_disable_storage_encryption">Deaktivovat šifrování lokálně uložených zpráv?</string>
   <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
 Varování: Tímto znemožníte šifrování všech uložených zpráv a klíčů. Vaše komunikace
@@ -25,19 +25,15 @@ k vašemu zařízení.</string>
 Tímto zakážete TextSecure zprávy odregistrací ze serveru.
 Abyste mohli používat TextSecure zprávy v budoucnosti, budete muset znovu registrovat vaše telefonní číslo.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Chyba při připojování k serveru!</string>
-  <string name="ApplicationPreferencesActivity_sms_enabled">Povolené příchozí SMS</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">SMS povoleny</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Dotykem nastavte výchozí aplikaci pro SMS</string>
-  <string name="ApplicationPreferencesActivity_sms_disabled">Příchozí SMS zprávy zakázány</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">SMS zazány</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Dotykem nastavíte TextSecure jako výchozí SMS aplikaci</string>
   <string name="ApplicationPreferencesActivity_on">zap.</string>
   <string name="ApplicationPreferencesActivity_On">Zap.</string>
   <string name="ApplicationPreferencesActivity_off">vyp.</string>
   <string name="ApplicationPreferencesActivity_Off">Vyp.</string>
-  <string name="ApplicationPreferencesActivity_partial">částečně</string>
-  <string name="ApplicationPreferencesActivity_sms">SMS</string>
-  <string name="ApplicationPreferencesActivity_mms">MMS</string>
-  <string name="ApplicationPreferencesActivity_incoming_sms_summary">Příchozí %s</string>
-  <string name="ApplicationPreferencesActivity_outgoing_sms_summary">odchozí %s</string>
+  <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <string name="AppProtectionPreferenceFragment_minutes">%d minut</string>
   <!--DraftDatabase-->
@@ -79,7 +75,7 @@ kontakt</string>
   <string name="ConversationActivity_abort_secure_session_confirmation">Potvrzení ukončení zabezpečené komunikace</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Opravdu chcete ukončit tuto zabezpečenou relaci?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Potvrzení smazání konverzace</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Opravdu chcete zcela vymazat tuto konverzaci?</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Opravdu chcete zcela smazat tuto konverzaci?</string>
   <string name="ConversationActivity_add_attachment">Přidat přílohu</string>
   <string name="ConversationActivity_select_contact_info">Vybrat informace o kontaktu</string>
   <string name="ConversationActivity_compose_message">Napište zprávu</string>
@@ -110,7 +106,7 @@ kontakt</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Přenos: %1$s\nOdesláno/Přijato: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Odesílatel: %1$s\nPřenos: %2$s\nOdesláno: %3$s\nPřijato: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Potvrďte smazání zpráv</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Opravdu chcete trvale vymazat všechny vybrané zprávy?</string>
+  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Opravdu chcete trvale smazat všechny vybrané zprávy?</string>
   <string name="ConversationFragment_save_to_sd_card">Uložit do paměti?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Uložením dat do paměti umožníte přístup k nim kterékoliv aplikaci ve vašem telefonu.\n\nPokračovat?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Chyba při ukládání přílohy!</string>
@@ -383,9 +379,7 @@ Obdržena zpráva s neznámým identifikačním klíčem. Klepněte pro její zp
   <string name="contact_selection_recent_activity__no_recent_calls">Žádné nedávné hovory</string>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Poslat TextSecure zprávu</string>
-  <string name="conversation_activity__type_message_sms_secure">Poslat zabezpečenou SMS</string>
   <string name="conversation_activity__type_message_sms_insecure">Poslat nezabezpečenou SMS</string>
-  <string name="conversation_activity__type_message_mms_secure">Poslat zabezpečenou MMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Poslat nezabezpečenou MMS</string>
   <string name="conversation_activity__send">Odeslat</string>
   <string name="conversation_activity__remove">Odebrat</string>
@@ -575,14 +569,13 @@ TextSecure nyní automaticky ověří vaše telefonní číslo pomocí potvrzova
   <!--preferences.xml-->
   <string name="preferences__general">Obecné</string>
   <string name="preferences__sms_mms">SMS a MMS</string>
-  <string name="preferences__push_sms_category">TextSecure i SMS</string>
   <string name="preferences__pref_all_sms_title">Přijímat všechny SMS</string>
   <string name="preferences__pref_all_mms_title">Přijímat všechny MMS</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Používat TextSecure k prohlížení a uchování všech SMS</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Používat TextSecure k prohlížení a uchování všech MMS</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Použít TextSecure pro všechny příchozí textové zprávy</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Použít TextSecure pro všechny příchozí multimediální zprávy</string>
   <string name="preferences__input_settings">Nastavení vstupu</string>
   <string name="preferences__enable_enter_key_title">Používat Enter</string>
-  <string name="preferences__replace_smiley_with_enter_key">Nahradit klávesu emotikon klávesou enter</string>
+  <string name="preferences__replace_smiley_with_enter_key">Nahradit klávesu smajlík klávesou enter</string>
   <string name="preferences__pref_enter_sends_title">Klávesa \'Enter\' odesílá</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Stisk tlačítka \'enter\' na klávesnici odešle zprávu</string>
   <string name="preferences__display_settings">Nastavení zobrazení</string>
@@ -607,8 +600,8 @@ TextSecure nyní automaticky ověří vaše telefonní číslo pomocí potvrzova
   <string name="preferences__led_color_unknown">Neznámý</string>
   <string name="preferences__pref_led_blink_title">Schéma blikání LED</string>
   <string name="preferences__pref_led_blink_custom_pattern_title">Změnit způsob blikání LED</string>
-  <string name="preferences__pref_led_blink_custom_pattern_on_for">Zapnout pro: </string>
-  <string name="preferences__pref_led_blink_custom_pattern_off_for">Vypnout pro:</string>
+  <string name="preferences__pref_led_blink_custom_pattern_on_for">Zapnout po: </string>
+  <string name="preferences__pref_led_blink_custom_pattern_off_for">Vypnout po:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Způsob blikání LED byl nastaven!</string>
   <string name="preferences__sound">Zvuk</string>
   <string name="preferences__change_notification_sound">Změnit zvuk upozornění</string>
@@ -650,9 +643,9 @@ TextSecure nyní automaticky ověří vaše telefonní číslo pomocí potvrzova
   <string name="preferences__sms_delivery_reports">Doručenky SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">U každé odeslané zprávy požadovat potvrzení o doručení</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Automaticky mazat starší zprávy jakmile konverzace přesáhne určitou délku</string>
-  <string name="preferences__delete_old_messages">Vymazat staré zprávy</string>
+  <string name="preferences__delete_old_messages">Smazat staré zprávy</string>
   <string name="preferences__conversation_length_limit">Limit délky konverzací</string>
-  <string name="preferences__trim_all_threads_now">Zastřihnout konverzace</string>
+  <string name="preferences__trim_all_threads_now">Zkrátit konverzace</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Pohledat všechny konverzace a uplatnit limit délky.</string>
   <string name="preferences__light_theme">Světlý</string>
   <string name="preferences__dark_theme">Tmavý</string>
@@ -662,22 +655,10 @@ TextSecure nyní automaticky ověří vaše telefonní číslo pomocí potvrzova
   <string name="preferences__default">Výchozí</string>
   <string name="preferences__language">Jazyk</string>
   <string name="preferences__language_summary">Jazyk %s</string>
-  <string name="preferences__make_default_sms_app">Nastavit jako výchozí aplikaci pro SMS</string>
-  <string name="preferences__make_textsecure_the_default_sms_mms_app">Učinit TextSecure na tomto systému výchozí aplikací pro SMS a MMS</string>
-  <string name="preferences__use_data_channel">TextSecure zprávy</string>
+  <string name="preferences__textsecure_messages">TextSecure zprávy</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
-        Zvyšte úroveň soukromí a vyhněte se poplatkům za SMS používáním datového připojení pro komunikaci s ostatními uživateli TextSecure
-    </string>
-  <string name="preferences__sms_fallback">Odchozí SMS/MMS</string>
-  <string name="preferences__submit_debug_log">Odeslat debugovací log</string>
-  <string name="preferences__sms_outgoing_push_users">Uživatelé TextSecure</string>
-  <string name="preferences__sms_fallback_push_users_ask">nejprve se zeptat</string>
-  <string name="preferences__sms_fallback_push_users_no_mms">žádné MMS</string>
-  <string name="preferences__sms_outgoing_push_users_description">Poslat šifrovanoou SMS v případě nedostupnosti datového spojení</string>
-  <string name="preferences__sms_fallback_ask_before_sending_sms_mms">Zeptat se před posláním SMS/MMS</string>
-  <string name="preferences__sms_fallback_never_send_mms">Nikdy neposílat MMS</string>
-  <string name="preferences__sms_fallback_non_push_users">Ne-TextSecure uživatelé</string>
-  <string name="preferences__sms_fallback_nobody">Nikdo</string>
+Svobodná šifrovaná komunikace s uživateli TextSecure a Signal</string>
+  <string name="preferences__submit_debug_log">Odeslat ladící log</string>
   <string name="preferences__support_wifi_calling">\'Wifi volání\' kompatibilní mód</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Povolte pokud vaše zařízení používá k doručování SMS/MMS Wifi (povoleno pouze pokud je \'Wifi volání\' povoleno na vašem zařízení).</string>
   <!--****************************************-->
@@ -698,7 +679,7 @@ TextSecure nyní automaticky ověří vaše telefonní číslo pomocí potvrzova
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Podrobnosti zprávy</string>
   <string name="conversation_context__menu_copy_text">Kopírovat text</string>
-  <string name="conversation_context__menu_delete_message">Vymazat zprávu</string>
+  <string name="conversation_context__menu_delete_message">Smazat zprávu</string>
   <string name="conversation_context__menu_forward_message">Přeposlat zprávu</string>
   <string name="conversation_context__menu_resend_message">Znovu poslat zprávu</string>
   <!--conversation_context_image-->
@@ -709,7 +690,7 @@ TextSecure nyní automaticky ověří vaše telefonní číslo pomocí potvrzova
   <string name="conversation_insecure__menu_start_secure_session">Zahájit šifrovanou konverzaci</string>
   <string name="conversation_insecure__security">Zabezpečení</string>
   <!--conversation_list_batch-->
-  <string name="conversation_list_batch__menu_delete_selected">Vymazat označené</string>
+  <string name="conversation_list_batch__menu_delete_selected">Smazat označené</string>
   <string name="conversation_list_batch__menu_select_all">Označit vše</string>
   <!--conversation_list-->
   <string name="conversation_list__menu_search">Hledat</string>
@@ -727,7 +708,7 @@ TextSecure nyní automaticky ověří vaše telefonní číslo pomocí potvrzova
   <string name="conversation__menu_add_attachment">Přidat přílohu</string>
   <string name="conversation__menu_update_group">Upravit skupinu</string>
   <string name="conversation__menu_leave_group">Opustit skupinu</string>
-  <string name="conversation__menu_delete_thread">Vymazt konverzaci</string>
+  <string name="conversation__menu_delete_thread">Smazat konverzaci</string>
   <string name="conversation__menu_view_media">Všechny obrázky</string>
   <!--conversation_callable-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Přidat do kontaktů</string>
@@ -766,7 +747,7 @@ TextSecure nyní automaticky ověří vaše telefonní číslo pomocí potvrzova
   <!--Trimmer-->
   <string name="trimmer__deleting">Mazání...</string>
   <string name="trimmer__deleting_old_messages">Mazání starých zpráv...</string>
-  <string name="trimmer__old_messages_successfully_deleted">Staré zprávy byly úspěšně vymazány.</string>
+  <string name="trimmer__old_messages_successfully_deleted">Staré zprávy byly úspěšně smazány.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona přenosu</string>
   <!--EOF-->

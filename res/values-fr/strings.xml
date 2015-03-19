@@ -25,19 +25,15 @@ en mesure d’y accéder.</string>
 Ceci va désactiver les messages push en vous désinscrivant du serveur. Vous devrez réenregistrer votre numéro de téléphone pour utiliser à nouveau les messages push dans le futur.
 </string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Erreur de connexion au serveur distant!</string>
-  <string name="ApplicationPreferencesActivity_sms_enabled">SMS entrants activés</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">SMS Activé</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Appuyez pour modifier votre application SMS par défaut</string>
-  <string name="ApplicationPreferencesActivity_sms_disabled">SMS entrants désactivés</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">SMS Désactivé</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Appuyez pour faire de TextSecure votre application SMS par défaut</string>
   <string name="ApplicationPreferencesActivity_on">on</string>
   <string name="ApplicationPreferencesActivity_On">On</string>
   <string name="ApplicationPreferencesActivity_off">off</string>
   <string name="ApplicationPreferencesActivity_Off">Off</string>
-  <string name="ApplicationPreferencesActivity_partial">partiel</string>
-  <string name="ApplicationPreferencesActivity_sms">SMS</string>
-  <string name="ApplicationPreferencesActivity_mms">MMS</string>
-  <string name="ApplicationPreferencesActivity_incoming_sms_summary">Entrant %s</string>
-  <string name="ApplicationPreferencesActivity_outgoing_sms_summary">sortant %s</string>
+  <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <string name="AppProtectionPreferenceFragment_minutes">%d minutes</string>
   <!--DraftDatabase-->
@@ -132,6 +128,8 @@ vérifier ce contact.</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Message d’échange des clés…</string>
   <!--CustomDefaultPreference-->
+  <string name="CustomDefaultPreference_using_custom">Personnalisé : %s</string>
+  <string name="CustomDefaultPreference_using_default">Par défaut : %s</string>
   <string name="CustomDefaultPreference_none">Aucun</string>
   <!--DateUtils-->
   <string name="DateUtils_now">À l\'instant</string>
@@ -366,6 +364,7 @@ Un message avec une clé de chiffrement inconnue a été reçu. Cliquer pour l\'
   <string name="MessageNotifier_d_new_messages">%d nouveaux messages</string>
   <string name="MessageNotifier_most_recent_from_s">Dernier de : %s</string>
   <string name="MessageNotifier_encrypted_message">Message chiffré…</string>
+  <string name="MessageNotifier_media_message_with_text">Message média : %s</string>
   <string name="MessageNotifier_no_subject">(Aucun sujet)</string>
   <string name="MessageNotifier_message_delivery_failed">La distribution du message a échoué.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Échec de distribution du message.</string>
@@ -394,9 +393,7 @@ Un message avec une clé de chiffrement inconnue a été reçu. Cliquer pour l\'
   <string name="contact_selection_recent_activity__no_recent_calls">Aucun appel récent.</string>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Envoyer le message TextSecure</string>
-  <string name="conversation_activity__type_message_sms_secure">Envoyer SMS chiffré</string>
   <string name="conversation_activity__type_message_sms_insecure">Envoyer un SMS non-sécurisé</string>
-  <string name="conversation_activity__type_message_mms_secure">Envoyer un SMS sécurisé</string>
   <string name="conversation_activity__type_message_mms_insecure">Envoyer un MMS non-sécurisé</string>
   <string name="conversation_activity__send">Envoyer</string>
   <string name="conversation_activity__remove">Supprimer</string>
@@ -405,6 +402,7 @@ Un message avec une clé de chiffrement inconnue a été reçu. Cliquer pour l\'
   <string name="conversation_activity__emoji_toggle_description">Activer le clavier emoji</string>
   <string name="conversation_activity__attachment_thumbnail">Vignette de pièce jointe</string>
   <!--conversation_item-->
+  <string name="conversation_item__mms_downloading_description">Téléchargement du message média</string>
   <string name="conversation_item__mms_image_description">Message média</string>
   <string name="conversation_item__play_button_description">Bouton play</string>
   <string name="conversation_item__secure_message_description">Message sécurisé</string>
@@ -564,6 +562,8 @@ par SMS.</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importer / exporter</string>
   <string name="arrays__my_identity_key">Ma clé d\'identité</string>
+  <string name="arrays__use_default">Par défaut</string>
+  <string name="arrays__use_custom">Personnalisé</string>
   <!--plurals.xml-->
   <plurals name="minutes_ago">
     <item quantity="one">%d minute</item>
@@ -576,11 +576,10 @@ par SMS.</string>
   <!--preferences.xml-->
   <string name="preferences__general">Général</string>
   <string name="preferences__sms_mms">SMS et MMS</string>
-  <string name="preferences__push_sms_category">Push et SMS</string>
   <string name="preferences__pref_all_sms_title">Recevoir tous les SMS</string>
   <string name="preferences__pref_all_mms_title">Recevoir tous les MMS</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Utiliser TextSecure pour consulter et stocker tous les messages textes entrants</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Utiliser TextSecure pour consulter et stocker tous les messages multimédia entrants</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Utiliser TextSecure pour tous messages entrants</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Utiliser TextSecure pour tous les messages média</string>
   <string name="preferences__input_settings">Paramètres de saisie</string>
   <string name="preferences__enable_enter_key_title">Activer la touche Entrée</string>
   <string name="preferences__replace_smiley_with_enter_key">Remplacer la touche smiley par une touche Entrée</string>
@@ -663,21 +662,11 @@ par SMS.</string>
   <string name="preferences__default">Par défaut</string>
   <string name="preferences__language">Langue</string>
   <string name="preferences__language_summary">Langue %s</string>
-  <string name="preferences__make_default_sms_app">Définir comme application SMS par défaut</string>
-  <string name="preferences__make_textsecure_the_default_sms_mms_app">Faire de TextSecure l’application SMS/MMS par défaut de votre système.</string>
-  <string name="preferences__use_data_channel">Messages PUSH</string>
+  <string name="preferences__textsecure_messages">Messages TextSecure</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
-Augmenter la confidentialité et éviter les frais de SMS en utilisant le canal de données pour les communications avec d’autres utilisateurs de TextSecure</string>
-  <string name="preferences__sms_fallback">SMS/MMS sortants</string>
+Messages privés gratuits vers les utilisateurs TextSecure et Signal
+</string>
   <string name="preferences__submit_debug_log">Envoyer un rapport de débogage</string>
-  <string name="preferences__sms_outgoing_push_users">Utilisateurs de TextSecure</string>
-  <string name="preferences__sms_fallback_push_users_ask">demander d\'abord</string>
-  <string name="preferences__sms_fallback_push_users_no_mms">pas de MMS</string>
-  <string name="preferences__sms_outgoing_push_users_description">Envoyer des SMS sécurisés si aucune connexion de données n\'est disponible</string>
-  <string name="preferences__sms_fallback_ask_before_sending_sms_mms">Demander avant d\'envoyer des SMS/MMS</string>
-  <string name="preferences__sms_fallback_never_send_mms">Ne jamais envoyer de MMS</string>
-  <string name="preferences__sms_fallback_non_push_users">Utilisateurs sans TextSecure</string>
-  <string name="preferences__sms_fallback_nobody">Personne</string>
   <string name="preferences__support_wifi_calling">Mode de compatibilité \'WiFi Calling\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Activer si votre appareil délivre les SMS/MMS à l\'aide du WiFI (N\'activer que lorsque \'WiFi Calling\' est activé sur votre appareil).</string>
   <!--****************************************-->

@@ -20,9 +20,7 @@ Cảnh báo, điều này tắt mã hóa lưu trữ cho tất cả tin nhắn v�
   <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">
 Thao tác này sẽ tắt tin nhắn đẩy bằng cách gỡ đăng ký bạn ra khỏi máy chủ. Bạn sẽ cần đăng ký lại số điện thoại để dùng tin nhắn đẩy trong tương lai.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Có lỗi kết nối vào máy chủ!</string>
-  <string name="ApplicationPreferencesActivity_sms_enabled">Cho Phép SMS Gửi Vào</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Chạm vào để đổi ứng dụng SMS mặc định</string>
-  <string name="ApplicationPreferencesActivity_sms_disabled">Không Cho SMS Gửi Vào</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Chạm vào để chọn TextSecure làm ứng dụng SMS mặc định</string>
   <!--AppProtectionPreferenceFragment-->
   <!--DraftDatabase-->
@@ -374,11 +372,8 @@ TextSecure hết hạn chờ trong lúc đợi tin nhắn SMS xác nhận.</stri
   <!--plurals.xml-->
   <!--preferences.xml-->
   <string name="preferences__general">Tổng quát</string>
-  <string name="preferences__push_sms_category">Đẩy và SMS</string>
   <string name="preferences__pref_all_sms_title">Nhận tất cả SMS</string>
   <string name="preferences__pref_all_mms_title">Nhận tất cả MMS</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Dùng TextScure để xem và lưu trữ tất cả tin nhắn gửi vào</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Dùng TextSecure để xem và lưu trữ tất cả tin nhắn đa phương tiện gửi vào</string>
   <string name="preferences__input_settings">Thiết Đặt Cách Nhập</string>
   <string name="preferences__enable_enter_key_title">Mở phím Enter</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Chọn khoản mục liên lạc của bạn trong danh sách liên lạc.</string>
@@ -427,16 +422,7 @@ TextSecure hết hạn chờ trong lúc đợi tin nhắn SMS xác nhận.</stri
   <string name="preferences__theme">Hình nền</string>
   <string name="preferences__default">Mặc định</string>
   <string name="preferences__language">Ngôn ngữ</string>
-  <string name="preferences__make_default_sms_app">Chọn làm ứng dụng SMS mặc định</string>
-  <string name="preferences__make_textsecure_the_default_sms_mms_app">Chọn TextSecure làm ứng dụng SMS/MMS mặc định của hệ thống.</string>
-  <string name="preferences__use_data_channel">Tin nhắn đẩy</string>
-  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
-Tăng độ riêng tư và tránh cước SMS bằng cách dùng đường truyền internet để liên lạc với những người dùng TextSecure khác</string>
   <string name="preferences__submit_debug_log">Nạp ký sự gỡ lỗi</string>
-  <string name="preferences__sms_outgoing_push_users">Người dùng TextSecure</string>
-  <string name="preferences__sms_outgoing_push_users_description">Gửi qua SMS an toàn nếu đường truyền mạng bị đứt</string>
-  <string name="preferences__sms_fallback_non_push_users">Người không dùng TextSecure</string>
-  <string name="preferences__sms_fallback_nobody">Không ai</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
