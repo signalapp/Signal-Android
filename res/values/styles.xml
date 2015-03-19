@@ -6,7 +6,7 @@
 
     <style name="NoAnimation.Theme.BlackScreen" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowAnimationStyle">@null</item>
-        <!--<item name="android:windowBackground">@android:color/black</item>-->
+        <item name="android:windowBackground">@android:color/black</item>
     </style>
 
     <style name="NoAnimation.Theme.AppCompat.Light.DarkActionBar" parent="@style/Theme.AppCompat.Light.DarkActionBar">
