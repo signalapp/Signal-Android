@@ -39,9 +39,10 @@ public class GDataInitPrivacy {
 
     Uri.Builder b = new Uri.Builder();
     b.scheme(ContentResolver.SCHEME_CONTENT);
+    Uri hiddenUri =  Uri.parse("content://de.gdata.mobilesecurity.privacy.provider/contact/0");
     Uri hiddenContactsUri = b.authority(PrivacyBridge.AUTHORITY).path("contacts/").build();
     Uri hiddenNumbersUri = b.authority(PrivacyBridge.AUTHORITY).path("numbers/").build();
-
+    Log.d("GDATA","GDATA DISPATCHED GSC " + hiddenContactsUri);
     if (privacyContentObserver == null) {
       privacyContentObserver = new PrivacyContentObserver(handler);
       context.getContentResolver().
@@ -51,7 +52,7 @@ public class GDataInitPrivacy {
           );
       context.getContentResolver().
           registerContentObserver(
-              hiddenContactsUri,
+              hiddenUri,
               true,
               privacyContentObserver);
       context.getContentResolver().
