@@ -14,17 +14,18 @@
     <string name="gd_dialog_fragment_phishing_continue">Folytatás</string>
 
     <string name="menu_filter">Névjegyek blokkolása</string>
-    <string name="menu_privacy">Névjegyek elrejtése</string>
-    <string name="menu_privacy_unhide">Rejtett névjegyek mutatása</string>
-    <string name="menu_privacy_hide">Rejtett névjegyek elrejtése</string>
-    <string name="menu_privacy_single_hide">Névjegy elrejtése</string>
+    <string name="menu_privacy">Beszélgetések elrejtése</string>
+    <string name="menu_privacy_unhide">Rejtett beszélgetések mutatása</string>
+    <string name="menu_privacy_hide">Ne mutassa a rejtett beszélgetéseket</string>
+    <string name="menu_privacy_single_hide">Beszélgetések elrejtése</string>
     <string name="menu_filter_block_contact">Névjegy blokkolása</string>
 
     <string name="privacy_pw_dialog_header">Jelszó megadása: </string>
     <string name="privacy_pw_dialog_toast_wrong">A megadott jelszó nem érvényes az InternetSecurity programhoz.</string>
-    <string name="privacy_pw_dialog_toast_reload">Az üzenetek és a névjegyek visszaállításra kerülnek...</string>
-    <string name="privacy_pw_dialog_toast_hide">Az üzenetek és a névjegyek elrejtése kerülnek...</string>
-    <string name="privacy_pw_dialog_toast_hide_single">Névjegyek elrejtése...</string>
+    <string name="privacy_pw_dialog_toast_reload">Beszélgetések visszaállítása...</string>
+    <string name="privacy_pw_dialog_toast_hide">Beszélgetések elrejtése...</string>
+    <string name="privacy_pw_dialog_toast_hide_single">Beszélgetések elrejtése...</string>
+    <string name="privacy_pw_dialog_hint">Megjegyzés: ez az a jelszó, amit az Internet Security for Android programban megadott.</string>
 
     <string name="privacy_toast_install_premium">Szüksége van a G DATA InternetSecurityre a funkció használatához.</string>
 
