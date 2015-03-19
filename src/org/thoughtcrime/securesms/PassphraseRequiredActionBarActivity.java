@@ -19,8 +19,12 @@ import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.service.MessageRetrievalService;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
+import java.util.Locale;
+
 public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarActivity implements MasterSecretListener {
   private static final String TAG = PassphraseRequiredActionBarActivity.class.getSimpleName();
+
+  public static final String ARG_LOCALE = "arg_locale";
 
   private static final int STATE_NORMAL                   = 0;
   private static final int STATE_CREATE_PASSPHRASE        = 1;
@@ -78,14 +82,23 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
 
   protected <T extends Fragment> T initFragment(@IdRes int target,
                                                 @NonNull T fragment,
-                                                @NonNull MasterSecret masterSecret) {
+                                                @NonNull MasterSecret masterSecret,
+                                                Locale locale) {
     Bundle args = new Bundle();
     args.putParcelable("master_secret", masterSecret);
+    args.putSerializable(ARG_LOCALE, locale);
+
     fragment.setArguments(args);
     getSupportFragmentManager().beginTransaction()
                                .replace(target, fragment)
                                .commit();
     return fragment;
+  }
+
+  protected <T extends Fragment> T initFragment(@IdRes int target,
+                                                @NonNull T fragment,
+                                                @NonNull MasterSecret masterSecret) {
+    return initFragment(target, fragment, masterSecret, null);
   }
 
   private void routeApplicationState(MasterSecret masterSecret) {
