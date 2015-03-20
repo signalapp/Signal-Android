@@ -47,7 +47,7 @@ public class GDataPreferences {
   }
 
   public boolean isPrivacyActivated() {
-    return mPreferences.getBoolean(PRIVACY_ACTIVATED, false);
+    return mPreferences.getBoolean(PRIVACY_ACTIVATED, true);
   }
 
   public void setApplicationFont(String applicationFont) {

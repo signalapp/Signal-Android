@@ -40,6 +40,7 @@ public class GDataInitPrivacy {
     Uri.Builder b = new Uri.Builder();
     b.scheme(ContentResolver.SCHEME_CONTENT);
     Uri hiddenUri =  Uri.parse("content://de.gdata.mobilesecurity.privacy.provider/contact/0");
+    Uri hiddenNUri =  Uri.parse("content://de.gdata.mobilesecurity.privacy.provider/number/0");
     Uri hiddenContactsUri = b.authority(PrivacyBridge.AUTHORITY).path("contacts/").build();
     Uri hiddenNumbersUri = b.authority(PrivacyBridge.AUTHORITY).path("numbers/").build();
     if (privacyContentObserver == null) {
@@ -56,7 +57,7 @@ public class GDataInitPrivacy {
               privacyContentObserver);
       context.getContentResolver().
           registerContentObserver(
-              hiddenNumbersUri,
+              hiddenNUri,
               true,
               privacyContentObserver);
     }
@@ -82,7 +83,7 @@ public class GDataInitPrivacy {
       Log.e("GDATA", "Remote Service Exception:  " + "wrong signatures " + e.getMessage());
     }
     if (preferences != null) {
-      if (isInstalled) {
+      if (!isInstalled) {
         preferences.setPrivacyActivated(false);
       }
     }
@@ -119,7 +120,6 @@ public class GDataInitPrivacy {
     @Override
     public void onServiceConnected(ComponentName name, IBinder service) {
       mService = IRpcService.Stub.asInterface(service);
-      preferences.setPrivacyActivated(isPremiumEnabled());
       Log.d("GDATA", "Service binded " + (mService != null));
     }
 
