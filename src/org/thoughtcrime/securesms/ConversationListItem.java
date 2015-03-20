@@ -27,10 +27,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
+import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Emoji;
+import org.thoughtcrime.securesms.util.FutureTaskListener;
+import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.RecipientViewUtil;
 
 import java.util.Set;
@@ -52,18 +55,23 @@ public class ConversationListItem extends RelativeLayout
   private final static Typeface BOLD_TYPEFACE  = Typeface.create("sans-serif", Typeface.BOLD);
   private final static Typeface LIGHT_TYPEFACE = Typeface.create("sans-serif-light", Typeface.NORMAL);
 
-  private Context           context;
-  private Set<Long>         selectedThreads;
-  private Recipients        recipients;
-  private long              threadId;
-  private TextView          subjectView;
-  private TextView          fromView;
-  private TextView          dateView;
-  private boolean           read;
-  private ImageView         contactPhotoImage;
+  private Context                     context;
+  private Set<Long>                   selectedThreads;
+  private ListenableFutureTask<Slide> snippetSlide;
+  private FutureTaskListener<Slide>   snippetSlideListener;
+
+  private long       threadId;
+  private Recipients recipients;
+  private boolean    read;
+  private int        distributionType;
+
+  private TextView  subjectView;
+  private TextView  fromView;
+  private TextView  dateView;
+  private ImageView contactPhotoImage;
+  private ImageView mediaPreviewImage;
 
   private final Handler handler = new Handler();
-  private int distributionType;
 
   public ConversationListItem(Context context) {
     super(context);
@@ -82,14 +90,15 @@ public class ConversationListItem extends RelativeLayout
     this.dateView          = (TextView) findViewById(R.id.date);
 
     this.contactPhotoImage = (ImageView) findViewById(R.id.contact_photo_image);
+    this.mediaPreviewImage = (ImageView) findViewById(R.id.media_preview);
 
     initializeContactWidgetVisibility();
   }
 
   public void set(ThreadRecord thread, Set<Long> selectedThreads, boolean batchMode) {
     this.selectedThreads  = selectedThreads;
-    this.recipients       = thread.getRecipients();
     this.threadId         = thread.getThreadId();
+    this.recipients       = thread.getRecipients();
     this.read             = thread.isRead();
     this.distributionType = thread.getDistributionType();
 
@@ -110,11 +119,18 @@ public class ConversationListItem extends RelativeLayout
 
     setBackground(read, batchMode);
     RecipientViewUtil.setContactPhoto(context, contactPhotoImage, recipients.getPrimaryRecipient(), true);
+
+    if (thread.getSnippetSlide() != null) {
+      setSnippetSlideAttributes(thread);
+    }
   }
 
   public void unbind() {
     if (this.recipients != null)
       this.recipients.removeListener(this);
+
+    if (snippetSlide != null && snippetSlideListener != null)
+      snippetSlide.removeListener(snippetSlideListener);
   }
 
   private void initializeContactWidgetVisibility() {
@@ -137,6 +153,31 @@ public class ConversationListItem extends RelativeLayout
     }
 
     drawables.recycle();
+  }
+
+  private void setSnippetSlideAttributes(ThreadRecord thread) {
+    snippetSlide         = thread.getSnippetSlide();
+    snippetSlideListener = new FutureTaskListener<Slide>() {
+
+      @Override
+      public void onSuccess(final Slide result) {
+        if (result == null)
+          return;
+
+        handler.post(new Runnable() {
+          @Override
+          public void run() {
+            if (result.hasImage()) {
+              result.setThumbnailOn(context, mediaPreviewImage);
+            }
+          }
+        });
+      }
+
+      @Override
+      public void onFailure(Throwable error) {}
+    };
+    snippetSlide.addListener(snippetSlideListener);
   }
 
   public Recipients getRecipients() {

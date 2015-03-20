@@ -25,8 +25,10 @@ import android.text.style.StyleSpan;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;
+import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.GroupUtil;
+import org.thoughtcrime.securesms.util.ListenableFutureTask;
 
 /**
  * The message record model which represents thread heading messages.
@@ -40,16 +42,18 @@ public class ThreadRecord extends DisplayRecord {
   private final long count;
   private final boolean read;
   private final int distributionType;
+  private final ListenableFutureTask<Slide> snippetSlide;
 
   public ThreadRecord(Context context, Body body, Recipients recipients, long date,
                       long count, boolean read, long threadId, long snippetType,
-                      int distributionType)
+                      int distributionType, ListenableFutureTask<Slide> snippetSlide)
   {
     super(context, body, recipients, date, date, threadId, snippetType);
     this.context          = context.getApplicationContext();
     this.count            = count;
     this.read             = read;
     this.distributionType = distributionType;
+    this.snippetSlide     = snippetSlide;
   }
 
   @Override
@@ -109,5 +113,9 @@ public class ThreadRecord extends DisplayRecord {
 
   public int getDistributionType() {
     return distributionType;
+  }
+
+  public ListenableFutureTask<Slide> getSnippetSlide() {
+    return snippetSlide;
   }
 }
