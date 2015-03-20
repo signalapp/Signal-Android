@@ -45,6 +45,10 @@ public class MmsBodyProvider extends ContentProvider {
     return true;
   }
 
+  private File getFile(Uri uri) {
+    int messageId = Integer.parseInt(uri.getPathSegments().get(1));
+    return new File(getContext().getCacheDir(), messageId + ".mmsbody");
+  }
   @Override
   public ParcelFileDescriptor openFile(Uri uri, String mode) throws FileNotFoundException {
     Log.w(TAG, "openFile(" + uri + ", " + mode + ")");
@@ -52,8 +56,7 @@ public class MmsBodyProvider extends ContentProvider {
     switch (uriMatcher.match(uri)) {
     case SINGLE_ROW:
       Log.w(TAG, "Fetching message body for a single row...");
-      int messageId = Integer.parseInt(uri.getPathSegments().get(1));
-      File tmpFile  = new File(getContext().getCacheDir(), messageId + ".mmsbody");
+      File tmpFile = getFile(uri);
 
       final int fileMode;
       switch (mode) {
@@ -72,7 +75,11 @@ public class MmsBodyProvider extends ContentProvider {
   }
 
   @Override
-  public int delete(Uri arg0, String arg1, String[] arg2) {
+  public int delete(Uri uri, String arg1, String[] arg2) {
+    switch (uriMatcher.match(uri)) {
+    case SINGLE_ROW:
+      return getFile(uri).delete() ? 1 : 0;
+    }
     return 0;
   }
 

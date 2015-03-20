@@ -7,6 +7,7 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.Uri;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.telephony.SmsManager;
@@ -283,21 +284,20 @@ public class MmsSendJob extends SendJob {
   @TargetApi(VERSION_CODES.LOLLIPOP)
   public SendConf sendLollipopMms(Context context, byte[] pdu, long messageId) throws UndeliverableMessageException {
     try {
-      File file = new File(context.getCacheDir(), messageId + ".mmsbody");
-      Util.copy(new ByteArrayInputStream(pdu), new FileOutputStream(file));
+      Uri contentUri = ContentUris.withAppendedId(MmsBodyProvider.CONTENT_URI, messageId);
+      Util.copy(new ByteArrayInputStream(pdu), context.getContentResolver().openOutputStream(contentUri, "w"));
 
-      SmsManager.getDefault().sendMultimediaMessage(context, ContentUris.withAppendedId(MmsBodyProvider.CONTENT_URI, messageId), null, null,
+      SmsManager.getDefault().sendMultimediaMessage(context, contentUri, null, null,
                                                     PendingIntent.getBroadcast(context, 1, new Intent(MmsSentReceiver.ACTION), PendingIntent.FLAG_ONE_SHOT));
+
       synchronized (mmsSentReceiver) {
         while (!mmsSentReceiver.isFinished()) Util.wait(mmsSentReceiver, 30000);
       }
       Log.w(TAG, "MMS broadcast received and processed.");
       context.getApplicationContext().unregisterReceiver(mmsSentReceiver);
+      context.getContentResolver().delete(contentUri, null, null);
       byte[] response = mmsSentReceiver.getResponse();
 
-      if (!file.delete()) {
-        Log.w(TAG, "couldn't delete " + file.getAbsolutePath());
-      }
       return (SendConf) new PduParser(response).parse();
     } catch (IOException ioe) {
       throw new UndeliverableMessageException(ioe);
@@ -307,7 +307,7 @@ public class MmsSendJob extends SendJob {
   public static class MmsSentReceiver extends BroadcastReceiver {
     public static final String ACTION = MmsSendJob.class.getCanonicalName() + "MMS_SENT_ACTION";
 
-    private byte[] response;
+    private byte[]  response;
     private boolean finished;
 
     @TargetApi(VERSION_CODES.LOLLIPOP)
