@@ -111,6 +111,8 @@
         <item name="pref_ic_advanced">@drawable/ic_advanced_black</item>
 
         <item name="app_protect_timeout_picker_color">@style/BetterPickersDialogFragment.Light</item>
+
+        <item name="group_members_dialog_icon">@drawable/ic_group_grey600_24dp</item>
     </style>
 
     <style name="TextSecure.DarkTheme" parent="@style/Theme.AppCompat">
@@ -217,6 +219,9 @@
         <item name="pref_ic_advanced">@drawable/ic_advanced_gray</item>
 
         <item name="app_protect_timeout_picker_color">@style/BetterPickersDialogFragment</item>
+
+        <item name="md_dark_theme">true</item>
+        <item name="group_members_dialog_icon">@drawable/ic_group_white_24dp</item>
     </style>
 
     <style name="TextSecure.Light.Dialog"
