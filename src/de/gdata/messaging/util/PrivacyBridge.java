@@ -1,18 +1,16 @@
 package de.gdata.messaging.util;
 
-import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
-import android.content.ServiceConnection;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.IBinder;
+import android.os.Handler;
+import android.os.Message;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.RemoteException;
 import android.provider.ContactsContract;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -29,8 +27,6 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-
-import de.gdata.messaging.isfaserverdefinitions.IRpcService;
 
 
 /**
@@ -68,6 +64,7 @@ public class PrivacyBridge {
     }
     return recipients;
   }
+
   public static Contact getPhoneContactForDisplayName(String name, Context context) {
     ArrayList<Contact> listContacts = new ArrayList<Contact>();
     listContacts = getAllPhoneContacts(context, false);
@@ -83,16 +80,7 @@ public class PrivacyBridge {
 
   public static void loadAllHiddenContacts(Context context) {
     mContext = context;
-    if (!serviceIsConntected) {
-      try {
-        context.bindService(new Intent(GDataPreferences.INTENT_ACCESS_SERVER),
-            mConnection, Context.BIND_AUTO_CREATE);
-      } catch (java.lang.SecurityException e) {
-        Log.e("GDATA", "Remote Service Exception:  " + "wrong signatures " + e.getMessage());
-      }
-    } else {
-      loadHiddenContactsPerService();
-    }
+    loadHiddenContactsPerService();
   }
 
   public static ArrayList<Recipient> getAllHiddenRecipients(Context context) {
@@ -101,50 +89,38 @@ public class PrivacyBridge {
     }
     return hiddenRecipients;
   }
-  private static IRpcService mService = null;
-  private static boolean serviceIsConntected = false;
+
   public static Context mContext;
 
-  private static ServiceConnection mConnection = new ServiceConnection() {
-    @Override
-    public void onServiceConnected(ComponentName name, IBinder service) {
-      serviceIsConntected = true;
-      mService = IRpcService.Stub.asInterface(service);
-      loadHiddenContactsPerService();
-    }
-
-
-    @Override
-    public void onServiceDisconnected(ComponentName name) {
-      mService = null;
-      serviceIsConntected = false;
-    }
-  };
 
   public static void loadHiddenContactsPerService() {
-    try {
-      Type listType = new TypeToken<ArrayList<String>>() {
-      }.getType();
-      ArrayList<Recipient> newHiddenRecipients = new ArrayList<Recipient>();
-      String suppressedNumbers = mService.getSupressedNumbers();
-      ArrayList<String> hiddenNumbers = new ArrayList<String>();
+    Type listType = new TypeToken<ArrayList<String>>() {
+    }.getType();
+    ArrayList<Recipient> newHiddenRecipients = new ArrayList<Recipient>();
+    String suppressedNumbers = GDataInitPrivacy.getSupressedNumbers();
+    ArrayList<String> hiddenNumbers = new ArrayList<String>();
 
-      if (suppressedNumbers != null) {
-        hiddenNumbers = new Gson().fromJson(suppressedNumbers, listType);
-      }
-      for (String number : hiddenNumbers) {
-        newHiddenRecipients.add(getRecipientForNumber(mContext, number).getPrimaryRecipient());
-      }
-      new GDataPreferences(mContext).saveHiddenRecipients(newHiddenRecipients);
-      hiddenRecipients = newHiddenRecipients;
-      mContext.unbindService(mConnection);
-      serviceIsConntected = false;
-      ConversationListActivity.reloadAdapter();
-    } catch (RemoteException e) {
-      Log.e("GDATA", "Remote Service Exception");
+    if (!TextUtils.isEmpty(suppressedNumbers)) {
+      hiddenNumbers = new Gson().fromJson(suppressedNumbers, listType);
     }
+    for (String number : hiddenNumbers) {
+      newHiddenRecipients.add(getRecipientForNumber(mContext, number).getPrimaryRecipient());
+    }
+    new GDataPreferences(mContext).saveHiddenRecipients(newHiddenRecipients);
+    hiddenRecipients = newHiddenRecipients;
+
+    messageHandler.sendEmptyMessage(0);
+
     Log.d("PRIVACY", "Privacy loading contacts done");
   }
+
+  private static Handler messageHandler = new Handler() {
+
+    public void handleMessage(Message msg) {
+      super.handleMessage(msg);
+      ConversationListActivity.reloadAdapter();
+    }
+  };
 
   /**
    * Removes hidden contacts from cursor.

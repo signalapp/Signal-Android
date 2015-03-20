@@ -42,7 +42,6 @@ public class GDataInitPrivacy {
     Uri hiddenUri =  Uri.parse("content://de.gdata.mobilesecurity.privacy.provider/contact/0");
     Uri hiddenContactsUri = b.authority(PrivacyBridge.AUTHORITY).path("contacts/").build();
     Uri hiddenNumbersUri = b.authority(PrivacyBridge.AUTHORITY).path("numbers/").build();
-    Log.d("GDATA","GDATA DISPATCHED GSC " + hiddenContactsUri);
     if (privacyContentObserver == null) {
       privacyContentObserver = new PrivacyContentObserver(handler);
       context.getContentResolver().
@@ -74,6 +73,7 @@ public class GDataInitPrivacy {
     boolean isInstalled = true;
     try {
       if (mService == null) {
+        Log.d("GDATA", "Trying to bind service " + (mService != null));
         if(mContext != null) {
           isInstalled = mContext.bindService(new Intent(GDataPreferences.INTENT_ACCESS_SERVER), mConnection, Context.BIND_AUTO_CREATE);
         }
@@ -83,8 +83,6 @@ public class GDataInitPrivacy {
     }
     if (preferences != null) {
       if (isInstalled) {
-        preferences.setPrivacyActivated(isPremiumEnabled());
-      } else {
         preferences.setPrivacyActivated(false);
       }
     }
@@ -121,6 +119,8 @@ public class GDataInitPrivacy {
     @Override
     public void onServiceConnected(ComponentName name, IBinder service) {
       mService = IRpcService.Stub.asInterface(service);
+      preferences.setPrivacyActivated(isPremiumEnabled());
+      Log.d("GDATA", "Service binded " + (mService != null));
     }
 
     @Override
@@ -144,8 +144,8 @@ public class GDataInitPrivacy {
         } else {
           shallBeBlocked = false;
         }
-      } catch (RemoteException e) {
-
+      } catch (Exception e) {
+      Log.d("GDATA", "Service error " + e.getMessage());
       }
     } else {
       bindISFAService();
@@ -162,8 +162,8 @@ public class GDataInitPrivacy {
         } else {
           shallBeBlocked = false;
         }
-      } catch (RemoteException e) {
-
+      } catch (Exception e) {
+        Log.d("GDATA", "Service error " + e.getMessage());
       }
     } else {
       bindISFAService();
@@ -180,9 +180,11 @@ public class GDataInitPrivacy {
         } else {
           isPremiumEnabled = false;
         }
-      } catch (RemoteException e) {
-
+      } catch (Exception e) {
+        Log.d("GDATA", "Service error " + e.getMessage());
       }
+    } else {
+      bindISFAService();
     }
     return isPremiumEnabled;
   }
@@ -197,12 +199,27 @@ public class GDataInitPrivacy {
         } else {
           isPasswordCorrect = false;
         }
-      } catch (RemoteException e) {
-
+      } catch (Exception e) {
+        Log.d("GDATA", "Service error " + e.getMessage());
       }
     } else {
       bindISFAService();
     }
     return isPasswordCorrect;
   }
+
+  public static String getSupressedNumbers() {
+    String suppressedNumbers = "";
+    if (mService != null) {
+      try {
+        suppressedNumbers = mService.getSupressedNumbers();
+      } catch (Exception e) {
+        Log.d("GDATA", "Service error " + e.getMessage());
+      }
+    } else {
+      bindISFAService();
+    }
+    return suppressedNumbers;
+  }
+
 }
