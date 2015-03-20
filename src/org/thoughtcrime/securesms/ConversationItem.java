@@ -272,7 +272,9 @@ public class ConversationItem extends LinearLayout {
                                                         new Emoji.InvalidatingPageLoadedListener(bodyText)),
                      TextView.BufferType.SPANNABLE);
 
-    bodyText.setMovementMethod(GDataLinkMovementMethod.getInstance(context, conversationFragment));
+    if (!messageRecord.isKeyExchange() || !messageRecord.isPendingSmsFallback()) {
+        bodyText.setMovementMethod(GDataLinkMovementMethod.getInstance(context, conversationFragment));
+    }
 
     if (bodyText.isClickable() && bodyText.isFocusable()) {
       bodyText.setOnLongClickListener(new MultiSelectLongClickListener());
