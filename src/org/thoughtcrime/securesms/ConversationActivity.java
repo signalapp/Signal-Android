@@ -343,9 +343,14 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void handleInviteLink() {
     try {
+      if (!TextUtils.isEmpty(composeText.getText()) &&
+          !composeText.getText().toString().endsWith(" "))
+      {
+        composeText.append(" ");
+      }
       boolean a = SecureRandom.getInstance("SHA1PRNG").nextBoolean();
-      if (a) composeText.setText(getString(R.string.ConversationActivity_get_with_it, "http://sgnl.link/zhrzvk6"));
-      else   composeText.setText(getString(R.string.ConversationActivity_install_textsecure, "http://sgnl.link/1yKYqoN"));
+      if (a) composeText.append(getString(R.string.ConversationActivity_get_with_it, "http://sgnl.link/zhrzvk6"));
+      else   composeText.append(getString(R.string.ConversationActivity_install_textsecure, "http://sgnl.link/1yKYqoN"));
     } catch (NoSuchAlgorithmException e) {
       throw new AssertionError(e);
     }
