@@ -22,19 +22,15 @@ Pozor, s tem boste onemogočili šifriranje sporočil in ključev v pomnilniku n
   <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">S tem boste izključili potisna sporočila in se odjavili s strežnika.
 Za ponovno uporabo potisnih sporočil se boste morali zopet prijaviti s svojo telefonsko številko.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Napaka pri povezavi s strežnikom!</string>
-  <string name="ApplicationPreferencesActivity_sms_enabled">Dohodna SMS sporočila vklopljena</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">SMS Omogočeno</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Dotaknite se za spremembo privzete aplikacije za sporočila SMS</string>
-  <string name="ApplicationPreferencesActivity_sms_disabled">Dohodna SMS sporočila izklopljena</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">SMS Izklopljeno</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Z dotikom nastavi TexteScure za privzeto aplikacijo SMS</string>
   <string name="ApplicationPreferencesActivity_on">Vključeno</string>
   <string name="ApplicationPreferencesActivity_On">Vključeno</string>
   <string name="ApplicationPreferencesActivity_off">Izključeno</string>
   <string name="ApplicationPreferencesActivity_Off">Izključeno</string>
-  <string name="ApplicationPreferencesActivity_partial">Delno</string>
-  <string name="ApplicationPreferencesActivity_sms">SMS</string>
-  <string name="ApplicationPreferencesActivity_mms">MMS</string>
-  <string name="ApplicationPreferencesActivity_incoming_sms_summary">Dohodna %s</string>
-  <string name="ApplicationPreferencesActivity_outgoing_sms_summary">Odhodna %s</string>
+  <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <string name="AppProtectionPreferenceFragment_minutes">%d minut</string>
   <!--DraftDatabase-->
@@ -372,9 +368,7 @@ Prejeto sporočilo z neznanim identifikacijskim ključem. Kliknite za obdelavo i
   <string name="contact_selection_recent_activity__no_recent_calls">Ni zadnjih klicev.</string>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Pošlji sporočilo TextSecure</string>
-  <string name="conversation_activity__type_message_sms_secure">Pošlji zavarovan SMS</string>
   <string name="conversation_activity__type_message_sms_insecure">Pošlji nezavarovan SMS</string>
-  <string name="conversation_activity__type_message_mms_secure">Pošlji zavarovan MMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Pošlji nezavarovan MMS</string>
   <string name="conversation_activity__send">Pošlji</string>
   <string name="conversation_activity__remove">Odstrani</string>
@@ -515,9 +509,9 @@ bila uspešna.</string>
   <string name="verify_identity_activity__your_identity_you_read">Moja istovetnost (preberem jaz):</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Prišlo je do težav, ki zahtevajo vašo pozornost.</string>
-  <string name="message_details_header__sent">Poslano</string>
-  <string name="message_details_header__received">Prejeto</string>
-  <string name="message_details_header__via">Preko</string>
+  <string name="message_details_header__sent">Poslano:</string>
+  <string name="message_details_header__received">Prejeto:</string>
+  <string name="message_details_header__via">Način:</string>
   <string name="message_details_header__to">Za:</string>
   <string name="message_details_header__from">Od:</string>
   <string name="message_details_header__with">Z:</string>
@@ -554,16 +548,15 @@ bila uspešna.</string>
   <!--preferences.xml-->
   <string name="preferences__general">Splošno</string>
   <string name="preferences__sms_mms">SMS in MMS</string>
-  <string name="preferences__push_sms_category">Pošiljanje in prejemanje</string>
   <string name="preferences__pref_all_sms_title">Prejemaj sporočila SMS</string>
   <string name="preferences__pref_all_mms_title">Prejemaj sporočila MMS</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Uporabljaj TextSecure za ogled in shranjevanje vseh dohodnih sporočil SMS</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Uporabljaj TextSecure za ogled in shranjevanje vseh dohodnih sporočil MMS</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Uporabljaj TextSecure za vsa dohodna tekstovna sporočila</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Uporabljaj TextSecure za vsa dohodna multimedijska sporočila</string>
   <string name="preferences__input_settings">Vnos besedila</string>
-  <string name="preferences__enable_enter_key_title">Vklopi tipko \'pošlji\'</string>
-  <string name="preferences__replace_smiley_with_enter_key">Zamenjaj tipko \'smeško\' s tipko \'pošlji\'</string>
-  <string name="preferences__pref_enter_sends_title">Naprej/Enter pošlje</string>
-  <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pritisk na tipko naprej/enter pošlje sporočilo</string>
+  <string name="preferences__enable_enter_key_title">Vklopi tipko \'Naprej\'</string>
+  <string name="preferences__replace_smiley_with_enter_key">Zamenjaj tipko \'Smeško\' s tipko \'Naprej\'</string>
+  <string name="preferences__pref_enter_sends_title">Tipka \'Naprej\' pošlje</string>
+  <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pritisk na tipko \'Naprej\' pošlje sporočilo</string>
   <string name="preferences__display_settings">Nastavitve prikaza</string>
   <string name="preferences__choose_identity">Izberi identiteto</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Na sezmanu stikov izberite svojo lastno vizitko.</string>
@@ -641,21 +634,10 @@ bila uspešna.</string>
   <string name="preferences__default">Privzeto</string>
   <string name="preferences__language">Jezik</string>
   <string name="preferences__language_summary">Jezik %s</string>
-  <string name="preferences__make_default_sms_app">Nastavi za privzeto aplikacijo SMS</string>
-  <string name="preferences__make_textsecure_the_default_sms_mms_app">Nastavi TextSecure za privzeto aplikacijo SMS/MMS na napravi.</string>
-  <string name="preferences__use_data_channel">Potisna sporočila</string>
+  <string name="preferences__textsecure_messages">Sporočila TextSecure</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
-Izboljšajte stopnjo zasebnosti in se izognite stroškom sporočil SMS z uporabo podatkovnega kanala pri komunikaciji z drugimi uporabniki TextSecure</string>
-  <string name="preferences__sms_fallback">Odhodna sporočila SMS/MMS</string>
+Brezplačno zasebno sporočanje za TextSecure in Signal</string>
   <string name="preferences__submit_debug_log">Oddaj sistemsko zabeležbo</string>
-  <string name="preferences__sms_outgoing_push_users">Uporabniki TextSecure</string>
-  <string name="preferences__sms_fallback_push_users_ask">prej vprašaj</string>
-  <string name="preferences__sms_fallback_push_users_no_mms">brez MMS</string>
-  <string name="preferences__sms_outgoing_push_users_description">Kadar ni podatkovne povezave pošiljaj zaščitena SMS sporočila</string>
-  <string name="preferences__sms_fallback_ask_before_sending_sms_mms">Vprašaj preden pošlješ SMS/MMS</string>
-  <string name="preferences__sms_fallback_never_send_mms">Nikoli ne pošiljaj sporočil MMS</string>
-  <string name="preferences__sms_fallback_non_push_users">Neuporabniki TextSecure</string>
-  <string name="preferences__sms_fallback_nobody">Nikogar</string>
   <string name="preferences__support_wifi_calling">\'WiFi klicanje/WiFi Calling\' združljivostni način</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktivirajte, če vaša naprava dostalja sporočila SMS/MMS preko povezave WiFi (samo, če imate vklopljeno WiFi klicanje/WiFi Calling)</string>
   <!--****************************************-->

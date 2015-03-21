@@ -29,6 +29,7 @@ public class SmsReceiveJob extends ContextJob {
   public SmsReceiveJob(Context context, Object[] pdus) {
     super(context, JobParameters.newBuilder()
                                 .withPersistence()
+                                .withWakeLock(true)
                                 .create());
 
     this.pdus = pdus;

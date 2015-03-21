@@ -25,19 +25,15 @@ im moći pristupiti.</string>
 Ovo će onemogućiti instant poruke na način da će ukinuti registraciju na poslužitelju.
 Trebat ćete ponovno registrirati vaš broj telefona kako biste koristili instant poruke u budućnosti.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Greška prilikom povezivanja na poslužitelj!</string>
-  <string name="ApplicationPreferencesActivity_sms_enabled">Dolazne SMS poruke omogućene</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">SMS omogućen</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Pritisnite za promjenu zadane SMS aplikacije</string>
-  <string name="ApplicationPreferencesActivity_sms_disabled">Dolazne SMS poruke onemogućene</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">SMS onemogućen</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Pritisnite kako biste postavili TextSecure kao zadanu SMS aplikaciju</string>
   <string name="ApplicationPreferencesActivity_on">uključeno</string>
   <string name="ApplicationPreferencesActivity_On">Uključeno</string>
   <string name="ApplicationPreferencesActivity_off">isključeno</string>
   <string name="ApplicationPreferencesActivity_Off">Isključeno</string>
-  <string name="ApplicationPreferencesActivity_partial">djelomično</string>
-  <string name="ApplicationPreferencesActivity_sms">SMS</string>
-  <string name="ApplicationPreferencesActivity_mms">MMS</string>
-  <string name="ApplicationPreferencesActivity_incoming_sms_summary">Dolazne %s</string>
-  <string name="ApplicationPreferencesActivity_outgoing_sms_summary">odlazne %s</string>
+  <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <string name="AppProtectionPreferenceFragment_minutes">%d minuta</string>
   <!--DraftDatabase-->
@@ -69,6 +65,7 @@ ovaj kontakt.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Pritisnite za nesigurnu rezervu</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Nekriptirani SMS kao rezerva?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Nekriptirani MMS kao rezerva?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ova poruka <b>neće</b> biti kriptirana zato što primatelj više nije TextSecure korisnik.\n\nPošalji nesigurnu poruku?</string>
   <string name="ConversationItem_unable_to_open_media">Nije moguće pronaći aplikaciju za otvaranje ovog medija.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Započmi sigurnu sesiju?</string>
@@ -362,6 +359,7 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <string name="MessageNotifier_d_new_messages">%d novih poruka</string>
   <string name="MessageNotifier_most_recent_from_s">Najnovija od: %s</string>
   <string name="MessageNotifier_encrypted_message">Kriptirana poruka...</string>
+  <string name="MessageNotifier_media_message_with_text">Media poruka: %s</string>
   <string name="MessageNotifier_no_subject">(Bez naslova)</string>
   <string name="MessageNotifier_message_delivery_failed">Neuspješna isporuka poruke.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Isporuka poruke nije uspjela.</string>
@@ -390,9 +388,7 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <string name="contact_selection_recent_activity__no_recent_calls">Nema nedavnih poziva.</string>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Pošalji TextSecure poruku</string>
-  <string name="conversation_activity__type_message_sms_secure">Pošalji sigurni SMS</string>
   <string name="conversation_activity__type_message_sms_insecure">Pošalji nesigurni SMS</string>
-  <string name="conversation_activity__type_message_mms_secure">Pošalji sigurni MMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Pošalji nesigurni MMS</string>
   <string name="conversation_activity__send">Pošalji</string>
   <string name="conversation_activity__remove">Ukloni</string>
@@ -401,6 +397,7 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <string name="conversation_activity__emoji_toggle_description">Uključi/isključi emoji tipkovnicu</string>
   <string name="conversation_activity__attachment_thumbnail">Priložena sličica</string>
   <!--conversation_item-->
+  <string name="conversation_item__mms_downloading_description">Preuzimanje media poruke</string>
   <string name="conversation_item__mms_image_description">Multimedijalna poruka</string>
   <string name="conversation_item__play_button_description">Tipka za pokretanje</string>
   <string name="conversation_item__secure_message_description">Sigurna poruka</string>
@@ -470,6 +467,8 @@ Uvezi nekriptiranu kopiju kompatibilnu s \'SMSBackup And Restore\'.</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Završeno</string>
   <!--registration_activity-->
+  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
+Potvrdite svoj broj telefona kako biste se povezali sa TextSecure.</string>
   <string name="registration_activity__your_country">VAŠA ZEMLJA</string>
   <string name="registration_activity__your_country_code_and_phone_number">POZIVNI BROJ ZEMLJE I
 TELEFONSKI BROJ</string>
@@ -573,11 +572,10 @@ neuspješno.</string>
   <!--preferences.xml-->
   <string name="preferences__general">Općenito</string>
   <string name="preferences__sms_mms">SMS i MMS</string>
-  <string name="preferences__push_sms_category">Instant i SMS</string>
   <string name="preferences__pref_all_sms_title">Primi sve SMS</string>
   <string name="preferences__pref_all_mms_title">Primi sve MMS</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Koristi TextSecure za prikaz i pohranu svih dolaznih tekstualnih poruka</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Koristi TextSecure za prikaz i pohranu svih dolaznih multimedijalnih poruka</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Koristi TextSecure za sve dolazne tekst poruke</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Koristi TextSecure za sve dolazne multimedija poruke</string>
   <string name="preferences__input_settings">Postavke unosa</string>
   <string name="preferences__enable_enter_key_title">Omogući Enter tipku</string>
   <string name="preferences__replace_smiley_with_enter_key">Zamijeni tipku smješka sa Enter tipkom</string>
@@ -660,21 +658,10 @@ neuspješno.</string>
   <string name="preferences__default">Zadano</string>
   <string name="preferences__language">Jezik</string>
   <string name="preferences__language_summary">Jezik %s</string>
-  <string name="preferences__make_default_sms_app">Postavi kao zadanu SMS aplikaciju</string>
-  <string name="preferences__make_textsecure_the_default_sms_mms_app">Postavi TextSecure kao zadanu SMS/MMS aplikaciju za svoj sistem.</string>
-  <string name="preferences__use_data_channel">Instant poruke</string>
+  <string name="preferences__textsecure_messages">TextSecure poruke</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
-Povećajte privatnost i izbjegnite SMS troškove koristeći podatkovni kanal za komunikaciju sa drugim TextSecure korisnicima</string>
-  <string name="preferences__sms_fallback">Odlazni SMS/MMS</string>
+Besplatno privatno dopisivanje sa TextSecure i Signal korisnicima</string>
   <string name="preferences__submit_debug_log">Pošalji debug zapis</string>
-  <string name="preferences__sms_outgoing_push_users">TextSecure korisnici</string>
-  <string name="preferences__sms_fallback_push_users_ask">prvo pitaj</string>
-  <string name="preferences__sms_fallback_push_users_no_mms">bez MMS</string>
-  <string name="preferences__sms_outgoing_push_users_description">Pošalji sigurni SMS ukoliko je podatkovna veza izgubljena</string>
-  <string name="preferences__sms_fallback_ask_before_sending_sms_mms">Pitaj prije slanja SMS/MMS</string>
-  <string name="preferences__sms_fallback_never_send_mms">Nikad ne šalji MMS</string>
-  <string name="preferences__sms_fallback_non_push_users">Korisnici bez TextSecure</string>
-  <string name="preferences__sms_fallback_nobody">Nitko</string>
   <string name="preferences__support_wifi_calling">\'WiFi Calling\' način kompatibilnosti</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Omogućite ukoliko vaš uređaj koristi WiFi isporuku SMS/MMS poruka (omogućeno jedino kada je \'WiFi Calling\' omogućen na vašem uređaju).</string>
   <!--****************************************-->

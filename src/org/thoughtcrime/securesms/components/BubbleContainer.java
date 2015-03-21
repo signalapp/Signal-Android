@@ -148,11 +148,14 @@ public abstract class BubbleContainer extends RelativeLayout {
 
   private void setAlignment(@MediaState int mediaState) {
     RelativeLayout.LayoutParams parentParams = (RelativeLayout.LayoutParams) bodyBubble.getLayoutParams();
-    if (mediaState != MEDIA_STATE_CAPTIONED) {
+    if (mediaState == MEDIA_STATE_CAPTIONLESS) {
       parentParams.addRule(RelativeLayout.BELOW, 0);
-      parentParams.addRule(RelativeLayout.ALIGN_BOTTOM, R.id.image_view);
+      parentParams.addRule(RelativeLayout.ALIGN_BOTTOM, R.id.thumbnail_container);
+    } else if (mediaState == MEDIA_STATE_CAPTIONED) {
+      parentParams.addRule(RelativeLayout.BELOW, R.id.thumbnail_container);
+      parentParams.addRule(RelativeLayout.ALIGN_BOTTOM, 0);
     } else {
-      parentParams.addRule(RelativeLayout.BELOW, R.id.image_view);
+      parentParams.addRule(RelativeLayout.BELOW, 0);
       parentParams.addRule(RelativeLayout.ALIGN_BOTTOM, 0);
     }
     bodyBubble.setLayoutParams(parentParams);

@@ -25,17 +25,12 @@
 இது சர்வரில் இருந்து பதிவுநீக்கப்படுவது மூலம் Push செய்திகளை முடக்கும்.
 நீங்கள் எதிர்காலத்தில் மீண்டும் Push செய்திகளை பயன்படுத்த, உங்கள் தொலைபேசி எண்ணை மீண்டும் பதிவு செய்ய வேண்டும்.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">சர்வருடன் இணைவதில் பிழை!</string>
-  <string name="ApplicationPreferencesActivity_sms_enabled">உள்வரும் SMS செயல்பாட்டில் உள்ளது</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">இதை உங்கள் இயல்புநிலை SMS மென்பொருளாக்க தொடவும் </string>
-  <string name="ApplicationPreferencesActivity_sms_disabled">உள்வரும் SMS செயல்பாட்டில் இல்லை</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">TextSecure-ஐ உங்கள் இயல்புநிலை SMS மென்பொருளாக்க தொடவும்</string>
   <string name="ApplicationPreferencesActivity_on">இயக்க</string>
   <string name="ApplicationPreferencesActivity_On">இயக்க</string>
   <string name="ApplicationPreferencesActivity_off">அணை</string>
   <string name="ApplicationPreferencesActivity_Off">அணை</string>
-  <string name="ApplicationPreferencesActivity_partial">முழுமையற்ற</string>
-  <string name="ApplicationPreferencesActivity_sms">SMS</string>
-  <string name="ApplicationPreferencesActivity_mms">MMS</string>
   <!--AppProtectionPreferenceFragment-->
   <string name="AppProtectionPreferenceFragment_minutes">%d நிமிடங்கள்</string>
   <!--DraftDatabase-->
@@ -70,6 +65,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted">பாதுகாப்பற்ற குறைவடைந்த வழிக்கு தொடவும்</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">மறையாக்கபடாத SMS-ஆக அனுப்பலாமா?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">மறையாக்கபடாத MMS-ஆக அனுப்பலாமா?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">இந்த செய்தியை மறையாக்கம் செய்து அனுப்ப <b>முடியாது</b>, ஏனெனில் பெறுநர் இனி TextSecure பயனர் அல்ல.\n\nபாதுகாப்பில்லாத செய்தியாக அனுப்பலாமா?</string>
   <string name="ConversationItem_unable_to_open_media">இந்த ஊடகத்தை திறக்க முடியும் ஒரு பயன்பாட்டை கண்டுபிடிக்க முடியவில்லை.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">பாதுகாப்பான அமர்வை தொடங்களாமா?</string>
@@ -130,6 +126,8 @@
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">சாவி பரிமாற்றச் செய்தி...</string>
   <!--CustomDefaultPreference-->
+  <string name="CustomDefaultPreference_using_custom">பயன்படுத்தப்படும் விருப்பம்: %s</string>
+  <string name="CustomDefaultPreference_using_default">பயன்படுத்தப்படும் இயல்புநிலை: %s</string>
   <string name="CustomDefaultPreference_none">எதுவும் இல்லை</string>
   <!--DateUtils-->
   <string name="DateUtils_now">இப்போது</string>
@@ -361,6 +359,7 @@ SMS-களை இறக்குமதி செய்திருந்தா�
   <string name="MessageNotifier_d_new_messages">%d புதிய செய்திகள்</string>
   <string name="MessageNotifier_most_recent_from_s">மிக அண்மையில் இவரிடமிருந்து: %s</string>
   <string name="MessageNotifier_encrypted_message">மறையாக்கப்பட செய்தி...</string>
+  <string name="MessageNotifier_media_message_with_text">மீடியா செய்தி: %s</string>
   <string name="MessageNotifier_no_subject">(தலைப்பு இல்லை)</string>
   <string name="MessageNotifier_message_delivery_failed">செய்தி விநியோகிப்பது தோல்வியடைந்தது.</string>
   <string name="MessageNotifier_failed_to_deliver_message">செய்தி விநியோகிப்பது தோல்வியடைந்தது.</string>
@@ -389,16 +388,16 @@ SMS-களை இறக்குமதி செய்திருந்தா�
   <string name="contact_selection_recent_activity__no_recent_calls">சமீபத்திய அழைப்புகள் இல்லை.</string>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">TextSecure செய்தி அனுப்பு</string>
-  <string name="conversation_activity__type_message_sms_secure">பாதுகாப்பான SMS அனுப்பு </string>
   <string name="conversation_activity__type_message_sms_insecure">பாதுகாப்பில்லாத SMS அனுப்பு </string>
-  <string name="conversation_activity__type_message_mms_secure">பாதுகாப்பான MMS அனுப்பு </string>
   <string name="conversation_activity__type_message_mms_insecure">பாதுகாப்பில்லாத MMS அனுப்பு </string>
   <string name="conversation_activity__send">அனுப்பு</string>
   <string name="conversation_activity__remove">நீக்கு</string>
   <string name="conversation_activity__window_description">%1$s உடன் உரையாடல்</string>
   <string name="conversation_activity__compose_description">செய்தி தொகுப்பு</string>
   <string name="conversation_activity__emoji_toggle_description">உணர்ச்சித்திர விசைப்பலகைக்கு மாற்று</string>
+  <string name="conversation_activity__attachment_thumbnail">இணைப்பின் சிறுபடம்</string>
   <!--conversation_item-->
+  <string name="conversation_item__mms_downloading_description">மீடியா செய்தி பதிவிறக்கப்படுகிறது</string>
   <string name="conversation_item__mms_image_description">மீடியா செய்தி</string>
   <string name="conversation_item__play_button_description">ஓட்டு பொத்தான்</string>
   <string name="conversation_item__secure_message_description">பாதுகாப்பான செய்தி</string>
@@ -469,6 +468,8 @@ SMS-களை இறக்குமதி செய்திருந்தா�
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">முடிந்தது</string>
   <!--registration_activity-->
+  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
+TextSecure-உடன் இணைய உங்கள் எண்ணைச் சரிபார்க்கவும்.</string>
   <string name="registration_activity__your_country">உங்கள் நாடு</string>
   <string name="registration_activity__your_country_code_and_phone_number">உங்கள் நாட்டின் குறியீடு மற்றும்
 உங்கள் தொலைபேசி எண்</string>
@@ -529,6 +530,9 @@ TextSecure சரிபார்ப்பு SMS-செய்திக்கா�
 தோல்வியடைந்தது.
     </string>
   <string name="registration_progress_activity__generating_keys">சாவிகள் உருவாக்கப்படுகிறது...</string>
+  <string name="registration_progress_activity__alert">எச்சரிக்கை</string>
+  <string name="registration_progress_activity__telephone">தொலைபேசி</string>
+  <string name="registration_progress_activity__check">பார்க்க</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>ஒரு பெயர் அல்லது எண்ணை உள்ளிடவும்</small></string>
   <string name="recipients_panel__add_member">குழுஉறுப்பினர் சேர்க்</string>
@@ -558,6 +562,8 @@ TextSecure சரிபார்ப்பு SMS-செய்திக்கா�
   <!--arrays.xml-->
   <string name="arrays__import_export">இறக்குமதி / ஏற்றுமதி</string>
   <string name="arrays__my_identity_key">என் அடையாளச் சாவி</string>
+  <string name="arrays__use_default">இயல்புநிலை பயன்படுத்தவும்</string>
+  <string name="arrays__use_custom">விருப்பம் பயன்படுத்தவும்</string>
   <!--plurals.xml-->
   <plurals name="minutes_ago">
     <item quantity="one">%d நிமிடம்</item>
@@ -570,11 +576,8 @@ TextSecure சரிபார்ப்பு SMS-செய்திக்கா�
   <!--preferences.xml-->
   <string name="preferences__general">பொதுவான</string>
   <string name="preferences__sms_mms">SMS மற்றும் MMS</string>
-  <string name="preferences__push_sms_category">Push மற்றும் SMS</string>
   <string name="preferences__pref_all_sms_title">அனைத்து SMSகளையும் பெறுக</string>
   <string name="preferences__pref_all_mms_title">அனைத்து MMSகளையும் பெறுக</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">அனைத்து உள்வரும் குறுஞ்செய்திகளையும் பார்க்கவும் சேமிப்பதற்கும் TextSecure பயன்படுத்தவும்</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">அனைத்து உள்வரும் MMS செய்திகளையும் பார்க்கவும் சேமிப்பதற்கும் TextSecure பயன்படுத்தவும்</string>
   <string name="preferences__input_settings">உள்ளீட்டு அமைப்புகள்</string>
   <string name="preferences__enable_enter_key_title">பதிவு விசையை செயல்படுத்து</string>
   <string name="preferences__replace_smiley_with_enter_key"> உணர்ச்சித்திர விசைக்கு பதிலாக உள்ளீட்டு விசையை காட்டவும் </string>
@@ -587,8 +590,10 @@ TextSecure சரிபார்ப்பு SMS-செய்திக்கா�
   <string name="preferences__change_passphrase">கடவுச்சொல்லை மாற்று</string>
   <string name="preferences__change_my_passphrase">என் கடவுச்சொல்லை மாற்று</string>
   <string name="preferences__enable_passphrase">கடவுச்சொல்லை செயல்படுத்து</string>
+  <string name="preferences__passphrase_summary">கடவுச்சொல் %s</string>
   <string name="preferences__enable_local_encryption_of_messages_and_keys">சாவிகள் மற்றும் செய்திகளின் கோப்பை மறையாக்கம் செய்வதை செயல்படுத்து</string>
   <string name="preferences__screen_security">திரை பாதுகாப்பு</string>
+  <string name="preferences__screen_security_summary">திரை பாதுகாப்பு %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">அண்மை பட்டியல் மற்றும் மென்பொருளுக்கு உள்ளே திரையை படம் எடுப்பதை தடுக்கவும்</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">கொஞ்சம் கால இடைவெளிக்குபிறகு நினைவகத்‌தில் இருந்து கடவுச்சொல்லை மறக்கச்செய்யவும்</string>
   <string name="preferences__timeout_passphrase">கடவுச்சொல்லின் காலாவதி</string>
@@ -636,6 +641,11 @@ TextSecure சரிபார்ப்பு SMS-செய்திக்கா�
   <string name="preferences__advanced_mms_access_point_names">நீங்கள் செய்யவேண்டிய MMS அமைப்புகள்</string>
   <string name="preferences__enable_manual_mms">நீங்கள் செய்த MMS அமைப்புகளை பயன்படுத்தவும்</string>
   <string name="preferences__override_system_mms_settings">தொலைபேசியின் MMS அமைப்புகளை கீழே உள்ள தகவல்களை பயன்படுத்துவதன் மூலம்  புறக்கணிக்க.</string>
+  <string name="preferences__mmsc_url">MMSC URL</string>
+  <string name="preferences__mms_proxy_host">MMS Proxy Host</string>
+  <string name="preferences__mms_proxy_port">MMS Proxy Port</string>
+  <string name="preferences__mmsc_username">MMSC Username</string>
+  <string name="preferences__mmsc_password">MMSC Password</string>
   <string name="preferences__sms_delivery_reports">SMS விநியோக அறிக்கைகள்</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">நீங்கள் அனுப்பும் அனைத்து SMS-களுக்கும் விநியோக அறிக்கைகளை வேண்டவும்</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">ஒரு உரையாடல் நூல் குறிப்பிட்ட நீளத்தைவிட அதிகமானவுடன் தானாக பழைய செய்திகளை நீக்கவும் </string>
@@ -646,24 +656,12 @@ TextSecure சரிபார்ப்பு SMS-செய்திக்கா�
   <string name="preferences__light_theme">வெளிச்சமிக்க</string>
   <string name="preferences__dark_theme">இருள்கொண்ட </string>
   <string name="preferences__appearance">தோற்றம்</string>
-  <string name="preferences__theme">வடிவமைப்பு</string>
+  <string name="preferences__theme">நிறவடிவமைப்பு</string>
+  <string name="preferences__theme_summary">நிறவடிவமைப்பு %s</string>
   <string name="preferences__default">இயல்புநிலை</string>
   <string name="preferences__language">மொழி</string>
-  <string name="preferences__make_default_sms_app">இயல்புநிலை SMS மென்பொருளாக அமைக்க</string>
-  <string name="preferences__make_textsecure_the_default_sms_mms_app">TextSecure-ஐ தொலைபேசியின் இயல்புநிலை SMS மென்பொருளாக அமை.</string>
-  <string name="preferences__use_data_channel">Push செய்திகள்</string>
-  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
-தனியுரிமையை அதிகரிக்கவும் மற்றும் SMS கட்டணங்களை தவிர்க்கவும்  இணைய தொடர்பை  பயன்படுத்துவதன் மூலம் மற்ற TextSecure பயனர்களுடன் தொடர்புகொள்ளலாம்.</string>
-  <string name="preferences__sms_fallback">வெளிச்செல்லும் SMS/MMS</string>
+  <string name="preferences__language_summary">மொழி %s</string>
   <string name="preferences__submit_debug_log">பிழைத்திருத்த பதிவுகளை சமர்ப்பி</string>
-  <string name="preferences__sms_outgoing_push_users">TextSecure பயனர்கள்</string>
-  <string name="preferences__sms_fallback_push_users_ask">முதலில் கேட்க</string>
-  <string name="preferences__sms_fallback_push_users_no_mms">MMS இல்லை</string>
-  <string name="preferences__sms_outgoing_push_users_description">இணையத் தொடர்பு துண்டிக்கப்பட்டதென்றால், பாதுகாப்பான SMS அனுப்ப</string>
-  <string name="preferences__sms_fallback_ask_before_sending_sms_mms">SMS/MMS அனுப்பும் முன் கேட்க</string>
-  <string name="preferences__sms_fallback_never_send_mms">ஒருபோதும் MMS அனுப்பக்கூடாது </string>
-  <string name="preferences__sms_fallback_non_push_users">TextSecure பயன்படுத்தாதவர்கள்</string>
-  <string name="preferences__sms_fallback_nobody">ஒருவருமில்லை</string>
   <string name="preferences__support_wifi_calling">\'WiFi அழைப்புகள்\' பொருந்தக்கூடிய முறை</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">உங்கள் சாதனம் SMS/MMS விநியோகத்தை WiFi வழியில் பயன்படுத்துகிறது என்றால் இதை செயல்படுத்தவும் (உங்கள் சாதனத்தில் \'Wifi அழைப்புகள்\' செயல்படுத்தப்படும் போது மட்டுமே செயல்படுத்தவும்).</string>
   <!--****************************************-->
@@ -690,6 +688,7 @@ TextSecure சரிபார்ப்பு SMS-செய்திக்கா�
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">இணைப்பைச் சேமி</string>
   <!--conversation_insecure-->
+  <string name="conversation_insecure__invite">அழை</string>
   <!--conversation_insecure_no_push-->
   <string name="conversation_insecure__menu_start_secure_session">பாதுகாப்பான அமர்வு தொடங்கு</string>
   <string name="conversation_insecure__security">பாதுகாப்பு</string>
@@ -699,6 +698,9 @@ TextSecure சரிபார்ப்பு SMS-செய்திக்கா�
   <!--conversation_list-->
   <string name="conversation_list__menu_search">தேடல்</string>
   <!--conversation_list_item_view-->
+  <string name="conversation_list_item_view__contact_photo_image">தொடர்பின் புகைப்படம்</string>
+  <string name="conversation_list_item_view__attachment_indicator">இணைப்பு காட்டி</string>
+  <string name="conversation_list_item_view__error_alert">பிழை எச்சரிக்கை</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">புதிய உரையாடல்</string>
   <!--conversation_secure_verified-->
@@ -750,5 +752,6 @@ TextSecure சரிபார்ப்பு SMS-செய்திக்கா�
   <string name="trimmer__deleting_old_messages">நான் பழையசெய்திகள் நீக்கப்படுகிறது...</string>
   <string name="trimmer__old_messages_successfully_deleted">பழையசெய்திகள் நீக்கப்பட்டது</string>
   <!--transport_selection_list_item-->
+  <string name="transport_selection_list_item__transport_icon">போக்குவரத்து குறும்படம்</string>
   <!--EOF-->
 </resources>

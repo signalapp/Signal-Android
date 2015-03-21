@@ -23,19 +23,15 @@ Advarsel! Dette vil deaktivere kryptert lagring av alle meldinger og nøkler. Di
 Dette vil deaktivere \'push\' meldinger ved å avregistrere deg fra tjenesten.
 Du må registrere telefonnummeret ditt på nytt dersom du ønsker å benytte \'push\' meldinger i fremtiden.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Feil ved tilkobling til meldingstjener!</string>
-  <string name="ApplicationPreferencesActivity_sms_enabled">Innkommende SMS aktivert</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">SMS aktivert</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Klikk for å endre standard SMS applikasjon</string>
-  <string name="ApplicationPreferencesActivity_sms_disabled">Innkommende SMS deaktivert</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">SMS deaktivert</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Klikk for å la TextSecure være din standard SMS applikasjon</string>
   <string name="ApplicationPreferencesActivity_on">på</string>
   <string name="ApplicationPreferencesActivity_On">På</string>
   <string name="ApplicationPreferencesActivity_off">av</string>
   <string name="ApplicationPreferencesActivity_Off">Av</string>
-  <string name="ApplicationPreferencesActivity_partial">delvis</string>
-  <string name="ApplicationPreferencesActivity_sms">SMS</string>
-  <string name="ApplicationPreferencesActivity_mms">MMS</string>
-  <string name="ApplicationPreferencesActivity_incoming_sms_summary">Innkommende %s</string>
-  <string name="ApplicationPreferencesActivity_outgoing_sms_summary">utgående %s</string>
+  <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <string name="AppProtectionPreferenceFragment_minutes">%d minutter</string>
   <!--DraftDatabase-->
@@ -380,9 +376,7 @@ Mottatt melding med ukjent ID nøkkel. Klikk for å prosessere og vise.</string>
   <string name="contact_selection_recent_activity__no_recent_calls">Ingen nye samtaler.</string>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Send TextSecure melding</string>
-  <string name="conversation_activity__type_message_sms_secure">Send sikker SMS</string>
   <string name="conversation_activity__type_message_sms_insecure">Send usikret SMS</string>
-  <string name="conversation_activity__type_message_mms_secure">Send sikker MMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Send usikret MMS</string>
   <string name="conversation_activity__send">Send</string>
   <string name="conversation_activity__remove">Slett</string>
@@ -556,11 +550,10 @@ feilet.</string>
   <!--preferences.xml-->
   <string name="preferences__general">Generelt</string>
   <string name="preferences__sms_mms">SMS og MMS</string>
-  <string name="preferences__push_sms_category">\'Push\' og SMS</string>
   <string name="preferences__pref_all_sms_title">Motta alle SMS</string>
   <string name="preferences__pref_all_mms_title">Motta alle MMS</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Benytt TextSecure for å lese og lagre alle innkommende SMS meldinger.</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Benytt TextSecure for å lese og lagre alle innkommende MMS meldinger.</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Benytt TextSecure for alle innkommende tekstmeldinger.</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Benytt TextSecure for alle innkommende multimediameldinger.</string>
   <string name="preferences__input_settings">Innstillinger for inndata</string>
   <string name="preferences__enable_enter_key_title">Aktiver \"Enter\" tasten</string>
   <string name="preferences__replace_smiley_with_enter_key">Bytt ut \"Smiley\" tasten med en \"Enter\" tast</string>
@@ -643,21 +636,11 @@ feilet.</string>
   <string name="preferences__default">Standard</string>
   <string name="preferences__language">Språk</string>
   <string name="preferences__language_summary">Språk %s</string>
-  <string name="preferences__make_default_sms_app">Sett som standard SMS applikasjon</string>
-  <string name="preferences__make_textsecure_the_default_sms_mms_app">La TextSecure være enhetens standard SMS/MMS applikasjon.</string>
-  <string name="preferences__use_data_channel">\'Push\' meldinger</string>
+  <string name="preferences__textsecure_messages">TextSecure meldinger</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
-Styrk personvernet ditt og unngå SMS kostnader ved å benytte mobil data når du kommuniserer med andre TextSecure brukere.</string>
-  <string name="preferences__sms_fallback">Utgående SMS/MMS</string>
+Gratis og private meldinger til TextSecure og Signal brukere
+ </string>
   <string name="preferences__submit_debug_log">Send debug logg</string>
-  <string name="preferences__sms_outgoing_push_users">TextSecure brukere</string>
-  <string name="preferences__sms_fallback_push_users_ask">spør først</string>
-  <string name="preferences__sms_fallback_push_users_no_mms">ingen MMS</string>
-  <string name="preferences__sms_outgoing_push_users_description">Send sikker SMS dersom mobil data er utilgjengelig</string>
-  <string name="preferences__sms_fallback_ask_before_sending_sms_mms">Spør før utsendelse av SMS/MMS</string>
-  <string name="preferences__sms_fallback_never_send_mms">Aldri send MMS</string>
-  <string name="preferences__sms_fallback_non_push_users">Brukere uten TextSecure</string>
-  <string name="preferences__sms_fallback_nobody">Ingen</string>
   <string name="preferences__support_wifi_calling">\'WiFi anrop\' kompatibilititetsmodus</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktiver dersom din enhet benytter WiFi for å levere SMS/MMS  (velges kun dersom \'WiFi anrop\' er aktivert).</string>
   <!--****************************************-->

@@ -80,23 +80,6 @@ public class TextSlide extends Slide {
     }
   }
 
-  @Override
-  public SMILRegionElement getSmilRegion(SMILDocument document) {
-    SMILRegionElement region = (SMILRegionElement) document.createElement("region");
-    region.setId("Text");
-    region.setLeft(0);
-    region.setTop(SmilUtil.ROOT_HEIGHT);
-    region.setWidth(SmilUtil.ROOT_WIDTH);
-    region.setHeight(50);
-    region.setFit("meet");
-    return region;
-  }
-
-  @Override
-  public SMILMediaElement getMediaElement(SMILDocument document) {
-    return SmilUtil.createMediaElement("text", document, new String(getPart().getName()));
-  }
-
   private static PduPart getPartForMessage(String message) {
     PduPart part = new PduPart();
 

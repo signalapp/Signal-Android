@@ -26,17 +26,12 @@ Honek push mezuak desgaituko du zu zerbitzaritik deserregistratuz.
 Zure telefono zenbakia bererregistratu beharko duzu push mezuak berriro erabili ahal izateko.
 </string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Errorea zerbitzariarekin konektatzerakoan!</string>
-  <string name="ApplicationPreferencesActivity_sms_enabled">Sarrerako SMSak Gaituta</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Ukitu zure SMS aplikazio lehenetsia aldatzeko</string>
-  <string name="ApplicationPreferencesActivity_sms_disabled">Sarrerako SMSak Desgaituta</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Ukitu TextSecure zure SMS aplikazio lehenetsia bihurtzeko</string>
   <string name="ApplicationPreferencesActivity_on">piztuta</string>
   <string name="ApplicationPreferencesActivity_On">Aktibatuta</string>
   <string name="ApplicationPreferencesActivity_off">desaktibatuta</string>
   <string name="ApplicationPreferencesActivity_Off">Desaktibatuta</string>
-  <string name="ApplicationPreferencesActivity_partial">partziala</string>
-  <string name="ApplicationPreferencesActivity_sms">SMS</string>
-  <string name="ApplicationPreferencesActivity_mms">MMS</string>
   <!--AppProtectionPreferenceFragment-->
   <string name="AppProtectionPreferenceFragment_minutes">%d minutu</string>
   <!--DraftDatabase-->
@@ -369,9 +364,7 @@ Nortasun gako ezezagun batekin jaso da mezua. Klik egin prozesatzeko eta erakust
   <string name="contact_selection_recent_activity__no_recent_calls">Ez dago azken deirik.</string>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Bidali TextSecure-eko mezua</string>
-  <string name="conversation_activity__type_message_sms_secure">SMS mezu segurua bidali</string>
   <string name="conversation_activity__type_message_sms_insecure">SMS ez segurua bidali</string>
-  <string name="conversation_activity__type_message_mms_secure">MMS mezu segurua bidali</string>
   <string name="conversation_activity__type_message_mms_insecure">MMS ez segurua bidali</string>
   <string name="conversation_activity__send">Bidali</string>
   <string name="conversation_activity__remove">Ezabatu</string>
@@ -526,11 +519,8 @@ huts egin du.
   <!--preferences.xml-->
   <string name="preferences__general">Orokorra</string>
   <string name="preferences__sms_mms">SMS eta MMS</string>
-  <string name="preferences__push_sms_category">Push eta SMS</string>
   <string name="preferences__pref_all_sms_title">Jaso SMS guztiak</string>
   <string name="preferences__pref_all_mms_title">Jaso MMS guztiak</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">TextSecure erabili etorriko diren testu mezu guztiak ikusi eta gordetzeko</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">TextSecure erabili etorriko diren multimedia mezu guztiak ikusi eta gordetzeko</string>
   <string name="preferences__input_settings">Sarreraren Ezarpenak</string>
   <string name="preferences__enable_enter_key_title">Enter tekla gaitu</string>
   <string name="preferences__replace_smiley_with_enter_key">Smiley tekla Enter teklaren bidez ordezkatu</string>
@@ -597,21 +587,7 @@ huts egin du.
   <string name="preferences__theme">Gaia</string>
   <string name="preferences__default">Lehenetsia</string>
   <string name="preferences__language">Hizkuntza</string>
-  <string name="preferences__make_default_sms_app">Lehenetsitako SMS aplikazio gisa ezarri</string>
-  <string name="preferences__make_textsecure_the_default_sms_mms_app">TextSecure zure sistemaren lehenetsitako SMS/MMS aplikazioa bihurtu.</string>
-  <string name="preferences__use_data_channel">Push mezuak</string>
-  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
-Hobetu zure pribatutasuna eta ekidin SMS tasak datu kanala erabiliz TextSecure-eko beste erabiltzaile batzuekin komunikatzeko </string>
-  <string name="preferences__sms_fallback">Irteerako SMS/MMS</string>
   <string name="preferences__submit_debug_log">Arazketaren log-a bidali</string>
-  <string name="preferences__sms_outgoing_push_users">TextSecure-eko erabiltzaileak</string>
-  <string name="preferences__sms_fallback_push_users_ask">galdetu lehenago</string>
-  <string name="preferences__sms_fallback_push_users_no_mms">MMSrik ez</string>
-  <string name="preferences__sms_outgoing_push_users_description">SMS segurua bidali konexioa galtzen bada</string>
-  <string name="preferences__sms_fallback_ask_before_sending_sms_mms">Galdetu SMS/MMS bidali baino lehenago</string>
-  <string name="preferences__sms_fallback_never_send_mms">Ez bidali MMSrik inoiz.</string>
-  <string name="preferences__sms_fallback_non_push_users">Ez dira TextSecure-eko erabiltzaileak</string>
-  <string name="preferences__sms_fallback_nobody">Inor ez</string>
   <string name="preferences__support_wifi_calling">\'\"WiFi Calling\' modu bateragarria</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Gaitu zure gailuak WiFi bidezko SMS/MMS banaketa erabiltzen badu (bakarrik gaitu \'WiFi Calling\' gaituta badago zure gailuan).</string>
   <!--****************************************-->

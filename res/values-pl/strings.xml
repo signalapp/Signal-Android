@@ -23,19 +23,15 @@ Uwaga, szyfrowanie wszystkich Twoich wiadomości i kluczy zostanie wyłączone. 
 Wiadomości push zostaną wyłączone poprzez wyrejestrowanie Ciebie z serwera.
 Będziesz musiał ponownie zarejestrować swój numer, aby w przyszłości ponownie używać wiadomości push.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Błąd połączenia z serwerem!</string>
-  <string name="ApplicationPreferencesActivity_sms_enabled">Otrzymywanie SMSów włączone</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">SMS Włączone</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Dotknij aby zmienić swoją domyślną aplikację SMS</string>
-  <string name="ApplicationPreferencesActivity_sms_disabled">Otrzymywanie SMS wyłączone</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">SMS Wyłączone</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Dotknij aby TextSecure był Twoją domyślną aplikacją SMS</string>
   <string name="ApplicationPreferencesActivity_on">włączone</string>
   <string name="ApplicationPreferencesActivity_On">Włączone</string>
   <string name="ApplicationPreferencesActivity_off">wyłączone</string>
   <string name="ApplicationPreferencesActivity_Off">Wyłączone</string>
-  <string name="ApplicationPreferencesActivity_partial">częściowo</string>
-  <string name="ApplicationPreferencesActivity_sms">SMS</string>
-  <string name="ApplicationPreferencesActivity_mms">MMS</string>
-  <string name="ApplicationPreferencesActivity_incoming_sms_summary">Przychodzące %s</string>
-  <string name="ApplicationPreferencesActivity_outgoing_sms_summary">wychodzące %s</string>
+  <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <string name="AppProtectionPreferenceFragment_minutes">%d minuty</string>
   <!--DraftDatabase-->
@@ -67,6 +63,7 @@ ten kontakt.
   <string name="ConversationItem_click_to_approve_unencrypted">Dotknij w celu użycia niezabezpieczonej alternatywy</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Fallback do nieszyfrowanej wiadomości SMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Fallback do nieszyfrowanych wiadomości MMS?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ta wiadomość <b>nie będzie</b> szyfrowana, ponieważ odbiorca wiadomości nie jest już użytkownikiem TextSecure. \n\n\Wysłać nieszyfrowaną wiadomość?</string>
   <string name="ConversationItem_unable_to_open_media">Nie można znaleźć aplikacji, aby otworzyć te media.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Rozpocząć bezpieczną sesję?</string>
@@ -353,6 +350,7 @@ Otrzymano wiadomość z nieznanym kluczem tożsamości. Kliknij aby przetworzyć
   <string name="MessageNotifier_d_new_messages">%d nowych wiadomości</string>
   <string name="MessageNotifier_most_recent_from_s">Najnowsze zaczynając od: %s</string>
   <string name="MessageNotifier_encrypted_message">Szyfrowana wiadomość...</string>
+  <string name="MessageNotifier_media_message_with_text">Wiadomość multimedialna: %s</string>
   <string name="MessageNotifier_no_subject">(Brak tematu)</string>
   <string name="MessageNotifier_message_delivery_failed">Nie udało się dostarczyć wiadomości.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Dostarczenie wiadomości nie powiodło się.</string>
@@ -381,9 +379,7 @@ Otrzymano wiadomość z nieznanym kluczem tożsamości. Kliknij aby przetworzyć
   <string name="contact_selection_recent_activity__no_recent_calls">Brak ostatnich połączeń.</string>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Wyślij wiadomość TextSecure</string>
-  <string name="conversation_activity__type_message_sms_secure">Wyślij szyfrowany SMS</string>
   <string name="conversation_activity__type_message_sms_insecure">Wyślij nieszyfrowany SMS</string>
-  <string name="conversation_activity__type_message_mms_secure">Wyślij szyfrowany MMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Wyślij nieszyfrowany MMS</string>
   <string name="conversation_activity__send">Wyślij</string>
   <string name="conversation_activity__remove">Usuń</string>
@@ -392,6 +388,7 @@ Otrzymano wiadomość z nieznanym kluczem tożsamości. Kliknij aby przetworzyć
   <string name="conversation_activity__emoji_toggle_description">Przełącz do emoji klawiatury</string>
   <string name="conversation_activity__attachment_thumbnail">Minaturka załącznika</string>
   <!--conversation_item-->
+  <string name="conversation_item__mms_downloading_description">Trwa pobieranie wiadomości multimedialnej</string>
   <string name="conversation_item__mms_image_description">Wiadomość multimedialna</string>
   <string name="conversation_item__play_button_description">Przycisk Play</string>
   <string name="conversation_item__secure_message_description">Bezpieczna wiadomość</string>
@@ -461,6 +458,8 @@ Importuj niezaszyfrowany plik kopii zapasowej, kompatybilny z \'SMSBackup And Re
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Zakończono</string>
   <!--registration_activity-->
+  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
+Weryfikuj swój numer telefonu, aby połączyć się z TextSecure.</string>
   <string name="registration_activity__your_country">TWÓJ KRAJ</string>
   <string name="registration_activity__your_country_code_and_phone_number">KOD TWOJEGO KRAJU I 
 NUMER TELEFONU</string>
@@ -552,11 +551,10 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <!--preferences.xml-->
   <string name="preferences__general">Ogólne</string>
   <string name="preferences__sms_mms">SMS i MMS</string>
-  <string name="preferences__push_sms_category">Push i SMS</string>
   <string name="preferences__pref_all_sms_title">Otrzymuj wszystkie SMSy</string>
   <string name="preferences__pref_all_mms_title">Otrzymuj wszystkie MMSy</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Użyj TextSecure do przeglądania i przechowywania wszystkich wiadomości tekstowych.</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Użyj TextSecure do przeglądania i przechowywania wszystkich wiadomości multimedialnych</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Używaj TextSecure dla wszystkich przychodzących wiadomości</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Używaj TextSecure dla wszystkich przychodzących wiadomości multimedialnych</string>
   <string name="preferences__input_settings">Ustawienia wprowadzania</string>
   <string name="preferences__enable_enter_key_title">Włącz klawisz Enter</string>
   <string name="preferences__replace_smiley_with_enter_key">Zastąp przycisk emotikon klawiszem Enter</string>
@@ -639,21 +637,10 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="preferences__default">Domyślne</string>
   <string name="preferences__language">Język</string>
   <string name="preferences__language_summary">Język %s</string>
-  <string name="preferences__make_default_sms_app">Ustaw jako domyślną aplikację SMS</string>
-  <string name="preferences__make_textsecure_the_default_sms_mms_app">Ustaw TextSecure jako domyślną aplikację SMS/MMS.</string>
-  <string name="preferences__use_data_channel">Wiadomości Push</string>
+  <string name="preferences__textsecure_messages">Wiadomości TextSecure</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
-Zwiększ swoją prywatność i unikaj opłat za SMS używając transmisji danych do komunikacji z innymi użytkownikami TextSecure.</string>
-  <string name="preferences__sms_fallback">Wychodzący SMS/MMS</string>
+Darmowe i prywatne wiadomości do użytkowników TextSecure i Signal</string>
   <string name="preferences__submit_debug_log">Wyślij logi debugowania</string>
-  <string name="preferences__sms_outgoing_push_users">Użytkowników TextSecure</string>
-  <string name="preferences__sms_fallback_push_users_ask">najpierw pytaj</string>
-  <string name="preferences__sms_fallback_push_users_no_mms">nie MMS</string>
-  <string name="preferences__sms_outgoing_push_users_description">Wysyłaj bezpieczne SMSy jeśli połączenie jest utracone</string>
-  <string name="preferences__sms_fallback_ask_before_sending_sms_mms">Pytaj przed wysłaniem SMS/MMS</string>
-  <string name="preferences__sms_fallback_never_send_mms">Nigdy nie wysyłaj MMS</string>
-  <string name="preferences__sms_fallback_non_push_users">Użytkowników bez-TextSecure</string>
-  <string name="preferences__sms_fallback_nobody">Nikt</string>
   <string name="preferences__support_wifi_calling">Tryb zgodności \'WiFi Calling\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Włącz jeśli Twoje urządzenie używa dostarczanie SMS/MMS przez WiFi (włącz tylko wtedy gdy \'WiFi Calling\' jest włączone na Twoim urządzeniu).</string>
   <!--****************************************-->

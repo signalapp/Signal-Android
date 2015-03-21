@@ -26,19 +26,12 @@
 Ще се наложи да регистрираш своя номер повторно, за да използваш интернет съобщения в бъдеще.
 </string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Грешка при свързване със сървъра!</string>
-  <string name="ApplicationPreferencesActivity_sms_enabled">Получаване на SMS-и Разрешено</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Натисни, за да зададеш SMS програма по подразбиране</string>
-  <string name="ApplicationPreferencesActivity_sms_disabled">Получаване на SMS-и Забранено</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Натисни, за да зададеш TextSecure като SMS програма по подразбиране</string>
   <string name="ApplicationPreferencesActivity_on">вкл</string>
   <string name="ApplicationPreferencesActivity_On">Включено</string>
   <string name="ApplicationPreferencesActivity_off">изкл</string>
   <string name="ApplicationPreferencesActivity_Off">Изключено</string>
-  <string name="ApplicationPreferencesActivity_partial">частично</string>
-  <string name="ApplicationPreferencesActivity_sms">SMS</string>
-  <string name="ApplicationPreferencesActivity_mms">MMS</string>
-  <string name="ApplicationPreferencesActivity_incoming_sms_summary">Входящ %s</string>
-  <string name="ApplicationPreferencesActivity_outgoing_sms_summary">изходящ %s</string>
   <!--AppProtectionPreferenceFragment-->
   <string name="AppProtectionPreferenceFragment_minutes">%d минути</string>
   <!--DraftDatabase-->
@@ -69,6 +62,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted">Натисни, за да разрешиш преминавене към не криптирани съобщения в краен случай</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Разреши преминавене към не шифровани SMS-и?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Разреши преминавене към не шифровани MMS-и?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Това съобщение <b>няма</b> да бъде криптирано, защото получателят вече не е TextSecure потребител.\n\n.Изпрати незащитено съобщение? </string>
   <string name="ConversationItem_unable_to_open_media">Неуспешно откриване на приложение за отваряне на този файл.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Започни сигурна сесия?</string>
@@ -363,6 +357,7 @@ SMS съобщенията от системната базата данни в 
   <string name="MessageNotifier_d_new_messages">%d нови съобщения</string>
   <string name="MessageNotifier_most_recent_from_s">Най-скорошното от: %s</string>
   <string name="MessageNotifier_encrypted_message">Шифровано съобщение...</string>
+  <string name="MessageNotifier_media_message_with_text">Медийно съобщение: %s</string>
   <string name="MessageNotifier_no_subject">(Няма зададена тема)</string>
   <string name="MessageNotifier_message_delivery_failed">Изпращането на съобщението неуспешно.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Неуспешно изпращането на съобщението.</string>
@@ -391,9 +386,7 @@ SMS съобщенията от системната базата данни в 
   <string name="contact_selection_recent_activity__no_recent_calls">Няма скорошни обаждания.</string>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Изпрати TextSecure съобщение</string>
-  <string name="conversation_activity__type_message_sms_secure">Изпрати сигурен SMS</string>
   <string name="conversation_activity__type_message_sms_insecure">Изпрати некриптиран SMS</string>
-  <string name="conversation_activity__type_message_mms_secure">Изпрати сигурен MMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Изпрати некриптиран MMS</string>
   <string name="conversation_activity__send">Изпрати</string>
   <string name="conversation_activity__remove">Премахни</string>
@@ -402,6 +395,7 @@ SMS съобщенията от системната базата данни в 
   <string name="conversation_activity__emoji_toggle_description">Смени emoji клавиатурата</string>
   <string name="conversation_activity__attachment_thumbnail">Изображение на прикачен файл</string>
   <!--conversation_item-->
+  <string name="conversation_item__mms_downloading_description">Изтегляне на медийно съобщение</string>
   <string name="conversation_item__mms_image_description">Медийно съобщение</string>
   <string name="conversation_item__play_button_description">Бутон за възпроизвеждане</string>
   <string name="conversation_item__secure_message_description">Подсигурено съобщение</string>
@@ -471,6 +465,8 @@ SMS съобщенията от системната базата данни в 
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Завършен</string>
   <!--registration_activity-->
+  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
+Потвърди своя телфонен номер, за да се свържеш с TextSecure</string>
   <string name="registration_activity__your_country">ТВОЯТА ДЪРЖАВА</string>
   <string name="registration_activity__your_country_code_and_phone_number">КОДА НА ТВОЯТА ДЪРЖАВА И
 ТЕЛЕФОНЕН НОМЕР</string>
@@ -580,11 +576,8 @@ TextSecure чака твърде дълго за SMS потвърждение.
   <!--preferences.xml-->
   <string name="preferences__general">Общо</string>
   <string name="preferences__sms_mms">SMS и MMS</string>
-  <string name="preferences__push_sms_category">Интернет съобщения и SMS</string>
   <string name="preferences__pref_all_sms_title">Използвай за всички SMS-и</string>
   <string name="preferences__pref_all_mms_title">Използвай за всички MMS-и</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Използвай TextSecure за разглеждане и съхраняване на всички входящи текстови съобщения</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Използвай TextSecure за разглеждане и съхраняване на всички входящи мултимедийни съобщения</string>
   <string name="preferences__input_settings">Настройки на въвеждането</string>
   <string name="preferences__enable_enter_key_title">Разреши клавиша Enter</string>
   <string name="preferences__replace_smiley_with_enter_key">Замени клавиша за емотикони с клавиша Enter</string>
@@ -667,21 +660,7 @@ TextSecure чака твърде дълго за SMS потвърждение.
   <string name="preferences__default">По подразбиране</string>
   <string name="preferences__language">Език</string>
   <string name="preferences__language_summary">Език %s</string>
-  <string name="preferences__make_default_sms_app">Задай SMS програма по подразбиране</string>
-  <string name="preferences__make_textsecure_the_default_sms_mms_app">Направи TextSecure SMS/MMS програма по подразбиране.</string>
-  <string name="preferences__use_data_channel">Интернет съобщения</string>
-  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
-Увеличи сигурността си и избегни SMS таксите като използваш интернет връзката, за да се свържеш с други TextSecure потребители</string>
-  <string name="preferences__sms_fallback">Изходящи SMS/MMS</string>
   <string name="preferences__submit_debug_log">Изпрати доклад</string>
-  <string name="preferences__sms_outgoing_push_users">Потребители използващи TextSecure </string>
-  <string name="preferences__sms_fallback_push_users_ask">първо питай</string>
-  <string name="preferences__sms_fallback_push_users_no_mms">без MMS</string>
-  <string name="preferences__sms_outgoing_push_users_description">Изпращай сигурни SMS-и ако се изгуби интернет връзката</string>
-  <string name="preferences__sms_fallback_ask_before_sending_sms_mms">Питай преди изпращане на SMS/MMS</string>
-  <string name="preferences__sms_fallback_never_send_mms">Никога не пращай MMS</string>
-  <string name="preferences__sms_fallback_non_push_users">Потребители не ползващи TextSecure</string>
-  <string name="preferences__sms_fallback_nobody">Никой</string>
   <string name="preferences__support_wifi_calling">Съвместим режим \'WiFi Calling\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Включете ако устройството ти използва SMS/MMS през WiFi (използвай само, когато \'WiFi Calling\' e включено на устройството ти).</string>
   <!--****************************************-->
