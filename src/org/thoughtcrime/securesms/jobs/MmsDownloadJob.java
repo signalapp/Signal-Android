@@ -20,12 +20,14 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.mms.ApnUnavailableException;
+import org.thoughtcrime.securesms.mms.IncomingLollipopMmsConnection;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
+import org.thoughtcrime.securesms.mms.IncomingLegacyMmsConnection;
 import org.thoughtcrime.securesms.mms.IncomingMmsConnection;
-import org.thoughtcrime.securesms.mms.MmsConnection;
+import org.thoughtcrime.securesms.mms.LegacyMmsConnection;
 import org.thoughtcrime.securesms.mms.MmsRadio;
 import org.thoughtcrime.securesms.mms.MmsRadioException;
-import org.thoughtcrime.securesms.mms.OutgoingMmsConnection;
+import org.thoughtcrime.securesms.mms.OutgoingLegacyMmsConnection;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.providers.MmsBodyProvider;
@@ -53,7 +55,7 @@ import ws.com.google.android.mms.pdu.PduHeaders;
 import ws.com.google.android.mms.pdu.PduParser;
 import ws.com.google.android.mms.pdu.RetrieveConf;
 
-import static org.thoughtcrime.securesms.mms.MmsConnection.Apn;
+import static org.thoughtcrime.securesms.mms.LegacyMmsConnection.Apn;
 
 public class MmsDownloadJob extends MasterSecretJob {
 
@@ -62,8 +64,6 @@ public class MmsDownloadJob extends MasterSecretJob {
   private final long    messageId;
   private final long    threadId;
   private final boolean automatic;
-
-  private transient MmsDownloadedReceiver mmsDownloadedReceiver;
 
   public MmsDownloadJob(Context context, long messageId, long threadId, boolean automatic) {
     super(context, JobParameters.newBuilder()
@@ -91,9 +91,6 @@ public class MmsDownloadJob extends MasterSecretJob {
   public void onRun(MasterSecret masterSecret) {
     Log.w(TAG, "onRun()");
 
-    mmsDownloadedReceiver = new MmsDownloadedReceiver();
-    context.getApplicationContext().registerReceiver(mmsDownloadedReceiver, new IntentFilter(MmsDownloadedReceiver.ACTION));
-
     MmsDatabase               database     = DatabaseFactory.getMmsDatabase(context);
     Optional<NotificationInd> notification = database.getNotification(messageId);
 
@@ -115,11 +112,8 @@ public class MmsDownloadJob extends MasterSecretJob {
   private void download(MasterSecret masterSecret, String contentLocation, byte[] transactionId) {
     MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
     try {
-      if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
-        downloadLollipop(masterSecret, contentLocation);
-      } else {
-        downloadLegacy(masterSecret, contentLocation, transactionId);
-      }
+      RetrieveConf retrieveConf = getMmsConnection(context, contentLocation, transactionId, messageId).retrieve();
+      storeRetrievedMms(context, masterSecret, contentLocation, messageId, threadId, retrieveConf);
     } catch (ApnUnavailableException e) {
       Log.w(TAG, e);
       handleDownloadError(context, masterSecret, messageId, threadId, MmsDatabase.Status.DOWNLOAD_APN_UNAVAILABLE,
@@ -129,7 +123,7 @@ public class MmsDownloadJob extends MasterSecretJob {
       handleDownloadError(context, masterSecret, messageId, threadId,
                           MmsDatabase.Status.DOWNLOAD_HARD_FAILURE,
                           automatic);
-    } catch (MmsRadioException e) {
+    } catch (MmsRadioException | IOException e) {
       Log.w(TAG, e);
       handleDownloadError(context, masterSecret, messageId, threadId,
                           MmsDatabase.Status.DOWNLOAD_SOFT_FAILURE,
@@ -149,63 +143,14 @@ public class MmsDownloadJob extends MasterSecretJob {
     }
   }
 
-  @TargetApi(VERSION_CODES.LOLLIPOP)
-  private void downloadLollipop(MasterSecret masterSecret, String contentLocation)
-    throws ApnUnavailableException, MmsException, DuplicateMessageException, NoSessionException,
-        InvalidMessageException, LegacyMessageException, MmsRadioException
+  private IncomingMmsConnection getMmsConnection(Context context, String contentLocation, byte[] transactionId, long messageId)
+      throws ApnUnavailableException
   {
-    RetrieveConf retrieved = downloadMms(context, contentLocation, messageId);
-    if (retrieved == null) {
-      throw new InvalidMessageException("parsed PDU response is null.");
+    if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
+      return new IncomingLollipopMmsConnection(context, contentLocation, messageId);
+    } else {
+      return new IncomingLegacyMmsConnection(context, getApn(context, contentLocation), transactionId);
     }
-    storeRetrievedMms(context, masterSecret, contentLocation, messageId, threadId, retrieved);
-  }
-
-  private void downloadLegacy(MasterSecret masterSecret, String contentLocation, byte[] transactionId)
-      throws ApnUnavailableException, MmsException, DuplicateMessageException, NoSessionException,
-             InvalidMessageException, LegacyMessageException, MmsRadioException
-  {
-    MmsRadio radio = MmsRadio.getInstance(context);
-
-      if (isCdmaNetwork()) {
-        Log.w(TAG, "Connecting directly...");
-        try {
-          retrieveAndStore(masterSecret, radio, messageId, threadId, contentLocation,
-                           transactionId, false, false);
-          return;
-        } catch (IOException e) {
-          Log.w(TAG, e);
-        }
-      }
-
-      Log.w(TAG, "Changing radio to MMS mode..");
-      radio.connect();
-
-      try {
-        Log.w(TAG, "Downloading in MMS mode with proxy...");
-
-        try {
-          retrieveAndStore(masterSecret, radio, messageId, threadId, contentLocation,
-                           transactionId, true, true);
-          return;
-        } catch (IOException e) {
-          Log.w(TAG, e);
-        }
-
-        Log.w(TAG, "Downloading in MMS mode without proxy...");
-
-        try {
-          retrieveAndStore(masterSecret, radio, messageId, threadId,
-                           contentLocation, transactionId, true, false);
-        } catch (IOException e) {
-          Log.w(TAG, e);
-          handleDownloadError(context, masterSecret, messageId, threadId,
-                              MmsDatabase.Status.DOWNLOAD_SOFT_FAILURE,
-                              automatic);
-        }
-      } finally {
-        radio.disconnect();
-      }
   }
 
   @Override
@@ -224,21 +169,9 @@ public class MmsDownloadJob extends MasterSecretJob {
     return false;
   }
 
-  private void retrieveAndStore(MasterSecret masterSecret, MmsRadio radio,
-                                long messageId, long threadId,
-                                String contentLocation, byte[] transactionId,
-                                boolean radioEnabled, boolean useProxy)
-      throws IOException, MmsException, ApnUnavailableException,
-             DuplicateMessageException, NoSessionException,
-             InvalidMessageException, LegacyMessageException
-  {
-    Apn                   dbApn      = MmsConnection.getApn(context, radio.getApnInformation());
-    Apn                   contentApn = new Apn(contentLocation, dbApn.getProxy(), Integer.toString(dbApn.getPort()), dbApn.getUsername(), dbApn.getPassword());
-    IncomingMmsConnection connection = new IncomingMmsConnection(context, contentApn);
-    RetrieveConf          retrieved  = connection.retrieve(radioEnabled, useProxy);
-
-    storeRetrievedMms(context, masterSecret, contentLocation, messageId, threadId, retrieved);
-    sendRetrievedAcknowledgement(radio, transactionId, radioEnabled, useProxy);
+  private Apn getApn(Context context, String contentLocation) throws ApnUnavailableException {
+    Apn dbApn = LegacyMmsConnection.getApn(context);
+    return new Apn(contentLocation, dbApn.getProxy(), Integer.toString(dbApn.getPort()), dbApn.getUsername(), dbApn.getPassword());
   }
 
   private static void storeRetrievedMms(Context context, MasterSecret masterSecret, String contentLocation,
@@ -263,24 +196,6 @@ public class MmsDownloadJob extends MasterSecretJob {
     MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
   }
 
-  private void sendRetrievedAcknowledgement(MmsRadio radio,
-                                            byte[] transactionId,
-                                            boolean usingRadio,
-                                            boolean useProxy)
-      throws ApnUnavailableException
-  {
-    try {
-      NotifyRespInd notifyResponse = new NotifyRespInd(PduHeaders.CURRENT_MMS_VERSION,
-                                                       transactionId,
-                                                       PduHeaders.STATUS_RETRIEVED);
-
-      OutgoingMmsConnection connection = new OutgoingMmsConnection(context, radio.getApnInformation(), new PduComposer(context, notifyResponse).make());
-      connection.sendNotificationReceived(usingRadio, useProxy);
-    } catch (InvalidHeaderValueException | IOException e) {
-      Log.w(TAG, e);
-    }
-  }
-
   private static void handleDownloadError(Context context, MasterSecret masterSecret, long messageId, long threadId,
                                    int downloadStatus, boolean automatic)
   {
@@ -292,68 +207,5 @@ public class MmsDownloadJob extends MasterSecretJob {
       db.markIncomingNotificationReceived(threadId);
       MessageNotifier.updateNotification(context, masterSecret, threadId);
     }
-  }
-
-  private boolean isCdmaNetwork() {
-    return ((TelephonyManager)context
-        .getSystemService(Context.TELEPHONY_SERVICE))
-        .getPhoneType() == TelephonyManager.PHONE_TYPE_CDMA;
-  }
-
-  @TargetApi(VERSION_CODES.LOLLIPOP)
-  public RetrieveConf downloadMms(Context context, String contentLocation, long messageId) throws MmsException {
-    try {
-      Intent intent = new Intent(MmsDownloadedReceiver.ACTION);
-      PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 1, intent, PendingIntent.FLAG_ONE_SHOT);
-      Uri contentUri = ContentUris.withAppendedId(MmsBodyProvider.CONTENT_URI, messageId);
-      Log.w(TAG, "downloading multimedia from " + contentLocation + " to " + contentUri);
-      SmsManager.getDefault().downloadMultimediaMessage(context, contentLocation, contentUri, null, pendingIntent);
-
-      synchronized (mmsDownloadedReceiver) {
-        while (!mmsDownloadedReceiver.isFinished()) Util.wait(mmsDownloadedReceiver, 30000);
-      }
-
-      context.getApplicationContext().unregisterReceiver(mmsDownloadedReceiver);
-
-      ByteArrayOutputStream baos = new ByteArrayOutputStream();
-      Util.copy(context.getContentResolver().openInputStream(contentUri), baos);
-
-      Log.w(TAG, baos.size() + "-byte response: " + Hex.dump(baos.toByteArray()));
-
-      return (RetrieveConf) new PduParser(baos.toByteArray()).parse();
-    } catch (IOException ioe) {
-      Log.w(TAG, ioe);
-      throw new MmsException(ioe);
-    }
-  }
-
-  public static class MmsDownloadedReceiver extends BroadcastReceiver {
-    public static final String ACTION = MmsDownloadJob.class.getCanonicalName() + "MMS_DOWNLOADED_ACTION";
-
-    private boolean finished;
-
-    @TargetApi(VERSION_CODES.LOLLIPOP)
-    @Override
-    public void onReceive(Context context, Intent intent) {
-      Log.w(TAG, "onReceive()");
-      if (!ACTION.equals(intent.getAction())) {
-        Log.w(TAG, "received broadcast with unexpected action " + intent.getAction());
-        return;
-      }
-      if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP_MR1) {
-        Log.w(TAG, "HTTP status: " + intent.getIntExtra(SmsManager.EXTRA_MMS_HTTP_STATUS, -1));
-      }
-      Log.w(TAG, "code: " + getResultCode() + ", result string: " + getResultData());
-
-      finished = true;
-      synchronized (this) {
-        notifyAll();
-      }
-    }
-
-    public boolean isFinished() {
-      return finished;
-    }
-
   }
 }

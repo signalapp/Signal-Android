@@ -23,8 +23,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.mms.ApnUnavailableException;
-import org.thoughtcrime.securesms.mms.MmsConnection.Apn;
+import org.thoughtcrime.securesms.mms.LegacyMmsConnection.Apn;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libaxolotl.util.guava.Optional;

@@ -1,0 +1,89 @@
+package org.thoughtcrime.securesms.mms;
+
+import android.annotation.TargetApi;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.ContentUris;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.Uri;
+import android.os.Build.VERSION;
+import android.os.Build.VERSION_CODES;
+import android.telephony.SmsManager;
+import android.util.Log;
+
+import org.thoughtcrime.securesms.providers.MmsBodyProvider;
+import org.thoughtcrime.securesms.util.Hex;
+import org.thoughtcrime.securesms.util.Util;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+
+import ws.com.google.android.mms.MmsException;
+import ws.com.google.android.mms.pdu.PduParser;
+import ws.com.google.android.mms.pdu.RetrieveConf;
+
+public class IncomingLollipopMmsConnection extends BroadcastReceiver implements IncomingMmsConnection {
+  public static final String ACTION = IncomingLollipopMmsConnection.class.getCanonicalName() + "MMS_DOWNLOADED_ACTION";
+  private static final String TAG = IncomingLollipopMmsConnection.class.getSimpleName();
+
+  private Context context;
+  private String  contentLocation;
+  private long    messageId;
+  private boolean finished;
+
+  public IncomingLollipopMmsConnection(Context context, String contentLocation, long messageId) {
+    super();
+    this.context         = context;
+    this.contentLocation = contentLocation;
+    this.messageId       = messageId;
+  }
+
+  @TargetApi(VERSION_CODES.LOLLIPOP)
+  @Override
+  public void onReceive(Context context, Intent intent) {
+    Log.w(TAG, "onReceive()");
+    if (!ACTION.equals(intent.getAction())) {
+      Log.w(TAG, "received broadcast with unexpected action " + intent.getAction());
+      return;
+    }
+    if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP_MR1) {
+      Log.w(TAG, "HTTP status: " + intent.getIntExtra(SmsManager.EXTRA_MMS_HTTP_STATUS, -1));
+    }
+    Log.w(TAG, "code: " + getResultCode() + ", result string: " + getResultData());
+
+    finished = true;
+    synchronized (this) {
+      notifyAll();
+    }
+  }
+
+  @Override
+  @TargetApi(VERSION_CODES.LOLLIPOP)
+  public RetrieveConf retrieve() throws MmsException {
+    context.getApplicationContext().registerReceiver(this, new IntentFilter(ACTION));
+    try {
+      PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 1, new Intent(ACTION), PendingIntent.FLAG_ONE_SHOT);
+      Uri contentUri = ContentUris.withAppendedId(MmsBodyProvider.CONTENT_URI, messageId);
+      Log.w(TAG, "downloading multimedia from " + contentLocation + " to " + contentUri);
+      SmsManager.getDefault().downloadMultimediaMessage(context, contentLocation, contentUri, null, pendingIntent);
+
+      synchronized (this) {
+        while (!finished) Util.wait(this, 30000);
+      }
+
+      context.getApplicationContext().unregisterReceiver(this);
+
+      ByteArrayOutputStream baos = new ByteArrayOutputStream();
+      Util.copy(context.getContentResolver().openInputStream(contentUri), baos);
+
+      Log.w(TAG, baos.size() + "-byte response: " + Hex.dump(baos.toByteArray()));
+
+      return (RetrieveConf) new PduParser(baos.toByteArray()).parse();
+    } catch (IOException ioe) {
+      Log.w(TAG, ioe);
+      throw new MmsException(ioe);
+    }
+  }
+}
