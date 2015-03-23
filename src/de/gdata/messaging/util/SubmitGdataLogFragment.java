@@ -85,6 +85,7 @@ public class SubmitGdataLogFragment extends SubmitLogFragment {
     logPreview = (EditText) getView().findViewById(R.id.log_preview);
     okButton = (Button) getView().findViewById(R.id.ok);
     cancelButton = (Button) getView().findViewById(R.id.cancel);
+    getView().findViewById(R.id.log_submit_confirmation).setVisibility(View.GONE);
 
     okButton.setOnClickListener(new View.OnClickListener() {
       @Override
