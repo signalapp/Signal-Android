@@ -113,7 +113,7 @@ public class MmsDownloadJob extends MasterSecretJob {
     MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
     try {
       RetrieveConf retrieveConf = getMmsConnection(context, contentLocation, transactionId, messageId).retrieve();
-      storeRetrievedMms(context, masterSecret, contentLocation, messageId, threadId, retrieveConf);
+      storeRetrievedMms(masterSecret, contentLocation, messageId, threadId, retrieveConf);
     } catch (ApnUnavailableException e) {
       Log.w(TAG, e);
       handleDownloadError(context, masterSecret, messageId, threadId, MmsDatabase.Status.DOWNLOAD_APN_UNAVAILABLE,
@@ -174,7 +174,7 @@ public class MmsDownloadJob extends MasterSecretJob {
     return new Apn(contentLocation, dbApn.getProxy(), Integer.toString(dbApn.getPort()), dbApn.getUsername(), dbApn.getPassword());
   }
 
-  private static void storeRetrievedMms(Context context, MasterSecret masterSecret, String contentLocation,
+  private void storeRetrievedMms(MasterSecret masterSecret, String contentLocation,
                                  long messageId, long threadId, RetrieveConf retrieved)
       throws MmsException, NoSessionException, DuplicateMessageException, InvalidMessageException,
              LegacyMessageException
