@@ -14,17 +14,18 @@
     <string name="gd_dialog_fragment_phishing_continue">繼續</string>
 
     <string name="menu_filter">阻止聯系人</string>
-    <string name="menu_privacy">隱藏聯系人</string>
-    <string name="menu_privacy_unhide">顯示隱藏的聯系人</string>
-    <string name="menu_privacy_hide">不顯示隱藏的聯系人</string>
-    <string name="menu_privacy_single_hide">隱藏聯系人</string>
+    <string name="menu_privacy">隱藏對話</string>
+    <string name="menu_privacy_unhide">顯示隱藏的對話</string>
+    <string name="menu_privacy_hide">再次隱藏對話</string>
+    <string name="menu_privacy_single_hide">隱藏對話</string>
     <string name="menu_filter_block_contact">阻止聯系人</string>
 
     <string name="privacy_pw_dialog_header">輸入密碼: </string>
     <string name="privacy_pw_dialog_toast_wrong">您輸入的密碼和行動安全防護軟體的密碼不一致。</string>
-    <string name="privacy_pw_dialog_toast_reload">恢複短信和聯系人中......</string>
-    <string name="privacy_pw_dialog_toast_hide">隱藏短信和聯系人中......</string>
-    <string name="privacy_pw_dialog_toast_hide_single">隱藏聯系人中...</string>
+    <string name="privacy_pw_dialog_toast_reload">對話恢複顯示中……</string>
+    <string name="privacy_pw_dialog_toast_hide">正在隱藏對話中……</string>
+    <string name="privacy_pw_dialog_toast_hide_single">正在隱藏此對話中……</string>
+    <string name="privacy_pw_dialog_hint">提示: 這裏需要輸入行動安全防護軟體密碼</string>
 
     <string name="privacy_toast_install_premium">使用此功能須安裝G DATA行動安全防護</string>
 
