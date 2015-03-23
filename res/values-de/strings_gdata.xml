@@ -23,7 +23,7 @@
     <string name="privacy_pw_dialog_header">Passwort eingeben: </string>
     <string name="privacy_pw_dialog_hint">Hinweis: Es handelt sich um das von Ihnen gewählte Passwort in der Internet Security für Android.</string>
     <string name="privacy_pw_dialog_toast_wrong">Ihr eingegebenes Passwort stimmt nicht mit dem der Internet Security überein.</string>
-    <string name="privacy_pw_dialog_toast_reload">Unterhaltungen werden wieder hergestellt...</string>
+    <string name="privacy_pw_dialog_toast_reload">Unterhaltungen werden wiederhergestellt...</string>
     <string name="privacy_pw_dialog_toast_hide">Unterhaltungen werden zum Verstecken vorbereitet...</string>
     <string name="privacy_pw_dialog_toast_hide_single">Unterhaltung wird versteckt...</string>
 
@@ -38,4 +38,6 @@
     <string name="preferences_notification_five_times">5x</string>
     <string name="preferences_notification_ten_times">10x</string>
     <string name="preferences_notification_title">Warnungen wiederholen</string>
+
+    <string name="tk_mail">gdata.kundenservice@tk.de</string>
 </resources>

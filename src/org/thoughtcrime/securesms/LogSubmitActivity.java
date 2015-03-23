@@ -8,6 +8,8 @@ import android.widget.Toast;
 
 import org.whispersystems.libpastelog.SubmitLogFragment;
 
+import de.gdata.messaging.util.SubmitGdataLogFragment;
+
 /**
  * Activity for submitting logcat logs to a pastebin service.
  */
@@ -19,7 +21,7 @@ public class LogSubmitActivity extends ActionBarActivity implements SubmitLogFra
     super.onCreate(icicle);
     setContentView(R.layout.log_submit_activity);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    SubmitLogFragment fragment = SubmitLogFragment.newInstance();
+    SubmitGdataLogFragment fragment = SubmitGdataLogFragment.newInstance();
     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
     transaction.replace(R.id.fragment_container, fragment);
     transaction.commit();
