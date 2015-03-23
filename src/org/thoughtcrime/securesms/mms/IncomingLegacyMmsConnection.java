@@ -45,6 +45,7 @@ public class IncomingLegacyMmsConnection extends LegacyMmsConnection implements 
 
   public IncomingLegacyMmsConnection(Context context, Apn apn, byte[] transactionId) {
     super(context, apn);
+    this.transactionId = transactionId;
   }
 
   @Override
