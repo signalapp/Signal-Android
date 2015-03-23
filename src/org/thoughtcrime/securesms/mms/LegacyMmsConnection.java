@@ -151,14 +151,14 @@ public abstract class LegacyMmsConnection {
                       .build();
   }
 
-  protected byte[] makeRequest(boolean useProxy) throws IOException {
+  protected byte[] makeRequest(byte[] pduBytes, boolean useProxy) throws IOException {
     Log.w(TAG, "connecting to " + apn.getMmsc() + (useProxy ? " using proxy" : ""));
 
     HttpUriRequest request;
     CloseableHttpClient   client   = null;
     CloseableHttpResponse response = null;
     try {
-      request  = constructRequest(useProxy);
+      request  = constructRequest(pduBytes, useProxy);
       client   = constructHttpClient();
       response = client.execute(request);
 
@@ -175,7 +175,7 @@ public abstract class LegacyMmsConnection {
     throw new IOException("unhandled response code");
   }
 
-  protected abstract HttpUriRequest constructRequest(boolean useProxy) throws IOException;
+  protected abstract HttpUriRequest constructRequest(byte[] pduBytes, boolean useProxy) throws IOException;
 
   protected List<Header> getBaseHeaders() {
     final String number = TelephonyUtil.getManager(context).getLine1Number();

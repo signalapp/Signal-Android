@@ -112,7 +112,7 @@ public class MmsDownloadJob extends MasterSecretJob {
   private void download(MasterSecret masterSecret, String contentLocation, byte[] transactionId) {
     MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
     try {
-      RetrieveConf retrieveConf = getMmsConnection(context, contentLocation, transactionId, messageId).retrieve();
+      RetrieveConf retrieveConf = getMmsConnection(context, contentLocation, transactionId).retrieve();
       storeRetrievedMms(masterSecret, contentLocation, messageId, threadId, retrieveConf);
     } catch (ApnUnavailableException e) {
       Log.w(TAG, e);
@@ -143,11 +143,11 @@ public class MmsDownloadJob extends MasterSecretJob {
     }
   }
 
-  private IncomingMmsConnection getMmsConnection(Context context, String contentLocation, byte[] transactionId, long messageId)
+  private IncomingMmsConnection getMmsConnection(Context context, String contentLocation, byte[] transactionId)
       throws ApnUnavailableException
   {
     if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
-      return new IncomingLollipopMmsConnection(context, contentLocation, messageId);
+      return new IncomingLollipopMmsConnection(context, contentLocation);
     } else {
       return new IncomingLegacyMmsConnection(context, getApn(context, contentLocation), transactionId);
     }

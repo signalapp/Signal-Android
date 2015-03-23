@@ -20,7 +20,6 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import org.apache.http.Header;
@@ -40,15 +39,12 @@ import ws.com.google.android.mms.pdu.SendConf;
 public class OutgoingLegacyMmsConnection extends LegacyMmsConnection implements OutgoingMmsConnection {
   private final static String TAG = OutgoingLegacyMmsConnection.class.getSimpleName();
 
-  private byte[] mms;
-
-  public OutgoingLegacyMmsConnection(Context context, byte[] mms) throws ApnUnavailableException {
+  public OutgoingLegacyMmsConnection(Context context) throws ApnUnavailableException {
     super(context, getApn(context));
-    this.mms = mms;
   }
 
   @Override
-  protected HttpUriRequest constructRequest(boolean useProxy)
+  protected HttpUriRequest constructRequest(byte[] pduBytes, boolean useProxy)
       throws IOException
   {
     try {
@@ -57,7 +53,7 @@ public class OutgoingLegacyMmsConnection extends LegacyMmsConnection implements 
         request.addHeader(header);
       }
 
-      request.setEntity(new ByteArrayEntityHC4(mms));
+      request.setEntity(new ByteArrayEntityHC4(pduBytes));
       if (useProxy) {
         HttpHost proxy = new HttpHost(apn.getProxy(), apn.getPort());
         request.setConfig(RequestConfig.custom().setProxy(proxy).build());
@@ -68,21 +64,21 @@ public class OutgoingLegacyMmsConnection extends LegacyMmsConnection implements 
     }
   }
 
-  public void sendNotificationReceived(boolean usingMmsRadio, boolean useProxyIfAvailable)
+  public void sendNotificationReceived(byte[] pduBytes, boolean usingMmsRadio, boolean useProxyIfAvailable)
       throws IOException
   {
-    sendBytes(usingMmsRadio, useProxyIfAvailable);
+    sendBytes(pduBytes, usingMmsRadio, useProxyIfAvailable);
   }
 
   @Override
-  public SendConf send() throws UndeliverableMessageException {
+  public SendConf send(byte[] pduBytes) throws UndeliverableMessageException {
     try {
       MmsRadio radio = MmsRadio.getInstance(context);
 
       if (isCdmaDevice()) {
         Log.w(TAG, "Sending MMS directly without radio change...");
         try {
-          return send(false, false);
+          return send(pduBytes, false, false);
         } catch (IOException e) {
           Log.w(TAG, e);
         }
@@ -93,7 +89,7 @@ public class OutgoingLegacyMmsConnection extends LegacyMmsConnection implements 
 
       try {
         try {
-          return send(true, true);
+          return send(pduBytes, true, true);
         } catch (IOException e) {
           Log.w(TAG, e);
         }
@@ -101,7 +97,7 @@ public class OutgoingLegacyMmsConnection extends LegacyMmsConnection implements 
         Log.w(TAG, "Sending MMS with radio change and without proxy...");
 
         try {
-          return send(true, false);
+          return send(pduBytes, true, false);
         } catch (IOException ioe) {
           Log.w(TAG, ioe);
           throw new UndeliverableMessageException(ioe);
@@ -117,25 +113,25 @@ public class OutgoingLegacyMmsConnection extends LegacyMmsConnection implements 
 
   }
 
-  private SendConf send(boolean useMmsRadio, boolean useProxyIfAvailable)  throws IOException {
-    byte[] response = sendBytes(useMmsRadio, useProxyIfAvailable);
+  private SendConf send(byte[] pduBytes, boolean useMmsRadio, boolean useProxyIfAvailable)  throws IOException {
+    byte[] response = sendBytes(pduBytes, useMmsRadio, useProxyIfAvailable);
     return (SendConf) new PduParser(response).parse();
   }
 
-  private byte[] sendBytes(boolean useMmsRadio, boolean useProxyIfAvailable) throws IOException {
+  private byte[] sendBytes(byte[] pduBytes, boolean useMmsRadio, boolean useProxyIfAvailable) throws IOException {
     final boolean useProxy   = useProxyIfAvailable && apn.hasProxy();
     final String  targetHost = useProxy
                              ? apn.getProxy()
                              : Uri.parse(apn.getMmsc()).getHost();
 
-    Log.w(TAG, "Sending MMS of length: " + mms.length
+    Log.w(TAG, "Sending MMS of length: " + pduBytes.length
                + (useMmsRadio ? ", using mms radio" : "")
                + (useProxy ? ", using proxy" : ""));
 
     try {
       if (checkRouteToHost(context, targetHost, useMmsRadio)) {
         Log.w(TAG, "got successful route to host " + targetHost);
-        byte[] response = makeRequest(useProxy);
+        byte[] response = makeRequest(pduBytes, useProxy);
         if (response != null) return response;
       }
     } catch (IOException ioe) {

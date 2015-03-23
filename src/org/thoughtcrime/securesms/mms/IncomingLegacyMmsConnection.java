@@ -25,7 +25,6 @@ import org.apache.http.HttpHost;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpGetHC4;
 import org.apache.http.client.methods.HttpUriRequest;
-import org.thoughtcrime.securesms.database.MmsDatabase;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -49,7 +48,7 @@ public class IncomingLegacyMmsConnection extends LegacyMmsConnection implements 
   }
 
   @Override
-  protected HttpUriRequest constructRequest(boolean useProxy) throws IOException {
+  protected HttpUriRequest constructRequest(byte[] pduBytes, boolean useProxy) throws IOException {
     HttpGetHC4 request = new HttpGetHC4(apn.getMmsc());
     for (Header header : getBaseHeaders()) {
       request.addHeader(header);
@@ -107,7 +106,7 @@ public class IncomingLegacyMmsConnection extends LegacyMmsConnection implements 
     try {
       if (checkRouteToHost(context, targetHost, usingMmsRadio)) {
         Log.w(TAG, "got successful route to host " + targetHost);
-        pdu = makeRequest(useProxy);
+        pdu = makeRequest(null, useProxy);
       }
     } catch (IOException ioe) {
       Log.w(TAG, ioe);
@@ -139,8 +138,8 @@ public class IncomingLegacyMmsConnection extends LegacyMmsConnection implements 
                                                        transactionId,
                                                        PduHeaders.STATUS_RETRIEVED);
 
-      OutgoingLegacyMmsConnection connection = new OutgoingLegacyMmsConnection(context, new PduComposer(context, notifyResponse).make());
-      connection.sendNotificationReceived(usingRadio, useProxy);
+      OutgoingLegacyMmsConnection connection = new OutgoingLegacyMmsConnection(context);
+      connection.sendNotificationReceived(new PduComposer(context, notifyResponse).make(), usingRadio, useProxy);
     } catch (InvalidHeaderValueException | IOException e) {
       Log.w(TAG, e);
     }

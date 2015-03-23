@@ -46,14 +46,12 @@ public class IncomingLollipopMmsConnection extends BroadcastReceiver implements 
 
   private Context context;
   private String  contentLocation;
-  private long    messageId;
   private boolean finished;
 
-  public IncomingLollipopMmsConnection(Context context, String contentLocation, long messageId) {
+  public IncomingLollipopMmsConnection(Context context, String contentLocation) {
     super();
     this.context         = context;
     this.contentLocation = contentLocation;
-    this.messageId       = messageId;
   }
 
   @TargetApi(VERSION_CODES.LOLLIPOP)
@@ -77,9 +75,10 @@ public class IncomingLollipopMmsConnection extends BroadcastReceiver implements 
   @TargetApi(VERSION_CODES.LOLLIPOP)
   public synchronized RetrieveConf retrieve() throws MmsException {
     context.getApplicationContext().registerReceiver(this, new IntentFilter(ACTION));
+    long nonce = System.currentTimeMillis();
     try {
       PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 1, new Intent(ACTION), PendingIntent.FLAG_ONE_SHOT);
-      Uri contentUri = ContentUris.withAppendedId(MmsBodyProvider.CONTENT_URI, messageId);
+      Uri contentUri = ContentUris.withAppendedId(MmsBodyProvider.CONTENT_URI, nonce);
       Log.w(TAG, "downloading multimedia from " + contentLocation + " to " + contentUri);
       SmsManager.getDefault().downloadMultimediaMessage(context, contentLocation, contentUri, null, pendingIntent);
 

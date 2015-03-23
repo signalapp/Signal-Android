@@ -46,13 +46,9 @@ public class OutgoingLollipopMmsConnection extends BroadcastReceiver implements 
   private Context context;
   private byte[] response;
   private boolean finished;
-  private long messageId;
-  private byte[] pduBytes;
 
-  public OutgoingLollipopMmsConnection(Context context, byte[] pduBytes, long messageId) {
+  public OutgoingLollipopMmsConnection(Context context) {
     this.context = context;
-    this.pduBytes = pduBytes;
-    this.messageId = messageId;
   }
 
   @TargetApi(VERSION_CODES.LOLLIPOP_MR1)
@@ -74,10 +70,11 @@ public class OutgoingLollipopMmsConnection extends BroadcastReceiver implements 
 
   @Override
   @TargetApi(VERSION_CODES.LOLLIPOP)
-  public synchronized SendConf send() throws UndeliverableMessageException {
+  public synchronized SendConf send(byte[] pduBytes) throws UndeliverableMessageException {
     context.getApplicationContext().registerReceiver(this, new IntentFilter(ACTION));
+    long nonce = System.currentTimeMillis();
     try {
-      Uri contentUri = ContentUris.withAppendedId(MmsBodyProvider.CONTENT_URI, messageId);
+      Uri contentUri = ContentUris.withAppendedId(MmsBodyProvider.CONTENT_URI, nonce);
       Util.copy(new ByteArrayInputStream(pduBytes), context.getContentResolver().openOutputStream(contentUri, "w"));
 
       SmsManager.getDefault().sendMultimediaMessage(context, contentUri, null, null,

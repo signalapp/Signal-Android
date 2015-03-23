@@ -65,7 +65,7 @@ public class MmsSendJob extends SendJob {
     SendReq     message  = database.getOutgoingMessage(masterSecret, messageId);
 
     try {
-      MmsSendResult result = deliver(masterSecret, message, messageId);
+      MmsSendResult result = deliver(masterSecret, message);
       database.markAsSent(messageId, result.getMessageId(), result.getResponseStatus());
     } catch (UndeliverableMessageException e) {
       Log.w(TAG, e);
@@ -89,26 +89,26 @@ public class MmsSendJob extends SendJob {
     notifyMediaMessageDeliveryFailed(context, messageId);
   }
 
-  private MmsSendResult deliver(MasterSecret masterSecret, SendReq message, long messageId)
+  private MmsSendResult deliver(MasterSecret masterSecret, SendReq message)
       throws UndeliverableMessageException, InsecureFallbackApprovalException
   {
     try {
       validateDestinations(message);
       final byte[]   pduBytes = getPduBytes(masterSecret, message);
-      final SendConf sendConf = getMmsConnection(context, pduBytes, messageId).send();
+      final SendConf sendConf = getMmsConnection(context).send(pduBytes);
       return getSendResult(sendConf, message);
     } catch (IOException | ApnUnavailableException ioe) {
       throw new UndeliverableMessageException(ioe);
     }
   }
 
-  private OutgoingMmsConnection getMmsConnection(Context context, byte[] pduBytes, long messageId)
+  private OutgoingMmsConnection getMmsConnection(Context context)
       throws ApnUnavailableException
   {
     if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
-      return new OutgoingLollipopMmsConnection(context, pduBytes, messageId);
+      return new OutgoingLollipopMmsConnection(context);
     } else {
-      return new OutgoingLegacyMmsConnection(context, pduBytes);
+      return new OutgoingLegacyMmsConnection(context);
     }
   }
 
