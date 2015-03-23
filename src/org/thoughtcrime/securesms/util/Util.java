@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms.util;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Shader;
@@ -24,7 +25,10 @@ import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.os.Build.VERSION;
+import android.os.Build.VERSION_CODES;
 import android.provider.Telephony;
+import android.telephony.SmsManager;
 import android.telephony.TelephonyManager;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -34,6 +38,7 @@ import android.widget.EditText;
 
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.TextSecureExpiredException;
+import org.thoughtcrime.securesms.mms.OutgoingLegacyMmsConnection;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
 import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
 
@@ -278,5 +283,12 @@ public class Util {
 
   public static boolean isBuildFresh() {
     return BuildConfig.BUILD_TIMESTAMP + TimeUnit.DAYS.toMillis(180) > System.currentTimeMillis();
+  }
+
+  @TargetApi(VERSION_CODES.LOLLIPOP)
+  public static boolean isMmsCapable(Context context) {
+    return (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP)
+           ? SmsManager.getDefault().getCarrierConfigValues().getBoolean(SmsManager.MMS_CONFIG_MMS_ENABLED)
+           : OutgoingLegacyMmsConnection.isConnectionPossible(context);
   }
 }

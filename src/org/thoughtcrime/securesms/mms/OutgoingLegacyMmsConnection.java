@@ -43,8 +43,7 @@ public class OutgoingLegacyMmsConnection extends LegacyMmsConnection implements 
     super(context, getApn(context));
   }
 
-  @Override
-  protected HttpUriRequest constructRequest(byte[] pduBytes, boolean useProxy)
+  private HttpUriRequest constructRequest(byte[] pduBytes, boolean useProxy)
       throws IOException
   {
     try {
@@ -131,7 +130,7 @@ public class OutgoingLegacyMmsConnection extends LegacyMmsConnection implements 
     try {
       if (checkRouteToHost(context, targetHost, useMmsRadio)) {
         Log.w(TAG, "got successful route to host " + targetHost);
-        byte[] response = makeRequest(pduBytes, useProxy);
+        byte[] response = execute(constructRequest(pduBytes, useProxy));
         if (response != null) return response;
       }
     } catch (IOException ioe) {

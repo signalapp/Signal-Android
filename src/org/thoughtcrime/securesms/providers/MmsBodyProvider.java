@@ -46,8 +46,8 @@ public class MmsBodyProvider extends ContentProvider {
   }
 
   private File getFile(Uri uri) {
-    int messageId = Integer.parseInt(uri.getPathSegments().get(1));
-    return new File(getContext().getCacheDir(), messageId + ".mmsbody");
+    long id = Long.parseLong(uri.getPathSegments().get(1));
+    return new File(getContext().getCacheDir(), id + ".mmsbody");
   }
   @Override
   public ParcelFileDescriptor openFile(Uri uri, String mode) throws FileNotFoundException {

@@ -47,8 +47,7 @@ public class IncomingLegacyMmsConnection extends LegacyMmsConnection implements 
     this.transactionId = transactionId;
   }
 
-  @Override
-  protected HttpUriRequest constructRequest(byte[] pduBytes, boolean useProxy) throws IOException {
+  private HttpUriRequest constructRequest(boolean useProxy) throws IOException {
     HttpGetHC4 request = new HttpGetHC4(apn.getMmsc());
     for (Header header : getBaseHeaders()) {
       request.addHeader(header);
@@ -106,7 +105,7 @@ public class IncomingLegacyMmsConnection extends LegacyMmsConnection implements 
     try {
       if (checkRouteToHost(context, targetHost, usingMmsRadio)) {
         Log.w(TAG, "got successful route to host " + targetHost);
-        pdu = makeRequest(null, useProxy);
+        pdu = execute(constructRequest(useProxy));
       }
     } catch (IOException ioe) {
       Log.w(TAG, ioe);
