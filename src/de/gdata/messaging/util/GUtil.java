@@ -1,11 +1,14 @@
 package de.gdata.messaging.util;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -20,7 +23,6 @@ import org.thoughtcrime.securesms.R;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -155,6 +157,7 @@ public class GUtil {
     String iso = Locale.getDefault().getLanguage().toUpperCase(Locale.getDefault());
     return normalizeNumber(number, iso);
   }
+
   public static boolean featureCheck(Context context, boolean toast) {
     boolean isInstalled = GDataInitPrivacy.isPremiumEnabled();
     if (!isInstalled) {
@@ -188,11 +191,29 @@ public class GUtil {
     System.arraycopy(b, 0, c, aLen, bLen);
     return c;
   }
+
   public static boolean isValidPhoneNumber(String number) {
     if (number == null || TextUtils.isEmpty(number)) {
       return false;
     } else {
       return android.util.Patterns.PHONE.matcher(number).matches();
     }
+  }
+
+  public static void hideKeyboard(Context ctx) {
+    hideKeyboard(ctx, null);
+  }
+
+  public static void hideKeyboard(Context ctx, EditText textField) {
+    Activity activity = (Activity) ctx;
+    InputMethodManager imm = (InputMethodManager) ctx.getSystemService(Context.INPUT_METHOD_SERVICE);
+    if (textField == null) {
+      if (imm != null && ctx != null && activity != null && activity.getCurrentFocus() != null) {
+        imm.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+      }
+    } else {
+      imm.hideSoftInputFromWindow(textField.getWindowToken(), 0);
+    }
+
   }
 }

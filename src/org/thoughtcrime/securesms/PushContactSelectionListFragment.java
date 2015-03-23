@@ -30,6 +30,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -75,11 +76,17 @@ public class PushContactSelectionListFragment extends    Fragment
     super.onCreate(icicle);
     initializeResources();
     initializeCursor();
+    getActivity().getWindow().setSoftInputMode(
+        WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
+    );
   }
 
   @Override
   public void onResume() {
     super.onResume();
+    getActivity().getWindow().setSoftInputMode(
+        WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
+    );
   }
 
   @Override
