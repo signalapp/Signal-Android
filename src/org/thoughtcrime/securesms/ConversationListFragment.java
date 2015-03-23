@@ -83,12 +83,6 @@ public class ConversationListFragment extends ListFragment
   }
 
   @Override
-  public void onDestroyView() {
-    clearListAdapter();
-    super.onDestroyView();
-  }
-
-  @Override
   public void onActivityCreated(Bundle bundle) {
     super.onActivityCreated(bundle);
 
@@ -182,11 +176,6 @@ public class ConversationListFragment extends ListFragment
     } else {
       reminderView.hide();
     }
-  }
-
-  private void clearListAdapter() {
-    getLoaderManager().destroyLoader(0);
-    setListAdapter(null);
   }
 
   private void initializeListAdapter() {

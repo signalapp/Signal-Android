@@ -151,8 +151,8 @@ public class PartProvider extends ContentProvider {
     @Override
     public void onReceive(Context context, Intent intent) {
       Log.w("SendReceiveService", "Got a MasterSecret broadcast...");
-      initializeWithMasterSecret(KeyCachingService.getMasterSecret(context));
+      initializeWithMasterSecret((MasterSecret)intent.getParcelableExtra("master_secret"));
     }
-  };
+  }
 
 }

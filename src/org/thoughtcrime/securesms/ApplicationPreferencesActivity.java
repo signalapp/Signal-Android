@@ -35,7 +35,6 @@ import org.thoughtcrime.securesms.preferences.StoragePreferenceFragment;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.thoughtcrime.securesms.util.ProgressDialogAsyncTask;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 /**
@@ -60,6 +59,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
   private final DynamicTheme    dynamicTheme    = new DynamicTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
+
   @Override
   protected void onCreate(Bundle icicle, MasterSecret masterSecret) {
     dynamicTheme.onCreate(this);
@@ -67,11 +67,15 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
 
     this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-    Fragment            fragment            = new ApplicationPreferenceFragment();
-    FragmentManager     fragmentManager     = getSupportFragmentManager();
-    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-    fragmentTransaction.replace(android.R.id.content, fragment);
-    fragmentTransaction.commit();
+    Bundle   fragmentArgs = new Bundle();
+    Fragment fragment     = new ApplicationPreferenceFragment();
+
+    fragmentArgs.putParcelable("master_secret", masterSecret);
+    fragment.setArguments(fragmentArgs);
+
+    getSupportFragmentManager().beginTransaction()
+                               .replace(android.R.id.content, fragment)
+                               .commit();
   }
 
   @Override
@@ -122,18 +126,19 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
       super.onCreate(icicle);
       addPreferencesFromResource(R.xml.preferences);
 
+      MasterSecret masterSecret = getArguments().getParcelable("master_secret");
       this.findPreference(PREFERENCE_CATEGORY_SMS_MMS)
-        .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_SMS_MMS));
+        .setOnPreferenceClickListener(new CategoryClickListener(masterSecret, PREFERENCE_CATEGORY_SMS_MMS));
       this.findPreference(PREFERENCE_CATEGORY_NOTIFICATIONS)
-        .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_NOTIFICATIONS));
+        .setOnPreferenceClickListener(new CategoryClickListener(masterSecret, PREFERENCE_CATEGORY_NOTIFICATIONS));
       this.findPreference(PREFERENCE_CATEGORY_APP_PROTECTION)
-        .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_APP_PROTECTION));
+        .setOnPreferenceClickListener(new CategoryClickListener(masterSecret, PREFERENCE_CATEGORY_APP_PROTECTION));
       this.findPreference(PREFERENCE_CATEGORY_APPEARANCE)
-        .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_APPEARANCE));
+        .setOnPreferenceClickListener(new CategoryClickListener(masterSecret, PREFERENCE_CATEGORY_APPEARANCE));
       this.findPreference(PREFERENCE_CATEGORY_STORAGE)
-        .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_STORAGE));
+        .setOnPreferenceClickListener(new CategoryClickListener(masterSecret, PREFERENCE_CATEGORY_STORAGE));
       this.findPreference(PREFERENCE_CATEGORY_ADVANCED)
-        .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_ADVANCED));
+        .setOnPreferenceClickListener(new CategoryClickListener(masterSecret, PREFERENCE_CATEGORY_ADVANCED));
     }
 
     @Override
@@ -157,10 +162,12 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
     }
 
     private class CategoryClickListener implements Preference.OnPreferenceClickListener {
-      private String category;
+      private MasterSecret masterSecret;
+      private String       category;
 
-      public CategoryClickListener(String category) {
-        this.category = category;
+      public CategoryClickListener(MasterSecret masterSecret,  String category) {
+        this.masterSecret = masterSecret;
+        this.category     = category;
       }
 
       @Override
@@ -175,7 +182,10 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
           fragment = new NotificationsPreferenceFragment();
           break;
         case PREFERENCE_CATEGORY_APP_PROTECTION:
+          Bundle args = new Bundle();
+          args.putParcelable("master_secret", masterSecret);
           fragment = new AppProtectionPreferenceFragment();
+          fragment.setArguments(args);
           break;
         case PREFERENCE_CATEGORY_APPEARANCE:
           fragment = new AppearancePreferenceFragment();

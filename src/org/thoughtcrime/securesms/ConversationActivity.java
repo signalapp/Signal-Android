@@ -163,6 +163,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   protected void onCreate(Bundle state, MasterSecret masterSecret) {
+    this.masterSecret = masterSecret;
     overridePendingTransition(R.anim.slide_from_right, R.anim.fade_scale_out);
     dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
@@ -400,7 +401,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
           new AsyncTask<OutgoingEndSessionMessage, Void, Long>() {
             @Override
             protected Long doInBackground(OutgoingEndSessionMessage... messages) {
-              return MessageSender.send(context, getMasterSecret(), messages[0], threadId, false);
+              return MessageSender.send(context, masterSecret, messages[0], threadId, false);
             }
 
             @Override
@@ -449,7 +450,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
           OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(self, getRecipients(),
                                                                                     context, null);
-          MessageSender.send(self, getMasterSecret(), outgoingMessage, threadId, false);
+          MessageSender.send(self, masterSecret, outgoingMessage, threadId, false);
           DatabaseFactory.getGroupDatabase(self).remove(groupId, TextSecurePreferences.getLocalNumber(self));
           initializeEnabledCheck();
         } catch (IOException e) {
@@ -636,7 +637,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     new AsyncTask<Void, Void, List<Draft>>() {
       @Override
       protected List<Draft> doInBackground(Void... params) {
-        MasterCipher masterCipher   = new MasterCipher(getMasterSecret());
+        MasterCipher masterCipher   = new MasterCipher(masterSecret);
         DraftDatabase draftDatabase = DatabaseFactory.getDraftDatabase(ConversationActivity.this);
         List<Draft> results         = draftDatabase.getDrafts(masterCipher, threadId);
 
@@ -909,7 +910,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     final Drafts       drafts               = getDraftsForCurrentState();
     final long         thisThreadId         = this.threadId;
-    final MasterSecret thisMasterSecret     = getMasterSecret().parcelClone();
+    final MasterSecret thisMasterSecret     = masterSecret.parcelClone();
     final int          thisDistributionType = this.distributionType;
 
     new AsyncTask<Long, Void, Void>() {
@@ -992,7 +993,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       @Override
       protected Void doInBackground(Long... params) {
         DatabaseFactory.getThreadDatabase(ConversationActivity.this).setRead(params[0]);
-        MessageNotifier.updateNotification(ConversationActivity.this, getMasterSecret());
+        MessageNotifier.updateNotification(ConversationActivity.this, masterSecret);
         return null;
       }
     }.execute(threadId);
@@ -1075,7 +1076,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     new AsyncTask<OutgoingMediaMessage, Void, Long>() {
       @Override
       protected Long doInBackground(OutgoingMediaMessage... messages) {
-        return MessageSender.send(context, getMasterSecret(), messages[0], threadId, forceSms);
+        return MessageSender.send(context, masterSecret, messages[0], threadId, forceSms);
       }
 
       @Override
@@ -1102,7 +1103,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     new AsyncTask<OutgoingTextMessage, Void, Long>() {
       @Override
       protected Long doInBackground(OutgoingTextMessage... messages) {
-        return MessageSender.send(context, getMasterSecret(), messages[0], threadId, forceSms);
+        return MessageSender.send(context, masterSecret, messages[0], threadId, forceSms);
       }
 
       @Override

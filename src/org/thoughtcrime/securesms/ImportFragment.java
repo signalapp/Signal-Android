@@ -91,6 +91,7 @@ public class ImportFragment extends Fragment {
       public void onClick(DialogInterface dialog, int which) {
         Intent intent = new Intent(getActivity(), ApplicationMigrationService.class);
         intent.setAction(ApplicationMigrationService.MIGRATE_DATABASE);
+        intent.putExtra("master_secret", masterSecret);
         getActivity().startService(intent);
 
         Intent nextIntent = new Intent(getActivity(), ConversationListActivity.class);

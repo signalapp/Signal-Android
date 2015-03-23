@@ -76,7 +76,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
   @Override
   public void onCreate(Bundle bundle) {
     super.onCreate(bundle);
-    this.masterSecret = KeyCachingService.getMasterSecret(this);
+    this.masterSecret = getIntent().getParcelableExtra("master_secret");
 
     if (needsUpgradeTask()) {
       Log.w("DatabaseUpgradeActivity", "Upgrading...");

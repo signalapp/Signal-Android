@@ -96,6 +96,8 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
   public static final String GROUP_RECIPIENT_EXTRA = "group_recipient";
   public static final String GROUP_THREAD_EXTRA    = "group_thread";
 
+  private MasterSecret masterSecret;
+
   private final DynamicTheme    dynamicTheme    = new DynamicTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
@@ -121,6 +123,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
 
   @Override
   public void onCreate(Bundle state, MasterSecret masterSecret) {
+    this.masterSecret = masterSecret;
     dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
 
@@ -457,7 +460,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
                                        .build();
 
     OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(this, groupRecipient, context, avatar);
-    long                      threadId        = MessageSender.send(this, getMasterSecret(), outgoingMessage, -1, false);
+    long                      threadId        = MessageSender.send(this, masterSecret, outgoingMessage, -1, false);
 
     return new Pair<>(threadId, groupRecipient);
   }
@@ -500,7 +503,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
     protected Bitmap doInBackground(Void... voids) {
       if (avatarUri != null) {
         try {
-          avatarBmp = BitmapUtil.createScaledBitmap(GroupCreateActivity.this, getMasterSecret(), avatarUri, AVATAR_SIZE, AVATAR_SIZE);
+          avatarBmp = BitmapUtil.createScaledBitmap(GroupCreateActivity.this, masterSecret, avatarUri, AVATAR_SIZE, AVATAR_SIZE);
         } catch (IOException | BitmapDecodingException e) {
           Log.w(TAG, e);
           return null;

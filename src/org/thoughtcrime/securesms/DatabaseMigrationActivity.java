@@ -91,6 +91,7 @@ public class DatabaseMigrationActivity extends PassphraseRequiredActionBarActivi
       public void onClick(View v) {
         Intent intent = new Intent(DatabaseMigrationActivity.this, ApplicationMigrationService.class);
         intent.setAction(ApplicationMigrationService.MIGRATE_DATABASE);
+        intent.putExtra("master_secret", getIntent().getParcelableExtra("master_secret"));
         startService(intent);
 
         promptLayout.setVisibility(View.GONE);
