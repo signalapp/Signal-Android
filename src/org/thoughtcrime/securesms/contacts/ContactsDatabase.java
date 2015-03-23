@@ -141,7 +141,7 @@ public class ContactsDatabase {
       baseUri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
     }
     Cursor cursor = context.getContentResolver().query(baseUri, ANDROID_PROJECTION, null, null, CONTACT_LIST_SORT);
-    return new TypedCursorWrapper(cursor);
+    return cursor == null ? null : new TypedCursorWrapper(cursor);
   }
 
   private Cursor queryLocalDb(String filter) {
