@@ -1,21 +1,15 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
-import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
-public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarActivity implements PassphraseRequiredActivity {
+public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarActivity implements MasterSecretListener {
   private static final String TAG = PassphraseRequiredActionBarActivity.class.getSimpleName();
 
   private static final int STATE_NORMAL                   = 0;
@@ -26,12 +20,11 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
 
   private final PassphraseRequiredMixin delegate = new PassphraseRequiredMixin();
 
-  private MasterSecret masterSecret;
-  private boolean      isVisible;
+  private boolean isVisible;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    masterSecret = KeyCachingService.getMasterSecret(this);
+    final MasterSecret masterSecret = KeyCachingService.getMasterSecret(this);
     routeApplicationState(masterSecret);
     super.onCreate(savedInstanceState);
     if (!isFinishing()) {
@@ -58,46 +51,33 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
 
   @Override
   protected void onDestroy() {
-    masterSecret = null;
     super.onDestroy();
     delegate.onDestroy(this);
-  }
-
-  protected boolean isVisible() {
-    return isVisible;
-  }
-
-  protected MasterSecret getMasterSecret() {
-    return masterSecret;
   }
 
   @Override
   public void onMasterSecretCleared() {
     Log.w(TAG, "onMasterSecretCleared()");
-    masterSecret = null;
     if (isVisible) routeApplicationState(null);
     else           finish();
   }
 
-  @Override
-  public void onNewMasterSecret(MasterSecret masterSecret) {}
-
   protected void routeApplicationState(MasterSecret masterSecret) {
-    Intent intent = getIntentForState(getApplicationState(masterSecret));
+    Intent intent = getIntentForState(masterSecret, getApplicationState(masterSecret));
     if (intent != null) {
       startActivity(intent);
       finish();
     }
   }
 
-  protected Intent getIntentForState(int state) {
+  protected Intent getIntentForState(MasterSecret masterSecret, int state) {
     Log.w(TAG, "routeApplicationState(), state: " + state);
 
     switch (state) {
       case STATE_CREATE_PASSPHRASE:        return getCreatePassphraseIntent();
       case STATE_PROMPT_PASSPHRASE:        return getPromptPassphraseIntent();
-      case STATE_UPGRADE_DATABASE:         return getUpgradeDatabaseIntent();
-      case STATE_PROMPT_PUSH_REGISTRATION: return getPushRegistrationIntent();
+      case STATE_UPGRADE_DATABASE:         return getUpgradeDatabaseIntent(masterSecret);
+      case STATE_PROMPT_PUSH_REGISTRATION: return getPushRegistrationIntent(masterSecret);
       default:                             return null;
     }
   }
@@ -130,15 +110,17 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
     return intent;
   }
 
-  private Intent getUpgradeDatabaseIntent() {
+  private Intent getUpgradeDatabaseIntent(MasterSecret masterSecret) {
     Intent intent = new Intent(this, DatabaseUpgradeActivity.class);
+    intent.putExtra("master_secret", masterSecret);
     intent.putExtra("next_intent", TextSecurePreferences.hasPromptedPushRegistration(this) ?
-        getConversationListIntent() : getPushRegistrationIntent());
+        getConversationListIntent() : getPushRegistrationIntent(masterSecret));
     return intent;
   }
 
-  private Intent  getPushRegistrationIntent() {
+  private Intent  getPushRegistrationIntent(MasterSecret masterSecret) {
     Intent intent = new Intent(this, RegistrationActivity.class);
+    intent.putExtra("master_secret", masterSecret);
     intent.putExtra("next_intent", getConversationListIntent());
     return intent;
   }

@@ -42,6 +42,7 @@ import org.whispersystems.textsecure.api.push.TextSecureAddress;
  */
 public class VerifyIdentityActivity extends KeyScanningActivity {
 
+  private MasterSecret masterSecret;
   private Recipient    recipient;
 
   private TextView localIdentityFingerprint;
@@ -52,6 +53,7 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
 
   @Override
   public void onCreate(Bundle state, MasterSecret masterSecret) {
+    this.masterSecret = masterSecret;
     dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -88,7 +90,7 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
     }
 
     if (identityKey == null) {
-      identityKey = getRemoteIdentityKey(getMasterSecret(), recipient);
+      identityKey = getRemoteIdentityKey(masterSecret, recipient);
     }
 
     if (identityKey == null) {
@@ -123,7 +125,7 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
 
   @Override
   protected void initiateScan() {
-    IdentityKey identityKey = getRemoteIdentityKey(getMasterSecret(), recipient);
+    IdentityKey identityKey = getRemoteIdentityKey(masterSecret, recipient);
 
     if (identityKey == null) {
       Toast.makeText(this, R.string.VerifyIdentityActivity_recipient_has_no_identity_key_exclamation,
@@ -145,7 +147,7 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
 
   @Override
   protected IdentityKey getIdentityKeyToCompare() {
-    return getRemoteIdentityKey(getMasterSecret(), recipient);
+    return getRemoteIdentityKey(masterSecret, recipient);
   }
 
   @Override

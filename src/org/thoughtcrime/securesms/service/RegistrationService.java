@@ -155,7 +155,7 @@ public class RegistrationService extends Service {
     String       number       = intent.getStringExtra("e164number");
     String       password     = intent.getStringExtra("password"  );
     String       signalingKey = intent.getStringExtra("signaling_key");
-    MasterSecret masterSecret = KeyCachingService.getMasterSecret(this);
+    MasterSecret masterSecret = intent.getParcelableExtra("master_secret");
 
     try {
       TextSecureAccountManager accountManager = TextSecureCommunicationFactory.createManager(this, number, password);
@@ -181,7 +181,7 @@ public class RegistrationService extends Service {
     markAsVerifying(true);
 
     String       number       = intent.getStringExtra("e164number");
-    MasterSecret masterSecret = KeyCachingService.getMasterSecret(this);
+    MasterSecret masterSecret = intent.getParcelableExtra("master_secret");
     int          registrationId = TextSecurePreferences.getLocalRegistrationId(this);
 
     if (registrationId == 0) {

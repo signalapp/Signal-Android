@@ -76,6 +76,7 @@ public class ReceiveKeyActivity extends PassphraseRequiredActionBarActivity {
 
   @Override
   protected void onCreate(Bundle state, MasterSecret masterSecret) {
+    this.masterSecret = masterSecret;
     setContentView(R.layout.receive_key_activity);
 
     initializeResources();

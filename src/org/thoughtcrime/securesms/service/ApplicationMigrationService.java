@@ -28,8 +28,8 @@ import java.util.concurrent.Executors;
 
 public class ApplicationMigrationService extends Service
     implements SmsMigrator.SmsMigrationProgressListener
-  {
-
+{
+  private static final String TAG               = ApplicationMigrationService.class.getSimpleName();
   public  static final String MIGRATE_DATABASE  = "org.thoughtcrime.securesms.ApplicationMigration.MIGRATE_DATABSE";
   public  static final String COMPLETED_ACTION  = "org.thoughtcrime.securesms.ApplicationMigrationService.COMPLETED";
   private static final String PREFERENCES_NAME  = "SecureSMS";
@@ -140,8 +140,8 @@ public class ApplicationMigrationService extends Service
     private final MasterSecret masterSecret;
 
     public ImportRunnable(Intent intent) {
-      this.masterSecret = KeyCachingService.getMasterSecret(ApplicationMigrationService.this);
-      Log.w("ApplicationMigrationService", "Service got mastersecret: " + masterSecret);
+      this.masterSecret = intent.getParcelableExtra("master_secret");
+      Log.w(TAG, "Service got mastersecret: " + masterSecret);
     }
 
     @Override

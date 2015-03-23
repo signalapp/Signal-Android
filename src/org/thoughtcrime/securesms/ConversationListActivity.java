@@ -49,9 +49,11 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
   private ConversationListFragment fragment;
   private ContentObserver observer;
+  private MasterSecret masterSecret;
 
   @Override
   public void onCreate(Bundle icicle, MasterSecret masterSecret) {
+    this.masterSecret = masterSecret;
     dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
 
@@ -98,7 +100,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
     menu.findItem(R.id.menu_clear_passphrase).setVisible(!TextSecurePreferences.isPasswordDisabled(this));
 
-    if (getMasterSecret() != null) {
+    if (masterSecret != null) {
       inflater.inflate(R.menu.conversation_list, menu);
       MenuItem menuItem = menu.findItem(R.id.menu_search);
       initializeSearch(menuItem);
@@ -172,11 +174,6 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     startActivity(intent);
   }
 
-  private void openSingleContactSelection() {
-    Intent intent = new Intent(this, NewConversationActivity.class);
-    startActivity(intent);
-  }
-
   private void createConversation(long threadId, Recipients recipients, int distributionType) {
     Intent intent = new Intent(this, ConversationActivity.class);
     intent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, recipients.getIds());
@@ -210,7 +207,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
       @Override
       protected Void doInBackground(Void... params) {
         DatabaseFactory.getThreadDatabase(ConversationListActivity.this).setAllThreadsRead();
-        MessageNotifier.updateNotification(ConversationListActivity.this, getMasterSecret());
+        MessageNotifier.updateNotification(ConversationListActivity.this, masterSecret);
         return null;
       }
     }.execute();

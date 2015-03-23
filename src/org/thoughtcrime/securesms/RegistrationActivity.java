@@ -25,6 +25,7 @@ import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -49,6 +50,8 @@ public class RegistrationActivity extends BaseActionBarActivity {
   private Button               createButton;
   private Button               skipButton;
 
+  private MasterSecret masterSecret;
+
   @Override
   public void onCreate(Bundle icicle) {
     super.onCreate(icicle);
@@ -71,6 +74,7 @@ public class RegistrationActivity extends BaseActionBarActivity {
   }
 
   private void initializeResources() {
+    this.masterSecret   = getIntent().getParcelableExtra("master_secret");
     this.countrySpinner = (Spinner)findViewById(R.id.country_spinner);
     this.countryCode    = (TextView)findViewById(R.id.country_code);
     this.number         = (TextView)findViewById(R.id.number);
@@ -200,6 +204,7 @@ public class RegistrationActivity extends BaseActionBarActivity {
                                  public void onClick(DialogInterface dialog, int which) {
                                    Intent intent = new Intent(self, RegistrationProgressActivity.class);
                                    intent.putExtra("e164number", e164number);
+                                   intent.putExtra("master_secret", masterSecret);
                                    startActivity(intent);
                                    finish();
                                  }

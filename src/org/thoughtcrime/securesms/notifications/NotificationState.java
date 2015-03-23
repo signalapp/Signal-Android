@@ -53,6 +53,7 @@ public class NotificationState {
 
     Intent intent = new Intent(MarkReadReceiver.CLEAR_ACTION);
     intent.putExtra("thread_ids", threadArray);
+    intent.putExtra("master_secret", masterSecret);
     intent.setPackage(context.getPackageName());
 
     // XXX : This is an Android bug.  If we don't pull off the extra

@@ -15,12 +15,14 @@ import org.thoughtcrime.securesms.util.DynamicTheme;
 
 public class ImportExportActivity extends PassphraseRequiredActionBarActivity {
 
+  private MasterSecret    masterSecret;
   private TabPagerAdapter tabPagerAdapter;
-  private ViewPager viewPager;
+  private ViewPager       viewPager;
 
   private DynamicTheme dynamicTheme = new DynamicTheme();
 
   public void onCreate(Bundle savedInstanceState, MasterSecret masterSecret) {
+    this.masterSecret = masterSecret;
     dynamicTheme.onCreate(this);
     setContentView(R.layout.import_export_activity);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -89,8 +91,8 @@ public class ImportExportActivity extends PassphraseRequiredActionBarActivity {
 
       this.importFragment = new ImportFragment();
       this.exportFragment = new ExportFragment();
-      this.importFragment.setMasterSecret(getMasterSecret());
-      this.exportFragment.setMasterSecret(getMasterSecret());
+      this.importFragment.setMasterSecret(masterSecret);
+      this.exportFragment.setMasterSecret(masterSecret);
     }
 
     @Override

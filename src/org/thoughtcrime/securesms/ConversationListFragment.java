@@ -82,12 +82,6 @@ public class ConversationListFragment extends ListFragment
   }
 
   @Override
-  public void onDestroyView() {
-    clearListAdapter();
-    super.onDestroyView();
-  }
-
-  @Override
   public void onActivityCreated(Bundle bundle) {
     super.onActivityCreated(bundle);
 
@@ -175,17 +169,12 @@ public class ConversationListFragment extends ListFragment
     } else if (DefaultSmsReminder.isEligible(getActivity())) {
       reminderView.showReminder(new DefaultSmsReminder(getActivity()));
     } else if (SystemSmsImportReminder.isEligible(getActivity())) {
-      reminderView.showReminder(new SystemSmsImportReminder(getActivity()));
+      reminderView.showReminder(new SystemSmsImportReminder(getActivity(), masterSecret));
     } else if (PushRegistrationReminder.isEligible(getActivity())) {
-      reminderView.showReminder(new PushRegistrationReminder(getActivity()));
+      reminderView.showReminder(new PushRegistrationReminder(getActivity(), masterSecret));
     } else {
       reminderView.hide();
     }
-  }
-
-  private void clearListAdapter() {
-    getLoaderManager().destroyLoader(0);
-    setListAdapter(null);
   }
 
   private void initializeListAdapter() {

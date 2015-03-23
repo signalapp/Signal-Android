@@ -21,7 +21,7 @@ public class MarkReadReceiver extends BroadcastReceiver {
       return;
 
     final long[]       threadIds    = intent.getLongArrayExtra("thread_ids");
-    final MasterSecret masterSecret = KeyCachingService.getMasterSecret(context);
+    final MasterSecret masterSecret = intent.getParcelableExtra("master_secret");
 
     if (threadIds != null && masterSecret != null) {
       Log.w("MarkReadReceiver", "threadIds length: " + threadIds.length);

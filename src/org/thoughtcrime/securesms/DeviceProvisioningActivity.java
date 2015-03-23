@@ -47,6 +47,7 @@ public class DeviceProvisioningActivity extends PassphraseRequiredActionBarActiv
 
   @Override
   public void onCreate(Bundle bundle, MasterSecret masterSecret) {
+    this.masterSecret = masterSecret;
     getSupportActionBar().hide();
     initializeResources();
 
@@ -82,11 +83,6 @@ public class DeviceProvisioningActivity extends PassphraseRequiredActionBarActiv
                        }
                      })
                      .show();
-  }
-
-  @Override
-  public void onNewMasterSecret(MasterSecret masterSecret) {
-    this.masterSecret = masterSecret;
   }
 
   private void initializeResources() {
