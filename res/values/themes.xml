@@ -44,11 +44,8 @@
         <item name="conversation_background">#ffffffff</item>
         <item name="conversation_editor_background">@drawable/textlines</item>
         <item name="conversation_editor_text_color">#ff111111</item>
-        <item name="conversation_send_button_push">@drawable/ic_send_push</item>
-        <item name="conversation_send_button_sms_secure">@drawable/ic_send_sms_secure</item>
-        <item name="conversation_send_button_sms_insecure">@drawable/ic_send_sms_insecure</item>
         <item name="conversation_delivery_delivered">@drawable/ic_delivery_delivered_dark</item>
-        <item name="conversation_transport_sms_indicator">@drawable/ic_send_sms_insecure_dark</item>
+        <item name="conversation_transport_sms_indicator">@drawable/ic_send_sms_insecure</item>
         <item name="conversation_transport_push_indicator">@drawable/ic_send_push</item>
         <item name="conversation_transport_popup_background">@color/white</item>
         <item name="conversation_emoji_toggle">@drawable/ic_emoji_dark</item>
@@ -176,9 +173,6 @@
         <item name="conversation_background">@color/black</item>
         <item name="conversation_editor_background">@drawable/textlines_dark</item>
         <item name="conversation_editor_text_color">#ffeeeeee</item>
-        <item name="conversation_send_button_push">@drawable/ic_send_push</item>
-        <item name="conversation_send_button_sms_secure">@drawable/ic_send_sms_secure</item>
-        <item name="conversation_send_button_sms_insecure">@drawable/ic_send_sms_insecure_dark</item>
         <item name="conversation_delivery_delivered">@drawable/ic_delivery_delivered_dark</item>
         <item name="conversation_transport_sms_indicator">@drawable/ic_send_sms_insecure_dark</item>
         <item name="conversation_transport_push_indicator">@drawable/ic_send_push</item>
