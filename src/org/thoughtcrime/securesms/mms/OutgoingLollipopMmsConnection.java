@@ -57,7 +57,7 @@ public class OutgoingLollipopMmsConnection extends BroadcastReceiver implements 
 
   @TargetApi(VERSION_CODES.LOLLIPOP_MR1)
   @Override
-  public void onReceive(Context context, Intent intent) {
+  public synchronized void onReceive(Context context, Intent intent) {
     Log.w(TAG, "onReceive()");
     if (!ACTION.equals(intent.getAction())) {
       Log.w(TAG, "received broadcast with unexpected action " + intent.getAction());
@@ -69,14 +69,12 @@ public class OutgoingLollipopMmsConnection extends BroadcastReceiver implements 
 
     response = intent.getByteArrayExtra(SmsManager.EXTRA_MMS_DATA);
     finished = true;
-    synchronized (this) {
-      notifyAll();
-    }
+    notifyAll();
   }
 
   @Override
   @TargetApi(VERSION_CODES.LOLLIPOP)
-  public SendConf send() throws UndeliverableMessageException {
+  public synchronized SendConf send() throws UndeliverableMessageException {
     context.getApplicationContext().registerReceiver(this, new IntentFilter(ACTION));
     try {
       Uri contentUri = ContentUris.withAppendedId(MmsBodyProvider.CONTENT_URI, messageId);
@@ -85,9 +83,7 @@ public class OutgoingLollipopMmsConnection extends BroadcastReceiver implements 
       SmsManager.getDefault().sendMultimediaMessage(context, contentUri, null, null,
                                                     PendingIntent.getBroadcast(context, 1, new Intent(ACTION), PendingIntent.FLAG_ONE_SHOT));
 
-      synchronized (this) {
-        while (!finished) Util.wait(this, 30000);
-      }
+      while (!finished) Util.wait(this, 30000);
       Log.w(TAG, "MMS broadcast received and processed.");
       context.getApplicationContext().unregisterReceiver(this);
       context.getContentResolver().delete(contentUri, null, null);

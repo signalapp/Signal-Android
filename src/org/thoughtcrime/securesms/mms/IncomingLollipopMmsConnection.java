@@ -58,7 +58,7 @@ public class IncomingLollipopMmsConnection extends BroadcastReceiver implements 
 
   @TargetApi(VERSION_CODES.LOLLIPOP)
   @Override
-  public void onReceive(Context context, Intent intent) {
+  public synchronized void onReceive(Context context, Intent intent) {
     Log.w(TAG, "onReceive()");
     if (!ACTION.equals(intent.getAction())) {
       Log.w(TAG, "received broadcast with unexpected action " + intent.getAction());
@@ -70,14 +70,12 @@ public class IncomingLollipopMmsConnection extends BroadcastReceiver implements 
     Log.w(TAG, "code: " + getResultCode() + ", result string: " + getResultData());
 
     finished = true;
-    synchronized (this) {
-      notifyAll();
-    }
+    notifyAll();
   }
 
   @Override
   @TargetApi(VERSION_CODES.LOLLIPOP)
-  public RetrieveConf retrieve() throws MmsException {
+  public synchronized RetrieveConf retrieve() throws MmsException {
     context.getApplicationContext().registerReceiver(this, new IntentFilter(ACTION));
     try {
       PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 1, new Intent(ACTION), PendingIntent.FLAG_ONE_SHOT);
@@ -85,9 +83,7 @@ public class IncomingLollipopMmsConnection extends BroadcastReceiver implements 
       Log.w(TAG, "downloading multimedia from " + contentLocation + " to " + contentUri);
       SmsManager.getDefault().downloadMultimediaMessage(context, contentLocation, contentUri, null, pendingIntent);
 
-      synchronized (this) {
-        while (!finished) Util.wait(this, 30000);
-      }
+      while (!finished) Util.wait(this, 30000);
 
       context.getApplicationContext().unregisterReceiver(this);
 
