@@ -97,7 +97,6 @@ public class PushContactSelectionListFragment extends    Fragment
   @Override
   public void onDestroyView() {
     super.onDestroyView();
-    ContactsDatabase.destroyInstance();
   }
 
   @Override
