@@ -84,11 +84,6 @@ public class MmsDownloadJob extends MasterSecretJob {
 
     Log.w(TAG, "Downloading mms at " + Uri.parse(contentLocation).getHost());
 
-    download(masterSecret, contentLocation, transactionId);
-  }
-
-  private void download(MasterSecret masterSecret, String contentLocation, byte[] transactionId) {
-    MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
     try {
       RetrieveConf retrieveConf = getMmsConnection(context).retrieve(contentLocation, transactionId);
       storeRetrievedMms(masterSecret, contentLocation, messageId, threadId, retrieveConf);
