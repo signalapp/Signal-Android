@@ -291,4 +291,8 @@ public class Util {
            ? SmsManager.getDefault().getCarrierConfigValues().getBoolean(SmsManager.MMS_CONFIG_MMS_ENABLED)
            : OutgoingLegacyMmsConnection.isConnectionPossible(context);
   }
+
+  public static boolean canOverrideMms() {
+    return VERSION.SDK_INT < VERSION_CODES.LOLLIPOP;
+  }
 }

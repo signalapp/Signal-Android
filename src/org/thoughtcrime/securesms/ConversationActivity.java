@@ -48,6 +48,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.AlertDialogWrapper;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.google.protobuf.ByteString;
 
 import org.thoughtcrime.securesms.TransportOptions.OnTransportChangedListener;
@@ -414,7 +415,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       public void onClick(DialogInterface dialog, int which) {
         Context self = ConversationActivity.this;
         try {
-          byte[]  groupId = GroupUtil.getDecodedId(getRecipients().getPrimaryRecipient().getNumber());
+          byte[] groupId = GroupUtil.getDecodedId(getRecipients().getPrimaryRecipient().getNumber());
           DatabaseFactory.getGroupDatabase(self).setActive(groupId, false);
 
           GroupContext context = GroupContext.newBuilder()
@@ -538,11 +539,19 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleManualMmsRequired() {
-    Toast.makeText(this, R.string.MmsDownloader_error_reading_mms_settings, Toast.LENGTH_LONG).show();
+    if (Util.canOverrideMms()) {
+      Toast.makeText(this, R.string.MmsDownloader_error_reading_mms_settings, Toast.LENGTH_LONG).show();
 
-    Intent intent = new Intent(this, PromptMmsActivity.class);
-    intent.putExtras(getIntent().getExtras());
-    startActivity(intent);
+      Intent intent = new Intent(this, PromptMmsActivity.class);
+      intent.putExtras(getIntent().getExtras());
+      startActivity(intent);
+    } else {
+      new MaterialDialog.Builder(this).title(R.string.ConversationActivity_mms_not_supported_title)
+                                      .content(R.string.ConversationActivity_mms_not_supported_message)
+                                      .iconRes(R.drawable.ic_error_red_24dp)
+                                      .neutralText(android.R.string.ok)
+                                      .show();
+    }
   }
 
   ///// Initializers

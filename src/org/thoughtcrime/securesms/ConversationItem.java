@@ -313,10 +313,8 @@ public class ConversationItem extends LinearLayout {
 
   private void setFailedStatusIcons() {
     dateText.setText(R.string.ConversationItem_error_not_delivered);
-    if (indicatorText != null) {
-      indicatorText.setText(R.string.ConversationItem_click_for_details);
-      indicatorText.setVisibility(View.VISIBLE);
-    }
+    indicatorText.setText(R.string.ConversationItem_click_for_details);
+    indicatorText.setVisibility(View.VISIBLE);
   }
 
   private void setFallbackStatusIcons() {
