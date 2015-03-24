@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.preferences;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,6 +13,7 @@ import android.support.v4.preference.PreferenceFragment;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.AlertDialogWrapper;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
@@ -24,7 +24,6 @@ import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactIdentityManager;
 import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
 import org.thoughtcrime.securesms.util.ProgressDialogAsyncTask;
-import org.thoughtcrime.securesms.util.ResUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.TextSecureAccountManager;
@@ -173,8 +172,8 @@ public class AdvancedPreferenceFragment extends PreferenceFragment {
     @Override
     public boolean onPreferenceChange(final Preference preference, Object newValue) {
       if (((CheckBoxPreference)preference).isChecked()) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setIcon(ResUtil.getDrawable(getActivity(), R.attr.dialog_info_icon));
+        AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(getActivity());
+        builder.setIconAttribute(R.attr.dialog_info_icon);
         builder.setTitle(R.string.ApplicationPreferencesActivity_disable_push_messages);
         builder.setMessage(R.string.ApplicationPreferencesActivity_this_will_disable_push_messages);
         builder.setNegativeButton(android.R.string.cancel, null);
