@@ -6,19 +6,9 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <FrameLayout android:id="@+id/item_container"
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content"
-                 android:background="?conversation_background"
-                 android:paddingTop="15dp"
-                 android:paddingBottom="15dp"
-                 android:elevation="2dp" />
-
     <ListView android:id="@+id/recipients_list"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:paddingLeft="10dp"
-              android:paddingRight="10dp"
               tools:listitem="@layout/message_recipient_list_item" />
 
 </LinearLayout>
