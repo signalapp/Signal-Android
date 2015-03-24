@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms;
 
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -96,6 +97,10 @@ public class PassphraseChangeActivity extends PassphraseActivity {
                        Toast.LENGTH_SHORT).show();
         this.newPassphrase.setText("");
         this.repeatPassphrase.setText("");
+      } else if (TextUtils.isEmpty(passphrase)) {
+        Toast.makeText(getApplicationContext(),
+                       R.string.PassphraseChangeActivity_passphrase_cannot_be_empty,
+                       Toast.LENGTH_SHORT).show();
       } else {
         MasterSecret masterSecret = MasterSecretUtil.changeMasterSecretPassphrase(this, original, passphrase);
         TextSecurePreferences.setPasswordDisabled(this, false);
