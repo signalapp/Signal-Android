@@ -539,13 +539,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleManualMmsRequired() {
-    if (Util.canOverrideMms()) {
-      Toast.makeText(this, R.string.MmsDownloader_error_reading_mms_settings, Toast.LENGTH_LONG).show();
+    Toast.makeText(this, R.string.MmsDownloader_error_reading_mms_settings, Toast.LENGTH_LONG).show();
 
-      Intent intent = new Intent(this, PromptMmsActivity.class);
-      intent.putExtras(getIntent().getExtras());
-      startActivity(intent);
-    }
+    Intent intent = new Intent(this, PromptMmsActivity.class);
+    intent.putExtras(getIntent().getExtras());
+    startActivity(intent);
   }
 
   ///// Initializers

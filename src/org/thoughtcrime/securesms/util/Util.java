@@ -289,8 +289,4 @@ public class Util {
   public static boolean isMmsCapable(Context context) {
     return (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) || OutgoingLegacyMmsConnection.isConnectionPossible(context);
   }
-
-  public static boolean canOverrideMms() {
-    return VERSION.SDK_INT < VERSION_CODES.LOLLIPOP;
-  }
 }
