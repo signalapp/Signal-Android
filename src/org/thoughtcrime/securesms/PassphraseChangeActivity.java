@@ -96,6 +96,12 @@ public class PassphraseChangeActivity extends PassphraseActivity {
                        Toast.LENGTH_SHORT).show();
         this.newPassphrase.setText("");
         this.repeatPassphrase.setText("");
+      } else if (passphrase.equals("")) {
+        Toast.makeText(getApplicationContext(),
+                       R.string.PassphraseChangeActivity_need_new_passphrase_exclamation,
+                       Toast.LENGTH_SHORT).show();
+        this.newPassphrase.setText("");
+        this.repeatPassphrase.setText("");
       } else {
         MasterSecret masterSecret = MasterSecretUtil.changeMasterSecretPassphrase(this, original, passphrase);
         TextSecurePreferences.setPasswordDisabled(this, false);
