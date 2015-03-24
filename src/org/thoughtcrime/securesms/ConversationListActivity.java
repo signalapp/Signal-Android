@@ -19,17 +19,13 @@ package org.thoughtcrime.securesms;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.database.ContentObserver;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.IBinder;
-import android.os.RemoteException;
 import android.provider.ContactsContract;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -63,8 +59,6 @@ import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import de.gdata.messaging.SlidingTabLayout;
-import de.gdata.messaging.TextEncrypter;
-import de.gdata.messaging.isfaserverdefinitions.IRpcService;
 import de.gdata.messaging.util.GDataInitPrivacy;
 import de.gdata.messaging.util.GDataPreferences;
 import de.gdata.messaging.util.GUtil;
@@ -295,7 +289,10 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         ConversationListActivity.this.runOnUiThread(new Runnable() {
           @Override
           public void run() {
-            ((ConversationListAdapter) conversationListFragment.getListAdapter()).notifyDataSetChanged();
+            if((conversationListFragment != null &&
+                ((ConversationListAdapter) conversationListFragment.getListAdapter()) != null)) {
+              ((ConversationListAdapter) conversationListFragment.getListAdapter()).notifyDataSetChanged();
+            }
           }
         });
       }
@@ -386,7 +383,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
   public void startCheckingPassword() {
       boolean pwCorrect = GDataInitPrivacy.isPasswordCorrect(inputText);
-      if (pwCorrect || CURRENTLY_NO_PASSWORT_SET) {
+      if (pwCorrect || GDataInitPrivacy.isNoPasswordSet()) {
         openISFAActivity();
       } else {
         Toast.makeText(getApplicationContext(), getString(R.string.privacy_pw_dialog_toast_wrong), Toast.LENGTH_LONG).show();
@@ -394,7 +391,6 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   }
 
   private static int ACTION_ID = 0;
-  private static boolean CURRENTLY_NO_PASSWORT_SET = false;
 
   @SuppressLint("ValidFragment")
   class CheckPasswordDialogFrag extends DialogFragment {
@@ -487,12 +483,8 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   }
   public void openPasswordDialogWithAction(int action) {
     if (GUtil.featureCheck(getApplicationContext(), true)) {
-      boolean pwCorrect = GDataInitPrivacy.isPasswordCorrect("");
-      if (pwCorrect) {
-        CURRENTLY_NO_PASSWORT_SET = true;
-      }
       ACTION_ID = action;
-      if (CURRENTLY_NO_PASSWORT_SET) {
+      if (GDataInitPrivacy.isNoPasswordSet()) {
         startCheckingPassword();
       } else {
         new CheckPasswordDialogFrag().show(getSupportFragmentManager(), "PW_DIALOG_TAG");

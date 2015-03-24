@@ -9,7 +9,6 @@ import android.content.ServiceConnection;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.IBinder;
-import android.os.RemoteException;
 import android.provider.ContactsContract;
 import android.util.Log;
 
@@ -39,8 +38,8 @@ public class GDataInitPrivacy {
 
     Uri.Builder b = new Uri.Builder();
     b.scheme(ContentResolver.SCHEME_CONTENT);
-    Uri hiddenUri =  Uri.parse("content://de.gdata.mobilesecurity.privacy.provider/contact/0");
-    Uri hiddenNUri =  Uri.parse("content://de.gdata.mobilesecurity.privacy.provider/number/0");
+    Uri hiddenUri = Uri.parse("content://de.gdata.mobilesecurity.privacy.provider/contact/0");
+    Uri hiddenNUri = Uri.parse("content://de.gdata.mobilesecurity.privacy.provider/number/0");
     Uri hiddenContactsUri = b.authority(PrivacyBridge.AUTHORITY).path("contacts/").build();
     Uri hiddenNumbersUri = b.authority(PrivacyBridge.AUTHORITY).path("numbers/").build();
     if (privacyContentObserver == null) {
@@ -75,7 +74,7 @@ public class GDataInitPrivacy {
     try {
       if (mService == null) {
         Log.d("GDATA", "Trying to bind service " + (mService != null));
-        if(mContext != null) {
+        if (mContext != null) {
           isInstalled = mContext.bindService(new Intent(GDataPreferences.INTENT_ACCESS_SERVER), mConnection, Context.BIND_AUTO_CREATE);
         }
       }
@@ -137,87 +136,72 @@ public class GDataInitPrivacy {
    */
   public static boolean shallBeBlockedByFilter(String sender, int inOut, int type) {
     boolean shallBeBlocked = false;
-    if (mService != null) {
       try {
-        if (mService.shouldBeFiltered(sender, inOut, type)) {
+        if (getServiceInstance() != null && getServiceInstance().shouldBeFiltered(sender, inOut, type)) {
           shallBeBlocked = true;
-        } else {
-          shallBeBlocked = false;
-        }
-      } catch (Exception e) {
-      Log.d("GDATA", "Service error " + e.getMessage());
-      }
-    } else {
-      bindISFAService();
-    }
-    return shallBeBlocked;
-  }
-
-  public static boolean shallBeBlockedByPrivacy(String sender) {
-    boolean shallBeBlocked = false;
-    if (mService != null) {
-      try {
-        if (mService.shouldSMSBeBlocked(sender, "")) {
-          shallBeBlocked = true;
-        } else {
-          shallBeBlocked = false;
         }
       } catch (Exception e) {
         Log.d("GDATA", "Service error " + e.getMessage());
       }
-    } else {
+    return shallBeBlocked;
+  }
+
+  public static IRpcService getServiceInstance() {
+    if (mService == null) {
       bindISFAService();
     }
+    return mService;
+  }
+  public static boolean shallBeBlockedByPrivacy(String sender) {
+    boolean shallBeBlocked = false;
+      try {
+        if (getServiceInstance() != null && getServiceInstance().shouldSMSBeBlocked(sender, "")) {
+          shallBeBlocked = true;
+        }
+      } catch (Exception e) {
+        Log.d("GDATA", "Service error " + e.getMessage());
+      }
     return shallBeBlocked;
   }
 
   public static boolean isPremiumEnabled() {
     boolean isPremiumEnabled = false;
-    if (mService != null) {
       try {
-        if (mService.hasPremiumEnabled()) {
+        if (getServiceInstance() != null && getServiceInstance().hasPremiumEnabled()) {
           isPremiumEnabled = true;
-        } else {
-          isPremiumEnabled = false;
+          Log.d("GDATA", "MYLOG PREMIUM " +getServiceInstance().hasPremiumEnabled());
         }
       } catch (Exception e) {
         Log.d("GDATA", "Service error " + e.getMessage());
       }
-    } else {
-      bindISFAService();
-    }
     return isPremiumEnabled;
   }
 
   public static boolean isPasswordCorrect(String pw) {
     boolean isPasswordCorrect = false;
     TextEncrypter encrypter = new TextEncrypter();
-    if (mService != null) {
       try {
-        if (mService.isPasswordCorrect(encrypter.encryptData(pw))) {
+        if (getServiceInstance() != null && getServiceInstance().isPasswordCorrect(encrypter.encryptData(pw))) {
           isPasswordCorrect = true;
-        } else {
-          isPasswordCorrect = false;
         }
       } catch (Exception e) {
         Log.d("GDATA", "Service error " + e.getMessage());
       }
-    } else {
-      bindISFAService();
-    }
     return isPasswordCorrect;
+  }
+
+  public static boolean isNoPasswordSet() {
+    return isPasswordCorrect("");
   }
 
   public static String getSupressedNumbers() {
     String suppressedNumbers = "";
-    if (mService != null) {
+    if (getServiceInstance() != null) {
       try {
-        suppressedNumbers = mService.getSupressedNumbers();
+        suppressedNumbers = getServiceInstance().getSupressedNumbers();
       } catch (Exception e) {
         Log.d("GDATA", "Service error " + e.getMessage());
       }
-    } else {
-      bindISFAService();
     }
     return suppressedNumbers;
   }
