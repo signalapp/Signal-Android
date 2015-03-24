@@ -80,7 +80,7 @@ public class MmsDownloadJob extends MasterSecretJob {
     database.markDownloadState(messageId, MmsDatabase.Status.DOWNLOAD_CONNECTING);
 
     String contentLocation = new String(notification.get().getContentLocation());
-    byte[] transactionId = notification.get().getTransactionId();
+    byte[] transactionId   = notification.get().getTransactionId();
 
     Log.w(TAG, "Downloading mms at " + Uri.parse(contentLocation).getHost());
 
