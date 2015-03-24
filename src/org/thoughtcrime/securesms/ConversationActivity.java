@@ -545,12 +545,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       Intent intent = new Intent(this, PromptMmsActivity.class);
       intent.putExtras(getIntent().getExtras());
       startActivity(intent);
-    } else {
-      new MaterialDialog.Builder(this).title(R.string.ConversationActivity_mms_not_supported_title)
-                                      .content(R.string.ConversationActivity_mms_not_supported_message)
-                                      .iconRes(R.drawable.ic_error_red_24dp)
-                                      .neutralText(android.R.string.ok)
-                                      .show();
     }
   }
 

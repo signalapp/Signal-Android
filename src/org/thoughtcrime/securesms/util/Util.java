@@ -287,9 +287,7 @@ public class Util {
 
   @TargetApi(VERSION_CODES.LOLLIPOP)
   public static boolean isMmsCapable(Context context) {
-    return (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP)
-           ? SmsManager.getDefault().getCarrierConfigValues().getBoolean(SmsManager.MMS_CONFIG_MMS_ENABLED)
-           : OutgoingLegacyMmsConnection.isConnectionPossible(context);
+    return (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) || OutgoingLegacyMmsConnection.isConnectionPossible(context);
   }
 
   public static boolean canOverrideMms() {
