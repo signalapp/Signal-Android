@@ -317,7 +317,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
     MenuItem itemHide = menu.findItem(R.id.menu_hide_contact);
     MenuItem itemBlock = menu.findItem(R.id.menu_block_contact);
-
+    if(!isSingleConversation()) {
+      if (itemHide != null && itemBlock != null) {
+        itemHide.setVisible(false);
+        itemBlock.setVisible(false);
+      }
+    }
     super.onPrepareOptionsMenu(menu);
     return true;
   }
