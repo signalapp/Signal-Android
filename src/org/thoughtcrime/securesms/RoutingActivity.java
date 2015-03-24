@@ -7,7 +7,6 @@ import android.webkit.MimeTypeMap;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -117,11 +116,13 @@ public class RoutingActivity extends PassphraseRequiredActionBarActivity {
 
   private void handleDisplayConversationOrList() {
     final ConversationParameters parameters = getConversationParameters();
+    final boolean hasRecipients = parameters.recipients != null && !parameters.recipients.isEmpty();
     final Intent intent;
 
-    if      (isShareAction())               intent = getShareIntent(parameters);
-    else if (parameters.recipients != null) intent = getConversationIntent(parameters);
-    else                                    intent = getConversationListIntent();
+    if      (isShareAction()) intent = getShareIntent(parameters);
+    else if (hasRecipients)   intent = getConversationIntent(parameters);
+    else if (isSendAction())  intent = getNewConversationIntent();
+    else                      intent = getConversationListIntent();
 
     startActivity(intent);
     finish();
@@ -157,6 +158,13 @@ public class RoutingActivity extends PassphraseRequiredActionBarActivity {
   private Intent getConversationListIntent() {
     Intent intent = new Intent(this, ConversationListActivity.class);
     intent.putExtra("master_secret", masterSecret);
+
+    return intent;
+  }
+
+  private Intent getNewConversationIntent() {
+    Intent intent = new Intent(this, NewConversationActivity.class);
+    intent.putExtra(NewConversationActivity.MASTER_SECRET_EXTRA, masterSecret);
 
     return intent;
   }
