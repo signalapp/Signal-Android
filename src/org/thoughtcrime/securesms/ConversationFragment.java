@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -26,6 +25,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.AlertDialogWrapper;
+
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
@@ -36,11 +37,9 @@ import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
-import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ProgressDialogAsyncTask;
-import org.thoughtcrime.securesms.util.ResUtil;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
 
@@ -191,9 +190,9 @@ public class ConversationFragment extends ListFragment
   }
 
   private void handleDeleteMessages(final List<MessageRecord> messageRecords) {
-    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+    AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(getActivity());
     builder.setTitle(R.string.ConversationFragment_confirm_message_delete);
-    builder.setIcon(ResUtil.getDrawable(getActivity(), R.attr.dialog_alert_icon));
+    builder.setIconAttribute(R.attr.dialog_alert_icon);
     builder.setCancelable(true);
     builder.setMessage(R.string.ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages);
     builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
