@@ -16,7 +16,6 @@ import org.thoughtcrime.securesms.mms.IncomingLollipopMmsConnection;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.IncomingLegacyMmsConnection;
 import org.thoughtcrime.securesms.mms.IncomingMmsConnection;
-import org.thoughtcrime.securesms.mms.LegacyMmsConnection;
 import org.thoughtcrime.securesms.mms.MmsRadioException;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
@@ -35,8 +34,6 @@ import java.util.concurrent.TimeUnit;
 import ws.com.google.android.mms.MmsException;
 import ws.com.google.android.mms.pdu.NotificationInd;
 import ws.com.google.android.mms.pdu.RetrieveConf;
-
-import static org.thoughtcrime.securesms.mms.LegacyMmsConnection.Apn;
 
 public class MmsDownloadJob extends MasterSecretJob {
 
@@ -93,7 +90,7 @@ public class MmsDownloadJob extends MasterSecretJob {
   private void download(MasterSecret masterSecret, String contentLocation, byte[] transactionId) {
     MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
     try {
-      RetrieveConf retrieveConf = getMmsConnection(context, contentLocation, transactionId).retrieve();
+      RetrieveConf retrieveConf = getMmsConnection(context).retrieve(contentLocation, transactionId);
       storeRetrievedMms(masterSecret, contentLocation, messageId, threadId, retrieveConf);
     } catch (ApnUnavailableException e) {
       Log.w(TAG, e);
@@ -124,13 +121,13 @@ public class MmsDownloadJob extends MasterSecretJob {
     }
   }
 
-  private IncomingMmsConnection getMmsConnection(Context context, String contentLocation, byte[] transactionId)
+  private IncomingMmsConnection getMmsConnection(Context context)
       throws ApnUnavailableException
   {
     if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
-      return new IncomingLollipopMmsConnection(context, contentLocation);
+      return new IncomingLollipopMmsConnection(context);
     } else {
-      return new IncomingLegacyMmsConnection(context, getApn(context, contentLocation), transactionId);
+      return new IncomingLegacyMmsConnection(context);
     }
   }
 
@@ -148,11 +145,6 @@ public class MmsDownloadJob extends MasterSecretJob {
   @Override
   public boolean onShouldRetryThrowable(Exception exception) {
     return false;
-  }
-
-  private Apn getApn(Context context, String contentLocation) throws ApnUnavailableException {
-    Apn dbApn = LegacyMmsConnection.getApn(context);
-    return new Apn(contentLocation, dbApn.getProxy(), Integer.toString(dbApn.getPort()), dbApn.getUsername(), dbApn.getPassword());
   }
 
   private void storeRetrievedMms(MasterSecret masterSecret, String contentLocation,

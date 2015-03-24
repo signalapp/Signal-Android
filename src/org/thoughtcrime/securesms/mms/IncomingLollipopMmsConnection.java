@@ -45,13 +45,11 @@ public class IncomingLollipopMmsConnection extends BroadcastReceiver implements 
   private static final String TAG = IncomingLollipopMmsConnection.class.getSimpleName();
 
   private Context context;
-  private String  contentLocation;
   private boolean finished;
 
-  public IncomingLollipopMmsConnection(Context context, String contentLocation) {
+  public IncomingLollipopMmsConnection(Context context) {
     super();
-    this.context         = context;
-    this.contentLocation = contentLocation;
+    this.context = context;
   }
 
   @TargetApi(VERSION_CODES.LOLLIPOP)
@@ -73,7 +71,7 @@ public class IncomingLollipopMmsConnection extends BroadcastReceiver implements 
 
   @Override
   @TargetApi(VERSION_CODES.LOLLIPOP)
-  public synchronized RetrieveConf retrieve() throws MmsException {
+  public synchronized RetrieveConf retrieve(String contentLocation, byte[] transactionId) throws MmsException {
     context.getApplicationContext().registerReceiver(this, new IntentFilter(ACTION));
     long nonce = System.currentTimeMillis();
     try {

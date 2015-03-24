@@ -40,7 +40,7 @@ public class OutgoingLegacyMmsConnection extends LegacyMmsConnection implements 
   private final static String TAG = OutgoingLegacyMmsConnection.class.getSimpleName();
 
   public OutgoingLegacyMmsConnection(Context context) throws ApnUnavailableException {
-    super(context, getApn(context));
+    super(context);
   }
 
   private HttpUriRequest constructRequest(byte[] pduBytes, boolean useProxy)

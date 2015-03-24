@@ -40,33 +40,30 @@ import ws.com.google.android.mms.pdu.RetrieveConf;
 public class IncomingLegacyMmsConnection extends LegacyMmsConnection implements IncomingMmsConnection {
   private static final String TAG = IncomingLegacyMmsConnection.class.getSimpleName();
 
-  private byte[] transactionId;
-
-  public IncomingLegacyMmsConnection(Context context, Apn apn, byte[] transactionId) {
-    super(context, apn);
-    this.transactionId = transactionId;
+  public IncomingLegacyMmsConnection(Context context) throws ApnUnavailableException {
+    super(context);
   }
 
-  private HttpUriRequest constructRequest(boolean useProxy) throws IOException {
-    HttpGetHC4 request = new HttpGetHC4(apn.getMmsc());
+  private HttpUriRequest constructRequest(Apn contentApn, boolean useProxy) throws IOException {
+    HttpGetHC4 request = new HttpGetHC4(contentApn.getMmsc());
     for (Header header : getBaseHeaders()) {
       request.addHeader(header);
     }
     if (useProxy) {
-      HttpHost proxy = new HttpHost(apn.getProxy(), apn.getPort());
+      HttpHost proxy = new HttpHost(contentApn.getProxy(), contentApn.getPort());
       request.setConfig(RequestConfig.custom().setProxy(proxy).build());
     }
     return request;
   }
 
   @Override
-  public RetrieveConf retrieve() throws MmsRadioException, ApnUnavailableException, IOException {
+  public RetrieveConf retrieve(String contentLocation, byte[] transactionId) throws MmsRadioException, ApnUnavailableException, IOException {
     MmsRadio radio = MmsRadio.getInstance(context);
-
+    Apn contentApn = new Apn(contentLocation, apn.getProxy(), Integer.toString(apn.getPort()), apn.getUsername(), apn.getPassword());
     if (isCdmaDevice()) {
       Log.w(TAG, "Connecting directly...");
       try {
-        return retrieve(false, false);
+        return retrieve(contentApn, transactionId, false, false);
       } catch (IOException | ApnUnavailableException e) {
         Log.w(TAG, e);
       }
@@ -79,33 +76,33 @@ public class IncomingLegacyMmsConnection extends LegacyMmsConnection implements 
       Log.w(TAG, "Downloading in MMS mode with proxy...");
 
       try {
-        return retrieve(true, true);
+        return retrieve(contentApn, transactionId, true, true);
       } catch (IOException | ApnUnavailableException e) {
         Log.w(TAG, e);
       }
 
       Log.w(TAG, "Downloading in MMS mode without proxy...");
 
-      return retrieve(true, false);
+      return retrieve(contentApn, transactionId, true, false);
 
     } finally {
       radio.disconnect();
     }
   }
 
-  public RetrieveConf retrieve(boolean usingMmsRadio, boolean useProxyIfAvailable)
+  public RetrieveConf retrieve(Apn contentApn, byte[] transactionId, boolean usingMmsRadio, boolean useProxyIfAvailable)
       throws IOException, ApnUnavailableException
   {
     byte[] pdu = null;
 
-    final boolean useProxy   = useProxyIfAvailable && apn.hasProxy();
+    final boolean useProxy   = useProxyIfAvailable && contentApn.hasProxy();
     final String  targetHost = useProxy
-                             ? apn.getProxy()
-                             : Uri.parse(apn.getMmsc()).getHost();
+                             ? contentApn.getProxy()
+                             : Uri.parse(contentApn.getMmsc()).getHost();
     try {
       if (checkRouteToHost(context, targetHost, usingMmsRadio)) {
         Log.w(TAG, "got successful route to host " + targetHost);
-        pdu = execute(constructRequest(useProxy));
+        pdu = execute(constructRequest(contentApn, useProxy));
       }
     } catch (IOException ioe) {
       Log.w(TAG, ioe);

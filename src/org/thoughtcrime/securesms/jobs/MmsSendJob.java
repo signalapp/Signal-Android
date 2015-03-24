@@ -65,9 +65,14 @@ public class MmsSendJob extends SendJob {
     SendReq     message  = database.getOutgoingMessage(masterSecret, messageId);
 
     try {
-      MmsSendResult result = deliver(masterSecret, message);
+      validateDestinations(message);
+
+      final byte[]        pduBytes = getPduBytes(masterSecret, message);
+      final SendConf      sendConf = getMmsConnection(context).send(pduBytes);
+      final MmsSendResult result   = getSendResult(sendConf, message);
+
       database.markAsSent(messageId, result.getMessageId(), result.getResponseStatus());
-    } catch (UndeliverableMessageException e) {
+    } catch (UndeliverableMessageException | IOException | ApnUnavailableException e) {
       Log.w(TAG, e);
       database.markAsSentFailed(messageId);
       notifyMediaMessageDeliveryFailed(context, messageId);
@@ -87,19 +92,6 @@ public class MmsSendJob extends SendJob {
   public void onCanceled() {
     DatabaseFactory.getMmsDatabase(context).markAsSentFailed(messageId);
     notifyMediaMessageDeliveryFailed(context, messageId);
-  }
-
-  private MmsSendResult deliver(MasterSecret masterSecret, SendReq message)
-      throws UndeliverableMessageException, InsecureFallbackApprovalException
-  {
-    try {
-      validateDestinations(message);
-      final byte[]   pduBytes = getPduBytes(masterSecret, message);
-      final SendConf sendConf = getMmsConnection(context).send(pduBytes);
-      return getSendResult(sendConf, message);
-    } catch (IOException | ApnUnavailableException ioe) {
-      throw new UndeliverableMessageException(ioe);
-    }
   }
 
   private OutgoingMmsConnection getMmsConnection(Context context)
@@ -154,31 +146,21 @@ public class MmsSendJob extends SendJob {
     return !Arrays.equals(message.getTransactionId(), response.getTransactionId());
   }
 
-  private void validateDestination(EncodedStringValue destination) throws UndeliverableMessageException {
-    if (destination == null || !NumberUtil.isValidSmsOrEmail(destination.getString())) {
-      throw new UndeliverableMessageException("Invalid destination: " +
-                                                  (destination == null ? null : destination.getString()));
+  private void validateDestinations(EncodedStringValue[] destinations) throws UndeliverableMessageException {
+    if (destinations == null) return;
+
+    for (EncodedStringValue destination : destinations) {
+      if (destination == null || !NumberUtil.isValidSmsOrEmail(destination.getString())) {
+        throw new UndeliverableMessageException("Invalid destination: " +
+                                                (destination == null ? null : destination.getString()));
+      }
     }
   }
 
   private void validateDestinations(SendReq message) throws UndeliverableMessageException {
-    if (message.getTo() != null) {
-      for (EncodedStringValue to : message.getTo()) {
-        validateDestination(to);
-      }
-    }
-
-    if (message.getCc() != null) {
-      for (EncodedStringValue cc : message.getCc()) {
-        validateDestination(cc);
-      }
-    }
-
-    if (message.getBcc() != null) {
-      for (EncodedStringValue bcc : message.getBcc()) {
-        validateDestination(bcc);
-      }
-    }
+    validateDestinations(message.getTo());
+    validateDestinations(message.getCc());
+    validateDestinations(message.getBcc());
 
     if (message.getTo() == null && message.getCc() == null && message.getBcc() == null) {
       throw new UndeliverableMessageException("No to, cc, or bcc specified!");

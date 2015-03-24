@@ -58,9 +58,9 @@ public abstract class LegacyMmsConnection {
   protected final Context context;
   protected final Apn     apn;
 
-  protected LegacyMmsConnection(Context context, Apn apn) {
+  protected LegacyMmsConnection(Context context) throws ApnUnavailableException {
     this.context = context;
-    this.apn     = apn;
+    this.apn     = getApn(context);
   }
 
   public static Apn getApn(Context context) throws ApnUnavailableException {
