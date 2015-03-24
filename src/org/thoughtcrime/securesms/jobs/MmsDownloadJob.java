@@ -1,17 +1,9 @@
 package org.thoughtcrime.securesms.jobs;
 
-import android.annotation.TargetApi;
-import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
-import android.content.ContentUris;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
-import android.telephony.SmsManager;
-import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.util.Pair;
 
@@ -25,14 +17,10 @@ import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.IncomingLegacyMmsConnection;
 import org.thoughtcrime.securesms.mms.IncomingMmsConnection;
 import org.thoughtcrime.securesms.mms.LegacyMmsConnection;
-import org.thoughtcrime.securesms.mms.MmsRadio;
 import org.thoughtcrime.securesms.mms.MmsRadioException;
-import org.thoughtcrime.securesms.mms.OutgoingLegacyMmsConnection;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
-import org.thoughtcrime.securesms.providers.MmsBodyProvider;
 import org.thoughtcrime.securesms.service.KeyCachingService;
-import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.libaxolotl.DuplicateMessageException;
@@ -40,19 +28,12 @@ import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.libaxolotl.LegacyMessageException;
 import org.whispersystems.libaxolotl.NoSessionException;
 import org.whispersystems.libaxolotl.util.guava.Optional;
-import org.whispersystems.textsecure.internal.util.Hex;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import ws.com.google.android.mms.InvalidHeaderValueException;
 import ws.com.google.android.mms.MmsException;
 import ws.com.google.android.mms.pdu.NotificationInd;
-import ws.com.google.android.mms.pdu.NotifyRespInd;
-import ws.com.google.android.mms.pdu.PduComposer;
-import ws.com.google.android.mms.pdu.PduHeaders;
-import ws.com.google.android.mms.pdu.PduParser;
 import ws.com.google.android.mms.pdu.RetrieveConf;
 
 import static org.thoughtcrime.securesms.mms.LegacyMmsConnection.Apn;
