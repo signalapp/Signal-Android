@@ -33,6 +33,11 @@
     <attr name="conversation_transport_popup_background" format="reference"/>
     <attr name="conversation_emoji_toggle" format="reference"/>
     <attr name="conversation_keyboard_toggle" format="reference"/>
+    <attr name="conversation_attach_file" format="reference"/>
+    <attr name="conversation_attach_image" format="reference"/>
+    <attr name="conversation_attach_video" format="reference"/>
+    <attr name="conversation_attach_sound" format="reference"/>
+    <attr name="conversation_attach_contact_info" format="reference"/>
 
     <attr name="conversation_item_background" format="reference"/>
     <attr name="conversation_item_received_background" format="reference" />
@@ -107,4 +112,5 @@
         <attr name="custom_pref_toggle" format="string"/>
     </declare-styleable>
 
+    <attr name="group_members_dialog_icon" format="reference"/>
 </resources>

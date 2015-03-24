@@ -17,7 +17,6 @@
 package org.thoughtcrime.securesms;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -41,6 +40,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.afollestad.materialdialogs.AlertDialogWrapper;
 import com.melnykov.fab.FloatingActionButton;
 
 import org.thoughtcrime.securesms.components.DefaultSmsReminder;
@@ -53,7 +53,6 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.loaders.ConversationListLoader;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.ResUtil;
 
 import java.util.Set;
 
@@ -196,8 +195,8 @@ public class ConversationListFragment extends ListFragment
   }
 
   private void handleDeleteAllSelected() {
-    AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
-    alert.setIcon(ResUtil.getDrawable(getActivity(), R.attr.dialog_alert_icon));
+    AlertDialogWrapper.Builder alert = new AlertDialogWrapper.Builder(getActivity());
+    alert.setIconAttribute(R.attr.dialog_alert_icon);
     alert.setTitle(R.string.ConversationListFragment_delete_threads_question);
     alert.setMessage(R.string.ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads);
     alert.setCancelable(true);

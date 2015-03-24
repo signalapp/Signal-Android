@@ -16,13 +16,10 @@
  */
 package org.thoughtcrime.securesms.preferences;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.os.Parcelable;
 import android.preference.ListPreference;
-import android.preference.PreferenceManager;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,11 +28,10 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
+import com.afollestad.materialdialogs.AlertDialogWrapper;
+
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.ResUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Dialogs;
 
 /**
  * List preference for LED blink pattern notification.
@@ -82,14 +78,13 @@ public class LedBlinkPatternListPreference extends ListPreference implements OnS
   }
 
   private void initializeDialog(View view) {
-    AlertDialog.Builder builder = new AlertDialog.Builder(context);
-    builder.setIcon(ResUtil.getDrawable(context, R.attr.dialog_info_icon));
+    AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(context);
+    builder.setIconAttribute(R.attr.dialog_info_icon);
     builder.setTitle(R.string.preferences__pref_led_blink_custom_pattern_title);
     builder.setView(view);
     builder.setOnCancelListener(new CustomDialogCancelListener());
     builder.setNegativeButton(android.R.string.cancel, new CustomDialogCancelListener());
     builder.setPositiveButton(android.R.string.ok, new CustomDialogClickListener());
-    builder.setInverseBackgroundForced(true);
     builder.show();
   }
 
