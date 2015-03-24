@@ -251,6 +251,7 @@
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passphrases don\'t match!</string>
     <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Incorrect old passphrase!</string>
+    <string name="PassphraseChangeActivity_no_new_passphrase">Enter new passphrase!</string>
 
     <!-- DeviceProvisioningActivity -->
     <string name="DeviceProvisioningActivity_link_this_device">Link this device?</string>
