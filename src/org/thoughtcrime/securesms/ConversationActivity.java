@@ -94,7 +94,6 @@ import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.Emoji;
 import org.thoughtcrime.securesms.util.GroupUtil;
-import org.thoughtcrime.securesms.util.ResUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libaxolotl.InvalidMessageException;
@@ -167,7 +166,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     dynamicLanguage.onCreate(this);
 
     setContentView(R.layout.conversation_activity);
-    ((ConversationFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_content)).setMasterSecret(masterSecret);
+    ConversationFragment fragment = new ConversationFragment();
+    Bundle               args     = new Bundle();
+    args.putParcelable("master_secret", masterSecret);
+    fragment.setArguments(args);
+    getSupportFragmentManager().beginTransaction()
+                               .replace(R.id.fragment_content, fragment, "conversation")
+                               .commit();
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     initializeNewIntent(getIntent());
@@ -1018,7 +1023,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private ConversationFragment getFragment() {
-    return (ConversationFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_content);
+    return (ConversationFragment)getSupportFragmentManager().findFragmentByTag("conversation");
   }
 
   private void sendMessage() {

@@ -78,7 +78,7 @@ public class ConversationFragment extends ListFragment
   @Override
   public void onAttach(Activity activity) {
     super.onAttach(activity);
-    this.listener = (ConversationFragmentListener)activity;
+    this.listener = (ConversationFragmentListener) activity;
   }
 
   @Override
@@ -100,11 +100,8 @@ public class ConversationFragment extends ListFragment
     getLoaderManager().restartLoader(0, null, this);
   }
 
-  public void setMasterSecret(MasterSecret masterSecret) {
-    this.masterSecret = masterSecret;
-  }
-
   private void initializeResources() {
+    this.masterSecret = getArguments().getParcelable("master_secret");
     this.recipients   = RecipientFactory.getRecipientsForIds(getActivity(), getActivity().getIntent().getLongArrayExtra("recipients"), true);
     this.threadId     = this.getActivity().getIntent().getLongExtra("thread_id", -1);
   }
