@@ -400,6 +400,7 @@ public class PushServiceSocket {
 
     connection.setRequestMethod(method);
     connection.setRequestProperty("Content-Type", "application/octet-stream");
+    connection.setRequestProperty("Connection", "close");
     connection.connect();
 
     try {
