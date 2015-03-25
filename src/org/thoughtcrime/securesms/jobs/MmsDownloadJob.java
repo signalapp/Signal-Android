@@ -2,22 +2,21 @@ package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
 import android.net.Uri;
-import android.telephony.TelephonyManager;
+import android.os.Build.VERSION;
+import android.os.Build.VERSION_CODES;
 import android.util.Log;
 import android.util.Pair;
 
-import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.mms.ApnUnavailableException;
+import org.thoughtcrime.securesms.mms.IncomingLollipopMmsConnection;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
+import org.thoughtcrime.securesms.mms.IncomingLegacyMmsConnection;
 import org.thoughtcrime.securesms.mms.IncomingMmsConnection;
-import org.thoughtcrime.securesms.mms.MmsConnection;
-import org.thoughtcrime.securesms.mms.MmsRadio;
 import org.thoughtcrime.securesms.mms.MmsRadioException;
-import org.thoughtcrime.securesms.mms.OutgoingMmsConnection;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
 import org.thoughtcrime.securesms.service.KeyCachingService;
@@ -32,15 +31,9 @@ import org.whispersystems.libaxolotl.util.guava.Optional;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import ws.com.google.android.mms.InvalidHeaderValueException;
 import ws.com.google.android.mms.MmsException;
 import ws.com.google.android.mms.pdu.NotificationInd;
-import ws.com.google.android.mms.pdu.NotifyRespInd;
-import ws.com.google.android.mms.pdu.PduComposer;
-import ws.com.google.android.mms.pdu.PduHeaders;
 import ws.com.google.android.mms.pdu.RetrieveConf;
-
-import static org.thoughtcrime.securesms.mms.MmsConnection.Apn;
 
 public class MmsDownloadJob extends MasterSecretJob {
 
@@ -73,8 +66,8 @@ public class MmsDownloadJob extends MasterSecretJob {
   }
 
   @Override
-  public void onRun(MasterSecret masterSecret)  {
-    Log.w(TAG, "MmsDownloadJob:onRun()");
+  public void onRun(MasterSecret masterSecret) {
+    Log.w(TAG, "onRun()");
 
     MmsDatabase               database     = DatabaseFactory.getMmsDatabase(context);
     Optional<NotificationInd> notification = database.getNotification(messageId);
@@ -86,71 +79,27 @@ public class MmsDownloadJob extends MasterSecretJob {
 
     database.markDownloadState(messageId, MmsDatabase.Status.DOWNLOAD_CONNECTING);
 
-    String   contentLocation = new String(notification.get().getContentLocation());
-    byte[]   transactionId   = notification.get().getTransactionId();
-    MmsRadio radio           = MmsRadio.getInstance(context);
+    String contentLocation = new String(notification.get().getContentLocation());
+    byte[] transactionId   = notification.get().getTransactionId();
 
-    Log.w(TAG, "About to parse URL...");
-
-    Log.w(TAG, "Downloading mms at " +  Uri.parse(contentLocation).getHost());
+    Log.w(TAG, "Downloading mms at " + Uri.parse(contentLocation).getHost());
 
     try {
-      if (isCdmaNetwork()) {
-        Log.w(TAG, "Connecting directly...");
-        try {
-          retrieveAndStore(masterSecret, radio, messageId, threadId, contentLocation,
-                           transactionId, false, false);
-          return;
-        } catch (IOException e) {
-          Log.w(TAG, e);
-        }
-      }
-
-      Log.w(TAG, "Changing radio to MMS mode..");
-      radio.connect();
-
-      try {
-        Log.w(TAG, "Downloading in MMS mode with proxy...");
-
-        try {
-          retrieveAndStore(masterSecret, radio, messageId, threadId, contentLocation,
-                           transactionId, true, true);
-          return;
-        } catch (IOException e) {
-          Log.w(TAG, e);
-        }
-
-        Log.w(TAG, "Downloading in MMS mode without proxy...");
-
-        try {
-          retrieveAndStore(masterSecret, radio, messageId, threadId,
-                           contentLocation, transactionId, true, false);
-        } catch (IOException e) {
-          Log.w(TAG, e);
-          handleDownloadError(masterSecret, messageId, threadId,
-                              MmsDatabase.Status.DOWNLOAD_SOFT_FAILURE,
-                              context.getString(R.string.MmsDownloader_error_connecting_to_mms_provider),
-                              automatic);
-        }
-      } finally {
-        radio.disconnect();
-      }
-
+      RetrieveConf retrieveConf = getMmsConnection(context).retrieve(contentLocation, transactionId);
+      storeRetrievedMms(masterSecret, contentLocation, messageId, threadId, retrieveConf);
     } catch (ApnUnavailableException e) {
       Log.w(TAG, e);
-      handleDownloadError(masterSecret, messageId, threadId, MmsDatabase.Status.DOWNLOAD_APN_UNAVAILABLE,
-                          context.getString(R.string.MmsDownloader_error_reading_mms_settings), automatic);
+      handleDownloadError(context, masterSecret, messageId, threadId, MmsDatabase.Status.DOWNLOAD_APN_UNAVAILABLE,
+                          automatic);
     } catch (MmsException e) {
       Log.w(TAG, e);
-      handleDownloadError(masterSecret, messageId, threadId,
+      handleDownloadError(context, masterSecret, messageId, threadId,
                           MmsDatabase.Status.DOWNLOAD_HARD_FAILURE,
-                          context.getString(R.string.MmsDownloader_error_storing_mms),
                           automatic);
-    } catch (MmsRadioException e) {
+    } catch (MmsRadioException | IOException e) {
       Log.w(TAG, e);
-      handleDownloadError(masterSecret, messageId, threadId,
+      handleDownloadError(context, masterSecret, messageId, threadId,
                           MmsDatabase.Status.DOWNLOAD_SOFT_FAILURE,
-                          context.getString(R.string.MmsDownloader_error_connecting_to_mms_provider),
                           automatic);
     } catch (DuplicateMessageException e) {
       Log.w(TAG, e);
@@ -164,6 +113,16 @@ public class MmsDownloadJob extends MasterSecretJob {
     } catch (InvalidMessageException e) {
       Log.w(TAG, e);
       database.markAsDecryptFailed(messageId, threadId);
+    }
+  }
+
+  private IncomingMmsConnection getMmsConnection(Context context)
+      throws ApnUnavailableException
+  {
+    if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
+      return new IncomingLollipopMmsConnection(context);
+    } else {
+      return new IncomingLegacyMmsConnection(context);
     }
   }
 
@@ -181,23 +140,6 @@ public class MmsDownloadJob extends MasterSecretJob {
   @Override
   public boolean onShouldRetryThrowable(Exception exception) {
     return false;
-  }
-
-  private void retrieveAndStore(MasterSecret masterSecret, MmsRadio radio,
-                                long messageId, long threadId,
-                                String contentLocation, byte[] transactionId,
-                                boolean radioEnabled, boolean useProxy)
-      throws IOException, MmsException, ApnUnavailableException,
-             DuplicateMessageException, NoSessionException,
-             InvalidMessageException, LegacyMessageException
-  {
-    Apn                   dbApn      = MmsConnection.getApn(context, radio.getApnInformation());
-    Apn                   contentApn = new Apn(contentLocation, dbApn.getProxy(), Integer.toString(dbApn.getPort()), dbApn.getUsername(), dbApn.getPassword());
-    IncomingMmsConnection connection = new IncomingMmsConnection(context, contentApn);
-    RetrieveConf          retrieved  = connection.retrieve(radioEnabled, useProxy);
-
-    storeRetrievedMms(masterSecret, contentLocation, messageId, threadId, retrieved);
-    sendRetrievedAcknowledgement(radio, transactionId, radioEnabled, useProxy);
   }
 
   private void storeRetrievedMms(MasterSecret masterSecret, String contentLocation,
@@ -222,26 +164,8 @@ public class MmsDownloadJob extends MasterSecretJob {
     MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
   }
 
-  private void sendRetrievedAcknowledgement(MmsRadio radio,
-                                            byte[] transactionId,
-                                            boolean usingRadio,
-                                            boolean useProxy)
-      throws ApnUnavailableException
-  {
-    try {
-      NotifyRespInd notifyResponse = new NotifyRespInd(PduHeaders.CURRENT_MMS_VERSION,
-                                                       transactionId,
-                                                       PduHeaders.STATUS_RETRIEVED);
-
-      OutgoingMmsConnection connection = new OutgoingMmsConnection(context, radio.getApnInformation(), new PduComposer(context, notifyResponse).make());
-      connection.sendNotificationReceived(usingRadio, useProxy);
-    } catch (InvalidHeaderValueException | IOException e) {
-      Log.w(TAG, e);
-    }
-  }
-
-  private void handleDownloadError(MasterSecret masterSecret, long messageId, long threadId,
-                                   int downloadStatus, String error, boolean automatic)
+  private static void handleDownloadError(Context context, MasterSecret masterSecret, long messageId, long threadId,
+                                          int downloadStatus, boolean automatic)
   {
     MmsDatabase db = DatabaseFactory.getMmsDatabase(context);
 
@@ -252,11 +176,4 @@ public class MmsDownloadJob extends MasterSecretJob {
       MessageNotifier.updateNotification(context, masterSecret, threadId);
     }
   }
-
-  private boolean isCdmaNetwork() {
-    return ((TelephonyManager)context
-        .getSystemService(Context.TELEPHONY_SERVICE))
-        .getPhoneType() == TelephonyManager.PHONE_TYPE_CDMA;
-  }
-
 }
