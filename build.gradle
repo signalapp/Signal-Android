@@ -62,7 +62,7 @@ dependencies {
 
     compile 'org.whispersystems:jobmanager:0.11.0'
     compile 'org.whispersystems:libpastelog:1.0.6'
-    compile 'org.whispersystems:textsecure-android:1.2.3'
+    compile 'org.whispersystems:textsecure-android:1.2.4'
 
     androidTestCompile 'com.google.dexmaker:dexmaker:1.2'
     androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.2'
@@ -101,12 +101,12 @@ dependencyVerification {
             'com.madgag.spongycastle:prov:b8c3fec3a59aac1aa04ccf4dad7179351e54ef7672f53f508151b614c131398a',
             'org.whispersystems:jobmanager:ea9cb943c4892fb90c1eea1be30efeb85cefca213d52c788419553b58d0ed70d',
             'org.whispersystems:libpastelog:550d33c565380d90f4c671e7b8ed5f3a6da55a9fda468373177106b2eb5220b2',
-            'org.whispersystems:textsecure-android:61dcfbca6efa966bb914e28ba3073cb5e86e9831bf8d1c9d5dfd631c029f28ff',
+            'org.whispersystems:textsecure-android:c867b4e1f9cf430aa15c73841833469f71af9c6149becea447a72b96de214398',
             'com.android.support:support-annotations:fdee2354787ef66b268e75958de3f7f6c4f8f325510a6dac9f49c929f83a63de',
             'com.nineoldandroids:library:68025a14e3e7673d6ad2f95e4b46d78d7d068343aa99256b686fe59de1b3163a',
             'javax.inject:javax.inject:91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff',
             'com.madgag.spongycastle:core:8d6240b974b0aca4d3da9c7dd44d42339d8a374358aca5fc98e50a995764511f',
-            'org.whispersystems:textsecure-java:3d44e75251686f82358d58559235d5cee88513f9eae5cbb01175e1b1c07fec05',
+            'org.whispersystems:textsecure-java:141132e1c917759bdc285f80ed9e9784be0dc99ec6872f738439505955832906',
             'org.whispersystems:axolotl-android:40d3db5004a84749a73f68d2f0d01b2ae35a73c54df96d8c6c6723b96efb6fc0',
             'com.googlecode.libphonenumber:libphonenumber:eba17eae81dd622ea89a00a3a8c025b2f25d342e0d9644c5b62e16f15687c3ab',
             'com.google.protobuf:protobuf-java:e0c1c64575c005601725e7c6a02cebf9e1285e888f756b2a1d73ffa8d725cc74',
