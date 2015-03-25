@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.util.Util;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.concurrent.TimeoutException;
 
 import ws.com.google.android.mms.pdu.PduParser;
 import ws.com.google.android.mms.pdu.SendConf;
@@ -80,14 +81,21 @@ public class OutgoingLollipopMmsConnection extends BroadcastReceiver implements 
       SmsManager.getDefault().sendMultimediaMessage(context, contentUri, null, null,
                                                     PendingIntent.getBroadcast(context, 1, new Intent(ACTION), PendingIntent.FLAG_ONE_SHOT));
 
-      while (!finished) Util.wait(this, 30000);
+      long timeoutExpiration = System.currentTimeMillis() + 30000;
+      while (!finished) {
+        Util.wait(this, Math.max(1, timeoutExpiration - System.currentTimeMillis()));
+        if (System.currentTimeMillis() >= timeoutExpiration) {
+          throw new TimeoutException("timeout when waiting for MMS");
+        }
+      }
+
       Log.w(TAG, "MMS broadcast received and processed.");
       context.getApplicationContext().unregisterReceiver(this);
       context.getContentResolver().delete(contentUri, null, null);
 
       return (SendConf) new PduParser(response).parse();
-    } catch (IOException ioe) {
-      throw new UndeliverableMessageException(ioe);
+    } catch (IOException | TimeoutException e) {
+      throw new UndeliverableMessageException(e);
     }
   }
 }

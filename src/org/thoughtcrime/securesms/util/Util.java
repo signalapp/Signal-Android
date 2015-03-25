@@ -131,7 +131,7 @@ public class Util {
     }
   }
 
-  public static void wait(Object lock, int timeout) {
+  public static void wait(Object lock, long timeout) {
     try {
       lock.wait(timeout);
     } catch (InterruptedException ie) {

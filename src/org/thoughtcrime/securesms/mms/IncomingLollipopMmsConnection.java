@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.util.Util;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.concurrent.TimeoutException;
 
 import ws.com.google.android.mms.MmsException;
 import ws.com.google.android.mms.pdu.PduParser;
@@ -80,7 +81,13 @@ public class IncomingLollipopMmsConnection extends BroadcastReceiver implements 
       Log.w(TAG, "downloading multimedia from " + contentLocation + " to " + contentUri);
       SmsManager.getDefault().downloadMultimediaMessage(context, contentLocation, contentUri, null, pendingIntent);
 
-      while (!finished) Util.wait(this, 30000);
+      long timeoutExpiration = System.currentTimeMillis() + 30000;
+      while (!finished) {
+        Util.wait(this, Math.max(1, timeoutExpiration - System.currentTimeMillis()));
+        if (System.currentTimeMillis() >= timeoutExpiration) {
+          throw new TimeoutException("timeout when waiting for MMS");
+        }
+      }
 
       context.getApplicationContext().unregisterReceiver(this);
 
@@ -90,9 +97,9 @@ public class IncomingLollipopMmsConnection extends BroadcastReceiver implements 
       Log.w(TAG, baos.size() + "-byte response: " + Hex.dump(baos.toByteArray()));
 
       return (RetrieveConf) new PduParser(baos.toByteArray()).parse();
-    } catch (IOException ioe) {
-      Log.w(TAG, ioe);
-      throw new MmsException(ioe);
+    } catch (IOException | TimeoutException e) {
+      Log.w(TAG, e);
+      throw new MmsException(e);
     }
   }
 }
