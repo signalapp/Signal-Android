@@ -90,12 +90,13 @@ public class OutgoingLollipopMmsConnection extends BroadcastReceiver implements 
       }
 
       Log.w(TAG, "MMS broadcast received and processed.");
-      context.getApplicationContext().unregisterReceiver(this);
       context.getContentResolver().delete(contentUri, null, null);
 
       return (SendConf) new PduParser(response).parse();
     } catch (IOException | TimeoutException e) {
       throw new UndeliverableMessageException(e);
+    } finally {
+      context.getApplicationContext().unregisterReceiver(this);
     }
   }
 }

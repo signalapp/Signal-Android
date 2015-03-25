@@ -89,8 +89,6 @@ public class IncomingLollipopMmsConnection extends BroadcastReceiver implements 
         }
       }
 
-      context.getApplicationContext().unregisterReceiver(this);
-
       ByteArrayOutputStream baos = new ByteArrayOutputStream();
       Util.copy(context.getContentResolver().openInputStream(contentUri), baos);
 
@@ -100,6 +98,8 @@ public class IncomingLollipopMmsConnection extends BroadcastReceiver implements 
     } catch (IOException | TimeoutException e) {
       Log.w(TAG, e);
       throw new MmsException(e);
+    } finally {
+      context.getApplicationContext().unregisterReceiver(this);
     }
   }
 }
