@@ -111,7 +111,7 @@
     <string name="ConversationActivity_transport_insecure_mms">Insecure MMS</string>
     <string name="ConversationActivity_transport_textsecure">TextSecure</string>
     <string name="ConversationActivity_get_with_it">Get with it: %s</string>
-    <string name="ConversationActivity_install_textsecure">Install TextSecure: %s</string>
+    <string name="ConversationActivity_lets_use_this_to_chat">Let's use this to chat: %s</string>
     <string name="ConversationActivity_error_leaving_group">Error leaving group...</string>
 
     <!-- ConversationFragment -->
