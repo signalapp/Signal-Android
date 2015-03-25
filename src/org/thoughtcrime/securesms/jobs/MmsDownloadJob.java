@@ -165,7 +165,7 @@ public class MmsDownloadJob extends MasterSecretJob {
   }
 
   private static void handleDownloadError(Context context, MasterSecret masterSecret, long messageId, long threadId,
-                                   int downloadStatus, boolean automatic)
+                                          int downloadStatus, boolean automatic)
   {
     MmsDatabase db = DatabaseFactory.getMmsDatabase(context);
 
