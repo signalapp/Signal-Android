@@ -17,7 +17,9 @@
 package org.thoughtcrime.securesms.providers;
 
 import android.content.ContentProvider;
+import android.content.ContentUris;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.net.Uri;
@@ -26,6 +28,8 @@ import android.util.Log;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 public class MmsBodyProvider extends ContentProvider {
   private static final String TAG                = MmsBodyProvider.class.getSimpleName();
@@ -45,10 +49,12 @@ public class MmsBodyProvider extends ContentProvider {
     return true;
   }
 
+
   private File getFile(Uri uri) {
     long id = Long.parseLong(uri.getPathSegments().get(1));
     return new File(getContext().getCacheDir(), id + ".mmsbody");
   }
+
   @Override
   public ParcelFileDescriptor openFile(Uri uri, String mode) throws FileNotFoundException {
     Log.w(TAG, "openFile(" + uri + ", " + mode + ")");
@@ -101,5 +107,34 @@ public class MmsBodyProvider extends ContentProvider {
   @Override
   public int update(Uri arg0, ContentValues arg1, String arg2, String[] arg3) {
     return 0;
+  }
+  public static Pointer makeTemporaryPointer(Context context) {
+    return new Pointer(context, ContentUris.withAppendedId(MmsBodyProvider.CONTENT_URI, System.currentTimeMillis()));
+  }
+
+  public static class Pointer {
+    private final Context context;
+    private final Uri     uri;
+
+    public Pointer(Context context, Uri uri) {
+      this.context = context;
+      this.uri = uri;
+    }
+
+    public Uri getUri() {
+      return uri;
+    }
+
+    public OutputStream getOutputStream() throws FileNotFoundException {
+      return context.getContentResolver().openOutputStream(uri, "w");
+    }
+
+    public InputStream getInputStream() throws FileNotFoundException {
+      return context.getContentResolver().openInputStream(uri);
+    }
+
+    public void close() {
+      context.getContentResolver().delete(uri, null, null);
+    }
   }
 }
