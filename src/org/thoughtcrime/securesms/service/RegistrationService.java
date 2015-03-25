@@ -81,7 +81,6 @@ public class RegistrationService extends Service {
   private volatile ChallengeReceiver       challengeReceiver;
   private          String                  challenge;
   private          long                    verificationStartTime;
-  private          boolean                 generatingPreKeys;
 
   @Override
   public int onStartCommand(final Intent intent, int flags, int startId) {

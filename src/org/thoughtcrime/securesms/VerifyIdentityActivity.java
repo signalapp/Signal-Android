@@ -29,7 +29,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.whispersystems.libaxolotl.AxolotlAddress;
 import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.state.SessionRecord;
@@ -43,8 +42,8 @@ import org.whispersystems.textsecure.api.push.TextSecureAddress;
  */
 public class VerifyIdentityActivity extends KeyScanningActivity {
 
-  private Recipient    recipient;
   private MasterSecret masterSecret;
+  private Recipient    recipient;
 
   private TextView localIdentityFingerprint;
   private TextView remoteIdentityFingerprint;
@@ -53,10 +52,10 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   @Override
-  public void onCreate(Bundle state) {
+  public void onCreate(Bundle state, MasterSecret masterSecret) {
+    this.masterSecret = masterSecret;
     dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
-    super.onCreate(state);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     setContentView(R.layout.verify_identity_activity);
 
@@ -71,12 +70,6 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
     dynamicLanguage.onResume(this);
     getSupportActionBar().setTitle(R.string.AndroidManifest__verify_identity);
 
-  }
-
-  @Override
-  protected void onDestroy() {
-    MemoryCleaner.clean(masterSecret);
-    super.onDestroy();
   }
 
   private void initializeLocalIdentityKey() {
@@ -116,7 +109,6 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
     this.localIdentityFingerprint  = (TextView)findViewById(R.id.you_read);
     this.remoteIdentityFingerprint = (TextView)findViewById(R.id.friend_reads);
     this.recipient                 = RecipientFactory.getRecipientForId(this, this.getIntent().getLongExtra("recipient", -1), true);
-    this.masterSecret              = this.getIntent().getParcelableExtra("master_secret");
   }
 
   @Override

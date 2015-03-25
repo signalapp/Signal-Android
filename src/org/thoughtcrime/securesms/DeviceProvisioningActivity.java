@@ -43,6 +43,10 @@ public class DeviceProvisioningActivity extends PassphraseRequiredActionBarActiv
   public void onCreate(Bundle bundle) {
     supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
     super.onCreate(bundle);
+  }
+
+  @Override
+  public void onCreate(Bundle bundle, MasterSecret masterSecret) {
     getSupportActionBar().hide();
     initializeResources();
 

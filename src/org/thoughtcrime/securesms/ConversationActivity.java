@@ -96,7 +96,6 @@ import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.Emoji;
 import org.thoughtcrime.securesms.util.GroupUtil;
-import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.ResUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -129,7 +128,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   public static final String RECIPIENTS_EXTRA        = "recipients";
   public static final String THREAD_ID_EXTRA         = "thread_id";
-  public static final String MASTER_SECRET_EXTRA     = "master_secret";
   public static final String DRAFT_TEXT_EXTRA        = "draft_text";
   public static final String DRAFT_IMAGE_EXTRA       = "draft_image";
   public static final String DRAFT_AUDIO_EXTRA       = "draft_audio";
@@ -164,15 +162,17 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   @Override
-  protected void onCreate(Bundle state) {
+  protected void onCreate(Bundle state, MasterSecret masterSecret) {
+    this.masterSecret = masterSecret;
     overridePendingTransition(R.anim.slide_from_right, R.anim.fade_scale_out);
     dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
-    super.onCreate(state);
 
     setContentView(R.layout.conversation_activity);
+    ((ConversationFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_content)).setMasterSecret(masterSecret);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+    initializeNewIntent(getIntent());
     initializeReceivers();
     initializeViews();
     initializeResources();
@@ -181,13 +181,15 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   protected void onNewIntent(Intent intent) {
+    Log.w(TAG, "onNewIntent()");
+
     if (!Util.isEmpty(composeText) || attachmentManager.isAttachmentPresent()) {
       saveDraft();
       attachmentManager.clear();
       composeText.setText("");
     }
 
-    setIntent(intent);
+    initializeNewIntent(intent);
 
     initializeResources();
     initializeDraft();
@@ -197,6 +199,32 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     if (fragment != null) {
       fragment.onNewIntent();
     }
+  }
+
+  private void initializeNewIntent(Intent intent) {
+    if (Intent.ACTION_SENDTO.equals(intent.getAction())) {
+      Log.w(TAG, "translating a SENDTO action");
+      Recipients recipients;
+      String body     = intent.getStringExtra("sms_body");
+      long   threadId = intent.getLongExtra("thread_id", -1);
+
+      String data = intent.getData().getSchemeSpecificPart();
+      recipients = RecipientFactory.getRecipientsFromString(this, data, false);
+      threadId   = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipients);
+
+      if (recipients == null || recipients.isEmpty()) {
+        Toast.makeText(this, R.string.ConversationActivity_specify_recipient, Toast.LENGTH_LONG).show();
+        Intent selectIntent = new Intent(this, NewConversationActivity.class);
+        selectIntent.putExtra(DRAFT_TEXT_EXTRA, body);
+        startActivity(selectIntent);
+      } else {
+        intent.putExtra(DRAFT_TEXT_EXTRA, body);
+        intent.putExtra(THREAD_ID_EXTRA, threadId);
+        intent.putExtra(RECIPIENTS_EXTRA, recipients.getIds());
+        intent.removeExtra("sms_body");
+      }
+    }
+    setIntent(intent);
   }
 
   @Override
@@ -229,7 +257,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     recipients.removeListener(this);
     unregisterReceiver(securityUpdateReceiver);
     unregisterReceiver(groupUpdateReceiver);
-    MemoryCleaner.clean(masterSecret);
     super.onDestroy();
   }
 
@@ -336,7 +363,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void handleReturnToConversationList() {
     Intent intent = new Intent(this, ConversationListActivity.class);
     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-    intent.putExtra("master_secret", masterSecret);
     startActivity(intent);
     finish();
   }
@@ -354,7 +380,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void handleVerifyIdentity() {
     Intent verifyIdentityIntent = new Intent(this, VerifyIdentityActivity.class);
     verifyIdentityIntent.putExtra("recipient", getRecipients().getPrimaryRecipient().getRecipientId());
-    verifyIdentityIntent.putExtra("master_secret", masterSecret);
     startActivity(verifyIdentityIntent);
   }
 
@@ -395,7 +420,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     Intent intent = new Intent(this, MediaOverviewActivity.class);
     intent.putExtra(MediaOverviewActivity.THREAD_ID_EXTRA, threadId);
     intent.putExtra(MediaOverviewActivity.RECIPIENT_EXTRA, recipients.getPrimaryRecipient().getRecipientId());
-    intent.putExtra(MediaOverviewActivity.MASTER_SECRET_EXTRA, masterSecret);
     startActivity(intent);
   }
 
@@ -442,7 +466,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void handleEditPushGroup() {
     Intent intent = new Intent(ConversationActivity.this, GroupCreateActivity.class);
-    intent.putExtra(GroupCreateActivity.MASTER_SECRET_EXTRA, masterSecret);
     intent.putExtra(GroupCreateActivity.GROUP_RECIPIENT_EXTRA, recipients.getPrimaryRecipient().getRecipientId());
     startActivityForResult(intent, GROUP_EDIT);
   }
@@ -729,7 +752,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     recipients       = RecipientFactory.getRecipientsForIds(this, getIntent().getLongArrayExtra(RECIPIENTS_EXTRA), true);
     threadId         = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
     distributionType = getIntent().getIntExtra(DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT);
-    masterSecret     = getIntent().getParcelableExtra(MASTER_SECRET_EXTRA);
 
     recipients.addListener(this);
   }
@@ -888,7 +910,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     final Drafts       drafts               = getDraftsForCurrentState();
     final long         thisThreadId         = this.threadId;
-    final MasterSecret thisMasterSecret     = this.masterSecret.parcelClone();
+    final MasterSecret thisMasterSecret     = masterSecret.parcelClone();
     final int          thisDistributionType = this.distributionType;
 
     new AsyncTask<Long, Void, Void>() {
@@ -906,8 +928,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         } else if (threadId > 0) {
           threadDatabase.update(threadId);
         }
-
-        MemoryCleaner.clean(thisMasterSecret);
         return null;
       }
     }.execute(thisThreadId);

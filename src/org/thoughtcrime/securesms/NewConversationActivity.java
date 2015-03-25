@@ -50,20 +50,17 @@ import static org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
  *
  */
 public class NewConversationActivity extends PassphraseRequiredActionBarActivity {
-  private final static String TAG                 = "ContactSelectActivity";
-  public  final static String MASTER_SECRET_EXTRA = "master_secret";
+  private static final String TAG = NewConversationActivity.class.getSimpleName();
 
   private final DynamicTheme    dynamicTheme    = new DynamicTheme   ();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
-  private       MasterSecret    masterSecret;
 
   private PushContactSelectionListFragment contactsFragment;
 
   @Override
-  protected void onCreate(Bundle icicle) {
+  protected void onCreate(Bundle icicle, MasterSecret masterSecret) {
     dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
-    super.onCreate(icicle);
 
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -77,7 +74,6 @@ public class NewConversationActivity extends PassphraseRequiredActionBarActivity
     dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
     getSupportActionBar().setTitle(R.string.AndroidManifest__select_contacts);
-    masterSecret = getIntent().getParcelableExtra(MASTER_SECRET_EXTRA);
   }
 
   @Override
@@ -116,7 +112,7 @@ public class NewConversationActivity extends PassphraseRequiredActionBarActivity
     final Intent resultIntent = getIntent();
     final List<ContactData> selectedContacts = contactsFragment.getSelectedContacts();
     if (selectedContacts != null) {
-      resultIntent.putParcelableArrayListExtra("contacts", new ArrayList<ContactData>(contactsFragment.getSelectedContacts()));
+      resultIntent.putParcelableArrayListExtra("contacts", new ArrayList<>(contactsFragment.getSelectedContacts()));
     }
     setResult(RESULT_OK, resultIntent);
     finish();
@@ -149,7 +145,6 @@ public class NewConversationActivity extends PassphraseRequiredActionBarActivity
     if (recipients != null) {
       Intent intent = new Intent(this, ConversationActivity.class);
       intent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, recipients.getIds());
-      intent.putExtra(ConversationActivity.MASTER_SECRET_EXTRA, masterSecret);
       intent.putExtra(ConversationActivity.DRAFT_TEXT_EXTRA, getIntent().getStringExtra(ConversationActivity.DRAFT_TEXT_EXTRA));
       intent.putExtra(ConversationActivity.DRAFT_AUDIO_EXTRA, getIntent().getParcelableExtra(ConversationActivity.DRAFT_AUDIO_EXTRA));
       intent.putExtra(ConversationActivity.DRAFT_VIDEO_EXTRA, getIntent().getParcelableExtra(ConversationActivity.DRAFT_VIDEO_EXTRA));

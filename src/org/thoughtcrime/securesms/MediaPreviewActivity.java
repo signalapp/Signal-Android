@@ -20,7 +20,6 @@ import android.annotation.TargetApi;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.opengl.GLES20;
 import android.os.AsyncTask;
@@ -32,14 +31,12 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipient.RecipientModifiedListener;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
@@ -60,7 +57,6 @@ import uk.co.senab.photoview.PhotoViewAttacher;
 public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity implements RecipientModifiedListener {
   private final static String TAG = MediaPreviewActivity.class.getSimpleName();
 
-  public final static String MASTER_SECRET_EXTRA = "master_secret";
   public final static String RECIPIENT_EXTRA     = "recipient";
   public final static String DATE_EXTRA          = "date";
 
@@ -79,11 +75,10 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   private long              date;
 
   @Override
-  protected void onCreate(Bundle bundle) {
+  protected void onCreate(Bundle bundle, MasterSecret masterSecret) {
+    this.masterSecret = masterSecret;
     this.setTheme(R.style.TextSecure_DarkTheme);
     dynamicLanguage.onCreate(this);
-
-    super.onCreate(bundle);
 
     setFullscreenIfPossible();
     getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -157,7 +152,6 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   private void initializeResources() {
     final long recipientId = getIntent().getLongExtra(RECIPIENT_EXTRA, -1);
 
-    masterSecret = getIntent().getParcelableExtra(MASTER_SECRET_EXTRA);
     mediaUri     = getIntent().getData();
     mediaType    = getIntent().getType();
     date         = getIntent().getLongExtra(DATE_EXTRA, -1);

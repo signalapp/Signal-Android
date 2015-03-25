@@ -95,10 +95,8 @@ public class ImportFragment extends Fragment {
         getActivity().startService(intent);
 
         Intent nextIntent = new Intent(getActivity(), ConversationListActivity.class);
-        intent.putExtra("master_secret", masterSecret);
 
         Intent activityIntent = new Intent(getActivity(), DatabaseMigrationActivity.class);
-        activityIntent.putExtra("master_secret", masterSecret);
         activityIntent.putExtra("next_intent", nextIntent);
         getActivity().startActivity(activityIntent);
       }
