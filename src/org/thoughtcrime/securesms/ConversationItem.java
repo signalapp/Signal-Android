@@ -272,7 +272,7 @@ public class ConversationItem extends LinearLayout {
                                                         new Emoji.InvalidatingPageLoadedListener(bodyText)),
                      TextView.BufferType.SPANNABLE);
 
-    if (!messageRecord.isKeyExchange() || !messageRecord.isPendingSmsFallback()) {
+    if (!messageRecord.isKeyExchange() && !messageRecord.isPendingSmsFallback()) {
         bodyText.setMovementMethod(GDataLinkMovementMethod.getInstance(context, conversationFragment));
     }
 
