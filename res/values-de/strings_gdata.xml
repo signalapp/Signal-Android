@@ -39,5 +39,5 @@
     <string name="preferences_notification_ten_times">10x</string>
     <string name="preferences_notification_title">Warnungen wiederholen</string>
 
-    <string name="tk_mail">gdata.kundenservice@tk.de</string>
+    <string name="tk_mail">sc-feedback@gdata.de</string>
 </resources>
