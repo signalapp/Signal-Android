@@ -233,10 +233,33 @@ public class ConversationFragment extends ListFragment
     startActivity(intent);
   }
 
-  private void handleForwardMessage(MessageRecord message) {
+  private void handleForwardMediaMessage(final MediaMmsMessageRecord message) {
+    message.fetchMediaSlide(new FutureTaskListener<Slide>() {
+      @Override
+      public void onSuccess(Slide result) {
+        Intent composeIntent = new Intent(getActivity(), ShareActivity.class);
+        composeIntent.putExtra(Intent.EXTRA_TEXT, message.getDisplayBody().toString());
+        composeIntent.putExtra(Intent.EXTRA_STREAM, result.getUri());
+        composeIntent.setType(result.getContentType());
+        startActivity(composeIntent);
+      }
+
+      @Override
+      public void onFailure(Throwable error) {
+        handleForwardTextMessage(message);
+      }
+    });
+  }
+
+  private void handleForwardTextMessage(MessageRecord message) {
     Intent composeIntent = new Intent(getActivity(), ShareActivity.class);
     composeIntent.putExtra(Intent.EXTRA_TEXT, message.getDisplayBody().toString());
     startActivity(composeIntent);
+  }
+
+  private void handleForwardMessage(MessageRecord message) {
+    if (message.isMms()) handleForwardMediaMessage((MediaMmsMessageRecord)message);
+    else                 handleForwardTextMessage(message);
   }
 
   private void handleResendMessage(final MessageRecord message) {
