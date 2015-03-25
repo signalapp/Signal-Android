@@ -39,8 +39,8 @@
         </item>
         <item name="share_list_item_divider">@drawable/gdata_share_list_divider_shape</item>
         <item name="conversation_group_member_name">#99ffffff</item>
-        <item name="conversation_sent_text_primary_color">@color/white</item>
-        <item name="conversation_sent_text_secondary_color">@color/white</item>
+        <item name="conversation_sent_text_primary_color">@color/black</item>
+        <item name="conversation_sent_text_secondary_color">@color/black</item>
         <item name="conversation_received_text_primary_color">@color/black</item>
         <item name="conversation_received_text_secondary_color">@color/black</item>
         <item name="contact_selection_push_user">#000000</item>
@@ -101,8 +101,8 @@
         <item name="conversation_delivery_delivered">@drawable/ic_delivery_delivered</item>
         <item name="conversation_transport_indicators">@array/transport_selection_icons_gdata</item>
         <item name="conversation_transport_popup_background">@color/white</item>
-        <item name="conversation_emoji_toggle">@drawable/ic_emoji_light</item>
-        <item name="conversation_keyboard_toggle">@drawable/ic_ime_light</item>
+        <item name="conversation_emoji_toggle">@drawable/ic_emoji_dark</item>
+        <item name="conversation_keyboard_toggle">@drawable/ic_ime_dark</item>
 
         <item name="homeAsUpIndicator">@drawable/abc_ic_ab_back_holo_dark</item>
         <item name="android:homeAsUpIndicator">@drawable/abc_ic_ab_back_holo_dark</item>
@@ -113,7 +113,7 @@
         <item name="menu_call_icon">@drawable/ic_menu_call_holo_dark</item>
         <item name="menu_unlock_icon">@drawable/ic_menu_unlock_holo_dark</item>
         <item name="menu_lock_icon">@drawable/ic_menu_lock_holo_dark</item>
-        <item name="menu_lock_icon_small">@drawable/ic_lock_white_18dp</item>
+        <item name="menu_lock_icon_small">@drawable/ic_lock_black_18dp</item>
         <item name="menu_trash_icon">@drawable/ic_menu_trash_holo_dark</item>
         <item name="menu_selectall_icon">@drawable/ic_menu_selectall_holo_dark</item>
         <item name="menu_split_icon">@drawable/ic_menu_split_holo_dark</item>
