@@ -612,7 +612,12 @@ public class ConversationItem extends LinearLayout {
     @Override
     public void onFailure(Throwable error) {
       Log.w(TAG, error);
-      mediaThumbnail.setVisibility(View.GONE);
+      handler.post(new Runnable() {
+        @Override
+        public void run() {
+          mediaThumbnail.hide();
+        }
+      });
     }
   }
 
