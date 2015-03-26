@@ -78,7 +78,7 @@ public class ConversationFragment extends ListFragment
   @Override
   public void onAttach(Activity activity) {
     super.onAttach(activity);
-    this.listener = (ConversationFragmentListener) activity;
+    this.listener = (ConversationFragmentListener)activity;
   }
 
   @Override

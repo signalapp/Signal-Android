@@ -78,8 +78,6 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   @Override
   public void onResume() {
     super.onResume();
-    supportInvalidateOptionsMenu();
-
     dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
   }

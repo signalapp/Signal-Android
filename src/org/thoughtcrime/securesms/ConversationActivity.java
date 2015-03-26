@@ -170,12 +170,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     this.masterSecret = masterSecret;
 
     setContentView(R.layout.conversation_activity);
+
     ConversationFragment fragment = new ConversationFragment();
     Bundle               args     = new Bundle();
     args.putParcelable("master_secret", masterSecret);
     fragment.setArguments(args);
     getSupportFragmentManager().beginTransaction()
-                               .replace(R.id.fragment_content, fragment, "conversation")
+                               .replace(R.id.fragment_content, fragment, ConversationFragment.class.getSimpleName())
                                .commit();
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -184,6 +185,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     initializeViews();
     initializeResources();
     initializeDraft();
+
+    routeIfNecessary();
   }
 
   @Override
@@ -197,41 +200,39 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     initializeNewIntent(intent);
-
     initializeResources();
     initializeDraft();
 
-    ConversationFragment fragment = getFragment();
+    routeIfNecessary();
 
-    if (fragment != null) {
-      fragment.onNewIntent();
+    if (getFragment() != null) {
+      getFragment().onNewIntent();
     }
   }
 
   private void initializeNewIntent(Intent intent) {
     if (Intent.ACTION_SENDTO.equals(intent.getAction())) {
       Log.w(TAG, "translating a SENDTO action");
-      Recipients recipients;
-      String body     = intent.getStringExtra("sms_body");
-      long   threadId = intent.getLongExtra("thread_id", -1);
+      String     body       = intent.getStringExtra("sms_body");
+      String     data       = intent.getData().getSchemeSpecificPart();
+      Recipients recipients = RecipientFactory.getRecipientsFromString(this, data, false);
+      long       threadId   = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipients);
 
-      String data = intent.getData().getSchemeSpecificPart();
-      recipients = RecipientFactory.getRecipientsFromString(this, data, false);
-      threadId   = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipients);
-
-      if (recipients == null || recipients.isEmpty()) {
-        Toast.makeText(this, R.string.ConversationActivity_specify_recipient, Toast.LENGTH_LONG).show();
-        Intent selectIntent = new Intent(this, NewConversationActivity.class);
-        selectIntent.putExtra(DRAFT_TEXT_EXTRA, body);
-        startActivity(selectIntent);
-      } else {
-        intent.putExtra(DRAFT_TEXT_EXTRA, body);
-        intent.putExtra(THREAD_ID_EXTRA, threadId);
-        intent.putExtra(RECIPIENTS_EXTRA, recipients.getIds());
-        intent.removeExtra("sms_body");
-      }
+      intent.putExtra(DRAFT_TEXT_EXTRA, body);
+      intent.putExtra(THREAD_ID_EXTRA, threadId);
+      intent.putExtra(RECIPIENTS_EXTRA, recipients.getIds());
+      intent.removeExtra("sms_body");
     }
     setIntent(intent);
+  }
+
+  private void routeIfNecessary() {
+    if (recipients == null || recipients.isEmpty()) {
+      Toast.makeText(this, R.string.ConversationActivity_specify_recipient, Toast.LENGTH_LONG).show();
+      Intent selectIntent = new Intent(this, NewConversationActivity.class);
+      selectIntent.putExtra(DRAFT_TEXT_EXTRA, getIntent().getStringExtra(DRAFT_TEXT_EXTRA));
+      startActivity(selectIntent);
+    }
   }
 
   @Override
@@ -1027,7 +1028,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private ConversationFragment getFragment() {
-    return (ConversationFragment)getSupportFragmentManager().findFragmentByTag("conversation");
+    return (ConversationFragment) getSupportFragmentManager()
+                                      .findFragmentByTag(ConversationFragment.class.getSimpleName());
   }
 
   private void sendMessage() {
