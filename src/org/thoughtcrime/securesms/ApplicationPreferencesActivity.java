@@ -59,11 +59,14 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
   private final DynamicTheme    dynamicTheme    = new DynamicTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
+  @Override
+  protected void onPreCreate() {
+    dynamicTheme.onCreate(this);
+    dynamicLanguage.onCreate(this);
+  }
 
   @Override
   protected void onCreate(Bundle icicle, MasterSecret masterSecret) {
-    dynamicTheme.onCreate(this);
-    dynamicLanguage.onCreate(this);
 
     this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

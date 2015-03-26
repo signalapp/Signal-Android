@@ -52,10 +52,14 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   private MasterSecret masterSecret;
 
   @Override
-  public void onCreate(Bundle icicle, MasterSecret masterSecret) {
-    this.masterSecret = masterSecret;
+  public void onPreCreate() {
     dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
+  }
+
+  @Override
+  public void onCreate(Bundle icicle, MasterSecret masterSecret) {
+    this.masterSecret = masterSecret;
 
     getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
 
@@ -84,11 +88,6 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   public void onDestroy() {
     if (observer != null) getContentResolver().unregisterContentObserver(observer);
     super.onDestroy();
-  }
-
-  @Override
-  public void onMasterSecretCleared() {
-    super.onMasterSecretCleared();
   }
 
   @Override

@@ -33,10 +33,13 @@ public class MmsPreferencesActivity extends PassphraseRequiredActionBarActivity 
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   @Override
-  protected void onCreate(Bundle icicle, MasterSecret masterSecret) {
+  protected void onPreCreate() {
     dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
+  }
 
+  @Override
+  protected void onCreate(Bundle icicle, MasterSecret masterSecret) {
     this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     Fragment fragment = new MmsPreferencesFragment();

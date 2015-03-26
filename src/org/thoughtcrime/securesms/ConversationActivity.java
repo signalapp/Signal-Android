@@ -159,11 +159,15 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   @Override
-  protected void onCreate(Bundle state, MasterSecret masterSecret) {
-    this.masterSecret = masterSecret;
-    overridePendingTransition(R.anim.slide_from_right, R.anim.fade_scale_out);
+  protected void onPreCreate() {
     dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
+    overridePendingTransition(R.anim.slide_from_right, R.anim.fade_scale_out);
+  }
+
+  @Override
+  protected void onCreate(Bundle state, MasterSecret masterSecret) {
+    this.masterSecret = masterSecret;
 
     setContentView(R.layout.conversation_activity);
     ConversationFragment fragment = new ConversationFragment();
@@ -913,7 +917,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     final Drafts       drafts               = getDraftsForCurrentState();
     final long         thisThreadId         = this.threadId;
-    final MasterSecret thisMasterSecret     = masterSecret.parcelClone();
+    final MasterSecret thisMasterSecret     = this.masterSecret.parcelClone();
     final int          thisDistributionType = this.distributionType;
 
     new AsyncTask<Long, Void, Void>() {

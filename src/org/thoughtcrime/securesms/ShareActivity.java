@@ -46,10 +46,14 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   @Override
-  public void onCreate(Bundle icicle, MasterSecret masterSecret) {
-    this.masterSecret = masterSecret;
+  protected void onPreCreate() {
     dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
+  }
+
+  @Override
+  public void onCreate(Bundle icicle, MasterSecret masterSecret) {
+    this.masterSecret = masterSecret;
 
     setContentView(R.layout.share_activity);
     initializeResources();

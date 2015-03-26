@@ -21,9 +21,13 @@ public class ImportExportActivity extends PassphraseRequiredActionBarActivity {
 
   private DynamicTheme dynamicTheme = new DynamicTheme();
 
+  @Override
+  protected void onPreCreate() {
+    dynamicTheme.onCreate(this);
+  }
+
   public void onCreate(Bundle savedInstanceState, MasterSecret masterSecret) {
     this.masterSecret = masterSecret;
-    dynamicTheme.onCreate(this);
     setContentView(R.layout.import_export_activity);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

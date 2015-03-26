@@ -58,9 +58,13 @@ public class NewConversationActivity extends PassphraseRequiredActionBarActivity
   private PushContactSelectionListFragment contactsFragment;
 
   @Override
-  protected void onCreate(Bundle icicle, MasterSecret masterSecret) {
+  protected void onPreCreate() {
     dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
+  }
+
+  @Override
+  protected void onCreate(Bundle icicle, MasterSecret masterSecret) {
 
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

@@ -52,10 +52,14 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   @Override
-  public void onCreate(Bundle state, MasterSecret masterSecret) {
-    this.masterSecret = masterSecret;
+  protected void onPreCreate() {
     dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
+  }
+
+  @Override
+  public void onCreate(Bundle state, MasterSecret masterSecret) {
+    this.masterSecret = masterSecret;
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     setContentView(R.layout.verify_identity_activity);
 

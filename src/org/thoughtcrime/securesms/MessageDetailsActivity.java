@@ -82,9 +82,13 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
   private DynamicTheme     dynamicTheme    = new DynamicTheme();
   private DynamicLanguage  dynamicLanguage = new DynamicLanguage();
 
-  public void onCreate(Bundle bundle, MasterSecret masterSecret) {
+  @Override
+  protected void onPreCreate() {
     dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
+  }
+
+  public void onCreate(Bundle bundle, MasterSecret masterSecret) {
     setContentView(R.layout.message_details_activity);
 
     initializeResources();

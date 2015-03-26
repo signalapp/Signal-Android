@@ -44,7 +44,7 @@ public abstract class KeyScanningActivity extends PassphraseRequiredActionBarAct
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   @Override
-  protected void onCreate(Bundle bundle, MasterSecret masterSecret) {
+  protected void onPreCreate() {
     dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
   }

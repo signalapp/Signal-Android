@@ -119,10 +119,14 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
   private Set<Recipient> selectedContacts;
 
   @Override
-  public void onCreate(Bundle state, MasterSecret masterSecret) {
-    this.masterSecret = masterSecret;
+  protected void onPreCreate() {
     dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
+  }
+
+  @Override
+  public void onCreate(Bundle state, MasterSecret masterSecret) {
+    this.masterSecret = masterSecret;
 
     setContentView(R.layout.group_create_activity);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);

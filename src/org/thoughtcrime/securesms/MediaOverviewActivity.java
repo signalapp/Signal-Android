@@ -62,10 +62,14 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
   private long              threadId;
 
   @Override
-  protected void onCreate(Bundle bundle, MasterSecret masterSecret) {
-    this.masterSecret = masterSecret;
+  protected void onPreCreate() {
     this.setTheme(R.style.TextSecure_DarkTheme);
     dynamicLanguage.onCreate(this);
+  }
+
+  @Override
+  protected void onCreate(Bundle bundle, MasterSecret masterSecret) {
+    this.masterSecret = masterSecret;
     setFullscreenIfPossible();
 
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
