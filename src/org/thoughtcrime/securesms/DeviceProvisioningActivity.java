@@ -40,9 +40,8 @@ public class DeviceProvisioningActivity extends PassphraseRequiredActionBarActiv
   private MasterSecret masterSecret;
 
   @Override
-  public void onCreate(Bundle bundle) {
+  public void onPreCreate() {
     supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
-    super.onCreate(bundle);
   }
 
   @Override

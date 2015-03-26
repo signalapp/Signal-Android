@@ -33,12 +33,12 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
  */
 public class ViewLocalIdentityActivity extends ViewIdentityActivity {
 
-  public void onCreate(Bundle bundle) {
+  @Override
+  public void onPreCreate() {
     getIntent().putExtra(ViewIdentityActivity.IDENTITY_KEY,
                          new IdentityKeyParcelable(IdentityKeyUtil.getIdentityKey(this)));
     getIntent().putExtra(ViewIdentityActivity.TITLE,
                          getString(R.string.ViewIdentityActivity_my_identity_fingerprint));
-    super.onCreate(bundle);
   }
 
   @Override
