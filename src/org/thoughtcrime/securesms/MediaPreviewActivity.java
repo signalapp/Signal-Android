@@ -26,6 +26,7 @@ import android.os.AsyncTask;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -75,7 +76,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   private long              date;
 
   @Override
-  protected void onCreate(Bundle bundle, MasterSecret masterSecret) {
+  protected void onCreate(Bundle bundle, @NonNull MasterSecret masterSecret) {
     this.masterSecret = masterSecret;
     this.setTheme(R.style.TextSecure_DarkTheme);
     dynamicLanguage.onCreate(this);

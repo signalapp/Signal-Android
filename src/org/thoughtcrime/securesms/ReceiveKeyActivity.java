@@ -21,6 +21,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
@@ -75,7 +76,7 @@ public class ReceiveKeyActivity extends PassphraseRequiredActionBarActivity {
   private IdentityKey                 identityKey;
 
   @Override
-  protected void onCreate(Bundle state, MasterSecret masterSecret) {
+  protected void onCreate(Bundle state, @NonNull MasterSecret masterSecret) {
     this.masterSecret = masterSecret;
     setContentView(R.layout.receive_key_activity);
 

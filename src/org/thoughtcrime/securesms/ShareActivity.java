@@ -20,6 +20,7 @@ package org.thoughtcrime.securesms;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -52,7 +53,7 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   }
 
   @Override
-  public void onCreate(Bundle icicle, MasterSecret masterSecret) {
+  protected void onCreate(Bundle icicle, @NonNull MasterSecret masterSecret) {
     this.masterSecret = masterSecret;
 
     setContentView(R.layout.share_activity);

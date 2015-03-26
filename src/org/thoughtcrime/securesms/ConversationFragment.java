@@ -62,6 +62,11 @@ public class ConversationFragment extends ListFragment
   private ActionMode   actionMode;
 
   @Override
+  public void onCreate(Bundle icicle) {
+    this.masterSecret = getArguments().getParcelable("master_secret");
+  }
+
+  @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
     return inflater.inflate(R.layout.conversation_fragment, container, false);
   }
@@ -101,7 +106,6 @@ public class ConversationFragment extends ListFragment
   }
 
   private void initializeResources() {
-    this.masterSecret = getArguments().getParcelable("master_secret");
     this.recipients   = RecipientFactory.getRecipientsForIds(getActivity(), getActivity().getIntent().getLongArrayExtra("recipients"), true);
     this.threadId     = this.getActivity().getIntent().getLongExtra("thread_id", -1);
   }

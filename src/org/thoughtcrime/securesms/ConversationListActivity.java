@@ -21,6 +21,7 @@ import android.database.ContentObserver;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.support.v4.view.MenuItemCompat;
@@ -52,24 +53,19 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   private MasterSecret masterSecret;
 
   @Override
-  public void onPreCreate() {
+  protected void onPreCreate() {
     dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
   }
 
   @Override
-  public void onCreate(Bundle icicle, MasterSecret masterSecret) {
+  protected void onCreate(Bundle icicle, @NonNull MasterSecret masterSecret) {
     this.masterSecret = masterSecret;
 
     getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
-
     getSupportActionBar().setTitle(R.string.app_name);
 
-    this.fragment = ConversationListFragment.newInstance(masterSecret);
-    getSupportFragmentManager().beginTransaction()
-                               .replace(android.R.id.content, fragment, "conversation_list")
-                               .commit();
-
+    initializeFragment();
     initializeContactUpdatesReceiver();
 
     DirectoryRefreshListener.schedule(this);
@@ -97,16 +93,22 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
     menu.findItem(R.id.menu_clear_passphrase).setVisible(!TextSecurePreferences.isPasswordDisabled(this));
 
-    if (masterSecret != null) {
-      inflater.inflate(R.menu.conversation_list, menu);
-      MenuItem menuItem = menu.findItem(R.id.menu_search);
-      initializeSearch(menuItem);
-    } else {
-      inflater.inflate(R.menu.conversation_list_empty, menu);
-    }
+    inflater.inflate(R.menu.conversation_list, menu);
+    MenuItem menuItem = menu.findItem(R.id.menu_search);
+    initializeSearch(menuItem);
 
     super.onPrepareOptionsMenu(menu);
     return true;
+  }
+
+  private void initializeFragment() {
+    Bundle args = new Bundle();
+    args.putParcelable("master_secret", masterSecret);
+    this.fragment = new ConversationListFragment();
+    this.fragment.setArguments(args);
+    getSupportFragmentManager().beginTransaction()
+                               .replace(android.R.id.content, fragment)
+                               .commit();
   }
 
   private void initializeSearch(MenuItem searchViewItem) {

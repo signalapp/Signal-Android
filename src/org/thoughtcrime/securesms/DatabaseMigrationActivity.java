@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -38,7 +39,7 @@ public class DatabaseMigrationActivity extends PassphraseRequiredActionBarActivi
   private boolean isVisible = false;
 
   @Override
-  public void onCreate(Bundle bundle, MasterSecret masterSecret) {
+  protected void onCreate(Bundle bundle, @NonNull MasterSecret masterSecret) {
     setContentView(R.layout.database_migration_activity);
 
     initializeResources();

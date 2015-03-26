@@ -17,11 +17,9 @@
  */
 package org.thoughtcrime.securesms;
 
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
@@ -34,7 +32,7 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 public class ViewLocalIdentityActivity extends ViewIdentityActivity {
 
   @Override
-  public void onPreCreate() {
+  protected void onPreCreate() {
     getIntent().putExtra(ViewIdentityActivity.IDENTITY_KEY,
                          new IdentityKeyParcelable(IdentityKeyUtil.getIdentityKey(this)));
     getIntent().putExtra(ViewIdentityActivity.TITLE,

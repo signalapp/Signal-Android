@@ -18,6 +18,7 @@
 package org.thoughtcrime.securesms;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,7 +59,7 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
   }
 
   @Override
-  public void onCreate(Bundle state, MasterSecret masterSecret) {
+  protected void onCreate(Bundle state, @NonNull MasterSecret masterSecret) {
     this.masterSecret = masterSecret;
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     setContentView(R.layout.verify_identity_activity);

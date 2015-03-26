@@ -168,7 +168,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
       private MasterSecret masterSecret;
       private String       category;
 
-      public CategoryClickListener(MasterSecret masterSecret,  String category) {
+      public CategoryClickListener(MasterSecret masterSecret, String category) {
         this.masterSecret = masterSecret;
         this.category     = category;
       }

@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -26,7 +27,8 @@ public class ImportExportActivity extends PassphraseRequiredActionBarActivity {
     dynamicTheme.onCreate(this);
   }
 
-  public void onCreate(Bundle savedInstanceState, MasterSecret masterSecret) {
+  @Override
+  protected void onCreate(Bundle savedInstanceState, @NonNull MasterSecret masterSecret) {
     this.masterSecret = masterSecret;
     setContentView(R.layout.import_export_activity);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);

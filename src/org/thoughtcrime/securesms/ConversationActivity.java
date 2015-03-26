@@ -27,6 +27,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
 import android.telephony.PhoneNumberUtils;
 import android.text.Editable;
 import android.text.InputType;
@@ -137,10 +138,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private static final int PICK_CONTACT_INFO = 4;
   private static final int GROUP_EDIT        = 5;
 
-  private MasterSecret masterSecret;
-  private ComposeText  composeText;
-  private SendButton   sendButton;
-  private TextView     charactersLeft;
+  private MasterSecret         masterSecret;
+  private ComposeText          composeText;
+  private SendButton           sendButton;
+  private TextView             charactersLeft;
+  private ConversationFragment fragment;
 
   private AttachmentTypeSelectorAdapter attachmentAdapter;
   private AttachmentManager             attachmentManager;
@@ -166,20 +168,14 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   @Override
-  protected void onCreate(Bundle state, MasterSecret masterSecret) {
+  protected void onCreate(Bundle state, @NonNull MasterSecret masterSecret) {
     this.masterSecret = masterSecret;
 
     setContentView(R.layout.conversation_activity);
 
-    ConversationFragment fragment = new ConversationFragment();
-    Bundle               args     = new Bundle();
-    args.putParcelable("master_secret", masterSecret);
-    fragment.setArguments(args);
-    getSupportFragmentManager().beginTransaction()
-                               .replace(R.id.fragment_content, fragment, ConversationFragment.class.getSimpleName())
-                               .commit();
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+    initializeFragment();
     initializeNewIntent(getIntent());
     initializeReceivers();
     initializeViews();
@@ -208,6 +204,16 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     if (getFragment() != null) {
       getFragment().onNewIntent();
     }
+  }
+
+  private void initializeFragment() {
+    Bundle args = new Bundle();
+    args.putParcelable("master_secret", masterSecret);
+    this.fragment = new ConversationFragment();
+    fragment.setArguments(args);
+    getSupportFragmentManager().beginTransaction()
+                               .replace(R.id.fragment_content, fragment)
+                               .commit();
   }
 
   private void initializeNewIntent(Intent intent) {

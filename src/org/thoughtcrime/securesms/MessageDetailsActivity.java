@@ -20,6 +20,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
 import android.util.Log;
@@ -88,7 +89,8 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     dynamicLanguage.onCreate(this);
   }
 
-  public void onCreate(Bundle bundle, MasterSecret masterSecret) {
+  @Override
+  public void onCreate(Bundle bundle, @NonNull MasterSecret masterSecret) {
     setContentView(R.layout.message_details_activity);
 
     initializeResources();

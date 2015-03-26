@@ -67,10 +67,9 @@ public class ConversationListFragment extends ListFragment
   private FloatingActionButton         fab;
   private String                       queryFilter  = "";
 
-  public static ConversationListFragment newInstance(MasterSecret masterSecret) {
-    ConversationListFragment fragment = new ConversationListFragment();
-    fragment.masterSecret = masterSecret;
-    return fragment;
+  @Override
+  public void onCreate(Bundle icicle) {
+    masterSecret = getArguments().getParcelable("master_secret");
   }
 
   @Override

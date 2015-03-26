@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -64,8 +65,7 @@ public class NewConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   @Override
-  protected void onCreate(Bundle icicle, MasterSecret masterSecret) {
-
+  protected void onCreate(Bundle icicle, @NonNull MasterSecret masterSecret) {
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     setContentView(R.layout.new_conversation_activity);

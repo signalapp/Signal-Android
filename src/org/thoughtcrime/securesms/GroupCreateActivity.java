@@ -25,6 +25,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -125,7 +126,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
   }
 
   @Override
-  public void onCreate(Bundle state, MasterSecret masterSecret) {
+  protected void onCreate(Bundle state, @NonNull MasterSecret masterSecret) {
     this.masterSecret = masterSecret;
 
     setContentView(R.layout.group_create_activity);

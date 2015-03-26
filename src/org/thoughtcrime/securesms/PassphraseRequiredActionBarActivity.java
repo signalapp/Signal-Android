@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -34,8 +35,8 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
     }
   }
 
-  protected void onPreCreate() {};
-  protected abstract void onCreate(Bundle savedInstanceState, MasterSecret masterSecret);
+  protected void onPreCreate() {}
+  protected abstract void onCreate(Bundle savedInstanceState, @NonNull MasterSecret masterSecret);
 
   @Override
   protected void onResume() {

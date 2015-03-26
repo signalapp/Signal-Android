@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -37,7 +38,7 @@ public class ViewIdentityActivity extends KeyScanningActivity {
   private IdentityKey identityKey;
 
   @Override
-  public void onCreate(Bundle state, MasterSecret masterSecret) {
+  protected void onCreate(Bundle state, @NonNull MasterSecret masterSecret) {
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     setContentView(R.layout.view_identity_activity);
 

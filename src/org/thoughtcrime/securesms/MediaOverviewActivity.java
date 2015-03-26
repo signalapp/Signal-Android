@@ -23,6 +23,7 @@ import android.database.Cursor;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.GridLayoutManager;
@@ -68,7 +69,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
   }
 
   @Override
-  protected void onCreate(Bundle bundle, MasterSecret masterSecret) {
+  protected void onCreate(Bundle bundle, @NonNull MasterSecret masterSecret) {
     this.masterSecret = masterSecret;
     setFullscreenIfPossible();
 
