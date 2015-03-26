@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 
 public class PassphraseRequiredMixin {
+  private static final String TAG = PassphraseRequiredMixin.class.getSimpleName();
 
   private BroadcastReceiver clearKeyReceiver;
 
@@ -48,11 +49,11 @@ public class PassphraseRequiredMixin {
   }
 
   private <T extends Activity & MasterSecretListener> void initializeClearKeyReceiver(final T activity) {
-    Log.w("PassphraseRequiredMixin", "initializeClearKeyReceiver()");
+    Log.w(TAG, "initializeClearKeyReceiver()");
     this.clearKeyReceiver = new BroadcastReceiver() {
       @Override
       public void onReceive(Context context, Intent intent) {
-        Log.w("PassphraseRequiredMixin", "onReceive() for clear key event");
+        Log.w(TAG, "onReceive() for clear key event");
         activity.onMasterSecretCleared();
       }
     };
