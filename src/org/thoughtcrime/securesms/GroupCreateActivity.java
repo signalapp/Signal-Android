@@ -94,8 +94,6 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
   public static final String GROUP_RECIPIENT_EXTRA = "group_recipient";
   public static final String GROUP_THREAD_EXTRA    = "group_thread";
 
-  private MasterSecret masterSecret;
-
   private final DynamicTheme    dynamicTheme    = new DynamicTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
@@ -116,7 +114,8 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
   private String         existingTitle     = null;
   private Bitmap         existingAvatarBmp = null;
 
-  private Bitmap       avatarBmp;
+  private MasterSecret   masterSecret;
+  private Bitmap         avatarBmp;
   private Set<Recipient> selectedContacts;
 
   @Override
