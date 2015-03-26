@@ -20,7 +20,9 @@
 Això desactivarà els missatges push des-registran-te del servidor.
 Necessitaràs tornar a registrar el teu número de telèfon per utilitzar els missatges push una altra vegada.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Error connectant amb el servidor!</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">SMS Habilitats</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Toca per canviar la teva app d\'SMS predeterminada</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">SMS Deshabilitats</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Toca per fer TextSecure la teva app d\'SMS predeterminada</string>
   <!--AppProtectionPreferenceFragment-->
   <!--DraftDatabase-->

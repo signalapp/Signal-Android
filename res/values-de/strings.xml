@@ -79,7 +79,7 @@ Dies könnte bedeuten, dass jemand versucht, Ihr Gespräch abzuhören. Vielleich
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Die ausgewählte Audiodatei überschreitet leider die maximal mögliche Nachrichtengröße (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Die Empfängeradresse ist keine gültige SMS- oder E-Mail-Adresse!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Die Nachricht ist leer!</string>
-  <string name="ConversationActivity_group_conversation_recipients">Gruppenmitglieder</string>
+  <string name="ConversationActivity_group_members">Gruppenmitglieder</string>
   <string name="ConversationActivity_group_conversation">Gruppenunterhaltung</string>
   <string name="ConversationActivity_unnamed_group">Unbenannte Gruppe</string>
   <string name="ConversationActivity_d_recipients_in_group">%d Mitglieder</string>
@@ -94,7 +94,7 @@ Dies könnte bedeuten, dass jemand versucht, Ihr Gespräch abzuhören. Vielleich
   <string name="ConversationActivity_transport_insecure_mms">Unsichere MMS</string>
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_get_with_it">Sicher kommunizieren: %s</string>
-  <string name="ConversationActivity_install_textsecure">TextSecure installieren: %s</string>
+  <string name="ConversationActivity_lets_use_this_to_chat">Lassen Sie uns diese App zum Unterhalten verwenden: %s</string>
   <string name="ConversationActivity_error_leaving_group">Fehler beim Verlassen der Gruppe...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Nachrichtendetails</string>
@@ -209,6 +209,7 @@ Bitten Sie den Absender, TextSecure zu aktualisieren und die Nachricht erneut zu
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passwörter stimmen nicht überein!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Das eingegebene alte Passwort ist falsch!</string>
+  <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Neues Passwort eingeben!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Dieses Gerät verbinden?</string>
   <string name="DeviceProvisioningActivity_cancel">ABBRECHEN</string>

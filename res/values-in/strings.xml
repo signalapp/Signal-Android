@@ -21,7 +21,9 @@ dapat mengaksesnya</string>
   <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Keluar dari komunikasi berbasis data</string>
   <string name="ApplicationPreferencesActivity_disable_push_messages">Jangan gunakan push message</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Kesalahan dalam menghubungkan ke server!</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">SMS digunakan</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Sentuh untuk mengubah aplikasi SMS default</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">SMS tidak diaktifkan</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Sentuh untuk membuat TextSecure sebagai aplikasi SMS default</string>
   <!--AppProtectionPreferenceFragment-->
   <!--DraftDatabase-->

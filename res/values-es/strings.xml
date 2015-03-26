@@ -85,7 +85,7 @@ este contacto.
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Lo sentimos, el audio seleccionado excede las restricciones de tamaño del mensaje (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">¡El destinatario no es un número de teléfono SMS o correo electrónico válido!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">¡El mensaje está vacío!</string>
-  <string name="ConversationActivity_group_conversation_recipients">Participantes de la conversación de grupo</string>
+  <string name="ConversationActivity_group_members">Miembros del grupo</string>
   <string name="ConversationActivity_group_conversation">Conversación de grupo</string>
   <string name="ConversationActivity_unnamed_group">Grupo sin nombre</string>
   <string name="ConversationActivity_d_recipients_in_group">%d miembros</string>
@@ -100,7 +100,7 @@ este contacto.
   <string name="ConversationActivity_transport_insecure_mms">MMS no seguro</string>
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_get_with_it">Hágase con él: %s</string>
-  <string name="ConversationActivity_install_textsecure">Instale TextSecure: %s</string>
+  <string name="ConversationActivity_lets_use_this_to_chat">Usemos esto para chatear: %s</string>
   <string name="ConversationActivity_error_leaving_group">Error al dejar el grupo...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalles del mensaje</string>
@@ -228,6 +228,7 @@ Por favor pida al remitente que actualice a la versión más reciente y reenvíe
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">¡Las claves de acceso no coinciden!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">¡Clave de acceso antigua incorrecta!</string>
+  <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">¡Introduzca una nueva frase-contraseña!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">¿Enlazar este dispositivo?</string>
   <string name="DeviceProvisioningActivity_cancel">CANCELAR</string>

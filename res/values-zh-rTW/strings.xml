@@ -62,7 +62,6 @@
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">抱歉，無法成功設定您指定的附件檔案</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">收件人並不是一個有效的 手機門號 或 email 位址！</string>
   <string name="ConversationActivity_message_is_empty_exclamation">訊息內容是空的！</string>
-  <string name="ConversationActivity_group_conversation_recipients">群組聊天連絡人</string>
   <string name="ConversationActivity_group_conversation">群組聊天</string>
   <string name="ConversationActivity_unnamed_group">未命名的群組</string>
   <string name="ConversationActivity_d_recipients_in_group">有 %d 名成員</string>
