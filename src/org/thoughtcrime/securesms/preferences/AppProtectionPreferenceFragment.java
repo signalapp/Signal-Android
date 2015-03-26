@@ -27,13 +27,15 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import java.util.concurrent.TimeUnit;
 
 public class AppProtectionPreferenceFragment extends PreferenceFragment {
+  private MasterSecret       masterSecret;
   private CheckBoxPreference disablePassphrase;
 
   @Override
   public void onCreate(Bundle paramBundle) {
+    masterSecret = getArguments().getParcelable("master_secret");
     super.onCreate(paramBundle);
-    addPreferencesFromResource(R.xml.preferences_app_protection);
 
+    addPreferencesFromResource(R.xml.preferences_app_protection);
     disablePassphrase = (CheckBoxPreference) this.findPreference("pref_enable_passphrase_temporary");
 
     this.findPreference(TextSecurePreferences.CHANGE_PASSPHRASE_PREF)
@@ -126,11 +128,9 @@ public class AppProtectionPreferenceFragment extends PreferenceFragment {
         builder.setPositiveButton(R.string.ApplicationPreferencesActivity_disable, new DialogInterface.OnClickListener() {
           @Override
           public void onClick(DialogInterface dialog, int which) {
-            MasterSecret masterSecret = KeyCachingService.getMasterSecret(getActivity());
             MasterSecretUtil.changeMasterSecretPassphrase(getActivity(),
                                                           masterSecret,
                                                           MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
-
 
             TextSecurePreferences.setPasswordDisabled(getActivity(), true);
             ((CheckBoxPreference)preference).setChecked(false);
