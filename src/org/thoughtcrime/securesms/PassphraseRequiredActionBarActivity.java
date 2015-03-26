@@ -86,19 +86,17 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
   }
 
   private int getApplicationState(MasterSecret masterSecret) {
-    if (!MasterSecretUtil.isPassphraseInitialized(this))
+    if (!MasterSecretUtil.isPassphraseInitialized(this)) {
       return STATE_CREATE_PASSPHRASE;
-
-    if (masterSecret == null)
+    } else if (masterSecret == null) {
       return STATE_PROMPT_PASSPHRASE;
-
-    if (DatabaseUpgradeActivity.isUpdate(this))
+    } else if (DatabaseUpgradeActivity.isUpdate(this)) {
       return STATE_UPGRADE_DATABASE;
-
-    if (!TextSecurePreferences.hasPromptedPushRegistration(this))
+    } else if (!TextSecurePreferences.hasPromptedPushRegistration(this)) {
       return STATE_PROMPT_PUSH_REGISTRATION;
-
-    return STATE_NORMAL;
+    } else {
+      return STATE_NORMAL;
+    }
   }
 
   private Intent getCreatePassphraseIntent() {
