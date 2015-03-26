@@ -67,7 +67,6 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
 
   @Override
   protected void onCreate(Bundle icicle, MasterSecret masterSecret) {
-
     this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     Bundle   fragmentArgs = new Bundle();

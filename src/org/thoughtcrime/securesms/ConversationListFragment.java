@@ -69,6 +69,7 @@ public class ConversationListFragment extends ListFragment
 
   @Override
   public void onCreate(Bundle icicle) {
+    super.onCreate(icicle);
     masterSecret = getArguments().getParcelable("master_secret");
   }
 

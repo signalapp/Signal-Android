@@ -577,7 +577,7 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
               intent.setAction(RegistrationService.VOICE_REQUESTED_ACTION);
               intent.putExtra("e164number", e164number);
               intent.putExtra("password", password);
-              intent.putExtra("masterSecret", masterSecret);
+              intent.putExtra("master_secret", masterSecret);
               startService(intent);
 
               callButton.setEnabled(false);
