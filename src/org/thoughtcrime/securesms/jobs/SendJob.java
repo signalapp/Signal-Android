@@ -53,7 +53,11 @@ public abstract class SendJob extends MasterSecretJob {
     } catch (MmsException me) {
       throw new UndeliverableMessageException(me);
     }
-    return new SendReq(message.getPduHeaders(), body);
+    return new SendReq(message.getPduHeaders(),
+                       body,
+                       message.getDatabaseMessageId(),
+                       message.getDatabaseMessageBox(),
+                       message.getSentTimestamp());
   }
 
   private PduPart getResolvedPart(MasterSecret masterSecret, MediaConstraints constraints,
