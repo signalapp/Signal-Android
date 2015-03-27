@@ -7,15 +7,9 @@
                         android:summary="@string/preferences__use_the_data_channel_for_communication_with_other_textsecure_users"/>
 
     <CheckBoxPreference android:defaultValue="false"
-                        android:key="pref_enter_key"
-                        android:title="@string/preferences__enable_enter_key_title"
-                        android:summary="@string/preferences__replace_smiley_with_enter_key"/>
-
-    <CheckBoxPreference android:defaultValue="false"
                         android:key="pref_enter_sends"
                         android:summary="@string/preferences__pressing_the_enter_key_will_send_text_messages"
-                        android:title="@string/preferences__pref_enter_sends_title"
-                        android:dependency="pref_enter_key"/>
+                        android:title="@string/preferences__pref_enter_sends_title"/>
 
     <Preference android:key="pref_choose_identity"
                 android:title="@string/preferences__choose_identity"
