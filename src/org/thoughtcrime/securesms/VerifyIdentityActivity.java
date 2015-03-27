@@ -43,8 +43,8 @@ import org.whispersystems.textsecure.api.push.TextSecureAddress;
  */
 public class VerifyIdentityActivity extends KeyScanningActivity {
 
-  private MasterSecret masterSecret;
   private Recipient    recipient;
+  private MasterSecret masterSecret;
 
   private TextView localIdentityFingerprint;
   private TextView remoteIdentityFingerprint;

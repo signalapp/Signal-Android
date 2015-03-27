@@ -153,6 +153,6 @@ public class PartProvider extends ContentProvider {
       Log.w("SendReceiveService", "Got a MasterSecret broadcast...");
       initializeWithMasterSecret((MasterSecret)intent.getParcelableExtra("master_secret"));
     }
-  }
+  };
 
 }

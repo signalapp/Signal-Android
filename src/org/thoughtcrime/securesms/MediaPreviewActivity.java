@@ -58,8 +58,8 @@ import uk.co.senab.photoview.PhotoViewAttacher;
 public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity implements RecipientModifiedListener {
   private final static String TAG = MediaPreviewActivity.class.getSimpleName();
 
-  public final static String RECIPIENT_EXTRA     = "recipient";
-  public final static String DATE_EXTRA          = "date";
+  public static final String RECIPIENT_EXTRA = "recipient";
+  public static final String DATE_EXTRA      = "date";
 
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 

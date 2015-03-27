@@ -32,10 +32,10 @@ public class AppProtectionPreferenceFragment extends PreferenceFragment {
 
   @Override
   public void onCreate(Bundle paramBundle) {
-    masterSecret = getArguments().getParcelable("master_secret");
     super.onCreate(paramBundle);
-
     addPreferencesFromResource(R.xml.preferences_app_protection);
+
+    masterSecret      = getArguments().getParcelable("master_secret");
     disablePassphrase = (CheckBoxPreference) this.findPreference("pref_enable_passphrase_temporary");
 
     this.findPreference(TextSecurePreferences.CHANGE_PASSPHRASE_PREF)

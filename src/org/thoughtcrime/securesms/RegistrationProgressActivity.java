@@ -131,7 +131,7 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
   }
 
   private void initializeResources() {
-    this.masterSecret              = getIntent().getParcelableExtra("master_secret");;
+    this.masterSecret              = getIntent().getParcelableExtra("master_secret");
     this.registrationLayout        = (LinearLayout)findViewById(R.id.registering_layout);
     this.verificationFailureLayout = (LinearLayout)findViewById(R.id.verification_failure_layout);
     this.connectivityFailureLayout = (LinearLayout)findViewById(R.id.connectivity_failure_layout);
