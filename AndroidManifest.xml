@@ -104,21 +104,10 @@
 
     </activity>
 
-        <activity android:name=".ConversationActivity"
+    <activity android:name=".ConversationActivity"
               android:windowSoftInputMode="stateUnchanged"
               android:launchMode="singleTask"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize">
-
-            <intent-filter>
-                <action android:name="android.intent.action.SENDTO"/>
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:scheme="sms" />
-                <data android:scheme="smsto" />
-                <data android:scheme="mms" />
-                <data android:scheme="mmsto" />
-            </intent-filter>
-
-        </activity>
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize" />
 
     <activity android:name=".MessageDetailsActivity"
               android:label="Message Details"
@@ -223,6 +212,17 @@
               android:theme="@android:style/Theme.Translucent.NoTitleBar"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
+    <activity android:name=".SmsSendtoActivity">
+        <intent-filter>
+            <action android:name="android.intent.action.SENDTO" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <data android:scheme="sms" />
+            <data android:scheme="smsto" />
+            <data android:scheme="mms" />
+            <data android:scheme="mmsto" />
+        </intent-filter>
+    </activity>
+
     <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
 
     <service android:enabled="true" android:name=".service.ApplicationMigrationService"/>
@@ -243,14 +243,6 @@
         </intent-filter>
     </service>
 
-
-<!--	<receiver android:name=".service.BootListener" -->
-<!-- 			  android:enabled="true" -->
-<!-- 			  android:exported="false">-->
-<!--    		<intent-filter>-->
-<!--        		<action android:name="android.intent.action.BOOT_COMPLETED" />-->
-<!--    		</intent-filter>-->
-<!--	</receiver>-->
 
     <receiver android:name=".gcm.GcmBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND" >
         <intent-filter>

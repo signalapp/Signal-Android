@@ -176,7 +176,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     initializeFragment();
-    initializeNewIntent(getIntent());
     initializeReceivers();
     initializeViews();
     initializeResources();
@@ -195,7 +194,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       composeText.setText("");
     }
 
-    initializeNewIntent(intent);
+    setIntent(intent);
     initializeResources();
     initializeDraft();
 
@@ -214,22 +213,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     getSupportFragmentManager().beginTransaction()
                                .replace(R.id.fragment_content, fragment)
                                .commit();
-  }
-
-  private void initializeNewIntent(Intent intent) {
-    if (Intent.ACTION_SENDTO.equals(intent.getAction())) {
-      Log.w(TAG, "translating a SENDTO action");
-      String     body       = intent.getStringExtra("sms_body");
-      String     data       = intent.getData().getSchemeSpecificPart();
-      Recipients recipients = RecipientFactory.getRecipientsFromString(this, data, false);
-      long       threadId   = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipients);
-
-      intent.putExtra(DRAFT_TEXT_EXTRA, body);
-      intent.putExtra(THREAD_ID_EXTRA, threadId);
-      intent.putExtra(RECIPIENTS_EXTRA, recipients.getIds());
-      intent.removeExtra("sms_body");
-    }
-    setIntent(intent);
   }
 
   private void routeIfNecessary() {
