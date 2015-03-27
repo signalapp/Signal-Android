@@ -123,7 +123,7 @@
 
     <activity android:name=".MessageDetailsActivity"
               android:label="Message Details"
-              android:windowSoftInputMode="stateUnchanged"
+              android:windowSoftInputMode="stateHidden"
               android:launchMode="singleTask"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
