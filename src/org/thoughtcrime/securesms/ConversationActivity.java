@@ -1000,6 +1000,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     return (ConversationFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_content);
   }
 
+  private boolean isMediaMessage() {
+    return attachmentManager.isAttachmentPresent() || !recipients.isSingleRecipient() || recipients.isEmailRecipient();
+  }
+
   private void sendMessage() {
     try {
       Recipients recipients = getRecipients();
@@ -1012,9 +1016,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         throw new RecipientFormattingException("Badly formatted");
       }
 
-      if ((!recipients.isSingleRecipient() || recipients.isEmailRecipient()) && !isMmsEnabled) {
+      if (isMediaMessage() && forceSms && !isMmsEnabled) {
         handleManualMmsRequired();
-      } else if (attachmentManager.isAttachmentPresent() || !recipients.isSingleRecipient() || recipients.isGroupRecipient() || recipients.isEmailRecipient()) {
+      } else if (isMediaMessage() || recipients.isGroupRecipient()) {
         sendMediaMessage(forceSms);
       } else {
         sendTextMessage(forceSms);
