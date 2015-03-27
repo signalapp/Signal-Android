@@ -77,7 +77,8 @@ public class MmsListener extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
     Log.w("MmsListener", "Got MMS broadcast..." + intent.getAction());
 
-    if (Telephony.Sms.Intents.WAP_PUSH_DELIVER_ACTION.equals(intent.getAction()) ||
+    if ((Telephony.Sms.Intents.WAP_PUSH_DELIVER_ACTION.equals(intent.getAction())  &&
+        Util.isDefaultSmsProvider(context))                                        ||
         (Telephony.Sms.Intents.WAP_PUSH_RECEIVED_ACTION.equals(intent.getAction()) &&
          isRelevant(context, intent)))
     {

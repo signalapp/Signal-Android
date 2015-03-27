@@ -6,6 +6,7 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.TextUtils;
 import android.text.style.RelativeSizeSpan;
 import android.util.AttributeSet;
 import android.widget.EditText;
@@ -32,5 +33,13 @@ public class ComposeText extends EditText {
     SpannableString span = new SpannableString(hint);
     span.setSpan(new RelativeSizeSpan(0.8f), 0, hint.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
     super.setHint(span);
+  }
+
+  public void appendInvite(String invite) {
+    if (!TextUtils.isEmpty(getText()) && !getText().toString().equals(" ")) {
+      append(" ");
+    }
+
+    append(invite);
   }
 }

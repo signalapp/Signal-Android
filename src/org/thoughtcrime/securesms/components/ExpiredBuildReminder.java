@@ -18,7 +18,7 @@ public class ExpiredBuildReminder extends Reminder {
   private static final String TAG = ExpiredBuildReminder.class.getSimpleName();
 
   public ExpiredBuildReminder() {
-    super(R.drawable.ic_dialog_alert_holo_dark,
+    super(R.drawable.ic_warning_dark,
           R.string.reminder_header_expired_build,
           R.string.reminder_header_expired_build_details);
   }

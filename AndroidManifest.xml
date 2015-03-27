@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
           package="org.thoughtcrime.securesms"
-      android:versionCode="102"
-      android:versionName="2.8.0">
+      android:versionCode="103"
+      android:versionName="2.9.0">
 
     <permission android:name="org.thoughtcrime.securesms.ACCESS_SECRETS"
                 android:label="Access to TextSecure Secrets"
@@ -305,6 +305,10 @@
               android:grantUriPermissions="true"
               android:authorities="org.thoughtcrime.provider.securesms" />
 
+    <provider android:name=".providers.MmsBodyProvider"
+              android:grantUriPermissions="true"
+              android:authorities="org.thoughtcrime.provider.securesms.mms" />
+
     <receiver android:name=".service.RegistrationNotifier"
               android:exported="false">
         <intent-filter>
@@ -330,5 +334,6 @@
             <action android:name="org.thoughtcrime.securesms.MessageNotifier.DELETE_REMINDER_ACTION"/>
         </intent-filter>
     </receiver>
+
 </application>
 </manifest>

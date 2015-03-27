@@ -311,8 +311,6 @@ public class Emoji {
         Log.w(TAG, e);
         recentlyUsed = new LinkedHashSet<>();
       }
-
-      recentlyUsed = new LinkedHashSet<>();
     }
 
     public static String[] getRecentlyUsed(Context context) {

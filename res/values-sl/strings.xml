@@ -22,14 +22,14 @@ Pozor, s tem boste onemogočili šifriranje sporočil in ključev v pomnilniku n
   <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">S tem boste izključili potisna sporočila in se odjavili s strežnika.
 Za ponovno uporabo potisnih sporočil se boste morali zopet prijaviti s svojo telefonsko številko.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Napaka pri povezavi s strežnikom!</string>
-  <string name="ApplicationPreferencesActivity_sms_enabled">SMS Omogočeno</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">Sporočila SMS omogočena</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Dotaknite se za spremembo privzete aplikacije za sporočila SMS</string>
-  <string name="ApplicationPreferencesActivity_sms_disabled">SMS Izklopljeno</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">Sporočila SMS izklopljena</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Z dotikom nastavi TexteScure za privzeto aplikacijo SMS</string>
-  <string name="ApplicationPreferencesActivity_on">Vključeno</string>
-  <string name="ApplicationPreferencesActivity_On">Vključeno</string>
-  <string name="ApplicationPreferencesActivity_off">Izključeno</string>
-  <string name="ApplicationPreferencesActivity_Off">Izključeno</string>
+  <string name="ApplicationPreferencesActivity_on">omogočeno</string>
+  <string name="ApplicationPreferencesActivity_On">Omogočeno</string>
+  <string name="ApplicationPreferencesActivity_off">Izklopljeno</string>
+  <string name="ApplicationPreferencesActivity_Off">Izklopljeno</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <string name="AppProtectionPreferenceFragment_minutes">%d minut</string>
@@ -78,7 +78,7 @@ preveriti ta stik.</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Izbran zvočni posnetek presega omejitev velikosti (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Naslov prejemnika ni veljaven SMS oz. email nalsov!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Sporočilo je prazno!</string>
-  <string name="ConversationActivity_group_conversation_recipients">Sodelujoči v skupinskem pogovoru</string>
+  <string name="ConversationActivity_group_members">Člani skupine</string>
   <string name="ConversationActivity_group_conversation">Skupinski pogovor</string>
   <string name="ConversationActivity_unnamed_group">Skupina brez imena</string>
   <string name="ConversationActivity_d_recipients_in_group">%d članov</string>
@@ -93,7 +93,7 @@ preveriti ta stik.</string>
   <string name="ConversationActivity_transport_insecure_mms">Nezavarovan MMS</string>
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_get_with_it">Ravnaj primerno: %s</string>
-  <string name="ConversationActivity_install_textsecure">Namesti TextSecure: %s</string>
+  <string name="ConversationActivity_lets_use_this_to_chat">Uporabi za pogovor:  %s</string>
   <string name="ConversationActivity_error_leaving_group">Napaka pri zapuščanju skupine...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Podrobnosti sporočila</string>
@@ -203,6 +203,7 @@ preveriti ta stik.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Gesli se ne ujemata</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Napačno staro geslo!</string>
+  <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Vnesite novo geslo!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Povežem napravo?</string>
   <string name="DeviceProvisioningActivity_cancel">PREKINI</string>
@@ -518,7 +519,7 @@ bila uspešna.</string>
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Ustvari geslo</string>
   <string name="AndroidManifest__enter_passphrase">Vnesite geslo</string>
-  <string name="AndroidManifest__select_contacts">Izberi stike</string>
+  <string name="AndroidManifest__select_contacts">Izberite naslovnike</string>
   <string name="AndroidManifest__textsecure_detected">TextSecure zaznan</string>
   <string name="AndroidManifest__public_identity_key">Javni identifikacijski ključ</string>
   <string name="AndroidManifest__change_passphrase">Zamenjaj geslo</string>
@@ -563,10 +564,10 @@ bila uspešna.</string>
   <string name="preferences__change_passphrase">Zamenjaj geslo</string>
   <string name="preferences__change_my_passphrase">Določi novo geslo</string>
   <string name="preferences__enable_passphrase">Vklopi geslo</string>
-  <string name="preferences__passphrase_summary">Geslo %s</string>
+  <string name="preferences__passphrase_summary">Geslo: %s</string>
   <string name="preferences__enable_local_encryption_of_messages_and_keys">Omogoči lokalno šifriranje sporočil na napravi</string>
   <string name="preferences__screen_security">Zaščita zaslona</string>
-  <string name="preferences__screen_security_summary">Zaščita zaslona %s</string>
+  <string name="preferences__screen_security_summary">Zaščita zaslona: %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Prepreči zajem slike zaslona</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Po določenem času bo geslo v pomnilniku pozabljeno</string>
   <string name="preferences__timeout_passphrase">Čas pomnjenja gesla</string>
@@ -580,7 +581,7 @@ bila uspešna.</string>
   <string name="preferences__pref_led_blink_title">Vzorec utripanja LED</string>
   <string name="preferences__pref_led_blink_custom_pattern_title">Nastavi utripanje LED po meri</string>
   <string name="preferences__pref_led_blink_custom_pattern_on_for">Prižgano:</string>
-  <string name="preferences__pref_led_blink_custom_pattern_off_for">Ugasnjeno:</string>
+  <string name="preferences__pref_led_blink_custom_pattern_off_for">Izklopljeno za:</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Utripenje LED je nastavljeno!</string>
   <string name="preferences__sound">Zvok</string>
   <string name="preferences__change_notification_sound">Spremeni zvok za obvestila</string>
@@ -630,10 +631,10 @@ bila uspešna.</string>
   <string name="preferences__dark_theme">Temna tema</string>
   <string name="preferences__appearance">Izgled</string>
   <string name="preferences__theme">Teme</string>
-  <string name="preferences__theme_summary">Tema %s</string>
+  <string name="preferences__theme_summary">Tema: %s</string>
   <string name="preferences__default">Privzeto</string>
   <string name="preferences__language">Jezik</string>
-  <string name="preferences__language_summary">Jezik %s</string>
+  <string name="preferences__language_summary">Jezik: %s</string>
   <string name="preferences__textsecure_messages">Sporočila TextSecure</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
 Brezplačno zasebno sporočanje za TextSecure in Signal</string>

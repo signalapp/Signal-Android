@@ -80,7 +80,7 @@
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">На жаль, абранае аўдыё перавышае максімальны памеру паведамлення (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Атрымальнік ня ёсць дзейсным для адпраўкі SMS або email адрасам!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Паведамленне пустое!</string>
-  <string name="ConversationActivity_group_conversation_recipients">Атрымальнікі групавой гутаркі</string>
+  <string name="ConversationActivity_group_members">Удзельнікі групы</string>
   <string name="ConversationActivity_group_conversation">Групавая гутарка</string>
   <string name="ConversationActivity_unnamed_group">Неназваная група</string>
   <string name="ConversationActivity_d_recipients_in_group">%d удзельнікаў</string>
@@ -95,7 +95,7 @@
   <string name="ConversationActivity_transport_insecure_mms">Небяспечная MMS</string>
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_get_with_it">Атрымай з гэтым: %s</string>
-  <string name="ConversationActivity_install_textsecure">Усталяваць TextSecure: %s</string>
+  <string name="ConversationActivity_lets_use_this_to_chat">Выкарыстайце гэта, каб пачаць гутарку: %s</string>
   <string name="ConversationActivity_error_leaving_group">Памылка выхаду з групы...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Дэталі паведамлення</string>
@@ -210,6 +210,7 @@
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Паролі не супадаюць!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Няправільны стары пароль!</string>
+  <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Увядзіце новы пароль!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Прывязаць гэты дэвайс?</string>
   <string name="DeviceProvisioningActivity_cancel">АДМЕНА</string>

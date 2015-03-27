@@ -23,12 +23,15 @@
 这将在服务器上注销您的号码以禁用推送信息。
 将来如果想再次使用推送信息您需要重新注册电话号码。</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">连接服务器错误！</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">已开启短信</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">点击来改变默认的短信应用</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">已禁用短信</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">点击将TextSecure设定为默认的短信应用</string>
   <string name="ApplicationPreferencesActivity_on">开</string>
   <string name="ApplicationPreferencesActivity_On">开</string>
   <string name="ApplicationPreferencesActivity_off">关</string>
   <string name="ApplicationPreferencesActivity_Off">关</string>
+  <string name="ApplicationPreferencesActivity_sms_mms_summary">短信 %1$s，彩信 %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <string name="AppProtectionPreferenceFragment_minutes">%d 分钟</string>
   <!--DraftDatabase-->
@@ -59,6 +62,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted">点击退回不安全的通信</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">退回未加密的短信？</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">退回到未加密的彩信？</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">这条信息将<b>不会</b>被加密，因为对方已经不再是 TextSecure 用户了。\n\n发送不加密的信息？</string>
   <string name="ConversationItem_unable_to_open_media">无法找到能打开该媒体的应用。</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">发起安全会话？</string>
@@ -75,7 +79,7 @@
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">抱歉，选择的音频超过了信息大小限制（%1$skB）</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">收件人不是有效的短信或电子邮件地址！</string>
   <string name="ConversationActivity_message_is_empty_exclamation">信息为空！</string>
-  <string name="ConversationActivity_group_conversation_recipients">接受群组会话</string>
+  <string name="ConversationActivity_group_members">群组成员</string>
   <string name="ConversationActivity_group_conversation">群组会话</string>
   <string name="ConversationActivity_unnamed_group">未命名的群组</string>
   <string name="ConversationActivity_d_recipients_in_group">%d 名成员</string>
@@ -90,7 +94,7 @@
   <string name="ConversationActivity_transport_insecure_mms">不安全的彩信</string>
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_get_with_it">已获得： %s</string>
-  <string name="ConversationActivity_install_textsecure">安装 TextSecure： %s</string>
+  <string name="ConversationActivity_lets_use_this_to_chat">让我们使用这个来聊天：%s</string>
   <string name="ConversationActivity_error_leaving_group">离开群组时遇到错误…</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">信息详情</string>
@@ -202,6 +206,7 @@
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">口令不符！</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">旧密码不正确！</string>
+  <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">输入新的密码！</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">连接到此设备？</string>
   <string name="DeviceProvisioningActivity_cancel">取消</string>
@@ -342,6 +347,7 @@
   <string name="MessageNotifier_d_new_messages">%d 新信息</string>
   <string name="MessageNotifier_most_recent_from_s">最新邮件来自：%s</string>
   <string name="MessageNotifier_encrypted_message">加密信息...</string>
+  <string name="MessageNotifier_media_message_with_text">媒体信息：%s</string>
   <string name="MessageNotifier_no_subject">（无主题）</string>
   <string name="MessageNotifier_message_delivery_failed">信息发送失败。</string>
   <string name="MessageNotifier_failed_to_deliver_message">信息发送失败</string>
@@ -379,6 +385,7 @@
   <string name="conversation_activity__emoji_toggle_description">切换表情键盘</string>
   <string name="conversation_activity__attachment_thumbnail">附件缩略图</string>
   <!--conversation_item-->
+  <string name="conversation_item__mms_downloading_description">媒体信息正在下载</string>
   <string name="conversation_item__mms_image_description">媒体信息</string>
   <string name="conversation_item__play_button_description">播放按钮</string>
   <string name="conversation_item__secure_message_description">安全信息</string>
@@ -446,6 +453,8 @@
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">完成</string>
   <!--registration_activity-->
+  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
+通过验证您的手机号码来连接到 TextSecure 。</string>
   <string name="registration_activity__your_country">国家或地区</string>
   <string name="registration_activity__your_country_code_and_phone_number">您的国家代码和
 电话号码</string>
@@ -550,6 +559,8 @@ TextSecure 在等待短信验证时超时。</string>
   <string name="preferences__sms_mms">短信和彩信</string>
   <string name="preferences__pref_all_sms_title">获得所有的短信</string>
   <string name="preferences__pref_all_mms_title">获得所有的彩信</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">使用 TextSecure 来接收所有短信</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">使用 TextSecure 来接收所有彩信</string>
   <string name="preferences__input_settings">输入设置</string>
   <string name="preferences__enable_enter_key_title">开启进入密钥</string>
   <string name="preferences__replace_smiley_with_enter_key">使用输入的密钥替换相似的密钥</string>
@@ -632,6 +643,9 @@ TextSecure 在等待短信验证时超时。</string>
   <string name="preferences__default">默认</string>
   <string name="preferences__language">语言</string>
   <string name="preferences__language_summary">语言 %s</string>
+  <string name="preferences__textsecure_messages">TextSecure 信息</string>
+  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
+免费的私密短信至 TextSecure 和单个用户</string>
   <string name="preferences__submit_debug_log">提交调试日志</string>
   <string name="preferences__support_wifi_calling">“Wifi呼叫”兼容模式</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">如果您的设备使用 WiFi 来接受或发送短信，请启用此选项（仅当您的设备启用WiFi呼叫时启用）。</string>

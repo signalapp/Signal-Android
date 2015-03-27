@@ -5,6 +5,8 @@ import android.os.Build;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.R;
+
 import java.io.IOException;
 
 public class TextSecurePreferences {
@@ -45,6 +47,8 @@ public class TextSecurePreferences {
   private static final String ENTER_SENDS_PREF                 = "pref_enter_sends";
   private static final String ENTER_PRESENT_PREF               = "pref_enter_key";
   private static final String SMS_DELIVERY_REPORT_PREF         = "pref_delivery_report_sms";
+  public  static final String MMS_USER_AGENT                   = "pref_mms_user_agent";
+  private static final String MMS_CUSTOM_USER_AGENT            = "pref_custom_mms_user_agent";
   private static final String THREAD_TRIM_ENABLED              = "pref_trim_threads";
   private static final String LOCAL_NUMBER_PREF                = "pref_local_number";
   private static final String VERIFYING_STATE_PREF             = "pref_verifying";
@@ -265,6 +269,13 @@ public class TextSecurePreferences {
 
   public static void setMmscPassword(Context context, String value) {
     setStringPreference(context, MMSC_PASSWORD_PREF, value);
+  }
+
+  public static String getMmsUserAgent(Context context, String defaultUserAgent) {
+    boolean useCustom = getBooleanPreference(context, MMS_CUSTOM_USER_AGENT, false);
+
+    if (useCustom) return getStringPreference(context, MMS_USER_AGENT, defaultUserAgent);
+    else           return defaultUserAgent;
   }
 
   public static String getIdentityContactUri(Context context) {

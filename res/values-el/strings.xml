@@ -28,12 +28,15 @@
 Αν θελήσετε να χρησιμοποιήσετε μηνύματα push στο μέλλον, θα πρέπει να επανεγγραφείτε.
  </string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Σφάλμα κατά τη σύνδεση με τον διακομιστή!</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">Ενεργοποίηση SMS</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Πιέστε για να αλλάξετε την προεπιλεγμένη εφαρμογή για SMS</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">Απενεργοποίηση SMS</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Πιέστε για να κάνετε το TextSecure την προεπιλεγμένη εφαρμογή για μηνύματα SMS</string>
   <string name="ApplicationPreferencesActivity_on">ενεργοποίηση</string>
   <string name="ApplicationPreferencesActivity_On">Ενεργοποίηση</string>
   <string name="ApplicationPreferencesActivity_off">απενεργοποίηση</string>
   <string name="ApplicationPreferencesActivity_Off">Απενεργοποίηση</string>
+  <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <string name="AppProtectionPreferenceFragment_minutes">%d λεπτά</string>
   <!--DraftDatabase-->
@@ -86,7 +89,6 @@
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Συγγνώμη, το επιλεγμένο αρχείο ήχου υπερβαίνει το μέγιστο μέγεθος μηνύματος (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Ο παραλήπτης δεν είναι έγκυρη διεύθυνση SMS ή email!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Το μήνυμα είναι κενό!</string>
-  <string name="ConversationActivity_group_conversation_recipients">Παραλήπτες ομαδικής συζήτησης</string>
   <string name="ConversationActivity_group_conversation">Ομαδική συζήτηση</string>
   <string name="ConversationActivity_unnamed_group">Ανώνυμη ομάδα</string>
   <string name="ConversationActivity_d_recipients_in_group">%d μέλη</string>
@@ -101,7 +103,6 @@
   <string name="ConversationActivity_transport_insecure_mms">Μη ασφαλές MMS</string>
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_get_with_it">Αποκτήστε το με αυτό: %s</string>
-  <string name="ConversationActivity_install_textsecure">Εγκατάσταση του TextSecure: %s</string>
   <string name="ConversationActivity_error_leaving_group">Σφάλμα κατα την αποχώρηση από την ομάδα...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Στοιχεία μηνύματος</string>
@@ -592,6 +593,8 @@ SMS της συσκευής σας στο TextSecure. Αν έχετε ήδη ε�
   <string name="preferences__sms_mms">SMS και MMS</string>
   <string name="preferences__pref_all_sms_title">Λήψη όλων των μηνυμάτων</string>
   <string name="preferences__pref_all_mms_title">Λήψη όλων των μηνυμάτων MMS</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Να χρησιμοποιείται το TextSecure για προβολή όλων των μηνυμάτων SMS</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Χρήση TextSecure για προβολή και αποθήκευση όλων των μηνυμάτων πολυμεσων</string>
   <string name="preferences__input_settings">Ρυθμίσεις εισαγωγής</string>
   <string name="preferences__enable_enter_key_title">Ενεργοποίηση πλήκτρου Enter</string>
   <string name="preferences__replace_smiley_with_enter_key">Αντικαθιστά το πλήκτρο smiley με το πλήκτρο Enter</string>
@@ -674,6 +677,9 @@ SMS της συσκευής σας στο TextSecure. Αν έχετε ήδη ε�
   <string name="preferences__default">Προκαθορισμένη</string>
   <string name="preferences__language">Γλώσσα</string>
   <string name="preferences__language_summary">Γλώσσα %s</string>
+  <string name="preferences__textsecure_messages">TextSecure μυνηματα</string>
+  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
+Δωρεάν ιδιωτικά μηνύματα στο TextSecure και σημάτων χρήστες</string>
   <string name="preferences__submit_debug_log">Αποστολή αρχείων καταγραφής αποσφαλμάτωσης</string>
   <string name="preferences__support_wifi_calling">Λειτουργία συμβατότητας \"WiFi Calling\' </string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Ενεργοποίηση αν η συσκευή σας χρησιμοποιεί SMS/MMS παροχής μέσω WiFi (μόνο επιτρέπτο αν το «Calling WiFi» είναι ενεργοποιημένο στην συσκευή σας).</string>

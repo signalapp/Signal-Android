@@ -82,7 +82,6 @@
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">மன்னிக்கவும், தேர்ந்தெடுத்த ஆடியோ செய்தி அளவு கட்டுப்பாடுகளை மீறுகிறது (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">பெறுநர் ஒரு செல்லுபடியாகும் SMS அல்லது மின்னஞ்சல் முகவரி அல்ல!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">செய்தி காலியாக உள்ளது!</string>
-  <string name="ConversationActivity_group_conversation_recipients">குழு உரையாடலில் உள்ளவர்கள் </string>
   <string name="ConversationActivity_group_conversation">குழு உரையாடல்</string>
   <string name="ConversationActivity_unnamed_group">பெயரிடப்படாத குழு</string>
   <string name="ConversationActivity_d_recipients_in_group">%d உறுப்பினர்கள்</string>
@@ -97,7 +96,6 @@
   <string name="ConversationActivity_transport_insecure_mms">பாதுகாப்பற்ற MMS</string>
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_get_with_it">இதனுடன் பெறவும் : %s</string>
-  <string name="ConversationActivity_install_textsecure">TextSecure நிறுவு: %s</string>
   <string name="ConversationActivity_error_leaving_group">குழுவை விட்டு விலகுவதில் பிழை...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">செய்தி விவரங்கள்</string>

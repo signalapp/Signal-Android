@@ -26,6 +26,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.ResUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,10 +71,10 @@ public class AttachmentTypeSelectorAdapter extends ArrayAdapter<AttachmentTypeSe
 
   private static List<IconListItem> getItemList(Context context) {
     List<IconListItem> data = new ArrayList<>(4);
-    addItem(data, context.getString(R.string.AttachmentTypeSelectorAdapter_picture), R.drawable.ic_image, ADD_IMAGE);
-    addItem(data, context.getString(R.string.AttachmentTypeSelectorAdapter_video), R.drawable.ic_movie_creation, ADD_VIDEO);
-    addItem(data, context.getString(R.string.AttachmentTypeSelectorAdapter_audio), R.drawable.ic_volume_up, ADD_SOUND);
-    addItem(data, context.getString(R.string.AttachmentTypeSelectorAdapter_contact), R.drawable.ic_contact, ADD_CONTACT_INFO);
+    addItem(data, context.getString(R.string.AttachmentTypeSelectorAdapter_picture), ResUtil.getDrawableRes(context, R.attr.conversation_attach_image),        ADD_IMAGE);
+    addItem(data, context.getString(R.string.AttachmentTypeSelectorAdapter_video),   ResUtil.getDrawableRes(context, R.attr.conversation_attach_video),        ADD_VIDEO);
+    addItem(data, context.getString(R.string.AttachmentTypeSelectorAdapter_audio),   ResUtil.getDrawableRes(context, R.attr.conversation_attach_sound),        ADD_SOUND);
+    addItem(data, context.getString(R.string.AttachmentTypeSelectorAdapter_contact), ResUtil.getDrawableRes(context, R.attr.conversation_attach_contact_info), ADD_CONTACT_INFO);
 
     return data;
   }

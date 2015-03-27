@@ -23,7 +23,9 @@
 Это отключит push-сообщения, отменив вашу регистрацию на сервере.
 Чтобы в будущем включить push-сообщения, вам нужно будет зарегистрироваться вновь.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Ошибка при соединении с сервером!</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">SMS доступна</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Нажмите для выбора SMS-приложения по умолчанию</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">SMS отключена</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Нажмите, чтобы использовать TextSecure для всех SMS</string>
   <string name="ApplicationPreferencesActivity_on">включено</string>
   <string name="ApplicationPreferencesActivity_On">Включено</string>
@@ -76,7 +78,6 @@
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Извините, выбранное аудио превышает ограничение на размер сообщения (%1$sКБ).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Адрес получателя не является ни номером телефона, ни адресом электронной почты.</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Пустое сообщение!</string>
-  <string name="ConversationActivity_group_conversation_recipients">Участники группы</string>
   <string name="ConversationActivity_group_conversation">Групповой разговор</string>
   <string name="ConversationActivity_unnamed_group">Группа без названия</string>
   <string name="ConversationActivity_d_recipients_in_group">%d участников</string>
@@ -91,7 +92,6 @@
   <string name="ConversationActivity_transport_insecure_mms">Незащищённое MMS</string>
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_get_with_it">Получить: %s</string>
-  <string name="ConversationActivity_install_textsecure">Установить TextSecure: %s</string>
   <string name="ConversationActivity_error_leaving_group">Ошибка при выходе из группы...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Подробности</string>

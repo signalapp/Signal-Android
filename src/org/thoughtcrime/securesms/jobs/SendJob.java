@@ -17,6 +17,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
 import ws.com.google.android.mms.MmsException;
+import ws.com.google.android.mms.pdu.PduBody;
 import ws.com.google.android.mms.pdu.PduPart;
 import ws.com.google.android.mms.pdu.SendReq;
 
@@ -40,22 +41,23 @@ public abstract class SendJob extends MasterSecretJob {
 
   protected abstract void onSend(MasterSecret masterSecret) throws Exception;
 
-  // FIXME: This should return a value rather than modifying one.
-  protected void prepareMessageMedia(MasterSecret masterSecret, SendReq message,
-                                     MediaConstraints constraints, boolean toMemory)
+  protected SendReq getResolvedMessage(MasterSecret masterSecret, SendReq message,
+                                       MediaConstraints constraints, boolean toMemory)
       throws IOException, UndeliverableMessageException
   {
+    PduBody body = new PduBody();
     try {
       for (int i = 0; i < message.getBody().getPartsNum(); i++) {
-        preparePart(masterSecret, constraints, message.getBody().getPart(i), toMemory);
+        body.addPart(getResolvedPart(masterSecret, constraints, message.getBody().getPart(i), toMemory));
       }
     } catch (MmsException me) {
       throw new UndeliverableMessageException(me);
     }
+    return new SendReq(message.getPduHeaders(), body);
   }
 
-  private void preparePart(MasterSecret masterSecret, MediaConstraints constraints,
-                           PduPart part, boolean toMemory)
+  private PduPart getResolvedPart(MasterSecret masterSecret, MediaConstraints constraints,
+                                  PduPart part, boolean toMemory)
       throws IOException, MmsException, UndeliverableMessageException
   {
     byte[] resizedData = null;
@@ -64,7 +66,7 @@ public abstract class SendJob extends MasterSecretJob {
       if (!constraints.canResize(part)) {
         throw new UndeliverableMessageException("Size constraints could not be satisfied.");
       }
-      resizedData = resizePart(masterSecret, constraints, part);
+      resizedData = getResizedPartData(masterSecret, constraints, part);
     }
 
     if (toMemory && part.getDataUri() != null) {
@@ -74,10 +76,11 @@ public abstract class SendJob extends MasterSecretJob {
     if (resizedData != null) {
       part.setDataSize(resizedData.length);
     }
+    return part;
   }
 
-  private byte[] resizePart(MasterSecret masterSecret, MediaConstraints constraints,
-                            PduPart part)
+  private byte[] getResizedPartData(MasterSecret masterSecret, MediaConstraints constraints,
+                                    PduPart part)
       throws IOException, MmsException
   {
     Log.w(TAG, "resizing part " + part.getId());

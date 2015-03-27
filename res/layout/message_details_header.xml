@@ -14,8 +14,8 @@
               android:padding="5dp"
               tools:visibility="visible"
               android:text="@string/message_details_header__issues_need_your_attention"
-              android:drawableLeft="@drawable/ic_dialog_info_light"
-              android:drawableStart="@drawable/ic_dialog_info_light"
+              android:drawableLeft="@drawable/ic_info_outline_light"
+              android:drawableStart="@drawable/ic_info_outline_light"
               android:gravity="center_vertical" />
 
     <TableLayout android:id="@+id/metadata_container"

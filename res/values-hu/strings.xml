@@ -85,7 +85,6 @@ Elküldöd a titkosítatlan üzenetet?</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Sajnos a kiválasztott hangállomány mérete meghaladja a maximális üzenetméret határt (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">A fogadó címe nem érvényes SMS vagy email cím!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Üres az üzenet!</string>
-  <string name="ConversationActivity_group_conversation_recipients">Csoportos beszélgetés fogadói</string>
   <string name="ConversationActivity_group_conversation">Csoportos beszélgetés</string>
   <string name="ConversationActivity_unnamed_group">Névtelen csoport</string>
   <string name="ConversationActivity_d_recipients_in_group">%d tagok</string>
@@ -100,7 +99,6 @@ Elküldöd a titkosítatlan üzenetet?</string>
   <string name="ConversationActivity_transport_insecure_mms">Nem biztonságos MMS</string>
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_get_with_it">Szerezd be itt: %s</string>
-  <string name="ConversationActivity_install_textsecure">TextSecure telepítése: %s</string>
   <string name="ConversationActivity_error_leaving_group">Hiba a csoport elhagyásakor...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Üzenet részletei</string>

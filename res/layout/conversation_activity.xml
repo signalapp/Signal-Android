@@ -105,7 +105,7 @@
                     android:contentDescription="@string/conversation_activity__send"
                     android:nextFocusLeft="@+id/embedded_text_editor"
                     android:padding="12dp"
-                    android:src="?conversation_send_button_sms_insecure"
+                    android:src="?conversation_transport_sms_indicator"
                     android:focusable="true"
                     android:clickable="false"
                     android:enabled="false" />

@@ -27,15 +27,17 @@
     <attr name="conversation_background" format="reference|color"/>
     <attr name="conversation_editor_background" format="reference"/>
     <attr name="conversation_editor_text_color" format="reference|color"/>
-    <attr name="conversation_send_button_push" format="reference"/>
-    <attr name="conversation_send_button_sms_secure" format="reference"/>
-    <attr name="conversation_send_button_sms_insecure" format="reference"/>
     <attr name="conversation_delivery_delivered" format="reference"/>
     <attr name="conversation_transport_sms_indicator" format="reference"/>
     <attr name="conversation_transport_push_indicator" format="reference"/>
     <attr name="conversation_transport_popup_background" format="reference"/>
     <attr name="conversation_emoji_toggle" format="reference"/>
     <attr name="conversation_keyboard_toggle" format="reference"/>
+    <attr name="conversation_attach_file" format="reference"/>
+    <attr name="conversation_attach_image" format="reference"/>
+    <attr name="conversation_attach_video" format="reference"/>
+    <attr name="conversation_attach_sound" format="reference"/>
+    <attr name="conversation_attach_contact_info" format="reference"/>
 
     <attr name="conversation_item_background" format="reference"/>
     <attr name="conversation_item_received_background" format="reference" />
@@ -110,4 +112,5 @@
         <attr name="custom_pref_toggle" format="string"/>
     </declare-styleable>
 
+    <attr name="group_members_dialog_icon" format="reference"/>
 </resources>

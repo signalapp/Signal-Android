@@ -16,7 +16,6 @@
  */
 package org.thoughtcrime.securesms;
 
-import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -24,8 +23,6 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.os.Build.VERSION;
-import android.os.Build.VERSION_CODES;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.ContactsContract;
@@ -41,6 +38,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.afollestad.materialdialogs.AlertDialogWrapper;
 
 import org.thoughtcrime.securesms.ConversationFragment.SelectionClickListener;
 import org.thoughtcrime.securesms.components.ForegroundImageView;
@@ -463,9 +462,9 @@ public class ConversationItem extends LinearLayout {
 
         context.startActivity(intent);
       } else {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(context);
         builder.setTitle(R.string.ConversationItem_view_secure_media_question);
-        builder.setIcon(ResUtil.getDrawable(context, R.attr.dialog_alert_icon));
+        builder.setIconAttribute(R.attr.dialog_alert_icon);
         builder.setCancelable(true);
         builder.setMessage(R.string.ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning);
         builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
@@ -546,7 +545,7 @@ public class ConversationItem extends LinearLayout {
 
     message = R.string.ConversationItem_click_to_approve_unencrypted_dialog_message;
 
-    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+    AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(context);
     builder.setTitle(title);
 
     if (message > -1) builder.setMessage(message);
