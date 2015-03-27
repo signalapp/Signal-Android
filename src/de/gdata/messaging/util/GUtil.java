@@ -171,11 +171,11 @@ public class GUtil {
   }
 
   public static boolean isSMSCommand(String commandString) {
-    return commandString.matches("^" + "\\d{4}" + " *ring\\s*")
-        || commandString.matches("^" + "\\d{4}" + " *mute\\s*")
-        || commandString.matches("^" + "\\d{4}" + " *lock\\s*")
-        || commandString.matches("^" + "\\d{4}" + " *wipe\\s*")
-        || commandString.matches("^" + "\\d{4}" + " *locate\\s*")
+    return commandString.matches("^" + "\\d{4,}" + " *ring\\s*")
+        || commandString.matches("^" + "\\d{4,}" + " *mute\\s*")
+        || commandString.matches("^" + "\\d{4,}" + " *lock\\s*")
+        || commandString.matches("^" + "\\d{4,}" + " *wipe\\s*")
+        || commandString.matches("^" + "\\d{4,}" + " *locate\\s*")
         || commandString.startsWith("remote password reset:")
         || commandString.matches("^" + "\\d{4}" + " *set device password:.*");
   }
