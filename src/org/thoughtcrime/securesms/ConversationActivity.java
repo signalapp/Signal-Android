@@ -268,9 +268,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   @Override
   protected void onDestroy() {
     saveDraft();
-    recipients.removeListener(this);
-    unregisterReceiver(securityUpdateReceiver);
-    unregisterReceiver(groupUpdateReceiver);
+    if (recipients != null)             recipients.removeListener(this);
+    if (securityUpdateReceiver != null) unregisterReceiver(securityUpdateReceiver);
+    if (groupUpdateReceiver != null)    unregisterReceiver(groupUpdateReceiver);
     super.onDestroy();
   }
 

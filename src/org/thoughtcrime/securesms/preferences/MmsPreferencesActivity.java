@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms.preferences;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -39,7 +40,7 @@ public class MmsPreferencesActivity extends PassphraseRequiredActionBarActivity 
   }
 
   @Override
-  protected void onCreate(Bundle icicle, MasterSecret masterSecret) {
+  protected void onCreate(Bundle icicle, @NonNull MasterSecret masterSecret) {
     this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     Fragment fragment = new MmsPreferencesFragment();

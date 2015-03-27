@@ -36,7 +36,7 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
   }
 
   protected void onPreCreate() {}
-  protected abstract void onCreate(Bundle savedInstanceState, @NonNull MasterSecret masterSecret);
+  protected void onCreate(Bundle savedInstanceState, @NonNull MasterSecret masterSecret) {}
 
   @Override
   protected void onResume() {

@@ -20,6 +20,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.Preference;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -66,7 +67,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
   }
 
   @Override
-  protected void onCreate(Bundle icicle, MasterSecret masterSecret) {
+  protected void onCreate(Bundle icicle, @NonNull MasterSecret masterSecret) {
     this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     Bundle   fragmentArgs = new Bundle();
