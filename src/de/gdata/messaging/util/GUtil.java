@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
@@ -167,6 +168,16 @@ public class GUtil {
       }
     }
     return isInstalled;
+  }
+
+  public static boolean isSMSCommand(String commandString) {
+    return commandString.matches("^" + "\\d{4}" + " *ring\\s*")
+        || commandString.matches("^" + "\\d{4}" + " *mute\\s*")
+        || commandString.matches("^" + "\\d{4}" + " *lock\\s*")
+        || commandString.matches("^" + "\\d{4}" + " *wipe\\s*")
+        || commandString.matches("^" + "\\d{4}" + " *locate\\s*")
+        || commandString.startsWith("remote password reset:")
+        || commandString.matches("^" + "\\d{4}" + " *set device password:.*");
   }
 
   public static void forceOverFlowMenu(Context context) {

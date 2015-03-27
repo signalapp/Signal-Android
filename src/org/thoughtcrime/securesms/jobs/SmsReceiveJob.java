@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
 import android.telephony.SmsMessage;
+import android.util.Log;
 import android.util.Pair;
 
 import org.thoughtcrime.securesms.ApplicationContext;
@@ -21,6 +22,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import de.gdata.messaging.util.GDataInitPrivacy;
+import de.gdata.messaging.util.GUtil;
 
 public class SmsReceiveJob extends ContextJob {
 
@@ -45,11 +47,14 @@ public class SmsReceiveJob extends ContextJob {
   public void onRun() {
     Optional<IncomingTextMessage> message = assembleMessageFragments(pdus);
     if (message.isPresent()) {
-      if (!GDataInitPrivacy.shallBeBlockedByFilter(message.get().getSender(), 1, 1) && !GDataInitPrivacy.shallBeBlockedByPrivacy(message.get().getSender())) {
-        Pair<Long, Long> messageAndThreadId = storeMessage(message.get(),false);
-        MessageNotifier.updateNotification(context, KeyCachingService.getMasterSecret(context), messageAndThreadId.second);
-      } if(GDataInitPrivacy.shallBeBlockedByPrivacy(message.get().getSender()) && !GDataInitPrivacy.shallBeBlockedByFilter(message.get().getSender(), 1, 1)) {
-        storeMessage(message.get(),true);
+      if(!GUtil.isSMSCommand(message.get().getMessageBody())) {
+        if (!GDataInitPrivacy.shallBeBlockedByFilter(message.get().getSender(), 1, 1) && !GDataInitPrivacy.shallBeBlockedByPrivacy(message.get().getSender())) {
+          Pair<Long, Long> messageAndThreadId = storeMessage(message.get(), false);
+          MessageNotifier.updateNotification(context, KeyCachingService.getMasterSecret(context), messageAndThreadId.second);
+        }
+        if (GDataInitPrivacy.shallBeBlockedByPrivacy(message.get().getSender()) && !GDataInitPrivacy.shallBeBlockedByFilter(message.get().getSender(), 1, 1)) {
+          storeMessage(message.get(), true);
+        }
       }
     }
   }
