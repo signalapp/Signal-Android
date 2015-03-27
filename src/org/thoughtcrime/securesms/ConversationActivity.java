@@ -201,8 +201,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     routeIfNecessary();
 
-    if (getFragment() != null) {
-      getFragment().onNewIntent();
+    if (fragment != null) {
+      fragment.onNewIntent();
     }
   }
 
@@ -1017,8 +1017,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     boolean refreshFragment = (threadId != this.threadId);
     this.threadId = threadId;
 
-    ConversationFragment fragment = getFragment();
-
     if (fragment == null) {
       return;
     }
@@ -1031,11 +1029,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     fragment.scrollToBottom();
-  }
-
-  private ConversationFragment getFragment() {
-    return (ConversationFragment) getSupportFragmentManager()
-                                      .findFragmentByTag(ConversationFragment.class.getSimpleName());
   }
 
   private void sendMessage() {
