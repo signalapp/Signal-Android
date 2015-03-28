@@ -7,6 +7,7 @@ import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.WindowManager;
 
@@ -108,29 +109,29 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
   }
 
   private Intent getCreatePassphraseIntent() {
-    Intent intent = new Intent(this, PassphraseCreateActivity.class);
-    intent.putExtra("next_intent", getIntent());
-    return intent;
+    return getRoutedIntent(PassphraseCreateActivity.class, getIntent(), null);
   }
 
   private Intent getPromptPassphraseIntent() {
-    Intent intent = new Intent(this, PassphrasePromptActivity.class);
-    intent.putExtra("next_intent", getIntent());
-    return intent;
+    return getRoutedIntent(PassphrasePromptActivity.class, getIntent(), null);
   }
 
   private Intent getUpgradeDatabaseIntent(MasterSecret masterSecret) {
-    Intent intent = new Intent(this, DatabaseUpgradeActivity.class);
-    intent.putExtra("master_secret", masterSecret);
-    intent.putExtra("next_intent", TextSecurePreferences.hasPromptedPushRegistration(this) ?
-        getConversationListIntent() : getPushRegistrationIntent(masterSecret));
-    return intent;
+    return getRoutedIntent(DatabaseUpgradeActivity.class,
+                           TextSecurePreferences.hasPromptedPushRegistration(this)
+                               ? getConversationListIntent()
+                               : getPushRegistrationIntent(masterSecret),
+                           masterSecret);
   }
 
-  private Intent  getPushRegistrationIntent(MasterSecret masterSecret) {
-    Intent intent = new Intent(this, RegistrationActivity.class);
-    intent.putExtra("master_secret", masterSecret);
-    intent.putExtra("next_intent", getConversationListIntent());
+  private Intent getPushRegistrationIntent(MasterSecret masterSecret) {
+    return getRoutedIntent(RegistrationActivity.class, getConversationListIntent(), masterSecret);
+  }
+
+  private Intent getRoutedIntent(Class<?> destination, @Nullable Intent nextIntent, @Nullable MasterSecret masterSecret) {
+    final Intent intent = new Intent(this, destination);
+    if (nextIntent != null)   intent.putExtra("next_intent", nextIntent);
+    if (masterSecret != null) intent.putExtra("master_secret", masterSecret);
     return intent;
   }
 
