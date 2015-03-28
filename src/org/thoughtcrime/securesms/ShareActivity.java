@@ -52,7 +52,8 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   protected void onCreate(Bundle icicle, @NonNull MasterSecret masterSecret) {
-    initFragment(android.R.id.content, new ShareFragment(), masterSecret);
+    setContentView(R.layout.share_activity);
+    initFragment(R.id.drawer_layout, new ShareFragment(), masterSecret);
   }
 
   @Override
