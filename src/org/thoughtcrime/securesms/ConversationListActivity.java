@@ -71,10 +71,9 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   }
 
   public void updateTitleBar(){
-    if (this.fragment.getViewInbox()){
+    if (this.fragment.getViewInbox()) {
       getSupportActionBar().setTitle(R.string.title_bar_inbox_mode);
-    }
-    else {
+    } else {
       getSupportActionBar().setTitle(R.string.title_bar_archive_mode);
     }
   }
@@ -124,9 +123,9 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     }
 
     if (this.fragment.getViewInbox()) {
-      menu.findItem(R.id.menu_view_archive).setVisible(true); menu.findItem(R.id.menu_view_inbox).setVisible(false);
-    }
-    else {
+      menu.findItem(R.id.menu_view_archive).setVisible(true);
+      menu.findItem(R.id.menu_view_inbox).setVisible(false);
+    } else {
       menu.findItem(R.id.menu_view_inbox).setVisible(true);
       menu.findItem(R.id.menu_view_archive).setVisible(false);
     }

@@ -309,8 +309,7 @@ public class ConversationListFragment extends ListFragment
     if (viewInbox) {
       menu.findItem(R.id.menu_archive_selected).setVisible(true);
       menu.findItem(R.id.menu_unarchive_selected).setVisible(false);
-    }
-    else {
+    } else {
       menu.findItem(R.id.menu_archive_selected).setVisible(false);
       menu.findItem(R.id.menu_unarchive_selected).setVisible(true);
     }

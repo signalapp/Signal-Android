@@ -291,11 +291,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       inflater.inflate(R.menu.conversation_add_to_contacts, menu);
     }
 
-    if (DatabaseFactory.getThreadDatabase(ConversationActivity.this).isConversationArchived(threadId)){
+    if (DatabaseFactory.getThreadDatabase(ConversationActivity.this).isConversationArchived(threadId)) {
       menu.findItem(R.id.menu_archive_thread).setVisible(false);
       menu.findItem(R.id.menu_unarchive_thread).setVisible(true);
-    }
-    else {
+    } else {
       menu.findItem(R.id.menu_archive_thread).setVisible(true);
       menu.findItem(R.id.menu_unarchive_thread).setVisible(false);
     }

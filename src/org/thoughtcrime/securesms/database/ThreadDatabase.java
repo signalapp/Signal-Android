@@ -428,8 +428,7 @@ public class ThreadDatabase extends Database {
         long inbox = cursor.getLong(cursor.getColumnIndexOrThrow(INBOX));
         if (inbox == 0) {
           return true;
-        }
-        else {
+        } else {
           return false;
         }
       }
