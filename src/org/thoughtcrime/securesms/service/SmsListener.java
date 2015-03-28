@@ -119,7 +119,7 @@ public class SmsListener extends BroadcastReceiver {
       return true;
     }
 
-    return WirePrefix.isEncryptedMessage(messageBody) || WirePrefix.isKeyExchange(messageBody);
+    return false;
   }
 
   private boolean isChallenge(Context context, Intent intent) {
