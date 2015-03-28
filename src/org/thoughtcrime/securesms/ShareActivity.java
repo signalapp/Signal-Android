@@ -41,8 +41,6 @@ import ws.com.google.android.mms.ContentType;
 public class ShareActivity extends PassphraseRequiredActionBarActivity
     implements ShareFragment.ConversationSelectedListener
 {
-  private MasterSecret  masterSecret;
-
   private final DynamicTheme    dynamicTheme    = new DynamicTheme   ();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
@@ -54,9 +52,7 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   protected void onCreate(Bundle icicle, @NonNull MasterSecret masterSecret) {
-    this.masterSecret = masterSecret;
-
-    initializeFragment();
+    initFragment(android.R.id.content, new ShareFragment(), masterSecret);
   }
 
   @Override
@@ -97,16 +93,6 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
     case android.R.id.home:     finish();                return true;
     }
     return false;
-  }
-
-  private void initializeFragment() {
-    Bundle args = new Bundle();
-    args.putParcelable("master_secret", masterSecret);
-    final ShareFragment fragment = new ShareFragment();
-    fragment.setArguments(args);
-    getSupportFragmentManager().beginTransaction()
-                               .replace(android.R.id.content, fragment)
-                               .commit();
   }
 
   private void handleNewConversation() {

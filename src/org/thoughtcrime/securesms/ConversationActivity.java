@@ -172,16 +172,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     this.masterSecret = masterSecret;
 
     setContentView(R.layout.conversation_activity);
-
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    fragment = initFragment(R.id.fragment_content, new ConversationFragment(), masterSecret);
 
-    initializeFragment();
     initializeReceivers();
     initializeViews();
     initializeResources();
     initializeDraft();
-
-    routeIfNecessary();
   }
 
   @Override
@@ -198,29 +195,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     initializeResources();
     initializeDraft();
 
-    routeIfNecessary();
-
     if (fragment != null) {
       fragment.onNewIntent();
-    }
-  }
-
-  private void initializeFragment() {
-    Bundle args = new Bundle();
-    args.putParcelable("master_secret", masterSecret);
-    this.fragment = new ConversationFragment();
-    fragment.setArguments(args);
-    getSupportFragmentManager().beginTransaction()
-                               .replace(R.id.fragment_content, fragment)
-                               .commit();
-  }
-
-  private void routeIfNecessary() {
-    if (recipients == null || recipients.isEmpty()) {
-      Toast.makeText(this, R.string.ConversationActivity_specify_recipient, Toast.LENGTH_LONG).show();
-      Intent selectIntent = new Intent(this, NewConversationActivity.class);
-      selectIntent.putExtra(DRAFT_TEXT_EXTRA, getIntent().getStringExtra(DRAFT_TEXT_EXTRA));
-      startActivity(selectIntent);
     }
   }
 

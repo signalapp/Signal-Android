@@ -64,8 +64,8 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
     getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
     getSupportActionBar().setTitle(R.string.app_name);
+    fragment = initFragment(android.R.id.content, new ConversationListFragment(), masterSecret);
 
-    initializeFragment();
     initializeContactUpdatesReceiver();
 
     DirectoryRefreshListener.schedule(this);
@@ -99,16 +99,6 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
     super.onPrepareOptionsMenu(menu);
     return true;
-  }
-
-  private void initializeFragment() {
-    Bundle args = new Bundle();
-    args.putParcelable("master_secret", masterSecret);
-    this.fragment = new ConversationListFragment();
-    this.fragment.setArguments(args);
-    getSupportFragmentManager().beginTransaction()
-                               .replace(android.R.id.content, fragment)
-                               .commit();
   }
 
   private void initializeSearch(MenuItem searchViewItem) {
