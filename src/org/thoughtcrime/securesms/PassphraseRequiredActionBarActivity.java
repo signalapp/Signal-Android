@@ -1,13 +1,19 @@
 package org.thoughtcrime.securesms;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.view.WindowManager;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.service.MessageRetrievalService;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarActivity implements MasterSecretListener {
@@ -19,9 +25,8 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
   private static final int STATE_UPGRADE_DATABASE         = 3;
   private static final int STATE_PROMPT_PUSH_REGISTRATION = 4;
 
-  private final PassphraseRequiredMixin delegate = new PassphraseRequiredMixin();
-
-  private boolean isVisible;
+  private BroadcastReceiver clearKeyReceiver;
+  private boolean           isVisible;
 
   @Override
   protected final void onCreate(Bundle savedInstanceState) {
@@ -30,7 +35,7 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
     routeApplicationState(masterSecret);
     super.onCreate(savedInstanceState);
     if (!isFinishing()) {
-      delegate.onCreate(this);
+      initializeClearKeyReceiver();
       onCreate(savedInstanceState, masterSecret);
     }
   }
@@ -41,21 +46,24 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
   @Override
   protected void onResume() {
     super.onResume();
-    delegate.onResume(this);
+    initializeScreenshotSecurity();
+    KeyCachingService.registerPassphraseActivityStarted(this);
+    MessageRetrievalService.registerActivityStarted(this);
     isVisible = true;
   }
 
   @Override
   protected void onPause() {
     super.onPause();
-    delegate.onPause(this);
+    KeyCachingService.registerPassphraseActivityStopped(this);
+    MessageRetrievalService.registerActivityStopped(this);
     isVisible = false;
   }
 
   @Override
   protected void onDestroy() {
     super.onDestroy();
-    delegate.onDestroy(this);
+    removeClearKeyReceiver(this);
   }
 
   @Override
@@ -128,5 +136,36 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
 
   private Intent getConversationListIntent() {
     return new Intent(this, ConversationListActivity.class);
+  }
+
+  private void initializeScreenshotSecurity() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH &&
+        TextSecurePreferences.isScreenSecurityEnabled(this))
+    {
+      getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
+    } else {
+      getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
+    }
+  }
+
+  private void initializeClearKeyReceiver() {
+    Log.w(TAG, "initializeClearKeyReceiver()");
+    this.clearKeyReceiver = new BroadcastReceiver() {
+      @Override
+      public void onReceive(Context context, Intent intent) {
+        Log.w(TAG, "onReceive() for clear key event");
+        onMasterSecretCleared();
+      }
+    };
+
+    IntentFilter filter = new IntentFilter(KeyCachingService.CLEAR_KEY_EVENT);
+    registerReceiver(clearKeyReceiver, filter, KeyCachingService.KEY_PERMISSION, null);
+  }
+
+  private void removeClearKeyReceiver(Context context) {
+    if (clearKeyReceiver != null) {
+      context.unregisterReceiver(clearKeyReceiver);
+      clearKeyReceiver = null;
+    }
   }
 }
