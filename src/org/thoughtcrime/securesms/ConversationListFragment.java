@@ -109,11 +109,6 @@ public class ConversationListFragment extends ListFragment
   }
 
   @Override
-  public void onAttach(Activity activity) {
-    super.onAttach(activity);
-  }
-
-  @Override
   public void onListItemClick(ListView l, View v, int position, long id) {
     if (v instanceof ConversationListItem) {
       ConversationListItem headerView = (ConversationListItem) v;
