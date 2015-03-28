@@ -55,7 +55,7 @@
     <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
     <string name="AttachmentTypeSelectorAdapter_contact">Contact info</string>
 
-    <!-- ConfirmIdentityDialog -->
+    <!-- ConfirmIdentityDialogBuilder -->
     <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">The
         identifying key material for %1$s has changed. This could either mean that someone is trying to
         intercept your communication, or that %2$s simply re-installed TextSecure and now has a new
@@ -64,6 +64,7 @@
     <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">You may wish to verify
         this contact.
     </string>
+    <string name="ConfirmIdentityDialog_accept">Accept</string>
 
     <!-- ConversationItem -->
     <string name="ConversationItem_message_size_d_kb">Message size: %d KB</string>
@@ -288,18 +289,6 @@
     <string name="RatingManager_rate_now">Rate now!</string>
     <string name="RatingManager_no_thanks">No thanks</string>
     <string name="RatingManager_later">Later</string>
-
-    <!-- ReceiveKeyActivity -->
-    <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">The
-        signature on this key exchange is different than what you\'ve previously received from this
-        contact. This could either mean that someone is trying to intercept your communication, or
-        that this contact simply re-installed TextSecure and now has a new identity key.
-    </string>
-    <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">You may wish to verify
-        this contact.
-    </string>
-    <string name="ReceiveKeyActivity_processing">Processing</string>
-    <string name="ReceiveKeyActivity_processing_key_exchange">Processing key exchange…</string>
 
     <!-- RegistrationActivity -->
     <string name="RegistrationActivity_connect_with_textsecure">Connect With TextSecure</string>
@@ -569,9 +558,6 @@
     <!-- prompt_mms_activity -->
     <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure requires MMS settings to deliver media and group messages through your wireless carrier. Your device does not make this information available, which is occasionally true for locked devices and other restrictive configurations.</string>
     <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">To send media and group messages, click \'OK\' and complete the requested settings. The MMS settings for your carrier can generally be located by searching for \'your carrier APN\'. You will only need to do this once.</string>
-
-    <!-- receive_key_activity -->
-    <string name="receive_key_activity__complete">Complete</string>
 
     <!-- registration_activity -->
     <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">

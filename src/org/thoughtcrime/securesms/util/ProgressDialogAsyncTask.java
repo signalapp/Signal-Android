@@ -1,14 +1,15 @@
 package org.thoughtcrime.securesms.util;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+
+import com.afollestad.materialdialogs.MaterialDialog;
 
 import java.lang.ref.WeakReference;
 
 public abstract class ProgressDialogAsyncTask<Params, Progress, Result> extends AsyncTask<Params, Progress, Result> {
   private final WeakReference<Context> contextReference;
-  private       ProgressDialog         progress;
+  private       MaterialDialog         progress;
   private final String                 title;
   private final String                 message;
 
@@ -26,7 +27,13 @@ public abstract class ProgressDialogAsyncTask<Params, Progress, Result> extends 
   @Override
   protected void onPreExecute() {
     final Context context = contextReference.get();
-    if (context != null) progress = ProgressDialog.show(context, title, message, true);
+    if (context != null) {
+      progress = new MaterialDialog.Builder(context)
+                                   .title(title)
+                                   .content(message)
+                                   .progress(true, 0)
+                                   .show();
+    }
   }
 
   @Override
