@@ -49,6 +49,7 @@ public class ThreadDatabase extends Database {
   public  static final String SNIPPET         = "snippet";
   private static final String SNIPPET_CHARSET = "snippet_cs";
   public  static final String READ            = "read";
+  public static final String INBOX            = "inbox";
   private static final String TYPE            = "type";
   private static final String ERROR           = "error";
   private static final String HAS_ATTACHMENT  = "has_attachment";
@@ -57,8 +58,8 @@ public class ThreadDatabase extends Database {
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID + " INTEGER PRIMARY KEY, "                             +
     DATE + " INTEGER DEFAULT 0, " + MESSAGE_COUNT + " INTEGER DEFAULT 0, "                         +
     RECIPIENT_IDS + " TEXT, " + SNIPPET + " TEXT, " + SNIPPET_CHARSET + " INTEGER DEFAULT 0, "     +
-    READ + " INTEGER DEFAULT 1, " + TYPE + " INTEGER DEFAULT 0, " + ERROR + " INTEGER DEFAULT 0, " +
-    SNIPPET_TYPE + " INTEGER DEFAULT 0);";
+    READ + " INTEGER DEFAULT 1, " + INBOX + " INTEGER DEFAULT 1, " + TYPE + " INTEGER DEFAULT 0, " +
+    ERROR + " INTEGER DEFAULT 0, " + SNIPPET_TYPE + " INTEGER DEFAULT 0);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS thread_recipient_ids_index ON " + TABLE_NAME + " (" + RECIPIENT_IDS + ");",
@@ -142,6 +143,24 @@ public class ThreadDatabase extends Database {
     notifyConversationListListeners();
   }
 
+  public void unarchiveThread(long threadId) {
+    ContentValues contentValues = new ContentValues(1);
+    contentValues.put(INBOX, 1);
+
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    db.update(TABLE_NAME, contentValues, ID_WHERE, new String[]{threadId + ""});
+    notifyConversationListListeners();
+  }
+
+  public void archiveThread(long threadId) {
+    ContentValues contentValues = new ContentValues(1);
+    contentValues.put(INBOX, 0);
+
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    db.update(TABLE_NAME, contentValues, ID_WHERE, new String[]{threadId + ""});
+    notifyConversationListListeners();
+  }
+
   private void deleteThreads(Set<Long> threadIds) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     String where      = "";
@@ -153,6 +172,30 @@ public class ThreadDatabase extends Database {
     where = where.substring(0, where.length() - 4);
 
     db.delete(TABLE_NAME, where, null);
+    notifyConversationListListeners();
+  }
+
+  public void archiveThreads(Set<Long>threadIds) {
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    ContentValues contentValues = new ContentValues(1);
+    contentValues.put(INBOX, 0);
+
+    for (long threadId : threadIds) {
+      db.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {threadId+""});
+    }
+
+    notifyConversationListListeners();
+  }
+
+  public void unarchiveThreads(Set<Long>threadIds) {
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    ContentValues contentValues = new ContentValues(1);
+    contentValues.put(INBOX, 1);
+
+    for (long threadId : threadIds) {
+      db.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {threadId+""});
+    }
+
     notifyConversationListListeners();
   }
 
@@ -280,6 +323,22 @@ public class ThreadDatabase extends Database {
     return cursor;
   }
 
+  public Cursor getInboxConversationList() {
+    String selection = INBOX + " = 1";
+    SQLiteDatabase db = databaseHelper.getReadableDatabase();
+    Cursor cursor = db.query(TABLE_NAME, null, selection, null, null, null, DATE + " DESC");
+    setNotifyConverationListListeners(cursor);
+    return cursor;
+  }
+
+  public Cursor getArchivedConversationList() {
+    String selection = INBOX + " = 0";
+    SQLiteDatabase db = databaseHelper.getReadableDatabase();
+    Cursor cursor = db.query(TABLE_NAME, null, selection, null, null, null, DATE + " DESC");
+    setNotifyConverationListListeners(cursor);
+    return cursor;
+  }
+
   public Cursor getConversationList() {
     SQLiteDatabase db = databaseHelper.getReadableDatabase();
     Cursor cursor     =  db.query(TABLE_NAME, null, null, null, null, null, DATE + " DESC");
@@ -357,6 +416,28 @@ public class ThreadDatabase extends Database {
       if (cursor != null)
         cursor.close();
     }
+  }
+
+  public boolean isConversationArchived(long threadId){
+    SQLiteDatabase db = databaseHelper.getReadableDatabase();
+    Cursor cursor = null;
+
+    try{
+      cursor = db.query(TABLE_NAME, null, ID + " = ?", new String[] {threadId+""}, null, null, null);
+      if (cursor != null && cursor.moveToFirst()) {
+        long inbox = cursor.getLong(cursor.getColumnIndexOrThrow(INBOX));
+        if (inbox == 0) {
+          return true;
+        }
+        else {
+          return false;
+        }
+      }
+    } finally {
+      if (cursor != null) cursor.close();
+    }
+
+    return false;
   }
 
   public Recipients getRecipientsForThreadId(long threadId) {

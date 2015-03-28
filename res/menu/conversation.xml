@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:title="@string/conversation__menu_add_attachment"
           android:id="@+id/menu_add_attachment" />
 
     <item android:title="@string/conversation__menu_view_media"
           android:id="@+id/menu_view_media" />
+
+    <item android:title="@string/conversation__menu_archive_thread"
+          android:id="@+id/menu_archive_thread"
+          android:icon="?menu_archive_icon"
+          app:showAsAction="ifRoom" />
+
+    <item android:title="@string/conversation_list_batch__menu_move_to_inbox"
+          android:id="@+id/menu_unarchive_thread"
+          android:icon="?menu_unarchive_icon"
+          app:showAsAction="ifRoom" />
 
     <item android:title="@string/conversation__menu_delete_thread"
           android:id="@+id/menu_delete_thread" />

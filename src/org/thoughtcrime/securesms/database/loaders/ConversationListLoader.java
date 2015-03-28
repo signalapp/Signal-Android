@@ -12,10 +12,12 @@ import java.util.List;
 public class ConversationListLoader extends AbstractCursorLoader {
 
   private final String filter;
+  private final Boolean viewInbox;
 
-  public ConversationListLoader(Context context, String filter) {
+  public ConversationListLoader(Context context, String filter, Boolean viewInbox) {
     super(context);
     this.filter = filter;
+    this.viewInbox = viewInbox;
   }
 
   @Override
@@ -25,7 +27,11 @@ public class ConversationListLoader extends AbstractCursorLoader {
 
       return DatabaseFactory.getThreadDatabase(context).getFilteredConversationList(numbers);
     } else {
-      return DatabaseFactory.getThreadDatabase(context).getConversationList();
+      if(viewInbox) {
+        return DatabaseFactory.getThreadDatabase(context).getInboxConversationList();
+      } else {
+        return DatabaseFactory.getThreadDatabase(context).getArchivedConversationList();
+      }
     }
   }
 }

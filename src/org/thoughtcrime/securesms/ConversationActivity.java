@@ -291,6 +291,15 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       inflater.inflate(R.menu.conversation_add_to_contacts, menu);
     }
 
+    if (DatabaseFactory.getThreadDatabase(ConversationActivity.this).isConversationArchived(threadId)){
+      menu.findItem(R.id.menu_archive_thread).setVisible(false);
+      menu.findItem(R.id.menu_unarchive_thread).setVisible(true);
+    }
+    else {
+      menu.findItem(R.id.menu_archive_thread).setVisible(true);
+      menu.findItem(R.id.menu_unarchive_thread).setVisible(false);
+    }
+
     super.onPrepareOptionsMenu(menu);
     return true;
   }
@@ -300,6 +309,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     super.onOptionsItemSelected(item);
     switch (item.getItemId()) {
     case R.id.menu_call:                      handleDial(getRecipients().getPrimaryRecipient()); return true;
+    case R.id.menu_archive_thread:            handleArchiveThread();                             return true;
+    case R.id.menu_unarchive_thread:          handleUnarchiveThread();                           return true;
     case R.id.menu_delete_thread:             handleDeleteThread();                              return true;
     case R.id.menu_add_attachment:            handleAddAttachment();                             return true;
     case R.id.menu_view_media:                handleViewMedia();                                 return true;
@@ -353,6 +364,16 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     verifyIdentityIntent.putExtra("recipient", getRecipients().getPrimaryRecipient().getRecipientId());
     verifyIdentityIntent.putExtra("master_secret", masterSecret);
     startActivity(verifyIdentityIntent);
+  }
+
+  private void handleArchiveThread() {
+    DatabaseFactory.getThreadDatabase(ConversationActivity.this).archiveThread(threadId);
+    finish();
+  }
+
+  private void handleUnarchiveThread() {
+    DatabaseFactory.getThreadDatabase(ConversationActivity.this).unarchiveThread(threadId);
+    finish();
   }
 
   private void handleAbortSecureSession() {
