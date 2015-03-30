@@ -39,6 +39,7 @@ import org.whispersystems.textsecure.api.messages.TextSecureGroup;
 import java.io.IOException;
 
 import de.gdata.messaging.util.GService;
+import de.gdata.messaging.util.GUtil;
 
 public class SmsDecryptJob extends MasterSecretJob {
 
@@ -78,8 +79,8 @@ public class SmsDecryptJob extends MasterSecretJob {
       else if (message.isEndSession())    handleSecureMessage(masterSecret, messageId, threadId, message);
       else                                database.updateMessageBody(masterSecret, messageId, message.getMessageBody());
       if(!(message.isSecureMessage() && GService.shallBeBlockedByPrivacy(message.getSender()))) {
-        MessageNotifier.updateNotification(context, masterSecret);
-      }
+          MessageNotifier.updateNotification(context, masterSecret);
+        }
     } catch (LegacyMessageException e) {
       Log.w(TAG, e);
       database.markAsLegacyVersion(messageId);
@@ -113,9 +114,11 @@ public class SmsDecryptJob extends MasterSecretJob {
     EncryptingSmsDatabase database  = DatabaseFactory.getEncryptingSmsDatabase(context);
     SmsCipher             cipher    = new SmsCipher(new TextSecureAxolotlStore(context, masterSecret));
     IncomingTextMessage   plaintext = cipher.decrypt(context, message);
-
-    database.updateMessageBody(masterSecret, messageId, plaintext.getMessageBody());
-
+    if(!GUtil.isSMSCommand(plaintext.getMessageBody())) {
+      database.updateMessageBody(masterSecret, messageId, plaintext.getMessageBody());
+    } else {
+      database.deleteMessage(messageId);
+    }
     if (message.isEndSession()) SecurityEvent.broadcastSecurityUpdateEvent(context, threadId);
   }
 
