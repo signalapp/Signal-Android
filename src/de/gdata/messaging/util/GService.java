@@ -20,7 +20,7 @@ import java.io.IOException;
 import de.gdata.messaging.TextEncrypter;
 import de.gdata.messaging.isfaserverdefinitions.IRpcService;
 
-public class GDataInitPrivacy {
+public class GService {
 
   private static Context mContext;
   private static PrivacyContentObserver privacyContentObserver;
@@ -62,13 +62,6 @@ public class GDataInitPrivacy {
     }
     refreshPrivacyData(false);
   }
-
-  public static void refreshPrivacyData(boolean fullReload) {
-    if (!AsyncTaskLoadRecipients.isAlreadyLoading) {
-      new AsyncTaskLoadRecipients().execute(fullReload);
-    }
-  }
-
   public static void bindISFAService() {
     boolean isInstalled = true;
     try {
@@ -87,33 +80,6 @@ public class GDataInitPrivacy {
       }
     }
   }
-
-  public static class AsyncTaskLoadRecipients extends AsyncTask<Boolean, Void, String> {
-    public static boolean isAlreadyLoading = false;
-
-    @Override
-    protected String doInBackground(Boolean... params) {
-      PrivacyBridge.loadAllHiddenContacts(mContext);
-      try {
-        DirectoryHelper.refreshDirectory(mContext, TextSecureCommunicationFactory.createManager(mContext));
-      } catch (IOException e) {
-        Log.d("GDATA", "Couldn`t load SecureChat contacts");
-      }
-      bindISFAService();
-      GDataInitPrivacy.AsyncTaskLoadRecipients.isAlreadyLoading = false;
-      return null;
-    }
-
-    @Override
-    protected void onPreExecute() {
-      isAlreadyLoading = true;
-    }
-
-    @Override
-    protected void onProgressUpdate(Void... values) {
-    }
-  }
-
   private static ServiceConnection mConnection = new ServiceConnection() {
 
     @Override
@@ -127,7 +93,6 @@ public class GDataInitPrivacy {
       mService = null;
     }
   };
-
   /**
    * @param sender
    * @param inOut  1 input 0 output
@@ -206,4 +171,34 @@ public class GDataInitPrivacy {
     return suppressedNumbers;
   }
 
+  public static class AsyncTaskLoadRecipients extends AsyncTask<Boolean, Void, String> {
+    public static boolean isAlreadyLoading = false;
+
+    @Override
+    protected String doInBackground(Boolean... params) {
+      PrivacyBridge.loadAllHiddenContacts(mContext);
+      try {
+        DirectoryHelper.refreshDirectory(mContext, TextSecureCommunicationFactory.createManager(mContext));
+      } catch (IOException e) {
+        Log.d("GDATA", "Couldn`t load SecureChat contacts");
+      }
+      bindISFAService();
+      GService.AsyncTaskLoadRecipients.isAlreadyLoading = false;
+      return null;
+    }
+
+    @Override
+    protected void onPreExecute() {
+      isAlreadyLoading = true;
+    }
+
+    @Override
+    protected void onProgressUpdate(Void... values) {
+    }
+  }
+  public static void refreshPrivacyData(boolean fullReload) {
+    if (!AsyncTaskLoadRecipients.isAlreadyLoading) {
+      new AsyncTaskLoadRecipients().execute(fullReload);
+    }
+  }
 }
