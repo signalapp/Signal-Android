@@ -86,6 +86,9 @@ public class MmsDownloadJob extends MasterSecretJob {
 
     try {
       RetrieveConf retrieveConf = getMmsConnection(context).retrieve(contentLocation, transactionId);
+      if (retrieveConf == null) {
+        throw new MmsException("RetrieveConf was null");
+      }
       storeRetrievedMms(masterSecret, contentLocation, messageId, threadId, retrieveConf);
     } catch (ApnUnavailableException e) {
       Log.w(TAG, e);
