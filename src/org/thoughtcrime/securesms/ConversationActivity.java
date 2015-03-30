@@ -1298,8 +1298,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         @Override
         public void onClick(View v) {
             Log.d("GDATA", "PROTOCOL CLICK");
+            charactersLeft.setVisibility(View.GONE);
             transportButton.performLongClick();
-            composeText.clearFocus();
         }
 
         @Override
