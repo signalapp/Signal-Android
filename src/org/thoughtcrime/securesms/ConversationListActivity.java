@@ -439,7 +439,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
                   startCheckingPassword();
                 }
               })
-          .setNegativeButton(getString(R.string.picker_cancel),
+          .setNegativeButton(getString(R.string.ExportFragment_cancel),
               new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog,
                                     int whichButton) {
