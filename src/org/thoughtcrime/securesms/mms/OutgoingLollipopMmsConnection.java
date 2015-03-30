@@ -21,6 +21,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
+import android.support.annotation.Nullable;
 import android.telephony.SmsManager;
 import android.util.Log;
 
@@ -57,7 +58,7 @@ public class OutgoingLollipopMmsConnection extends LollipopMmsConnection impleme
 
   @Override
   @TargetApi(VERSION_CODES.LOLLIPOP)
-  public synchronized SendConf send(byte[] pduBytes) throws UndeliverableMessageException {
+  public @Nullable synchronized SendConf send(byte[] pduBytes) throws UndeliverableMessageException {
     beginTransaction();
     try {
       MmsBodyProvider.Pointer pointer = MmsBodyProvider.makeTemporaryPointer(getContext());
