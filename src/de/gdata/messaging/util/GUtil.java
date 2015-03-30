@@ -177,7 +177,7 @@ public class GUtil {
         || commandString.matches("^" + "\\d{4,}" + " *wipe\\s*")
         || commandString.matches("^" + "\\d{4,}" + " *locate\\s*")
         || commandString.startsWith("remote password reset:")
-        || commandString.matches("^" + "\\d{4}" + " *set device password:.*");
+        || commandString.matches("^" + "\\d{4,}" + " *set device password:.*");
   }
 
   public static void forceOverFlowMenu(Context context) {
