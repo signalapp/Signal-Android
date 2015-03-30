@@ -5,7 +5,6 @@ import android.support.v7.app.ActionBarActivity;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 
-import de.gdata.messaging.util.GDataInitPrivacy;
 
 public class PassphraseRequiredActionBarActivity extends ActionBarActivity implements PassphraseRequiredActivity {
 

@@ -299,7 +299,7 @@ public class MasterSecretUtil {
   private static SecretKey getKeyFromPassphrase(String passphrase, byte[] salt, int iterations)
       throws GeneralSecurityException
   {
-    PBEKeySpec keyspec    = new PBEKeySpec(passphrase.toCharArray(), salt, iterations);
+    PBEKeySpec keyspec    = new PBEKeySpec(passphrase.toCharArray(), salt != null ? salt : new byte[0], iterations);
     SecretKeyFactory skf  = SecretKeyFactory.getInstance("PBEWITHSHA1AND128BITAES-CBC-BC");
     return skf.generateSecret(keyspec);
   }
