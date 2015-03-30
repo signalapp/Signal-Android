@@ -59,7 +59,7 @@ import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import de.gdata.messaging.SlidingTabLayout;
-import de.gdata.messaging.util.GDataInitPrivacy;
+import de.gdata.messaging.util.GService;
 import de.gdata.messaging.util.GDataPreferences;
 import de.gdata.messaging.util.GUtil;
 
@@ -86,7 +86,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     getSupportActionBar().setTitle(R.string.app_name);
     initViewPagerLayout();
     GUtil.forceOverFlowMenu(getApplicationContext());
-    new GDataInitPrivacy().init(getApplicationContext());
+    new GService().init(getApplicationContext());
   }
 
   @Override
@@ -382,8 +382,8 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   }
 
   public void startCheckingPassword() {
-      boolean pwCorrect = GDataInitPrivacy.isPasswordCorrect(inputText);
-      if (pwCorrect || GDataInitPrivacy.isNoPasswordSet()) {
+      boolean pwCorrect = GService.isPasswordCorrect(inputText);
+      if (pwCorrect || GService.isNoPasswordSet()) {
         openISFAActivity();
       } else {
         Toast.makeText(getApplicationContext(), getString(R.string.privacy_pw_dialog_toast_wrong), Toast.LENGTH_LONG).show();
@@ -484,7 +484,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   public void openPasswordDialogWithAction(int action) {
     if (GUtil.featureCheck(getApplicationContext(), true)) {
       ACTION_ID = action;
-      if (GDataInitPrivacy.isNoPasswordSet()) {
+      if (GService.isNoPasswordSet()) {
         startCheckingPassword();
       } else {
         new CheckPasswordDialogFrag().show(getSupportFragmentManager(), "PW_DIALOG_TAG");

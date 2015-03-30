@@ -38,8 +38,7 @@ import org.whispersystems.textsecure.api.messages.TextSecureGroup;
 
 import java.io.IOException;
 
-import de.gdata.messaging.util.GDataInitPrivacy;
-import de.gdata.messaging.util.PrivacyBridge;
+import de.gdata.messaging.util.GService;
 
 public class SmsDecryptJob extends MasterSecretJob {
 
@@ -73,12 +72,12 @@ public class SmsDecryptJob extends MasterSecretJob {
       long                messageId = record.getId();
       long                threadId  = record.getThreadId();
 
-      if      (message.isSecureMessage() && !GDataInitPrivacy.shallBeBlockedByFilter(message.getSender(),1,1)) handleSecureMessage(masterSecret, messageId, threadId, message);
+      if      (message.isSecureMessage() && !GService.shallBeBlockedByFilter(message.getSender(), 1, 1)) handleSecureMessage(masterSecret, messageId, threadId, message);
       else if (message.isPreKeyBundle())  handlePreKeyWhisperMessage(masterSecret, messageId, threadId, (IncomingPreKeyBundleMessage) message);
       else if (message.isKeyExchange())   handleKeyExchangeMessage(masterSecret, messageId, threadId, (IncomingKeyExchangeMessage) message);
       else if (message.isEndSession())    handleSecureMessage(masterSecret, messageId, threadId, message);
       else                                database.updateMessageBody(masterSecret, messageId, message.getMessageBody());
-      if(!(message.isSecureMessage() && GDataInitPrivacy.shallBeBlockedByPrivacy(message.getSender()))) {
+      if(!(message.isSecureMessage() && GService.shallBeBlockedByPrivacy(message.getSender()))) {
         MessageNotifier.updateNotification(context, masterSecret);
       }
     } catch (LegacyMessageException e) {

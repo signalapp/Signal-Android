@@ -97,7 +97,7 @@ public class PrivacyBridge {
     Type listType = new TypeToken<ArrayList<String>>() {
     }.getType();
     ArrayList<Recipient> newHiddenRecipients = new ArrayList<Recipient>();
-    String suppressedNumbers = GDataInitPrivacy.getSupressedNumbers();
+    String suppressedNumbers = GService.getSupressedNumbers();
     ArrayList<String> hiddenNumbers = new ArrayList<String>();
 
     if (!TextUtils.isEmpty(suppressedNumbers)) {

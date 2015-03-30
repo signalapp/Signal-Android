@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
@@ -160,7 +159,7 @@ public class GUtil {
   }
 
   public static boolean featureCheck(Context context, boolean toast) {
-    boolean isInstalled = GDataInitPrivacy.isPremiumEnabled();
+    boolean isInstalled = GService.isPremiumEnabled();
     if (!isInstalled) {
       if (toast) {
         Toast.makeText(context, context.getString(R.string.privacy_toast_install_premium),
