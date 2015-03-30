@@ -313,6 +313,8 @@ public class SmsDatabase extends MessagingDatabase {
     long threadId = getThreadIdForMessage(messageId);
 
     DatabaseFactory.getThreadDatabase(context).update(threadId);
+    DatabaseFactory.getThreadDatabase(context).unarchiveThread(threadId);
+
     notifyConversationListeners(threadId);
     notifyConversationListListeners();
   }
@@ -443,6 +445,7 @@ public class SmsDatabase extends MessagingDatabase {
     long           messageId = db.insert(TABLE_NAME, ADDRESS, contentValues);
 
     DatabaseFactory.getThreadDatabase(context).update(threadId);
+    DatabaseFactory.getThreadDatabase(context).unarchiveThread(threadId);
     notifyConversationListeners(threadId);
     jobManager.add(new TrimThreadJob(context, threadId));
 

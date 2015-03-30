@@ -83,6 +83,8 @@
     <attr name="menu_lock_icon_small" format="reference" />
     <attr name="menu_lock_icon_small_received" format="reference" />
     <attr name="menu_trash_icon" format="reference" />
+    <attr name="menu_archive_icon" format="reference" />
+    <attr name="menu_unarchive_icon" format="reference" />
     <attr name="menu_selectall_icon" format="reference" />
     <attr name="menu_group_icon" format="reference" />
     <attr name="menu_split_icon" format="reference" />

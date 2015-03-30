@@ -67,6 +67,7 @@ public class ConversationListFragment extends ListFragment
   private ReminderView                 reminderView;
   private FloatingActionButton         fab;
   private String                       queryFilter  = "";
+  private Boolean                      viewInbox = true;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -140,6 +141,15 @@ public class ConversationListFragment extends ListFragment
     }
   }
 
+  public Boolean getViewInbox() {
+    return this.viewInbox;
+  }
+
+  public void setViewInbox(Boolean mode){
+    this.viewInbox = mode;
+    getLoaderManager().restartLoader(0, null, this);
+  }
+
   public void setMasterSecret(MasterSecret masterSecret) {
     if (this.masterSecret != masterSecret) {
       this.masterSecret = masterSecret;
@@ -192,6 +202,22 @@ public class ConversationListFragment extends ListFragment
     this.setListAdapter(new ConversationListAdapter(getActivity(), null, masterSecret));
     getListView().setRecyclerListener((ConversationListAdapter)getListAdapter());
     getLoaderManager().restartLoader(0, null, this);
+  }
+
+  private void handleArchiveAllSelected(){
+    final Set<Long> selectedConversations = ((ConversationListAdapter)getListAdapter())
+            .getBatchSelections();
+
+    DatabaseFactory.getThreadDatabase(getActivity()).archiveThreads(selectedConversations);
+    actionMode.finish();
+  }
+
+  private void handleUnarchiveAllSelected(){
+    final Set<Long> selectedConversations = ((ConversationListAdapter)getListAdapter())
+            .getBatchSelections();
+
+    DatabaseFactory.getThreadDatabase(getActivity()).unarchiveThreads(selectedConversations);
+    actionMode.finish();
   }
 
   private void handleDeleteAllSelected() {
@@ -255,7 +281,7 @@ public class ConversationListFragment extends ListFragment
 
   @Override
   public Loader<Cursor> onCreateLoader(int arg0, Bundle arg1) {
-    return new ConversationListLoader(getActivity(), queryFilter);
+    return new ConversationListLoader(getActivity(), queryFilter, viewInbox);
   }
 
   @Override
@@ -280,6 +306,14 @@ public class ConversationListFragment extends ListFragment
     mode.setTitle(R.string.conversation_fragment_cab__batch_selection_mode);
     mode.setSubtitle(null);
 
+    if (viewInbox) {
+      menu.findItem(R.id.menu_archive_selected).setVisible(true);
+      menu.findItem(R.id.menu_unarchive_selected).setVisible(false);
+    } else {
+      menu.findItem(R.id.menu_archive_selected).setVisible(false);
+      menu.findItem(R.id.menu_unarchive_selected).setVisible(true);
+    }
+
     return true;
   }
 
@@ -293,6 +327,8 @@ public class ConversationListFragment extends ListFragment
     switch (item.getItemId()) {
     case R.id.menu_select_all:      handleSelectAllThreads(); return true;
     case R.id.menu_delete_selected: handleDeleteAllSelected(); return true;
+    case R.id.menu_archive_selected: handleArchiveAllSelected(); return true;
+    case R.id.menu_unarchive_selected: handleUnarchiveAllSelected(); return true;
     }
 
     return false;

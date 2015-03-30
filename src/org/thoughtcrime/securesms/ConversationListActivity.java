@@ -62,12 +62,20 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
     setContentView(R.layout.conversation_list_activity);
 
-    getSupportActionBar().setTitle(R.string.app_name);
-
     initializeResources();
     initializeContactUpdatesReceiver();
 
+    updateTitleBar();
+
     DirectoryRefreshListener.schedule(this);
+  }
+
+  public void updateTitleBar(){
+    if (this.fragment.getViewInbox()) {
+      getSupportActionBar().setTitle(R.string.title_bar_inbox_mode);
+    } else {
+      getSupportActionBar().setTitle(R.string.title_bar_archive_mode);
+    }
   }
 
   @Override
@@ -112,6 +120,14 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
       initializeSearch(menuItem);
     } else {
       inflater.inflate(R.menu.conversation_list_empty, menu);
+    }
+
+    if (this.fragment.getViewInbox()) {
+      menu.findItem(R.id.menu_view_archive).setVisible(true);
+      menu.findItem(R.id.menu_view_inbox).setVisible(false);
+    } else {
+      menu.findItem(R.id.menu_view_inbox).setVisible(true);
+      menu.findItem(R.id.menu_view_archive).setVisible(false);
     }
 
     super.onPrepareOptionsMenu(menu);
@@ -165,6 +181,8 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     case R.id.menu_mark_all_read:     handleMarkAllRead();            return true;
     case R.id.menu_import_export:     handleImportExport();           return true;
     case R.id.menu_my_identity:       handleMyIdentity();             return true;
+    case R.id.menu_view_inbox:        handleViewInbox();              return true;
+    case R.id.menu_view_archive:      handleViewArchive();            return true;
     }
 
     return false;
@@ -179,6 +197,16 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     Intent intent = new Intent(this, GroupCreateActivity.class);
     intent.putExtra("master_secret", masterSecret);
     startActivity(intent);
+  }
+
+  private void handleViewInbox() {
+    this.fragment.setViewInbox(true);
+    updateTitleBar();
+  }
+
+  private void handleViewArchive() {
+    this.fragment.setViewInbox(false);
+    updateTitleBar();
   }
 
   private void createConversation(long threadId, Recipients recipients, int distributionType) {

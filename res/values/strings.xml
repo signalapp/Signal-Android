@@ -6,6 +6,10 @@
     <string name="delete">Delete</string>
     <string name="please_wait">Please wait...</string>
 
+    <!-- Title Bar Labels -->
+    <string name="title_bar_inbox_mode">Inbox</string>
+    <string name="title_bar_archive_mode">Archived Messages</string>
+
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_currently_s">Currently: %s</string>
     <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">You haven\'t set a passphrase yet!</string>
@@ -831,9 +835,13 @@
     <!-- conversation_list_batch -->
     <string name="conversation_list_batch__menu_delete_selected">Delete selected</string>
     <string name="conversation_list_batch__menu_select_all">Select all</string>
+    <string name="conversation_list_batch__menu_archive_selected">Archive conversation</string>
+    <string name="conversation_list_batch__menu_move_to_inbox">Move to inbox</string>
 
     <!-- conversation_list -->
     <string name="conversation_list__menu_search">Search</string>
+    <string name="conversation__menu_archive_thread">Archive thread</string>
+    <string name="conversation__menu_move_to_inbox_thread">Move thread to inbox</string>
 
     <!-- conversation_list_item_view -->
     <string name="conversation_list_item_view__contact_photo_image">Contact Photo Image</string>
@@ -871,6 +879,8 @@
     <!-- text_secure_normal -->
     <string name="text_secure_normal__menu_new_message">New message</string>
     <string name="text_secure_normal__menu_new_group">New group</string>
+    <string name="text_secure_normal__menu_view_inbox">View inbox</string>
+    <string name="text_secure_normal__menu_view_archived_messages">View archived messages</string>
     <string name="text_secure_normal__menu_settings">Settings</string>
     <string name="text_secure_normal__menu_clear_passphrase">Lock</string>
     <string name="text_secure_normal__mark_all_as_read">Mark all read</string>
