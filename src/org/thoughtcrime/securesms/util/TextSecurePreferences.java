@@ -5,8 +5,6 @@ import android.os.Build;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.R;
-
 import java.io.IOException;
 
 public class TextSecurePreferences {
@@ -378,7 +376,7 @@ public class TextSecurePreferences {
   }
 
   public static String getNotificationRingtone(Context context) {
-    return getStringPreference(context, RINGTONE_PREF, null);
+    return getStringPreference(context, RINGTONE_PREF, "content://settings/system/notification_sound");
   }
 
   public static boolean isNotificationVibrateEnabled(Context context) {
