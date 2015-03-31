@@ -455,6 +455,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
       try {
         Intent intent = new Intent("de.gdata.mobilesecurity.privacy.PrivacyListActivity");
         intent.putExtra("title", getString(R.string.app_name));
+        intent.putExtra("header", getString(R.string.menu_privacy_single_hide));
         intent.putExtra("numberpicker_allow_wildcard", false);
         startActivity(intent);
       } catch (Exception e) {
