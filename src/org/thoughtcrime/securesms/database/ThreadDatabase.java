@@ -388,8 +388,7 @@ public class ThreadDatabase extends Database {
       return true;
     }
 
-    MmsSmsDatabase.Reader reader        = null;
-    boolean               threadDeleted = false;
+    MmsSmsDatabase.Reader reader = null;
 
     try {
       reader = mmsSmsDatabase.readerFor(mmsSmsDatabase.getConversationSnippet(threadId));
@@ -404,7 +403,8 @@ public class ThreadDatabase extends Database {
         updateThread(threadId, count, record.getBody().getBody(), timestamp, record.getType());
       } else {
         deleteThread(threadId);
-        threadDeleted = true;
+        notifyConversationListListeners();
+        return true;
       }
     } finally {
       if (reader != null)
@@ -412,7 +412,7 @@ public class ThreadDatabase extends Database {
     }
 
     notifyConversationListListeners();
-    return threadDeleted;
+    return false;
   }
 
   public static interface ProgressListener {
