@@ -23,6 +23,7 @@ import android.database.Cursor;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.GridLayoutManager;
@@ -48,9 +49,8 @@ import org.thoughtcrime.securesms.util.DynamicLanguage;
 public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity implements LoaderManager.LoaderCallbacks<Cursor> {
   private final static String TAG = MediaOverviewActivity.class.getSimpleName();
 
-  public final static String MASTER_SECRET_EXTRA = "master_secret";
-  public final static String RECIPIENT_EXTRA     = "recipient";
-  public final static String THREAD_ID_EXTRA     = "thread_id";
+  public static final String RECIPIENT_EXTRA = "recipient";
+  public static final String THREAD_ID_EXTRA = "thread_id";
 
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
@@ -63,11 +63,14 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
   private long              threadId;
 
   @Override
-  protected void onCreate(Bundle bundle) {
+  protected void onPreCreate() {
     this.setTheme(R.style.TextSecure_DarkTheme);
     dynamicLanguage.onCreate(this);
+  }
 
-    super.onCreate(bundle);
+  @Override
+  protected void onCreate(Bundle bundle, @NonNull MasterSecret masterSecret) {
+    this.masterSecret = masterSecret;
     setFullscreenIfPossible();
 
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -112,8 +115,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
   }
 
   private void initializeResources() {
-    masterSecret = getIntent().getParcelableExtra(MASTER_SECRET_EXTRA);
-    threadId     = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
+    threadId = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
 
     noImages = (TextView    ) findViewById(R.id.no_images );
     gridView = (RecyclerView) findViewById(R.id.media_grid);

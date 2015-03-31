@@ -25,9 +25,9 @@ import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
 
@@ -284,7 +284,7 @@ public class RegistrationActivity extends BaseActionBarActivity {
       Intent nextIntent = getIntent().getParcelableExtra("next_intent");
 
       if (nextIntent == null) {
-        nextIntent = new Intent(RegistrationActivity.this, RoutingActivity.class);
+        nextIntent = new Intent(RegistrationActivity.this, ConversationListActivity.class);
       }
 
       startActivity(nextIntent);

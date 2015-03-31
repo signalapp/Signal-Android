@@ -28,7 +28,6 @@ import android.widget.Toast;
 import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
-import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 /**
@@ -103,10 +102,6 @@ public class PassphraseChangeActivity extends PassphraseActivity {
       } else {
         MasterSecret masterSecret = MasterSecretUtil.changeMasterSecretPassphrase(this, original, passphrase);
         TextSecurePreferences.setPasswordDisabled(this, false);
-
-        MemoryCleaner.clean(original);
-        MemoryCleaner.clean(passphrase);
-        MemoryCleaner.clean(passphraseRepeat);
 
         setMasterSecret(masterSecret);
       }

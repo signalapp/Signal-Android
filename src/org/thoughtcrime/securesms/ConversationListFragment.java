@@ -61,7 +61,6 @@ public class ConversationListFragment extends ListFragment
   implements LoaderManager.LoaderCallbacks<Cursor>, ActionMode.Callback
 {
 
-  private ConversationSelectedListener listener;
   private MasterSecret                 masterSecret;
   private ActionMode                   actionMode;
   private ReminderView                 reminderView;
@@ -69,17 +68,17 @@ public class ConversationListFragment extends ListFragment
   private String                       queryFilter  = "";
 
   @Override
+  public void onCreate(Bundle icicle) {
+    super.onCreate(icicle);
+    masterSecret = getArguments().getParcelable("master_secret");
+  }
+
+  @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
     final View view = inflater.inflate(R.layout.conversation_list_fragment, container, false);
     reminderView = new ReminderView(getActivity());
     fab          = (FloatingActionButton) view.findViewById(R.id.fab);
     return view;
-  }
-
-  @Override
-  public void onDestroyView() {
-    super.onDestroyView();
-    getListView().setAdapter(null);
   }
 
   @Override
@@ -92,9 +91,7 @@ public class ConversationListFragment extends ListFragment
     fab.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
-        Intent intent = new Intent(getActivity(), NewConversationActivity.class);
-        intent.putExtra(NewConversationActivity.MASTER_SECRET_EXTRA, masterSecret);
-        startActivity(intent);
+        startActivity(new Intent(getActivity(), NewConversationActivity.class));
       }
     });
     initializeListAdapter();
@@ -109,12 +106,6 @@ public class ConversationListFragment extends ListFragment
 
     initializeReminders();
     ((ConversationListAdapter)getListAdapter()).notifyDataSetChanged();
-  }
-
-  @Override
-  public void onAttach(Activity activity) {
-    super.onAttach(activity);
-    this.listener = (ConversationSelectedListener)activity;
   }
 
   @Override
@@ -137,13 +128,6 @@ public class ConversationListFragment extends ListFragment
 
         adapter.notifyDataSetChanged();
       }
-    }
-  }
-
-  public void setMasterSecret(MasterSecret masterSecret) {
-    if (this.masterSecret != masterSecret) {
-      this.masterSecret = masterSecret;
-      initializeListAdapter();
     }
   }
 
@@ -250,7 +234,7 @@ public class ConversationListFragment extends ListFragment
   }
 
   private void handleCreateConversation(long threadId, Recipients recipients, int distributionType) {
-    listener.onCreateConversation(threadId, recipients, distributionType);
+    ((ConversationSelectedListener)getActivity()).onCreateConversation(threadId, recipients, distributionType);
   }
 
   @Override

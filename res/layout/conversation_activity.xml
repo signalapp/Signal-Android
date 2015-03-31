@@ -14,12 +14,10 @@
             android:orientation="vertical"
             android:gravity="bottom">
 
-        <fragment
-                android:id="@+id/fragment_content"
-                android:name="org.thoughtcrime.securesms.ConversationFragment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_above="@+id/bottom_container" />
+        <FrameLayout android:id="@+id/fragment_content"
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent"
+                     android:layout_above="@+id/bottom_container" />
 
         <LinearLayout
                 android:layout_alignParentBottom="true"
