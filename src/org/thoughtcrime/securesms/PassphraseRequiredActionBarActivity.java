@@ -88,7 +88,7 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
     return fragment;
   }
 
-  protected void routeApplicationState(MasterSecret masterSecret) {
+  private void routeApplicationState(MasterSecret masterSecret) {
     Intent intent = getIntentForState(masterSecret, getApplicationState(masterSecret));
     if (intent != null) {
       startActivity(intent);
@@ -96,7 +96,7 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
     }
   }
 
-  protected Intent getIntentForState(MasterSecret masterSecret, int state) {
+  private Intent getIntentForState(MasterSecret masterSecret, int state) {
     Log.w(TAG, "routeApplicationState(), state: " + state);
 
     switch (state) {
