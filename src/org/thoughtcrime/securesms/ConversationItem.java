@@ -22,7 +22,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.ContactsContract;
@@ -31,7 +30,6 @@ import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -101,11 +99,9 @@ public class ConversationItem extends LinearLayout {
   private Button                 mmsDownloadButton;
   private TextView               mmsDownloadingLabel;
 
-  private ListenableFutureTask<SlideDeck>               slideDeckFuture;
-  private ListenableFutureTask<Pair<Drawable, Boolean>> thumbnailFuture;
-  private SlideDeckListener                             slideDeckListener;
-  private ThumbnailListener                             thumbnailListener;
-  private Handler                                       handler;
+  private ListenableFutureTask<SlideDeck> slideDeckFuture;
+  private SlideDeckListener               slideDeckListener;
+  private Handler                         handler;
 
   private final MmsDownloadClickListener    mmsDownloadClickListener    = new MmsDownloadClickListener();
   private final MmsPreferencesClickListener mmsPreferencesClickListener = new MmsPreferencesClickListener();
@@ -179,10 +175,6 @@ public class ConversationItem extends LinearLayout {
   public void unbind() {
     if (slideDeckFuture != null && slideDeckListener != null) {
       slideDeckFuture.removeListener(slideDeckListener);
-    }
-
-    if (thumbnailFuture != null && thumbnailListener != null) {
-      thumbnailFuture.removeListener(thumbnailListener);
     }
   }
 
@@ -588,61 +580,28 @@ public class ConversationItem extends LinearLayout {
     builder.show();
   }
 
-  private class ThumbnailListener implements FutureTaskListener<Pair<Drawable, Boolean>> {
-    private final Object tag;
-
-    public ThumbnailListener(Object tag) {
-      this.tag = tag;
-    }
-
-    @Override
-    public void onSuccess(final Pair<Drawable, Boolean> result) {
-      handler.post(new Runnable() {
-        @Override
-        public void run() {
-          if (mediaThumbnail.getTag() == tag) {
-            Log.w(TAG, "displaying media thumbnail");
-            mediaThumbnail.show(result.first, result.second);
-          }
-        }
-      });
-    }
-
-    @Override
-    public void onFailure(Throwable error) {
-      Log.w(TAG, error);
-      handler.post(new Runnable() {
-        @Override
-        public void run() {
-          mediaThumbnail.hide();
-        }
-      });
-    }
-  }
-
   private class SlideDeckListener implements FutureTaskListener<SlideDeck> {
     @Override
     public void onSuccess(final SlideDeck slideDeck) {
       if (slideDeck == null) return;
 
-      handler.post(new Runnable() {
-        @Override
-        public void run() {
-          Slide slide = slideDeck.getThumbnailSlide(context);
-          if (slide != null) {
-            thumbnailFuture = slide.getThumbnail(context);
-            if (thumbnailFuture != null) {
-              Object tag = new Object();
-              mediaThumbnail.setTag(tag);
-              thumbnailListener = new ThumbnailListener(tag);
-              thumbnailFuture.addListener(thumbnailListener);
-              mediaThumbnail.setOnClickListener(new ThumbnailClickListener(slide));
-              return;
-            }
+      final Slide slide = slideDeck.getThumbnailSlide(context);
+      if (slide != null) {
+        handler.post(new Runnable() {
+          @Override
+          public void run() {
+            slide.loadThumbnail(context).into(mediaThumbnail);
+            mediaThumbnail.setOnClickListener(new ThumbnailClickListener(slide));
           }
-          mediaThumbnail.hide();
-        }
-      });
+        });
+      } else {
+        handler.post(new Runnable() {
+          @Override
+          public void run() {
+            mediaThumbnail.hide();
+          }
+        });
+      }
     }
 
     @Override

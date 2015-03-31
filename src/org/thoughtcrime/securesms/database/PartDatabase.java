@@ -30,7 +30,6 @@ import android.util.Pair;
 
 import org.thoughtcrime.securesms.crypto.DecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.EncryptingPartOutputStream;
-import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
@@ -283,6 +282,10 @@ public class PartDatabase extends Database {
 
     if (!cursor.isNull(sizeColumn))
       part.setDataSize(cursor.getLong(cursor.getColumnIndexOrThrow(SIZE)));
+
+    int aspectRatioColumn = cursor.getColumnIndexOrThrow(ASPECT_RATIO);
+    if (!cursor.isNull(aspectRatioColumn))
+      part.setAspectRatio(cursor.getFloat(aspectRatioColumn));
   }
 
   private ContentValues getContentValuesForPart(PduPart part) throws MmsException {

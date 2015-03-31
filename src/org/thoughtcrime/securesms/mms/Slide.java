@@ -16,19 +16,18 @@
  */
 package org.thoughtcrime.securesms.mms;
 
-import java.io.IOException;
-import java.io.InputStream;
-
-import org.thoughtcrime.securesms.util.ListenableFutureTask;
-import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.util.Log;
-import android.util.Pair;
+
+import com.bumptech.glide.GenericRequestBuilder;
+
+import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.util.Util;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 import ws.com.google.android.mms.pdu.PduPart;
 
@@ -68,8 +67,8 @@ public abstract class Slide {
     return part.getDataUri();
   }
 
-  public ListenableFutureTask<Pair<Drawable,Boolean>> getThumbnail(Context context) {
-    throw new AssertionError("getThumbnail() called on non-thumbnail producing slide!");
+  public GenericRequestBuilder loadThumbnail(Context context) {
+    throw new AssertionError("loadThumbnail() called on non-thumbnail producing slide!");
   }
 
   public boolean hasImage() {

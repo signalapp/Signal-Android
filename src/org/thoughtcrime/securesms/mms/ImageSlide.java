@@ -18,36 +18,29 @@ package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.util.Pair;
 
+import com.bumptech.glide.BitmapRequestBuilder;
+import com.bumptech.glide.GenericRequestBuilder;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
+
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.MmsDatabase;
-import org.thoughtcrime.securesms.util.BitmapDecodingException;
-import org.thoughtcrime.securesms.util.LRUCache;
-import org.thoughtcrime.securesms.util.ListenableFutureTask;
-import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.util.BitmapDecodingException;
 
 import java.io.IOException;
-import java.lang.ref.SoftReference;
-import java.lang.ref.WeakReference;
-import java.util.Collections;
-import java.util.Map;
-import java.util.concurrent.Callable;
+import java.io.InputStream;
 
 import ws.com.google.android.mms.ContentType;
 import ws.com.google.android.mms.pdu.PduPart;
 
 public class ImageSlide extends Slide {
   private static final String TAG = ImageSlide.class.getSimpleName();
-
-  private static final int MAX_CACHE_SIZE = 10;
-  private static final Map<Uri, SoftReference<Drawable>> thumbnailCache =
-      Collections.synchronizedMap(new LRUCache<Uri, SoftReference<Drawable>>(MAX_CACHE_SIZE));
 
   public ImageSlide(Context context, MasterSecret masterSecret, PduPart part) {
     super(context, masterSecret, part);
@@ -58,66 +51,38 @@ public class ImageSlide extends Slide {
   }
 
   @Override
-  public ListenableFutureTask<Pair<Drawable,Boolean>> getThumbnail(Context context) {
+  public GenericRequestBuilder loadThumbnail(Context context) {
+    Glide.get(context).register(Uri.class, InputStream.class, new EncryptedStreamUriLoader.Factory(masterSecret));
     if (getPart().isPendingPush()) {
-      return new ListenableFutureTask<>(new Pair<>(context.getResources().getDrawable(R.drawable.stat_sys_download), true));
+      return Glide.with(context).load(R.drawable.stat_sys_download);
+    } else if (getPart().getDataUri() != null && getPart().getId() > -1) {
+      return loadPartContent(context);
+    } else if (getPart().getDataUri() != null) {
+      return loadExternalContent(context);
+    } else {
+      return Glide.with(context).load(R.drawable.ic_missing_thumbnail_picture);
     }
-
-    Drawable thumbnail = getCachedThumbnail();
-    if (thumbnail != null) {
-      Log.w(TAG, "getThumbnail() returning cached thumbnail");
-      return new ListenableFutureTask<>(new Pair<>(thumbnail, true));
-    }
-
-    Log.w(TAG, "getThumbnail() resolving thumbnail, as it wasn't cached");
-    return resolveThumbnail(context);
   }
 
-  private ListenableFutureTask<Pair<Drawable,Boolean>> resolveThumbnail(Context context) {
-    final WeakReference<Context> weakContext = new WeakReference<>(context);
-
-    Callable<Pair<Drawable,Boolean>> slideCallable = new Callable<Pair<Drawable, Boolean>>() {
-      @Override
-      public Pair<Drawable, Boolean> call() throws Exception {
-        final Context context = weakContext.get();
-        if (context == null) {
-          Log.w(TAG, "context SoftReference was null, leaving");
-          return null;
-        }
-
-        try {
-          final long     startDecode     = System.currentTimeMillis();
-          final Bitmap   thumbnailBitmap = MediaUtil.getOrGenerateThumbnail(context, masterSecret, part);
-          final Drawable thumbnail       = new BitmapDrawable(context.getResources(), thumbnailBitmap);
-          Log.w(TAG, "thumbnail decode/generate time: " + (System.currentTimeMillis() - startDecode) + "ms");
-
-          thumbnailCache.put(part.getDataUri(), new SoftReference<>(thumbnail));
-          return new Pair<>(thumbnail, false);
-        } catch (IOException | BitmapDecodingException e) {
-          Log.w(TAG, e);
-          return new Pair<>(context.getResources().getDrawable(R.drawable.ic_missing_thumbnail_picture), false);
-        }
-      }
-    };
-    ListenableFutureTask<Pair<Drawable,Boolean>> futureTask = new ListenableFutureTask<>(slideCallable);
-    MmsDatabase.slideResolver.execute(futureTask);
-    return futureTask;
+  private GenericRequestBuilder loadPartContent(Context context) {
+    Pair<Integer,Integer> thumbDimens = getThumbnailDimens(getPart());
+    GenericRequestBuilder builder = Glide.with(context)
+                                         .load(PartAuthority.getThumbnailUri(getPart().getId()))
+                                         .centerCrop()
+                                         .crossFade()
+                                         .error(R.drawable.ic_missing_thumbnail_picture);
+    if (thumbDimens.first > 0 && thumbDimens.second > 0) {
+      builder.override(thumbDimens.first, thumbDimens.second);
+    }
+    return builder;
   }
 
-  private Drawable getCachedThumbnail() {
-    synchronized (thumbnailCache) {
-      SoftReference<Drawable> bitmapReference = thumbnailCache.get(part.getDataUri());
-      Log.w("ImageSlide", "Got soft reference: " + bitmapReference);
-
-      if (bitmapReference != null) {
-        Drawable bitmap = bitmapReference.get();
-        Log.w("ImageSlide", "Got cached bitmap: " + bitmap);
-        if (bitmap != null) return bitmap;
-        else                thumbnailCache.remove(part.getDataUri());
-      }
-    }
-
-    return null;
+  private BitmapRequestBuilder loadExternalContent(Context context) {
+    return Glide.with(context).load(getPart().getDataUri())
+                              .asBitmap()
+                              .fitCenter()
+                              .listener(new PduThumbnailSetListener(getPart()))
+                              .error(R.drawable.ic_missing_thumbnail_picture);
   }
 
   @Override
@@ -136,5 +101,34 @@ public class ImageSlide extends Slide {
     part.setName(("Image" + System.currentTimeMillis()).getBytes());
 
     return part;
+  }
+
+  private Pair<Integer,Integer> getThumbnailDimens(PduPart part) {
+    int thumbnailHeight = context.getResources().getDimensionPixelSize(R.dimen.media_bubble_height);
+    Log.w(TAG, "aspect ratio of " + part.getAspectRatio() + " for max height " + thumbnailHeight);
+    if (part.getAspectRatio() < 1f) {
+      return new Pair<>((int)(thumbnailHeight * part.getAspectRatio()), thumbnailHeight);
+    } else {
+      return new Pair<>(-1, -1);
+    }
+  }
+
+  private static class PduThumbnailSetListener implements RequestListener<Uri, Bitmap> {
+    private PduPart part;
+
+    public PduThumbnailSetListener(@NonNull PduPart part) {
+      this.part = part;
+    }
+
+    @Override
+    public boolean onException(Exception e, Uri model, Target<Bitmap> target, boolean isFirstResource) {
+      return false;
+    }
+
+    @Override
+    public boolean onResourceReady(Bitmap resource, Uri model, Target<Bitmap> target, boolean isFromMemoryCache, boolean isFirstResource) {
+      part.setThumbnail(resource);
+      return false;
+    }
   }
 }

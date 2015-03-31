@@ -19,11 +19,8 @@ package org.thoughtcrime.securesms;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -37,7 +34,6 @@ import org.thoughtcrime.securesms.database.PartDatabase.ImageRecord;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
 import ws.com.google.android.mms.pdu.PduPart;
@@ -46,7 +42,6 @@ public class ImageMediaAdapter extends CursorRecyclerViewAdapter<ViewHolder> {
   private static final String TAG = ImageMediaAdapter.class.getSimpleName();
 
   private final MasterSecret masterSecret;
-  private final int          gridSize;
 
   public static class ViewHolder extends RecyclerView.ViewHolder {
     public ForegroundImageView imageView;
@@ -60,7 +55,6 @@ public class ImageMediaAdapter extends CursorRecyclerViewAdapter<ViewHolder> {
   public ImageMediaAdapter(Context context, MasterSecret masterSecret, Cursor c) {
     super(context, c);
     this.masterSecret = masterSecret;
-    this.gridSize     = context.getResources().getDimensionPixelSize(R.dimen.thumbnail_max_size);
   }
 
   @Override
@@ -80,25 +74,9 @@ public class ImageMediaAdapter extends CursorRecyclerViewAdapter<ViewHolder> {
     part.setContentType(imageRecord.getContentType().getBytes());
     part.setId(imageRecord.getPartId());
 
-    imageView.setVisibility(View.INVISIBLE);
     Slide slide = MediaUtil.getSlideForPart(getContext(), masterSecret, part, imageRecord.getContentType());
     if (slide != null) {
-      slide.getThumbnail(getContext()).addListener(new FutureTaskListener<Pair<Drawable, Boolean>>() {
-        @Override
-        public void onSuccess(final Pair<Drawable, Boolean> result) {
-          imageView.post(new Runnable() {
-            @Override
-            public void run() {
-              imageView.show(result.first, false);
-            }
-          });
-        }
-
-        @Override
-        public void onFailure(Throwable error) {
-          Log.w(TAG, error);
-        }
-      });
+      slide.loadThumbnail(getContext()).into(imageView);
     }
 
     imageView.setOnClickListener(new OnMediaClickListener(imageRecord));

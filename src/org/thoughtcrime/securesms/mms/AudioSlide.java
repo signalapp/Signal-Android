@@ -16,20 +16,21 @@
  */
 package org.thoughtcrime.securesms.mms;
 
-import java.io.IOException;
+import android.content.Context;
+import android.database.Cursor;
+import android.net.Uri;
+import android.provider.MediaStore.Audio;
+
+import com.bumptech.glide.GenericRequestBuilder;
+import com.bumptech.glide.Glide;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.ResUtil;
 
+import java.io.IOException;
+
 import ws.com.google.android.mms.pdu.PduPart;
-import android.content.Context;
-import android.database.Cursor;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.provider.MediaStore.Audio;
-import android.util.Pair;
 
 public class AudioSlide extends Slide {
 
@@ -52,8 +53,8 @@ public class AudioSlide extends Slide {
   }
 
   @Override
-  public ListenableFutureTask<Pair<Drawable,Boolean>> getThumbnail(Context context) {
-    return new ListenableFutureTask<>(new Pair<>(ResUtil.getDrawable(context, R.attr.conversation_icon_attach_audio), true));
+  public GenericRequestBuilder loadThumbnail(Context context) {
+    return Glide.with(context).load(ResUtil.getDrawableRes(context, R.attr.conversation_icon_attach_audio)).fitCenter();
   }
 
   public static PduPart constructPartFromUri(Context context, Uri uri) throws IOException, MediaTooLargeException {
