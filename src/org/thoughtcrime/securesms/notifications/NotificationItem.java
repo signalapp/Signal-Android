@@ -34,12 +34,21 @@ public class NotificationItem {
     this.timestamp           = timestamp;
   }
 
-  public Recipient getIndividualRecipient() {
-    return individualRecipient;
+  private Recipient getGroupRecipient() {
+    if (threadRecipients != null && threadRecipients.isGroupRecipient()) {
+      return threadRecipients.getPrimaryRecipient();
+    } else {
+      return null;
+    }
   }
 
-  public String getIndividualRecipientName() {
-    return individualRecipient.toShortString();
+  private boolean hasGroupRecipient() {
+    return getGroupRecipient() != null;
+  }
+
+  public Recipient getPrimaryRecipient() {
+    if (hasGroupRecipient()) return getGroupRecipient();
+    else                     return individualRecipient;
   }
 
   public CharSequence getText() {
@@ -62,13 +71,24 @@ public class NotificationItem {
     return threadId;
   }
 
-  public CharSequence getBigStyleSummary() {
-    return (text == null) ? "" : text;
+  public CharSequence getSingleThreadSummary() {
+    SpannableStringBuilder bigSummary = new SpannableStringBuilder();
+
+    if (hasGroupRecipient()) {
+      bigSummary.append(Util.getBoldedString(individualRecipient.toShortString() + ": "));
+    }
+
+    return bigSummary.append(getText());
   }
 
   public CharSequence getTickerText() {
     SpannableStringBuilder builder = new SpannableStringBuilder();
-    builder.append(Util.getBoldedString(getIndividualRecipientName()));
+
+    if (hasGroupRecipient()) {
+      builder.append(Util.getBoldedString(getGroupRecipient().toShortString()));
+    } else {
+      builder.append(Util.getBoldedString(individualRecipient.toShortString()));
+    }
     builder.append(": ");
     builder.append(getText());
 

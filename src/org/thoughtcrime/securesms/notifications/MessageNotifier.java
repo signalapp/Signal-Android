@@ -182,7 +182,7 @@ public class MessageNotifier {
 
     List<NotificationItem>     notifications       = notificationState.getNotifications();
     NotificationCompat.Builder builder             = new NotificationCompat.Builder(context);
-    Recipient                  recipient           = notifications.get(0).getIndividualRecipient();
+    Recipient                  recipient           = notifications.get(0).getPrimaryRecipient();
     Drawable                   recipientPhoto      = recipient.getContactPhoto();
     int                        largeIconTargetSize = context.getResources().getDimensionPixelSize(R.dimen.contact_photo_target_size);
 
@@ -219,7 +219,7 @@ public class MessageNotifier {
     ListIterator<NotificationItem> iterator = notifications.listIterator(notifications.size());
     while(iterator.hasPrevious()) {
       NotificationItem item = iterator.previous();
-      content.append(item.getBigStyleSummary());
+      content.append(item.getSingleThreadSummary());
       content.append('\n');
     }
 
@@ -242,6 +242,7 @@ public class MessageNotifier {
   {
     List<NotificationItem> notifications = notificationState.getNotifications();
     NotificationCompat.Builder builder   = new NotificationCompat.Builder(context);
+    Recipient recipient                  = notifications.get(0).getPrimaryRecipient();
 
     builder.setColor(context.getResources().getColor(R.color.textsecure_primary));
     builder.setSmallIcon(R.drawable.icon_notification);
@@ -250,9 +251,8 @@ public class MessageNotifier {
                                          notificationState.getMessageCount(),
                                          notificationState.getThreadCount()));
     builder.setContentText(context.getString(R.string.MessageNotifier_most_recent_from_s,
-                                             notifications.get(0).getIndividualRecipientName()));
+                                             recipient.toShortString()));
     builder.setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, ConversationListActivity.class), 0));
-    
     builder.setContentInfo(String.valueOf(notificationState.getMessageCount()));
     builder.setNumber(notificationState.getMessageCount());
     builder.setCategory(NotificationCompat.CATEGORY_MESSAGE);
@@ -276,8 +276,8 @@ public class MessageNotifier {
     while(iterator.hasPrevious()) {
       NotificationItem item = iterator.previous();
       style.addLine(item.getTickerText());
-      if (item.getIndividualRecipient().getContactUri() != null) {
-        builder.addPerson(item.getIndividualRecipient().getContactUri().toString());
+      if (item.getPrimaryRecipient().getContactUri() != null) {
+        builder.addPerson(item.getPrimaryRecipient().getContactUri().toString());
       }
     }
 
