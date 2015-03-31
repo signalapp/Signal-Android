@@ -210,10 +210,16 @@ public class ConversationFragment extends ListFragment
           @Override
           protected Void doInBackground(MessageRecord... messageRecords) {
             for (MessageRecord messageRecord : messageRecords) {
+              boolean threadDeleted = false;
               if (messageRecord.isMms()) {
-                DatabaseFactory.getMmsDatabase(getActivity()).delete(messageRecord.getId());
+                threadDeleted = DatabaseFactory.getMmsDatabase(getActivity()).delete(messageRecord.getId());
               } else {
-                DatabaseFactory.getSmsDatabase(getActivity()).deleteMessage(messageRecord.getId());
+                threadDeleted = DatabaseFactory.getSmsDatabase(getActivity()).deleteMessage(messageRecord.getId());
+              }
+
+              if (threadDeleted) {
+                threadId = -1;
+                listener.setThreadId(threadId);
               }
             }
 
@@ -291,6 +297,8 @@ public class ConversationFragment extends ListFragment
 
   public interface ConversationFragmentListener {
     public void setComposeText(String text);
+
+    public void setThreadId(long threadId);
   }
 
   public interface SelectionClickListener extends
