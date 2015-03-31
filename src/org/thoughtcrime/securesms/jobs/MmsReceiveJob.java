@@ -40,8 +40,14 @@ public class MmsReceiveJob extends ContextJob {
       return;
     }
 
-    PduParser parser = new PduParser(data);
-    GenericPdu pdu   = parser.parse();
+    PduParser  parser = new PduParser(data);
+    GenericPdu pdu    = null;
+
+    try {
+      pdu = parser.parse();
+    } catch (RuntimeException e) {
+      Log.w(TAG, e);
+    }
 
     if (pdu != null && pdu.getMessageType() == PduHeaders.MESSAGE_TYPE_NOTIFICATION_IND) {
       MmsDatabase database                = DatabaseFactory.getMmsDatabase(context);
