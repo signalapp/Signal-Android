@@ -1,11 +1,12 @@
 package org.thoughtcrime.securesms.mms;
 
 import android.support.annotation.Nullable;
+import android.support.annotation.NonNull;
 
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 
 import ws.com.google.android.mms.pdu.SendConf;
 
 public interface OutgoingMmsConnection {
-  @Nullable SendConf send(byte[] pduBytes) throws UndeliverableMessageException;
+  @Nullable SendConf send(@NonNull byte[] pduBytes) throws UndeliverableMessageException;
 }
