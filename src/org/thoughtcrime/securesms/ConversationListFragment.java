@@ -177,7 +177,6 @@ public class ConversationListFragment extends ListFragment
 
   private void initializeListAdapter() {
     this.setListAdapter(new ConversationListAdapter(getActivity(), null, masterSecret));
-    getListView().setRecyclerListener((ConversationListAdapter) getListAdapter());
     getLoaderManager().restartLoader(0, null, this);
   }
 
@@ -306,8 +305,7 @@ public class ConversationListFragment extends ListFragment
   }
   public void reloadAdapter() {
     if(isAdded()) {
-      getLoaderManager().restartLoader(0, null, this);
+      initializeListAdapter();
     }
   }
-
 }
