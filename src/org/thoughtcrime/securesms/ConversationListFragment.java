@@ -61,7 +61,7 @@ public class ConversationListFragment extends ListFragment
     implements LoaderManager.LoaderCallbacks<Cursor>, ActionMode.Callback
 {
   private ConversationSelectedListener listener;
-  private MasterSecret                 masterSecret;
+  private static MasterSecret          masterSecret;
   private ActionMode                   actionMode;
   private ReminderView                 reminderView;
   private String                       queryFilter  = "";
@@ -128,9 +128,8 @@ public class ConversationListFragment extends ListFragment
   }
 
   public void setMasterSecret(MasterSecret masterSecret) {
-    if (this.masterSecret != masterSecret) {
+    if (this.masterSecret != masterSecret && masterSecret != null) {
       this.masterSecret = masterSecret;
-
     }
   }
 
