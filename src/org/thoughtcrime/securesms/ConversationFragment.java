@@ -30,6 +30,7 @@ import com.afollestad.materialdialogs.AlertDialogWrapper;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
+import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.loaders.ConversationLoader;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -204,6 +205,14 @@ public class ConversationFragment extends ListFragment
         {
           @Override
           protected Void doInBackground(MessageRecord... messageRecords) {
+            ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(getActivity());
+            if (threadDatabase.getMessageCountForThreadId(threadId) == messageRecords.length) {
+              threadDatabase.deleteConversation(threadId);
+              threadId = -1;
+              listener.setThreadId(threadId);
+              return null;
+            }
+
             for (MessageRecord messageRecord : messageRecords) {
               if (messageRecord.isMms()) {
                 DatabaseFactory.getMmsDatabase(getActivity()).delete(messageRecord.getId());
@@ -287,6 +296,8 @@ public class ConversationFragment extends ListFragment
 
   public interface ConversationFragmentListener {
     public void setComposeText(String text);
+
+    public void setThreadId(long threadId);
   }
 
   public interface SelectionClickListener extends
