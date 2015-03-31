@@ -279,6 +279,13 @@
     <string name="PassphrasePromptActivity_ok_button_content_description">Submit passphrase</string>
     <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Invalid passphrase!</string>
 
+    <!-- RatingManager -->
+    <string name="RatingManager_rate_this_app">Rate this app</string>
+    <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">If you enjoy using this app, please take a moment to help us by rating it.</string>
+    <string name="RatingManager_rate_now">Rate now!</string>
+    <string name="RatingManager_no_thanks">No thanks</string>
+    <string name="RatingManager_later">Later</string>
+
     <!-- ReceiveKeyActivity -->
     <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">The
         signature on this key exchange is different than what you\'ve previously received from this
