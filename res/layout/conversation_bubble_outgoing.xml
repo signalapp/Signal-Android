@@ -17,7 +17,7 @@
                   android:layout_gravity="center"
                   android:layout_height="wrap_content">
 
-        <org.thoughtcrime.securesms.components.ForegroundImageView
+        <org.thoughtcrime.securesms.components.ThumbnailView
             android:id="@+id/image_view"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/media_bubble_height"
