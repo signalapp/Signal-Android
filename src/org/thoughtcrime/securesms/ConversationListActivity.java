@@ -30,6 +30,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import org.thoughtcrime.securesms.components.RatingManager;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
@@ -69,6 +70,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     initializeContactUpdatesReceiver();
 
     DirectoryRefreshListener.schedule(this);
+    RatingManager.showRatingDialogIfNecessary(this);
   }
 
   @Override
