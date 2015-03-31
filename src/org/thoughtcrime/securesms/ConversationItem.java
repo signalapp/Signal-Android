@@ -615,7 +615,7 @@ public class ConversationItem extends LinearLayout {
       handler.post(new Runnable() {
         @Override
         public void run() {
-          mediaThumbnail.setVisibility(View.GONE);
+          mediaThumbnail.hide();
         }
       });
     }
