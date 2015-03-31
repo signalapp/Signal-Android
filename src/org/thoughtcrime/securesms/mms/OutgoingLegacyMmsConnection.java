@@ -20,6 +20,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.apache.http.Header;
@@ -70,7 +71,7 @@ public class OutgoingLegacyMmsConnection extends LegacyMmsConnection implements 
   }
 
   @Override
-  public SendConf send(byte[] pduBytes) throws UndeliverableMessageException {
+  public SendConf send(@NonNull byte[] pduBytes) throws UndeliverableMessageException {
     try {
       MmsRadio radio = MmsRadio.getInstance(context);
 
