@@ -482,13 +482,14 @@ public class SmsDatabase extends MessagingDatabase {
     return cursor;
   }
 
-  public void deleteMessage(long messageId) {
+  public boolean deleteMessage(long messageId) {
     Log.w("MessageDatabase", "Deleting: " + messageId);
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     long threadId     = getThreadIdForMessage(messageId);
     db.delete(TABLE_NAME, ID_WHERE, new String[] {messageId+""});
-    DatabaseFactory.getThreadDatabase(context).update(threadId);
+    boolean threadDeleted = DatabaseFactory.getThreadDatabase(context).update(threadId);
     notifyConversationListeners(threadId);
+    return threadDeleted;
   }
 
   /*package */void deleteThread(long threadId) {
