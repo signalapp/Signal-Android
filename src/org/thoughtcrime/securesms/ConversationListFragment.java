@@ -305,7 +305,7 @@ public class ConversationListFragment extends ListFragment
   }
   public void reloadAdapter() {
     if(isAdded()) {
-      initializeListAdapter();
+      getLoaderManager().restartLoader(0, null, this);
     }
   }
 }
