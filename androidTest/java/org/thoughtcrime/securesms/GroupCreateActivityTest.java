@@ -22,18 +22,24 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 @LargeTest
-public class RegistrationActivityTest extends RoutedInstrumentationTestCase {
-  private final static String TAG = RegistrationActivityTest.class.getSimpleName();
+public class GroupCreateActivityTest extends SkipRegistrationInstrumentationTestCase {
 
-  public RegistrationActivityTest() {
+  public GroupCreateActivityTest() {
     super();
   }
 
   public void testLayout() throws Exception {
-    waitOn(RegistrationActivity.class);
-    onView(withId(R.id.registerButton)).check(matches(isDisplayed()));
+    new ConversationListActivityTest(getContext()).testClickNewGroup();
+    waitOn(GroupCreateActivity.class);
+
+    onView(withId(R.id.push_disabled)).check(matches(isDisplayed()));
+    onView(withId(R.id.push_disabled_reason))
+          .check(matches(withText(R.string.GroupCreateActivity_you_dont_support_push)));
+
+    waitOn(GroupCreateActivity.class);
   }
 
 }

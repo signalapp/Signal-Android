@@ -16,24 +16,25 @@
  */
 package org.thoughtcrime.securesms;
 
-import android.test.suitebuilder.annotation.LargeTest;
+import android.content.Context;
 
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
-@LargeTest
-public class RegistrationActivityTest extends RoutedInstrumentationTestCase {
-  private final static String TAG = RegistrationActivityTest.class.getSimpleName();
+public class SkipRegistrationInstrumentationTestCase extends RoutedInstrumentationTestCase {
+  private static final String TAG = SkipRegistrationInstrumentationTestCase.class.getSimpleName();
 
-  public RegistrationActivityTest() {
+  public SkipRegistrationInstrumentationTestCase() {
     super();
   }
 
-  public void testLayout() throws Exception {
-    waitOn(RegistrationActivity.class);
-    onView(withId(R.id.registerButton)).check(matches(isDisplayed()));
+  public SkipRegistrationInstrumentationTestCase(Context context) {
+    super(context);
+  }
+
+  @Override
+  public void initAppState() throws Exception {
+    super.initAppState();
+    TextSecurePreferences.setPromptedPushRegistration(getContext(), true);
   }
 
 }
