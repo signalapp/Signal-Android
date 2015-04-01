@@ -165,12 +165,10 @@ public class ConversationFragment extends ListFragment
   }
 
   public void reload(Recipients recipients, long threadId) {
-    boolean threadIdChanged = this.threadId != threadId;
-
     this.recipients = recipients;
-    this.threadId   = threadId;
 
-    if (threadIdChanged) {
+    if (this.threadId != threadId) {
+      this.threadId = threadId;
       initializeListAdapter();
     }
   }
