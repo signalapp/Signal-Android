@@ -103,7 +103,7 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
       case STATE_CREATE_PASSPHRASE:        return getCreatePassphraseIntent();
       case STATE_PROMPT_PASSPHRASE:        return getPromptPassphraseIntent();
       case STATE_UPGRADE_DATABASE:         return getUpgradeDatabaseIntent(masterSecret);
-      case STATE_PROMPT_PUSH_REGISTRATION: return getPushRegistrationIntent(masterSecret);
+      case STATE_PROMPT_PUSH_REGISTRATION: return getPushRegistrationIntent();
       default:                             return null;
     }
   }
@@ -134,12 +134,12 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
     return getRoutedIntent(DatabaseUpgradeActivity.class,
                            TextSecurePreferences.hasPromptedPushRegistration(this)
                                ? getConversationListIntent()
-                               : getPushRegistrationIntent(masterSecret),
+                               : getPushRegistrationIntent(),
                            masterSecret);
   }
 
-  private Intent getPushRegistrationIntent(MasterSecret masterSecret) {
-    return getRoutedIntent(RegistrationActivity.class, getConversationListIntent(), masterSecret);
+  private Intent getPushRegistrationIntent() {
+    return getRoutedIntent(RegistrationActivity.class, getConversationListIntent(), null);
   }
 
   private Intent getRoutedIntent(Class<?> destination, @Nullable Intent nextIntent, @Nullable MasterSecret masterSecret) {
