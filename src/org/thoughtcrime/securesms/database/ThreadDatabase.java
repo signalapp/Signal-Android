@@ -401,6 +401,8 @@ public class ThreadDatabase extends Database {
         else                 timestamp = record.getDateReceived();
 
         updateThread(threadId, count, record.getBody().getBody(), timestamp, record.getType());
+        notifyConversationListListeners();
+        return false;
       } else {
         deleteThread(threadId);
         notifyConversationListListeners();
@@ -410,9 +412,6 @@ public class ThreadDatabase extends Database {
       if (reader != null)
         reader.close();
     }
-
-    notifyConversationListListeners();
-    return false;
   }
 
   public static interface ProgressListener {
