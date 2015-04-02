@@ -883,6 +883,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     final long         thisThreadId         = this.threadId;
     final MasterSecret thisMasterSecret     = this.masterSecret.parcelClone();
     final int          thisDistributionType = this.distributionType;
+    final Draft        snippetSlide         = drafts.getDraftForSnippetSlide();
 
     new AsyncTask<Long, Void, Void>() {
       @Override
@@ -894,8 +895,16 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         if (drafts.size() > 0) {
           if (threadId == -1) threadId = threadDatabase.getThreadIdFor(getRecipients(), thisDistributionType);
 
+          String snippetSlideUri  = null;
+          String snippetSlideType = null;
+
+          if (snippetSlide != null) {
+            snippetSlideUri  = snippetSlide.getValue();
+            snippetSlideType = snippetSlide.getType();
+          }
+
           draftDatabase.insertDrafts(new MasterCipher(thisMasterSecret), threadId, drafts);
-          threadDatabase.updateSnippet(threadId, drafts.getSnippet(ConversationActivity.this), Types.BASE_DRAFT_TYPE);
+          threadDatabase.updateSnippet(threadId, drafts.getSnippet(ConversationActivity.this), Types.BASE_DRAFT_TYPE, snippetSlideUri, snippetSlideType);
         } else if (threadId > 0) {
           threadDatabase.update(threadId);
         }

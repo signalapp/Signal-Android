@@ -19,11 +19,15 @@ package org.thoughtcrime.securesms.mms;
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.PartDatabase;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 
+import android.content.ContentUris;
 import android.content.Context;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -111,6 +115,41 @@ public abstract class Slide {
     while ((read = in.read(buffer)) != -1) {
       size += read;
       if (size > MmsMediaConstraints.MAX_MESSAGE_SIZE) throw new MediaTooLargeException("Media exceeds maximum message size.");
+    }
+  }
+
+  protected static boolean isAuthorityPartDb(Uri uri) {
+    return uri.getAuthority().equals(PartAuthority.PART_CONTENT_URI.getAuthority());
+  }
+
+  protected static byte[] getContentTypeForPartInDb(Context context, Uri uri) throws IOException {
+    PartDatabase partDatabase = DatabaseFactory.getPartDatabase(context);
+    long         partId       = ContentUris.parseId(uri);
+
+    if (partId == -1) throw new IOException("Unable to query content type.");
+
+    return partDatabase.getPart(partId).getContentType();
+  }
+
+  protected static byte[] getContentTypeForPartOutsideDb(Context context,
+                                                         Uri     uri,
+                                                         String  mimeTypeCol)
+      throws IOException
+  {
+    Cursor cursor = null;
+
+    try {
+      cursor = context.getContentResolver().query(uri, new String[]{mimeTypeCol}, null, null, null);
+
+      if (cursor != null && cursor.moveToFirst()) {
+        return cursor.getString(0).getBytes();
+      }
+      else {
+        throw new IOException("Unable to query content type.");
+      }
+    } finally {
+      if (cursor != null)
+        cursor.close();
     }
   }
 }
