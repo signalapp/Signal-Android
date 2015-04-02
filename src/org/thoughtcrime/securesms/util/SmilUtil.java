@@ -5,8 +5,6 @@ import android.util.Log;
 import org.thoughtcrime.securesms.dom.smil.SmilDocumentImpl;
 import org.thoughtcrime.securesms.dom.smil.parser.SmilXmlSerializer;
 import org.thoughtcrime.securesms.mms.PartParser;
-import org.thoughtcrime.securesms.mms.Slide;
-import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.w3c.dom.smil.SMILDocument;
 import org.w3c.dom.smil.SMILElement;
 import org.w3c.dom.smil.SMILLayoutElement;
@@ -20,7 +18,6 @@ import java.io.ByteArrayOutputStream;
 
 import ws.com.google.android.mms.ContentType;
 import ws.com.google.android.mms.pdu.PduBody;
-import ws.com.google.android.mms.pdu.PduParser;
 import ws.com.google.android.mms.pdu.PduPart;
 
 public class SmilUtil {
@@ -114,7 +111,9 @@ public class SmilUtil {
     } else {
       tag = "ref";
     }
-    return createMediaElement(tag, document, new String(part.getName()));
+    return createMediaElement(tag, document, new String(part.getName() == null
+                                                        ? new byte[]{}
+                                                        : part.getName()));
   }
 
   private static SMILMediaElement createMediaElement(String tag, SMILDocument document, String src) {
