@@ -157,11 +157,31 @@ android {
     buildTypes {
         debug {
             minifyEnabled true
-            proguardFiles 'proguard.cfg'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                          'proguard-google-play-services.pro',
+                          'proguard-dagger.pro',
+                          'proguard-jackson.pro',
+                          'proguard-sqlite.pro',
+                          'proguard-appcompat-v7.pro',
+                          'proguard-square-okhttp.pro',
+                          'proguard-square-okio.pro',
+                          'proguard-spongycastle.pro',
+                          'proguard-rounded-image-view.pro',
+                          'proguard.cfg'
         }
         release {
             minifyEnabled true
-            proguardFiles 'proguard.cfg'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                          'proguard-google-play-services.pro',
+                          'proguard-dagger.pro',
+                          'proguard-jackson.pro',
+                          'proguard-sqlite.pro',
+                          'proguard-appcompat-v7.pro',
+                          'proguard-square-okhttp.pro',
+                          'proguard-square-okio.pro',
+                          'proguard-spongycastle.pro',
+                          'proguard-rounded-image-view.pro',
+                          'proguard.cfg'
             signingConfig signingConfigs.release
         }
     }

@@ -1,0 +1,1 @@
+-dontwarn com.squareup.picasso.**
