@@ -28,8 +28,6 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.util.DynamicLanguage;
-import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.whispersystems.libaxolotl.AxolotlAddress;
 import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.state.SessionRecord;
@@ -49,15 +47,6 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
   private TextView localIdentityFingerprint;
   private TextView remoteIdentityFingerprint;
 
-  private final DynamicTheme    dynamicTheme    = new DynamicTheme   ();
-  private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
-
-  @Override
-  protected void onPreCreate() {
-    dynamicTheme.onCreate(this);
-    dynamicLanguage.onCreate(this);
-  }
-
   @Override
   protected void onCreate(Bundle state, @NonNull MasterSecret masterSecret) {
     this.masterSecret = masterSecret;
@@ -71,8 +60,6 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
   @Override
   public void onResume() {
     super.onResume();
-    dynamicTheme.onResume(this);
-    dynamicLanguage.onResume(this);
     getSupportActionBar().setTitle(R.string.AndroidManifest__verify_identity);
 
   }
