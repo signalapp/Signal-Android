@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.MergeCursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.text.TextUtils;
@@ -32,10 +33,12 @@ import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -258,24 +261,31 @@ public class ThreadDatabase extends Database {
     if (filter == null || filter.size() == 0)
       return null;
 
-    List<Long> recipientIds = DatabaseFactory.getAddressDatabase(context).getCanonicalAddressIds(filter);
+    List<Long> rawRecipientIds = DatabaseFactory.getAddressDatabase(context).getCanonicalAddressIds(filter);
 
-    if (recipientIds == null || recipientIds.size() == 0)
+    if (rawRecipientIds == null || rawRecipientIds.size() == 0)
       return null;
 
-    String selection       = RECIPIENT_IDS + " = ?";
-    String[] selectionArgs = new String[recipientIds.size()];
+    SQLiteDatabase   db                      = databaseHelper.getReadableDatabase();
+    List<List<Long>> partitionedRecipientIds = Util.partition(rawRecipientIds, 900);
+    List<Cursor>     cursors                 = new LinkedList<>();
 
-    for (int i=0;i<recipientIds.size()-1;i++)
-      selection += (" OR " + RECIPIENT_IDS + " = ?");
+    for (List<Long> recipientIds : partitionedRecipientIds) {
+      String   selection      = RECIPIENT_IDS + " = ?";
+      String[] selectionArgs  = new String[recipientIds.size()];
 
-    int i= 0;
-    for (long id : recipientIds) {
-      selectionArgs[i++] = id+"";
+      for (int i=0;i<recipientIds.size()-1;i++)
+        selection += (" OR " + RECIPIENT_IDS + " = ?");
+
+      int i= 0;
+      for (long id : recipientIds) {
+        selectionArgs[i++] = String.valueOf(id);
+      }
+
+      cursors.add(db.query(TABLE_NAME, null, selection, selectionArgs, null, null, DATE + " DESC"));
     }
 
-    SQLiteDatabase db = databaseHelper.getReadableDatabase();
-    Cursor cursor     = db.query(TABLE_NAME, null, selection, selectionArgs, null, null, DATE + " DESC");
+    Cursor cursor = cursors.size() > 1 ? new MergeCursor(cursors.toArray(new Cursor[cursors.size()])) : cursors.get(0);
     setNotifyConverationListListeners(cursor);
     return cursor;
   }
