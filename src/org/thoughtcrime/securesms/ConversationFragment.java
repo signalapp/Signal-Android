@@ -237,7 +237,7 @@ public class ConversationFragment extends ListFragment
 
   private void handleForwardMessage(MessageRecord message) {
     Intent composeIntent = new Intent(getActivity(), ShareActivity.class);
-    composeIntent.putExtra(ConversationActivity.DRAFT_TEXT_EXTRA, message.getDisplayBody().toString());
+    composeIntent.putExtra(Intent.EXTRA_TEXT, message.getDisplayBody().toString());
     startActivity(composeIntent);
   }
 

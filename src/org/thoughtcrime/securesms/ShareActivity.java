@@ -117,7 +117,7 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
 
   private Intent getBaseShareIntent(final Class<?> target) {
     final Intent intent      = new Intent(this, target);
-    final String textExtra   = getIntent().getStringExtra(ConversationActivity.DRAFT_TEXT_EXTRA);
+    final String textExtra   = getIntent().getStringExtra(Intent.EXTRA_TEXT);
     final Uri    streamExtra = getIntent().getParcelableExtra(Intent.EXTRA_STREAM);
     final String type        = streamExtra != null ? getMimeType(streamExtra) : getIntent().getType();
 
