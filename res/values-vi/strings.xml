@@ -150,6 +150,7 @@ Phục hồi bản sao lưu có mã hóa sẽ thay thế hoàn toàn các chìa 
   <string name="PassphrasePromptActivity_watermark_content_description">Biểu tượng TextSecure</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Gửi phần cụm từ mã hóa</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Cụm từ mã hóa không hợp lệ!</string>
+  <!--RatingManager-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Chữ ký của việc trao đổi chìa khóa này khác với lần trao đổi trước nhận được từ người liên lạc này. Điều này có nghĩa là có ai đó tìm cách chận bắt liên lạc thông tin của bạn, hoặc đơn thuần là người này cài đặt lại TextSecure và có chìa khóa nhận diện mới.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Bạn có thể muốn kiểm chứng

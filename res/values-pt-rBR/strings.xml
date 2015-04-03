@@ -106,6 +106,9 @@ Tem certeza que deseja fazer isto?</string>
   <string name="ConversationActivity_get_with_it">Baixar com: %s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Vamos usar isto para conversar: %s</string>
   <string name="ConversationActivity_error_leaving_group">Erro ao sair do grupo...</string>
+  <string name="ConversationActivity_mms_not_supported_title">MMS não suportado</string>
+  <string name="ConversationActivity_mms_not_supported_message">Esta mensagem não pode ser enviada pois sua operadora não tem suporte a MMS.</string>
+  <string name="ConversationActivity_specify_recipient">Favor escolher um contato</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalhes da mensagem</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transporte: %1$s\nEnviadas/Recebidas: %2$s</string>
@@ -248,6 +251,12 @@ Tem certeza que deseja fazer isto?</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Ícone do TextSecure</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Enviar frase-chave</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Frase-chave inválida!</string>
+  <!--RatingManager-->
+  <string name="RatingManager_rate_this_app">Avalie este app</string>
+  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Se você gosta de usar este app, por favor tire uns segundos para nos ajudar com sua avaliação.</string>
+  <string name="RatingManager_rate_now">Avaliar agora!</string>
+  <string name="RatingManager_no_thanks">Não, obrigado</string>
+  <string name="RatingManager_later">Mais tarde</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">A
         assinatura nesta troca de chaves é diferente da que você recebeu anteriormente deste
@@ -423,7 +432,6 @@ Tem certeza que deseja fazer isto?</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Baixando mensagem multimídia</string>
   <string name="conversation_item__mms_image_description">Mensagem multimídia</string>
-  <string name="conversation_item__play_button_description">Botão Tocar</string>
   <string name="conversation_item__secure_message_description">Mensagem segura</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Transferir</string>
@@ -672,6 +680,7 @@ falhou.</string>
   <string name="preferences__custom">Personalizado</string>
   <string name="preferences__advanced">Avançado</string>
   <string name="preferences__app_protection">Proteção do app</string>
+  <string name="preferences__mms_user_agent">Agente de usuário MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Configurações manuais de MMS</string>
   <string name="preferences__enable_manual_mms">Usar configurações manuais de MMS</string>
   <string name="preferences__override_system_mms_settings">Usar a informação abaixo ao invés das configurações MMS do sistema.</string>
@@ -737,7 +746,6 @@ falhou.</string>
   <string name="conversation_list__menu_search">Procurar</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Imagem do contato</string>
-  <string name="conversation_list_item_view__attachment_indicator">Indicador de anexo</string>
   <string name="conversation_list_item_view__error_alert">Alerta de erro</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nova conversa</string>

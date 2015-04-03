@@ -212,6 +212,7 @@ Restaurarea unui backup criptat va înlocui complet cheile existente, setările 
   <string name="PassphrasePromptActivity_watermark_content_description">Icoană TextSecure</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Trimite parola</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Parolă incorectă!</string>
+  <!--RatingManager-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Semnătura digitală din acest schimb de chei este diferită fața de ce ai primit anterior de la această persoană. Asta poate însemna că cineva încearcă să intercepteze comunicația sau că această persoană a reinstalat TextSecure și acum are o nouă cheie de identitate.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Probabil ca doresti sa verifici aceasta persoana.</string>
@@ -370,7 +371,6 @@ Primit mesaj trimis cu o cheie de identitate necunoscută. Faceți click pentru 
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Mesajul media se descarcă</string>
   <string name="conversation_item__mms_image_description">Mesaj media</string>
-  <string name="conversation_item__play_button_description">Buton redare</string>
   <string name="conversation_item__secure_message_description">Mesaj securizat</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Descarca</string>
@@ -659,7 +659,6 @@ Operaţiunea iniţiată de TextSecure a expirat în timpul aşteptării primirii
   <string name="conversation_list__menu_search">Caută</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Poză contact</string>
-  <string name="conversation_list_item_view__attachment_indicator">Indicator atașament</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Conversație nouă</string>
   <!--conversation_secure_verified-->

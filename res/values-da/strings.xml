@@ -185,6 +185,7 @@ Genoprettelse af en krypteret backup vil overskrive eksisterende nøgler, indsti
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure ikon</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Godkend kodeord</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Ugyldigt kodeord!</string>
+  <!--RatingManager-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Signaturen på denne udvekslingsnøgle er ikke ens med den som du tidligere modtog fra denne
 kontakt. Det kan enten betyde, at der er nogle som prøver på at kompromitterer din kommunikation eller
@@ -342,7 +343,6 @@ Modtog en besked med en ukendt identitetsnøgle. Klik for at se og behandle den.
   <string name="conversation_activity__emoji_toggle_description">Emoji tastatur deaktiver/aktiver</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Multimedie besked</string>
-  <string name="conversation_item__play_button_description">Afspiller knap</string>
   <string name="conversation_item__secure_message_description">Indikator for sikker besked</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Hent</string>

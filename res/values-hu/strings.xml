@@ -239,6 +239,7 @@ akkor az újbóli importálás duplikált üzeneteket eredményez.</string>
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure ikon</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Jelszó küldése</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Érvénytelen jelszó!</string>
+  <!--RatingManager-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Az
 aláírás ezen a csere kulcson különbözik amit korábban kaptál ettől a
@@ -413,7 +414,6 @@ Ismeretlen azonosító kulcsú üzenet érkezett. Kattints rá a feldolgozáshoz
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Média üzenet letöltése</string>
   <string name="conversation_item__mms_image_description">Média üzenet</string>
-  <string name="conversation_item__play_button_description">Lejátszás gomb</string>
   <string name="conversation_item__secure_message_description">Biztonságos üzenet</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Letölt</string>
@@ -726,7 +726,6 @@ sikertelen.
   <string name="conversation_list__menu_search">Keresés</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Névjegyhez tartozó fénykép</string>
-  <string name="conversation_list_item_view__attachment_indicator">Melléklet jelző</string>
   <string name="conversation_list_item_view__error_alert">Hiba figyelmeztetés</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Új beszélgetés</string>

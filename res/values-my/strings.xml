@@ -67,6 +67,7 @@
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">စကားဝှက်အဟောင်းမမှန်ကန်</string>
   <!--DeviceProvisioningActivity-->
   <!--PassphrasePromptActivity-->
+  <!--RatingManager-->
   <!--ReceiveKeyActivity-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_continue">ရှေ့ဆက်</string>

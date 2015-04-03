@@ -224,6 +224,7 @@ importá-lo novamente resultará em mensagens duplicadas.</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icon TextSecure</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Enviar frase-chave</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Palavra-chave inválida!</string>
+  <!--RatingManager-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">A
 assinatura deste intercâmbio de chaves é diferente da previamente recebida deste contacto.
@@ -388,7 +389,6 @@ Recebida mensagem com chave de identidade desconhecida. Clique para processar e 
   <string name="conversation_activity__emoji_toggle_description">Teclado emoji</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Mensagem media</string>
-  <string name="conversation_item__play_button_description">Botão play</string>
   <string name="conversation_item__secure_message_description">Mensagem segura</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Transferir</string>

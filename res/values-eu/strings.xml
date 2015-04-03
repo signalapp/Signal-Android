@@ -206,6 +206,7 @@ Babeskopia hau lehenago inportatu baduzu, mezu bikoiztuak sortu daitezke.
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure-ren ikonoa</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Bidali pasahitza</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Pasahitz baliogabea!</string>
+  <!--RatingManager-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Gako
 elkar-trukatzen honen sinadura kontaktu honengandik aurretik jaso duzunaz desberdina da.
@@ -371,7 +372,6 @@ Nortasun gako ezezagun batekin jaso da mezua. Klik egin prozesatzeko eta erakust
   <string name="conversation_activity__emoji_toggle_description">Emoji teklatua aktibatu/desaktibatu</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Media mezua</string>
-  <string name="conversation_item__play_button_description">Erreproduzitzeko botoia</string>
   <string name="conversation_item__secure_message_description">Mezu segurua</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Behera kargatu</string>

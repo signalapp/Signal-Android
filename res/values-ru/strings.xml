@@ -222,6 +222,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Иконка TextSecure</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Подтвердить парольную фразу</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Неверная парольная фраза!</string>
+  <!--RatingManager-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Подпись, полученная сейчас при обмене ключами, отличается от той, которой собеседник подписывался ранее. Это может означать, что кто-то пытается перехватить вашу переписку или что ваш собеседник переустановил TextSecure, и теперь у него новый личный ключ.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Возможно, вы захотите перепроверить этого собеседника.</string>
@@ -380,7 +381,6 @@
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Загрузка MMS-сообщения</string>
   <string name="conversation_item__mms_image_description">MMS-сообщение</string>
-  <string name="conversation_item__play_button_description">Воспроизведение</string>
   <string name="conversation_item__secure_message_description">Защищённое сообщение</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Скачать</string>
@@ -676,7 +676,6 @@ SMS-подтверждения...
   <string name="conversation_list__menu_search">Поиск</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Фотография контакта</string>
-  <string name="conversation_list_item_view__attachment_indicator">Индикатор вложения</string>
   <string name="conversation_list_item_view__error_alert">Предупреждение об ошибке</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Новый разговор</string>

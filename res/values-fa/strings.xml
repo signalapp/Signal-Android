@@ -23,6 +23,7 @@
   <string name="ApplicationPreferencesActivity_On">روشن</string>
   <string name="ApplicationPreferencesActivity_off">خاموش</string>
   <string name="ApplicationPreferencesActivity_Off">خاموش</string>
+  <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <string name="AppProtectionPreferenceFragment_minutes">%d دقیقه</string>
   <!--DraftDatabase-->
@@ -36,6 +37,8 @@
   <string name="AttachmentTypeSelectorAdapter_audio">صدا</string>
   <string name="AttachmentTypeSelectorAdapter_contact">اطلاعات مخاطب</string>
   <!--ConfirmIdentityDialog-->
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">شما ممکن است مایل به منظور بررسی
+تماس با ما</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">حجم پیام: %d کیلوبایت</string>
   <string name="ConversationItem_expires_s">انقضا: %s</string>
@@ -58,6 +61,7 @@
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">متأسفم، خطا در تنظیم فایل پیوست شما وجود دارد.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">دریافت کننده یک پیام کوتاه یا آدرس ایمیل معتبر نیست!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">پیام خالی است!</string>
+  <string name="ConversationActivity_group_members">اعضای گروه</string>
   <string name="ConversationActivity_group_conversation">گروه گفتگو</string>
   <string name="ConversationActivity_unnamed_group">گروه بی نام</string>
   <string name="ConversationActivity_d_recipients_in_group">%d اعضای</string>
@@ -72,6 +76,7 @@
   <string name="ConversationActivity_transport_insecure_mms">MMS نا امن</string>
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_error_leaving_group">خطا ترک گروه ...</string>
+  <string name="ConversationActivity_mms_not_supported_title">MMS پشتیبانی نمی شود</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">جزییات پیام</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">فرستنده: %1$s\nنوع انتقال: %2$s\nزمان ارسال: %3$s\nزمان دریافت: %4$s</string>
@@ -117,6 +122,7 @@
   <string name="GroupCreateActivity_actionbar_update_title">به روز رسانی گروه</string>
   <string name="GroupCreateActivity_group_name_hint">نام گروه</string>
   <string name="GroupCreateActivity_actionbar_mms_title">گروه MMS جدید</string>
+  <string name="GroupCreateActivity_contacts_no_members">شما حداقل یک نفر در گروه خود نیاز دارید!</string>
   <string name="GroupCreateActivity_avatar_content_description">آواتار گروه</string>
   <string name="GroupCreateActivity_menu_create_title">ایجاد گروه</string>
   <string name="GroupCreateActivity_creating_group">ایجاد %1$s…</string>
@@ -160,6 +166,7 @@
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">رمزها با هم نمی‌خوانند!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">رمز قبلی نادرست است!</string>
+  <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">کلمه عبور جدید را وارد کنید!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">پیوند این دستگاه؟</string>
   <string name="DeviceProvisioningActivity_cancel">لغو</string>
@@ -177,7 +184,10 @@
   <string name="PassphrasePromptActivity_watermark_content_description">آیکون TextSecure</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">ثبت کردن عبارت عبور</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">رمز معتبر نیست!</string>
+  <!--RatingManager-->
   <!--ReceiveKeyActivity-->
+  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">شما ممکن است مایل به منظور بررسی
+تماس با ما</string>
   <string name="ReceiveKeyActivity_processing">در حال پردازش</string>
   <string name="ReceiveKeyActivity_processing_key_exchange">در حال پردازش فرایند تبادل کلید...</string>
   <!--RegistrationActivity-->
@@ -204,7 +214,9 @@
   <string name="RegistrationProgressActivity_connecting">اتصال</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">اتصال برای تأیید ...</string>
   <string name="RegistrationProgressActivity_network_error">خطای شبکه!</string>
+  <string name="RegistrationProgressActivity_unable_to_connect">اتصال ممکن نیست. لطفا اتصال شبکه خود را بررسی کنید و دوباره امتحان کنید.</string>
   <string name="RegistrationProgressActivity_verification_failed">تأیید نشد!</string>
+  <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">کد تایید ارائه شده شما نادرست است. لطفا دوباره تلاش کنید.</string>
   <string name="RegistrationProgressActivity_too_many_attempts">تلاش های بیش از حد</string>
   <string name="RegistrationProgressActivity_requesting_call">درخواست تماس</string>
   <string name="RegistrationProgressActivity_requesting_incoming_call">درخواست ورودی تأیید تماس ...</string>
@@ -218,6 +230,8 @@
   <string name="RegistrationService_registration_error">خطای ثبت نام</string>
   <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">ثبت نام TextSecure با مشکل مواجه شده است.</string>
   <!--SmsMessageRecord-->
+  <string name="SmsMessageRecord_received_corrupted_key_exchange_message">دریافت کلید خراب
+تبادل پیام!</string>
   <string name="SmsMessageRecord_secure_session_ended">جلسه امن به پایان رسید.</string>
   <string name="SmsMessageRecord_duplicate_message">تکثیر پیام.</string>
   <!--ThreadRecord-->
@@ -245,6 +259,7 @@
   <string name="ViewIdentityActivity_verified_exclamation">تایید شده!</string>
   <string name="ViewIdentityActivity_my_identity_fingerprint">اثر انگشت هویت من</string>
   <!--KeyExchangeInitiator-->
+  <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">آغاز با وجود درخواست های موجود؟</string>
   <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">شما در حال حاضر یک درخواست شروع جلسه به این دریافت کننده فرستاده اید، آیا شما مطمئن به ارسال دیگر هستید؟ این کار باعث ساقط شدن اولین درخواست از درجه اعتبار می شود.</string>
   <string name="KeyExchangeInitiator_send">ارسال</string>
   <!--MessageDisplayHelper-->
@@ -271,12 +286,14 @@
   <string name="ApplicationMigrationService_importing_text_messages">واردکردن پیام های متنی</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_textsecure_passphrase_cached">برای باز کردن لمس کنید.</string>
+  <string name="KeyCachingService_textsecure_passphrase_cached_with_lock">برای باز کردن لمس کنید، یا لمس کنید قفل را برای بستن.</string>
   <string name="KeyCachingService_passphrase_cached">TextSecure باز است</string>
   <string name="KeyCachingService_lock">قفل با عبارت عبور</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">%d پیام های جدید</string>
   <string name="MessageNotifier_most_recent_from_s">بیشترین از: %s</string>
   <string name="MessageNotifier_encrypted_message">پیام رمزنگاری شده ...</string>
+  <string name="MessageNotifier_media_message_with_text">پیام رسانه ها: %s</string>
   <string name="MessageNotifier_no_subject">(بدون موضوع)</string>
   <string name="MessageNotifier_message_delivery_failed">تحویل پیام شکست خورده است.</string>
   <string name="MessageNotifier_failed_to_deliver_message">ناموفق برای تحویل پیام.</string>
@@ -314,7 +331,6 @@
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">دانلود پیام رسانه</string>
   <string name="conversation_item__mms_image_description">پیام رسانه</string>
-  <string name="conversation_item__play_button_description">دکمه بازی</string>
   <string name="conversation_item__secure_message_description">پیام امن</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">دریافت</string>
@@ -335,6 +351,7 @@
   <!--log_submit_activity-->
   <string name="log_submit_activity__thanks">تشکر از کمک شما!</string>
   <string name="log_submit_activity__submitting">ارسال</string>
+  <string name="log_submit_activity__posting_logs">ارسال سیاهه های مربوط به جان کلام ...</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__skip">پرش</string>
   <string name="database_migration_activity__import">وارد کردن</string>
@@ -372,6 +389,8 @@
   <string name="registration_progress_activity__call_me">تماس با من</string>
   <string name="registration_progress_activity__edit_number">ویرایش شماره</string>
   <string name="registration_progress_activity__connectivity_error">خطای اتصال.</string>
+  <string name="registration_progress_activity__no_network_connectivity">بدون شبکه
+اتصال.</string>
   <string name="registration_progress_activity__restrictive_firewall">محدود کردن دیواره آتش</string>
   <string name="registration_progress_activity__connecting">اتصال ...</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">در حال انتظار برای اس ام اس
@@ -482,6 +501,7 @@
   <string name="preferences__custom">دلخواه</string>
   <string name="preferences__advanced">تنظیمات پیشرفته</string>
   <string name="preferences__app_protection">حفاظت برنامه</string>
+  <string name="preferences__mms_user_agent">عامل کاربر MMS</string>
   <string name="preferences__advanced_mms_access_point_names">تنظیمات MMS دستی</string>
   <string name="preferences__enable_manual_mms">استفاده از کتابچه تنظیمات MMS</string>
   <string name="preferences__mmsc_url">MMSC URL</string>
@@ -541,7 +561,6 @@
   <string name="conversation_list__menu_search">جستجو</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">تماس با عکس تصویر</string>
-  <string name="conversation_list_item_view__attachment_indicator">پیوست شاخص</string>
   <string name="conversation_list_item_view__error_alert">هشدار خطا</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">گفتگوی جدید</string>

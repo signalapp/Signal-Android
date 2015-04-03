@@ -25,13 +25,13 @@ Tämä tulee lopettamaan pikaviestipalvelun poistamalla tietosi palvelimelta.
 Käyttääksesi pikaviestipalvelua tulevaisuudessa sinun täytyy rekisteröityä uudelleen.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Virhe yhdistettäessä palvelimeen!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">Tekstiviestit käytössä</string>
-  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Kosketa muuttaaksesi oletustekstiviestisovellustasi</string>
+  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Kosketa, jos haluat vaihtaa oletustekstiviestisovellustasi</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Tekstiviestit poissa käytöstä</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Kosketa, jos haluat asettaa TextSecuren oletustekstiviestisovellukseksi</string>
   <string name="ApplicationPreferencesActivity_on">päällä</string>
   <string name="ApplicationPreferencesActivity_On">Päällä</string>
   <string name="ApplicationPreferencesActivity_off">pois</string>
-  <string name="ApplicationPreferencesActivity_Off">Pois</string>
+  <string name="ApplicationPreferencesActivity_Off">Poissa päältä</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <string name="AppProtectionPreferenceFragment_minutes">%d minuuttia</string>
@@ -47,7 +47,10 @@ Käyttääksesi pikaviestipalvelua tulevaisuudessa sinun täytyy rekisteröityä
   <string name="AttachmentTypeSelectorAdapter_audio">Äänitallenne</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Yhteystieto</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Yhteystiedon %1$s identiteettiavaimen tiiviste on vaihtunut. Tämä voi tarkoittaa joko sitä, että joku yrittää kaapata viestiliikennettänne tai että %2$s on uudelleenasentanut TextSecuren, ja siksi käyttää nyt uutta identiteettiavainta.</string>
+  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Yhteystiedon
+%1$s identiteettiavain on vaihtunut. Tämä voi tarkoittaa joko sitä, että joku yrittää kaapata
+viestiliikennettänne, tai sitä, että %2$s on uudelleenasentanut TextSecuren, ja siksi käyttää nyt
+uutta identiteettiavainta.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Saatat haluta varmentaa
 tämän yhteystiedon.</string>
   <!--ConversationItem-->
@@ -87,7 +90,7 @@ tämän yhteystiedon.</string>
   <string name="ConversationActivity_d_recipients_in_group_singular">1 jäsen</string>
   <string name="ConversationActivity_saved_draft">Tallennettu luonnos</string>
   <string name="ConversationActivity_invalid_recipient">Virheellinen vastaanottaja!</string>
-  <string name="ConversationActivity_calls_not_supported">Puhelut eivät ole tuettu</string>
+  <string name="ConversationActivity_calls_not_supported">Puheluita ei tueta</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Tämä laite ei näytä tukevan valintanäppäintoimintoja.</string>
   <string name="ConversationActivity_leave_group">Poistutaanko ryhmästä?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Haluatko varmasti poistua ryhmästä?</string>
@@ -95,8 +98,11 @@ tämän yhteystiedon.</string>
   <string name="ConversationActivity_transport_insecure_mms">Salaamaton MMS-viesti</string>
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_get_with_it">Hae täältä: %s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Keskustellaan käyttämällä tätä: %s</string>
+  <string name="ConversationActivity_lets_use_this_to_chat">Hei, kokeillaanko keskustella tällä: %s</string>
   <string name="ConversationActivity_error_leaving_group">Virhe ryhmästä lähtiessä...</string>
+  <string name="ConversationActivity_mms_not_supported_title">MMS ei ole tuettu</string>
+  <string name="ConversationActivity_mms_not_supported_message">Tätä viestiä ei voida lähettää, koska operaattorisi ei tue MMS-viestejä.</string>
+  <string name="ConversationActivity_specify_recipient">Valitse yhteystieto</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Viestin tiedot</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Tyyppi: %1$s
@@ -236,11 +242,17 @@ aiemmin, seuraa niiden uudelleen tuonnista viestien kaksoiskappaleita.</string>
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure-kuvake</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Syötä salalause</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Salalause ei kelpaa!</string>
+  <!--RatingManager-->
+  <string name="RatingManager_rate_this_app">Arvostele tämä sovellus</string>
+  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Jos pidät TextSecuresta, voit auttaa meitä arvostelemalla sen.</string>
+  <string name="RatingManager_rate_now">Arvostele nyt!</string>
+  <string name="RatingManager_no_thanks">Ei kiitos</string>
+  <string name="RatingManager_later">Myöhemmin</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Tämän
 avaintenvaihdon sormenjälki eroaa tältä yhteystiedolta aiemmin saadusta sormenjäljestä.
-Tämä voi tarkoittaa että joku yrittää kaapata viestiliikennettäsi tai että yhteystietosi on
-uudelleenasentanut TextSecuren, ja käyttää nyt uutta tunnisteavainta.</string>
+Tämä voi tarkoittaa joko sitä, että joku yrittää kaapata viestiliikennettänne, tai sitä, että yhteystietosi
+on uudelleenasentanut TextSecuren ja käyttää nyt uutta tunnisteavainta.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Saatat haluta varmentaa
 tämän yhteystiedon.</string>
   <string name="ReceiveKeyActivity_processing">Käsitellään</string>
@@ -261,7 +273,7 @@ Tämä laite ei ole tuettu tietoverkkovälitteiseen viestintään. Laitteilla, j
 kuin 4.0 täytyy olla rekisteröity Google-tili. Laitteilla, joissa on Android 4.0 tai uudempi ei 
 tarvitse olla Google-tiliä, mutta täytyy olla Play-kauppa asennettuna. </string>
   <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
-Tarkista uudelleen, että tämä on numerosi! Aiomme vahvistaa sen lähettämällä siihen tekstiviestin.</string>
+Tarkista vielä, että tämä on varmasti numerosi! Aiomme seuraavaksi vahvistaa sen lähettämällä siihen tekstiviestin.</string>
   <string name="RegistrationActivity_continue">Jatka</string>
   <string name="RegistrationActivity_edit">Muokkaa</string>
   <!--RegistrationProblemsActivity-->
@@ -274,7 +286,7 @@ Tarkista uudelleen, että tämä on numerosi! Aiomme vahvistaa sen lähettämäl
   <string name="RegistrationProgressActivity_connecting">Yhdistetään</string>
   <string name="RegistrationProgressActivity_connecting_for_verification">Yhdistetään vahvistusta varten...</string>
   <string name="RegistrationProgressActivity_network_error">Verkkovirhe!</string>
-  <string name="RegistrationProgressActivity_unable_to_connect">Ei voitu yhdistää. Tarkista verkkoyhteys ja yritä uudelleen.</string>
+  <string name="RegistrationProgressActivity_unable_to_connect">Yhteyttä ei voitu muodostaa. Tarkista verkkoyhteytesi ja yritä uudelleen.</string>
   <string name="RegistrationProgressActivity_verification_failed">Vahvistus epäonnistui!</string>
   <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">Lähettämäsi vahvistuskoodi on virheellinen. Yritä uudelleen.</string>
   <string name="RegistrationProgressActivity_too_many_attempts">Liian monta yritystä</string>
@@ -299,7 +311,7 @@ on viallinen!</string>
 Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle.</string>
   <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
 Vastaanotettiin viesti tuntemattomalla identiteettiavaimella. Aloita käsittely napsauttamalla.</string>
-  <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Vastaanotettiin päivitetty, mutta tuntematon identiteetti. Napsauta tarkistaaksesi.</string>
+  <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Vastaanotettiin päivitetty, mutta tuntematon identiteetti. Varmenna identiteetti napsauttamalla.</string>
   <string name="SmsMessageRecord_secure_session_ended">Salattu istunto päättyi</string>
   <string name="SmsMessageRecord_duplicate_message">Viestin kaksoiskappale.</string>
   <!--ThreadRecord-->
@@ -313,9 +325,9 @@ Vastaanotettiin viesti tuntemattomalla identiteettiavaimella. Aloita käsittely 
   <string name="VerifyIdentityActivity_scan_their_key_to_compare">Skannaa vastapuolen avaimen QR-koodi</string>
   <string name="VerifyIdentityActivity_get_my_key_scanned">Näytä oman avaimeni QR-koodi</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">VAROITUS, skannattu avain EI TÄSMÄÄ! Tarkastakaa sormenjälki huolella.</string>
-  <string name="VerifyIdentityActivity_not_verified_exclamation">Ei vahvistettu!</string>
+  <string name="VerifyIdentityActivity_not_verified_exclamation">EI varmennettu!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Vastapuolen avain on oikea. Huomaa, että hänen on syytä tarkastaa vastaavasti sinun avaimesi.</string>
-  <string name="VerifyIdentityActivity_verified_exclamation">Vahvistettu!</string>
+  <string name="VerifyIdentityActivity_verified_exclamation">Varmennettu!</string>
   <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Sinulla ei ole identiteettiavainta!</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Sinulla ei ole identiteettiavainta.</string>
@@ -324,7 +336,7 @@ Vastaanotettiin viesti tuntemattomalla identiteettiavaimella. Aloita käsittely 
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">VAROITUS: Skannattu avain EI TÄSMÄÄ!</string>
   <string name="ViewIdentityActivity_not_verified_exclamation">EI vahvistettu!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Skannattu avain täsmää!</string>
-  <string name="ViewIdentityActivity_verified_exclamation">Vahvistettu!</string>
+  <string name="ViewIdentityActivity_verified_exclamation">Varmennettu!</string>
   <string name="ViewIdentityActivity_my_identity_fingerprint">Identiteettini sormenjälki</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Aloita olemassa olevasta pyynnöstä huolimatta?</string>
@@ -401,7 +413,6 @@ Vastaanotettiin viesti tuntemattomalla identiteettiavaimella. Aloita käsittely 
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Ladataan mediaviestiä</string>
   <string name="conversation_item__mms_image_description">Mediaviesti</string>
-  <string name="conversation_item__play_button_description">Play -nappi</string>
   <string name="conversation_item__secure_message_description">Salattu viesti</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Lataa</string>
@@ -438,7 +449,7 @@ Vastaanotettiin viesti tuntemattomalla identiteettiavaimella. Aloita käsittely 
 Vie salaamaton SMS Backup And Restore -yhteensopiva varmuuskopio SD-muistikortille.</string>
   <string name="import_fragment__import_system_sms_database">Tuo järjestelmän tekstiviestit</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Tuo tietokanta
-järjestelmän oletus viestisovelluksesta.</string>
+järjestelmän oletusviestisovelluksesta.</string>
   <string name="import_fragment__import_encrypted_backup">Tuo salattu varmuuskopio</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">
 Tuo aiemmin viety salattu TextSecure-varmuuskopio.</string>
@@ -448,7 +459,7 @@ Tuo salaamaton varmuuskopiotiedosto. Yhteensopiva SMS Backup And Restore:lla.</s
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Ei kuvia</string>
   <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__verify">VAHVISTA</string>
+  <string name="message_recipients_list_item__verify">VARMENNA</string>
   <string name="message_recipients_list_item__resend">LÄHETÄ UUDELLEEN</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Puhelimesi edellyttää manuaalista MMS-asetusten säätöä.</string>
@@ -467,7 +478,7 @@ Tuo salaamaton varmuuskopiotiedosto. Yhteensopiva SMS Backup And Restore:lla.</s
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">Jotta TextSecure voisi lähettää mediatiedostoja ja ryhmäviestejä puhelinoperaattorisi kautta, täytyy MMS-asetusten olla määritelty. Tällä hetkellä nämä asetukset eivät ole saatavilla laitteessasi, mikä voi johtua laitteesi operaattorilukituksesta tai muista rajoittavista asetuksista.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Jotta voit lähettää mediatiedostoja ja ryhmäviestejä, napsauta \"OK\" ja täydennä pyydetyt asetukset. Puhelinoperaattorisi MMS-asetukset yleensä löytyvät, kun haet Internetistä operaattorisi nimellä ja termillä \"APN\". Tämä asetusten säätö tarvitsee tehdä vain kerran.</string>
   <!--receive_key_activity-->
-  <string name="receive_key_activity__complete">Valmis</string>
+  <string name="receive_key_activity__complete">Jatka</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 Jotta voit ottaa TextSecuren käyttöön, tulee sinun ensin vahvistaa puhelinnumerosi.</string>
@@ -488,12 +499,12 @@ sanoilla \'Your TextSecure verification code:\', jolloin sinun täytyy säätä�
 kolmannen osapuolen tekstiviestisovelluksesi päästämään tekstiviestisi läpi.</string>
   <string name="registration_problems__incorrect_number">Virheellinen puhelinnumero.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
-Takista, että olet syöttänyt puhelinnumerosi oikein ja että se on muotoiltu oikein alueellesi.</string>
+Tarkista, että olet syöttänyt puhelinnumerosi oikein, ja että se on muotoiltu oikein alueellesi.</string>
   <string name="registration_problems__google_voice">Google Voice.</string>
   <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">
 TextSecure ei toimi Google Voice -numeroiden kanssa.</string>
   <!--registration_progress_activity-->
-  <string name="registration_progress_activity__voice_verification">Puhevahvistus</string>
+  <string name="registration_progress_activity__voice_verification">Vahvistuspuhelu</string>
   <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">
 TextSecure voi myös soittaa sinulle numerosi vahvistamiseksi. Napsauta \"Soita minulle\" ja syötä kuulemasi kuusinumeroinen koodi alla olevaan kenttään. </string>
   <string name="registration_progress_activity__verify">Vahvista</string>
@@ -505,7 +516,9 @@ TextSecure ei voinut yhdistää pikaviestipalveluun.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Mahdollisiin ongelmiin
 sisältyvät:</string>
   <string name="registration_progress_activity__no_network_connectivity">Ei verkkoyhteyttä.</string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Laitteesi tarvitsee verkkoyhteyden tämän TextSecuren ominaisuuden käyttämiseen. Tarkista, että se on yhdistettynä 3G- tai WiFi-verkkoon.</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">Laitteesi
+tarvitsee verkkoyhteyttä tämän TextSecuren ominaisuuden käyttämiseen. Tarkista, että laitteesi
+on yhdistettynä 3G- tai WiFi-verkkoon.</string>
   <string name="registration_progress_activity__restrictive_firewall">Rajoittava palomuuri.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
 Jos olet yhdistänyt WiFi-verkkoon, on mahdollista että palomuuri estää pääsyn TextSecuren palvelimelle. Kokeille toista verkkoa tai mobiiliverkkoa.</string>
@@ -514,7 +527,7 @@ TextSecure vahvistaa nyt puhelinnumerosi automaattisesti tekstiviestillä.</stri
   <string name="registration_progress_activity__connecting">Yhdistetään...</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">Odotetaan vahvistustekstiviestiä...</string>
   <string name="registration_progress_activity__registering_with_server">Rekisteröidytään palvelimelle...</string>
-  <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Tämä voi viedä hetken. Ole kärsivällinen — ilmoitamme, kun vahvistus on suoritettu.</string>
+  <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Tämä voi kestää hetken. Ole kärsivällinen — ilmoitamme, kun vahvistus on suoritettu.</string>
   <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">
 TextSecure ei saanut vahvistustekstiviestiä odotusajan sisällä.</string>
   <string name="registration_progress_activity__sms_verification_failed">SMS-vahvistus
@@ -603,7 +616,7 @@ epäonnistui.</string>
   <string name="preferences__sound">Ääni</string>
   <string name="preferences__change_notification_sound">Vaihda ilmoitusääni</string>
   <string name="preferences__inthread_notifications">Keskustelun sisäiset ilmoitukset</string>
-  <string name="preferences__play_inthread_notifications">Toista ilmoitusäänet aktiivista keskustelua tarkasteltaessa.</string>
+  <string name="preferences__play_inthread_notifications">Käytä ilmoitusääniä myös silloin, kun olen keskustelussa.</string>
   <string name="preferences__repeat_alerts">Hälytysten toisto</string>
   <string name="preferences__never">Älä toista</string>
   <string name="preferences__one_time">Kerran</string>
@@ -629,6 +642,7 @@ epäonnistui.</string>
   <string name="preferences__custom">Mukautettu</string>
   <string name="preferences__advanced">Lisäasetukset</string>
   <string name="preferences__app_protection">Sovelluksen suojaus</string>
+  <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuaaliset MMS-asetukset</string>
   <string name="preferences__enable_manual_mms">Käytä manuaalisia MMS-asetuksia</string>
   <string name="preferences__override_system_mms_settings">Korvaa järjestelmän MMS-asetukset alla olevilla tiedoilla.</string>
@@ -640,8 +654,8 @@ epäonnistui.</string>
   <string name="preferences__sms_delivery_reports">SMS toimitusvahvistukset</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Pyydä vahvistus jokaisen lähetetyn tekstiviestin toimituksesta</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Poista vanhemmat viestit automaattisesti, kun ketju ylittää määritetyn pituuden</string>
-  <string name="preferences__delete_old_messages">Poista vanhat viestit</string>
-  <string name="preferences__conversation_length_limit">Keskustelun pituuden raja</string>
+  <string name="preferences__delete_old_messages">Vanhojen viestien poisto</string>
+  <string name="preferences__conversation_length_limit">Keskustelun pituusraja</string>
   <string name="preferences__trim_all_threads_now">Karsi kaikki viestiketjut nyt</string>
   <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Käy läpi kaikki viestiketjut ja pakota ketjuihin pituusrajat</string>
   <string name="preferences__light_theme">Vaalea</string>
@@ -693,7 +707,6 @@ Ilmaiset ja yksityiset viestit TextSecuren ja Signalin käyttäjille</string>
   <string name="conversation_list__menu_search">Hae</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Yhteystiedon kuva</string>
-  <string name="conversation_list_item_view__attachment_indicator">Liitetiedoston merkki</string>
   <string name="conversation_list_item_view__error_alert">Virheilmoituksen hälytys</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Uusi keskustelu</string>
@@ -727,10 +740,10 @@ Ilmaiset ja yksityiset viestit TextSecuren ja Signalin käyttäjille</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">Käyttämäsi TextSecure on vanhentunut!</string>
   <string name="reminder_header_expired_build_details">Viestejä ei enää voida lähettää onnistuneesti. Ole hyvä ja päivitä viimeisimpään versioon.</string>
-  <string name="reminder_header_sms_default_title">Käytä oletus tekstiviestisovelluksena?</string>
+  <string name="reminder_header_sms_default_title">Käytä oletuksena tekstiviesteille?</string>
   <string name="reminder_header_sms_default_text">Napsauta, jos haluat tehdä TextSecuresta oletustekstiviestisovelluksesi.</string>
-  <string name="reminder_header_sms_import_title">Tuo järjestelmän tekstiviestit TextSecureen?</string>
-  <string name="reminder_header_sms_import_text">Napsauta, jos haluat kopioida puhelimesi tekstiviestit sen salattuun tietokantaan.</string>
+  <string name="reminder_header_sms_import_title">Tuo järjestelmän tekstiviestit?</string>
+  <string name="reminder_header_sms_import_text">Napsauta, jos haluat kopioida puhelimesi tekstiviestit TextSecuren salattuun tietokantaan.</string>
   <string name="reminder_header_push_title">Ota käyttöön TextSecure-pikaviestipalvelu?</string>
   <string name="reminder_header_push_text">Napsauta tästä, jos haluat sanoa ei tekstiviestimaksuille ja kyllä vahvemmalle yksityisyydensuojalle sekä nopeille viesteille.</string>
   <!--MediaPreviewActivity-->

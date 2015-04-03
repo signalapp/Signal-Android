@@ -82,6 +82,7 @@ ovaj kontakt.</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Odabrani audio prelazi ograničenje veličine poruke (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Primatelj nije valjana SMS ili adresa e-pošte!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Poruka je prazna!</string>
+  <string name="ConversationActivity_group_members">Članovi grupe</string>
   <string name="ConversationActivity_group_conversation">Grupni razgovor</string>
   <string name="ConversationActivity_unnamed_group">Neimenovana grupa</string>
   <string name="ConversationActivity_d_recipients_in_group">%d članova</string>
@@ -96,7 +97,10 @@ ovaj kontakt.</string>
   <string name="ConversationActivity_transport_insecure_mms">Nesigurni MMS</string>
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_get_with_it">Dohvati s njime: %s</string>
+  <string name="ConversationActivity_lets_use_this_to_chat">Koristi ovo za razgovor: %s</string>
   <string name="ConversationActivity_error_leaving_group">Greška prilikom napuštanja grupe...</string>
+  <string name="ConversationActivity_mms_not_supported_title">MMS nije podržan</string>
+  <string name="ConversationActivity_mms_not_supported_message">Ovu poruku nije moguće poslati jer vaš operater ne podržava MMS.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalji poruke</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nPoslano/Primljeno: %2$s</string>
@@ -212,6 +216,7 @@ ponovno uvoženje će rezultirati duplim porukama.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Lozinka ne odgovara!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Netočna stara lozinka!</string>
+  <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Unesite novu lozinku!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Poveži ovaj uređaj?</string>
   <string name="DeviceProvisioningActivity_cancel">ODUSTANI</string>
@@ -232,6 +237,7 @@ ponovno uvoženje će rezultirati duplim porukama.</string>
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure ikona</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Pošaljite lozinku</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Neispravna lozinka!</string>
+  <!--RatingManager-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Potpis
 na razmjeni ključeva je drugačiji od onoga što ste prethodno primali od ovog kontakta.
@@ -397,7 +403,6 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Preuzimanje media poruke</string>
   <string name="conversation_item__mms_image_description">Multimedijalna poruka</string>
-  <string name="conversation_item__play_button_description">Tipka za pokretanje</string>
   <string name="conversation_item__secure_message_description">Sigurna poruka</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Preuzmi</string>
@@ -633,6 +638,7 @@ neuspješno.</string>
   <string name="preferences__custom">Prilagodi</string>
   <string name="preferences__advanced">Napredno</string>
   <string name="preferences__app_protection">Zaštita aplikacije</string>
+  <string name="preferences__mms_user_agent">MMS korisnički agent</string>
   <string name="preferences__advanced_mms_access_point_names">Ručne MMS postavke</string>
   <string name="preferences__enable_manual_mms">Koristi ručne MMS postavke</string>
   <string name="preferences__override_system_mms_settings">Zaobiđi MMS postavke sustava sa niže navedenim postavkama.</string>
@@ -697,7 +703,6 @@ Besplatno privatno dopisivanje sa TextSecure i Signal korisnicima</string>
   <string name="conversation_list__menu_search">Traži</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Slika kontakta</string>
-  <string name="conversation_list_item_view__attachment_indicator">Indikator privitka</string>
   <string name="conversation_list_item_view__error_alert">Upozorenje o grešci</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Novi razgovor</string>

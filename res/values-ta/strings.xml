@@ -233,6 +233,7 @@ SMS-களை இறக்குமதி செய்திருந்தா�
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure ஐகான்</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">கடவுச்சொல்லை சமர்ப்பிக்க</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">தவறான கடவுச்சொல்!</string>
+  <!--RatingManager-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">இந்த சாவிபரிமாட்ட்றத்திற்கான டிஜிட்டல் கையெழுத்தானது இந்த தொடர்பிடம்யிருந்து முன்னம் பெற்றதனைவிட்டு மாறியுள்ளது. இது யாரோ உங்கள் தொலைத்தொடர்பை குறுக்கிட்டு உளவுபார்க முயற்ச்சிக்கிறார்கள் என குறிக்கலாம், அல்லது இது இந்த தொடர்பு வெறுமனே Textsecure-ஐ மீண்டும் நிறுவி புதிய அடையாளச்சாவி பெற்றார்.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">நீங்கள் இந்த தொடர்புபை 
@@ -397,7 +398,6 @@ SMS-களை இறக்குமதி செய்திருந்தா�
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">மீடியா செய்தி பதிவிறக்கப்படுகிறது</string>
   <string name="conversation_item__mms_image_description">மீடியா செய்தி</string>
-  <string name="conversation_item__play_button_description">ஓட்டு பொத்தான்</string>
   <string name="conversation_item__secure_message_description">பாதுகாப்பான செய்தி</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">பதிவிறக்கம்</string>
@@ -697,7 +697,6 @@ TextSecure சரிபார்ப்பு SMS-செய்திக்கா�
   <string name="conversation_list__menu_search">தேடல்</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">தொடர்பின் புகைப்படம்</string>
-  <string name="conversation_list_item_view__attachment_indicator">இணைப்பு காட்டி</string>
   <string name="conversation_list_item_view__error_alert">பிழை எச்சரிக்கை</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">புதிய உரையாடல்</string>

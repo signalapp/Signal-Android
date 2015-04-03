@@ -239,6 +239,7 @@ opätovným importom zduplikujete správy.
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure ikona</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Odošli heslo</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Nesprávne heslo!</string>
+  <!--RatingManager-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Elektronický podpis použítý pri tejto výmene šifrovacích kľúčov sa líši od podpisu,
 ktorý bol v minulosti použitý týmto kontaktom. To môže znamenať buď to,
@@ -409,7 +410,6 @@ Bola prijatá správa s neznámou identou. Kliknite pre spracovanie a zobrazenie
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Sťahovanie multimediálnej správy</string>
   <string name="conversation_item__mms_image_description">Multimediálna správa</string>
-  <string name="conversation_item__play_button_description">Prehrávacie tlačidlo</string>
   <string name="conversation_item__secure_message_description">Zašifrovaná správa</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Stiahnuť</string>
@@ -725,7 +725,6 @@ Bezplatné šifrované správy medzi používateľmi TextSecure
   <string name="conversation_list__menu_search">Hľadaj</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Avatar kontaktu</string>
-  <string name="conversation_list_item_view__attachment_indicator">Symbol prílohy</string>
   <string name="conversation_list_item_view__error_alert">Chybová hláška</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nová konverzácia</string>

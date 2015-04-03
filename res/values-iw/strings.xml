@@ -4,6 +4,7 @@
   <string name="yes">כן</string>
   <string name="no">לא</string>
   <string name="delete">מחק</string>
+  <string name="please_wait">המתן בבקשה...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">עכשיו: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">עדיין לא הגדרת סיסמה!</string>
@@ -107,6 +108,7 @@
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">סיסמה ישנה לא נכונה.</string>
   <!--DeviceProvisioningActivity-->
   <!--PassphrasePromptActivity-->
+  <!--RatingManager-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">החתימה
 על החלפת המפתח הזאת שונה ממה שקיבלת בעבר מאיש הקשר הזה.

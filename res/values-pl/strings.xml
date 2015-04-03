@@ -226,6 +226,7 @@ Przywracanie szyfrowanej kopii zapasowej TextSecure spowoduje nadpisanie Twoich 
   <string name="PassphrasePromptActivity_watermark_content_description">Ikona TextSecure</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Wprowadź hasło</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Nieprawidłowe hasło!</string>
+  <!--RatingManager-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Podpis pod tą wymianą kluczy jest inny od tego, który otrzymałeś poprzednio od tego 
 kontaktu. Może to oznaczać, że ktoś próbuje przechwycić Twoją komunikację lub 
@@ -388,7 +389,6 @@ Otrzymano wiadomość z nieznanym kluczem tożsamości. Kliknij aby przetworzyć
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Trwa pobieranie wiadomości multimedialnej</string>
   <string name="conversation_item__mms_image_description">Wiadomość multimedialna</string>
-  <string name="conversation_item__play_button_description">Przycisk Play</string>
   <string name="conversation_item__secure_message_description">Bezpieczna wiadomość</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Pobierz</string>
@@ -676,7 +676,6 @@ Darmowe i prywatne wiadomości do użytkowników TextSecure i Signal</string>
   <string name="conversation_list__menu_search">Szukaj</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Zdjęcie kontaktu</string>
-  <string name="conversation_list_item_view__attachment_indicator">Indykator załącznika</string>
   <string name="conversation_list_item_view__error_alert">Powiadomienie błedu</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nowa konwersacja</string>

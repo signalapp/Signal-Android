@@ -77,6 +77,7 @@
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">عذرا، حجم ملف الصوت يتجاوز الحد المسموح (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">الطرف الآخر ليس رقم هاتف أو عنوان بريد الكتروني صحيح!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">الرسالة فارغة</string>
+  <string name="ConversationActivity_group_members">أعضاء المجموعة</string>
   <string name="ConversationActivity_group_conversation">دردشة جماعية</string>
   <string name="ConversationActivity_unnamed_group">مجموعة غير مسماه</string>
   <string name="ConversationActivity_d_recipients_in_group">أعضاء %d </string>
@@ -91,7 +92,10 @@
   <string name="ConversationActivity_transport_insecure_mms">رسالة وسائط متعددة غير آمنة</string>
   <string name="ConversationActivity_transport_textsecure">تيكست سيكيور</string>
   <string name="ConversationActivity_get_with_it">احصل معها: %s</string>
+  <string name="ConversationActivity_lets_use_this_to_chat">دعنا نستخدم التالي للمحادثة: %s</string>
   <string name="ConversationActivity_error_leaving_group">خطأ أثناء ترك المجموعة...</string>
+  <string name="ConversationActivity_mms_not_supported_title">رسائل الوسائط المتعددة غير مدعمة</string>
+  <string name="ConversationActivity_mms_not_supported_message">لا يمكن إرسال هذه الرسالة لأن شبكة الجوال التي تستخدمها لا تدعم رسائل الوسائط المتعددة</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">تفاصيل الرسالة</string>
   <string name="ConversationFragment_transport_s_sent_received_s">نقل: %1$s\nSent/Received: %2$s</string>
@@ -144,7 +148,7 @@
   <string name="GroupCreateActivity_actionbar_update_title">تحديث المجموعة</string>
   <string name="GroupCreateActivity_group_name_hint">أسم المجموعة</string>
   <string name="GroupCreateActivity_actionbar_mms_title">مجموعة وسائط متعددة جديدة</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">قمت باختيار شخص لا يدعم مجوعات تيكست سكيور وبالتاليستكون مجموعة وسائط متعددة.</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">قمت باختيار شخص لا يدعم مجوعات تيكست سكيور وبالتالي ستكون مجموعة وسائط متعددة.</string>
   <string name="GroupCreateActivity_you_dont_support_push">أنت غير مسجل لاستخدام بيانات الجوال ولذلك فإن مجموعات تيكست سيكيور معطلة.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">خطأ غير متوقع تسبب في تعذر إنشاء المجموعة.</string>
   <string name="GroupCreateActivity_contacts_no_members">تحتاج إلى شخص واحد على الأقل في المجموعة!</string>
@@ -201,6 +205,7 @@
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">العبارات السرية غير متطابقة!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">العبارة السرية القديمة غير صحيحة!</string>
+  <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">أدخل عبارة سرية جديدة!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">ربط هذا الجهاز؟</string>
   <string name="DeviceProvisioningActivity_cancel">إلغاء</string>
@@ -221,6 +226,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">أيقونة تيكست سيكيور</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">أرسل العبارة السرية </string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">عبارة سرية غير صحيحة!</string>
+  <!--RatingManager-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">المفتاح لجهة الاتصال هذه مختلف عن المرة السابقة. هذا قد يعني ان هناك محاولة لاعتراض اتصالاتك، أو ان جهة الاتصال قام\قامت بإعادة تنصيب تكست سيكيور لديهم.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">ربما تود التحقق من جهة الاتصال هذه.</string>
@@ -376,7 +382,6 @@
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">جارٍ تنزيل رسالة الوسائط</string>
   <string name="conversation_item__mms_image_description">رسالة وسائط متعددة</string>
-  <string name="conversation_item__play_button_description">زر التشغيل</string>
   <string name="conversation_item__secure_message_description">رسالة آمنة</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">تنزيل</string>
@@ -606,6 +611,7 @@
   <string name="preferences__custom">مخصص</string>
   <string name="preferences__advanced">متقدم</string>
   <string name="preferences__app_protection">حماية التطبيق</string>
+  <string name="preferences__mms_user_agent">الوكيل المستخدم لرسائل الوسائط المتعددة</string>
   <string name="preferences__advanced_mms_access_point_names">الإعدادات اليدوية لرسائل الوسائط المتعددة</string>
   <string name="preferences__enable_manual_mms">استخدم الإعدادات اليدوية لرسائل الوسائط المتعددة</string>
   <string name="preferences__override_system_mms_settings">تغيير إعدادات رسائل الوسائط المتعددة للنظام بالمعلومات أدناه.</string>
@@ -670,7 +676,6 @@
   <string name="conversation_list__menu_search">بحث</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">صورة جهة الاتصال</string>
-  <string name="conversation_list_item_view__attachment_indicator">مؤشر المرفق</string>
   <string name="conversation_list_item_view__error_alert">تنبيه بخطأ</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">محادثة جديدة</string>

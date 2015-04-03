@@ -89,6 +89,7 @@
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Συγγνώμη, το επιλεγμένο αρχείο ήχου υπερβαίνει το μέγιστο μέγεθος μηνύματος (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Ο παραλήπτης δεν είναι έγκυρη διεύθυνση SMS ή email!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Το μήνυμα είναι κενό!</string>
+  <string name="ConversationActivity_group_members">Μέλη ομάδας</string>
   <string name="ConversationActivity_group_conversation">Ομαδική συζήτηση</string>
   <string name="ConversationActivity_unnamed_group">Ανώνυμη ομάδα</string>
   <string name="ConversationActivity_d_recipients_in_group">%d μέλη</string>
@@ -103,7 +104,10 @@
   <string name="ConversationActivity_transport_insecure_mms">Μη ασφαλές MMS</string>
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_get_with_it">Αποκτήστε το με αυτό: %s</string>
+  <string name="ConversationActivity_lets_use_this_to_chat">Ας χρησιμοποιήσουμε αυτό το chat: %s</string>
   <string name="ConversationActivity_error_leaving_group">Σφάλμα κατα την αποχώρηση από την ομάδα...</string>
+  <string name="ConversationActivity_mms_not_supported_title">MMS δεν υποστηρίζεται</string>
+  <string name="ConversationActivity_mms_not_supported_message">Αυτό το μήνυμα δεν μπορεί να αποσταλεί δεδομένου ότι φορέας σας δεν υποστηρίζει MMS.</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Στοιχεία μηνύματος</string>
   <string name="ConversationFragment_transport_s_sent_received_s"> Μέσο μεταφοράς:  %1$s
@@ -228,6 +232,7 @@ SMS της συσκευής σας στο TextSecure. Αν έχετε ήδη ε�
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Τα συνθηματικά δε ταιριάζουν!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Λανθασμένο, παλιό συνθηματικό!</string>
+  <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Εισάγετε νέα συνθηματική Φράση </string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Σύνδεση αυτής της συσκευής;</string>
   <string name="DeviceProvisioningActivity_cancel">ΑΚΥΡΩΣΗ</string>
@@ -248,6 +253,7 @@ SMS της συσκευής σας στο TextSecure. Αν έχετε ήδη ε�
   <string name="PassphrasePromptActivity_watermark_content_description">Εικονίδιο TextSecure</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Καταχώρηση συνθηματικού</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Άκυρο συνθηματικό!</string>
+  <!--RatingManager-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Το
         αποτύπωμα αυτής της ανταλλαγής κλειδιών είναι διαφορετικό από αυτό που λάβαμε πρωτύτερα από αυτή την
@@ -414,7 +420,6 @@ SMS της συσκευής σας στο TextSecure. Αν έχετε ήδη ε�
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Το μήνυμα πολυμέσων κατεβαίνει</string>
   <string name="conversation_item__mms_image_description">Μήνυμα πολυμέσων</string>
-  <string name="conversation_item__play_button_description">Κουμπί αναπαραγωγής</string>
   <string name="conversation_item__secure_message_description">Ασφαλές μήνυμα</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Λήψη</string>
@@ -654,6 +659,7 @@ SMS της συσκευής σας στο TextSecure. Αν έχετε ήδη ε�
   <string name="preferences__custom">Προσαρμοσμένο</string>
   <string name="preferences__advanced">Για προχωρημένους</string>
   <string name="preferences__app_protection">Προστασία εφαρμογής</string>
+  <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Ρυθμίσεις MMS</string>
   <string name="preferences__enable_manual_mms">Χρήση μη αυτόματων ρυθμίσεων MMS</string>
   <string name="preferences__override_system_mms_settings">Να χρησιμοποιηθούν οι παρακάτω ρυθμίσεις MMS ασχέτως των ρυθμίσεων του συστήματος.</string>
@@ -718,7 +724,6 @@ SMS της συσκευής σας στο TextSecure. Αν έχετε ήδη ε�
   <string name="conversation_list__menu_search">Αναζήτηση</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Φωτογραφία επαφής</string>
-  <string name="conversation_list_item_view__attachment_indicator">Δείκτης Συνημμένων</string>
   <string name="conversation_list_item_view__error_alert">Ειδοποίηση σφάλματος</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Νεα Συζήτηση</string>

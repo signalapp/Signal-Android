@@ -101,6 +101,9 @@
   <string name="ConversationActivity_get_with_it">Набавите је са: %s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Хајде да користимо ово за ћаскање: %s</string>
   <string name="ConversationActivity_error_leaving_group">Грешка напуштања групе...</string>
+  <string name="ConversationActivity_mms_not_supported_title">МММ није подржан</string>
+  <string name="ConversationActivity_mms_not_supported_message">Порука није послата јер ваш оператер не подржава ММС.</string>
+  <string name="ConversationActivity_specify_recipient">Одредите примаоца</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Детаљи поруке</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Пренос: %1$s\nПослата/примљена: %2$s</string>
@@ -239,6 +242,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Икона Сигурних порука</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Поднеси лозинку</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Нетачна лозинка!</string>
+  <!--RatingManager-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Потпис
 ове размене кључева је другачији од претходно примљеног потписа од овог контакта.
@@ -404,7 +408,6 @@
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Преузимање мултимедијалне поруке</string>
   <string name="conversation_item__mms_image_description">Медија порука</string>
-  <string name="conversation_item__play_button_description">Дугме за пуштање</string>
   <string name="conversation_item__secure_message_description">Сигурна порука</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Преузимање</string>
@@ -641,6 +644,7 @@
   <string name="preferences__custom">Посебно</string>
   <string name="preferences__advanced">Напредно</string>
   <string name="preferences__app_protection">Заштита</string>
+  <string name="preferences__mms_user_agent">ММС кориснички агент</string>
   <string name="preferences__advanced_mms_access_point_names">Ручне ММС поставке</string>
   <string name="preferences__enable_manual_mms">Ручне ММС поставке</string>
   <string name="preferences__override_system_mms_settings">Премости системске поставке за ММС користећи податке испод.</string>
@@ -705,7 +709,6 @@
   <string name="conversation_list__menu_search">Тражи</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Фотографија контакта</string>
-  <string name="conversation_list_item_view__attachment_indicator">Индикатор прилога</string>
   <string name="conversation_list_item_view__error_alert">Грешка</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Нова преписка</string>

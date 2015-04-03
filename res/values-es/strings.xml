@@ -102,6 +102,9 @@ este contacto.
   <string name="ConversationActivity_get_with_it">Hágase con él: %s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Usemos esto para chatear: %s</string>
   <string name="ConversationActivity_error_leaving_group">Error al dejar el grupo...</string>
+  <string name="ConversationActivity_mms_not_supported_title">MMS no admitidos</string>
+  <string name="ConversationActivity_mms_not_supported_message">Este mensaje no se puede enviar debido a que su proveedor no admite MMS.</string>
+  <string name="ConversationActivity_specify_recipient">Por favor, elija un contacto</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalles del mensaje</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transporte: %1$s
@@ -250,6 +253,12 @@ Por favor pida al remitente que actualice a la versión más reciente y reenvíe
   <string name="PassphrasePromptActivity_watermark_content_description">Icono de TextSecure</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Enviar clave de acceso</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">¡Clave de acceso no válida!</string>
+  <!--RatingManager-->
+  <string name="RatingManager_rate_this_app">Evalúe esta aplicación</string>
+  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Si disfruta usando esta aplicación, por favor, tómese un momento para ayudarnos evaluándola.</string>
+  <string name="RatingManager_rate_now">¡Evaluar ahora!</string>
+  <string name="RatingManager_no_thanks">No gracias</string>
+  <string name="RatingManager_later">Más tarde</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">La firma en este intercambio de claves es diferente de lo que previamente ha recibido de este contacto. Esto podría significar que alguien está intentando interceptar las comunicaciones o que este contacto simplemente reinstaló TextSecure y ahora tiene una nueva clave de identidad.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Puede que dese verificar
@@ -421,7 +430,6 @@ Se recibió un mensaje con una clave de identidad desconocida. Haga clic para pr
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Descargando mensaje multimedia</string>
   <string name="conversation_item__mms_image_description">Mensaje multimedia</string>
-  <string name="conversation_item__play_button_description">Botón de reproducción</string>
   <string name="conversation_item__secure_message_description">Asegurar mensaje</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Descarga</string>
@@ -681,6 +689,7 @@ por SMS.
   <string name="preferences__custom">Personalizado</string>
   <string name="preferences__advanced">Avanzado</string>
   <string name="preferences__app_protection">Protección de la aplicación</string>
+  <string name="preferences__mms_user_agent">Agente de usuario de MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Configuración manual de MMS</string>
   <string name="preferences__enable_manual_mms">Usar configuración manual de MMS</string>
   <string name="preferences__override_system_mms_settings">Usar la configuración MMS de debajo en lugar de la del sistema.</string>
@@ -745,7 +754,6 @@ Mensajería privada gratuita con usuarios de TextSecure y Signal</string>
   <string name="conversation_list__menu_search">Buscar</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Foto del contacto</string>
-  <string name="conversation_list_item_view__attachment_indicator">Indicador de adjunto</string>
   <string name="conversation_list_item_view__error_alert">Alerta de error</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nueva conversación</string>

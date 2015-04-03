@@ -178,6 +178,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure 圖示</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">確認『自訂密碼』</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">無效的『自訂密碼』！</string>
+  <!--RatingManager-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">此次
         金鑰確認所使用的數位簽名與同一名連絡人上次金鑰確認時所用的值並不一致。
@@ -337,7 +338,6 @@
   <string name="conversation_activity__emoji_toggle_description">叫出「表情符號」列表</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">媒體訊息</string>
-  <string name="conversation_item__play_button_description">播放按鈕</string>
   <string name="conversation_item__secure_message_description">安全的訊息</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">下載</string>

@@ -97,6 +97,7 @@ questo contatto.</string>
   <string name="ConversationActivity_get_with_it">Ottienilo con: %s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Vieni a chattare qui: %s</string>
   <string name="ConversationActivity_error_leaving_group">Errore nell\'abbandonare il gruppo...</string>
+  <string name="ConversationActivity_specify_recipient">Scegli un contatto</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Dettagli messaggio</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Trasporto: %1$s\nInviato/Ricevuto: %2$s</string>
@@ -235,6 +236,12 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icona TextSecure</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Inserisci password</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Password non valida!</string>
+  <!--RatingManager-->
+  <string name="RatingManager_rate_this_app">Vota questa app!</string>
+  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Se quest\'applicazione ti piace, ti preghiamo di aiutarci votandola.</string>
+  <string name="RatingManager_rate_now">Vota ora!</string>
+  <string name="RatingManager_no_thanks">No grazie</string>
+  <string name="RatingManager_later">Più tardi</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">La
 firma su questo scambio di chiavi è diversa da quella ricevuta precedentemente. Questo potrebbe significare che qualcuno sta cercando di intercettare la tua comunicazione
@@ -402,7 +409,6 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Sto scaricando un messaggio multimediale</string>
   <string name="conversation_item__mms_image_description">Messaggio multimediale</string>
-  <string name="conversation_item__play_button_description">Pulsante Play</string>
   <string name="conversation_item__secure_message_description">Messaggio sicuro</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Scarica</string>
@@ -713,7 +719,6 @@ Chatta gratis con gli utenti TextSecure e Signal</string>
   <string name="conversation_list__menu_search">Cerca</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Foto del contatto</string>
-  <string name="conversation_list_item_view__attachment_indicator">Indicatore allegato</string>
   <string name="conversation_list_item_view__error_alert">Messaggio di errore</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nuova conversazione</string>

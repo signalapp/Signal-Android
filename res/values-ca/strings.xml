@@ -117,6 +117,7 @@ Necessitaràs tornar a registrar el teu número de telèfon per utilitzar els mi
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Frase contrasenya antiga incorrecta!</string>
   <!--DeviceProvisioningActivity-->
   <!--PassphrasePromptActivity-->
+  <!--RatingManager-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">La signatura en aquest intercanvi de claus és diferent que el que havies rebut prèviament d\'aquest contacte. Això pot voler dir tant que algú està intentant interceptar la teva comunicació, o que aquest contacte simplement ha re-instal·lat TextSecure i ara té una clau d\'identitat nova.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Pot ser que vulguis verificar aquest contacte.</string>

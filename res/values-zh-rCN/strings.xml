@@ -96,6 +96,9 @@
   <string name="ConversationActivity_get_with_it">已获得： %s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">让我们使用这个来聊天：%s</string>
   <string name="ConversationActivity_error_leaving_group">离开群组时遇到错误…</string>
+  <string name="ConversationActivity_mms_not_supported_title">彩信不被支持</string>
+  <string name="ConversationActivity_mms_not_supported_message">此信息无法发送，因为您的运营商不支持彩信。</string>
+  <string name="ConversationActivity_specify_recipient">请选择一个联系人</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">信息详情</string>
   <string name="ConversationFragment_transport_s_sent_received_s">传输：%1$s\n 发送/接收：%2$s</string>
@@ -227,6 +230,12 @@
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure 图标</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">提交密钥</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">不真实的密钥！</string>
+  <!--RatingManager-->
+  <string name="RatingManager_rate_this_app">对此应用评分</string>
+  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">如果您喜欢使用此应用，请使用片刻时间对其进行打分。</string>
+  <string name="RatingManager_rate_now">立刻评价！</string>
+  <string name="RatingManager_no_thanks">不，谢谢。</string>
+  <string name="RatingManager_later">稍后</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">此人当前签名所使用的密钥与之前所接收到的密钥不一致，这可能是由于某人正试图拦截您的通信，或者此人重新安装TextSecure而有了新密钥。</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">您可能希望验证这个联系人。</string>
@@ -387,7 +396,6 @@
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">媒体信息正在下载</string>
   <string name="conversation_item__mms_image_description">媒体信息</string>
-  <string name="conversation_item__play_button_description">播放按钮</string>
   <string name="conversation_item__secure_message_description">安全信息</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">下载</string>
@@ -620,6 +628,7 @@ TextSecure 在等待短信验证时超时。</string>
   <string name="preferences__custom">自定义</string>
   <string name="preferences__advanced">高级</string>
   <string name="preferences__app_protection">应用保护</string>
+  <string name="preferences__mms_user_agent">彩信用户代理</string>
   <string name="preferences__advanced_mms_access_point_names">手动设置彩信</string>
   <string name="preferences__enable_manual_mms">使用手动设置彩信</string>
   <string name="preferences__override_system_mms_settings">下面的信息将会覆盖系统的彩信设置。</string>
@@ -684,7 +693,6 @@ TextSecure 在等待短信验证时超时。</string>
   <string name="conversation_list__menu_search">搜索</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">联系人照片</string>
-  <string name="conversation_list_item_view__attachment_indicator">附件指示器</string>
   <string name="conversation_list_item_view__error_alert">错误警报</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">新会话</string>

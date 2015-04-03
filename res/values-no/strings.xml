@@ -79,6 +79,7 @@ denne kontakten.</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Beklager, den valgte lydfilen overstiger restriksjonene på meldingsstørrelse (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Mottakeren er ikke en gyldig SMS- eller e-postadresse!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Meldingen er tom!</string>
+  <string name="ConversationActivity_group_members">Gruppemedlemmer</string>
   <string name="ConversationActivity_group_conversation">Gruppesamtale</string>
   <string name="ConversationActivity_unnamed_group">Navnløs gruppe</string>
   <string name="ConversationActivity_d_recipients_in_group">%d medlemmer</string>
@@ -93,7 +94,11 @@ denne kontakten.</string>
   <string name="ConversationActivity_transport_insecure_mms">Usikret MMS</string>
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_get_with_it">Last ned, bli med: %s</string>
+  <string name="ConversationActivity_lets_use_this_to_chat">La oss bruke dette for å chatte: %s</string>
   <string name="ConversationActivity_error_leaving_group">Feil ved utmelding av gruppen...</string>
+  <string name="ConversationActivity_mms_not_supported_title">MMS ikke støttet</string>
+  <string name="ConversationActivity_mms_not_supported_message">Denne meldingen kan ikke sendes fordi operatøren din ikke støtter MMS.</string>
+  <string name="ConversationActivity_specify_recipient">Velg kontaktperson</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Meldingsdetaljer</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nSendt/Mottatt: %2$s</string>
@@ -203,6 +208,7 @@ Gjenoppretting av en kryptert backup vil overskrive eksisterende nøkler, innsti
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passordene er ikke like!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Gammelt passord er feil!</string>
+  <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Tast inn nytt passord!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Koble denne enheten?</string>
   <string name="DeviceProvisioningActivity_cancel">AVBRYT</string>
@@ -224,6 +230,12 @@ Gjenoppretting av en kryptert backup vil overskrive eksisterende nøkler, innsti
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure ikon</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Sett passord</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Ugyldig passord!</string>
+  <!--RatingManager-->
+  <string name="RatingManager_rate_this_app">Vurder appen</string>
+  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Om du liker å bruke denne appen, bruk noen sekunder på hjelpe oss ved å vurdere den.</string>
+  <string name="RatingManager_rate_now">Vurder nå!</string>
+  <string name="RatingManager_no_thanks">Nei takk</string>
+  <string name="RatingManager_later">Senere</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Signaturen på denne nøkkelutvekslingen er ikke lik den du tidligere mottok fra denne
 kontakten. Det kan enten bety at noen prøver å avskjære kommunikasjonen din eller
@@ -385,7 +397,6 @@ Mottatt melding med ukjent ID nøkkel. Klikk for å prosessere og vise.</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Media melding lastes ned</string>
   <string name="conversation_item__mms_image_description">Multimediamelding</string>
-  <string name="conversation_item__play_button_description">Avspill knapp</string>
   <string name="conversation_item__secure_message_description">Sikret melding</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Last ned</string>
@@ -611,6 +622,7 @@ feilet.</string>
   <string name="preferences__custom">Tilpasset</string>
   <string name="preferences__advanced">Avansert</string>
   <string name="preferences__app_protection">Appbeskyttelse</string>
+  <string name="preferences__mms_user_agent">MMS \"User Agent\"</string>
   <string name="preferences__advanced_mms_access_point_names">Manuelle MMS instillinger</string>
   <string name="preferences__enable_manual_mms">Bruk manuelle MMS innstillinger</string>
   <string name="preferences__override_system_mms_settings">Overstyr systeminnstillingene for MMS med informasjonen under.</string>
@@ -676,7 +688,6 @@ Gratis og private meldinger til TextSecure og Signal brukere
   <string name="conversation_list__menu_search">Søk</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kontaktbilde</string>
-  <string name="conversation_list_item_view__attachment_indicator">Vedleggsindikator</string>
   <string name="conversation_list_item_view__error_alert">Varsel om feil</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Ny samtale</string>

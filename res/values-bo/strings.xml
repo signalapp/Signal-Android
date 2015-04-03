@@ -69,6 +69,7 @@
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">གསང་ཚིག་རྙིང་པ་དེ་ནོར་འདུག </string>
   <!--DeviceProvisioningActivity-->
   <!--PassphrasePromptActivity-->
+  <!--RatingManager-->
   <!--ReceiveKeyActivity-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_continue">མུ་མཐུད། </string>
