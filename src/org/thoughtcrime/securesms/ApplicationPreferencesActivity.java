@@ -69,16 +69,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
   @Override
   protected void onCreate(Bundle icicle, @NonNull MasterSecret masterSecret) {
     this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-    Bundle   fragmentArgs = new Bundle();
-    Fragment fragment     = new ApplicationPreferenceFragment();
-
-    fragmentArgs.putParcelable("master_secret", masterSecret);
-    fragment.setArguments(fragmentArgs);
-
-    getSupportFragmentManager().beginTransaction()
-                               .replace(android.R.id.content, fragment)
-                               .commit();
+    initFragment(android.R.id.content, new ApplicationPreferenceFragment(), masterSecret);
   }
 
   @Override
@@ -185,10 +176,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
           fragment = new NotificationsPreferenceFragment();
           break;
         case PREFERENCE_CATEGORY_APP_PROTECTION:
-          Bundle args = new Bundle();
-          args.putParcelable("master_secret", masterSecret);
           fragment = new AppProtectionPreferenceFragment();
-          fragment.setArguments(args);
           break;
         case PREFERENCE_CATEGORY_APPEARANCE:
           fragment = new AppearancePreferenceFragment();
@@ -202,6 +190,10 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
         default:
           throw new AssertionError();
         }
+
+        Bundle args = new Bundle();
+        args.putParcelable("master_secret", masterSecret);
+        fragment.setArguments(args);
 
         FragmentManager     fragmentManager     = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
