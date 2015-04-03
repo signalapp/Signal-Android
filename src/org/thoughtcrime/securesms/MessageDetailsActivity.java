@@ -255,12 +255,10 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
 
       for (Recipient recipient : recipients.getRecipientsList()) {
         try {
-
           String e164number = Util.canonicalizeNumber(context, recipient.getNumber());
           if (!TextSecurePreferences.getLocalNumber(context).equals(e164number)) {
             filteredRecipientList.add(recipient);
           }
-
         } catch (InvalidNumberException e) {
           Log.w(TAG, "unable to check if recipient is self, assuming not", e);
           filteredRecipientList.add(recipient);
