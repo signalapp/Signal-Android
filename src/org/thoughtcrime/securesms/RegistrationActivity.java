@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -39,7 +38,7 @@ import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
  * @author Moxie Marlinspike
  *
  */
-public class RegistrationActivity extends PassphraseRequiredActionBarActivity {
+public class RegistrationActivity extends BaseActionBarActivity {
 
   private static final int PICK_COUNTRY = 1;
 
@@ -54,8 +53,8 @@ public class RegistrationActivity extends PassphraseRequiredActionBarActivity {
   private MasterSecret masterSecret;
 
   @Override
-  protected void onCreate(Bundle icicle, @NonNull MasterSecret masterSecret) {
-    this.masterSecret = masterSecret;
+  public void onCreate(Bundle icicle) {
+    super.onCreate(icicle);
     setContentView(R.layout.registration_activity);
 
     getSupportActionBar().setTitle(getString(R.string.RegistrationActivity_connect_with_textsecure));
@@ -75,6 +74,7 @@ public class RegistrationActivity extends PassphraseRequiredActionBarActivity {
   }
 
   private void initializeResources() {
+    this.masterSecret   = getIntent().getParcelableExtra("master_secret");
     this.countrySpinner = (Spinner)findViewById(R.id.country_spinner);
     this.countryCode    = (TextView)findViewById(R.id.country_code);
     this.number         = (TextView)findViewById(R.id.number);

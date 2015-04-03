@@ -186,10 +186,12 @@ public class AdvancedPreferenceFragment extends PreferenceFragment {
         builder.show();
       } else {
         Intent nextIntent = new Intent(getActivity(), ApplicationPreferencesActivity.class);
+        nextIntent.putExtra("master_secret", getActivity().getIntent().getParcelableExtra("master_secret"));
 
         Intent intent = new Intent(getActivity(), RegistrationActivity.class);
         intent.putExtra("cancel_button", true);
         intent.putExtra("next_intent", nextIntent);
+        intent.putExtra("master_secret", getActivity().getIntent().getParcelableExtra("master_secret"));
         startActivity(intent);
       }
 
