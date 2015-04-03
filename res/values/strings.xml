@@ -281,7 +281,7 @@
 
     <!-- RatingManager -->
     <string name="RatingManager_rate_this_app">Rate this app</string>
-    <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">"If you enjoy using this app, please take a moment to help us by rating it. "</string>
+    <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">If you enjoy using this app, please take a moment to help us by rating it.</string>
     <string name="RatingManager_rate_now">Rate now!</string>
     <string name="RatingManager_no_thanks">No thanks</string>
     <string name="RatingManager_later">Later</string>
