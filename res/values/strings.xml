@@ -683,6 +683,7 @@
     <string name="AndroidManifest__media_preview">Media Preview</string>
     <string name="AndroidManifest__media_overview">All images</string>
     <string name="AndroidManifest__media_overview_named">All images with %1$s</string>
+    <string name="AndroidManifest__message_details">Message Details</string>
 
     <!-- arrays.xml -->
     <string name="arrays__import_export">Import / export</string>
