@@ -103,6 +103,10 @@ public class ConversationFragment extends ListFragment
 
     initializeResources();
     initializeListAdapter();
+
+    if (threadId == -1) {
+      getLoaderManager().restartLoader(0, null, this);
+    }
   }
 
   private void initializeResources() {
