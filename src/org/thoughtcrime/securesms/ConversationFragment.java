@@ -117,6 +117,8 @@ public class ConversationFragment extends ListFragment
                                                   DirectoryHelper.isPushDestination(getActivity(), this.recipients)));
       getListView().setRecyclerListener((ConversationAdapter)getListAdapter());
       getLoaderManager().restartLoader(0, null, this);
+    } else {
+      this.setListAdapter(null);
     }
   }
 
