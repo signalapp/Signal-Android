@@ -15,7 +15,8 @@ import java.util.concurrent.TimeUnit;
 
 public class RatingManager {
 
-  private static final int DAYS_SINCE_INSTALL_THRESHOLD = 7;
+  private static final int DAYS_SINCE_INSTALL_THRESHOLD  = 7;
+  private static final int DAYS_UNTIL_REPROMPT_THRESHOLD = 4;
 
   private static final String TAG = RatingManager.class.getSimpleName();
 
@@ -55,7 +56,7 @@ public class RatingManager {
 
           @Override
           public void onNeutral(MaterialDialog dialog) {
-            long waitUntil = System.currentTimeMillis() + TimeUnit.DAYS.toMillis(4);
+            long waitUntil = System.currentTimeMillis() + TimeUnit.DAYS.toMillis(DAYS_UNTIL_REPROMPT_THRESHOLD);
             TextSecurePreferences.setRatingLaterTimestamp(context, waitUntil);
             super.onNeutral(dialog);
           }
