@@ -18,14 +18,18 @@ package org.thoughtcrime.securesms;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.support.v4.widget.CursorAdapter;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
@@ -39,40 +43,65 @@ import java.util.Set;
  *
  * @author Moxie Marlinspike
  */
-public class ConversationListAdapter extends CursorAdapter implements AbsListView.RecyclerListener {
+public class ConversationListAdapter extends CursorRecyclerViewAdapter<ConversationListAdapter.ViewHolder> {
 
-  private final ThreadDatabase threadDatabase;
-  private final MasterCipher   masterCipher;
-  private final Context        context;
-  private final LayoutInflater inflater;
+  private final ThreadDatabase    threadDatabase;
+  private final MasterCipher      masterCipher;
+  private final Context           context;
+  private final LayoutInflater    inflater;
+  private final ItemClickListener clickListener;
 
   private final Set<Long> batchSet  = Collections.synchronizedSet(new HashSet<Long>());
   private       boolean   batchMode = false;
 
-  public ConversationListAdapter(Context context, Cursor cursor, MasterSecret masterSecret) {
-    super(context, cursor, 0);
+  protected static class ViewHolder extends RecyclerView.ViewHolder {
+    public ViewHolder(final @NonNull ConversationListItem itemView,
+                      final @Nullable ItemClickListener clickListener) {
+      super(itemView);
+      itemView.setOnClickListener(new OnClickListener() {
+        @Override
+        public void onClick(View view) {
+          if (clickListener != null) clickListener.onItemClick(itemView);
+        }
+      });
+      itemView.setOnLongClickListener(new OnLongClickListener() {
+        @Override
+        public boolean onLongClick(View view) {
+          if (clickListener != null) clickListener.onItemLongClick(itemView);
+          return true;
+        }
+      });
+    }
 
-    if (masterSecret != null) this.masterCipher = new MasterCipher(masterSecret);
-    else                      this.masterCipher = null;
+    public ConversationListItem getItem() {
+      return (ConversationListItem) itemView;
+    }
+  }
 
+  public ConversationListAdapter(@NonNull Context context,
+                                 @NonNull MasterSecret masterSecret,
+                                 @Nullable Cursor cursor,
+                                 @Nullable ItemClickListener clickListener) {
+    super(context, cursor);
+    this.masterCipher   = new MasterCipher(masterSecret);
     this.context        = context;
     this.threadDatabase = DatabaseFactory.getThreadDatabase(context);
     this.inflater       = LayoutInflater.from(context);
+    this.clickListener  = clickListener;
   }
 
   @Override
-  public View newView(Context context, Cursor cursor, ViewGroup parent) {
-    return inflater.inflate(R.layout.conversation_list_item_view, parent, false);
+  public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    return new ViewHolder((ConversationListItem)inflater.inflate(R.layout.conversation_list_item_view,
+                                                                 parent, false), clickListener);
   }
 
   @Override
-  public void bindView(View view, Context context, Cursor cursor) {
-    if (masterCipher != null) {
-      ThreadDatabase.Reader reader = threadDatabase.readerFor(cursor, masterCipher);
-      ThreadRecord          record = reader.getCurrent();
+  public void onBindViewHolder(ViewHolder viewHolder, Cursor cursor) {
+    ThreadDatabase.Reader reader = threadDatabase.readerFor(cursor, masterCipher);
+    ThreadRecord          record = reader.getCurrent();
 
-      ((ConversationListItem)view).set(record, batchSet, batchMode);
-    }
+    viewHolder.getItem().set(record, batchSet, batchMode);
   }
 
   public void toggleThreadInBatchSet(long threadId) {
@@ -112,8 +141,8 @@ public class ConversationListAdapter extends CursorAdapter implements AbsListVie
     this.notifyDataSetChanged();
   }
 
-  @Override
-  public void onMovedToScrapHeap(View view) {
-    ((ConversationListItem)view).unbind();
+  public interface ItemClickListener {
+    void onItemClick(ConversationListItem item);
+    void onItemLongClick(ConversationListItem item);
   }
 }
