@@ -147,7 +147,7 @@ public class TimeImpl implements Time {
                 // Handle Timecount-val without metric
                 try {
                     return parseFloat(clockValue, 0, true) * 1000;
-                } catch (NumberFormatException _) {
+                } catch (NumberFormatException e) {
                     // Ignore
                 }
 
