@@ -20,13 +20,6 @@
                 android:id="@+id/list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:drawSelectorOnTop="false"
-                android:scrollbarStyle="insideOverlay"
-                android:fadingEdgeLength="16dip"
-                android:divider="?conversation_list_item_divider"
-                android:headerDividersEnabled="false"
-                android:footerDividersEnabled="false"
-                android:dividerHeight="1px"
                 android:nextFocusDown="@+id/fab"
                 android:nextFocusForward="@+id/fab"
                 tools:listitem="@layout/conversation_list_item_view" />
