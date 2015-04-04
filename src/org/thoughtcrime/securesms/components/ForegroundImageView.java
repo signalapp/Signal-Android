@@ -30,7 +30,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 
-import com.makeramen.RoundedImageView;
+import com.makeramen.roundedimageview.RoundedImageView;
 
 import org.thoughtcrime.securesms.R;
 

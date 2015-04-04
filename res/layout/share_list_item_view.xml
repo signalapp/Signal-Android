@@ -5,7 +5,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    <com.makeramen.RoundedImageView
+    <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/contact_photo_image"
         android:foreground="@drawable/contact_photo_background"
         android:layout_width="50dp"

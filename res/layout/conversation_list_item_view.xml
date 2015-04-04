@@ -17,7 +17,7 @@
                  android:paddingRight="10dp"
                  android:visibility="visible">
 
-        <com.makeramen.RoundedImageView
+        <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/contact_photo_image"
             android:foreground="@drawable/contact_photo_background"
             android:layout_width="50dp"
