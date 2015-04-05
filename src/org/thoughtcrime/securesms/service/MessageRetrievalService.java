@@ -91,7 +91,9 @@ public class MessageRetrievalService extends Service implements Runnable, Inject
                           decrementPushReceived();
                         }
                       });
-          } catch (TimeoutException | InvalidVersionException e) {
+          } catch (TimeoutException e) {
+            Log.w(TAG, "Application level read timeout...");
+          } catch (InvalidVersionException e) {
             Log.w(TAG, e);
           }
         }
