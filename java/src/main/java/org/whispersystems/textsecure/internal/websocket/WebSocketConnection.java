@@ -19,7 +19,8 @@ import static org.whispersystems.textsecure.internal.websocket.WebSocketProtos.W
 
 public class WebSocketConnection implements WebSocketEventListener {
 
-  private static final String TAG = WebSocketConnection.class.getSimpleName();
+  private static final String TAG                       = WebSocketConnection.class.getSimpleName();
+  private static final int    KEEPALIVE_TIMEOUT_SECONDS = 55;
 
   private final LinkedList<WebSocketRequestMessage> incomingRequests = new LinkedList<>();
 
@@ -42,7 +43,7 @@ public class WebSocketConnection implements WebSocketEventListener {
 
     if (client == null) {
       client = new OkHttpClientWrapper(wsUri, trustStore, credentialsProvider, this);
-      client.connect();
+      client.connect(KEEPALIVE_TIMEOUT_SECONDS + 10, TimeUnit.SECONDS);
     }
   }
 
@@ -140,6 +141,7 @@ public class WebSocketConnection implements WebSocketEventListener {
 
   public synchronized void onConnected() {
     if (client != null && keepAliveSender == null) {
+      Log.w(TAG, "onConnected()");
       keepAliveSender = new KeepAliveSender();
       keepAliveSender.start();
     }
@@ -156,7 +158,7 @@ public class WebSocketConnection implements WebSocketEventListener {
     public void run() {
       while (!stop.get()) {
         try {
-          Thread.sleep(TimeUnit.SECONDS.toMillis(55));
+          Thread.sleep(TimeUnit.SECONDS.toMillis(KEEPALIVE_TIMEOUT_SECONDS));
 
           Log.w(TAG, "Sending keep alive...");
           sendKeepAlive();

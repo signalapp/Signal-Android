@@ -48,13 +48,13 @@ public class OkHttpClientWrapper implements WebSocketListener {
     this.listener            = listener;
   }
 
-  public void connect() {
+  public void connect(final int timeout, final TimeUnit timeUnit) {
     new Thread() {
       @Override
       public void run() {
         int attempt = 0;
 
-        while ((webSocket = newSocket()) != null) {
+        while ((webSocket = newSocket(timeout, timeUnit)) != null) {
           try {
             Response response = webSocket.connect(OkHttpClientWrapper.this);
 
@@ -117,14 +117,17 @@ public class OkHttpClientWrapper implements WebSocketListener {
     listener.onClose();
   }
 
-  private synchronized WebSocket newSocket() {
+  private synchronized WebSocket newSocket(int timeout, TimeUnit unit) {
     if (closed) return null;
 
-    String           filledUri     = String.format(uri, credentialsProvider.getUser(), credentialsProvider.getPassword());
-    SSLSocketFactory socketFactory = createTlsSocketFactory(trustStore);
+    String       filledUri    = String.format(uri, credentialsProvider.getUser(), credentialsProvider.getPassword());
+    OkHttpClient okHttpClient = new OkHttpClient();
 
-    return WebSocket.newWebSocket(new OkHttpClient().setSslSocketFactory(socketFactory),
-                                  new Request.Builder().url(filledUri).build());
+    okHttpClient.setSslSocketFactory(createTlsSocketFactory(trustStore));
+    okHttpClient.setReadTimeout(timeout, unit);
+    okHttpClient.setConnectTimeout(timeout, unit);
+
+    return WebSocket.newWebSocket(okHttpClient, new Request.Builder().url(filledUri).build());
   }
 
   private SSLSocketFactory createTlsSocketFactory(TrustStore trustStore) {
