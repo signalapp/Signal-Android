@@ -16,18 +16,11 @@
  */
 package org.thoughtcrime.securesms.providers;
 
-import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.ContentProvider;
 import android.content.ContentValues;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.ServiceConnection;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.IBinder;
 import android.os.ParcelFileDescriptor;
 import android.util.Log;
 
@@ -42,6 +35,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class PartProvider extends ContentProvider {
+  private static final String TAG = PartProvider.class.getSimpleName();
 
   private static final String CONTENT_URI_STRING = "content://org.thoughtcrime.provider.securesms/part";
   public  static final Uri    CONTENT_URI        = Uri.parse(CONTENT_URI_STRING);
@@ -54,17 +48,10 @@ public class PartProvider extends ContentProvider {
     uriMatcher.addURI("org.thoughtcrime.provider.securesms", "part/#", SINGLE_ROW);
   }
 
-  private MasterSecret masterSecret;
-  private NewKeyReceiver receiver;
-
   @Override
   public boolean onCreate() {
-    initializeMasterSecret();
+    Log.w(TAG, "onCreate()");
     return true;
-  }
-
-  public static boolean isAuthority(Uri uri) {
-    return uriMatcher.match(uri) != -1;
   }
 
   private File copyPartToTemporaryFile(MasterSecret masterSecret, long partId) throws IOException {
@@ -86,22 +73,27 @@ public class PartProvider extends ContentProvider {
 
   @Override
     public ParcelFileDescriptor openFile(Uri uri, String mode) throws FileNotFoundException {
-    Log.w("PartProvider", "openFile() called!");
+    MasterSecret masterSecret = KeyCachingService.getMasterSecret(getContext());
+    Log.w(TAG, "openFile() called!");
 
-    if (this.masterSecret == null)
+    if (masterSecret == null) {
+      Log.w(TAG, "masterSecret was null, abandoning.");
       return null;
+    }
 
     switch (uriMatcher.match(uri)) {
     case SINGLE_ROW:
-      Log.w("PartProvider", "Parting out a single row...");
+      Log.w(TAG, "Parting out a single row...");
       try {
         int partId               = Integer.parseInt(uri.getPathSegments().get(1));
         File tmpFile             = copyPartToTemporaryFile(masterSecret, partId);
         ParcelFileDescriptor pdf = ParcelFileDescriptor.open(tmpFile, ParcelFileDescriptor.MODE_READ_ONLY);
-        tmpFile.delete();
+        if (!tmpFile.delete()) {
+          Log.w(TAG, "Failed to delete temp file.");
+        }
         return pdf;
       } catch (IOException ioe) {
-        Log.w("PartProvider", ioe);
+        Log.w(TAG, ioe);
         throw new FileNotFoundException("Error opening file");
       }
     }
@@ -133,26 +125,4 @@ public class PartProvider extends ContentProvider {
   public int update(Uri arg0, ContentValues arg1, String arg2, String[] arg3) {
     return 0;
   }
-
-  private void initializeWithMasterSecret(MasterSecret masterSecret) {
-    Log.w("PartProvider", "Got master secret: " + masterSecret);
-    this.masterSecret = masterSecret;
-  }
-
-  private void initializeMasterSecret() {
-    receiver            = new NewKeyReceiver();
-    IntentFilter filter = new IntentFilter(KeyCachingService.NEW_KEY_EVENT);
-    getContext().registerReceiver(receiver, filter, KeyCachingService.KEY_PERMISSION, null);
-
-    initializeWithMasterSecret(KeyCachingService.getMasterSecret(getContext()));
-  }
-
-  private class NewKeyReceiver extends BroadcastReceiver {
-    @Override
-    public void onReceive(Context context, Intent intent) {
-      Log.w("SendReceiveService", "Got a MasterSecret broadcast...");
-      initializeWithMasterSecret((MasterSecret)intent.getParcelableExtra("master_secret"));
-    }
-  };
-
 }
