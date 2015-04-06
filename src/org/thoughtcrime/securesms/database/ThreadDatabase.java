@@ -130,8 +130,10 @@ public class ThreadDatabase extends Database {
     notifyConversationListListeners();
   }
 
-  public void updateSnippet(long threadId, String snippet, long type) {
+  public void updateSnippet(long threadId, String snippet, long date, long type) {
     ContentValues contentValues = new ContentValues(3);
+
+    contentValues.put(DATE, date - date % 1000);
     contentValues.put(SNIPPET, snippet);
     contentValues.put(SNIPPET_TYPE, type);
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
