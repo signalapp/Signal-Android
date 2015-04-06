@@ -250,7 +250,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
       return weakContext.get();
     }
 
-    private void handleRemoveSelfFromRecipientList(Context context, Recipients recipients) {
+    private Recipients getRecipientsMinusSelf(Context context, Recipients recipients) {
       List<Recipient> filteredRecipientList = new LinkedList<>();
 
       for (Recipient recipient : recipients.getRecipientsList()) {
@@ -265,8 +265,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
         }
       }
 
-      recipients.getRecipientsList().clear();
-      recipients.getRecipientsList().addAll(filteredRecipientList);
+      return new Recipients(filteredRecipientList);
     }
 
     @Override
@@ -299,7 +298,9 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
         }
       }
 
-      if (!messageRecord.isOutgoing()) handleRemoveSelfFromRecipientList(context, recipients);
+      if (!messageRecord.isOutgoing()) {
+        recipients = getRecipientsMinusSelf(context, recipients);
+      }
 
       return recipients;
     }
