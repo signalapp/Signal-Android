@@ -117,48 +117,40 @@ public class PassphraseChangeActivity extends PassphraseActivity {
     }
   }
 
-  private class ChangeMasterSecretPassphrase extends AsyncTask<Void, Void, Void> {
-    private MasterSecret masterSecret;
-    private InvalidPassphraseException exception;
-    private EditText originalPassphrase;
-    private Context context;
-    private String original, passphrase;
+  private class ChangeMasterSecretPassphrase extends AsyncTask<Void, Void, MasterSecret> {
+    private final Context context;
+    private String original;
+    private String passphrase;
 
     public ChangeMasterSecretPassphrase(Context context, String original, String passphrase) {
-      this.context = context;
-      this.original = original;
+      this.context    = context;
+      this.original   = original;
       this.passphrase = passphrase;
     }
 
     @Override
-    protected Void doInBackground(Void... params) {
+    protected MasterSecret doInBackground(Void... params) {
       try {
-        this.masterSecret = MasterSecretUtil.changeMasterSecretPassphrase(context, original, passphrase);
+        MasterSecret masterSecret = MasterSecretUtil.changeMasterSecretPassphrase(context, original, passphrase);
         TextSecurePreferences.setPasswordDisabled(context, false);
 
-      } catch (InvalidPassphraseException e) {
-        this.exception = e;
-      }
+        return masterSecret;
 
-      return null;
+      } catch (InvalidPassphraseException e) {
+        return null;
+      }
     }
 
     @Override
-    protected void onPostExecute(Void aVoid) {
-      this.originalPassphrase = (EditText) PassphraseChangeActivity.this.findViewById(R.id.old_passphrase);
-
-      // If exception not thrown and master secret not null -> setMasterSecret
-      if (exception == null) {
-        if (masterSecret != null) {
-          setMasterSecret(masterSecret);
-        }
+    protected void onPostExecute(MasterSecret masterSecret) {
+      if (masterSecret != null) {
+        setMasterSecret(masterSecret);
       }
 
-      // If exception is thrown -> Toast incorrect old passphrase and set EditText to empty
       else {
         Toast.makeText(context, R.string.PassphraseChangeActivity_incorrect_old_passphrase_exclamation,
                        Toast.LENGTH_LONG).show();
-        this.originalPassphrase.setText("");
+        originalPassphrase.setText("");
       }
     }
   }
