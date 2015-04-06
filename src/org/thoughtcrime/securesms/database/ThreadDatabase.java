@@ -132,6 +132,9 @@ public class ThreadDatabase extends Database {
 
   public void updateSnippet(long threadId, String snippet, long type) {
     ContentValues contentValues = new ContentValues(3);
+    long          date          = System.currentTimeMillis();
+
+    contentValues.put(DATE, date - date % 1000);
     contentValues.put(SNIPPET, snippet);
     contentValues.put(SNIPPET_TYPE, type);
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
