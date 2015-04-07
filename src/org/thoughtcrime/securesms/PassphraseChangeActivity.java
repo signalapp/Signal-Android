@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms;
 
 import android.os.AsyncTask;
 import android.content.Context;
+import android.util.Log;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.View;
@@ -101,7 +102,7 @@ public class PassphraseChangeActivity extends PassphraseActivity {
                      R.string.PassphraseChangeActivity_enter_new_passphrase_exclamation,
                      Toast.LENGTH_SHORT).show();
     } else {
-      new ChangeMasterSecretPassphrase(this, original, passphrase).execute();
+      new ChangePassphraseTask(this, original, passphrase).execute();
     }
   }
 
@@ -117,12 +118,12 @@ public class PassphraseChangeActivity extends PassphraseActivity {
     }
   }
 
-  private class ChangeMasterSecretPassphrase extends AsyncTask<Void, Void, MasterSecret> {
+  private class ChangePassphraseTask extends AsyncTask<Void, Void, MasterSecret> {
     private final Context context;
     private String original;
     private String passphrase;
 
-    public ChangeMasterSecretPassphrase(Context context, String original, String passphrase) {
+    public ChangePassphraseTask(Context context, String original, String passphrase) {
       this.context    = context;
       this.original   = original;
       this.passphrase = passphrase;
@@ -137,6 +138,7 @@ public class PassphraseChangeActivity extends PassphraseActivity {
         return masterSecret;
 
       } catch (InvalidPassphraseException e) {
+        Log.w(PassphraseChangeActivity.class.getSimpleName(), e);
         return null;
       }
     }
@@ -145,9 +147,7 @@ public class PassphraseChangeActivity extends PassphraseActivity {
     protected void onPostExecute(MasterSecret masterSecret) {
       if (masterSecret != null) {
         setMasterSecret(masterSecret);
-      }
-
-      else {
+      } else {
         Toast.makeText(context, R.string.PassphraseChangeActivity_incorrect_old_passphrase_exclamation,
                        Toast.LENGTH_LONG).show();
         originalPassphrase.setText("");
