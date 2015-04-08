@@ -127,6 +127,7 @@ dependencyVerification {
 android {
     compileSdkVersion 22
     buildToolsVersion '22.0.1'
+    testBuildType "testing"
 
     dexOptions {
         javaMaxHeapSize "4g"
@@ -187,6 +188,10 @@ android {
                           'proguard-glide.pro',
                           'proguard.cfg'
             signingConfig signingConfigs.release
+        }
+        testing.initWith(buildTypes.debug)
+        testing {
+            proguardFile 'proguard-testing.pro'
         }
     }
 
