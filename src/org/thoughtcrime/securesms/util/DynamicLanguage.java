@@ -6,22 +6,29 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.text.TextUtils;
+import android.util.Log;
 
 import java.util.Locale;
 
 public class DynamicLanguage {
 
+  private static final String TAG     = DynamicLanguage.class.getName();
   private static final String DEFAULT = "zz";
 
-  private Locale currentLocale;
-
   public void onCreate(Activity activity) {
-    currentLocale = getSelectedLocale(activity);
-    setContextLocale(activity, currentLocale);
+    updateConfiguredLocaleWithUserSelection(activity);
+  }
+
+  public void onActivityResult(Context context) {
+    updateConfiguredLocaleWithUserSelection(context);
   }
 
   public void onResume(Activity activity) {
-    if (!currentLocale.equals(getSelectedLocale(activity))) {
+    Locale selectedLocale   = getSelectedLocale(activity);
+    Locale configuredLocale = getConfiguredLocale(activity);
+
+    if (!configuredLocale.equals(selectedLocale)) {
+      Log.d(TAG, "locale has changed since pause, restarting activity");
       Intent intent = activity.getIntent();
       activity.finish();
       OverridePendingTransition.invoke(activity);
@@ -30,23 +37,41 @@ public class DynamicLanguage {
     }
   }
 
-  public void updateServiceLocale(Service service) {
-    currentLocale = getSelectedLocale(service);
-    setContextLocale(service, currentLocale);
-  }
+  public void onConfigurationChanged(Context context, Configuration newConfig) {
+    Locale selectedLocale   = getSelectedLocale(context);
+    Locale configuredLocale = newConfig.locale;
 
-  private static void setContextLocale(Context context, Locale selectedLocale) {
-    Configuration configuration = context.getResources().getConfiguration();
+    if (!configuredLocale.equals(selectedLocale)) {
+      Log.d(TAG, "overriding locale change from " + configuredLocale + " to " + selectedLocale);
+      Configuration fixedConfig        = new Configuration(newConfig);
+                    fixedConfig.locale = selectedLocale;
 
-    if (!configuration.locale.equals(selectedLocale)) {
-      configuration.locale = selectedLocale;
-      context.getResources().updateConfiguration(configuration,
-                                                  context.getResources().getDisplayMetrics());
+      context.getResources().updateConfiguration(fixedConfig,
+                                                 context.getResources().getDisplayMetrics());
     }
   }
 
-  private static Locale getActivityLocale(Activity activity) {
-    return activity.getResources().getConfiguration().locale;
+  public void updateServiceLocale(Service service) {
+    updateConfiguredLocaleWithUserSelection(service);
+  }
+
+  private static void updateConfiguredLocaleWithUserSelection(Context context) {
+    Locale selectedLocale   = getSelectedLocale(context);
+    Locale configuredLocale = getConfiguredLocale(context);
+
+    if (!configuredLocale.equals(selectedLocale)) {
+      Log.d(TAG, "updating config to use " + selectedLocale + " locale");
+
+      Configuration newConfig        = new Configuration(context.getResources().getConfiguration());
+                    newConfig.locale = selectedLocale;
+
+      context.getResources().updateConfiguration(newConfig,
+                                                 context.getResources().getDisplayMetrics());
+    }
+  }
+
+  private static Locale getConfiguredLocale(Context context) {
+    return context.getResources().getConfiguration().locale;
   }
 
   private static Locale getSelectedLocale(Context context) {

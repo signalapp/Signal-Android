@@ -29,10 +29,8 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
-import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.NumberUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -53,15 +51,13 @@ import static org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 public class NewConversationActivity extends PassphraseRequiredActionBarActivity {
   private static final String TAG = NewConversationActivity.class.getSimpleName();
 
-  private final DynamicTheme    dynamicTheme    = new DynamicTheme   ();
-  private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
+  private final DynamicTheme dynamicTheme = new DynamicTheme();
 
   private PushContactSelectionListFragment contactsFragment;
 
   @Override
   protected void onPreCreate() {
     dynamicTheme.onCreate(this);
-    dynamicLanguage.onCreate(this);
   }
 
   @Override
@@ -76,7 +72,6 @@ public class NewConversationActivity extends PassphraseRequiredActionBarActivity
   public void onResume() {
     super.onResume();
     dynamicTheme.onResume(this);
-    dynamicLanguage.onResume(this);
     getSupportActionBar().setTitle(R.string.AndroidManifest__select_contacts);
   }
 

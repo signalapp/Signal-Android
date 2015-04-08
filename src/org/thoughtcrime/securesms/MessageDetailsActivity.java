@@ -44,7 +44,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
-import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.GroupUtil;
 
@@ -80,13 +79,11 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
   private ListView         recipientsList;
   private LayoutInflater   inflater;
 
-  private DynamicTheme     dynamicTheme    = new DynamicTheme();
-  private DynamicLanguage  dynamicLanguage = new DynamicLanguage();
+  private DynamicTheme dynamicTheme = new DynamicTheme();
 
   @Override
   protected void onPreCreate() {
     dynamicTheme.onCreate(this);
-    dynamicLanguage.onCreate(this);
   }
 
   @Override
@@ -103,7 +100,6 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
   protected void onResume() {
     super.onResume();
     dynamicTheme.onResume(this);
-    dynamicLanguage.onResume(this);
   }
 
   private void initializeResources() {

@@ -26,7 +26,6 @@ import android.view.MenuItem;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
-import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
@@ -46,15 +45,13 @@ public class PushContactSelectionActivity extends PassphraseRequiredActionBarAct
   private final static String TAG             = "ContactSelectActivity";
   public  final static String PUSH_ONLY_EXTRA = "push_only";
 
-  private final DynamicTheme    dynamicTheme    = new DynamicTheme   ();
-  private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
+  private final DynamicTheme dynamicTheme = new DynamicTheme();
 
   private PushContactSelectionListFragment contactsFragment;
 
   @Override
   protected void onPreCreate() {
     dynamicTheme.onCreate(this);
-    dynamicLanguage.onCreate(this);
   }
 
   @Override
@@ -69,7 +66,6 @@ public class PushContactSelectionActivity extends PassphraseRequiredActionBarAct
   public void onResume() {
     super.onResume();
     dynamicTheme.onResume(this);
-    dynamicLanguage.onResume(this);
     getSupportActionBar().setTitle(R.string.AndroidManifest__select_contacts);
   }
 

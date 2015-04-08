@@ -44,7 +44,6 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.DateUtils;
-import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
 
@@ -60,8 +59,6 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
 
   public static final String RECIPIENT_EXTRA = "recipient";
   public static final String DATE_EXTRA      = "date";
-
-  private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   private MasterSecret masterSecret;
   private boolean      paused;
@@ -79,7 +76,6 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   protected void onCreate(Bundle bundle, @NonNull MasterSecret masterSecret) {
     this.masterSecret = masterSecret;
     this.setTheme(R.style.TextSecure_DarkTheme);
-    dynamicLanguage.onCreate(this);
 
     setFullscreenIfPossible();
     getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -122,7 +118,6 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   public void onResume() {
     super.onResume();
     paused = false;
-    dynamicLanguage.onResume(this);
     if (recipient != null) recipient.addListener(this);
     initializeMedia();
   }

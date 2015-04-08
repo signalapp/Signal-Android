@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -9,7 +8,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 
-public class SmsSendtoActivity extends Activity {
+public class SmsSendtoActivity extends BaseActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     startActivity(getNextIntent(getIntent()));

@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms;
 
+import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBarActivity;
@@ -7,11 +9,15 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.ViewConfiguration;
 
+import org.thoughtcrime.securesms.util.DynamicLanguage;
+
 import java.lang.reflect.Field;
 
 
 public abstract class BaseActionBarActivity extends ActionBarActivity {
   private static final String TAG = BaseActionBarActivity.class.getSimpleName();
+
+  protected final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +25,25 @@ public abstract class BaseActionBarActivity extends ActionBarActivity {
       forceOverflowMenu();
     }
     super.onCreate(savedInstanceState);
+    dynamicLanguage.onCreate(this);
+  }
+
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+    dynamicLanguage.onActivityResult(this);
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+    dynamicLanguage.onResume(this);
+  }
+
+  @Override
+  public void onConfigurationChanged(Configuration newConfig) {
+    super.onConfigurationChanged(newConfig);
+    dynamicLanguage.onConfigurationChanged(this, newConfig);
   }
 
   @Override
