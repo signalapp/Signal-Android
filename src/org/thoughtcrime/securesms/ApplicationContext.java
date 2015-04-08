@@ -110,7 +110,7 @@ public class ApplicationContext extends Application implements DependencyInjecto
 
   @Override
   public void onConfigurationChanged(Configuration newConfig) {
-    DynamicLanguage.onConfigurationChanged(getApplicationContext(), newConfig);
+    DynamicLanguage.onConfigurationChanged(this, newConfig);
   }
 
 }
