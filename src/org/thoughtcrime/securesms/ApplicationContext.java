@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.res.Configuration;
 
 import org.thoughtcrime.securesms.crypto.PRNGFixes;
 import org.thoughtcrime.securesms.dependencies.AxolotlStorageModule;
@@ -27,14 +28,13 @@ import org.thoughtcrime.securesms.jobs.GcmRefreshJob;
 import org.thoughtcrime.securesms.jobs.persistence.EncryptingJobSerializer;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirementProvider;
 import org.thoughtcrime.securesms.jobs.requirements.ServiceRequirementProvider;
+import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.JobManager;
 import org.whispersystems.jobqueue.dependencies.DependencyInjector;
 import org.whispersystems.jobqueue.requirements.NetworkRequirementProvider;
 import org.whispersystems.libaxolotl.logging.AxolotlLoggerProvider;
 import org.whispersystems.libaxolotl.util.AndroidAxolotlLogger;
-
-import java.security.Security;
 
 import dagger.ObjectGraph;
 
@@ -106,6 +106,11 @@ public class ApplicationContext extends Application implements DependencyInjecto
     {
       this.jobManager.add(new GcmRefreshJob(this));
     }
+  }
+
+  @Override
+  public void onConfigurationChanged(Configuration newConfig) {
+    DynamicLanguage.onConfigurationChanged(getApplicationContext(), newConfig);
   }
 
 }
