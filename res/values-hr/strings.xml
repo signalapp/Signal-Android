@@ -101,6 +101,7 @@ ovaj kontakt.</string>
   <string name="ConversationActivity_error_leaving_group">Greška prilikom napuštanja grupe...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS nije podržan</string>
   <string name="ConversationActivity_mms_not_supported_message">Ovu poruku nije moguće poslati jer vaš operater ne podržava MMS.</string>
+  <string name="ConversationActivity_specify_recipient">Odaberite kontakt</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalji poruke</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nPoslano/Primljeno: %2$s</string>
@@ -238,6 +239,11 @@ ponovno uvoženje će rezultirati duplim porukama.</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Pošaljite lozinku</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Neispravna lozinka!</string>
   <!--RatingManager-->
+  <string name="RatingManager_rate_this_app">Ocijenite ovu aplikaciju</string>
+  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Ukoliko volite koristiti ovu aplikaciju, odvojite trenutak kako biste nam pomogli svojom ocjenom.</string>
+  <string name="RatingManager_rate_now">Ocijenite sada!</string>
+  <string name="RatingManager_no_thanks">Ne hvala</string>
+  <string name="RatingManager_later">Kasnije</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Potpis
 na razmjeni ključeva je drugačiji od onoga što ste prethodno primali od ovog kontakta.
@@ -556,6 +562,7 @@ neuspješno.</string>
   <string name="AndroidManifest__media_preview">Prikaz medija</string>
   <string name="AndroidManifest__media_overview">Sve slike</string>
   <string name="AndroidManifest__media_overview_named">Sve slike sa %1$s</string>
+  <string name="AndroidManifest__message_details">Detalji poruke</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Uvoz / izvoz</string>
   <string name="arrays__my_identity_key">Moj ključ identiteta</string>

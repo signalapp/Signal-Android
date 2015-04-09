@@ -571,6 +571,7 @@ TextSecure чака твърде дълго за SMS потвърждение.
   <string name="AndroidManifest__media_preview">Преглед на файла</string>
   <string name="AndroidManifest__media_overview">Всички изображения</string>
   <string name="AndroidManifest__media_overview_named">Всички изображения с %1$s</string>
+  <string name="AndroidManifest__message_details">Информаця за съобщението</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Внасяне / изнасяне</string>
   <string name="arrays__my_identity_key">Моят ключ за самоличност</string>

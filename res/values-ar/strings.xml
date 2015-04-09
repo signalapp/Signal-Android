@@ -96,6 +96,7 @@
   <string name="ConversationActivity_error_leaving_group">خطأ أثناء ترك المجموعة...</string>
   <string name="ConversationActivity_mms_not_supported_title">رسائل الوسائط المتعددة غير مدعمة</string>
   <string name="ConversationActivity_mms_not_supported_message">لا يمكن إرسال هذه الرسالة لأن شبكة الجوال التي تستخدمها لا تدعم رسائل الوسائط المتعددة</string>
+  <string name="ConversationActivity_specify_recipient">رجاء اختيار جهة اتصال</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">تفاصيل الرسالة</string>
   <string name="ConversationFragment_transport_s_sent_received_s">نقل: %1$s\nSent/Received: %2$s</string>
@@ -227,6 +228,11 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">أرسل العبارة السرية </string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">عبارة سرية غير صحيحة!</string>
   <!--RatingManager-->
+  <string name="RatingManager_rate_this_app">تقييم التطبيق</string>
+  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">إذا كنت مستمتع باستخدام التطبيق رجاء مساعدتنا بتقييمه</string>
+  <string name="RatingManager_rate_now">قَيّم الآن</string>
+  <string name="RatingManager_no_thanks">لا، شكرا</string>
+  <string name="RatingManager_later">فيما بعد</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">المفتاح لجهة الاتصال هذه مختلف عن المرة السابقة. هذا قد يعني ان هناك محاولة لاعتراض اتصالاتك، أو ان جهة الاتصال قام\قامت بإعادة تنصيب تكست سيكيور لديهم.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">ربما تود التحقق من جهة الاتصال هذه.</string>
@@ -523,6 +529,7 @@
   <string name="AndroidManifest__media_preview">معاينة الوسائط</string>
   <string name="AndroidManifest__media_overview">جميع الصور</string>
   <string name="AndroidManifest__media_overview_named">جميع الصور مع %1$s</string>
+  <string name="AndroidManifest__message_details">تفاصيل الرسالة</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">استيراد \ تصدير</string>
   <string name="arrays__my_identity_key">مفتاح هويتي</string>
@@ -567,7 +574,7 @@
   <string name="preferences__enable_local_encryption_of_messages_and_keys">تفعيل تشفير تخزين الرسائل والمفاتيح</string>
   <string name="preferences__screen_security">تأمين الشاشة</string>
   <string name="preferences__screen_security_summary">تأمين الشاشة %s</string>
-  <string name="preferences__disable_screen_security_to_allow_screen_shots">امنع لقطات الشاشة داخل التطبيق وفي قائمة Recents</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">منع لقطات الشاشة داخل التطبيق</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">انسى العبارة السرية من ذاكرة الجهاز بعد فترة</string>
   <string name="preferences__timeout_passphrase">نسيان العبارة السرية بعد فترة</string>
   <string name="preferences__pref_timeout_interval_dialogtitle">تحديد مهلة العبارة السرية</string>

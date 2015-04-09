@@ -543,6 +543,7 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
   <string name="AndroidManifest__media_preview">メディアのプレビュー表示</string>
   <string name="AndroidManifest__media_overview">すべての画像</string>
   <string name="AndroidManifest__media_overview_named">%1$s とすべての画像</string>
+  <string name="AndroidManifest__message_details">メッセージの詳細</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">インポート／エクスポート</string>
   <string name="arrays__my_identity_key">自分の認証キー</string>

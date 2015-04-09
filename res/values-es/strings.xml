@@ -257,7 +257,7 @@ Por favor pida al remitente que actualice a la versión más reciente y reenvíe
   <string name="RatingManager_rate_this_app">Evalúe esta aplicación</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Si disfruta usando esta aplicación, por favor, tómese un momento para ayudarnos evaluándola.</string>
   <string name="RatingManager_rate_now">¡Evaluar ahora!</string>
-  <string name="RatingManager_no_thanks">No gracias</string>
+  <string name="RatingManager_no_thanks">No, gracias</string>
   <string name="RatingManager_later">Más tarde</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">La firma en este intercambio de claves es diferente de lo que previamente ha recibido de este contacto. Esto podría significar que alguien está intentando interceptar las comunicaciones o que este contacto simplemente reinstaló TextSecure y ahora tiene una nueva clave de identidad.</string>
@@ -609,6 +609,7 @@ por SMS.
   <string name="AndroidManifest__media_preview">Previsualización del contenido</string>
   <string name="AndroidManifest__media_overview">Todas las imágenes</string>
   <string name="AndroidManifest__media_overview_named">Todas la imágenes con %1$s</string>
+  <string name="AndroidManifest__message_details">Detalles del mensaje</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importar/exportar</string>
   <string name="arrays__my_identity_key">Mi clave de identidad</string>

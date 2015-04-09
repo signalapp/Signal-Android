@@ -133,7 +133,7 @@ preveriti ta stik.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Deli z</string>
   <!--ExportFragment-->
-  <string name="ExportFragment_export">Izvoz</string>
+  <string name="ExportFragment_export">Izvozi</string>
   <string name="ExportFragment_export_plaintext_to_sd_card">Izvozim na kartico SD v nešifrirani obliki?</string>
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Pozor, s tem boste izvozili vsebino svojih sporočil na kartico SD v nešifrirani obliki.</string>
   <string name="ExportFragment_cancel">Prekliči</string>
@@ -166,7 +166,7 @@ preveriti ta stik.</string>
   <string name="GroupMembersDialog_members">Člani...</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Uvoz</string>
-  <string name="ImportExportActivity_export">Izvozi</string>
+  <string name="ImportExportActivity_export">Izvoz</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Uvozim iz sistemske zbirke sporočil SMS?</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">S tem boste uvozili sporočila iz sistemske zbirke SMS v aplikacijo TextSecure. Če ste predhodno že uvozili sporočila iz sistemske zbirke SMS, bodo ta sporočila v aplikaciji TextSecure podvojena.</string>
@@ -536,6 +536,7 @@ bila uspešna.</string>
   <string name="AndroidManifest__media_preview">Ogled medija</string>
   <string name="AndroidManifest__media_overview">Vse slike</string>
   <string name="AndroidManifest__media_overview_named">Vse slike z %1$s</string>
+  <string name="AndroidManifest__message_details">Podrobnosti sporočila</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Uvoz/izvoz</string>
   <string name="arrays__my_identity_key">Moja identifikacija</string>

@@ -243,6 +243,11 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">Поднеси лозинку</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Нетачна лозинка!</string>
   <!--RatingManager-->
+  <string name="RatingManager_rate_this_app">Оцените апликацију</string>
+  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Ако уживате у коришћењу ове апликације, помозите нам тако што ћете да је оцените.</string>
+  <string name="RatingManager_rate_now">Оцени одмах!</string>
+  <string name="RatingManager_no_thanks">Не, хвала</string>
+  <string name="RatingManager_later">Касније</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Потпис
 ове размене кључева је другачији од претходно примљеног потписа од овог контакта.
@@ -562,6 +567,7 @@
   <string name="AndroidManifest__media_preview">Приказ медијума</string>
   <string name="AndroidManifest__media_overview">Све слике</string>
   <string name="AndroidManifest__media_overview_named">Све слика са %1$s</string>
+  <string name="AndroidManifest__message_details">Детаљи поруке</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Увоз/извоз</string>
   <string name="arrays__my_identity_key">Мој кључ идентитета</string>

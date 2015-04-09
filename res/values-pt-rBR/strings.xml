@@ -600,6 +600,7 @@ falhou.</string>
   <string name="AndroidManifest__media_preview">Visualização rápida</string>
   <string name="AndroidManifest__media_overview">Todas as imagens</string>
   <string name="AndroidManifest__media_overview_named">Todas as imagens com %1$s</string>
+  <string name="AndroidManifest__message_details">Detalhes da mensagem</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importar / exportar</string>
   <string name="arrays__my_identity_key">Minha chave de identidade</string>

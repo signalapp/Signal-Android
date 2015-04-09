@@ -185,6 +185,10 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">ثبت کردن عبارت عبور</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">رمز معتبر نیست!</string>
   <!--RatingManager-->
+  <string name="RatingManager_rate_this_app">امتیاز به این برنامه</string>
+  <string name="RatingManager_rate_now">اکنون بسنجید!</string>
+  <string name="RatingManager_no_thanks">نه ممنون</string>
+  <string name="RatingManager_later">بعد</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">شما ممکن است مایل به منظور بررسی
 تماس با ما</string>
@@ -355,8 +359,11 @@
   <!--database_migration_activity-->
   <string name="database_migration_activity__skip">پرش</string>
   <string name="database_migration_activity__import">وارد کردن</string>
+  <string name="database_migration_activity__importing">وارد کردن</string>
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">به روز رسانی پایگاه داده ...</string>
+  <string name="import_fragment__import_system_sms_database">واردکردن پایگاه داده سیستم SMS</string>
+  <string name="import_fragment__import_encrypted_backup">واردکردن پشتیبان رمزگذاری شده</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">بدون تصاویر</string>
   <!--message_recipients_list_item-->
@@ -368,6 +375,7 @@
   <string name="MmsPreferencesFragment__not_set">تنظیم نشده</string>
   <!--GroupUtil-->
   <string name="GroupUtil_group_updated">گروه به روز شد.</string>
+  <string name="GroupUtil_title_is_now">عنوان در حال حاضر \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">قفل باز شود</string>
   <!--prompt_mms_activity-->
@@ -380,6 +388,8 @@
   <string name="registration_activity__phone_number">شماره تلفن</string>
   <string name="registration_activity__register">ثبت نام</string>
   <!--registration_problems-->
+  <string name="registration_problems__some_possible_problems_include">برخی از مشکلات احتمالی
+عبارتند از:</string>
   <string name="registration_problems__sms_interceptors">پیامک رهگیر.</string>
   <string name="registration_problems__incorrect_number">تعداد نادرست.</string>
   <string name="registration_problems__google_voice">Google Voice</string>
@@ -426,7 +436,10 @@
   <string name="AndroidManifest__log_submit">ارسال گزارش اشکال‌زدایی</string>
   <string name="AndroidManifest__media_preview">پیش نمایش رسانه</string>
   <string name="AndroidManifest__media_overview">همه تصاویر</string>
+  <string name="AndroidManifest__media_overview_named">همه عکس ها با %1$s</string>
+  <string name="AndroidManifest__message_details">جزئیات پیام</string>
   <!--arrays.xml-->
+  <string name="arrays__import_export">وارد کردن / خروجی گرفتن</string>
   <string name="arrays__my_identity_key">کلید هویت من</string>
   <string name="arrays__use_default">استفاده از پیش فرض</string>
   <string name="arrays__use_custom">استفاده از سفارشی</string>

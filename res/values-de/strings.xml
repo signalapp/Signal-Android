@@ -98,7 +98,7 @@ Dies könnte bedeuten, dass jemand versucht, Ihr Gespräch abzuhören. Vielleich
   <string name="ConversationActivity_error_leaving_group">Fehler beim Verlassen der Gruppe...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS nicht unterstützt</string>
   <string name="ConversationActivity_mms_not_supported_message">Diese Nachricht kann nicht gesendet werden, da Ihr Mobilfunkbetreiber MMS nicht unterstützt.</string>
-  <string name="ConversationActivity_specify_recipient">Bitte wählen Sie einen Kontakt aus</string>
+  <string name="ConversationActivity_specify_recipient">Bitte einen Kontakt auswählen</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Nachrichtendetails</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Übertragung: %1$s\nGesendet/Empfangen: %2$s</string>
@@ -234,10 +234,10 @@ Bitten Sie den Absender, TextSecure zu aktualisieren und die Nachricht erneut zu
   <string name="PassphrasePromptActivity_ok_button_content_description">Passwort übermitteln</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Passwort ungültig!</string>
   <!--RatingManager-->
-  <string name="RatingManager_rate_this_app">Bewerten Sie diese App</string>
-  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Wenn Ihnen die App gefällt, nehmen Sie sich bitte einen Moment Zeit, um sie zu bewerten. Damit würden Sie uns helfen.</string>
+  <string name="RatingManager_rate_this_app">Diese App bewerten</string>
+  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Wenn Ihnen die App gefällt, nehmen Sie sich bitte einen Moment Zeit, um uns durch deren Bewertung zu helfen.</string>
   <string name="RatingManager_rate_now">Jetzt bewerten!</string>
-  <string name="RatingManager_no_thanks">Nein, danke</string>
+  <string name="RatingManager_no_thanks">Nein danke</string>
   <string name="RatingManager_later">Später</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Die Signatur dieses Schlüsselaustauschs hat sich geändert. Dies könnte bedeuten, dass jemand versucht, Ihr Gespräch abzuhören. Vielleicht hat dieser Kontakt TextSecure aber auch nur neu installiert und benutzt nun einen neuen Schlüssel.</string>
@@ -532,6 +532,7 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="AndroidManifest__media_preview">Dateivorschau</string>
   <string name="AndroidManifest__media_overview">Alle Bilder</string>
   <string name="AndroidManifest__media_overview_named">Alle Bilder mit %1$s</string>
+  <string name="AndroidManifest__message_details">Nachrichtendetails</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Datensicherung</string>
   <string name="arrays__my_identity_key">Mein Schlüssel</string>
