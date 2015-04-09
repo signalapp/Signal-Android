@@ -20,6 +20,7 @@
                 android:id="@+id/list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:scrollbars="vertical"
                 android:nextFocusDown="@+id/fab"
                 android:nextFocusForward="@+id/fab"
                 tools:listitem="@layout/conversation_list_item_view" />
