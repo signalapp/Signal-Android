@@ -21,7 +21,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
-import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -216,8 +215,6 @@ public class MmsSmsDatabase extends Database {
     outerQueryBuilder.setTables("(" + unionQuery + ")");
 
     String query      = outerQueryBuilder.buildQuery(projection, null, null, groupBy, null, null, limit);
-
-    Log.w("MmsSmsDatabase", "Executing query: " + query);
     SQLiteDatabase db = databaseHelper.getReadableDatabase();
     return db.rawQuery(query, null);
   }
