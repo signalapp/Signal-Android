@@ -638,13 +638,18 @@ public class ConversationItem extends LinearLayout {
           return;
         }
       }
-      mediaThumbnail.hide();
+      this.onFailure(new IllegalStateException("thumbnailFuture is null"));
     }
 
     @Override
     public void onFailure(Throwable error) {
       Log.w(TAG, error);
-      mediaThumbnail.hide();
+      handler.post(new Runnable() {
+        @Override
+        public void run() {
+          mediaThumbnail.hide();
+        }
+      });
     }
   }
 }
