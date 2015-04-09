@@ -98,7 +98,7 @@
         <item name="conversation_send_button_sms_secure">@drawable/ic_action_securesms_gdata</item>
         <item name="conversation_send_button_sms_insecure">@drawable/ic_action_sms_gdata
         </item>
-        <item name="conversation_delivery_delivered">@drawable/ic_delivery_delivered</item>
+        <item name="conversation_delivery_delivered">@drawable/ic_delivery_delivered_dark</item>
         <item name="conversation_transport_indicators">@array/transport_selection_icons_gdata</item>
         <item name="conversation_transport_popup_background">@color/white</item>
         <item name="conversation_emoji_toggle">@drawable/ic_emoji_dark</item>
@@ -113,7 +113,8 @@
         <item name="menu_call_icon">@drawable/ic_menu_call_holo_dark</item>
         <item name="menu_unlock_icon">@drawable/ic_menu_unlock_holo_dark</item>
         <item name="menu_lock_icon">@drawable/ic_menu_lock_holo_dark</item>
-        <item name="menu_lock_icon_small">@drawable/ic_lock_black_18dp</item>
+        <item name="menu_lock_icon_small">@drawable/ic_lock_white_18dp</item>
+        <item name="menu_lock_icon_small_dark">@drawable/ic_lock_black_18dp</item>
         <item name="menu_trash_icon">@drawable/ic_menu_trash_holo_dark</item>
         <item name="menu_selectall_icon">@drawable/ic_menu_selectall_holo_dark</item>
         <item name="menu_split_icon">@drawable/ic_menu_split_holo_dark</item>
