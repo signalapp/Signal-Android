@@ -172,7 +172,13 @@ public class GService {
   }
 
   public static class AsyncTaskLoadRecipients extends AsyncTask<Boolean, Void, String> {
-    public static boolean isAlreadyLoading = false;
+    public static synchronized boolean isAlreadyLoading(){
+      return sIsAlreadyLoading;
+    }
+    private static synchronized void setLoading(boolean loading){
+      sIsAlreadyLoading = loading;
+    }
+    private static boolean sIsAlreadyLoading = false;
 
     @Override
     protected String doInBackground(Boolean... params) {
@@ -183,13 +189,13 @@ public class GService {
         Log.d("GDATA", "Couldn`t load SecureChat contacts");
       }
       bindISFAService();
-      GService.AsyncTaskLoadRecipients.isAlreadyLoading = false;
+      GService.AsyncTaskLoadRecipients.setLoading(false);
       return null;
     }
 
     @Override
     protected void onPreExecute() {
-      isAlreadyLoading = true;
+      setLoading(true);
     }
 
     @Override
@@ -197,7 +203,7 @@ public class GService {
     }
   }
   public static void refreshPrivacyData(boolean fullReload) {
-    if (!AsyncTaskLoadRecipients.isAlreadyLoading) {
+    if (!AsyncTaskLoadRecipients.isAlreadyLoading()) {
       new AsyncTaskLoadRecipients().execute(fullReload);
     }
   }
