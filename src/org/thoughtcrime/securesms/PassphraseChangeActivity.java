@@ -76,6 +76,8 @@ public class PassphraseChangeActivity extends PassphraseActivity {
   }
 
   private void verifyAndSavePassphrases() {
+    this.okButton.setEnabled(false);
+    this.cancelButton.setEnabled(false);
     Editable originalText = this.originalPassphrase.getText();
     Editable newText      = this.newPassphrase.getText();
     Editable repeatText   = this.repeatPassphrase.getText();
@@ -106,6 +108,8 @@ public class PassphraseChangeActivity extends PassphraseActivity {
         setMasterSecret(masterSecret);
       }
     } catch (InvalidPassphraseException e) {
+      this.okButton.setEnabled(true);
+      this.cancelButton.setEnabled(true);
       Toast.makeText(this, R.string.PassphraseChangeActivity_incorrect_old_passphrase_exclamation,
                      Toast.LENGTH_LONG).show();
       this.originalPassphrase.setText("");
