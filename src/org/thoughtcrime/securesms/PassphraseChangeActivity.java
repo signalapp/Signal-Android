@@ -102,7 +102,7 @@ public class PassphraseChangeActivity extends PassphraseActivity {
                      R.string.PassphraseChangeActivity_enter_new_passphrase_exclamation,
                      Toast.LENGTH_SHORT).show();
     } else {
-      new ChangePassphraseTask(this, original, passphrase).execute();
+      new ChangePassphraseTask(this).execute(original, passphrase);
     }
   }
 
@@ -118,15 +118,11 @@ public class PassphraseChangeActivity extends PassphraseActivity {
     }
   }
 
-  private class ChangePassphraseTask extends AsyncTask<Void, Void, MasterSecret> {
+  private class ChangePassphraseTask extends AsyncTask<String, Void, MasterSecret> {
     private final Context context;
-    private String original;
-    private String passphrase;
 
-    public ChangePassphraseTask(Context context, String original, String passphrase) {
-      this.context    = context;
-      this.original   = original;
-      this.passphrase = passphrase;
+    public ChangePassphraseTask(Context context) {
+      this.context = context;
     }
 
     @Override
@@ -135,9 +131,9 @@ public class PassphraseChangeActivity extends PassphraseActivity {
     }
 
     @Override
-    protected MasterSecret doInBackground(Void... params) {
+    protected MasterSecret doInBackground(String... params) {
       try {
-        MasterSecret masterSecret = MasterSecretUtil.changeMasterSecretPassphrase(context, original, passphrase);
+        MasterSecret masterSecret = MasterSecretUtil.changeMasterSecretPassphrase(context, params[0], params[1]);
         TextSecurePreferences.setPasswordDisabled(context, false);
 
         return masterSecret;
