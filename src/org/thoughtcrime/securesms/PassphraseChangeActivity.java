@@ -130,6 +130,11 @@ public class PassphraseChangeActivity extends PassphraseActivity {
     }
 
     @Override
+    protected void onPreExecute() {
+      okButton.setEnabled(false);
+    }
+
+    @Override
     protected MasterSecret doInBackground(Void... params) {
       try {
         MasterSecret masterSecret = MasterSecretUtil.changeMasterSecretPassphrase(context, original, passphrase);
@@ -145,6 +150,8 @@ public class PassphraseChangeActivity extends PassphraseActivity {
 
     @Override
     protected void onPostExecute(MasterSecret masterSecret) {
+      okButton.setEnabled(true);
+
       if (masterSecret != null) {
         setMasterSecret(masterSecret);
       } else {
