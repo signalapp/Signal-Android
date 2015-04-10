@@ -5,11 +5,16 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build.VERSION;
+import android.os.Build.VERSION_CODES;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
+import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.BitmapDecodingException;
+import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.LRUCache;
 
 import java.io.InputStream;
@@ -17,6 +22,7 @@ import java.util.Collections;
 import java.util.Map;
 
 public class ContactPhotoFactory {
+  private static final String TAG = ContactPhotoFactory.class.getSimpleName();
 
   private static final Object defaultPhotoLock      = new Object();
   private static final Object defaultGroupPhotoLock = new Object();
@@ -86,12 +92,31 @@ public class ContactPhotoFactory {
   }
 
   public static Bitmap getContactPhoto(Context context, Uri uri) {
-    InputStream inputStream = ContactsContract.Contacts.openContactPhotoInputStream(context.getContentResolver(), uri);
-
-    final Bitmap contactPhoto;
-    if (inputStream == null) contactPhoto = ContactPhotoFactory.getDefaultContactPhoto(context);
-    else                     contactPhoto = BitmapFactory.decodeStream(inputStream);
+    final InputStream inputStream = getContactPhotoStream(context, uri);
+    final int         targetSize  = context.getResources().getDimensionPixelSize(R.dimen.contact_photo_target_size);
+    Bitmap contactPhoto = null;
+    if (inputStream != null) {
+      try {
+        contactPhoto = BitmapUtil.createScaledBitmap(inputStream,
+                                                     getContactPhotoStream(context, uri),
+                                                     targetSize,
+                                                     targetSize);
+      } catch (BitmapDecodingException bde) {
+        Log.w(TAG, bde);
+      }
+    }
+    if (contactPhoto == null) {
+      contactPhoto = ContactPhotoFactory.getDefaultContactPhoto(context);
+    }
 
     return contactPhoto;
+  }
+
+  private static InputStream getContactPhotoStream(Context context, Uri uri) {
+    if (VERSION.SDK_INT >= VERSION_CODES.ICE_CREAM_SANDWICH) {
+      return ContactsContract.Contacts.openContactPhotoInputStream(context.getContentResolver(), uri, true);
+    } else {
+      return ContactsContract.Contacts.openContactPhotoInputStream(context.getContentResolver(), uri);
+    }
   }
 }

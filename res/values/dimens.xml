@@ -9,6 +9,7 @@
     <dimen name="transport_selection_popup_width">200sp</dimen>
     <dimen name="transport_selection_popup_xoff">0dp</dimen>
     <dimen name="transport_selection_popup_yoff">1dp</dimen>
+    <dimen name="contact_photo_target_size">64dp</dimen>
     <dimen name="contact_selection_photo_size">50dp</dimen>
     <dimen name="thumbnail_max_size">230dp</dimen>
     <dimen name="preference_fragment_padding_side">8dp</dimen>
