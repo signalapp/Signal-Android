@@ -190,8 +190,8 @@ public class MessageNotifier {
     builder.setPriority(NotificationCompat.PRIORITY_HIGH);
     builder.setNumber(notificationState.getMessageCount());
     builder.setCategory(NotificationCompat.CATEGORY_MESSAGE);
-    builder.addPerson(recipient.getContactUri().toString());
     builder.setDeleteIntent(PendingIntent.getBroadcast(context, 0, new Intent(DeleteReceiver.DELETE_REMINDER_ACTION), 0));
+    if (recipient.getContactUri() != null) builder.addPerson(recipient.getContactUri().toString());
 
     if (masterSecret != null) {
       builder.addAction(R.drawable.check, context.getString(R.string.MessageNotifier_mark_as_read),
@@ -239,6 +239,7 @@ public class MessageNotifier {
     
     builder.setContentInfo(String.valueOf(notificationState.getMessageCount()));
     builder.setNumber(notificationState.getMessageCount());
+    builder.setCategory(NotificationCompat.CATEGORY_MESSAGE);
 
     builder.setDeleteIntent(PendingIntent.getBroadcast(context, 0, new Intent(DeleteReceiver.DELETE_REMINDER_ACTION), 0));
 
@@ -253,6 +254,9 @@ public class MessageNotifier {
     while(iterator.hasPrevious()) {
       NotificationItem item = iterator.previous();
       style.addLine(item.getTickerText());
+      if (item.getIndividualRecipient().getContactUri() != null) {
+        builder.addPerson(item.getIndividualRecipient().getContactUri().toString());
+      }
     }
 
     builder.setStyle(style);
