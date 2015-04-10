@@ -167,6 +167,7 @@ android {
                           'proguard-square-okio.pro',
                           'proguard-spongycastle.pro',
                           'proguard-rounded-image-view.pro',
+                          'proguard-testing.pro',
                           'proguard.cfg'
         }
         release {
