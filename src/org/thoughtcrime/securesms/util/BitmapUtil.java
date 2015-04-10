@@ -5,14 +5,18 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.net.Uri;
 import android.util.Log;
 import android.util.Pair;
+
+import com.android.gallery3d.data.Exif;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.PartAuthority;
@@ -20,11 +24,8 @@ import org.thoughtcrime.securesms.mms.PartAuthority;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-
-import com.android.gallery3d.data.Exif;
 
 public class BitmapUtil {
   private static final String TAG = BitmapUtil.class.getSimpleName();
@@ -230,4 +231,26 @@ public class BitmapUtil {
     bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
     return stream.toByteArray();
   }
+
+  public static Bitmap getCircleBitmap(Bitmap bitmap) {
+    final Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),
+                                              bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+    final Canvas canvas = new Canvas(output);
+
+    final int   color = Color.RED;
+    final Paint paint = new Paint();
+    final Rect  rect  = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+    final RectF rectF = new RectF(rect);
+
+    paint.setAntiAlias(true);
+    canvas.drawARGB(0, 0, 0, 0);
+    paint.setColor(color);
+    canvas.drawOval(rectF, paint);
+
+    paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+    canvas.drawBitmap(bitmap, rect, rect, paint);
+
+    return output;
+  }
+
 }

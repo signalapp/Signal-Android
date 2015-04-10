@@ -52,6 +52,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
@@ -179,13 +180,17 @@ public class MessageNotifier {
     NotificationCompat.Builder builder  = new NotificationCompat.Builder(context);
     Recipient recipient                 = notifications.get(0).getIndividualRecipient();
 
+    builder.setLargeIcon(BitmapUtil.getCircleBitmap(recipient.getContactPhoto()));
     builder.setSmallIcon(R.drawable.icon_notification);
-    builder.setLargeIcon(recipient.getContactPhoto());
+    builder.setColor(context.getResources().getColor(R.color.textsecure_primary));
     builder.setContentTitle(recipient.toShortString());
     builder.setContentText(notifications.get(0).getText());
     builder.setContentIntent(notifications.get(0).getPendingIntent(context));
     builder.setContentInfo(String.valueOf(notificationState.getMessageCount()));
+    builder.setPriority(NotificationCompat.PRIORITY_HIGH);
     builder.setNumber(notificationState.getMessageCount());
+    builder.setCategory(NotificationCompat.CATEGORY_MESSAGE);
+    builder.addPerson(recipient.getContactUri().toString());
     builder.setDeleteIntent(PendingIntent.getBroadcast(context, 0, new Intent(DeleteReceiver.DELETE_REMINDER_ACTION), 0));
 
     if (masterSecret != null) {
@@ -222,13 +227,14 @@ public class MessageNotifier {
     List<NotificationItem> notifications = notificationState.getNotifications();
     NotificationCompat.Builder builder   = new NotificationCompat.Builder(context);
 
+    builder.setColor(context.getResources().getColor(R.color.textsecure_primary));
     builder.setSmallIcon(R.drawable.icon_notification);
-    builder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(),
-                                                      R.drawable.icon_notification));
-    builder.setContentTitle(String.format(context.getString(R.string.MessageNotifier_d_new_messages),
-                                          notificationState.getMessageCount()));
-    builder.setContentText(String.format(context.getString(R.string.MessageNotifier_most_recent_from_s),
-                                         notifications.get(0).getIndividualRecipientName()));
+    builder.setContentTitle(context.getString(R.string.app_name));
+    builder.setSubText(context.getString(R.string.MessageNotifier_d_messages_in_d_conversations,
+                                         notificationState.getMessageCount(),
+                                         notificationState.getThreadCount()));
+    builder.setContentText(context.getString(R.string.MessageNotifier_most_recent_from_s,
+                                             notifications.get(0).getIndividualRecipientName()));
     builder.setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, ConversationListActivity.class), 0));
     
     builder.setContentInfo(String.valueOf(notificationState.getMessageCount()));
