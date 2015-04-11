@@ -17,12 +17,11 @@
 package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
+import android.content.res.Resources.Theme;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore.Audio;
-
-import com.bumptech.glide.GenericRequestBuilder;
-import com.bumptech.glide.Glide;
+import android.support.annotation.DrawableRes;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -53,8 +52,8 @@ public class AudioSlide extends Slide {
   }
 
   @Override
-  public GenericRequestBuilder loadThumbnail(Context context) {
-    return Glide.with(context).load(ResUtil.getDrawableRes(context, R.attr.conversation_icon_attach_audio)).fitCenter();
+  public @DrawableRes int getPlaceholderRes(Theme theme) {
+    return ResUtil.getDrawableRes(theme, R.attr.conversation_icon_attach_audio);
   }
 
   public static PduPart constructPartFromUri(Context context, Uri uri) throws IOException, MediaTooLargeException {

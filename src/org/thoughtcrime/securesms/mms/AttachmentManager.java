@@ -26,10 +26,10 @@ import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 
 import java.io.IOException;
@@ -39,14 +39,14 @@ public class AttachmentManager {
 
   private final Context context;
   private final View attachmentView;
-  private final ImageView thumbnail;
+  private final ThumbnailView thumbnail;
   private final Button removeButton;
   private final SlideDeck slideDeck;
   private final AttachmentListener attachmentListener;
 
   public AttachmentManager(Activity view, AttachmentListener listener) {
     this.attachmentView     = (View)view.findViewById(R.id.attachment_editor);
-    this.thumbnail          = (ImageView)view.findViewById(R.id.attachment_thumbnail);
+    this.thumbnail          = (ThumbnailView)view.findViewById(R.id.attachment_thumbnail);
     this.removeButton       = (Button)view.findViewById(R.id.remove_image_button);
     this.slideDeck          = new SlideDeck();
     this.context            = view;
@@ -77,7 +77,7 @@ public class AttachmentManager {
     slideDeck.clear();
     slideDeck.addSlide(slide);
     attachmentView.setVisibility(View.VISIBLE);
-    slide.loadThumbnail(context).into(thumbnail);
+    thumbnail.setImageResource(slide);
   }
 
   public boolean isAttachmentPresent() {

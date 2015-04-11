@@ -39,7 +39,7 @@ import com.afollestad.materialdialogs.AlertDialogWrapper;
 
 import org.thoughtcrime.securesms.ConversationFragment.SelectionClickListener;
 import org.thoughtcrime.securesms.components.BubbleContainer;
-import org.thoughtcrime.securesms.components.ForegroundImageView;
+import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -90,7 +90,7 @@ public class ConversationItem extends LinearLayout {
 
   private Set<MessageRecord>     batchSelected;
   private SelectionClickListener selectionClickListener;
-  private ForegroundImageView    mediaThumbnail;
+  private ThumbnailView          mediaThumbnail;
   private Button                 mmsDownloadButton;
   private TextView               mmsDownloadingLabel;
 
@@ -126,7 +126,7 @@ public class ConversationItem extends LinearLayout {
     this.bodyBubble          =            findViewById(R.id.body_bubble);
     this.pendingIndicator    = (ImageView)findViewById(R.id.pending_approval_indicator);
     this.bubbleContainer     = (BubbleContainer)findViewById(R.id.bubble);
-    this.mediaThumbnail      = (ForegroundImageView)findViewById(R.id.image_view);
+    this.mediaThumbnail      = (ThumbnailView)findViewById(R.id.image_view);
 
     setOnClickListener(clickListener);
     if (mmsDownloadButton != null) mmsDownloadButton.setOnClickListener(mmsDownloadClickListener);
@@ -408,7 +408,7 @@ public class ConversationItem extends LinearLayout {
     context.startActivity(intent);
   }
 
-  private class ThumbnailClickListener implements ForegroundImageView.ThumbnailClickListener {
+  private class ThumbnailClickListener implements ThumbnailView.ThumbnailClickListener {
     private void fireIntent(Slide slide) {
       Log.w(TAG, "Clicked: " + slide.getUri() + " , " + slide.getContentType());
       Intent intent = new Intent(Intent.ACTION_VIEW);

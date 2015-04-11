@@ -27,7 +27,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 
 import org.thoughtcrime.securesms.ImageMediaAdapter.ViewHolder;
-import org.thoughtcrime.securesms.components.ForegroundImageView;
+import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.database.PartDatabase.ImageRecord;
@@ -44,11 +44,11 @@ public class ImageMediaAdapter extends CursorRecyclerViewAdapter<ViewHolder> {
   private final MasterSecret masterSecret;
 
   public static class ViewHolder extends RecyclerView.ViewHolder {
-    public ForegroundImageView imageView;
+    public ThumbnailView imageView;
 
     public ViewHolder(View v) {
       super(v);
-      imageView = (ForegroundImageView) v.findViewById(R.id.image);
+      imageView = (ThumbnailView) v.findViewById(R.id.image);
     }
   }
 
@@ -65,8 +65,8 @@ public class ImageMediaAdapter extends CursorRecyclerViewAdapter<ViewHolder> {
 
   @Override
   public void onBindViewHolder(final ViewHolder viewHolder, final Cursor cursor) {
-    final ForegroundImageView imageView   = viewHolder.imageView;
-    final ImageRecord         imageRecord = ImageRecord.from(cursor);
+    final ThumbnailView imageView   = viewHolder.imageView;
+    final ImageRecord   imageRecord = ImageRecord.from(cursor);
 
     PduPart part = new PduPart();
 
@@ -76,7 +76,7 @@ public class ImageMediaAdapter extends CursorRecyclerViewAdapter<ViewHolder> {
 
     Slide slide = MediaUtil.getSlideForPart(getContext(), masterSecret, part, imageRecord.getContentType());
     if (slide != null) {
-      slide.loadThumbnail(getContext()).into(imageView);
+      imageView.setImageResource(slide);
     }
 
     imageView.setOnClickListener(new OnMediaClickListener(imageRecord));

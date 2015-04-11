@@ -34,10 +34,6 @@ import android.view.View;
 import com.makeramen.RoundedImageView;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.mms.Slide;
-import org.thoughtcrime.securesms.mms.SlideDeck;
-import org.thoughtcrime.securesms.util.FutureTaskListener;
-import org.thoughtcrime.securesms.util.ListenableFutureTask;
 
 /**
  * https://gist.github.com/chrisbanes/9091754
@@ -54,10 +50,6 @@ public class ForegroundImageView extends RoundedImageView {
   private boolean mForegroundInPadding = true;
 
   private boolean mForegroundBoundsChanged = false;
-
-  private ListenableFutureTask<SlideDeck> slideDeckFuture        = null;
-  private SlideDeckListener               slideDeckListener      = new SlideDeckListener();
-  private ThumbnailClickListener          thumbnailClickListener = null;
 
   public ForegroundImageView(Context context) {
     super(context);
@@ -85,10 +77,6 @@ public class ForegroundImageView extends RoundedImageView {
       R.styleable.ForegroundImageView_android_foregroundInsidePadding, true);
 
     a.recycle();
-  }
-
-  public void setThumbnailClickListener(ThumbnailClickListener listener) {
-    this.thumbnailClickListener = listener;
   }
 
   /**
@@ -187,15 +175,6 @@ public class ForegroundImageView extends RoundedImageView {
     super.setImageBitmap(bitmap);
   }
 
-  public void setImageResource(@NonNull ListenableFutureTask<SlideDeck> slideDeckFuture) {
-    if (this.slideDeckFuture != null) {
-      this.slideDeckFuture.removeListener(this.slideDeckListener);
-    }
-
-    this.slideDeckFuture = slideDeckFuture;
-    this.slideDeckFuture.addListener(this.slideDeckListener);
-  }
-
   /**
    * Supply a Drawable that is to be rendered on top of all of the child
    * views in the frame layout.  Any padding in the Drawable will be taken
@@ -281,61 +260,6 @@ public class ForegroundImageView extends RoundedImageView {
       }
 
       foreground.draw(canvas);
-    }
-  }
-
-  private class SlideDeckListener implements FutureTaskListener<SlideDeck> {
-    @Override
-    public void onSuccess(final SlideDeck slideDeck) {
-      if (slideDeck == null) return;
-
-      final Slide slide = slideDeck.getThumbnailSlide(getContext());
-      if (slide != null) {
-        post(new Runnable() {
-          @Override
-          public void run() {
-            slide.loadThumbnail(getContext()).into(ForegroundImageView.this);
-            setOnClickListener(new ThumbnailClickDispatcher(thumbnailClickListener, slide));
-          }
-        });
-      } else {
-        post(new Runnable() {
-          @Override
-          public void run() {
-            hide();
-          }
-        });
-      }
-    }
-
-    @Override
-    public void onFailure(Throwable error) {
-      Log.w(TAG, error);
-      post(new Runnable() {
-        @Override
-        public void run() {
-          hide();
-        }
-      });
-    }
-  }
-
-  public interface ThumbnailClickListener {
-    void onClick(View v, Slide slide);
-  }
-
-  private class ThumbnailClickDispatcher implements View.OnClickListener {
-    private ThumbnailClickListener listener;
-    private Slide                  slide;
-
-    public ThumbnailClickDispatcher(ThumbnailClickListener listener, Slide slide) {
-      this.listener = listener;
-      this.slide    = slide;
-    }
-
-    @Override
-    public void onClick(View view) {
-      listener.onClick(view, slide);
     }
   }
 }

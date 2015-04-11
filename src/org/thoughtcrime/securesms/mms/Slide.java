@@ -17,11 +17,10 @@
 package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
-import android.graphics.Bitmap;
+import android.content.res.Resources.Theme;
 import android.net.Uri;
+import android.support.annotation.DrawableRes;
 import android.util.Log;
-
-import com.bumptech.glide.GenericRequestBuilder;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.Util;
@@ -67,10 +66,6 @@ public abstract class Slide {
     return part.getDataUri();
   }
 
-  public GenericRequestBuilder loadThumbnail(Context context) {
-    throw new AssertionError("loadThumbnail() called on non-thumbnail producing slide!");
-  }
-
   public boolean hasImage() {
     return false;
   }
@@ -83,20 +78,20 @@ public abstract class Slide {
     return false;
   }
 
-  public Bitmap getImage() {
-    throw new AssertionError("getImage() called on non-image slide!");
-  }
-
-  public boolean hasText() {
-    return false;
-  }
-
-  public String getText() {
-    throw new AssertionError("getText() called on non-text slide!");
-  }
-
   public PduPart getPart() {
     return part;
+  }
+
+  public Uri getThumbnailUri() {
+    return null;
+  }
+
+  public @DrawableRes int getPlaceholderRes(Theme theme) {
+    throw new AssertionError("getPlaceholderRes() called for non-drawable slide");
+  }
+
+  public boolean isDraft() {
+    return getPart().getId() < 0;
   }
 
   protected static void assertMediaSize(Context context, Uri uri)

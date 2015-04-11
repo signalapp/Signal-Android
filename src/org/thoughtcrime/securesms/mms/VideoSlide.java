@@ -18,13 +18,12 @@ package org.thoughtcrime.securesms.mms;
 
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.res.Resources.Theme;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.support.annotation.DrawableRes;
 import android.util.Log;
-
-import com.bumptech.glide.GenericRequestBuilder;
-import com.bumptech.glide.Glide;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -45,8 +44,8 @@ public class VideoSlide extends Slide {
   }
 
   @Override
-  public GenericRequestBuilder loadThumbnail(Context context) {
-    return Glide.with(context).load(ResUtil.getDrawableRes(context, R.attr.conversation_icon_attach_video)).fitCenter();
+  public @DrawableRes int getPlaceholderRes(Theme theme) {
+    return ResUtil.getDrawableRes(theme, R.attr.conversation_icon_attach_video);
   }
 
   @Override
