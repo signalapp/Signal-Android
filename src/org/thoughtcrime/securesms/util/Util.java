@@ -201,10 +201,9 @@ public class Util {
     List<List<T>> results = new LinkedList<>();
 
     for (int index=0;index<list.size();index+=partitionSize) {
-      int offset      = index * partitionSize;
-      int subListSize = Math.min(partitionSize, list.size() - offset);
+      int subListSize = Math.min(partitionSize, list.size() - index);
 
-      results.add(list.subList(offset, offset + subListSize));
+      results.add(list.subList(index, index + subListSize));
     }
 
     return results;
