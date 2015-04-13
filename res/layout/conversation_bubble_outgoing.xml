@@ -53,7 +53,7 @@
                   android:textAppearance="?android:attr/textAppearanceSmall"
                   android:textColor="?conversation_sent_text_primary_color"
                   android:textColorLink="?conversation_sent_text_primary_color"
-                  android:textSize="16sp"
+                  android:textSize="18sp"
                   tools:text="Mango pickle lorem ipsum" />
 
         <LinearLayout android:id="@+id/mms_download_controls"

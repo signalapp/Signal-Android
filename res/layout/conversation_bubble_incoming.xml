@@ -50,7 +50,7 @@
                   android:paddingRight="10dp"
                   android:textAppearance="?android:attr/textAppearanceSmall"
                   android:textColor="?conversation_received_text_primary_color"
-                  android:textSize="16sp"
+                  android:textSize="18sp"
                   android:autoLink="all"
                   android:linksClickable="true" />
 
