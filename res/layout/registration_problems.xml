@@ -54,7 +54,7 @@
                                 style="@style/Registration.Description"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:paddingRight="10dip"
+                                android:paddingRight="20dip"
                                 android:text="@string/registration_problems__some_third_party_text_messaging_clients_such_as_handcent" />
                     </LinearLayout>
                 </TableRow>
@@ -84,7 +84,7 @@
                                 style="@style/Registration.Description"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:paddingRight="10dip"
+                                android:paddingRight="20dip"
                                 android:text="@string/registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly" />
                     </LinearLayout>
                 </TableRow>
@@ -113,7 +113,7 @@
                                 style="@style/Registration.Description"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:paddingRight="10dip"
+                                android:paddingRight="20dip"
                                 android:text="@string/registration_problems__textsecure_will_not_work_with_google_voice_numbers" />
                     </LinearLayout>
                 </TableRow>
