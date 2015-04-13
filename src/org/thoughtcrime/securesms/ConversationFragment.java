@@ -283,12 +283,16 @@ public class ConversationFragment extends ListFragment
 
   @Override
   public void onLoadFinished(Loader<Cursor> arg0, Cursor cursor) {
-    ((CursorAdapter)getListAdapter()).changeCursor(cursor);
+    if (getListAdapter() != null) {
+      ((CursorAdapter) getListAdapter()).changeCursor(cursor);
+    }
   }
 
   @Override
   public void onLoaderReset(Loader<Cursor> arg0) {
-    ((CursorAdapter)getListAdapter()).changeCursor(null);
+    if (getListAdapter() != null) {
+      ((CursorAdapter) getListAdapter()).changeCursor(null);
+    }
   }
 
   public interface ConversationFragmentListener {
