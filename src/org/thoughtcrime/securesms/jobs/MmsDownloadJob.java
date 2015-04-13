@@ -77,14 +77,18 @@ public class MmsDownloadJob extends MasterSecretJob {
       return;
     }
 
-    database.markDownloadState(messageId, MmsDatabase.Status.DOWNLOAD_CONNECTING);
-
-    String contentLocation = new String(notification.get().getContentLocation());
-    byte[] transactionId   = notification.get().getTransactionId();
-
-    Log.w(TAG, "Downloading mms at " + Uri.parse(contentLocation).getHost());
-
     try {
+      if (notification.get().getContentLocation() == null) {
+        throw new MmsException("Notification content location was null.");
+      }
+
+      database.markDownloadState(messageId, MmsDatabase.Status.DOWNLOAD_CONNECTING);
+
+      String contentLocation = new String(notification.get().getContentLocation());
+      byte[] transactionId   = notification.get().getTransactionId();
+
+      Log.w(TAG, "Downloading mms at " + Uri.parse(contentLocation).getHost());
+
       RetrieveConf retrieveConf = getMmsConnection(context).retrieve(contentLocation, transactionId);
       if (retrieveConf == null) {
         throw new MmsException("RetrieveConf was null");
