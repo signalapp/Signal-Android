@@ -177,7 +177,7 @@ public class MessageNotifier {
 
     List<NotificationItem>notifications = notificationState.getNotifications();
     NotificationCompat.Builder builder  = new NotificationCompat.Builder(context);
-    Recipient recipient                 = notifications.get(0).getIndividualRecipient();
+    Recipient recipient                 = notifications.get(0).getPrimaryRecipient();
 
     builder.setSmallIcon(R.drawable.icon_notification);
     builder.setLargeIcon(recipient.getContactPhoto());
@@ -221,6 +221,7 @@ public class MessageNotifier {
   {
     List<NotificationItem> notifications = notificationState.getNotifications();
     NotificationCompat.Builder builder   = new NotificationCompat.Builder(context);
+    Recipient recipient                  = notifications.get(0).getPrimaryRecipient();
 
     builder.setSmallIcon(R.drawable.icon_notification);
     builder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(),
@@ -228,9 +229,8 @@ public class MessageNotifier {
     builder.setContentTitle(String.format(context.getString(R.string.MessageNotifier_d_new_messages),
                                           notificationState.getMessageCount()));
     builder.setContentText(String.format(context.getString(R.string.MessageNotifier_most_recent_from_s),
-                                         notifications.get(0).getIndividualRecipientName()));
+                                         recipient.toShortString()));
     builder.setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, ConversationListActivity.class), 0));
-    
     builder.setContentInfo(String.valueOf(notificationState.getMessageCount()));
     builder.setNumber(notificationState.getMessageCount());
 
