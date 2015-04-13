@@ -92,7 +92,9 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
     long       threadId   = DatabaseFactory.getSmsDatabase(context).getThreadIdForMessage(messageId);
     Recipients recipients = DatabaseFactory.getThreadDatabase(context).getRecipientsForThreadId(threadId);
 
-    MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId);
+    if (threadId != -1 && recipients != null) {
+      MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId);
+    }
   }
 
   private void deliver(MasterSecret masterSecret, SmsMessageRecord message)

@@ -22,6 +22,7 @@ import android.database.Cursor;
 import android.database.MergeCursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -371,7 +372,7 @@ public class ThreadDatabase extends Database {
     }
   }
 
-  public Recipients getRecipientsForThreadId(long threadId) {
+  public @Nullable Recipients getRecipientsForThreadId(long threadId) {
     SQLiteDatabase db = databaseHelper.getReadableDatabase();
     Cursor cursor     = null;
 
