@@ -42,6 +42,7 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.AlertDialogWrapper;
 
 import org.thoughtcrime.securesms.ConversationFragment.SelectionClickListener;
+import org.thoughtcrime.securesms.components.BubbleContainer;
 import org.thoughtcrime.securesms.components.ForegroundImageView;
 import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -59,12 +60,10 @@ import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.components.BubbleContainer;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Emoji;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
-import org.thoughtcrime.securesms.util.ResUtil;
 
 import java.util.Set;
 
@@ -626,25 +625,35 @@ public class ConversationItem extends LinearLayout {
     public void onSuccess(final SlideDeck slideDeck) {
       if (slideDeck == null) return;
 
-      Slide slide = slideDeck.getThumbnailSlide(context);
-      if (slide != null) {
-        thumbnailFuture = slide.getThumbnail(context);
-        if (thumbnailFuture != null) {
-          Object tag = new Object();
-          mediaThumbnail.setTag(tag);
-          thumbnailListener = new ThumbnailListener(tag);
-          thumbnailFuture.addListener(thumbnailListener);
-          mediaThumbnail.setOnClickListener(new ThumbnailClickListener(slide));
-          return;
+      handler.post(new Runnable() {
+        @Override
+        public void run() {
+          Slide slide = slideDeck.getThumbnailSlide(context);
+          if (slide != null) {
+            thumbnailFuture = slide.getThumbnail(context);
+            if (thumbnailFuture != null) {
+              Object tag = new Object();
+              mediaThumbnail.setTag(tag);
+              thumbnailListener = new ThumbnailListener(tag);
+              thumbnailFuture.addListener(thumbnailListener);
+              mediaThumbnail.setOnClickListener(new ThumbnailClickListener(slide));
+              return;
+            }
+          }
+          mediaThumbnail.hide();
         }
-      }
-      mediaThumbnail.hide();
+      });
     }
 
     @Override
     public void onFailure(Throwable error) {
       Log.w(TAG, error);
-      mediaThumbnail.hide();
+      handler.post(new Runnable() {
+        @Override
+        public void run() {
+          mediaThumbnail.hide();
+        }
+      });
     }
   }
 }
