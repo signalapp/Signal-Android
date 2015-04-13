@@ -82,6 +82,7 @@
     <attr name="menu_info_icon" format="reference" />
     <attr name="menu_forward_icon" format="reference" />
     <attr name="menu_save_icon" format="reference" />
+    <attr name="menu_lock_icon_small_dark" format="reference" />
 
     <declare-styleable name="ForegroundImageView">
         <attr name="android:foreground" />
