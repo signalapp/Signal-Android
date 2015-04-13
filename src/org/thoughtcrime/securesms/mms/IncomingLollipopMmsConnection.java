@@ -21,6 +21,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.telephony.SmsManager;
 import android.util.Log;
@@ -56,7 +57,9 @@ public class IncomingLollipopMmsConnection extends LollipopMmsConnection impleme
 
   @Override
   @TargetApi(VERSION_CODES.LOLLIPOP)
-  public synchronized @Nullable RetrieveConf retrieve(String contentLocation, byte[] transactionId) throws MmsException {
+  public synchronized @Nullable RetrieveConf retrieve(@NonNull String contentLocation,
+                                                      byte[] transactionId) throws MmsException
+  {
     beginTransaction();
 
     try {

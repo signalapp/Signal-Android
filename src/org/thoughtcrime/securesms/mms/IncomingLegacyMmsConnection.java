@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
@@ -58,7 +59,10 @@ public class IncomingLegacyMmsConnection extends LegacyMmsConnection implements 
   }
 
   @Override
-  public @Nullable RetrieveConf retrieve(String contentLocation, byte[] transactionId) throws MmsRadioException, ApnUnavailableException, IOException {
+  public @Nullable RetrieveConf retrieve(@NonNull String contentLocation,
+                                         byte[] transactionId)
+      throws MmsRadioException, ApnUnavailableException, IOException
+  {
     MmsRadio radio = MmsRadio.getInstance(context);
     Apn contentApn = new Apn(contentLocation, apn.getProxy(), Integer.toString(apn.getPort()), apn.getUsername(), apn.getPassword());
     if (isCdmaDevice()) {
