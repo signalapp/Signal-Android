@@ -24,6 +24,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.media.AudioManager;
@@ -175,12 +176,13 @@ public class MessageNotifier {
       return;
     }
 
-    List<NotificationItem>notifications = notificationState.getNotifications();
-    NotificationCompat.Builder builder  = new NotificationCompat.Builder(context);
-    Recipient recipient                 = notifications.get(0).getIndividualRecipient();
+    List<NotificationItem>     notifications  = notificationState.getNotifications();
+    NotificationCompat.Builder builder        = new NotificationCompat.Builder(context);
+    Recipient                  recipient      = notifications.get(0).getIndividualRecipient();
+    Bitmap                     recipientPhoto = recipient.getContactPhoto();
 
     builder.setSmallIcon(R.drawable.icon_notification);
-    builder.setLargeIcon(recipient.getContactPhoto());
+    if (recipientPhoto != null) builder.setLargeIcon(recipientPhoto);
     builder.setContentTitle(recipient.toShortString());
     builder.setContentText(notifications.get(0).getText());
     builder.setContentIntent(notifications.get(0).getPendingIntent(context));
