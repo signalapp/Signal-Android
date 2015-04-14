@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.components;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -12,7 +13,9 @@ import android.util.Pair;
 import android.view.HapticFeedbackConstants;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -31,9 +34,10 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.Emoji;
 
 public class EmojiDrawer extends KeyboardAwareLinearLayout {
-
   private static final int RECENT_TYPE = 0;
   private static final int ALL_TYPE    = 1;
+
+  private static final KeyEvent DELETE_KEY_EVENT = new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL);
 
   private FrameLayout[]        gridLayouts = new FrameLayout[Emoji.PAGES.length+1];
   private EditText             composeText;
@@ -41,6 +45,7 @@ public class EmojiDrawer extends KeyboardAwareLinearLayout {
   private ViewPager            pager;
   private PagerSlidingTabStrip strip;
   private ImageButton          backspace;
+  private BackspaceRepeater    backspaceRepeater = new BackspaceRepeater();
 
   @SuppressWarnings("unused")
   public EmojiDrawer(Context context) {
@@ -87,6 +92,7 @@ public class EmojiDrawer extends KeyboardAwareLinearLayout {
     this.emoji     = Emoji.getInstance(getContext());
 
     this.backspace.setOnClickListener(new BackspaceClickListener());
+    this.backspace.setOnTouchListener(new BackspaceTouchListener());
   }
 
   public void hide() {
@@ -159,18 +165,49 @@ public class EmojiDrawer extends KeyboardAwareLinearLayout {
     }
   }
 
+  private static void injectDeleteKeyEvent(EditText editText) {
+    if (editText.getText().length() > 0) {
+      editText.dispatchKeyEvent(DELETE_KEY_EVENT);
+    }
+  }
+
   private class BackspaceClickListener implements OnClickListener {
-
-    private final KeyEvent deleteKeyEvent = new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL);
-
     @Override
     public void onClick(View v) {
-      if (composeText.getText().length() > 0) {
-        composeText.dispatchKeyEvent(deleteKeyEvent);
-        v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
+      injectDeleteKeyEvent(composeText);
+    }
+  }
+
+  private class BackspaceRepeater implements Runnable {
+    @TargetApi(VERSION_CODES.HONEYCOMB_MR1)
+    @Override
+    public void run() {
+      injectDeleteKeyEvent(composeText);
+      backspace.postDelayed(this, VERSION.SDK_INT >= VERSION_CODES.HONEYCOMB_MR1
+                                  ? ViewConfiguration.getKeyRepeatDelay()
+                                  : 50);
+    }
+  }
+
+  private class BackspaceTouchListener implements OnTouchListener {
+
+    @TargetApi(VERSION_CODES.HONEYCOMB_MR1)
+    @Override
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+      switch (motionEvent.getAction()) {
+      case MotionEvent.ACTION_DOWN:
+        view.postDelayed(backspaceRepeater, VERSION.SDK_INT >= VERSION_CODES.HONEYCOMB_MR1
+                                            ? ViewConfiguration.getKeyRepeatTimeout()
+                                            : ViewConfiguration.getLongPressTimeout());
+        composeText.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
+        return false;
+      case MotionEvent.ACTION_CANCEL:
+      case MotionEvent.ACTION_UP:
+        view.removeCallbacks(backspaceRepeater);
+        return false;
+      default: return false;
       }
     }
-
   }
 
   private class EmojiGridAdapter extends BaseAdapter {
