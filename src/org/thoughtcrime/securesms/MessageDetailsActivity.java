@@ -47,6 +47,9 @@ import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.GroupUtil;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.textsecure.api.util.InvalidNumberException;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
@@ -54,6 +57,7 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @author Jake McGinty
@@ -246,6 +250,24 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
       return weakContext.get();
     }
 
+    private Recipients getRecipientsMinusSelf(Context context, Recipients recipients) {
+      List<Recipient> filteredRecipientList = new LinkedList<>();
+
+      for (Recipient recipient : recipients.getRecipientsList()) {
+        try {
+          String e164number = Util.canonicalizeNumber(context, recipient.getNumber());
+          if (!TextSecurePreferences.getLocalNumber(context).equals(e164number)) {
+            filteredRecipientList.add(recipient);
+          }
+        } catch (InvalidNumberException e) {
+          Log.w(TAG, "unable to check if recipient is self, assuming not", e);
+          filteredRecipientList.add(recipient);
+        }
+      }
+
+      return new Recipients(filteredRecipientList);
+    }
+
     @Override
     public Recipients doInBackground(Void... voids) {
       Context context = getContext();
@@ -274,6 +296,10 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
           Log.w(TAG, e);
          recipients = new Recipients(new LinkedList<Recipient>());
         }
+      }
+
+      if (!messageRecord.isOutgoing()) {
+        recipients = getRecipientsMinusSelf(context, recipients);
       }
 
       return recipients;
