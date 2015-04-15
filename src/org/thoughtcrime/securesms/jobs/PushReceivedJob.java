@@ -5,60 +5,19 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.database.NotInDirectoryException;
+import org.thoughtcrime.securesms.database.TextSecureDirectory;
 import org.whispersystems.jobqueue.JobManager;
 import org.whispersystems.jobqueue.JobParameters;
-import org.whispersystems.libaxolotl.InvalidVersionException;
 import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
-import org.thoughtcrime.securesms.database.TextSecureDirectory;
-import org.thoughtcrime.securesms.database.NotInDirectoryException;
 import org.whispersystems.textsecure.api.push.ContactTokenDetails;
 
-import java.io.IOException;
+public abstract class PushReceivedJob extends ContextJob {
 
-public class PushReceiveJob extends ContextJob {
+  private static final String TAG = PushReceivedJob.class.getSimpleName();
 
-  private static final String TAG = PushReceiveJob.class.getSimpleName();
-
-  private final String data;
-
-  public PushReceiveJob(Context context) {
-    super(context, JobParameters.newBuilder().create());
-    this.data = null;
-  }
-
-  public PushReceiveJob(Context context, String data) {
-    super(context, JobParameters.newBuilder()
-                                .withPersistence()
-                                .withWakeLock(true)
-                                .create());
-
-    this.data = data;
-  }
-
-  @Override
-  public void onAdded() {}
-
-  @Override
-  public void onRun() {
-    try {
-      String             sessionKey = TextSecurePreferences.getSignalingKey(context);
-      TextSecureEnvelope envelope   = new TextSecureEnvelope(data, sessionKey);
-
-      handle(envelope, true);
-    } catch (IOException | InvalidVersionException e) {
-      Log.w(TAG, e);
-    }
-  }
-
-  @Override
-  public void onCanceled() {
-
-  }
-
-  @Override
-  public boolean onShouldRetry(Exception exception) {
-    return false;
+  protected PushReceivedJob(Context context, JobParameters parameters) {
+    super(context, parameters);
   }
 
   public void handle(TextSecureEnvelope envelope, boolean sendExplicitReceipt) {
@@ -104,5 +63,6 @@ public class PushReceiveJob extends ContextJob {
 
     return isActiveNumber;
   }
+
 
 }
