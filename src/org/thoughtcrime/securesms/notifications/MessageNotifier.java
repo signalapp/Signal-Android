@@ -31,6 +31,7 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationCompat.Action;
 import android.support.v4.app.NotificationCompat.BigTextStyle;
 import android.support.v4.app.NotificationCompat.InboxStyle;
 import android.text.Spannable;
@@ -199,8 +200,11 @@ public class MessageNotifier {
     if (timestamp != 0) builder.setWhen(timestamp);
 
     if (masterSecret != null) {
-      builder.addAction(R.drawable.check, context.getString(R.string.MessageNotifier_mark_as_read),
-                        notificationState.getMarkAsReadIntent(context, masterSecret));
+      Action markAsReadAction = new Action(R.drawable.check,
+                                           context.getString(R.string.MessageNotifier_mark_as_read),
+                                           notificationState.getMarkAsReadIntent(context, masterSecret));
+      builder.addAction(markAsReadAction);
+      builder.extend(new NotificationCompat.WearableExtender().addAction(markAsReadAction));
     }
 
     SpannableStringBuilder content = new SpannableStringBuilder();
@@ -252,8 +256,11 @@ public class MessageNotifier {
     builder.setDeleteIntent(PendingIntent.getBroadcast(context, 0, new Intent(DeleteReceiver.DELETE_REMINDER_ACTION), 0));
 
     if (masterSecret != null) {
-      builder.addAction(R.drawable.check, context.getString(R.string.MessageNotifier_mark_all_as_read),
-                        notificationState.getMarkAsReadIntent(context, masterSecret));
+       Action markAllAsReadAction = new Action(R.drawable.check,
+                                               context.getString(R.string.MessageNotifier_mark_all_as_read),
+                                               notificationState.getMarkAsReadIntent(context, masterSecret));
+       builder.addAction(markAllAsReadAction);
+       builder.extend(new NotificationCompat.WearableExtender().addAction(markAllAsReadAction));
     }
 
     InboxStyle style = new InboxStyle();
