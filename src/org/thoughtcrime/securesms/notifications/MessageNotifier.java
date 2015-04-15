@@ -196,8 +196,11 @@ public class MessageNotifier {
     if (recipient.getContactUri() != null) builder.addPerson(recipient.getContactUri().toString());
 
     if (masterSecret != null) {
-      builder.addAction(R.drawable.check, context.getString(R.string.MessageNotifier_mark_as_read),
-                        notificationState.getMarkAsReadIntent(context, masterSecret));
+      NotificationCompat.Action markAsReadAction =
+        new NotificationCompat.Action(R.drawable.check, context.getString(R.string.MessageNotifier_mark_as_read),
+                                      notificationState.getMarkAsReadIntent(context, masterSecret));
+      builder.addAction(markAsReadAction);
+      builder.extend(new NotificationCompat.WearableExtender().addAction(markAsReadAction));
     }
 
     SpannableStringBuilder content = new SpannableStringBuilder();
