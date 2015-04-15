@@ -90,6 +90,7 @@ public class PushServiceSocket {
   private static final String DIRECTORY_TOKENS_PATH     = "/v1/directory/tokens";
   private static final String DIRECTORY_VERIFY_PATH     = "/v1/directory/%s";
   private static final String MESSAGE_PATH              = "/v1/messages/%s";
+  private static final String ACKNOWLEDGE_MESSAGE_PATH  = "/v1/messages/%s/%d";
   private static final String RECEIPT_PATH              = "/v1/receipt/%s/%d";
   private static final String ATTACHMENT_PATH           = "/v1/attachments/%s";
 
@@ -160,6 +161,15 @@ public class PushServiceSocket {
     } catch (NotFoundException nfe) {
       throw new UnregisteredUserException(bundle.getDestination(), nfe);
     }
+  }
+
+  public List<TextSecureEnvelopeEntity> getMessages() throws IOException {
+    String responseText = makeRequest(String.format(MESSAGE_PATH, ""), "GET", null);
+    return JsonUtil.fromJson(responseText, TextSecureEnvelopeEntityList.class).getMessages();
+  }
+
+  public void acknowledgeMessage(String sender, long timestamp) throws IOException {
+    makeRequest(String.format(ACKNOWLEDGE_MESSAGE_PATH, sender, timestamp), "DELETE", null);
   }
 
   public void registerPreKeys(IdentityKey identityKey,

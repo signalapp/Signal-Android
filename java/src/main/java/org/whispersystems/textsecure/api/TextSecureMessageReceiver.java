@@ -19,15 +19,19 @@ package org.whispersystems.textsecure.api;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.textsecure.api.crypto.AttachmentCipherInputStream;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachmentPointer;
+import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 import org.whispersystems.textsecure.api.push.TrustStore;
 import org.whispersystems.textsecure.api.util.CredentialsProvider;
 import org.whispersystems.textsecure.internal.push.PushServiceSocket;
+import org.whispersystems.textsecure.internal.push.TextSecureEnvelopeEntity;
 import org.whispersystems.textsecure.internal.util.StaticCredentialsProvider;
 import org.whispersystems.textsecure.internal.websocket.WebSocketConnection;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * The primary interface for receiving TextSecure messages.
@@ -100,6 +104,40 @@ public class TextSecureMessageReceiver {
   public TextSecureMessagePipe createMessagePipe() {
     WebSocketConnection webSocket = new WebSocketConnection(url, trustStore, credentialsProvider);
     return new TextSecureMessagePipe(webSocket, credentialsProvider);
+  }
+
+  public List<TextSecureEnvelope> retrieveMessages() throws IOException {
+    return retrieveMessages(new NullMessageReceivedCallback());
+  }
+
+  public List<TextSecureEnvelope> retrieveMessages(MessageReceivedCallback callback)
+      throws IOException
+  {
+    List<TextSecureEnvelope>       results  = new LinkedList<>();
+    List<TextSecureEnvelopeEntity> entities = socket.getMessages();
+
+    for (TextSecureEnvelopeEntity entity : entities) {
+      TextSecureEnvelope envelope =  new TextSecureEnvelope(entity.getType(), entity.getSource(),
+                                                            entity.getSourceDevice(), entity.getRelay(),
+                                                            entity.getTimestamp(), entity.getMessage());
+
+      callback.onMessage(envelope);
+      results.add(envelope);
+
+      socket.acknowledgeMessage(entity.getSource(), entity.getTimestamp());
+    }
+
+    return results;
+  }
+
+
+  public interface MessageReceivedCallback {
+    public void onMessage(TextSecureEnvelope envelope);
+  }
+
+  public static class NullMessageReceivedCallback implements MessageReceivedCallback {
+    @Override
+    public void onMessage(TextSecureEnvelope envelope) {}
   }
 
 }
