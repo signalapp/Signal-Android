@@ -35,7 +35,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
-import android.support.v4.graphics.drawable.DrawableCompat;
+import android.support.v4.view.WindowCompat;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -68,6 +68,9 @@ import org.thoughtcrime.securesms.components.emoji.EmojiDrawer;
 import org.thoughtcrime.securesms.components.emoji.EmojiToggle;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
+import org.thoughtcrime.securesms.components.QuickAttachmentDrawer;
+import org.thoughtcrime.securesms.components.QuickCamera;
+import org.thoughtcrime.securesms.crypto.EncryptingPartOutputStream;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
@@ -112,6 +115,8 @@ import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -168,6 +173,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private BroadcastReceiver             groupUpdateReceiver;
   private Optional<EmojiDrawer>         emojiDrawer = Optional.absent();
   private EmojiToggle                   emojiToggle;
+  private ImageButton                   quickAttachmentToggle;
+  private QuickAttachmentDrawer         quickAttachmentDrawer;
 
   private Recipients recipients;
   private long       threadId;
@@ -189,6 +196,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   protected void onCreate(Bundle state, @NonNull MasterSecret masterSecret) {
     this.masterSecret = masterSecret;
 
+    supportRequestWindowFeature(WindowCompat.FEATURE_ACTION_BAR_OVERLAY);
     setContentView(R.layout.conversation_activity);
 
     fragment = initFragment(R.id.fragment_content, new ConversationFragment(),
@@ -225,6 +233,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     super.onResume();
     dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
+    quickAttachmentDrawer.onResume();
 
     initializeSecurity();
     initializeEnabledCheck();
@@ -245,6 +254,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     super.onPause();
     MessageNotifier.setVisibleThread(-1L);
     if (isFinishing()) overridePendingTransition(R.anim.fade_scale_in, R.anim.slide_to_right);
+    quickAttachmentDrawer.onPause();
   }
 
   @Override
@@ -362,6 +372,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     if (isEmojiDrawerOpen()) {
       getEmojiDrawer().hide();
       emojiToggle.toggle();
+    } else if (quickAttachmentDrawer.getDrawerState() != QuickAttachmentDrawer.COLLAPSED) {
+      quickAttachmentDrawer.setDrawerStateAndAnimate(QuickAttachmentDrawer.COLLAPSED);
     } else {
       super.onBackPressed();
     }
@@ -681,6 +693,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             addAttachmentAudio(Uri.parse(draft.getValue()));
           } else if (draft.getType().equals(Draft.VIDEO)) {
             addAttachmentVideo(Uri.parse(draft.getValue()));
+          } else if (draft.getType().equals(Draft.ENCRYPTED_IMAGE)) {
+            addAttachmentEncryptedImage(Uri.parse(draft.getValue()));
           }
         }
 
@@ -741,6 +755,18 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     composePanel   =               findViewById(R.id.bottom_panel);
     composeBubble  =               findViewById(R.id.compose_bubble);
 
+    buttonToggle          = (AnimatingToggle)       findViewById(R.id.button_toggle);
+    sendButton            = (SendButton)            findViewById(R.id.send_button);
+    attachButton          = (ImageButton)           findViewById(R.id.attach_button);
+    composeText           = (ComposeText)           findViewById(R.id.embedded_text_editor);
+    charactersLeft        = (TextView)              findViewById(R.id.space_left);
+    emojiToggle           = (EmojiToggle)           findViewById(R.id.emoji_toggle);
+    titleView             = (ConversationTitleView) getSupportActionBar().getCustomView();
+    unblockButton         = (Button)                findViewById(R.id.unblock_button);
+    composePanel          = findViewById(R.id.bottom_panel);
+    quickAttachmentDrawer = (QuickAttachmentDrawer) findViewById(R.id.quick_attachment_drawer);
+    quickAttachmentToggle = (ImageButton)           findViewById(R.id.quick_attachment_toggle);
+
     int[]      attributes   = new int[]{R.attr.conversation_item_bubble_background};
     TypedArray colors       = obtainStyledAttributes(attributes);
     int        defaultColor = colors.getColor(0, Color.WHITE);
@@ -788,6 +814,15 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     composeText.setOnClickListener(composeKeyPressedListener);
     composeText.setOnFocusChangeListener(composeKeyPressedListener);
     emojiToggle.setOnClickListener(new EmojiToggleListener());
+
+    if (quickAttachmentDrawer.hasCamera()) {
+      QuickAttachmentDrawerToggleListener listener = new QuickAttachmentDrawerToggleListener();
+      quickAttachmentDrawer.setQuickAttachmentDrawerListener(listener);
+      quickAttachmentDrawer.setQuickCameraListener(listener);
+      quickAttachmentToggle.setOnClickListener(listener);
+    } else {
+      quickAttachmentToggle.setVisibility(View.GONE);
+    }
   }
 
   protected void initializeActionBar() {
@@ -881,6 +916,17 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
+  private void addAttachmentEncryptedImage(Uri uri) {
+    try {
+      attachmentManager.setEncryptedImage(uri, masterSecret);
+    } catch (IOException | BitmapDecodingException e) {
+      Log.w(TAG, e);
+      attachmentManager.clear();
+      Toast.makeText(this, R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
+          Toast.LENGTH_LONG).show();
+    }
+  }
+
   private void addAttachmentImage(Uri imageUri) {
     try {
       attachmentManager.setImage(imageUri);
@@ -965,9 +1011,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     for (Slide slide : attachmentManager.getSlideDeck().getSlides()) {
-      if      (slide.hasAudio()) drafts.add(new Draft(Draft.AUDIO, slide.getUri().toString()));
-      else if (slide.hasVideo()) drafts.add(new Draft(Draft.VIDEO, slide.getUri().toString()));
-      else if (slide.hasImage()) drafts.add(new Draft(Draft.IMAGE, slide.getUri().toString()));
+      String draftType = null;
+      if      (slide.hasAudio()) draftType = Draft.AUDIO;
+      else if (slide.hasVideo()) draftType = Draft.VIDEO;
+      else if (slide.hasImage()) draftType = slide.isEncrypted() ? Draft.ENCRYPTED_IMAGE : Draft.IMAGE;
+
+      if (draftType != null)
+        drafts.add(new Draft(draftType, slide.getUri().toString()));
     }
 
     return drafts;
@@ -1239,9 +1289,73 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         getEmojiDrawer().hide();
       } else {
         input.hideSoftInputFromWindow(composeText.getWindowToken(), 0);
+        quickAttachmentDrawer.setDrawerStateAndAnimate(QuickAttachmentDrawer.COLLAPSED);
 
         getEmojiDrawer().show();
       }
+    }
+  }
+
+  private class QuickAttachmentDrawerToggleListener implements OnClickListener,
+          QuickAttachmentDrawer.QuickAttachmentDrawerListener,
+          QuickCamera.QuickCameraListener {
+    @QuickAttachmentDrawer.DrawerState int nextDrawerState = QuickAttachmentDrawer.HALF_EXPANDED;
+
+    @Override
+    public void onClick(View v) {
+      InputMethodManager input = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+      input.hideSoftInputFromWindow(composeText.getWindowToken(), 0);
+      composeText.clearFocus();
+      if (emojiDrawer.isPresent() && emojiDrawer.get().isOpen()) {
+        emojiDrawer.get().hide();
+        emojiToggle.toggle();
+      }
+      quickAttachmentDrawer.setDrawerStateAndAnimate(nextDrawerState);
+    }
+
+    @Override
+    public void onCollapsed() {
+      getSupportActionBar().show();
+      nextDrawerState = QuickAttachmentDrawer.HALF_EXPANDED;
+    }
+
+    @Override
+    public void onExpanded() {
+      getSupportActionBar().hide();
+      nextDrawerState = QuickAttachmentDrawer.COLLAPSED;
+    }
+
+    @Override
+    public void onHalfExpanded() {
+      getSupportActionBar().hide();
+      nextDrawerState = QuickAttachmentDrawer.COLLAPSED;
+    }
+
+    @Override
+    public void onImageCapture(final byte[] data) {
+      quickAttachmentDrawer.setDrawerStateAndAnimate(QuickAttachmentDrawer.COLLAPSED);
+        new AsyncTask<Void, Void, Uri>() {
+          @Override
+          protected Uri doInBackground(Void... voids) {
+            try {
+              File tempDirectory = getDir("media", Context.MODE_PRIVATE);
+              File tempFile = File.createTempFile("image", ".jpg", tempDirectory);
+              FileOutputStream fileOutputStream = new EncryptingPartOutputStream(tempFile, masterSecret);
+              fileOutputStream.write(data);
+              fileOutputStream.close();
+              return Uri.fromFile(tempFile);
+            } catch (IOException e) {
+              e.printStackTrace();
+            }
+            return null;
+          }
+
+          @Override
+          protected void onPostExecute(Uri uri) {
+            if (uri != null)
+              addAttachmentEncryptedImage(uri);
+          }
+        }.execute();
     }
   }
 
@@ -1319,6 +1433,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     public void onFocusChange(View v, boolean hasFocus) {
       if (hasFocus && isEmojiDrawerOpen()) {
         emojiToggle.performClick();
+      } else if (hasFocus && quickAttachmentDrawer.getDrawerState() != QuickAttachmentDrawer.COLLAPSED) {
+        quickAttachmentDrawer.setDrawerStateAndAnimate(QuickAttachmentDrawer.COLLAPSED);
       }
     }
   }

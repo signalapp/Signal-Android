@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-
+<org.thoughtcrime.securesms.components.QuickAttachmentDrawer
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/quick_attachment_drawer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="fill_parent"
@@ -95,6 +99,14 @@
                         tools:hint="Send TextSecure message" />
                 </LinearLayout>
 
+                <ImageButton android:id="@+id/quick_attachment_toggle"
+                             android:layout_width="wrap_content"
+                             android:layout_height="44dp"
+                             android:src="?quick_camera_icon"
+                             android:background="@drawable/touch_highlight_background"
+                             android:contentDescription="@string/conversation_activity__quick_attachment_drawer_toggle_description"
+                             android:padding="10dp"/>
+
                 <org.thoughtcrime.securesms.components.AnimatingToggle
                     android:id="@+id/button_toggle"
                     android:layout_width="50dp"
@@ -149,3 +161,4 @@
               android:layout_height="wrap_content" />
 
 </LinearLayout>
+</org.thoughtcrime.securesms.components.QuickAttachmentDrawer>
