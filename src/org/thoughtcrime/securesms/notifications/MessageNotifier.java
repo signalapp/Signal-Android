@@ -429,7 +429,7 @@ public class MessageNotifier {
     alarmIntent.putExtra("reminder_count", count);
 
     PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, alarmIntent, PendingIntent.FLAG_CANCEL_CURRENT);
-    long          timeout       = TimeUnit.SECONDS.toMillis(10);
+    long          timeout       = TimeUnit.MINUTES.toMillis(2);
 
     alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + timeout, pendingIntent);
   }
