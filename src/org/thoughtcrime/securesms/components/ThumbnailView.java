@@ -18,12 +18,11 @@ import com.bumptech.glide.request.target.Target;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.EncryptedUriModel;
+import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
-import org.whispersystems.libaxolotl.util.guava.Preconditions;
 
 import ws.com.google.android.mms.pdu.PduPart;
 
@@ -97,26 +96,45 @@ public class ThumbnailView extends ForegroundImageView {
     if (slide.getPart().isPendingPush()) {
       builder = Glide.with(getContext()).load(R.drawable.stat_sys_download).crossFade();
     } else if (slide.getThumbnailUri() != null) {
-      if (slide.isDraft()) {
-        builder = Glide.with(getContext()).load(slide.getThumbnailUri()).asBitmap()
-                                          .fitCenter()
-                                          .listener(new PduThumbnailSetListener(slide.getPart()));
-      } else {
-        Preconditions.checkState(masterSecret != null, "null MasterSecret when loading non-draft thumbnail");
-        builder = Glide.with(getContext()).load(new EncryptedUriModel(masterSecret, slide.getThumbnailUri()))
-                                          .crossFade().centerCrop();
-      }
-      Pair<Integer,Integer> thumbDimens = getThumbnailDimens(slide);
-      if (thumbDimens.first > 0 && thumbDimens.second > 0) {
-        builder.override(thumbDimens.first, thumbDimens.second);
-      }
+      builder = buildThumbnailGlideRequest(slide, masterSecret);
     } else {
-      builder = Glide.with(getContext()).load(slide.getPlaceholderRes(getContext().getTheme()))
-                                        .fitCenter()
-                                        .crossFade();
+      builder = buildPlaceholderGlideRequest(slide);
     }
 
     return builder.error(R.drawable.ic_missing_thumbnail_picture);
+  }
+
+  private GenericRequestBuilder buildThumbnailGlideRequest(Slide slide, MasterSecret masterSecret) {
+
+    final GenericRequestBuilder builder;
+    if (slide.isDraft()) builder = buildDraftGlideRequest(slide);
+    else                 builder = buildEncryptedPartGlideRequest(slide, masterSecret);
+
+    Pair<Integer, Integer> thumbDimens = getThumbnailDimens(slide);
+    if (thumbDimens.first > 0 && thumbDimens.second > 0) {
+      builder.override(thumbDimens.first, thumbDimens.second);
+    }
+    return builder;
+  }
+
+  private GenericRequestBuilder buildDraftGlideRequest(Slide slide) {
+    return Glide.with(getContext()).load(slide.getThumbnailUri()).asBitmap()
+                                   .fitCenter()
+                                   .listener(new PduThumbnailSetListener(slide.getPart()));
+  }
+
+  private GenericRequestBuilder buildEncryptedPartGlideRequest(Slide slide, MasterSecret masterSecret) {
+    if (masterSecret == null) {
+      throw new IllegalStateException("null MasterSecret when loading non-draft thumbnail");
+    }
+    return  Glide.with(getContext()).load(new DecryptableUri(masterSecret, slide.getThumbnailUri()))
+                                    .crossFade().centerCrop();
+  }
+
+  private GenericRequestBuilder buildPlaceholderGlideRequest(Slide slide) {
+    return Glide.with(getContext()).load(slide.getPlaceholderRes(getContext().getTheme()))
+                                   .fitCenter()
+                                   .crossFade();
   }
 
   private class SlideDeckListener implements FutureTaskListener<SlideDeck> {

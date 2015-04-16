@@ -8,7 +8,7 @@ import com.bumptech.glide.load.engine.cache.DiskCache;
 import com.bumptech.glide.load.engine.cache.DiskCacheAdapter;
 import com.bumptech.glide.module.GlideModule;
 
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.EncryptedUriModel;
+import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 
 import java.io.InputStream;
 
@@ -20,7 +20,7 @@ public class TextSecureGlideModule implements GlideModule {
 
   @Override
   public void registerComponents(Context context, Glide glide) {
-    glide.register(EncryptedUriModel.class, InputStream.class, new DecryptableStreamUriLoader.Factory());
+    glide.register(DecryptableUri.class, InputStream.class, new DecryptableStreamUriLoader.Factory());
   }
 
   public static class NoopDiskCacheFactory implements DiskCache.Factory {
