@@ -28,4 +28,5 @@
 
     <dimen name="color_grid_extra_padding">32dp</dimen>
     <dimen name="color_grid_item_size">48dp</dimen>
+    <dimen name="quick_media_drawer_default_height">250dp</dimen>
 </resources>

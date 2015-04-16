@@ -40,6 +40,7 @@
         <item name="ic_arrow_forward">@drawable/ic_arrow_forward_dark</item>
         <item name="lockscreen_watermark">@drawable/lockscreen_watermark_dark</item>
         <item name="android:windowBackground">@color/black</item>
+        <item name="conversation_background">@color/black</item>
     </style>
 
     <style name="PopupAnimation" parent="@android:style/Animation">
@@ -124,6 +125,9 @@
         <item name="conversation_item_sent_text_indicator_tab_color">#99000000</item>
         <item name="conversation_item_received_text_primary_color">@color/white</item>
         <item name="conversation_item_received_text_secondary_color">#BFffffff</item>
+
+        <item name="quick_camera_icon">@drawable/quick_camera_light</item>
+
         <item name="conversation_item_background">@drawable/conversation_item_background</item>
         <item name="conversation_item_sent_indicator_text_background">@drawable/conversation_item_sent_indicator_text_shape</item>
 
@@ -249,6 +253,8 @@
         <item name="emoji_category_places">@drawable/emoji_category_places_dark</item>
         <item name="emoji_category_symbol">@drawable/emoji_category_symbol_dark</item>
         <item name="emoji_category_emoticons">@drawable/emoji_category_emoticons_dark</item>
+
+        <item name="quick_camera_icon">@drawable/quick_camera_dark</item>
 
         <item name="menu_new_conversation_icon">@drawable/ic_add_white_24dp</item>
         <item name="menu_group_icon">@drawable/ic_group_white_24dp</item>
