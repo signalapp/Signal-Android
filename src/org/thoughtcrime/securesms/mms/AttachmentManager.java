@@ -24,6 +24,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -36,6 +37,7 @@ import android.widget.Toast;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.ThumbnailView;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 
 import java.io.File;
@@ -106,11 +108,24 @@ public class AttachmentManager {
     setMedia(new AudioSlide(context, audio));
   }
 
+  public void setEncryptedImage(Uri uri, MasterSecret masterSecret) throws IOException, BitmapDecodingException {
+    setMedia(new ImageSlide(context, masterSecret, uri), masterSecret);
+  }
+
   public void setMedia(final Slide slide) {
+    setMedia(slide, null);
+  }
+
+  public void setMedia(final Slide slide, @Nullable MasterSecret masterSecret) {
+    Slide thumbnailSlide = slideDeck.getThumbnailSlide(context);
+    if (thumbnailSlide != null && thumbnailSlide.isEncrypted()) {
+      Uri dataUri = slideDeck.getThumbnailSlide(context).getPart().getDataUri();
+      new File(dataUri.getPath()).delete();
+    }
     slideDeck.clear();
     slideDeck.addSlide(slide);
     attachmentView.setVisibility(View.VISIBLE);
-    thumbnail.setImageResource(slide);
+    thumbnail.setImageResource(slide, masterSecret);
     attachmentListener.onAttachmentChanged();
   }
 
