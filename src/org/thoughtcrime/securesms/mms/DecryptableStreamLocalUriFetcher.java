@@ -13,15 +13,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
-/**
- * Created by kaonashi on 3/31/15.
- */
-public class EncryptedStreamLocalUriFetcher extends StreamLocalUriFetcher {
-  private static final String TAG = EncryptedStreamLocalUriFetcher.class.getSimpleName();
+public class DecryptableStreamLocalUriFetcher extends StreamLocalUriFetcher {
+  private static final String TAG = DecryptableStreamLocalUriFetcher.class.getSimpleName();
   private Context context;
   private MasterSecret masterSecret;
 
-  public EncryptedStreamLocalUriFetcher(Context context, MasterSecret masterSecret, Uri uri) {
+  public DecryptableStreamLocalUriFetcher(Context context, MasterSecret masterSecret, Uri uri) {
     super(context, uri);
     this.context = context;
     this.masterSecret = masterSecret;

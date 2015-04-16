@@ -4,7 +4,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
@@ -14,16 +13,11 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.WindowManager;
 
-import com.bumptech.glide.Glide;
-
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
-import org.thoughtcrime.securesms.mms.EncryptedStreamUriLoader;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.service.MessageRetrievalService;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-
-import java.io.InputStream;
 
 public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarActivity implements MasterSecretListener {
   private static final String TAG = PassphraseRequiredActionBarActivity.class.getSimpleName();
@@ -44,7 +38,6 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
     routeApplicationState(masterSecret);
     super.onCreate(savedInstanceState);
     if (!isFinishing()) {
-      Glide.get(this).register(Uri.class, InputStream.class, new EncryptedStreamUriLoader.Factory(masterSecret));
       initializeClearKeyReceiver();
       onCreate(savedInstanceState, masterSecret);
     }
@@ -79,7 +72,6 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
   @Override
   public void onMasterSecretCleared() {
     Log.w(TAG, "onMasterSecretCleared()");
-    Glide.get(this).unregister(Uri.class, InputStream.class);
     if (isVisible) routeApplicationState(null);
     else           finish();
   }

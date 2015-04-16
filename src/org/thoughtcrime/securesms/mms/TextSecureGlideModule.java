@@ -8,9 +8,10 @@ import com.bumptech.glide.load.engine.cache.DiskCache;
 import com.bumptech.glide.load.engine.cache.DiskCacheAdapter;
 import com.bumptech.glide.module.GlideModule;
 
-/**
- * Created by kaonashi on 3/31/15.
- */
+import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.EncryptedUriModel;
+
+import java.io.InputStream;
+
 public class TextSecureGlideModule implements GlideModule {
   @Override
   public void applyOptions(Context context, GlideBuilder builder) {
@@ -19,7 +20,7 @@ public class TextSecureGlideModule implements GlideModule {
 
   @Override
   public void registerComponents(Context context, Glide glide) {
-
+    glide.register(EncryptedUriModel.class, InputStream.class, new DecryptableStreamUriLoader.Factory());
   }
 
   public static class NoopDiskCacheFactory implements DiskCache.Factory {

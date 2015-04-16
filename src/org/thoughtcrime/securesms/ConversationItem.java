@@ -356,7 +356,7 @@ public class ConversationItem extends LinearLayout {
 
   private void resolveMedia(MediaMmsMessageRecord messageRecord) {
     if (hasMedia(messageRecord)) {
-      mediaThumbnail.setImageResource(messageRecord.getSlideDeckFuture());
+      mediaThumbnail.setImageResource(messageRecord.getSlideDeckFuture(), masterSecret);
     }
   }
 

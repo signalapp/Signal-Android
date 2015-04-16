@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.Pair;
@@ -16,16 +17,19 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.EncryptedUriModel;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
+import org.whispersystems.libaxolotl.util.guava.Preconditions;
 
 import ws.com.google.android.mms.pdu.PduPart;
 
 public class ThumbnailView extends ForegroundImageView {
   private ListenableFutureTask<SlideDeck> slideDeckFuture        = null;
-  private SlideDeckListener               slideDeckListener      = new SlideDeckListener();
+  private SlideDeckListener               slideDeckListener      = null;
   private ThumbnailClickListener          thumbnailClickListener = null;
   private Handler                         handler                = new Handler();
 
@@ -41,20 +45,30 @@ public class ThumbnailView extends ForegroundImageView {
     super(context, attrs, defStyle);
   }
 
-  public void setImageResource(@NonNull ListenableFutureTask<SlideDeck> slideDeckFuture)
+  public void setImageResource(@NonNull ListenableFutureTask<SlideDeck> slideDeckFuture) {
+    setImageResource(slideDeckFuture, null);
+  }
+
+  public void setImageResource(@NonNull ListenableFutureTask<SlideDeck> slideDeckFuture,
+                               @Nullable MasterSecret masterSecret)
   {
-    if (this.slideDeckFuture != null) {
+    if (this.slideDeckFuture != null && this.slideDeckListener != null) {
       this.slideDeckFuture.removeListener(this.slideDeckListener);
     }
 
-    this.slideDeckFuture = slideDeckFuture;
+    this.slideDeckListener = new SlideDeckListener(masterSecret);
+    this.slideDeckFuture   = slideDeckFuture;
     this.slideDeckFuture.addListener(this.slideDeckListener);
+  }
+
+  public void setImageResource(@NonNull Slide slide, @Nullable MasterSecret masterSecret) {
+    buildGlideRequest(slide, masterSecret).into(ThumbnailView.this);
+    setOnClickListener(new ThumbnailClickDispatcher(thumbnailClickListener, slide));
   }
 
   public void setImageResource(@NonNull Slide slide)
   {
-    buildGlideRequest(slide).into(ThumbnailView.this);
-    setOnClickListener(new ThumbnailClickDispatcher(thumbnailClickListener, slide));
+    setImageResource(slide, null);
   }
 
   public void setThumbnailClickListener(ThumbnailClickListener listener) {
@@ -72,7 +86,13 @@ public class ThumbnailView extends ForegroundImageView {
     }
   }
 
-  private GenericRequestBuilder buildGlideRequest(Slide slide) {
+  private GenericRequestBuilder buildGlideRequest(@NonNull Slide slide) {
+    return buildGlideRequest(slide, null);
+  }
+
+  private GenericRequestBuilder buildGlideRequest(@NonNull Slide slide,
+                                                  @Nullable MasterSecret masterSecret)
+  {
     GenericRequestBuilder builder;
     if (slide.getPart().isPendingPush()) {
       builder = Glide.with(getContext()).load(R.drawable.stat_sys_download).crossFade();
@@ -82,7 +102,9 @@ public class ThumbnailView extends ForegroundImageView {
                                           .fitCenter()
                                           .listener(new PduThumbnailSetListener(slide.getPart()));
       } else {
-        builder = Glide.with(getContext()).load(slide.getThumbnailUri()).crossFade().centerCrop();
+        Preconditions.checkState(masterSecret != null, "null MasterSecret when loading non-draft thumbnail");
+        builder = Glide.with(getContext()).load(new EncryptedUriModel(masterSecret, slide.getThumbnailUri()))
+                                          .crossFade().centerCrop();
       }
       Pair<Integer,Integer> thumbDimens = getThumbnailDimens(slide);
       if (thumbDimens.first > 0 && thumbDimens.second > 0) {
@@ -98,6 +120,12 @@ public class ThumbnailView extends ForegroundImageView {
   }
 
   private class SlideDeckListener implements FutureTaskListener<SlideDeck> {
+    private final MasterSecret masterSecret;
+
+    public SlideDeckListener(MasterSecret masterSecret) {
+      this.masterSecret = masterSecret;
+    }
+
     @Override
     public void onSuccess(final SlideDeck slideDeck) {
       if (slideDeck == null) return;
@@ -107,7 +135,7 @@ public class ThumbnailView extends ForegroundImageView {
         handler.post(new Runnable() {
           @Override
           public void run() {
-            setImageResource(slide);
+            setImageResource(slide, masterSecret);
           }
         });
       } else {
