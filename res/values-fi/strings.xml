@@ -9,8 +9,8 @@
   <string name="ApplicationPreferencesActivity_currently_s">Tällä hetkellä: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Et ole vielä määritellyt salalausetta!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">%s viestiä per keskustelu</string>
-  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Haluatko poistaa kaikki vanhat viestit?</string>
-  <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Oletko varma, että haluat rajata kaikki viestiketjut %s viimeisimpään viestiin?</string>
+  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Poistetaanko kaikki vanhat viestit nyt?</string>
+  <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Haluatko varmasti rajata kaikki viestiketjut %s viimeisimpään viestiin?</string>
   <string name="ApplicationPreferencesActivity_delete">Poista</string>
   <string name="ApplicationPreferencesActivity_disable_storage_encryption">Poistetaanko tallennustilan salaus käytöstä?</string>
   <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
@@ -58,7 +58,7 @@ tämän yhteystiedon.</string>
   <string name="ConversationItem_expires_s">Umpeutuu: %s</string>
   <string name="ConversationItem_error_not_delivered">Ei toimitettu</string>
   <string name="ConversationItem_view_secure_media_question">Tarkastele salattua mediaa?</string>
-  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Tämä media on tallennettu salattuun tietokantaan. Ulkoisella ohjelmalla tarkasteleminen vaatii sisällön salauksen purkua ja tallennusta muistiin. Oletko varma, että haluat tehdä tämän?</string>
+  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Tämä media on tallennettu salattuun tietokantaan. Ulkoisella ohjelmalla tarkasteleminen vaatii sisällön salauksen purkua ja tallennusta muistiin. Haluatko varmasti tehdä tämän?</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Virhe. Vastaanotettiin vanhentunut avaintenvaihtoviesti.</string>
   <string name="ConversationItem_received_key_exchange_message_click_to_process">Avaintenvaihtoviesti vastaanotettu. Aloita käsittely napsauttamalla.</string>
   <string name="ConversationItem_group_action_left">%1$s on lähtenyt ryhmästä.</string>
@@ -74,7 +74,7 @@ tämän yhteystiedon.</string>
   <string name="ConversationActivity_abort_secure_session_confirmation">Varmista salatun istunnon lopetus</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Haluatko varmasti lopettaa salatun istunnon?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Varmista viestiketjun poisto</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Haluatko varmasti poistaa pysyvästi tämän keskustelun?</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Haluatko varmasti poistaa tämän keskustelun pysyvästi?</string>
   <string name="ConversationActivity_add_attachment">Lisää liite</string>
   <string name="ConversationActivity_select_contact_info">Valitse yhteystieto</string>
   <string name="ConversationActivity_compose_message">Kirjoita viesti</string>
@@ -112,7 +112,7 @@ Tyyppi: %2$s
 Lähetetty: %3$s
 Vastaanotettu: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Varmista viestin poisto</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Oletko varma, että haluat pysyvästi poistaa kaikki valitut viestit?</string>
+  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Haluatko varmasti poistaa kaikki valitut viestit pysyvästi?</string>
   <string name="ConversationFragment_save_to_sd_card">Tallenna muistiin?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Jos tallennat tämän tiedoston muistiin, niin kaikki muutkin sovellukset voivat käyttää sitä.\n\nHaluatko jatkaa?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Tiedoston tallennuksessa tapahtui virhe!</string>
@@ -341,7 +341,7 @@ Vastaanotettiin viesti tuntemattomalla identiteettiavaimella. Aloita käsittely 
   <string name="ViewIdentityActivity_my_identity_fingerprint">Identiteettini sormenjälki</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Aloita olemassa olevasta pyynnöstä huolimatta?</string>
-  <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Olet jo lähettänyt istunnon aloituspyynnön tälle vastaanottajalle. Oletko varma, että haluat lähettää toisen pyynnön? Tämä mitätöi ensimmäisen pyynnön.</string>
+  <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Olet jo lähettänyt istunnon aloituspyynnön tälle vastaanottajalle. Haluatko varmasti lähettää toisen pyynnön? Tämä mitätöi ensimmäisen pyynnön.</string>
   <string name="KeyExchangeInitiator_send">Lähetä</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Viestin salaus on kelvoton...</string>

@@ -231,7 +231,7 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Ongeldig wachtwoord!</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Beoordeel deze app</string>
-  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Gebruik je deze app graag? Help ons dan een momentje en geef een beoordeling.</string>
+  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Gebruik je deze app graag? Help ons dan een momentje en geef je beoordeling.</string>
   <string name="RatingManager_rate_now">Nu beoordelen!</string>
   <string name="RatingManager_no_thanks">Nee dankjewel</string>
   <string name="RatingManager_later">Later</string>

@@ -235,6 +235,11 @@ kurulumunuzda bulunan ancak yüklenecek yedekte bulunmayan tüm bilgiler kaybolu
   <string name="PassphrasePromptActivity_ok_button_content_description">Parola gönder</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Geçersiz parola!</string>
   <!--RatingManager-->
+  <string name="RatingManager_rate_this_app">Bu uygulamaya puan verin</string>
+  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Bu uygulamayı kullanmaktan hoşlanıyorsanız, lütfen bir dakikanızı ayırıp ona puan vererek bize yardımcı olun.</string>
+  <string name="RatingManager_rate_now">Şimdi puan ver!</string>
+  <string name="RatingManager_no_thanks">Hayır teşekkürler</string>
+  <string name="RatingManager_later">Daha sonra</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Bu anahtar değişiminde alınan imza, bu kişi için daha önce alınandan farklı. Bu ya üçüncü bir kişi iletişiminizi dinlemeğe çalıştığında ya da iletişim kurduğunuz kişi TextSecure\'u yeniden kurarak yeni bir kimlik anahtarı sahibi olmuşsa mümkün olabilir.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Bu kişiyi doğrulamak 
@@ -549,6 +554,7 @@ başarısız.</string>
   <string name="AndroidManifest__media_preview">Medya Önizleme</string>
   <string name="AndroidManifest__media_overview">Tüm resimler</string>
   <string name="AndroidManifest__media_overview_named">%1$s ile tüm resimler</string>
+  <string name="AndroidManifest__message_details">Mesaj Detayları</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">İçeri / Dışarı Aktar</string>
   <string name="arrays__my_identity_key">Kimlik anahtarım</string>
