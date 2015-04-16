@@ -186,7 +186,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     Log.w(TAG, "onNewIntent()");
 
     if (!Util.isEmpty(composeText) || attachmentManager.isAttachmentPresent()) {
-      saveDraft();
       attachmentManager.clear();
       composeText.setText("");
     }
@@ -220,13 +219,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   @Override
   protected void onPause() {
     super.onPause();
+    saveDraft();
     MessageNotifier.setVisibleThread(-1L);
     if (isFinishing()) overridePendingTransition(R.anim.fade_scale_in, R.anim.slide_to_right);
   }
 
   @Override
   protected void onDestroy() {
-    saveDraft();
     if (recipients != null)             recipients.removeListener(this);
     if (securityUpdateReceiver != null) unregisterReceiver(securityUpdateReceiver);
     if (groupUpdateReceiver != null)    unregisterReceiver(groupUpdateReceiver);
@@ -894,9 +893,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         if (drafts.size() > 0) {
           if (threadId == -1) threadId = threadDatabase.getThreadIdFor(getRecipients(), thisDistributionType);
 
+          draftDatabase.clearDrafts(threadId);
           draftDatabase.insertDrafts(new MasterCipher(thisMasterSecret), threadId, drafts);
           threadDatabase.updateSnippet(threadId, drafts.getSnippet(ConversationActivity.this), System.currentTimeMillis(), Types.BASE_DRAFT_TYPE);
         } else if (threadId > 0) {
+          draftDatabase.clearDrafts(threadId);
           threadDatabase.update(threadId);
         }
         return null;
