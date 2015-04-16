@@ -152,7 +152,7 @@ public class ContactsDatabase {
     if (!TextUtils.isEmpty(filter) && new GDataPreferences(context).isPrivacyActivated() && PrivacyBridge.getContactSelection(context)!= null) {
       selection     = "(" + FILTER_SELECTION + ") AND (" + PrivacyBridge.getContactSelection(context)+")";
       selectionArgs = GUtil.addStringArray(new String[]{fuzzyFilter, fuzzyFilter}, PrivacyBridge.getContactSelectionArgs(context));
-    } else if(new GDataPreferences(context).isPrivacyActivated()) {
+    } else if(new GDataPreferences(context).isPrivacyActivated() && TextUtils.isEmpty(filter)) {
       selection     = PrivacyBridge.getContactSelection(context);
       selectionArgs = PrivacyBridge.getContactSelectionArgs(context);
     } else if(!TextUtils.isEmpty(filter)) {

@@ -53,6 +53,8 @@ import org.whispersystems.textsecure.api.push.exceptions.AuthorizationFailedExce
 
 import java.io.IOException;
 
+import de.gdata.messaging.util.PrivacyBridge;
+
 /**
  * The Activity for application preference display and management.
  *
@@ -102,7 +104,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
   @Override
   protected void onPause() {
     super.onPause();
-    ConversationListActivity.reloadAdapter();
+    PrivacyBridge.reloadAdapter();
   }
 
   @Override

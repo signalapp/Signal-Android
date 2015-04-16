@@ -19,25 +19,20 @@ public class GDataPreferences {
   public static final String INTENT_ACCESS_SERVER = "de.gdata.mobilesecurity.ACCESS_SERVER";
   private static final String VIEW_PAGER_LAST_PAGE = "VIEW_PAGER_LAST_PAGE";
   private static final String APPLICATION_FONT = "APPLICATION_FONT";
-  private static final String PREMIUM_INSTALLED = "PREMIUM_INSTALLED";
   private static final String PRIVACY_ACTIVATED = "PRIVACY_ACTIVATED";
-  private static final String SAVED_HIDDEN_RECIPIENTS = "SAVED_HIDDEN_RECIPIENTSA";
-  private static final String SAVED_RECIPIENTS = "SAVED_HIDDEN_RECIPIENTSA";
+  private static final String SAVED_HIDDEN_RECIPIENTS = "SAVED_HIDDEN_RECIPIENTS";
   private static final String SAVE_E164_NUMBER = "SAVE_E164_NUMBER";
 
   private final SharedPreferences mPreferences;
   private final Context mContext;
 
-
   public GDataPreferences(Context context) {
     mPreferences = PreferenceManager.getDefaultSharedPreferences(context);
     mContext = context;
   }
-
   public void setViewPagerLastPage(int page) {
     mPreferences.edit().putInt(VIEW_PAGER_LAST_PAGE, page).commit();
   }
-
   public int getViewPagersLastPage() {
     return mPreferences.getInt(VIEW_PAGER_LAST_PAGE, 0);
   }

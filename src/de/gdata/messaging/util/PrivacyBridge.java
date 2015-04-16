@@ -3,6 +3,7 @@ package de.gdata.messaging.util;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Handler;
@@ -10,6 +11,7 @@ import android.os.Message;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.ContactsContract;
+import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
@@ -17,7 +19,6 @@ import android.widget.Toast;
 import com.google.thoughtcrimegson.Gson;
 import com.google.thoughtcrimegson.reflect.TypeToken;
 
-import org.thoughtcrime.securesms.ConversationListActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
@@ -39,6 +40,8 @@ public class PrivacyBridge {
   public final static String AUTHORITY = "de.gdata.mobilesecurity.privacy.provider";
   public static final String NAME_COLUMN = ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME;
   public static final String RECIPIENT_IDS = "recipient_ids";
+
+  private static GDataPreferences preferences;
 
   private static ArrayList<Recipient> hiddenRecipients;
   private static ArrayList<Contact> allPhoneContacts;
@@ -85,7 +88,7 @@ public class PrivacyBridge {
 
   public static ArrayList<Recipient> getAllHiddenRecipients(Context context) {
     if (hiddenRecipients == null) {
-      hiddenRecipients = new GDataPreferences(context).getSavedHiddenRecipients();
+      hiddenRecipients = getPreferences().getSavedHiddenRecipients();
     }
     return hiddenRecipients;
   }
@@ -106,7 +109,7 @@ public class PrivacyBridge {
     for (String number : hiddenNumbers) {
       newHiddenRecipients.add(getRecipientForNumber(mContext, number).getPrimaryRecipient());
     }
-    new GDataPreferences(mContext).saveHiddenRecipients(newHiddenRecipients);
+    getPreferences().saveHiddenRecipients(newHiddenRecipients);
     hiddenRecipients = newHiddenRecipients;
 
     messageHandler.sendEmptyMessage(0);
@@ -118,7 +121,7 @@ public class PrivacyBridge {
 
     public void handleMessage(Message msg) {
       super.handleMessage(msg);
-      ConversationListActivity.reloadAdapter();
+      reloadAdapter();
     }
   };
 
@@ -161,11 +164,11 @@ public class PrivacyBridge {
   }
 
   public static String getContactSelection(Context context) {
-    return new GDataPreferences(context).isPrivacyActivated() ? PrivacyBridge.getPrivacyContacts(context).get(0)[0] : null;
+    return getPreferences().isPrivacyActivated() ? PrivacyBridge.getPrivacyContacts(context).get(0)[0] : null;
   }
 
   public static String[] getContactSelectionArgs(Context context) {
-    return new GDataPreferences(context).isPrivacyActivated() ? PrivacyBridge.getPrivacyContacts(context).get(1) : null;
+    return getPreferences().isPrivacyActivated() ? PrivacyBridge.getPrivacyContacts(context).get(1) : null;
   }
 
   /**
@@ -205,11 +208,11 @@ public class PrivacyBridge {
   }
 
   public static String getConversationSelection(Context context) {
-    return new GDataPreferences(context).isPrivacyActivated() ? PrivacyBridge.getPrivacyConversationList(context).get(0)[0] : null;
+    return getPreferences().isPrivacyActivated() ? PrivacyBridge.getPrivacyConversationList(context).get(0)[0] : null;
   }
 
   public static String[] getConversationSelectionArgs(Context context) {
-    return new GDataPreferences(context).isPrivacyActivated() ? PrivacyBridge.getPrivacyConversationList(context).get(1) : null;
+    return getPreferences().isPrivacyActivated() ? PrivacyBridge.getPrivacyConversationList(context).get(1) : null;
   }
 
   public static void addContactToPrivacy(String displayName, List<String> numbers) {
@@ -221,6 +224,7 @@ public class PrivacyBridge {
     entries.add(entry);
     Toast.makeText(mContext, mContext.getString(R.string.privacy_pw_dialog_toast_hide_single), Toast.LENGTH_LONG).show();
     new AddTask().execute(entries);
+    GService.refreshPrivacyData(false);
   }
   public static ArrayList<Contact> getAllPhoneContacts(Context mContext, boolean reload) {
     if (reload || allPhoneContacts == null) {
@@ -228,6 +232,11 @@ public class PrivacyBridge {
     }
     return allPhoneContacts;
   }
+
+  public static GDataPreferences getPreferences() {
+    return preferences == null ?new GDataPreferences(mContext): preferences;
+  }
+
   private static class AddTask extends AsyncTask<List<NumberEntry>, Integer, Integer> {
     @Override
     protected Integer doInBackground(final List<NumberEntry>... arrayLists) {
@@ -279,7 +288,7 @@ public class PrivacyBridge {
     @Override
     protected void onPostExecute(Integer integer) {
       super.onPostExecute(integer);
-      ConversationListActivity.reloadAdapter();
+      reloadAdapter();
     }
   }
 
@@ -373,6 +382,9 @@ public class PrivacyBridge {
     }
 
   }
-
+  public static void reloadAdapter() {
+    Intent intent = new Intent("reloadAdapter");
+    LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
+  }
 }
 
