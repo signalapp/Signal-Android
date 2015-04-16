@@ -760,7 +760,7 @@ public class MmsDatabase extends MessagingDatabase {
     return messageId;
   }
 
-  public void delete(long messageId) {
+  public boolean delete(long messageId) {
     long threadId                   = getThreadIdForMessage(messageId);
     MmsAddressDatabase addrDatabase = DatabaseFactory.getMmsAddressDatabase(context);
     PartDatabase partDatabase       = DatabaseFactory.getPartDatabase(context);
@@ -769,8 +769,9 @@ public class MmsDatabase extends MessagingDatabase {
 
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
     database.delete(TABLE_NAME, ID_WHERE, new String[] {messageId+""});
-    DatabaseFactory.getThreadDatabase(context).update(threadId);
+    boolean threadDeleted = DatabaseFactory.getThreadDatabase(context).update(threadId);
     notifyConversationListeners(threadId);
+    return threadDeleted;
   }
 
   public void deleteThread(long threadId) {
