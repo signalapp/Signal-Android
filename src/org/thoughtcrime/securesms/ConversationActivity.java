@@ -203,18 +203,29 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   @Override
   protected void onResume() {
     super.onResume();
-    dynamicTheme.onResume(this);
-    dynamicLanguage.onResume(this);
+      dynamicTheme.onResume(this);
+      dynamicLanguage.onResume(this);
+      final String ConversationActivity = getConversationActivity();
+      if (!Telephony.Sms.getDefaultSmsPackage(this).equals(ConversationActivity)) {
+          View viewGroup = findViewById(R.id.not_default_app);
+          viewGroup.setVisibility(View.VISIBLE);
 
-    initializeSecurity();
-    initializeTitleBar();
-    initializeEnabledCheck();
-    initializeMmsEnabledCheck();
-    initializeIme();
-    calculateCharactersRemaining();
+          Button button = (Button) findViewById(R.id.change_default_app);
+          button.setOnClickListener(new View.OnClickListener() {
+              public void onClick(View v) {
+                  Intent intent =
+                          new Intent(Telephony.Sms.Intents.ACTION_CHANGE_DEFAULT);
+                  intent.putExtra(Telephony.Sms.Intents.EXTRA_PACKAGE_NAME, ConversationActivity);
+                  startActivity(intent);
 
-    MessageNotifier.setVisibleThread(threadId);
-    markThreadAsRead();
+              }
+          });
+      } else {
+          View viewGroup = findViewById(R.id.not_default_app);
+          viewGroup.setVisibility(View.GONE);
+      }
+
+
   }
 
   @Override

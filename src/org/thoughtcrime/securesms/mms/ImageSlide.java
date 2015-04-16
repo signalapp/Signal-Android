@@ -138,3 +138,24 @@ public class ImageSlide extends Slide {
     return part;
   }
 }
+
+public class PhotoFullscreenSwipeActivity extends Activity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.viewpager);
+
+
+        ViewPager viewPager = (ViewPager) findViewById(R.id.pagerID);
+
+        // Gridview adapter
+        PhotoFullscreenSwipeAdapter adapter = new PhotoFullscreenSwipeAdapter(PhotoFullscreenSwipeActivity.this, ((GalleryApplication)getApplication()).getCurrentPhotos());
+
+        int postion = getIntent().getIntExtra("position", 0);
+
+        viewPager.setAdapter(adapter);
+        viewPager.setCurrentItem(postion);
+
+    }
