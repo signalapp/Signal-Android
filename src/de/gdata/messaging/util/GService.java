@@ -181,34 +181,27 @@ public class GService {
     return suppressedNumbers;
   }
 
-  public static class AsyncTaskLoadRecipients extends AsyncTask<Boolean, Void, String> {
-    public static boolean isAlreadyLoading = false;
+  public static class AsyncTaskRefreshPrivacyData extends AsyncTask<Boolean, Void, String> {
 
     @Override
     protected String doInBackground(Boolean... params) {
+      bindISFAService();
       PrivacyBridge.loadAllHiddenContacts(mContext);
       try {
         DirectoryHelper.refreshDirectory(mContext, TextSecureCommunicationFactory.createManager(mContext));
       } catch (IOException e) {
         Log.d("GDATA", "Couldn`t load SecureChat contacts");
       }
-      bindISFAService();
-      GService.AsyncTaskLoadRecipients.isAlreadyLoading = false;
       return null;
-    }
-
-    @Override
-    protected void onPreExecute() {
-      isAlreadyLoading = true;
     }
 
     @Override
     protected void onProgressUpdate(Void... values) {
     }
   }
+
   public static void refreshPrivacyData(boolean fullReload) {
-    if (!AsyncTaskLoadRecipients.isAlreadyLoading) {
-      new AsyncTaskLoadRecipients().execute(fullReload);
-    }
+    //nothing big happens here anynmore, so that it isnt neccessary to check whether its already running or not
+    new AsyncTaskRefreshPrivacyData().execute(fullReload);
   }
 }

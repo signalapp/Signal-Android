@@ -19,9 +19,11 @@ package org.thoughtcrime.securesms;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.ContentObserver;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -31,6 +33,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.SearchView;
@@ -68,8 +71,8 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   private final DynamicTheme dynamicTheme = new DynamicTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
-  private static ConversationListFragment conversationListFragment;
-  private static ContactSelectionFragment contactSelectionFragment;
+  private ConversationListFragment conversationListFragment;
+  private ContactSelectionFragment contactSelectionFragment;
   private MasterSecret masterSecret;
   private GDataPreferences gDataPreferences;
   private ContentObserver observer;
@@ -87,8 +90,15 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     initViewPagerLayout();
     GUtil.forceOverFlowMenu(getApplicationContext());
     new GService().init(getApplicationContext());
+    LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
+        new IntentFilter("reloadAdapter"));
   }
-
+  private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
+    @Override
+    public void onReceive(Context context, Intent intent) {
+      reloadAdapter();
+    }
+  };
   @Override
   public void onPostCreate(Bundle bundle) {
     super.onPostCreate(bundle);
@@ -103,9 +113,9 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
   @Override
   public void onDestroy() {
-    Log.w("ConversationListActivity", "onDestroy...");
     MemoryCleaner.clean(masterSecret);
     if (observer != null) getContentResolver().unregisterContentObserver(observer);
+    LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
     super.onDestroy();
   }
 
@@ -462,7 +472,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
       }
     } else if (ACTION_ID == CheckPasswordDialogFrag.ACTION_TOGGLE_VISIBILITY) {
       gDataPreferences.setPrivacyActivated(!gDataPreferences.isPrivacyActivated());
-      ConversationListActivity.reloadAdapter();
+      reloadAdapter();
       String toastText = gDataPreferences.isPrivacyActivated()
           ? getApplicationContext().getString(R.string.privacy_pw_dialog_toast_hide) : getApplicationContext().getString(R.string.privacy_pw_dialog_toast_reload);
 
@@ -493,7 +503,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     }
   }
 
-  public static void reloadAdapter() {
+  public void reloadAdapter() {
       if (conversationListFragment != null) {
         conversationListFragment.reloadAdapter();
       }
