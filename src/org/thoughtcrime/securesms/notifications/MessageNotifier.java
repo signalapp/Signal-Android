@@ -249,8 +249,11 @@ public class MessageNotifier {
     builder.setDeleteIntent(PendingIntent.getBroadcast(context, 0, new Intent(DeleteReceiver.DELETE_REMINDER_ACTION), 0));
 
     if (masterSecret != null) {
-      builder.addAction(R.drawable.check, context.getString(R.string.MessageNotifier_mark_all_as_read),
-                        notificationState.getMarkAsReadIntent(context, masterSecret));
+       NotificationCompat.Action markAllAsReadAction =
+         new NotificationCompat.Action(R.drawable.check, context.getString(R.string.MessageNotifier_mark_all_as_read),
+                                       notificationState.getMarkAsReadIntent(context, masterSecret));
+       builder.addAction(markAllAsReadAction);
+       builder.extend(new NotificationCompat.WearableExtender().addAction(markAllAsReadAction));
     }
 
     InboxStyle style = new InboxStyle();
