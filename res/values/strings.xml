@@ -478,6 +478,7 @@
     <string name="conversation_activity__compose_description">Message composition</string>
     <string name="conversation_activity__emoji_toggle_description">Toggle emoji keyboard</string>
     <string name="conversation_activity__attachment_thumbnail">Attachment Thumbnail</string>
+    <string name="conversation_activity__quick_attachment_drawer_toggle_description">Toggle attachment drawer</string>
 
     <!-- conversation_item -->
     <string name="conversation_item__mms_downloading_description">Media message downloading</string>
@@ -900,6 +901,9 @@
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Transport icon</string>
+
+    <!-- quick_attachment_drawer -->
+    <string name="quick_camera_unavailable">Camera unavailable</string>
 
     <!-- EOF -->
 

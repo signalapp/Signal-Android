@@ -199,7 +199,7 @@ public class BitmapUtil {
     }
   }
 
-  private static Bitmap rotateBitmap(Bitmap bitmap, int angle) {
+  public static Bitmap rotateBitmap(Bitmap bitmap, int angle) {
     Matrix matrix = new Matrix();
     matrix.postRotate(angle);
     Bitmap rotated = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
