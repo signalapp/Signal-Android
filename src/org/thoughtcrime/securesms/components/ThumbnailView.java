@@ -131,8 +131,9 @@ public class ThumbnailView extends RoundedImageView {
   private GenericRequestBuilder buildThumbnailGlideRequest(Slide slide, MasterSecret masterSecret) {
 
     final GenericRequestBuilder builder;
-    if (slide.isDraft()) builder = buildDraftGlideRequest(slide);
-    else                 builder = buildEncryptedPartGlideRequest(slide, masterSecret);
+    if      (slide.isDraft() && slide.isEncrypted()) builder = buildEncryptedDraftGlideRequest(slide, masterSecret);
+    else if (slide.isDraft())                        builder = buildDraftGlideRequest(slide);
+    else                                             builder = buildEncryptedPartGlideRequest(slide, masterSecret);
     return builder;
   }
 
@@ -140,6 +141,16 @@ public class ThumbnailView extends RoundedImageView {
     return Glide.with(getContext()).load(slide.getThumbnailUri()).asBitmap()
                                    .fitCenter()
                                    .listener(new PduThumbnailSetListener(slide.getPart()));
+  }
+
+  private GenericRequestBuilder buildEncryptedDraftGlideRequest(Slide slide, MasterSecret masterSecret) {
+    if (masterSecret == null) {
+      throw new IllegalStateException("null MasterSecret when loading encrypted draft thumbnail");
+    }
+
+    return Glide.with(getContext()).load(new DecryptableUri(masterSecret, slide.getThumbnailUri()))
+        .fitCenter()
+        .transform(new ThumbnailTransform(getContext()));
   }
 
   private GenericRequestBuilder buildEncryptedPartGlideRequest(Slide slide, MasterSecret masterSecret) {

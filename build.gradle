@@ -29,6 +29,9 @@ repositories {
     maven { // textdrawable
         url 'https://dl.bintray.com/amulyakhare/maven'
     }
+    maven {
+        url 'https://repo.commonsware.com.s3.amazonaws.com'
+    }
     jcenter()
     mavenLocal()
 }
@@ -67,6 +70,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-v4'
     }
     compile 'com.madgag.spongycastle:prov:1.51.0.0'
+    compile 'com.commonsware.cwac:camera:0.6.+'
     provided 'com.squareup.dagger:dagger-compiler:1.2.2'
 
     compile 'org.whispersystems:jobmanager:0.11.0'
