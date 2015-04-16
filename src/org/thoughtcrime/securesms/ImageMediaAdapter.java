@@ -76,7 +76,7 @@ public class ImageMediaAdapter extends CursorRecyclerViewAdapter<ViewHolder> {
 
     Slide slide = MediaUtil.getSlideForPart(getContext(), masterSecret, part, imageRecord.getContentType());
     if (slide != null) {
-      imageView.setImageResource(slide);
+      imageView.setImageResource(slide, masterSecret);
     }
 
     imageView.setOnClickListener(new OnMediaClickListener(imageRecord));
