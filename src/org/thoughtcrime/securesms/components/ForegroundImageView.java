@@ -153,28 +153,6 @@ public class ForegroundImageView extends RoundedImageView {
     }
   }
 
-  @Override
-  public void setImageDrawable(Drawable drawable) {
-    if (drawable != null) {
-      Log.w(TAG, String.format("setImageDrawable(%dx%d)",
-                               drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight()));
-    } else {
-      Log.w(TAG, "setImageDrawable(null)");
-    }
-    super.setImageDrawable(drawable);
-  }
-
-  @Override
-  public void setImageBitmap(Bitmap bitmap) {
-    if (bitmap != null) {
-      Log.w(TAG, String.format("setImageBitmap(%dx%d)",
-                               bitmap.getWidth(), bitmap.getHeight()));
-    } else {
-      Log.w(TAG, "setImageBitmap(null)");
-    }
-    super.setImageBitmap(bitmap);
-  }
-
   /**
    * Supply a Drawable that is to be rendered on top of all of the child
    * views in the frame layout.  Any padding in the Drawable will be taken
