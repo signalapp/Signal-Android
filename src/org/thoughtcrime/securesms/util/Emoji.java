@@ -330,9 +330,7 @@ public class Emoji {
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
       }
 
-      if (recentlyUsed.contains(asset)) {
-        recentlyUsed.remove(asset);
-      }
+      recentlyUsed.remove(asset);
       recentlyUsed.add(asset);
 
       if (recentlyUsed.size() > EMOJI_LRU_SIZE) {
