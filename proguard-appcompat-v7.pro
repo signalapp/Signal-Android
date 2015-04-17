@@ -1,4 +1,4 @@
-# only obfuscate this one pagacke because LGE ROM bug
+# https://code.google.com/p/android/issues/detail?id=78377
 -keepnames class !android.support.v7.internal.view.menu.**, ** { *; }
 
 -keep public class android.support.v7.widget.** { *; }
