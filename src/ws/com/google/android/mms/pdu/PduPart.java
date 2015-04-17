@@ -20,8 +20,17 @@ package ws.com.google.android.mms.pdu;
 import android.graphics.Bitmap;
 import android.net.Uri;
 
+import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.mms.MediaConstraints;
+import org.thoughtcrime.securesms.util.BitmapDecodingException;
+import org.thoughtcrime.securesms.util.BitmapUtil;
+import org.thoughtcrime.securesms.util.Util;
+
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
+import ws.com.google.android.mms.ContentType;
 
 /**
  * The pdu part.
@@ -127,7 +136,6 @@ public class PduPart {
      private boolean isPendingPush;
      private long    dataSize;
      private Bitmap  thumbnail;
-     private float   aspectRatio;
      
      /**
       * Empty Constructor.
@@ -446,14 +454,6 @@ public class PduPart {
 
     public void setThumbnail(Bitmap thumbnail) {
       this.thumbnail = thumbnail;
-    }
-
-    public float getAspectRatio() {
-      return aspectRatio;
-    }
-
-    public void setAspectRatio(float aspectRatio) {
-      this.aspectRatio = aspectRatio;
     }
 }
 

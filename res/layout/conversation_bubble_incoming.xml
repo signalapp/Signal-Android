@@ -26,7 +26,7 @@
                 android:layout_marginRight="@dimen/message_bubble_end_padding"
                 android:visibility="gone"
                 android:layout_gravity="center"
-                android:scaleType="centerCrop"
+                android:scaleType="centerInside"
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/conversation_item__mms_image_description"
                 app:riv_corner_radius="@dimen/message_bubble_corner_radius"

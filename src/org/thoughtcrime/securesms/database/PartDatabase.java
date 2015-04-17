@@ -282,10 +282,6 @@ public class PartDatabase extends Database {
 
     if (!cursor.isNull(sizeColumn))
       part.setDataSize(cursor.getLong(cursor.getColumnIndexOrThrow(SIZE)));
-
-    int aspectRatioColumn = cursor.getColumnIndexOrThrow(ASPECT_RATIO);
-    if (!cursor.isNull(aspectRatioColumn))
-      part.setAspectRatio(cursor.getFloat(aspectRatioColumn));
   }
 
   private ContentValues getContentValuesForPart(PduPart part) throws MmsException {

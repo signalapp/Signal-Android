@@ -8,7 +8,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.util.Pair;
 import android.view.View;
 
 import com.bumptech.glide.GenericRequestBuilder;
@@ -21,6 +20,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
+import org.thoughtcrime.securesms.mms.ThumbnailTransform;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
 
@@ -42,10 +42,6 @@ public class ThumbnailView extends ForegroundImageView {
 
   public ThumbnailView(Context context, AttributeSet attrs, int defStyle) {
     super(context, attrs, defStyle);
-  }
-
-  public void setImageResource(@NonNull ListenableFutureTask<SlideDeck> slideDeckFuture) {
-    setImageResource(slideDeckFuture, null);
   }
 
   public void setImageResource(@NonNull ListenableFutureTask<SlideDeck> slideDeckFuture,
@@ -74,27 +70,12 @@ public class ThumbnailView extends ForegroundImageView {
     this.thumbnailClickListener = listener;
   }
 
-  private Pair<Integer,Integer> getThumbnailDimens(@NonNull Slide slide) {
-    final PduPart part = slide.getPart();
-    int thumbnailHeight = getContext().getResources().getDimensionPixelSize(R.dimen.media_bubble_height);
-    Log.w(TAG, "aspect ratio of " + part.getAspectRatio() + " for max height " + thumbnailHeight);
-    if (part.getAspectRatio() < 1f) {
-      return new Pair<>((int)(thumbnailHeight * part.getAspectRatio()), thumbnailHeight);
-    } else {
-      return new Pair<>(-1, -1);
-    }
-  }
-
-  private GenericRequestBuilder buildGlideRequest(@NonNull Slide slide) {
-    return buildGlideRequest(slide, null);
-  }
-
   private GenericRequestBuilder buildGlideRequest(@NonNull Slide slide,
                                                   @Nullable MasterSecret masterSecret)
   {
-    GenericRequestBuilder builder;
+    final GenericRequestBuilder builder;
     if (slide.getPart().isPendingPush()) {
-      builder = Glide.with(getContext()).load(R.drawable.stat_sys_download).crossFade();
+      builder = buildPendingGlideRequest(slide);
     } else if (slide.getThumbnailUri() != null) {
       builder = buildThumbnailGlideRequest(slide, masterSecret);
     } else {
@@ -104,16 +85,18 @@ public class ThumbnailView extends ForegroundImageView {
     return builder.error(R.drawable.ic_missing_thumbnail_picture);
   }
 
+  private GenericRequestBuilder buildPendingGlideRequest(Slide slide) {
+    return Glide.with(getContext()).load(R.drawable.stat_sys_download_anim0)
+                                   .dontTransform()
+                                   .skipMemoryCache(true)
+                                   .crossFade();
+  }
+
   private GenericRequestBuilder buildThumbnailGlideRequest(Slide slide, MasterSecret masterSecret) {
 
     final GenericRequestBuilder builder;
     if (slide.isDraft()) builder = buildDraftGlideRequest(slide);
     else                 builder = buildEncryptedPartGlideRequest(slide, masterSecret);
-
-    Pair<Integer, Integer> thumbDimens = getThumbnailDimens(slide);
-    if (thumbDimens.first > 0 && thumbDimens.second > 0) {
-      builder.override(thumbDimens.first, thumbDimens.second);
-    }
     return builder;
   }
 
@@ -127,8 +110,9 @@ public class ThumbnailView extends ForegroundImageView {
     if (masterSecret == null) {
       throw new IllegalStateException("null MasterSecret when loading non-draft thumbnail");
     }
+
     return  Glide.with(getContext()).load(new DecryptableUri(masterSecret, slide.getThumbnailUri()))
-                                    .crossFade().centerCrop();
+                                    .crossFade().transform(new ThumbnailTransform(getContext()));
   }
 
   private GenericRequestBuilder buildPlaceholderGlideRequest(Slide slide) {
