@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.util.Log;
 
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
@@ -22,17 +21,12 @@ public class ThumbnailTransform extends BitmapTransformation {
 
   @Override
   protected Bitmap transform(BitmapPool pool, Bitmap toTransform, int outWidth, int outHeight) {
-    Log.w(TAG, String.format("transform(%dx%d -> %dx%d)",
-                             toTransform.getWidth(), toTransform.getHeight(),
-                             outWidth, outHeight));
-
     if (toTransform.getWidth() < (outWidth / 2) && toTransform.getHeight() < (outHeight / 2)) {
       return toTransform;
     }
 
     final float inAspectRatio  = (float) toTransform.getWidth() / toTransform.getHeight();
     final float outAspectRatio = (float) outWidth / outHeight;
-    Log.w(TAG, String.format("inAR: %.03f, outAR: %.03f", inAspectRatio, outAspectRatio));
     if (inAspectRatio < outAspectRatio) {
       outWidth = (int)(outHeight * inAspectRatio);
     }
