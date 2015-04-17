@@ -45,6 +45,9 @@
     <meta-data android:name="com.google.android.gms.version"
                android:value="@integer/google_play_services_version" />
 
+    <meta-data android:name="org.thoughtcrime.securesms.mms.TextSecureGlideModule"
+               android:value="GlideModule" />
+
     <activity android:name=".RegistrationProblemsActivity"
               android:theme="@style/TextSecure.Light.Dialog"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>

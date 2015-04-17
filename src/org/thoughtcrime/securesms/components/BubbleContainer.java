@@ -22,7 +22,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build.VERSION_CODES;
-import android.support.annotation.DrawableRes;
 import android.support.annotation.IntDef;
 import android.util.AttributeSet;
 import android.view.View;
@@ -51,11 +50,11 @@ public abstract class BubbleContainer extends RelativeLayout {
   @IntDef({MEDIA_STATE_NO_MEDIA, MEDIA_STATE_CAPTIONLESS, MEDIA_STATE_CAPTIONED})
   public @interface MediaState {}
 
-  private View                bodyBubble;
-  private View                triangleTick;
-  private ForegroundImageView media;
-  private int                 shadowColor;
-  private int                 mmsPendingOverlayColor;
+  private View          bodyBubble;
+  private View          triangleTick;
+  private ThumbnailView media;
+  private int           shadowColor;
+  private int           mmsPendingOverlayColor;
 
   public BubbleContainer(Context context) {
     super(context);
@@ -88,7 +87,7 @@ public abstract class BubbleContainer extends RelativeLayout {
     onCreateView();
     this.bodyBubble   = findViewById(R.id.body_bubble  );
     this.triangleTick = findViewById(R.id.triangle_tick);
-    this.media        = (ForegroundImageView) findViewById(R.id.image_view);
+    this.media        = (ThumbnailView) findViewById(R.id.image_view);
 
     this.shadowColor            = ResUtil.getColor(getContext(), R.attr.conversation_item_shadow);
     this.mmsPendingOverlayColor = ResUtil.getColor(getContext(), R.attr.conversation_item_mms_pending_mask);

@@ -17,37 +17,21 @@
 package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
+import android.content.res.Resources.Theme;
 import android.net.Uri;
-import android.util.Log;
-import android.util.Pair;
+import android.support.annotation.DrawableRes;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.MmsDatabase;
-import org.thoughtcrime.securesms.util.BitmapDecodingException;
-import org.thoughtcrime.securesms.util.LRUCache;
-import org.thoughtcrime.securesms.util.ListenableFutureTask;
-import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.util.BitmapDecodingException;
 
 import java.io.IOException;
-import java.lang.ref.SoftReference;
-import java.lang.ref.WeakReference;
-import java.util.Collections;
-import java.util.Map;
-import java.util.concurrent.Callable;
 
 import ws.com.google.android.mms.ContentType;
 import ws.com.google.android.mms.pdu.PduPart;
 
 public class ImageSlide extends Slide {
   private static final String TAG = ImageSlide.class.getSimpleName();
-
-  private static final int MAX_CACHE_SIZE = 10;
-  private static final Map<Uri, SoftReference<Drawable>> thumbnailCache =
-      Collections.synchronizedMap(new LRUCache<Uri, SoftReference<Drawable>>(MAX_CACHE_SIZE));
 
   public ImageSlide(Context context, MasterSecret masterSecret, PduPart part) {
     super(context, masterSecret, part);
@@ -58,66 +42,19 @@ public class ImageSlide extends Slide {
   }
 
   @Override
-  public ListenableFutureTask<Pair<Drawable,Boolean>> getThumbnail(Context context) {
-    if (getPart().isPendingPush()) {
-      return new ListenableFutureTask<>(new Pair<>(context.getResources().getDrawable(R.drawable.stat_sys_download), true));
-    }
-
-    Drawable thumbnail = getCachedThumbnail();
-    if (thumbnail != null) {
-      Log.w(TAG, "getThumbnail() returning cached thumbnail");
-      return new ListenableFutureTask<>(new Pair<>(thumbnail, true));
-    }
-
-    Log.w(TAG, "getThumbnail() resolving thumbnail, as it wasn't cached");
-    return resolveThumbnail(context);
-  }
-
-  private ListenableFutureTask<Pair<Drawable,Boolean>> resolveThumbnail(Context context) {
-    final WeakReference<Context> weakContext = new WeakReference<>(context);
-
-    Callable<Pair<Drawable,Boolean>> slideCallable = new Callable<Pair<Drawable, Boolean>>() {
-      @Override
-      public Pair<Drawable, Boolean> call() throws Exception {
-        final Context context = weakContext.get();
-        if (context == null) {
-          Log.w(TAG, "context SoftReference was null, leaving");
-          return null;
-        }
-
-        try {
-          final long     startDecode     = System.currentTimeMillis();
-          final Bitmap   thumbnailBitmap = MediaUtil.getOrGenerateThumbnail(context, masterSecret, part);
-          final Drawable thumbnail       = new BitmapDrawable(context.getResources(), thumbnailBitmap);
-          Log.w(TAG, "thumbnail decode/generate time: " + (System.currentTimeMillis() - startDecode) + "ms");
-
-          thumbnailCache.put(part.getDataUri(), new SoftReference<>(thumbnail));
-          return new Pair<>(thumbnail, false);
-        } catch (IOException | BitmapDecodingException e) {
-          Log.w(TAG, e);
-          return new Pair<>(context.getResources().getDrawable(R.drawable.ic_missing_thumbnail_picture), false);
-        }
-      }
-    };
-    ListenableFutureTask<Pair<Drawable,Boolean>> futureTask = new ListenableFutureTask<>(slideCallable);
-    MmsDatabase.slideResolver.execute(futureTask);
-    return futureTask;
-  }
-
-  private Drawable getCachedThumbnail() {
-    synchronized (thumbnailCache) {
-      SoftReference<Drawable> bitmapReference = thumbnailCache.get(part.getDataUri());
-      Log.w("ImageSlide", "Got soft reference: " + bitmapReference);
-
-      if (bitmapReference != null) {
-        Drawable bitmap = bitmapReference.get();
-        Log.w("ImageSlide", "Got cached bitmap: " + bitmap);
-        if (bitmap != null) return bitmap;
-        else                thumbnailCache.remove(part.getDataUri());
-      }
+  public Uri getThumbnailUri() {
+    if (!getPart().isPendingPush() && getPart().getDataUri() != null) {
+      return isDraft()
+             ? getPart().getDataUri()
+             : PartAuthority.getThumbnailUri(getPart().getId());
     }
 
     return null;
+  }
+
+  @Override
+  public @DrawableRes int getPlaceholderRes(Theme theme) {
+    return R.drawable.ic_missing_thumbnail_picture;
   }
 
   @Override
@@ -137,4 +74,5 @@ public class ImageSlide extends Slide {
 
     return part;
   }
+
 }
