@@ -19,10 +19,11 @@ public class NotificationItem {
   private final long         threadId;
   private final CharSequence text;
   private final Uri          image;
+  private final long         timestamp;
 
   public NotificationItem(Recipient individualRecipient, Recipients recipients,
                           Recipients threadRecipients, long threadId,
-                          CharSequence text, Uri image)
+                          CharSequence text, Uri image, long timestamp)
   {
     this.individualRecipient = individualRecipient;
     this.recipients          = recipients;
@@ -30,6 +31,7 @@ public class NotificationItem {
     this.text                = text;
     this.image               = image;
     this.threadId            = threadId;
+    this.timestamp           = timestamp;
   }
 
   public Recipient getIndividualRecipient() {
@@ -42,6 +44,10 @@ public class NotificationItem {
 
   public CharSequence getText() {
     return text;
+  }
+
+  public long getTimestamp() {
+    return timestamp;
   }
 
   public Uri getImage() {
