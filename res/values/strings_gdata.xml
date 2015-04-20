@@ -27,6 +27,8 @@
     <string name="privacy_pw_dialog_toast_hide">Hiding conversations...</string>
     <string name="privacy_pw_dialog_toast_hide_single">Hiding conversation...</string>
 
+    <string name="gd_preferences_sms_fallback_ask_before_sending_sms_mms">Vor dem Senden einer kostenpflichtigen SMS/MMS nachfragen</string>
+
     <string name="privacy_toast_install_premium">You need the G DATA Internet Security, to use this feature.</string>
 
     <string name="conversation_activity_invite_link">https://secure.gd/scg</string>
