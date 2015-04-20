@@ -32,7 +32,7 @@ public class PlayServicesProblemFragment extends DialogFragment {
 
   private Dialog getPlayServicesInvalidDialog() {
     return new MaterialDialog.Builder(getActivity())
-               .content(R.string.PlayServicesProblemFragment__google_play_services_is_not_authentic)
+               .content(R.string.PlayServicesProblemFragment__please_install_an_authentic_version_of_google_play)
                .cancelable(false)
                .positiveText(android.R.string.ok)
                .callback(new ButtonCallback() {

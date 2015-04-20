@@ -672,7 +672,7 @@
     <string name="message_details_header__with">With:</string>
 
     <!-- PlayServicesProblemFragment -->
-    <string name="PlayServicesProblemFragment__google_play_services_is_not_authentic">The version of the Google Play services installed on this device is not authentic.</string>
+    <string name="PlayServicesProblemFragment__please_install_an_authentic_version_of_google_play">Please install an authentic version of Google Play Services and try again.</string>
 
     <!-- AndroidManifest.xml -->
     <string name="AndroidManifest__create_passphrase">Create passphrase</string>
