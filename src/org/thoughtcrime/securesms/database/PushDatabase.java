@@ -3,10 +3,13 @@ package org.thoughtcrime.securesms.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.util.Base64;
+import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 
 import java.io.IOException;
@@ -30,15 +33,21 @@ public class PushDatabase extends Database {
     super(context, databaseHelper);
   }
 
-  public long insert(TextSecureEnvelope envelope) {
-    ContentValues values = new ContentValues();
-    values.put(TYPE, envelope.getType());
-    values.put(SOURCE, envelope.getSource());
-    values.put(DEVICE_ID, envelope.getSourceDevice());
-    values.put(BODY, Base64.encodeBytes(envelope.getMessage()));
-    values.put(TIMESTAMP, envelope.getTimestamp());
+  public long insert(@NonNull TextSecureEnvelope envelope) {
+    Optional<Long> messageId = find(envelope);
 
-    return databaseHelper.getWritableDatabase().insert(TABLE_NAME, null, values);
+    if (messageId.isPresent()) {
+      return messageId.get();
+    } else {
+      ContentValues values = new ContentValues();
+      values.put(TYPE, envelope.getType());
+      values.put(SOURCE, envelope.getSource());
+      values.put(DEVICE_ID, envelope.getSourceDevice());
+      values.put(BODY, Base64.encodeBytes(envelope.getMessage()));
+      values.put(TIMESTAMP, envelope.getTimestamp());
+
+      return databaseHelper.getWritableDatabase().insert(TABLE_NAME, null, values);
+    }
   }
 
   public TextSecureEnvelope get(long id) throws NoSuchMessageException {
@@ -78,6 +87,31 @@ public class PushDatabase extends Database {
 
   public Reader readerFor(Cursor cursor) {
     return new Reader(cursor);
+  }
+
+  private Optional<Long> find(TextSecureEnvelope envelope) {
+    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+    Cursor         cursor   = null;
+
+    try {
+      cursor = database.query(TABLE_NAME, null, TYPE + " = ? AND " + SOURCE + " = ? AND " +
+                                                DEVICE_ID + " = ? AND " + BODY + " = ? AND " +
+                                                TIMESTAMP + " = ?" ,
+                              new String[] {String.valueOf(envelope.getType()),
+                                            envelope.getSource(),
+                                            String.valueOf(envelope.getSourceDevice()),
+                                            Base64.encodeBytes(envelope.getMessage()),
+                                            String.valueOf(envelope.getTimestamp())},
+                              null, null, null);
+
+      if (cursor != null && cursor.moveToFirst()) {
+        return Optional.of(cursor.getLong(cursor.getColumnIndexOrThrow(ID)));
+      } else {
+        return Optional.absent();
+      }
+    } finally {
+      if (cursor != null) cursor.close();
+    }
   }
 
   public static class Reader {
