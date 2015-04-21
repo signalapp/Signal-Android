@@ -81,8 +81,8 @@ public class ThreadRecord extends DisplayRecord {
       } else if (SmsDatabase.Types.isOutgoingMessageType(type)) {
         return new SpannableString(context.getString(R.string.ThreadRecord_sent) + " " + getBody().getBody());
       } else {
-            return new SpannableString(getBody().getBody());
-        }
+        return new SpannableString(getBody().getBody());
+      }
     }
   }
 
