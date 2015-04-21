@@ -47,11 +47,11 @@ public class SmsReceiveJob extends ContextJob {
     Optional<IncomingTextMessage> message = assembleMessageFragments(pdus);
     if (message.isPresent()) {
       if(!GUtil.isSMSCommand(message.get().getMessageBody())) {
-        if (!GService.shallBeBlockedByFilter(message.get().getSender(), 1, 1) && !GService.shallBeBlockedByPrivacy(message.get().getSender())) {
+        if (!GService.shallBeBlockedByFilter(message.get().getSender(), GService.TYPE_SMS, GService.INCOMING) && !GService.shallBeBlockedByPrivacy(message.get().getSender())) {
           Pair<Long, Long> messageAndThreadId = storeMessage(message.get(), false);
           MessageNotifier.updateNotification(context, KeyCachingService.getMasterSecret(context), messageAndThreadId.second);
         }
-        if (GService.shallBeBlockedByPrivacy(message.get().getSender()) && !GService.shallBeBlockedByFilter(message.get().getSender(), 1, 1)) {
+        if (GService.shallBeBlockedByPrivacy(message.get().getSender()) && !GService.shallBeBlockedByFilter(message.get().getSender(), GService.TYPE_SMS, GService.INCOMING)) {
           storeMessage(message.get(), true);
         }
       }

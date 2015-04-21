@@ -188,7 +188,7 @@ public class PushDecryptJob extends MasterSecretJob {
     if (message.isSecure()) {
       textMessage = new IncomingEncryptedMessage(textMessage, body);
     }
-    if (!GService.shallBeBlockedByFilter(textMessage.getSender(), 1, 1)){
+    if (!GService.shallBeBlockedByFilter(textMessage.getSender(), GService.TYPE_SMS, GService.INCOMING)){
       Pair<Long, Long> messageAndThreadId = database.insertMessageInbox(masterSecret, textMessage);
       if (!GService.shallBeBlockedByPrivacy(textMessage.getSender())) {
         MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
