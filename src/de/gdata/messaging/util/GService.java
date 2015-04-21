@@ -22,6 +22,8 @@ import de.gdata.messaging.isfaserverdefinitions.IRpcService;
 
 public class GService {
 
+  public static final int TYPE_SMS = 2;
+  public static final int INCOMING = 1;
   private static Context mContext;
   private static PrivacyContentObserver privacyContentObserver;
   private static GDataPreferences preferences;
@@ -95,14 +97,14 @@ public class GService {
   };
   /**
    * @param sender
-   * @param inOut  1 input 0 output
-   * @param type   1 sms 0 call
+   * @param flag call:1 and SMS:2 flag
+   * @param direction in:1 out:2
    * @return
    */
-  public static boolean shallBeBlockedByFilter(String sender, int inOut, int type) {
+  public static boolean shallBeBlockedByFilter(String sender, int flag, int direction) {
     boolean shallBeBlocked = false;
       try {
-        if (getServiceInstance() != null && getServiceInstance().shouldBeFiltered(sender, inOut, type)) {
+        if (getServiceInstance() != null && getServiceInstance().shouldBeFiltered(sender, flag, direction)) {
           shallBeBlocked = true;
         }
       } catch (Exception e) {
