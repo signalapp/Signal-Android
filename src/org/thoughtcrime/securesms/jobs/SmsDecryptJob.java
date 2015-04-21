@@ -73,7 +73,7 @@ public class SmsDecryptJob extends MasterSecretJob {
       long                messageId = record.getId();
       long                threadId  = record.getThreadId();
 
-      if      (message.isSecureMessage() && !GService.shallBeBlockedByFilter(message.getSender(), 1, 1)) handleSecureMessage(masterSecret, messageId, threadId, message);
+      if      (message.isSecureMessage() && !GService.shallBeBlockedByFilter(message.getSender(), GService.TYPE_SMS, GService.INCOMING)) handleSecureMessage(masterSecret, messageId, threadId, message);
       else if (message.isPreKeyBundle())  handlePreKeyWhisperMessage(masterSecret, messageId, threadId, (IncomingPreKeyBundleMessage) message);
       else if (message.isKeyExchange())   handleKeyExchangeMessage(masterSecret, messageId, threadId, (IncomingKeyExchangeMessage) message);
       else if (message.isEndSession())    handleSecureMessage(masterSecret, messageId, threadId, message);
