@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms.service;
 
+import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -28,16 +29,19 @@ import android.util.Log;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.jobs.SmsReceiveJob;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
-import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 
-import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+@SuppressLint("NewApi")
 public class SmsListener extends BroadcastReceiver {
 
   private static final String SMS_RECEIVED_ACTION  = Telephony.Sms.Intents.SMS_RECEIVED_ACTION;
   private static final String SMS_DELIVERED_ACTION = Telephony.Sms.Intents.SMS_DELIVER_ACTION;
+
+  private static final Pattern CHALLENGE_PATTERN = Pattern.compile(".*Your TextSecure verification code: ([0-9]{3,4})-([0-9]{3,4}).*");
 
   private boolean isExemption(SmsMessage message, String messageBody) {
 
@@ -125,24 +129,22 @@ public class SmsListener extends BroadcastReceiver {
   private boolean isChallenge(Context context, Intent intent) {
     String messageBody = getSmsMessageBodyFromIntent(intent);
 
-    if (messageBody == null)
+    if (messageBody == null || !TextSecurePreferences.isVerifying(context)) {
       return false;
-
-    if (messageBody.matches(".*Your TextSecure verification code: [0-9]{3,4}-[0-9]{3,4}") &&
-        TextSecurePreferences.isVerifying(context))
-    {
-      return true;
+    } else {
+      return CHALLENGE_PATTERN.matcher(messageBody).find();
     }
-
-    return false;
   }
 
-  private String parseChallenge(Context context, Intent intent) {
-    String messageBody    = getSmsMessageBodyFromIntent(intent);
-    String[] messageParts = messageBody.split(":");
-    String[] codeParts    = messageParts[1].trim().split("-");
+  private String parseChallenge(Intent intent) {
+    String  messageBody      = getSmsMessageBodyFromIntent(intent);
+    Matcher challengeMatcher = CHALLENGE_PATTERN.matcher(messageBody);
 
-    return codeParts[0] + codeParts[1];
+    if (challengeMatcher.find()) {
+      return challengeMatcher.group(1) + challengeMatcher.group(2);
+    } else {
+      throw new IllegalArgumentException("call to parseChallenge() before isChallenge()");
+    }
   }
 
   @Override
@@ -152,7 +154,7 @@ public class SmsListener extends BroadcastReceiver {
     if (SMS_RECEIVED_ACTION.equals(intent.getAction()) && isChallenge(context, intent)) {
       Log.w("SmsListener", "Got challenge!");
       Intent challengeIntent = new Intent(RegistrationService.CHALLENGE_EVENT);
-      challengeIntent.putExtra(RegistrationService.CHALLENGE_EXTRA, parseChallenge(context, intent));
+      challengeIntent.putExtra(RegistrationService.CHALLENGE_EXTRA, parseChallenge(intent));
       context.sendBroadcast(challengeIntent);
 
       abortBroadcast();
