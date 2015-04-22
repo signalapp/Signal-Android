@@ -130,7 +130,7 @@ public class SmsListener extends BroadcastReceiver {
     if (messageBody == null)
       return false;
 
-    if (CHALLENGE_PATTERN.matcher(messageBody).find() &&
+    if (CHALLENGE_PATTERN.matcher(messageBody).matches() &&
         TextSecurePreferences.isVerifying(context))
     {
       return true;
@@ -143,11 +143,11 @@ public class SmsListener extends BroadcastReceiver {
     String  messageBody      = getSmsMessageBodyFromIntent(intent);
     Matcher challengeMatcher = CHALLENGE_PATTERN.matcher(messageBody);
 
-    if (challengeMatcher.find()) {
-      return challengeMatcher.group(1) + challengeMatcher.group(2);
-    } else {
-      throw new IllegalArgumentException("call to parseChallenge() before isChallenge()");
+    if (!challengeMatcher.matches()) {
+      throw new AssertionError("Expression should match.");
     }
+
+    return challengeMatcher.group(1) + challengeMatcher.group(2);
   }
 
   @Override
