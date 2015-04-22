@@ -16,7 +16,6 @@
  */
 package org.thoughtcrime.securesms.service;
 
-import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -35,7 +34,6 @@ import org.thoughtcrime.securesms.util.Util;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@SuppressLint("NewApi")
 public class SmsListener extends BroadcastReceiver {
 
   private static final String SMS_RECEIVED_ACTION  = Telephony.Sms.Intents.SMS_RECEIVED_ACTION;
@@ -129,14 +127,19 @@ public class SmsListener extends BroadcastReceiver {
   private boolean isChallenge(Context context, Intent intent) {
     String messageBody = getSmsMessageBodyFromIntent(intent);
 
-    if (messageBody == null || !TextSecurePreferences.isVerifying(context)) {
+    if (messageBody == null)
       return false;
-    } else {
-      return CHALLENGE_PATTERN.matcher(messageBody).find();
+
+    if (CHALLENGE_PATTERN.matcher(messageBody).find() &&
+        TextSecurePreferences.isVerifying(context))
+    {
+      return true;
     }
+
+    return false;
   }
 
-  private String parseChallenge(Intent intent) {
+  private String parseChallenge(Context context, Intent intent) {
     String  messageBody      = getSmsMessageBodyFromIntent(intent);
     Matcher challengeMatcher = CHALLENGE_PATTERN.matcher(messageBody);
 
@@ -154,7 +157,7 @@ public class SmsListener extends BroadcastReceiver {
     if (SMS_RECEIVED_ACTION.equals(intent.getAction()) && isChallenge(context, intent)) {
       Log.w("SmsListener", "Got challenge!");
       Intent challengeIntent = new Intent(RegistrationService.CHALLENGE_EVENT);
-      challengeIntent.putExtra(RegistrationService.CHALLENGE_EXTRA, parseChallenge(intent));
+      challengeIntent.putExtra(RegistrationService.CHALLENGE_EXTRA, parseChallenge(context, intent));
       context.sendBroadcast(challengeIntent);
 
       abortBroadcast();
