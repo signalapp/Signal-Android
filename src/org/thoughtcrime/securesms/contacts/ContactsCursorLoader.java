@@ -26,6 +26,7 @@ import android.support.v4.content.CursorLoader;
  * @author Jake McGinty
  */
 public class ContactsCursorLoader extends CursorLoader {
+  private final static Object lock = new Object();
 
   private final Context          context;
   private final String           filter;
@@ -41,13 +42,12 @@ public class ContactsCursorLoader extends CursorLoader {
 
   @Override
   public Cursor loadInBackground() {
-    ContactsDatabase.destroyInstance();
-    db = ContactsDatabase.getInstance(context);
-    return db.query(filter, pushOnly);
+    synchronized (lock) {
+      db = ContactsDatabase.getInstance(context);
+      Cursor csr = db.query(filter, pushOnly);
+      ContactsDatabase.destroyInstance();
+      return csr;
+    }
   }
 
-  @Override
-  public void onReset() {
-    super.onReset();
-  }
 }
