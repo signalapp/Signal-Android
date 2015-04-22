@@ -18,13 +18,13 @@
 package org.thoughtcrime.securesms;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.util.Log;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.afollestad.materialdialogs.MaterialDialog.ButtonCallback;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 
@@ -33,15 +33,7 @@ public class PlayServicesProblemFragment extends DialogFragment {
   private Dialog getPlayServicesInvalidDialog() {
     return new MaterialDialog.Builder(getActivity())
                .content(R.string.PlayServicesProblemFragment__please_install_an_authentic_version_of_google_play)
-               .cancelable(false)
-               .positiveText(android.R.string.ok)
-               .callback(new ButtonCallback() {
-                 @Override
-                 public void onPositive(MaterialDialog dialog) {
-                   super.onPositive(dialog);
-                   getActivity().finish();
-                 }
-               })
+               .negativeText(android.R.string.ok)
                .build();
   }
 
@@ -60,6 +52,18 @@ public class PlayServicesProblemFragment extends DialogFragment {
         Log.w(getClass().getName(), "received error code " + code);
         return getPlayServicesInvalidDialog();
     }
+  }
+
+  @Override
+  public void onCancel(DialogInterface dialog) {
+    super.onCancel(dialog);
+    getActivity().finish();
+  }
+
+  @Override
+  public void onDismiss(DialogInterface dialog) {
+    super.onDismiss(dialog);
+    getActivity().finish();
   }
 
 }
