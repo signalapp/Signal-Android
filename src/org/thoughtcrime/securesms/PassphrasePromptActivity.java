@@ -16,10 +16,7 @@
  */
 package org.thoughtcrime.securesms;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.text.Editable;
@@ -42,9 +39,7 @@ import android.widget.Toast;
 
 import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
-import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.util.Util;
 
 /**
  * Activity that prompts for a user's passphrase.
@@ -53,23 +48,14 @@ import org.thoughtcrime.securesms.util.Util;
  */
 public class PassphrasePromptActivity extends PassphraseActivity {
 
-  private DynamicLanguage dynamicLanguage = new DynamicLanguage();
-
   private EditText passphraseText;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
-    dynamicLanguage.onCreate(this);
     super.onCreate(savedInstanceState);
 
     setContentView(R.layout.prompt_passphrase_activity);
     initializeResources();
-  }
-
-  @Override
-  public void onResume() {
-    super.onResume();
-    dynamicLanguage.onResume(this);
   }
 
   @Override

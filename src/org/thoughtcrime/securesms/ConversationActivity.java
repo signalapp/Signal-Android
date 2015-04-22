@@ -91,7 +91,6 @@ import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.CharacterCalculator.CharacterState;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
-import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.Emoji;
 import org.thoughtcrime.securesms.util.GroupUtil;
@@ -157,13 +156,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private boolean    isEncryptedConversation;
   private boolean    isMmsEnabled = true;
 
-  private DynamicTheme    dynamicTheme    = new DynamicTheme();
-  private DynamicLanguage dynamicLanguage = new DynamicLanguage();
+  private DynamicTheme dynamicTheme = new DynamicTheme();
 
   @Override
   protected void onPreCreate() {
     dynamicTheme.onCreate(this);
-    dynamicLanguage.onCreate(this);
     overridePendingTransition(R.anim.slide_from_right, R.anim.fade_scale_out);
   }
 
@@ -204,7 +201,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   protected void onResume() {
     super.onResume();
     dynamicTheme.onResume(this);
-    dynamicLanguage.onResume(this);
 
     initializeSecurity();
     initializeTitleBar();

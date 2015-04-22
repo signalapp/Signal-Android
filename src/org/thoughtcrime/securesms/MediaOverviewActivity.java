@@ -41,7 +41,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipient.RecipientModifiedListener;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.AbstractCursorLoader;
-import org.thoughtcrime.securesms.util.DynamicLanguage;
 
 /**
  * Activity for displaying media attachments in-app
@@ -51,8 +50,6 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
 
   public static final String RECIPIENT_EXTRA = "recipient";
   public static final String THREAD_ID_EXTRA = "thread_id";
-
-  private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   private MasterSecret masterSecret;
 
@@ -65,7 +62,6 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
   @Override
   protected void onPreCreate() {
     this.setTheme(R.style.TextSecure_DarkTheme);
-    dynamicLanguage.onCreate(this);
   }
 
   @Override
@@ -95,12 +91,6 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
     if (VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN) {
       getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
     }
-  }
-
-  @Override
-  public void onResume() {
-    super.onResume();
-    dynamicLanguage.onResume(this);
   }
 
   private void initializeActionBar() {

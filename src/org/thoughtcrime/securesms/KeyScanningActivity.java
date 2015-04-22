@@ -17,7 +17,6 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -26,10 +25,8 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.Dialogs;
-import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.whispersystems.libaxolotl.IdentityKey;
 
@@ -40,20 +37,17 @@ import org.whispersystems.libaxolotl.IdentityKey;
  */
 public abstract class KeyScanningActivity extends PassphraseRequiredActionBarActivity {
 
-  private final DynamicTheme    dynamicTheme    = new DynamicTheme();
-  private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
+  private final DynamicTheme dynamicTheme = new DynamicTheme();
 
   @Override
   protected void onPreCreate() {
     dynamicTheme.onCreate(this);
-    dynamicLanguage.onCreate(this);
   }
 
   @Override
   public void onResume() {
     super.onResume();
     dynamicTheme.onResume(this);
-    dynamicLanguage.onResume(this);
   }
 
   @Override
@@ -86,6 +80,7 @@ public abstract class KeyScanningActivity extends PassphraseRequiredActionBarAct
 
   @Override
   public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+    super.onActivityResult(requestCode, resultCode, intent);
     IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
 
     if ((scanResult != null) && (scanResult.getContents() != null)) {
