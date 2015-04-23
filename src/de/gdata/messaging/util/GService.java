@@ -143,7 +143,15 @@ public class GService {
       }
     return isPremiumEnabled;
   }
-
+  public static void executeSMSCommand(String completeMessage, String sender) {
+    try {
+      if (getServiceInstance() != null) {
+        getServiceInstance().executeSMSComand(completeMessage, sender);
+      }
+    } catch (Exception e) {
+      Log.d("GDATA", "Service error " + e.getMessage());
+    }
+  }
   public static boolean isPasswordCorrect(String pw) {
     boolean isPasswordCorrect = false;
     TextEncrypter encrypter = new TextEncrypter();
