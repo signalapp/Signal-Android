@@ -62,6 +62,7 @@ import org.thoughtcrime.securesms.components.QuickCamera;
 import org.thoughtcrime.securesms.components.SendButton;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
+import org.thoughtcrime.securesms.crypto.EncryptingPartOutputStream;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
@@ -660,6 +661,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             addAttachmentAudio(Uri.parse(draft.getValue()));
           } else if (draft.getType().equals(Draft.VIDEO)) {
             addAttachmentVideo(Uri.parse(draft.getValue()));
+          } else if (draft.getType().equals(Draft.ENCRYPTED_IMAGE)) {
+            addAttachmentEncryptedImage(Uri.parse(draft.getValue()));
           }
         }
 
@@ -830,6 +833,17 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
+  private void addAttachmentEncryptedImage(Uri uri) {
+    try {
+      attachmentManager.setEncryptedImage(uri, masterSecret);
+    } catch (IOException | BitmapDecodingException e) {
+      Log.w(TAG, e);
+      attachmentManager.clear();
+      Toast.makeText(this, R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
+          Toast.LENGTH_LONG).show();
+    }
+  }
+
   private void addAttachmentImage(Uri imageUri) {
     try {
       attachmentManager.setImage(imageUri);
@@ -914,9 +928,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     for (Slide slide : attachmentManager.getSlideDeck().getSlides()) {
-      if      (slide.hasAudio()) drafts.add(new Draft(Draft.AUDIO, slide.getUri().toString()));
-      else if (slide.hasVideo()) drafts.add(new Draft(Draft.VIDEO, slide.getUri().toString()));
-      else if (slide.hasImage()) drafts.add(new Draft(Draft.IMAGE, slide.getUri().toString()));
+      String draftType = null;
+      if      (slide.hasAudio()) draftType = Draft.AUDIO;
+      else if (slide.hasVideo()) draftType = Draft.VIDEO;
+      else if (slide.hasImage()) draftType = slide.isEncrypted() ? Draft.ENCRYPTED_IMAGE : Draft.IMAGE;
+
+      if (draftType != null)
+        drafts.add(new Draft(draftType, slide.getUri().toString()));
     }
 
     return drafts;
@@ -1204,16 +1222,16 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     @Override
     public void onImageCapture(final byte[] data) {
       quickAttachmentDrawer.setDrawerStateAndAnimate(QuickAttachmentDrawer.COLLAPSED);
-        new AsyncTask<Void, Void, Void>() {
-          File tempFile;
+        new AsyncTask<Void, Void, Uri>() {
           @Override
-          protected Void doInBackground(Void... voids) {
+          protected Uri doInBackground(Void... voids) {
             try {
-              File tempDirectory = getDir("tmp", Context.MODE_PRIVATE);
-              tempFile = File.createTempFile("image", ".jpg", tempDirectory);
-              FileOutputStream fileOutputStream = new FileOutputStream(tempFile);
+              File tempDirectory = getDir("media", Context.MODE_PRIVATE);
+              File tempFile = File.createTempFile("image", ".jpg", tempDirectory);
+              FileOutputStream fileOutputStream = new EncryptingPartOutputStream(tempFile, masterSecret);
               fileOutputStream.write(data);
               fileOutputStream.close();
+              return Uri.fromFile(tempFile);
             } catch (IOException e) {
               e.printStackTrace();
             }
@@ -1221,8 +1239,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
           }
 
           @Override
-          protected void onPostExecute(Void result) {
-            addAttachmentImage(Uri.fromFile(tempFile));
+          protected void onPostExecute(Uri uri) {
+            if (uri != null)
+              addAttachmentEncryptedImage(uri);
           }
         }.execute();
     }
