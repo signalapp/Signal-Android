@@ -23,11 +23,16 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.Telephony;
+import android.telephony.PhoneNumberUtils;
 import android.util.Log;
 
 import org.mockito.ArgumentCaptor;
-import org.spongycastle.util.encoders.Hex;
 import org.thoughtcrime.securesms.TextSecureTestCase;
+
+import java.io.ByteArrayOutputStream;
+import java.lang.reflect.Method;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import static org.mockito.Matchers.anyBoolean;
 import static org.mockito.Matchers.anyInt;
@@ -40,21 +45,12 @@ import static org.mockito.Mockito.when;
 
 public class SmsListenerTest extends TextSecureTestCase {
 
-  /*
-  http://rednaxela.net/pdu.php
-    'Your TextSecure verification code: 337-337'
-    'Your TextSecure verification code: 337-1337'
-    'Your TextSecure verification code: 1337-337'
-    'Your TextSecure verification code: 1337-1337'
-    'XXXYour TextSecure verification code: 1337-1337'
-    'Your TextSecure verification code: 1337-1337XXX'
-  */
-  private static final String CHALLENGE_SMS_3_3         = "07914400000000F001000B811000000000F000002AD9775D0EA296F1F469795C979741F6B23C6D4E8FC3F4F4DB0D1ABFC9651D6836BBB566B31B";
-  private static final String CHALLENGE_SMS_3_4         = "07914400000000F001000B811000000000F000002BD9775D0EA296F1F469795C979741F6B23C6D4E8FC3F4F4DB0D1ABFC9651D6836BBB562B3D90D";
-  private static final String CHALLENGE_SMS_4_3         = "07914400000000F001000B811000000000F000002BD9775D0EA296F1F469795C979741F6B23C6D4E8FC3F4F4DB0D1ABFC9651D28369BDD5AB3D90D";
-  private static final String CHALLENGE_SMS_4_4         = "07914400000000F001000B811000000000F000002CD9775D0EA296F1F469795C979741F6B23C6D4E8FC3F4F4DB0D1ABFC9651D28369BDD5AB1D9EC06";
-  private static final String CHALLENGE_SMS_4_4_PREPEND = "07914400000000F001000B811000000000F000002F582C36FBAECB41D4329E3E2D8FEBF232C85E96A7CDE971989E7EBB41E337B9AC03C566B35B2B369BDD00";
-  private static final String CHALLENGE_SMS_4_4_APPEND  = "07914400000000F001000B811000000000F000002FD9775D0EA296F1F469795C979741F6B23C6D4E8FC3F4F4DB0D1ABFC9651D28369BDD5AB1D9EC86C56201";
+  private static final String CHALLENGE_SMS_3_3         = "Your TextSecure verification code: 337-337";
+  private static final String CHALLENGE_SMS_3_4         = "Your TextSecure verification code: 337-1337";
+  private static final String CHALLENGE_SMS_4_3         = "Your TextSecure verification code: 1337-337";
+  private static final String CHALLENGE_SMS_4_4         = "Your TextSecure verification code: 1337-1337";
+  private static final String CHALLENGE_SMS_4_4_PREPEND = "XXXYour TextSecure verification code: 1337-1337";
+  private static final String CHALLENGE_SMS_4_4_APPEND  = "Your TextSecure verification code: 1337-1337XXX";
   private static final String[] CHALLENGE_SMS = {
       CHALLENGE_SMS_3_3, CHALLENGE_SMS_3_4,         CHALLENGE_SMS_4_3,
       CHALLENGE_SMS_4_4, CHALLENGE_SMS_4_4_PREPEND, CHALLENGE_SMS_4_4_APPEND
@@ -69,12 +65,57 @@ public class SmsListenerTest extends TextSecureTestCase {
       CHALLENGE_4_4, CHALLENGE_4_4, CHALLENGE_4_4,
   };
 
+  /*
+  credit :D
+  http://stackoverflow.com/a/12338541
+   */
+  private static byte[] buildSmsPdu(String sender, String body) throws Exception{
+    byte[]   scBytes     = PhoneNumberUtils.networkPortionToCalledPartyBCD("0000000000");
+    byte[]   senderBytes = PhoneNumberUtils.networkPortionToCalledPartyBCD(sender);
+    int      lsmcs       = scBytes.length;
+    byte[]   dateBytes   = new byte[7];
+    Calendar calendar    = new GregorianCalendar();
+
+    dateBytes[0] = reverseByte((byte) (calendar.get(Calendar.YEAR)));
+    dateBytes[1] = reverseByte((byte) (calendar.get(Calendar.MONTH) + 1));
+    dateBytes[2] = reverseByte((byte) (calendar.get(Calendar.DAY_OF_MONTH)));
+    dateBytes[3] = reverseByte((byte) (calendar.get(Calendar.HOUR_OF_DAY)));
+    dateBytes[4] = reverseByte((byte) (calendar.get(Calendar.MINUTE)));
+    dateBytes[5] = reverseByte((byte) (calendar.get(Calendar.SECOND)));
+    dateBytes[6] = reverseByte((byte) ((calendar.get(Calendar.ZONE_OFFSET) + calendar.get(Calendar.DST_OFFSET)) / (60 * 1000 * 15)));
+
+    ByteArrayOutputStream bo = new ByteArrayOutputStream();
+    bo.write(lsmcs);
+    bo.write(scBytes);
+    bo.write(0x04);
+    bo.write((byte) sender.length());
+    bo.write(senderBytes);
+    bo.write(0x00);
+    bo.write(0x00);
+    bo.write(dateBytes);
+
+    String sReflectedClassName   = "com.android.internal.telephony.GsmAlphabet";
+    Class  cReflectedNFCExtras   = Class.forName(sReflectedClassName);
+    Method stringToGsm7BitPacked = cReflectedNFCExtras.getMethod("stringToGsm7BitPacked", new Class[] { String.class });
+
+    stringToGsm7BitPacked.setAccessible(true);
+    byte[] bodybytes = (byte[]) stringToGsm7BitPacked.invoke(null, body);
+    bo.write(bodybytes);
+
+    return bo.toByteArray();
+  }
+
+  private static byte reverseByte(byte b) {
+    return (byte) ((b & 0xF0) >> 4 | (b & 0x0F) << 4);
+  }
+
   @SuppressLint("NewApi")
-  private Intent buildSmsReceivedIntent(String encodedPdu) throws Exception {
+  private Intent buildSmsReceivedIntent(String smsBody) throws Exception {
     final Intent smsIntent = mock(Intent.class);
     final Bundle smsExtras = new Bundle();
+    final byte[] smsPdu    = buildSmsPdu("15555555555", smsBody);
 
-    smsExtras.putSerializable("pdus", new Object[]{Hex.decode(encodedPdu)});
+    smsExtras.putSerializable("pdus", new Object[]{smsPdu});
 
     when(smsIntent.getAction()).thenReturn(Telephony.Sms.Intents.SMS_RECEIVED_ACTION);
     when(smsIntent.getExtras()).thenReturn(smsExtras);
