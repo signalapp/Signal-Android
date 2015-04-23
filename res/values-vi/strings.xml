@@ -150,6 +150,7 @@ Phục hồi bản sao lưu có mã hóa sẽ thay thế hoàn toàn các chìa 
   <string name="PassphrasePromptActivity_watermark_content_description">Biểu tượng TextSecure</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Gửi phần cụm từ mã hóa</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Cụm từ mã hóa không hợp lệ!</string>
+  <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Chữ ký của việc trao đổi chìa khóa này khác với lần trao đổi trước nhận được từ người liên lạc này. Điều này có nghĩa là có ai đó tìm cách chận bắt liên lạc thông tin của bạn, hoặc đơn thuần là người này cài đặt lại TextSecure và có chìa khóa nhận diện mới.</string>
@@ -244,8 +245,6 @@ Nhận thông tin về chìa khóa nhận diện không rõ. Bấm để xử l�
   <string name="KeyCachingService_passphrase_cached">TextSecure được mở khóa</string>
   <string name="KeyCachingService_lock">Khóa bằng mật khẩu</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages">%d tin mới</string>
-  <string name="MessageNotifier_most_recent_from_s">Mới nhất đến từ: %s</string>
   <string name="MessageNotifier_encrypted_message">Mã hóa tin nhắn...</string>
   <string name="MessageNotifier_message_delivery_failed">Phân phối tin nhắn bị thất bại.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Thất bại trong việc phân phối tin.</string>

@@ -238,6 +238,7 @@ ponovno uvoženje će rezultirati duplim porukama.</string>
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure ikona</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Pošaljite lozinku</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Neispravna lozinka!</string>
+  <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Ocijenite ovu aplikaciju</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Ukoliko volite koristiti ovu aplikaciju, odvojite trenutak kako biste nam pomogli svojom ocjenom.</string>
@@ -366,8 +367,8 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <string name="KeyCachingService_passphrase_cached">TextSecure je otključan</string>
   <string name="KeyCachingService_lock">Zaključajte sa lozinkom</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages">%d novih poruka</string>
-  <string name="MessageNotifier_most_recent_from_s">Najnovija od: %s</string>
+  <string name="MessageNotifier_d_messages_in_d_conversations">%1$d poruka u %2$d razgovora</string>
+  <string name="MessageNotifier_most_recent_from_s">Najnovije od: %1$s</string>
   <string name="MessageNotifier_encrypted_message">Kriptirana poruka...</string>
   <string name="MessageNotifier_media_message_with_text">Media poruka: %s</string>
   <string name="MessageNotifier_no_subject">(Bez naslova)</string>

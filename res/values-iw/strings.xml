@@ -108,6 +108,7 @@
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">סיסמה ישנה לא נכונה.</string>
   <!--DeviceProvisioningActivity-->
   <!--PassphrasePromptActivity-->
+  <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">החתימה
@@ -166,8 +167,6 @@
   <string name="ApplicationMigrationService_import_in_progress">בתהליך ייבוא</string>
   <!--KeyCachingService-->
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages">%d הודעות חדשות</string>
-  <string name="MessageNotifier_most_recent_from_s">האחרון מ-: %s</string>
   <string name="MessageNotifier_encrypted_message">הודעה מוצפנת...</string>
   <string name="MessageNotifier_message_delivery_failed">מסירת ההודעה נכשלה.</string>
   <string name="MessageNotifier_failed_to_deliver_message">כישלון במסירת ההודעה.</string>

@@ -67,6 +67,7 @@
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">စကားဝှက်အဟောင်းမမှန်ကန်</string>
   <!--DeviceProvisioningActivity-->
   <!--PassphrasePromptActivity-->
+  <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
   <!--ReceiveKeyActivity-->
   <!--RegistrationActivity-->
@@ -115,8 +116,6 @@
   <string name="ApplicationMigrationService_import_in_progress">သွင်းယူနေ</string>
   <!--KeyCachingService-->
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages">စာတိုအသစ် %d</string>
-  <string name="MessageNotifier_most_recent_from_s">မကြာသေးမီက: %s</string>
   <string name="MessageNotifier_encrypted_message">စာဝှက်စနစ်ဖြင့်　အကြောင်းကြားချက်...</string>
   <string name="MessageNotifier_message_delivery_failed">အကြောင်းကြားချက်ပို့လွတ်ခြင်းမအောင်မြင်</string>
   <string name="MessageNotifier_failed_to_deliver_message">အကြောင်းကြားချက်ပို့လွတ်ရန်မအောင်မြင်</string>

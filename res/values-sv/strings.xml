@@ -236,6 +236,7 @@ som för närvarande finns i TextSecure.</string>
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure-ikon</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Skicka lösenord</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Fel lösenord!</string>
+  <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
   <string name="RatingManager_no_thanks">Nej tack</string>
   <string name="RatingManager_later">Senare</string>
@@ -353,8 +354,6 @@ Tog emot meddelande med okänd identitetsnyckel. Tryck för att bearbeta och vis
   <string name="KeyCachingService_passphrase_cached">TextSecure är upplåst</string>
   <string name="KeyCachingService_lock">Lås med lösenord</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages">%d nya meddelanden</string>
-  <string name="MessageNotifier_most_recent_from_s">Senaste från: %s</string>
   <string name="MessageNotifier_encrypted_message">Krypterat meddelande...</string>
   <string name="MessageNotifier_media_message_with_text">Mediameddelande: %s</string>
   <string name="MessageNotifier_no_subject">(Inget ämne)</string>

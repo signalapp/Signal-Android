@@ -230,6 +230,8 @@
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure 图标</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">提交密钥</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">不真实的密钥！</string>
+  <!--PlayServicesProblemFragment-->
+  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">您当前所安装的 Google Play 服务没有正常的工作。请尝试重新安装 Google Play 服务然后重试。</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">对此应用评分</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">如果您喜欢使用此应用，请使用片刻时间对其进行打分。</string>
@@ -353,8 +355,8 @@
   <string name="KeyCachingService_passphrase_cached">TextSecure 已解锁</string>
   <string name="KeyCachingService_lock">使用密码锁定</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages">%d 新信息</string>
-  <string name="MessageNotifier_most_recent_from_s">最新邮件来自：%s</string>
+  <string name="MessageNotifier_d_messages_in_d_conversations">%1$d 信息是在 %2$d 中的会话</string>
+  <string name="MessageNotifier_most_recent_from_s">最新的邮件来自：%1$s</string>
   <string name="MessageNotifier_encrypted_message">加密信息...</string>
   <string name="MessageNotifier_media_message_with_text">媒体信息：%s</string>
   <string name="MessageNotifier_no_subject">（无主题）</string>
@@ -550,6 +552,7 @@ TextSecure 在等待短信验证时超时。</string>
   <string name="AndroidManifest__media_preview">媒体预览</string>
   <string name="AndroidManifest__media_overview">所有图片</string>
   <string name="AndroidManifest__media_overview_named">所有图片和%1$s</string>
+  <string name="AndroidManifest__message_details">消息详情</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">导入/导出</string>
   <string name="arrays__my_identity_key">我的身份密钥</string>

@@ -225,6 +225,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯೂರ್ ಲಾಂಛನ</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">ಗುಪ್ತಪದವನ್ನು ಸಲ್ಲಿಸು</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">ಗುಪ್ತಪದ ಮಾನ್ಯವಾದದ್ದಲ್ಲ!</string>
+  <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">ಈ ಕೀಲಿ ವಿನಿಮಯದ ಮೇಲಿನ ಸಹಿ ನೀವು ಹಿಂದೆ ಈ ಸಂಪರ್ಕದಿಂದ ಸ್ವೀಕರಿಸಿದ್ದಕಿಂತ ಭಿನ್ನವಾಗಿದೆ. ಇದು ಯಾರಾದರೂ ನಿಮ್ಮ ಸಂವಹನವನ್ನು ಅಡ್ಡಿಪಡಿಸಲು ಪ್ರಯತ್ನಿಸುತ್ತಿರಬಹುದು ಅಥವಾ ಈ ಸಂಪರ್ಕ ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯೂರ್ ಮರು ಸ್ಥಾಪಿಸಿ, ಈಗ ಹೊಸ ಗುರುತನ್ನು ಕೀಲಿ ಹೊಂದಿದೆ ಅರ್ಥ.</string>
@@ -344,8 +345,6 @@
   <string name="KeyCachingService_passphrase_cached">ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯೂರ್  ಬೀಗ ತೆಗೆದಿದೆ </string>
   <string name="KeyCachingService_lock">ಗುಪ್ತಪದವನ್ನು ಉಪಯೋಗಿಸಿಕೊಂಡು ಬೀಗ ಹಾಕಿ</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages">%d ಹೊಸ ಸಂದೇಶಗಳು</string>
-  <string name="MessageNotifier_most_recent_from_s">%s ನಿಂದ ಇತ್ತೀಚಿನ</string>
   <string name="MessageNotifier_encrypted_message">ಗೂಢಲಿಪೀಕರಣಗೊಂಡ ಸಂದೇಶ...</string>
   <string name="MessageNotifier_no_subject">(ವಿಷಯವಸ್ತು ಇಲ್ಲ)</string>
   <string name="MessageNotifier_message_delivery_failed">ಸಂದೇಶ ತಲುಪಿಸಲು ವಿಫಲವಾಗಿದೆ.</string>

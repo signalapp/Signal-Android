@@ -206,6 +206,7 @@ Babeskopia hau lehenago inportatu baduzu, mezu bikoiztuak sortu daitezke.
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure-ren ikonoa</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Bidali pasahitza</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Pasahitz baliogabea!</string>
+  <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Gako
@@ -332,8 +333,6 @@ Nortasun gako ezezagun batekin jaso da mezua. Klik egin prozesatzeko eta erakust
   <string name="KeyCachingService_passphrase_cached">TextSecure desblokeatuta dago</string>
   <string name="KeyCachingService_lock">Blokeatu pasahitz bat erabiliz</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages">Mezu berrien kopurua: %d</string>
-  <string name="MessageNotifier_most_recent_from_s">Mezurik berriena bidali duena: %s</string>
   <string name="MessageNotifier_encrypted_message">Enkriptatuko mezua...</string>
   <string name="MessageNotifier_no_subject">(Ez dago gairik)</string>
   <string name="MessageNotifier_message_delivery_failed">Mezuaren banaketak huts egin du.</string>

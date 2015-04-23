@@ -185,6 +185,7 @@ Genoprettelse af en krypteret backup vil overskrive eksisterende nøgler, indsti
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure ikon</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Godkend kodeord</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Ugyldigt kodeord!</string>
+  <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Signaturen på denne udvekslingsnøgle er ikke ens med den som du tidligere modtog fra denne
@@ -303,8 +304,6 @@ Modtog en besked med en ukendt identitetsnøgle. Klik for at se og behandle den.
   <string name="KeyCachingService_passphrase_cached">TextSecure er låst op</string>
   <string name="KeyCachingService_lock">Lås med et kodeord</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages">(%d) Nye beskeder</string>
-  <string name="MessageNotifier_most_recent_from_s">Sidst modtaget fra: %s</string>
   <string name="MessageNotifier_encrypted_message">Krypteret besked...</string>
   <string name="MessageNotifier_no_subject">(Intet emne)</string>
   <string name="MessageNotifier_message_delivery_failed">Levering af besked mislykkedes.</string>

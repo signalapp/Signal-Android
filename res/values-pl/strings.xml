@@ -232,6 +232,7 @@ Przywracanie szyfrowanej kopii zapasowej TextSecure spowoduje nadpisanie Twoich 
   <string name="PassphrasePromptActivity_watermark_content_description">Ikona TextSecure</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Wprowadź hasło</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Nieprawidłowe hasło!</string>
+  <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Oceń tą aplikację</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Jeśli lubisz używać tą aplikację, to prosimy o danie jej oceny.</string>
@@ -357,8 +358,6 @@ Otrzymano wiadomość z nieznanym kluczem tożsamości. Kliknij aby przetworzyć
   <string name="KeyCachingService_passphrase_cached">TextSecure jest odblokowany</string>
   <string name="KeyCachingService_lock">Zablokuj hasłem</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages">%d nowych wiadomości</string>
-  <string name="MessageNotifier_most_recent_from_s">Najnowsze zaczynając od: %s</string>
   <string name="MessageNotifier_encrypted_message">Szyfrowana wiadomość...</string>
   <string name="MessageNotifier_media_message_with_text">Wiadomość multimedialna: %s</string>
   <string name="MessageNotifier_no_subject">(Brak tematu)</string>

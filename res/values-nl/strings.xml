@@ -229,6 +229,7 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure icoon</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Wachtwoord instellen</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Ongeldig wachtwoord!</string>
+  <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Beoordeel deze app</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Gebruik je deze app graag? Help ons dan een momentje en geef je beoordeling.</string>
@@ -351,8 +352,8 @@ Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en 
   <string name="KeyCachingService_passphrase_cached">TextSecure is ontgrendeld</string>
   <string name="KeyCachingService_lock">Vergrendelen met wachtwoord</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages">(%d) Nieuwe berichten</string>
-  <string name="MessageNotifier_most_recent_from_s">Meest recente van: %s</string>
+  <string name="MessageNotifier_d_messages_in_d_conversations">%1$d berichten in %2$d gesprekken</string>
+  <string name="MessageNotifier_most_recent_from_s">Meest recente van: %1$s</string>
   <string name="MessageNotifier_encrypted_message">Versleuteld bericht...</string>
   <string name="MessageNotifier_media_message_with_text">Mediabericht: %s</string>
   <string name="MessageNotifier_no_subject">(Geen onderwerp)</string>

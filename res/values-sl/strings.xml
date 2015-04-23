@@ -227,6 +227,8 @@ preveriti ta stik.</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Ikona TextSecure</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Vnesite geslo</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Napačno geslo!</string>
+  <!--PlayServicesProblemFragment-->
+  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Različica programa Google Play Services, ki jo imate nameščeno, ne deluje, kot bi morala. Prosimo ponovno namestite Google Play Services in poskusite znova.</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Oceni to aplikacijo</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Če se vam zdi aplikacija TextSecure koristna in uporabna, vas prosimo, da si vzamete nekaj trenutkov, in jo ocenite.</string>
@@ -346,8 +348,8 @@ Prejeto sporočilo z neznanim identifikacijskim ključem. Kliknite za obdelavo i
   <string name="KeyCachingService_passphrase_cached">TextSecure je odklenjen</string>
   <string name="KeyCachingService_lock">Zakleni z geslom</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages">%d novih sporočil</string>
-  <string name="MessageNotifier_most_recent_from_s">Najnovejše od: %s</string>
+  <string name="MessageNotifier_d_messages_in_d_conversations">Sporočil: %1$d, pogovorov: %2$d</string>
+  <string name="MessageNotifier_most_recent_from_s">Zadnje sporočilo od: %1$s</string>
   <string name="MessageNotifier_encrypted_message">Šifrirano sporočilo...</string>
   <string name="MessageNotifier_media_message_with_text">Multimedijsko sporočilo: %s</string>
   <string name="MessageNotifier_no_subject">(brez naslova)</string>

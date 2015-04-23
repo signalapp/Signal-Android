@@ -242,6 +242,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Икона Сигурних порука</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Поднеси лозинку</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Нетачна лозинка!</string>
+  <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Оцените апликацију</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Ако уживате у коришћењу ове апликације, помозите нам тако што ћете да је оцените.</string>
@@ -370,8 +371,8 @@
   <string name="KeyCachingService_passphrase_cached">Сигурне поруке су откључане</string>
   <string name="KeyCachingService_lock">Закључај лозинком</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages">%d нових порука</string>
-  <string name="MessageNotifier_most_recent_from_s">Најскорија од: %s</string>
+  <string name="MessageNotifier_d_messages_in_d_conversations">%1$d порука у %2$d преписки</string>
+  <string name="MessageNotifier_most_recent_from_s">Најскорија од: %1$s</string>
   <string name="MessageNotifier_encrypted_message">Шифрована порука...</string>
   <string name="MessageNotifier_media_message_with_text">Мултимедијална порука: %s</string>
   <string name="MessageNotifier_no_subject">(Без предмета)</string>

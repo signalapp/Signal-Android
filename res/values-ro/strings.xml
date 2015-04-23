@@ -212,6 +212,7 @@ Restaurarea unui backup criptat va înlocui complet cheile existente, setările 
   <string name="PassphrasePromptActivity_watermark_content_description">Icoană TextSecure</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Trimite parola</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Parolă incorectă!</string>
+  <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Semnătura digitală din acest schimb de chei este diferită fața de ce ai primit anterior de la această persoană. Asta poate însemna că cineva încearcă să intercepteze comunicația sau că această persoană a reinstalat TextSecure și acum are o nouă cheie de identitate.</string>
@@ -328,8 +329,6 @@ Primit mesaj trimis cu o cheie de identitate necunoscută. Faceți click pentru 
   <string name="KeyCachingService_passphrase_cached">TextSecure e deblocat.</string>
   <string name="KeyCachingService_lock">Blocare acces cu parola</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages">%d mesaje noi</string>
-  <string name="MessageNotifier_most_recent_from_s">Cel mai recent de la: %s</string>
   <string name="MessageNotifier_encrypted_message">Mesaj criptat...</string>
   <string name="MessageNotifier_media_message_with_text">Mesaje media: %s</string>
   <string name="MessageNotifier_no_subject">(Fără subiect)</string>

@@ -224,6 +224,7 @@ importá-lo novamente resultará em mensagens duplicadas.</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icon TextSecure</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Enviar frase-chave</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Palavra-chave inválida!</string>
+  <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">A
@@ -349,8 +350,6 @@ Recebida mensagem com chave de identidade desconhecida. Clique para processar e 
   <string name="KeyCachingService_passphrase_cached">O TextSecure está desbloqueado</string>
   <string name="KeyCachingService_lock">Bloquear com frase-chave</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages">(%d) novas mensagens</string>
-  <string name="MessageNotifier_most_recent_from_s">Mais recente de: %s</string>
   <string name="MessageNotifier_encrypted_message">Mensagem cifrada...</string>
   <string name="MessageNotifier_no_subject">(Sem Assunto)</string>
   <string name="MessageNotifier_message_delivery_failed">A remessa de mensagem falhou.</string>

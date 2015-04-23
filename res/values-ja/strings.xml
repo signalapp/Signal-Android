@@ -234,6 +234,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecureアイコン</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">パスワードを設定</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">無効なパスワード</string>
+  <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">アプリを評価</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">このアプリで楽しめたのなら、私達を助けるためとして評価をお願いします。</string>
@@ -356,8 +357,6 @@
   <string name="KeyCachingService_passphrase_cached">TextSecureは、アンロックされています</string>
   <string name="KeyCachingService_lock">パスワードでロックする</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages">%d 新しいメッセージ</string>
-  <string name="MessageNotifier_most_recent_from_s">最新の送信者： %s</string>
   <string name="MessageNotifier_encrypted_message">暗号化されたメッセージ…</string>
   <string name="MessageNotifier_media_message_with_text">メディアメッセージ: %s</string>
   <string name="MessageNotifier_no_subject">（無題）</string>

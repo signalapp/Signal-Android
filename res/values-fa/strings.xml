@@ -184,6 +184,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">آیکون TextSecure</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">ثبت کردن عبارت عبور</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">رمز معتبر نیست!</string>
+  <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">امتیاز به این برنامه</string>
   <string name="RatingManager_rate_now">اکنون بسنجید!</string>
@@ -294,8 +295,6 @@
   <string name="KeyCachingService_passphrase_cached">TextSecure باز است</string>
   <string name="KeyCachingService_lock">قفل با عبارت عبور</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages">%d پیام های جدید</string>
-  <string name="MessageNotifier_most_recent_from_s">بیشترین از: %s</string>
   <string name="MessageNotifier_encrypted_message">پیام رمزنگاری شده ...</string>
   <string name="MessageNotifier_media_message_with_text">پیام رسانه ها: %s</string>
   <string name="MessageNotifier_no_subject">(بدون موضوع)</string>

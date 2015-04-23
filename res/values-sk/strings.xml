@@ -239,6 +239,7 @@ opätovným importom zduplikujete správy.
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure ikona</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Odošli heslo</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Nesprávne heslo!</string>
+  <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Elektronický podpis použítý pri tejto výmene šifrovacích kľúčov sa líši od podpisu,
@@ -367,8 +368,6 @@ Bola prijatá správa s neznámou identou. Kliknite pre spracovanie a zobrazenie
   <string name="KeyCachingService_passphrase_cached">TextSecure je otvorený</string>
   <string name="KeyCachingService_lock">Zamkni s heslom</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages">(%d) nových správ</string>
-  <string name="MessageNotifier_most_recent_from_s">Najnovšia od: %s</string>
   <string name="MessageNotifier_encrypted_message">Kryptovaná správa...</string>
   <string name="MessageNotifier_media_message_with_text">Multimediálna správa: %s</string>
   <string name="MessageNotifier_no_subject">(bez predmetu)</string>

@@ -97,6 +97,8 @@ questo contatto.</string>
   <string name="ConversationActivity_get_with_it">Ottienilo con: %s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Vieni a chattare qui: %s</string>
   <string name="ConversationActivity_error_leaving_group">Errore nell\'abbandonare il gruppo...</string>
+  <string name="ConversationActivity_mms_not_supported_title">MMS non supportati</string>
+  <string name="ConversationActivity_mms_not_supported_message">Questo messaggio non può essere inviato perchè il tuo operatore non supporta gli MMS</string>
   <string name="ConversationActivity_specify_recipient">Scegli un contatto</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Dettagli messaggio</string>
@@ -236,6 +238,7 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icona TextSecure</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Inserisci password</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Password non valida!</string>
+  <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Vota questa app!</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Se quest\'applicazione ti piace, ti preghiamo di aiutarci votandola.</string>
@@ -366,8 +369,8 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <string name="KeyCachingService_passphrase_cached">TextSecure è sbloccato</string>
   <string name="KeyCachingService_lock">Chiudi con password</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages">(%d) nuovi messaggi</string>
-  <string name="MessageNotifier_most_recent_from_s">Più recente da: %s</string>
+  <string name="MessageNotifier_d_messages_in_d_conversations">%1$d messaggi in %2$d conversazioni</string>
+  <string name="MessageNotifier_most_recent_from_s">Il più recente da: %1$s</string>
   <string name="MessageNotifier_encrypted_message">Messaggio cifrato...</string>
   <string name="MessageNotifier_media_message_with_text">Messaggio multimediale: %s</string>
   <string name="MessageNotifier_no_subject">(Nessun oggetto)</string>
@@ -576,6 +579,7 @@ non riuscita.
   <string name="AndroidManifest__media_preview">Anteprima media</string>
   <string name="AndroidManifest__media_overview">Tutte le immagini</string>
   <string name="AndroidManifest__media_overview_named">Tutte le immagini con %1$s</string>
+  <string name="AndroidManifest__message_details">Dettagli messaggio</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importa / Esporta</string>
   <string name="arrays__my_identity_key">La chiave della mia identità</string>
@@ -656,6 +660,7 @@ non riuscita.
   <string name="preferences__custom">Personalizzato</string>
   <string name="preferences__advanced">Avanzate</string>
   <string name="preferences__app_protection">Protezione app</string>
+  <string name="preferences__mms_user_agent">User agent MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Impostazioni manuali MMS</string>
   <string name="preferences__enable_manual_mms">Usa le impostazioni manuali degli MMS</string>
   <string name="preferences__override_system_mms_settings">Sovrascrivi le impostazioni MMS di sistema con le seguenti informazioni</string>
@@ -679,6 +684,7 @@ non riuscita.
   <string name="preferences__default">Predefinito</string>
   <string name="preferences__language">Lingua</string>
   <string name="preferences__language_summary">Lingua %s</string>
+  <string name="preferences__textsecure_messages">Messaggi TextSecure</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
 Chatta gratis con gli utenti TextSecure e Signal</string>
   <string name="preferences__submit_debug_log">Invia log di debug</string>

@@ -92,7 +92,7 @@
   <string name="ConversationActivity_transport_insecure_mms">رسالة وسائط متعددة غير آمنة</string>
   <string name="ConversationActivity_transport_textsecure">تيكست سيكيور</string>
   <string name="ConversationActivity_get_with_it">احصل معها: %s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">دعنا نستخدم التالي للمحادثة: %s</string>
+  <string name="ConversationActivity_lets_use_this_to_chat">دعنا نستخدم هذا للمحادثة: %s</string>
   <string name="ConversationActivity_error_leaving_group">خطأ أثناء ترك المجموعة...</string>
   <string name="ConversationActivity_mms_not_supported_title">رسائل الوسائط المتعددة غير مدعمة</string>
   <string name="ConversationActivity_mms_not_supported_message">لا يمكن إرسال هذه الرسالة لأن شبكة الجوال التي تستخدمها لا تدعم رسائل الوسائط المتعددة</string>
@@ -221,12 +221,13 @@
   <string name="DeviceProvisioningActivity_content_progress_success">تم إضافة الجهاز!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">لم يتم العثور على جهاز.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">خطأ في الشبكة.</string>
-  <string name="DeviceProvisioningActivity_content_progress_key_error">الرمز غير صحيح.</string>
+  <string name="DeviceProvisioningActivity_content_progress_key_error">الرمز غير سليم.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">أدخل العبارة السرية</string>
   <string name="PassphrasePromptActivity_watermark_content_description">أيقونة تيكست سيكيور</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">أرسل العبارة السرية </string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">عبارة سرية غير صحيحة!</string>
+  <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">تقييم التطبيق</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">إذا كنت مستمتع باستخدام التطبيق رجاء مساعدتنا بتقييمه</string>
@@ -264,7 +265,7 @@
   <string name="RegistrationProgressActivity_network_error">خطأ في الشبكة!</string>
   <string name="RegistrationProgressActivity_unable_to_connect">تعذر الاتصال. برجاء فحص شبكة الاتصال والمحاولة مرة أخرى.</string>
   <string name="RegistrationProgressActivity_verification_failed">فشل التحقق!</string>
-  <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">كود التحقق الذي أدخلته غير صحيح.حاول مرة أخرى.</string>
+  <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">كود التحقق الذي أدخلته غير صحيح. حاول مرة أخرى.</string>
   <string name="RegistrationProgressActivity_too_many_attempts">محاولات كثيرة</string>
   <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">لقد أدخلت كود التحقق مرات كثيرة. برجاء الانتظار دقيقة قبل المحاولة مرة أخرى.</string>
   <string name="RegistrationProgressActivity_requesting_call">طلب مكالمة</string>
@@ -345,8 +346,8 @@
   <string name="KeyCachingService_passphrase_cached">تيكست سيكيور غير مقفل</string>
   <string name="KeyCachingService_lock">أقفل بالعبارة السرية</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages">(%d) رسائل جديدة</string>
-  <string name="MessageNotifier_most_recent_from_s">آخر رسالة من: %s</string>
+  <string name="MessageNotifier_d_messages_in_d_conversations">%1$d رسالة في %2$d محادثات</string>
+  <string name="MessageNotifier_most_recent_from_s">الأحدث من: %1$s</string>
   <string name="MessageNotifier_encrypted_message">رسالة مشفرة...</string>
   <string name="MessageNotifier_media_message_with_text">رسالة وسائط متعددة: %s</string>
   <string name="MessageNotifier_no_subject">(بلا عنوان)</string>
@@ -466,7 +467,7 @@
 وتتضمن:</string>
   <string name="registration_problems__sms_interceptors">القائمون باعتراض الرسائل النصية.</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
-بعض عملاء التراسل اللحظي العاملة بواسطة طرف ثالث، مثل Handcent أو GoSMS، تتصرف بشكل سيء وتعترض الرسائل النصية القصيرة الواردة. تحقق من استلامك رسالة نصية تبدأ  بـ\"كود تحقق تيكست سيكيور الخاص بك:\". في حالة عدم تلقيها سوف تحتاج إلي ضبط عميل التراسل اللحظي الخاص بالطرف الثالث للسماح بمرور الرسائل النصية.</string>
+بعض تطبيقات التراسل اللحظي العاملة بواسطة طرف ثالث، مثل Handcent أو GoSMS، تتصرف بشكل سيء وتعترض الرسائل النصية القصيرة الواردة. تحقق من استلامك رسالة نصية تبدأ  بـ\"كود تحقق تيكست سيكيور الخاص بك:\". في حالة عدم تلقيها سوف تحتاج إلي ضبط عميل التراسل اللحظي الخاص بالطرف الثالث للسماح بمرور الرسائل النصية.</string>
   <string name="registration_problems__incorrect_number"> رقم غير صحيح.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">الرجاء التحقق من ادخال رقمك بشكل صحيح ووفق النسق السليم لمنطقتك.</string>
   <string name="registration_problems__google_voice">.Google Voice</string>
