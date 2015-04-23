@@ -30,6 +30,7 @@ public class ContactsCursorLoader extends CursorLoader {
   private final Context          context;
   private final String           filter;
   private final boolean          pushOnly;
+  private final Object           dbLock = new Object();
   private       ContactsDatabase db;
 
   public ContactsCursorLoader(Context context, String filter, boolean pushOnly) {
@@ -37,17 +38,22 @@ public class ContactsCursorLoader extends CursorLoader {
     this.context  = context;
     this.filter   = filter;
     this.pushOnly = pushOnly;
+    this.db       = new ContactsDatabase(context);
   }
 
   @Override
   public Cursor loadInBackground() {
-    ContactsDatabase.destroyInstance();
-    db = ContactsDatabase.getInstance(context);
-    return db.query(filter, pushOnly);
+    synchronized (dbLock) {
+      return db.query(filter, pushOnly);
+    }
   }
 
   @Override
   public void onReset() {
+    synchronized (dbLock) {
+      db.close();
+      db = new ContactsDatabase(context);
+    }
     super.onReset();
   }
 }
