@@ -24,7 +24,7 @@ import java.util.Locale;
 public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarActivity implements MasterSecretListener {
   private static final String TAG = PassphraseRequiredActionBarActivity.class.getSimpleName();
 
-  public static final String ARG_LOCALE = "arg_locale";
+  public static final String LOCALE_EXTRA = "locale_extra";
 
   private static final int STATE_NORMAL                   = 0;
   private static final int STATE_CREATE_PASSPHRASE        = 1;
@@ -83,10 +83,10 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
   protected <T extends Fragment> T initFragment(@IdRes int target,
                                                 @NonNull T fragment,
                                                 @NonNull MasterSecret masterSecret,
-                                                Locale locale) {
+                                                @Nullable Locale locale) {
     Bundle args = new Bundle();
     args.putParcelable("master_secret", masterSecret);
-    args.putSerializable(ARG_LOCALE, locale);
+    args.putSerializable(LOCALE_EXTRA, locale);
 
     fragment.setArguments(args);
     getSupportFragmentManager().beginTransaction()

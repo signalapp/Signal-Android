@@ -67,7 +67,7 @@ public class ConversationFragment extends ListFragment
   public void onCreate(Bundle icicle) {
     super.onCreate(icicle);
     this.masterSecret = getArguments().getParcelable("master_secret");
-    this.locale       = (Locale) getArguments().getSerializable(PassphraseRequiredActionBarActivity.ARG_LOCALE);
+    this.locale       = (Locale) getArguments().getSerializable(PassphraseRequiredActionBarActivity.LOCALE_EXTRA);
   }
 
   @Override
