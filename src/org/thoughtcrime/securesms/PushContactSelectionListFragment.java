@@ -87,12 +87,6 @@ public class PushContactSelectionListFragment extends    Fragment
   }
 
   @Override
-  public void onDestroyView() {
-    super.onDestroyView();
-    ContactsDatabase.destroyInstance();
-  }
-
-  @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     return inflater.inflate(R.layout.push_contact_selection_list_activity, container, false);
   }
