@@ -22,74 +22,54 @@ import java.net.URLDecoder;
 
 public class Rfc5724Uri {
 
-  private static final String SCHEMA_SMS   = "sms:";
-  private static final String SCHEMA_SMSTO = "smsto:";
-  private static final String SCHEMA_MMS   = "mms:";
-  private static final String SCHEMA_MMSTO = "mmsto:";
+  private static final String SCHEMA_SMS   = "sms";
+  private static final String SCHEMA_SMSTO = "smsto";
+  private static final String SCHEMA_MMS   = "mms";
+  private static final String SCHEMA_MMSTO = "mmsto";
 
   private final String uri;
+  private final String schema;
+  private final String recipients;
 
   public Rfc5724Uri(String uri) throws URISyntaxException {
-    this.uri = uri;
-    handleValidateUri();
+    this.uri        = uri;
+    this.schema     = parseSchema(uri);
+    this.recipients = parseRecipients(uri);
   }
 
-  private void handleValidateUri() throws URISyntaxException {
-    String uriLower = uri.toLowerCase();
+  private static String parseSchema(String uri) throws URISyntaxException {
+    String schema      = uri.split(":")[0];
+    String schemaLower = schema.toLowerCase();
 
-    if (!uriLower.startsWith(SCHEMA_SMS) && !uriLower.startsWith(SCHEMA_SMSTO) &&
-        !uriLower.startsWith(SCHEMA_MMS) && !uriLower.startsWith(SCHEMA_MMSTO))
+    if (!schemaLower.equals(SCHEMA_SMS) && !schemaLower.equals(SCHEMA_SMSTO) &&
+        !schemaLower.equals(SCHEMA_MMS) && !schemaLower.equals(SCHEMA_MMSTO))
     {
       throw new URISyntaxException(uri, "supplied URI does not contain a valid schema");
     }
 
-    String[] restrictedTokens = {":", "?"};
-    for (String token : restrictedTokens) {
-      int tokenIndex = uriLower.indexOf(token);
-      if (tokenIndex >= 0 && uriLower.length() > tokenIndex + 1) {
-        if (uriLower.indexOf(token, tokenIndex + 1) >= 0) {
-          throw new URISyntaxException(uri, "supplied URI contains more than one " + token);
-        }
-      }
-    }
-
-    if (uriLower.contains("&") &&
-       (!uriLower.contains("?") || uriLower.indexOf("?") > uriLower.indexOf("&")))
-    {
-      throw new URISyntaxException(uri, "token & only allowed in query string");
-    }
-
-    if (uriLower.indexOf(":") + 1 == getUriWithoutQuery().length()) {
-      throw new URISyntaxException(uri, "supplied URI contains no recipients");
-    }
+    return schema;
   }
 
-  private String getUriWithoutQuery() {
-    int queryIndex = uri.indexOf("?");
+  private static String parseRecipients(String uri) throws URISyntaxException {
+    String[] parts = uri.split("\\?")[0].split(":");
 
-    if (queryIndex > 0) return uri.substring(0, queryIndex);
-    else                return uri;
+    if (parts.length < 2) throw new URISyntaxException(uri, "supplied URI contains no recipients");
+    else                  return parts[1];
   }
 
   public String getSchema() {
-    return uri.split(":")[0];
+    return schema;
   }
 
   public String getRecipients() {
-    return getUriWithoutQuery().split(":")[1];
+    return recipients;
   }
 
   public String getQueryParam(String key) {
-    int startIndex  = uri.indexOf(key + "=");
-    int startOffset = key.length() + 1;
+    String[] parts = uri.split(key + "=");
 
-    if      (startIndex < 0)                             return null;
-    else if (uri.length() <= (startIndex + startOffset)) return "";
-
-    int endIndex = uri.indexOf("&", startIndex);
-
-    if (endIndex > startIndex) return URLDecoder.decode(uri.substring(startIndex + startOffset, endIndex));
-    else                       return URLDecoder.decode(uri.substring(startIndex + startOffset));
+    if      (!uri.contains(key + "=")) return null;
+    else if (parts.length == 1)        return "";
+    else                               return URLDecoder.decode(parts[1].split("&")[0]);
   }
-
 }

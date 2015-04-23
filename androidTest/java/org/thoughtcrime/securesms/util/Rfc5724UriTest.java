@@ -46,23 +46,6 @@ public class Rfc5724UriTest extends TextSecureTestCase {
     }
   }
 
-  public void testRestrictedTokens() throws Exception {
-    final String[] invalidUris = {
-        "sms::+15555555555",
-        "sms:+15555555555??",
-        "sms:+15555555555&",
-        "sms:+15555555555&?"
-    };
-
-    for (String uri : invalidUris) {
-      try {
-        new Rfc5724Uri(uri);
-        Log.e(TAG, "uri " + uri + " should have failed restricted tokens check");
-        assertTrue(false);
-      } catch (URISyntaxException e) { }
-    }
-  }
-
   public void testInvalidRecipients() throws Exception {
     final String[] invalidSchemaUris = {
         "sms:",
@@ -90,6 +73,7 @@ public class Rfc5724UriTest extends TextSecureTestCase {
 
     for (String[] uriTestPair : uriTestPairs) {
       final Rfc5724Uri testUri = new Rfc5724Uri(uriTestPair[0]);
+      Log.d(TAG, testUri.getSchema() + " ?= " + uriTestPair[1]);
       assertTrue(testUri.getSchema().equals(uriTestPair[1]));
     }
   }
@@ -108,6 +92,7 @@ public class Rfc5724UriTest extends TextSecureTestCase {
 
     for (String[] uriTestPair : uriTestPairs) {
       final Rfc5724Uri testUri = new Rfc5724Uri(uriTestPair[0]);
+      Log.d(TAG, testUri.getRecipients() + " ?= " + uriTestPair[1]);
       assertTrue(testUri.getRecipients().equals(uriTestPair[1]));
     }
   }
@@ -129,6 +114,7 @@ public class Rfc5724UriTest extends TextSecureTestCase {
       final Rfc5724Uri testUri     = new Rfc5724Uri(uriTestPair[0]);
       final String     paramResult = testUri.getQueryParam(uriTestPair[1]);
 
+      Log.d(TAG, paramResult + " ?= " + uriTestPair[2]);
       if (paramResult == null) assertTrue(uriTestPair[2] == null);
       else                     assertTrue(paramResult.equals(uriTestPair[2]));
     }
