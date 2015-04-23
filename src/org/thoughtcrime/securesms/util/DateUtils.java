@@ -70,15 +70,15 @@ public class DateUtils extends android.text.format.DateUtils {
       int mins = (int)TimeUnit.MINUTES.convert(System.currentTimeMillis() - timestamp, TimeUnit.MILLISECONDS);
       return c.getResources().getQuantityString(R.plurals.minutes_ago, mins, mins);
     } else {
-      String format = "";
-      if      (isWithin(timestamp,   6, TimeUnit.DAYS)) format += "EEE ";
-      else if (isWithin(timestamp, 365, TimeUnit.DAYS)) format += "MMM d, ";
-      else                                              format += "MMM d, yyyy, ";
+      StringBuilder format = new StringBuilder();
+      if      (isWithin(timestamp,   6, TimeUnit.DAYS)) format.append("EEE ");
+      else if (isWithin(timestamp, 365, TimeUnit.DAYS)) format.append("MMM d, ");
+      else                                              format.append("MMM d, yyyy, ");
 
-      if (DateFormat.is24HourFormat(c)) format +=  "HH:mm";
-      else                              format +=  "hh:mm a";
+      if (DateFormat.is24HourFormat(c)) format.append("HH:mm");
+      else                              format.append("hh:mm a");
 
-      return getFormattedDateTime(timestamp, format, locale);
+      return getFormattedDateTime(timestamp, format.toString(), locale);
     }
   }
 
