@@ -177,7 +177,11 @@ public class ThumbnailView extends ForegroundImageView {
 
     @Override
     public void onClick(View view) {
-      listener.onClick(view, slide);
+      if (listener != null) {
+        listener.onClick(view, slide);
+      } else {
+        Log.w(TAG, "onClick, but no thumbnail click listener attached.");
+      }
     }
   }
 
