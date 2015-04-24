@@ -29,6 +29,7 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
   private static final int SUCCESS              = 0;
   private static final int FAILURE              = 1;
   private static final int WRITE_ACCESS_FAILURE = 2;
+  private static final String FOLDERNAME = "TextSecure";
 
   private final WeakReference<Context> contextReference;
   private final WeakReference<MasterSecret> masterSecretReference;
@@ -101,17 +102,16 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
   }
 
   private File constructOutputFile(String contentType, long timestamp) throws IOException {
-    File sdCard = Environment.getExternalStorageDirectory();
     File outputDirectory;
 
     if (contentType.startsWith("video/")) {
-      outputDirectory = new File(sdCard.getAbsoluteFile() + File.separator + Environment.DIRECTORY_MOVIES);
+      outputDirectory = new File(getVideoFolder());
     } else if (contentType.startsWith("audio/")) {
-      outputDirectory = new File(sdCard.getAbsolutePath() + File.separator + Environment.DIRECTORY_MUSIC);
+      outputDirectory = new File(getAudioFolder());
     } else if (contentType.startsWith("image/")) {
-      outputDirectory = new File(sdCard.getAbsolutePath() + File.separator + Environment.DIRECTORY_PICTURES);
+      outputDirectory = new File(getImageFolder());
     } else {
-      outputDirectory = new File(sdCard.getAbsolutePath() + File.separator + Environment.DIRECTORY_DOWNLOADS);
+      outputDirectory = new File(getMiscFolder());
     }
 
     if (!outputDirectory.mkdirs()) Log.w(TAG, "mkdirs() returned false, attempting to continue");
@@ -158,5 +158,30 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
     builder.setNegativeButton(R.string.no, null);
     builder.show();
   }
+
+  private static String getTextSecureFolder() {
+    return Environment.getExternalStorageDirectory().getAbsoluteFile() + File.separator + FOLDERNAME  + File.separator;
+  }
+
+  private String getMediaFolder() {
+    return getTextSecureFolder() + "Media" + File.separator;
+  }
+
+  private String getImageFolder() {
+    return getMediaFolder() + "Images" + File.separator;
+  }
+
+  private String getVideoFolder() {
+    return getMediaFolder() + "Video" + File.separator;
+  }
+
+  private String getAudioFolder() {
+    return getMediaFolder() + "Audio" + File.separator;
+  }
+
+  private String getMiscFolder() {
+    return getMediaFolder() + "Misc" + File.separator;
+  }
+
 }
 

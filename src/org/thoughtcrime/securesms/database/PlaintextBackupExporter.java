@@ -12,7 +12,8 @@ import java.io.IOException;
 
 public class PlaintextBackupExporter {
 
-  private final static String FILENAME = "TextSecurePlaintextBackup.xml";
+  private static final String FILENAME = "TextSecurePlaintextBackup.xml";
+  private static final String FOLDERNAME = "TextSecure";
 
   public static void exportPlaintextToSd(Context context, MasterSecret masterSecret)
       throws NoExternalStorageException, IOException
@@ -29,7 +30,7 @@ public class PlaintextBackupExporter {
 
   private static String getPlaintextExportDirectoryPath() {
     File sdDirectory = Environment.getExternalStorageDirectory();
-    return getOldPlaintextExportDirectoryPath() + "TextSecure" + File.separator;
+    return getOldPlaintextExportDirectoryPath() + FOLDERNAME + File.separator;
   }
 
   private static String getOldPlaintextExportDirectoryPath() {
