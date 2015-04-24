@@ -12,10 +12,13 @@ import java.io.IOException;
 
 public class PlaintextBackupExporter {
 
+  private final String FILENAME = "TextSecurePlaintextBackup.xml";
+
   public static void exportPlaintextToSd(Context context, MasterSecret masterSecret)
       throws NoExternalStorageException, IOException
   {
     verifyExternalStorageForPlaintextExport();
+    moveOldPlaintextExportToDirectory();
     exportPlaintext(context, masterSecret);
   }
 
@@ -26,15 +29,29 @@ public class PlaintextBackupExporter {
 
   private static String getPlaintextExportDirectoryPath() {
     File sdDirectory = Environment.getExternalStorageDirectory();
-    return sdDirectory.getAbsolutePath() + File.separator + "TextSecurePlaintextBackup.xml";
+    return getOldPlaintextExportDirectoryPath() + "TextSecure" + File.separator;
+  }
+
+  private static String getOldPlaintextExportDirectoryPath() {
+    File sdDirectory = Environment.getExternalStorageDirectory();
+    return sdDirectory.getAbsolutePath() + File.separator;
+  }
+
+  private static void moveOldPlaintextExportToDirectory(){
+    File oldBackup = new File(getOldPlaintextExportDirectoryPath() + FILENAME);
+
+    if (oldBackup.isFile()) {
+        File newBackup = new File(getPlaintextExportDirectoryPath() + FILENAME);
+        if (! newBackup.isFile())
+            oldBackup.renameTo(newBackup);
+    }
   }
 
   private static void exportPlaintext(Context context, MasterSecret masterSecret)
-      throws IOException
+    throws IOException
   {
     int count               = DatabaseFactory.getSmsDatabase(context).getMessageCount();
-    XmlBackup.Writer writer = new XmlBackup.Writer(getPlaintextExportDirectoryPath(), count);
-
+    XmlBackup.Writer writer = new XmlBackup.Writer(getPlaintextExportDirectoryPath()+ FILENAME, count);
 
     SmsMessageRecord record;
     EncryptingSmsDatabase.Reader reader = null;
