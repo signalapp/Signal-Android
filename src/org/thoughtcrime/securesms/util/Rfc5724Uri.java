@@ -19,57 +19,63 @@ package org.thoughtcrime.securesms.util;
 
 import java.net.URISyntaxException;
 import java.net.URLDecoder;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Rfc5724Uri {
 
-  private static final String SCHEMA_SMS   = "sms";
-  private static final String SCHEMA_SMSTO = "smsto";
-  private static final String SCHEMA_MMS   = "mms";
-  private static final String SCHEMA_MMSTO = "mmsto";
-
-  private final String uri;
-  private final String schema;
-  private final String recipients;
+  private final String              uri;
+  private final String              schema;
+  private final String              path;
+  private final Map<String, String> queryParams;
 
   public Rfc5724Uri(String uri) throws URISyntaxException {
-    this.uri        = uri;
-    this.schema     = parseSchema(uri);
-    this.recipients = parseRecipients(uri);
+    this.uri         = uri;
+    this.schema      = parseSchema();
+    this.path        = parsePath();
+    this.queryParams = parseQueryParams();
   }
 
-  private static String parseSchema(String uri) throws URISyntaxException {
-    String schema      = uri.split(":")[0];
-    String schemaLower = schema.toLowerCase();
+  private String parseSchema() throws URISyntaxException {
+    String[] parts = uri.split(":");
 
-    if (!schemaLower.equals(SCHEMA_SMS) && !schemaLower.equals(SCHEMA_SMSTO) &&
-        !schemaLower.equals(SCHEMA_MMS) && !schemaLower.equals(SCHEMA_MMSTO))
-    {
-      throw new URISyntaxException(uri, "supplied URI does not contain a valid schema");
+    if (parts.length < 1 || parts[0].length() < 1) throw new URISyntaxException(uri, "invalid schema");
+    else                                           return parts[0];
+  }
+
+  private String parsePath() throws URISyntaxException {
+    String[] parts = uri.split("\\?")[0].split(":", 2);
+
+    if (parts.length < 2 || parts[1].length() < 1) throw new URISyntaxException(uri, "invalid path");
+    else                                           return parts[1];
+  }
+
+  private Map<String, String> parseQueryParams() throws URISyntaxException {
+    Map<String, String> queryParams = new HashMap<>();
+    if (!uri.contains("?") || uri.split("\\?").length < 2) {
+      return queryParams;
     }
 
-    return schema;
-  }
+    for (String keyValue : uri.split("\\?")[1].split("&")) {
+      if (keyValue.contains("=")) {
+        String[] parts = keyValue.split("=");
+        String   value = (parts.length == 1) ? "" : parts[1];
+        queryParams.put(parts[0], URLDecoder.decode(value));
+      }
+    }
 
-  private static String parseRecipients(String uri) throws URISyntaxException {
-    String[] parts = uri.split("\\?")[0].split(":");
-
-    if (parts.length < 2) throw new URISyntaxException(uri, "supplied URI contains no recipients");
-    else                  return parts[1];
+    return queryParams;
   }
 
   public String getSchema() {
     return schema;
   }
 
-  public String getRecipients() {
-    return recipients;
+  public String getPath() {
+    return path;
   }
 
-  public String getQueryParam(String key) {
-    String[] parts = uri.split(key + "=");
-
-    if      (!uri.contains(key + "=")) return null;
-    else if (parts.length == 1)        return "";
-    else                               return URLDecoder.decode(parts[1].split("&")[0]);
+  public Map<String, String> getQueryParams() {
+    return queryParams;
   }
 }

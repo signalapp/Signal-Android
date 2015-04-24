@@ -27,28 +27,12 @@ public class Rfc5724UriTest extends TextSecureTestCase {
 
   private static final String TAG = Rfc5724UriTest.class.getSimpleName();
 
-  public void testInvalidSchemas() throws Exception {
-    final String[] invalidUris = {
-        "",
-        "+15555555555",
-        "sms+15555555555",
-        ":sms+15555555555",
-        "sms+15555555555:",
-        "+15555555555sms:"
-    };
-
-    for (String uri : invalidUris) {
-      try {
-        new Rfc5724Uri(uri);
-        Log.e(TAG, "uri " + uri + " should have failed schema check");
-        assertTrue(false);
-      } catch (URISyntaxException e) { }
-    }
-  }
-
-  public void testInvalidRecipients() throws Exception {
+  public void testInvalidPath() throws Exception {
     final String[] invalidSchemaUris = {
+        "",
+        ":",
         "sms:",
+        ":sms",
         "sms:?goto=fail",
         "sms:?goto=fail&fail=goto"
     };
@@ -56,7 +40,7 @@ public class Rfc5724UriTest extends TextSecureTestCase {
     for (String uri : invalidSchemaUris) {
       try {
         new Rfc5724Uri(uri);
-        Log.e(TAG, "uri " + uri + " should have failed recipients check");
+        Log.e(TAG, "uri " + uri + " should have failed path check");
         assertTrue(false);
       } catch (URISyntaxException e) { }
     }
@@ -78,7 +62,7 @@ public class Rfc5724UriTest extends TextSecureTestCase {
     }
   }
 
-  public void testGetRecipients() throws Exception {
+  public void testGetPath() throws Exception {
     final String[][] uriTestPairs = {
         {"sms:+15555555555",                      "+15555555555"},
         {"smsto:+15555555555?",                   "+15555555555"},
@@ -92,8 +76,8 @@ public class Rfc5724UriTest extends TextSecureTestCase {
 
     for (String[] uriTestPair : uriTestPairs) {
       final Rfc5724Uri testUri = new Rfc5724Uri(uriTestPair[0]);
-      Log.d(TAG, testUri.getRecipients() + " ?= " + uriTestPair[1]);
-      assertTrue(testUri.getRecipients().equals(uriTestPair[1]));
+      Log.d(TAG, testUri.getPath() + " ?= " + uriTestPair[1]);
+      assertTrue(testUri.getPath().equals(uriTestPair[1]));
     }
   }
 
@@ -112,7 +96,7 @@ public class Rfc5724UriTest extends TextSecureTestCase {
 
     for (String[] uriTestPair : uriTestPairs) {
       final Rfc5724Uri testUri     = new Rfc5724Uri(uriTestPair[0]);
-      final String     paramResult = testUri.getQueryParam(uriTestPair[1]);
+      final String     paramResult = testUri.getQueryParams().get(uriTestPair[1]);
 
       Log.d(TAG, paramResult + " ?= " + uriTestPair[2]);
       if (paramResult == null) assertTrue(uriTestPair[2] == null);

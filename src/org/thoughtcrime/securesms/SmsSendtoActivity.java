@@ -34,8 +34,8 @@ public class SmsSendtoActivity extends Activity {
     } else {
       try {
         Rfc5724Uri smsUri = new Rfc5724Uri(original.getData().toString());
-        body = smsUri.getQueryParam("body");
-        data = smsUri.getRecipients();
+        body = smsUri.getQueryParams().get("body");
+        data = smsUri.getPath();
       } catch (URISyntaxException e) {
         Log.w(TAG, "unable to parse RFC5724 URI from intent", e);
       }
