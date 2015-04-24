@@ -17,7 +17,6 @@
 package org.thoughtcrime.securesms;
 
 import android.annotation.TargetApi;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -37,6 +36,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.thoughtcrime.securesms.ExternalMediaWarningDialog.WarningListener;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipient.RecipientModifiedListener;
@@ -224,9 +224,9 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   }
 
   private void saveToDisk() {
-    SaveAttachmentTask.showWarningDialog(this, new DialogInterface.OnClickListener() {
+    ExternalMediaWarningDialog.showIfNecessary(this, new WarningListener() {
       @Override
-      public void onClick(DialogInterface dialogInterface, int i) {
+      public void onWarningAccepted() {
         SaveAttachmentTask saveTask = new SaveAttachmentTask(MediaPreviewActivity.this, masterSecret);
         saveTask.execute(new Attachment(mediaUri, mediaType, date));
       }

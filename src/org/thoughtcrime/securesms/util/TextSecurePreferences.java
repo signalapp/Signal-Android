@@ -68,8 +68,17 @@ public class TextSecurePreferences {
   private static final String WEBSOCKET_REGISTERED_PREF        = "pref_websocket_registered";
   private static final String RATING_LATER_PREF                = "pref_rating_later";
   private static final String RATING_ENABLED_PREF              = "pref_rating_enabled";
+  private static final String WARN_EXPOSE_SECURE_MEDIA_PREF    = "pref_warn_expose_secure_media";
 
   public  static final String REPEAT_ALERTS_PREF               = "pref_repeat_alerts";
+
+  public static boolean isWarnOnExposeSecureMediaEnabled(Context context) {
+    return getBooleanPreference(context, WARN_EXPOSE_SECURE_MEDIA_PREF, true);
+  }
+
+  public static void setWarnOnExposeSecureMediaEnabled(Context context, boolean enabled) {
+    setBooleanPreference(context, WARN_EXPOSE_SECURE_MEDIA_PREF, enabled);
+  }
 
   public static long getRatingLaterTimestamp(Context context) {
     return getLongPreference(context, RATING_LATER_PREF, 0);
