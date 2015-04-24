@@ -342,7 +342,7 @@
                             android:paddingLeft="4.0dip"
                             android:paddingRight="8.0dip"
                             android:text="@string/registration_progress_activity__connecting"
-                            android:textSize="16.0sp" />
+                            android:textSize="12.0sp" />
                 </TableRow>
 
                 <TableRow>
@@ -386,7 +386,7 @@
                             android:paddingLeft="4.0dip"
                             android:paddingRight="8.0dip"
                             android:text="@string/registration_progress_activity__waiting_for_sms_verification"
-                            android:textSize="16.0sp" />
+                            android:textSize="12.0sp" />
                 </TableRow>
 
                 <TableRow>
@@ -430,7 +430,7 @@
                             android:paddingLeft="4.0dip"
                             android:paddingRight="8.0dip"
                             android:text="@string/registration_progress_activity__generating_keys"
-                            android:textSize="16.0sp" />
+                            android:textSize="12.0sp" />
                 </TableRow>
 
                 <TableRow>
@@ -474,7 +474,7 @@
                             android:paddingLeft="4.0dip"
                             android:paddingRight="8.0dip"
                             android:text="@string/registration_progress_activity__registering_with_server"
-                            android:textSize="16.0sp" />
+                            android:textSize="12.0sp" />
                 </TableRow>
 
             </TableLayout>
