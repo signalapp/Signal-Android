@@ -93,6 +93,11 @@ public class AttachmentManager {
   }
 
   public void setMedia(final Slide slide, @Nullable MasterSecret masterSecret) {
+    Slide thumbnailSlide = slideDeck.getThumbnailSlide(context);
+    if (thumbnailSlide != null && thumbnailSlide.isEncrypted()) {
+      Uri dataUri = slideDeck.getThumbnailSlide(context).getPart().getDataUri();
+      new File(dataUri.getPath()).delete();
+    }
     slideDeck.clear();
     slideDeck.addSlide(slide);
     attachmentView.setVisibility(View.VISIBLE);
