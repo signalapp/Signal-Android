@@ -84,7 +84,6 @@ public class Rfc5724UriTest extends TextSecureTestCase {
   public void testGetQueryParams() throws Exception {
     final String[][] uriTestPairs = {
         {"sms:+15555555555",         "a", null},
-        {"smsto:+15555555555?a",     "a", null},
         {"mms:+15555555555?b=",      "a", null},
         {"mmsto:+15555555555?a=",    "a", ""},
         {"sms:+15555555555?a=b",     "a", "b"},

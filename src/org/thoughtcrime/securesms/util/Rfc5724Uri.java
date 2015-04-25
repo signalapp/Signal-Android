@@ -57,11 +57,11 @@ public class Rfc5724Uri {
     }
 
     for (String keyValue : uri.split("\\?")[1].split("&")) {
-      if (keyValue.contains("=")) {
-        String[] parts = keyValue.split("=");
-        String   value = (parts.length == 1) ? "" : parts[1];
-        queryParams.put(parts[0], URLDecoder.decode(value));
-      }
+      String[] parts = keyValue.split("=");
+
+      if     (!keyValue.contains("=")) throw new URISyntaxException(uri, "");
+      else if(parts.length == 1)       queryParams.put(parts[0], "");
+      else                             queryParams.put(parts[0], URLDecoder.decode(parts[1]));
     }
 
     return queryParams;
