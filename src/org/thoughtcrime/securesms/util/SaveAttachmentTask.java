@@ -163,24 +163,20 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
     return Environment.getExternalStorageDirectory().getAbsoluteFile() + File.separator + FOLDERNAME  + File.separator;
   }
 
-  private String getMediaFolder() {
-    return getTextSecureFolder() + "Media" + File.separator;
-  }
-
   private String getImageFolder() {
-    return getMediaFolder() + "Images" + File.separator;
+    return getTextSecureFolder() + "Images" + File.separator;
   }
 
   private String getVideoFolder() {
-    return getMediaFolder() + "Video" + File.separator;
+    return getTextSecureFolder() + "Video" + File.separator;
   }
 
   private String getAudioFolder() {
-    return getMediaFolder() + "Audio" + File.separator;
+    return getTextSecureFolder() + "Audio" + File.separator;
   }
 
   private String getMiscFolder() {
-    return getMediaFolder() + "Misc" + File.separator;
+    return getTextSecureFolder() + "Misc" + File.separator;
   }
 
 }

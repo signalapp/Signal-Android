@@ -30,7 +30,7 @@ public class PlaintextBackupExporter {
 
   private static String getPlaintextExportDirectoryPath() {
     File sdDirectory = Environment.getExternalStorageDirectory();
-    return getOldPlaintextExportDirectoryPath() + FOLDERNAME + File.separator;
+    return getOldPlaintextExportDirectoryPath() + FOLDERNAME + File.separator + "Backup" + File.separator;
   }
 
   private static String getOldPlaintextExportDirectoryPath() {
@@ -40,11 +40,15 @@ public class PlaintextBackupExporter {
 
   private static void moveOldPlaintextExportToDirectory(){
     File oldBackup = new File(getOldPlaintextExportDirectoryPath() + FILENAME);
+    File newBackup = new File(getPlaintextExportDirectoryPath() + FILENAME);
+    File newDirectory = new File(getPlaintextExportDirectoryPath());
+
+    if (! newDirectory.isDirectory())
+      newDirectory.mkdirs();
 
     if (oldBackup.isFile()) {
-        File newBackup = new File(getPlaintextExportDirectoryPath() + FILENAME);
-        if (! newBackup.isFile())
-            oldBackup.renameTo(newBackup);
+      if (! newBackup.isFile())
+        oldBackup.renameTo(newBackup);
     }
   }
 
