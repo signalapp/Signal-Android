@@ -168,7 +168,7 @@
 
     <!-- ExternalMediaWarningDialog -->
     <string name="ExternalMediaWarningDialog_expose_secure_media">Expose secure media?</string>
-    <string name="ExternalMediaWarningDialog_previewing_or_saving_media_outside_of">Previewing or saving media outside of TextSecure allows other apps to see the media.</string>
+    <string name="ExternalMediaWarningDialog_previewing_or_saving_media_outside_of">Previewing or saving media outside of TextSecure allows other apps to see it.</string>
     <string name="ExternalMediaWarningDialog_dont_ask_again">Don\'t ask again</string>
     <string name="ExternalMediaWarningDialog_continue">Continue</string>
     <string name="ExternalMediaWarningDialog_cancel">Cancel</string>
