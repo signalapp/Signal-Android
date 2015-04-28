@@ -749,15 +749,21 @@ public class MmsDatabase extends MessagingDatabase {
 
     contentValues.put(PART_COUNT, PartParser.getSupportedMediaPartCount(body));
 
-    long messageId = db.insert(TABLE_NAME, null, contentValues);
+    db.beginTransaction();
+    try {
+      long messageId = db.insert(TABLE_NAME, null, contentValues);
 
-    addressDatabase.insertAddressesForId(messageId, headers);
-    partsDatabase.insertParts(masterSecret, messageId, body);
+      addressDatabase.insertAddressesForId(messageId, headers);
+      partsDatabase.insertParts(masterSecret, messageId, body);
 
-    notifyConversationListeners(contentValues.getAsLong(THREAD_ID));
-    DatabaseFactory.getThreadDatabase(context).update(contentValues.getAsLong(THREAD_ID));
+      notifyConversationListeners(contentValues.getAsLong(THREAD_ID));
+      DatabaseFactory.getThreadDatabase(context).update(contentValues.getAsLong(THREAD_ID));
+      db.setTransactionSuccessful();
+      return messageId;
+    } finally {
+      db.endTransaction();
+    }
 
-    return messageId;
   }
 
   public boolean delete(long messageId) {
