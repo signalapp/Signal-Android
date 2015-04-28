@@ -15,4 +15,27 @@
         <item>@drawable/ic_menu_remove_holo_light</item>
         <item>@drawable/ic_menu_remove_holo_light</item>
     </string-array>
+    <string-array
+        name="array_nav_labels">
+        <item>@string/text_secure_normal__menu_new_group</item>
+        <item>@string/text_secure_normal__mark_all_as_read</item>
+        <item>@string/arrays__import_export</item>
+        <item>@string/arrays__my_identity_key</item>
+        <item>@string/menu_filter</item>
+        <item>@string/menu_privacy</item>
+        <item>@string/menu_privacy_hide</item>
+        <item>@string/text_secure_normal__menu_settings</item>
+        <item>@string/text_secure_normal__menu_clear_passphrase</item>
+    </string-array>
+    <string-array name="array_nav_icons">
+        <item>@android:drawable/ic_menu_add</item>
+        <item>@android:drawable/ic_menu_view</item>
+        <item>@drawable/ic_menu_save</item>
+        <item>@drawable/ic_menu_login</item>
+        <item>@drawable/ic_menu_blocked_user</item>
+        <item>@drawable/ic_menu_end_conversation</item>
+        <item>@drawable/check_cd</item>
+        <item>@android:drawable/ic_menu_preferences</item>
+        <item>@android:drawable/ic_lock_lock</item>
+    </string-array>
 </resources>

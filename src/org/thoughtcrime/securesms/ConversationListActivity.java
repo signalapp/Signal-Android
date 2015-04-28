@@ -24,11 +24,13 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.TypedArray;
 import android.database.ContentObserver;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -36,6 +38,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.SearchView;
 import android.text.InputType;
 import android.util.Log;
@@ -43,11 +46,16 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.thoughtcrimegson.TypeAdapter;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -65,11 +73,16 @@ import de.gdata.messaging.SlidingTabLayout;
 import de.gdata.messaging.util.GService;
 import de.gdata.messaging.util.GDataPreferences;
 import de.gdata.messaging.util.GUtil;
+import de.gdata.messaging.util.NavDrawerAdapter;
 
 public class ConversationListActivity extends PassphraseRequiredActionBarActivity implements
     ConversationListFragment.ConversationSelectedListener {
   private final DynamicTheme dynamicTheme = new DynamicTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
+
+  private DrawerLayout mDrawerLayout;
+  private ListView     mDrawerList;
+  private ActionBarDrawerToggle mDrawerToggle;
 
   private ConversationListFragment conversationListFragment;
   private ContactSelectionFragment contactSelectionFragment;
@@ -86,12 +99,91 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     gDataPreferences = new GDataPreferences(getBaseContext());
     setContentView(R.layout.gdata_conversation_list_activity);
 
+    String[] labels = getResources().getStringArray(R.array.array_nav_labels);
+    TypedArray icons = getResources().obtainTypedArray(R.array.array_nav_icons);
+    mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+    mDrawerToggle = new ActionBarDrawerToggle(
+        this,                  /* host Activity */
+        mDrawerLayout,         /* DrawerLayout object */
+        R.drawable.ic_drawer,  /* nav drawer icon to replace 'Up' caret */
+        R.string.common_open_on_phone,  /* "open drawer" description */
+        R.string.abc_action_bar_home_description  /* "close drawer" description */
+    ) {
+
+      /** Called when a drawer has settled in a completely closed state. */
+      public void onDrawerClosed(View view) {
+        super.onDrawerClosed(view);
+        getSupportActionBar().setTitle(R.string.app_name);
+      }
+
+      /** Called when a drawer has settled in a completely open state. */
+      public void onDrawerOpened(View drawerView) {
+        super.onDrawerOpened(drawerView);
+        getSupportActionBar().setTitle(R.string.app_name);
+      }
+    };
+    mDrawerToggle.setDrawerIndicatorEnabled(true);
+    // Set the drawer toggle as the DrawerListener
+    mDrawerLayout.setDrawerListener(mDrawerToggle);
+
+    mDrawerList = (ListView) findViewById(R.id.left_drawer);
+    // Set the adapter for the list view
+    mDrawerList.setAdapter(new NavDrawerAdapter(this, labels, icons));
+    // Set the list's click listener
+    mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+    mDrawerList.setItemChecked(0, false);
+    mDrawerList.invalidate();
+    getSupportActionBar().setHomeButtonEnabled(true);
     getSupportActionBar().setTitle(R.string.app_name);
     initViewPagerLayout();
     GUtil.forceOverFlowMenu(getApplicationContext());
     new GService().init(getApplicationContext());
     LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
         new IntentFilter("reloadAdapter"));
+  }
+  /* The click listner for ListView in the navigation drawer */
+  private class DrawerItemClickListener implements ListView.OnItemClickListener {
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+      selectItem(position);
+    }
+  }
+  private void selectItem(int position) {
+
+    switch (position) {
+      case NavDrawerAdapter.menu_new_message:
+        openSingleContactSelection();
+        break;
+      case NavDrawerAdapter.menu_new_group:
+        createGroup();
+        break;
+      case NavDrawerAdapter.menu_my_identity:
+        handleMyIdentity();
+        break;
+      case NavDrawerAdapter.menu_clear_passphrase:
+        handleClearPassphrase();
+        break;
+      case NavDrawerAdapter.menu_mark_all_read:
+        handleMarkAllRead();
+        break;
+      case NavDrawerAdapter.menu_import_export:
+        handleImportExport();
+        break;
+      case NavDrawerAdapter.menu_privacy:
+        openPasswordDialogWithAction(CheckPasswordDialogFrag.ACTION_OPEN_PRIVACY);
+        break;
+      case NavDrawerAdapter.menu_privacy_hide:
+        openPasswordDialogWithAction(CheckPasswordDialogFrag.ACTION_TOGGLE_VISIBILITY);
+        break;
+      case NavDrawerAdapter.menu_filter:
+        openPasswordDialogWithAction(CheckPasswordDialogFrag.ACTION_OPEN_CALL_FILTER);
+        break;
+      case NavDrawerAdapter.menu_settings:
+        handleDisplaySettings();
+        break;
+    }
+    mDrawerList.setItemChecked(position, false);
+    mDrawerLayout.closeDrawer(mDrawerList);
   }
   private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
     @Override
@@ -100,8 +192,9 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     }
   };
   @Override
-  public void onPostCreate(Bundle bundle) {
+  protected void onPostCreate(Bundle bundle) {
     super.onPostCreate(bundle);
+    mDrawerToggle.syncState();
   }
 
   @Override
@@ -131,21 +224,11 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     MenuInflater inflater = this.getMenuInflater();
     menu.clear();
 
-    inflater.inflate(R.menu.text_secure_normal, menu);
+    inflater.inflate(R.menu.gdata_text_secure_normal, menu);
 
-    menu.findItem(R.id.menu_clear_passphrase).setVisible(!TextSecurePreferences.isPasswordDisabled(this));
-
-    if (this.masterSecret != null && gDataPreferences.getViewPagersLastPage() == 0) {
-    //removed for now until we found better approach ()
-    //      inflater.inflate(R.menu.conversation_list, menu);
-    //      MenuItem menuItem = menu.findItem(R.id.menu_search);
-    //      initializeSearch(menuItem);
-    } else {
-      inflater.inflate(R.menu.conversation_list_empty, menu);
+    if (!(this.masterSecret != null && gDataPreferences.getViewPagersLastPage() == 0)) {
+      menu.clear();
     }
-    MenuItem itemHide = menu.findItem(R.id.menu_privacy_hide);
-    itemHide.setTitle(gDataPreferences.isPrivacyActivated()
-        ? getString(R.string.menu_privacy_unhide) : getString(R.string.menu_privacy_hide));
 
     super.onPrepareOptionsMenu(menu);
     return true;
@@ -190,6 +273,10 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     super.onOptionsItemSelected(item);
+
+    if (mDrawerToggle.onOptionsItemSelected(item)) {
+      return true;
+    }
 
     switch (item.getItemId()) {
       case R.id.menu_new_message:
