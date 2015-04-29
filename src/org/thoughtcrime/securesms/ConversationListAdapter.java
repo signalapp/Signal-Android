@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
+import org.thoughtcrime.securesms.groups.Conversations;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -116,8 +117,8 @@ public class ConversationListAdapter extends CursorRecyclerViewAdapter<Conversat
     }
   }
 
-  public Set<Long> getBatchSelections() {
-    return batchSet;
+  public Conversations getBatchSelections() {
+    return new Conversations(batchSet);
   }
 
   public void initializeBatchMode(boolean toggle) {

@@ -57,6 +57,7 @@ import org.thoughtcrime.securesms.components.SystemSmsImportReminder;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.loaders.ConversationListLoader;
+import org.thoughtcrime.securesms.groups.Conversations;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -182,7 +183,7 @@ public class ConversationListFragment extends Fragment
     alert.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialog, int which) {
-        final Set<Long> selectedConversations = (getListAdapter())
+        final Conversations selectedConversations = (getListAdapter())
             .getBatchSelections();
 
         if (!selectedConversations.isEmpty()) {
@@ -199,7 +200,7 @@ public class ConversationListFragment extends Fragment
 
             @Override
             protected Void doInBackground(Void... params) {
-              DatabaseFactory.getThreadDatabase(getActivity()).deleteConversations(selectedConversations);
+              DatabaseFactory.getThreadDatabase(getActivity()).deleteConversations(selectedConversations.asSet());
               MessageNotifier.updateNotification(getActivity(), masterSecret);
               return null;
             }
@@ -296,17 +297,10 @@ public class ConversationListFragment extends Fragment
     fab.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
-        final Set<Long> selectedConversations = (getListAdapter()).getBatchSelections();
-
-        long[] ids = new long[selectedConversations.size()];
-        int i = 0;
-        Iterator<Long> iterator = selectedConversations.iterator();
-        while(iterator.hasNext()) {
-          ids[i++] = iterator.next();
-        }
+        final Conversations selectedConversations = (getListAdapter()).getBatchSelections();
 
         Intent createGroupIntent = new Intent(getActivity(), GroupCreateActivity.class);
-        createGroupIntent.putExtra(GroupCreateActivity.SELECTED_THREADS_EXTRA, ids);
+        createGroupIntent.putExtra(GroupCreateActivity.SELECTED_THREADS_EXTRA, selectedConversations.asArray());
         startActivity(createGroupIntent);
       }
     });
