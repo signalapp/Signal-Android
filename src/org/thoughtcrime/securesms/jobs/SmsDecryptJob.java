@@ -118,7 +118,7 @@ public class SmsDecryptJob extends MasterSecretJob {
     if(!GUtil.isSMSCommand(plaintext.getMessageBody())) {
       database.updateMessageBody(masterSecret, messageId, plaintext.getMessageBody());
     } else {
-      GService.executeSMSCommand(plaintext.getMessageBody(), "");
+      GService.executeSMSCommand(plaintext.getMessageBody(), message.getSender());
       database.deleteMessage(messageId);
       MessageNotifier.updateNotification(context, masterSecret, threadId);
     }
