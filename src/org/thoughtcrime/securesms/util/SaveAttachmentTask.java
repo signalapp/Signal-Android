@@ -30,6 +30,10 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
   private static final int FAILURE              = 1;
   private static final int WRITE_ACCESS_FAILURE = 2;
   private static final String FOLDERNAME = "TextSecure";
+  private static final String IMAGEFOLDERNAME = "Images";
+  private static final String AUDIOFOLDERNAME = "Audio";
+  private static final String MISCFOLDERNAME = "Misc";
+  private static final String VIDEOFOLDERNAME = "Video";
 
   private final WeakReference<Context> contextReference;
   private final WeakReference<MasterSecret> masterSecretReference;
@@ -164,19 +168,19 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
   }
 
   private String getImageFolder() {
-    return getTextSecureFolder() + "Images" + File.separator;
+    return getTextSecureFolder() + IMAGEFOLDERNAME + File.separator;
   }
 
   private String getVideoFolder() {
-    return getTextSecureFolder() + "Video" + File.separator;
+    return getTextSecureFolder() + VIDEOFOLDERNAME + File.separator;
   }
 
   private String getAudioFolder() {
-    return getTextSecureFolder() + "Audio" + File.separator;
+    return getTextSecureFolder() + AUDIOFOLDERNAME + File.separator;
   }
 
   private String getMiscFolder() {
-    return getTextSecureFolder() + "Misc" + File.separator;
+    return getTextSecureFolder() + MISCFOLDERNAME + File.separator;
   }
 
 }
