@@ -22,7 +22,8 @@
     style="?android:attr/dropDownItemStyle"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="?android:attr/listPreferredItemHeight">
+    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:background="?conversation_background">
 
     <LinearLayout android:id="@+id/name_and_label"
         android:layout_width="fill_parent"
