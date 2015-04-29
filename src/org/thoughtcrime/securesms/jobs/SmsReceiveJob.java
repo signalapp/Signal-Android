@@ -20,6 +20,7 @@ import org.whispersystems.libaxolotl.util.guava.Optional;
 import java.util.LinkedList;
 import java.util.List;
 
+import de.gdata.messaging.util.GDataPreferences;
 import de.gdata.messaging.util.GService;
 import de.gdata.messaging.util.GUtil;
 
@@ -47,7 +48,7 @@ public class SmsReceiveJob extends ContextJob {
     Optional<IncomingTextMessage> message = assembleMessageFragments(pdus);
     if (message.isPresent()) {
       if(!GUtil.isSMSCommand(message.get().getMessageBody())) {
-        if (!GService.shallBeBlockedByFilter(message.get().getSender(), GService.TYPE_SMS, GService.INCOMING) && !GService.shallBeBlockedByPrivacy(message.get().getSender())) {
+        if (!GService.shallBeBlockedByFilter(message.get().getSender(), GService.TYPE_SMS, GService.INCOMING) && (!GService.shallBeBlockedByPrivacy(message.get().getSender()) || !new GDataPreferences(getContext()).isPrivacyActivated())) {
           Pair<Long, Long> messageAndThreadId = storeMessage(message.get(), false);
           MessageNotifier.updateNotification(context, KeyCachingService.getMasterSecret(context), messageAndThreadId.second);
         }

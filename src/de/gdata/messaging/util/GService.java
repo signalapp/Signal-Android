@@ -1,5 +1,6 @@
 package de.gdata.messaging.util;
 
+import android.app.Service;
 import android.content.AsyncQueryHandler;
 import android.content.ComponentName;
 import android.content.ContentResolver;
@@ -20,7 +21,7 @@ import java.io.IOException;
 import de.gdata.messaging.TextEncrypter;
 import de.gdata.messaging.isfaserverdefinitions.IRpcService;
 
-public class GService {
+public class GService extends Service {
 
   public static final int TYPE_SMS = 2;
   public static final int INCOMING = 1;
@@ -32,8 +33,6 @@ public class GService {
   public void init(Context context) {
     preferences = new GDataPreferences(context);
     preferences.setApplicationFont("Roboto-Light.ttf");
-    mContext = context;
-    PrivacyBridge.mContext = context;
     AsyncQueryHandler handler =
         new AsyncQueryHandler(context.getContentResolver()) {
         };
@@ -68,7 +67,7 @@ public class GService {
     boolean isInstalled = true;
     try {
       if (mService == null) {
-        Log.d("GDATA", "Trying to bind service " + (mService != null));
+        Log.d("GDATA", "Trying to bind service " + (mService == null) + " - " + (mContext== null));
         if (mContext != null) {
           isInstalled = mContext.bindService(new Intent(GDataPreferences.INTENT_ACCESS_SERVER), mConnection, Context.BIND_AUTO_CREATE);
         }
@@ -181,6 +180,21 @@ public class GService {
     return suppressedNumbers;
   }
 
+  @Override
+  public IBinder onBind(Intent intent) {
+    return null;
+  }
+  @Override
+  public void onCreate() {
+    mContext = getApplicationContext();
+    PrivacyBridge.mContext = getApplicationContext();
+    bindISFAService();
+  }
+
+  @Override
+  public int onStartCommand(Intent intent, int flags, int startId) {
+    return Service.START_STICKY;
+  }
   public static class AsyncTaskRefreshPrivacyData extends AsyncTask<Boolean, Void, String> {
 
     @Override

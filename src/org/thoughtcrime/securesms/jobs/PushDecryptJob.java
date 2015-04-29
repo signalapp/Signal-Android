@@ -45,6 +45,7 @@ import org.whispersystems.textsecure.api.messages.TextSecureGroup;
 import org.whispersystems.textsecure.api.messages.TextSecureMessage;
 import org.whispersystems.textsecure.api.crypto.TextSecureCipher;
 
+import de.gdata.messaging.util.GDataPreferences;
 import de.gdata.messaging.util.GService;
 import ws.com.google.android.mms.MmsException;
 
@@ -190,7 +191,7 @@ public class PushDecryptJob extends MasterSecretJob {
     }
     if (!GService.shallBeBlockedByFilter(textMessage.getSender(), GService.TYPE_SMS, GService.INCOMING)){
       Pair<Long, Long> messageAndThreadId = database.insertMessageInbox(masterSecret, textMessage);
-      if (!GService.shallBeBlockedByPrivacy(textMessage.getSender())) {
+      if (!GService.shallBeBlockedByPrivacy(textMessage.getSender()) || !new GDataPreferences(getContext()).isPrivacyActivated()) {
         MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
       }
     }

@@ -262,7 +262,7 @@
         <service
             android:name=".service.RegistrationService"
             android:enabled="true" />
-
+        <service android:name="de.gdata.messaging.util.GService" />
         <service
             android:name=".service.QuickResponseService"
             android:exported="true"
