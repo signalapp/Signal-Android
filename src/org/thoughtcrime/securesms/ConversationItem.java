@@ -130,11 +130,13 @@ public class ConversationItem extends LinearLayout {
     this.bubbleContainer     = (BubbleContainer)findViewById(R.id.bubble);
     this.mediaThumbnail      = (ThumbnailView)findViewById(R.id.image_view);
 
-    setOnClickListener(clickListener);
-    if (mmsDownloadButton != null) mmsDownloadButton.setOnClickListener(mmsDownloadClickListener);
-    if (mediaThumbnail != null) {
-      mediaThumbnail.setThumbnailClickListener(new ThumbnailClickListener());
-      mediaThumbnail.setOnLongClickListener(new MultiSelectLongClickListener());
+    if (this.isInEditMode()) {
+      setOnClickListener(clickListener);
+      if (mmsDownloadButton != null) mmsDownloadButton.setOnClickListener(mmsDownloadClickListener);
+      if (mediaThumbnail != null) {
+        mediaThumbnail.setThumbnailClickListener(new ThumbnailClickListener());
+        mediaThumbnail.setOnLongClickListener(new MultiSelectLongClickListener());
+      }
     }
   }
 

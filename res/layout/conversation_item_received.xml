@@ -2,7 +2,7 @@
 <org.thoughtcrime.securesms.ConversationItem android:id="@+id/conversation_item"
                                              android:layout_width="fill_parent"
                                              android:layout_height="wrap_content"
-                                             android:paddingRight="10dip"
+
                                              android:orientation="vertical"
                                              android:background="?conversation_item_background"
                                              xmlns:android="http://schemas.android.com/apk/res/android"
@@ -42,6 +42,7 @@
                 android:id="@+id/bubble"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/message_bubble_end_padding"
                 android:layout_marginLeft="29dp" />
 
         <LinearLayout android:id="@+id/indicators_parent"
