@@ -58,9 +58,12 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.loaders.ConversationListLoader;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Locale;
 import java.util.Set;
 
@@ -68,6 +71,7 @@ import java.util.Set;
 public class ConversationListFragment extends Fragment
   implements LoaderManager.LoaderCallbacks<Cursor>, ActionMode.Callback, ItemClickListener
 {
+
   private MasterSecret         masterSecret;
   private ActionMode           actionMode;
   private RecyclerView         list;
@@ -288,6 +292,25 @@ public class ConversationListFragment extends Fragment
         .setStatusBarColor(getResources().getColor(R.color.action_mode_status_bar));
     }
 
+    fab.setImageResource(R.drawable.ic_group_white_24dp);
+    fab.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        final Set<Long> selectedConversations = (getListAdapter()).getBatchSelections();
+
+        long[] ids = new long[selectedConversations.size()];
+        int i = 0;
+        Iterator<Long> iterator = selectedConversations.iterator();
+        while(iterator.hasNext()) {
+          ids[i++] = iterator.next();
+        }
+
+        Intent createGroupIntent = new Intent(getActivity(), GroupCreateActivity.class);
+        createGroupIntent.putExtra(GroupCreateActivity.SELECTED_THREADS_EXTRA, ids);
+        startActivity(createGroupIntent);
+      }
+    });
+
     return true;
   }
 
@@ -316,6 +339,14 @@ public class ConversationListFragment extends Fragment
       getActivity().getWindow().setStatusBarColor(color.getColor(0, Color.BLACK));
       color.recycle();
     }
+
+    fab.setImageResource(R.drawable.ic_create_white_24dp);
+    fab.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        startActivity(new Intent(getActivity(), NewConversationActivity.class));
+      }
+    });
 
     actionMode = null;
   }
