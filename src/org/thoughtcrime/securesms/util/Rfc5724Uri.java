@@ -59,7 +59,7 @@ public class Rfc5724Uri {
     for (String keyValue : uri.split("\\?")[1].split("&")) {
       String[] parts = keyValue.split("=");
 
-      if(parts.length == 1) queryParams.put(parts[0], "");
+      if (parts.length == 1) queryParams.put(parts[0], "");
       else                  queryParams.put(parts[0], URLDecoder.decode(parts[1]));
     }
 
