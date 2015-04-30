@@ -18,6 +18,7 @@
 package org.thoughtcrime.securesms.contacts;
 
 import android.content.Context;
+import android.support.v7.widget.AppCompatMultiAutoCompleteTextView;
 import android.telephony.PhoneNumberUtils;
 import android.text.Annotation;
 import android.text.Editable;
@@ -47,14 +48,14 @@ import java.util.List;
 /**
  * Provide UI for editing the recipients of multi-media messages.
  */
-public class RecipientsEditor extends MultiAutoCompleteTextView {
+public class RecipientsEditor extends AppCompatMultiAutoCompleteTextView {
     private int mLongPressedPosition = -1;
     private final RecipientsEditorTokenizer mTokenizer;
     private char mLastSeparator = ',';
     private Context mContext;
 
     public RecipientsEditor(Context context, AttributeSet attrs) {
-        super(context, attrs, android.R.attr.autoCompleteTextViewStyle);
+        super(context, attrs);
         mContext = context;
         mTokenizer = new RecipientsEditorTokenizer(context, this);
         setTokenizer(mTokenizer);
