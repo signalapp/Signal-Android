@@ -3,19 +3,15 @@ package org.thoughtcrime.securesms.components;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.Pair;
-import android.view.HapticFeedbackConstants;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -23,7 +19,6 @@ import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.GridView;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -31,10 +26,12 @@ import android.widget.RelativeLayout;
 import com.astuetz.PagerSlidingTabStrip;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.RepeatableImageKey.KeyEventListener;
 import org.thoughtcrime.securesms.util.Emoji;
-import org.thoughtcrime.securesms.util.KeyRepeater;
 
 public class EmojiDrawer extends KeyboardAwareLinearLayout {
+  private static final KeyEvent DELETE_KEY_EVENT = new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL);
+
   private static final int RECENT_TYPE = 0;
   private static final int ALL_TYPE    = 1;
 
@@ -44,7 +41,6 @@ public class EmojiDrawer extends KeyboardAwareLinearLayout {
   private Emoji                emoji;
   private ViewPager            pager;
   private PagerSlidingTabStrip strip;
-  private ImageButton          backspace;
 
   @SuppressWarnings("unused")
   public EmojiDrawer(Context context) {
@@ -74,7 +70,7 @@ public class EmojiDrawer extends KeyboardAwareLinearLayout {
   }
 
   private void initialize() {
-    LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     inflater.inflate(R.layout.emoji_drawer, this, true);
 
     initializeResources();
@@ -85,12 +81,18 @@ public class EmojiDrawer extends KeyboardAwareLinearLayout {
   }
 
   private void initializeResources() {
-    this.pager     = (ViewPager                ) findViewById(R.id.emoji_pager);
-    this.strip     = (PagerSlidingTabStrip     ) findViewById(R.id.tabs);
-    this.backspace = (ImageButton              ) findViewById(R.id.backspace);
+    this.pager     = (ViewPager)            findViewById(R.id.emoji_pager);
+    this.strip     = (PagerSlidingTabStrip) findViewById(R.id.tabs);
     this.emoji     = Emoji.getInstance(getContext());
 
-    KeyRepeater.attach(backspace, composeText, KeyRepeater.DELETE_KEY_EVENT);
+    RepeatableImageKey backspace = (RepeatableImageKey)findViewById(R.id.backspace);
+    backspace.setOnKeyEventListener(new KeyEventListener() {
+      @Override public void onKeyEvent() {
+        if (composeText != null && composeText.getText().length() > 0) {
+          composeText.dispatchKeyEvent(DELETE_KEY_EVENT);
+        }
+      }
+    });
   }
 
   public void hide() {
