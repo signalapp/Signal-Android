@@ -31,6 +31,7 @@
   <string name="DraftDatabase_Draft_audio_snippet">(صوتی)</string>
   <string name="DraftDatabase_Draft_video_snippet">(ویدئو)</string>
   <!--AttchmentManager-->
+  <string name="AttachmentManager_cant_open_media_selection">امکان یافتن برنامه‌ای برای انتخاب مدیا وجود ندارد.</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">تصویر</string>
   <string name="AttachmentTypeSelectorAdapter_video">ویدئو</string>
@@ -53,6 +54,7 @@
   <string name="ConversationActivity_initiate_secure_session_question">گفتگوی امن آغاز شود؟</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">گفتگوی امن با %s آغاز شود؟</string>
   <string name="ConversationActivity_abort_secure_session_confirmation">تأیید پایان گفتگوی امن</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">آیا مطمئنید که می‌خواهید ارتباط امن را خاتمه دهید؟</string>
   <string name="ConversationActivity_delete_thread_confirmation">حذف تاییدیه موضوع</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">آیا مطمئن هستید که می خواهید این مکالمه به طور دائم حذف کنید؟</string>
   <string name="ConversationActivity_add_attachment">پیوست فایل</string>
@@ -75,8 +77,10 @@
   <string name="ConversationActivity_transport_insecure_sms">پیامک نا امن</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS نا امن</string>
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
+  <string name="ConversationActivity_lets_use_this_to_chat">بیایید از این برای گفت‌وگو استفاده کنیم: %s</string>
   <string name="ConversationActivity_error_leaving_group">خطا ترک گروه ...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS پشتیبانی نمی شود</string>
+  <string name="ConversationActivity_specify_recipient">لطفا یک تماس را انتخاب کنید</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">جزییات پیام</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">فرستنده: %1$s\nنوع انتقال: %2$s\nزمان ارسال: %3$s\nزمان دریافت: %4$s</string>
@@ -363,6 +367,7 @@
   <string name="database_upgrade_activity__updating_database">به روز رسانی پایگاه داده ...</string>
   <string name="import_fragment__import_system_sms_database">واردکردن پایگاه داده سیستم SMS</string>
   <string name="import_fragment__import_encrypted_backup">واردکردن پشتیبان رمزگذاری شده</string>
+  <string name="import_fragment__import_plaintext_backup">وارد کردن پشتیبان ساده</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">بدون تصاویر</string>
   <!--message_recipients_list_item-->
@@ -373,6 +378,7 @@
   <string name="MmsPreferencesFragment__disabled">غیر فعال</string>
   <string name="MmsPreferencesFragment__not_set">تنظیم نشده</string>
   <!--GroupUtil-->
+  <string name="GroupUtil_joined_the_group">%1$s به گروه افزود شد.</string>
   <string name="GroupUtil_group_updated">گروه به روز شد.</string>
   <string name="GroupUtil_title_is_now">عنوان در حال حاضر \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
@@ -418,6 +424,7 @@
   <string name="verify_identity_activity__their_identity_they_read">هویت خود (آنها به عنوان خوانده شده):</string>
   <string name="verify_identity_activity__your_identity_you_read">هویت خود (شما بخوانید):</string>
   <!--message_details_header-->
+  <string name="message_details_header__issues_need_your_attention">برخی از مسائل نیاز به توجه شما دارند.</string>
   <string name="message_details_header__sent">فرستاده</string>
   <string name="message_details_header__received">رسیده</string>
   <string name="message_details_header__via">از طریق</string>

@@ -7,9 +7,9 @@
   <string name="please_wait">Kérlek várj...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Jelenleg: %s</string>
-  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Még nem állítottad be a jelszót!</string>
+  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Még nem állítottál be jelszót!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">%s üzenet beszélgetésenként</string>
-  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Minden régebbi üzenet törlése most?</string>
+  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Minden régebbi üzenetet szeretnél törölni most?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Biztosan szeretnéd azonnal csonkolni az összes beszélgetésfolyamot a legutóbbi %s üzenetre?</string>
   <string name="ApplicationPreferencesActivity_delete">Törlés</string>
   <string name="ApplicationPreferencesActivity_disable_storage_encryption">Letiltod a tároló titkosítását?</string>
@@ -20,7 +20,7 @@ hozzáférhet az üzenetekhez és a kulcsokhoz!
  </string>
   <string name="ApplicationPreferencesActivity_disable">Tiltás</string>
   <string name="ApplicationPreferencesActivity_unregistering">Regisztráció törlése...</string>
-  <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Az adat alapú kommunikáció regisztráció törlése.</string>
+  <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Az adat alapú kommunikáció regisztrációjának törlése.</string>
   <string name="ApplicationPreferencesActivity_disable_push_messages">Letiltod az azonnali üzeneteket?</string>
   <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">
 Ez letiltja az azonnali üzeneteket a regisztrációd törlésével a kiszolgálón.
@@ -249,6 +249,8 @@ akkor az újbóli importálás duplikált üzeneteket eredményez.</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Jelszó küldése</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Érvénytelen jelszó!</string>
   <!--PlayServicesProblemFragment-->
+  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Az általad használt Google Play Szolgáltatások nem működnek megfelelően.
+Kérlek telepíts újra a Google Play Szolgáltatásokat és próbálkozz újra!</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Értékeld az alkalmazást!</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Ha tetszik ez az alkalmazás, kélek szánj egy kis időt az értékelésére!</string>
@@ -386,6 +388,8 @@ Ismeretlen azonosító kulcsú üzenet érkezett. Kattints rá a feldolgozáshoz
   <string name="KeyCachingService_passphrase_cached">A TextSecure feloldásra került.</string>
   <string name="KeyCachingService_lock">Lezárás jelszóval</string>
   <!--MessageNotifier-->
+  <string name="MessageNotifier_d_messages_in_d_conversations">%1$d üzenet %2$d beszélgetésben</string>
+  <string name="MessageNotifier_most_recent_from_s">Legutóbbi tőle: %1$s</string>
   <string name="MessageNotifier_encrypted_message">Biztonságos üzenet...</string>
   <string name="MessageNotifier_media_message_with_text">Média üzenet: %s</string>
   <string name="MessageNotifier_no_subject">(Nincs tárgy)</string>
