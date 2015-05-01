@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.mms.ApnUnavailableException;
+import org.thoughtcrime.securesms.mms.CompatMmsConnection;
 import org.thoughtcrime.securesms.mms.IncomingLollipopMmsConnection;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.IncomingLegacyMmsConnection;
@@ -89,7 +90,7 @@ public class MmsDownloadJob extends MasterSecretJob {
 
       Log.w(TAG, "Downloading mms at " + Uri.parse(contentLocation).getHost());
 
-      RetrieveConf retrieveConf = getMmsConnection(context).retrieve(contentLocation, transactionId);
+      RetrieveConf retrieveConf = new CompatMmsConnection(context).retrieve(contentLocation, transactionId);
       if (retrieveConf == null) {
         throw new MmsException("RetrieveConf was null");
       }
@@ -120,16 +121,6 @@ public class MmsDownloadJob extends MasterSecretJob {
     } catch (InvalidMessageException e) {
       Log.w(TAG, e);
       database.markAsDecryptFailed(messageId, threadId);
-    }
-  }
-
-  private IncomingMmsConnection getMmsConnection(Context context)
-      throws ApnUnavailableException
-  {
-    if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
-      return new IncomingLollipopMmsConnection(context);
-    } else {
-      return new IncomingLegacyMmsConnection(context);
     }
   }
 
