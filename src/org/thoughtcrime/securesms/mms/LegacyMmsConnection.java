@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -47,6 +48,8 @@ import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.InetAddress;
 import java.net.URL;
 import java.util.LinkedList;
@@ -57,7 +60,7 @@ public abstract class LegacyMmsConnection {
 
   public static final String USER_AGENT = "Android-Mms/2.0";
 
-  private static final String TAG = "MmsCommunication";
+  private static final String TAG = LegacyMmsConnection.class.getSimpleName();
 
   protected final Context context;
   protected final Apn     apn;
@@ -88,6 +91,7 @@ public abstract class LegacyMmsConnection {
     return ((TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE)).getPhoneType() == TelephonyManager.PHONE_TYPE_CDMA;
   }
 
+  @SuppressWarnings("TryWithIdenticalCatches")
   protected static boolean checkRouteToHost(Context context, String host, boolean usingMmsRadio)
       throws IOException
   {
@@ -105,16 +109,29 @@ public abstract class LegacyMmsConnection {
     }
 
     byte[] ipAddressBytes = inetAddress.getAddress();
-    if (ipAddressBytes == null || ipAddressBytes.length != 4) {
-      Log.w(TAG, "returning vacuous success since android.net package doesn't support IPv6");
+    if (ipAddressBytes == null) {
+      Log.w(TAG, "resolved IP address bytes are null, returning true to attempt a connection anyway.");
       return true;
     }
 
     Log.w(TAG, "Checking route to address: " + host + ", " + inetAddress.getHostAddress());
     ConnectivityManager manager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
-    int     ipAddress           = Conversions.byteArrayToIntLittleEndian(ipAddressBytes, 0);
-    boolean routeToHostObtained = manager.requestRouteToHost(MmsRadio.TYPE_MOBILE_MMS, ipAddress);
-    Log.w(TAG, "requestRouteToHost result: " + routeToHostObtained);
+    try {
+      final Method  requestRouteMethod  = manager.getClass().getMethod("requestRouteToHostAddress", Integer.TYPE, InetAddress.class);
+      final boolean routeToHostObtained = (Boolean) requestRouteMethod.invoke(manager, MmsRadio.TYPE_MOBILE_MMS, inetAddress);
+      Log.w(TAG, "requestRouteToHostAddress(" + inetAddress + ") -> " + routeToHostObtained);
+      return routeToHostObtained;
+    } catch (NoSuchMethodException nsme) {
+      Log.w(TAG, nsme);
+    } catch (IllegalAccessException iae) {
+      Log.w(TAG, iae);
+    } catch (InvocationTargetException ite) {
+      Log.w(TAG, ite);
+    }
+
+    final int     ipAddress           = Conversions.byteArrayToIntLittleEndian(ipAddressBytes, 0);
+    final boolean routeToHostObtained = manager.requestRouteToHost(MmsRadio.TYPE_MOBILE_MMS, ipAddress);
+    Log.w(TAG, "requestRouteToHost(" + ipAddress + ") -> " + routeToHostObtained);
     return routeToHostObtained;
   }
 
@@ -188,8 +205,6 @@ public abstract class LegacyMmsConnection {
         add(new BasicHeader("X-MDN", number));
       }
     }};
-
-
   }
 
   public static class Apn {

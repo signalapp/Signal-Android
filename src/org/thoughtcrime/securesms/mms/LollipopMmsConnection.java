@@ -67,7 +67,7 @@ public abstract class LollipopMmsConnection extends BroadcastReceiver {
   }
 
   protected void waitForResult() throws TimeoutException {
-    long timeoutExpiration = System.currentTimeMillis() + 30000;
+    long timeoutExpiration = System.currentTimeMillis() + 60000;
     while (!resultAvailable) {
       Util.wait(this, Math.max(1, timeoutExpiration - System.currentTimeMillis()));
       if (System.currentTimeMillis() >= timeoutExpiration) {
