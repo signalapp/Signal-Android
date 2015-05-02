@@ -4,6 +4,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.telephony.PhoneNumberUtils;
 import android.telephony.SmsManager;
 import android.util.Log;
 
@@ -90,6 +91,10 @@ public class SmsSendJob extends SendJob {
     ArrayList<PendingIntent> sentIntents      = constructSentIntents(message.getId(), message.getType(), messages, false);
     ArrayList<PendingIntent> deliveredIntents = constructDeliveredIntents(message.getId(), message.getType(), messages);
     String recipient                          = message.getIndividualRecipient().getNumber();
+
+    // Remove all the separators from the phone number, since some (e.g. no-break space) can
+    // cause NPEs in SmsManager's sendTextMessage() function.
+    recipient = PhoneNumberUtils.stripSeparators(recipient);
 
     // NOTE 11/04/14 -- There's apparently a bug where for some unknown recipients
     // and messages, this will throw an NPE.  We have no idea why, so we're just
