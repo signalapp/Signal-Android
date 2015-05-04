@@ -16,8 +16,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Handler;
-import android.os.Message;
+import android.os.Looper;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.ContactsContract;
@@ -75,7 +74,7 @@ public class PrivacyBridge {
   }
 
   public static void loadAllHiddenContacts(Context context) {
-    mContext = context;
+    GService.appContext = context;
     loadHiddenContactsPerService();
   }
 
@@ -85,10 +84,6 @@ public class PrivacyBridge {
     }
     return hiddenRecipients;
   }
-
-  public static Context mContext;
-
-
   public static void loadHiddenContactsPerService() {
     Type listType = new TypeToken<ArrayList<String>>() {
     }.getType();
@@ -100,24 +95,15 @@ public class PrivacyBridge {
       hiddenNumbers = new Gson().fromJson(suppressedNumbers, listType);
     }
     for (String number : hiddenNumbers) {
-      newHiddenRecipients.add(getRecipientForNumber(mContext, number).getPrimaryRecipient());
+      newHiddenRecipients.add(getRecipientForNumber(GService.appContext, number).getPrimaryRecipient());
     }
     getPreferences().saveHiddenRecipients(newHiddenRecipients);
     hiddenRecipients = newHiddenRecipients;
 
-    messageHandler.sendEmptyMessage(0);
+    GService.reloadHandler.sendEmptyMessage(0);
 
     Log.d("PRIVACY", "Privacy loading contacts done");
   }
-
-  private static Handler messageHandler = new Handler() {
-
-    public void handleMessage(Message msg) {
-      super.handleMessage(msg);
-      reloadAdapter();
-    }
-  };
-
   /**
    * Removes hidden contacts from cursor.
    *
@@ -215,19 +201,19 @@ public class PrivacyBridge {
       entry = new Entry("unknown", numbers);
     }
     entries.add(entry);
-    Toast.makeText(mContext, mContext.getString(R.string.privacy_pw_dialog_toast_hide_single), Toast.LENGTH_LONG).show();
+    Toast.makeText(GService.appContext, GService.appContext.getString(R.string.privacy_pw_dialog_toast_hide_single), Toast.LENGTH_LONG).show();
     new AddTask().execute(entries);
     GService.refreshPrivacyData(false);
   }
-  public static ArrayList<Contact> getAllPhoneContacts(Context mContext, boolean reload) {
+  public static ArrayList<Contact> getAllPhoneContacts(Context context, boolean reload) {
     if (reload || allPhoneContacts == null) {
-      allPhoneContacts = new ContactFetcher(mContext).fetchAll();
+      allPhoneContacts = new ContactFetcher(context).fetchAll();
     }
     return allPhoneContacts;
   }
 
   public static GDataPreferences getPreferences() {
-    return preferences == null ?new GDataPreferences(mContext): preferences;
+    return preferences == null ?new GDataPreferences(GService.appContext): preferences;
   }
 
   private static class AddTask extends AsyncTask<List<NumberEntry>, Integer, Integer> {
@@ -243,12 +229,12 @@ public class PrivacyBridge {
 
       String id = "";
       String number = "";
-      final ContentResolver contentResolver = mContext.getContentResolver();
+      final ContentResolver contentResolver = GService.appContext.getContentResolver();
       List<ContentValues> contacts = new ArrayList<ContentValues>();
       List<ContentValues> numbers = new ArrayList<ContentValues>();
       for (final NumberEntry e : entries) {
         final ContentValues cv = new ContentValues(3);
-        id = new ContactFetcher(mContext).fetchContactsId(mContext, e.getNumbers().get(0));
+        id = new ContactFetcher(GService.appContext).fetchContactsId(GService.appContext, e.getNumbers().get(0));
         number = "";
 
         if (e.getNumbers().size() > 0) {
@@ -377,7 +363,7 @@ public class PrivacyBridge {
   }
   public static void reloadAdapter() {
     Intent intent = new Intent("reloadAdapter");
-    LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
+    LocalBroadcastManager.getInstance(GService.appContext).sendBroadcast(intent);
   }
 }
 
