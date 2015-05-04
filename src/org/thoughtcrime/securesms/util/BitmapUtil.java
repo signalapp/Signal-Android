@@ -12,6 +12,8 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.util.Log;
 import android.util.Pair;
@@ -251,6 +253,25 @@ public class BitmapUtil {
     canvas.drawBitmap(bitmap, rect, rect, paint);
 
     return output;
+  }
+
+  public static Bitmap createFromDrawable(Drawable drawable) {
+    if (drawable instanceof BitmapDrawable) {
+      return ((BitmapDrawable)drawable).getBitmap();
+    }
+
+    int width = drawable.getIntrinsicWidth();
+    width = width > 0 ? width : 1;
+
+    int height = drawable.getIntrinsicHeight();
+    height = height > 0 ? height : 1;
+
+    Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+    Canvas canvas = new Canvas(bitmap);
+    drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+    drawable.draw(canvas);
+
+    return bitmap;
   }
 
 }

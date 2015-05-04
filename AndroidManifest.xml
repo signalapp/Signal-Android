@@ -5,6 +5,8 @@
       android:versionCode="113"
       android:versionName="2.13.0">
 
+    <uses-sdk tools:overrideLibrary="com.amulyakhare.textdrawable"/>
+
     <permission android:name="org.thoughtcrime.securesms.ACCESS_SECRETS"
                 android:label="Access to TextSecure Secrets"
                 android:protectionLevel="signature" />

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/listPreferredItemHeight"
                 android:paddingRight="25dip">
 
-    <com.makeramen.RoundedImageView
+    <ImageView
         android:id="@+id/contact_photo_image"
         android:layout_width="@dimen/contact_selection_photo_size"
         android:layout_height="@dimen/contact_selection_photo_size"
@@ -15,7 +14,6 @@
         android:layout_marginLeft="10dp"
         android:cropToPadding="true"
         android:scaleType="centerCrop"
-        app:riv_oval="true"
         android:contentDescription="@string/SingleContactSelectionActivity_contact_photo" />
 
     <TextView android:id="@+id/number"

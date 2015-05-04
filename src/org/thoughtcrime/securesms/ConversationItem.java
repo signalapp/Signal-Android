@@ -21,9 +21,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.TypedArray;
-import android.graphics.Bitmap;
-import android.provider.ContactsContract;
-import android.provider.ContactsContract.QuickContact;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -38,9 +35,9 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.AlertDialogWrapper;
 
 import org.thoughtcrime.securesms.ConversationFragment.SelectionClickListener;
+import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.BubbleContainer;
 import org.thoughtcrime.securesms.components.ThumbnailView;
-import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -85,7 +82,7 @@ public class ConversationItem extends LinearLayout {
   private TextView        groupStatusText;
   private ImageView       secureImage;
   private ImageView       failedImage;
-  private ImageView       contactPhoto;
+  private AvatarImageView contactPhoto;
   private ImageView       deliveryImage;
   private ImageView       pendingIndicator;
   private BubbleContainer bubbleContainer;
@@ -123,7 +120,7 @@ public class ConversationItem extends LinearLayout {
     this.failedImage         = (ImageView)findViewById(R.id.sms_failed_indicator);
     this.mmsDownloadButton   = (Button)   findViewById(R.id.mms_download_button);
     this.mmsDownloadingLabel = (TextView) findViewById(R.id.mms_label_downloading);
-    this.contactPhoto        = (ImageView)findViewById(R.id.contact_photo);
+    this.contactPhoto        = (AvatarImageView) findViewById(R.id.contact_photo);
     this.deliveryImage       = (ImageView)findViewById(R.id.delivered_indicator);
     this.bodyBubble          =            findViewById(R.id.body_bubble);
     this.pendingIndicator    = (ImageView)findViewById(R.id.pending_approval_indicator);
@@ -369,30 +366,7 @@ public class ConversationItem extends LinearLayout {
   private void setContactPhotoForRecipient(final Recipient recipient) {
     if (contactPhoto == null) return;
 
-    Bitmap contactPhotoBitmap;
-
-    if ((recipient.getContactPhoto() == ContactPhotoFactory.getDefaultContactPhoto(context)) && (groupThread)) {
-      contactPhotoBitmap = recipient.getGeneratedAvatar(context);
-    } else {
-      contactPhotoBitmap = recipient.getContactPhoto();
-    }
-
-    contactPhoto.setImageBitmap(contactPhotoBitmap);
-
-    contactPhoto.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        if (recipient.getContactUri() != null) {
-          QuickContact.showQuickContact(context, contactPhoto, recipient.getContactUri(), QuickContact.MODE_LARGE, null);
-        } else {
-          final Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
-          intent.putExtra(ContactsContract.Intents.Insert.PHONE, recipient.getNumber());
-          intent.setType(ContactsContract.Contacts.CONTENT_ITEM_TYPE);
-          context.startActivity(intent);
-        }
-      }
-    });
-
+    contactPhoto.setAvatar(recipient, true);
     contactPhoto.setVisibility(View.VISIBLE);
   }
 

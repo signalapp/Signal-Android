@@ -26,6 +26,9 @@ repositories {
     maven {
         url "https://raw.github.com/whispersystems/maven/master/shortcutbadger/releases/"
     }
+    maven { // textdrawable
+        url 'https://dl.bintray.com/amulyakhare/maven'
+    }
     jcenter()
     mavenLocal()
 }
@@ -64,6 +67,7 @@ dependencies {
     compile 'org.whispersystems:jobmanager:0.11.0'
     compile 'org.whispersystems:libpastelog:1.0.6'
     compile 'org.whispersystems:textsecure-android:1.3.0'
+    compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
 
     androidTestCompile 'com.google.dexmaker:dexmaker:1.2'
     androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.2'
@@ -104,6 +108,7 @@ dependencyVerification {
             'org.whispersystems:jobmanager:ea9cb943c4892fb90c1eea1be30efeb85cefca213d52c788419553b58d0ed70d',
             'org.whispersystems:libpastelog:550d33c565380d90f4c671e7b8ed5f3a6da55a9fda468373177106b2eb5220b2',
             'org.whispersystems:textsecure-android:df4c1ac9ee8f7cd43c8c07d64b16e31875e04632afc3fe73f2a47292a86c79a1',
+            'com.amulyakhare:com.amulyakhare.textdrawable:54c92b5fba38cfd316a07e5a30528068f45ce8515a6890f1297df4c401af5dcb',
             'com.nineoldandroids:library:68025a14e3e7673d6ad2f95e4b46d78d7d068343aa99256b686fe59de1b3163a',
             'javax.inject:javax.inject:91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff',
             'com.madgag.spongycastle:core:8d6240b974b0aca4d3da9c7dd44d42339d8a374358aca5fc98e50a995764511f',
