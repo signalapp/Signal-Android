@@ -104,13 +104,9 @@ public class IncomingLegacyMmsConnection extends LegacyMmsConnection implements 
     final String  targetHost = useProxy
                              ? contentApn.getProxy()
                              : Uri.parse(contentApn.getMmsc()).getHost();
-    try {
-      if (checkRouteToHost(context, targetHost, usingMmsRadio)) {
-        Log.w(TAG, "got successful route to host " + targetHost);
-        pdu = execute(constructRequest(contentApn, useProxy));
-      }
-    } catch (IOException ioe) {
-      Log.w(TAG, ioe);
+    if (checkRouteToHost(context, targetHost, usingMmsRadio)) {
+      Log.w(TAG, "got successful route to host " + targetHost);
+      pdu = execute(constructRequest(contentApn, useProxy));
     }
 
     if (pdu == null) {
