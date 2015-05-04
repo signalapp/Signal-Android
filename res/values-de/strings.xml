@@ -585,7 +585,7 @@ Mehr Privatsphäre und keine SMS-Kosten durch Nutzung der Datenverbindung zur Ko
   <string name="preferences__sms_fallback_push_users_ask">vorher fragen</string>
   <string name="preferences__sms_fallback_push_users_no_mms">keine MMS</string>
   <string name="preferences__sms_outgoing_push_users_description">Verschlüsselte SMS senden, falls kein Internetzugriff möglich ist</string>
-  <string name="preferences__sms_fallback_ask_before_sending_sms_mms">Vor dem Senden einer kostenpflichtigen SMS/MMS nachfragen</string>
+  <string name="preferences__sms_fallback_ask_before_sending_sms_mms">Vor dem Senden einer SMS/MMS nachfragen</string>
   <string name="preferences__sms_fallback_never_send_mms">Niemals MMS senden</string>
   <string name="preferences__sms_fallback_non_push_users">Kontakte ohne SecureChat-Registrierung</string>
   <string name="preferences__sms_fallback_nobody">Niemand</string>
