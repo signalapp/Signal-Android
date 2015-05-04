@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build.VERSION_CODES;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.Pair;
@@ -89,8 +90,15 @@ public class EmojiDrawer extends KeyboardAwareLinearLayout {
     this.backspace.setOnClickListener(new BackspaceClickListener());
   }
 
+  private void handleRedrawEmojiGrids() {
+    ((BaseAdapter)((GridView)gridLayouts[0].getTag()).getAdapter()).notifyDataSetChanged();
+  }
+
   public void hide() {
     setVisibility(View.GONE);
+    if (emoji.applyRecentlyUsed()) {
+      handleRedrawEmojiGrids();
+    }
   }
 
   public void show() {
@@ -110,7 +118,7 @@ public class EmojiDrawer extends KeyboardAwareLinearLayout {
       final int      type     = (i == 0 ? RECENT_TYPE : ALL_TYPE);
       gridView.setColumnWidth(getResources().getDimensionPixelSize(R.dimen.emoji_drawer_size) + 2*getResources().getDimensionPixelSize(R.dimen.emoji_drawer_item_padding));
       gridView.setAdapter(new EmojiGridAdapter(type, i-1));
-      gridView.setOnItemClickListener(new EmojiClickListener(ALL_TYPE));
+      gridView.setOnItemClickListener(new EmojiClickListener(type));
     }
 
     pager.setAdapter(new EmojiPagerAdapter());
@@ -126,6 +134,7 @@ public class EmojiDrawer extends KeyboardAwareLinearLayout {
     strip.setIndicatorHeight(getResources().getDimensionPixelSize(R.dimen.emoji_drawer_indicator_height));
 
     strip.setViewPager(pager);
+    strip.setOnPageChangeListener(pageChangeListener);
   }
 
   private class EmojiClickListener implements AdapterView.OnItemClickListener {
@@ -140,9 +149,9 @@ public class EmojiDrawer extends KeyboardAwareLinearLayout {
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
       Integer unicodePoint = (Integer) view.getTag();
       insertEmoji(composeText, unicodePoint);
-      if (type != RECENT_TYPE) {
-        emoji.setRecentlyUsed(Integer.toHexString(unicodePoint));
-        ((BaseAdapter)((GridView)gridLayouts[0].getTag()).getAdapter()).notifyDataSetChanged();
+      emoji.queueRecentlyUsed(Integer.toHexString(unicodePoint));
+      if (type != RECENT_TYPE && emoji.applyRecentlyUsed()) {
+        handleRedrawEmojiGrids();
       }
     }
 
@@ -276,4 +285,19 @@ public class EmojiDrawer extends KeyboardAwareLinearLayout {
       }
     }
   }
+
+  private final OnPageChangeListener pageChangeListener = new OnPageChangeListener() {
+    @Override
+    public void onPageSelected(int position) {
+      if (position == 0 && emoji.applyRecentlyUsed()) {
+        handleRedrawEmojiGrids();
+      }
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) { }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) { }
+  };
 }
