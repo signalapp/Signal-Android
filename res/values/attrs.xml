@@ -113,4 +113,5 @@
     </declare-styleable>
 
     <attr name="group_members_dialog_icon" format="reference"/>
+
 </resources>

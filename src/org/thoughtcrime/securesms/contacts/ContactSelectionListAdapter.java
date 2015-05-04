@@ -19,7 +19,6 @@ package org.thoughtcrime.securesms.contacts;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.provider.ContactsContract;
 import android.support.v4.widget.CursorAdapter;
 import android.text.Spannable;
@@ -73,7 +72,6 @@ public class ContactSelectionListAdapter extends    CursorAdapter
   private final boolean        multiSelect;
   private final LayoutInflater li;
   private final TypedArray     drawables;
-  private final Bitmap         defaultPhoto;
   private final int            scaledPhotoSize;
 
   private final HashMap<Long, ContactAccessor.ContactData> selectedContacts = new HashMap<>();
@@ -84,7 +82,6 @@ public class ContactSelectionListAdapter extends    CursorAdapter
     this.li                  = LayoutInflater.from(context);
     this.drawables           = context.obtainStyledAttributes(STYLE_ATTRIBUTES);
     this.multiSelect         = multiSelect;
-    this.defaultPhoto        = ContactPhotoFactory.getDefaultContactPhoto(context);
     this.scaledPhotoSize     = context.getResources().getDimensionPixelSize(R.dimen.contact_selection_photo_size);
   }
 
@@ -180,7 +177,7 @@ public class ContactSelectionListAdapter extends    CursorAdapter
       numberLabelSpan.setSpan(new ForegroundColorSpan(drawables.getColor(2, 0xff444444)), contactData.number.length(), numberWithLabel.length(), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
       holder.number.setText(numberLabelSpan);
     }
-    holder.contactPhoto.setImageBitmap(defaultPhoto);
+    holder.contactPhoto.setImageDrawable(ContactPhotoFactory.getLoadingPhoto(context));
     if (contactData.id > -1) loadBitmap(contactData.number, holder.contactPhoto);
   }
 
@@ -229,11 +226,14 @@ public class ContactSelectionListAdapter extends    CursorAdapter
     return true;
   }
 
+  // FIXME -- It should be unnecessary to duplicate the existing asynchronous resolution
+  // infrastructure we've built for Recipient objects here.
+
   public void loadBitmap(String number, ImageView imageView) {
     if (cancelPotentialWork(number, imageView)) {
-      final BitmapWorkerRunnable runnable = new BitmapWorkerRunnable(context, imageView, defaultPhoto, number, scaledPhotoSize);
+      final BitmapWorkerRunnable runnable = new BitmapWorkerRunnable(context, imageView, number, scaledPhotoSize);
       final TaggedFutureTask<?> task      = new TaggedFutureTask<Void>(runnable, null, number);
-      final AsyncDrawable asyncDrawable   = new AsyncDrawable(defaultPhoto, task);
+      final AsyncDrawable asyncDrawable   = new AsyncDrawable(task);
 
       imageView.setImageDrawable(asyncDrawable);
       if (!task.isCancelled()) photoResolver.execute(new FutureTask<Void>(task, null));

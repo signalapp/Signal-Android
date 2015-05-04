@@ -23,10 +23,11 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import org.thoughtcrime.securesms.components.AvatarImageView;
+import org.thoughtcrime.securesms.components.FromTextView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -35,7 +36,6 @@ import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
-import org.thoughtcrime.securesms.util.RecipientViewUtil;
 
 /**
  * A simple view to show the recipients of a message
@@ -47,12 +47,12 @@ public class MessageRecipientListItem extends RelativeLayout
 {
   private final static String TAG = MessageRecipientListItem.class.getSimpleName();
 
-  private Recipient  recipient;
-  private TextView   fromView;
-  private TextView   errorDescription;
-  private Button     conflictButton;
-  private Button     resendButton;
-  private ImageView  contactPhotoImage;
+  private Recipient       recipient;
+  private FromTextView    fromView;
+  private TextView        errorDescription;
+  private Button          conflictButton;
+  private Button          resendButton;
+  private AvatarImageView contactPhotoImage;
 
   private final Handler handler = new Handler();
 
@@ -66,11 +66,11 @@ public class MessageRecipientListItem extends RelativeLayout
 
   @Override
   protected void onFinishInflate() {
-    this.fromView          = (TextView)  findViewById(R.id.from);
-    this.errorDescription  = (TextView)  findViewById(R.id.error_description);
-    this.contactPhotoImage = (ImageView) findViewById(R.id.contact_photo_image);
-    this.conflictButton    = (Button)    findViewById(R.id.conflict_button);
-    this.resendButton      = (Button)    findViewById(R.id.resend_button);
+    this.fromView          = (FromTextView)    findViewById(R.id.from);
+    this.errorDescription  = (TextView)        findViewById(R.id.error_description);
+    this.contactPhotoImage = (AvatarImageView) findViewById(R.id.contact_photo_image);
+    this.conflictButton    = (Button)          findViewById(R.id.conflict_button);
+    this.resendButton      = (Button)          findViewById(R.id.resend_button);
   }
 
   public void set(final MasterSecret masterSecret,
@@ -81,9 +81,8 @@ public class MessageRecipientListItem extends RelativeLayout
     this.recipient = recipient;
 
     recipient.addListener(this);
-    fromView.setText(RecipientViewUtil.formatFrom(getContext(), recipient));
-
-    RecipientViewUtil.setContactPhoto(getContext(), contactPhotoImage, recipient, false);
+    fromView.setText(recipient);
+    contactPhotoImage.setAvatar(recipient, false);
     setIssueIndicators(masterSecret, record, isPushGroup);
   }
 
@@ -160,8 +159,8 @@ public class MessageRecipientListItem extends RelativeLayout
     handler.post(new Runnable() {
       @Override
       public void run() {
-        fromView.setText(RecipientViewUtil.formatFrom(getContext(), recipient));
-        RecipientViewUtil.setContactPhoto(getContext(), contactPhotoImage, recipient, false);
+        fromView.setText(recipient);
+        contactPhotoImage.setAvatar(recipient, false);
       }
     });
   }
