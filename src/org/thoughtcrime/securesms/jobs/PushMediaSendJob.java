@@ -21,12 +21,13 @@ import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.SecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
+import org.whispersystems.libaxolotl.AxolotlAddress;
 import org.whispersystems.libaxolotl.state.AxolotlStore;
 import org.whispersystems.textsecure.api.TextSecureMessageSender;
 import org.whispersystems.textsecure.api.crypto.UntrustedIdentityException;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
 import org.whispersystems.textsecure.api.messages.TextSecureMessage;
-import org.whispersystems.textsecure.api.push.PushAddress;
+import org.whispersystems.textsecure.api.push.TextSecureAddress;
 import org.whispersystems.textsecure.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
 
@@ -112,7 +113,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
     try {
       prepareMessageMedia(masterSecret, message, MediaConstraints.PUSH_CONSTRAINTS, false);
       Recipients                 recipients   = RecipientFactory.getRecipientsFromString(context, destination, false);
-      PushAddress                address      = getPushAddress(recipients.getPrimaryRecipient());
+      TextSecureAddress          address      = getPushAddress(recipients.getPrimaryRecipient().getNumber());
       List<TextSecureAttachment> attachments  = getAttachments(masterSecret, message);
       String                     body         = PartParser.getMessageText(message.getBody());
       TextSecureMessage          mediaMessage = new TextSecureMessage(message.getSentTimestamp(), attachments, body);
@@ -138,12 +139,13 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
       Recipient    recipient                     = RecipientFactory.getRecipientsFromString(context, destination, false).getPrimaryRecipient();
       boolean      isSmsFallbackApprovalRequired = isSmsFallbackApprovalRequired(destination, true);
       AxolotlStore axolotlStore                  = new TextSecureAxolotlStore(context, masterSecret);
+      AxolotlAddress axolotlAddress              = new AxolotlAddress(recipient.getNumber(), TextSecureAddress.DEFAULT_DEVICE_ID);
 
       if (!isSmsFallbackApprovalRequired) {
         Log.w(TAG, "Falling back to MMS");
         DatabaseFactory.getMmsDatabase(context).markAsForcedSms(mediaMessage.getDatabaseMessageId());
         ApplicationContext.getInstance(context).getJobManager().add(new MmsSendJob(context, messageId));
-      } else if (!axolotlStore.containsSession(recipient.getRecipientId(), PushAddress.DEFAULT_DEVICE_ID)) {
+      } else if (!axolotlStore.containsSession(axolotlAddress)) {
         Log.w(TAG, "Marking message as pending insecure SMS fallback");
         throw new InsecureFallbackApprovalException("Pending user approval for fallback to insecure SMS");
       } else {

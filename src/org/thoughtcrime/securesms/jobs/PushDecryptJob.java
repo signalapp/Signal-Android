@@ -19,7 +19,6 @@ import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage;
@@ -40,10 +39,10 @@ import org.whispersystems.libaxolotl.UntrustedIdentityException;
 import org.whispersystems.libaxolotl.state.AxolotlStore;
 import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.libaxolotl.util.guava.Optional;
+import org.whispersystems.textsecure.api.crypto.TextSecureCipher;
 import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 import org.whispersystems.textsecure.api.messages.TextSecureGroup;
 import org.whispersystems.textsecure.api.messages.TextSecureMessage;
-import org.whispersystems.textsecure.api.crypto.TextSecureCipher;
 
 import de.gdata.messaging.util.GDataPreferences;
 import de.gdata.messaging.util.GService;
@@ -95,7 +94,7 @@ public class PushDecryptJob extends MasterSecretJob {
       long             recipientId  = recipients.getPrimaryRecipient().getRecipientId();
       int              deviceId     = envelope.getSourceDevice();
       AxolotlStore     axolotlStore = new TextSecureAxolotlStore(context, masterSecret);
-      TextSecureCipher cipher       = new TextSecureCipher(axolotlStore, recipientId, deviceId);
+      TextSecureCipher cipher       = new TextSecureCipher(axolotlStore);
 
       TextSecureMessage message = cipher.decrypt(envelope);
 
@@ -110,7 +109,7 @@ public class PushDecryptJob extends MasterSecretJob {
     } catch (InvalidVersionException e) {
       Log.w(TAG, e);
       handleInvalidVersionMessage(masterSecret, envelope);
-    } catch (InvalidMessageException | InvalidKeyIdException | InvalidKeyException | MmsException | RecipientFormattingException e) {
+    } catch (InvalidMessageException | InvalidKeyIdException | InvalidKeyException | MmsException e) {
       Log.w(TAG, e);
       handleCorruptMessage(masterSecret, envelope);
     } catch (NoSessionException e) {
@@ -141,7 +140,7 @@ public class PushDecryptJob extends MasterSecretJob {
     Pair<Long, Long>          messageAndThreadId        = database.insertMessageInbox(masterSecret, incomingEndSessionMessage);
 
     SessionStore sessionStore = new TextSecureSessionStore(context, masterSecret);
-    sessionStore.deleteAllSessions(recipientId);
+    sessionStore.deleteAllSessions(envelope.getSource());
 
     SecurityEvent.broadcastSecurityUpdateEvent(context, messageAndThreadId.second);
     MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);

@@ -33,8 +33,9 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.libaxolotl.AxolotlAddress;
 import org.whispersystems.libaxolotl.state.SessionStore;
-import org.whispersystems.textsecure.api.push.PushAddress;
+import org.whispersystems.textsecure.api.push.TextSecureAddress;
 
 /**
  * Activity which prompts the user to initiate a secure
@@ -119,6 +120,7 @@ public class AutoInitiateActivity extends Activity {
                                              Recipient recipient)
   {
     SessionStore sessionStore = new TextSecureSessionStore(context, masterSecret);
-    return sessionStore.containsSession(recipient.getRecipientId(), PushAddress.DEFAULT_DEVICE_ID);
+    AxolotlAddress axolotlAddress = new AxolotlAddress(recipient.getNumber(), TextSecureAddress.DEFAULT_DEVICE_ID);
+    return sessionStore.containsSession(axolotlAddress);
   }
 }

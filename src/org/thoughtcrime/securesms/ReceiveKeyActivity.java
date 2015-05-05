@@ -137,10 +137,10 @@ public class ReceiveKeyActivity extends Activity {
   }
 
   private boolean isTrusted(IdentityKey identityKey) {
-    long             recipientId      = recipient.getRecipientId();
+    String number                     = recipient.getNumber();
     IdentityKeyStore identityKeyStore = new TextSecureIdentityKeyStore(this, masterSecret);
 
-    return identityKeyStore.isTrustedIdentity(recipientId, identityKey);
+    return identityKeyStore.isTrustedIdentity(number, identityKey);
   }
 
   private void initializeKey()

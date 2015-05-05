@@ -6,8 +6,9 @@ import android.util.Log;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
+import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.TextSecureMessageSender;
-import org.whispersystems.textsecure.api.push.PushAddress;
+import org.whispersystems.textsecure.api.push.TextSecureAddress;
 import org.whispersystems.textsecure.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.textsecure.api.push.exceptions.PushNetworkException;
 
@@ -46,7 +47,7 @@ public class DeliveryReceiptJob extends ContextJob implements InjectableType {
   public void onRun() throws IOException {
     Log.w("DeliveryReceiptJob", "Sending delivery receipt...");
     TextSecureMessageSender messageSender = messageSenderFactory.create(null);
-    PushAddress             pushAddress   = new PushAddress(-1, destination, 1, relay);
+    TextSecureAddress pushAddress   = new TextSecureAddress(destination, Optional.fromNullable(relay));
 
     messageSender.sendDeliveryReceipt(pushAddress, timestamp);
   }

@@ -5,23 +5,20 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.TextSecureDirectory;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
-import org.thoughtcrime.securesms.mms.MmsMediaConstraints;
 import org.thoughtcrime.securesms.mms.PartAuthority;
-import org.thoughtcrime.securesms.mms.MediaConstraints;
-import org.thoughtcrime.securesms.mms.PushMediaConstraints;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
-import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
+import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachmentStream;
-import org.thoughtcrime.securesms.database.TextSecureDirectory;
-import org.whispersystems.textsecure.api.push.PushAddress;
+import org.whispersystems.textsecure.api.push.TextSecureAddress;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
 
 import java.io.IOException;
@@ -79,10 +76,10 @@ public abstract class PushSendJob extends SendJob {
     }
   }
 
-  protected PushAddress getPushAddress(Recipient recipient) throws InvalidNumberException {
-    String e164number = Util.canonicalizeNumber(context, recipient.getNumber());
+  protected TextSecureAddress getPushAddress(String number) throws InvalidNumberException {
+    String e164number = Util.canonicalizeNumber(context, number);
     String relay      = TextSecureDirectory.getInstance(context).getRelay(e164number);
-    return new PushAddress(recipient.getRecipientId(), e164number, 1, relay);
+    return new TextSecureAddress(e164number, Optional.fromNullable(relay));
   }
 
   protected boolean isSmsFallbackApprovalRequired(String destination, boolean media) {
