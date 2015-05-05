@@ -5,8 +5,6 @@
              android:layout_height="match_parent">
 
     <GridView android:id="@+id/emoji"
-              android:paddingLeft="10dp"
-              android:paddingRight="10dp"
               android:visibility="visible"
               android:layout_width="fill_parent"
               android:layout_height="match_parent"
