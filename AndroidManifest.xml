@@ -4,11 +4,11 @@
     package="org.thoughtcrime.securesms" >
 
     <permission
-        android:name="org.thoughtcrime.securesms.ACCESS_SECRETS"
+        android:name="de.gdata.messaging.ACCESS_SECRETS"
         android:label="Access to TextSecure Secrets"
         android:protectionLevel="signature" />
 
-    <uses-permission android:name="org.thoughtcrime.securesms.ACCESS_SECRETS" />
+    <uses-permission android:name="de.gdata.messaging.ACCESS_SECRETS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.WRITE_PROFILE" />
     <uses-permission
@@ -343,7 +343,7 @@
 
         <provider
             android:name=".providers.PartProvider"
-            android:authorities="org.thoughtcrime.provider.securesms"
+            android:authorities="de.gdata.provider.securesms"
             android:grantUriPermissions="true" />
 
         <receiver
