@@ -1,5 +1,6 @@
-package org.thoughtcrime.securesms.gcm;
+package de.gdata.messaging.gcm;
 
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -35,6 +36,7 @@ public class GcmBroadcastReceiver extends BroadcastReceiver {
       if      (!TextUtils.isEmpty(messageData)) handleReceivedMessage(context, messageData);
       else if (!TextUtils.isEmpty(receiptData)) handleReceivedMessage(context, receiptData);
     }
+    setResultCode(Activity.RESULT_OK);
   }
 
   private void handleReceivedMessage(Context context, String data) {
