@@ -131,17 +131,9 @@ public class ConversationListAdapter extends CursorRecyclerViewAdapter<Conversat
   }
 
   public void selectAllThreads() {
-    Cursor cursor = DatabaseFactory.getThreadDatabase(context).getConversationList();
-
-    try {
-      while (cursor != null && cursor.moveToNext()) {
-        this.batchSet.add(cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.ID)));
-      }
-    } finally {
-      if (cursor != null)
-        cursor.close();
+    for (int i = 0; i < getItemCount(); i++) {
+      batchSet.add(getItemId(i));
     }
-
     this.notifyDataSetChanged();
   }
 
