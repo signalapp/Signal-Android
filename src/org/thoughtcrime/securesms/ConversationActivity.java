@@ -324,7 +324,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   @Override
   public void onBackPressed() {
     if (emojiDrawer.isPresent() && emojiDrawer.get().getVisibility() == View.VISIBLE) {
-      emojiDrawer.get().setVisibility(View.GONE);
+      emojiDrawer.get().hide();
       emojiToggle.toggle();
     } else {
       super.onBackPressed();

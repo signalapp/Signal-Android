@@ -27,6 +27,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -268,8 +270,12 @@ public class Emoji {
     return new Pair<Integer, Drawable>(Integer.parseInt(code, 16), getEmojiDrawable(code, size, pageLoadedListener));
   }
 
-  public void setRecentlyUsed(String emojiCode) {
-    EmojiLRU.putRecentlyUsed(context, emojiCode);
+  public void queueRecentlyUsed(String emojiCode) {
+    EmojiLRU.queueRecentlyUsed(emojiCode);
+  }
+
+  public boolean applyRecentlyUsed() {
+    return EmojiLRU.applyRecentlyUsed(context);
   }
 
   public int getRecentlyUsedAssetCount() {
@@ -295,6 +301,7 @@ public class Emoji {
   private static class EmojiLRU {
     private static       SharedPreferences     prefs                = null;
     private static       LinkedHashSet<String> recentlyUsed         = null;
+    private static       List<String>          recentQueue          = new LinkedList<>();
     private static final String                EMOJI_LRU_PREFERENCE = "pref_recent_emoji";
     private static final int                   EMOJI_LRU_SIZE       = 50;
 
@@ -324,14 +331,22 @@ public class Emoji {
       return recentlyUsed.size();
     }
 
-    public static void putRecentlyUsed(Context context, String asset) {
+    public static void queueRecentlyUsed(String asset) {
+      recentQueue.add(asset);
+    }
+
+    public static boolean applyRecentlyUsed(Context context) {
+      if (recentQueue.isEmpty()) return false;
       if (recentlyUsed == null) initializeCache(context);
       if (prefs == null) {
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
       }
 
-      recentlyUsed.remove(asset);
-      recentlyUsed.add(asset);
+      for (String asset : recentQueue) {
+        recentlyUsed.remove(asset);
+        recentlyUsed.add(asset);
+      }
+      recentQueue.clear();
 
       if (recentlyUsed.size() > EMOJI_LRU_SIZE) {
         Iterator<String> iterator = recentlyUsed.iterator();
@@ -357,6 +372,7 @@ public class Emoji {
         }
       }.execute();
 
+      return true;
     }
   }
 
