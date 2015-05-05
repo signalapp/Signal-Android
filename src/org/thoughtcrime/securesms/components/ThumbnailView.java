@@ -1,8 +1,12 @@
 package org.thoughtcrime.securesms.components;
 
+import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build.VERSION;
+import android.os.Build.VERSION_CODES;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -44,6 +48,11 @@ public class ThumbnailView extends ForegroundImageView {
     super(context, attrs, defStyle);
   }
 
+  @Override protected void onDetachedFromWindow() {
+    Glide.clear(this);
+    super.onDetachedFromWindow();
+  }
+
   public void setImageResource(@NonNull ListenableFutureTask<SlideDeck> slideDeckFuture,
                                @Nullable MasterSecret masterSecret)
   {
@@ -57,17 +66,27 @@ public class ThumbnailView extends ForegroundImageView {
   }
 
   public void setImageResource(@NonNull Slide slide, @Nullable MasterSecret masterSecret) {
-    buildGlideRequest(slide, masterSecret).into(ThumbnailView.this);
-    setOnClickListener(new ThumbnailClickDispatcher(thumbnailClickListener, slide));
+    if (isContextValid()) {
+      buildGlideRequest(slide, masterSecret).into(ThumbnailView.this);
+      setOnClickListener(new ThumbnailClickDispatcher(thumbnailClickListener, slide));
+    } else {
+      Log.w(TAG, "Not going to load resource, context is invalid");
+    }
   }
 
-  public void setImageResource(@NonNull Slide slide)
-  {
+  public void setImageResource(@NonNull Slide slide) {
     setImageResource(slide, null);
   }
 
   public void setThumbnailClickListener(ThumbnailClickListener listener) {
     this.thumbnailClickListener = listener;
+  }
+
+  @TargetApi(VERSION_CODES.JELLY_BEAN_MR1)
+  private boolean isContextValid() {
+    return !(getContext() instanceof Activity)            ||
+           VERSION.SDK_INT < VERSION_CODES.JELLY_BEAN_MR1 ||
+           !((Activity)getContext()).isDestroyed();
   }
 
   private GenericRequestBuilder buildGlideRequest(@NonNull Slide slide,
