@@ -4,5 +4,3 @@
 [submodule "libtextsecure-java"]
 	path = libtextsecure-java
 	url = git@gitlab.gdatasoftware.com:mobile/libtextsecure-java.git
-[submodule "LibTextsecure"]
-	path = LibTextsecure
