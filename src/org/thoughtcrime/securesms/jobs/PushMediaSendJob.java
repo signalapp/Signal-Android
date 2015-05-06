@@ -14,7 +14,6 @@ import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.PartParser;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.IncomingIdentityUpdateMessage;
 import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
@@ -124,7 +123,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
       Log.w(TAG, e);
       if (isSmsFallbackSupported) fallbackOrAskApproval(masterSecret, message, destination);
       else                        database.markAsSentFailed(messageId);
-    } catch (IOException | RecipientFormattingException e) {
+    } catch (IOException e) {
       Log.w(TAG, e);
       if (isSmsFallbackSupported) fallbackOrAskApproval(masterSecret, message, destination);
       else                        throw new RetryLaterException(e);
@@ -135,26 +134,21 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
   private void fallbackOrAskApproval(MasterSecret masterSecret, SendReq mediaMessage, String destination)
       throws SecureFallbackApprovalException, InsecureFallbackApprovalException
   {
-    try {
-      Recipient    recipient                     = RecipientFactory.getRecipientsFromString(context, destination, false).getPrimaryRecipient();
-      boolean      isSmsFallbackApprovalRequired = isSmsFallbackApprovalRequired(destination, true);
-      AxolotlStore axolotlStore                  = new TextSecureAxolotlStore(context, masterSecret);
-      AxolotlAddress axolotlAddress              = new AxolotlAddress(recipient.getNumber(), TextSecureAddress.DEFAULT_DEVICE_ID);
+    Recipient    recipient                     = RecipientFactory.getRecipientsFromString(context, destination, false).getPrimaryRecipient();
+    boolean      isSmsFallbackApprovalRequired = isSmsFallbackApprovalRequired(destination, true);
+    AxolotlStore axolotlStore                  = new TextSecureAxolotlStore(context, masterSecret);
+    AxolotlAddress axolotlAddress              = new AxolotlAddress(recipient.getNumber(), TextSecureAddress.DEFAULT_DEVICE_ID);
 
-      if (!isSmsFallbackApprovalRequired) {
-        Log.w(TAG, "Falling back to MMS");
-        DatabaseFactory.getMmsDatabase(context).markAsForcedSms(mediaMessage.getDatabaseMessageId());
-        ApplicationContext.getInstance(context).getJobManager().add(new MmsSendJob(context, messageId));
-      } else if (!axolotlStore.containsSession(axolotlAddress)) {
-        Log.w(TAG, "Marking message as pending insecure SMS fallback");
-        throw new InsecureFallbackApprovalException("Pending user approval for fallback to insecure SMS");
-      } else {
-        Log.w(TAG, "Marking message as pending secure SMS fallback");
-        throw new SecureFallbackApprovalException("Pending user approval for fallback secure to SMS");
-      }
-    } catch (RecipientFormattingException rfe) {
-      Log.w(TAG, rfe);
-      DatabaseFactory.getMmsDatabase(context).markAsSentFailed(messageId);
+    if (!isSmsFallbackApprovalRequired) {
+      Log.w(TAG, "Falling back to MMS");
+      DatabaseFactory.getMmsDatabase(context).markAsForcedSms(mediaMessage.getDatabaseMessageId());
+      ApplicationContext.getInstance(context).getJobManager().add(new MmsSendJob(context, messageId));
+    } else if (!axolotlStore.containsSession(axolotlAddress)) {
+      Log.w(TAG, "Marking message as pending insecure SMS fallback");
+      throw new InsecureFallbackApprovalException("Pending user approval for fallback to insecure SMS");
+    } else {
+      Log.w(TAG, "Marking message as pending secure SMS fallback");
+      throw new SecureFallbackApprovalException("Pending user approval for fallback secure to SMS");
     }
   }
 

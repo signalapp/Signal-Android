@@ -31,7 +31,6 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
@@ -122,14 +121,12 @@ public class ContactSelectionFragment extends Fragment {
     Recipients recipients = new Recipients(new LinkedList<Recipient>());
     for (ContactAccessor.NumberData numberData : contactData.numbers) {
       if (NumberUtil.isValidSmsOrEmailOrGroup(numberData.number)) {
-        try {
-          Recipients recipientsForNumber = RecipientFactory.getRecipientsFromString(getActivity(),
-              numberData.number,
-              false);
-          recipients.getRecipientsList().addAll(recipientsForNumber.getRecipientsList());
-        } catch (RecipientFormattingException rfe) {
-          Log.w(TAG, "Caught RecipientFormattingException when trying to convert a selected number to a Recipient.", rfe);
-        }
+
+        Recipients recipientsForNumber = RecipientFactory.getRecipientsFromString(getActivity(),
+            numberData.number,
+            false);
+        recipients.getRecipientsList().addAll(recipientsForNumber.getRecipientsList());
+
       }
     }
     return recipients;

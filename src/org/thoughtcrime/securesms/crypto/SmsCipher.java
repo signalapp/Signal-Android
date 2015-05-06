@@ -4,7 +4,6 @@ import android.content.Context;
 
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.IncomingKeyExchangeMessage;
@@ -64,7 +63,7 @@ public class SmsCipher {
       }
 
       return message.withMessageBody(new String(plaintext));
-    } catch (RecipientFormattingException | IOException e) {
+    } catch (IOException e) {
       throw new InvalidMessageException(e);
     }
   }
@@ -83,7 +82,7 @@ public class SmsCipher {
       byte[]               plaintext     = transportDetails.getStrippedPaddingMessageBody(padded);
 
       return new IncomingEncryptedMessage(message, new String(plaintext));
-    } catch (RecipientFormattingException | IOException | InvalidKeyException | InvalidKeyIdException e) {
+    } catch (IOException | InvalidKeyException | InvalidKeyIdException e) {
       throw new InvalidMessageException(e);
     }
   }
@@ -126,7 +125,7 @@ public class SmsCipher {
       } else {
         return null;
       }
-    } catch (RecipientFormattingException | IOException | InvalidKeyException e) {
+    } catch (IOException | InvalidKeyException e) {
       throw new InvalidMessageException(e);
     }
   }

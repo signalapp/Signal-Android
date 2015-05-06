@@ -21,7 +21,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
@@ -1014,22 +1013,19 @@ public class MmsDatabase extends Database implements MmsSmsColumns {
     }
 
     private Recipients getRecipientsFor(String address) {
-      try {
-        if (TextUtils.isEmpty(address) || address.equals("insert-address-token")) {
-          return new Recipients(Recipient.getUnknownRecipient(context));
-        }
 
-        Recipients recipients =  RecipientFactory.getRecipientsFromString(context, address, false);
-
-        if (recipients == null || recipients.isEmpty()) {
-          return new Recipients(Recipient.getUnknownRecipient(context));
-        }
-
-        return recipients;
-      } catch (RecipientFormattingException e) {
-        Log.w("MmsDatabase", e);
+      if (TextUtils.isEmpty(address) || address.equals("insert-address-token")) {
         return new Recipients(Recipient.getUnknownRecipient(context));
       }
+
+      Recipients recipients =  RecipientFactory.getRecipientsFromString(context, address, false);
+
+      if (recipients == null || recipients.isEmpty()) {
+        return new Recipients(Recipient.getUnknownRecipient(context));
+      }
+
+      return recipients;
+
     }
 
     private DisplayRecord.Body getBody(Cursor cursor) {

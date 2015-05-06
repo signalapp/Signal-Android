@@ -81,7 +81,7 @@ public class MmsCipher {
 
       MultimediaMessagePdu plaintextGenericPdu = (MultimediaMessagePdu) new PduParser(plaintext).parse();
       return new RetrieveConf(plaintextGenericPdu.getPduHeaders(), plaintextGenericPdu.getBody());
-    } catch (RecipientFormattingException | IOException e) {
+    } catch (IOException e) {
       throw new InvalidMessageException(e);
     }
   }
