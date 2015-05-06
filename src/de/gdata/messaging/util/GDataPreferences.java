@@ -1,18 +1,16 @@
 package de.gdata.messaging.util;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-import android.util.Log;
-
-import com.google.thoughtcrimegson.Gson;
-import com.google.thoughtcrimegson.reflect.TypeToken;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 
-import java.lang.reflect.Type;
-import java.util.ArrayList;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
+import com.google.common.reflect.TypeToken;
 
 public class GDataPreferences {
 

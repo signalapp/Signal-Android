@@ -1,5 +1,15 @@
 package de.gdata.messaging.util;
 
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
+import org.thoughtcrime.securesms.recipients.Recipients;
+
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -16,18 +26,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.google.thoughtcrimegson.Gson;
-import com.google.thoughtcrimegson.reflect.TypeToken;
-
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
-import org.thoughtcrime.securesms.recipients.Recipients;
-
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
+import com.google.common.reflect.TypeToken;
 
 
 /**
@@ -59,13 +58,7 @@ public class PrivacyBridge {
   }
 
   public static Recipients getRecipientForNumber(Context context, String phoneNo) {
-    Recipients recipients;
-    try {
-      recipients = RecipientFactory.getRecipientsFromString(context, GUtil.normalizeNumber(phoneNo), true);
-    } catch (RecipientFormattingException e) {
-      recipients = new Recipients(Recipient.getUnknownRecipient(context));
-    }
-    return recipients;
+    return RecipientFactory.getRecipientsFromString(context, GUtil.normalizeNumber(phoneNo), true);
   }
 
   public static Contact getPhoneContactForDisplayName(String name, Context context) {
