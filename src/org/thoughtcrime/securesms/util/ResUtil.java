@@ -21,6 +21,7 @@ import android.content.Context;
 import android.content.res.Resources.Theme;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.ArrayRes;
 import android.support.annotation.AttrRes;
 import android.util.TypedValue;
 
@@ -44,6 +45,16 @@ public class ResUtil {
   }
 
   public static Drawable getDrawable(Context c, @AttrRes int attr) {
-    return c.getResources().getDrawable(getDrawableRes(c, attr));
+    return c.getResources().getDrawable(getDrawableRes(c, attr), c.getTheme());
+  }
+
+  public static int[] getResourceIds(Context c, @ArrayRes int array) {
+    final TypedArray typedArray  = c.getResources().obtainTypedArray(array);
+    final int[]      resourceIds = new int[typedArray.length()];
+    for (int i = 0; i < typedArray.length(); i++) {
+      resourceIds[i] = typedArray.getResourceId(i, 0);
+    }
+    typedArray.recycle();
+    return resourceIds;
   }
 }

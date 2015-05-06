@@ -42,7 +42,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.View.OnKeyListener;
-import android.view.ViewStub;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
@@ -53,8 +52,9 @@ import com.google.protobuf.ByteString;
 
 import org.thoughtcrime.securesms.TransportOptions.OnTransportChangedListener;
 import org.thoughtcrime.securesms.components.ComposeText;
-import org.thoughtcrime.securesms.components.EmojiDrawer;
-import org.thoughtcrime.securesms.components.EmojiToggle;
+import org.thoughtcrime.securesms.components.emoji.EmojiDrawer;
+import org.thoughtcrime.securesms.components.emoji.EmojiProvider;
+import org.thoughtcrime.securesms.components.emoji.EmojiToggle;
 import org.thoughtcrime.securesms.components.SendButton;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
@@ -93,7 +93,6 @@ import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.thoughtcrime.securesms.util.Emoji;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -323,8 +322,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   public void onBackPressed() {
-    if (emojiDrawer.isPresent() && emojiDrawer.get().getVisibility() == View.VISIBLE) {
-      emojiDrawer.get().setVisibility(View.GONE);
+    if (isEmojiDrawerOpen()) {
+      getEmojiDrawer().hide();
       emojiToggle.toggle();
     } else {
       super.onBackPressed();
@@ -621,15 +620,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
       @Override
       protected void onPostExecute(List<Draft> drafts) {
-        boolean nativeEmojiSupported = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
-        Context context              = ConversationActivity.this;
-
         for (Draft draft : drafts) {
-          if (draft.getType().equals(Draft.TEXT) && !nativeEmojiSupported) {
-            composeText.setText(Emoji.getInstance(context).emojify(draft.getValue(),
-                                                                   new Emoji.InvalidatingPageLoadedListener(composeText)),
-                                TextView.BufferType.SPANNABLE);
-          } else if (draft.getType().equals(Draft.TEXT)) {
+          if (draft.getType().equals(Draft.TEXT)) {
             composeText.setText(draft.getValue());
           } else if (draft.getType().equals(Draft.IMAGE)) {
             addAttachmentImage(Uri.parse(draft.getValue()));
@@ -713,10 +705,21 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     emojiToggle.setOnClickListener(new EmojiToggleListener());
   }
 
-  private EmojiDrawer initializeEmojiDrawer() {
-    EmojiDrawer emojiDrawer = (EmojiDrawer)((ViewStub)findViewById(R.id.emoji_drawer_stub)).inflate();
-    emojiDrawer.setComposeEditText(composeText);
-    return emojiDrawer;
+  private EmojiDrawer getEmojiDrawer() {
+    if (emojiDrawer.isPresent()) return emojiDrawer.get();
+
+    EmojiDrawer emojiDrawerFragment = EmojiDrawer.newInstance();
+    emojiDrawerFragment.setComposeEditText(composeText);
+    getSupportFragmentManager().beginTransaction()
+                               .replace(R.id.emoji_drawer, emojiDrawerFragment)
+                               .commit();
+    getSupportFragmentManager().executePendingTransactions();
+    emojiDrawer = Optional.of(emojiDrawerFragment);
+    return emojiDrawerFragment;
+  }
+
+  private boolean isEmojiDrawerOpen() {
+    return emojiDrawer.isPresent() && emojiDrawer.get().isOpen();
   }
 
   private void initializeResources() {
@@ -1094,16 +1097,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     public void onClick(View v) {
       InputMethodManager input = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
 
-      if (emojiDrawer.isPresent() && emojiDrawer.get().isOpen()) {
+      if (isEmojiDrawerOpen()) {
         input.showSoftInput(composeText, 0);
-        emojiDrawer.get().hide();
+        getEmojiDrawer().hide();
       } else {
-        if (!emojiDrawer.isPresent()) {
-          emojiDrawer = Optional.of(initializeEmojiDrawer());
-        }
         input.hideSoftInputFromWindow(composeText.getWindowToken(), 0);
 
-        emojiDrawer.get().show();
+        getEmojiDrawer().show();
       }
     }
   }
@@ -1141,7 +1141,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     @Override
     public void onClick(View v) {
-      if (emojiDrawer.isPresent() && emojiDrawer.get().isOpen()) {
+      if (isEmojiDrawerOpen()) {
         emojiToggle.performClick();
       }
     }
@@ -1157,7 +1157,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
-      if (hasFocus && emojiDrawer.isPresent() && emojiDrawer.get().isOpen()) {
+      if (hasFocus && isEmojiDrawerOpen()) {
         emojiToggle.performClick();
       }
     }

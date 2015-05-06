@@ -44,7 +44,8 @@
                   android:layout_marginRight="12dp"
                   android:orientation="vertical">
 
-        <TextView android:id="@+id/conversation_item_body"
+        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+                  android:id="@+id/conversation_item_body"
                   android:autoLink="all"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"

@@ -67,7 +67,7 @@
                     android:orientation="horizontal"
                     android:background="?conversation_editor_background">
 
-                <org.thoughtcrime.securesms.components.EmojiToggle
+                <org.thoughtcrime.securesms.components.emoji.EmojiToggle
                         android:id="@+id/emoji_toggle"
                         android:layout_width="wrap_content"
                         android:layout_height="fill_parent"
@@ -123,10 +123,8 @@
         </LinearLayout>
     </RelativeLayout>
 
-    <ViewStub android:id="@+id/emoji_drawer_stub"
-              android:inflatedId="@+id/emoji_drawer"
-              android:layout="@layout/emoji_drawer_stub"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content" />
+    <LinearLayout android:id="@+id/emoji_drawer"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content" />
 
 </LinearLayout>

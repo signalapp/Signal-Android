@@ -5,7 +5,7 @@
       android:versionCode="118"
       android:versionName="2.14.4">
 
-    <uses-sdk tools:overrideLibrary="com.amulyakhare.textdrawable"/>
+    <uses-sdk tools:overrideLibrary="com.amulyakhare.textdrawable,com.astuetz.pagerslidingtabstrip"/>
 
     <permission android:name="org.thoughtcrime.securesms.ACCESS_SECRETS"
                 android:label="Access to TextSecure Secrets"

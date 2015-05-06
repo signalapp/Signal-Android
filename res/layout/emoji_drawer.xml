@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
                                                                  android:id="@+id/container"
                                                                  android:orientation="vertical"
                                                                  android:layout_width="match_parent"
@@ -14,7 +15,13 @@
         <com.astuetz.PagerSlidingTabStrip android:id="@+id/tabs"
                                           android:layout_weight="1"
                                           android:layout_width="0dp"
-                                          android:layout_height="45dp" />
+                                          android:layout_height="45dp"
+                                          app:pstsShouldExpand="true"
+                                          app:pstsTabPaddingLeftRight="@dimen/emoji_drawer_left_right_padding"
+                                          app:pstsUnderlineColor="@color/emoji_tab_underline"
+                                          app:pstsIndicatorColor="@color/emoji_tab_indicator"
+                                          app:pstsIndicatorHeight="@dimen/emoji_drawer_indicator_height"
+                                          app:pstsTextAllCaps="false"/>
 
         <org.thoughtcrime.securesms.components.RepeatableImageKey
                 android:id="@+id/backspace"
@@ -27,10 +34,11 @@
 
     </LinearLayout>
 
-    <android.support.v4.view.ViewPager android:id="@+id/emoji_pager"
-                                       android:visibility="visible"
-                                       android:layout_width="match_parent"
-                                       android:layout_height="match_parent"
-                                       android:background="#ff333333" />
+    <android.support.v4.view.ViewPager
+            android:id="@+id/emoji_pager"
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ff333333" />
 
 </org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout>
