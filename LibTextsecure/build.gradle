@@ -20,7 +20,7 @@ android {
     sourceSets {
         main {
             manifest.srcFile "../libtextsecure-java/android/src/main/AndroidManifest.xml"
-            java.srcDirs = ["../libtextsecure-java/java/src/main"]
+            java.srcDirs = ["../libtextsecure-java/java/src/main/java"]
         }
     }
 }
