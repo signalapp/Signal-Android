@@ -36,9 +36,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.AlertDialogWrapper;
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.afollestad.materialdialogs.MaterialDialog.ButtonCallback;
 
 import org.thoughtcrime.securesms.ConversationFragment.SelectionClickListener;
-import org.thoughtcrime.securesms.ExternalMediaWarningDialog.WarningListener;
 import org.thoughtcrime.securesms.components.BubbleContainer;
 import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
@@ -439,9 +440,10 @@ public class ConversationItem extends LinearLayout {
 
         context.startActivity(intent);
       } else {
-        ExternalMediaWarningDialog.showIfNecessary(context, new WarningListener() {
+        ExternalMediaWarningDialog.showIfNecessary(context, new ButtonCallback() {
           @Override
-          public void onWarningAccepted() {
+          public void onPositive(MaterialDialog dialog) {
+            super.onPositive(dialog);
             fireIntent(slide);
           }
         });

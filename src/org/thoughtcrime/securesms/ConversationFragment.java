@@ -26,8 +26,9 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.AlertDialogWrapper;
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.afollestad.materialdialogs.MaterialDialog.ButtonCallback;
 
-import org.thoughtcrime.securesms.ExternalMediaWarningDialog.WarningListener;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
@@ -266,9 +267,10 @@ public class ConversationFragment extends ListFragment
   }
 
   private void handleSaveAttachment(final MediaMmsMessageRecord message) {
-    ExternalMediaWarningDialog.showIfNecessary(getActivity(), new WarningListener() {
+    ExternalMediaWarningDialog.showIfNecessary(getActivity(), new ButtonCallback() {
       @Override
-      public void onWarningAccepted() {
+      public void onPositive(MaterialDialog dialog) {
+        super.onPositive(dialog);
         message.fetchMediaSlide(new FutureTaskListener<Slide>() {
           @Override
           public void onSuccess(Slide slide) {

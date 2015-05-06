@@ -15,21 +15,21 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
  */
 public class ExternalMediaWarningDialog extends MaterialDialog implements OnCheckedChangeListener {
 
-  public ExternalMediaWarningDialog(Context context, WarningListener listener) {
-    super(new MaterialDialog.Builder(context).title(R.string.ExternalMediaWarningDialog_expose_secure_media)
+  public ExternalMediaWarningDialog(Context context, ButtonCallback callback) {
+    super(new MaterialDialog.Builder(context).title(R.string.ExternalMediaWarningDialog_reveal_secure_media)
                                              .iconAttr(R.attr.dialog_alert_icon)
                                              .customView(R.layout.external_media_warning_view, false)
                                              .cancelable(true)
-                                             .positiveText(R.string.ExternalMediaWarningDialog_continue)
+                                             .positiveText(R.string.ExternalMediaWarningDialog_reveal)
                                              .negativeText(R.string.ExternalMediaWarningDialog_cancel)
-                                             .callback(new DialogListener(listener)));
+                                             .callback(callback));
   }
 
-  public static void showIfNecessary(Context context, WarningListener listener) {
+  public static void showIfNecessary(Context context, ButtonCallback callback) {
     if (!TextSecurePreferences.isWarnOnExposeSecureMediaEnabled(context)) {
-      listener.onWarningAccepted();
+      callback.onPositive(null);
     } else {
-      new ExternalMediaWarningDialog(context, listener).show();
+      new ExternalMediaWarningDialog(context, callback).show();
     }
   }
 
@@ -42,22 +42,6 @@ public class ExternalMediaWarningDialog extends MaterialDialog implements OnChec
   @Override
   public void onCheckedChanged(CompoundButton checkBox, boolean isChecked) {
     TextSecurePreferences.setWarnOnExposeSecureMediaEnabled(getContext(), !isChecked);
-  }
-
-  public static class DialogListener extends ButtonCallback {
-    private final WarningListener listener;
-
-    public DialogListener(WarningListener listener) {
-      this.listener = listener;
-    }
-
-    public void onPositive(MaterialDialog dialog) {
-      listener.onWarningAccepted();
-    }
-  }
-
-  public interface WarningListener {
-    public void onWarningAccepted();
   }
 
 }

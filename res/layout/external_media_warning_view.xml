@@ -9,13 +9,15 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/ExternalMediaWarningDialog_previewing_or_saving_media_outside_of"/>
+        android:text="@string/ExternalMediaWarningDialog_previewing_or_saving_media_outside_of"
+        android:textAppearance="@style/TextSecure.Light.Dialog"/>
 
     <CheckBox
         android:id="@+id/checkbox_dont_ask_again"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="@string/ExternalMediaWarningDialog_dont_ask_again"/>
+        android:text="@string/ExternalMediaWarningDialog_dont_ask_again"
+        android:textAppearance="@style/TextSecure.Light.Dialog"/>
 
 </LinearLayout>

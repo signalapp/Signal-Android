@@ -36,7 +36,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.thoughtcrime.securesms.ExternalMediaWarningDialog.WarningListener;
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.afollestad.materialdialogs.MaterialDialog.ButtonCallback;
+
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipient.RecipientModifiedListener;
@@ -224,9 +226,10 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   }
 
   private void saveToDisk() {
-    ExternalMediaWarningDialog.showIfNecessary(this, new WarningListener() {
+    ExternalMediaWarningDialog.showIfNecessary(this, new ButtonCallback() {
       @Override
-      public void onWarningAccepted() {
+      public void onPositive(MaterialDialog dialog) {
+        super.onPositive(dialog);
         SaveAttachmentTask saveTask = new SaveAttachmentTask(MediaPreviewActivity.this, masterSecret);
         saveTask.execute(new Attachment(mediaUri, mediaType, date));
       }

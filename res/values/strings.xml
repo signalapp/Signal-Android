@@ -167,10 +167,10 @@
     <string name="ExportFragment_success">Success!</string>
 
     <!-- ExternalMediaWarningDialog -->
-    <string name="ExternalMediaWarningDialog_expose_secure_media">Expose secure media?</string>
+    <string name="ExternalMediaWarningDialog_reveal_secure_media">Reveal secure media?</string>
     <string name="ExternalMediaWarningDialog_previewing_or_saving_media_outside_of">Previewing or saving media outside of TextSecure allows other apps to see it.</string>
     <string name="ExternalMediaWarningDialog_dont_ask_again">Don\'t ask again</string>
-    <string name="ExternalMediaWarningDialog_continue">Continue</string>
+    <string name="ExternalMediaWarningDialog_reveal">Reveal</string>
     <string name="ExternalMediaWarningDialog_cancel">Cancel</string>
 
     <!-- GcmRefreshJob -->
