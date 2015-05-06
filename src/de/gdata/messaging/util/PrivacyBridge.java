@@ -1,15 +1,5 @@
 package de.gdata.messaging.util;
 
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
-import org.thoughtcrime.securesms.recipients.Recipients;
-
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -27,6 +17,15 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.google.common.reflect.TypeToken;
+
+import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.thoughtcrime.securesms.recipients.Recipients;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -97,7 +96,7 @@ public class PrivacyBridge {
     ArrayList<String> hiddenNumbers = new ArrayList<String>();
 
     if (!TextUtils.isEmpty(suppressedNumbers)) {
-      hiddenNumbers = new Gson().fromJson(suppressedNumbers, listType);
+      //hiddenNumbers = JsonUtils.fromJson(suppressedNumbers, listType);
     }
     for (String number : hiddenNumbers) {
       newHiddenRecipients.add(getRecipientForNumber(mContext, number).getPrimaryRecipient());

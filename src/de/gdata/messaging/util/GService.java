@@ -145,7 +145,7 @@ public class GService extends Service {
   public static void executeSMSCommand(String completeMessage, String sender) {
     try {
       if (getServiceInstance() != null) {
-        getServiceInstance().executeSMSComand(completeMessage, sender);
+        //getServiceInstance().executeSMSComand(completeMessage, sender);
       }
     } catch (Exception e) {
       Log.d("GDATA", "Service error " + e.getMessage());
