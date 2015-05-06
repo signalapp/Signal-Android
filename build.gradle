@@ -11,13 +11,12 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.0.0'
+        classpath 'com.android.tools.build:gradle:1.2.2'
         classpath files('libs/gradle-witness.jar')
     }
 }
 
 apply plugin: 'com.android.application'
-apply from: 'strip_play_services.gradle'
 apply plugin: 'witness'
 
 repositories {
@@ -39,9 +38,10 @@ repositories {
 }
 
 dependencies {
+
     compile 'me.leolin:ShortcutBadger:1.0.2-WS2'
     compile 'se.emilsjolander:stickylistheaders:2.2.0'
-    compile 'com.google.android.gms:play-services:6.1.71'
+    compile 'com.google.android.gms:play-services-base:6.5.87'
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
     compile 'org.w3c:smil:1.0.0'
     compile 'org.apache.httpcomponents:httpclient-android:4.3.5'
@@ -58,12 +58,13 @@ dependencies {
     }
     provided 'com.squareup.dagger:dagger-compiler:1.2.2'
 
-    compile 'org.whispersystems:jobmanager:0.10.0'
-    compile 'org.whispersystems:libpastelog:1.0.4'
+    compile 'org.whispersystems:jobmanager:0.11.0'
+    compile 'org.whispersystems:libpastelog:1.0.6'
 
     androidTestCompile 'com.squareup:fest-android:1.0.8'
-    androidTestCompile 'com.google.dexmaker:dexmaker:1.1'
-    androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.1'
+
+    androidTestCompile 'com.google.dexmaker:dexmaker:1.2'
+    androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.2'
 
     //compile project(':libtextsecure')
     compile project(':LibTextsecure')
@@ -105,18 +106,24 @@ android {
 
     defaultConfig {
         minSdkVersion 9
-        targetSdkVersion 19
+        targetSdkVersion 22
 
         buildConfigField "long", "BUILD_TIMESTAMP", System.currentTimeMillis() + "L"
 
         versionCode verNumber
         versionName verName + gitRevision.substring(0, 8)
         applicationId 'de.gdata.securechat'
+
     }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+    dexOptions {
+        incremental true
+        javaMaxHeapSize "4g"
     }
 
     signingConfigs {
@@ -125,12 +132,46 @@ android {
 
     buildTypes {
         debug {
-            minifyEnabled false
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                    'proguard-google-play-services.pro',
+                    'proguard-dagger.pro',
+                    'proguard-jackson.pro',
+                    'proguard-sqlite.pro',
+                    'proguard-appcompat-v7.pro',
+                    'proguard-square-okhttp.pro',
+                    'proguard-square-okio.pro',
+                    'proguard-spongycastle.pro',
+                    'proguard-rounded-image-view.pro',
+                    'proguard-glide.pro',
+                    'proguard.cfg'
         }
         release {
-            minifyEnabled false
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                    'proguard-google-play-services.pro',
+                    'proguard-dagger.pro',
+                    'proguard-jackson.pro',
+                    'proguard-sqlite.pro',
+                    'proguard-appcompat-v7.pro',
+                    'proguard-square-okhttp.pro',
+                    'proguard-square-okio.pro',
+                    'proguard-spongycastle.pro',
+                    'proguard-rounded-image-view.pro',
+                    'proguard-glide.pro',
+                    'proguard.cfg'
             signingConfig signingConfigs.release
         }
+    }
+
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/ASL2.0'
     }
 
     sourceSets {
