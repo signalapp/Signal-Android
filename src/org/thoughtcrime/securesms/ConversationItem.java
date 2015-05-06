@@ -53,7 +53,6 @@ import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DateUtils;
-import org.thoughtcrime.securesms.util.Emoji;
 
 import java.util.Locale;
 import java.util.Set;
@@ -239,9 +238,7 @@ public class ConversationItem extends LinearLayout {
     if (isCaptionlessMms(messageRecord)) {
       bodyText.setVisibility(View.GONE);
     } else {
-      bodyText.setText(Emoji.getInstance(context).emojify(messageRecord.getDisplayBody(),
-                                                          new Emoji.InvalidatingPageLoadedListener(bodyText)),
-                       TextView.BufferType.SPANNABLE);
+      bodyText.setText(messageRecord.getDisplayBody());
       bodyText.setVisibility(View.VISIBLE);
     }
 

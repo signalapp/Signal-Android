@@ -78,7 +78,8 @@
                       android:layout_gravity="top" />
             </LinearLayout>
 
-        <TextView android:id="@+id/subject"
+        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+                  android:id="@+id/subject"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:textAppearance="?android:attr/textAppearanceSmall"
