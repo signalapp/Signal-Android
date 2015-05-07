@@ -31,7 +31,7 @@ repositories {
 }
 
 dependencies {
-    compile 'me.leolin:ShortcutBadger:1.0.2-WS2'
+    compile 'me.leolin:ShortcutBadger:1.1.0-WS1'
     compile 'se.emilsjolander:stickylistheaders:2.2.0'
     compile 'com.google.android.gms:play-services-base:6.5.87'
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
@@ -82,7 +82,7 @@ dependencies {
 
 dependencyVerification {
     verify = [
-            'me.leolin:ShortcutBadger:027977c718035e5997035e04e05152d6c72d94df645e8b7099a274ada722bd14',
+            'me.leolin:ShortcutBadger:3142d017234bfa0cdd69ccded7cc5ea63f13b97574803c8c616c9bbeaad33ad9',
             'se.emilsjolander:stickylistheaders:89146b46c96fea0e40200474a2625cda10fe94891e4128f53cdb42375091b9b6',
             'com.google.android.gms:play-services-base:832cb6b3130e871db6a412c4ab585656dbcc5e7948101f190186757785703f75',
             'com.astuetz:pagerslidingtabstrip:f1641396732c7132a7abb837e482e5ee2b0ebb8d10813fc52bbaec2c15c184c2',
@@ -104,7 +104,6 @@ dependencyVerification {
             'org.whispersystems:jobmanager:ea9cb943c4892fb90c1eea1be30efeb85cefca213d52c788419553b58d0ed70d',
             'org.whispersystems:libpastelog:550d33c565380d90f4c671e7b8ed5f3a6da55a9fda468373177106b2eb5220b2',
             'org.whispersystems:textsecure-android:df4c1ac9ee8f7cd43c8c07d64b16e31875e04632afc3fe73f2a47292a86c79a1',
-            'com.android.support:support-annotations:7bc07519aa613b186001160403bcfd68260fa82c61cc7e83adeedc9b862b94ae',
             'com.nineoldandroids:library:68025a14e3e7673d6ad2f95e4b46d78d7d068343aa99256b686fe59de1b3163a',
             'javax.inject:javax.inject:91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff',
             'com.madgag.spongycastle:core:8d6240b974b0aca4d3da9c7dd44d42339d8a374358aca5fc98e50a995764511f',
@@ -121,6 +120,7 @@ dependencyVerification {
             'com.fasterxml.jackson.core:jackson-core:cbf4604784b4de226262845447a1ad3bb38a6728cebe86562e2c5afada8be2c0',
             'org.whispersystems:curve25519-java:9ccef8f5aba05d9942336f023c589d6278b4f9135bdc34a7bade1f4e7ad65fa3',
             'com.android.support:support-v4:1e2e4d35ac7fd30db5ce3bc177b92e4d5af86acef2ef93e9221599d733346f56',
+            'com.android.support:support-annotations:7bc07519aa613b186001160403bcfd68260fa82c61cc7e83adeedc9b862b94ae',
     ]
 }
 
