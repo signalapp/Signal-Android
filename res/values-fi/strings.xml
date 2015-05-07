@@ -743,7 +743,7 @@ Ilmaiset ja yksityiset viestit TextSecuren ja Signalin käyttäjille</string>
   <string name="text_secure_normal__mark_all_as_read">Merkitse kaikki luetuiksi</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">Käyttämäsi TextSecure on vanhentunut!</string>
-  <string name="reminder_header_expired_build_details">Viestejä ei enää voida lähettää onnistuneesti. Ole hyvä ja päivitä viimeisimpään versioon.</string>
+  <string name="reminder_header_expired_build_details">Viestien lähetys ei enää onnistu. Päivitä ohjelma viimeisimpään versioon.</string>
   <string name="reminder_header_sms_default_title">Käytä oletuksena tekstiviesteille?</string>
   <string name="reminder_header_sms_default_text">Napsauta, jos haluat tehdä TextSecuresta oletustekstiviestisovelluksesi.</string>
   <string name="reminder_header_sms_import_title">Tuo järjestelmän tekstiviestit?</string>

@@ -559,11 +559,13 @@ SMS-подтверждения...
   <plurals name="minutes_ago">
     <item quantity="one">%d минута</item>
     <item quantity="few">%d минут</item>
+    <item quantity="many">%d минут</item>
     <item quantity="other">%d мин.</item>
   </plurals>
   <plurals name="hours_ago">
     <item quantity="one">%d час</item>
     <item quantity="few">%d часа</item>
+    <item quantity="many">%d часов</item>
     <item quantity="other">%d час.</item>
   </plurals>
   <!--preferences.xml-->
