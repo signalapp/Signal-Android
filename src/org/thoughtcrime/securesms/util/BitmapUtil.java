@@ -15,10 +15,13 @@ import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.util.Pair;
 
 import com.android.gallery3d.data.Exif;
+import com.makeramen.RoundedDrawable;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.PartAuthority;
@@ -28,6 +31,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class BitmapUtil {
   private static final String TAG = BitmapUtil.class.getSimpleName();
@@ -255,22 +259,47 @@ public class BitmapUtil {
     return output;
   }
 
-  public static Bitmap createFromDrawable(Drawable drawable) {
-    if (drawable instanceof BitmapDrawable) {
-      return ((BitmapDrawable)drawable).getBitmap();
+  public static Bitmap createFromDrawable(final Drawable drawable, final int width, final int height) {
+    final AtomicBoolean created = new AtomicBoolean(false);
+    final Bitmap[]      result  = new Bitmap[1];
+
+    new Handler(Looper.getMainLooper()).post(new Runnable() {
+      @Override
+      public void run() {
+        if (drawable instanceof BitmapDrawable) {
+          result[0] = ((BitmapDrawable) drawable).getBitmap();
+        } else {
+          int canvasWidth = drawable.getIntrinsicWidth();
+          if (canvasWidth <= 0) canvasWidth = width;
+
+          int canvasHeight = drawable.getIntrinsicHeight();
+          if (canvasHeight <= 0) canvasHeight = height;
+
+          Bitmap bitmap;
+
+          try {
+            bitmap = Bitmap.createBitmap(canvasWidth, canvasHeight, Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(bitmap);
+            drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+            drawable.draw(canvas);
+          } catch (Exception e) {
+            Log.w(TAG, e);
+            bitmap = null;
+          }
+
+          result[0] = bitmap;
+        }
+
+        synchronized (result) {
+          created.set(true);
+          result.notifyAll();
+        }
+      }
+    });
+
+    synchronized (result) {
+      while (!created.get()) Util.wait(result, 0);
+      return result[0];
     }
-
-    int width = drawable.getIntrinsicWidth();
-    width = width > 0 ? width : 1;
-
-    int height = drawable.getIntrinsicHeight();
-    height = height > 0 ? height : 1;
-
-    Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-    Canvas canvas = new Canvas(bitmap);
-    drawable.draw(canvas);
-
-    return bitmap;
   }
-
 }
