@@ -9,9 +9,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Handler;
 import android.os.IBinder;
-import android.os.Message;
 import android.provider.ContactsContract;
 import android.util.Log;
 
@@ -27,13 +25,12 @@ public class GService extends Service {
 
   public static final int TYPE_SMS = 2;
   public static final int INCOMING = 1;
-  public static Context appContext;
+  private static Context mContext;
   private static PrivacyContentObserver privacyContentObserver;
   private static GDataPreferences preferences;
   private static IRpcService mService;
 
   public void init(Context context) {
-    appContext = context;
     preferences = new GDataPreferences(context);
     preferences.setApplicationFont("Roboto-Light.ttf");
     AsyncQueryHandler handler =
@@ -70,9 +67,9 @@ public class GService extends Service {
     boolean isInstalled = true;
     try {
       if (mService == null) {
-        Log.d("GDATA", "Trying to bind service " + (mService == null) + " - " + (appContext == null));
-        if (appContext != null) {
-          isInstalled = appContext.bindService(new Intent(GDataPreferences.INTENT_ACCESS_SERVER), mConnection, Context.BIND_AUTO_CREATE);
+        Log.d("GDATA", "Trying to bind service " + (mService == null) + " - " + (mContext== null));
+        if (mContext != null) {
+          isInstalled = mContext.bindService(new Intent(GDataPreferences.INTENT_ACCESS_SERVER), mConnection, Context.BIND_AUTO_CREATE);
         }
       }
     } catch (java.lang.SecurityException e) {
@@ -189,7 +186,8 @@ public class GService extends Service {
   }
   @Override
   public void onCreate() {
-    appContext = getApplicationContext();
+    mContext = getApplicationContext();
+    PrivacyBridge.mContext = getApplicationContext();
     bindISFAService();
   }
 
@@ -202,9 +200,9 @@ public class GService extends Service {
     @Override
     protected String doInBackground(Boolean... params) {
       bindISFAService();
-      PrivacyBridge.loadAllHiddenContacts(appContext);
+      PrivacyBridge.loadAllHiddenContacts(mContext);
       try {
-        DirectoryHelper.refreshDirectory(appContext, TextSecureCommunicationFactory.createManager(appContext));
+        DirectoryHelper.refreshDirectory(mContext, TextSecureCommunicationFactory.createManager(mContext));
       } catch (IOException e) {
         Log.d("GDATA", "Couldn`t load SecureChat contacts");
       }
@@ -220,12 +218,4 @@ public class GService extends Service {
     //nothing big happens here anynmore, so that it isnt neccessary to check whether its already running or not
     new AsyncTaskRefreshPrivacyData().execute(fullReload);
   }
-  //needs to be initialized here, because of Looper/Thread reasons.
-  public static Handler reloadHandler = new Handler() {
-
-    public void handleMessage(Message msg) {
-      super.handleMessage(msg);
-      PrivacyBridge.reloadAdapter();
-    }
-  };
 }
