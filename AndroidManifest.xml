@@ -2,8 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
           package="org.thoughtcrime.securesms"
-      android:versionCode="111"
-      android:versionName="2.11.1">
+      android:versionCode="113"
+      android:versionName="2.13.0">
+
+    <uses-sdk tools:overrideLibrary="com.amulyakhare.textdrawable"/>
 
     <permission android:name="org.thoughtcrime.securesms.ACCESS_SECRETS"
                 android:label="Access to TextSecure Secrets"
@@ -44,6 +46,9 @@
 
     <meta-data android:name="com.google.android.gms.version"
                android:value="@integer/google_play_services_version" />
+
+    <meta-data android:name="org.thoughtcrime.securesms.mms.TextSecureGlideModule"
+               android:value="GlideModule" />
 
     <activity android:name=".RegistrationProblemsActivity"
               android:theme="@style/TextSecure.Light.Dialog"
@@ -220,7 +225,9 @@
     <activity android:name=".SmsSendtoActivity">
         <intent-filter>
             <action android:name="android.intent.action.SENDTO" />
+            <action android:name="android.intent.action.VIEW" />
             <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
             <data android:scheme="sms" />
             <data android:scheme="smsto" />
             <data android:scheme="mms" />

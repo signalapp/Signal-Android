@@ -5,12 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:gravity="center_vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
 
-    <com.makeramen.RoundedImageView
+    <org.thoughtcrime.securesms.components.AvatarImageView
             android:id="@+id/contact_photo_image"
             android:foreground="@drawable/contact_photo_background"
-            app:riv_oval="true"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_centerVertical="true"
@@ -19,7 +20,6 @@
             android:layout_marginBottom="3dp"
             android:layout_marginRight="10dp"
             android:cropToPadding="true"
-            android:scaleType="centerCrop"
             tools:src="@drawable/ic_contact_picture"
             android:contentDescription="@string/SingleContactSelectionActivity_contact_photo" />
 
@@ -36,7 +36,8 @@
                       android:layout_height="wrap_content"
                       android:orientation="vertical">
 
-            <TextView android:id="@+id/from"
+            <org.thoughtcrime.securesms.components.FromTextView
+                      android:id="@+id/from"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:textAppearance="?android:attr/textAppearanceMedium"

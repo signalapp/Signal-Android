@@ -35,6 +35,10 @@ public class DynamicLanguage {
     setContextLocale(service, currentLocale);
   }
 
+  public Locale getCurrentLocale() {
+    return currentLocale;
+  }
+
   private static void setContextLocale(Context context, Locale selectedLocale) {
     Configuration configuration = context.getResources().getConfiguration();
 

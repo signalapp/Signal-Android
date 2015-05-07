@@ -2,34 +2,23 @@ package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.PartDatabase;
 import org.thoughtcrime.securesms.mms.AudioSlide;
 import org.thoughtcrime.securesms.mms.ImageSlide;
-import org.thoughtcrime.securesms.mms.MediaConstraints;
-import org.thoughtcrime.securesms.mms.MediaTooLargeException;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.VideoSlide;
-import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.concurrent.Callable;
 
 import ws.com.google.android.mms.ContentType;
-import ws.com.google.android.mms.MmsException;
 import ws.com.google.android.mms.pdu.PduPart;
-import ws.com.google.android.mms.pdu.SendReq;
 
 public class MediaUtil {
   private static final String TAG = MediaUtil.class.getSimpleName();
@@ -49,22 +38,6 @@ public class MediaUtil {
     }
 
     return data;
-  }
-
-  public static Bitmap getOrGenerateThumbnail(Context context, MasterSecret masterSecret, PduPart part)
-      throws IOException, BitmapDecodingException
-  {
-    if (part.getDataUri() != null && part.getId() > -1) {
-      return BitmapFactory.decodeStream(DatabaseFactory.getPartDatabase(context)
-                                                       .getThumbnailStream(masterSecret, part.getId()));
-    } else if (part.getDataUri() != null) {
-      Log.w(TAG, "generating thumbnail for new part");
-      Bitmap bitmap = MediaUtil.generateThumbnail(context, masterSecret, part.getDataUri(), Util.toIsoString(part.getContentType())).getBitmap();
-      part.setThumbnail(bitmap);
-      return bitmap;
-    } else {
-      throw new FileNotFoundException("no data location specified");
-    }
   }
 
   public static byte[] getPartData(Context context, MasterSecret masterSecret, PduPart part)

@@ -233,6 +233,7 @@ SMS-களை இறக்குமதி செய்திருந்தா�
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure ஐகான்</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">கடவுச்சொல்லை சமர்ப்பிக்க</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">தவறான கடவுச்சொல்!</string>
+  <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">இந்த சாவிபரிமாட்ட்றத்திற்கான டிஜிட்டல் கையெழுத்தானது இந்த தொடர்பிடம்யிருந்து முன்னம் பெற்றதனைவிட்டு மாறியுள்ளது. இது யாரோ உங்கள் தொலைத்தொடர்பை குறுக்கிட்டு உளவுபார்க முயற்ச்சிக்கிறார்கள் என குறிக்கலாம், அல்லது இது இந்த தொடர்பு வெறுமனே Textsecure-ஐ மீண்டும் நிறுவி புதிய அடையாளச்சாவி பெற்றார்.</string>
@@ -355,8 +356,6 @@ SMS-களை இறக்குமதி செய்திருந்தா�
   <string name="KeyCachingService_passphrase_cached">TextSecure திறக்கப்பட்டுள்ளது </string>
   <string name="KeyCachingService_lock">கடவுச்சொல்லை வைத்து பூட்டவும் </string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages">%d புதிய செய்திகள்</string>
-  <string name="MessageNotifier_most_recent_from_s">மிக அண்மையில் இவரிடமிருந்து: %s</string>
   <string name="MessageNotifier_encrypted_message">மறையாக்கப்பட செய்தி...</string>
   <string name="MessageNotifier_media_message_with_text">மீடியா செய்தி: %s</string>
   <string name="MessageNotifier_no_subject">(தலைப்பு இல்லை)</string>

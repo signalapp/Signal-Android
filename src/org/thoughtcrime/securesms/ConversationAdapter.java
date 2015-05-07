@@ -18,7 +18,6 @@ package org.thoughtcrime.securesms;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +35,7 @@ import org.thoughtcrime.securesms.util.LRUCache;
 import java.lang.ref.SoftReference;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
@@ -64,16 +64,19 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
   private final SelectionClickListener selectionClickListener;
   private final Context                context;
   private final MasterSecret           masterSecret;
+  private final Locale                 locale;
   private final boolean                groupThread;
   private final boolean                pushDestination;
   private final LayoutInflater         inflater;
 
-  public ConversationAdapter(Context context, MasterSecret masterSecret, SelectionClickListener selectionClickListener,
-                             boolean groupThread, boolean pushDestination)
+  public ConversationAdapter(Context context, MasterSecret masterSecret, Locale locale,
+                             SelectionClickListener selectionClickListener, boolean groupThread,
+                             boolean pushDestination)
   {
     super(context, null, 0);
     this.context                = context;
     this.masterSecret           = masterSecret;
+    this.locale                 = locale;
     this.selectionClickListener = selectionClickListener;
     this.groupThread            = groupThread;
     this.pushDestination        = pushDestination;
@@ -87,7 +90,7 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
     String type                 = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsDatabase.TRANSPORT));
     MessageRecord messageRecord = getMessageRecord(id, cursor, type);
 
-    item.set(masterSecret, messageRecord, batchSelected, selectionClickListener,
+    item.set(masterSecret, messageRecord, locale, batchSelected, selectionClickListener,
              groupThread, pushDestination);
   }
 

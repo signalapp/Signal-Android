@@ -178,6 +178,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure 圖示</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">確認『自訂密碼』</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">無效的『自訂密碼』！</string>
+  <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">此次
@@ -300,8 +301,6 @@
   <string name="KeyCachingService_passphrase_cached">TextSecure 已解除鎖定</string>
   <string name="KeyCachingService_lock">以『自訂密碼』進行鎖定</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages">%d 則新訊息</string>
-  <string name="MessageNotifier_most_recent_from_s">最近的訊息來自: %s</string>
   <string name="MessageNotifier_encrypted_message">加密的訊息...</string>
   <string name="MessageNotifier_no_subject">(在此輸入主題)</string>
   <string name="MessageNotifier_message_delivery_failed">訊息傳送失敗。</string>

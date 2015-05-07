@@ -16,13 +16,14 @@
                                           android:layout_width="0dp"
                                           android:layout_height="45dp" />
 
-        <ImageButton android:id="@+id/backspace"
-                     android:src="@drawable/ic_emoji_backspace"
-                     android:background="@color/emoji_tab_underline"
-                     android:paddingLeft="@dimen/emoji_drawer_left_right_padding"
-                     android:paddingRight="@dimen/emoji_drawer_left_right_padding"
-                     android:layout_width="wrap_content"
-                     android:layout_height="match_parent" />
+        <org.thoughtcrime.securesms.components.RepeatableImageKey
+                android:id="@+id/backspace"
+                android:src="@drawable/ic_emoji_backspace"
+                android:background="@color/emoji_tab_underline"
+                android:paddingLeft="@dimen/emoji_drawer_left_right_padding"
+                android:paddingRight="@dimen/emoji_drawer_left_right_padding"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
 
     </LinearLayout>
 

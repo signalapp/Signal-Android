@@ -234,6 +234,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Іконка TextSecure</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Адправіць пароль</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Няправільны пароль!</string>
+  <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Подпіс падчас цяперашняга абмене ключамі адрозніваецца ад таго, які быў атрыманы ад гэтага кантакта мінулым разам. Гэта можа вызначаць, што нехта спрабуе перахапіць вашыя паведамленні, альбо гэты кантакт проста пераўсталяваў па-новай TextSecure і зараз мае новы ідэнтыфікацыйны ключ.
@@ -346,8 +347,6 @@
   <string name="KeyCachingService_passphrase_cached">TextSecure разблакіравана</string>
   <string name="KeyCachingService_lock">Замкнуць гэты пароль</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages">%d новых паведамленняў</string>
-  <string name="MessageNotifier_most_recent_from_s">Самыя апошнія ад: %s</string>
   <string name="MessageNotifier_encrypted_message">Разшыфраванае паведамленне...</string>
   <string name="MessageNotifier_media_message_with_text">Мультымедыя паведамленне: %s</string>
   <string name="MessageNotifier_no_subject">(Няма тэмы)</string>

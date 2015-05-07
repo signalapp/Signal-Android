@@ -251,6 +251,8 @@ Tem certeza que deseja fazer isto?</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Ícone do TextSecure</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Enviar frase-chave</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Frase-chave inválida!</string>
+  <!--PlayServicesProblemFragment-->
+  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">A versão instalada do Serviços Google Play não está funcionando corretamente. Favor reinstalar o Serviços Google Play e tentar novamente.</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Avalie este app</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Se você gosta de usar este app, por favor tire uns segundos para nos ajudar com sua avaliação.</string>
@@ -389,8 +391,8 @@ Tem certeza que deseja fazer isto?</string>
   <string name="KeyCachingService_passphrase_cached">TextSecure está destrancado</string>
   <string name="KeyCachingService_lock">Trancar com frase-chave</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages">(%d) novas mensagens</string>
-  <string name="MessageNotifier_most_recent_from_s">Mais recente de: %s</string>
+  <string name="MessageNotifier_d_messages_in_d_conversations">%1$d mensagens em %2$d conversas</string>
+  <string name="MessageNotifier_most_recent_from_s">Mais recente de: %1$s</string>
   <string name="MessageNotifier_encrypted_message">Mensagem criptografada...</string>
   <string name="MessageNotifier_media_message_with_text">Mensagem multimídia: %s</string>
   <string name="MessageNotifier_no_subject">(Sem assunto)</string>

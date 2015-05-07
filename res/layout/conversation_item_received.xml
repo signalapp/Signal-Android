@@ -26,17 +26,15 @@
                     android:layout_marginBottom="6dp"
                     android:layout_marginRight="0dp">
 
-        <org.thoughtcrime.securesms.components.ForegroundImageView
+        <org.thoughtcrime.securesms.components.AvatarImageView
             android:id="@+id/contact_photo"
             android:foreground="@drawable/contact_photo_background"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            app:riv_oval="true"
             android:layout_marginRight="10dp"
             android:layout_alignParentLeft="true"
             android:cropToPadding="true"
-            android:contentDescription="@string/conversation_item_received__contact_photo_description"
-            android:scaleType="centerCrop" />
+            android:contentDescription="@string/conversation_item_received__contact_photo_description" />
 
         <org.thoughtcrime.securesms.components.IncomingBubbleContainer
                 android:id="@+id/bubble"

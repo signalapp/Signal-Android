@@ -239,6 +239,8 @@ SMS съобщенията от системната базата данни в 
   <string name="PassphrasePromptActivity_watermark_content_description">Икона на TextSecure</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Задай паролата</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Грешна парола!</string>
+  <!--PlayServicesProblemFragment-->
+  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Версията на Google Play Services, която сте инсталирали не функционира правилно. Моля, преинсталирайте Google Play Services и опитайте пак.</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Оцени тази програма</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Ако харесваш тази програма, отдели една секунда и ни помогни като ѝ дадеш оценка.</string>
@@ -367,8 +369,8 @@ SMS съобщенията от системната базата данни в 
   <string name="KeyCachingService_passphrase_cached">TextSecure е отключен</string>
   <string name="KeyCachingService_lock">Заключи паролата</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages">%d нови съобщения</string>
-  <string name="MessageNotifier_most_recent_from_s">Най-скорошното от: %s</string>
+  <string name="MessageNotifier_d_messages_in_d_conversations">%1$d съобщения в %2$d чата</string>
+  <string name="MessageNotifier_most_recent_from_s">Най-скорошно от: %1$s</string>
   <string name="MessageNotifier_encrypted_message">Шифровано съобщение...</string>
   <string name="MessageNotifier_media_message_with_text">Медийно съобщение: %s</string>
   <string name="MessageNotifier_no_subject">(Няма зададена тема)</string>

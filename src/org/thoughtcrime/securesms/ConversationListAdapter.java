@@ -36,6 +36,7 @@ import org.thoughtcrime.securesms.database.model.ThreadRecord;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 /**
@@ -47,6 +48,7 @@ public class ConversationListAdapter extends CursorRecyclerViewAdapter<Conversat
 
   private final ThreadDatabase    threadDatabase;
   private final MasterCipher      masterCipher;
+  private final Locale            locale;
   private final Context           context;
   private final LayoutInflater    inflater;
   private final ItemClickListener clickListener;
@@ -80,12 +82,14 @@ public class ConversationListAdapter extends CursorRecyclerViewAdapter<Conversat
 
   public ConversationListAdapter(@NonNull Context context,
                                  @NonNull MasterSecret masterSecret,
+                                 @NonNull Locale locale,
                                  @Nullable Cursor cursor,
                                  @Nullable ItemClickListener clickListener) {
     super(context, cursor);
     this.masterCipher   = new MasterCipher(masterSecret);
     this.context        = context;
     this.threadDatabase = DatabaseFactory.getThreadDatabase(context);
+    this.locale         = locale;
     this.inflater       = LayoutInflater.from(context);
     this.clickListener  = clickListener;
   }
@@ -101,7 +105,7 @@ public class ConversationListAdapter extends CursorRecyclerViewAdapter<Conversat
     ThreadDatabase.Reader reader = threadDatabase.readerFor(cursor, masterCipher);
     ThreadRecord          record = reader.getCurrent();
 
-    viewHolder.getItem().set(record, batchSet, batchMode);
+    viewHolder.getItem().set(record, locale, batchSet, batchMode);
   }
 
   public void toggleThreadInBatchSet(long threadId) {
@@ -127,17 +131,9 @@ public class ConversationListAdapter extends CursorRecyclerViewAdapter<Conversat
   }
 
   public void selectAllThreads() {
-    Cursor cursor = DatabaseFactory.getThreadDatabase(context).getConversationList();
-
-    try {
-      while (cursor != null && cursor.moveToNext()) {
-        this.batchSet.add(cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.ID)));
-      }
-    } finally {
-      if (cursor != null)
-        cursor.close();
+    for (int i = 0; i < getItemCount(); i++) {
+      batchSet.add(getItemId(i));
     }
-
     this.notifyDataSetChanged();
   }
 

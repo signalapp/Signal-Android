@@ -2,9 +2,6 @@ package org.thoughtcrime.securesms;
 
 import org.thoughtcrime.securesms.util.CharacterCalculator;
 import org.thoughtcrime.securesms.util.CharacterCalculator.CharacterState;
-import org.thoughtcrime.securesms.util.EncryptedSmsCharacterCalculator;
-import org.thoughtcrime.securesms.util.PushCharacterCalculator;
-import org.thoughtcrime.securesms.util.SmsCharacterCalculator;
 
 public class TransportOption {
 

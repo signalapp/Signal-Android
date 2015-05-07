@@ -23,12 +23,11 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
 
 import com.makeramen.RoundedImageView;
 
@@ -46,9 +45,9 @@ public class ForegroundImageView extends RoundedImageView {
 
   private int mForegroundGravity = Gravity.FILL;
 
-  protected boolean mForegroundInPadding = true;
+  private boolean mForegroundInPadding = true;
 
-  boolean mForegroundBoundsChanged = false;
+  private boolean mForegroundBoundsChanged = false;
 
   public ForegroundImageView(Context context) {
     super(context);
@@ -123,52 +122,13 @@ public class ForegroundImageView extends RoundedImageView {
     return ActivityOptions.makeScaleUpAnimation(this, 0, 0, getWidth(), getHeight());
   }
 
-  public void show(Drawable drawable, boolean instantaneous) {
-    setImageDrawable(drawable);
-    if (drawable.getIntrinsicHeight() < (getHeight() * 0.75f) &&
-        drawable.getIntrinsicWidth()  < (getHeight() * 0.75f))
-    {
-      setScaleType(ScaleType.CENTER_INSIDE);
-    } else {
-      setScaleType(ScaleType.CENTER_CROP);
-    }
-    fadeIn(instantaneous ? 0 : 200);
-  }
-
   public void reset() {
-    cancelAnimations();
     setImageDrawable(null);
-    setVisibility(View.INVISIBLE);
+    setVisibility(View.VISIBLE);
   }
 
   public void hide() {
     setVisibility(View.GONE);
-  }
-
-  private void fadeIn(final long millis) {
-    if (VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN) fadeInModern(millis);
-    else                                             fadeInLegacy(millis);
-    setVisibility(View.VISIBLE);
-  }
-
-  private void fadeInLegacy(final long millis) {
-    final AlphaAnimation alpha = new AlphaAnimation(0f, 1f);
-    alpha.setDuration(millis);
-    alpha.setFillAfter(true);
-    startAnimation(alpha);
-  }
-
-  @TargetApi(VERSION_CODES.JELLY_BEAN)
-  private void fadeInModern(final long millis) {
-    setAlpha(0f);
-    animate().alpha(1f).setDuration(millis);
-  }
-
-  private void cancelAnimations() {
-    if (getAnimation() != null) {
-      getAnimation().cancel();
-      clearAnimation();
-    }
   }
 
   @Override
@@ -249,7 +209,7 @@ public class ForegroundImageView extends RoundedImageView {
   }
 
   @Override
-  public void draw(Canvas canvas) {
+  public void draw(@NonNull Canvas canvas) {
     super.draw(canvas);
 
     if (mForeground != null) {
@@ -278,5 +238,4 @@ public class ForegroundImageView extends RoundedImageView {
       foreground.draw(canvas);
     }
   }
-
 }

@@ -253,6 +253,8 @@ Por favor pida al remitente que actualice a la versión más reciente y reenvíe
   <string name="PassphrasePromptActivity_watermark_content_description">Icono de TextSecure</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Enviar clave de acceso</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">¡Clave de acceso no válida!</string>
+  <!--PlayServicesProblemFragment-->
+  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">La versión de Google Play Services que ha instalado no está funcionando correctamente. Por favor, reinstale Google Play Services e inténtelo de nuevo.</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Evalúe esta aplicación</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Si disfruta usando esta aplicación, por favor, tómese un momento para ayudarnos evaluándola.</string>
@@ -387,8 +389,8 @@ Se recibió un mensaje con una clave de identidad desconocida. Haga clic para pr
   <string name="KeyCachingService_passphrase_cached">TextSecure está desbloqueado</string>
   <string name="KeyCachingService_lock">Bloquear con clave de acceso</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages">(%d) nuevos mensajes</string>
-  <string name="MessageNotifier_most_recent_from_s">Mensaje más reciente de: %s</string>
+  <string name="MessageNotifier_d_messages_in_d_conversations">%1$d mensajes en %2$d conversaciones</string>
+  <string name="MessageNotifier_most_recent_from_s">Más recientes desde: %1$s</string>
   <string name="MessageNotifier_encrypted_message">Mensaje cifrado...</string>
   <string name="MessageNotifier_media_message_with_text">Mensaje multimedia: %s</string>
   <string name="MessageNotifier_no_subject">(Sin asunto)</string>

@@ -3,7 +3,7 @@
   <string name="app_name">TextSecure</string>
   <string name="yes">Ja</string>
   <string name="no">Nee</string>
-  <string name="delete">Verwijder</string>
+  <string name="delete">Verwijderen</string>
   <string name="please_wait">Een moment alsjeblieft...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Momenteel: %s</string>
@@ -102,7 +102,7 @@ Je zal je telefoonnummer opnieuw moeten registreren als je pushberichten weer wi
   <string name="ConversationFragment_message_details">Berichtdetails</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Overdracht: %1$s\nVerzonden/Ontvangen: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Verzender: %1$s\nTransport: %2$s\nVerstuurd%3$s\n/Ontvangen:%4$s</string>
-  <string name="ConversationFragment_confirm_message_delete">Berichtverwijdering bevestigen</string>
+  <string name="ConversationFragment_confirm_message_delete">Verwijderen bericht bevestigen</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Weet je zeker dat je de geselecteerde berichten permanent wilt verwijderen?</string>
   <string name="ConversationFragment_save_to_sd_card">Opslaan?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Het opslaan van dit mediabestand maakt het toegankelijke voor alle apps op je telefoon.t.\n\nDoorgaan?</string>
@@ -229,9 +229,11 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure icoon</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Wachtwoord instellen</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Ongeldig wachtwoord!</string>
+  <!--PlayServicesProblemFragment-->
+  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">De versie van Google Play Services die je in gebruikt hebt functioneert niet correct. Installeer Google Play Services alsjeblieft opnieuw en probeer het nog eens.</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Beoordeel deze app</string>
-  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Gebruik je deze app graag? Help ons dan een momentje en geef een beoordeling.</string>
+  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Gebruik je deze app graag? Help ons dan een momentje en geef je beoordeling.</string>
   <string name="RatingManager_rate_now">Nu beoordelen!</string>
   <string name="RatingManager_no_thanks">Nee dankjewel</string>
   <string name="RatingManager_later">Later</string>
@@ -351,8 +353,8 @@ Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en 
   <string name="KeyCachingService_passphrase_cached">TextSecure is ontgrendeld</string>
   <string name="KeyCachingService_lock">Vergrendelen met wachtwoord</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages">(%d) Nieuwe berichten</string>
-  <string name="MessageNotifier_most_recent_from_s">Meest recente van: %s</string>
+  <string name="MessageNotifier_d_messages_in_d_conversations">%1$d berichten in %2$d gesprekken</string>
+  <string name="MessageNotifier_most_recent_from_s">Meest recente van: %1$s</string>
   <string name="MessageNotifier_encrypted_message">Versleuteld bericht...</string>
   <string name="MessageNotifier_media_message_with_text">Mediabericht: %s</string>
   <string name="MessageNotifier_no_subject">(Geen onderwerp)</string>
@@ -386,7 +388,7 @@ Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en 
   <string name="conversation_activity__type_message_sms_insecure">Verstuur onbeveiligde SMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Verstuur onbeveiligde MMS</string>
   <string name="conversation_activity__send">Verstuur</string>
-  <string name="conversation_activity__remove">Verwijder</string>
+  <string name="conversation_activity__remove">Verwijderen</string>
   <string name="conversation_activity__window_description">Gesprek met %1$s</string>
   <string name="conversation_activity__compose_description">Bericht samenstelling</string>
   <string name="conversation_activity__emoji_toggle_description">Wissel emoji toetsenbord</string>
@@ -702,7 +704,7 @@ TextSecure heeft te lang moeten wachten op het binnenkomen van de verificatie-SM
   <string name="conversation__menu_add_attachment">Bijlage toevoegen</string>
   <string name="conversation__menu_update_group">Groep bijwerken</string>
   <string name="conversation__menu_leave_group">Groep verlaten</string>
-  <string name="conversation__menu_delete_thread">Verwijder gehele gesprek</string>
+  <string name="conversation__menu_delete_thread">Gehele gesprek verwijderen</string>
   <string name="conversation__menu_view_media">Alle afbeeldingen</string>
   <!--conversation_callable-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Toevoegen aan contacten</string>

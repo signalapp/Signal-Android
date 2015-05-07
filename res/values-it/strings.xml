@@ -25,7 +25,7 @@ Avrai bisogno di registrare di nuovo il tuo numero di telefono per usare i messa
 </string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Errore durante la connessione al server!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS Abilitati</string>
-  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Premi per cambiare l\'applicazione predefinita per gli SMS</string>
+  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Tocca per cambiare l\'applicazione predefinita per gli SMS</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS Disabilitati</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Tocca per rendere TextSecure l\'applicazione predefinita per gli SMS</string>
   <string name="ApplicationPreferencesActivity_on">on</string>
@@ -60,11 +60,11 @@ questo contatto.</string>
   <string name="ConversationItem_received_key_exchange_message_click_to_process">Ricevuto messaggio per lo scambio della chiave, cliccare per procedere</string>
   <string name="ConversationItem_group_action_left">%1$s ha lasciato il gruppo.</string>
   <string name="ConversationItem_click_for_details">Tocca per i dettagli</string>
-  <string name="ConversationItem_click_to_approve_unencrypted">Selezione per tornare alla comunicazione non sicura</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Ripiegare su SMS non cifrati?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Ripiegare su MMS non cifrati?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">Tocca per tornare alla conversazione non cifrata</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Tornare agli SMS non cifrati?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Tornare agli MMS non cifrati?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Questo messaggio <b>non</b> sarà criptato perché il destinatario non usa più TextSecure.\n\nInvio un messaggio non sicuro?</string>
-  <string name="ConversationItem_unable_to_open_media">Impossibile trovare un\'app per aprire questo file.</string>
+  <string name="ConversationItem_unable_to_open_media">Impossibile trovare un\'app per aprire il file.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Iniziare sessione sicura?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Iniziare una sessione sicura con %s?</string>
@@ -89,7 +89,7 @@ questo contatto.</string>
   <string name="ConversationActivity_invalid_recipient">Destinatario non valido!</string>
   <string name="ConversationActivity_calls_not_supported">Chiamate non supportate</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Il dispositivo non sembra supportare le telefonate.</string>
-  <string name="ConversationActivity_leave_group">Abbandonare il gruppo?</string>
+  <string name="ConversationActivity_leave_group">Vuoi lasciare il gruppo?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Vuoi davvero lasciare questo gruppo?</string>
   <string name="ConversationActivity_transport_insecure_sms">SMS non sicuro</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS non sicuro</string>
@@ -97,6 +97,8 @@ questo contatto.</string>
   <string name="ConversationActivity_get_with_it">Ottienilo con: %s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Vieni a chattare qui: %s</string>
   <string name="ConversationActivity_error_leaving_group">Errore nell\'abbandonare il gruppo...</string>
+  <string name="ConversationActivity_mms_not_supported_title">MMS non supportati</string>
+  <string name="ConversationActivity_mms_not_supported_message">Questo messaggio non può essere inviato perchè il tuo operatore non supporta gli MMS</string>
   <string name="ConversationActivity_specify_recipient">Scegli un contatto</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Dettagli messaggio</string>
@@ -120,7 +122,7 @@ questo contatto.</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Cancellare i threads?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Sei sicuro di voler cancellare TUTTE le conversazioni selezionate?</string>
-  <string name="ConversationListFragment_deleting">Eliminando</string>
+  <string name="ConversationListFragment_deleting">Eliminazione</string>
   <string name="ConversationListFragment_deleting_selected_threads">Eliminazione delle conversazioni selezionate...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Messaggio di scambio della chiave...</string>
@@ -134,7 +136,7 @@ questo contatto.</string>
   <string name="ShareActivity_share_with">Condividi con</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Esporta</string>
-  <string name="ExportFragment_export_plaintext_to_sd_card">Esportare plaintext nella scheda SD?</string>
+  <string name="ExportFragment_export_plaintext_to_sd_card">Esportare copia in chiaro su scheda SD?</string>
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Attenzione, verranno
         esportati i contenuti dei tuoi messaggi TextSecure in formato plaintext sulla scheda SD.
     </string>
@@ -175,7 +177,7 @@ questo contatto.</string>
 </string>
   <string name="ImportFragment_import">Importa</string>
   <string name="ImportFragment_cancel">Annulla</string>
-  <string name="ImportFragment_restore_encrypted_backup">Ripristinare una copia cifrata?</string>
+  <string name="ImportFragment_restore_encrypted_backup">Ripristinare la copia cifrata?</string>
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
         Il rispristino di una copia cifrata sostituirà completamente le chiavi esistenti, le preferenze e
         i messaggi. Verranno perse tutte le informazioni presenti nell\'installazione attuale di TextSecure ma non
@@ -187,7 +189,7 @@ questo contatto.</string>
 messaggi da una copia. Se hai già importato questa copia,
 una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="ImportFragment_importing">Importazione</string>
-  <string name="ImportFragment_import_plaintext_backup_elipse">Importo la copia in chiaro...</string>
+  <string name="ImportFragment_import_plaintext_backup_elipse">Importazione copia in chiaro...</string>
   <string name="ImportFragment_no_plaintext_backup_found">Nessuna copia in chiaro trovato!</string>
   <string name="ImportFragment_error_importing_backup">Errore durante l\'importazione della copia!</string>
   <string name="ImportFragment_import_complete">Importazione terminata!</string>
@@ -236,6 +238,8 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icona TextSecure</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Inserisci password</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Password non valida!</string>
+  <!--PlayServicesProblemFragment-->
+  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">La versione di Google Play Services installata non funziona correttamente. Reinstallalo e riprova.</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Vota questa app!</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Se quest\'applicazione ti piace, ti preghiamo di aiutarci votandola.</string>
@@ -366,8 +370,8 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <string name="KeyCachingService_passphrase_cached">TextSecure è sbloccato</string>
   <string name="KeyCachingService_lock">Chiudi con password</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages">(%d) nuovi messaggi</string>
-  <string name="MessageNotifier_most_recent_from_s">Più recente da: %s</string>
+  <string name="MessageNotifier_d_messages_in_d_conversations">%1$d messaggi in %2$d conversazioni</string>
+  <string name="MessageNotifier_most_recent_from_s">Il più recente da: %1$s</string>
   <string name="MessageNotifier_encrypted_message">Messaggio cifrato...</string>
   <string name="MessageNotifier_media_message_with_text">Messaggio multimediale: %s</string>
   <string name="MessageNotifier_no_subject">(Nessun oggetto)</string>
@@ -465,14 +469,14 @@ Importo una copia in chiaro. Compatibile con \"SMSBackup And Restore\"</string>
   <string name="MmsPreferencesFragment__invalid_uri">Il testo immesso non è un URI valdio</string>
   <string name="MmsPreferencesFragment__invalid_host">Il testo immesso non è un host valido</string>
   <!--GroupUtil-->
-  <string name="GroupUtil_joined_the_group">%1$s si unisce al gruppo.</string>
+  <string name="GroupUtil_joined_the_group">%1$s si è unito al gruppo.</string>
   <string name="GroupUtil_group_updated">Gruppo aggiornato.</string>
   <string name="GroupUtil_title_is_now">Il titolo ora è \"%1$s\".</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Sblocca</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure ha bisogno delle impostazioni degli MMS, per poter inviare messaggi multimediali e di gruppo con il tuo operatore. Il tuo dispositivo non fornisce queste impostazioni, probabilmente perché ha un operatore bloccato o altre configurazioni restrittive.</string>
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Per inviare contenuti multimediali e messaggi di gruppo, fare clic su \"OK\" e completare le impostazioni richieste. Le impostazioni MMS del proprio operatore possono essere generalemtne trovate cercando \"APN proprio operatore\". Sarà necessario eseguire una sola volta questa procedura.</string>
+  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure ha bisogno delle impostazioni degli MMS per poter inviare messaggi multimediali e di gruppo con il tuo operatore. Il tuo dispositivo non fornisce queste impostazioni, probabilmente perché ha un operatore bloccato o altre configurazioni restrittive.</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Per inviare contenuti multimediali e messaggi di gruppo, tocca \"OK\" e completa le impostazioni richieste. Le impostazioni MMS del proprio operatore possono essere trovate generalmente cercando \"APN proprio operatore\". Sarà necessario eseguire una sola volta questa procedura.</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Completato</string>
   <!--registration_activity-->
@@ -508,9 +512,9 @@ TextSecure non funzionerà con i numeri Google Voice.
   <!--registration_progress_activity-->
   <string name="registration_progress_activity__voice_verification">Verifica vocale</string>
   <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">
-TextSecure può anche chiamarti per verificare il tuo numero. Clicca \'Chiamami\' ed inserisci
-in basso il codice a sei cifre che hai ascoltato.
-</string>
+        TextSecure può anche chiamarti per verificare il tuo numero. Tocca \"Chiamami\" e inserisci qui sotto il codice a sei cifre
+        che hai ascoltato.
+    </string>
   <string name="registration_progress_activity__verify">Verifica</string>
   <string name="registration_progress_activity__call_me">Chiamami</string>
   <string name="registration_progress_activity__edit_number">Modifica numero</string>
@@ -576,6 +580,7 @@ non riuscita.
   <string name="AndroidManifest__media_preview">Anteprima media</string>
   <string name="AndroidManifest__media_overview">Tutte le immagini</string>
   <string name="AndroidManifest__media_overview_named">Tutte le immagini con %1$s</string>
+  <string name="AndroidManifest__message_details">Dettagli messaggio</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importa / Esporta</string>
   <string name="arrays__my_identity_key">La chiave della mia identità</string>
@@ -656,6 +661,7 @@ non riuscita.
   <string name="preferences__custom">Personalizzato</string>
   <string name="preferences__advanced">Avanzate</string>
   <string name="preferences__app_protection">Protezione app</string>
+  <string name="preferences__mms_user_agent">User agent MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Impostazioni manuali MMS</string>
   <string name="preferences__enable_manual_mms">Usa le impostazioni manuali degli MMS</string>
   <string name="preferences__override_system_mms_settings">Sovrascrivi le impostazioni MMS di sistema con le seguenti informazioni</string>
@@ -679,6 +685,7 @@ non riuscita.
   <string name="preferences__default">Predefinito</string>
   <string name="preferences__language">Lingua</string>
   <string name="preferences__language_summary">Lingua %s</string>
+  <string name="preferences__textsecure_messages">Messaggi TextSecure</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
 Chatta gratis con gli utenti TextSecure e Signal</string>
   <string name="preferences__submit_debug_log">Invia log di debug</string>

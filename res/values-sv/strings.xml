@@ -102,6 +102,7 @@ verifiera denna kontakt.</string>
   <string name="ConversationActivity_error_leaving_group">Fel vid lämnande av grupp...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS stöds ej</string>
   <string name="ConversationActivity_mms_not_supported_message">Det här meddelandet kan inte skickas eftersom din operatör inte stöder MMS.</string>
+  <string name="ConversationActivity_specify_recipient">Vänligen välj en kontakt</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Meddelandedetaljer</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nSkickat/Mottagits: %2$s</string>
@@ -236,7 +237,12 @@ som för närvarande finns i TextSecure.</string>
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure-ikon</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Skicka lösenord</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Fel lösenord!</string>
+  <!--PlayServicesProblemFragment-->
+  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Versionen av Google Play-tjänster du har installerat fungerar inte korrekt. Vänligen installera om Google Play-tjänster och försök igen.</string>
   <!--RatingManager-->
+  <string name="RatingManager_rate_this_app">Betygsätt denna app</string>
+  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Om du gillar denna app kan du hjälpa oss genom att betygsätta den.</string>
+  <string name="RatingManager_rate_now">Betygsätt nu!</string>
   <string name="RatingManager_no_thanks">Nej tack</string>
   <string name="RatingManager_later">Senare</string>
   <!--ReceiveKeyActivity-->
@@ -353,8 +359,8 @@ Tog emot meddelande med okänd identitetsnyckel. Tryck för att bearbeta och vis
   <string name="KeyCachingService_passphrase_cached">TextSecure är upplåst</string>
   <string name="KeyCachingService_lock">Lås med lösenord</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages">%d nya meddelanden</string>
-  <string name="MessageNotifier_most_recent_from_s">Senaste från: %s</string>
+  <string name="MessageNotifier_d_messages_in_d_conversations">%1$d meddelanden i %2$d konversationer</string>
+  <string name="MessageNotifier_most_recent_from_s">Senaste från %1$s</string>
   <string name="MessageNotifier_encrypted_message">Krypterat meddelande...</string>
   <string name="MessageNotifier_media_message_with_text">Mediameddelande: %s</string>
   <string name="MessageNotifier_no_subject">(Inget ämne)</string>
@@ -538,6 +544,7 @@ TextSecure uppnådde tidsgränsen för sms-verifiering.</string>
   <string name="AndroidManifest__media_preview">Förhandsvisning av media</string>
   <string name="AndroidManifest__media_overview">Alla bilder</string>
   <string name="AndroidManifest__media_overview_named">Alla bilder med %1$s</string>
+  <string name="AndroidManifest__message_details">Meddelandedetaljer</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importera / exportera</string>
   <string name="arrays__my_identity_key">Min identitetsnyckel</string>

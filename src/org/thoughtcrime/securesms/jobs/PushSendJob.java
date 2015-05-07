@@ -82,6 +82,8 @@ public abstract class PushSendJob extends SendJob {
     long       threadId   = DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(messageId);
     Recipients recipients = DatabaseFactory.getThreadDatabase(context).getRecipientsForThreadId(threadId);
 
-    MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId);
+    if (threadId != -1 && recipients != null) {
+      MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId);
+    }
   }
 }

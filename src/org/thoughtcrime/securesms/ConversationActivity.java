@@ -173,7 +173,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     setContentView(R.layout.conversation_activity);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    fragment = initFragment(R.id.fragment_content, new ConversationFragment(), masterSecret);
+    fragment = initFragment(R.id.fragment_content, new ConversationFragment(), masterSecret, dynamicLanguage.getCurrentLocale());
 
     initializeReceivers();
     initializeViews();
@@ -1166,6 +1166,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   @Override
   public void setComposeText(String text) {
     this.composeText.setText(text);
+  }
+
+  @Override
+  public void setThreadId(long threadId) {
+    this.threadId = threadId;
   }
 
   @Override

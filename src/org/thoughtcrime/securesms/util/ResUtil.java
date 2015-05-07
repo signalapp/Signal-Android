@@ -18,6 +18,7 @@
 package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
+import android.content.res.Resources.Theme;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.AttrRes;
@@ -33,8 +34,12 @@ public class ResUtil {
   }
 
   public static int getDrawableRes(Context c, @AttrRes int attr) {
+    return getDrawableRes(c.getTheme(), attr);
+  }
+
+  public static int getDrawableRes(Theme theme, @AttrRes int attr) {
     final TypedValue out = new TypedValue();
-    c.getTheme().resolveAttribute(attr, out, true);
+    theme.resolveAttribute(attr, out, true);
     return out.resourceId;
   }
 

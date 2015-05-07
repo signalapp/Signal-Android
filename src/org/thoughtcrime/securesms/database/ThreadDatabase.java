@@ -391,14 +391,14 @@ public class ThreadDatabase extends Database {
     return null;
   }
 
-  public void update(long threadId) {
+  public boolean update(long threadId) {
     MmsSmsDatabase mmsSmsDatabase = DatabaseFactory.getMmsSmsDatabase(context);
     long count                    = mmsSmsDatabase.getConversationCount(threadId);
 
     if (count == 0) {
       deleteThread(threadId);
       notifyConversationListListeners();
-      return;
+      return true;
     }
 
     MmsSmsDatabase.Reader reader = null;
@@ -414,15 +414,17 @@ public class ThreadDatabase extends Database {
         else                 timestamp = record.getDateReceived();
 
         updateThread(threadId, count, record.getBody().getBody(), timestamp, record.getType());
+        notifyConversationListListeners();
+        return false;
       } else {
         deleteThread(threadId);
+        notifyConversationListListeners();
+        return true;
       }
     } finally {
       if (reader != null)
         reader.close();
     }
-
-    notifyConversationListListeners();
   }
 
   public static interface ProgressListener {

@@ -45,6 +45,7 @@ import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 
 public class ConversationFragment extends ListFragment
   implements LoaderManager.LoaderCallbacks<Cursor>
@@ -60,11 +61,13 @@ public class ConversationFragment extends ListFragment
   private Recipients   recipients;
   private long         threadId;
   private ActionMode   actionMode;
+  private Locale       locale;
 
   @Override
   public void onCreate(Bundle icicle) {
     super.onCreate(icicle);
     this.masterSecret = getArguments().getParcelable("master_secret");
+    this.locale       = (Locale) getArguments().getSerializable(PassphraseRequiredActionBarActivity.LOCALE_EXTRA);
   }
 
   @Override
@@ -116,7 +119,7 @@ public class ConversationFragment extends ListFragment
 
   private void initializeListAdapter() {
     if (this.recipients != null && this.threadId != -1) {
-      this.setListAdapter(new ConversationAdapter(getActivity(), masterSecret, selectionClickListener,
+      this.setListAdapter(new ConversationAdapter(getActivity(), masterSecret, locale, selectionClickListener,
                                                   (!this.recipients.isSingleRecipient()) || this.recipients.isGroupRecipient(),
                                                   DirectoryHelper.isPushDestination(getActivity(), this.recipients)));
       getListView().setRecyclerListener((ConversationAdapter)getListAdapter());
@@ -212,10 +215,17 @@ public class ConversationFragment extends ListFragment
           @Override
           protected Void doInBackground(MessageRecord... messageRecords) {
             for (MessageRecord messageRecord : messageRecords) {
+              boolean threadDeleted;
+
               if (messageRecord.isMms()) {
-                DatabaseFactory.getMmsDatabase(getActivity()).delete(messageRecord.getId());
+                threadDeleted = DatabaseFactory.getMmsDatabase(getActivity()).delete(messageRecord.getId());
               } else {
-                DatabaseFactory.getSmsDatabase(getActivity()).deleteMessage(messageRecord.getId());
+                threadDeleted = DatabaseFactory.getSmsDatabase(getActivity()).deleteMessage(messageRecord.getId());
+              }
+
+              if (threadDeleted) {
+                threadId = -1;
+                listener.setThreadId(threadId);
               }
             }
 
@@ -297,6 +307,8 @@ public class ConversationFragment extends ListFragment
 
   public interface ConversationFragmentListener {
     public void setComposeText(String text);
+
+    public void setThreadId(long threadId);
   }
 
   public interface SelectionClickListener extends
