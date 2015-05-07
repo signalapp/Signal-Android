@@ -1,22 +1,11 @@
 package de.gdata.messaging.util;
 
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
-import org.thoughtcrime.securesms.recipients.Recipients;
-
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Looper;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.ContactsContract;
@@ -25,7 +14,15 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.google.common.reflect.TypeToken;
+import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.JsonUtils;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -85,14 +82,17 @@ public class PrivacyBridge {
     return hiddenRecipients;
   }
   public static void loadHiddenContactsPerService() {
-    Type listType = new TypeToken<ArrayList<String>>() {
-    }.getType();
     ArrayList<Recipient> newHiddenRecipients = new ArrayList<Recipient>();
     String suppressedNumbers = GService.getSupressedNumbers();
     ArrayList<String> hiddenNumbers = new ArrayList<String>();
 
     if (!TextUtils.isEmpty(suppressedNumbers)) {
-      hiddenNumbers = new Gson().fromJson(suppressedNumbers, listType);
+        try {
+
+            hiddenNumbers = JsonUtils.fromJson(suppressedNumbers, ArrayList.class);
+        } catch (IOException e) {
+            Log.e("PrivacyBridge", e.getMessage());
+        }
     }
     for (String number : hiddenNumbers) {
       newHiddenRecipients.add(getRecipientForNumber(GService.appContext, number).getPrimaryRecipient());
