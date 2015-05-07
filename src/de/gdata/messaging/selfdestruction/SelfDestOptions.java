@@ -67,9 +67,9 @@ public class SelfDestOptions {
     public void initializeAvailableSelfDests() {
 
         String[] entryArray = context.getResources().getStringArray(R.array.gdata_selfdestroy_entrys);
-        String[] composeHintArray = context.getResources().getStringArray(R.array.gdata_selfdestroy_compose_entrys);
+        String[] composeHintArray = new String[] {"","","",""};
 
-        final String[] valuesArray = context.getResources().getStringArray(R.array.transport_selection_values);
+        final String[] valuesArray = context.getResources().getStringArray(R.array.gdata_selfdestroy_values);
 
         final int[] attrs = new int[]{R.attr.conversation_selfdestroy_icon_indicator};
         final TypedArray iconArray = context.obtainStyledAttributes(attrs);
@@ -80,7 +80,7 @@ public class SelfDestOptions {
         for (int i = 0; i < valuesArray.length; i++) {
             String key = valuesArray[i];
             enabledSelfDest.add(key);
-            selfDestMetaData.put(key, new DestroyOption(key, icons.getResourceId(i, -1), entryArray[i], composeHintArray[i]));
+            selfDestMetaData.put(key, new DestroyOption(key, icons.getResourceId(i, -1), entryArray[i]));
         }
         iconArray.recycle();
         icons.recycle();

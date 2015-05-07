@@ -20,12 +20,14 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.util.TypedValue;
+import android.view.ContextThemeWrapper;
 
 import org.thoughtcrime.securesms.R;
 
 public class Dialogs {
   public static void showAlertDialog(Context context, String title, String message) {
-    AlertDialog.Builder dialog = new AlertDialog.Builder(context);
+    ContextThemeWrapper ctw = new ContextThemeWrapper(context, R.style.GSecure_Light_Dialog);
+    AlertDialog.Builder dialog = new AlertDialog.Builder(ctw);
     dialog.setTitle(title);
     dialog.setMessage(message);
     dialog.setIcon(resolveIcon(context, R.attr.dialog_alert_icon));
@@ -33,7 +35,8 @@ public class Dialogs {
     dialog.show();
   }
   public static void showInfoDialog(Context context, String title, String message) {
-    AlertDialog.Builder dialog = new AlertDialog.Builder(context);
+    ContextThemeWrapper ctw = new ContextThemeWrapper(context, R.style.GSecure_Light_Dialog);
+    AlertDialog.Builder dialog = new AlertDialog.Builder(ctw);
     dialog.setTitle(title);
     dialog.setMessage(message);
     dialog.setIcon(resolveIcon(context, R.attr.dialog_info_icon));

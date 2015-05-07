@@ -114,6 +114,7 @@ import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.gdata.messaging.components.SelfDestructionButton;
 import de.gdata.messaging.components.SelectTransportButton;
 import de.gdata.messaging.util.GDataPreferences;
 import de.gdata.messaging.util.GUtil;
@@ -154,6 +155,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private EditText composeText;
   private SendButton sendButton;
   private SelectTransportButton transportButton;
+  private SelfDestructionButton bombTransportButton;
   private TextView charactersLeft;
 
   private AttachmentTypeSelectorAdapter attachmentAdapter;
@@ -174,8 +176,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private DynamicTheme dynamicTheme = new DynamicTheme();
   private DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
-  private DestroyButtonListener destroyButtonListener = new DestroyButtonListener();
   private SelectTransportListener selectTransportButtonListener = new SelectTransportListener();
+  private BombTransportListener bombTransportButtonListener = new BombTransportListener();
   private SendButtonListener sendButtonListener = new SendButtonListener();
   private AddAttachmentListener addAttachmentButtonListener = new AddAttachmentListener();
 
@@ -776,7 +778,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     transportButton.initializeAvailableTransports(!recipients.isSingleRecipient() || attachmentManager.isAttachmentPresent());
-
+    bombTransportButton.initializeAvailableSelfDests();
     if (!isPushDestination) transportButton.disableTransport("textsecure");
     if (!isSecureDestination) transportButton.disableTransport("secure_sms");
 
@@ -816,6 +818,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void initializeViews() {
     sendButton = (SendButton) findViewById(R.id.send_button);
     transportButton = (SelectTransportButton) findViewById(R.id.select_transport_button);
+    bombTransportButton = (SelfDestructionButton) findViewById(R.id.select_bomb_button);
     composeText = (EditText) findViewById(R.id.embedded_text_editor);
     charactersLeft = (TextView) findViewById(R.id.space_left);
     emojiDrawer = (EmojiDrawer) findViewById(R.id.emoji_drawer);
@@ -833,6 +836,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     transportButton.setOnClickListener(selectTransportButtonListener);
     transportButton.setEnabled(true);
     transportButton.setComposeTextView(composeText);
+
+    bombTransportButton.setOnClickListener(bombTransportButtonListener);
+    bombTransportButton.setEnabled(true);
 
     composeText.setOnKeyListener(composeKeyPressedListener);
     composeText.addTextChangedListener(composeKeyPressedListener);
@@ -1140,6 +1146,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void sendMessage() {
+    Toast.makeText(getApplicationContext(), "GONNA BE DESTROYED IN " + bombTransportButton.getSelectedSelfDestTime().text, Toast.LENGTH_LONG).show();
     try {
       final Recipients recipients = getRecipients();
 
@@ -1297,7 +1304,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     private class SelectTransportListener implements OnClickListener, TextView.OnEditorActionListener {
         @Override
         public void onClick(View v) {
-            Log.d("GDATA", "PROTOCOL CLICK");
             charactersLeft.setVisibility(View.GONE);
             transportButton.performLongClick();
         }
@@ -1312,7 +1318,18 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             return false;
         }
     }
+  private class BombTransportListener implements OnClickListener, TextView.OnEditorActionListener {
+    @Override
+    public void onClick(View v) {
+      bombTransportButton.performLongClick();
+    }
 
+    @Override
+    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+
+      return false;
+    }
+  }
     private class AddAttachmentListener implements OnClickListener, TextView.OnEditorActionListener {
         @Override
         public void onClick(View v) {
