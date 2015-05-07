@@ -51,7 +51,7 @@
                android:value="GlideModule" />
 
     <activity android:name=".RegistrationProblemsActivity"
-              android:theme="@style/TextSecure.Light.Dialog"
+              android:theme="@style/Theme.AppCompat.Light.DialogWhenLarge"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".CountrySelectionActivity"
@@ -179,7 +179,7 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".ReceiveKeyActivity"
-              android:theme="@style/TextSecure.Light.Dialog"
+              android:theme="@style/Theme.AppCompat.Light.DialogWhenLarge"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
     
     <activity android:name=".ApplicationPreferencesActivity"
