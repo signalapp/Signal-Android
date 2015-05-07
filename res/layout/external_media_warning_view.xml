@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:paddingLeft="16dp"
+              android:paddingRight="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ExternalMediaWarningDialog_previewing_or_saving_media_outside_of"
+        android:textAppearance="@style/TextSecure.Light.Dialog"/>
+
+    <CheckBox
+        android:id="@+id/checkbox_dont_ask_again"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/ExternalMediaWarningDialog_dont_ask_again"
+        android:textAppearance="@style/TextSecure.Light.Dialog"/>
+
+</LinearLayout>

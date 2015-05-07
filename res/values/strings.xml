@@ -69,8 +69,6 @@
     <string name="ConversationItem_message_size_d_kb">Message size: %d KB</string>
     <string name="ConversationItem_expires_s">Expires: %s</string>
     <string name="ConversationItem_error_not_delivered">Not delivered</string>
-    <string name="ConversationItem_view_secure_media_question">View secure media?</string>
-    <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">This media has been stored in an encrypted database. Unfortunately, to view it with an external content viewer currently requires the data to be temporarily decrypted and written to disk. Are you sure that you would like to do this?</string>
     <string name="ConversationItem_error_received_stale_key_exchange_message">Error, received stale key exchange message.</string>
     <string name="ConversationItem_received_key_exchange_message_click_to_process">Received key exchange message, click to process.</string>
     <string name="ConversationItem_group_action_left">%1$s has left the group.</string>
@@ -123,8 +121,6 @@
     <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Sender: %1$s\nTransport: %2$s\nSent: %3$s\nReceived: %4$s</string>
     <string name="ConversationFragment_confirm_message_delete">Confirm message delete</string>
     <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Are you sure that you want to permanently delete all selected messages?</string>
-    <string name="ConversationFragment_save_to_sd_card">Save to storage?</string>
-    <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Saving this media to storage will allow any other apps on your phone to access it.\n\nContinue?</string>
     <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Error while saving attachment to storage!</string>
     <string name="ConversationFragment_success_exclamation">Success!</string>
     <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Unable to write to storage!</string>
@@ -169,6 +165,13 @@
     <string name="ExportFragment_error_unable_to_write_to_sd_card">Error, unable to write to SD card!</string>
     <string name="ExportFragment_error_while_writing_to_sd_card">Error while writing to SD card.</string>
     <string name="ExportFragment_success">Success!</string>
+
+    <!-- ExternalMediaWarningDialog -->
+    <string name="ExternalMediaWarningDialog_reveal_secure_media">Reveal secure media?</string>
+    <string name="ExternalMediaWarningDialog_previewing_or_saving_media_outside_of">Previewing or saving media outside of TextSecure allows other apps to see it.</string>
+    <string name="ExternalMediaWarningDialog_dont_ask_again">Don\'t ask again</string>
+    <string name="ExternalMediaWarningDialog_reveal">Reveal</string>
+    <string name="ExternalMediaWarningDialog_cancel">Cancel</string>
 
     <!-- GcmRefreshJob -->
     <string name="GcmRefreshJob_Permanent_TextSecure_communication_failure">Permanent TextSecure communication failure!</string>
