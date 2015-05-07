@@ -604,7 +604,7 @@ Zwiększ swoją prywatność i unikaj opłat za SMS używając transmisji danych
   <!--contact_selection_list-->
   <string name="contact_selection_list__menu_select_all">Zaznacz wszystko</string>
   <string name="contact_selection_list__menu_unselect_all">Odznacz wszystko</string>
-  <string name="contact_selection_list__header_textsecure_users">UŻYTKOWNICY Z SecureChat</string>
+  <string name="contact_selection_list__header_textsecure_users">UŻYTKOWNICY Z SECURECHAT</string>
   <string name="contact_selection_list__header_other">WSZYSTKIE KONTAKTY</string>
   <string name="contact_selection_list__unknown_contact">Nowa wiadomość do...</string>
   <!--contact_selection-->
