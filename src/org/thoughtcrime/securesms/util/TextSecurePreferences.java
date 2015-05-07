@@ -403,7 +403,7 @@ public class TextSecurePreferences {
   }
 
   public static String getNotificationLedColor(Context context) {
-    return getStringPreference(context, LED_COLOR_PREF, "green");
+    return getStringPreference(context, LED_COLOR_PREF, "blue");
   }
 
   public static String getNotificationLedPattern(Context context) {
