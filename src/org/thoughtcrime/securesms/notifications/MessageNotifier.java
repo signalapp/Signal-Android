@@ -178,12 +178,13 @@ public class MessageNotifier {
       return;
     }
 
-    List<NotificationItem>     notifications  = notificationState.getNotifications();
-    NotificationCompat.Builder builder        = new NotificationCompat.Builder(context);
-    Recipient                  recipient      = notifications.get(0).getIndividualRecipient();
-    Drawable                   recipientPhoto = recipient.getContactPhoto();
+    List<NotificationItem>     notifications       = notificationState.getNotifications();
+    NotificationCompat.Builder builder             = new NotificationCompat.Builder(context);
+    Recipient                  recipient           = notifications.get(0).getIndividualRecipient();
+    Drawable                   recipientPhoto      = recipient.getContactPhoto();
+    int                        largeIconTargetSize = context.getResources().getDimensionPixelSize(R.dimen.contact_photo_target_size);
 
-    if (recipientPhoto != null) builder.setLargeIcon(BitmapUtil.createFromDrawable(recipientPhoto, 400, 400));
+    if (recipientPhoto != null) builder.setLargeIcon(BitmapUtil.createFromDrawable(recipientPhoto, largeIconTargetSize, largeIconTargetSize));
     builder.setSmallIcon(R.drawable.icon_notification);
     builder.setColor(context.getResources().getColor(R.color.textsecure_primary));
     builder.setContentTitle(recipient.toShortString());
