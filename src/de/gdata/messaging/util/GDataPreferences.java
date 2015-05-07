@@ -1,19 +1,16 @@
 package de.gdata.messaging.util;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-import android.util.Log;
-
-import com.google.common.reflect.TypeToken;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.util.JsonUtils;
 
-import java.io.IOException;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
+import com.google.common.reflect.TypeToken;
 
 public class GDataPreferences {
 
@@ -60,24 +57,12 @@ public class GDataPreferences {
     for (Recipient recipient : hiddenRecipients) {
       recIds.add(recipient.getRecipientId());
     }
-
-    try {
-      mPreferences.edit().putString(SAVED_HIDDEN_RECIPIENTS, JsonUtils.toJson(recIds)).commit();
-    } catch (IOException e) {
-      Log.w("GDataPreferences", e);
-    }
+    mPreferences.edit().putString(SAVED_HIDDEN_RECIPIENTS, new Gson().toJson(recIds)).commit();
   }
   public ArrayList<Recipient> getSavedHiddenRecipients() {
     Type listType = new TypeToken<ArrayList<Long>>() {
     }.getType();
-
-    ArrayList<Long> recipients = null;
-//    try {
-//      recipients = JsonUtils.fromJson(mPreferences.getString(SAVED_HIDDEN_RECIPIENTS, JsonUtils.toJson(new ArrayList<Long>())), listType);
-//    } catch (IOException e) {
-//      Log.w("GDataPreferences", e);
-//    }
-
+    ArrayList<Long> recipients = new Gson().fromJson(mPreferences.getString(SAVED_HIDDEN_RECIPIENTS, new Gson().toJson(new ArrayList<Long>())), listType);
     ArrayList<Recipient> hiddenRecipients = new ArrayList<Recipient>();
     for (Long recId : recipients) {
       hiddenRecipients.add(RecipientFactory.getRecipientForId(mContext, recId, false));
