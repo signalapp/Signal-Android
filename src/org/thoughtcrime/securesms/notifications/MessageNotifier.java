@@ -183,7 +183,7 @@ public class MessageNotifier {
     Recipient                  recipient      = notifications.get(0).getIndividualRecipient();
     Drawable                   recipientPhoto = recipient.getContactPhoto();
 
-    if (recipientPhoto != null) builder.setLargeIcon(BitmapUtil.createFromDrawable(recipientPhoto));
+    if (recipientPhoto != null) builder.setLargeIcon(BitmapUtil.createFromDrawable(recipientPhoto, 400, 400));
     builder.setSmallIcon(R.drawable.icon_notification);
     builder.setColor(context.getResources().getColor(R.color.textsecure_primary));
     builder.setContentTitle(recipient.toShortString());
