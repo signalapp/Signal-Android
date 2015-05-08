@@ -37,6 +37,6 @@
     android:gravity="center_vertical"
     android:paddingLeft="10dp"
     android:paddingRight="16dp"
-    android:minHeight="?android:attr/listPreferredItemHeightSmall"
+    android:minHeight="50dp"
     android:textColor="@color/white"/>
 </LinearLayout>
