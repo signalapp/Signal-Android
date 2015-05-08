@@ -1,17 +1,8 @@
 package org.thoughtcrime.securesms.contacts;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.PixelFormat;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
@@ -20,7 +11,6 @@ import android.os.Build.VERSION_CODES;
 import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.util.Log;
-import android.view.Gravity;
 import android.widget.ImageView;
 
 import com.amulyakhare.textdrawable.TextDrawable;
@@ -63,10 +53,14 @@ public class ContactPhotoFactory {
     }
   }
 
-  public static Drawable getDefaultContactPhoto(@Nullable String name) {
+  public static Drawable getDefaultContactPhoto(Context context, @Nullable String name) {
     if (name != null && !name.isEmpty()) {
-      return TextDrawable.builder().buildRound(String.valueOf(name.charAt(0)),
-                                               COLOR_GENERATOR.getColor(name));
+      int targetSize = context.getResources().getDimensionPixelSize(R.dimen.contact_photo_target_size);
+      return TextDrawable.builder().beginConfig()
+                         .width(targetSize)
+                         .height(targetSize)
+                         .endConfig().buildRound(String.valueOf(name.charAt(0)),
+                                                 COLOR_GENERATOR.getColor(name));
     }
 
     synchronized (defaultPhotoLock) {
@@ -118,7 +112,7 @@ public class ContactPhotoFactory {
       }
     }
 
-    return getDefaultContactPhoto(name);
+    return getDefaultContactPhoto(context, name);
   }
 
   public static Drawable getGroupContactPhoto(Context context, @Nullable byte[] avatar) {

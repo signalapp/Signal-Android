@@ -147,7 +147,7 @@ public class Recipient {
 
   public static Recipient getUnknownRecipient(Context context) {
     return new Recipient("Unknown", "Unknown", -1, null,
-                         ContactPhotoFactory.getDefaultContactPhoto(null));
+                         ContactPhotoFactory.getDefaultContactPhoto(context, null));
   }
 
   @Override

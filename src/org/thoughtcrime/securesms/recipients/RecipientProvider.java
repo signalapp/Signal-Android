@@ -75,7 +75,7 @@ public class RecipientProvider {
     } else {
       final Drawable defaultPhoto        = isGroupRecipient
                                            ? ContactPhotoFactory.getDefaultGroupPhoto(context)
-                                           : ContactPhotoFactory.getDefaultContactPhoto(null);
+                                           : ContactPhotoFactory.getDefaultContactPhoto(context, null);
 
       recipient = new Recipient(null, number, recipientId, null, defaultPhoto);
     }
@@ -143,7 +143,7 @@ public class RecipientProvider {
         cursor.close();
     }
 
-    return new RecipientDetails(null, number, null, ContactPhotoFactory.getDefaultContactPhoto(null));
+    return new RecipientDetails(null, number, null, ContactPhotoFactory.getDefaultContactPhoto(context, null));
   }
 
   private RecipientDetails getGroupRecipientDetails(Context context, String groupId) {
