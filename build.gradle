@@ -176,6 +176,7 @@ android {
                           'proguard-spongycastle.pro',
                           'proguard-rounded-image-view.pro',
                           'proguard-glide.pro',
+                          'proguard-shortcutbadger.pro',
                           'proguard.cfg'
         }
         release {
@@ -191,6 +192,7 @@ android {
                           'proguard-spongycastle.pro',
                           'proguard-rounded-image-view.pro',
                           'proguard-glide.pro',
+                          'proguard-shortcutbadger.pro'
                           'proguard.cfg'
             signingConfig signingConfigs.release
         }
