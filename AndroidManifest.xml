@@ -90,7 +90,7 @@
         <activity
             android:name=".RegistrationProblemsActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:theme="@style/TextSecure.Light.Dialog" />
+            android:theme="@style/GSecure.Light.Dialog" />
 
         <activity
             android:name=".CountrySelectionActivity"
@@ -109,7 +109,7 @@
         <activity
             android:name=".ConfirmIdentityActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:theme="@style/TextSecure.Light.Dialog" />
+            android:theme="@style/GSecure.Light.Dialog" />
 
         <activity
             android:name=".MmsPreferencesActivity"
@@ -133,7 +133,8 @@
             android:name=".ConversationActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:launchMode="singleTask"
-            android:windowSoftInputMode="stateUnchanged" />
+            android:windowSoftInputMode="stateUnchanged"
+            android:theme="@style/GSecure.Light.Dialog" />
 
         <activity
             android:name=".GroupCreateActivity"
@@ -184,7 +185,7 @@
             android:name=".AutoInitiateActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:label="@string/AndroidManifest__textsecure_detected"
-            android:theme="@style/TextSecure.Light.Dialog" />
+            android:theme="@style/GSecure.Light.Dialog" />
 
         <activity
             android:name=".ViewIdentityActivity"
@@ -209,7 +210,7 @@
             android:name=".ReceiveKeyActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:label="@string/AndroidManifest__complete_key_exchange"
-            android:theme="@style/TextSecure.Light.Dialog" />
+            android:theme="@style/GSecure.Light.Dialog" />
 
         <activity
             android:name=".ApplicationPreferencesActivity"

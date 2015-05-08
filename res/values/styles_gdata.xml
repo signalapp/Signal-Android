@@ -21,8 +21,8 @@
         <item name="android:actionModeStyle">@style/CustomActionMode</item>
         <item name="actionModeStyle">@style/CustomActionMode</item>
 
-        <item name="android:textColor">@color/black</item>
-        <item name="android:textColorSecondary">@color/black</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:textColorSecondary">?android:attr/textColorPrimary</item>
         <item name="conversation_list_item_background_read">
             @drawable/gdata_conversation_list_item_background_read
         </item>
@@ -131,12 +131,14 @@
         <item name="dialog_info_icon">@drawable/ic_dialog_info_dark</item>
         <item name="dialog_alert_icon">@drawable/ic_dialog_alert_dark</item>
     </style>
+
     <!-- Widget.Sherlock.ActionButton.CloseMode -->
     <style name="CustomActionMode" parent="Widget.AppCompat.Light.ActionMode.Inverse">
         <item name="android:textColor">@android:color/white</item>
     </style>
+
     <style name="GSecure.Light.Dialog"
-           parent="Theme.AppCompat.Light.DialogWhenLarge"
+           parent="@android:style/Theme.Dialog"
            tools:ignore="NewApi">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowTitleStyle">@style/GDataDialogWindowTitle</item>
@@ -151,12 +153,10 @@
 
         <item name="android:buttonBarStyle">@style/GDataDialogButtonBar</item>
         <item name="android:borderlessButtonStyle">@style/GDataDialogPrimaryText</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorSecondary">@color/white</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">normal</item>
-
-        <item name="android:textColorPrimary">@color/gdata_red</item>
-        <item name="android:textColorSecondary">@color/gdata_red</item>
 
         <item name="android:listPreferredItemPaddingLeft">16dip</item>
         <item name="android:listPreferredItemPaddingRight">16dip</item>
