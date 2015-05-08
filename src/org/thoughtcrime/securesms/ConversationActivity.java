@@ -1146,7 +1146,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void sendMessage() {
-    Toast.makeText(getApplicationContext(), "GONNA BE DESTROYED IN " + bombTransportButton.getSelectedSelfDestTime().text, Toast.LENGTH_LONG).show();
+//    Toast.makeText(getApplicationContext(), "GONNA BE DESTROYED IN " + bombTransportButton.getSelectedSelfDestTime().text, Toast.LENGTH_LONG).show();
     try {
       final Recipients recipients = getRecipients();
 
