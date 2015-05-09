@@ -54,18 +54,24 @@ public class ContactPhotoFactory {
   }
 
   public static Drawable getDefaultContactPhoto(Context context, @Nullable String name) {
+    int targetSize = context.getResources().getDimensionPixelSize(R.dimen.contact_photo_target_size);
+
     if (name != null && !name.isEmpty()) {
-      int targetSize = context.getResources().getDimensionPixelSize(R.dimen.contact_photo_target_size);
       return TextDrawable.builder().beginConfig()
                          .width(targetSize)
                          .height(targetSize)
-                         .endConfig().buildRound(String.valueOf(name.charAt(0)),
+                         .endConfig()
+                         .buildRound(String.valueOf(name.charAt(0)),
                                                  COLOR_GENERATOR.getColor(name));
     }
 
     synchronized (defaultPhotoLock) {
       if (defaultContactPhoto == null)
-        defaultContactPhoto = TextDrawable.builder().buildRound("#", UNKNOWN_COLOR);
+        defaultContactPhoto = TextDrawable.builder().beginConfig()
+                                          .width(targetSize)
+                                          .height(targetSize)
+                                          .endConfig()
+                                          .buildRound("#", UNKNOWN_COLOR);
 
       return defaultContactPhoto;
     }
