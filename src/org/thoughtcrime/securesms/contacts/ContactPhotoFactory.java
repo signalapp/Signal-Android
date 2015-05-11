@@ -62,7 +62,7 @@ public class ContactPhotoFactory {
                          .height(targetSize)
                          .endConfig()
                          .buildRound(String.valueOf(name.charAt(0)),
-                                                 COLOR_GENERATOR.getColor(name));
+                                     COLOR_GENERATOR.getColor(name));
     }
 
     synchronized (defaultPhotoLock) {
