@@ -153,8 +153,8 @@
 
         <item name="android:buttonBarStyle">@style/GDataDialogButtonBar</item>
         <item name="android:borderlessButtonStyle">@style/GDataDialogPrimaryText</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textColorSecondary">@color/white</item>
+        <item name="android:textColor">?android:attr/textColorPrimaryInverse</item>
+        <item name="android:textColorSecondary">?android:attr/textColorPrimaryInverse</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">normal</item>
 
@@ -185,7 +185,7 @@
     <!-- For Holo Light Dialog Activity Styling Emulation -->
     <style name="GDataDialogWindowTitle">
         <item name="android:textSize">22sp</item>
-        <item name="android:textColor">@color/textsecure_holo_blue_light</item>
+        <item name="android:textColor">@color/wallet_holo_blue_light</item>
     </style>
 
     <style name="GDataDialogButtonBar" tools:ignore="NewApi">
@@ -194,6 +194,6 @@
     </style>
 
     <style name="GDataDialogPrimaryText">
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
 </resources>

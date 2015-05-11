@@ -93,6 +93,7 @@
         <item name="android:typeface">sans</item>
         <item name="android:textStyle">normal</item>
         <item name="android:gravity">left</item>
+        <item name="android:textColor">?android:attr/textColorPrimaryInverse</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:shadowColor">#ffffff</item>
         <item name="android:shadowDx">1.0</item>
