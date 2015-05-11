@@ -227,32 +227,4 @@
 
         <item name="group_members_dialog_icon">@drawable/ic_group_white_24dp</item>
     </style>
-
-    <style name="TextSecure.Light.Dialog"
-           parent="Theme.AppCompat.Light.DialogWhenLarge"
-           tools:ignore="NewApi">
-        <item name="android:windowFrame">@null</item>
-        <item name="android:windowTitleStyle">@style/TextSecureDialogWindowTitle</item>
-        <item name="android:windowBackground">@drawable/dialog_full_holo_light</item>
-        <item name="android:windowIsFloating">true</item>
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
-        <item name="android:windowActionBar">false</item>
-        <item name="android:windowTitleSize">0dp</item>
-        <item name="android:windowActionModeOverlay">true</item>
-
-        <item name="android:colorBackgroundCacheHint">@null</item>
-
-        <item name="android:buttonBarStyle">@style/TextSecureDialogButtonBar</item>
-        <item name="android:borderlessButtonStyle">@style/TextSecureBorderlessButtonSmall</item>
-        <item name="android:textColor">@color/black</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:textStyle">normal</item>
-
-        <item name="android:listPreferredItemPaddingLeft">16dip</item>
-        <item name="android:listPreferredItemPaddingRight">16dip</item>
-        <item name="android:listPreferredItemPaddingStart">16dip</item>
-        <item name="android:listPreferredItemPaddingEnd">16dip</item>
-    </style>
-
 </resources>

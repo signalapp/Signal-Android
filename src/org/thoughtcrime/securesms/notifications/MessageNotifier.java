@@ -24,6 +24,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -178,12 +179,17 @@ public class MessageNotifier {
       return;
     }
 
-    List<NotificationItem>     notifications  = notificationState.getNotifications();
-    NotificationCompat.Builder builder        = new NotificationCompat.Builder(context);
-    Recipient                  recipient      = notifications.get(0).getIndividualRecipient();
-    Drawable                   recipientPhoto = recipient.getContactPhoto();
+    List<NotificationItem>     notifications       = notificationState.getNotifications();
+    NotificationCompat.Builder builder             = new NotificationCompat.Builder(context);
+    Recipient                  recipient           = notifications.get(0).getIndividualRecipient();
+    Drawable                   recipientPhoto      = recipient.getContactPhoto();
+    int                        largeIconTargetSize = context.getResources().getDimensionPixelSize(R.dimen.contact_photo_target_size);
 
-    if (recipientPhoto != null) builder.setLargeIcon(BitmapUtil.createFromDrawable(recipientPhoto));
+    if (recipientPhoto != null) {
+      Bitmap recipientPhotoBitmap = BitmapUtil.createFromDrawable(recipientPhoto, largeIconTargetSize, largeIconTargetSize);
+      if (recipientPhotoBitmap != null) builder.setLargeIcon(recipientPhotoBitmap);
+    }
+
     builder.setSmallIcon(R.drawable.icon_notification);
     builder.setColor(context.getResources().getColor(R.color.textsecure_primary));
     builder.setContentTitle(recipient.toShortString());

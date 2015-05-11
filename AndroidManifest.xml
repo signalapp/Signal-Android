@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
           package="org.thoughtcrime.securesms"
-      android:versionCode="113"
-      android:versionName="2.13.0">
+      android:versionCode="115"
+      android:versionName="2.14.1">
 
     <uses-sdk tools:overrideLibrary="com.amulyakhare.textdrawable"/>
 
@@ -51,7 +51,7 @@
                android:value="GlideModule" />
 
     <activity android:name=".RegistrationProblemsActivity"
-              android:theme="@style/TextSecure.Light.Dialog"
+              android:theme="@style/Theme.AppCompat.Light.DialogWhenLarge"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".CountrySelectionActivity"
@@ -179,7 +179,7 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".ReceiveKeyActivity"
-              android:theme="@style/TextSecure.Light.Dialog"
+              android:theme="@style/Theme.AppCompat.Light.DialogWhenLarge"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
     
     <activity android:name=".ApplicationPreferencesActivity"
