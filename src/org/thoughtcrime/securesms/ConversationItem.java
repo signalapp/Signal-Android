@@ -370,17 +370,7 @@ public class ConversationItem extends LinearLayout {
   /// Event handlers
 
   private void handleKeyExchangeClicked() {
-    Intent intent = new Intent(context, ReceiveKeyActivity.class);
-    intent.putExtra("recipient", messageRecord.getIndividualRecipient().getRecipientId());
-    intent.putExtra("recipient_device_id", messageRecord.getRecipientDeviceId());
-    intent.putExtra("body", messageRecord.getBody().getBody());
-    intent.putExtra("thread_id", messageRecord.getThreadId());
-    intent.putExtra("message_id", messageRecord.getId());
-    intent.putExtra("is_bundle", messageRecord.isBundleKeyExchange());
-    intent.putExtra("is_identity_update", messageRecord.isIdentityUpdate());
-    intent.putExtra("is_push", messageRecord.isPush());
-    intent.putExtra("sent", messageRecord.isOutgoing());
-    context.startActivity(intent);
+    ReceiveKeyDialog.build(context, masterSecret, messageRecord).show();
   }
 
   private class ThumbnailClickListener implements ThumbnailView.ThumbnailClickListener {
