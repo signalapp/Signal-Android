@@ -388,7 +388,7 @@ public class MessageNotifier {
         body = SpanUtil.italic(context.getString(R.string.MessageNotifier_encrypted_message));
       } else if (record.isMms() && TextUtils.isEmpty(body)) {
         body = SpanUtil.italic(context.getString(R.string.MessageNotifier_media_message));
-      } else if (record.isMms()) {
+      } else if (record.isMms() && !record.isMmsNotification()) {
         String message      = context.getString(R.string.MessageNotifier_media_message_with_text, body);
         int    italicLength = message.length() - body.length();
         body = SpanUtil.italic(message, italicLength);
