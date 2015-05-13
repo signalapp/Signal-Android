@@ -1,17 +1,15 @@
 package org.thoughtcrime.securesms.components;
 
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.AppCompatEditText;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.RelativeSizeSpan;
 import android.util.AttributeSet;
-import android.widget.EditText;
 
-public class ComposeText extends EditText {
+public class ComposeText extends AppCompatEditText {
   public ComposeText(Context context) {
     super(context);
   }
@@ -22,11 +20,6 @@ public class ComposeText extends EditText {
 
   public ComposeText(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
-  }
-
-  @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-  public ComposeText(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-    super(context, attrs, defStyleAttr, defStyleRes);
   }
 
   public void setHint(@NonNull String hint) {
