@@ -9,6 +9,8 @@ import android.text.TextUtils;
 import android.text.style.RelativeSizeSpan;
 import android.util.AttributeSet;
 
+import org.thoughtcrime.securesms.components.emoji.EmojiEditText;
+
 public class ComposeText extends EmojiEditText {
   public ComposeText(Context context) {
     super(context);
