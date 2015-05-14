@@ -34,6 +34,8 @@ public class EmojiProvider {
   private static final    ExecutorService                    executor = Util.newSingleThreadedLifoExecutor();
   private static volatile EmojiProvider                      instance = null;
   private static final    SparseArray<SoftReference<Bitmap>> bitmaps  = new SparseArray<>();
+  private static final    Paint                              paint    = new Paint();
+  static { paint.setFilterBitmap(true); }
 
   private final SparseArray<DrawInfo> offsets = new SparseArray<>();
 
@@ -153,17 +155,11 @@ public class EmojiProvider {
     return drawable;
   }
 
-  public static class EmojiDrawable extends Drawable {
+  public class EmojiDrawable extends Drawable {
     private final        int    index;
     private final        int    page;
     private final        int    emojiSize;
-    private static final Paint  paint;
     private              Bitmap bmp;
-
-    static {
-      paint = new Paint();
-      paint.setFilterBitmap(true);
-    }
 
     public EmojiDrawable(DrawInfo info, int emojiSize) {
       this.index     = info.index;
@@ -174,7 +170,11 @@ public class EmojiProvider {
     @Override
     public void draw(Canvas canvas) {
       if (bitmaps.get(page) == null || bitmaps.get(page).get() == null) {
-        Log.w(TAG, "bitmap for this page was null");
+        preloadPage(page, new PageLoadedListener() {
+          @Override public void onPageLoaded() {
+            invalidateSelf();
+          }
+        });
         return;
       }
       if (bmp == null) {
