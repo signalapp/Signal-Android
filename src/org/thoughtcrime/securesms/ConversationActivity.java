@@ -711,7 +711,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     EmojiDrawer emojiDrawerFragment = EmojiDrawer.newInstance();
     emojiDrawerFragment.setComposeEditText(composeText);
     getSupportFragmentManager().beginTransaction()
-                               .replace(R.id.emoji_drawer, emojiDrawerFragment)
+                               .add(R.id.emoji_drawer, emojiDrawerFragment)
                                .commit();
     getSupportFragmentManager().executePendingTransactions();
     emojiDrawer = Optional.of(emojiDrawerFragment);
