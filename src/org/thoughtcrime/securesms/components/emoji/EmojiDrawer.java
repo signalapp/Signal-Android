@@ -14,6 +14,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -86,7 +87,7 @@ public class EmojiDrawer extends Fragment {
   public void show() {
     int keyboardHeight = container.getKeyboardHeight();
     Log.w("EmojiDrawer", "setting emoji drawer to height " + keyboardHeight);
-    container.setLayoutParams(new LinearLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, keyboardHeight));
+    container.setLayoutParams(new FrameLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, keyboardHeight));
     container.requestLayout();
     container.setVisibility(View.VISIBLE);
   }
