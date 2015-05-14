@@ -495,12 +495,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleDeleteThread() {
-    if (threadId < 0) {
-      composeText.getText().clear();
-      finish();
-      return;
-    }
-
     AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(this);
     builder.setTitle(R.string.ConversationActivity_delete_thread_confirmation);
     builder.setIconAttribute(R.attr.dialog_alert_icon);
@@ -511,10 +505,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       public void onClick(DialogInterface dialog, int which) {
         if (threadId > 0) {
           DatabaseFactory.getThreadDatabase(ConversationActivity.this).deleteConversation(threadId);
-          composeText.getText().clear();
-          threadId = -1;
-          finish();
         }
+        composeText.getText().clear();
+        threadId = -1;
+        finish();
       }
     });
 
