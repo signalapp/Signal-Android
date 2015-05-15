@@ -5,7 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.Release;
+import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
@@ -95,7 +95,7 @@ public class AvatarDownloadJob extends MasterSecretJob {
   }
 
   private File downloadAttachment(String relay, long contentLocation) throws IOException {
-    PushServiceSocket socket = new PushServiceSocket(Release.PUSH_URL,
+    PushServiceSocket socket = new PushServiceSocket(BuildConfig.PUSH_URL,
                                                      new TextSecurePushTrustStore(context),
                                                      new StaticCredentialsProvider(TextSecurePreferences.getLocalNumber(context),
                                                                                    TextSecurePreferences.getPushServerPassword(context),
