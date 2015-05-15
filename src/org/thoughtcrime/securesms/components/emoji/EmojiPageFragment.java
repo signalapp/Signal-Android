@@ -46,6 +46,12 @@ public class EmojiPageFragment extends Fragment {
       }
     });
     grid.setAdapter(new EmojiGridAdapter(getActivity(), model));
+    model.setOnModelChangedListener(new OnModelChangedListener() {
+      @Override public void onModelChanged() {
+        ((EmojiGridAdapter)grid.getAdapter()).notifyDataSetChanged();
+      }
+    });
+
     return view;
   }
 
@@ -95,12 +101,6 @@ public class EmojiPageFragment extends Fragment {
         imageView.setLayoutParams(new AbsListView.LayoutParams(emojiSize + 2 * pad, emojiSize + 2 * pad));
         view = imageView;
       }
-
-      model.setOnModelChangedListener(new OnModelChangedListener() {
-        @Override public void onModelChanged() {
-          notifyDataSetChanged();
-        }
-      });
 
       final Integer       unicodeTag = model.getCodePoints()[position];
       final EmojiProvider provider   = EmojiProvider.getInstance(context);
