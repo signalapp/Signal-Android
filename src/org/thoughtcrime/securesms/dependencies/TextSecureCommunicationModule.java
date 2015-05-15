@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.dependencies;
 
 import android.content.Context;
 
-import org.thoughtcrime.securesms.Release;
+import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureAxolotlStore;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
@@ -47,7 +47,7 @@ public class TextSecureCommunicationModule {
   }
 
   @Provides TextSecureAccountManager provideTextSecureAccountManager() {
-    return new TextSecureAccountManager(Release.PUSH_URL,
+    return new TextSecureAccountManager(BuildConfig.PUSH_URL,
                                         new TextSecurePushTrustStore(context),
                                         TextSecurePreferences.getLocalNumber(context),
                                         TextSecurePreferences.getPushServerPassword(context));
@@ -57,7 +57,7 @@ public class TextSecureCommunicationModule {
     return new TextSecureMessageSenderFactory() {
       @Override
       public TextSecureMessageSender create(MasterSecret masterSecret) {
-        return new TextSecureMessageSender(Release.PUSH_URL,
+        return new TextSecureMessageSender(BuildConfig.PUSH_URL,
                                            new TextSecurePushTrustStore(context),
                                            TextSecurePreferences.getLocalNumber(context),
                                            TextSecurePreferences.getPushServerPassword(context),
@@ -69,7 +69,7 @@ public class TextSecureCommunicationModule {
   }
 
   @Provides TextSecureMessageReceiver provideTextSecureMessageReceiver() {
-    return new TextSecureMessageReceiver(Release.PUSH_URL,
+    return new TextSecureMessageReceiver(BuildConfig.PUSH_URL,
                                          new TextSecurePushTrustStore(context),
                                          new DynamicCredentialsProvider(context));
   }
