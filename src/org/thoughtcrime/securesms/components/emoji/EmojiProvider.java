@@ -10,6 +10,8 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Drawable.Callback;
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.util.Log;
@@ -18,27 +20,23 @@ import android.util.SparseArray;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
+import org.thoughtcrime.securesms.util.FutureTaskListener;
+import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.ResUtil;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.ref.SoftReference;
-import java.lang.ref.WeakReference;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
-import java.util.concurrent.Semaphore;
+import java.util.concurrent.Callable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class EmojiProvider {
-  private static final    String                             TAG      = EmojiProvider.class.getSimpleName();
-  private static volatile EmojiProvider                      instance = null;
-  private static final    SparseArray<SoftReference<Bitmap>> bitmaps  = new SparseArray<>();
-  private static final    Paint                              paint    = new Paint();
+  private static final    String        TAG      = EmojiProvider.class.getSimpleName();
+  private static volatile EmojiProvider instance = null;
+  private static final    Paint         paint    = new Paint();
   static { paint.setFilterBitmap(true); }
 
   private final SparseArray<DrawInfo> offsets = new SparseArray<>();
@@ -54,11 +52,9 @@ public class EmojiProvider {
   public static final int    EMOJI_RAW_SIZE = 128;
   public static final int    EMOJI_PER_ROW  = 16;
 
-  private final Context                                   context;
-  private final int                                       bigDrawSize;
-  private final int[]                                     pages;
-  private final List<Semaphore>                           pageLocks;
-  private final List<Queue<WeakReference<EmojiDrawable>>> pageListeners;
+  private final Context context;
+  private final int     bigDrawSize;
+  private final Handler handler = new Handler(Looper.getMainLooper());
 
   public static EmojiProvider getInstance(Context context) {
     if (instance == null) {
@@ -72,82 +68,16 @@ public class EmojiProvider {
   }
 
   private EmojiProvider(Context context) {
-    this.context       = context.getApplicationContext();
-    this.bigDrawSize   = context.getResources().getDimensionPixelSize(R.dimen.emoji_drawer_size);
-    this.pages         = ResUtil.getResourceIds(context, R.array.emoji_categories);
-    this.pageLocks     = new ArrayList<>(pages.length);
-    this.pageListeners = new ArrayList<>(pages.length);
+    int[] pages = ResUtil.getResourceIds(context, R.array.emoji_categories);
 
+    this.context     = context.getApplicationContext();
+    this.bigDrawSize = context.getResources().getDimensionPixelSize(R.dimen.emoji_drawer_size);
     for (int i = 0; i < pages.length; i++) {
-      pageListeners.add(new LinkedList<WeakReference<EmojiDrawable>>());
-      pageLocks.add(new Semaphore(1));
-      final int[] page = context.getResources().getIntArray(pages[i]);
-      for (int j = 0; j < page.length; j++) {
-        offsets.put(page[j], new DrawInfo(i, j));
+      final EmojiPageBitmap page = new EmojiPageBitmap(i);
+      final int[] codePoints = context.getResources().getIntArray(pages[i]);
+      for (int j = 0; j < codePoints.length; j++) {
+        offsets.put(codePoints[j], new DrawInfo(page, j));
       }
-    }
-  }
-
-  private void notifyPageLoaded(final int page, final Bitmap bitmap) {
-    Log.w(TAG, "notifyPageLoaded(" + page + ")");
-    WeakReference<EmojiDrawable> weakDrawable;
-    while ((weakDrawable = pageListeners.get(page).poll()) != null) {
-      if (weakDrawable.get() != null) {
-        weakDrawable.get().setBitmap(bitmap);
-      }
-    }
-  }
-
-  private void preloadPage(final int page) {
-    Util.assertMainThread();
-
-    if (bitmaps.get(page) != null && bitmaps.get(page).get() != null) {
-      notifyPageLoaded(page, bitmaps.get(page).get());
-      return;
-    }
-
-    if (pageLocks.get(page).tryAcquire()) {
-      new AsyncTask<Void, Void, Bitmap>() {
-        @Override protected Bitmap doInBackground(Void... params) {
-          try {
-            Log.w(TAG, "loading page " + page);
-            return loadPage(page);
-          } catch (IOException ioe) {
-            Log.w(TAG, ioe);
-          } finally {
-            pageLocks.get(page).release();
-          }
-          return null;
-        }
-
-        @Override protected void onPostExecute(Bitmap bitmap) {
-          notifyPageLoaded(page, bitmap);
-        }
-      }.execute();
-    }
-  }
-
-  private Bitmap loadPage(int page) throws IOException {
-    if (page < 0 || page >= pages.length) {
-      throw new IndexOutOfBoundsException("can't load page that doesn't exist");
-    }
-
-    if (bitmaps.get(page) != null && bitmaps.get(page).get() != null) return bitmaps.get(page).get();
-
-    try {
-      final String file = "emoji_" + page + "_wrapped.png";
-      final InputStream measureStream = context.getAssets().open(file);
-      final InputStream bitmapStream = context.getAssets().open(file);
-      final Bitmap bitmap = BitmapUtil.createScaledBitmap(measureStream, bitmapStream, (float)bigDrawSize / (float)EMOJI_RAW_SIZE);
-      bitmaps.put(page, new SoftReference<>(bitmap));
-      Log.w(TAG, "onPageLoaded(" + page + ")");
-      return bitmap;
-    } catch (IOException ioe) {
-      Log.w(TAG, ioe);
-      throw ioe;
-    } catch (BitmapDecodingException bde) {
-      Log.w(TAG, bde);
-      throw new AssertionError("emoji sprite asset is corrupted or android decoding is broken");
     }
   }
 
@@ -159,10 +89,7 @@ public class EmojiProvider {
       int codePoint = matches.group().codePointAt(0);
       Drawable drawable = getEmojiDrawable(codePoint, size);
       if (drawable != null) {
-        InvalidatingDrawableSpan emojiSpan = new InvalidatingDrawableSpan(drawable, callback);
-        char[] chars = new char[matches.end() - matches.start()];
-        Arrays.fill(chars, ' ');
-        builder.setSpan(emojiSpan, matches.start(), matches.end(),
+        builder.setSpan(new InvalidatingDrawableSpan(drawable, callback), matches.start(), matches.end(),
                         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
       }
     }
@@ -175,23 +102,28 @@ public class EmojiProvider {
   }
 
   private Drawable getEmojiDrawable(DrawInfo drawInfo, double size) {
-    if (drawInfo == null) {
-      return null;
-    }
+    if (drawInfo == null) return null;
+
     final EmojiDrawable drawable = new EmojiDrawable(drawInfo, bigDrawSize);
     drawable.setBounds(0, 0, (int)((double)bigDrawSize * size), (int)((double)bigDrawSize * size));
-    if (bitmaps.get(drawInfo.page) == null || bitmaps.get(drawInfo.page).get() == null) {
-      pageListeners.get(drawInfo.page).add(new WeakReference<>(drawable));
-      preloadPage(drawInfo.page);
-    } else {
-      drawable.setBitmap(bitmaps.get(drawInfo.page).get());
-    }
+    drawInfo.page.get().addListener(new FutureTaskListener<Bitmap>() {
+      @Override public void onSuccess(final Bitmap result) {
+        handler.post(new Runnable() {
+          @Override public void run() {
+            drawable.setBitmap(result);
+          }
+        });
+      }
+
+      @Override public void onFailure(Throwable error) {
+        Log.w(TAG, error);
+      }
+    });
     return drawable;
   }
 
   public class EmojiDrawable extends Drawable {
     private final        int    index;
-    private final        int    page;
     private final        int    emojiSize;
     private              Bitmap bmp;
 
@@ -205,15 +137,12 @@ public class EmojiProvider {
 
     public EmojiDrawable(DrawInfo info, int emojiSize) {
       this.index     = info.index;
-      this.page      = info.page;
       this.emojiSize = emojiSize;
     }
 
     @Override
     public void draw(Canvas canvas) {
-      if (bmp == null) {
-        return;
-      }
+      if (bmp == null) return;
 
       Rect b = copyBounds();
 
@@ -245,21 +174,13 @@ public class EmojiProvider {
 
     @Override
     public void setColorFilter(ColorFilter cf) { }
-
-    @Override
-    public String toString() {
-      return "EmojiDrawable{" +
-          "page=" + page +
-          ", index=" + index +
-          '}';
-    }
   }
 
   class DrawInfo {
-    int page;
-    int index;
+    EmojiPageBitmap page;
+    int             index;
 
-    public DrawInfo(final int page, final int index) {
+    public DrawInfo(final EmojiPageBitmap page, final int index) {
       this.page = page;
       this.index = index;
     }
@@ -270,6 +191,70 @@ public class EmojiProvider {
           "page=" + page +
           ", index=" + index +
           '}';
+    }
+  }
+
+  private class EmojiPageBitmap {
+    private int                          page;
+    private SoftReference<Bitmap>        bitmapReference;
+    private ListenableFutureTask<Bitmap> task;
+
+    public EmojiPageBitmap(int page) {
+      this.page = page;
+    }
+
+    private ListenableFutureTask<Bitmap> get() {
+      Util.assertMainThread();
+
+      if (bitmapReference != null && bitmapReference.get() != null) {
+        return new ListenableFutureTask<>(bitmapReference.get());
+      } else if (task != null) {
+        return task;
+      } else {
+        Callable<Bitmap> callable = new Callable<Bitmap>() {
+          @Override public Bitmap call() throws Exception {
+            try {
+              Log.w(TAG, "loading page " + page);
+              return loadPage();
+            } catch (IOException ioe) {
+              Log.w(TAG, ioe);
+            }
+            return null;
+          }
+        };
+        task = new ListenableFutureTask<>(callable);
+        new AsyncTask<Void, Void, Void>() {
+          @Override protected Void doInBackground(Void... params) {
+            task.run();
+            return null;
+          }
+
+          @Override protected void onPostExecute(Void aVoid) {
+            task = null;
+          }
+        }.execute();
+      }
+      return task;
+    }
+
+    private Bitmap loadPage() throws IOException {
+      if (bitmapReference != null && bitmapReference.get() != null) return bitmapReference.get();
+
+      try {
+        final String file = "emoji_" + page + "_wrapped.png";
+        final InputStream measureStream = context.getAssets().open(file);
+        final InputStream bitmapStream = context.getAssets().open(file);
+        final Bitmap bitmap = BitmapUtil.createScaledBitmap(measureStream, bitmapStream, (float)bigDrawSize / (float)EMOJI_RAW_SIZE);
+        bitmapReference = new SoftReference<>(bitmap);
+        Log.w(TAG, "onPageLoaded(" + page + ")");
+        return bitmap;
+      } catch (IOException ioe) {
+        Log.w(TAG, ioe);
+        throw ioe;
+      } catch (BitmapDecodingException bde) {
+        Log.w(TAG, bde);
+        throw new AssertionError("emoji sprite asset is corrupted or android decoding is broken");
+      }
     }
   }
 }
