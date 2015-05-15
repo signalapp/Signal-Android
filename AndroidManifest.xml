@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
           package="org.thoughtcrime.securesms"
-      android:versionCode="118"
-      android:versionName="2.14.4">
+      android:versionCode="119"
+      android:versionName="2.14.5">
 
     <uses-sdk tools:overrideLibrary="com.amulyakhare.textdrawable"/>
 
