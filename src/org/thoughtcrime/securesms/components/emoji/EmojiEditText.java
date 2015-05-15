@@ -25,6 +25,13 @@ public class EmojiEditText extends AppCompatEditText {
     init();
   }
 
+  @Override public void setText(CharSequence text, BufferType type) {
+    super.setText(EmojiProvider.getInstance(getContext()).emojify(text,
+                                                                  EmojiProvider.EMOJI_SMALL,
+                                                                  new InvalidatingPageLoadedListener(this)),
+                  BufferType.SPANNABLE);
+  }
+
   private void init() {
   }
 

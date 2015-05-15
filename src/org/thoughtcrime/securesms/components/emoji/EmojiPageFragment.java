@@ -17,6 +17,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.emoji.EmojiPageModel.OnModelChangedListener;
 import org.thoughtcrime.securesms.components.emoji.EmojiProvider.InvalidatingPageLoadedListener;
 
 public class EmojiPageFragment extends Fragment {
@@ -42,7 +43,6 @@ public class EmojiPageFragment extends Fragment {
     grid.setColumnWidth(getResources().getDimensionPixelSize(R.dimen.emoji_drawer_size) + 2 * getResources().getDimensionPixelSize(R.dimen.emoji_drawer_item_padding));
     grid.setOnItemClickListener(new OnItemClickListener() {
       @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        model.onCodePointSelected((Integer)view.getTag());
         if (listener != null) listener.onEmojiSelected((Integer)view.getTag());
       }
     });
@@ -96,6 +96,12 @@ public class EmojiPageFragment extends Fragment {
         imageView.setLayoutParams(new AbsListView.LayoutParams(emojiSize + 2 * pad, emojiSize + 2 * pad));
         view = imageView;
       }
+
+      model.setOnModelChangedListener(new OnModelChangedListener() {
+        @Override public void onModelChanged() {
+          notifyDataSetChanged();
+        }
+      });
 
       final Integer       unicodeTag = model.getCodePoints()[position];
       final EmojiProvider provider   = EmojiProvider.getInstance(context);

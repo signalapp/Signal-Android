@@ -1,7 +1,12 @@
 package org.thoughtcrime.securesms.components.emoji;
 
-public interface EmojiPageModel {
-  int getIconRes();
-  int[] getCodePoints();
-  void onCodePointSelected(int codePoint);
+public abstract class EmojiPageModel {
+  public abstract int getIconRes();
+  public abstract int[] getCodePoints();
+  public void onCodePointSelected(int codePoint) { }
+  public void setOnModelChangedListener(OnModelChangedListener listener) { }
+
+  interface OnModelChangedListener {
+    void onModelChanged();
+  }
 }

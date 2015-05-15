@@ -16,7 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.astuetz.PagerSlidingTabStrip;
@@ -38,6 +37,7 @@ public class EmojiDrawer extends Fragment {
   private KeyboardAwareLinearLayout container;
   private ViewPager                 pager;
   private PagerSlidingTabStrip      strip;
+  private RecentEmojiPageModel      recentModel;
 
   public static EmojiDrawer newInstance(@ArrayRes int categories, @ArrayRes int icons) {
     final EmojiDrawer fragment = new EmojiDrawer();
@@ -104,6 +104,7 @@ public class EmojiDrawer extends Fragment {
                                                          getArguments().getInt("icons")),
                                            new EmojiSelectionListener() {
                                              @Override public void onEmojiSelected(int emojiCode) {
+                                               recentModel.onCodePointSelected(emojiCode);
                                                composeText.insertEmoji(emojiCode);
                                              }
                                            }));
@@ -114,7 +115,8 @@ public class EmojiDrawer extends Fragment {
     final int[] icons = ResUtil.getResourceIds(getActivity(), iconsRes);
     final int[] pages = ResUtil.getResourceIds(getActivity(), pagesRes);
     final List<EmojiPageModel> models = new LinkedList<>();
-    models.add(new RecentEmojiPageModel(getActivity()));
+    recentModel = new RecentEmojiPageModel(getActivity());
+    models.add(recentModel);
     for (int i = 0; i < icons.length; i++) {
       models.add(new StaticEmojiPageModel(icons[i], getResources().getIntArray(pages[i])));
     }

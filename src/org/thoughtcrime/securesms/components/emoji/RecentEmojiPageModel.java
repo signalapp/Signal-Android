@@ -18,13 +18,14 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 
-public class RecentEmojiPageModel implements EmojiPageModel {
+public class RecentEmojiPageModel extends EmojiPageModel {
   private static final String TAG                  = RecentEmojiPageModel.class.getSimpleName();
   private static final String EMOJI_LRU_PREFERENCE = "pref_recent_emoji";
   private static final int    EMOJI_LRU_SIZE       = 50;
 
   private final SharedPreferences      prefs;
   private final LinkedHashSet<Integer> recentlyUsed;
+  private       OnModelChangedListener listener;
 
   public RecentEmojiPageModel(Context context) {
     this.prefs        = PreferenceManager.getDefaultSharedPreferences(context);
@@ -50,10 +51,11 @@ public class RecentEmojiPageModel implements EmojiPageModel {
   }
 
   @Override public int[] getCodePoints() {
-    return toPrimitiveArray(recentlyUsed);
+    return toReversePrimitiveArray(recentlyUsed);
   }
 
   @Override public void onCodePointSelected(int codePoint) {
+    Log.w(TAG, "onCodePointSelected(" + codePoint + ")");
     recentlyUsed.remove(codePoint);
     recentlyUsed.add(codePoint);
 
@@ -80,6 +82,12 @@ public class RecentEmojiPageModel implements EmojiPageModel {
         return null;
       }
     }.execute();
+
+    if (listener != null) listener.onModelChanged();
+  }
+
+  @Override public void setOnModelChangedListener(OnModelChangedListener listener) {
+    this.listener = listener;
   }
 
   private LinkedHashSet<Integer> fromHexString(@Nullable LinkedHashSet<String> stringSet) {
@@ -100,11 +108,11 @@ public class RecentEmojiPageModel implements EmojiPageModel {
     return stringSet;
   }
 
-  private int[] toPrimitiveArray(@NonNull LinkedHashSet<Integer> integerSet) {
+  private int[] toReversePrimitiveArray(@NonNull LinkedHashSet<Integer> integerSet) {
     int[] ints = new int[integerSet.size()];
-    int i = 0;
+    int i = integerSet.size() - 1;
     for (Integer integer : integerSet) {
-      ints[i++] = integer;
+      ints[i--] = integer;
     }
     return ints;
   }
