@@ -54,7 +54,7 @@ public class RecentEmojiPageModel extends EmojiPageModel {
     return toReversePrimitiveArray(recentlyUsed);
   }
 
-  @Override public void onCodePointSelected(int codePoint) {
+  public void onCodePointSelected(int codePoint) {
     Log.w(TAG, "onCodePointSelected(" + codePoint + ")");
     recentlyUsed.remove(codePoint);
     recentlyUsed.add(codePoint);
