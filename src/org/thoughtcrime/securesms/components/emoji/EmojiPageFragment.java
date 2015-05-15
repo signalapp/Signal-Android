@@ -17,7 +17,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.emoji.EmojiProvider.InvalidatingPageLoadedListener;
+import org.thoughtcrime.securesms.components.emoji.EmojiPageModel.OnModelChangedListener;
 
 public class EmojiPageFragment extends Fragment {
   private static final String TAG = EmojiPageFragment.class.getSimpleName();
@@ -42,11 +42,16 @@ public class EmojiPageFragment extends Fragment {
     grid.setColumnWidth(getResources().getDimensionPixelSize(R.dimen.emoji_drawer_size) + 2 * getResources().getDimensionPixelSize(R.dimen.emoji_drawer_item_padding));
     grid.setOnItemClickListener(new OnItemClickListener() {
       @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        model.onCodePointSelected((Integer)view.getTag());
         if (listener != null) listener.onEmojiSelected((Integer)view.getTag());
       }
     });
     grid.setAdapter(new EmojiGridAdapter(getActivity(), model));
+    model.setOnModelChangedListener(new OnModelChangedListener() {
+      @Override public void onModelChanged() {
+        ((EmojiGridAdapter)grid.getAdapter()).notifyDataSetChanged();
+      }
+    });
+
     return view;
   }
 
@@ -99,9 +104,7 @@ public class EmojiPageFragment extends Fragment {
 
       final Integer       unicodeTag = model.getCodePoints()[position];
       final EmojiProvider provider   = EmojiProvider.getInstance(context);
-      final Drawable      drawable   = provider.getEmojiDrawable(unicodeTag,
-                                                                 EmojiProvider.EMOJI_HUGE,
-                                                                 new InvalidatingPageLoadedListener(view));
+      final Drawable      drawable   = provider.getEmojiDrawable(unicodeTag, EmojiProvider.EMOJI_HUGE);
 
       view.setImageDrawable(drawable);
       view.setPadding(pad, pad, pad, pad);
