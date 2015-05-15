@@ -141,6 +141,7 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField "long", "BUILD_TIMESTAMP", System.currentTimeMillis() + "L"
+        buildConfigField "String", "PUSH_URL", "\"https://textsecure-service.whispersystems.org\""
     }
 
     compileOptions {
@@ -186,6 +187,7 @@ android {
         testing.initWith(buildTypes.debug)
         testing {
             proguardFile 'proguard-testing.pro'
+            buildConfigField "String", "PUSH_URL", "\"https://textsecure-service-staging.whispersystems.org\""
         }
     }
 
