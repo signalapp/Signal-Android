@@ -12,7 +12,6 @@ import android.graphics.drawable.Drawable.Callback;
 import android.os.AsyncTask;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
-import android.text.style.ImageSpan;
 import android.util.Log;
 import android.util.SparseArray;
 
@@ -28,7 +27,6 @@ import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -92,20 +90,17 @@ public class EmojiProvider {
 
   private void notifyPageLoaded(final int page, final Bitmap bitmap) {
     Log.w(TAG, "notifyPageLoaded(" + page + ")");
-    Queue<WeakReference<EmojiDrawable>>    listeners = pageListeners.get(page);
-    Iterator<WeakReference<EmojiDrawable>> iterator  = listeners.iterator();
-    while (iterator.hasNext()) {
-      WeakReference<EmojiDrawable> weakDrawable = iterator.next();
+    WeakReference<EmojiDrawable> weakDrawable;
+    while ((weakDrawable = pageListeners.get(page).poll()) != null) {
       if (weakDrawable.get() != null) {
-        Log.w(TAG, "setting bitmap");
-        weakDrawable.get().onBitmapLoaded(bitmap);
-      } else {
-        iterator.remove();
+        weakDrawable.get().setBitmap(bitmap);
       }
     }
   }
 
   private void preloadPage(final int page) {
+    Util.assertMainThread();
+
     if (bitmaps.get(page) != null && bitmaps.get(page).get() != null) {
       notifyPageLoaded(page, bitmaps.get(page).get());
       return;
@@ -185,11 +180,11 @@ public class EmojiProvider {
     }
     final EmojiDrawable drawable = new EmojiDrawable(drawInfo, bigDrawSize);
     drawable.setBounds(0, 0, (int)((double)bigDrawSize * size), (int)((double)bigDrawSize * size));
-    pageListeners.get(drawInfo.page).add(new WeakReference<>(drawable));
     if (bitmaps.get(drawInfo.page) == null || bitmaps.get(drawInfo.page).get() == null) {
+      pageListeners.get(drawInfo.page).add(new WeakReference<>(drawable));
       preloadPage(drawInfo.page);
     } else {
-      drawable.onBitmapLoaded(bitmaps.get(drawInfo.page).get());
+      drawable.setBitmap(bitmaps.get(drawInfo.page).get());
     }
     return drawable;
   }
@@ -234,9 +229,8 @@ public class EmojiProvider {
                         paint);
     }
 
-    public void onBitmapLoaded(Bitmap bitmap) {
+    public void setBitmap(Bitmap bitmap) {
       Util.assertMainThread();
-      Log.w(TAG, "onBitmapLoaded(" + page + ", " + bitmap + ")");
       bmp = bitmap;
       invalidateSelf();
     }
