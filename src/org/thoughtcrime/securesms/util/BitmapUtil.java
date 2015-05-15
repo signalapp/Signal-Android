@@ -21,7 +21,6 @@ import android.util.Log;
 import android.util.Pair;
 
 import com.android.gallery3d.data.Exif;
-import com.makeramen.RoundedDrawable;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.PartAuthority;
@@ -263,7 +262,7 @@ public class BitmapUtil {
     final AtomicBoolean created = new AtomicBoolean(false);
     final Bitmap[]      result  = new Bitmap[1];
 
-    new Handler(Looper.getMainLooper()).post(new Runnable() {
+    Runnable runnable = new Runnable() {
       @Override
       public void run() {
         if (drawable instanceof BitmapDrawable) {
@@ -295,7 +294,10 @@ public class BitmapUtil {
           result.notifyAll();
         }
       }
-    });
+    };
+
+    if (Looper.myLooper() == Looper.getMainLooper()) runnable.run();
+    else                                             new Handler(Looper.getMainLooper()).post(runnable);
 
     synchronized (result) {
       while (!created.get()) Util.wait(result, 0);
