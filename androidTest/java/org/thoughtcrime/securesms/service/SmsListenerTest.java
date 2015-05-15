@@ -17,22 +17,14 @@
 
 package org.thoughtcrime.securesms.service;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.provider.Telephony;
-import android.telephony.PhoneNumberUtils;
 import android.util.Log;
 
 import org.mockito.ArgumentCaptor;
 import org.thoughtcrime.securesms.TextSecureTestCase;
-
-import java.io.ByteArrayOutputStream;
-import java.lang.reflect.Method;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import org.thoughtcrime.securesms.util.SmsUtil;
 
 import static org.mockito.Matchers.anyBoolean;
 import static org.mockito.Matchers.anyInt;
@@ -65,64 +57,6 @@ public class SmsListenerTest extends TextSecureTestCase {
       CHALLENGE_4_4, CHALLENGE_4_4, CHALLENGE_4_4,
   };
 
-  /*
-  credit :D
-  http://stackoverflow.com/a/12338541
-   */
-  private static byte[] buildSmsPdu(String sender, String body) throws Exception{
-    byte[]   scBytes     = PhoneNumberUtils.networkPortionToCalledPartyBCD("0000000000");
-    byte[]   senderBytes = PhoneNumberUtils.networkPortionToCalledPartyBCD(sender);
-    int      lsmcs       = scBytes.length;
-    byte[]   dateBytes   = new byte[7];
-    Calendar calendar    = new GregorianCalendar();
-
-    dateBytes[0] = reverseByte((byte) (calendar.get(Calendar.YEAR)));
-    dateBytes[1] = reverseByte((byte) (calendar.get(Calendar.MONTH) + 1));
-    dateBytes[2] = reverseByte((byte) (calendar.get(Calendar.DAY_OF_MONTH)));
-    dateBytes[3] = reverseByte((byte) (calendar.get(Calendar.HOUR_OF_DAY)));
-    dateBytes[4] = reverseByte((byte) (calendar.get(Calendar.MINUTE)));
-    dateBytes[5] = reverseByte((byte) (calendar.get(Calendar.SECOND)));
-    dateBytes[6] = reverseByte((byte) ((calendar.get(Calendar.ZONE_OFFSET) + calendar.get(Calendar.DST_OFFSET)) / (60 * 1000 * 15)));
-
-    ByteArrayOutputStream bo = new ByteArrayOutputStream();
-    bo.write(lsmcs);
-    bo.write(scBytes);
-    bo.write(0x04);
-    bo.write((byte) sender.length());
-    bo.write(senderBytes);
-    bo.write(0x00);
-    bo.write(0x00);
-    bo.write(dateBytes);
-
-    String sReflectedClassName   = "com.android.internal.telephony.GsmAlphabet";
-    Class  cReflectedNFCExtras   = Class.forName(sReflectedClassName);
-    Method stringToGsm7BitPacked = cReflectedNFCExtras.getMethod("stringToGsm7BitPacked", new Class[] { String.class });
-
-    stringToGsm7BitPacked.setAccessible(true);
-    byte[] bodybytes = (byte[]) stringToGsm7BitPacked.invoke(null, body);
-    bo.write(bodybytes);
-
-    return bo.toByteArray();
-  }
-
-  private static byte reverseByte(byte b) {
-    return (byte) ((b & 0xF0) >> 4 | (b & 0x0F) << 4);
-  }
-
-  @SuppressLint("NewApi")
-  private Intent buildSmsReceivedIntent(String smsBody) throws Exception {
-    final Intent smsIntent = mock(Intent.class);
-    final Bundle smsExtras = new Bundle();
-    final byte[] smsPdu    = buildSmsPdu("15555555555", smsBody);
-
-    smsExtras.putSerializable("pdus", new Object[]{smsPdu});
-
-    when(smsIntent.getAction()).thenReturn(Telephony.Sms.Intents.SMS_RECEIVED_ACTION);
-    when(smsIntent.getExtras()).thenReturn(smsExtras);
-
-    return smsIntent;
-  }
-
   public void testReceiveChallenges() throws Exception {
     final SmsListener smsListener = new SmsListener();
 
@@ -139,7 +73,7 @@ public class SmsListenerTest extends TextSecureTestCase {
       when(mockPreferences.getBoolean(contains("pref_verifying"), anyBoolean())).thenReturn(true);
 
       try {
-        smsListener.onReceive(mockContext, buildSmsReceivedIntent(CHALLENGE_SMS));
+        smsListener.onReceive(mockContext, SmsUtil.buildSmsReceivedIntent("15555555555", CHALLENGE_SMS));
       } catch (IllegalStateException e) {
         Log.d(getClass().getName(), "some api levels are picky with abortBroadcast()");
       }

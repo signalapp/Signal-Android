@@ -11,6 +11,7 @@ tests
 lint.xml
 local.properties
 ant.properties
+gradle.properties
 .DS_Store
 build.log
 build-log.xml
@@ -19,3 +20,4 @@ build
 signing.properties
 library/lib/
 library/obj/
+espressoTest/res/values/arrays.xml
