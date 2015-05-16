@@ -15,12 +15,12 @@ public class AvatarImageView extends ImageView {
 
   public AvatarImageView(Context context) {
     super(context);
-    setScaleType(ScaleType.CENTER_INSIDE);
+    setScaleType(ScaleType.CENTER_CROP);
   }
 
   public AvatarImageView(Context context, AttributeSet attrs) {
     super(context, attrs);
-    setScaleType(ScaleType.CENTER_INSIDE);
+    setScaleType(ScaleType.CENTER_CROP);
   }
 
   public void setAvatar(@Nullable Recipient recipient, boolean quickContactEnabled) {
