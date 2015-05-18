@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="ConversationActivity_gdata_selfdestroy_entry_five">خمسة
+  <string name="ConversationActivity_gdata_selfdestroy_entry_1">خمسة
   دقائق</string>
 
-  <string name="ConversationActivity_gdata_selfdestroy_entry_thirty">ثلاثون
+  <string name="ConversationActivity_gdata_selfdestroy_entry_2">ثلاثون
   دقيقة</string>
 
-  <string name="ConversationActivity_gdata_selfdestroy_entry_hour">ساعة
+  <string name="ConversationActivity_gdata_selfdestroy_entry_3">ساعة
   واحدة</string>
 
   <string name="gdata_contact_selection_page_title">جهات الاتصال</string>

@@ -13,6 +13,8 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class GDataPreferences {
 
@@ -22,6 +24,7 @@ public class GDataPreferences {
   private static final String PRIVACY_ACTIVATED = "PRIVACY_ACTIVATED";
   private static final String SAVED_HIDDEN_RECIPIENTS = "SAVED_HIDDEN_RECIPIENTS";
   private static final String SAVE_E164_NUMBER = "SAVE_E164_NUMBER";
+  private static final String DELETED_MESSAGES = "DELETED_MESSAGES";
 
   private final SharedPreferences mPreferences;
   private final Context mContext;

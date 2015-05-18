@@ -60,6 +60,7 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
   public static final int MESSAGE_TYPE_OUTGOING = 0;
   public static final int MESSAGE_TYPE_INCOMING = 1;
   public static final int MESSAGE_TYPE_GROUP_ACTION = 2;
+  public static final int MESSAGE_TYPE_SELF_DESTRUCTION = 3;
 
   private final Set<MessageRecord> batchSelected = Collections.synchronizedSet(new HashSet<MessageRecord>());
 
@@ -120,6 +121,9 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
       case ConversationAdapter.MESSAGE_TYPE_GROUP_ACTION:
         view = GUtil.setFontForFragment(context, inflater.inflate(R.layout.conversation_item_activity, parent, false));
         break;
+      case ConversationAdapter.MESSAGE_TYPE_SELF_DESTRUCTION:
+        view = GUtil.setFontForFragment(context, inflater.inflate(R.layout.conversation_item_received_bomb, parent, false));
+        break;
       default: throw new IllegalArgumentException("unsupported item view type given to ConversationAdapter");
     }
 
@@ -129,7 +133,7 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
 
   @Override
   public int getViewTypeCount() {
-    return 3;
+    return 4;
   }
 
   @Override
@@ -143,9 +147,10 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
     String type                 = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsDatabase.TRANSPORT));
     MessageRecord messageRecord = getMessageRecord(id, cursor, type);
 
-    if      (messageRecord.isGroupAction()) return MESSAGE_TYPE_GROUP_ACTION;
-    else if (messageRecord.isOutgoing())    return MESSAGE_TYPE_OUTGOING;
-    else                                    return MESSAGE_TYPE_INCOMING;
+    if (messageRecord.isGroupAction())                        return MESSAGE_TYPE_GROUP_ACTION;
+    else if (messageRecord.isOutgoing())                      return MESSAGE_TYPE_OUTGOING;
+    else if (messageRecord.getBody().isSelfDestruction())     return MESSAGE_TYPE_SELF_DESTRUCTION;
+    else                                                      return MESSAGE_TYPE_INCOMING;
   }
 
   private MessageRecord getMessageRecord(long messageId, Cursor cursor, String type) {

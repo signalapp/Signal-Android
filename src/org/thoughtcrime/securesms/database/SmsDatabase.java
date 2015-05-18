@@ -608,7 +608,7 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
       int receiptCount        = cursor.getInt(cursor.getColumnIndexOrThrow(SmsDatabase.RECEIPT_COUNT));
       Recipients recipients   = getRecipientsFor(address);
       DisplayRecord.Body body = getBody(cursor);
-
+      //int selfDestructionTime = 1 + (int) (Math.random() * 15);
       return  new SmsMessageRecord(context, messageId, body, recipients,
                                    recipients.getPrimaryRecipient(),
                                    addressDeviceId,

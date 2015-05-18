@@ -26,6 +26,7 @@ import android.os.Handler;
 import android.provider.Contacts.Intents;
 import android.provider.ContactsContract.QuickContact;
 import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.style.StyleSpan;
@@ -103,8 +104,11 @@ public class ConversationListItem extends RelativeLayout
 
     this.recipients.addListener(this);
     this.fromView.setText(formatFrom(recipients, count, read));
-
-    this.subjectView.setText(Emoji.getInstance(context).emojify(thread.getDisplayBody(),
+    SpannableString body = thread.getDisplayBody();
+    if(thread.getBody().isSelfDestruction()) {
+      body = new SpannableString(context.getString(R.string.self_destruction_body).replace("#1#", "" + thread.getBody().getSelfDestructionDuration()));
+    }
+    this.subjectView.setText(Emoji.getInstance(context).emojify(body,
                                                                 Emoji.EMOJI_SMALL,
                                                                 new Emoji.InvalidatingPageLoadedListener(subjectView)),
                              TextView.BufferType.SPANNABLE);

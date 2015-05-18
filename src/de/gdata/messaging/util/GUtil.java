@@ -33,6 +33,8 @@ import java.util.regex.Pattern;
 public class GUtil {
 
 
+  public static String DESTROY_FLAG = "delete:";
+
   public static final View setFontForFragment(Context context, View root) {
     GDataPreferences prefs = new GDataPreferences(context);
     Typeface font = TypeFaces.getTypeFace(context, prefs.getApplicationFont());

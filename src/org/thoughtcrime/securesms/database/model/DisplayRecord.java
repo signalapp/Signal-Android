@@ -20,7 +20,10 @@ import android.content.Context;
 import android.text.SpannableString;
 
 import org.thoughtcrime.securesms.database.SmsDatabase;
+import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.recipients.Recipients;
+
+import de.gdata.messaging.util.GUtil;
 
 /**
  * The base class for all message record models.  Encapsulates basic data
@@ -41,6 +44,9 @@ public abstract class DisplayRecord {
   private final long       threadId;
   private final Body       body;
 
+  public static final int SELF_DESTRUCTION_DISABLED   = 0;
+  private Slide mediaSlide;
+
   public DisplayRecord(Context context, Body body, Recipients recipients, long dateSent,
                        long dateReceived, long threadId, long type)
   {
@@ -51,9 +57,11 @@ public abstract class DisplayRecord {
     this.dateReceived         = dateReceived;
     this.type                 = type;
     this.body                 = body;
+    getBody();
   }
 
   public Body getBody() {
+    body.getParsedBody();
     return body;
   }
 
@@ -95,9 +103,18 @@ public abstract class DisplayRecord {
     return isGroupUpdate() || isGroupQuit();
   }
 
+  public void setMediaSlide(Slide mediaSlide) {
+    this.mediaSlide = mediaSlide;
+  }
+  public Slide getMediaSlide() {
+    return mediaSlide;
+  }
+
   public static class Body {
     private final String body;
     private final boolean plaintext;
+
+    private int selfDestroyDuration = SELF_DESTRUCTION_DISABLED;
 
     public Body(String body, boolean plaintext) {
       this.body      = body;
@@ -108,8 +125,26 @@ public abstract class DisplayRecord {
       return plaintext;
     }
 
+    public String getParsedBody() {
+      String newBody = body == null ? "" : body;
+      String[] parsed = newBody.split(GUtil.DESTROY_FLAG);
+      if(parsed != null && parsed.length > 1) {
+        try {
+          selfDestroyDuration = Integer.parseInt(parsed[1].trim());
+        } catch(NumberFormatException nfe){}
+          newBody = parsed[0];
+       }
+      return newBody;
+    }
     public String getBody() {
       return body == null ? "" : body;
+    }
+
+    public boolean isSelfDestruction() {
+      return selfDestroyDuration != SELF_DESTRUCTION_DISABLED;
+    }
+    public int getSelfDestructionDuration() {
+      return selfDestroyDuration;
     }
   }
 }

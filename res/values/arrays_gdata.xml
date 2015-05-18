@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="gdata_selfdestroy_entrys">
-        <item>@string/ConversationActivity_gdata_selfdestroy_entry_five</item>
-        <item>@string/ConversationActivity_gdata_selfdestroy_entry_thirty</item>
-        <item>@string/ConversationActivity_gdata_selfdestroy_entry_hour</item>
-        <item>@string/picker_cancel</item>
+        <item>@string/ConversationActivity_gdata_selfdestroy_entry_1</item>
+        <item>@string/ConversationActivity_gdata_selfdestroy_entry_2</item>
+        <item>@string/ConversationActivity_gdata_selfdestroy_entry_3</item>
+        <item>@string/ConversationActivity_gdata_selfdestroy_entry_0</item>
     </string-array>
     <string-array name="gdata_selfdestroy_icons">
         <item>@drawable/ic_bomb</item>
@@ -13,9 +13,9 @@
         <item>@drawable/ic_bomb</item>
     </string-array>
     <string-array name="gdata_selfdestroy_values">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
+        <item>60</item>
+        <item>15</item>
+        <item>5</item>
+        <item>0</item>
     </string-array>
 </resources>

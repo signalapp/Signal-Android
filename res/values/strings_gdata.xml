@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="ConversationActivity_gdata_selfdestroy_entry_five">5 minutes</string>
-    <string name="ConversationActivity_gdata_selfdestroy_entry_thirty">30 minutes</string>
-    <string name="ConversationActivity_gdata_selfdestroy_entry_hour">1 hour</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_1">5 minutes</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_2">30 minutes</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_3">1 hour</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_0">Deactivate</string>
 
     <string name="gdata_contact_selection_page_title">Contacts</string>
 
@@ -19,6 +20,10 @@
     <string name="menu_privacy_hide">Do not show hidden conversations</string>
     <string name="menu_privacy_single_hide">Hide conversation</string>
     <string name="menu_filter_block_contact">Block contact</string>
+
+    <string name="self_destruction">Destroy</string>
+    <string name="self_destruction_title">#1# Sekunden bis zur Selbstzerstörung...</string>
+    <string name="self_destruction_body">Der Inhalt dieser Nachricht wird sich nach dem Öffnen in #1# Sekunden selbst löschen.</string>
 
     <string name="privacy_pw_dialog_header">Enter password: </string>
     <string name="privacy_pw_dialog_hint">Note: this is the password you defined in Internet Security for Android.</string>

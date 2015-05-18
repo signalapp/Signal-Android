@@ -26,15 +26,19 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.QuickContact;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,6 +54,7 @@ import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
 import org.thoughtcrime.securesms.jobs.MmsDownloadJob;
 import org.thoughtcrime.securesms.jobs.MmsSendJob;
 import org.thoughtcrime.securesms.jobs.SmsSendJob;
+import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
@@ -63,77 +68,84 @@ import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import java.util.Set;
 
 import de.gdata.messaging.util.GDataLinkMovementMethod;
+import de.gdata.messaging.util.GDataPreferences;
 
 /**
  * A view that displays an individual conversation item within a conversation
  * thread.  Used by ComposeMessageActivity's ListActivity via a ConversationAdapter.
  *
  * @author Moxie Marlinspike
- *
  */
 
 public class ConversationItem extends LinearLayout {
   private final static String TAG = ConversationItem.class.getSimpleName();
+  private static final int SECOND = 1000;
 
-  private final int    STYLE_ATTRIBUTES[] = new int[]{R.attr.conversation_item_sent_push_background,
-                                                      R.attr.conversation_item_sent_push_triangle_background,
-                                                      R.attr.conversation_item_sent_background,
-                                                      R.attr.conversation_item_sent_triangle_background,
-                                                      R.attr.conversation_item_sent_pending_background,
-                                                      R.attr.conversation_item_sent_pending_triangle_background,
-                                                      R.attr.conversation_item_sent_push_pending_background,
-                                                      R.attr.conversation_item_sent_push_pending_triangle_background};
+  private final int STYLE_ATTRIBUTES[] = new int[]{R.attr.conversation_item_sent_push_background,
+      R.attr.conversation_item_sent_push_triangle_background,
+      R.attr.conversation_item_sent_background,
+      R.attr.conversation_item_sent_triangle_background,
+      R.attr.conversation_item_sent_pending_background,
+      R.attr.conversation_item_sent_pending_triangle_background,
+      R.attr.conversation_item_sent_push_pending_background,
+      R.attr.conversation_item_sent_push_pending_triangle_background};
 
-  private final static int SENT_PUSH                  = 0;
-  private final static int SENT_PUSH_TRIANGLE         = 1;
-  private final static int SENT_SMS                   = 2;
-  private final static int SENT_SMS_TRIANGLE          = 3;
-  private final static int SENT_SMS_PENDING           = 4;
-  private final static int SENT_SMS_PENDING_TRIANGLE  = 5;
-  private final static int SENT_PUSH_PENDING          = 6;
+  private final static int SENT_PUSH = 0;
+  private final static int SENT_PUSH_TRIANGLE = 1;
+  private final static int SENT_SMS = 2;
+  private final static int SENT_SMS_TRIANGLE = 3;
+  private final static int SENT_SMS_PENDING = 4;
+  private final static int SENT_SMS_PENDING_TRIANGLE = 5;
+  private final static int SENT_PUSH_PENDING = 6;
   private final static int SENT_PUSH_PENDING_TRIANGLE = 7;
 
-  private Handler       failedIconHandler;
+  private Handler failedIconHandler;
   private MessageRecord messageRecord;
-  private MasterSecret  masterSecret;
-  private boolean       groupThread;
-  private boolean       pushDestination;
+  private MasterSecret masterSecret;
+  private boolean groupThread;
+  private boolean pushDestination;
 
-  private  View      conversationParent;
-  private  TextView  bodyText;
-  private  TextView  dateText;
-  private  TextView  indicatorText;
-  private  TextView  groupStatusText;
-  private  ImageView secureImage;
-  private  ImageView failedImage;
-  private  ImageView contactPhoto;
-  private  ImageView deliveryImage;
-  private  View      triangleTick;
-  private  ImageView pendingIndicator;
+  private View conversationParent;
+  private TextView bodyText;
+  private TextView dateText;
+  private TextView indicatorText;
+  private TextView groupStatusText;
+  private ImageView secureImage;
+  private ImageView bombImage;
+  private ImageView failedImage;
+  private ImageView contactPhoto;
+  private ImageView deliveryImage;
+  private View triangleTick;
+  private ImageView pendingIndicator;
 
-  private Set<MessageRecord>              batchSelected;
-  private SelectionClickListener          selectionClickListener;
-  private View                            mmsContainer;
-  private ImageView                       mmsThumbnail;
-  private Button                          mmsDownloadButton;
-  private TextView                        mmsDownloadingLabel;
+  private Set<MessageRecord> batchSelected;
+  private SelectionClickListener selectionClickListener;
+  private View mmsContainer;
+  private ImageView mmsThumbnail;
+  private Button mmsDownloadButton;
+  private TextView mmsDownloadingLabel;
   private ListenableFutureTask<SlideDeck> slideDeck;
-  private FutureTaskListener<SlideDeck>   slideDeckListener;
-  private TypedArray                      backgroundDrawables;
+  private FutureTaskListener<SlideDeck> slideDeckListener;
+  private TypedArray backgroundDrawables;
 
-  private final FailedIconClickListener     failedIconClickListener     = new FailedIconClickListener();
-  private final MmsDownloadClickListener    mmsDownloadClickListener    = new MmsDownloadClickListener();
+  private final FailedIconClickListener failedIconClickListener = new FailedIconClickListener();
+  private final MmsDownloadClickListener mmsDownloadClickListener = new MmsDownloadClickListener();
   private final MmsPreferencesClickListener mmsPreferencesClickListener = new MmsPreferencesClickListener();
-  private final ClickListener               clickListener               = new ClickListener();
-  private final Handler                     handler                     = new Handler();
+  private final ClickListener clickListener = new ClickListener();
+  private final Handler handler = new Handler();
   private final Context context;
 
   private ConversationFragment conversationFragment;
+  private AlertDialog alertDialogDestroy;
+  private Handler dismissDialogHandler;
+  private Handler refreshCountdownHandler;
+  private int currentCountdown = 0;
+  private boolean alreadyDestroyed = false;
 
   public ConversationItem(Context context) {
     super(context);
     this.context = context;
-   }
+  }
 
   public ConversationItem(Context context, AttributeSet attrs) {
     super(context, attrs);
@@ -144,46 +156,49 @@ public class ConversationItem extends LinearLayout {
   protected void onFinishInflate() {
     super.onFinishInflate();
 
-    this.bodyText            = (TextView) findViewById(R.id.conversation_item_body);
-    this.dateText            = (TextView) findViewById(R.id.conversation_item_date);
-    this.indicatorText       = (TextView) findViewById(R.id.indicator_text);
-    this.groupStatusText     = (TextView) findViewById(R.id.group_message_status);
-    this.secureImage         = (ImageView)findViewById(R.id.sms_secure_indicator);
-    this.failedImage         = (ImageView)findViewById(R.id.sms_failed_indicator);
-    this.mmsContainer        =            findViewById(R.id.mms_view);
-    this.mmsThumbnail        = (ImageView)findViewById(R.id.image_view);
-    this.mmsDownloadButton   = (Button)   findViewById(R.id.mms_download_button);
+    this.bodyText = (TextView) findViewById(R.id.conversation_item_body);
+    this.dateText = (TextView) findViewById(R.id.conversation_item_date);
+    this.indicatorText = (TextView) findViewById(R.id.indicator_text);
+    this.groupStatusText = (TextView) findViewById(R.id.group_message_status);
+    this.secureImage = (ImageView) findViewById(R.id.sms_secure_indicator);
+    this.bombImage = (ImageView) findViewById(R.id.image_view_bomb);
+    this.failedImage = (ImageView) findViewById(R.id.sms_failed_indicator);
+    this.mmsContainer = findViewById(R.id.mms_view);
+    this.mmsThumbnail = (ImageView) findViewById(R.id.image_view);
+    this.mmsDownloadButton = (Button) findViewById(R.id.mms_download_button);
     this.mmsDownloadingLabel = (TextView) findViewById(R.id.mms_label_downloading);
-    this.contactPhoto        = (ImageView)findViewById(R.id.contact_photo);
-    this.deliveryImage       = (ImageView)findViewById(R.id.delivered_indicator);
-    this.conversationParent  =            findViewById(R.id.conversation_item_parent);
-    this.triangleTick        =            findViewById(R.id.triangle_tick);
-    this.pendingIndicator    = (ImageView)findViewById(R.id.pending_approval_indicator);
+    this.contactPhoto = (ImageView) findViewById(R.id.contact_photo);
+    this.deliveryImage = (ImageView) findViewById(R.id.delivered_indicator);
+    this.conversationParent = findViewById(R.id.conversation_item_parent);
+    this.triangleTick = findViewById(R.id.triangle_tick);
+    this.pendingIndicator = (ImageView) findViewById(R.id.pending_approval_indicator);
     this.backgroundDrawables = context.obtainStyledAttributes(STYLE_ATTRIBUTES);
 
     setOnClickListener(clickListener);
-    if (failedImage != null)       failedImage.setOnClickListener(failedIconClickListener);
+    if (failedImage != null) failedImage.setOnClickListener(failedIconClickListener);
     if (mmsDownloadButton != null) mmsDownloadButton.setOnClickListener(mmsDownloadClickListener);
-    if (mmsThumbnail != null)      mmsThumbnail.setOnLongClickListener(new MultiSelectLongClickListener());
+    if (mmsThumbnail != null) {
+      mmsThumbnail.setOnLongClickListener(new MultiSelectLongClickListener());
+      mmsThumbnail.setVisibility(View.GONE);
+    }
   }
 
   public void set(MasterSecret masterSecret, MessageRecord messageRecord,
                   Set<MessageRecord> batchSelected, SelectionClickListener selectionClickListener,
-                  Handler failedIconHandler, boolean groupThread, boolean pushDestination, ConversationFragment fragment)
-  {
-    this.masterSecret           = masterSecret;
-    this.messageRecord          = messageRecord;
-    this.batchSelected          = batchSelected;
+                  Handler failedIconHandler, boolean groupThread, boolean pushDestination, ConversationFragment fragment) {
+    this.masterSecret = masterSecret;
+    this.messageRecord = messageRecord;
+    this.batchSelected = batchSelected;
     this.selectionClickListener = selectionClickListener;
-    this.failedIconHandler      = failedIconHandler;
-    this.groupThread            = groupThread;
-    this.pushDestination        = pushDestination;
+    this.failedIconHandler = failedIconHandler;
+    this.groupThread = groupThread;
+    this.pushDestination = pushDestination;
 
-    this.conversationFragment   = fragment;
+    this.conversationFragment = fragment;
 
     setConversationBackgroundDrawables(messageRecord);
     setSelectionBackgroundDrawables(messageRecord);
-    setBodyText(messageRecord);
+    setBodyText();
 
     if (!messageRecord.isGroupAction()) {
       setStatusIcons(messageRecord);
@@ -193,9 +208,9 @@ public class ConversationItem extends LinearLayout {
       setMinimumWidth();
 
       if (messageRecord.isMmsNotification()) {
-        setNotificationMmsAttributes((NotificationMmsMessageRecord)messageRecord);
+        setNotificationMmsAttributes((NotificationMmsMessageRecord) messageRecord);
       } else if (messageRecord.isMms()) {
-        setMediaMmsAttributes((MediaMmsMessageRecord)messageRecord);
+        setMediaMmsAttributes((MediaMmsMessageRecord) messageRecord);
       }
     }
   }
@@ -215,9 +230,9 @@ public class ConversationItem extends LinearLayout {
 
   public static void setViewBackgroundWithoutResettingPadding(final View v, final int backgroundResId) {
     final int paddingBottom = v.getPaddingBottom();
-    final int paddingLeft   = v.getPaddingLeft();
-    final int paddingRight  = v.getPaddingRight();
-    final int paddingTop    = v.getPaddingTop();
+    final int paddingLeft = v.getPaddingLeft();
+    final int paddingRight = v.getPaddingRight();
+    final int paddingTop = v.getPaddingTop();
     v.setBackgroundResource(backgroundResId);
     v.setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom);
   }
@@ -230,16 +245,16 @@ public class ConversationItem extends LinearLayout {
         final int background;
         final int triangleBackground;
         if (messageRecord.isPending() && pushDestination && !messageRecord.isForcedSms()) {
-          background         = SENT_PUSH_PENDING;
+          background = SENT_PUSH_PENDING;
           triangleBackground = SENT_PUSH_PENDING_TRIANGLE;
         } else if (messageRecord.isPending() || messageRecord.isPendingSmsFallback()) {
-          background         = SENT_SMS_PENDING;
+          background = SENT_SMS_PENDING;
           triangleBackground = SENT_SMS_PENDING_TRIANGLE;
         } else if (messageRecord.isPush()) {
-          background         = SENT_PUSH;
+          background = SENT_PUSH;
           triangleBackground = SENT_PUSH_TRIANGLE;
         } else {
-          background         = SENT_SMS;
+          background = SENT_SMS;
           triangleBackground = SENT_SMS_TRIANGLE;
         }
 
@@ -250,10 +265,10 @@ public class ConversationItem extends LinearLayout {
   }
 
   private void setSelectionBackgroundDrawables(MessageRecord messageRecord) {
-    int[]      attributes = new int[]{R.attr.conversation_list_item_background_selected,
-                                      R.attr.conversation_item_background};
+    int[] attributes = new int[]{R.attr.conversation_list_item_background_selected,
+        R.attr.conversation_item_background};
 
-    TypedArray drawables  = context.obtainStyledAttributes(attributes);
+    TypedArray drawables = context.obtainStyledAttributes(attributes);
 
     if (batchSelected.contains(messageRecord)) {
       setBackgroundDrawable(drawables.getDrawable(0));
@@ -264,26 +279,141 @@ public class ConversationItem extends LinearLayout {
     drawables.recycle();
   }
 
-  private void setBodyText(MessageRecord messageRecord) {
+  private void setBodyText() {
     bodyText.setClickable(false);
     bodyText.setFocusable(false);
 
     bodyText.setText(Emoji.getInstance(context).emojify(messageRecord.getDisplayBody(),
-                                                        new Emoji.InvalidatingPageLoadedListener(bodyText)),
-                     TextView.BufferType.SPANNABLE);
+            new Emoji.InvalidatingPageLoadedListener(bodyText)),
+        TextView.BufferType.SPANNABLE);
 
     if (!messageRecord.isKeyExchange() && !messageRecord.isPendingSmsFallback()) {
-        bodyText.setMovementMethod(GDataLinkMovementMethod.getInstance(context, conversationFragment));
+      bodyText.setMovementMethod(GDataLinkMovementMethod.getInstance(context, conversationFragment));
     }
 
     if (bodyText.isClickable() && bodyText.isFocusable()) {
       bodyText.setOnLongClickListener(new MultiSelectLongClickListener());
       bodyText.setOnClickListener(new MultiSelectLongClickListener());
     }
+    if (messageRecord.getBody().isSelfDestruction() && !messageRecord.isOutgoing()) {
+
+      dismissDialogHandler = new Handler(Looper.getMainLooper()) {
+        @Override
+        public void handleMessage(Message inputMessage) {
+          try {
+            if ((alertDialogDestroy != null) && alertDialogDestroy.isShowing()) {
+              alertDialogDestroy.dismiss();
+            }
+          } catch (final IllegalArgumentException e) {
+            // Handle or log or ignore
+          } catch (final Exception e) {
+            // Handle or log or ignore
+          } finally {
+            alertDialogDestroy = null;
+          }
+        }
+      };
+      refreshCountdownHandler = new Handler(Looper.getMainLooper()) {
+        @Override
+        public void handleMessage(Message inputMessage) {
+          if (alertDialogDestroy != null) {
+            ImageView image =  ((ImageView) alertDialogDestroy.findViewById(R.id.imageDialog));
+            String countdown = getContext().getString(R.string.self_destruction_title);
+            countdown = countdown.replace("#1#", "" + currentCountdown);
+            alertDialogDestroy.setTitle("" + countdown);
+            if((messageRecord.getBody().getSelfDestructionDuration() - currentCountdown)>10) {
+              deleteMessage(messageRecord);
+            } else {
+              if(messageRecord.getMediaSlide() != null) {
+                messageRecord.getMediaSlide().setThumbnailOn(image);
+              }
+            }
+          }
+        }
+      };
+      String destroyText = getContext().getString(R.string.self_destruction_body);
+      destroyText = destroyText.replace("#1#", "" + messageRecord.getBody().getSelfDestructionDuration());
+      String countdownText = getContext().getString(R.string.self_destruction_title);
+      countdownText = countdownText.replace("#1#", "" + messageRecord.getBody().getSelfDestructionDuration());
+
+      bodyText.setOnClickListener(new BombClickListener(bodyText.getText() + "", countdownText));
+      bodyText.setText(destroyText);
+    }
+
+  }
+
+  public class BombClickListener implements OnClickListener {
+    String text = "";
+    String countdown = "";
+
+    public BombClickListener(String text, String countdown) {
+      this.text = text;
+      this.countdown = countdown;
+    }
+
+    @Override
+    public void onClick(View v) {
+      bodyText.setText(text);
+      if (bombImage != null) {
+        bombImage.setVisibility(View.GONE);
+      }
+      if(messageRecord.getMediaSlide() == null) {
+        deleteMessage(messageRecord);
+      }
+      AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+      builder.setTitle(countdown);
+      builder.setIcon(R.drawable.ic_bomb);
+      builder.setCancelable(false);
+      LayoutInflater vi = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+      LinearLayout rlView = (LinearLayout) vi.inflate(R.layout.destroy_dialog, null);
+      ((TextView) rlView.findViewById(R.id.textDialog)).setText(text);
+      builder.setView(rlView);
+      builder.setPositiveButton(R.string.self_destruction, new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+          dialog.dismiss();
+          deleteMessage(messageRecord);
+          alreadyDestroyed = true;
+        }
+      });
+      alertDialogDestroy = builder.show();
+      new Thread(new Runnable() {
+        @Override
+        public void run() {
+          alreadyDestroyed = false;
+          int i = messageRecord.getBody().getSelfDestructionDuration();
+          currentCountdown = i;
+          refreshCountdownHandler.sendEmptyMessage(0);
+          while (i > 0 && !alreadyDestroyed) {
+            try {
+              Thread.sleep(SECOND);
+            } catch (InterruptedException e) {
+              e.printStackTrace();
+            }
+            i--;
+            currentCountdown = i;
+            refreshCountdownHandler.sendEmptyMessage(0);
+          }
+          if(!alreadyDestroyed) {
+            dismissDialogHandler.sendEmptyMessage(0);
+            deleteMessage(messageRecord);
+          }
+        }
+      }).start();
+
+    }
+  };
+
+  public void deleteMessage(MessageRecord mr) {
+    if (mr.isMms()) {
+      DatabaseFactory.getMmsDatabase(getContext()).delete(mr.getId());
+    } else {
+      DatabaseFactory.getSmsDatabase(getContext()).deleteMessage(mr.getId());
+    }
   }
 
   private void setContactPhoto(MessageRecord messageRecord) {
-    if (! messageRecord.isOutgoing()) {
+    if (!messageRecord.isOutgoing()) {
       setContactPhotoForRecipient(messageRecord.getIndividualRecipient());
     }
   }
@@ -307,8 +437,9 @@ public class ConversationItem extends LinearLayout {
     } else if (messageRecord.isPendingSmsFallback() && indicatorText != null) {
       dateText.setText("");
       if (messageRecord.isPendingSecureSmsFallback()) {
-        if (messageRecord.isMms()) indicatorText.setText(R.string.ConversationItem_click_to_approve_mms);
-        else                       indicatorText.setText(R.string.ConversationItem_click_to_approve_sms);
+        if (messageRecord.isMms())
+          indicatorText.setText(R.string.ConversationItem_click_to_approve_mms);
+        else indicatorText.setText(R.string.ConversationItem_click_to_approve_sms);
       } else {
         indicatorText.setText(R.string.ConversationItem_click_to_approve_unencrypted);
       }
@@ -318,7 +449,7 @@ public class ConversationItem extends LinearLayout {
       final long timestamp;
 
       if (messageRecord.isPush()) timestamp = messageRecord.getDateSent();
-      else                        timestamp = messageRecord.getDateReceived();
+      else timestamp = messageRecord.getDateReceived();
 
       dateText.setText(DateUtils.getBetterRelativeTimeSpanString(getContext(), timestamp));
     }
@@ -327,7 +458,7 @@ public class ConversationItem extends LinearLayout {
   private void setMinimumWidth() {
     if (indicatorText != null && indicatorText.getVisibility() == View.VISIBLE && indicatorText.getText() != null) {
       final float density = getResources().getDisplayMetrics().density;
-      conversationParent.setMinimumWidth(indicatorText.getText().length() * (int)(6.5 * density));
+      conversationParent.setMinimumWidth(indicatorText.getText().length() * (int) (6.5 * density));
     } else {
       conversationParent.setMinimumWidth(0);
     }
@@ -335,17 +466,16 @@ public class ConversationItem extends LinearLayout {
 
   private void setEvents(MessageRecord messageRecord) {
     setClickable(messageRecord.isPendingSmsFallback() ||
-                 (messageRecord.isKeyExchange()            &&
-                  !messageRecord.isCorruptedKeyExchange()  &&
-                  !messageRecord.isOutgoing()));
+        (messageRecord.isKeyExchange() &&
+            !messageRecord.isCorruptedKeyExchange() &&
+            !messageRecord.isOutgoing()));
 
-    if (!messageRecord.isOutgoing()                       &&
+    if (!messageRecord.isOutgoing() &&
         messageRecord.getRecipients().isSingleRecipient() &&
-        !messageRecord.isSecure())
-    {
+        !messageRecord.isSecure()) {
       checkForAutoInitiate(messageRecord.getIndividualRecipient(),
-                           messageRecord.getBody().getBody(),
-                           messageRecord.getThreadId());
+          messageRecord.getBody().getBody(),
+          messageRecord.getThreadId());
     }
   }
 
@@ -360,11 +490,11 @@ public class ConversationItem extends LinearLayout {
 
   private void setNotificationMmsAttributes(NotificationMmsMessageRecord messageRecord) {
     String messageSize = String.format(context.getString(R.string.ConversationItem_message_size_d_kb),
-                                       messageRecord.getMessageSize());
-    String expires     = String.format(context.getString(R.string.ConversationItem_expires_s),
-                                       DateUtils.getRelativeTimeSpanString(getContext(),
-                                                                           messageRecord.getExpiration(),
-                                                                           false));
+        messageRecord.getMessageSize());
+    String expires = String.format(context.getString(R.string.ConversationItem_expires_s),
+        DateUtils.getRelativeTimeSpanString(getContext(),
+            messageRecord.getExpiration(),
+            false));
 
     dateText.setText(messageSize + "\n" + expires);
 
@@ -383,17 +513,21 @@ public class ConversationItem extends LinearLayout {
     }
   }
 
-  private void setMediaMmsAttributes(MediaMmsMessageRecord messageRecord) {
-    if (messageRecord.getPartCount() > 0) {
-      mmsThumbnail.setVisibility(View.VISIBLE);
-      mmsContainer.setVisibility(View.VISIBLE);
+  private void setMediaMmsAttributes(MediaMmsMessageRecord mediaMessageRecord) {
+    if (mediaMessageRecord.getPartCount() > 0) {
+      if (mediaMessageRecord.getBody().isSelfDestruction()) {
+        mmsThumbnail.setVisibility(View.GONE);
+        mmsContainer.setVisibility(View.GONE);
+      } else {
+        mmsThumbnail.setVisibility(View.VISIBLE);
+        mmsContainer.setVisibility(View.VISIBLE);
+      }
       mmsThumbnail.setImageDrawable(new ColorDrawable(Color.TRANSPARENT));
     } else {
-      mmsThumbnail.setVisibility(View.GONE);
+      mmsThumbnail.setVisibility(View.VISIBLE);
       mmsContainer.setVisibility(View.GONE);
     }
-
-    slideDeck = messageRecord.getSlideDeckFuture();
+    slideDeck = mediaMessageRecord.getSlideDeckFuture();
     slideDeckListener = new FutureTaskListener<SlideDeck>() {
       @Override
       public void onSuccess(final SlideDeck result) {
@@ -404,10 +538,18 @@ public class ConversationItem extends LinearLayout {
           @Override
           public void run() {
             for (Slide slide : result.getSlides()) {
+
               if (slide.hasImage()) {
+                if (messageRecord.getBody().isSelfDestruction()) {
+                  mmsThumbnail.setVisibility(View.GONE);
+                  mmsContainer.setVisibility(View.GONE);
+                  messageRecord.setMediaSlide(slide);
+                } else {
+                  mmsThumbnail.setVisibility(View.VISIBLE);
+                  mmsContainer.setVisibility(View.VISIBLE);
+                }
                 slide.setThumbnailOn(mmsThumbnail);
                 mmsThumbnail.setOnClickListener(new ThumbnailClickListener(slide));
-                mmsThumbnail.setVisibility(View.VISIBLE);
                 return;
               }
             }
@@ -418,7 +560,8 @@ public class ConversationItem extends LinearLayout {
       }
 
       @Override
-      public void onFailure(Throwable error) {}
+      public void onFailure(Throwable error) {
+      }
     };
     slideDeck.addListener(slideDeckListener);
   }
@@ -428,8 +571,7 @@ public class ConversationItem extends LinearLayout {
   private void checkForAutoInitiate(Recipient recipient, String body, long threadId) {
     if (!groupThread &&
         AutoInitiateActivity.isValidAutoInitiateSituation(context, masterSecret, recipient,
-                                                          body, threadId))
-    {
+            body, threadId)) {
       AutoInitiateActivity.exemptThread(context, threadId);
 
       Intent intent = new Intent();
@@ -517,7 +659,8 @@ public class ConversationItem extends LinearLayout {
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         intent.setDataAndType(slide.getUri(), slide.getContentType());
         intent.putExtra(MediaPreviewActivity.MASTER_SECRET_EXTRA, masterSecret);
-        if (!messageRecord.isOutgoing()) intent.putExtra(MediaPreviewActivity.RECIPIENT_EXTRA, messageRecord.getIndividualRecipient().getRecipientId());
+        if (!messageRecord.isOutgoing())
+          intent.putExtra(MediaPreviewActivity.RECIPIENT_EXTRA, messageRecord.getIndividualRecipient().getRecipientId());
         intent.putExtra(MediaPreviewActivity.DATE_EXTRA, messageRecord.getDateReceived());
         context.startActivity(intent);
       } else {
@@ -539,15 +682,15 @@ public class ConversationItem extends LinearLayout {
 
   private class MmsDownloadClickListener implements View.OnClickListener {
     public void onClick(View v) {
-      NotificationMmsMessageRecord notificationRecord = (NotificationMmsMessageRecord)messageRecord;
+      NotificationMmsMessageRecord notificationRecord = (NotificationMmsMessageRecord) messageRecord;
       Log.w("MmsDownloadClickListener", "Content location: " + new String(notificationRecord.getContentLocation()));
       mmsDownloadButton.setVisibility(View.GONE);
       mmsDownloadingLabel.setVisibility(View.VISIBLE);
 
       ApplicationContext.getInstance(context)
-                        .getJobManager()
-                        .add(new MmsDownloadJob(context, messageRecord.getId(),
-                                                messageRecord.getThreadId(), false));
+          .getJobManager()
+          .add(new MmsDownloadJob(context, messageRecord.getId(),
+              messageRecord.getThreadId(), false));
     }
   }
 
@@ -565,7 +708,7 @@ public class ConversationItem extends LinearLayout {
     public void onClick(View v) {
       if (failedIconHandler != null && !messageRecord.isKeyExchange()) {
         Message message = Message.obtain();
-        message.obj     = messageRecord.getBody().getBody();
+        message.obj = messageRecord.getBody().getParsedBody();
         failedIconHandler.dispatchMessage(message);
       }
     }
@@ -573,8 +716,8 @@ public class ConversationItem extends LinearLayout {
 
   private class ClickListener implements View.OnClickListener {
     public void onClick(View v) {
-      if (messageRecord.isKeyExchange()           &&
-          !messageRecord.isOutgoing()             &&
+      if (messageRecord.isKeyExchange() &&
+          !messageRecord.isOutgoing() &&
           !messageRecord.isProcessedKeyExchange() &&
           !messageRecord.isStaleKeyExchange())
         handleKeyExchangeClicked();
@@ -601,13 +744,15 @@ public class ConversationItem extends LinearLayout {
     final int message;
 
     if (messageRecord.isPendingSecureSmsFallback()) {
-      if (messageRecord.isMms()) title = R.string.ConversationItem_click_to_approve_mms_dialog_title;
-      else                       title = R.string.ConversationItem_click_to_approve_sms_dialog_title;
+      if (messageRecord.isMms())
+        title = R.string.ConversationItem_click_to_approve_mms_dialog_title;
+      else title = R.string.ConversationItem_click_to_approve_sms_dialog_title;
 
       message = -1;
     } else {
-      if (messageRecord.isMms()) title = R.string.ConversationItem_click_to_approve_unencrypted_mms_dialog_title;
-      else                       title = R.string.ConversationItem_click_to_approve_unencrypted_sms_dialog_title;
+      if (messageRecord.isMms())
+        title = R.string.ConversationItem_click_to_approve_unencrypted_mms_dialog_title;
+      else title = R.string.ConversationItem_click_to_approve_unencrypted_sms_dialog_title;
 
       message = R.string.ConversationItem_click_to_approve_unencrypted_dialog_message;
     }
@@ -629,8 +774,8 @@ public class ConversationItem extends LinearLayout {
           database.markAsForcedSms(messageRecord.getId());
 
           ApplicationContext.getInstance(context)
-                            .getJobManager()
-                            .add(new MmsSendJob(context, messageRecord.getId()));
+              .getJobManager()
+              .add(new MmsSendJob(context, messageRecord.getId()));
         } else {
           SmsDatabase database = DatabaseFactory.getSmsDatabase(context);
           if (messageRecord.isPendingInsecureSmsFallback()) {
@@ -640,9 +785,9 @@ public class ConversationItem extends LinearLayout {
           database.markAsForcedSms(messageRecord.getId());
 
           ApplicationContext.getInstance(context)
-                            .getJobManager()
-                            .add(new SmsSendJob(context, messageRecord.getId(),
-                                                messageRecord.getIndividualRecipient().getNumber()));
+              .getJobManager()
+              .add(new SmsSendJob(context, messageRecord.getId(),
+                  messageRecord.getIndividualRecipient().getNumber()));
         }
       }
     });

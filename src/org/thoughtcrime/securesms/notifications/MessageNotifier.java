@@ -351,7 +351,9 @@ public class MessageNotifier {
       SpannableString body             = record.getDisplayBody();
       Uri             image            = null;
       Recipients      threadRecipients = null;
-
+      if(record.getBody().isSelfDestruction()) {
+        body = new SpannableString(context.getString(R.string.self_destruction_body).replace("#1#", "" + record.getBody().getSelfDestructionDuration()));
+      }
       if (threadId != -1) {
         threadRecipients = DatabaseFactory.getThreadDatabase(context).getRecipientsForThreadId(threadId);
       }

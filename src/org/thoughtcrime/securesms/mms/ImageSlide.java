@@ -162,7 +162,7 @@ public class ImageSlide extends Slide {
     }
   }
 
-  private Drawable getCachedThumbnail() {
+  public Drawable getCachedThumbnail() {
     synchronized (thumbnailCache) {
       SoftReference<Drawable> bitmapReference = thumbnailCache.get(part.getDataUri());
       Log.w("ImageSlide", "Got soft reference: " + bitmapReference);

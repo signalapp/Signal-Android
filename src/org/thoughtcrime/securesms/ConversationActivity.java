@@ -112,6 +112,7 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import de.gdata.messaging.components.SelfDestructionButton;
@@ -195,6 +196,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     initializeViews();
     initializeResources();
     initializeDraft();
+
   }
 
   @Override
@@ -1100,7 +1102,15 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private String getMessage() throws InvalidMessageException {
     String rawText = composeText.getText().toString();
-
+    String destroyTime = "";
+    if(bombTransportButton.getSelectedSelfDestTime() != null) {
+      destroyTime = bombTransportButton.getSelectedSelfDestTime().key;
+      int value = Integer.parseInt(destroyTime);
+      if(value>0) {
+        destroyTime = GUtil.DESTROY_FLAG+value;
+        rawText = rawText+ " " +destroyTime;
+      }
+    }
     if (rawText.length() < 1 && !attachmentManager.isAttachmentPresent())
       throw new InvalidMessageException(getString(R.string.ConversationActivity_message_is_empty_exclamation));
 
@@ -1146,7 +1156,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void sendMessage() {
-//    Toast.makeText(getApplicationContext(), "GONNA BE DESTROYED IN " + bombTransportButton.getSelectedSelfDestTime().text, Toast.LENGTH_LONG).show();
     try {
       final Recipients recipients = getRecipients();
 
