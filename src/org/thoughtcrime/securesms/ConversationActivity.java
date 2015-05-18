@@ -24,7 +24,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
@@ -44,6 +43,7 @@ import android.view.View.OnFocusChangeListener;
 import android.view.View.OnKeyListener;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,9 +51,9 @@ import com.afollestad.materialdialogs.AlertDialogWrapper;
 import com.google.protobuf.ByteString;
 
 import org.thoughtcrime.securesms.TransportOptions.OnTransportChangedListener;
+import org.thoughtcrime.securesms.components.AnimatingToggle;
 import org.thoughtcrime.securesms.components.ComposeText;
 import org.thoughtcrime.securesms.components.emoji.EmojiDrawer;
-import org.thoughtcrime.securesms.components.emoji.EmojiProvider;
 import org.thoughtcrime.securesms.components.emoji.EmojiToggle;
 import org.thoughtcrime.securesms.components.SendButton;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
@@ -136,10 +136,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private static final int PICK_AUDIO        = 3;
   private static final int PICK_CONTACT_INFO = 4;
   private static final int GROUP_EDIT        = 5;
+  private static final int CAPTURE_PHOTO     = 6;
 
   private MasterSecret         masterSecret;
   private ComposeText          composeText;
+  private AnimatingToggle      buttonToggle;
   private SendButton           sendButton;
+  private ImageButton          attachButton;
   private TextView             charactersLeft;
   private ConversationFragment fragment;
 
@@ -237,7 +240,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     Log.w(TAG, "onActivityResult called: " + reqCode + ", " + resultCode + " , " + data);
     super.onActivityResult(reqCode, resultCode, data);
 
-    if (data == null || resultCode != RESULT_OK) return;
+    if ((data == null && reqCode != CAPTURE_PHOTO) || resultCode != RESULT_OK) return;
+
     switch (reqCode) {
     case PICK_IMAGE:
       addAttachmentImage(data.getData());
@@ -250,6 +254,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       break;
     case PICK_CONTACT_INFO:
       addAttachmentContactInfo(data.getData());
+      break;
+    case CAPTURE_PHOTO:
+      if (attachmentManager.getCaptureFile() != null) {
+        addAttachmentImage(Uri.fromFile(attachmentManager.getCaptureFile()));
+      }
       break;
     case GROUP_EDIT:
       this.recipients = RecipientFactory.getRecipientsForIds(this, data.getLongArrayExtra(GroupCreateActivity.GROUP_RECIPIENT_EXTRA), true);
@@ -596,6 +605,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     if (draftText == null && draftImage == null && draftAudio == null && draftVideo == null) {
       initializeDraftFromDatabase();
+    } else {
+      updateToggleButtonState();
     }
   }
 
@@ -631,6 +642,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             addAttachmentVideo(Uri.parse(draft.getValue()));
           }
         }
+
+        updateToggleButtonState();
       }
     }.execute();
   }
@@ -675,7 +688,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void initializeViews() {
+    buttonToggle   = (AnimatingToggle)findViewById(R.id.button_toggle);
     sendButton     = (SendButton)  findViewById(R.id.send_button);
+    attachButton   = (ImageButton) findViewById(R.id.attach_button);
     composeText    = (ComposeText) findViewById(R.id.embedded_text_editor);
     charactersLeft = (TextView)    findViewById(R.id.space_left);
     emojiDrawer    = Optional.absent();
@@ -687,6 +702,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     SendButtonListener        sendButtonListener        = new SendButtonListener();
     ComposeKeyPressedListener composeKeyPressedListener = new ComposeKeyPressedListener();
 
+    attachButton.setOnClickListener(new AttachButtonListener());
     sendButton.setOnClickListener(sendButtonListener);
     sendButton.setEnabled(true);
     sendButton.addOnTransportChangedListener(new OnTransportChangedListener() {
@@ -775,6 +791,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void addAttachment(int type) {
     Log.w("ComposeMessageActivity", "Selected: " + type);
     switch (type) {
+    case AttachmentTypeSelectorAdapter.TAKE_PHOTO:
+      attachmentManager.capturePhoto(this, CAPTURE_PHOTO); break;
     case AttachmentTypeSelectorAdapter.ADD_IMAGE:
       AttachmentManager.selectImage(this, PICK_IMAGE); break;
     case AttachmentTypeSelectorAdapter.ADD_VIDEO:
@@ -989,6 +1007,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     fragment.scrollToBottom();
+    attachmentManager.cleanup();
   }
 
   private void sendMessage() {
@@ -1081,6 +1100,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }.execute(message);
   }
 
+  private void updateToggleButtonState() {
+    if (composeText.getText().length() == 0 && !attachmentManager.isAttachmentPresent()) {
+      buttonToggle.display(attachButton);
+    } else {
+      buttonToggle.display(sendButton);
+    }
+  }
 
   // Listeners
 
@@ -1124,7 +1150,17 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
+  private class AttachButtonListener implements OnClickListener {
+    @Override
+    public void onClick(View v) {
+      handleAddAttachment();
+    }
+  }
+
   private class ComposeKeyPressedListener implements OnKeyListener, OnClickListener, TextWatcher, OnFocusChangeListener {
+
+    int beforeLength;
+
     @Override
     public boolean onKey(View v, int keyCode, KeyEvent event) {
       if (event.getAction() == KeyEvent.ACTION_DOWN) {
@@ -1147,11 +1183,19 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     @Override
+    public void beforeTextChanged(CharSequence s, int start, int count,int after) {
+      beforeLength = composeText.getText().length();
+    }
+
+    @Override
     public void afterTextChanged(Editable s) {
       calculateCharactersRemaining();
+
+      if (composeText.getText().length() == 0 || beforeLength == 0) {
+        updateToggleButtonState();
+      }
     }
-    @Override
-    public void beforeTextChanged(CharSequence s, int start, int count,int after) {}
+
     @Override
     public void onTextChanged(CharSequence s, int start, int before,int count) {}
 
@@ -1176,5 +1220,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   @Override
   public void onAttachmentChanged() {
     initializeSecurity();
+    updateToggleButtonState();
   }
 }
