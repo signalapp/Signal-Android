@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import android.widget.RelativeLayout;
 
 import com.astuetz.PagerSlidingTabStrip;
@@ -152,6 +153,7 @@ public class EmojiDrawer extends Fragment {
 
     @Override public View getCustomTabView(ViewGroup viewGroup, int i) {
       ImageView image = new ImageView(context);
+      image.setScaleType(ScaleType.CENTER_INSIDE);
       image.setImageResource(pages.get(i).getIconRes());
       return image;
     }

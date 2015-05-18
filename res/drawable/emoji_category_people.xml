@@ -2,7 +2,6 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android"
           android:enterFadeDuration="200"
           android:exitFadeDuration="300">
-	<item android:state_selected="true" android:drawable="@drawable/ic_emoji_symbols_activated_light" />
-	<item android:drawable="@drawable/ic_emoji_symbols_normal_light" />
+	<item android:state_selected="true" android:drawable="@drawable/ic_emoji_people_activated_light" />
+	<item android:drawable="@drawable/ic_emoji_people_normal_light" />
 </selector>
-

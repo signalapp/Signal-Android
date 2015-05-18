@@ -406,7 +406,7 @@
         <item>0x1f509</item>
         <item>0x1f50a</item>
     </integer-array>
-    <integer-array name="emoji_faces">
+    <integer-array name="emoji_people">
         <item>0x263a</item>
         <item>0x1f60a</item>
         <item>0x1f600</item>
@@ -873,18 +873,18 @@
     </string-array>
 
     <integer-array name="emoji_categories">
-        <item>@array/emoji_faces</item>
-        <item>@array/emoji_nature</item>
+        <item>@array/emoji_people</item>
         <item>@array/emoji_objects</item>
+        <item>@array/emoji_nature</item>
         <item>@array/emoji_places</item>
         <item>@array/emoji_symbols</item>
     </integer-array>
 
     <integer-array name="emoji_category_icons">
-        <item>@drawable/emoji_category_smile</item>
-        <item>@drawable/emoji_category_flower</item>
-        <item>@drawable/emoji_category_bell</item>
-        <item>@drawable/emoji_category_car</item>
+        <item>@drawable/emoji_category_people</item>
+        <item>@drawable/emoji_category_objects</item>
+        <item>@drawable/emoji_category_nature</item>
+        <item>@drawable/emoji_category_places</item>
         <item>@drawable/emoji_category_symbol</item>
     </integer-array>
 </resources>
