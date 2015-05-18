@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -30,17 +29,13 @@ public class GroupMembersDialog extends AsyncTask<Void, Void, Recipients> {
   private final Recipients recipients;
   private final Context    context;
 
-  private ProgressDialog progress = null;
-
   public GroupMembersDialog(Context context, Recipients recipients) {
     this.recipients = recipients;
     this.context    = context;
   }
 
   @Override
-  public void onPreExecute() {
-    progress = ProgressDialog.show(context, context.getString(R.string.GroupMembersDialog_members), context.getString(R.string.GroupMembersDialog_members), true, false);
-  }
+  public void onPreExecute() {}
 
   @Override
   protected Recipients doInBackground(Void... params) {
@@ -56,10 +51,6 @@ public class GroupMembersDialog extends AsyncTask<Void, Void, Recipients> {
 
   @Override
   public void onPostExecute(Recipients members) {
-    if (progress != null) {
-      progress.dismiss();
-    }
-
     GroupMembers groupMembers = new GroupMembers(members);
     AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(context);
     builder.setTitle(R.string.ConversationActivity_group_members);
