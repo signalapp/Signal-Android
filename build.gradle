@@ -143,6 +143,7 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField "long", "BUILD_TIMESTAMP", System.currentTimeMillis() + "L"
+        buildConfigField "String", "PUSH_URL", "\"https://textsecure-service.whispersystems.org\""
     }
 
     compileOptions {
@@ -155,6 +156,8 @@ android {
         exclude 'LICENSE'
         exclude 'NOTICE'
         exclude 'asm-license.txt'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
     }
 
     signingConfigs {
@@ -180,19 +183,7 @@ android {
         }
         release {
             minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'),
-                          'proguard-google-play-services.pro',
-                          'proguard-dagger.pro',
-                          'proguard-jackson.pro',
-                          'proguard-sqlite.pro',
-                          'proguard-appcompat-v7.pro',
-                          'proguard-square-okhttp.pro',
-                          'proguard-square-okio.pro',
-                          'proguard-spongycastle.pro',
-                          'proguard-rounded-image-view.pro',
-                          'proguard-glide.pro',
-                          'proguard-shortcutbadger.pro',
-                          'proguard.cfg'
+            proguardFiles = buildTypes.debug.proguardFiles
             signingConfig signingConfigs.release
         }
         testing.initWith(buildTypes.debug)
@@ -217,11 +208,6 @@ android {
             aidl.srcDirs = ['androidTest/java']
             renderscript.srcDirs = ['androidTest/java']
         }
-    }
-
-    packagingOptions {
-        exclude 'META-INF/LICENSE'
-        exclude 'META-INF/NOTICE'
     }
 
      lintOptions {
