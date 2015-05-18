@@ -104,7 +104,7 @@ public class EmojiPageFragment extends Fragment {
 
       final Integer       unicodeTag = model.getCodePoints()[position];
       final EmojiProvider provider   = EmojiProvider.getInstance(context);
-      final Drawable      drawable   = provider.getEmojiDrawable(unicodeTag, EmojiProvider.EMOJI_HUGE);
+      final Drawable      drawable   = provider.getEmojiDrawable(unicodeTag, EmojiProvider.EMOJI_FULL);
 
       view.setImageDrawable(drawable);
       view.setPadding(pad, pad, pad, pad);
