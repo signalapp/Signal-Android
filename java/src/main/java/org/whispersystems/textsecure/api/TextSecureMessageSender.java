@@ -42,6 +42,7 @@ import org.whispersystems.textsecure.internal.push.MismatchedDevices;
 import org.whispersystems.textsecure.internal.push.OutgoingPushMessage;
 import org.whispersystems.textsecure.internal.push.OutgoingPushMessageList;
 import org.whispersystems.textsecure.internal.push.PushAttachmentData;
+import org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.SyncMessageContext;
 import org.whispersystems.textsecure.internal.push.PushServiceSocket;
 import org.whispersystems.textsecure.internal.push.SendMessageResponse;
 import org.whispersystems.textsecure.internal.push.StaleDevices;
@@ -121,7 +122,7 @@ public class TextSecureMessageSender {
     SendMessageResponse response  = sendMessage(recipient, timestamp, content);
 
     if (response != null && response.getNeedsSync()) {
-      byte[] syncMessage = createSyncMessageContent(content, recipient, timestamp);
+      byte[] syncMessage = createSyncMessageContent(content, Optional.of(recipient), timestamp);
       sendMessage(syncAddress, timestamp, syncMessage);
     }
 
@@ -145,8 +146,18 @@ public class TextSecureMessageSender {
   public void sendMessage(List<TextSecureAddress> recipients, TextSecureMessage message)
       throws IOException, EncapsulatedExceptions
   {
-    byte[] content = createMessageContent(message);
-    sendMessage(recipients, message.getTimestamp(), content);
+    byte[]              content   = createMessageContent(message);
+    long                timestamp = message.getTimestamp();
+    SendMessageResponse response  = sendMessage(recipients, timestamp, content);
+
+    try {
+      if (response != null && response.getNeedsSync()) {
+        byte[] syncMessage = createSyncMessageContent(content, Optional.<TextSecureAddress>absent(), timestamp);
+        sendMessage(syncAddress, timestamp, syncMessage);
+      }
+    } catch (UntrustedIdentityException e) {
+      throw new EncapsulatedExceptions(e);
+    }
   }
 
   private byte[] createMessageContent(TextSecureMessage message) throws IOException {
@@ -172,13 +183,17 @@ public class TextSecureMessageSender {
     return builder.build().toByteArray();
   }
 
-  private byte[] createSyncMessageContent(byte[] content, TextSecureAddress recipient, long timestamp) {
+  private byte[] createSyncMessageContent(byte[] content, Optional<TextSecureAddress> recipient, long timestamp) {
     try {
+      SyncMessageContext.Builder syncMessageContext = SyncMessageContext.newBuilder();
+      syncMessageContext.setTimestamp(timestamp);
+
+      if (recipient.isPresent()) {
+        syncMessageContext.setDestination(recipient.get().getNumber());
+      }
+
       PushMessageContent.Builder builder = PushMessageContent.parseFrom(content).toBuilder();
-      builder.setSync(PushMessageContent.SyncMessageContext.newBuilder()
-                                                           .setDestination(recipient.getNumber())
-                                                           .setTimestamp(timestamp)
-                                                           .build());
+      builder.setSync(syncMessageContext.build());
 
       return builder.build().toByteArray();
     } catch (InvalidProtocolBufferException e) {
@@ -209,16 +224,18 @@ public class TextSecureMessageSender {
     return builder.build();
   }
 
-  private void sendMessage(List<TextSecureAddress> recipients, long timestamp, byte[] content)
+  private SendMessageResponse sendMessage(List<TextSecureAddress> recipients, long timestamp, byte[] content)
       throws IOException, EncapsulatedExceptions
   {
     List<UntrustedIdentityException> untrustedIdentities = new LinkedList<>();
     List<UnregisteredUserException>  unregisteredUsers   = new LinkedList<>();
     List<NetworkFailureException>    networkExceptions   = new LinkedList<>();
 
+    SendMessageResponse response = null;
+
     for (TextSecureAddress recipient : recipients) {
       try {
-        sendMessage(recipient, timestamp, content);
+        response = sendMessage(recipient, timestamp, content);
       } catch (UntrustedIdentityException e) {
         Log.w(TAG, e);
         untrustedIdentities.add(e);
@@ -234,6 +251,8 @@ public class TextSecureMessageSender {
     if (!untrustedIdentities.isEmpty() || !unregisteredUsers.isEmpty() || !networkExceptions.isEmpty()) {
       throw new EncapsulatedExceptions(untrustedIdentities, unregisteredUsers, networkExceptions);
     }
+
+    return response;
   }
 
   private SendMessageResponse sendMessage(TextSecureAddress recipient, long timestamp, byte[] content)

@@ -37,6 +37,7 @@ import org.whispersystems.textsecure.api.messages.TextSecureAttachmentPointer;
 import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 import org.whispersystems.textsecure.api.messages.TextSecureGroup;
 import org.whispersystems.textsecure.api.messages.TextSecureMessage;
+import org.whispersystems.textsecure.api.messages.TextSecureSyncContext;
 import org.whispersystems.textsecure.internal.push.OutgoingPushMessage;
 import org.whispersystems.textsecure.internal.push.PushMessageProtos;
 import org.whispersystems.textsecure.internal.push.PushTransportDetails;
@@ -126,6 +127,7 @@ public class TextSecureCipher {
 
   private TextSecureMessage createTextSecureMessage(TextSecureEnvelope envelope, PushMessageContent content) {
     TextSecureGroup            groupInfo   = createGroupInfo(envelope, content);
+    TextSecureSyncContext      syncContext = createSyncContext(content);
     List<TextSecureAttachment> attachments = new LinkedList<>();
     boolean                    endSession  = ((content.getFlags() & PushMessageContent.Flags.END_SESSION_VALUE) != 0);
     boolean                    secure      = envelope.isWhisperMessage() || envelope.isPreKeyWhisperMessage();
@@ -138,7 +140,14 @@ public class TextSecureCipher {
     }
 
     return new TextSecureMessage(envelope.getTimestamp(), groupInfo, attachments,
-                                 content.getBody(), secure, endSession);
+                                 content.getBody(), syncContext, secure, endSession);
+  }
+
+  private TextSecureSyncContext createSyncContext(PushMessageContent content) {
+    if (!content.hasSync()) return null;
+
+    return new TextSecureSyncContext(content.getSync().getDestination(),
+                                     content.getSync().getTimestamp());
   }
 
   private TextSecureGroup createGroupInfo(TextSecureEnvelope envelope, PushMessageContent content) {
