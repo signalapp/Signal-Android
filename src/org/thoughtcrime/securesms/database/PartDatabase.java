@@ -79,6 +79,8 @@ public class PartDatabase extends Database {
   private static final String THUMBNAIL               = "thumbnail";
   private static final String ASPECT_RATIO            = "aspect_ratio";
 
+  private static final String ID_CONTENT_WHERE = ID + " = ? AND " + CONTENT_ID + " = ?";
+
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID + " INTEGER PRIMARY KEY, " +
     MMS_ID + " INTEGER, " + SEQUENCE + " INTEGER DEFAULT 0, "                        +
     CONTENT_TYPE + " TEXT, " + NAME + " TEXT, " + CHARSET + " INTEGER, "             +
@@ -113,10 +115,10 @@ public class PartDatabase extends Database {
     super(context, databaseHelper);
   }
 
-  public InputStream getPartStream(MasterSecret masterSecret, long partId)
+  public InputStream getPartStream(MasterSecret masterSecret, long partId, byte[] contentId)
       throws FileNotFoundException
   {
-    return getDataStream(masterSecret, partId, DATA);
+    return getDataStream(masterSecret, partId, contentId, DATA);
   }
 
   public void updateFailedDownloadedPart(long messageId, long partId, PduPart part)
@@ -206,7 +208,7 @@ public class PartDatabase extends Database {
         cursor.close();
     }
 
-    database.delete(TABLE_NAME, MMS_ID + " = ?", new String[] {mmsId+""});
+    database.delete(TABLE_NAME, MMS_ID + " = ?", new String[] {mmsId + ""});
   }
 
   @SuppressWarnings("ResultOfMethodCallIgnored")
@@ -343,15 +345,17 @@ public class PartDatabase extends Database {
     return new EncryptingPartOutputStream(path, masterSecret);
   }
 
-  @VisibleForTesting InputStream getDataStream(MasterSecret masterSecret, long partId, String dataType)
+  @VisibleForTesting InputStream getDataStream(MasterSecret masterSecret, long partId, byte[] contentId, String dataType)
       throws FileNotFoundException
   {
     SQLiteDatabase database = databaseHelper.getReadableDatabase();
     Cursor         cursor   = null;
 
     try {
-      cursor = database.query(TABLE_NAME, new String[]{dataType}, ID_WHERE,
-                              new String[] {partId+""}, null, null, null);
+      cursor = database.query(TABLE_NAME, new String[]{dataType}, ID_CONTENT_WHERE,
+                              new String[] {String.valueOf(partId),
+                                            Util.toIsoString(contentId)},
+                              null, null, null);
 
       if (cursor != null && cursor.moveToFirst()) {
         if (cursor.isNull(0)) {
@@ -402,15 +406,15 @@ public class PartDatabase extends Database {
     }
   }
 
-  public InputStream getThumbnailStream(final MasterSecret masterSecret, final long partId) throws IOException {
+  public InputStream getThumbnailStream(MasterSecret masterSecret, long partId, byte[] contentId) throws IOException {
     Log.w(TAG, "getThumbnailStream(" + partId + ")");
-    final InputStream dataStream = getDataStream(masterSecret, partId, THUMBNAIL);
+    final InputStream dataStream = getDataStream(masterSecret, partId, contentId, THUMBNAIL);
     if (dataStream != null) {
       return dataStream;
     }
 
     try {
-      return thumbnailExecutor.submit(new ThumbnailFetchCallable(masterSecret, partId)).get();
+      return thumbnailExecutor.submit(new ThumbnailFetchCallable(masterSecret, partId, contentId)).get();
     } catch (InterruptedException ie) {
       throw new AssertionError("interrupted");
     } catch (ExecutionException ee) {
@@ -424,7 +428,7 @@ public class PartDatabase extends Database {
 
     getPartValues(part, cursor);
 
-    part.setDataUri(ContentUris.withAppendedId(PartAuthority.PART_CONTENT_URI, part.getId()));
+    part.setDataUri(PartAuthority.getPartUri(part.getId(), part.getContentId()));
 
     return part;
   }
@@ -454,7 +458,7 @@ public class PartDatabase extends Database {
       ThumbnailData data = new ThumbnailData(thumbnail);
       updatePartThumbnail(masterSecret, partId, part, data.toDataStream(), data.getAspectRatio());
     } else if (!part.isPendingPush()) {
-      thumbnailExecutor.submit(new ThumbnailFetchCallable(masterSecret, partId));
+      thumbnailExecutor.submit(new ThumbnailFetchCallable(masterSecret, partId, part.getContentId()));
     }
 
     return partId;
@@ -479,7 +483,7 @@ public class PartDatabase extends Database {
 
     database.update(TABLE_NAME, values, ID_WHERE, new String[]{partId+""});
 
-    thumbnailExecutor.submit(new ThumbnailFetchCallable(masterSecret, partId));
+    thumbnailExecutor.submit(new ThumbnailFetchCallable(masterSecret, partId, part.getContentId()));
 
     notifyConversationListeners(DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(messageId));
   }
@@ -534,11 +538,12 @@ public class PartDatabase extends Database {
 
   public static class ImageRecord {
     private long   partId;
+    private byte[] contentId;
     private String contentType;
     private String address;
     private long   date;
 
-    private ImageRecord(long partId, String contentType, String address, long date) {
+    private ImageRecord(long partId, byte[] contentId, String contentType, String address, long date) {
       this.partId      = partId;
       this.contentType = contentType;
       this.address     = address;
@@ -547,6 +552,7 @@ public class PartDatabase extends Database {
 
     public static ImageRecord from(Cursor cursor) {
       return new ImageRecord(cursor.getLong(cursor.getColumnIndexOrThrow(ID)),
+                             Util.toIsoBytes(cursor.getString(cursor.getColumnIndexOrThrow(CONTENT_ID))),
                              cursor.getString(cursor.getColumnIndexOrThrow(CONTENT_TYPE)),
                              cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.ADDRESS)),
                              cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.NORMALIZED_DATE_RECEIVED)) * 1000);
@@ -569,22 +575,24 @@ public class PartDatabase extends Database {
     }
 
     public Uri getUri() {
-      return ContentUris.withAppendedId(PartAuthority.PART_CONTENT_URI, getPartId());
+      return PartAuthority.getPartUri(partId, contentId);
     }
   }
 
   @VisibleForTesting class ThumbnailFetchCallable implements Callable<InputStream> {
     private final MasterSecret masterSecret;
     private final long         partId;
+    private final byte[]       contentId;
 
-    public ThumbnailFetchCallable(MasterSecret masterSecret, long partId) {
+    public ThumbnailFetchCallable(MasterSecret masterSecret, long partId, byte[] contentId) {
       this.masterSecret = masterSecret;
       this.partId       = partId;
+      this.contentId    = contentId;
     }
 
     @Override
     public InputStream call() throws Exception {
-      final InputStream stream = getDataStream(masterSecret, partId, THUMBNAIL);
+      final InputStream stream = getDataStream(masterSecret, partId, contentId, THUMBNAIL);
       if (stream != null) {
         return stream;
       }
@@ -599,7 +607,8 @@ public class PartDatabase extends Database {
       } catch (BitmapDecodingException bde) {
         throw new IOException(bde);
       }
-      return getDataStream(masterSecret, partId, THUMBNAIL);
+
+      return getDataStream(masterSecret, partId, contentId, THUMBNAIL);
     }
   }
 }
