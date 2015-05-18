@@ -42,12 +42,12 @@ public class AudioSlide extends Slide {
   }
 
   @Override
-    public boolean hasImage() {
+  public boolean hasImage() {
     return true;
   }
 
   @Override
-    public boolean hasAudio() {
+  public boolean hasAudio() {
     return true;
   }
 
