@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.Looper;
 import android.os.Message;
 import android.provider.ContactsContract;
 import android.util.Log;
@@ -244,7 +245,7 @@ public class GService extends Service {
     new AsyncTaskRefreshPrivacyData().execute(fullReload);
   }
   //needs to be initialized here, because of Looper/Thread reasons.
-  public static Handler reloadHandler = new Handler() {
+  public static Handler reloadHandler = new Handler(Looper.getMainLooper()) {
 
     public void handleMessage(Message msg) {
       super.handleMessage(msg);
