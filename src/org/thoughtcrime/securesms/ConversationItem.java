@@ -297,6 +297,11 @@ public class ConversationItem extends LinearLayout {
     }
     if (messageRecord.getBody().isSelfDestruction() && !messageRecord.isOutgoing()) {
 
+      if (bombImage != null) {
+        bombImage.setVisibility(View.VISIBLE);
+        bodyText.setVisibility(View.VISIBLE);
+      }
+
       dismissDialogHandler = new Handler(Looper.getMainLooper()) {
         @Override
         public void handleMessage(Message inputMessage) {
@@ -353,12 +358,13 @@ public class ConversationItem extends LinearLayout {
 
     @Override
     public void onClick(View v) {
+      if(messageRecord.getMediaSlide() == null) {
+        deleteMessage(messageRecord);
+      }
       bodyText.setText(text);
       if (bombImage != null) {
         bombImage.setVisibility(View.GONE);
-      }
-      if(messageRecord.getMediaSlide() == null) {
-        deleteMessage(messageRecord);
+        bodyText.setVisibility(View.GONE);
       }
       AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
       builder.setTitle(countdown);
@@ -373,7 +379,6 @@ public class ConversationItem extends LinearLayout {
         public void onClick(DialogInterface dialog, int which) {
           dialog.dismiss();
           deleteMessage(messageRecord);
-          alreadyDestroyed = true;
         }
       });
       alertDialogDestroy = builder.show();
@@ -405,11 +410,12 @@ public class ConversationItem extends LinearLayout {
   };
 
   public void deleteMessage(MessageRecord mr) {
-    if (mr.isMms()) {
-      DatabaseFactory.getMmsDatabase(getContext()).delete(mr.getId());
-    } else {
-      DatabaseFactory.getSmsDatabase(getContext()).deleteMessage(mr.getId());
-    }
+    alreadyDestroyed = true;
+      if (mr.isMms()) {
+        DatabaseFactory.getMmsDatabase(getContext()).delete(mr.getId());
+      } else {
+        DatabaseFactory.getSmsDatabase(getContext()).deleteMessage(mr.getId());
+      }
   }
 
   private void setContactPhoto(MessageRecord messageRecord) {
