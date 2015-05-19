@@ -4,13 +4,12 @@ import android.content.Intent;
 import android.net.Uri;
 import android.webkit.MimeTypeMap;
 
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 
 public class RoutingActivity extends PassphraseRequiredActionBarActivity {
 
@@ -199,13 +198,9 @@ public class RoutingActivity extends PassphraseRequiredActionBarActivity {
     String body     = getIntent().getStringExtra("sms_body");
     long   threadId = getIntent().getLongExtra("thread_id", -1);
 
-    try {
-      String data = getIntent().getData().getSchemeSpecificPart();
-      recipients = RecipientFactory.getRecipientsFromString(this, data, false);
-      threadId   = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipients);
-    } catch (RecipientFormattingException rfe) {
-      recipients = null;
-    }
+    String data = getIntent().getData().getSchemeSpecificPart();
+    recipients = RecipientFactory.getRecipientsFromString(this, data, false);
+    threadId   = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipients);
 
     return new ConversationParameters(threadId, recipients, body, null, null, null);
   }

@@ -104,9 +104,10 @@ import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.libaxolotl.AxolotlAddress;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.libaxolotl.state.SessionStore;
-import org.whispersystems.textsecure.api.push.PushAddress;
+import org.whispersystems.textsecure.api.push.TextSecureAddress;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
@@ -768,8 +769,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     SessionStore sessionStore = new TextSecureSessionStore(this, masterSecret);
     Recipient primaryRecipient = getRecipients() == null ? null : getRecipients().getPrimaryRecipient();
     boolean isPushDestination = DirectoryHelper.isPushDestination(this, getRecipients());
-    boolean isSecureDestination = isSingleConversation() && sessionStore.containsSession(primaryRecipient.getRecipientId(),
-        PushAddress.DEFAULT_DEVICE_ID);
+    AxolotlAddress axolotlAddress = new AxolotlAddress(primaryRecipient.getNumber(), TextSecureAddress.DEFAULT_DEVICE_ID);
+    boolean isSecureDestination = isSingleConversation() && sessionStore.containsSession(axolotlAddress);
 
     if (isPushDestination || isSecureDestination) {
       this.isEncryptedConversation = true;

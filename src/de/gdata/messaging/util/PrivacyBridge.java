@@ -15,15 +15,15 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.google.thoughtcrimegson.Gson;
-import com.google.thoughtcrimegson.reflect.TypeToken;
+import com.google.common.reflect.TypeToken;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.JsonUtils;
 
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,13 +59,7 @@ public class PrivacyBridge {
   }
 
   public static Recipients getRecipientForNumber(Context context, String phoneNo) {
-    Recipients recipients;
-    try {
-      recipients = RecipientFactory.getRecipientsFromString(context, GUtil.normalizeNumber(phoneNo), true);
-    } catch (RecipientFormattingException e) {
-      recipients = new Recipients(Recipient.getUnknownRecipient(context));
-    }
-    return recipients;
+    return RecipientFactory.getRecipientsFromString(context, GUtil.normalizeNumber(phoneNo), true);
   }
 
   public static Contact getPhoneContactForDisplayName(String name, Context context) {
@@ -93,14 +87,16 @@ public class PrivacyBridge {
     return hiddenRecipients;
   }
   public static void loadHiddenContactsPerService() {
-    Type listType = new TypeToken<ArrayList<String>>() {
-    }.getType();
     ArrayList<Recipient> newHiddenRecipients = new ArrayList<Recipient>();
     String suppressedNumbers = GService.getSupressedNumbers();
     ArrayList<String> hiddenNumbers = new ArrayList<String>();
 
     if (!TextUtils.isEmpty(suppressedNumbers)) {
-      hiddenNumbers = new Gson().fromJson(suppressedNumbers, listType);
+      try {
+        hiddenNumbers = JsonUtils.fromJson(suppressedNumbers, ArrayList.class);
+      } catch (IOException e) {
+        Log.e("PrivacyBridge", e.getMessage());
+      }
     }
     for (String number : hiddenNumbers) {
       newHiddenRecipients.add(getRecipientForNumber(GService.appContext, number).getPrimaryRecipient());

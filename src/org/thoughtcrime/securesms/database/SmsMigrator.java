@@ -26,7 +26,6 @@ import android.util.Log;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 
 import java.util.StringTokenizer;
@@ -150,13 +149,10 @@ public class SmsMigrator {
       sb.append(address);
     }
 
-    try {
-      if (sb.length() == 0) return null;
-      else                  return RecipientFactory.getRecipientsFromString(context, sb.toString(), true);
-    } catch (RecipientFormattingException rfe) {
-      Log.w("SmsMigrator", rfe);
-      return null;
-    }
+
+    if (sb.length() == 0) return null;
+    else                  return RecipientFactory.getRecipientsFromString(context, sb.toString(), true);
+
   }
 
   private static String encrypt(MasterSecret masterSecret, String body)

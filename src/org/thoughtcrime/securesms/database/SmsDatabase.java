@@ -33,7 +33,6 @@ import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.jobs.TrimThreadJob;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.IncomingGroupMessage;
 import org.thoughtcrime.securesms.sms.IncomingKeyExchangeMessage;
@@ -369,24 +368,14 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
 
     Recipients recipients;
 
-    try {
-      recipients = RecipientFactory.getRecipientsFromString(context, message.getSender(), true);
-    } catch (RecipientFormattingException e) {
-      Log.w("SmsDatabase", e);
-      recipients = new Recipients(Recipient.getUnknownRecipient(context));
-    }
+    recipients = RecipientFactory.getRecipientsFromString(context, message.getSender(), true);
 
     Recipients groupRecipients;
 
-    try {
-      if (message.getGroupId() == null) {
-        groupRecipients = null;
-      } else {
-        groupRecipients = RecipientFactory.getRecipientsFromString(context, message.getGroupId(), true);
-      }
-    } catch (RecipientFormattingException e) {
-      Log.w("SmsDatabase", e);
+    if (message.getGroupId() == null) {
       groupRecipients = null;
+    } else {
+      groupRecipients = RecipientFactory.getRecipientsFromString(context, message.getGroupId(), true);
     }
 
     boolean    unread     = org.thoughtcrime.securesms.util.Util.isDefaultSmsProvider(context) ||
@@ -617,18 +606,15 @@ public class SmsDatabase extends Database implements MmsSmsColumns {
     }
 
     private Recipients getRecipientsFor(String address) {
-      try {
-        Recipients recipients = RecipientFactory.getRecipientsFromString(context, address, false);
 
-        if (recipients == null || recipients.isEmpty()) {
-          return new Recipients(Recipient.getUnknownRecipient(context));
-        }
+      Recipients recipients = RecipientFactory.getRecipientsFromString(context, address, false);
 
-        return recipients;
-      } catch (RecipientFormattingException e) {
-        Log.w("EncryptingSmsDatabase", e);
+      if (recipients == null || recipients.isEmpty()) {
         return new Recipients(Recipient.getUnknownRecipient(context));
       }
+
+      return recipients;
+
     }
 
     protected DisplayRecord.Body getBody(Cursor cursor) {

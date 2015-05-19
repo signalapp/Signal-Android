@@ -5,13 +5,11 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-import com.google.thoughtcrimegson.Gson;
-import com.google.thoughtcrimegson.reflect.TypeToken;
-
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.thoughtcrime.securesms.util.JsonUtils;
 
-import java.lang.reflect.Type;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -62,15 +60,23 @@ public class GDataPreferences {
     for (Recipient recipient : hiddenRecipients) {
       recIds.add(recipient.getRecipientId());
     }
-    mPreferences.edit().putString(SAVED_HIDDEN_RECIPIENTS, new Gson().toJson(recIds)).commit();
+    try {
+      mPreferences.edit().putString(SAVED_HIDDEN_RECIPIENTS, JsonUtils.toJson(recIds)).commit();
+    } catch (IOException e) {
+      Log.e("GDataPreferences", e.getMessage());
+    }
   }
   public ArrayList<Recipient> getSavedHiddenRecipients() {
-    Type listType = new TypeToken<ArrayList<Long>>() {
-    }.getType();
-    ArrayList<Long> recipients = new Gson().fromJson(mPreferences.getString(SAVED_HIDDEN_RECIPIENTS, new Gson().toJson(new ArrayList<Long>())), listType);
-    ArrayList<Recipient> hiddenRecipients = new ArrayList<Recipient>();
-    for (Long recId : recipients) {
-      hiddenRecipients.add(RecipientFactory.getRecipientForId(mContext, recId, false));
+    ArrayList<Recipient> hiddenRecipients = null;
+    try {
+      ArrayList<Long> recipients = JsonUtils.fromJson(mPreferences.getString(SAVED_HIDDEN_RECIPIENTS, JsonUtils.toJson(new ArrayList<Long>())), ArrayList.class);
+
+      hiddenRecipients = new ArrayList<Recipient>();
+      for (Long recId : recipients) {
+        hiddenRecipients.add(RecipientFactory.getRecipientForId(mContext, recId, false));
+      }
+    } catch (IOException e) {
+      Log.e("GDataPreferences", e.getMessage());
     }
     return hiddenRecipients != null ? hiddenRecipients : new ArrayList<Recipient>();
   }

@@ -7,7 +7,7 @@ import android.telephony.SmsMessage;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.messages.TextSecureGroup;
-import org.whispersystems.textsecure.api.push.PushAddress;
+import org.whispersystems.textsecure.api.push.TextSecureAddress;
 
 import java.util.List;
 
@@ -39,7 +39,7 @@ public class IncomingTextMessage implements Parcelable {
   public IncomingTextMessage(SmsMessage message) {
     this.message              = message.getDisplayMessageBody();
     this.sender               = message.getDisplayOriginatingAddress();
-    this.senderDeviceId       = PushAddress.DEFAULT_DEVICE_ID;
+    this.senderDeviceId       = TextSecureAddress.DEFAULT_DEVICE_ID;
     this.protocol             = message.getProtocolIdentifier();
     this.serviceCenterAddress = message.getServiceCenterAddress();
     this.replyPathPresent     = message.isReplyPathPresent();
@@ -118,7 +118,7 @@ public class IncomingTextMessage implements Parcelable {
   {
     this.message              = "";
     this.sender               = sender;
-    this.senderDeviceId       = PushAddress.DEFAULT_DEVICE_ID;
+    this.senderDeviceId       = TextSecureAddress.DEFAULT_DEVICE_ID;
     this.protocol             = 31338;
     this.serviceCenterAddress = "Outgoing";
     this.replyPathPresent     = true;

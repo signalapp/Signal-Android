@@ -23,7 +23,6 @@ import android.util.Log;
 import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.database.CanonicalAddressDatabase;
 
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -68,12 +67,7 @@ public class RecipientFactory {
   }
 
   public static Recipients getRecipientsFromString(Context context, String rawText, boolean asynchronous)
-      throws RecipientFormattingException
   {
-    if (rawText == null) {
-      throw new RecipientFormattingException("Null recipient string specified");
-    }
-
     List<Recipient> results   = new LinkedList<Recipient>();
     StringTokenizer tokenizer = new StringTokenizer(rawText, ",");
 

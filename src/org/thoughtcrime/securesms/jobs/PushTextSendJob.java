@@ -18,11 +18,12 @@ import org.thoughtcrime.securesms.sms.IncomingIdentityUpdateMessage;
 import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.SecureFallbackApprovalException;
+import org.whispersystems.libaxolotl.AxolotlAddress;
 import org.whispersystems.libaxolotl.state.AxolotlStore;
 import org.whispersystems.textsecure.api.TextSecureMessageSender;
 import org.whispersystems.textsecure.api.crypto.UntrustedIdentityException;
 import org.whispersystems.textsecure.api.messages.TextSecureMessage;
-import org.whispersystems.textsecure.api.push.PushAddress;
+import org.whispersystems.textsecure.api.push.TextSecureAddress;
 import org.whispersystems.textsecure.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
 
@@ -104,16 +105,15 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
     boolean isSmsFallbackSupported = isSmsFallbackSupported(context, destination, false);
 
     try {
-      PushAddress             address       = getPushAddress(message.getIndividualRecipient());
-      TextSecureMessageSender messageSender = messageSenderFactory.create(masterSecret);
+      TextSecureAddress       address           = getPushAddress(message.getIndividualRecipient().getNumber());
+      TextSecureMessageSender messageSender     = messageSenderFactory.create(masterSecret);
+      TextSecureMessage       textSecureMessage = TextSecureMessage.newBuilder()
+                                                                   .withTimestamp(message.getDateSent())
+                                                                   .withBody(message.getBody().getBody())
+                                                                   .asEndSessionMessage(message.isEndSession())
+                                                                   .build();
 
-      if (message.isEndSession()) {
-        messageSender.sendMessage(address, new TextSecureMessage(message.getDateSent(), null,
-                                                                 null, null, true, true));
-      } else {
-        messageSender.sendMessage(address, new TextSecureMessage(message.getDateSent(), null,
-                                                                 message.getBody().getBody()));
-      }
+      messageSender.sendMessage(address, textSecureMessage);
 
       return true;
     } catch (InvalidNumberException | UnregisteredUserException e) {
@@ -135,12 +135,13 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
     Recipient    recipient                     = smsMessage.getIndividualRecipient();
     boolean      isSmsFallbackApprovalRequired = isSmsFallbackApprovalRequired(destination, false);
     AxolotlStore axolotlStore                  = new TextSecureAxolotlStore(context, masterSecret);
+    AxolotlAddress axolotlAddress              = new AxolotlAddress(recipient.getNumber(), TextSecureAddress.DEFAULT_DEVICE_ID);
 
     if (!isSmsFallbackApprovalRequired) {
       Log.w(TAG, "Falling back to SMS");
       DatabaseFactory.getSmsDatabase(context).markAsForcedSms(smsMessage.getId());
       ApplicationContext.getInstance(context).getJobManager().add(new SmsSendJob(context, messageId, destination));
-    } else if (!axolotlStore.containsSession(recipient.getRecipientId(), PushAddress.DEFAULT_DEVICE_ID)) {
+    } else if (!axolotlStore.containsSession(axolotlAddress)) {
       Log.w(TAG, "Marking message as pending insecure fallback.");
       throw new InsecureFallbackApprovalException("Pending user approval for fallback to insecure SMS");
     } else {
