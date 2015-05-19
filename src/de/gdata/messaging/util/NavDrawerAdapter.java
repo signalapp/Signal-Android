@@ -7,6 +7,7 @@ package de.gdata.messaging.util;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -105,6 +106,7 @@ public class NavDrawerAdapter extends BaseAdapter {
     } else {
       if (holder.text != null) {
         holder.text.setText(labels[position]);
+        holder.text.setTextColor(Color.BLACK);
         holder.image.setImageResource(icons.getResourceId(position, -1));
         if (position == menu_privacy_hide) {
           if (new GDataPreferences(activity).isPrivacyActivated()) {

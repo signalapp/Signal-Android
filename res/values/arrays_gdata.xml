@@ -28,14 +28,14 @@
         <item>@string/text_secure_normal__menu_clear_passphrase</item>
     </string-array>
     <string-array name="array_nav_icons">
-        <item>@android:drawable/ic_menu_add</item>
-        <item>@android:drawable/ic_menu_view</item>
+        <item>@drawable/ic_menu_add</item>
+        <item>@drawable/ic_menu_view</item>
         <item>@drawable/ic_menu_save</item>
         <item>@drawable/ic_menu_login</item>
         <item>@drawable/ic_menu_blocked_user</item>
         <item>@drawable/ic_menu_end_conversation</item>
         <item>@drawable/check_cd</item>
-        <item>@android:drawable/ic_menu_preferences</item>
-        <item>@android:drawable/ic_lock_lock</item>
+        <item>@drawable/ic_menu_preferences</item>
+        <item>@drawable/ic_drawer</item>
     </string-array>
 </resources>

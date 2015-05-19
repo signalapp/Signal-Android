@@ -26,6 +26,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.TypedArray;
 import android.database.ContentObserver;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -123,16 +124,19 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
       }
     };
     mDrawerToggle.setDrawerIndicatorEnabled(true);
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     // Set the drawer toggle as the DrawerListener
     mDrawerLayout.setDrawerListener(mDrawerToggle);
 
     mDrawerList = (ListView) findViewById(R.id.left_drawer);
+    mDrawerLayout.setScrimColor(Color.argb(0xC8, 0xFF, 0xFF, 0xFF));
     // Set the adapter for the list view
     mDrawerList.setAdapter(new NavDrawerAdapter(this, labels, icons));
     // Set the list's click listener
     mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
     mDrawerList.setItemChecked(0, false);
     mDrawerList.invalidate();
+
     getSupportActionBar().setHomeButtonEnabled(true);
     getSupportActionBar().setTitle(R.string.app_name);
     initViewPagerLayout();
