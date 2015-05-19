@@ -131,7 +131,7 @@ public class GService extends Service {
         if (getServiceInstance() != null && getServiceInstance().shouldSMSBeBlocked(sender, "")) {
           shallBeBlocked = true;
         }
-      } catch (Exception e) {
+      } catch (Exception e) { 
         Log.d("GDATA", "Service error " + e.getMessage());
       }
     return shallBeBlocked;
