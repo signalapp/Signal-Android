@@ -185,7 +185,7 @@
     <!-- For Holo Light Dialog Activity Styling Emulation -->
     <style name="GDataDialogWindowTitle">
         <item name="android:textSize">22sp</item>
-        <item name="android:textColor">@color/wallet_holo_blue_light</item>
+        <item name="android:textColor">@color/textsecure_holo_blue_light</item>
     </style>
 
     <style name="GDataDialogButtonBar" tools:ignore="NewApi">
