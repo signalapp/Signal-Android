@@ -204,10 +204,10 @@ public class PushDecryptJob extends MasterSecretJob {
   {
     Pair<Long, Long> messageAndThreadId;
 
-    if (!message.getSyncContext().isPresent()) {
-      messageAndThreadId = insertStandardTextMessage(masterSecret, envelope, message, smsMessageId);
-    } else {
+    if (message.getSyncContext().isPresent()) {
       messageAndThreadId = insertSyncTextMessage(masterSecret, envelope, message, smsMessageId);
+    } else {
+      messageAndThreadId = insertStandardTextMessage(masterSecret, envelope, message, smsMessageId);
     }
 
     MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
@@ -321,7 +321,7 @@ public class PushDecryptJob extends MasterSecretJob {
   {
     EncryptingSmsDatabase database            = DatabaseFactory.getEncryptingSmsDatabase(context);
     Recipients            recipients          = getSyncMessageDestination(message);
-    String                body                = message.getBody().isPresent() ? message.getBody().get() : "";
+    String                body                = message.getBody().or("");
     OutgoingTextMessage   outgoingTextMessage = new OutgoingTextMessage(recipients, body);
 
     long threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
@@ -329,7 +329,10 @@ public class PushDecryptJob extends MasterSecretJob {
 
     database.markAsSent(messageId);
     database.markAsPush(messageId);
-    database.markAsSecure(messageId);
+
+    if (message.isSecure()) {
+      database.markAsSecure(messageId);
+    }
 
     if (smsMessageId.isPresent()) {
       database.deleteMessage(smsMessageId.get());
