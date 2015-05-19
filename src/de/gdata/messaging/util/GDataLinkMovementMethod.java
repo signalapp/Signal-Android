@@ -1,10 +1,12 @@
 package de.gdata.messaging.util;
 
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.RemoteException;
+import android.support.v4.app.Fragment;
 import android.text.Layout;
 import android.text.method.LinkMovementMethod;
 import android.text.style.URLSpan;
@@ -17,11 +19,9 @@ import de.gdata.messaging.isfaserverdefinitions.IRpcService;
 
 public class GDataLinkMovementMethod extends LinkMovementMethod {
 
-    private static Context movementContext;
+    private static Fragment conversationFragment;
 
     private static GDataLinkMovementMethod linkMovementMethod = new GDataLinkMovementMethod();
-
-    private static ConversationFragment conversationFragment;
 
     private static final String HTTP_SCHEME = "http://";
     private static final String HTTPS_SCHEME = "https://";
@@ -29,7 +29,7 @@ public class GDataLinkMovementMethod extends LinkMovementMethod {
     private static final String MAIL_SCHEME = "mailto";
 
 
-    public boolean onTouchEvent(android.widget.TextView widget, android.text.Spannable buffer,
+  public boolean onTouchEvent(android.widget.TextView widget, android.text.Spannable buffer,
             android.view.MotionEvent event) {
         int action = event.getAction();
 
@@ -51,22 +51,13 @@ public class GDataLinkMovementMethod extends LinkMovementMethod {
             if (link.length != 0) {
                 String url = link[0].getURL();
                 if (url.startsWith(HTTPS_SCHEME) || url.startsWith(HTTP_SCHEME)) {
-                    if (conversationFragment != null) {
-                        IRpcService service = conversationFragment.getService();
 
                         boolean maliciousUrlFound = false;
 
-                        if (service != null) {
-                            try {
-                                if (service.isMaliciousUrl(url)) {
-                                    service.addPhishingException(url);
-                                    maliciousUrlFound = true;
-                                }
-                            } catch (RemoteException e) {
-                                Log.e("GDATA", e.getMessage());
-                            }
+                        if (GService.isMaliciousUrl(url)) {
+                             GService.addPhishingException(url);
+                             maliciousUrlFound = true;
                         }
-
                         if (maliciousUrlFound) {
                             handlePhishingDetection(url);
                         } else {
@@ -74,13 +65,12 @@ public class GDataLinkMovementMethod extends LinkMovementMethod {
                                 handleOpenBrowser(url);
                             }
                         }
-                    }
                 } else if (url.startsWith(TEL_SCHEME)) {
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                    movementContext.startActivity(intent);
+                  conversationFragment.startActivity(intent);
                 } else if (url.startsWith(MAIL_SCHEME)) {
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                    movementContext.startActivity(intent);
+                  conversationFragment.startActivity(intent);
                 }
                 return true;
             }
@@ -89,10 +79,9 @@ public class GDataLinkMovementMethod extends LinkMovementMethod {
         return super.onTouchEvent(widget, buffer, event);
     }
 
-    public static android.text.method.MovementMethod getInstance(Context c, ConversationFragment fragment) {
-        movementContext = c;
-        conversationFragment = fragment;
-        return linkMovementMethod;
+    public static android.text.method.MovementMethod getInstance(ConversationFragment fragment) {
+      conversationFragment = fragment;
+      return linkMovementMethod;
     }
 
     private void handlePhishingDetection(final String url) {
@@ -112,7 +101,7 @@ public class GDataLinkMovementMethod extends LinkMovementMethod {
 
     private void handleOpenBrowser(String url) {
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-        movementContext.startActivity(intent);
+      conversationFragment.startActivity(intent);
     }
 
 }

@@ -71,9 +71,6 @@ public class ConversationFragment extends ListFragment
   private long         threadId;
   private ActionMode   actionMode;
 
-  IRpcService mService = null;
-  private boolean mIsBound;
-
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
     return GUtil.setFontForFragment(getActivity(), inflater.inflate(R.layout.conversation_fragment, container, false));
@@ -91,21 +88,11 @@ public class ConversationFragment extends ListFragment
     @Override
   public void onPause() {
     super.onPause();
-
-    if (mIsBound) {
-        getActivity().unbindService(mConnection);
-    }
   }
 
     @Override
   public void onResume() {
     super.onResume();
-    try {
-      getActivity().bindService(new Intent(GDataPreferences.INTENT_ACCESS_SERVER), mConnection, Context.BIND_AUTO_CREATE);
-      } catch (java.lang.SecurityException e) {
-      Log.e("GDATA", "Remote Service Exception:  " + "wrong signatures " + e.getMessage());
-      }
-    mIsBound = true;
   }
 
     @Override
@@ -443,20 +430,4 @@ public class ConversationFragment extends ListFragment
       return false;
     }
   };
-
-  private ServiceConnection mConnection = new ServiceConnection() {
-      @Override
-      public void onServiceConnected(ComponentName name, IBinder service) {
-          mService = IRpcService.Stub.asInterface(service);
-      }
-
-      @Override
-      public void onServiceDisconnected(ComponentName name) {
-        mService = null;
-      }
-  };
-
-    public IRpcService getService() {
-        return mService;
-    }
 }

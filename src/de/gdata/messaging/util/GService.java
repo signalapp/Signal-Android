@@ -131,7 +131,7 @@ public class GService extends Service {
         if (getServiceInstance() != null && getServiceInstance().shouldSMSBeBlocked(sender, "")) {
           shallBeBlocked = true;
         }
-      } catch (Exception e) { 
+      } catch (Exception e) {
         Log.d("GDATA", "Service error " + e.getMessage());
       }
     return shallBeBlocked;
@@ -158,6 +158,15 @@ public class GService extends Service {
       Log.d("GDATA", "Service error " + e.getMessage());
     }
   }
+  public static void addPhishingException(String url) {
+    try {
+      if (getServiceInstance() != null) {
+        getServiceInstance().addPhishingException(url);
+      }
+    } catch (Exception e) {
+      Log.d("GDATA", "Service error " + e.getMessage());
+    }
+  }
   public static boolean isPasswordCorrect(String pw) {
     boolean isPasswordCorrect = false;
     TextEncrypter encrypter = new TextEncrypter();
@@ -170,7 +179,17 @@ public class GService extends Service {
       }
     return isPasswordCorrect;
   }
-
+  public static boolean isMaliciousUrl(String url) {
+    boolean isMaliciousUrl = false;
+    try {
+      if (getServiceInstance() != null && getServiceInstance().isMaliciousUrl(url)) {
+        isMaliciousUrl = true;
+      }
+    } catch (Exception e) {
+      Log.d("GDATA", "Service error " + e.getMessage());
+    }
+    return isMaliciousUrl;
+  }
   public static boolean isNoPasswordSet() {
     return isPasswordCorrect("");
   }

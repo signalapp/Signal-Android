@@ -288,7 +288,7 @@ public class ConversationItem extends LinearLayout {
         TextView.BufferType.SPANNABLE);
 
     if (!messageRecord.isKeyExchange() && !messageRecord.isPendingSmsFallback()) {
-      bodyText.setMovementMethod(GDataLinkMovementMethod.getInstance(context, conversationFragment));
+      bodyText.setMovementMethod(GDataLinkMovementMethod.getInstance(conversationFragment));
     }
 
     if (bodyText.isClickable() && bodyText.isFocusable()) {
