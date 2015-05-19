@@ -193,7 +193,6 @@
 
     <!-- GroupMembersDialog -->
     <string name="GroupMembersDialog_me">Me</string>
-    <string name="GroupMembersDialog_members">Members...</string>
 
     <!-- ImportExportActivity -->
     <string name="ImportExportActivity_import">Import</string>
