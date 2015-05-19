@@ -982,6 +982,14 @@
     <string name="transport_selection_list_item__transport_icon">Transport icon</string>
 
 
+    <!-- Wear Reply -->
+    <string name="wear_reply_label">Reply</string>
+    <string-array name="wear_replies">
+        <item>Yes</item>
+        <item>No</item>
+        <item>OK</item>
+        <item>Thanks</item>
+    </string-array>
     <!-- EOF -->
 
 </resources>

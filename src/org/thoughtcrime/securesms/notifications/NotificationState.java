@@ -4,11 +4,11 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.VibrateState;
 import org.thoughtcrime.securesms.recipients.Recipients;
 
@@ -71,6 +71,19 @@ public class NotificationState {
   }
 
   public PendingIntent getMarkAsReadIntent(Context context, MasterSecret masterSecret) {
+    Bundle extras = new Bundle();
+    extras.putParcelable("master_secret", masterSecret);
+    return craftIntent(context, MarkReadReceiver.CLEAR_ACTION, extras);
+  }
+
+  public PendingIntent getReplyIntent(Context context, MasterSecret masterSecret, long recipientId) {
+    Bundle extras = new Bundle();
+    extras.putParcelable("master_secret", masterSecret);
+    extras.putLong("recipient_id", recipientId);
+    return craftIntent(context, WearReplyReceiver.REPLY_ACTION, extras);
+  }
+
+  private PendingIntent craftIntent(Context context, String intentAction, Bundle extras) {
     long[] threadArray = new long[threads.size()];
     int index          = 0;
 
@@ -79,16 +92,16 @@ public class NotificationState {
       threadArray[index++] = thread;
     }
 
-    Intent intent = new Intent(MarkReadReceiver.CLEAR_ACTION);
+    Intent intent = new Intent(intentAction);
     intent.putExtra("thread_ids", threadArray);
-    intent.putExtra("master_secret", masterSecret);
+    intent.putExtras(extras);
     intent.setPackage(context.getPackageName());
 
     // XXX : This is an Android bug.  If we don't pull off the extra
     // once before handing off the PendingIntent, the array will be
     // truncated to one element when the PendingIntent fires.  Thanks guys!
     Log.w("NotificationState", "Pending array off intent length: " +
-        intent.getLongArrayExtra("thread_ids").length);
+            intent.getLongArrayExtra("thread_ids").length);
 
     return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
   }
