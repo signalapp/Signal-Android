@@ -86,7 +86,7 @@ public class ContactSelectionFragment extends Fragment {
   }
 
   private void initializeResources() {
-    contactsFragment = (PushContactSelectionListFragment) getChildFragmentManager().findFraggmentById(R.id.contact_selection_list_fragment);
+    contactsFragment = (PushContactSelectionListFragment) getChildFragmentManager().findFragmentById(R.id.contact_selection_list_fragment);
     contactsFragment.setOnContactSelectedListener(new PushContactSelectionListFragment.OnContactSelectedListener() {
       @Override
       public void onContactSelected(ContactData contactData) {
