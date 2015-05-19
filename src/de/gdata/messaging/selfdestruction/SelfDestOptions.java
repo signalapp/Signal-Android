@@ -67,7 +67,6 @@ public class SelfDestOptions {
     public void initializeAvailableSelfDests() {
 
         String[] entryArray = context.getResources().getStringArray(R.array.gdata_selfdestroy_entrys);
-        String[] composeHintArray = new String[] {"","","",""};
 
         final String[] valuesArray = context.getResources().getStringArray(R.array.gdata_selfdestroy_values);
 
