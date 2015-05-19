@@ -43,6 +43,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
+import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
@@ -367,20 +368,21 @@ public class ConversationItem extends LinearLayout {
     contactPhoto.setVisibility(View.VISIBLE);
   }
 
+  private IdentityKeyMismatch getKeyMismatch(final MessageRecord record) {
+    if (record.isIdentityMismatchFailure()) {
+      for (final IdentityKeyMismatch mismatch : record.getIdentityKeyMismatches()) {
+        if (mismatch.getRecipientId() == record.getIndividualRecipient().getRecipientId()) {
+          return mismatch;
+        }
+      }
+    }
+    return null;
+  }
+
   /// Event handlers
 
   private void handleKeyExchangeClicked() {
-    Intent intent = new Intent(context, ReceiveKeyActivity.class);
-    intent.putExtra("recipient", messageRecord.getIndividualRecipient().getRecipientId());
-    intent.putExtra("recipient_device_id", messageRecord.getRecipientDeviceId());
-    intent.putExtra("body", messageRecord.getBody().getBody());
-    intent.putExtra("thread_id", messageRecord.getThreadId());
-    intent.putExtra("message_id", messageRecord.getId());
-    intent.putExtra("is_bundle", messageRecord.isBundleKeyExchange());
-    intent.putExtra("is_identity_update", messageRecord.isIdentityUpdate());
-    intent.putExtra("is_push", messageRecord.isPush());
-    intent.putExtra("sent", messageRecord.isOutgoing());
-    context.startActivity(intent);
+    new ConfirmIdentityDialogBuilder(context, masterSecret, messageRecord, getKeyMismatch(messageRecord)).show();
   }
 
   private class ThumbnailClickListener implements ThumbnailView.ThumbnailClickListener {
