@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<org.thoughtcrime.securesms.contacts.ContactSelectionListItem
+                xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/listPreferredItemHeight"
                 android:paddingRight="25dip">
@@ -16,23 +17,41 @@
         android:scaleType="centerCrop"
         android:contentDescription="@string/SingleContactSelectionActivity_contact_photo" />
 
-    <TextView android:id="@+id/number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dip"
-        android:layout_marginTop="-8dip"
-        android:layout_marginLeft="14dip"
-        android:layout_alignParentBottom="true"
-        android:singleLine="true"
-        android:ellipsize="marquee"
-        android:layout_toRightOf="@id/contact_photo_image"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:fontFamily="sans-serif-light" />
+    <LinearLayout
+            android:id="@+id/number_container"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dip"
+            android:layout_marginLeft="14dip"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@id/contact_photo_image">
+
+        <TextView android:id="@+id/number"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:singleLine="true"
+                  android:ellipsize="marquee"
+                  android:textAppearance="?android:attr/textAppearanceSmall"
+                  android:fontFamily="sans-serif-light" />
+
+        <TextView
+                android:id="@+id/label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dip"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="?contact_selection_label_text"
+                android:fontFamily="sans-serif-light"/>
+
+    </LinearLayout>
 
     <TextView android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/number"
+        android:layout_above="@id/number_container"
         android:layout_alignParentTop="true"
         android:layout_marginBottom="1dip"
         android:layout_marginLeft="14dip"
@@ -51,4 +70,4 @@
         android:focusable="false"
         android:clickable="false" />
 
-</RelativeLayout>
+</org.thoughtcrime.securesms.contacts.ContactSelectionListItem>

@@ -19,7 +19,6 @@ package org.thoughtcrime.securesms;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -30,11 +29,8 @@ import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
-
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 
 /**
  * Activity container for selecting a list of contacts.
@@ -98,21 +94,16 @@ public class PushContactSelectionActivity extends PassphraseRequiredActionBarAct
   private void initializeResources() {
     contactsFragment = (PushContactSelectionListFragment) getSupportFragmentManager().findFragmentById(R.id.contact_selection_list_fragment);
     contactsFragment.setMultiSelect(true);
-    contactsFragment.setOnContactSelectedListener(new PushContactSelectionListFragment.OnContactSelectedListener() {
-      @Override
-      public void onContactSelected(ContactData contactData) {
-        Log.i(TAG, "Choosing contact from list.");
-      }
-    });
   }
 
   private void handleSelectionFinished() {
+    Intent resultIntent = getIntent();
+    List<String> selectedContacts = contactsFragment.getSelectedContacts();
 
-    final Intent resultIntent = getIntent();
-    final List<ContactData> selectedContacts = contactsFragment.getSelectedContacts();
     if (selectedContacts != null) {
-      resultIntent.putParcelableArrayListExtra("contacts", new ArrayList<ContactData>(contactsFragment.getSelectedContacts()));
+      resultIntent.putStringArrayListExtra("contacts", new ArrayList<>(selectedContacts));
     }
+
     setResult(RESULT_OK, resultIntent);
     finish();
   }
