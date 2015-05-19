@@ -36,6 +36,7 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationCompat.Action;
 import android.support.v4.app.NotificationCompat.BigTextStyle;
 import android.support.v4.app.NotificationCompat.InboxStyle;
+import android.support.v4.app.RemoteInput;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -84,6 +85,8 @@ public class MessageNotifier {
   public static final int NOTIFICATION_ID = 1338;
 
   private volatile static long visibleThread = -1;
+
+  public static final String EXTRA_VOICE_REPLY = "extra_voice_reply";
 
   public static void setVisibleThread(long threadId) {
     visibleThread = threadId;
@@ -219,9 +222,19 @@ public class MessageNotifier {
       Action markAsReadAction = new Action(R.drawable.check,
                                            context.getString(R.string.MessageNotifier_mark_as_read),
                                            notificationState.getMarkAsReadIntent(context, masterSecret));
-      builder.addAction(markAsReadAction);
-      builder.addAction(new Action(R.drawable.ic_reply_white_36dp, context.getString(R.string.MessageNotifier_reply), notifications.get(0).getReplyIntent(context)));
-      builder.extend(new NotificationCompat.WearableExtender().addAction(markAsReadAction));
+
+      Action replyAction = new Action.Builder(R.drawable.ic_reply,
+                                              context.getString(R.string.MessageNotifier_reply),
+                                              notifications.get(0).getReplyIntent(context))
+          .addRemoteInput(new RemoteInput.Builder(EXTRA_VOICE_REPLY)
+                              .setLabel(context.getString(R.string.MessageNotifier_reply))
+                              .build())
+          .build();
+
+      NotificationCompat.WearableExtender wearableExtender = new NotificationCompat.WearableExtender();
+      wearableExtender.addAction(replyAction);
+      wearableExtender.addAction(markAsReadAction);
+      builder.extend(wearableExtender);
     }
 
     SpannableStringBuilder content = new SpannableStringBuilder();
