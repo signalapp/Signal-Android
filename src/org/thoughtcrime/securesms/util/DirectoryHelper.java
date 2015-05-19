@@ -77,16 +77,19 @@ public class DirectoryHelper {
     TextSecureDirectory       directory              = TextSecureDirectory.getInstance(context);
     Set<String>               eligibleContactNumbers = directory.getPushEligibleContactNumbers(localNumber);
     Map<String, String>       tokenMap               = DirectoryUtil.getDirectoryServerTokenMap(eligibleContactNumbers);
-    List<ContactTokenDetails> activeTokens           = accountManager.getContacts(tokenMap.keySet());
+    List<ContactTokenDetails> activeTokens           = accountManager.getContacts(eligibleContactNumbers);
+    //List<ContactTokenDetails> activeTokens           = accountManager.getContacts(tokenMap.keySet());
+
 
     if (activeTokens != null) {
       for (ContactTokenDetails activeToken : activeTokens) {
-        eligibleContactNumbers.remove(tokenMap.get(activeToken.getToken()));
-        activeToken.setNumber(tokenMap.get(activeToken.getToken()));
+        eligibleContactNumbers.remove(activeToken.getNumber());
+        activeToken.setNumber(activeToken.getNumber());
       }
 
       directory.setNumbers(activeTokens, eligibleContactNumbers);
     }
+
   }
 
   public static boolean isPushDestination(Context context, Recipients recipients) {
