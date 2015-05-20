@@ -67,7 +67,7 @@ dependencies {
     compile 'org.whispersystems:jobmanager:0.11.0'
     compile 'org.whispersystems:libpastelog:1.0.6'
     compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
-    compile 'org.whispersystems:textsecure-android:1.4.0'
+    compile 'org.whispersystems:textsecure-android:1.5.0'
 
     androidTestCompile 'com.google.dexmaker:dexmaker:1.2'
     androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.2'
@@ -108,12 +108,12 @@ dependencyVerification {
             'org.whispersystems:jobmanager:ea9cb943c4892fb90c1eea1be30efeb85cefca213d52c788419553b58d0ed70d',
             'org.whispersystems:libpastelog:550d33c565380d90f4c671e7b8ed5f3a6da55a9fda468373177106b2eb5220b2',
             'com.amulyakhare:com.amulyakhare.textdrawable:54c92b5fba38cfd316a07e5a30528068f45ce8515a6890f1297df4c401af5dcb',
-            'org.whispersystems:textsecure-android:6a9809be1ad977e7271dfe834ef84e55c65c178596be67fe0c70d626a47e3b4d',
+            'org.whispersystems:textsecure-android:b8001bd3c77fadcf84e0c3b21353f76d6db783bd17b28c5d7296d71198446d4b',
             'com.nineoldandroids:library:68025a14e3e7673d6ad2f95e4b46d78d7d068343aa99256b686fe59de1b3163a',
             'javax.inject:javax.inject:91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff',
             'com.madgag.spongycastle:core:8d6240b974b0aca4d3da9c7dd44d42339d8a374358aca5fc98e50a995764511f',
             'org.whispersystems:axolotl-android:40d3db5004a84749a73f68d2f0d01b2ae35a73c54df96d8c6c6723b96efb6fc0',
-            'org.whispersystems:textsecure-java:bf45c705b61f3bdfa4027a0c656459c9ee9d9dd8881da389486515e228f211b4',
+            'org.whispersystems:textsecure-java:b879094961f9ef0c851206223051e8478e6bbba0f039ea9340be20f40384bb20',
             'org.whispersystems:axolotl-java:6daee739b89d8d7101de6d98f77132fee48495c6ea647d880e77def842f999ea',
             'org.whispersystems:curve25519-android:3c29a4131a69b0d16baaa3d707678deb39602c3a3ffd75805ce7f9db252e5d0d',
             'com.googlecode.libphonenumber:libphonenumber:eba17eae81dd622ea89a00a3a8c025b2f25d342e0d9644c5b62e16f15687c3ab',

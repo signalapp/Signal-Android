@@ -331,10 +331,7 @@ public class PushDecryptJob extends MasterSecretJob {
 
     database.markAsSent(messageId);
     database.markAsPush(messageId);
-
-    if (message.isSecure()) {
-      database.markAsSecure(messageId);
-    }
+    database.markAsSecure(messageId);
 
     if (smsMessageId.isPresent()) {
       database.deleteMessage(smsMessageId.get());
@@ -359,9 +356,7 @@ public class PushDecryptJob extends MasterSecretJob {
                                                                 message.getTimestamp(), body,
                                                                 message.getGroupInfo());
 
-      if (message.isSecure()) {
-        textMessage = new IncomingEncryptedMessage(textMessage, body);
-      }
+      textMessage = new IncomingEncryptedMessage(textMessage, body);
 
       return database.insertMessageInbox(masterSecret, textMessage);
     }
@@ -372,16 +367,14 @@ public class PushDecryptJob extends MasterSecretJob {
                                                   TextSecureMessage message)
       throws MmsException
   {
-    MmsDatabase           database    = DatabaseFactory.getMmsDatabase(context);
-    TextSecureSyncContext syncContext = message.getSyncContext().get();
-    Recipients            recipients  = getSyncMessageDestination(message);
-    OutgoingMediaMessage mediaMessage = new OutgoingMediaMessage(context, masterSecret, recipients,
-                                                                 message.getAttachments().get(),
-                                                                 message.getBody().orNull());
+    MmsDatabase           database     = DatabaseFactory.getMmsDatabase(context);
+    TextSecureSyncContext syncContext  = message.getSyncContext().get();
+    Recipients            recipients   = getSyncMessageDestination(message);
+    OutgoingMediaMessage  mediaMessage = new OutgoingMediaMessage(context, masterSecret, recipients,
+                                                                  message.getAttachments().get(),
+                                                                  message.getBody().orNull());
 
-    if (message.isSecure()) {
-      mediaMessage = new OutgoingSecureMediaMessage(mediaMessage);
-    }
+    mediaMessage = new OutgoingSecureMediaMessage(mediaMessage);
 
     long threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
     long messageId = database.insertMessageOutbox(masterSecret, mediaMessage, threadId, false, syncContext.getTimestamp());
@@ -406,8 +399,7 @@ public class PushDecryptJob extends MasterSecretJob {
                                                                  message.getGroupInfo(),
                                                                  message.getAttachments());
 
-    if (message.isSecure()) return database.insertSecureDecryptedMessageInbox(masterSecret, mediaMessage, -1);
-    else                    return database.insertMessageInbox(masterSecret, mediaMessage, null, -1);
+    return database.insertSecureDecryptedMessageInbox(masterSecret, mediaMessage, -1);
   }
 
   private Recipients getSyncMessageDestination(TextSecureMessage message) {

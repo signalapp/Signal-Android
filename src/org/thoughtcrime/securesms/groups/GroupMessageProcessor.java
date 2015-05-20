@@ -46,11 +46,6 @@ public class GroupMessageProcessor {
       return;
     }
 
-    if (!message.isSecure()) {
-      Log.w(TAG, "Received insecure group push action! Ignoring...");
-      return;
-    }
-
     GroupDatabase database = DatabaseFactory.getGroupDatabase(context);
     TextSecureGroup group    = message.getGroupInfo().get();
     byte[]        id       = group.getGroupId();
