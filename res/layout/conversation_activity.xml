@@ -101,13 +101,12 @@
                         android:id="@+id/button_toggle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
-
                     <ImageButton
                             android:id="@+id/attach_button"
                             android:layout_gravity="center_vertical"
                             android:background="@drawable/touch_highlight_background"
                             android:padding="12dp"
-                            android:src="?conversation_attach_file"
+                            android:src="?conversation_attach"
                             android:contentDescription="@string/ConversationActivity_add_attachment"
                             android:nextFocusLeft="@+id/embedded_text_editor"
                             android:layout_width="wrap_content"
