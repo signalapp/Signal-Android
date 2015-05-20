@@ -50,6 +50,7 @@ import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 import org.whispersystems.textsecure.api.messages.TextSecureGroup;
 import org.whispersystems.textsecure.api.messages.TextSecureMessage;
 import org.whispersystems.textsecure.api.messages.TextSecureSyncContext;
+import org.whispersystems.textsecure.api.push.TextSecureAddress;
 
 import java.util.concurrent.TimeUnit;
 
@@ -107,8 +108,9 @@ public class PushDecryptJob extends MasterSecretJob {
 
   private void handleMessage(MasterSecret masterSecret, TextSecureEnvelope envelope, Optional<Long> smsMessageId) {
     try {
-      AxolotlStore     axolotlStore = new TextSecureAxolotlStore(context, masterSecret);
-      TextSecureCipher cipher       = new TextSecureCipher(axolotlStore);
+      AxolotlStore      axolotlStore = new TextSecureAxolotlStore(context, masterSecret);
+      TextSecureAddress localAddress = new TextSecureAddress(TextSecurePreferences.getLocalNumber(context));
+      TextSecureCipher  cipher       = new TextSecureCipher(localAddress, axolotlStore);
 
       TextSecureMessage message = cipher.decrypt(envelope);
 
