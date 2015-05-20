@@ -31,7 +31,6 @@ public class TextSecureMessage {
   private final Optional<String>                     body;
   private final Optional<TextSecureGroup>            group;
   private final Optional<TextSecureSyncContext>      syncContext;
-  private final boolean                              secure;
   private final boolean                              endSession;
 
   /**
@@ -68,7 +67,7 @@ public class TextSecureMessage {
    * @param body The message contents.
    */
   public TextSecureMessage(long timestamp, TextSecureGroup group, List<TextSecureAttachment> attachments, String body) {
-    this(timestamp, group, attachments, body, null, true, false);
+    this(timestamp, group, attachments, body, null, false);
   }
 
   /**
@@ -78,15 +77,13 @@ public class TextSecureMessage {
    * @param group The group information (or null if none).
    * @param attachments The attachments (or null if none).
    * @param body The message contents.
-   * @param secure Flag indicating whether this message is to be encrypted.
    * @param endSession Flag indicating whether this message should close a session.
    */
-  public TextSecureMessage(long timestamp, TextSecureGroup group, List<TextSecureAttachment> attachments, String body, TextSecureSyncContext syncContext, boolean secure, boolean endSession) {
+  public TextSecureMessage(long timestamp, TextSecureGroup group, List<TextSecureAttachment> attachments, String body, TextSecureSyncContext syncContext, boolean endSession) {
     this.timestamp   = timestamp;
     this.body        = Optional.fromNullable(body);
     this.group       = Optional.fromNullable(group);
     this.syncContext = Optional.fromNullable(syncContext);
-    this.secure      = secure;
     this.endSession  = endSession;
 
     if (attachments != null && !attachments.isEmpty()) {
@@ -130,10 +127,6 @@ public class TextSecureMessage {
 
   public Optional<TextSecureSyncContext> getSyncContext() {
     return syncContext;
-  }
-
-  public boolean isSecure() {
-    return secure;
   }
 
   public boolean isEndSession() {
@@ -191,7 +184,7 @@ public class TextSecureMessage {
 
     public TextSecureMessage build() {
       if (timestamp == 0) timestamp = System.currentTimeMillis();
-      return new TextSecureMessage(timestamp, group, attachments, body, null, true, endSession);
+      return new TextSecureMessage(timestamp, group, attachments, body, null, endSession);
     }
   }
 }

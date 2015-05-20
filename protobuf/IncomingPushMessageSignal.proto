@@ -9,7 +9,7 @@ message IncomingPushMessageSignal {
     CIPHERTEXT    = 1;
     KEY_EXCHANGE  = 2;
     PREKEY_BUNDLE = 3;
-    PLAINTEXT     = 4;
+//    PLAINTEXT     = 4; // No longer supported
     RECEIPT       = 5;
   }
   optional Type   type         = 1;

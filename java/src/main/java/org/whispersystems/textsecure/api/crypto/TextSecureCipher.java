@@ -112,8 +112,6 @@ public class TextSecureCipher {
         paddedMessage = sessionCipher.decrypt(new PreKeyWhisperMessage(envelope.getMessage()));
       } else if (envelope.isWhisperMessage()) {
         paddedMessage = sessionCipher.decrypt(new WhisperMessage(envelope.getMessage()));
-      } else if (envelope.isPlaintext()) {
-        paddedMessage = envelope.getMessage();
       } else {
         throw new InvalidMessageException("Unknown type: " + envelope.getType());
       }
@@ -132,7 +130,6 @@ public class TextSecureCipher {
     TextSecureSyncContext      syncContext = createSyncContext(envelope, content);
     List<TextSecureAttachment> attachments = new LinkedList<>();
     boolean                    endSession  = ((content.getFlags() & PushMessageContent.Flags.END_SESSION_VALUE) != 0);
-    boolean                    secure      = envelope.isWhisperMessage() || envelope.isPreKeyWhisperMessage();
 
     for (PushMessageContent.AttachmentPointer pointer : content.getAttachmentsList()) {
       attachments.add(new TextSecureAttachmentPointer(pointer.getId(),
@@ -142,7 +139,7 @@ public class TextSecureCipher {
     }
 
     return new TextSecureMessage(envelope.getTimestamp(), groupInfo, attachments,
-                                 content.getBody(), syncContext, secure, endSession);
+                                 content.getBody(), syncContext, endSession);
   }
 
   private TextSecureSyncContext createSyncContext(TextSecureEnvelope envelope, PushMessageContent content) {

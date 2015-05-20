@@ -181,13 +181,6 @@ public class TextSecureEnvelope {
   }
 
   /**
-   * @return true if the containing message is plaintext.
-   */
-  public boolean isPlaintext() {
-    return signal.getType().getNumber() == IncomingPushMessageSignal.Type.PLAINTEXT_VALUE;
-  }
-
-  /**
    * @return true if the containing message is a delivery receipt.
    */
   public boolean isReceipt() {

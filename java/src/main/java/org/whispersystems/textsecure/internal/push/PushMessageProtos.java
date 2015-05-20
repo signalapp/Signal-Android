@@ -237,17 +237,13 @@ public final class PushMessageProtos {
        */
       PREKEY_BUNDLE(3, 3),
       /**
-       * <code>PLAINTEXT = 4;</code>
-       */
-      PLAINTEXT(4, 4),
-      /**
        * <code>RECEIPT = 5;</code>
+       *
+       * <pre>
+       *    PLAINTEXT     = 4; // No longer supported
+       * </pre>
        */
-      RECEIPT(5, 5),
-      /**
-       * <code>COPY = 6;</code>
-       */
-      COPY(6, 6),
+      RECEIPT(4, 5),
       ;
 
       /**
@@ -267,17 +263,13 @@ public final class PushMessageProtos {
        */
       public static final int PREKEY_BUNDLE_VALUE = 3;
       /**
-       * <code>PLAINTEXT = 4;</code>
-       */
-      public static final int PLAINTEXT_VALUE = 4;
-      /**
        * <code>RECEIPT = 5;</code>
+       *
+       * <pre>
+       *    PLAINTEXT     = 4; // No longer supported
+       * </pre>
        */
       public static final int RECEIPT_VALUE = 5;
-      /**
-       * <code>COPY = 6;</code>
-       */
-      public static final int COPY_VALUE = 6;
 
 
       public final int getNumber() { return value; }
@@ -288,9 +280,7 @@ public final class PushMessageProtos {
           case 1: return CIPHERTEXT;
           case 2: return KEY_EXCHANGE;
           case 3: return PREKEY_BUNDLE;
-          case 4: return PLAINTEXT;
           case 5: return RECEIPT;
-          case 6: return COPY;
           default: return null;
         }
       }
@@ -4846,32 +4836,31 @@ public final class PushMessageProtos {
   static {
     java.lang.String[] descriptorData = {
       "\n\037IncomingPushMessageSignal.proto\022\ntexts" +
-      "ecure\"\236\002\n\031IncomingPushMessageSignal\0228\n\004t" +
+      "ecure\"\205\002\n\031IncomingPushMessageSignal\0228\n\004t" +
       "ype\030\001 \001(\0162*.textsecure.IncomingPushMessa" +
       "geSignal.Type\022\016\n\006source\030\002 \001(\t\022\024\n\014sourceD" +
       "evice\030\007 \001(\r\022\r\n\005relay\030\003 \001(\t\022\021\n\ttimestamp\030" +
-      "\005 \001(\004\022\017\n\007message\030\006 \001(\014\"n\n\004Type\022\013\n\007UNKNOW" +
+      "\005 \001(\004\022\017\n\007message\030\006 \001(\014\"U\n\004Type\022\013\n\007UNKNOW" +
       "N\020\000\022\016\n\nCIPHERTEXT\020\001\022\020\n\014KEY_EXCHANGE\020\002\022\021\n" +
-      "\rPREKEY_BUNDLE\020\003\022\r\n\tPLAINTEXT\020\004\022\013\n\007RECEI" +
-      "PT\020\005\022\010\n\004COPY\020\006\"\206\005\n\022PushMessageContent\022\014\n" +
-      "\004body\030\001 \001(\t\022E\n\013attachments\030\002 \003(\01320.texts",
-      "ecure.PushMessageContent.AttachmentPoint" +
-      "er\022:\n\005group\030\003 \001(\0132+.textsecure.PushMessa" +
-      "geContent.GroupContext\022\r\n\005flags\030\004 \001(\r\022?\n" +
-      "\004sync\030\005 \001(\01321.textsecure.PushMessageCont" +
-      "ent.SyncMessageContext\032A\n\021AttachmentPoin" +
-      "ter\022\n\n\002id\030\001 \001(\006\022\023\n\013contentType\030\002 \001(\t\022\013\n\003" +
-      "key\030\003 \001(\014\032\363\001\n\014GroupContext\022\n\n\002id\030\001 \001(\014\022>" +
-      "\n\004type\030\002 \001(\01620.textsecure.PushMessageCon" +
-      "tent.GroupContext.Type\022\014\n\004name\030\003 \001(\t\022\017\n\007" +
-      "members\030\004 \003(\t\022@\n\006avatar\030\005 \001(\01320.textsecu",
-      "re.PushMessageContent.AttachmentPointer\"" +
-      "6\n\004Type\022\013\n\007UNKNOWN\020\000\022\n\n\006UPDATE\020\001\022\013\n\007DELI" +
-      "VER\020\002\022\010\n\004QUIT\020\003\032<\n\022SyncMessageContext\022\023\n" +
-      "\013destination\030\001 \001(\t\022\021\n\ttimestamp\030\002 \001(\004\"\030\n" +
-      "\005Flags\022\017\n\013END_SESSION\020\001B@\n+org.whispersy" +
-      "stems.textsecure.internal.pushB\021PushMess" +
-      "ageProtos"
+      "\rPREKEY_BUNDLE\020\003\022\013\n\007RECEIPT\020\005\"\206\005\n\022PushMe" +
+      "ssageContent\022\014\n\004body\030\001 \001(\t\022E\n\013attachment" +
+      "s\030\002 \003(\01320.textsecure.PushMessageContent.",
+      "AttachmentPointer\022:\n\005group\030\003 \001(\0132+.texts" +
+      "ecure.PushMessageContent.GroupContext\022\r\n" +
+      "\005flags\030\004 \001(\r\022?\n\004sync\030\005 \001(\01321.textsecure." +
+      "PushMessageContent.SyncMessageContext\032A\n" +
+      "\021AttachmentPointer\022\n\n\002id\030\001 \001(\006\022\023\n\013conten" +
+      "tType\030\002 \001(\t\022\013\n\003key\030\003 \001(\014\032\363\001\n\014GroupContex" +
+      "t\022\n\n\002id\030\001 \001(\014\022>\n\004type\030\002 \001(\01620.textsecure" +
+      ".PushMessageContent.GroupContext.Type\022\014\n" +
+      "\004name\030\003 \001(\t\022\017\n\007members\030\004 \003(\t\022@\n\006avatar\030\005" +
+      " \001(\01320.textsecure.PushMessageContent.Att",
+      "achmentPointer\"6\n\004Type\022\013\n\007UNKNOWN\020\000\022\n\n\006U" +
+      "PDATE\020\001\022\013\n\007DELIVER\020\002\022\010\n\004QUIT\020\003\032<\n\022SyncMe" +
+      "ssageContext\022\023\n\013destination\030\001 \001(\t\022\021\n\ttim" +
+      "estamp\030\002 \001(\004\"\030\n\005Flags\022\017\n\013END_SESSION\020\001B@" +
+      "\n+org.whispersystems.textsecure.internal" +
+      ".pushB\021PushMessageProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
