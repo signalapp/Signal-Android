@@ -19,7 +19,6 @@
 package org.thoughtcrime.redphone;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -31,11 +30,10 @@ import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
-
-import com.afollestad.materialdialogs.AlertDialogWrapper;
 
 import org.thoughtcrime.redphone.ui.CallControls;
 import org.thoughtcrime.redphone.ui.CallScreen;
@@ -248,7 +246,7 @@ public class RedPhone extends Activity {
 
   private void handleNoSuchUser(final @NonNull RedPhoneEvent event) {
     if (isFinishing()) return; // XXX Stuart added this check above, not sure why, so I'm repeating in ignorance. - moxie
-    AlertDialogWrapper.Builder dialog = new AlertDialogWrapper.Builder(this);
+    AlertDialog.Builder dialog = new AlertDialog.Builder(this);
     dialog.setTitle(R.string.RedPhone_number_not_registered);
     dialog.setIconAttribute(R.attr.dialog_alert_icon);
     dialog.setMessage(R.string.RedPhone_the_number_you_dialed_does_not_support_secure_voice);

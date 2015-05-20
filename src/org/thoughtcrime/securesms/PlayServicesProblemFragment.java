@@ -23,8 +23,8 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AlertDialog;
 
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 
 public class PlayServicesProblemFragment extends DialogFragment {
@@ -35,9 +35,10 @@ public class PlayServicesProblemFragment extends DialogFragment {
     Dialog dialog = GooglePlayServicesUtil.getErrorDialog(code, getActivity(), 9111);
 
     if (dialog == null) {
-      return new MaterialDialog.Builder(getActivity()).negativeText(android.R.string.ok)
-                                                      .content(getActivity().getString(R.string.PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning))
-                                                      .build();
+      return new AlertDialog.Builder(getActivity())
+              .setNegativeButton(android.R.string.ok, null)
+              .setMessage(R.string.PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning)
+              .create();
     } else {
       return dialog;
     }

@@ -88,6 +88,7 @@
         <item name="colorPrimaryDark">@color/textsecure_primary_dark</item>
         <item name="colorAccent">@color/textsecure_primary_dark</item>
         <item name="android:windowBackground">@color/gray5</item>
+        <item name="alertDialogTheme">@style/AppCompatAlertDialogStyle</item>
         <!--<item name="android:windowContentOverlay">@drawable/compat_actionbar_shadow_background</item>-->
         <item name="attachment_type_selector_background">@color/white</item>
         <item name="conversation_list_item_background_selected">@drawable/list_selected_holo_light</item>
@@ -202,7 +203,6 @@
         <item name="android:textColor">@color/text_color_dark_theme</item>
         <item name="android:textColorSecondary">@color/text_color_secondary_dark_theme</item>
         <item name="android:windowBackground">@color/black</item>
-        <item name="md_dark_theme">true</item>
         <item name="conversation_list_item_background_selected">@drawable/list_selected_holo_dark</item>
         <item name="conversation_list_item_background_unread">@drawable/conversation_list_item_unread_background_dark</item>
         <item name="conversation_list_item_background_read">@drawable/conversation_list_item_background</item>
