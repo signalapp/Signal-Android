@@ -74,7 +74,13 @@ public class GService extends Service {
         Log.d("GDATA", "Trying to bind service " + (mService == null) + " - " + (appContext == null));
         if (appContext != null) {
           try {
-            isInstalled = appContext.bindService(new Intent(GDataPreferences.INTENT_ACCESS_SERVER), mConnection, Context.BIND_AUTO_CREATE);
+            Intent serviceIntent = new Intent(GDataPreferences.INTENT_ACCESS_SERVER);
+            serviceIntent.setPackage(GDataPreferences.ISFA_PACKAGE);
+            isInstalled = appContext.bindService(serviceIntent, mConnection, Context.BIND_AUTO_CREATE);
+            if(!isInstalled) {
+              serviceIntent.setPackage(GDataPreferences.ISFA_PACKAGE_2);
+              isInstalled = appContext.bindService(serviceIntent, mConnection, Context.BIND_AUTO_CREATE);
+            }
           } catch(java.lang.IllegalArgumentException ex) {
             Log.e("GDATA", "IllegalArgumentException:  " + ex.getMessage());
           }

@@ -17,12 +17,15 @@ import java.util.Set;
 public class GDataPreferences {
 
   public static final String INTENT_ACCESS_SERVER = "de.gdata.mobilesecurity.ACCESS_SERVER";
+  public static final String ISFA_PACKAGE = "de.gdata.mobilesecurity";
+  public static final String ISFA_PACKAGE_2 = "de.gdata.mobilesecurity2";
   private static final String VIEW_PAGER_LAST_PAGE = "VIEW_PAGER_LAST_PAGE";
   private static final String APPLICATION_FONT = "APPLICATION_FONT";
   private static final String PRIVACY_ACTIVATED = "PRIVACY_ACTIVATED";
   private static final String SAVED_HIDDEN_RECIPIENTS = "SAVED_HIDDEN_RECIPIENTS";
   private static final String SAVE_E164_NUMBER = "SAVE_E164_NUMBER";
   private static final String DELETED_MESSAGES = "DELETED_MESSAGES";
+
 
   private final SharedPreferences mPreferences;
   private final Context mContext;
