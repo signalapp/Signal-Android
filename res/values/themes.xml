@@ -7,7 +7,6 @@
     </style>
 
     <style name="TextSecure.LightTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
-        <item name="logo">@drawable/actionbar_icon_holo_light</item>
         <item name="actionBarStyle">@style/TextSecure.LightActionBar</item>
         <item name="actionBarTabBarStyle">@style/TextSecure.LightActionBar.TabBar</item>
         <item name="colorPrimary">@color/textsecure_primary</item>
@@ -26,7 +25,6 @@
         <item name="share_list_item_divider">@drawable/share_list_divider_shape</item>
 
         <item name="fab_color">@color/textsecure_primary</item>
-        <item name="actionbar_icon">@drawable/actionbar_icon_holo_light</item>
         <item name="lower_right_divet">@drawable/divet_lower_right_dark</item>
 
         <item name="conversation_group_member_name">#99000000</item>
@@ -118,7 +116,6 @@
     </style>
 
     <style name="TextSecure.DarkTheme" parent="@style/Theme.AppCompat">
-        <item name="logo">@drawable/actionbar_icon_holo_dark</item>
         <item name="actionBarStyle">@style/TextSecure.DarkActionBar</item>
         <item name="actionBarTabBarStyle">@style/TextSecure.DarkActionBar.TabBar</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
@@ -175,7 +172,6 @@
         <item name="plaintext_backup">@drawable/ic_content_copy_dark</item>
 
         <item name="fab_color">@color/textsecure_primary_dark</item>
-        <item name="actionbar_icon">@drawable/actionbar_icon_holo_dark</item>
         <item name="lower_right_divet">@drawable/divet_lower_right_light</item>
 
         <item name="conversation_background">@color/black</item>
