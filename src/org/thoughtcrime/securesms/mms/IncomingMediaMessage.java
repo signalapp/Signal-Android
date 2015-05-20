@@ -32,6 +32,10 @@ public class IncomingMediaMessage {
     this.body    = retreived.getBody();
     this.groupId = null;
     this.push    = false;
+
+    for (int i=0;i<body.getPartsNum();i++) {
+      body.getPart(i).setContentId(String.valueOf(System.currentTimeMillis()).getBytes());
+    }
   }
 
   public IncomingMediaMessage(MasterSecret masterSecret,

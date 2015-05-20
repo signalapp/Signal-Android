@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="emoji_drawer_size">30sp</dimen>
+    <dimen name="emoji_drawer_size">36sp</dimen>
     <dimen name="min_emoji_drawer_height">200dp</dimen>
-    <dimen name="emoji_drawer_item_padding">8dp</dimen>
-    <dimen name="emoji_drawer_indicator_height">2dp</dimen>
-    <dimen name="emoji_drawer_left_right_padding">8dp</dimen>
+    <dimen name="emoji_drawer_item_padding">3dp</dimen>
+    <dimen name="emoji_drawer_indicator_height">1.5dp</dimen>
+    <dimen name="emoji_drawer_left_right_padding">5dp</dimen>
     <dimen name="conversation_item_date_text_size">12sp</dimen>
     <dimen name="transport_selection_popup_width">200sp</dimen>
     <dimen name="transport_selection_popup_xoff">0dp</dimen>

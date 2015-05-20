@@ -131,10 +131,8 @@ public abstract class BubbleContainer extends RelativeLayout {
   }
 
   private void setMediaVisibility(@MediaState int mediaState) {
-    media.reset();
-    if (!isMediaPresent(mediaState)) {
-      media.hide();
-    }
+    if (!isMediaPresent(mediaState)) media.setVisibility(View.GONE);
+    else                             media.setVisibility(View.VISIBLE);
   }
 
   private void setMediaPendingMask(@TransportState int transportState) {

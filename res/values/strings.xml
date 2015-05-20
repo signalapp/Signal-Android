@@ -50,6 +50,7 @@
     <string name="AttachmentManager_cant_open_media_selection">Can\'t find an app to select media.</string>
 
     <!-- AttachmentTypeSelectorAdapter -->
+    <string name="AttachmentTypeSelectorAdapter_take_photo">Take Photo</string>
     <string name="AttachmentTypeSelectorAdapter_picture">Picture</string>
     <string name="AttachmentTypeSelectorAdapter_video">Video</string>
     <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
@@ -193,7 +194,6 @@
 
     <!-- GroupMembersDialog -->
     <string name="GroupMembersDialog_me">Me</string>
-    <string name="GroupMembersDialog_members">Members...</string>
 
     <!-- ImportExportActivity -->
     <string name="ImportExportActivity_import">Import</string>
@@ -570,8 +570,8 @@
     <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure requires MMS settings to deliver media and group messages through your wireless carrier. Your device does not make this information available, which is occasionally true for locked devices and other restrictive configurations.</string>
     <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">To send media and group messages, click \'OK\' and complete the requested settings. The MMS settings for your carrier can generally be located by searching for \'your carrier APN\'. You will only need to do this once.</string>
 
-    <!-- receive_key_activity -->
-    <string name="receive_key_activity__complete">Complete</string>
+    <!-- receive_key_dialog -->
+    <string name="receive_key_dialog__complete">Complete</string>
 
     <!-- registration_activity -->
     <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">

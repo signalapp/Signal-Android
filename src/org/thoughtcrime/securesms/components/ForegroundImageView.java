@@ -122,15 +122,6 @@ public class ForegroundImageView extends RoundedImageView {
     return ActivityOptions.makeScaleUpAnimation(this, 0, 0, getWidth(), getHeight());
   }
 
-  public void reset() {
-    setImageDrawable(null);
-    setVisibility(View.VISIBLE);
-  }
-
-  public void hide() {
-    setVisibility(View.GONE);
-  }
-
   @Override
   protected boolean verifyDrawable(Drawable who) {
     return super.verifyDrawable(who) || (who == mForeground);

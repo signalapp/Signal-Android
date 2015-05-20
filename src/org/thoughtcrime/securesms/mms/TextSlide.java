@@ -17,30 +17,15 @@
 package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
-import android.net.Uri;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.util.LRUCache;
-
 import java.io.UnsupportedEncodingException;
-import java.lang.ref.SoftReference;
-import java.util.Collections;
-import java.util.Map;
 
 import ws.com.google.android.mms.ContentType;
 import ws.com.google.android.mms.pdu.CharacterSets;
 import ws.com.google.android.mms.pdu.PduPart;
 
 public class TextSlide extends Slide {
-
-  private static final int MAX_CACHE_SIZE = 10;
-  private static final Map<Uri, SoftReference<String>> textCache =
-      Collections.synchronizedMap(new LRUCache<Uri, SoftReference<String>>(MAX_CACHE_SIZE));
-
-  public TextSlide(Context context, MasterSecret masterSecret, PduPart part) {
-    super(context, masterSecret, part);
-  }
 
   public TextSlide(Context context, String message) {
     super(context, getPartForMessage(message));

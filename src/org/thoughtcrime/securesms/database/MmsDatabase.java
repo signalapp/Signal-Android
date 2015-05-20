@@ -165,8 +165,8 @@ public class MmsDatabase extends MessagingDatabase {
   };
 
   public static final ExecutorService slideResolver = org.thoughtcrime.securesms.util.Util.newSingleThreadedLifoExecutor();
-  private static final Map<Long, SoftReference<SlideDeck>> slideCache =
-      Collections.synchronizedMap(new LRUCache<Long, SoftReference<SlideDeck>>(20));
+  private static final Map<String, SoftReference<SlideDeck>> slideCache =
+      Collections.synchronizedMap(new LRUCache<String, SoftReference<SlideDeck>>(20));
 
   private final JobManager jobManager;
 
@@ -1045,7 +1045,7 @@ public class MmsDatabase extends MessagingDatabase {
       List<IdentityKeyMismatch> mismatches      = getMismatchedIdentities(mismatchDocument);
       List<NetworkFailure>      networkFailures = getFailures(networkDocument);
 
-      ListenableFutureTask<SlideDeck> slideDeck = getSlideDeck(masterSecret, id);
+      ListenableFutureTask<SlideDeck> slideDeck = getSlideDeck(masterSecret, dateReceived, id);
 
       return new MediaMmsMessageRecord(context, id, recipients, recipients.getPrimaryRecipient(),
                                        addressDeviceId, dateSent, dateReceived, receiptCount,
@@ -1109,9 +1109,10 @@ public class MmsDatabase extends MessagingDatabase {
     }
 
     private ListenableFutureTask<SlideDeck> getSlideDeck(final MasterSecret masterSecret,
+                                                         final long timestamp,
                                                          final long id)
     {
-      ListenableFutureTask<SlideDeck> future = getCachedSlideDeck(id);
+      ListenableFutureTask<SlideDeck> future = getCachedSlideDeck(timestamp, id);
 
       if (future != null) {
         return future;
@@ -1128,21 +1129,21 @@ public class MmsDatabase extends MessagingDatabase {
           SlideDeck    slideDeck    = new SlideDeck(context, masterSecret, body);
 
           if (!body.containsPushInProgress()) {
-            slideCache.put(id, new SoftReference<SlideDeck>(slideDeck));
+            slideCache.put(timestamp + "::" + id, new SoftReference<>(slideDeck));
           }
 
           return slideDeck;
         }
       };
 
-      future = new ListenableFutureTask<SlideDeck>(task);
+      future = new ListenableFutureTask<>(task);
       slideResolver.execute(future);
 
       return future;
     }
 
-    private ListenableFutureTask<SlideDeck> getCachedSlideDeck(final long id) {
-      SoftReference<SlideDeck> reference = slideCache.get(id);
+    private ListenableFutureTask<SlideDeck> getCachedSlideDeck(final long timestamp, final long id) {
+      SoftReference<SlideDeck> reference = slideCache.get(timestamp + "::" + id);
 
       if (reference != null) {
         final SlideDeck slideDeck = reference.get();
@@ -1155,7 +1156,7 @@ public class MmsDatabase extends MessagingDatabase {
             }
           };
 
-          ListenableFutureTask<SlideDeck> future = new ListenableFutureTask<SlideDeck>(task);
+          ListenableFutureTask<SlideDeck> future = new ListenableFutureTask<>(task);
           future.run();
 
           return future;

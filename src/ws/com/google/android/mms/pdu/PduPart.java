@@ -142,6 +142,7 @@ public class PduPart {
       */
      public PduPart() {
          mPartHeader = new HashMap<Integer, Object>();
+         setContentId(String.valueOf(System.currentTimeMillis()).getBytes());
      }
 
      public void setEncrypted(boolean isEncrypted) {

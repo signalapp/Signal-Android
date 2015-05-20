@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
@@ -27,13 +28,17 @@ import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.mms.ThumbnailTransform;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
+import org.thoughtcrime.securesms.util.Util;
 
 import ws.com.google.android.mms.pdu.PduPart;
 
 public class ThumbnailView extends ForegroundImageView {
+
   private ListenableFutureTask<SlideDeck> slideDeckFuture        = null;
   private SlideDeckListener               slideDeckListener      = null;
   private ThumbnailClickListener          thumbnailClickListener = null;
+  private String                          slideId                = null;
+  private Slide                           slide                  = null;
   private Handler                         handler                = new Handler();
 
   public ThumbnailView(Context context) {
@@ -53,11 +58,20 @@ public class ThumbnailView extends ForegroundImageView {
     super.onDetachedFromWindow();
   }
 
-  public void setImageResource(@NonNull ListenableFutureTask<SlideDeck> slideDeckFuture,
-                               @Nullable MasterSecret masterSecret)
+  public void setImageResource(@Nullable MasterSecret masterSecret,
+                               long id, long timestamp,
+                               @NonNull ListenableFutureTask<SlideDeck> slideDeckFuture)
   {
     if (this.slideDeckFuture != null && this.slideDeckListener != null) {
       this.slideDeckFuture.removeListener(this.slideDeckListener);
+    }
+
+    String slideId = id + "::" + timestamp;
+
+    if (!slideId.equals(this.slideId)) {
+      setImageDrawable(null);
+      this.slide   = null;
+      this.slideId = slideId;
     }
 
     this.slideDeckListener = new SlideDeckListener(masterSecret);
@@ -65,17 +79,18 @@ public class ThumbnailView extends ForegroundImageView {
     this.slideDeckFuture.addListener(this.slideDeckListener);
   }
 
+  public void setImageResource(@NonNull Slide slide) {
+    setImageResource(slide, null);
+  }
+
   public void setImageResource(@NonNull Slide slide, @Nullable MasterSecret masterSecret) {
     if (isContextValid()) {
-      buildGlideRequest(slide, masterSecret).into(ThumbnailView.this);
+      if (!Util.equals(slide, this.slide)) buildGlideRequest(slide, masterSecret).into(this);
+      this.slide = slide;
       setOnClickListener(new ThumbnailClickDispatcher(thumbnailClickListener, slide));
     } else {
       Log.w(TAG, "Not going to load resource, context is invalid");
     }
-  }
-
-  public void setImageResource(@NonNull Slide slide) {
-    setImageResource(slide, null);
   }
 
   public void setThumbnailClickListener(ThumbnailClickListener listener) {
@@ -131,7 +146,7 @@ public class ThumbnailView extends ForegroundImageView {
     }
 
     return  Glide.with(getContext()).load(new DecryptableUri(masterSecret, slide.getThumbnailUri()))
-                                    .crossFade().transform(new ThumbnailTransform(getContext()));
+                 .transform(new ThumbnailTransform(getContext()));
   }
 
   private GenericRequestBuilder buildPlaceholderGlideRequest(Slide slide) {
@@ -163,7 +178,8 @@ public class ThumbnailView extends ForegroundImageView {
         handler.post(new Runnable() {
           @Override
           public void run() {
-            hide();
+            Log.w(TAG, "Resolved slide was null!");
+            setVisibility(View.GONE);
           }
         });
       }
@@ -175,7 +191,8 @@ public class ThumbnailView extends ForegroundImageView {
       handler.post(new Runnable() {
         @Override
         public void run() {
-          hide();
+          Log.w(TAG, "onFailure!");
+          setVisibility(View.GONE);
         }
       });
     }

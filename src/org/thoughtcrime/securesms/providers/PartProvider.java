@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms.providers;
 
 import android.content.ContentProvider;
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
@@ -26,7 +27,9 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.mms.PartUri;
 import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.util.Hex;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -38,14 +41,14 @@ public class PartProvider extends ContentProvider {
   private static final String TAG = PartProvider.class.getSimpleName();
 
   private static final String CONTENT_URI_STRING = "content://org.thoughtcrime.provider.securesms/part";
-  public  static final Uri    CONTENT_URI        = Uri.parse(CONTENT_URI_STRING);
+  private static final Uri    CONTENT_URI        = Uri.parse(CONTENT_URI_STRING);
   private static final int    SINGLE_ROW         = 1;
 
   private static final UriMatcher uriMatcher;
 
   static {
     uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-    uriMatcher.addURI("org.thoughtcrime.provider.securesms", "part/#", SINGLE_ROW);
+    uriMatcher.addURI("org.thoughtcrime.provider.securesms", "part/*/#", SINGLE_ROW);
   }
 
   @Override
@@ -54,8 +57,13 @@ public class PartProvider extends ContentProvider {
     return true;
   }
 
-  private File copyPartToTemporaryFile(MasterSecret masterSecret, long partId) throws IOException {
-    InputStream in        = DatabaseFactory.getPartDatabase(getContext()).getPartStream(masterSecret, partId);
+  public static Uri getContentUri(long partId, byte[] contentId) {
+    Uri uri = Uri.withAppendedPath(CONTENT_URI, Hex.toStringCondensed(contentId));
+    return ContentUris.withAppendedId(uri, partId);
+  }
+
+  private File copyPartToTemporaryFile(MasterSecret masterSecret, long partId, byte[] contentId) throws IOException {
+    InputStream in        = DatabaseFactory.getPartDatabase(getContext()).getPartStream(masterSecret, partId, contentId);
     File tmpDir           = getContext().getDir("tmp", 0);
     File tmpFile          = File.createTempFile("test", ".jpg", tmpDir);
     FileOutputStream fout = new FileOutputStream(tmpFile);
@@ -72,7 +80,7 @@ public class PartProvider extends ContentProvider {
   }
 
   @Override
-    public ParcelFileDescriptor openFile(Uri uri, String mode) throws FileNotFoundException {
+  public ParcelFileDescriptor openFile(Uri uri, String mode) throws FileNotFoundException {
     MasterSecret masterSecret = KeyCachingService.getMasterSecret(getContext());
     Log.w(TAG, "openFile() called!");
 
@@ -85,12 +93,14 @@ public class PartProvider extends ContentProvider {
     case SINGLE_ROW:
       Log.w(TAG, "Parting out a single row...");
       try {
-        int partId               = Integer.parseInt(uri.getPathSegments().get(1));
-        File tmpFile             = copyPartToTemporaryFile(masterSecret, partId);
-        ParcelFileDescriptor pdf = ParcelFileDescriptor.open(tmpFile, ParcelFileDescriptor.MODE_READ_ONLY);
+        PartUri              partUri = new PartUri(uri);
+        File                 tmpFile = copyPartToTemporaryFile(masterSecret, partUri.getId(), partUri.getContentId());
+        ParcelFileDescriptor pdf     = ParcelFileDescriptor.open(tmpFile, ParcelFileDescriptor.MODE_READ_ONLY);
+
         if (!tmpFile.delete()) {
           Log.w(TAG, "Failed to delete temp file.");
         }
+
         return pdf;
       } catch (IOException ioe) {
         Log.w(TAG, ioe);

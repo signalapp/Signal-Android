@@ -380,17 +380,14 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
 
     switch (reqCode) {
       case PICK_CONTACT:
-        List<ContactData> selected = data.getParcelableArrayListExtra("contacts");
-        for (ContactData contact : selected) {
-          for (ContactAccessor.NumberData numberData : contact.numbers) {
-            Recipient recipient = RecipientFactory.getRecipientsFromString(this, numberData.number, false)
-                                                  .getPrimaryRecipient();
+        List<String> selected = data.getStringArrayListExtra("contacts");
+        for (String contact : selected) {
+          Recipient recipient = RecipientFactory.getRecipientsFromString(this, contact, false).getPrimaryRecipient();
 
-            if (!selectedContacts.contains(recipient)                               &&
-                (existingContacts == null || !existingContacts.contains(recipient)) &&
-                recipient != null) {
-              addSelectedContact(recipient);
-            }
+          if (!selectedContacts.contains(recipient)                               &&
+              (existingContacts == null || !existingContacts.contains(recipient)) &&
+              recipient != null) {
+            addSelectedContact(recipient);
           }
         }
         syncAdapterWithSelectedContacts();

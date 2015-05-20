@@ -7,7 +7,6 @@
     </style>
 
     <style name="TextSecure.LightTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
-        <item name="logo">@drawable/actionbar_icon_holo_light</item>
         <item name="actionBarStyle">@style/TextSecure.LightActionBar</item>
         <item name="actionBarTabBarStyle">@style/TextSecure.LightActionBar.TabBar</item>
         <item name="colorPrimary">@color/textsecure_primary</item>
@@ -26,7 +25,6 @@
         <item name="share_list_item_divider">@drawable/share_list_divider_shape</item>
 
         <item name="fab_color">@color/textsecure_primary</item>
-        <item name="actionbar_icon">@drawable/actionbar_icon_holo_light</item>
         <item name="lower_right_divet">@drawable/divet_lower_right_dark</item>
 
         <item name="conversation_group_member_name">#99000000</item>
@@ -50,11 +48,12 @@
         <item name="conversation_transport_popup_background">@color/white</item>
         <item name="conversation_emoji_toggle">@drawable/ic_mood_grey600_24dp</item>
         <item name="conversation_keyboard_toggle">@drawable/ic_keyboard_grey600_24dp</item>
-        <item name="conversation_attach_file">@drawable/ic_attach_file_light</item>
         <item name="conversation_attach_image">@drawable/ic_image_light</item>
         <item name="conversation_attach_video">@drawable/ic_movie_creation_light</item>
         <item name="conversation_attach_sound">@drawable/ic_volume_up_light</item>
         <item name="conversation_attach_contact_info">@drawable/ic_account_box_light</item>
+        <item name="conversation_attach_photo">@drawable/ic_photo_camera_light</item>
+        <item name="conversation_attach">@drawable/ic_attach_grey600_24dp</item>
 
         <item name="conversation_item_background">@drawable/conversation_item_background</item>
         <item name="conversation_item_received_background">@color/conversation_item_received_background_light</item>
@@ -118,7 +117,6 @@
     </style>
 
     <style name="TextSecure.DarkTheme" parent="@style/Theme.AppCompat">
-        <item name="logo">@drawable/actionbar_icon_holo_dark</item>
         <item name="actionBarStyle">@style/TextSecure.DarkActionBar</item>
         <item name="actionBarTabBarStyle">@style/TextSecure.DarkActionBar.TabBar</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
@@ -175,7 +173,6 @@
         <item name="plaintext_backup">@drawable/ic_content_copy_dark</item>
 
         <item name="fab_color">@color/textsecure_primary_dark</item>
-        <item name="actionbar_icon">@drawable/actionbar_icon_holo_dark</item>
         <item name="lower_right_divet">@drawable/divet_lower_right_light</item>
 
         <item name="conversation_background">@color/black</item>
@@ -187,11 +184,12 @@
         <item name="conversation_transport_popup_background">@color/black</item>
         <item name="conversation_emoji_toggle">@drawable/ic_mood_white_24dp</item>
         <item name="conversation_keyboard_toggle">@drawable/ic_keyboard_white_24dp</item>
-        <item name="conversation_attach_file">@drawable/ic_attach_file_dark</item>
         <item name="conversation_attach_image">@drawable/ic_image_dark</item>
         <item name="conversation_attach_video">@drawable/ic_movie_creation_dark</item>
         <item name="conversation_attach_sound">@drawable/ic_volume_up_dark</item>
         <item name="conversation_attach_contact_info">@drawable/ic_account_box_dark</item>
+        <item name="conversation_attach_photo">@drawable/ic_photo_camera_dark</item>
+        <item name="conversation_attach">@drawable/ic_attach_white_24dp</item>
 
         <item name="menu_new_conversation_icon">@drawable/ic_add_white_24dp</item>
         <item name="menu_group_icon">@drawable/ic_group_white_24dp</item>
