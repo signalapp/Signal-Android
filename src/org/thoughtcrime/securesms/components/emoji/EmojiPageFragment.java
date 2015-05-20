@@ -17,13 +17,13 @@ import android.widget.GridView;
 import android.widget.ImageView;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.emoji.EmojiPageModel.OnModelChangedListener;
 
 public class EmojiPageFragment extends Fragment {
   private static final String TAG = EmojiPageFragment.class.getSimpleName();
 
   private EmojiPageModel         model;
   private EmojiSelectionListener listener;
+  private GridView               grid;
 
   public static EmojiPageFragment newInstance(@NonNull EmojiPageModel model,
                                               @Nullable EmojiSelectionListener listener)
@@ -34,11 +34,17 @@ public class EmojiPageFragment extends Fragment {
     return fragment;
   }
 
+  public void onSelected() {
+    if (model.isDynamic() && grid != null && grid.getAdapter() != null) {
+      ((EmojiGridAdapter)grid.getAdapter()).notifyDataSetChanged();
+    }
+  }
+
   @Nullable @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                                Bundle savedInstanceState)
   {
-    final View     view = inflater.inflate(R.layout.emoji_grid_layout, container, false);
-    final GridView grid = (GridView) view.findViewById(R.id.emoji);
+    final View view = inflater.inflate(R.layout.emoji_grid_layout, container, false);
+    grid = (GridView) view.findViewById(R.id.emoji);
     grid.setColumnWidth(getResources().getDimensionPixelSize(R.dimen.emoji_drawer_size) + 2 * getResources().getDimensionPixelSize(R.dimen.emoji_drawer_item_padding));
     grid.setOnItemClickListener(new OnItemClickListener() {
       @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -46,12 +52,6 @@ public class EmojiPageFragment extends Fragment {
       }
     });
     grid.setAdapter(new EmojiGridAdapter(getActivity(), model));
-    model.setOnModelChangedListener(new OnModelChangedListener() {
-      @Override public void onModelChanged() {
-        ((EmojiGridAdapter)grid.getAdapter()).notifyDataSetChanged();
-      }
-    });
-
     return view;
   }
 

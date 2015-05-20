@@ -18,14 +18,13 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 
-public class RecentEmojiPageModel extends EmojiPageModel {
+public class RecentEmojiPageModel implements EmojiPageModel {
   private static final String TAG                  = RecentEmojiPageModel.class.getSimpleName();
   private static final String EMOJI_LRU_PREFERENCE = "pref_recent_emoji";
   private static final int    EMOJI_LRU_SIZE       = 50;
 
   private final SharedPreferences      prefs;
   private final LinkedHashSet<Integer> recentlyUsed;
-  private       OnModelChangedListener listener;
 
   public RecentEmojiPageModel(Context context) {
     this.prefs        = PreferenceManager.getDefaultSharedPreferences(context);
@@ -52,6 +51,10 @@ public class RecentEmojiPageModel extends EmojiPageModel {
 
   @Override public int[] getCodePoints() {
     return toReversePrimitiveArray(recentlyUsed);
+  }
+
+  @Override public boolean isDynamic() {
+    return true;
   }
 
   public void onCodePointSelected(int codePoint) {
@@ -82,12 +85,6 @@ public class RecentEmojiPageModel extends EmojiPageModel {
         return null;
       }
     }.execute();
-
-    if (listener != null) listener.onModelChanged();
-  }
-
-  @Override public void setOnModelChangedListener(OnModelChangedListener listener) {
-    this.listener = listener;
   }
 
   private LinkedHashSet<Integer> fromHexString(@Nullable LinkedHashSet<String> stringSet) {

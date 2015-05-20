@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.components.emoji;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 
-public class StaticEmojiPageModel extends EmojiPageModel {
+public class StaticEmojiPageModel implements EmojiPageModel {
   @DrawableRes private final int   icon;
   @NonNull     private final int[] codePoints;
 
@@ -18,5 +18,9 @@ public class StaticEmojiPageModel extends EmojiPageModel {
 
   @NonNull public int[] getCodePoints() {
     return codePoints;
+  }
+
+  @Override public boolean isDynamic() {
+    return false;
   }
 }
