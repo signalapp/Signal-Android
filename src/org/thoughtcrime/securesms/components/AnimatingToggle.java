@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,6 +55,7 @@ public class AnimatingToggle extends FrameLayout {
   private void animateOut(int viewIndex, TranslateAnimation animation) {
     final View view = getChildAt(viewIndex);
 
+    animation.setInterpolator(new FastOutSlowInInterpolator());
     animation.setAnimationListener(new Animation.AnimationListener() {
       @Override
       public void onAnimationStart(Animation animation) {
@@ -73,6 +75,7 @@ public class AnimatingToggle extends FrameLayout {
   }
 
   private void animateIn(int viewIndex, TranslateAnimation animation) {
+    animation.setInterpolator(new FastOutSlowInInterpolator());
     final View view = getChildAt(viewIndex);
     view.setVisibility(View.VISIBLE);
     view.startAnimation(animation);
