@@ -14,6 +14,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AlertDialog;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -29,9 +30,6 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-
-import com.afollestad.materialdialogs.MaterialDialog;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
@@ -173,11 +171,11 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
     spannableString.setSpan(new ClickableSpan() {
       @Override
       public void onClick(View widget) {
-        new MaterialDialog.Builder(RegistrationProgressActivity.this)
-            .title(R.string.RegistrationProblemsActivity_possible_problems)
-            .customView(R.layout.registration_problems, true)
-            .neutralText(android.R.string.ok)
-            .show();
+        new AlertDialog.Builder(RegistrationProgressActivity.this)
+                .setTitle(R.string.RegistrationProblemsActivity_possible_problems)
+                .setView(R.layout.registration_problems)
+                .setNeutralButton(android.R.string.ok, null)
+                .show();
       }
     }, pretext.length() + 1, spannableString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 

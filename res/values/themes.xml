@@ -77,6 +77,7 @@
         <item name="colorPrimaryDark">@color/textsecure_primary_dark</item>
         <item name="colorAccent">@color/textsecure_primary_dark</item>
         <item name="android:windowBackground">@color/gray5</item>
+        <item name="alertDialogTheme">@style/AppCompatAlertDialogStyle</item>
         <!--<item name="android:windowContentOverlay">@drawable/compat_actionbar_shadow_background</item>-->
         <item name="conversation_list_item_background_selected">@drawable/list_selected_holo_light</item>
         <item name="conversation_list_item_count_color">#66333333</item>

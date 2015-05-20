@@ -13,6 +13,7 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.CursorAdapter;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.view.ActionMode;
 import android.text.ClipboardManager;
 import android.text.TextUtils;
@@ -27,8 +28,6 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
-
-import com.afollestad.materialdialogs.AlertDialogWrapper;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -226,7 +225,7 @@ public class ConversationFragment extends ListFragment
   }
 
   private void handleDeleteMessages(final List<MessageRecord> messageRecords) {
-    AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(getActivity());
+    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
     builder.setTitle(R.string.ConversationFragment_confirm_message_delete);
     builder.setIconAttribute(R.attr.dialog_alert_icon);
     builder.setCancelable(true);

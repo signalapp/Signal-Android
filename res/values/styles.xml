@@ -18,6 +18,13 @@
         <item name="android:backgroundDimEnabled">false</item>
     </style>
 
+    <style name="AppCompatAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/textsecure_primary_dark</item>
+        <item name="colorPrimary">@color/textsecure_primary</item>
+        <item name="colorPrimaryDark">@color/textsecure_primary_dark</item>
+        <item name="android:textColorLink">@color/textsecure_primary_dark</item>
+    </style>
+
     <!-- ActionBar styles -->
     <style name="TextSecure.DarkActionBar"
            parent="@style/Widget.AppCompat.ActionBar">

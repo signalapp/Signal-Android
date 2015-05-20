@@ -13,10 +13,10 @@ import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.preference.PreferenceFragment;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.afollestad.materialdialogs.AlertDialogWrapper;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
@@ -194,7 +194,7 @@ public class AdvancedPreferenceFragment extends PreferenceFragment {
     @Override
     public boolean onPreferenceChange(final Preference preference, Object newValue) {
       if (((CheckBoxPreference)preference).isChecked()) {
-        AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(getActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setIconAttribute(R.attr.dialog_info_icon);
         builder.setTitle(R.string.ApplicationPreferencesActivity_disable_textsecure_messages);
         builder.setMessage(R.string.ApplicationPreferencesActivity_this_will_disable_textsecure_messages);

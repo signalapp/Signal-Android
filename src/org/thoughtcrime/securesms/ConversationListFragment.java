@@ -30,6 +30,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -44,7 +45,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 
-import com.afollestad.materialdialogs.AlertDialogWrapper;
 import com.melnykov.fab.FloatingActionButton;
 
 import org.thoughtcrime.securesms.ConversationListAdapter.ItemClickListener;
@@ -169,7 +169,7 @@ public class ConversationListFragment extends Fragment
   }
 
   private void handleDeleteAllSelected() {
-    AlertDialogWrapper.Builder alert = new AlertDialogWrapper.Builder(getActivity());
+    AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
     alert.setIconAttribute(R.attr.dialog_alert_icon);
     alert.setTitle(R.string.ConversationListFragment_delete_threads_question);
     alert.setMessage(R.string.ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads);

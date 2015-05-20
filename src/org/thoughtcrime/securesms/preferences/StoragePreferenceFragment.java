@@ -6,9 +6,8 @@ import android.os.Bundle;
 import android.preference.EditTextPreference;
 import android.preference.Preference;
 import android.support.v4.preference.PreferenceFragment;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
-
-import com.afollestad.materialdialogs.AlertDialogWrapper;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
@@ -39,7 +38,7 @@ public class StoragePreferenceFragment extends PreferenceFragment {
     @Override
     public boolean onPreferenceClick(Preference preference) {
       final int threadLengthLimit = TextSecurePreferences.getThreadTrimLength(getActivity());
-      AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(getActivity());
+      AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
       builder.setTitle(R.string.ApplicationPreferencesActivity_delete_all_old_messages_now);
       builder.setMessage(getString(R.string.ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages,
                                    threadLengthLimit));
