@@ -21,11 +21,13 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Looper;
 import android.provider.Telephony;
+import android.support.annotation.Nullable;
 import android.telephony.TelephonyManager;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -45,6 +47,7 @@ import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -303,4 +306,13 @@ public class Util {
       throw new AssertionError("Main-thread assertion failed.");
     }
   }
+
+  public static boolean equals(@Nullable Object a, @Nullable Object b) {
+    return a == b || (a != null && a.equals(b));
+  }
+
+  public static int hashCode(@Nullable Object... objects) {
+    return Arrays.hashCode(objects);
+  }
+
 }

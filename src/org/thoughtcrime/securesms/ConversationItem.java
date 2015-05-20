@@ -200,7 +200,7 @@ public class ConversationItem extends LinearLayout {
     }
 
     bubbleContainer.setState(transportationState, mediaCaptionState);
-}
+  }
 
   private void setSelectionBackgroundDrawables(MessageRecord messageRecord) {
     int[]      attributes = new int[]{R.attr.conversation_list_item_background_selected,
@@ -354,7 +354,9 @@ public class ConversationItem extends LinearLayout {
 
   private void resolveMedia(MediaMmsMessageRecord messageRecord) {
     if (hasMedia(messageRecord)) {
-      mediaThumbnail.setImageResource(messageRecord.getSlideDeckFuture(), masterSecret);
+      mediaThumbnail.setImageResource(masterSecret, messageRecord.getId(),
+                                      messageRecord.getDateReceived(),
+                                      messageRecord.getSlideDeckFuture());
     }
   }
 
