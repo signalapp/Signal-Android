@@ -48,7 +48,6 @@
         <item name="conversation_transport_popup_background">@color/white</item>
         <item name="conversation_emoji_toggle">@drawable/ic_mood_grey600_24dp</item>
         <item name="conversation_keyboard_toggle">@drawable/ic_keyboard_grey600_24dp</item>
-        <item name="conversation_attach_file">@drawable/ic_attach_file_light</item>
         <item name="conversation_attach_image">@drawable/ic_image_light</item>
         <item name="conversation_attach_video">@drawable/ic_movie_creation_light</item>
         <item name="conversation_attach_sound">@drawable/ic_volume_up_light</item>
@@ -185,7 +184,6 @@
         <item name="conversation_transport_popup_background">@color/black</item>
         <item name="conversation_emoji_toggle">@drawable/ic_mood_white_24dp</item>
         <item name="conversation_keyboard_toggle">@drawable/ic_keyboard_white_24dp</item>
-        <item name="conversation_attach_file">@drawable/ic_attach_file_dark</item>
         <item name="conversation_attach_image">@drawable/ic_image_dark</item>
         <item name="conversation_attach_video">@drawable/ic_movie_creation_dark</item>
         <item name="conversation_attach_sound">@drawable/ic_volume_up_dark</item>
