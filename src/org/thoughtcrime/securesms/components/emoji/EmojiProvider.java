@@ -50,11 +50,13 @@ public class EmojiProvider {
   public static final double EMOJI_SMALL      = 0.50;
   public static final int    EMOJI_RAW_HEIGHT = 128;
   public static final int    EMOJI_RAW_WIDTH  = 136;
+  public static final int    EMOJI_VERT_PAD   = 8;
   public static final int    EMOJI_PER_ROW    = 15;
 
   private final Context context;
   private final double  drawWidth;
   private final double  drawHeight;
+  private final double  verticalPad;
   private final Handler handler = new Handler(Looper.getMainLooper());
 
   public static EmojiProvider getInstance(Context context) {
@@ -71,9 +73,10 @@ public class EmojiProvider {
   private EmojiProvider(Context context) {
     int[] pages = ResUtil.getResourceIds(context, R.array.emoji_categories);
 
-    this.context    = context.getApplicationContext();
-    this.drawHeight = context.getResources().getDimension(R.dimen.emoji_drawer_size);
-    this.drawWidth  = drawHeight * ((double)EMOJI_RAW_WIDTH) / EMOJI_RAW_HEIGHT;
+    this.context     = context.getApplicationContext();
+    this.drawHeight  = context.getResources().getDimension(R.dimen.emoji_drawer_size);
+    this.drawWidth   = drawHeight * ((double)EMOJI_RAW_WIDTH) / EMOJI_RAW_HEIGHT;
+    this.verticalPad = EMOJI_VERT_PAD * drawHeight / EMOJI_RAW_HEIGHT;
     Log.w(TAG, "draw size: " + drawWidth + "x" + drawHeight);
     for (int i = 0; i < pages.length; i++) {
       final EmojiPageBitmap page = new EmojiPageBitmap(i);
@@ -156,9 +159,9 @@ public class EmojiProvider {
 
       canvas.drawBitmap(bmp,
                         new Rect((int)(row_index * width),
-                                 (int)(row * height),
+                                 (int)(row * height + row * verticalPad),
                                  (int)((row_index + 1) * width),
-                                 (int)((row + 1) * height)),
+                                 (int)((row + 1) * height + row * verticalPad)),
                         b,
                         paint);
     }
