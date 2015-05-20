@@ -78,10 +78,9 @@ dependencies {
     androidTestCompile ('com.squareup.assertj:assertj-android:1.0.0') {
         exclude group: 'org.hamcrest', module: 'hamcrest-core'
     }
-    androidTestCompile ('com.android.support.test.espresso:espresso-core:2.0') {
+    androidTestCompile ('com.android.support.test.espresso:espresso-core:2.1') {
         exclude group: 'javax.inject'
     }
-    androidTestCompile 'com.android.support.test:testing-support-lib:0.1'
 }
 
 dependencyVerification {
@@ -143,6 +142,7 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField "long", "BUILD_TIMESTAMP", System.currentTimeMillis() + "L"
+        buildConfigField "String", "PUSH_URL", "\"https://textsecure-service.whispersystems.org\""
     }
 
     compileOptions {
@@ -155,6 +155,8 @@ android {
         exclude 'LICENSE'
         exclude 'NOTICE'
         exclude 'asm-license.txt'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
     }
 
     signingConfigs {
@@ -180,24 +182,13 @@ android {
         }
         release {
             minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'),
-                          'proguard-google-play-services.pro',
-                          'proguard-dagger.pro',
-                          'proguard-jackson.pro',
-                          'proguard-sqlite.pro',
-                          'proguard-appcompat-v7.pro',
-                          'proguard-square-okhttp.pro',
-                          'proguard-square-okio.pro',
-                          'proguard-spongycastle.pro',
-                          'proguard-rounded-image-view.pro',
-                          'proguard-glide.pro',
-                          'proguard-shortcutbadger.pro',
-                          'proguard.cfg'
+            proguardFiles = buildTypes.debug.proguardFiles
             signingConfig signingConfigs.release
         }
         testing.initWith(buildTypes.debug)
         testing {
             proguardFile 'proguard-testing.pro'
+            buildConfigField "String", "PUSH_URL", "\"https://textsecure-service-staging.whispersystems.org\""
         }
     }
 
@@ -213,15 +204,7 @@ android {
         }
         androidTest {
             java.srcDirs = ['androidTest/java']
-            resources.srcDirs = ['androidTest/java']
-            aidl.srcDirs = ['androidTest/java']
-            renderscript.srcDirs = ['androidTest/java']
         }
-    }
-
-    packagingOptions {
-        exclude 'META-INF/LICENSE'
-        exclude 'META-INF/NOTICE'
     }
 
      lintOptions {
@@ -258,4 +241,11 @@ if (propFile.canRead()){
 }else {
     println 'signing.properties not found'
     android.buildTypes.release.signingConfig = null
+}
+
+if (project.hasProperty('espresso')) {
+    android.sourceSets.androidTest {
+        java.srcDirs = ['androidTest/java', 'espressoTest/java']
+        res.srcDirs  = ['espressoTest/res']
+    }
 }
