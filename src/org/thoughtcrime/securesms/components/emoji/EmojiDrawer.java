@@ -154,6 +154,12 @@ public class EmojiDrawer extends Fragment {
       return EmojiPageFragment.newInstance(pages.get(i), listener);
     }
 
+    @Override public void setPrimaryItem(ViewGroup container, int position, Object object) {
+      EmojiPageFragment current = (EmojiPageFragment) object;
+      current.onSelected();
+      super.setPrimaryItem(container, position, object);
+    }
+
     @Override public View getCustomTabView(ViewGroup viewGroup, int i) {
       ImageView image = new ImageView(context);
       image.setScaleType(ScaleType.CENTER_INSIDE);
