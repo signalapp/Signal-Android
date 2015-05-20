@@ -17,14 +17,13 @@
 package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
-
-import com.afollestad.materialdialogs.AlertDialogWrapper;
+import android.support.v7.app.AlertDialog;
 
 import org.thoughtcrime.securesms.R;
 
 public class Dialogs {
   public static void showAlertDialog(Context context, String title, String message) {
-    AlertDialogWrapper.Builder dialog = new AlertDialogWrapper.Builder(context);
+    AlertDialog.Builder dialog = new AlertDialog.Builder(context);
     dialog.setTitle(title);
     dialog.setMessage(message);
     dialog.setIconAttribute(R.attr.dialog_alert_icon);
@@ -33,7 +32,7 @@ public class Dialogs {
   }
 
   public static void showInfoDialog(Context context, String title, String message) {
-    AlertDialogWrapper.Builder dialog = new AlertDialogWrapper.Builder(context);
+    AlertDialog.Builder dialog = new AlertDialog.Builder(context);
     dialog.setTitle(title);
     dialog.setMessage(message);
     dialog.setIconAttribute(R.attr.dialog_info_icon);

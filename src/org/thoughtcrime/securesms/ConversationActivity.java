@@ -34,6 +34,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v4.view.WindowCompat;
+import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -52,7 +53,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.afollestad.materialdialogs.AlertDialogWrapper;
 import com.commonsware.cwac.camera.CameraHost.FailureReason;
 import com.google.protobuf.ByteString;
 
@@ -464,7 +464,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleUnblock() {
-    new AlertDialogWrapper.Builder(this)
+    new AlertDialog.Builder(this)
         .setTitle(R.string.ConversationActivity_unblock_question)
         .setMessage(R.string.ConversationActivity_are_you_sure_you_want_to_unblock_this_contact)
         .setNegativeButton(android.R.string.cancel, null)
@@ -496,7 +496,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleResetSecureSession() {
-    AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(this);
+    AlertDialog.Builder builder = new AlertDialog.Builder(this);
     builder.setTitle(R.string.ConversationActivity_reset_secure_session_confirmation);
     builder.setIconAttribute(R.attr.dialog_alert_icon);
     builder.setCancelable(true);
@@ -542,7 +542,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       return;
     }
 
-    AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(this);
+    AlertDialog.Builder builder = new AlertDialog.Builder(this);
     builder.setTitle(getString(R.string.ConversationActivity_leave_group));
     builder.setIconAttribute(R.attr.dialog_info_icon);
     builder.setCancelable(true);
@@ -644,7 +644,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleDeleteThread() {
-    AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(this);
+    AlertDialog.Builder builder = new AlertDialog.Builder(this);
     builder.setTitle(R.string.ConversationActivity_delete_thread_confirmation);
     builder.setIconAttribute(R.attr.dialog_alert_icon);
     builder.setCancelable(true);
@@ -1033,7 +1033,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       numberItems[i] = contactData.numbers.get(i).type + ": " + contactData.numbers.get(i).number;
     }
 
-    AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(this);
+    AlertDialog.Builder builder = new AlertDialog.Builder(this);
     builder.setIconAttribute(R.attr.conversation_attach_contact_info);
     builder.setTitle(R.string.ConversationActivity_select_contact_info);
 

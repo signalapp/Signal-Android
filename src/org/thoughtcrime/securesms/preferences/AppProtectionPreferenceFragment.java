@@ -10,9 +10,9 @@ import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
 import android.support.v4.preference.PreferenceFragment;
+import android.support.v7.app.AlertDialog;
 import android.widget.Toast;
 
-import com.afollestad.materialdialogs.AlertDialogWrapper;
 import com.doomonafireball.betterpickers.hmspicker.HmsPickerBuilder;
 import com.doomonafireball.betterpickers.hmspicker.HmsPickerDialogFragment;
 
@@ -136,7 +136,7 @@ public class AppProtectionPreferenceFragment extends PreferenceFragment {
     @Override
     public boolean onPreferenceChange(final Preference preference, Object newValue) {
       if (((CheckBoxPreference)preference).isChecked()) {
-        AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(getActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(R.string.ApplicationPreferencesActivity_disable_passphrase);
         builder.setMessage(R.string.ApplicationPreferencesActivity_disable_lock_screen);
         builder.setIconAttribute(R.attr.dialog_alert_icon);

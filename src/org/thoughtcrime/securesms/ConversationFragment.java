@@ -28,6 +28,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -43,8 +44,6 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Toast;
-
-import com.afollestad.materialdialogs.AlertDialogWrapper;
 
 import org.thoughtcrime.securesms.ConversationAdapter.ItemClickListener;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -252,8 +251,8 @@ public class ConversationFragment extends Fragment
   }
 
   private void handleDeleteMessages(final Set<MessageRecord> messageRecords) {
-    int                        messagesCount = messageRecords.size();
-    AlertDialogWrapper.Builder builder       = new AlertDialogWrapper.Builder(getActivity());
+    int                 messagesCount = messageRecords.size();
+    AlertDialog.Builder builder       = new AlertDialog.Builder(getActivity());
 
     builder.setIconAttribute(R.attr.dialog_alert_icon);
     builder.setTitle(getActivity().getResources().getQuantityString(R.plurals.ConversationFragment_delete_selected_messages, messagesCount, messagesCount));
