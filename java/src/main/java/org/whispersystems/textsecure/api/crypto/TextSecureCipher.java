@@ -38,8 +38,8 @@ import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 import org.whispersystems.textsecure.api.messages.TextSecureGroup;
 import org.whispersystems.textsecure.api.messages.TextSecureMessage;
 import org.whispersystems.textsecure.api.messages.TextSecureSyncContext;
+import org.whispersystems.textsecure.api.push.TextSecureAddress;
 import org.whispersystems.textsecure.internal.push.OutgoingPushMessage;
-import org.whispersystems.textsecure.internal.push.PushMessageProtos;
 import org.whispersystems.textsecure.internal.push.PushTransportDetails;
 import org.whispersystems.textsecure.internal.util.Base64;
 
@@ -57,10 +57,12 @@ import static org.whispersystems.textsecure.internal.push.PushMessageProtos.Push
  */
 public class TextSecureCipher {
 
-  private final AxolotlStore axolotlStore;
+  private final AxolotlStore      axolotlStore;
+  private final TextSecureAddress localAddress;
 
-  public TextSecureCipher(AxolotlStore axolotlStore) {
+  public TextSecureCipher(TextSecureAddress localAddress, AxolotlStore axolotlStore) {
     this.axolotlStore = axolotlStore;
+    this.localAddress = localAddress;
   }
 
   public OutgoingPushMessage encrypt(AxolotlAddress destination, byte[] unpaddedMessage) {
@@ -127,7 +129,7 @@ public class TextSecureCipher {
 
   private TextSecureMessage createTextSecureMessage(TextSecureEnvelope envelope, PushMessageContent content) {
     TextSecureGroup            groupInfo   = createGroupInfo(envelope, content);
-    TextSecureSyncContext      syncContext = createSyncContext(content);
+    TextSecureSyncContext      syncContext = createSyncContext(envelope, content);
     List<TextSecureAttachment> attachments = new LinkedList<>();
     boolean                    endSession  = ((content.getFlags() & PushMessageContent.Flags.END_SESSION_VALUE) != 0);
     boolean                    secure      = envelope.isWhisperMessage() || envelope.isPreKeyWhisperMessage();
@@ -143,8 +145,9 @@ public class TextSecureCipher {
                                  content.getBody(), syncContext, secure, endSession);
   }
 
-  private TextSecureSyncContext createSyncContext(PushMessageContent content) {
-    if (!content.hasSync()) return null;
+  private TextSecureSyncContext createSyncContext(TextSecureEnvelope envelope, PushMessageContent content) {
+    if (!content.hasSync())                                     return null;
+    if (!envelope.getSource().equals(localAddress.getNumber())) return null;
 
     return new TextSecureSyncContext(content.getSync().getDestination(),
                                      content.getSync().getTimestamp());

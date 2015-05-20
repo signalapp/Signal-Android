@@ -70,7 +70,7 @@ public class TextSecureMessageSender {
 
   private final PushServiceSocket       socket;
   private final AxolotlStore            store;
-  private final TextSecureAddress       syncAddress;
+  private final TextSecureAddress       localAddress;
   private final Optional<EventListener> eventListener;
 
   /**
@@ -91,7 +91,7 @@ public class TextSecureMessageSender {
   {
     this.socket        = new PushServiceSocket(url, trustStore, new StaticCredentialsProvider(user, password, null));
     this.store         = store;
-    this.syncAddress   = new TextSecureAddress(user);
+    this.localAddress  = new TextSecureAddress(user);
     this.eventListener = eventListener;
   }
 
@@ -123,7 +123,7 @@ public class TextSecureMessageSender {
 
     if (response != null && response.getNeedsSync()) {
       byte[] syncMessage = createSyncMessageContent(content, Optional.of(recipient), timestamp);
-      sendMessage(syncAddress, timestamp, syncMessage);
+      sendMessage(localAddress, timestamp, syncMessage);
     }
 
     if (message.isEndSession()) {
@@ -153,7 +153,7 @@ public class TextSecureMessageSender {
     try {
       if (response != null && response.getNeedsSync()) {
         byte[] syncMessage = createSyncMessageContent(content, Optional.<TextSecureAddress>absent(), timestamp);
-        sendMessage(syncAddress, timestamp, syncMessage);
+        sendMessage(localAddress, timestamp, syncMessage);
       }
     } catch (UntrustedIdentityException e) {
       throw new EncapsulatedExceptions(e);
@@ -319,7 +319,7 @@ public class TextSecureMessageSender {
   {
     List<OutgoingPushMessage> messages = new LinkedList<>();
 
-    if (!recipient.equals(syncAddress)) {
+    if (!recipient.equals(localAddress)) {
       messages.add(getEncryptedMessage(socket, recipient, TextSecureAddress.DEFAULT_DEVICE_ID, plaintext));
     }
 
@@ -334,7 +334,7 @@ public class TextSecureMessageSender {
       throws IOException, UntrustedIdentityException
   {
     AxolotlAddress   axolotlAddress = new AxolotlAddress(recipient.getNumber(), deviceId);
-    TextSecureCipher cipher         = new TextSecureCipher(store);
+    TextSecureCipher cipher         = new TextSecureCipher(localAddress, store);
 
     if (!store.containsSession(axolotlAddress)) {
       try {
