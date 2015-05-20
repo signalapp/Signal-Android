@@ -70,7 +70,7 @@
                 <org.thoughtcrime.securesms.components.emoji.EmojiToggle
                         android:id="@+id/emoji_toggle"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="44dp"
                         android:layout_gravity="bottom"
                         android:background="@drawable/touch_highlight_background"
                         android:contentDescription="@string/conversation_activity__emoji_toggle_description"
@@ -102,10 +102,11 @@
                         android:layout_width="46dp"
                         android:layout_height="44dp"
                         android:layout_gravity="bottom">
+
                     <ImageButton
                             android:id="@+id/attach_button"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_gravity="center"
                             android:background="@drawable/touch_highlight_background"
                             android:src="?conversation_attach"
@@ -115,7 +116,7 @@
                     <org.thoughtcrime.securesms.components.SendButton
                             android:id="@+id/send_button"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:background="@drawable/touch_highlight_background"
                             android:contentDescription="@string/conversation_activity__send"
                             android:nextFocusLeft="@+id/embedded_text_editor"
