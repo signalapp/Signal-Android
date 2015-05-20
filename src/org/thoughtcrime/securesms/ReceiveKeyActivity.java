@@ -20,6 +20,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -134,6 +135,7 @@ public class ReceiveKeyActivity extends Activity {
 
     descriptionText.setText(spannableString);
     descriptionText.setMovementMethod(LinkMovementMethod.getInstance());
+    descriptionText.setTextColor(Color.BLACK);
   }
 
   private boolean isTrusted(IdentityKey identityKey) {
