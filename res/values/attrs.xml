@@ -21,7 +21,6 @@
     <attr name="conversation_received_text_secondary_color" format="reference|color"/>
 
     <attr name="fab_color" format="reference|color" />
-    <attr name="actionbar_icon" format="reference" />
     <attr name="lower_right_divet" format="reference" />
 
     <attr name="conversation_background" format="reference|color"/>
