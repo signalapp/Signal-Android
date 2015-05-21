@@ -107,6 +107,7 @@ public class ContactSelectionListItem extends RelativeLayout implements Recipien
   @Override
   public void onModified(final Recipient recipient) {
     if (this.recipient == recipient) {
+      recipient.removeListener(this);
       this.contactPhotoImage.post(new Runnable() {
         @Override
         public void run() {
