@@ -98,6 +98,7 @@ public class PartDatabase extends Database {
   private final static String IMAGES_QUERY = "SELECT " + TABLE_NAME + "." + ID + ", "
                                                        + TABLE_NAME + "." + CONTENT_TYPE + ", "
                                                        + TABLE_NAME + "." + ASPECT_RATIO + ", "
+                                                       + TABLE_NAME + "." + CONTENT_ID + ", "
                                                        + MmsDatabase.TABLE_NAME + "." + MmsDatabase.NORMALIZED_DATE_RECEIVED + ", "
                                                        + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ADDRESS + " "
                                            + "FROM " + TABLE_NAME + " LEFT JOIN " + MmsDatabase.TABLE_NAME
