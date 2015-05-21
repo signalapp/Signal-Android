@@ -9,7 +9,7 @@
         <item name="android:windowAnimationStyle">@null</item>
     </style>
 
-    <style name="TextSecure.DialogActivity" parent="Theme.AppCompat">
+    <style name="TextSecure.DialogActivity" parent="Theme.AppCompat.Light">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowContentOverlay">@null</item>
