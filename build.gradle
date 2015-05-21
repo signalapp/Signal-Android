@@ -78,10 +78,7 @@ dependencies {
     androidTestCompile ('com.squareup.assertj:assertj-android:1.0.0') {
         exclude group: 'org.hamcrest', module: 'hamcrest-core'
     }
-    androidTestCompile ('com.android.support.test.espresso:espresso-core:2.0') {
-        exclude group: 'javax.inject'
-    }
-    androidTestCompile 'com.android.support.test:testing-support-lib:0.1'
+    androidTestCompile 'com.android.support.test:runner:0.2'
 }
 
 dependencyVerification {
