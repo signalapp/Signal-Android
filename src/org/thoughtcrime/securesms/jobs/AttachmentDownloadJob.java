@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
 import android.util.Log;
-import android.util.Pair;
 
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -57,21 +56,21 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
 
     Log.w(TAG, "Downloading push parts for: " + messageId);
 
-    List<Pair<Long, PduPart>> parts = database.getParts(messageId);
+    List<PduPart> parts = database.getParts(messageId);
 
-    for (Pair<Long, PduPart> partPair : parts) {
-      retrievePart(masterSecret, partPair.second, messageId, partPair.first);
-      Log.w(TAG, "Got part: " + partPair.first);
+    for (PduPart part : parts) {
+      retrievePart(masterSecret, part, messageId);
+      Log.w(TAG, "Got part: " + part.getPartId());
     }
   }
 
   @Override
   public void onCanceled() {
-    PartDatabase              database = DatabaseFactory.getPartDatabase(context);
-    List<Pair<Long, PduPart>> parts    = database.getParts(messageId);
+    PartDatabase  database = DatabaseFactory.getPartDatabase(context);
+    List<PduPart> parts    = database.getParts(messageId);
 
-    for (Pair<Long, PduPart> partPair : parts) {
-      markFailed(messageId, partPair.second, partPair.first);
+    for (PduPart part : parts) {
+      markFailed(messageId, part, part.getPartId());
     }
   }
 
@@ -80,11 +79,12 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
     return (exception instanceof PushNetworkException);
   }
 
-  private void retrievePart(MasterSecret masterSecret, PduPart part, long messageId, long partId)
+  private void retrievePart(MasterSecret masterSecret, PduPart part, long messageId)
       throws IOException
   {
-    PartDatabase database       = DatabaseFactory.getPartDatabase(context);
-    File         attachmentFile = null;
+    PartDatabase        database       = DatabaseFactory.getPartDatabase(context);
+    File                attachmentFile = null;
+    PartDatabase.PartId partId         = part.getPartId();
 
     try {
       attachmentFile = createTempFile();
@@ -133,7 +133,7 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
     }
   }
 
-  private void markFailed(long messageId, PduPart part, long partId) {
+  private void markFailed(long messageId, PduPart part, PartDatabase.PartId partId) {
     try {
       PartDatabase database = DatabaseFactory.getPartDatabase(context);
       database.updateFailedDownloadedPart(messageId, partId, part);

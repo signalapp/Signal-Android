@@ -27,15 +27,11 @@ public class IncomingMediaMessage {
   private final String     groupId;
   private final boolean    push;
 
-  public IncomingMediaMessage(RetrieveConf retreived) {
-    this.headers = retreived.getPduHeaders();
-    this.body    = retreived.getBody();
+  public IncomingMediaMessage(RetrieveConf retrieved) {
+    this.headers = retrieved.getPduHeaders();
+    this.body    = retrieved.getBody();
     this.groupId = null;
     this.push    = false;
-
-    for (int i=0;i<body.getPartsNum();i++) {
-      body.getPart(i).setContentId(String.valueOf(System.currentTimeMillis()).getBytes());
-    }
   }
 
   public IncomingMediaMessage(MasterSecret masterSecret,
