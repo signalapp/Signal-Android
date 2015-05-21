@@ -43,6 +43,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
+import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
@@ -369,10 +370,21 @@ public class ConversationItem extends LinearLayout {
     contactPhoto.setVisibility(View.VISIBLE);
   }
 
+  private IdentityKeyMismatch getKeyMismatch(final MessageRecord record) {
+    if (record.isIdentityMismatchFailure()) {
+      for (final IdentityKeyMismatch mismatch : record.getIdentityKeyMismatches()) {
+        if (mismatch.getRecipientId() == record.getIndividualRecipient().getRecipientId()) {
+          return mismatch;
+        }
+      }
+    }
+    return null;
+  }
+
   /// Event handlers
 
   private void handleKeyExchangeClicked() {
-    ReceiveKeyDialog.build(context, masterSecret, messageRecord).show();
+    new ConfirmIdentityDialog(context, masterSecret, messageRecord, getKeyMismatch(messageRecord)).show();
   }
 
   private class ThumbnailClickListener implements ThumbnailView.ThumbnailClickListener {
