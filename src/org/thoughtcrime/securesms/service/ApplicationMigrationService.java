@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.SmsMigrator;
 import org.thoughtcrime.securesms.database.SmsMigrator.ProgressDescription;
 
+import java.lang.ref.WeakReference;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -39,7 +40,7 @@ public class ApplicationMigrationService extends Service
   private final Binder binder                       = new ApplicationMigrationBinder();
   private final Executor executor                   = Executors.newSingleThreadExecutor();
 
-  private Handler handler                         = null;
+  private WeakReference<Handler> handler            = null;
   private NotificationCompat.Builder notification = null;
   private ImportState state                       = new ImportState(ImportState.STATE_IDLE, null);
 
@@ -70,7 +71,7 @@ public class ApplicationMigrationService extends Service
   }
 
   public void setImportStateHandler(Handler handler) {
-    this.handler = handler;
+    this.handler = new WeakReference<>(handler);
   }
 
   private void registerCompletedReceiver() {
@@ -103,8 +104,8 @@ public class ApplicationMigrationService extends Service
   private void setState(ImportState state) {
     this.state = state;
 
-    if (handler != null) {
-      handler.obtainMessage(state.state, state.progress).sendToTarget();
+    if (handler != null && handler.get() != null) {
+      handler.get().obtainMessage(state.state, state.progress).sendToTarget();
     }
 
     if (state.progress != null && state.progress.secondaryComplete == 0) {
