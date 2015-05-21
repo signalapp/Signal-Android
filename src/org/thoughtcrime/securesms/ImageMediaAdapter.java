@@ -72,7 +72,7 @@ public class ImageMediaAdapter extends CursorRecyclerViewAdapter<ViewHolder> {
 
     part.setDataUri(imageRecord.getUri());
     part.setContentType(imageRecord.getContentType().getBytes());
-    part.setId(imageRecord.getPartId());
+    part.setPartId(imageRecord.getPartId());
 
     Slide slide = MediaUtil.getSlideForPart(getContext(), masterSecret, part, imageRecord.getContentType());
     if (slide != null) {

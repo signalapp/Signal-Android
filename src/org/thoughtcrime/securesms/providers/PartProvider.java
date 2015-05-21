@@ -27,9 +27,9 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.mms.PartUri;
+import org.thoughtcrime.securesms.database.PartDatabase;
+import org.thoughtcrime.securesms.mms.PartUriParser;
 import org.thoughtcrime.securesms.service.KeyCachingService;
-import org.thoughtcrime.securesms.util.Hex;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -57,13 +57,13 @@ public class PartProvider extends ContentProvider {
     return true;
   }
 
-  public static Uri getContentUri(long partId, byte[] contentId) {
-    Uri uri = Uri.withAppendedPath(CONTENT_URI, Hex.toStringCondensed(contentId));
-    return ContentUris.withAppendedId(uri, partId);
+  public static Uri getContentUri(PartDatabase.PartId partId) {
+    Uri uri = Uri.withAppendedPath(CONTENT_URI, String.valueOf(partId.getUniqueId()));
+    return ContentUris.withAppendedId(uri, partId.getRowId());
   }
 
-  private File copyPartToTemporaryFile(MasterSecret masterSecret, long partId, byte[] contentId) throws IOException {
-    InputStream in        = DatabaseFactory.getPartDatabase(getContext()).getPartStream(masterSecret, partId, contentId);
+  private File copyPartToTemporaryFile(MasterSecret masterSecret, PartDatabase.PartId partId) throws IOException {
+    InputStream in        = DatabaseFactory.getPartDatabase(getContext()).getPartStream(masterSecret, partId);
     File tmpDir           = getContext().getDir("tmp", 0);
     File tmpFile          = File.createTempFile("test", ".jpg", tmpDir);
     FileOutputStream fout = new FileOutputStream(tmpFile);
@@ -93,8 +93,8 @@ public class PartProvider extends ContentProvider {
     case SINGLE_ROW:
       Log.w(TAG, "Parting out a single row...");
       try {
-        PartUri              partUri = new PartUri(uri);
-        File                 tmpFile = copyPartToTemporaryFile(masterSecret, partUri.getId(), partUri.getContentId());
+        PartUriParser        partUri = new PartUriParser(uri);
+        File                 tmpFile = copyPartToTemporaryFile(masterSecret, partUri.getPartId());
         ParcelFileDescriptor pdf     = ParcelFileDescriptor.open(tmpFile, ParcelFileDescriptor.MODE_READ_ONLY);
 
         if (!tmpFile.delete()) {

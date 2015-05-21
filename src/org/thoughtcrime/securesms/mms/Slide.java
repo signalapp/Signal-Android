@@ -80,7 +80,7 @@ public abstract class Slide {
   }
 
   public boolean isDraft() {
-    return getPart().getId() < 0;
+    return !getPart().getPartId().isValid();
   }
 
   protected static void assertMediaSize(Context context, Uri uri)

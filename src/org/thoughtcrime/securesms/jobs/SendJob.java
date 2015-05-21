@@ -87,7 +87,7 @@ public abstract class SendJob extends MasterSecretJob {
                                     PduPart part)
       throws IOException, MmsException
   {
-    Log.w(TAG, "resizing part " + part.getId());
+    Log.w(TAG, "resizing part " + part.getPartId());
 
     final long   oldSize = part.getDataSize();
     final byte[] data    = constraints.getResizedMedia(context, masterSecret, part);
