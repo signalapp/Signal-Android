@@ -1171,11 +1171,11 @@ public class MmsDatabase extends MessagingDatabase {
     }
   }
 
-  private PduBody getPartsAsBody(List<Pair<Long, PduPart>> parts) {
+  private PduBody getPartsAsBody(List<PduPart> parts) {
     PduBody body = new PduBody();
 
-    for (Pair<Long, PduPart> part : parts) {
-      body.addPart(part.second);
+    for (PduPart part : parts) {
+      body.addPart(part);
     }
 
     return body;

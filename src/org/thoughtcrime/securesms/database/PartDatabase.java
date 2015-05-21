@@ -16,7 +16,6 @@
  */
 package org.thoughtcrime.securesms.database;
 
-import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -30,7 +29,6 @@ import android.util.Pair;
 
 import org.thoughtcrime.securesms.crypto.DecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.EncryptingPartOutputStream;
-import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
@@ -60,7 +58,7 @@ public class PartDatabase extends Database {
   private static final String TAG = PartDatabase.class.getSimpleName();
 
   private static final String TABLE_NAME              = "part";
-  private static final String ID                      = "_id";
+  private static final String ROW_ID                  = "_id";
   private static final String MMS_ID                  = "mid";
   private static final String SEQUENCE                = "seq";
   private static final String CONTENT_TYPE            = "ct";
@@ -78,27 +76,28 @@ public class PartDatabase extends Database {
   private static final String SIZE                    = "data_size";
   private static final String THUMBNAIL               = "thumbnail";
   private static final String ASPECT_RATIO            = "aspect_ratio";
+  private static final String UNIQUE_ID               = "unique_id";
 
-  private static final String ID_CONTENT_WHERE = ID + " = ? AND " + CONTENT_ID + " = ?";
+  private static final String PART_ID_WHERE = ROW_ID + " = ? AND " + UNIQUE_ID + " = ?";
 
-  public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID + " INTEGER PRIMARY KEY, " +
+  public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ROW_ID + " INTEGER PRIMARY KEY, " +
     MMS_ID + " INTEGER, " + SEQUENCE + " INTEGER DEFAULT 0, "                        +
     CONTENT_TYPE + " TEXT, " + NAME + " TEXT, " + CHARSET + " INTEGER, "             +
     CONTENT_DISPOSITION + " TEXT, " + FILENAME + " TEXT, " + CONTENT_ID + " TEXT, "  +
     CONTENT_LOCATION + " TEXT, " + CONTENT_TYPE_START + " INTEGER, "                 +
     CONTENT_TYPE_TYPE + " TEXT, " + ENCRYPTED + " INTEGER, "                         +
     PENDING_PUSH_ATTACHMENT + " INTEGER, "+ DATA + " TEXT, " + SIZE + " INTEGER, "   +
-    THUMBNAIL + " TEXT, " + ASPECT_RATIO + " REAL);";
+    THUMBNAIL + " TEXT, " + ASPECT_RATIO + " REAL, " + UNIQUE_ID + " INTEGER NOT NULL);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS part_mms_id_index ON " + TABLE_NAME + " (" + MMS_ID + ");",
     "CREATE INDEX IF NOT EXISTS pending_push_index ON " + TABLE_NAME + " (" + PENDING_PUSH_ATTACHMENT + ");",
   };
 
-  private final static String IMAGES_QUERY = "SELECT " + TABLE_NAME + "." + ID + ", "
+  private final static String IMAGES_QUERY = "SELECT " + TABLE_NAME + "." + ROW_ID + ", "
                                                        + TABLE_NAME + "." + CONTENT_TYPE + ", "
                                                        + TABLE_NAME + "." + ASPECT_RATIO + ", "
-                                                       + TABLE_NAME + "." + CONTENT_ID + ", "
+                                                       + TABLE_NAME + "." + UNIQUE_ID + ", "
                                                        + MmsDatabase.TABLE_NAME + "." + MmsDatabase.NORMALIZED_DATE_RECEIVED + ", "
                                                        + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ADDRESS + " "
                                            + "FROM " + TABLE_NAME + " LEFT JOIN " + MmsDatabase.TABLE_NAME
@@ -107,7 +106,7 @@ public class PartDatabase extends Database {
                                                                    + " FROM " + MmsDatabase.TABLE_NAME
                                                                    + " WHERE " + MmsDatabase.THREAD_ID + " = ?) AND "
                                                       + CONTENT_TYPE + " LIKE 'image/%' "
-                                           + "ORDER BY " + TABLE_NAME + "." + ID + " DESC";
+                                           + "ORDER BY " + TABLE_NAME + "." + ROW_ID + " DESC";
 
 
   private final ExecutorService thumbnailExecutor = Util.newSingleThreadedLifoExecutor();
@@ -116,13 +115,13 @@ public class PartDatabase extends Database {
     super(context, databaseHelper);
   }
 
-  public InputStream getPartStream(MasterSecret masterSecret, long partId, byte[] contentId)
+  public InputStream getPartStream(MasterSecret masterSecret, PartId partId)
       throws FileNotFoundException
   {
-    return getDataStream(masterSecret, partId, contentId, DATA);
+    return getDataStream(masterSecret, partId, DATA);
   }
 
-  public void updateFailedDownloadedPart(long messageId, long partId, PduPart part)
+  public void updateFailedDownloadedPart(long messageId, PartId partId, PduPart part)
       throws MmsException
   {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
@@ -134,16 +133,16 @@ public class PartDatabase extends Database {
 
     values.put(DATA, (String)null);
 
-    database.update(TABLE_NAME, values, ID_WHERE, new String[] {partId+""});
+    database.update(TABLE_NAME, values, PART_ID_WHERE, partId.toStrings());
     notifyConversationListeners(DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(messageId));
   }
 
-  public PduPart getPart(long partId) {
+  public PduPart getPart(PartId partId) {
     SQLiteDatabase database = databaseHelper.getReadableDatabase();
     Cursor cursor           = null;
 
     try {
-      cursor = database.query(TABLE_NAME, null, ID_WHERE, new String[] {partId+""}, null, null, null);
+      cursor = database.query(TABLE_NAME, null, PART_ID_WHERE, partId.toStrings(), null, null, null);
 
       if (cursor != null && cursor.moveToFirst()) return getPart(cursor);
       else                                        return null;
@@ -161,19 +160,17 @@ public class PartDatabase extends Database {
     return cursor;
   }
 
-  public List<Pair<Long, PduPart>> getParts(long mmsId) {
-    SQLiteDatabase            database = databaseHelper.getReadableDatabase();
-    List<Pair<Long, PduPart>> results  = new LinkedList<>();
-    Cursor                    cursor   = null;
+  public List<PduPart> getParts(long mmsId) {
+    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+    List<PduPart>  results  = new LinkedList<>();
+    Cursor         cursor   = null;
 
     try {
       cursor = database.query(TABLE_NAME, null, MMS_ID + " = ?", new String[] {mmsId+""},
                               null, null, null);
 
       while (cursor != null && cursor.moveToNext()) {
-        PduPart part = getPart(cursor);
-        results.add(new Pair<>(cursor.getLong(cursor.getColumnIndexOrThrow(ID)),
-                                              part));
+        results.add(getPart(cursor));
       }
 
       return results;
@@ -228,14 +225,15 @@ public class PartDatabase extends Database {
   void insertParts(MasterSecret masterSecret, long mmsId, PduBody body) throws MmsException {
     for (int i=0;i<body.getPartsNum();i++) {
       PduPart part = body.getPart(i);
-      long partId = insertPart(masterSecret, part, mmsId, part.getThumbnail());
+      PartId partId = insertPart(masterSecret, part, mmsId, part.getThumbnail());
       Log.w(TAG, "Inserted part at ID: " + partId);
     }
   }
 
   private void getPartValues(PduPart part, Cursor cursor) {
 
-    part.setId(cursor.getLong(cursor.getColumnIndexOrThrow(ID)));
+    part.setRowId(cursor.getLong(cursor.getColumnIndexOrThrow(ROW_ID)));
+    part.setUniqueId(cursor.getLong(cursor.getColumnIndexOrThrow(UNIQUE_ID)));
 
     int charsetColumn = cursor.getColumnIndexOrThrow(CHARSET);
 
@@ -286,6 +284,7 @@ public class PartDatabase extends Database {
 
     if (!cursor.isNull(sizeColumn))
       part.setDataSize(cursor.getLong(cursor.getColumnIndexOrThrow(SIZE)));
+
   }
 
   private ContentValues getContentValuesForPart(PduPart part) throws MmsException {
@@ -327,6 +326,7 @@ public class PartDatabase extends Database {
 
     contentValues.put(ENCRYPTED, part.getEncrypted() ? 1 : 0);
     contentValues.put(PENDING_PUSH_ATTACHMENT, part.isPendingPush() ? 1 : 0);
+    contentValues.put(UNIQUE_ID, part.getUniqueId());
 
     return contentValues;
   }
@@ -346,16 +346,14 @@ public class PartDatabase extends Database {
     return new EncryptingPartOutputStream(path, masterSecret);
   }
 
-  @VisibleForTesting InputStream getDataStream(MasterSecret masterSecret, long partId, byte[] contentId, String dataType)
+  @VisibleForTesting InputStream getDataStream(MasterSecret masterSecret, PartId partId, String dataType)
       throws FileNotFoundException
   {
     SQLiteDatabase database = databaseHelper.getReadableDatabase();
     Cursor         cursor   = null;
 
     try {
-      cursor = database.query(TABLE_NAME, new String[]{dataType}, ID_CONTENT_WHERE,
-                              new String[] {String.valueOf(partId),
-                                            Util.toIsoString(contentId)},
+      cursor = database.query(TABLE_NAME, new String[]{dataType}, PART_ID_WHERE, partId.toStrings(),
                               null, null, null);
 
       if (cursor != null && cursor.moveToFirst()) {
@@ -407,15 +405,15 @@ public class PartDatabase extends Database {
     }
   }
 
-  public InputStream getThumbnailStream(MasterSecret masterSecret, long partId, byte[] contentId) throws IOException {
+  public InputStream getThumbnailStream(MasterSecret masterSecret, PartId partId) throws IOException {
     Log.w(TAG, "getThumbnailStream(" + partId + ")");
-    final InputStream dataStream = getDataStream(masterSecret, partId, contentId, THUMBNAIL);
+    final InputStream dataStream = getDataStream(masterSecret, partId, THUMBNAIL);
     if (dataStream != null) {
       return dataStream;
     }
 
     try {
-      return thumbnailExecutor.submit(new ThumbnailFetchCallable(masterSecret, partId, contentId)).get();
+      return thumbnailExecutor.submit(new ThumbnailFetchCallable(masterSecret, partId)).get();
     } catch (InterruptedException ie) {
       throw new AssertionError("interrupted");
     } catch (ExecutionException ee) {
@@ -429,12 +427,12 @@ public class PartDatabase extends Database {
 
     getPartValues(part, cursor);
 
-    part.setDataUri(PartAuthority.getPartUri(part.getId(), part.getContentId()));
+    part.setDataUri(PartAuthority.getPartUri(part.getPartId()));
 
     return part;
   }
 
-  private long insertPart(MasterSecret masterSecret, PduPart part, long mmsId, Bitmap thumbnail) throws MmsException {
+  private PartId insertPart(MasterSecret masterSecret, PduPart part, long mmsId, Bitmap thumbnail) throws MmsException {
     Log.w(TAG, "inserting part to mms " + mmsId);
     SQLiteDatabase   database = databaseHelper.getWritableDatabase();
     Pair<File, Long> partData = null;
@@ -452,21 +450,22 @@ public class PartDatabase extends Database {
       contentValues.put(SIZE, partData.second);
     }
 
-    long partId = database.insert(TABLE_NAME, null, contentValues);
+    long   partRowId = database.insert(TABLE_NAME, null, contentValues);
+    PartId partId    = new PartId(partRowId, part.getUniqueId());
 
     if (thumbnail != null) {
       Log.w(TAG, "inserting pre-generated thumbnail");
       ThumbnailData data = new ThumbnailData(thumbnail);
       updatePartThumbnail(masterSecret, partId, part, data.toDataStream(), data.getAspectRatio());
     } else if (!part.isPendingPush()) {
-      thumbnailExecutor.submit(new ThumbnailFetchCallable(masterSecret, partId, part.getContentId()));
+      thumbnailExecutor.submit(new ThumbnailFetchCallable(masterSecret, partId));
     }
 
     return partId;
   }
 
   public void updateDownloadedPart(MasterSecret masterSecret, long messageId,
-                                   long partId, PduPart part, InputStream data)
+                                   PartId partId, PduPart part, InputStream data)
       throws MmsException
   {
     SQLiteDatabase   database = databaseHelper.getWritableDatabase();
@@ -482,9 +481,9 @@ public class PartDatabase extends Database {
       values.put(SIZE, partData.second);
     }
 
-    database.update(TABLE_NAME, values, ID_WHERE, new String[]{partId+""});
+    database.update(TABLE_NAME, values, PART_ID_WHERE, partId.toStrings());
 
-    thumbnailExecutor.submit(new ThumbnailFetchCallable(masterSecret, partId, part.getContentId()));
+    thumbnailExecutor.submit(new ThumbnailFetchCallable(masterSecret, partId));
 
     notifyConversationListeners(DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(messageId));
   }
@@ -499,8 +498,8 @@ public class PartDatabase extends Database {
 
     Cursor cursor = null;
     try {
-      cursor = database.query(TABLE_NAME, new String[]{DATA}, ID_WHERE,
-                              new String[]{part.getId()+""}, null, null, null);
+      cursor = database.query(TABLE_NAME, new String[]{DATA}, PART_ID_WHERE,
+                              part.getPartId().toStrings(), null, null, null);
 
       if (cursor != null && cursor.moveToFirst()) {
         int dataColumn = cursor.getColumnIndexOrThrow(DATA);
@@ -517,11 +516,11 @@ public class PartDatabase extends Database {
 
     part.setDataSize(partData.second);
 
-    database.update(TABLE_NAME, values, ID_WHERE, new String[] {part.getId()+""});
-    Log.w(TAG, "updated data for part #" + part.getId());
+    database.update(TABLE_NAME, values, PART_ID_WHERE, part.getPartId().toStrings());
+    Log.w(TAG, "updated data for part #" + part.getPartId());
   }
 
-  public void updatePartThumbnail(MasterSecret masterSecret, long partId, PduPart part, InputStream in, float aspectRatio)
+  public void updatePartThumbnail(MasterSecret masterSecret, PartId partId, PduPart part, InputStream in, float aspectRatio)
       throws MmsException
   {
     Log.w(TAG, "updating part thumbnail for #" + partId);
@@ -534,17 +533,16 @@ public class PartDatabase extends Database {
     values.put(THUMBNAIL, thumbnailFile.first.getAbsolutePath());
     values.put(ASPECT_RATIO, aspectRatio);
 
-    database.update(TABLE_NAME, values, ID_WHERE, new String[]{partId+""});
+    database.update(TABLE_NAME, values, PART_ID_WHERE, partId.toStrings());
   }
 
   public static class ImageRecord {
-    private long   partId;
-    private byte[] contentId;
+    private PartId partId;
     private String contentType;
     private String address;
     private long   date;
 
-    private ImageRecord(long partId, byte[] contentId, String contentType, String address, long date) {
+    private ImageRecord(PartId partId, String contentType, String address, long date) {
       this.partId      = partId;
       this.contentType = contentType;
       this.address     = address;
@@ -552,14 +550,16 @@ public class PartDatabase extends Database {
     }
 
     public static ImageRecord from(Cursor cursor) {
-      return new ImageRecord(cursor.getLong(cursor.getColumnIndexOrThrow(ID)),
-                             Util.toIsoBytes(cursor.getString(cursor.getColumnIndexOrThrow(CONTENT_ID))),
+      PartId partId = new PartId(cursor.getLong(cursor.getColumnIndexOrThrow(ROW_ID)),
+                                 cursor.getLong(cursor.getColumnIndexOrThrow(UNIQUE_ID)));
+
+      return new ImageRecord(partId,
                              cursor.getString(cursor.getColumnIndexOrThrow(CONTENT_TYPE)),
                              cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.ADDRESS)),
                              cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.NORMALIZED_DATE_RECEIVED)) * 1000);
     }
 
-    public long getPartId() {
+    public PartId getPartId() {
       return partId;
     }
 
@@ -576,24 +576,22 @@ public class PartDatabase extends Database {
     }
 
     public Uri getUri() {
-      return PartAuthority.getPartUri(partId, contentId);
+      return PartAuthority.getPartUri(partId);
     }
   }
 
   @VisibleForTesting class ThumbnailFetchCallable implements Callable<InputStream> {
     private final MasterSecret masterSecret;
-    private final long         partId;
-    private final byte[]       contentId;
+    private final PartId       partId;
 
-    public ThumbnailFetchCallable(MasterSecret masterSecret, long partId, byte[] contentId) {
+    public ThumbnailFetchCallable(MasterSecret masterSecret, PartId partId) {
       this.masterSecret = masterSecret;
       this.partId       = partId;
-      this.contentId    = contentId;
     }
 
     @Override
     public InputStream call() throws Exception {
-      final InputStream stream = getDataStream(masterSecret, partId, contentId, THUMBNAIL);
+      final InputStream stream = getDataStream(masterSecret, partId, THUMBNAIL);
       if (stream != null) {
         return stream;
       }
@@ -609,7 +607,38 @@ public class PartDatabase extends Database {
         throw new IOException(bde);
       }
 
-      return getDataStream(masterSecret, partId, contentId, THUMBNAIL);
+      return getDataStream(masterSecret, partId, THUMBNAIL);
+    }
+  }
+
+  public static class PartId {
+
+    private final long rowId;
+    private final long uniqueId;
+
+    public PartId(long rowId, long uniqueId) {
+      this.rowId    = rowId;
+      this.uniqueId = uniqueId;
+    }
+
+    public long getRowId() {
+      return rowId;
+    }
+
+    public long getUniqueId() {
+      return uniqueId;
+    }
+
+    public String[] toStrings() {
+      return new String[] {String.valueOf(rowId), String.valueOf(uniqueId)};
+    }
+
+    public String toString() {
+      return "(row id: " + rowId + ", unique ID: " + uniqueId + ")";
+    }
+
+    public boolean isValid() {
+      return rowId >= 0 && uniqueId >= 0;
     }
   }
 }

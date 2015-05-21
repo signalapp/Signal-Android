@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.mms;
 import android.content.ContentUris;
 import android.net.Uri;
 
+import org.thoughtcrime.securesms.database.PartDatabase;
 import org.thoughtcrime.securesms.util.Hex;
 
 import java.io.IOException;
@@ -15,16 +16,16 @@ public class PartUri {
     this.uri = uri;
   }
 
-  public long getId() {
+  public PartDatabase.PartId getPartId() {
+    return new PartDatabase.PartId(getId(), getUniqueId());
+  }
+
+  private long getId() {
     return ContentUris.parseId(uri);
   }
 
-  public byte[] getContentId() {
-    try {
-      return Hex.fromStringCondensed(uri.getPathSegments().get(1));
-    } catch (IOException e) {
-      throw new AssertionError(e);
-    }
+  private long getUniqueId() {
+    return Long.parseLong(uri.getPathSegments().get(1));
   }
 
 }

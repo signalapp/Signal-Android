@@ -46,7 +46,7 @@ public class ImageSlide extends Slide {
     if (!getPart().isPendingPush() && getPart().getDataUri() != null) {
       return isDraft()
              ? getPart().getDataUri()
-             : PartAuthority.getThumbnailUri(getPart().getId(), part.getContentId());
+             : PartAuthority.getThumbnailUri(getPart().getPartId());
     }
 
     return null;
