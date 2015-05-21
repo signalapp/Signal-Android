@@ -11,4 +11,14 @@
     <color name="gdata_conversation_item_sent_push_pending_background">#A9C761</color>
     <color name="gdata_conversation_item_received_background">@color/gray5</color>
     <color name="gdata_conversation_item_received_shadow">@color/gray5</color>
+    <!-- Colors for SlidigMenu -->
+    <color name="menuBackgroundStart">@color/menuItemBackground</color>
+    <color name="menuBackgroundEnd">@color/menuItemBackground</color>
+    <color name="menuCacheHint">#00000000</color>
+    <color name="menuDivider">#a0ffffff</color>
+    <color name="menuItemSelectedText">#ffcccccc</color>
+    <color name="menuItemBackground">#ffdddddd</color>
+    <color name="menuTransparent">#ff000000</color>
+    <color name="menuTextColor">#000000</color>
+
 </resources>

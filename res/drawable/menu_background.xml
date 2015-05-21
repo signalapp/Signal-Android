@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:right="1dp">
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="90"
+                android:endColor="@color/menuBackgroundEnd"
+                android:startColor="@color/menuBackgroundStart"/>
+        </shape>
+    </item>
+    <item>
+        <bitmap
+            android:gravity="top|fill_horizontal"
+            android:src="@drawable/ab_top_line"
+            android:tileMode="disabled"/>
+    </item>
+
+</layer-list>

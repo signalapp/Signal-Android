@@ -16,8 +16,8 @@
 
     <string name="menu_filter">Block contacts</string>
     <string name="menu_privacy">Hide conversations</string>
-    <string name="menu_privacy_unhide">Show hidden conversations</string>
-    <string name="menu_privacy_hide">Do not show hidden conversations</string>
+    <string name="menu_privacy_unhide">Turn hiding on</string>
+    <string name="menu_privacy_hide">Hiding [✔]</string>
     <string name="menu_privacy_single_hide">Hide conversation</string>
     <string name="menu_filter_block_contact">Block contact</string>
 

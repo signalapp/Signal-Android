@@ -1,0 +1,28 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item>
+        <shape android:shape="rectangle" >
+            <solid android:color="#cccccc" />
+        </shape>
+    </item>
+
+    <item
+        android:right="1dp"
+        android:bottom="2dp">
+        <shape android:shape="rectangle" >
+            <solid android:color="#999999" />
+        </shape>
+    </item>
+    
+    <item
+        android:right="1dp"
+        android:top="1dp"
+        android:bottom="2dp">
+        <shape android:shape="rectangle" >
+            <solid android:color="#bbbbbb" />
+        </shape>
+    </item>
+    
+
+
+</layer-list>
