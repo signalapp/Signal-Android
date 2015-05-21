@@ -29,6 +29,7 @@ import android.widget.TextView;
 import org.thoughtcrime.securesms.R;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
@@ -51,6 +52,8 @@ public class ContactSelectionListAdapter extends    CursorAdapter
   private final TypedArray     drawables;
 
   private final HashMap<Long, String> selectedContacts = new HashMap<>();
+
+  private final HashSet<ContactSelectionListItem> viewPool = new HashSet<>();
 
   public ContactSelectionListAdapter(Context context, Cursor cursor, boolean multiSelect) {
     super(context, cursor, 0);
@@ -86,6 +89,7 @@ public class ContactSelectionListAdapter extends    CursorAdapter
     ((ContactSelectionListItem)view).unbind();
     ((ContactSelectionListItem)view).set(id, type, name, number, labelText, color, multiSelect);
     ((ContactSelectionListItem)view).setChecked(selectedContacts.containsKey(id));
+    viewPool.add((ContactSelectionListItem) view);
   }
 
   @Override
@@ -119,6 +123,19 @@ public class ContactSelectionListAdapter extends    CursorAdapter
     cursor.moveToPosition(i);
 
     return cursor.getInt(cursor.getColumnIndexOrThrow(ContactsDatabase.TYPE_COLUMN));
+  }
+
+  @Override
+  public void changeCursor(Cursor cursor) {
+    unbindListeners();
+    super.changeCursor(cursor);
+  }
+
+  public void unbindListeners() {
+    for (ContactSelectionListItem item : viewPool) {
+      item.unbind();
+    }
+    viewPool.clear();
   }
 
   public Map<Long, String> getSelectedContacts() {

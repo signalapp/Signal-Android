@@ -71,6 +71,16 @@ public class PushContactSelectionListFragment extends    Fragment
   }
 
   @Override
+  public void onDestroy() {
+    ContactSelectionListAdapter adapter = (ContactSelectionListAdapter) listView.getAdapter();
+    if (adapter != null) {
+      adapter.unbindListeners();
+      adapter = null;
+    }
+    super.onDestroy();
+  }
+
+  @Override
   public void onResume() {
     super.onResume();
   }
