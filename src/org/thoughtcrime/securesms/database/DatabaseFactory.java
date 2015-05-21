@@ -85,7 +85,7 @@ public class DatabaseFactory {
   public static DatabaseFactory getInstance(Context context) {
     synchronized (lock) {
       if (instance == null)
-        instance = new DatabaseFactory(context);
+        instance = new DatabaseFactory(context.getApplicationContext());
 
       return instance;
     }
