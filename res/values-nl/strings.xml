@@ -163,7 +163,6 @@ Je zal je telefoonnummer opnieuw moeten registreren als je pushberichten weer wi
   <string name="GroupCreateActivity_loading_group_details">Groepsdetails laden...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">IK</string>
-  <string name="GroupMembersDialog_members">Leden...</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Importeer</string>
   <string name="ImportExportActivity_export">Exporteer</string>
@@ -459,8 +458,8 @@ Importeer een niet-versleutelde back-up voor \'SMS Back-up En Herstellen\'.</str
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure heeft MMS-instellingen nodig om mediaberichten te kunnen versturen via uw telefoonprovider. Je toestel heeft deze informatie niet beschikbaar. Dit komt vaker voor bij gelockte toestellen en andere beperkende configuraties.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Om mediaberichten en groepsberichten te versturen, drukt u op \'OK\' en voert u de gevraagde gegevens in. De MMS-instellingen voor uw provider kunnen meestal gevonden worden door te zoeken naar \'&amp;lt;uw provider&amp;gt; APN\'. U hoeft dit maar eenmaal te doen.</string>
-  <!--receive_key_activity-->
-  <string name="receive_key_activity__complete">Voltooid</string>
+  <!--receive_key_dialog-->
+  <string name="receive_key_dialog__complete">Voltooid</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
         Verifieer je telefoonnummer om met TextSecure verbinding te maken.

@@ -390,8 +390,8 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure 需要您通信業者的 MMS多媒體簡訊設定以發送媒體檔案與群組訊息。目前您的裝置並未提供完整的相關資訊，有時是因為裝置出廠時即被鎖定／限制該方面的功能。</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">傳送媒體檔案或群組訊息，請按下 \"OK\" 並完成必要的設定。您所使用電信業者相關的MMS多媒體簡訊設定可能羅列在 \'無線與網路／行動網路\'的設定項目內。且您只需設定一次。</string>
-  <!--receive_key_activity-->
-  <string name="receive_key_activity__complete">完成</string>
+  <!--receive_key_dialog-->
+  <string name="receive_key_dialog__complete">完成</string>
   <!--registration_activity-->
   <string name="registration_activity__your_country">您的國家／區域</string>
   <string name="registration_activity__your_country_code_and_phone_number">您的國碼與

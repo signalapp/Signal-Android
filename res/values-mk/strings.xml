@@ -169,7 +169,6 @@
   <string name="GroupCreateActivity_loading_group_details">Вчитување на детали за групата...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Јас</string>
-  <string name="GroupMembersDialog_members">Членови..</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Импортирај</string>
   <string name="ImportExportActivity_export">Експортирај</string>
@@ -479,8 +478,8 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">За TextSecure се потребни MMS подесувања за да може да доставува медиа и групни пораки преку вашиот wireless провајдер. Вашиот уред не ги стави на располагање овие информации, што е некогаш случај со заклучени уреди или други рестриктивни конфигурации.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">За испраќање на медиа и групни пораки, притиснете \'OK\' и подесете ги потребните податоци. MMS подесувањата за вашиот провајдер можат вообичаено да се најдат доколку пребарате \'ваш провајдер APN\'. Ова е потребно да го направите само еднаш.</string>
-  <!--receive_key_activity-->
-  <string name="receive_key_activity__complete">Завршено</string>
+  <!--receive_key_dialog-->
+  <string name="receive_key_dialog__complete">Завршено</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 Верификувајте го вашиот телефонски број за да се конектирате со TextSecure.</string>

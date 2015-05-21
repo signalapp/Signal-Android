@@ -42,6 +42,7 @@ Avrai bisogno di registrare di nuovo il tuo numero di telefono per usare i messa
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Impossibile trovare un\'app per selezionare il file.</string>
   <!--AttachmentTypeSelectorAdapter-->
+  <string name="AttachmentTypeSelectorAdapter_take_photo">Scatta foto</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Immagine</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
@@ -167,7 +168,6 @@ questo contatto.</string>
   <string name="GroupCreateActivity_loading_group_details">Caricamennto dettagli del gruppo...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Io</string>
-  <string name="GroupMembersDialog_members">Membri...</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Importa</string>
   <string name="ImportExportActivity_export">Esporta</string>
@@ -477,8 +477,8 @@ Importo una copia in chiaro. Compatibile con \"SMSBackup And Restore\"</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure ha bisogno delle impostazioni degli MMS per poter inviare messaggi multimediali e di gruppo con il tuo operatore. Il tuo dispositivo non fornisce queste impostazioni, probabilmente perché ha un operatore bloccato o altre configurazioni restrittive.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Per inviare contenuti multimediali e messaggi di gruppo, tocca \"OK\" e completa le impostazioni richieste. Le impostazioni MMS del proprio operatore possono essere trovate generalmente cercando \"APN proprio operatore\". Sarà necessario eseguire una sola volta questa procedura.</string>
-  <!--receive_key_activity-->
-  <string name="receive_key_activity__complete">Completato</string>
+  <!--receive_key_dialog-->
+  <string name="receive_key_dialog__complete">Completa</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
         Verifica il tuo numero di telefono per connetterti a TextSecure.

@@ -170,7 +170,6 @@ exportera le contenu de vos messages TextSecure en clair sur la carte SD.</strin
   <string name="GroupCreateActivity_loading_group_details">Chargement des détails du groupe...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Moi</string>
-  <string name="GroupMembersDialog_members">Membres...</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Importer</string>
   <string name="ImportExportActivity_export">Exporter</string>
@@ -479,8 +478,8 @@ Importer un fichier de sauvegarde en texte clair. Compatible avec «SMSBackup An
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure nécessite les paramètres MMS pour envoyer des médias et des messages groupés par votre fournisseur sans fil. Votre appareil ne fournit pas ces informations ; cela se produit parfois sur les appareils verrouillés et autres configurations restrictives.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Pour envoyer des médias et messages groupés, cliquez « OK » et renseignez les paramètres demandés. Les paramètres MMS de votre fournisseur peuvent en général être trouvés en recherchant « APN votre fournisseur ». Vous aurez besoin de faire cela seulement une fois.</string>
-  <!--receive_key_activity-->
-  <string name="receive_key_activity__complete">Compléter</string>
+  <!--receive_key_dialog-->
+  <string name="receive_key_dialog__complete">Compléter</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 Veuillez vérifier votre numéro de téléphone pour vous connecter avec TextSecure.</string>

@@ -392,8 +392,8 @@ Importer en klartekst backup fil. Kompatibel med \'SMSBackup og Restore\'.</stri
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure har brug for at kende MMS-indstillingerne for at sende medieindhold og gruppebeskeder gennem din teleudbyder. Din enhed gør ikke disse oplysninger tilgængelige, hvilket kan forekomme for f.eks. låste enheder.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">For at sende multimedia- og gruppebeskeder klik \'OK\' og udfyld indstillingerne. MMS-indstillingerne for din teleoperatør kan ofte findes ved at søge på \'din operatør APN\'. Du behøver kun gøre dette en gang.</string>
-  <!--receive_key_activity-->
-  <string name="receive_key_activity__complete">Udført</string>
+  <!--receive_key_dialog-->
+  <string name="receive_key_dialog__complete">Udført</string>
   <!--registration_activity-->
   <string name="registration_activity__your_country">DIT LAND</string>
   <string name="registration_activity__your_country_code_and_phone_number">DIN LANDEKODE OG DIT

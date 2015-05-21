@@ -42,6 +42,7 @@ Jos haluat käyttää pikaviestipalvelua jatkossa, sinun täytyy rekisteröityä
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Median valintaan ei löytynyt sovellusta.</string>
   <!--AttachmentTypeSelectorAdapter-->
+  <string name="AttachmentTypeSelectorAdapter_take_photo">Ota kuva</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Kuva</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Äänitallenne</string>
@@ -173,7 +174,6 @@ Tämä toiminto vie TextSecure-viestiesi salaamattoman sisällön SD-muistikorti
   <string name="GroupCreateActivity_loading_group_details">Ladataan ryhmän tiedot...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Minä</string>
-  <string name="GroupMembersDialog_members">Jäsenet...</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Tuo</string>
   <string name="ImportExportActivity_export">Vie</string>
@@ -480,8 +480,8 @@ Tuo salaamaton varmuuskopiotiedosto. Yhteensopiva SMS Backup And Restore:lla.</s
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">Jotta TextSecure voisi lähettää mediatiedostoja ja ryhmäviestejä puhelinoperaattorisi kautta, täytyy MMS-asetusten olla määritelty. Tällä hetkellä nämä asetukset eivät ole saatavilla laitteessasi, mikä voi johtua laitteesi operaattorilukituksesta tai muista rajoittavista asetuksista.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Jotta voit lähettää mediatiedostoja ja ryhmäviestejä, napsauta \"OK\" ja täydennä pyydetyt asetukset. Puhelinoperaattorisi MMS-asetukset yleensä löytyvät, kun haet Internetistä operaattorisi nimellä ja termillä \"APN\". Tämä asetusten säätö tarvitsee tehdä vain kerran.</string>
-  <!--receive_key_activity-->
-  <string name="receive_key_activity__complete">Jatka</string>
+  <!--receive_key_dialog-->
+  <string name="receive_key_dialog__complete">Jatka</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 Jotta voit ottaa TextSecuren käyttöön, tulee sinun ensin vahvistaa puhelinnumerosi.</string>

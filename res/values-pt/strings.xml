@@ -154,7 +154,6 @@ irá exportar o conteúdo de texto das suas mensagens TextSecure para o cartão 
   <string name="GroupCreateActivity_loading_group_details">A carregar detalhes do grupo...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Eu</string>
-  <string name="GroupMembersDialog_members">Membros...</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Importar</string>
   <string name="ImportExportActivity_export">Exportar</string>
@@ -452,8 +451,8 @@ Importar uma cópia de segurança de texto simples. Compatível com \'SMSBackup 
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">O TextSecure precisa de configurações MMS para transmitir média e mensagens de grupo através da sua operadora. O seu aparelho não disponibiliza essa informação, o que pode ocorrer em aparelhos bloqueados ou com configurações restritivas.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Para enviar média e mensagens de grupo, clique \'OK\' e complete as configurações pedidas. As configurações MMS da sua operadora geralmente podem ser encontradas procurando por \'operadora APN\'. Você só precisará fazer isto uma vez.</string>
-  <!--receive_key_activity-->
-  <string name="receive_key_activity__complete">Completo</string>
+  <!--receive_key_dialog-->
+  <string name="receive_key_dialog__complete">Completo</string>
   <!--registration_activity-->
   <string name="registration_activity__your_country">PAÍS</string>
   <string name="registration_activity__your_country_code_and_phone_number">PAÍS E

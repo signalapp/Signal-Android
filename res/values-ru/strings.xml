@@ -164,7 +164,6 @@
   <string name="GroupCreateActivity_loading_group_details">Загружаем подробности о группе...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Я</string>
-  <string name="GroupMembersDialog_members">Участники...</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Импорт</string>
   <string name="ImportExportActivity_export">Экспорт</string>
@@ -458,8 +457,8 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">Приложению TextSecure необходимо знать настройки MMS вашего сотового оператора, чтобы отправлять и получать мультимедийные и групповые сообщения. Ваше устройство не даёт доступа к этой информации — так иногда бывает, если в телефоне запрещена смена SIM-карты и в некоторых иных случаях.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Чтобы отправлять мультимедийные и групповые сообщения, нажмите «ОК» и настройте MMS. Это нужно сделать только один раз. Настройки для вашего оператора можно узнать в службе техподдержки или в интернете по запросу «ваш оператор APN».</string>
-  <!--receive_key_activity-->
-  <string name="receive_key_activity__complete">Выполнить</string>
+  <!--receive_key_dialog-->
+  <string name="receive_key_dialog__complete">Выполнить</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 Подтвердите свой номер телефона, чтобы подключиться к TextSecure</string>

@@ -134,7 +134,6 @@
   <string name="GroupCreateActivity_loading_group_details">در حال بارگذاری جزئیات گروه...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">به من</string>
-  <string name="GroupMembersDialog_members">کاربران...</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">وارد کردن</string>
   <string name="ImportExportActivity_export">خروجی</string>
@@ -384,8 +383,8 @@
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">قفل باز شود</string>
   <!--prompt_mms_activity-->
-  <!--receive_key_activity-->
-  <string name="receive_key_activity__complete">کامل</string>
+  <!--receive_key_dialog-->
+  <string name="receive_key_dialog__complete">کامل</string>
   <!--registration_activity-->
   <string name="registration_activity__your_country">کشور شما</string>
   <string name="registration_activity__your_country_code_and_phone_number">کد کشور شما و

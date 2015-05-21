@@ -159,7 +159,6 @@ Atenție, acestă acțiune va dezactiva stocarea criptată a tuturor mesajelor �
   <string name="GroupCreateActivity_loading_group_details">Se încarcă detaliile grupului...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Eu</string>
-  <string name="GroupMembersDialog_members">Membrii...</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Importă</string>
   <string name="ImportExportActivity_export">Exportă</string>
@@ -451,8 +450,8 @@ Importă un fișier de backup text. Compatibil cu \'SMSBackup And Restore.\'</st
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure are nevoie de setările APN pentru a trimite mesaje multimedia prin operatorul wireless. Acest aparat nu oferă informațiile necesare, lucru care se poate întâmpla uneori pentru dispozitive blocate sau alte configurații restrictive.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Pentru a putea trimite mesaje multimedia cât și mesaje într-un grup, apăsați \'OK\' și completați setările solicitate. Setările MMS pentru operatorul dvs. pot fi găsite cautând după \'APN operatorul tău\'. Această operațiune este necesară o singură dată.</string>
-  <!--receive_key_activity-->
-  <string name="receive_key_activity__complete">Complet</string>
+  <!--receive_key_dialog-->
+  <string name="receive_key_dialog__complete">Complet</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
         Verifică numărul tău de telefon pentru a te conecta la TextSecure.

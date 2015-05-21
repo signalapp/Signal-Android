@@ -168,7 +168,6 @@ nekriptirano izvesti sadržaj vaših TextSecure poruka na SD karticu.</string>
   <string name="GroupCreateActivity_loading_group_details">Učitavanje detalja grupe...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Ja</string>
-  <string name="GroupMembersDialog_members">Članovi...</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Uvoz</string>
   <string name="ImportExportActivity_export">Izvoz</string>
@@ -239,6 +238,7 @@ ponovno uvoženje će rezultirati duplim porukama.</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Pošaljite lozinku</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Neispravna lozinka!</string>
   <!--PlayServicesProblemFragment-->
+  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Google Play Services intalirana inačica ne radi ispravno. Ponovno instalirajte Google Play Services i pokušajte ponovno.</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Ocijenite ovu aplikaciju</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Ukoliko volite koristiti ovu aplikaciju, odvojite trenutak kako biste nam pomogli svojom ocjenom.</string>
@@ -474,8 +474,8 @@ Uvezi nekriptiranu kopiju kompatibilnu s \'SMSBackup And Restore\'.</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure zahtjeva MMS postavke kako bi dostavio multimedijalne ili grupne poruke preko vašeg operatera. Vaš uređaj nije ove informacije učinio dostupnima, što se ponekad događa kod zaključanih uređaja ili kod ograničenih postavki.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Kako biste slali multimedijalne ili grupne poruke, pritisnite \'OK\' i popunite tražene postavke. MMS postavke za vašeg operatera se obično mogu naći tražeći \'APN vašeg operatera\'. Ovo je potrebno napraviti samo jednom.</string>
-  <!--receive_key_activity-->
-  <string name="receive_key_activity__complete">Završeno</string>
+  <!--receive_key_dialog-->
+  <string name="receive_key_dialog__complete">Završeno</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 Potvrdite svoj broj telefona kako biste se povezali sa TextSecure.</string>

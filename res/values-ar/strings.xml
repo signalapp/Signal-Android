@@ -40,6 +40,7 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">لم يتم العثور على تطبيق لاختيار ملف.</string>
   <!--AttachmentTypeSelectorAdapter-->
+  <string name="AttachmentTypeSelectorAdapter_take_photo">التقط صورة</string>
   <string name="AttachmentTypeSelectorAdapter_picture">صورة</string>
   <string name="AttachmentTypeSelectorAdapter_video">فيديو</string>
   <string name="AttachmentTypeSelectorAdapter_audio">صوت</string>
@@ -162,7 +163,6 @@
   <string name="GroupCreateActivity_loading_group_details">تحميل بيانات المجموعة...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">أنا</string>
-  <string name="GroupMembersDialog_members">الأعضاء...</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">استيراد</string>
   <string name="ImportExportActivity_export">تصدير</string>
@@ -228,6 +228,7 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">أرسل العبارة السرية </string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">عبارة سرية غير صحيحة!</string>
   <!--PlayServicesProblemFragment-->
+  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">تطبيق Google Play Service الذي قمت بتثبيته لا يعمل بشكل صحيح. رجاء إعادة تثبيته والمحاولة مرة أخرى.</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">تقييم التطبيق</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">إذا كنت مستمتع باستخدام التطبيق رجاء مساعدتنا بتقييمه</string>
@@ -452,8 +453,8 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">يتطلب تيكست سيكيور إعدادات خدمة الوسائط المتعددة من أجل تسليم رسائل الوسائط المتعددة والمجموعات عبر المشغل اللاسلكي. في بعض الأحوال لا تتاح هذه المعلومات مع الهواتف المقفولة أو ذات الإعدادات المقيدة.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">من اجل إرسال وسائط متعددة ورسائل إلى مجموعات أضغط على \"تم\" وأكمل الإعدادات المطلوبة. يمكن العثور على إعدادات رسائل الوسائط المتعددة الخاصة بمشغل شبكة الجوال الخاصة بك بالبحث عن \"أسم المشغل APN\". سوف تحتاج إلى القيام  بهذه الخطوة مرة واحدة.</string>
-  <!--receive_key_activity-->
-  <string name="receive_key_activity__complete">انتهاء</string>
+  <!--receive_key_dialog-->
+  <string name="receive_key_dialog__complete">تم</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 تحقق من رقم تليفونك للاتصال بتيكست سيكيور</string>

@@ -250,8 +250,8 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">Для надсилання MMS-повідомлень TextSecure необхідно знати настройки APN вашого оператора. Однак ваш пристрій не надає цієї інформації - так іноді буває, якщо воно заблоковане або відповідним чином налаштоване.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Щоб мати можливість відправляти MMS-повідомлення, введіть інформацію про APN нижче. Потрібні значення для вашого оператора можна знайти в інтернеті за запитом \'оператор APN\' або в його службі підтримки. Це потрібно зробити тільки один раз.</string>
-  <!--receive_key_activity-->
-  <string name="receive_key_activity__complete">Виконати</string>
+  <!--receive_key_dialog-->
+  <string name="receive_key_dialog__complete">Виконати</string>
   <!--registration_activity-->
   <string name="registration_activity__your_country">ВАША КРАЇНА</string>
   <string name="registration_activity__your_country_code_and_phone_number">КОД ВАШОЇ КРАЇНИ ТА НОМЕР ТЕЛЕФОНУ

@@ -43,6 +43,7 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Не могу да нађем апликацију за избор медијума.</string>
   <!--AttachmentTypeSelectorAdapter-->
+  <string name="AttachmentTypeSelectorAdapter_take_photo">Фотографиши</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Слика</string>
   <string name="AttachmentTypeSelectorAdapter_video">Видео</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Звук</string>
@@ -172,7 +173,6 @@
   <string name="GroupCreateActivity_loading_group_details">Учитавам детаље групе...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Ја</string>
-  <string name="GroupMembersDialog_members">Чланови...</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Увоз</string>
   <string name="ImportExportActivity_export">Извоз</string>
@@ -479,8 +479,8 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">Сигурне поруке захтевају ММС поставке да би испоручиле мултимедијалне и групне поруке преко вашег оператера. Ваш уређај не даје ове податке на располагање, што повремено важи за закључане уређаје и друге ограничавајуће конфигурације.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Да бисте слали мултимедијалне и групне поруке додирните „У реду“ и попуните захтеване поставке. ММС поставке за вашег оператера углавном можете наћи претрагом „мој оператер APN“. Ово треба да урадите само једном.</string>
-  <!--receive_key_activity-->
-  <string name="receive_key_activity__complete">Доврши</string>
+  <!--receive_key_dialog-->
+  <string name="receive_key_dialog__complete">Доврши</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 Потврдите ваш број телефона да бисте се пријавили на Сигурне поруке.

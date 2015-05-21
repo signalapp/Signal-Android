@@ -45,6 +45,7 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Não localizei um aplicativo para selecionar o arquivo.</string>
   <!--AttachmentTypeSelectorAdapter-->
+  <string name="AttachmentTypeSelectorAdapter_take_photo">Tirar foto</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Imagem</string>
   <string name="AttachmentTypeSelectorAdapter_video">Vídeo</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Áudio</string>
@@ -176,7 +177,6 @@ Tem certeza que deseja fazer isto?</string>
   <string name="GroupCreateActivity_loading_group_details">Carregando detalhes do grupo...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Eu</string>
-  <string name="GroupMembersDialog_members">Membros...</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Importar</string>
   <string name="ImportExportActivity_export">Exportar</string>
@@ -228,7 +228,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="MessageRecord_updated_group">Atualizou o grupo.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Frases-chave não coincidem!</string>
-  <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Frase-chave anterior incorrecta!</string>
+  <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Frase-chave anterior incorreta!</string>
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Insira uma nova frase-chave!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Conectar este dispositivo?</string>
@@ -500,8 +500,8 @@ Tem certeza que deseja fazer isto?</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure precisa de configurações MMS para transmitir mídia e mensagens de grupo através da sua operadora. Seu aparelho não disponibiliza essa informação, o que pode ocorrer em aparelhos bloqueados ou com configurações restritivas.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Para enviar mídia e mensagens de grupo, clique \'OK\' e complete as configurações pedidas. As configurações MMS da sua operadora geralmente podem ser encontradas procurando por \'operadora APN\'. Você só precisará fazer isto uma vez.</string>
-  <!--receive_key_activity-->
-  <string name="receive_key_activity__complete">Concluído</string>
+  <!--receive_key_dialog-->
+  <string name="receive_key_dialog__complete">Concluído</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
         Verifique seu número telefônico para conectar-se ao TextSecure.
@@ -631,7 +631,7 @@ falhou.</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pressionar a tecla Enter enviará mensagens de texto</string>
   <string name="preferences__display_settings">Configurações de apresentação</string>
   <string name="preferences__choose_identity">Escolher identidade</string>
-  <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Escolha o seu próprio contacto da lista de contactos.</string>
+  <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Escolha o seu próprio contato da lista de contatos.</string>
   <string name="preferences__change_passphrase">Mudar frase-chave</string>
   <string name="preferences__change_my_passphrase">Mudar a minha frase-chave</string>
   <string name="preferences__enable_passphrase">Habilitar frase-chave</string>
@@ -666,7 +666,7 @@ falhou.</string>
   <string name="preferences__five_times">Cinco vezes</string>
   <string name="preferences__ten_times">Dez vezes</string>
   <string name="preferences__vibrate">Vibrar</string>
-  <string name="preferences__also_vibrate_when_notified">Vibrar também quando notificado</string>
+  <string name="preferences__also_vibrate_when_notified">Vibrar também quando receber uma notificação.</string>
   <string name="preferences__minutes">minutos</string>
   <string name="preferences__hours">horas</string>
   <string name="preferences__green">Verde</string>

@@ -43,6 +43,7 @@ Tendrá que volver a registrarse con su número de teléfono si quiere volver a 
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">No se pudo encontrar una aplicación para el contenido seleccionado.</string>
   <!--AttachmentTypeSelectorAdapter-->
+  <string name="AttachmentTypeSelectorAdapter_take_photo">Tomar foto</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Fotografía</string>
   <string name="AttachmentTypeSelectorAdapter_video">Vídeo</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
@@ -178,7 +179,6 @@ exportará a la tarjeta SD el contenido en texto plano de sus mensajes de TextSe
   <string name="GroupCreateActivity_loading_group_details">Cargando detalles del grupo...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Yo</string>
-  <string name="GroupMembersDialog_members">Miembros...</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Importar</string>
   <string name="ImportExportActivity_export">Exportar</string>
@@ -498,8 +498,8 @@ Importar una copia de seguridad en texto plano. Compatible con \'SMSBackup And R
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure necesita los datos de configuración de MMS para poder enviar mensajes de grupo a través de su proveedor de telefonía. Su dispositivo no hace pública esta información, cosa que ocurre ocasionalmente para dispositivos bloqueados y otras configuraciones restrictivas.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Para enviar contenido multimedia y mensajes de grupo haga click en \'OK\' y realice la configuración requerida. Las opciones de MMS de su proveedor de telefonía pueden ser encontradas normalmente buscando el \'APN de su proveedor\'. Solo necesitará hacer esto una vez.</string>
-  <!--receive_key_activity-->
-  <string name="receive_key_activity__complete">Completo</string>
+  <!--receive_key_dialog-->
+  <string name="receive_key_dialog__complete">Completo</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 Verifique su número de teléfono para conectar con TextSecure.</string>

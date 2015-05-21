@@ -41,6 +41,7 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">无法找到用于选择媒体的应用。</string>
   <!--AttachmentTypeSelectorAdapter-->
+  <string name="AttachmentTypeSelectorAdapter_take_photo">拍照</string>
   <string name="AttachmentTypeSelectorAdapter_picture">图片</string>
   <string name="AttachmentTypeSelectorAdapter_video">视频</string>
   <string name="AttachmentTypeSelectorAdapter_audio">音频</string>
@@ -164,7 +165,6 @@
   <string name="GroupCreateActivity_loading_group_details">读取群组详情…</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">我</string>
-  <string name="GroupMembersDialog_members">成员…</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">导入</string>
   <string name="ImportExportActivity_export">导出</string>
@@ -460,8 +460,8 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure需要通过运营商获取您的彩信设置才能接受彩信或组播信息，但是您的设备没有这些信息，可能是由于设备被锁定或者访问受到限制。</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">想发送多媒体和组播信息，需点击“好”来完成所需的设置。您可以通过搜索“您的运营商 APN”（如百度／谷歌：中国移动 APN）来获取这些信息。通常，您只需要设置一次。</string>
-  <!--receive_key_activity-->
-  <string name="receive_key_activity__complete">完成</string>
+  <!--receive_key_dialog-->
+  <string name="receive_key_dialog__complete">完成</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 通过验证您的手机号码来连接到 TextSecure 。</string>

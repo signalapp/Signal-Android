@@ -165,7 +165,6 @@
   <string name="GroupCreateActivity_loading_group_details">Загрузка дэталяў групы...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Я</string>
-  <string name="GroupMembersDialog_members">Удзельнікі...</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Імпарт</string>
   <string name="ImportExportActivity_export">Экспарт</string>
@@ -452,8 +451,8 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure патрэбныя налады MMS для дастаўкі медыя і групавых паведамленняў праз аператара мабільнай сувязі. Ваша прылада не дазваляе атрымаць гэтыя налады.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Каб даслаць медыя ці групавыя паведамленні, націсніце \'OK\' і задайце неабходныя налады. Налады MMS для вашага аператара могуць быць атрыманыя праз пошук у \'APN вашага аператара\'. Вы можаце зрабіць гэта толькі адзін раз. </string>
-  <!--receive_key_activity-->
-  <string name="receive_key_activity__complete">Зроблена</string>
+  <!--receive_key_dialog-->
+  <string name="receive_key_dialog__complete">Зроблена</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 Праверце ваш тэлефонны нумар каб падлучыцца да TextSecure.</string>

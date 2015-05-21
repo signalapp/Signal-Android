@@ -43,6 +43,7 @@ Abyste mohli používat TextSecure zprávy v budoucnosti, budete muset znovu reg
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nemohu nalézt aplikaci pro vybraný typ dat</string>
   <!--AttachmentTypeSelectorAdapter-->
+  <string name="AttachmentTypeSelectorAdapter_take_photo">Vyfotit</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Foto</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
@@ -169,7 +170,6 @@ kontakt</string>
   <string name="GroupCreateActivity_loading_group_details">Načítám detaily skupiny...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Já</string>
-  <string name="GroupMembersDialog_members">Členové...</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Import</string>
   <string name="ImportExportActivity_export">Export</string>
@@ -466,8 +466,8 @@ Importovat nešifrovanou zálohu kompatibilní s \"SMSBackup And Restore\".</str
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure vyžaduje informace o nastavení MMS, aby mohly být média a skupinové zprávy doručovány. Váš přístroj tyto informace neposkytuje, což se stává u zamknutých nebo jinak upravených přístrojů.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Pro odesílání médií a skupinových zpráv klepněte na OK a vyplňte požadované informace. Nastavení MMS pro vašeho operátora lze většinou zjistit hledáním \"*váš operátor* APN\". Toto je je třeba udělat pouze jednou.</string>
-  <!--receive_key_activity-->
-  <string name="receive_key_activity__complete">Hotovo</string>
+  <!--receive_key_dialog-->
+  <string name="receive_key_dialog__complete">Hotovo</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 Ověření vašeho telefoního čísla pro připojení k TextSecure</string>

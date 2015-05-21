@@ -41,6 +41,7 @@ Du må registrere telefonnummeret ditt på nytt dersom du ønsker å benytte \'p
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Finner ikke en applikasjon for å velge media.</string>
   <!--AttachmentTypeSelectorAdapter-->
+  <string name="AttachmentTypeSelectorAdapter_take_photo">Ta bilde</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Bilde</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
@@ -164,7 +165,6 @@ denne kontakten.</string>
   <string name="GroupCreateActivity_loading_group_details">Laster gruppedetaljer...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Meg</string>
-  <string name="GroupMembersDialog_members">Medlemmer...</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Importere</string>
   <string name="ImportExportActivity_export">Eksportere</string>
@@ -461,8 +461,8 @@ Importer en klartekst backup kompatibel med \'SMSBackup And Restore\'.</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure trenger MMS innstillinger for å levere media og gruppemeldinger via din telefonoperatør. Enheten din er ikke i stand til å oppgi denne informasjonen automatisk, noe som ofte skjer dersom den er låst til operatør eller er konfigurert med andre restriksjoner.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">For å sende media og gruppemeldinger, klikk \'OK\' og fullfør de forespurte instillingene. MMS oppsettet for din operatør kan ofte finnes ved å søke etter \'din operatørs APN\'. Du trenger kun å gjøre dette én gang.</string>
-  <!--receive_key_activity-->
-  <string name="receive_key_activity__complete">Complete</string>
+  <!--receive_key_dialog-->
+  <string name="receive_key_dialog__complete">Ferdig</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 Verifiser telefonnummeret dit for å koble til TextSecure.

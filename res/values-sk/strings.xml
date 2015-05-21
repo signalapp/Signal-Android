@@ -169,7 +169,6 @@ exportuje nekryptovaný obsah TextSecure správy na SD kartu.</string>
   <string name="GroupCreateActivity_loading_group_details">Načítavajú sa údaje o skupine...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Ja</string>
-  <string name="GroupMembersDialog_members">Členovia...</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Import</string>
   <string name="ImportExportActivity_export">Export</string>
@@ -473,8 +472,8 @@ Importovať nezakryptovanú zálohu. Kompatibilné so \'SMSBackup And Restore\'.
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure potrebuje nastavenia MMS pre doručenie médií a skupinových správ s pomocou Vášho operátora. Vaše zariadenie nedalo tieto informácie k dispozícií, čo sa niekedy stáva u zablokovaných zariadení alebo kvôli príliš obmedzujúcim nastaveniam.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Pre odosielanie multimédií a skupinových správ vyberte \'OK\' a preveďte potrebné nastavenia. Nastavenia MMS pre Vášho operátora sa väčšinou dajú nájsť zadaním \'Váš operátor APN\' do vyhľadávača na internete. Toto nastavenie je potrebné dokončiť iba prvykrát.</string>
-  <!--receive_key_activity-->
-  <string name="receive_key_activity__complete">Dokončené</string>
+  <!--receive_key_dialog-->
+  <string name="receive_key_dialog__complete">Dokončené</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 Pre spojenie s TextSecure overte Vaše telefónne číslo.

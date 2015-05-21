@@ -164,7 +164,7 @@
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">སྒོ་ཕྱེས། </string>
   <!--prompt_mms_activity-->
-  <!--receive_key_activity-->
+  <!--receive_key_dialog-->
   <!--registration_activity-->
   <!--registration_problems-->
   <!--registration_progress_activity-->

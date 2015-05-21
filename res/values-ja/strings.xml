@@ -42,6 +42,7 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">メディアの選択用アプリが見つかりません。</string>
   <!--AttachmentTypeSelectorAdapter-->
+  <string name="AttachmentTypeSelectorAdapter_take_photo">写真を撮影</string>
   <string name="AttachmentTypeSelectorAdapter_picture">写真</string>
   <string name="AttachmentTypeSelectorAdapter_video">動画</string>
   <string name="AttachmentTypeSelectorAdapter_audio">音声</string>
@@ -168,7 +169,6 @@
   <string name="GroupCreateActivity_loading_group_details">グループ詳細を読み出し中...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">私</string>
-  <string name="GroupMembersDialog_members">参加者...</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">インポート</string>
   <string name="ImportExportActivity_export">エクスポート</string>
@@ -465,8 +465,8 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecureでは、無線通信事業者からファイル付きメッセージを配信するのに、APN設定が必要です。お使いの携帯端末では、この設定のための情報が取得できません。ロックされた端末であるか、その他の制限設定があるとこのような状況が生じます。</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">ファイル付き及びグループ・メッセージを配信するのに、OKをクリックして設定を完了してください。お使いの通信事業者への設定値は通常、\"通信事業者APN”で検索すると設定できます。この作業の実行は一度だけでいいです。</string>
-  <!--receive_key_activity-->
-  <string name="receive_key_activity__complete">完了</string>
+  <!--receive_key_dialog-->
+  <string name="receive_key_dialog__complete">完了</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
         あなたの電話番号をTextSecureに接続するための検証。

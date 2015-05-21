@@ -179,7 +179,6 @@
   <string name="GroupCreateActivity_loading_group_details">Φόρτωση λεπτομέρειων ομάδας...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Εγώ</string>
-  <string name="GroupMembersDialog_members">Μέλη...</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Εισαγωγή</string>
   <string name="ImportExportActivity_export">Εξαγωγή</string>
@@ -494,8 +493,8 @@ SMS της συσκευής σας στο TextSecure. Αν έχετε ήδη ε�
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">Το TextSecure χρειάζεται τις ρυθμίσεις MMS για να στείλει μηνύματα πολυμέσων μέσω του πάροχού σας. Η συσκευή σας δεν παρέχει αυτές τις ρυθμίσεις, κάτι που ισχύει σε κλειδωμένες συσκευές και άλλες περιοριστικές διαμορφώσεις.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Για να στείλετε μηνύματα πολυμέσων, πατήστε «ΟΚ» και συμπληρώστε τις ρυθμίσεις APN. Θα βρείτε τις σωστές ρυθμίσεις APN για τον πάροχό σας ψάχνοντας online για «το όνομα του πάροχού σας» + APN. Αυτές οι ρυθμίσεις θα χρειαστούν μόνο μία φορά.</string>
-  <!--receive_key_activity-->
-  <string name="receive_key_activity__complete">Ολοκληρώθηκε</string>
+  <!--receive_key_dialog-->
+  <string name="receive_key_dialog__complete">Ολοκληρώθηκε</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 Επιβεβαιώστε τον αριθμό τηλεφώνου σας για να συνδεθείτε με το TextSecure.</string>

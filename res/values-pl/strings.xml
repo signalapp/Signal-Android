@@ -165,7 +165,6 @@ ten kontakt.
   <string name="GroupCreateActivity_loading_group_details">Wczytywanie szczegółów grupy...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Ja</string>
-  <string name="GroupMembersDialog_members">Członkowie...</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Import</string>
   <string name="ImportExportActivity_export">Eksport</string>
@@ -466,8 +465,8 @@ Importuj niezaszyfrowany plik kopii zapasowej, kompatybilny z \'SMSBackup And Re
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure wymaga ustawień MMS w celu dostarczenia wiadomości multimedialnych za pośrednictwem Twojego operatora. Twoje urządzenie nie udostępnia tych informacji. Może to być spowodowane pewnymi restrykcyjnymi konfiguracjami w telefonie.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Aby mieć możliwość wysyłania wiadomości multimedialnych i wiadomości grupowych, kliknij \'OK\' i wypełnij pola, o które jesteś proszony. Dane MMS dla Twojego operatora, można znaleźć szukając w ustawieniach frazy typu \'Punkty Dostępu - APN\'. Wystarczy to zrobić tylko jeden raz.</string>
-  <!--receive_key_activity-->
-  <string name="receive_key_activity__complete">Zakończono</string>
+  <!--receive_key_dialog-->
+  <string name="receive_key_dialog__complete">Zakończono</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 Weryfikuj swój numer telefonu, aby połączyć się z TextSecure.</string>

@@ -41,6 +41,7 @@ Durch das Deaktivieren von TextSecure-Nachrichten wird Ihre Registrierung bei Te
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Keine App zur Dateiauswahl auffindbar.</string>
   <!--AttachmentTypeSelectorAdapter-->
+  <string name="AttachmentTypeSelectorAdapter_take_photo">Foto aufnehmen</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Bild</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
@@ -164,7 +165,6 @@ Dies könnte bedeuten, dass jemand versucht, Ihr Gespräch abzuhören. Vielleich
   <string name="GroupCreateActivity_loading_group_details">Gruppendetails werden geladen...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Ich</string>
-  <string name="GroupMembersDialog_members">Mitglieder...</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Import</string>
   <string name="ImportExportActivity_export">Export</string>
@@ -201,7 +201,7 @@ Falls Sie bereits zuvor diese Datensicherung importiert haben, wird das zu gedop
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Fehler beim Speichern der MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Verbindung zum MMS-Anbieter fehlgeschlagen...</string>
-  <string name="MmsDownloader_error_reading_mms_settings">Die Einstellungen des MMS-Anbieters konnten nicht gelesen werden...</string>
+  <string name="MmsDownloader_error_reading_mms_settings">MMS-Einstellungen des Mobilfunkanbieters konnten nicht gelesen werden...</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Mediennachricht</string>
   <!--MessageRecord-->
@@ -458,8 +458,8 @@ Eine mit \"SMS Backup + Restore\" kompatible Klartextsicherung importieren.</str
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure benötigt MMS-Einstellungen, um Medien- und Gruppennachrichten zu versenden. Ihr Gerät stellt diese Informationen nicht zur Verfügung, was gelegentlich bei gesperrten oder anderweitig restriktiv konfigurierten Geräten der Fall ist.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Zum Versenden von Medien- und Gruppennachrichten bitte \"OK\" antippen und die geforderten Einstellungen vervollständigen. Die MMS-Einstellungen Ihres Anbieters können normalerweise  durch eine Internetsuche nach dem \"APN\" des Anbieters gefunden werden.</string>
-  <!--receive_key_activity-->
-  <string name="receive_key_activity__complete">Fortfahren</string>
+  <!--receive_key_dialog-->
+  <string name="receive_key_dialog__complete">Abgeschlossen</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 Überprüfen Sie zur Verbindung mit TextSecure Ihre Rufnummer.</string>
@@ -669,7 +669,7 @@ Kostenlos verschlüsselte Nachrichten mit TextSecure- und Signal-Nutzern austaus
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Anhang speichern</string>
   <!--conversation_insecure-->
-  <string name="conversation_insecure__invite">Einladung</string>
+  <string name="conversation_insecure__invite">Einladen</string>
   <!--conversation_insecure_no_push-->
   <string name="conversation_insecure__menu_start_secure_session">Sichere Unterhaltung starten</string>
   <string name="conversation_insecure__security">Sicherheit</string>
@@ -694,7 +694,7 @@ Kostenlos verschlüsselte Nachrichten mit TextSecure- und Signal-Nutzern austaus
   <string name="conversation__menu_delete_thread">Unterhaltung löschen</string>
   <string name="conversation__menu_view_media">Alle Bilder</string>
   <!--conversation_callable-->
-  <string name="conversation_add_to_contacts__menu_add_to_contacts">Zu den Kontakten hinzufügen</string>
+  <string name="conversation_add_to_contacts__menu_add_to_contacts">Zu Kontakten hinzufügen</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Teilnehmerliste</string>
   <string name="conversation_group_options__delivery">Zustellung</string>
