@@ -69,6 +69,7 @@ public class SmsListenerTest extends TextSecureTestCase {
   credit :D
   http://stackoverflow.com/a/12338541
    */
+  @SuppressWarnings("unchecked")
   private static byte[] buildSmsPdu(String sender, String body) throws Exception{
     byte[]   scBytes     = PhoneNumberUtils.networkPortionToCalledPartyBCD("0000000000");
     byte[]   senderBytes = PhoneNumberUtils.networkPortionToCalledPartyBCD(sender);
