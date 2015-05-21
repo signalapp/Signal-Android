@@ -37,6 +37,7 @@ public class EmojiDrawer extends Fragment {
   private EmojiEditText             composeText;
   private KeyboardAwareLinearLayout container;
   private ViewPager                 pager;
+  private List<EmojiPageModel>      models;
   private PagerSlidingTabStrip      strip;
   private RecentEmojiPageModel      recentModel;
 
@@ -61,6 +62,7 @@ public class EmojiDrawer extends Fragment {
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     final View v = inflater.inflate(R.layout.emoji_drawer, container, false);
     initializeResources(v);
+    initializePageModels(getArguments().getInt("categories"), getArguments().getInt("icons"));
     initializeEmojiGrid();
     return v;
   }
@@ -98,30 +100,31 @@ public class EmojiDrawer extends Fragment {
   }
 
   private void initializeEmojiGrid() {
-
     pager.setAdapter(new EmojiPagerAdapter(getActivity(),
                                            getFragmentManager(),
-                                           getPageModels(getArguments().getInt("categories"),
-                                                         getArguments().getInt("icons")),
+                                           models,
                                            new EmojiSelectionListener() {
                                              @Override public void onEmojiSelected(int emojiCode) {
                                                recentModel.onCodePointSelected(emojiCode);
                                                composeText.insertEmoji(emojiCode);
                                              }
                                            }));
+
+    if (recentModel.getCodePoints().length == 0) {
+      pager.setCurrentItem(1);
+    }
     strip.setViewPager(pager);
   }
 
-  private List<EmojiPageModel> getPageModels(@ArrayRes int pagesRes, @ArrayRes int iconsRes) {
+  private void initializePageModels(@ArrayRes int pagesRes, @ArrayRes int iconsRes) {
     final int[] icons = ResUtil.getResourceIds(getActivity(), iconsRes);
     final int[] pages = ResUtil.getResourceIds(getActivity(), pagesRes);
-    final List<EmojiPageModel> models = new LinkedList<>();
-    recentModel = new RecentEmojiPageModel(getActivity());
-    models.add(recentModel);
+    this.models = new LinkedList<>();
+    this.recentModel = new RecentEmojiPageModel(getActivity());
+    this.models.add(recentModel);
     for (int i = 0; i < icons.length; i++) {
-      models.add(new StaticEmojiPageModel(icons[i], getResources().getIntArray(pages[i])));
+      this.models.add(new StaticEmojiPageModel(icons[i], getResources().getIntArray(pages[i])));
     }
-    return models;
   }
 
   public static class EmojiPagerAdapter extends FragmentStatePagerAdapter
