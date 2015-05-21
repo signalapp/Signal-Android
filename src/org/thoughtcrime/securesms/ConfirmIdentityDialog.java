@@ -1,11 +1,11 @@
 package org.thoughtcrime.securesms;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.AsyncTask;
+import android.support.v7.app.AlertDialog;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
@@ -53,15 +53,15 @@ public class ConfirmIdentityDialog extends AlertDialog {
     SpannableString spannableString = new SpannableString(introduction + " " +
                                                           context.getString(R.string.ConfirmIdentityDialog_you_may_wish_to_verify_this_contact));
 
-    spannableString.setSpan(new VerifySpan(context, masterSecret, mismatch),
+    spannableString.setSpan(new VerifySpan(context, mismatch),
                             introduction.length()+1, spannableString.length(),
                             Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
     setTitle(name);
     setMessage(spannableString);
 
-    setButton(AlertDialog.BUTTON_POSITIVE, "Accept", new AcceptListener(masterSecret, messageRecord, mismatch));
-    setButton(AlertDialog.BUTTON_NEGATIVE, "Cancel", new CancelListener());
+    setButton(AlertDialog.BUTTON_POSITIVE, context.getString(R.string.ConfirmIdentityDialog_accept), new AcceptListener(masterSecret, messageRecord, mismatch));
+    setButton(AlertDialog.BUTTON_NEGATIVE, context.getString(android.R.string.cancel),               new CancelListener());
   }
 
   @Override
@@ -194,20 +194,17 @@ public class ConfirmIdentityDialog extends AlertDialog {
 
   private static class VerifySpan extends ClickableSpan {
     private final Context             context;
-    private final MasterSecret        masterSecret;
     private final IdentityKeyMismatch mismatch;
 
-    private VerifySpan(Context context, MasterSecret masterSecret, IdentityKeyMismatch mismatch) {
-      this.context      = context;
-      this.masterSecret = masterSecret;
-      this.mismatch     = mismatch;
+    private VerifySpan(Context context, IdentityKeyMismatch mismatch) {
+      this.context  = context;
+      this.mismatch = mismatch;
     }
 
     @Override
     public void onClick(View widget) {
       Intent intent = new Intent(context, VerifyIdentityActivity.class);
       intent.putExtra("recipient", mismatch.getRecipientId());
-      intent.putExtra("master_secret", masterSecret);
       intent.putExtra("remote_identity", new IdentityKeyParcelable(mismatch.getIdentityKey()));
       context.startActivity(intent);
     }
