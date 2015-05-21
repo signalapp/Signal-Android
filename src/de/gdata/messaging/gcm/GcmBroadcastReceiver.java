@@ -10,6 +10,7 @@ import android.util.Log;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.jobs.PushReceiveJob;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
@@ -35,13 +36,21 @@ public class GcmBroadcastReceiver extends BroadcastReceiver {
 
       if      (!TextUtils.isEmpty(messageData)) handleReceivedMessage(context, messageData);
       else if (!TextUtils.isEmpty(receiptData)) handleReceivedMessage(context, receiptData);
+      else if (intent.hasExtra("notification")) handleReceivedNotification(context);
     }
     setResultCode(Activity.RESULT_OK);
   }
 
   private void handleReceivedMessage(Context context, String data) {
     ApplicationContext.getInstance(context)
-                      .getJobManager()
+            .getJobManager()
                       .add(new PushReceiveJob(context, data));
+  }
+
+  private void handleReceivedNotification(Context context) {
+    ApplicationContext.getInstance(context)
+            .getJobManager()
+            .add(new PushNotificationReceiveJob(context));
+
   }
 }
