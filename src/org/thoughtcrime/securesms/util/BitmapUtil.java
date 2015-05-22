@@ -296,8 +296,7 @@ public class BitmapUtil {
       }
     };
 
-    if (Looper.myLooper() == Looper.getMainLooper()) runnable.run();
-    else                                             new Handler(Looper.getMainLooper()).post(runnable);
+    Util.runOnMain(runnable);
 
     synchronized (result) {
       while (!created.get()) Util.wait(result, 0);

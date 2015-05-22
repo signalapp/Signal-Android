@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.components.emoji;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -10,8 +11,9 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Drawable.Callback;
 import android.os.AsyncTask;
-import android.os.Handler;
-import android.os.Looper;
+import android.os.Build.VERSION;
+import android.os.Build.VERSION_CODES;
+import android.support.annotation.Nullable;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.util.Log;
@@ -28,7 +30,6 @@ import org.thoughtcrime.securesms.util.Util;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.ref.SoftReference;
-import java.util.Arrays;
 import java.util.concurrent.Callable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -36,8 +37,7 @@ import java.util.regex.Pattern;
 public class EmojiProvider {
   private static final    String        TAG      = EmojiProvider.class.getSimpleName();
   private static volatile EmojiProvider instance = null;
-  private static final    Paint         paint    = new Paint();
-  static { paint.setFilterBitmap(true); }
+  private static final    Paint         paint    = new Paint(Paint.FILTER_BITMAP_FLAG | Paint.ANTI_ALIAS_FLAG);
 
   private final SparseArray<DrawInfo> offsets = new SparseArray<>();
 
@@ -57,7 +57,6 @@ public class EmojiProvider {
   private final double  drawWidth;
   private final double  drawHeight;
   private final double  verticalPad;
-  private final Handler handler = new Handler(Looper.getMainLooper());
 
   public static EmojiProvider getInstance(Context context) {
     if (instance == null) {
@@ -114,7 +113,7 @@ public class EmojiProvider {
     drawable.setBounds(0, 0, (int)(drawWidth * size), (int)(drawHeight * size));
     drawInfo.page.get().addListener(new FutureTaskListener<Bitmap>() {
       @Override public void onSuccess(final Bitmap result) {
-        handler.post(new Runnable() {
+        Util.runOnMain(new Runnable() {
           @Override public void run() {
             drawable.setBitmap(result);
           }
@@ -129,10 +128,10 @@ public class EmojiProvider {
   }
 
   public class EmojiDrawable extends Drawable {
-    private final int    index;
-    private final double width;
-    private final double height;
-    private       Bitmap bmp;
+    private final DrawInfo info;
+    private final double   width;
+    private final double   height;
+    private       Bitmap   bmp;
 
     @Override public int getIntrinsicWidth() {
       return (int)width;
@@ -143,33 +142,38 @@ public class EmojiProvider {
     }
 
     public EmojiDrawable(DrawInfo info, double width, double height) {
-      this.index  = info.index;
+      this.info   = info;
       this.width  = width;
       this.height = height;
     }
 
     @Override
     public void draw(Canvas canvas) {
-      if (bmp == null) return;
+      if (bmp == null) {
+        Log.w(TAG, "no-op draw(" + info.page + ", " + info.index + ")");
+        return;
+      }
 
-      Rect b = copyBounds();
-
-      final int row = index / EMOJI_PER_ROW;
-      final int row_index = index % EMOJI_PER_ROW;
+      final int row = info.index / EMOJI_PER_ROW;
+      final int row_index = info.index % EMOJI_PER_ROW;
 
       canvas.drawBitmap(bmp,
                         new Rect((int)(row_index * width),
                                  (int)(row * height + row * verticalPad),
                                  (int)((row_index + 1) * width),
                                  (int)((row + 1) * height + row * verticalPad)),
-                        b,
+                        getBounds(),
                         paint);
     }
 
+    @TargetApi(VERSION_CODES.HONEYCOMB_MR1)
     public void setBitmap(Bitmap bitmap) {
       Util.assertMainThread();
-      bmp = bitmap;
-      invalidateSelf();
+      Log.w(TAG, "setBitmap(" + info.page + ", " + info.index + ")");
+      if (VERSION.SDK_INT < VERSION_CODES.HONEYCOMB_MR1 || bmp == null || !bmp.sameAs(bitmap)) {
+        bmp = bitmap;
+        invalidateSelf();
+      }
     }
 
     @Override
@@ -263,6 +267,10 @@ public class EmojiProvider {
         Log.w(TAG, bde);
         throw new AssertionError("emoji sprite asset is corrupted or android decoding is broken");
       }
+    }
+
+    @Override public String toString() {
+      return Integer.toString(page);
     }
   }
 }

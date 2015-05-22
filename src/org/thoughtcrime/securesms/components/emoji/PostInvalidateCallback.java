@@ -4,6 +4,8 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Drawable.Callback;
 import android.view.View;
 
+import org.thoughtcrime.securesms.util.Util;
+
 public class PostInvalidateCallback implements Callback {
   private final View view;
 
@@ -12,7 +14,11 @@ public class PostInvalidateCallback implements Callback {
   }
 
   @Override public void invalidateDrawable(Drawable who) {
-    view.postInvalidate();
+    Util.runOnMain(new Runnable() {
+      @Override public void run() {
+        view.invalidate();
+      }
+    });
   }
 
   @Override public void scheduleDrawable(Drawable who, Runnable what, long when) {
