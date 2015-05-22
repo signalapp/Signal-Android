@@ -17,7 +17,6 @@
 package org.thoughtcrime.securesms.recipients;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.util.Log;
@@ -28,13 +27,14 @@ import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
 
-import java.util.HashSet;
+import java.util.Iterator;
+import java.util.WeakHashMap;
 
 public class Recipient {
 
   private final static String TAG = Recipient.class.getSimpleName();
 
-  private final HashSet<RecipientModifiedListener> listeners = new HashSet<>();
+  private final WeakHashMap<RecipientModifiedListener, Object> listeners = new WeakHashMap<>();
 
   private final long recipientId;
 
@@ -55,7 +55,7 @@ public class Recipient {
       @Override
       public void onSuccess(RecipientDetails result) {
         if (result != null) {
-          HashSet<RecipientModifiedListener> localListeners;
+          WeakHashMap<RecipientModifiedListener, Object> localListeners;
 
           synchronized (Recipient.this) {
             Recipient.this.name                      = result.name;
@@ -63,12 +63,14 @@ public class Recipient {
             Recipient.this.contactUri                = result.contactUri;
             Recipient.this.contactPhoto              = result.avatar;
 
-            localListeners                           = (HashSet<RecipientModifiedListener>) listeners.clone();
+            localListeners                           = new WeakHashMap<>(listeners);
             listeners.clear();
           }
 
-          for (RecipientModifiedListener listener : localListeners)
-            listener.onModified(Recipient.this);
+          Iterator iterator = localListeners.keySet().iterator();
+          while (iterator.hasNext()) {
+            ((RecipientModifiedListener)iterator.next()).onModified(Recipient.this);
+          }
         }
       }
 
@@ -118,7 +120,7 @@ public class Recipient {
   }
 
   public synchronized void addListener(RecipientModifiedListener listener) {
-    listeners.add(listener);
+    listeners.put(listener, this);
   }
 
   public synchronized void removeListener(RecipientModifiedListener listener) {
@@ -126,14 +128,15 @@ public class Recipient {
   }
 
   public void notifyListeners() {
-    HashSet<RecipientModifiedListener> localListeners;
+    WeakHashMap<RecipientModifiedListener, Object> localListeners;
 
     synchronized (this) {
-      localListeners = (HashSet<RecipientModifiedListener>)listeners.clone();
+      localListeners = new WeakHashMap<>(listeners);
     }
 
-    for (RecipientModifiedListener listener : localListeners) {
-      listener.onModified(this);
+    Iterator iterator = localListeners.keySet().iterator();
+    while (iterator.hasNext()) {
+      ((RecipientModifiedListener)iterator.next()).onModified(this);
     }
   }
 
