@@ -14,7 +14,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
 import android.widget.GridView;
-import android.widget.ImageView;
 
 import org.thoughtcrime.securesms.R;
 
@@ -58,7 +57,7 @@ public class EmojiPageView extends FrameLayout {
     grid.setColumnWidth(getResources().getDimensionPixelSize(R.dimen.emoji_drawer_size) + 2 * getResources().getDimensionPixelSize(R.dimen.emoji_drawer_item_padding));
     grid.setOnItemClickListener(new OnItemClickListener() {
       @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (listener != null) listener.onEmojiSelected((Integer)view.getTag());
+        if (listener != null) listener.onEmojiSelected((String)view.getTag());
       }
     });
   }
@@ -85,7 +84,7 @@ public class EmojiPageView extends FrameLayout {
     }
 
     @Override public int getCount() {
-      return model.getCodePoints().length;
+      return model.getEmoji().length;
     }
 
     @Override
@@ -100,29 +99,24 @@ public class EmojiPageView extends FrameLayout {
 
     @Override
     public View getView(final int position, final View convertView, final ViewGroup parent) {
-      final ImageView view;
+      final EmojiView view;
       final int pad = context.getResources().getDimensionPixelSize(R.dimen.emoji_drawer_item_padding);
-      if (convertView != null && convertView instanceof ImageView) {
-        view = (ImageView)convertView;
+      if (convertView != null && convertView instanceof EmojiView) {
+        view = (EmojiView)convertView;
       } else {
-        ImageView imageView = new ImageView(context);
-        imageView.setPadding(pad, pad, pad, pad);
-        imageView.setLayoutParams(new AbsListView.LayoutParams(emojiSize + 2 * pad, emojiSize + 2 * pad));
-        view = imageView;
+        EmojiView emojiView = new EmojiView(context);
+        emojiView.setPadding(pad, pad, pad, pad);
+        emojiView.setLayoutParams(new AbsListView.LayoutParams(emojiSize + 2 * pad, emojiSize + 2 * pad));
+        view = emojiView;
       }
 
-      final Integer       unicodeTag = model.getCodePoints()[position];
-      final EmojiProvider provider   = EmojiProvider.getInstance(context);
-      final Drawable      drawable   = provider.getEmojiDrawable(unicodeTag, EmojiProvider.EMOJI_FULL);
-
-      view.setImageDrawable(drawable);
-      view.setPadding(pad, pad, pad, pad);
-      view.setTag(unicodeTag);
+      view.setEmoji(model.getEmoji()[position]);
+      view.setTag(model.getEmoji()[position]);
       return view;
     }
   }
 
   public interface EmojiSelectionListener {
-    void onEmojiSelected(int emojiCode);
+    void onEmojiSelected(String emoji);
   }
 }
