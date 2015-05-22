@@ -14,6 +14,8 @@ public class AnimatingToggle extends FrameLayout {
 
   private static final int SPEED_MILLIS = 200;
 
+  private View current;
+
   public AnimatingToggle(Context context) {
     super(context);
   }
@@ -30,14 +32,18 @@ public class AnimatingToggle extends FrameLayout {
   public void addView(@NonNull View child, int index, ViewGroup.LayoutParams params) {
     super.addView(child, index, params);
 
-    if (getChildCount() == 1) child.setVisibility(View.VISIBLE);
-    else                      child.setVisibility(View.GONE);
+    if (getChildCount() == 1) {
+      current = child;
+      child.setVisibility(View.VISIBLE);
+    } else {
+      child.setVisibility(View.GONE);
+    }
   }
 
   public void display(View view) {
-    if (view.getVisibility() == View.VISIBLE) return;
+    if (view == current) return;
 
-    int oldViewIndex = getVisibleViewIndex();
+    int oldViewIndex = getViewIndex(current);
     int newViewIndex = getViewIndex(view);
 
     int sign;
@@ -48,14 +54,13 @@ public class AnimatingToggle extends FrameLayout {
     TranslateAnimation oldViewAnimation = createTranslation(0.0f, sign * 1.0f);
     TranslateAnimation newViewAnimation = createTranslation(sign * -1.0f, 0.0f);
 
-    animateOut(oldViewIndex, oldViewAnimation);
-    animateIn(newViewIndex, newViewAnimation);
+    animateOut(current, oldViewAnimation);
+    animateIn(view, newViewAnimation);
+
+    current = view;
   }
 
-  private void animateOut(int viewIndex, TranslateAnimation animation) {
-    final View view = getChildAt(viewIndex);
-
-    animation.setInterpolator(new FastOutSlowInInterpolator());
+  private void animateOut(final View view, TranslateAnimation animation) {
     animation.setAnimationListener(new Animation.AnimationListener() {
       @Override
       public void onAnimationStart(Animation animation) {
@@ -74,19 +79,10 @@ public class AnimatingToggle extends FrameLayout {
     view.startAnimation(animation);
   }
 
-  private void animateIn(int viewIndex, TranslateAnimation animation) {
+  private void animateIn(View view, TranslateAnimation animation) {
     animation.setInterpolator(new FastOutSlowInInterpolator());
-    final View view = getChildAt(viewIndex);
     view.setVisibility(View.VISIBLE);
     view.startAnimation(animation);
-  }
-
-  private int getVisibleViewIndex() {
-    for (int i=0;i<getChildCount();i++) {
-      if (getChildAt(i).getVisibility() == View.VISIBLE) return i;
-    }
-
-    throw new AssertionError("No visible view?");
   }
 
   private int getViewIndex(View view) {
@@ -104,6 +100,7 @@ public class AnimatingToggle extends FrameLayout {
                                                                    Animation.RELATIVE_TO_SELF, endY);
 
     translateAnimation.setDuration(SPEED_MILLIS);
+    translateAnimation.setInterpolator(new FastOutSlowInInterpolator());
 
     return translateAnimation;
   }
