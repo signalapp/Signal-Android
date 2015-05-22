@@ -76,6 +76,7 @@ import me.leolin.shortcutbadger.ShortcutBadger;
  */
 
 public class MessageNotifier {
+  private static final String TAG = MessageNotifier.class.getSimpleName();
 
   public static final int NOTIFICATION_ID = 1338;
 
@@ -300,10 +301,18 @@ public class MessageNotifier {
 
       String ringtone = TextSecurePreferences.getNotificationRingtone(context);
 
-      if (ringtone == null)
+      if (ringtone == null) {
+        Log.w(TAG, "ringtone preference was null.");
         return;
+      }
 
-      Uri uri            = Uri.parse(ringtone);
+      Uri uri = Uri.parse(ringtone);
+
+      if (uri == null) {
+        Log.w(TAG, "couldn't parse ringtone uri " + ringtone);
+        return;
+      }
+
       MediaPlayer player = new MediaPlayer();
       player.setAudioStreamType(AudioManager.STREAM_NOTIFICATION);
       player.setDataSource(context, uri);
