@@ -56,8 +56,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.thoughtcrimegson.TypeAdapter;
-
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
@@ -385,7 +383,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
       @Override
       public void onChange(boolean selfChange) {
         super.onChange(selfChange);
-        Log.w("ConversationListActivity", "detected android contact data changed, refreshing cache");
+        Log.d("ConversationListActivity", "detected android contact data changed, refreshing cache");
         // TODO only clear updated recipients from cache
         RecipientFactory.clearCache();
         ConversationListActivity.this.runOnUiThread(new Runnable() {
@@ -402,12 +400,10 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
     getContentResolver().registerContentObserver(ContactsContract.Contacts.CONTENT_URI, true, observer);
   }
-
   private void initializeResources() {
     this.masterSecret = getIntent().getParcelableExtra("master_secret");
     this.conversationListFragment.setMasterSecret(masterSecret);
   }
-
   public class PagerAdapter extends FragmentPagerAdapter {
     public static final java.lang.String EXTRA_FRAGMENT_PAGE_TITLE = "pageTitle";
 
