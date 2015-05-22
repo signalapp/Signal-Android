@@ -149,7 +149,7 @@ public class EmojiProvider {
 
     @Override
     public void draw(Canvas canvas) {
-      if (bmp == null && (bmp = info.page.tryGet()) == null) {
+      if (bmp == null) {
         Log.w(TAG, "no-op draw(" + info.page + ", " + info.index + ")");
         return;
       }
@@ -213,10 +213,6 @@ public class EmojiProvider {
 
     public EmojiPageBitmap(int page) {
       this.page = page;
-    }
-
-    private @Nullable Bitmap tryGet() {
-      return bitmapReference == null ? null : bitmapReference.get();
     }
 
     private ListenableFutureTask<Bitmap> get() {
