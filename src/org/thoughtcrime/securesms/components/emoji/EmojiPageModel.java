@@ -2,6 +2,8 @@ package org.thoughtcrime.securesms.components.emoji;
 
 public interface EmojiPageModel {
   int getIconRes();
-  int[] getCodePoints();
+  String[] getEmoji();
+  boolean hasSpriteMap();
+  String getSprite();
   boolean isDynamic();
 }
