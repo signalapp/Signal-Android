@@ -136,11 +136,6 @@ public class ConversationItem extends LinearLayout {
   private final Context context;
 
   private ConversationFragment conversationFragment;
-  private AlertDialog alertDialogDestroy;
-  private Handler dismissDialogHandler;
-  private Handler refreshCountdownHandler;
-  private int currentCountdown = 0;
-  private boolean alreadyDestroyed = false;
 
   public ConversationItem(Context context) {
     super(context);
@@ -302,6 +297,36 @@ public class ConversationItem extends LinearLayout {
         bodyText.setVisibility(View.VISIBLE);
       }
 
+
+      String destroyText = getContext().getString(R.string.self_destruction_body);
+      destroyText = destroyText.replace("#1#", "" + messageRecord.getBody().getSelfDestructionDuration());
+      String countdownText = getContext().getString(R.string.self_destruction_title);
+      countdownText = countdownText.replace("#1#", "" + messageRecord.getBody().getSelfDestructionDuration());
+
+      bodyText.setOnClickListener(new BombClickListener(bodyText.getText() + "", countdownText));
+      bodyText.setText(destroyText);
+    }
+
+  }
+
+  public class BombClickListener implements OnClickListener {
+    String text = "";
+    String countdown = "";
+
+    private AlertDialog alertDialogDestroy;
+    private Handler dismissDialogHandler;
+    private Handler refreshCountdownHandler;
+    private int currentCountdown = 0;
+    private boolean alreadyDestroyed = false;
+
+    public BombClickListener(String text, String countdown) {
+      this.text = text;
+      this.countdown = countdown;
+    }
+
+    @Override
+    public void onClick(View v) {
+
       dismissDialogHandler = new Handler(Looper.getMainLooper()) {
         @Override
         public void handleMessage(Message inputMessage) {
@@ -327,7 +352,10 @@ public class ConversationItem extends LinearLayout {
             countdown = countdown.replace("#1#", "" + currentCountdown);
             alertDialogDestroy.setTitle("" + countdown);
             if((messageRecord.getBody().getSelfDestructionDuration() - currentCountdown)>10) {
-              deleteMessage(messageRecord);
+              if(!alreadyDestroyed) {
+                alreadyDestroyed = true;
+                deleteMessage(messageRecord);
+              }
             } else {
               if(messageRecord.getMediaSlide() != null) {
                 messageRecord.getMediaSlide().setThumbnailOn(image);
@@ -336,29 +364,9 @@ public class ConversationItem extends LinearLayout {
           }
         }
       };
-      String destroyText = getContext().getString(R.string.self_destruction_body);
-      destroyText = destroyText.replace("#1#", "" + messageRecord.getBody().getSelfDestructionDuration());
-      String countdownText = getContext().getString(R.string.self_destruction_title);
-      countdownText = countdownText.replace("#1#", "" + messageRecord.getBody().getSelfDestructionDuration());
 
-      bodyText.setOnClickListener(new BombClickListener(bodyText.getText() + "", countdownText));
-      bodyText.setText(destroyText);
-    }
-
-  }
-
-  public class BombClickListener implements OnClickListener {
-    String text = "";
-    String countdown = "";
-
-    public BombClickListener(String text, String countdown) {
-      this.text = text;
-      this.countdown = countdown;
-    }
-
-    @Override
-    public void onClick(View v) {
       if(messageRecord.getMediaSlide() == null) {
+        alreadyDestroyed = true;
         deleteMessage(messageRecord);
       }
       bodyText.setText(text);
@@ -378,18 +386,20 @@ public class ConversationItem extends LinearLayout {
         @Override
         public void onClick(DialogInterface dialog, int which) {
           dialog.dismiss();
-          deleteMessage(messageRecord);
+          if(!alreadyDestroyed) {
+            alreadyDestroyed = true;
+            deleteMessage(messageRecord);
+          }
         }
       });
       alertDialogDestroy = builder.show();
       new Thread(new Runnable() {
         @Override
         public void run() {
-          alreadyDestroyed = false;
           int i = messageRecord.getBody().getSelfDestructionDuration();
           currentCountdown = i;
           refreshCountdownHandler.sendEmptyMessage(0);
-          while (i > 0 && !alreadyDestroyed) {
+          while (i > 0) {
             try {
               Thread.sleep(SECOND);
             } catch (InterruptedException e) {
@@ -400,9 +410,10 @@ public class ConversationItem extends LinearLayout {
             refreshCountdownHandler.sendEmptyMessage(0);
           }
           if(!alreadyDestroyed) {
-            dismissDialogHandler.sendEmptyMessage(0);
+            alreadyDestroyed = true;
             deleteMessage(messageRecord);
           }
+          dismissDialogHandler.sendEmptyMessage(0);
         }
       }).start();
 
@@ -410,7 +421,6 @@ public class ConversationItem extends LinearLayout {
   };
 
   public void deleteMessage(MessageRecord mr) {
-    alreadyDestroyed = true;
       if (mr.isMms()) {
         DatabaseFactory.getMmsDatabase(getContext()).delete(mr.getId());
       } else {
@@ -665,8 +675,7 @@ public class ConversationItem extends LinearLayout {
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         intent.setDataAndType(slide.getUri(), slide.getContentType());
         intent.putExtra(MediaPreviewActivity.MASTER_SECRET_EXTRA, masterSecret);
-        if (!messageRecord.isOutgoing())
-          intent.putExtra(MediaPreviewActivity.RECIPIENT_EXTRA, messageRecord.getIndividualRecipient().getRecipientId());
+        if (!messageRecord.isOutgoing()) intent.putExtra(MediaPreviewActivity.RECIPIENT_EXTRA, messageRecord.getIndividualRecipient().getRecipientId());
         intent.putExtra(MediaPreviewActivity.DATE_EXTRA, messageRecord.getDateReceived());
         context.startActivity(intent);
       } else {
