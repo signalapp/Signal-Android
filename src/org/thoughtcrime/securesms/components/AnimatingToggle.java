@@ -14,6 +14,8 @@ public class AnimatingToggle extends FrameLayout {
 
   private static final int SPEED_MILLIS = 200;
 
+  private View current;
+
   public AnimatingToggle(Context context) {
     super(context);
   }
@@ -30,12 +32,17 @@ public class AnimatingToggle extends FrameLayout {
   public void addView(@NonNull View child, int index, ViewGroup.LayoutParams params) {
     super.addView(child, index, params);
 
-    if (getChildCount() == 1) child.setVisibility(View.VISIBLE);
-    else                      child.setVisibility(View.GONE);
+    if (getChildCount() == 1) {
+      current = child;
+      child.setVisibility(View.VISIBLE);
+    } else {
+      child.setVisibility(View.GONE);
+    }
   }
 
   public void display(View view) {
-    if (view.getVisibility() == View.VISIBLE) return;
+    if (view == current) return;
+    else                 current = view;
 
     int oldViewIndex = getVisibleViewIndex();
     int newViewIndex = getViewIndex(view);

@@ -1189,7 +1189,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       calculateCharactersRemaining();
 
       if (composeText.getText().length() == 0 || beforeLength == 0) {
-        updateToggleButtonState();
+        composeText.postDelayed(new Runnable() {
+          @Override
+          public void run() {
+            updateToggleButtonState();
+          }
+        }, 50);
       }
     }
 
