@@ -21,11 +21,11 @@
     </string>
     <string name="ApplicationPreferencesActivity_disable">Disable</string>
     <string name="ApplicationPreferencesActivity_unregistering">Unregistering...</string>
-    <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Unregistering for data based communication</string>
-    <string name="ApplicationPreferencesActivity_disable_push_messages">Disable push messages?</string>
-    <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">
-        This will disable push messages by unregistering you from the server.
-        You will need to re-register your phone number to use push messages again in the future.
+    <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Unregistering from TextSecure messages</string>
+    <string name="ApplicationPreferencesActivity_disable_textsecure_messages">Disable TextSecure messages?</string>
+    <string name="ApplicationPreferencesActivity_this_will_disable_textsecure_messages">
+        This will disable TextSecure messages by unregistering you from the server.
+        You will need to re-register your phone number to use TextSecure messages again in the future.
     </string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Error connecting to server!</string>
     <string name="ApplicationPreferencesActivity_sms_enabled">SMS Enabled</string>
