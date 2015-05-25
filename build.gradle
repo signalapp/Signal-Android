@@ -200,10 +200,7 @@ android {
             assets.srcDirs = ['assets']
         }
         androidTest {
-            java.srcDirs = ['androidTest/java']
-            resources.srcDirs = ['androidTest/java']
-            aidl.srcDirs = ['androidTest/java']
-            renderscript.srcDirs = ['androidTest/java']
+            java.srcDirs = ['test/androidTest/java']
         }
     }
 
