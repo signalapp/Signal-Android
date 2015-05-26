@@ -78,7 +78,9 @@ dependencies {
     androidTestCompile ('com.squareup.assertj:assertj-android:1.0.0') {
         exclude group: 'org.hamcrest', module: 'hamcrest-core'
     }
-    androidTestCompile 'com.android.support.test:runner:0.2'
+    androidTestCompile ('com.android.support.test.espresso:espresso-core:2.1') {
+        exclude group: 'javax.inject'
+    }
 }
 
 dependencyVerification {
@@ -144,6 +146,13 @@ android {
         buildConfigField "String", "PUSH_URL", "\"https://textsecure-service.whispersystems.org\""
     }
 
+    productFlavors {
+        base { }
+        espresso {
+            testInstrumentationRunner "org.thoughtcrime.securesms.TextSecureWakingTestRunner"
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
@@ -201,8 +210,15 @@ android {
             res.srcDirs = ['res']
             assets.srcDirs = ['assets']
         }
+        espresso {
+            manifest.srcFile 'test/espresso/AndroidManifest.xml'
+        }
         androidTest {
             java.srcDirs = ['test/androidTest/java']
+        }
+        androidTestEspresso {
+            java.srcDirs = ['test/androidTestEspresso/java']
+            res.srcDirs  = ['test/androidTestEspresso/res']
         }
     }
 
