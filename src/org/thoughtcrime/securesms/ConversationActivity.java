@@ -75,6 +75,7 @@ import org.thoughtcrime.securesms.mms.AttachmentTypeSelectorAdapter;
 import org.thoughtcrime.securesms.mms.MediaTooLargeException;
 import org.thoughtcrime.securesms.mms.MmsMediaConstraints;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
+import org.thoughtcrime.securesms.mms.OutgoingLegacyMmsConnection;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingMmsConnection;
 import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
@@ -102,6 +103,7 @@ import org.thoughtcrime.securesms.util.Emoji;
 import org.thoughtcrime.securesms.util.EncryptedCharacterCalculator;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
+import org.thoughtcrime.securesms.util.SmsCharacterCalculator;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libaxolotl.AxolotlAddress;
@@ -174,7 +176,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private boolean isMmsEnabled = true;
   private boolean isCharactersLeftViewEnabled;
 
-  private CharacterCalculator characterCalculator = new CharacterCalculator();
+  private CharacterCalculator characterCalculator = new EncryptedCharacterCalculator();
   private DynamicTheme dynamicTheme = new DynamicTheme();
   private DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
@@ -676,7 +678,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         final String groupName = recipient.getName();
         final Bitmap avatar = recipient.getContactPhoto();
         if (avatar != null) {
-          getSupportActionBar().setIcon(new BitmapDrawable(getResources(), BitmapUtil.getCircleCroppedBitmap(avatar)));
+          getSupportActionBar().setIcon(new BitmapDrawable(getResources(), BitmapUtil.getCircleBitmap(avatar)));
         }
 
         title = (!TextUtils.isEmpty(groupName)) ? groupName : getString(R.string.ConversationActivity_unnamed_group);
@@ -777,7 +779,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       this.characterCalculator = new EncryptedCharacterCalculator();
     } else {
       this.isEncryptedConversation = false;
-      this.characterCalculator = new CharacterCalculator();
+      this.characterCalculator = new SmsCharacterCalculator();
     }
 
     transportButton.initializeAvailableTransports(!recipients.isSingleRecipient() || attachmentManager.isAttachmentPresent());
@@ -800,7 +802,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     new AsyncTask<Void, Void, Boolean>() {
       @Override
       protected Boolean doInBackground(Void... params) {
-        return OutgoingMmsConnection.isConnectionPossible(ConversationActivity.this);
+        return OutgoingLegacyMmsConnection.isConnectionPossible(ConversationActivity.this);
       }
 
       @Override
@@ -1045,7 +1047,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         DatabaseFactory.getDraftDatabase(ConversationActivity.this).insertDrafts(masterCipher, thisThreadId, drafts);
         ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(ConversationActivity.this);
         if (drafts.size() > 0) {
-          threadDatabase.updateSnippet(thisThreadId, drafts.getSnippet(ConversationActivity.this), Types.BASE_DRAFT_TYPE);
+          threadDatabase.updateSnippet(thisThreadId, drafts.getSnippet(ConversationActivity.this),
+                  System.currentTimeMillis(), Types.BASE_DRAFT_TYPE);
         } else {
           threadDatabase.update(thisThreadId);
         }

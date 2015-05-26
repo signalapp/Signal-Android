@@ -503,7 +503,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
     protected Bitmap doInBackground(Void... voids) {
       if (avatarUri != null) {
         try {
-          avatarBmp = BitmapUtil.getScaledCircleCroppedBitmap(GroupCreateActivity.this, masterSecret, avatarUri, AVATAR_SIZE);
+          avatarBmp = BitmapUtil.createScaledBitmap(GroupCreateActivity.this, masterSecret, avatarUri, AVATAR_SIZE, AVATAR_SIZE);
         } catch (IOException | BitmapDecodingException e) {
           Log.w(TAG, e);
           return null;
@@ -676,7 +676,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
         existingTitle = group.getTitle();
         final byte[] existingAvatar = group.getAvatar();
         if (existingAvatar != null) {
-          existingAvatarBmp = BitmapUtil.getCircleCroppedBitmap(
+          existingAvatarBmp = BitmapUtil.getCircleBitmap(
               BitmapFactory.decodeByteArray(existingAvatar, 0, existingAvatar.length));
         }
       }

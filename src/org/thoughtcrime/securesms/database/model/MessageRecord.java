@@ -19,18 +19,19 @@ package org.thoughtcrime.securesms.database.model;
 import android.content.Context;
 import android.text.Spannable;
 import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
-import android.text.style.TextAppearanceSpan;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;
-import org.thoughtcrime.securesms.mms.Slide;
+import org.thoughtcrime.securesms.database.documents.NetworkFailure;
+import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.GroupUtil;
+
+import java.util.List;
 
 /**
  * The base class for message record models that are displayed in
@@ -47,16 +48,22 @@ public abstract class MessageRecord extends DisplayRecord {
   public static final int DELIVERY_STATUS_PENDING  = 2;
   public static final int DELIVERY_STATUS_FAILED   = 3;
 
-  private final Recipient individualRecipient;
-  private final int       recipientDeviceId;
-  private final long      id;
-  private final int       deliveryStatus;
-  private final int       receiptCount;
+  private static final int MAX_DISPLAY_LENGTH = 2000;
+
+  private final Recipient                 individualRecipient;
+  private final int                       recipientDeviceId;
+  private final long                      id;
+  private final int                       deliveryStatus;
+  private final int                       receiptCount;
+  private final List<IdentityKeyMismatch> mismatches;
+  private final List<NetworkFailure>      networkFailures;
 
   MessageRecord(Context context, long id, Body body, Recipients recipients,
                 Recipient individualRecipient, int recipientDeviceId,
                 long dateSent, long dateReceived, long threadId,
-                int deliveryStatus, int receiptCount, long type)
+                int deliveryStatus, int receiptCount, long type,
+                List<IdentityKeyMismatch> mismatches,
+                List<NetworkFailure> networkFailures)
   {
     super(context, body, recipients, dateSent, dateReceived, threadId, type);
     this.id                  = id;
@@ -64,6 +71,8 @@ public abstract class MessageRecord extends DisplayRecord {
     this.recipientDeviceId   = recipientDeviceId;
     this.deliveryStatus      = deliveryStatus;
     this.receiptCount        = receiptCount;
+    this.mismatches          = mismatches;
+    this.networkFailures     = networkFailures;
   }
 
   public abstract boolean isMms();
@@ -71,7 +80,8 @@ public abstract class MessageRecord extends DisplayRecord {
 
   public boolean isFailed() {
     return
-        MmsSmsColumns.Types.isFailedMessageType(type) ||
+        MmsSmsColumns.Types.isFailedMessageType(type)            ||
+        MmsSmsColumns.Types.isPendingSecureSmsFallbackType(type) ||
         getDeliveryStatus() == DELIVERY_STATUS_FAILED;
   }
 
@@ -100,14 +110,16 @@ public abstract class MessageRecord extends DisplayRecord {
     if (isGroupUpdate() && isOutgoing()) {
       return emphasisAdded(context.getString(R.string.MessageRecord_updated_group));
     } else if (isGroupUpdate()) {
-      return emphasisAdded(GroupUtil.getDescription(context, getBody().getParsedBody()));
+      return emphasisAdded(GroupUtil.getDescription(context, getBody().getBody()));
     } else if (isGroupQuit() && isOutgoing()) {
       return emphasisAdded(context.getString(R.string.MessageRecord_left_group));
     } else if (isGroupQuit()) {
       return emphasisAdded(context.getString(R.string.ConversationItem_group_action_left, getIndividualRecipient().toShortString()));
+    } else if (getBody().getBody().length() > MAX_DISPLAY_LENGTH) {
+      return new SpannableString(getBody().getBody().substring(0, MAX_DISPLAY_LENGTH));
     }
 
-    return new SpannableString(getBody().getParsedBody());
+    return new SpannableString(getBody().getBody());
   }
 
   public long getId() {
@@ -150,6 +162,10 @@ public abstract class MessageRecord extends DisplayRecord {
     return SmsDatabase.Types.isPendingInsecureSmsFallbackType(type);
   }
 
+  public boolean isIdentityMismatchFailure() {
+    return mismatches != null && !mismatches.isEmpty();
+  }
+
   public boolean isBundleKeyExchange() {
     return SmsDatabase.Types.isBundleKeyExchange(type);
   }
@@ -178,6 +194,18 @@ public abstract class MessageRecord extends DisplayRecord {
     return type;
   }
 
+  public List<IdentityKeyMismatch> getIdentityKeyMismatches() {
+    return mismatches;
+  }
+
+  public List<NetworkFailure> getNetworkFailures() {
+    return networkFailures;
+  }
+
+  public boolean hasNetworkFailures() {
+    return networkFailures != null && !networkFailures.isEmpty();
+  }
+
   protected SpannableString emphasisAdded(String sequence) {
     SpannableString spannable = new SpannableString(sequence);
     spannable.setSpan(new RelativeSizeSpan(0.9f), 0, sequence.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -196,6 +224,5 @@ public abstract class MessageRecord extends DisplayRecord {
   public int hashCode() {
     return (int)getId();
   }
-
 
 }

@@ -20,13 +20,14 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.text.TextUtils;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.mms.ApnUnavailableException;
-import org.thoughtcrime.securesms.mms.MmsConnection.Apn;
+import org.thoughtcrime.securesms.mms.LegacyMmsConnection.Apn;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -73,7 +74,7 @@ public class ApnDatabase {
   private static ApnDatabase instance = null;
 
   public synchronized static ApnDatabase getInstance(Context context) throws IOException {
-    if (instance == null) instance = new ApnDatabase(context);
+    if (instance == null) instance = new ApnDatabase(context.getApplicationContext());
     return instance;
   }
 
@@ -89,17 +90,19 @@ public class ApnDatabase {
     Util.copy(context.getAssets().open(ASSET_PATH, AssetManager.ACCESS_STREAMING),
               new FileOutputStream(dbFile));
 
-    this.db = SQLiteDatabase.openDatabase(context.getDatabasePath(DATABASE_NAME).getPath(),
-                                          null,
-                                          SQLiteDatabase.OPEN_READONLY | SQLiteDatabase.NO_LOCALIZED_COLLATORS);
+    try {
+      this.db = SQLiteDatabase.openDatabase(context.getDatabasePath(DATABASE_NAME).getPath(),
+                                            null,
+                                            SQLiteDatabase.OPEN_READONLY | SQLiteDatabase.NO_LOCALIZED_COLLATORS);
+    } catch (SQLiteException e) {
+      throw new IOException(e);
+    }
   }
-  protected Apn getLocallyConfiguredMmsConnectionParameters() throws ApnUnavailableException {
-    if (TextSecurePreferences.isUseLocalApnsEnabled(context)) {
-      String mmsc = TextSecurePreferences.getMmscUrl(context).trim();
-      if (TextUtils.isEmpty(mmsc))
-        throw new ApnUnavailableException("Malformed locally configured MMSC.");
 
-      if (!mmsc.startsWith("http"))
+  private Apn getCustomApnParameters() {
+      String mmsc = TextSecurePreferences.getMmscUrl(context).trim();
+
+      if (!TextUtils.isEmpty(mmsc) && !mmsc.startsWith("http"))
         mmsc = "http://" + mmsc;
 
       String proxy = TextSecurePreferences.getMmscProxy(context);
@@ -108,26 +111,12 @@ public class ApnDatabase {
       String pass  = TextSecurePreferences.getMmscPassword(context);
 
       return new Apn(mmsc, proxy, port, user, pass);
-    }
-
-    throw new ApnUnavailableException("No locally configured parameters available");
-
   }
 
-  public Apn getMmsConnectionParameters(final String mccmnc, final String apn) {
-
-    if (TextSecurePreferences.isUseLocalApnsEnabled(context)) {
-      Log.w(TAG, "Choosing locally-overridden MMS settings");
-      try {
-        return getLocallyConfiguredMmsConnectionParameters();
-      } catch (ApnUnavailableException aue) {
-        Log.w(TAG, "preference to use local apn set, but no parameters avaiable. falling back.");
-      }
-    }
-
+  public Apn getDefaultApnParameters(String mccmnc, String apn) {
     if (mccmnc == null) {
       Log.w(TAG, "mccmnc was null, returning null");
-      return null;
+      return Apn.EMPTY;
     }
 
     Cursor cursor = null;
@@ -161,9 +150,25 @@ public class ApnDatabase {
       }
 
       Log.w(TAG, "No matching APNs found, returning null");
-      return null;
+
+      return Apn.EMPTY;
     } finally {
       if (cursor != null) cursor.close();
     }
+
+  }
+
+  public Optional<Apn> getMmsConnectionParameters(String mccmnc, String apn) {
+    Apn customApn  = getCustomApnParameters();
+    Apn defaultApn = getDefaultApnParameters(mccmnc, apn);
+    Apn result     = new Apn(customApn, defaultApn,
+                             TextSecurePreferences.getUseCustomMmsc(context),
+                             TextSecurePreferences.getUseCustomMmscProxy(context),
+                             TextSecurePreferences.getUseCustomMmscProxyPort(context),
+                             TextSecurePreferences.getUseCustomMmscUsername(context),
+                             TextSecurePreferences.getUseCustomMmscPassword(context));
+
+    if (TextUtils.isEmpty(result.getMmsc())) return Optional.absent();
+    else                                     return Optional.of(result);
   }
 }

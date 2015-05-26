@@ -62,7 +62,7 @@ public class BitmapWorkerRunnable implements Runnable {
       return;
     }
 
-    bitmap = BitmapUtil.getScaledCircleCroppedBitmap(contactPhoto, size);
+    bitmap = BitmapUtil.getCircleBitmap(contactPhoto);
 
     if (bitmap != null) {
       final ImageView imageView                  = imageViewReference.get();

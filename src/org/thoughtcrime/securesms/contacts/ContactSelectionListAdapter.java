@@ -89,7 +89,7 @@ public class ContactSelectionListAdapter extends    CursorAdapter
     this.multiSelect         = multiSelect;
     this.defaultPhoto        = ContactPhotoFactory.getDefaultContactPhoto(context);
     this.scaledPhotoSize     = context.getResources().getDimensionPixelSize(R.dimen.contact_selection_photo_size);
-    this.defaultCroppedPhoto = BitmapUtil.getScaledCircleCroppedBitmap(defaultPhoto, scaledPhotoSize);
+    this.defaultCroppedPhoto = BitmapUtil.getCircleBitmap(defaultPhoto);
   }
 
   public static class ViewHolder {

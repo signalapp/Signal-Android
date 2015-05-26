@@ -5,14 +5,22 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.util.Pair;
+
+import com.android.gallery3d.data.Exif;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.PartAuthority;
@@ -20,11 +28,9 @@ import org.thoughtcrime.securesms.mms.PartAuthority;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-
-import com.android.gallery3d.data.Exif;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class BitmapUtil {
   private static final String TAG = BitmapUtil.class.getSimpleName();
@@ -80,7 +86,9 @@ public class BitmapUtil {
   private static Bitmap createScaledBitmap(Context context, MasterSecret masterSecret, Uri uri, int maxWidth, int maxHeight, boolean constrainedMemory)
       throws IOException, BitmapDecodingException
   {
-    return createScaledBitmap(PartAuthority.getPartStream(context, masterSecret, uri),
+    InputStream is = PartAuthority.getPartStream(context, masterSecret, uri);
+    if (is == null) throw new IOException("Couldn't obtain InputStream");
+    return createScaledBitmap(is,
                               PartAuthority.getPartStream(context, masterSecret, uri),
                               PartAuthority.getPartStream(context, masterSecret, uri),
                               maxWidth, maxHeight, constrainedMemory);
@@ -217,41 +225,6 @@ public class BitmapUtil {
     return new Pair<>(options.outWidth, options.outHeight);
   }
 
-  public static Bitmap getCircleCroppedBitmap(Bitmap bitmap) {
-    if (bitmap == null) return null;
-    final int srcSize = Math.min(bitmap.getWidth(), bitmap.getHeight());
-    return getScaledCircleCroppedBitmap(bitmap, srcSize);
-  }
-
-  public static Bitmap getScaledCircleCroppedBitmap(Context context, MasterSecret masterSecret, Uri uri, int destSize)
-      throws IOException, BitmapDecodingException
-  {
-    Bitmap bitmap = createScaledBitmap(context, masterSecret, uri, destSize, destSize);
-    return getScaledCircleCroppedBitmap(bitmap, destSize);
-  }
-
-  public static Bitmap getScaledCircleCroppedBitmap(Bitmap bitmap, int destSize) {
-    if (bitmap == null) return null;
-    Bitmap output = Bitmap.createBitmap(destSize, destSize, Bitmap.Config.ARGB_8888);
-    Canvas canvas = new Canvas(output);
-
-    final int srcSize = Math.min(bitmap.getWidth(), bitmap.getHeight());
-    final int srcX = (bitmap.getWidth() - srcSize) / 2;
-    final int srcY = (bitmap.getHeight() - srcSize) / 2;
-    final Rect srcRect = new Rect(srcX, srcY, srcX + srcSize, srcY + srcSize);
-    final Rect destRect = new Rect(0, 0, destSize, destSize);
-    final int color = 0xff424242;
-    final Paint paint = new Paint();
-
-    paint.setAntiAlias(true);
-    canvas.drawARGB(0, 0, 0, 0);
-    paint.setColor(color);
-    canvas.drawCircle(destSize / 2, destSize / 2, destSize / 2, paint);
-    paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-    canvas.drawBitmap(bitmap, srcRect, destRect, paint);
-    return output;
-  }
-
   public static InputStream toCompressedJpeg(Bitmap bitmap) {
     ByteArrayOutputStream thumbnailBytes = new ByteArrayOutputStream();
     bitmap.compress(CompressFormat.JPEG, 85, thumbnailBytes);
@@ -262,5 +235,73 @@ public class BitmapUtil {
     ByteArrayOutputStream stream = new ByteArrayOutputStream();
     bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
     return stream.toByteArray();
+  }
+
+  public static Bitmap getCircleBitmap(Bitmap bitmap) {
+    final Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),
+                                              bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+    final Canvas canvas = new Canvas(output);
+
+    final int   color = Color.RED;
+    final Paint paint = new Paint();
+    final Rect  rect  = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+    final RectF rectF = new RectF(rect);
+
+    paint.setAntiAlias(true);
+    canvas.drawARGB(0, 0, 0, 0);
+    paint.setColor(color);
+    canvas.drawOval(rectF, paint);
+
+    paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+    canvas.drawBitmap(bitmap, rect, rect, paint);
+
+    return output;
+  }
+
+  public static Bitmap createFromDrawable(final Drawable drawable, final int width, final int height) {
+    final AtomicBoolean created = new AtomicBoolean(false);
+    final Bitmap[]      result  = new Bitmap[1];
+
+    Runnable runnable = new Runnable() {
+      @Override
+      public void run() {
+        if (drawable instanceof BitmapDrawable) {
+          result[0] = ((BitmapDrawable) drawable).getBitmap();
+        } else {
+          int canvasWidth = drawable.getIntrinsicWidth();
+          if (canvasWidth <= 0) canvasWidth = width;
+
+          int canvasHeight = drawable.getIntrinsicHeight();
+          if (canvasHeight <= 0) canvasHeight = height;
+
+          Bitmap bitmap;
+
+          try {
+            bitmap = Bitmap.createBitmap(canvasWidth, canvasHeight, Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(bitmap);
+            drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+            drawable.draw(canvas);
+          } catch (Exception e) {
+            Log.w(TAG, e);
+            bitmap = null;
+          }
+
+          result[0] = bitmap;
+        }
+
+        synchronized (result) {
+          created.set(true);
+          result.notifyAll();
+        }
+      }
+    };
+
+    if (Looper.myLooper() == Looper.getMainLooper()) runnable.run();
+    else                                             new Handler(Looper.getMainLooper()).post(runnable);
+
+    synchronized (result) {
+      while (!created.get()) Util.wait(result, 0);
+      return result[0];
+    }
   }
 }

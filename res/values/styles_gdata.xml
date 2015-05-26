@@ -63,9 +63,6 @@
         <item name="conversation_item_sent_push_background">
             @drawable/gdata_conversation_item_sent_push_shape
         </item>
-        <item name="conversation_item_sent_push_triangle_background">
-            @drawable/gdata_conversation_item_sent_push_triangle_shape
-        </item>
         <item name="conversation_item_sent_indicator_text_background">
             @drawable/gdata_conversation_item_sent_indicator_text_shape
         </item>
@@ -79,7 +76,7 @@
         <item name="conversation_item_sent_push_pending_background">
             @drawable/gdata_conversation_item_sent_push_pending_shape
         </item>
-        <item name="conversation_item_sent_push_pending_triangle_background">
+        <item name="conversation_item_sent_push_triangle_background">
             @drawable/gdata_conversation_item_sent_push_pending_triangle_shape
         </item>
         <item name="conversation_editor_text_color">#000000</item>
@@ -103,8 +100,6 @@
         <item name="conversation_emoji_toggle">@drawable/ic_emoji_dark</item>
         <item name="conversation_keyboard_toggle">@drawable/ic_ime_dark</item>
 
-        <item name="homeAsUpIndicator">@drawable/abc_ic_ab_back_holo_dark</item>
-        <item name="android:homeAsUpIndicator">@drawable/abc_ic_ab_back_holo_dark</item>
         <item name="menu_new_conversation_icon">@drawable/ic_action_new_holo_dark</item>
         <item name="menu_new_group_icon">@drawable/ic_action_add_group_holo_dark</item>
         <item name="menu_group_icon">@drawable/ic_menu_groups_holo_dark</item>
@@ -124,7 +119,6 @@
         <item name="menu_forward_icon">@drawable/ic_action_forward_holo_dark</item>
         <item name="menu_save_icon">@drawable/ic_action_save_holo_dark</item>
 
-        <item name="actionbar_icon">@drawable/actionbar_icon_gdata</item>
         <item name="lower_right_divet">@drawable/divet_lower_right_light</item>
         <item name="conversation_list_item_background_selected">@drawable/list_selected_holo_dark
         </item>

@@ -2,15 +2,12 @@ package org.thoughtcrime.securesms.database.loaders;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.util.Log;
 
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.util.AbstractCursorLoader;
 
 import java.util.List;
-
-import de.gdata.messaging.util.GDataPreferences;
 
 public class ConversationListLoader extends AbstractCursorLoader {
 
@@ -25,6 +22,7 @@ public class ConversationListLoader extends AbstractCursorLoader {
   public Cursor getCursor() {
     if (filter != null && filter.trim().length() != 0) {
       List<String> numbers = ContactAccessor.getInstance().getNumbersForThreadSearchFilter(context, filter);
+
       return DatabaseFactory.getThreadDatabase(context).getFilteredConversationList(numbers);
     } else {
       return DatabaseFactory.getThreadDatabase(context).getConversationList();

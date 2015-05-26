@@ -358,7 +358,8 @@ public class ConversationItem extends LinearLayout {
               }
             } else {
               if(messageRecord.getMediaSlide() != null) {
-                messageRecord.getMediaSlide().setThumbnailOn(image);
+                image.setImageURI(messageRecord.getMediaSlide().getThumbnailUri());
+                //messageRecord.getMediaSlide().setThumbnailOn(image);
               }
             }
           }
@@ -467,7 +468,7 @@ public class ConversationItem extends LinearLayout {
       if (messageRecord.isPush()) timestamp = messageRecord.getDateSent();
       else timestamp = messageRecord.getDateReceived();
 
-      dateText.setText(DateUtils.getBetterRelativeTimeSpanString(getContext(), timestamp));
+      dateText.setText(DateUtils.getRelativeTimeSpanString(getContext(), timestamp));
     }
   }
 
@@ -564,7 +565,8 @@ public class ConversationItem extends LinearLayout {
                   mmsThumbnail.setVisibility(View.VISIBLE);
                   mmsContainer.setVisibility(View.VISIBLE);
                 }
-                slide.setThumbnailOn(mmsThumbnail);
+                mmsThumbnail.setImageURI(slide.getThumbnailUri());
+                //slide.setThumbnailOn(mmsThumbnail);
                 mmsThumbnail.setOnClickListener(new ThumbnailClickListener(slide));
                 return;
               }

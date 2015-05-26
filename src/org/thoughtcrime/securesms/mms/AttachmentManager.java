@@ -20,36 +20,37 @@ import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
-import android.util.Log;
 import android.provider.ContactsContract;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 
+import java.io.File;
 import java.io.IOException;
 
 public class AttachmentManager {
   private final static String TAG = AttachmentManager.class.getSimpleName();
 
-  private final Context context;
-  private final View attachmentView;
-  private final ImageView thumbnail;
-  private final Button removeButton;
-  private final SlideDeck slideDeck;
+  private final Context            context;
+  private final View               attachmentView;
+  private final ThumbnailView      thumbnail;
+  private final Button             removeButton;
+  private final SlideDeck          slideDeck;
   private final AttachmentListener attachmentListener;
 
+  private File captureFile;
+
   public AttachmentManager(Activity view, AttachmentListener listener) {
-    this.attachmentView     = (View)view.findViewById(R.id.attachment_editor);
-    this.thumbnail          = (ImageView)view.findViewById(R.id.attachment_thumbnail);
+    this.attachmentView     = view.findViewById(R.id.attachment_editor);
+    this.thumbnail          = (ThumbnailView)view.findViewById(R.id.attachment_thumbnail);
     this.removeButton       = (Button)view.findViewById(R.id.remove_image_button);
     this.slideDeck          = new SlideDeck();
     this.context            = view;
@@ -64,8 +65,13 @@ public class AttachmentManager {
     attachmentListener.onAttachmentChanged();
   }
 
+  public void cleanup() {
+    if (captureFile != null) captureFile.delete();
+    captureFile = null;
+  }
+
   public void setImage(Uri image) throws IOException, BitmapDecodingException {
-    setMedia(new ImageSlide(context, image), 345, 261);
+    setMedia(new ImageSlide(context, image));
   }
 
   public void setVideo(Uri video) throws IOException, MediaTooLargeException {
@@ -76,27 +82,12 @@ public class AttachmentManager {
     setMedia(new AudioSlide(context, audio));
   }
 
-  public void setMedia(final Slide slide, final int thumbnailWidth, final int thumbnailHeight) {
+  public void setMedia(final Slide slide) {
     slideDeck.clear();
     slideDeck.addSlide(slide);
-    new AsyncTask<Void,Void,Drawable>() {
-
-      @Override
-      protected Drawable doInBackground(Void... params) {
-        return slide.getThumbnail(thumbnailWidth, thumbnailHeight);
-      }
-
-      @Override
-      protected void onPostExecute(Drawable drawable) {
-        thumbnail.setImageDrawable(drawable);
-        attachmentView.setVisibility(View.VISIBLE);
-        attachmentListener.onAttachmentChanged();
-      }
-    }.execute();
-  }
-
-  public void setMedia(Slide slide) {
-    setMedia(slide, thumbnail.getWidth(), thumbnail.getHeight());
+    attachmentView.setVisibility(View.VISIBLE);
+    thumbnail.setImageResource(slide);
+    attachmentListener.onAttachmentChanged();
   }
 
   public boolean isAttachmentPresent() {
@@ -105,6 +96,24 @@ public class AttachmentManager {
 
   public SlideDeck getSlideDeck() {
     return slideDeck;
+  }
+
+  public File getCaptureFile() {
+    return captureFile;
+  }
+
+  public void capturePhoto(Activity activity, int requestCode) {
+    try {
+      Intent captureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+      if (captureIntent.resolveActivity(activity.getPackageManager()) != null) {
+        captureFile = File.createTempFile(String.valueOf(System.currentTimeMillis()), ".jpg", activity.getExternalFilesDir(null));
+        captureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(captureFile));
+        activity.startActivityForResult(captureIntent, requestCode);
+      }
+    } catch (IOException e) {
+      Log.w(TAG, e);
+    }
   }
 
   public static void selectVideo(Activity activity, int requestCode) {
@@ -151,6 +160,7 @@ public class AttachmentManager {
     @Override
     public void onClick(View v) {
       clear();
+      cleanup();
     }
   }
 

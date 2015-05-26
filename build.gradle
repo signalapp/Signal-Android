@@ -35,6 +35,8 @@ repositories {
     maven {
         url "https://raw.github.com/whispersystems/maven/master/shortcutbadger/releases/"
     }
+    maven { url 'https://dl.bintray.com/drummer-aidan/maven' }
+    jcenter()
 }
 
 dependencies {
@@ -46,14 +48,24 @@ dependencies {
     compile 'org.w3c:smil:1.0.0'
     compile 'org.apache.httpcomponents:httpclient-android:4.3.5'
     compile 'com.github.chrisbanes.photoview:library:1.2.3'
-    compile 'com.android.support:appcompat-v7:20.0.0'
+    compile 'com.android.support:appcompat-v7:22.1.1'
+    compile 'com.android.support:recyclerview-v7:22.1.1'
     compile 'com.madgag.spongycastle:prov:1.51.0.0'
     compile 'com.google.zxing:android-integration:3.1.0'
+    compile ('com.afollestad:material-dialogs:0.7.3.1') {
+        exclude module: 'appcompat-v7'
+        exclude module: 'recyclerview-v7'
+        exclude module: 'support-annotations'
+    }
+
+    compile 'com.github.bumptech.glide:glide:3.6.0'
+    compile 'com.makeramen:roundedimageview:1.5.0'
+
     compile ('com.android.support:support-v4-preferencefragment:1.0.0@aar'){
         exclude module: 'support-v4'
     }
     compile 'com.squareup.dagger:dagger:1.2.2'
-    compile ("com.doomonafireball.betterpickers:library:1.5.2") {
+    compile ("com.doomonafireball.betterpickers:library:1.5.3") {
         exclude group: 'com.android.support', module: 'support-v4'
     }
     provided 'com.squareup.dagger:dagger-compiler:1.2.2'
@@ -101,8 +113,8 @@ dependencies {
 //}
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion '21.1.2'
+    compileSdkVersion 22
+    buildToolsVersion '22.0.1'
 
     defaultConfig {
         minSdkVersion 9
@@ -119,11 +131,6 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
-    }
-
-    dexOptions {
-        incremental true
-        javaMaxHeapSize "1g"
     }
 
     signingConfigs {

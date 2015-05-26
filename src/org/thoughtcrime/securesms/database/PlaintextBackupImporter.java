@@ -9,6 +9,7 @@ import android.util.Log;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -36,7 +37,7 @@ public class PlaintextBackupImporter {
 
   private static String getPlaintextExportDirectoryPath() {
     File sdDirectory = Environment.getExternalStorageDirectory();
-    return sdDirectory.getAbsolutePath() + File.separator + "SecureChatPlaintextBackup.xml";
+    return sdDirectory.getAbsolutePath() + File.separator + "TextSecurePlaintextBackup.xml";
   }
 
   private static void importPlaintext(Context context, MasterSecret masterSecret)
@@ -54,7 +55,6 @@ public class PlaintextBackupImporter {
       XmlBackup.XmlBackupItem item;
 
       while ((item = backup.getNext()) != null) {
-
         Recipients      recipients = RecipientFactory.getRecipientsFromString(context, item.getAddress(), false);
         long            threadId   = threads.getThreadIdFor(recipients);
         SQLiteStatement statement  = db.createInsertStatement(transaction);
@@ -80,7 +80,6 @@ public class PlaintextBackupImporter {
         addLongToStatement(statement, 13, threadId);
         modifiedThreads.add(threadId);
         statement.execute();
-
       }
 
       for (long threadId : modifiedThreads) {

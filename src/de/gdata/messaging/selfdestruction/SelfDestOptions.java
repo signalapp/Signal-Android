@@ -72,17 +72,17 @@ public class SelfDestOptions {
 
         final int[] attrs = new int[]{R.attr.conversation_selfdestroy_icon_indicator};
         final TypedArray iconArray = context.obtainStyledAttributes(attrs);
-        final int iconArrayResource = iconArray.getResourceId(0, -1);
-        final TypedArray icons = context.getResources().obtainTypedArray(iconArrayResource);
+        //final int iconArrayResource = iconArray.getResourceId(R.array.gdata_selfdestroy_icons, 0);
+        //final TypedArray icons = context.getResources().obtainTypedArray(iconArrayResource);
 
         enabledSelfDest.clear();
         for (int i = 0; i < valuesArray.length; i++) {
             String key = valuesArray[i];
             enabledSelfDest.add(key);
-            selfDestMetaData.put(key, new DestroyOption(key, icons.getResourceId(i, -1), entryArray[i]));
+            selfDestMetaData.put(key, new DestroyOption(key, R.drawable.ic_bomb, entryArray[i]));
         }
         iconArray.recycle();
-        icons.recycle();
+
         updateViews();
     }
 

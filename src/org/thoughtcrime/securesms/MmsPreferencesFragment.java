@@ -25,6 +25,7 @@ import android.support.v4.preference.PreferenceFragment;
 import android.text.TextUtils;
 import android.widget.Toast;
 
+import org.thoughtcrime.securesms.mms.OutgoingLegacyMmsConnection;
 import org.thoughtcrime.securesms.mms.OutgoingMmsConnection;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
@@ -44,8 +45,8 @@ public class MmsPreferencesFragment extends PreferenceFragment {
   }
 
   private void initializePreferences() {
-    if (!OutgoingMmsConnection.isConnectionPossible(getActivity())) {
-      TextSecurePreferences.setUseLocalApnsEnabled(getActivity(), true);
+    if (!OutgoingLegacyMmsConnection.isConnectionPossible(getActivity())) {
+      //TextSecurePreferences.setUseLocalApnsEnabled(getActivity(), true);
       addPreferencesFromResource(R.xml.preferences_manual_mms);
       this.findPreference(TextSecurePreferences.ENABLE_MANUAL_MMS_PREF)
           .setOnPreferenceChangeListener(new OverrideMmsChangeListener());
@@ -74,18 +75,11 @@ public class MmsPreferencesFragment extends PreferenceFragment {
   private class OverrideMmsChangeListener implements Preference.OnPreferenceChangeListener {
     @Override
     public boolean onPreferenceChange(Preference preference, Object o) {
-      TextSecurePreferences.setUseLocalApnsEnabled(getActivity(), true);
+      //TextSecurePreferences.setUseLocalApnsEnabled(getActivity(), true);
       Toast.makeText(getActivity(), R.string.MmsPreferencesFragment__manual_mms_settings_are_required,
                      Toast.LENGTH_SHORT).show();
       return false;
     }
-  }
-
-  public static CharSequence getSummary(Context context) {
-    final int enabledResId  = R.string.MmsPreferencesFragment__enabled;
-    final int disabledResId = R.string.MmsPreferencesFragment__disabled;
-
-    return context.getString(TextSecurePreferences.isUseLocalApnsEnabled(context) ? enabledResId : disabledResId);
   }
 
   private class EditTextVerificationListener implements OnPreferenceChangeListener {

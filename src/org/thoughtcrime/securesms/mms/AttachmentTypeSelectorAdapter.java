@@ -26,6 +26,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.ResUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +37,7 @@ public class AttachmentTypeSelectorAdapter extends ArrayAdapter<AttachmentTypeSe
   public static final int ADD_VIDEO         = 2;
   public static final int ADD_SOUND         = 3;
   public static final int ADD_CONTACT_INFO  = 4;
+  public static final int TAKE_PHOTO        = 5;
 
   private final Context context;
 

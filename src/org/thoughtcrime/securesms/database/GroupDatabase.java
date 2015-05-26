@@ -8,9 +8,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
+import android.util.Log;
 
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
@@ -94,10 +96,8 @@ public class GroupDatabase extends Database {
       if (!includeSelf && member.equals(localNumber))
         continue;
 
-
       recipients.addAll(RecipientFactory.getRecipientsFromString(context, member, false)
-              .getRecipientsList());
-
+                                        .getRecipientsList());
     }
 
     return new Recipients(recipients);

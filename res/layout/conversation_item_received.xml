@@ -41,7 +41,8 @@
             android:layout_height="15dp"
             android:layout_marginTop="12dp"
             android:layout_alignRight="@id/contact_photo"
-            android:background="?conversation_item_received_triangle_background" />
+            android:background="?conversation_item_received_triangle_background"
+        />
 
         <LinearLayout android:id="@+id/conversation_item_parent"
             android:layout_width="wrap_content"
@@ -131,7 +132,7 @@
                     android:layout_gravity="center_vertical"
                     android:paddingRight="4dp"
                     android:paddingTop="2dp"
-                    android:src="?menu_lock_icon_small_dark"
+                    android:src="@drawable/ic_action_securesms_gdata"
                     android:contentDescription="@string/conversation_item__secure_message_description"
                     android:visibility="gone" />
 

@@ -7,23 +7,18 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.PartDatabase;
-import org.thoughtcrime.securesms.mms.MediaConstraints;
+import org.thoughtcrime.securesms.mms.AudioSlide;
+import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.PartAuthority;
-import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
+import org.thoughtcrime.securesms.mms.Slide;
+import org.thoughtcrime.securesms.mms.VideoSlide;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.concurrent.Callable;
 
 import ws.com.google.android.mms.ContentType;
-import ws.com.google.android.mms.MmsException;
 import ws.com.google.android.mms.pdu.PduPart;
-import ws.com.google.android.mms.pdu.SendReq;
 
 public class MediaUtil {
   private static final String TAG = MediaUtil.class.getSimpleName();
@@ -60,6 +55,19 @@ public class MediaUtil {
   {
     int maxSize = context.getResources().getDimensionPixelSize(R.dimen.thumbnail_max_size);
     return BitmapUtil.createScaledBitmap(context, masterSecret, uri, maxSize, maxSize);
+  }
+
+  public static Slide getSlideForPart(Context context, MasterSecret masterSecret, PduPart part, String contentType) {
+    Slide slide = null;
+    if (ContentType.isImageType(contentType)) {
+      slide = new ImageSlide(context, masterSecret, part);
+    } else if (ContentType.isVideoType(contentType)) {
+      slide = new VideoSlide(context, masterSecret, part);
+    } else if (ContentType.isAudioType(contentType)) {
+      slide = new AudioSlide(context, masterSecret, part);
+    }
+
+    return slide;
   }
 
   public static boolean isImage(PduPart part) {

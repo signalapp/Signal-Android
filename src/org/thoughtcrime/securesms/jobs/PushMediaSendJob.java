@@ -66,18 +66,14 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
     SendReq     message  = database.getOutgoingMessage(masterSecret, messageId);
 
     try {
-      if (deliver(masterSecret, message)) {
-        database.markAsPush(messageId);
-        database.markAsSecure(messageId);
-        database.markAsSent(messageId, "push".getBytes(), 0);
-      }
+      deliver(masterSecret, message);
+      database.markAsPush(messageId);
+      database.markAsSecure(messageId);
+      database.markAsSent(messageId, "push".getBytes(), 0);
+
     } catch (InsecureFallbackApprovalException ifae) {
       Log.w(TAG, ifae);
       database.markAsPendingInsecureSmsFallback(messageId);
-      notifyMediaMessageDeliveryFailed(context, messageId);
-    } catch (SecureFallbackApprovalException sfae) {
-      Log.w(TAG, sfae);
-      database.markAsPendingSecureSmsFallback(messageId);
       notifyMediaMessageDeliveryFailed(context, messageId);
     } catch (UntrustedIdentityException uie) {
       IncomingIdentityUpdateMessage identityUpdateMessage = IncomingIdentityUpdateMessage.createFor(message.getTo()[0].getString(), uie.getIdentityKey());
@@ -98,37 +94,33 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
     notifyMediaMessageDeliveryFailed(context, messageId);
   }
 
-
-  private boolean deliver(MasterSecret masterSecret, SendReq message)
-      throws RetryLaterException, SecureFallbackApprovalException,
-             InsecureFallbackApprovalException, UntrustedIdentityException,
-             UndeliverableMessageException
+  private void deliver(MasterSecret masterSecret, SendReq message)
+          throws RetryLaterException, InsecureFallbackApprovalException, UntrustedIdentityException,
+          UndeliverableMessageException
   {
-    MmsDatabase             database               = DatabaseFactory.getMmsDatabase(context);
-    TextSecureMessageSender messageSender          = messageSenderFactory.create(masterSecret);
-    String                  destination            = message.getTo()[0].getString();
-    boolean                 isSmsFallbackSupported = isSmsFallbackSupported(context, destination, true);
+    TextSecureMessageSender messageSender = messageSenderFactory.create(masterSecret);
+    String                  destination   = message.getTo()[0].getString();
 
     try {
-      prepareMessageMedia(masterSecret, message, MediaConstraints.PUSH_CONSTRAINTS, false);
-      Recipients                 recipients   = RecipientFactory.getRecipientsFromString(context, destination, false);
-      TextSecureAddress          address      = getPushAddress(recipients.getPrimaryRecipient().getNumber());
+      message = getResolvedMessage(masterSecret, message, MediaConstraints.PUSH_CONSTRAINTS, false);
+
+      TextSecureAddress          address      = getPushAddress(destination);
       List<TextSecureAttachment> attachments  = getAttachments(masterSecret, message);
       String                     body         = PartParser.getMessageText(message.getBody());
-      TextSecureMessage          mediaMessage = new TextSecureMessage(message.getSentTimestamp(), attachments, body);
+      TextSecureMessage          mediaMessage = TextSecureMessage.newBuilder()
+              .withBody(body)
+              .withAttachments(attachments)
+              .withTimestamp(message.getSentTimestamp())
+              .build();
 
       messageSender.sendMessage(address, mediaMessage);
-      return true;
     } catch (InvalidNumberException | UnregisteredUserException e) {
       Log.w(TAG, e);
-      if (isSmsFallbackSupported) fallbackOrAskApproval(masterSecret, message, destination);
-      else                        database.markAsSentFailed(messageId);
+      throw new InsecureFallbackApprovalException(e);
     } catch (IOException e) {
       Log.w(TAG, e);
-      if (isSmsFallbackSupported) fallbackOrAskApproval(masterSecret, message, destination);
-      else                        throw new RetryLaterException(e);
+      throw new RetryLaterException(e);
     }
-    return false;
   }
 
   private void fallbackOrAskApproval(MasterSecret masterSecret, SendReq mediaMessage, String destination)

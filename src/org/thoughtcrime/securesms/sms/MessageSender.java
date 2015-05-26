@@ -74,7 +74,7 @@ public class MessageSender {
       allocatedThreadId = threadId;
     }
 
-    long messageId = database.insertMessageOutbox(masterSecret, allocatedThreadId, message, forceSms);
+    long messageId = database.insertMessageOutbox(masterSecret, allocatedThreadId, message, forceSms, System.currentTimeMillis());
 
     sendTextMessage(context, recipients, forceSms, keyExchange, messageId);
 
@@ -100,7 +100,7 @@ public class MessageSender {
       }
 
       Recipients recipients = message.getRecipients();
-      long       messageId  = database.insertMessageOutbox(masterSecret, message, allocatedThreadId, forceSms);
+      long       messageId  = database.insertMessageOutbox(masterSecret, message, allocatedThreadId, forceSms, System.currentTimeMillis());
 
       sendMediaMessage(context, masterSecret, recipients, forceSms, messageId);
 

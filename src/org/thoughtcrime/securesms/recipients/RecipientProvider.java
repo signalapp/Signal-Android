@@ -145,7 +145,7 @@ public class RecipientProvider {
         Bitmap contactPhoto = ContactPhotoFactory.getContactPhoto(context, Uri.withAppendedPath(Contacts.CONTENT_URI,
                                                                                                 cursor.getLong(2)+""));
         return new RecipientDetails(cursor.getString(0), cursor.getString(3), contactUri, contactPhoto,
-                                    BitmapUtil.getCircleCroppedBitmap(contactPhoto));
+                                    BitmapUtil.getCircleBitmap(contactPhoto));
       }
     } finally {
       if (cursor != null)
@@ -167,7 +167,7 @@ public class RecipientProvider {
         if (avatarBytes == null) avatar = ContactPhotoFactory.getDefaultGroupPhoto(context);
         else                     avatar = BitmapFactory.decodeByteArray(avatarBytes, 0, avatarBytes.length);
 
-        return new RecipientDetails(record.getTitle(), groupId, null, avatar, BitmapUtil.getCircleCroppedBitmap(avatar));
+        return new RecipientDetails(record.getTitle(), groupId, null, avatar, BitmapUtil.getCircleBitmap(avatar));
       }
 
       return null;

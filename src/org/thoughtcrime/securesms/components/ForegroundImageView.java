@@ -16,21 +16,27 @@
 
 package org.thoughtcrime.securesms.components;
 
+import android.annotation.TargetApi;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.os.Build.VERSION_CODES;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.Gravity;
-import android.widget.ImageView;
+import android.view.View;
+
+import com.makeramen.RoundedImageView;
 
 import org.thoughtcrime.securesms.R;
 
 /**
  * https://gist.github.com/chrisbanes/9091754
  */
-public class ForegroundImageView extends ImageView {
+public class ForegroundImageView extends RoundedImageView {
 
   private Drawable mForeground;
 
@@ -39,9 +45,9 @@ public class ForegroundImageView extends ImageView {
 
   private int mForegroundGravity = Gravity.FILL;
 
-  protected boolean mForegroundInPadding = true;
+  private boolean mForegroundInPadding = true;
 
-  boolean mForegroundBoundsChanged = false;
+  private boolean mForegroundBoundsChanged = false;
 
   public ForegroundImageView(Context context) {
     super(context);
@@ -65,9 +71,10 @@ public class ForegroundImageView extends ImageView {
       setForeground(d);
     }
 
+    /*
     mForegroundInPadding = a.getBoolean(
       R.styleable.ForegroundImageView_android_foregroundInsidePadding, true);
-
+   und de*/
     a.recycle();
   }
 
@@ -111,12 +118,18 @@ public class ForegroundImageView extends ImageView {
     }
   }
 
+  @TargetApi(VERSION_CODES.JELLY_BEAN)
+  public ActivityOptions getThumbnailTransition() {
+    return ActivityOptions.makeScaleUpAnimation(this, 0, 0, getWidth(), getHeight());
+  }
+
   @Override
   protected boolean verifyDrawable(Drawable who) {
     return super.verifyDrawable(who) || (who == mForeground);
   }
 
   @Override
+  @TargetApi(VERSION_CODES.HONEYCOMB)
   public void jumpDrawablesToCurrentState() {
     super.jumpDrawablesToCurrentState();
     if (mForeground != null) mForeground.jumpToCurrentState();
@@ -188,7 +201,7 @@ public class ForegroundImageView extends ImageView {
   }
 
   @Override
-  public void draw(Canvas canvas) {
+  public void draw(@NonNull Canvas canvas) {
     super.draw(canvas);
 
     if (mForeground != null) {
@@ -217,5 +230,4 @@ public class ForegroundImageView extends ImageView {
       foreground.draw(canvas);
     }
   }
-
 }
