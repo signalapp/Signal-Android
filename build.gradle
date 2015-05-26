@@ -146,13 +146,6 @@ android {
         buildConfigField "String", "PUSH_URL", "\"https://textsecure-service.whispersystems.org\""
     }
 
-    productFlavors {
-        base { }
-        espresso {
-            testInstrumentationRunner "org.thoughtcrime.securesms.TextSecureWakingTestRunner"
-        }
-    }
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
@@ -210,15 +203,8 @@ android {
             res.srcDirs = ['res']
             assets.srcDirs = ['assets']
         }
-        espresso {
-            manifest.srcFile 'test/espresso/AndroidManifest.xml'
-        }
         androidTest {
             java.srcDirs = ['test/androidTest/java']
-        }
-        androidTestEspresso {
-            java.srcDirs = ['test/androidTestEspresso/java']
-            res.srcDirs  = ['test/androidTestEspresso/res']
         }
     }
 
@@ -256,4 +242,20 @@ if (propFile.canRead()){
 }else {
     println 'signing.properties not found'
     android.buildTypes.release.signingConfig = null
+}
+
+if (project.hasProperty('espresso')) {
+    android.productFlavors {
+        base {}
+        espresso {
+            testInstrumentationRunner "org.thoughtcrime.securesms.TextSecureWakingTestRunner"
+        }
+    }
+    android.sourceSets.espresso {
+        manifest.srcFile 'test/espresso/AndroidManifest.xml'
+    }
+    android.sourceSets.androidTestEspresso {
+        java.srcDirs = ['test/androidTestEspresso/java']
+        res.srcDirs  = ['test/androidTestEspresso/res']
+    }
 }
