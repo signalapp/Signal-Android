@@ -30,6 +30,27 @@ public abstract class MessagingDatabase extends Database implements MmsSmsColumn
 
   protected abstract String getTableName();
 
+  public void setMismatchedIdentity(long messageId, final long recipientId, final IdentityKey identityKey) {
+    List<IdentityKeyMismatch> items = new ArrayList<IdentityKeyMismatch>() {{
+      add(new IdentityKeyMismatch(recipientId, identityKey));
+    }};
+
+    IdentityKeyMismatchList document = new IdentityKeyMismatchList(items);
+
+    SQLiteDatabase database = databaseHelper.getWritableDatabase();
+    database.beginTransaction();
+
+    try {
+      setDocument(database, messageId, MISMATCHED_IDENTITIES, document);
+
+      database.setTransactionSuccessful();
+    } catch (IOException ioe) {
+      Log.w(TAG, ioe);
+    } finally {
+      database.endTransaction();
+    }
+  }
+
   public void addMismatchedIdentity(long messageId, long recipientId, IdentityKey identityKey) {
     try {
       addToDocument(messageId, MISMATCHED_IDENTITIES,
@@ -133,7 +154,9 @@ public abstract class MessagingDatabase extends Database implements MmsSmsColumn
 
       try {
         return clazz.newInstance();
-      } catch (InstantiationException | IllegalAccessException e) {
+      } catch (InstantiationException e) {
+        throw new AssertionError(e);
+      } catch (IllegalAccessException e) {
         throw new AssertionError(e);
       }
 

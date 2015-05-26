@@ -292,12 +292,12 @@ public class PushDecryptJob extends MasterSecretJob {
         IncomingPreKeyBundleMessage bundleMessage      = new IncomingPreKeyBundleMessage(textMessage, encoded);
         Pair<Long, Long>            messageAndThreadId = database.insertMessageInbox(masterSecret, bundleMessage);
 
-        database.addMismatchedIdentity(messageAndThreadId.first, recipientId, identityKey);
+        database.setMismatchedIdentity(messageAndThreadId.first, recipientId, identityKey);
         MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
       } else {
         database.updateMessageBody(masterSecret, smsMessageId.get(), encoded);
         database.markAsPreKeyBundle(smsMessageId.get());
-        database.addMismatchedIdentity(smsMessageId.get(), recipientId, identityKey);
+        database.setMismatchedIdentity(smsMessageId.get(), recipientId, identityKey);
       }
     } catch (InvalidMessageException | InvalidVersionException e) {
       throw new AssertionError(e);
