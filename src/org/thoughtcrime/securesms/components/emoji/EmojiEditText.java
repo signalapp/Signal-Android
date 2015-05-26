@@ -1,11 +1,14 @@
 package org.thoughtcrime.securesms.components.emoji;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable.Callback;
 import android.support.v7.widget.AppCompatEditText;
 import android.util.AttributeSet;
 
 
 public class EmojiEditText extends AppCompatEditText {
+  private final Callback callback = new PostInvalidateCallback(this);
+
   public EmojiEditText(Context context) {
     super(context);
   }
@@ -31,7 +34,7 @@ public class EmojiEditText extends AppCompatEditText {
     final char[]       chars = Character.toChars(codePoint);
     final CharSequence text  = EmojiProvider.getInstance(getContext()).emojify(new String(chars),
                                                                                EmojiProvider.EMOJI_SMALL,
-                                                                               new PostInvalidateCallback(this));
+                                                                               callback);
 
     getText().replace(Math.min(start, end), Math.max(start, end), text);
     setSelection(end + chars.length);
