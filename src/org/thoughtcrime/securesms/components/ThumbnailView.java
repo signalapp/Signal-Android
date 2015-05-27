@@ -166,7 +166,7 @@ public class ThumbnailView extends ForegroundImageView {
     public void onSuccess(final SlideDeck slideDeck) {
       if (slideDeck == null) return;
 
-      final Slide slide = slideDeck.getThumbnailSlide(getContext());
+      final Slide slide = slideDeck.getThumbnailSlide();
       if (slide != null) {
         handler.post(new Runnable() {
           @Override

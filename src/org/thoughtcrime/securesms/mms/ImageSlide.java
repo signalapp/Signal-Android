@@ -54,7 +54,7 @@ public class ImageSlide extends Slide {
 
   @Override
   public @DrawableRes int getPlaceholderRes(Theme theme) {
-    return R.drawable.ic_missing_thumbnail_picture;
+    return R.drawable.stat_sys_download;
   }
 
   @Override
