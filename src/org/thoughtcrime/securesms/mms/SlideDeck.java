@@ -88,7 +88,7 @@ public class SlideDeck {
     return false;
   }
 
-  public Slide getThumbnailSlide(Context context) {
+  public Slide getThumbnailSlide() {
     for (Slide slide : slides) {
       if (slide.hasImage()) {
         return slide;

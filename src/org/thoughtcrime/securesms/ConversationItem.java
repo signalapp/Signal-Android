@@ -25,13 +25,15 @@ import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.TransitionDrawable;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.QuickContact;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -42,7 +44,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.AlertDialogWrapper;
+
 import org.thoughtcrime.securesms.ConversationFragment.SelectionClickListener;
+import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -64,8 +69,12 @@ import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.Emoji;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
+import org.whispersystems.libaxolotl.logging.Log;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Set;
+import java.util.concurrent.ExecutionException;
 
 import de.gdata.messaging.util.GDataLinkMovementMethod;
 import de.gdata.messaging.util.GDataPreferences;
@@ -121,7 +130,7 @@ public class ConversationItem extends LinearLayout {
   private Set<MessageRecord> batchSelected;
   private SelectionClickListener selectionClickListener;
   private View mmsContainer;
-  private ImageView mmsThumbnail;
+  private ThumbnailView mmsThumbnail;
   private Button mmsDownloadButton;
   private TextView mmsDownloadingLabel;
   private ListenableFutureTask<SlideDeck> slideDeck;
@@ -159,7 +168,7 @@ public class ConversationItem extends LinearLayout {
     this.bombImage = (ImageView) findViewById(R.id.image_view_bomb);
     this.failedImage = (ImageView) findViewById(R.id.sms_failed_indicator);
     this.mmsContainer = findViewById(R.id.mms_view);
-    this.mmsThumbnail = (ImageView) findViewById(R.id.image_view);
+    this.mmsThumbnail = (ThumbnailView) findViewById(R.id.image_view);
     this.mmsDownloadButton = (Button) findViewById(R.id.mms_download_button);
     this.mmsDownloadingLabel = (TextView) findViewById(R.id.mms_label_downloading);
     this.contactPhoto = (ImageView) findViewById(R.id.contact_photo);
@@ -173,6 +182,8 @@ public class ConversationItem extends LinearLayout {
     if (failedImage != null) failedImage.setOnClickListener(failedIconClickListener);
     if (mmsDownloadButton != null) mmsDownloadButton.setOnClickListener(mmsDownloadClickListener);
     if (mmsThumbnail != null) {
+
+      mmsThumbnail.setThumbnailClickListener(new ThumbnailClickListener());
       mmsThumbnail.setOnLongClickListener(new MultiSelectLongClickListener());
       mmsThumbnail.setVisibility(View.GONE);
     }
@@ -202,11 +213,7 @@ public class ConversationItem extends LinearLayout {
       setEvents(messageRecord);
       setMinimumWidth();
 
-      if (messageRecord.isMmsNotification()) {
-        setNotificationMmsAttributes((NotificationMmsMessageRecord) messageRecord);
-      } else if (messageRecord.isMms()) {
-        setMediaMmsAttributes((MediaMmsMessageRecord) messageRecord);
-      }
+      setMediaAttributes(messageRecord);
     }
   }
 
@@ -491,8 +498,8 @@ public class ConversationItem extends LinearLayout {
         messageRecord.getRecipients().isSingleRecipient() &&
         !messageRecord.isSecure()) {
       checkForAutoInitiate(messageRecord.getIndividualRecipient(),
-          messageRecord.getBody().getBody(),
-          messageRecord.getThreadId());
+              messageRecord.getBody().getBody(),
+              messageRecord.getThreadId());
     }
   }
 
@@ -530,7 +537,48 @@ public class ConversationItem extends LinearLayout {
     }
   }
 
-  private void setMediaMmsAttributes(MediaMmsMessageRecord mediaMessageRecord) {
+  private void setMediaAttributes(MessageRecord messageRecord) {
+    if (messageRecord.isMmsNotification()) {
+      setNotificationMmsAttributes((NotificationMmsMessageRecord) messageRecord);
+    } else if (messageRecord.isMms()) {
+      resolveMedia((MediaMmsMessageRecord) messageRecord);
+      //setMediaMmsAttributes(messageRecord);
+    }
+  }
+
+  private void resolveMedia(MediaMmsMessageRecord messageRecord) {
+    if (hasMedia(messageRecord)) {
+      if (hasMedia(messageRecord)) {
+        mmsThumbnail.setVisibility(View.VISIBLE);
+        mmsContainer.setVisibility(View.VISIBLE);
+        mmsThumbnail.setImageResource(masterSecret, messageRecord.getId(),
+                messageRecord.getDateReceived(),
+                messageRecord.getSlideDeckFuture());
+
+      }
+    }
+  }
+
+  private Drawable getDrawable(SlideDeck result) {
+    Drawable bitmap = null;
+    try {
+      Uri uri = result.getThumbnailSlide().getThumbnailUri();
+      InputStream is = PartAuthority.getPartStream(context, masterSecret, uri);
+      bitmap = Drawable.createFromStream(is, null);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return bitmap;
+  }
+
+  private boolean hasMedia(MessageRecord messageRecord) {
+    return messageRecord.isMms()              &&
+            !messageRecord.isMmsNotification() &&
+            ((MediaMmsMessageRecord)messageRecord).getPartCount() > 0;
+  }
+
+
+  private void setMediaMmsAttributes(final MediaMmsMessageRecord mediaMessageRecord) {
     if (mediaMessageRecord.getPartCount() > 0) {
       if (mediaMessageRecord.getBody().isSelfDestruction()) {
         mmsThumbnail.setVisibility(View.GONE);
@@ -545,43 +593,63 @@ public class ConversationItem extends LinearLayout {
       mmsContainer.setVisibility(View.GONE);
     }
     slideDeck = mediaMessageRecord.getSlideDeckFuture();
-    slideDeckListener = new FutureTaskListener<SlideDeck>() {
-      @Override
-      public void onSuccess(final SlideDeck result) {
-        if (result == null)
-          return;
+    if(slideDeck.isDone()){
+      try {
+        Drawable bitmap = getDrawable(slideDeck.get());
+        mmsThumbnail.setImageDrawable(bitmap);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      } catch (ExecutionException e) {
+        e.printStackTrace();
+      }
+    }else {
+      slideDeckListener = new FutureTaskListener<SlideDeck>() {
+        @Override
+        public void onSuccess(final SlideDeck result) {
+          if (result == null)
+            return;
 
-        handler.post(new Runnable() {
-          @Override
-          public void run() {
-            for (Slide slide : result.getSlides()) {
+          handler.post(new Runnable() {
+            @Override
+            public void run() {
+              for (Slide slide : result.getSlides()) {
 
-              if (slide.hasImage()) {
-                if (messageRecord.getBody().isSelfDestruction()) {
-                  mmsThumbnail.setVisibility(View.GONE);
-                  mmsContainer.setVisibility(View.GONE);
-                  messageRecord.setMediaSlide(slide);
-                } else {
-                  mmsThumbnail.setVisibility(View.VISIBLE);
-                  mmsContainer.setVisibility(View.VISIBLE);
+                if (slide.hasImage()) {
+                  if (messageRecord.getBody().isSelfDestruction()) {
+                    mmsThumbnail.setVisibility(View.GONE);
+                    mmsContainer.setVisibility(View.GONE);
+                    messageRecord.setMediaSlide(slide);
+                  } else {
+                    mmsThumbnail.setVisibility(View.VISIBLE);
+                    mmsContainer.setVisibility(View.VISIBLE);
+                  }
+                  Slide thumbnailSlide = result.getThumbnailSlide();
+                  if(thumbnailSlide.getPart().isPendingPush()){
+                    mmsThumbnail.setImageResource(thumbnailSlide.getPlaceholderRes(null));
+                  }else {
+                    Drawable bitmap = getDrawable(result);
+                    TransitionDrawable fadingResult = new TransitionDrawable(new Drawable[]{new ColorDrawable(Color.TRANSPARENT), bitmap});
+                    mmsThumbnail.setImageDrawable(fadingResult);
+                    fadingResult.startTransition(300);
+                  }
+
+
+                  mmsThumbnail.setOnClickListener(new ThumbnailOnClickListener(slide));
+                  return;
                 }
-                mmsThumbnail.setImageURI(slide.getThumbnailUri());
-                //slide.setThumbnailOn(mmsThumbnail);
-                mmsThumbnail.setOnClickListener(new ThumbnailClickListener(slide));
-                return;
               }
+
+              mmsThumbnail.setVisibility(View.GONE);
             }
+          });
+        }
 
-            mmsThumbnail.setVisibility(View.GONE);
-          }
-        });
-      }
-
-      @Override
-      public void onFailure(Throwable error) {
-      }
-    };
-    slideDeck.addListener(slideDeckListener);
+        @Override
+        public void onFailure(Throwable error) {
+        }
+      };
+      slideDeck.addListener(slideDeckListener);
+    }
   }
 
   /// Helper Methods
@@ -649,10 +717,53 @@ public class ConversationItem extends LinearLayout {
     context.startActivity(intent);
   }
 
-  private class ThumbnailClickListener implements View.OnClickListener {
+  private class ThumbnailClickListener implements ThumbnailView.ThumbnailClickListener {
+    private void fireIntent(Slide slide) {
+      Log.w(TAG, "Clicked: " + slide.getUri() + " , " + slide.getContentType());
+      Intent intent = new Intent(Intent.ACTION_VIEW);
+      intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+      intent.setDataAndType(PartAuthority.getPublicPartUri(slide.getUri()), slide.getContentType());
+      try {
+        context.startActivity(intent);
+      } catch (ActivityNotFoundException anfe) {
+        Log.w(TAG, "No activity existed to view the media.");
+        Toast.makeText(context, R.string.ConversationItem_unable_to_open_media, Toast.LENGTH_LONG).show();
+      }
+    }
+
+    public void onClick(final View v, final Slide slide) {
+      if (!batchSelected.isEmpty()) {
+        selectionClickListener.onItemClick(null, ConversationItem.this, -1, -1);
+      } else if (MediaPreviewActivity.isContentTypeSupported(slide.getContentType())) {
+        Intent intent = new Intent(context, MediaPreviewActivity.class);
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        intent.setDataAndType(slide.getUri(), slide.getContentType());
+        intent.putExtra(MediaPreviewActivity.MASTER_SECRET_EXTRA, masterSecret);
+        if (!messageRecord.isOutgoing()) intent.putExtra(MediaPreviewActivity.RECIPIENT_EXTRA, messageRecord.getIndividualRecipient().getRecipientId());
+        intent.putExtra(MediaPreviewActivity.DATE_EXTRA, messageRecord.getDateReceived());
+
+        context.startActivity(intent);
+      } else {
+        AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(context);
+        builder.setTitle(R.string.ConversationItem_view_secure_media_question);
+        builder.setIconAttribute(R.attr.dialog_alert_icon);
+        builder.setCancelable(true);
+        builder.setMessage(R.string.ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning);
+        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+          public void onClick(DialogInterface dialog, int which) {
+            fireIntent(slide);
+          }
+        });
+        builder.setNegativeButton(R.string.no, null);
+        builder.show();
+      }
+    }
+  }
+
+  private class ThumbnailOnClickListener implements View.OnClickListener {
     private final Slide slide;
 
-    public ThumbnailClickListener(Slide slide) {
+    public ThumbnailOnClickListener(Slide slide) {
       this.slide = slide;
     }
 
