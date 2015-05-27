@@ -106,6 +106,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
   private void initializeSearch(MenuItem searchViewItem) {
     SearchView searchView = (SearchView)MenuItemCompat.getActionView(searchViewItem);
+    searchView.setQueryHint(getString(R.string.ConversationListActivity_search));
     searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
       @Override
       public boolean onQueryTextSubmit(String query) {
