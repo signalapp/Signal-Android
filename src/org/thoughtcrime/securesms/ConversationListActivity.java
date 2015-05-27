@@ -31,7 +31,6 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -40,6 +39,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.SearchView;
 import android.text.InputType;
 import android.util.Log;
@@ -104,7 +104,6 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     mDrawerToggle = new ActionBarDrawerToggle(
         this,                  /* host Activity */
         mDrawerLayout,         /* DrawerLayout object */
-        R.drawable.ic_drawer,  /* nav drawer icon to replace 'Up' caret */
         R.string.common_open_on_phone,  /* "open drawer" description */
         R.string.abc_action_bar_home_description  /* "close drawer" description */
     ) {
@@ -123,6 +122,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     };
     mDrawerToggle.setDrawerIndicatorEnabled(true);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    getSupportActionBar().setElevation(0);
     // Set the drawer toggle as the DrawerListener
     mDrawerLayout.setDrawerListener(mDrawerToggle);
 

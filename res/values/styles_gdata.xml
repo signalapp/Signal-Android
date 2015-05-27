@@ -1,15 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-
+    <style name="TextSecure.IntroTheme" parent="@style/Theme.AppCompat.Light">
+        <!--<item name="colorPrimary">@android:color/transparent</item>-->
+        <item name="actionBarStyle">@style/TextSecure.IntroActionBar</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    <style name="OverFlow" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:src">@drawable/abc_ic_menu_moreoverflow</item>
+    </style>
     <style name="GSecure.GDataTheme" parent="@style/Theme.AppCompat.Light">
+
+
+        <item name="colorPrimary">@color/gdata_red</item>
+        <!-- colorPrimaryDark is used for the status bar -->
+        <item name="colorPrimaryDark">@color/gdata_red</item>
+        <item name="colorAccent">@color/gdata_red</item>
 
         <item name="conversation_selfdestroy_icon_indicator">@array/gdata_selfdestroy_icons</item>
 
         <item name="android:actionBarStyle">@style/GSecure.GDataActionBar</item>
         <item name="actionBarStyle">@style/GSecure.GDataActionBar</item>
 
-        <item name="android:actionOverflowButtonStyle">@style/Widget.AppCompat.ActionButton.Overflow</item>
-        <item name="actionOverflowButtonStyle">@style/Widget.AppCompat.ActionButton.Overflow</item>
+        <item name="android:actionOverflowButtonStyle">@style/OverFlow</item>
+        <item name="actionOverflowButtonStyle">@style/OverFlow</item>
+
         <item name="android:windowContentOverlay">@null</item>
 
         <item name="android:actionModeBackground">@drawable/cab_background_top</item>
@@ -18,6 +32,7 @@
         <item name="actionModeSplitBackground">@drawable/cab_background_bottom</item>
         <item name="android:actionModeCloseDrawable">@drawable/ic_cab_done_holo_dark</item>
         <item name="actionModeCloseDrawable">@drawable/ic_cab_done_holo_dark</item>
+
         <item name="android:actionModeStyle">@style/CustomActionMode</item>
         <item name="actionModeStyle">@style/CustomActionMode</item>
 
@@ -90,6 +105,8 @@
         <item name="logo">@drawable/actionbar_icon_gdata</item>
         <item name="android:logo">@drawable/actionbar_icon_gdata</item>
 
+        <item name="actionbar_icon">@drawable/actionbar_icon_gdata</item>
+
         <item name="conversation_send_button_push">@drawable/ic_send_im_gdata</item>
         <item name="conversation_send_button_sms_secure">@drawable/ic_action_securesms_gdata</item>
         <item name="conversation_send_button_sms_insecure">@drawable/ic_action_sms_gdata
@@ -99,6 +116,9 @@
         <item name="conversation_transport_popup_background">@color/white</item>
         <item name="conversation_emoji_toggle">@drawable/ic_emoji_dark</item>
         <item name="conversation_keyboard_toggle">@drawable/ic_ime_dark</item>
+
+        <item name="homeAsUpIndicator">@drawable/abc_ic_ab_back</item>
+        <item name="android:homeAsUpIndicator">@drawable/abc_ic_ab_back</item>
 
         <item name="menu_new_conversation_icon">@drawable/ic_action_new_holo_dark</item>
         <item name="menu_new_group_icon">@drawable/ic_action_add_group_holo_dark</item>
@@ -124,8 +144,13 @@
         </item>
         <item name="dialog_info_icon">@drawable/ic_dialog_info_dark</item>
         <item name="dialog_alert_icon">@drawable/ic_dialog_alert_dark</item>
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
     </style>
 
+    <style name="DrawerArrowStyle" parent="@style/Widget.AppCompat.DrawerArrowToggle">
+        <item name="spinBars">true</item>
+        <item name="color">@android:color/white</item>
+    </style>
     <!-- Widget.Sherlock.ActionButton.CloseMode -->
     <style name="CustomActionMode" parent="Widget.AppCompat.Light.ActionMode.Inverse">
         <item name="android:textColor">@android:color/white</item>
@@ -158,7 +183,7 @@
         <item name="android:listPreferredItemPaddingEnd">16dip</item>
     </style>
 
-    <style name="GSecure.GDataActionBar" parent="@style/Widget.AppCompat.Light.ActionBar">
+    <style name="GSecure.GDataActionBar" parent="@style/Widget.AppCompat.ActionBar">
         <item name="android:icon">@drawable/actionbar_icon_gdata</item>
         <item name="icon">@drawable/actionbar_icon_gdata</item>
         <item name="android:background">@color/gdata_red</item>

@@ -25,11 +25,7 @@ public class DynamicTheme {
   }
 
   protected int getSelectedTheme(Activity activity) {
-    String theme = TextSecurePreferences.getTheme(activity);
-
-    if (theme.equals("dark")) return R.style.TextSecure_DarkTheme;
-
-    return R.style.TextSecure_LightTheme;
+    return R.style.GSecure_GDataTheme;
   }
 
   private static final class OverridePendingTransition {
