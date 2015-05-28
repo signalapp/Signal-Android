@@ -16,7 +16,11 @@
  */
 package org.thoughtcrime.securesms.database.model;
 
+import android.content.ContentResolver;
 import android.content.Context;
+import android.database.Cursor;
+import android.net.Uri;
+import android.provider.ContactsContract;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.RelativeSizeSpan;
@@ -30,8 +34,12 @@ import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.GroupUtil;
+import org.whispersystems.libaxolotl.logging.Log;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * The base class for message record models that are displayed in
@@ -119,7 +127,20 @@ public abstract class MessageRecord extends DisplayRecord {
       return new SpannableString(getBody().getBody().substring(0, MAX_DISPLAY_LENGTH));
     }
 
-    return new SpannableString(getBody().getBody());
+
+      ArrayList<KnownPhoneNumbers> knownPhoneNumbersArrayList= checkForPhoneNumber(getBody().getBody());
+      String message=getBody().getBody();
+
+      if(knownPhoneNumbersArrayList.size()>0){
+          int offset=0;
+          for(KnownPhoneNumbers knownN: knownPhoneNumbersArrayList) {
+              message=(message.substring(0, knownN.getEnd()+offset)).concat("(").concat(knownN.getContactName()).concat(")").concat(message.substring(knownN.getEnd()+offset, message.length()));
+              offset+=knownN.getContactName().length()+2;
+          }
+
+          Log.w("two contacts", message);
+      }
+    return new SpannableString(message);
   }
 
   public long getId() {
@@ -216,5 +237,95 @@ public abstract class MessageRecord extends DisplayRecord {
   public int hashCode() {
     return (int)getId();
   }
+
+  public static String findContactName(Context context, String phoneNumber) {
+
+    ContentResolver cr = context.getContentResolver();
+    Uri uri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(phoneNumber));
+    Cursor cursor = cr.query(uri, new String[]{ContactsContract.PhoneLookup.DISPLAY_NAME}, null, null, null);
+    if (cursor == null) {
+      return null;
+    }
+    String contactName = null;
+    if(cursor.moveToFirst()) {
+      contactName = cursor.getString(cursor.getColumnIndex(ContactsContract.PhoneLookup.DISPLAY_NAME));
+    }
+
+    if(cursor != null && !cursor.isClosed()) {
+      cursor.close();
+    }
+
+    return contactName;
+
+  }
+
+    public ArrayList<KnownPhoneNumbers> checkForPhoneNumber(String message){
+
+        ArrayList<KnownPhoneNumbers> knownPhoneNumbersList=new ArrayList<>();
+        String numberRegEx="((?:\\+?(\\d{1,3}))?\\d{10})";
+        Pattern phoneNumberPattern= Pattern.compile(numberRegEx);
+
+
+      Matcher phoneNumberMatcher=phoneNumberPattern.matcher(message);
+        int containingNumbers=0;
+        String contactName=null;
+        while(phoneNumberMatcher.find()) {
+            contactName=findContactName(this.context, phoneNumberMatcher.group(0));
+            if(contactName!=null) {
+
+                knownPhoneNumbersList.add(new KnownPhoneNumbers(phoneNumberMatcher.group(containingNumbers), contactName, phoneNumberMatcher.start(), phoneNumberMatcher.end()));
+                //Log.w("added", (new StringBuilder().append(matcher.group(i)).append("  ").append(matcher.start()).append("  ").append(matcher.end()).toString()));
+            }
+            containingNumbers++;
+        }
+
+
+
+        return knownPhoneNumbersList;
+    }
+
+    public class KnownPhoneNumbers {
+        private String number;
+        private String contactName;
+        private int start;
+        private int end;
+
+        public KnownPhoneNumbers(String number, String contactName, int start, int end) {
+            this.number = number;
+            this.contactName = contactName;
+            this.start = start;
+            this.end = end;
+        }
+
+        public String getNumber() {
+            return number;
+        }
+
+        public String getContactName() {
+            return contactName;
+        }
+
+        public int getStart() {
+            return start;
+        }
+
+        public int getEnd() {
+            return end;
+        }
+
+        public void setStart(int start) {
+            this.start = start;
+        }
+
+        public void setEnd(int end) {
+            this.end = end;
+        }
+    }
+
+
+
+
+
+
 
 }
