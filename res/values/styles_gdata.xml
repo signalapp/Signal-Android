@@ -91,6 +91,8 @@
         <item name="conversation_item_sent_push_pending_background">
             @drawable/gdata_conversation_item_sent_push_pending_shape
         </item>
+        <item name="conversation_item_sent_push_pending_triangle_background">
+            @drawable/conversation_item_sent_push_pending_triangle_shape</item>
         <item name="conversation_item_sent_push_triangle_background">
             @drawable/gdata_conversation_item_sent_push_pending_triangle_shape
         </item>

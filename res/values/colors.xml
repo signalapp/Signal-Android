@@ -35,8 +35,8 @@
     <color name="conversation_item_sent_pending_background_dark">#55284e0a</color>
     <color name="conversation_item_sent_push_background_light">#ff3a7ef2</color>
     <color name="conversation_item_sent_push_background_dark">#ff213b77</color>
-    <color name="conversation_item_sent_push_pending_background_light">#ff528ff2</color>
-    <color name="conversation_item_sent_push_pending_background_dark">#55213b77</color>
+    <color name="conversation_item_sent_push_pending_background_light">@color/gdata_conversation_item_sent_pending_background</color>
+    <color name="conversation_item_sent_push_pending_background_dark">@color/gdata_conversation_item_sent_push_background</color>
     <color name="conversation_item_received_background_light">#ffeeeeee</color>
     <color name="conversation_item_received_background_dark">#ff333333</color>
     <color name="conversation_item_received_shadow_light">#ffd5d5d5</color>
