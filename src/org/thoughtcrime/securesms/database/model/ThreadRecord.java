@@ -57,7 +57,7 @@ public class ThreadRecord extends DisplayRecord {
     if (SmsDatabase.Types.isDecryptInProgressType(type)) {
       return emphasisAdded(context.getString(R.string.MessageDisplayHelper_decrypting_please_wait));
     } else if (isGroupUpdate()) {
-      return emphasisAdded(GroupUtil.getDescription(context, getBody().getBody()));
+      return emphasisAdded(GroupUtil.getDescription(context, getBody().getParsedBody()));
     } else if (isGroupQuit()) {
       return emphasisAdded(context.getString(R.string.ThreadRecord_left_the_group));
     } else if (isKeyExchange()) {
@@ -74,12 +74,12 @@ public class ThreadRecord extends DisplayRecord {
       return emphasisAdded(context.getString(R.string.MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported));
     } else if (MmsSmsColumns.Types.isDraftMessageType(type)) {
       String draftText = context.getString(R.string.ThreadRecord_draft);
-      return emphasisAdded(draftText + " " + getBody().getBody(), 0, draftText.length());
+      return emphasisAdded(draftText + " " + getBody().getParsedBody(), 0, draftText.length());
     } else {
-      if (TextUtils.isEmpty(getBody().getBody())) {
+      if (TextUtils.isEmpty(getBody().getParsedBody())) {
         return new SpannableString(context.getString(R.string.MessageNotifier_no_subject));
       } else {
-        return new SpannableString(getBody().getBody());
+        return new SpannableString(getBody().getParsedBody());
       }
     }
   }
