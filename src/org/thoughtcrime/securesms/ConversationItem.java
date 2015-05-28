@@ -1,21 +1,22 @@
 /**
  * Copyright (C) 2011 Whisper Systems
- *
+ * <p/>
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * <p/>
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * <p/>
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package org.thoughtcrime.securesms;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -29,7 +30,6 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.TransitionDrawable;
 import android.net.Uri;
 import android.os.Handler;
-import android.os.Looper;
 import android.os.Message;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.QuickContact;
@@ -37,10 +37,8 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,7 +57,6 @@ import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
 import org.thoughtcrime.securesms.jobs.MmsDownloadJob;
 import org.thoughtcrime.securesms.jobs.MmsSendJob;
 import org.thoughtcrime.securesms.jobs.SmsSendJob;
-import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
@@ -71,13 +68,11 @@ import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.whispersystems.libaxolotl.logging.Log;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 import de.gdata.messaging.util.GDataLinkMovementMethod;
-import de.gdata.messaging.util.GDataPreferences;
 
 /**
  * A view that displays an individual conversation item within a conversation
@@ -328,8 +323,8 @@ public class ConversationItem extends LinearLayout {
       this.text = text;
       this.countdown = countdown;
     }
-    public void dismissDialog()
-    {
+
+    public void dismissDialog() {
       try {
         if ((alertDialogDestroy != null) && alertDialogDestroy.isShowing()) {
           alertDialogDestroy.dismiss();
@@ -342,19 +337,20 @@ public class ConversationItem extends LinearLayout {
         alertDialogDestroy = null;
       }
     }
+
     public void refreshCountdown() {
       if (alertDialogDestroy != null) {
-        ThumbnailView image =  ((ThumbnailView) alertDialogDestroy.findViewById(R.id.imageDialog));
+        ThumbnailView image = ((ThumbnailView) alertDialogDestroy.findViewById(R.id.imageDialog));
         String countdown = getContext().getString(R.string.self_destruction_title);
         countdown = countdown.replace("#1#", "" + currentCountdown);
         alertDialogDestroy.setTitle("" + countdown);
-        if((messageRecord.getBody().getSelfDestructionDuration() - currentCountdown)>10) {
-          if(!alreadyDestroyed) {
+        if ((messageRecord.getBody().getSelfDestructionDuration() - currentCountdown) > 10) {
+          if (!alreadyDestroyed) {
             alreadyDestroyed = true;
             deleteMessage(messageRecord);
           }
         } else {
-          if(hasMedia(messageRecord)) {
+          if (hasMedia(messageRecord)) {
             image.setImageResource(masterSecret, ((MediaMmsMessageRecord) messageRecord).getId(),
                 ((MediaMmsMessageRecord) messageRecord).getDateReceived(),
                 ((MediaMmsMessageRecord) messageRecord).getSlideDeckFuture());
@@ -365,10 +361,11 @@ public class ConversationItem extends LinearLayout {
         }
       }
     }
+
     @Override
     public void onClick(View v) {
 
-      if(!hasMedia(messageRecord)) {
+      if (!hasMedia(messageRecord)) {
         alreadyDestroyed = true;
         deleteMessage(messageRecord);
       }
@@ -389,7 +386,7 @@ public class ConversationItem extends LinearLayout {
         @Override
         public void onClick(DialogInterface dialog, int which) {
           dialog.dismiss();
-          if(!alreadyDestroyed) {
+          if (!alreadyDestroyed) {
             alreadyDestroyed = true;
             deleteMessage(messageRecord);
           }
@@ -397,16 +394,23 @@ public class ConversationItem extends LinearLayout {
       });
       alertDialogDestroy = builder.show();
       new Thread(new Runnable() {
+
+        public Activity getActivity() {
+          return conversationFragment.getActivity();
+        }
+
         @Override
         public void run() {
           int i = messageRecord.getBody().getSelfDestructionDuration();
           currentCountdown = i;
-          conversationFragment.getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-              refreshCountdown();
-            }
-          });
+          if (getActivity() != null) {
+            getActivity().runOnUiThread(new Runnable() {
+              @Override
+              public void run() {
+                refreshCountdown();
+              }
+            });
+          }
           while (i > 0) {
             try {
               Thread.sleep(SECOND);
@@ -415,34 +419,41 @@ public class ConversationItem extends LinearLayout {
             }
             i--;
             currentCountdown = i;
-            conversationFragment.getActivity().runOnUiThread(new Runnable() {
-              @Override
-              public void run() {
-                refreshCountdown();
-              }
-            });
+            if (getActivity() != null) {
+              getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                  refreshCountdown();
+                }
+              });
+            }
           }
-          if(!alreadyDestroyed) {
+          if (!alreadyDestroyed) {
             alreadyDestroyed = true;
             deleteMessage(messageRecord);
           }
-          conversationFragment.getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-              dismissDialog();
-            }
-          });
+          if (getActivity() != null) {
+            getActivity().runOnUiThread(new Runnable() {
+              @Override
+              public void run() {
+                dismissDialog();
+              }
+            });
+          }
         }
       }).start();
 
     }
-  };
+  }
+
+  ;
+
   public void deleteMessage(MessageRecord mr) {
-      if (mr.isMms()) {
-        DatabaseFactory.getMmsDatabase(getContext()).delete(mr.getId());
-      } else {
-        DatabaseFactory.getSmsDatabase(getContext()).deleteMessage(mr.getId());
-      }
+    if (mr.isMms()) {
+      DatabaseFactory.getMmsDatabase(getContext()).delete(mr.getId());
+    } else {
+      DatabaseFactory.getSmsDatabase(getContext()).deleteMessage(mr.getId());
+    }
   }
 
   private void setContactPhoto(MessageRecord messageRecord) {
@@ -585,9 +596,9 @@ public class ConversationItem extends LinearLayout {
   }
 
   private boolean hasMedia(MessageRecord messageRecord) {
-    return messageRecord.isMms()              &&
-            !messageRecord.isMmsNotification() &&
-            ((MediaMmsMessageRecord)messageRecord).getPartCount() > 0;
+    return messageRecord.isMms() &&
+        !messageRecord.isMmsNotification() &&
+        ((MediaMmsMessageRecord) messageRecord).getPartCount() > 0;
   }
 
 
@@ -606,7 +617,7 @@ public class ConversationItem extends LinearLayout {
       mmsContainer.setVisibility(View.GONE);
     }
     slideDeck = mediaMessageRecord.getSlideDeckFuture();
-    if(slideDeck.isDone()){
+    if (slideDeck.isDone()) {
       try {
         Drawable bitmap = getDrawable(slideDeck.get());
         mmsThumbnail.setImageDrawable(bitmap);
@@ -615,7 +626,7 @@ public class ConversationItem extends LinearLayout {
       } catch (ExecutionException e) {
         e.printStackTrace();
       }
-    }else {
+    } else {
       slideDeckListener = new FutureTaskListener<SlideDeck>() {
         @Override
         public void onSuccess(final SlideDeck result) {
@@ -750,7 +761,8 @@ public class ConversationItem extends LinearLayout {
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         intent.setDataAndType(slide.getUri(), slide.getContentType());
         intent.putExtra(MediaPreviewActivity.MASTER_SECRET_EXTRA, masterSecret);
-        if (!messageRecord.isOutgoing()) intent.putExtra(MediaPreviewActivity.RECIPIENT_EXTRA, messageRecord.getIndividualRecipient().getRecipientId());
+        if (!messageRecord.isOutgoing())
+          intent.putExtra(MediaPreviewActivity.RECIPIENT_EXTRA, messageRecord.getIndividualRecipient().getRecipientId());
         intent.putExtra(MediaPreviewActivity.DATE_EXTRA, messageRecord.getDateReceived());
 
         context.startActivity(intent);
@@ -799,7 +811,8 @@ public class ConversationItem extends LinearLayout {
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         intent.setDataAndType(slide.getUri(), slide.getContentType());
         intent.putExtra(MediaPreviewActivity.MASTER_SECRET_EXTRA, masterSecret);
-        if (!messageRecord.isOutgoing()) intent.putExtra(MediaPreviewActivity.RECIPIENT_EXTRA, messageRecord.getIndividualRecipient().getRecipientId());
+        if (!messageRecord.isOutgoing())
+          intent.putExtra(MediaPreviewActivity.RECIPIENT_EXTRA, messageRecord.getIndividualRecipient().getRecipientId());
         intent.putExtra(MediaPreviewActivity.DATE_EXTRA, messageRecord.getDateReceived());
         context.startActivity(intent);
       } else {

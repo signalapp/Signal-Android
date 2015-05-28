@@ -36,7 +36,7 @@ import de.gdata.messaging.util.GUtil;
 public abstract class DisplayRecord {
 
   protected final Context context;
-  protected final long type;
+  public final long type;
 
   private final Recipients recipients;
   private final long       dateSent;

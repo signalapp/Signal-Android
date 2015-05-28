@@ -37,6 +37,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -105,7 +106,7 @@ public class ConversationListItem extends RelativeLayout
     this.recipients.addListener(this);
     this.fromView.setText(formatFrom(recipients, count, read));
     SpannableString body = thread.getDisplayBody();
-    if(thread.getBody().isSelfDestruction()) {
+    if(thread.getBody().isSelfDestruction() && !MmsSmsColumns.Types.isOutgoingMessageType(thread.type)) {
       body = new SpannableString(context.getString(R.string.self_destruction_body).replace("#1#", "" + thread.getBody().getSelfDestructionDuration()));
     }
     this.subjectView.setText(Emoji.getInstance(context).emojify(body,

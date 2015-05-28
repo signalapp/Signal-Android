@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:textColor="#000"
             android:gravity="center"
-            android:layout_margin="5dp"
+            android:layout_margin="10dp"
             android:layout_toRightOf="@+id/imageDialog"/>
 
 </LinearLayout>
