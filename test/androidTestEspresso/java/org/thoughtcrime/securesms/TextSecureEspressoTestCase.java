@@ -108,7 +108,7 @@ public class TextSecureEspressoTestCase<T extends Activity> extends ActivityInst
     pstnNumber       = pstnString.split(":")[1];
     verificationCode = RegistrationBypassUtil.getVerificationCodeForPstnString(context, pstnString);
 
-    Log.d(TAG, "using pstn id of " + pstnString + " with verification code " + verificationCode);
+    Log.d(TAG, "using pstn string of " + pstnString);
   }
 
   @Override

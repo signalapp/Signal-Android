@@ -244,7 +244,12 @@ if (propFile.canRead()){
     android.buildTypes.release.signingConfig = null
 }
 
-if (project.hasProperty('espresso')) {
+if (project.hasProperty('espresso') && System.console() != null) {
+    println '____________________WARNING_____________________'
+    println 'ALL YOUR CONTACTS WILL BE DELETED IN THE PROCESS'
+    println 'OF RUNNING THESE TESTS, TYPE ENTER TO CONTINUE'
+    System.console().readLine(':')
+
     android.productFlavors {
         base {}
         espresso {
