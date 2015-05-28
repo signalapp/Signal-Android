@@ -132,7 +132,7 @@
                     android:layout_gravity="center_vertical"
                     android:paddingRight="4dp"
                     android:paddingTop="2dp"
-                    android:src="@drawable/ic_action_securesms_gdata"
+                    android:src="@drawable/ic_lock_black_18dp"
                     android:contentDescription="@string/conversation_item__secure_message_description"
                     android:visibility="gone" />
 
