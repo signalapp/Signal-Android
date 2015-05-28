@@ -43,6 +43,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import de.gdata.messaging.util.PrivacyBridge;
+
 public class ThreadDatabase extends Database {
 
           static final String TABLE_NAME      = "thread";
@@ -295,7 +297,8 @@ public class ThreadDatabase extends Database {
 
   public Cursor getConversationList() {
     SQLiteDatabase db = databaseHelper.getReadableDatabase();
-    Cursor cursor     =  db.query(TABLE_NAME, null, null, null, null, null, DATE + " DESC");
+    Cursor cursor     =  db.query(TABLE_NAME, null,  PrivacyBridge.getConversationSelection(context),
+        PrivacyBridge.getConversationSelectionArgs(context), null, null, DATE + " DESC");
     setNotifyConverationListListeners(cursor);
     return cursor;
   }
