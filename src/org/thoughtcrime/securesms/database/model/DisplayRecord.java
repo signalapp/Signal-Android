@@ -45,7 +45,6 @@ public abstract class DisplayRecord {
   private final Body       body;
 
   public static final int SELF_DESTRUCTION_DISABLED   = 0;
-  private Slide mediaSlide;
 
   public DisplayRecord(Context context, Body body, Recipients recipients, long dateSent,
                        long dateReceived, long threadId, long type)
@@ -101,13 +100,6 @@ public abstract class DisplayRecord {
 
   public boolean isGroupAction() {
     return isGroupUpdate() || isGroupQuit();
-  }
-
-  public void setMediaSlide(Slide mediaSlide) {
-    this.mediaSlide = mediaSlide;
-  }
-  public Slide getMediaSlide() {
-    return mediaSlide;
   }
 
   public static class Body {

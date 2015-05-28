@@ -321,8 +321,6 @@ public class ConversationItem extends LinearLayout {
     String countdown = "";
 
     private AlertDialog alertDialogDestroy;
-    private Handler dismissDialogHandler;
-    private Handler refreshCountdownHandler;
     private int currentCountdown = 0;
     private boolean alreadyDestroyed = false;
 
@@ -330,50 +328,47 @@ public class ConversationItem extends LinearLayout {
       this.text = text;
       this.countdown = countdown;
     }
-
+    public void dismissDialog()
+    {
+      try {
+        if ((alertDialogDestroy != null) && alertDialogDestroy.isShowing()) {
+          alertDialogDestroy.dismiss();
+        }
+      } catch (final IllegalArgumentException e) {
+        // Handle or log or ignore
+      } catch (final Exception e) {
+        // Handle or log or ignore
+      } finally {
+        alertDialogDestroy = null;
+      }
+    }
+    public void refreshCountdown() {
+      if (alertDialogDestroy != null) {
+        ThumbnailView image =  ((ThumbnailView) alertDialogDestroy.findViewById(R.id.imageDialog));
+        String countdown = getContext().getString(R.string.self_destruction_title);
+        countdown = countdown.replace("#1#", "" + currentCountdown);
+        alertDialogDestroy.setTitle("" + countdown);
+        if((messageRecord.getBody().getSelfDestructionDuration() - currentCountdown)>10) {
+          if(!alreadyDestroyed) {
+            alreadyDestroyed = true;
+            deleteMessage(messageRecord);
+          }
+        } else {
+          if(hasMedia(messageRecord)) {
+            image.setImageResource(masterSecret, ((MediaMmsMessageRecord) messageRecord).getId(),
+                ((MediaMmsMessageRecord) messageRecord).getDateReceived(),
+                ((MediaMmsMessageRecord) messageRecord).getSlideDeckFuture());
+            //image.setThumbnailClickListener(new ThumbnailClickListener());
+          } else {
+            image.setVisibility(View.GONE);
+          }
+        }
+      }
+    }
     @Override
     public void onClick(View v) {
 
-      dismissDialogHandler = new Handler(Looper.getMainLooper()) {
-        @Override
-        public void handleMessage(Message inputMessage) {
-          try {
-            if ((alertDialogDestroy != null) && alertDialogDestroy.isShowing()) {
-              alertDialogDestroy.dismiss();
-            }
-          } catch (final IllegalArgumentException e) {
-            // Handle or log or ignore
-          } catch (final Exception e) {
-            // Handle or log or ignore
-          } finally {
-            alertDialogDestroy = null;
-          }
-        }
-      };
-      refreshCountdownHandler = new Handler(Looper.getMainLooper()) {
-        @Override
-        public void handleMessage(Message inputMessage) {
-          if (alertDialogDestroy != null) {
-            ImageView image =  ((ImageView) alertDialogDestroy.findViewById(R.id.imageDialog));
-            String countdown = getContext().getString(R.string.self_destruction_title);
-            countdown = countdown.replace("#1#", "" + currentCountdown);
-            alertDialogDestroy.setTitle("" + countdown);
-            if((messageRecord.getBody().getSelfDestructionDuration() - currentCountdown)>10) {
-              if(!alreadyDestroyed) {
-                alreadyDestroyed = true;
-                deleteMessage(messageRecord);
-              }
-            } else {
-              if(messageRecord.getMediaSlide() != null) {
-                image.setImageURI(messageRecord.getMediaSlide().getThumbnailUri());
-                //messageRecord.getMediaSlide().setThumbnailOn(image);
-              }
-            }
-          }
-        }
-      };
-
-      if(messageRecord.getMediaSlide() == null) {
+      if(!hasMedia(messageRecord)) {
         alreadyDestroyed = true;
         deleteMessage(messageRecord);
       }
@@ -406,7 +401,12 @@ public class ConversationItem extends LinearLayout {
         public void run() {
           int i = messageRecord.getBody().getSelfDestructionDuration();
           currentCountdown = i;
-          refreshCountdownHandler.sendEmptyMessage(0);
+          conversationFragment.getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+              refreshCountdown();
+            }
+          });
           while (i > 0) {
             try {
               Thread.sleep(SECOND);
@@ -415,19 +415,28 @@ public class ConversationItem extends LinearLayout {
             }
             i--;
             currentCountdown = i;
-            refreshCountdownHandler.sendEmptyMessage(0);
+            conversationFragment.getActivity().runOnUiThread(new Runnable() {
+              @Override
+              public void run() {
+                refreshCountdown();
+              }
+            });
           }
           if(!alreadyDestroyed) {
             alreadyDestroyed = true;
             deleteMessage(messageRecord);
           }
-          dismissDialogHandler.sendEmptyMessage(0);
+          conversationFragment.getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+              dismissDialog();
+            }
+          });
         }
       }).start();
 
     }
   };
-
   public void deleteMessage(MessageRecord mr) {
       if (mr.isMms()) {
         DatabaseFactory.getMmsDatabase(getContext()).delete(mr.getId());
@@ -498,8 +507,8 @@ public class ConversationItem extends LinearLayout {
         messageRecord.getRecipients().isSingleRecipient() &&
         !messageRecord.isSecure()) {
       checkForAutoInitiate(messageRecord.getIndividualRecipient(),
-              messageRecord.getBody().getBody(),
-              messageRecord.getThreadId());
+          messageRecord.getBody().getBody(),
+          messageRecord.getThreadId());
     }
   }
 
@@ -549,12 +558,16 @@ public class ConversationItem extends LinearLayout {
   private void resolveMedia(MediaMmsMessageRecord messageRecord) {
     if (hasMedia(messageRecord)) {
       if (hasMedia(messageRecord)) {
-        mmsThumbnail.setVisibility(View.VISIBLE);
-        mmsContainer.setVisibility(View.VISIBLE);
-        mmsThumbnail.setImageResource(masterSecret, messageRecord.getId(),
-                messageRecord.getDateReceived(),
-                messageRecord.getSlideDeckFuture());
-
+        if (!messageRecord.getBody().isSelfDestruction() || messageRecord.isOutgoing()) {
+          mmsThumbnail.setVisibility(View.VISIBLE);
+          mmsContainer.setVisibility(View.VISIBLE);
+          mmsThumbnail.setImageResource(masterSecret, messageRecord.getId(),
+              messageRecord.getDateReceived(),
+              messageRecord.getSlideDeckFuture());
+        } else {
+          mmsThumbnail.setVisibility(View.GONE);
+          mmsContainer.setVisibility(View.GONE);
+        }
       }
     }
   }
@@ -618,22 +631,20 @@ public class ConversationItem extends LinearLayout {
                   if (messageRecord.getBody().isSelfDestruction()) {
                     mmsThumbnail.setVisibility(View.GONE);
                     mmsContainer.setVisibility(View.GONE);
-                    messageRecord.setMediaSlide(slide);
                   } else {
                     mmsThumbnail.setVisibility(View.VISIBLE);
                     mmsContainer.setVisibility(View.VISIBLE);
-                  }
-                  Slide thumbnailSlide = result.getThumbnailSlide();
-                  if(thumbnailSlide.getPart().isPendingPush()){
-                    mmsThumbnail.setImageResource(thumbnailSlide.getPlaceholderRes(null));
-                  }else {
-                    Drawable bitmap = getDrawable(result);
-                    TransitionDrawable fadingResult = new TransitionDrawable(new Drawable[]{new ColorDrawable(Color.TRANSPARENT), bitmap});
-                    mmsThumbnail.setImageDrawable(fadingResult);
-                    fadingResult.startTransition(300);
-                  }
 
-
+                    Slide thumbnailSlide = result.getThumbnailSlide();
+                    if (thumbnailSlide.getPart().isPendingPush()) {
+                      mmsThumbnail.setImageResource(thumbnailSlide.getPlaceholderRes(null));
+                    } else {
+                      Drawable bitmap = getDrawable(result);
+                      TransitionDrawable fadingResult = new TransitionDrawable(new Drawable[]{new ColorDrawable(Color.TRANSPARENT), bitmap});
+                      mmsThumbnail.setImageDrawable(fadingResult);
+                      fadingResult.startTransition(300);
+                    }
+                  }
                   mmsThumbnail.setOnClickListener(new ThumbnailOnClickListener(slide));
                   return;
                 }

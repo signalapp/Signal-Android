@@ -4,10 +4,10 @@
                 android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal">
-        <ImageView
+        <org.thoughtcrime.securesms.components.ThumbnailView
             android:id="@+id/imageDialog"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="400dp"
+            android:layout_height="400dp"
             android:layout_margin="5dp"/>
 
         <TextView
