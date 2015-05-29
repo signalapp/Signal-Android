@@ -104,7 +104,7 @@ public class GUtil {
   public static String getSimCardNumber(Activity activity) {
     TelephonyManager tm = (TelephonyManager)activity.getSystemService(activity.TELEPHONY_SERVICE);
     String simcardNumber = tm.getLine1Number() != null ? GUtil.normalizeNumber(tm.getLine1Number(), "") : "";
-    String countryCode = removeCountryCode(simcardNumber);
+    String countryCode = extractCountryCode(simcardNumber);
     if(!TextUtils.isEmpty(countryCode) && countryCode.contains("+")) {
       simcardNumber = simcardNumber.replace(countryCode, "");
     }
@@ -163,12 +163,12 @@ public class GUtil {
     }
     return phoneNo;
   }
-public static String removeCountryCode(String number) {
-  String newNumber = "";
+public static String extractCountryCode(String number) {
+  String countryCode = "";
   if(number.contains(" ") && number.contains("+")) {
-    newNumber = number.substring(0,number.indexOf(' ')).trim();
+    countryCode = number.substring(0,number.indexOf(' ')).trim();
   }
-  return newNumber;
+  return countryCode;
 }
   public static String normalizeNumber(String number) {
     String iso = Locale.getDefault().getLanguage().toUpperCase(Locale.getDefault());
