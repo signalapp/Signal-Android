@@ -109,7 +109,7 @@ import java.util.List;
 
 import static org.thoughtcrime.securesms.TransportOption.Type;
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
-import static org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.GroupContext;
+import static org.whispersystems.textsecure.internal.push.TextSecureProtos.GroupContext;
 
 /**
  * Activity for displaying a message thread, as well as

@@ -21,7 +21,7 @@ import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
 import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 import org.whispersystems.textsecure.api.messages.TextSecureGroup;
-import org.whispersystems.textsecure.api.messages.TextSecureMessage;
+import org.whispersystems.textsecure.api.messages.TextSecureDataMessage;
 
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -29,8 +29,8 @@ import java.util.List;
 import java.util.Set;
 
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
-import static org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.AttachmentPointer;
-import static org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.GroupContext;
+import static org.whispersystems.textsecure.internal.push.TextSecureProtos.AttachmentPointer;
+import static org.whispersystems.textsecure.internal.push.TextSecureProtos.GroupContext;
 
 public class GroupMessageProcessor {
 
@@ -39,7 +39,7 @@ public class GroupMessageProcessor {
   public static void process(Context context,
                              MasterSecret masterSecret,
                              TextSecureEnvelope envelope,
-                             TextSecureMessage message)
+                             TextSecureDataMessage message)
   {
     if (!message.getGroupInfo().isPresent() || message.getGroupInfo().get().getGroupId() == null) {
       Log.w(TAG, "Received group message with no id! Ignoring...");

@@ -45,24 +45,25 @@ import ws.com.google.android.mms.ContentType;
 
 public class DatabaseFactory {
 
-  private static final int INTRODUCED_IDENTITIES_VERSION      = 2;
-  private static final int INTRODUCED_INDEXES_VERSION         = 3;
-  private static final int INTRODUCED_DATE_SENT_VERSION       = 4;
-  private static final int INTRODUCED_DRAFTS_VERSION          = 5;
-  private static final int INTRODUCED_NEW_TYPES_VERSION       = 6;
-  private static final int INTRODUCED_MMS_BODY_VERSION        = 7;
-  private static final int INTRODUCED_MMS_FROM_VERSION        = 8;
-  private static final int INTRODUCED_TOFU_IDENTITY_VERSION   = 9;
-  private static final int INTRODUCED_PUSH_DATABASE_VERSION   = 10;
-  private static final int INTRODUCED_GROUP_DATABASE_VERSION  = 11;
-  private static final int INTRODUCED_PUSH_FIX_VERSION        = 12;
-  private static final int INTRODUCED_DELIVERY_RECEIPTS       = 13;
-  private static final int INTRODUCED_PART_DATA_SIZE_VERSION  = 14;
-  private static final int INTRODUCED_THUMBNAILS_VERSION      = 15;
-  private static final int INTRODUCED_IDENTITY_COLUMN_VERSION = 16;
-  private static final int INTRODUCED_UNIQUE_PART_IDS_VERSION = 17;
-  private static final int INTRODUCED_RECIPIENT_PREFS_DB      = 18;
-  private static final int DATABASE_VERSION                   = 18;
+  private static final int INTRODUCED_IDENTITIES_VERSION       = 2;
+  private static final int INTRODUCED_INDEXES_VERSION          = 3;
+  private static final int INTRODUCED_DATE_SENT_VERSION        = 4;
+  private static final int INTRODUCED_DRAFTS_VERSION           = 5;
+  private static final int INTRODUCED_NEW_TYPES_VERSION        = 6;
+  private static final int INTRODUCED_MMS_BODY_VERSION         = 7;
+  private static final int INTRODUCED_MMS_FROM_VERSION         = 8;
+  private static final int INTRODUCED_TOFU_IDENTITY_VERSION    = 9;
+  private static final int INTRODUCED_PUSH_DATABASE_VERSION    = 10;
+  private static final int INTRODUCED_GROUP_DATABASE_VERSION   = 11;
+  private static final int INTRODUCED_PUSH_FIX_VERSION         = 12;
+  private static final int INTRODUCED_DELIVERY_RECEIPTS        = 13;
+  private static final int INTRODUCED_PART_DATA_SIZE_VERSION   = 14;
+  private static final int INTRODUCED_THUMBNAILS_VERSION       = 15;
+  private static final int INTRODUCED_IDENTITY_COLUMN_VERSION  = 16;
+  private static final int INTRODUCED_UNIQUE_PART_IDS_VERSION  = 17;
+  private static final int INTRODUCED_RECIPIENT_PREFS_DB       = 18;
+  private static final int INTRODUCED_ENVELOPE_CONTENT_VERSION = 19;
+  private static final int DATABASE_VERSION                    = 19;
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
@@ -735,6 +736,10 @@ public class DatabaseFactory {
         db.execSQL("CREATE TABLE recipient_preferences " +
                    "(_id INTEGER PRIMARY KEY, recipient_ids TEXT UNIQUE, block INTEGER DEFAULT 0, " +
                    "notification TEXT DEFAULT NULL, vibrate INTEGER DEFAULT 0, mute_until INTEGER DEFAULT 0)");
+      }
+
+      if (oldVersion < INTRODUCED_ENVELOPE_CONTENT_VERSION) {
+        db.execSQL("ALTER TABLE push ADD COLUMN content TEXT");
       }
 
       db.setTransactionSuccessful();

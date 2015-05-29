@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
 import org.thoughtcrime.securesms.jobs.CleanPreKeysJob;
 import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
 import org.thoughtcrime.securesms.jobs.DeliveryReceiptJob;
+import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
 import org.thoughtcrime.securesms.jobs.PushMediaSendJob;
 import org.thoughtcrime.securesms.jobs.PushContentReceiveJob;
@@ -37,7 +38,8 @@ import dagger.Provides;
                                      AttachmentDownloadJob.class,
                                      RefreshPreKeysJob.class,
                                      MessageRetrievalService.class,
-                                     PushNotificationReceiveJob.class})
+                                     PushNotificationReceiveJob.class,
+                                     MultiDeviceContactUpdateJob.class})
 public class TextSecureCommunicationModule {
 
   private final Context context;

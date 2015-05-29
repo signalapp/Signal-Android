@@ -18,7 +18,7 @@ import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.whispersystems.textsecure.api.TextSecureMessageSender;
 import org.whispersystems.textsecure.api.crypto.UntrustedIdentityException;
-import org.whispersystems.textsecure.api.messages.TextSecureMessage;
+import org.whispersystems.textsecure.api.messages.TextSecureDataMessage;
 import org.whispersystems.textsecure.api.push.TextSecureAddress;
 import org.whispersystems.textsecure.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
@@ -103,11 +103,11 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
     try {
       TextSecureAddress       address           = getPushAddress(message.getIndividualRecipient().getNumber());
       TextSecureMessageSender messageSender     = messageSenderFactory.create(masterSecret);
-      TextSecureMessage       textSecureMessage = TextSecureMessage.newBuilder()
-                                                                   .withTimestamp(message.getDateSent())
-                                                                   .withBody(message.getBody().getBody())
-                                                                   .asEndSessionMessage(message.isEndSession())
-                                                                   .build();
+      TextSecureDataMessage   textSecureMessage = TextSecureDataMessage.newBuilder()
+                                                                       .withTimestamp(message.getDateSent())
+                                                                       .withBody(message.getBody().getBody())
+                                                                       .asEndSessionMessage(message.isEndSession())
+                                                                       .build();
 
 
       messageSender.sendMessage(address, textSecureMessage);

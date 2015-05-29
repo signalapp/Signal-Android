@@ -19,7 +19,7 @@ import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.whispersystems.textsecure.api.TextSecureMessageSender;
 import org.whispersystems.textsecure.api.crypto.UntrustedIdentityException;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
-import org.whispersystems.textsecure.api.messages.TextSecureMessage;
+import org.whispersystems.textsecure.api.messages.TextSecureDataMessage;
 import org.whispersystems.textsecure.api.push.TextSecureAddress;
 import org.whispersystems.textsecure.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
@@ -109,11 +109,11 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
       TextSecureAddress          address      = getPushAddress(destination);
       List<TextSecureAttachment> attachments  = getAttachments(masterSecret, message);
       String                     body         = PartParser.getMessageText(message.getBody());
-      TextSecureMessage          mediaMessage = TextSecureMessage.newBuilder()
-                                                                 .withBody(body)
-                                                                 .withAttachments(attachments)
-                                                                 .withTimestamp(message.getSentTimestamp())
-                                                                 .build();
+      TextSecureDataMessage      mediaMessage = TextSecureDataMessage.newBuilder()
+                                                                     .withBody(body)
+                                                                     .withAttachments(attachments)
+                                                                     .withTimestamp(message.getSentTimestamp())
+                                                                     .build();
 
       messageSender.sendMessage(address, mediaMessage);
     } catch (InvalidNumberException | UnregisteredUserException e) {
