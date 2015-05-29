@@ -17,9 +17,7 @@ public class EmojiEditText extends AppCompatEditText {
     super(context, attrs);
   }
 
-  public EmojiEditText(Context context, AttributeSet attrs,
-                       int defStyleAttr)
-  {
+  public EmojiEditText(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
   }
 

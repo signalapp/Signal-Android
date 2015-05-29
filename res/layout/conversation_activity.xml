@@ -139,8 +139,10 @@
         </LinearLayout>
     </RelativeLayout>
 
-    <FrameLayout android:id="@+id/emoji_drawer"
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content" />
+    <ViewStub android:id="@+id/emoji_drawer_stub"
+              android:inflatedId="@+id/emoji_drawer"
+              android:layout="@layout/emoji_drawer_stub"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content" />
 
 </LinearLayout>

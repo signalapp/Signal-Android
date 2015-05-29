@@ -41,6 +41,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.View.OnKeyListener;
+import android.view.ViewStub;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageButton;
@@ -150,7 +151,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private AttachmentManager             attachmentManager;
   private BroadcastReceiver             securityUpdateReceiver;
   private BroadcastReceiver             groupUpdateReceiver;
-  private Optional<EmojiDrawer>         emojiDrawer;
+  private Optional<EmojiDrawer>         emojiDrawer = Optional.absent();
   private EmojiToggle                   emojiToggle;
 
   private Recipients recipients;
@@ -690,7 +691,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     attachButton   = (ImageButton) findViewById(R.id.attach_button);
     composeText    = (ComposeText) findViewById(R.id.embedded_text_editor);
     charactersLeft = (TextView)    findViewById(R.id.space_left);
-    emojiDrawer    = Optional.absent();
     emojiToggle    = (EmojiToggle) findViewById(R.id.emoji_toggle);
 
     attachmentAdapter = new AttachmentTypeSelectorAdapter(this);
@@ -720,15 +720,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private EmojiDrawer getEmojiDrawer() {
     if (emojiDrawer.isPresent()) return emojiDrawer.get();
-
-    EmojiDrawer emojiDrawerFragment = EmojiDrawer.newInstance();
-    emojiDrawerFragment.setComposeEditText(composeText);
-    getSupportFragmentManager().beginTransaction()
-                               .add(R.id.emoji_drawer, emojiDrawerFragment)
-                               .commit();
-    getSupportFragmentManager().executePendingTransactions();
-    emojiDrawer = Optional.of(emojiDrawerFragment);
-    return emojiDrawerFragment;
+    EmojiDrawer emojiDrawer = (EmojiDrawer)((ViewStub)findViewById(R.id.emoji_drawer_stub)).inflate();
+    emojiDrawer.setComposeEditText(composeText);
+    this.emojiDrawer = Optional.of(emojiDrawer);
+    return emojiDrawer;
   }
 
   private boolean isEmojiDrawerOpen() {

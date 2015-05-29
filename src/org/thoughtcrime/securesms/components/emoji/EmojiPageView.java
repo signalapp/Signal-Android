@@ -1,11 +1,10 @@
 package org.thoughtcrime.securesms.components.emoji;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.os.Build.VERSION_CODES;
+import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,25 +12,38 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
+import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
 
 import org.thoughtcrime.securesms.R;
 
-public class EmojiPageFragment extends Fragment {
-  private static final String TAG = EmojiPageFragment.class.getSimpleName();
+public class EmojiPageView extends FrameLayout {
+  private static final String TAG = EmojiPageView.class.getSimpleName();
 
   private EmojiPageModel         model;
   private EmojiSelectionListener listener;
   private GridView               grid;
 
-  public static EmojiPageFragment newInstance(@NonNull EmojiPageModel model,
-                                              @Nullable EmojiSelectionListener listener)
-  {
-    EmojiPageFragment fragment = new EmojiPageFragment();
-    fragment.setModel(model);
-    fragment.setEmojiSelectedListener(listener);
-    return fragment;
+  public EmojiPageView(Context context) {
+    super(context);
+    init();
+  }
+
+  public EmojiPageView(Context context, AttributeSet attrs) {
+    super(context, attrs);
+    init();
+  }
+
+  public EmojiPageView(Context context, AttributeSet attrs, int defStyleAttr) {
+    super(context, attrs, defStyleAttr);
+    init();
+  }
+
+  @TargetApi(VERSION_CODES.LOLLIPOP)
+  public EmojiPageView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    super(context, attrs, defStyleAttr, defStyleRes);
+    init();
   }
 
   public void onSelected() {
@@ -40,10 +52,8 @@ public class EmojiPageFragment extends Fragment {
     }
   }
 
-  @Nullable @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                               Bundle savedInstanceState)
-  {
-    final View view = inflater.inflate(R.layout.emoji_grid_layout, container, false);
+  private void init() {
+    final View view = LayoutInflater.from(getContext()).inflate(R.layout.emoji_grid_layout, this, true);
     grid = (GridView) view.findViewById(R.id.emoji);
     grid.setColumnWidth(getResources().getDimensionPixelSize(R.dimen.emoji_drawer_size) + 2 * getResources().getDimensionPixelSize(R.dimen.emoji_drawer_item_padding));
     grid.setOnItemClickListener(new OnItemClickListener() {
@@ -51,12 +61,11 @@ public class EmojiPageFragment extends Fragment {
         if (listener != null) listener.onEmojiSelected((Integer)view.getTag());
       }
     });
-    grid.setAdapter(new EmojiGridAdapter(getActivity(), model));
-    return view;
   }
 
   public void setModel(EmojiPageModel model) {
     this.model = model;
+    grid.setAdapter(new EmojiGridAdapter(getContext(), model));
   }
 
   public void setEmojiSelectedListener(EmojiSelectionListener listener) {
