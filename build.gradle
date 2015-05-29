@@ -245,12 +245,14 @@ if (propFile.canRead()){
 }
 
 if (project.hasProperty('espresso') && System.console() != null) {
-    println "____________________WARNING_____________________"
+    println "______________________WARNING_______________________"
     println "ALL YOUR CONTACTS WILL BE DELETED IN THE PROCESS"
-    println "OF RUNNING THESE TESTS, TYPE 'espresso' TO CONTINUE"
+    println "OF RUNNING THESE TESTS, TYPE 'delete all my contacts'"
+    println "TO CONTINUE"
+    println "----------------------------------------------------"
 
     def input = System.console().readLine(':')
-    if (input == 'espresso') {
+    if (input == 'delete all my contacts') {
         android.productFlavors {
             base {}
             espresso {
