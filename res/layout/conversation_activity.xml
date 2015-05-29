@@ -77,14 +77,14 @@
                     android:background="@drawable/touch_highlight_background"
                     android:contentDescription="@string/conversation_activity__send"
                     android:nextFocusLeft="@+id/embedded_text_editor"
-                    android:paddingTop="12dp"
+                    android:paddingTop="14dp"
                     android:paddingBottom="12dp"
                     android:visibility="visible"
                     android:src="?conversation_send_button_sms_insecure"
                     android:clickable="false"
                     android:enabled="false"
                     android:paddingLeft="6dp"
-                    android:paddingRight="6dp"/>
+                    android:paddingRight="3dp"/>
 
                 <de.gdata.messaging.components.SelfDestructionButton
                     android:id="@+id/select_bomb_button"
@@ -92,19 +92,19 @@
                     android:layout_height="fill_parent"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/touch_highlight_background"
-                    android:contentDescription="@string/conversation_activity__send"
+                    android:contentDescription="@string/self_destruction"
                     android:nextFocusLeft="@+id/embedded_text_editor"
                     android:visibility="visible"
-                    android:src="@drawable/ic_bomb"
+                    android:src="@drawable/ic_action_timebomb"
                     android:clickable="false"
                     android:enabled="false"
                     android:outlineProvider="background"
+                    android:scaleType="centerInside"
                     android:cropToPadding="false"
-                    android:scaleType="fitCenter"
-                    android:paddingTop="12dp"
-                    android:paddingBottom="12dp"
+                    android:paddingTop="0dp"
+                    android:paddingBottom="6dp"
                     android:paddingLeft="3dp"
-                    android:paddingRight="3dp"/>
+                    android:paddingRight="6dp"/>
                 <org.thoughtcrime.securesms.components.EmojiToggle
                         android:id="@+id/emoji_toggle"
                         android:layout_width="wrap_content"

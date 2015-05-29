@@ -80,7 +80,7 @@
                     android:layout_gravity="top"
                     android:scaleType="centerInside"
                     android:adjustViewBounds="true"
-                    android:src="@drawable/ic_bomb"
+                    android:src="@drawable/ic_action_timebomb"
                     android:layout_weight="2"
                     android:contentDescription="@string/conversation_item__mms_image_description"
                     android:visibility="visible"/>

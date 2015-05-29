@@ -25,6 +25,9 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Matrix;
+import android.graphics.Point;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.TransitionDrawable;
@@ -34,9 +37,13 @@ import android.os.Message;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.QuickContact;
 import android.util.AttributeSet;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -57,6 +64,8 @@ import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
 import org.thoughtcrime.securesms.jobs.MmsDownloadJob;
 import org.thoughtcrime.securesms.jobs.MmsSendJob;
 import org.thoughtcrime.securesms.jobs.SmsSendJob;
+import org.thoughtcrime.securesms.mms.AudioSlide;
+import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
@@ -66,6 +75,7 @@ import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.Emoji;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libaxolotl.logging.Log;
 
 import java.io.InputStream;
@@ -73,6 +83,8 @@ import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 import de.gdata.messaging.util.GDataLinkMovementMethod;
+import ws.com.google.android.mms.ContentType;
+import ws.com.google.android.mms.pdu.PduPart;
 
 /**
  * A view that displays an individual conversation item within a conversation
@@ -354,14 +366,14 @@ public class ConversationItem extends LinearLayout {
             image.setImageResource(masterSecret, ((MediaMmsMessageRecord) messageRecord).getId(),
                 ((MediaMmsMessageRecord) messageRecord).getDateReceived(),
                 ((MediaMmsMessageRecord) messageRecord).getSlideDeckFuture());
-            //image.setThumbnailClickListener(new ThumbnailClickListener());
+
+            image.setThumbnailClickListener(new ThumbnailClickListener());
           } else {
             image.setVisibility(View.GONE);
           }
         }
       }
     }
-
     @Override
     public void onClick(View v) {
 
@@ -376,7 +388,7 @@ public class ConversationItem extends LinearLayout {
       }
       AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
       builder.setTitle(countdown);
-      builder.setIcon(R.drawable.ic_bomb);
+      builder.setIcon(R.drawable.ic_action_timebomb);
       builder.setCancelable(false);
       LayoutInflater vi = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
       LinearLayout rlView = (LinearLayout) vi.inflate(R.layout.destroy_dialog, null);
@@ -395,9 +407,6 @@ public class ConversationItem extends LinearLayout {
       alertDialogDestroy = builder.show();
       new Thread(new Runnable() {
 
-        public Activity getActivity() {
-          return conversationFragment.getActivity();
-        }
 
         @Override
         public void run() {
@@ -565,7 +574,6 @@ public class ConversationItem extends LinearLayout {
       //setMediaMmsAttributes(messageRecord);
     }
   }
-
   private void resolveMedia(MediaMmsMessageRecord messageRecord) {
     if (hasMedia(messageRecord)) {
       if (hasMedia(messageRecord)) {
@@ -582,7 +590,6 @@ public class ConversationItem extends LinearLayout {
       }
     }
   }
-
   private Drawable getDrawable(SlideDeck result) {
     Drawable bitmap = null;
     try {
@@ -656,7 +663,7 @@ public class ConversationItem extends LinearLayout {
                       fadingResult.startTransition(300);
                     }
                   }
-                  mmsThumbnail.setOnClickListener(new ThumbnailOnClickListener(slide));
+                  mmsThumbnail.setThumbnailClickListener(new ThumbnailClickListener());
                   return;
                 }
               }
@@ -738,10 +745,11 @@ public class ConversationItem extends LinearLayout {
     intent.putExtra("sent", messageRecord.isOutgoing());
     context.startActivity(intent);
   }
-
+  public Activity getActivity() {
+    return conversationFragment.getActivity();
+  }
   private class ThumbnailClickListener implements ThumbnailView.ThumbnailClickListener {
     private void fireIntent(Slide slide) {
-      Log.w(TAG, "Clicked: " + slide.getUri() + " , " + slide.getContentType());
       Intent intent = new Intent(Intent.ACTION_VIEW);
       intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
       intent.setDataAndType(PartAuthority.getPublicPartUri(slide.getUri()), slide.getContentType());
@@ -754,84 +762,37 @@ public class ConversationItem extends LinearLayout {
     }
 
     public void onClick(final View v, final Slide slide) {
-      if (!batchSelected.isEmpty()) {
-        selectionClickListener.onItemClick(null, ConversationItem.this, -1, -1);
-      } else if (MediaPreviewActivity.isContentTypeSupported(slide.getContentType())) {
-        Intent intent = new Intent(context, MediaPreviewActivity.class);
-        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        intent.setDataAndType(slide.getUri(), slide.getContentType());
-        intent.putExtra(MediaPreviewActivity.MASTER_SECRET_EXTRA, masterSecret);
-        if (!messageRecord.isOutgoing())
-          intent.putExtra(MediaPreviewActivity.RECIPIENT_EXTRA, messageRecord.getIndividualRecipient().getRecipientId());
-        intent.putExtra(MediaPreviewActivity.DATE_EXTRA, messageRecord.getDateReceived());
+      boolean isAudio = slide instanceof AudioSlide;
+      if((isAudio && messageRecord.getBody().isSelfDestruction()) || !messageRecord.getBody().isSelfDestruction()) {
+        if (!batchSelected.isEmpty()) {
+          selectionClickListener.onItemClick(null, ConversationItem.this, -1, -1);
+        } else if (MediaPreviewActivity.isContentTypeSupported(slide.getContentType())) {
+          Intent intent = new Intent(context, MediaPreviewActivity.class);
+          intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+          intent.setDataAndType(slide.getUri(), slide.getContentType());
+          intent.putExtra(MediaPreviewActivity.MASTER_SECRET_EXTRA, masterSecret);
+          if (!messageRecord.isOutgoing())
+            intent.putExtra(MediaPreviewActivity.RECIPIENT_EXTRA, messageRecord.getIndividualRecipient().getRecipientId());
+          intent.putExtra(MediaPreviewActivity.DATE_EXTRA, messageRecord.getDateReceived());
 
-        context.startActivity(intent);
-      } else {
-        AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(context);
-        builder.setTitle(R.string.ConversationItem_view_secure_media_question);
-        builder.setIconAttribute(R.attr.dialog_alert_icon);
-        builder.setCancelable(true);
-        builder.setMessage(R.string.ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning);
-        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-          public void onClick(DialogInterface dialog, int which) {
-            fireIntent(slide);
-          }
-        });
-        builder.setNegativeButton(R.string.no, null);
-        builder.show();
+          context.startActivity(intent);
+        } else {
+          AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(context);
+          builder.setTitle(R.string.ConversationItem_view_secure_media_question);
+          builder.setIconAttribute(R.attr.dialog_alert_icon);
+          builder.setCancelable(true);
+          builder.setMessage(R.string.ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning);
+          builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+              fireIntent(slide);
+            }
+          });
+          builder.setNegativeButton(R.string.no, null);
+          builder.show();
+        }
       }
     }
   }
-
-  private class ThumbnailOnClickListener implements View.OnClickListener {
-    private final Slide slide;
-
-    public ThumbnailOnClickListener(Slide slide) {
-      this.slide = slide;
-    }
-
-    private void fireIntent() {
-      Log.w(TAG, "Clicked: " + slide.getUri() + " , " + slide.getContentType());
-      Intent intent = new Intent(Intent.ACTION_VIEW);
-      intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-      intent.setDataAndType(PartAuthority.getPublicPartUri(slide.getUri()), slide.getContentType());
-      try {
-        context.startActivity(intent);
-      } catch (ActivityNotFoundException anfe) {
-        Log.w(TAG, "No activity existed to view the media.");
-        Toast.makeText(context, R.string.ConversationItem_unable_to_open_media, Toast.LENGTH_LONG).show();
-      }
-    }
-
-    public void onClick(View v) {
-      if (!batchSelected.isEmpty()) {
-        selectionClickListener.onItemClick(null, ConversationItem.this, -1, -1);
-      } else if (MediaPreviewActivity.isContentTypeSupported(slide.getContentType())) {
-        Intent intent = new Intent(context, MediaPreviewActivity.class);
-        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        intent.setDataAndType(slide.getUri(), slide.getContentType());
-        intent.putExtra(MediaPreviewActivity.MASTER_SECRET_EXTRA, masterSecret);
-        if (!messageRecord.isOutgoing())
-          intent.putExtra(MediaPreviewActivity.RECIPIENT_EXTRA, messageRecord.getIndividualRecipient().getRecipientId());
-        intent.putExtra(MediaPreviewActivity.DATE_EXTRA, messageRecord.getDateReceived());
-        context.startActivity(intent);
-      } else {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle(R.string.ConversationItem_view_secure_media_question);
-        builder.setIcon(Dialogs.resolveIcon(context, R.attr.dialog_alert_icon));
-        builder.setCancelable(true);
-        builder.setMessage(R.string.ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning);
-        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-          public void onClick(DialogInterface dialog, int which) {
-            fireIntent();
-          }
-        });
-        builder.setNegativeButton(R.string.no, null);
-        builder.show();
-      }
-    }
-  }
-
   private class MmsDownloadClickListener implements View.OnClickListener {
     public void onClick(View v) {
       NotificationMmsMessageRecord notificationRecord = (NotificationMmsMessageRecord) messageRecord;

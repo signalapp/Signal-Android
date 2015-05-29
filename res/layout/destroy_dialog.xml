@@ -2,21 +2,24 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+              android:adjustViewBounds="true"
     android:orientation="vertical"
     android:gravity="center_horizontal">
-        <org.thoughtcrime.securesms.components.ThumbnailView
-            android:id="@+id/imageDialog"
-            android:layout_width="400dp"
-            android:layout_height="400dp"
-            android:layout_margin="5dp"/>
+    <TextView
+        android:id="@+id/textDialog"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        />
+            <org.thoughtcrime.securesms.components.ThumbnailView
+                    android:id="@+id/imageDialog"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:scaleType="centerInside"
+                    android:adjustViewBounds="true"/>
 
-        <TextView
-            android:id="@+id/textDialog"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#000"
-            android:gravity="center"
-            android:layout_margin="10dp"
-            android:layout_toRightOf="@+id/imageDialog"/>
 
 </LinearLayout>

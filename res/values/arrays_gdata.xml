@@ -7,10 +7,10 @@
         <item>@string/ConversationActivity_gdata_selfdestroy_entry_0</item>
     </string-array>
     <string-array name="gdata_selfdestroy_icons">
-        <item>@drawable/ic_bomb</item>
-        <item>@drawable/ic_bomb</item>
-        <item>@drawable/ic_bomb</item>
-        <item>@drawable/ic_bomb</item>
+        <item>@drawable/ic_action_timebomb</item>
+        <item>@drawable/ic_action_timebomb</item>
+        <item>@drawable/ic_action_timebomb</item>
+        <item>@drawable/ic_action_timebomb</item>
     </string-array>
     <string-array name="gdata_selfdestroy_values">
         <item>60</item>
@@ -31,14 +31,14 @@
         <item>@string/text_secure_normal__menu_clear_passphrase</item>
     </string-array>
     <string-array name="array_nav_icons">
-        <item>@drawable/ic_menu_save</item>
-        <item>@drawable/ic_menu_save</item>
-        <item>@drawable/ic_menu_save</item>
-        <item>@drawable/ic_menu_login</item>
-        <item>@drawable/ic_menu_blocked_user</item>
-        <item>@drawable/ic_menu_end_conversation</item>
+        <item>@drawable/ic_action_add</item>
+        <item>@drawable/ic_action_checked</item>
+        <item>@drawable/ic_action_save</item>
+        <item>@drawable/ic_action_key</item>
+        <item>@drawable/ic_action_block</item>
+        <item>@drawable/ic_action_hidemessage</item>
         <item>@drawable/check_cd</item>
-        <item>@drawable/ic_menu_save</item>
+        <item>@drawable/ic_action_settings</item>
         <item>@drawable/ic_drawer</item>
     </string-array>
 </resources>

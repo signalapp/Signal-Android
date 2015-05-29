@@ -79,7 +79,7 @@ public class SelfDestOptions {
         for (int i = 0; i < valuesArray.length; i++) {
             String key = valuesArray[i];
             enabledSelfDest.add(key);
-            selfDestMetaData.put(key, new DestroyOption(key, R.drawable.ic_bomb, entryArray[i]));
+            selfDestMetaData.put(key, new DestroyOption(key, R.drawable.ic_action_timebomb, entryArray[i]));
         }
         iconArray.recycle();
 
