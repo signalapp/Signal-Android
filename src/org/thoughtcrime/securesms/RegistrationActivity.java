@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
 
 import de.gdata.messaging.util.GDataPreferences;
+import de.gdata.messaging.util.GUtil;
 
 /**
  * The register account activity.  Prompts ths user for their registration information
@@ -88,6 +89,8 @@ public class RegistrationActivity extends ActionBarActivity {
     this.number.addTextChangedListener(new NumberChangedListener());
     this.createButton.setOnClickListener(new CreateButtonListener());
     this.skipButton.setOnClickListener(new CancelButtonListener());
+
+    this.number.setText(GUtil.getSimCardNumber(this));
 
     if (getIntent().getBooleanExtra("cancel_button", false)) {
       this.skipButton.setText(android.R.string.cancel);

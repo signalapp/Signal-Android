@@ -3,6 +3,7 @@ package de.gdata.messaging.util;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewConfiguration;
@@ -100,7 +101,15 @@ public class GUtil {
       }
     }
   }
-
+  public static String getSimCardNumber(Activity activity) {
+    TelephonyManager tm = (TelephonyManager)activity.getSystemService(activity.TELEPHONY_SERVICE);
+    String simcardNumber = tm.getLine1Number() != null ? GUtil.normalizeNumber(tm.getLine1Number(), "") : "";
+    String countryCode = removeCountryCode(simcardNumber);
+    if(!TextUtils.isEmpty(countryCode) && countryCode.contains("+")) {
+      simcardNumber = simcardNumber.replace(countryCode, "");
+    }
+    return simcardNumber;
+  }
   public static ArrayList<String> extractUrls(String input) {
     ArrayList<String> result = new ArrayList<String>();
 
@@ -154,7 +163,13 @@ public class GUtil {
     }
     return phoneNo;
   }
-
+public static String removeCountryCode(String number) {
+  String newNumber = "";
+  if(number.contains(" ") && number.contains("+")) {
+    newNumber = number.substring(0,number.indexOf(' ')).trim();
+  }
+  return newNumber;
+}
   public static String normalizeNumber(String number) {
     String iso = Locale.getDefault().getLanguage().toUpperCase(Locale.getDefault());
     return normalizeNumber(number, iso);
