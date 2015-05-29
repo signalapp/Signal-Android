@@ -245,22 +245,24 @@ if (propFile.canRead()){
 }
 
 if (project.hasProperty('espresso') && System.console() != null) {
-    println '____________________WARNING_____________________'
-    println 'ALL YOUR CONTACTS WILL BE DELETED IN THE PROCESS'
-    println 'OF RUNNING THESE TESTS, TYPE ENTER TO CONTINUE'
-    System.console().readLine(':')
+    println "____________________WARNING_____________________"
+    println "ALL YOUR CONTACTS WILL BE DELETED IN THE PROCESS"
+    println "OF RUNNING THESE TESTS, TYPE 'espresso' TO CONTINUE"
 
-    android.productFlavors {
-        base {}
-        espresso {
-            testInstrumentationRunner "org.thoughtcrime.securesms.TextSecureWakingTestRunner"
+    def input = System.console().readLine(':')
+    if (input == 'espresso') {
+        android.productFlavors {
+            base {}
+            espresso {
+                testInstrumentationRunner "org.thoughtcrime.securesms.TextSecureWakingTestRunner"
+            }
         }
-    }
-    android.sourceSets.espresso {
-        manifest.srcFile 'test/espresso/AndroidManifest.xml'
-    }
-    android.sourceSets.androidTestEspresso {
-        java.srcDirs = ['test/androidTestEspresso/java']
-        res.srcDirs  = ['test/androidTestEspresso/res']
+        android.sourceSets.espresso {
+            manifest.srcFile 'test/espresso/AndroidManifest.xml'
+        }
+        android.sourceSets.androidTestEspresso {
+            java.srcDirs = ['test/androidTestEspresso/java']
+            res.srcDirs  = ['test/androidTestEspresso/res']
+        }
     }
 }
