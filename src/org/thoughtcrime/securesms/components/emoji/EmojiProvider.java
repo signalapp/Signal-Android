@@ -48,9 +48,9 @@ public class EmojiProvider {
 
   public static final double EMOJI_FULL       = 1.00;
   public static final double EMOJI_SMALL      = 0.50;
-  public static final int    EMOJI_RAW_HEIGHT = 128;
-  public static final int    EMOJI_RAW_WIDTH  = 136;
-  public static final int    EMOJI_VERT_PAD   = 8;
+  public static final int    EMOJI_RAW_HEIGHT = 96;
+  public static final int    EMOJI_RAW_WIDTH  = 102;
+  public static final int    EMOJI_VERT_PAD   = 6;
   public static final int    EMOJI_PER_ROW    = 15;
 
   private final Context context;
@@ -264,6 +264,7 @@ public class EmojiProvider {
         Log.w(TAG, ioe);
         throw ioe;
       } catch (BitmapDecodingException bde) {
+        Log.w(TAG, "page " + page + " failed.");
         Log.w(TAG, bde);
         throw new AssertionError("emoji sprite asset is corrupted or android decoding is broken");
       }
