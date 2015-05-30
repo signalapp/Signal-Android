@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.components.emoji;
 
 import android.content.Context;
 import android.support.annotation.ArrayRes;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
@@ -62,7 +63,7 @@ public class EmojiDrawer extends KeyboardAwareLinearLayout {
   private void init() {
     final View v = LayoutInflater.from(getContext()).inflate(R.layout.emoji_drawer, this, true);
     initializeResources(v);
-    initializePageModels(R.array.emoji_categories, R.array.emoji_category_icons);
+    initializePageModels();
     initializeEmojiGrid();
   }
 
@@ -102,27 +103,23 @@ public class EmojiDrawer extends KeyboardAwareLinearLayout {
     pager.setAdapter(new EmojiPagerAdapter(getContext(),
                                            models,
                                            new EmojiSelectionListener() {
-                                             @Override public void onEmojiSelected(int emojiCode) {
-                                               recentModel.onCodePointSelected(emojiCode);
-                                               composeText.insertEmoji(emojiCode);
+                                             @Override public void onEmojiSelected(String emoji) {
+                                               recentModel.onCodePointSelected(emoji);
+                                               composeText.insertEmoji(emoji);
                                              }
                                            }));
 
-    if (recentModel.getCodePoints().length == 0) {
+    if (recentModel.getEmoji().length == 0) {
       pager.setCurrentItem(1);
     }
     strip.setViewPager(pager);
   }
 
-  private void initializePageModels(@ArrayRes int pagesRes, @ArrayRes int iconsRes) {
-    final int[] icons = ResUtil.getResourceIds(getContext(), iconsRes);
-    final int[] pages = ResUtil.getResourceIds(getContext(), pagesRes);
+  private void initializePageModels() {
     this.models = new LinkedList<>();
     this.recentModel = new RecentEmojiPageModel(getContext());
     this.models.add(recentModel);
-    for (int i = 0; i < icons.length; i++) {
-      this.models.add(new StaticEmojiPageModel(icons[i], getResources().getIntArray(pages[i])));
-    }
+    this.models.addAll(EmojiPages.PAGES);
   }
 
   public static class EmojiPagerAdapter extends PagerAdapter

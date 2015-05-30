@@ -22,19 +22,18 @@ public class EmojiEditText extends AppCompatEditText {
   }
 
   @Override public void setText(CharSequence text, BufferType type) {
-    super.setText(EmojiProvider.getInstance(getContext()).emojify(text, EmojiProvider.EMOJI_SMALL, new PostInvalidateCallback(this)),
+    super.setText(EmojiProvider.getInstance(getContext()).emojify(text, EmojiProvider.EMOJI_SMALL, callback),
                   BufferType.SPANNABLE);
   }
 
-  public void insertEmoji(int codePoint) {
+  public void insertEmoji(String emoji) {
     final int          start = getSelectionStart();
     final int          end   = getSelectionEnd();
-    final char[]       chars = Character.toChars(codePoint);
-    final CharSequence text  = EmojiProvider.getInstance(getContext()).emojify(new String(chars),
+    final CharSequence text  = EmojiProvider.getInstance(getContext()).emojify(emoji,
                                                                                EmojiProvider.EMOJI_SMALL,
                                                                                callback);
 
     getText().replace(Math.min(start, end), Math.max(start, end), text);
-    setSelection(end + chars.length);
+    setSelection(end + emoji.length());
   }
 }
