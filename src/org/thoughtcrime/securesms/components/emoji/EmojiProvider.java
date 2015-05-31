@@ -45,7 +45,7 @@ public class EmojiProvider {
   private static final Pattern EMOJI_RANGE = Pattern.compile("[\\u20a0-\\u32ff\\ud83c\\udc00-\\ud83d\\udeff\\udbb9\\udce5-\\udbb9\\udcee]");
 
   public static final double EMOJI_FULL       = 1.00;
-  public static final double EMOJI_SMALL      = 0.50;
+  public static final double EMOJI_SMALL      = 0.60;
   public static final int    EMOJI_RAW_HEIGHT = 96;
   public static final int    EMOJI_RAW_WIDTH  = 102;
   public static final int    EMOJI_VERT_PAD   = 6;
@@ -84,13 +84,13 @@ public class EmojiProvider {
     }
   }
 
-  public CharSequence emojify(CharSequence text, double size, Callback callback) {
+  public Spannable emojify(CharSequence text, Callback callback) {
     Matcher                matches = EMOJI_RANGE.matcher(text);
     SpannableStringBuilder builder = new SpannableStringBuilder(text);
 
     while (matches.find()) {
       int codePoint = matches.group().codePointAt(0);
-      Drawable drawable = getEmojiDrawable(codePoint, size);
+      Drawable drawable = getEmojiDrawable(codePoint, EMOJI_SMALL);
       if (drawable != null) {
         builder.setSpan(new InvalidatingDrawableSpan(drawable, callback), matches.start(), matches.end(),
                         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
