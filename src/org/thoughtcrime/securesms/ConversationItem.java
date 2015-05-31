@@ -164,6 +164,7 @@ public class ConversationItem extends LinearLayout {
   }
 
   public void unbind() {
+    mediaThumbnail.clear();
   }
 
   public MessageRecord getMessageRecord() {

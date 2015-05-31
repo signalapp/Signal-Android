@@ -53,11 +53,6 @@ public class ThumbnailView extends ForegroundImageView {
     super(context, attrs, defStyle);
   }
 
-  @Override protected void onDetachedFromWindow() {
-    Glide.clear(this);
-    super.onDetachedFromWindow();
-  }
-
   public void setImageResource(@Nullable MasterSecret masterSecret,
                                long id, long timestamp,
                                @NonNull ListenableFutureTask<SlideDeck> slideDeckFuture)
@@ -95,6 +90,10 @@ public class ThumbnailView extends ForegroundImageView {
 
   public void setThumbnailClickListener(ThumbnailClickListener listener) {
     this.thumbnailClickListener = listener;
+  }
+
+  public void clear() {
+    if (isContextValid()) Glide.clear(this);
   }
 
   @TargetApi(VERSION_CODES.JELLY_BEAN_MR1)
