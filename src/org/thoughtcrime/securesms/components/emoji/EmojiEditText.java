@@ -1,39 +1,42 @@
 package org.thoughtcrime.securesms.components.emoji;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable.Callback;
+import android.graphics.drawable.Drawable;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatEditText;
+import android.text.InputFilter;
 import android.util.AttributeSet;
+
+import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.emoji.EmojiProvider.EmojiDrawable;
 
 
 public class EmojiEditText extends AppCompatEditText {
-  private final Callback callback = new PostInvalidateCallback(this);
+  private static final String TAG = EmojiEditText.class.getSimpleName();
 
   public EmojiEditText(Context context) {
-    super(context);
+    this(context, null);
   }
 
   public EmojiEditText(Context context, AttributeSet attrs) {
-    super(context, attrs);
+    this(context, attrs, R.attr.editTextStyle);
   }
 
   public EmojiEditText(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
-  }
-
-  @Override public void setText(CharSequence text, BufferType type) {
-    super.setText(EmojiProvider.getInstance(getContext()).emojify(text, EmojiProvider.EMOJI_SMALL, callback),
-                  BufferType.SPANNABLE);
+    setFilters(new InputFilter[]{ new EmojiFilter(this) });
   }
 
   public void insertEmoji(String emoji) {
     final int          start = getSelectionStart();
     final int          end   = getSelectionEnd();
-    final CharSequence text  = EmojiProvider.getInstance(getContext()).emojify(emoji,
-                                                                               EmojiProvider.EMOJI_SMALL,
-                                                                               callback);
 
-    getText().replace(Math.min(start, end), Math.max(start, end), text);
+    getText().replace(Math.min(start, end), Math.max(start, end), emoji);
     setSelection(end + emoji.length());
+  }
+
+  @Override public void invalidateDrawable(@NonNull Drawable drawable) {
+    if (drawable instanceof EmojiDrawable) invalidate();
+    else                                   super.invalidateDrawable(drawable);
   }
 }
