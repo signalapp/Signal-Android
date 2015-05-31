@@ -640,5 +640,15 @@ public class PartDatabase extends Database {
     public boolean isValid() {
       return rowId >= 0 && uniqueId >= 0;
     }
+
+    @Override
+    public boolean equals(Object object) {
+      if (!(object instanceof PartId)){
+        return false;
+      }
+
+      PartId other = (PartId) object;
+      return rowId == other.rowId && uniqueId == other.uniqueId;
+    }
   }
 }
