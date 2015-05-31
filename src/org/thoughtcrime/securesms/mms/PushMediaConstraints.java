@@ -17,7 +17,7 @@ public class PushMediaConstraints extends MediaConstraints {
 
   @Override
   public int getImageMaxSize() {
-    return 300 * KB;
+    return 420 * KB;
   }
 
   @Override
