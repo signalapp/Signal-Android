@@ -363,6 +363,7 @@ public class ConversationItem extends LinearLayout {
           }
         } else {
           if (hasMedia(messageRecord)) {
+            image.setVisibility(View.VISIBLE);
             image.setImageResource(masterSecret, ((MediaMmsMessageRecord) messageRecord).getId(),
                 ((MediaMmsMessageRecord) messageRecord).getDateReceived(),
                 ((MediaMmsMessageRecord) messageRecord).getSlideDeckFuture());
