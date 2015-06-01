@@ -73,9 +73,10 @@ public class EmojiProvider {
     int[] pages = ResUtil.getResourceIds(context, R.array.emoji_categories);
 
     this.context     = context.getApplicationContext();
-    this.drawHeight  = context.getResources().getDimension(R.dimen.emoji_drawer_size);
-    this.drawWidth   = drawHeight * ((double)EMOJI_RAW_WIDTH) / EMOJI_RAW_HEIGHT;
-    this.verticalPad = EMOJI_VERT_PAD * drawHeight / EMOJI_RAW_HEIGHT;
+    this.drawHeight  = Math.min(context.getResources().getDimension(R.dimen.emoji_drawer_size), EMOJI_RAW_HEIGHT);
+    double drawScale = drawHeight / EMOJI_RAW_HEIGHT;
+    this.drawWidth   = EMOJI_RAW_WIDTH * drawScale;
+    this.verticalPad = EMOJI_VERT_PAD * drawScale;
     Log.w(TAG, "draw size: " + drawWidth + "x" + drawHeight);
     for (int i = 0; i < pages.length; i++) {
       final EmojiPageBitmap page = new EmojiPageBitmap(i);
