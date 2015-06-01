@@ -27,7 +27,7 @@
     <attr name="ic_arrow_forward" format="reference" />
 
     <attr name="conversation_background" format="reference|color"/>
-    <attr name="conversation_editor_background" format="reference"/>
+    <attr name="conversation_editor_background" format="reference|color"/>
     <attr name="conversation_editor_text_color" format="reference|color"/>
     <attr name="conversation_delivery_delivered" format="reference"/>
     <attr name="conversation_transport_sms_indicator" format="reference"/>
