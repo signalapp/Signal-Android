@@ -35,7 +35,7 @@
         <item>@drawable/ic_action_checked</item>
         <item>@drawable/ic_action_save</item>
         <item>@drawable/ic_action_key</item>
-        <item>@drawable/ic_action_block</item>
+        <item>@drawable/ic_action_blockuser</item>
         <item>@drawable/ic_action_hidemessage</item>
         <item>@drawable/check_cd</item>
         <item>@drawable/ic_action_settings</item>
