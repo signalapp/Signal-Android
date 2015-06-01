@@ -16,10 +16,14 @@
  */
 package org.thoughtcrime.securesms;
 
-import android.os.AsyncTask;
+import android.app.IntentService;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.util.Log;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.text.Editable;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -41,12 +45,14 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 public class PassphraseChangeActivity extends PassphraseActivity {
 
+  private static final String CHANGEPHRASE_FILTER = "PassphraseChangeActivity_changePhraseReceiver";
   private EditText originalPassphrase;
   private EditText newPassphrase;
   private EditText repeatPassphrase;
   private TextView originalPassphraseLabel;
   private Button   okButton;
   private Button   cancelButton;
+  private ChangePassphraseReceiver changePhraseReceiver;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -55,6 +61,16 @@ public class PassphraseChangeActivity extends PassphraseActivity {
     setContentView(R.layout.change_passphrase_activity);
 
     initializeResources();
+    changePhraseReceiver = new ChangePassphraseReceiver();
+    LocalBroadcastManager.getInstance(this)
+      .registerReceiver(changePhraseReceiver, new IntentFilter(CHANGEPHRASE_FILTER));
+  }
+
+  @Override
+  public void onDestroy() {
+    super.onDestroy();
+    if (changePhraseReceiver != null)
+      LocalBroadcastManager.getInstance(this).unregisterReceiver(changePhraseReceiver);
   }
 
   private void initializeResources() {
@@ -102,7 +118,11 @@ public class PassphraseChangeActivity extends PassphraseActivity {
                      R.string.PassphraseChangeActivity_enter_new_passphrase_exclamation,
                      Toast.LENGTH_SHORT).show();
     } else {
-      new ChangePassphraseTask(this).execute(original, passphrase);
+      Intent changePhrase = new Intent(this, ChangePassphraseService.class);
+      changePhraseReceiver.disableOKButton();
+      String[] params = { original, passphrase };
+      changePhrase.putExtra("params", params);
+      this.startService(changePhrase);
     }
   }
 
@@ -118,40 +138,22 @@ public class PassphraseChangeActivity extends PassphraseActivity {
     }
   }
 
-  private class ChangePassphraseTask extends AsyncTask<String, Void, MasterSecret> {
-    private final Context context;
+  private class ChangePassphraseReceiver extends BroadcastReceiver {
 
-    public ChangePassphraseTask(Context context) {
-      this.context = context;
-    }
-
-    @Override
-    protected void onPreExecute() {
+    public void disableOKButton() {
       okButton.setEnabled(false);
     }
 
     @Override
-    protected MasterSecret doInBackground(String... params) {
-      try {
-        MasterSecret masterSecret = MasterSecretUtil.changeMasterSecretPassphrase(context, params[0], params[1]);
-        TextSecurePreferences.setPasswordDisabled(context, false);
-
-        return masterSecret;
-
-      } catch (InvalidPassphraseException e) {
-        Log.w(PassphraseChangeActivity.class.getSimpleName(), e);
-        return null;
-      }
-    }
-
-    @Override
-    protected void onPostExecute(MasterSecret masterSecret) {
+    public void onReceive(Context receiverContext, Intent receiverIntent) {
+      MasterSecret masterSecret = (MasterSecret) receiverIntent.getParcelableExtra("returnValue");
       okButton.setEnabled(true);
 
       if (masterSecret != null) {
         setMasterSecret(masterSecret);
       } else {
-        Toast.makeText(context, R.string.PassphraseChangeActivity_incorrect_old_passphrase_exclamation,
+        Toast.makeText(PassphraseChangeActivity.this,
+                       R.string.PassphraseChangeActivity_incorrect_old_passphrase_exclamation,
                        Toast.LENGTH_LONG).show();
         originalPassphrase.setText("");
       }
@@ -165,5 +167,25 @@ public class PassphraseChangeActivity extends PassphraseActivity {
     this.repeatPassphrase   = null;
 
     System.gc();
+  }
+
+  public static class ChangePassphraseService extends IntentService {
+    public ChangePassphraseService() {
+      super("ChangePassphraseService");
+    }
+
+    public void onHandleIntent(Intent intent) {
+      String[] params = intent.getStringArrayExtra("params");
+      Intent resultIntent = new Intent(CHANGEPHRASE_FILTER);
+      try {
+        MasterSecret masterSecret = MasterSecretUtil.changeMasterSecretPassphrase(this, params[0], params[1]);
+        TextSecurePreferences.setPasswordDisabled(this, false);
+        resultIntent.putExtra("returnValue", masterSecret);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(resultIntent);
+      } catch (InvalidPassphraseException e) {
+        Log.w(PassphraseChangeActivity.class.getSimpleName(), e);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(resultIntent);
+      }
+    }
   }
 }
