@@ -43,15 +43,12 @@ public class GService extends Service {
 
     Uri.Builder b = new Uri.Builder();
     b.scheme(ContentResolver.SCHEME_CONTENT);
-    Uri hiddenUri = Uri.parse("content://de.gdata.mobilesecurity.privacy.provider/contact/0");
-    Uri hiddenNUri = Uri.parse("content://de.gdata.mobilesecurity.privacy.provider/number/0");
-    Uri hiddenContactsUri = b.authority(PrivacyBridge.AUTHORITY).path("contacts/").build();
-    Uri hiddenNumbersUri = b.authority(PrivacyBridge.AUTHORITY).path("numbers/").build();
-    if (privacyContentObserver == null) {
+    Uri hiddenUri = Uri.parse("content://"+ GDataPreferences.ISFA_PACKAGE+PrivacyBridge.AUTHORITY);
+
       privacyContentObserver = new PrivacyContentObserver(handler);
       context.getContentResolver().
           registerContentObserver(
-              ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+              ContactsContract.Contacts.CONTENT_URI,
               true, privacyContentObserver
           );
       context.getContentResolver().
@@ -59,12 +56,7 @@ public class GService extends Service {
               hiddenUri,
               true,
               privacyContentObserver);
-      context.getContentResolver().
-          registerContentObserver(
-              hiddenNUri,
-              true,
-              privacyContentObserver);
-    }
+
     refreshPrivacyData(false);
   }
   public static void bindISFAService() {

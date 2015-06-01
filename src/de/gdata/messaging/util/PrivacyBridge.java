@@ -36,7 +36,7 @@ public class PrivacyBridge {
 
   public static final String RESULT_KEY = "numberpicker_entries";
 
-  public final static String AUTHORITY = "de.gdata.mobilesecurity.privacy.provider";
+  public final static String AUTHORITY = ".privacy.provider";
   public static final String NAME_COLUMN = ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME;
   public static final String RECIPIENT_IDS = "recipient_ids";
   private static final String ACTION_RELOAD_ADAPTER = "reloadAdapter";
@@ -226,8 +226,8 @@ public class PrivacyBridge {
       final List<NumberEntry> entries = arrayLists[0];
       Uri.Builder b = new Uri.Builder();
       b.scheme(ContentResolver.SCHEME_CONTENT);
-      Uri hiddenContactsUri = b.authority(AUTHORITY).path("contacts/").build();
-      Uri hiddenNumbersUri = b.authority(AUTHORITY).path("numbers/").build();
+      Uri hiddenContactsUri = b.authority(GDataPreferences.ISFA_PACKAGE+ AUTHORITY).path("contacts/").build();
+      Uri hiddenNumbersUri = b.authority(GDataPreferences.ISFA_PACKAGE+ AUTHORITY).path("numbers/").build();
 
       if (entries == null || entries.size() == 0) return 0;
 
