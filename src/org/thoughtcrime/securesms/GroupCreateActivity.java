@@ -18,14 +18,18 @@
 package org.thoughtcrime.securesms;
 
 import android.app.Activity;
+import android.app.IntentService;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.content.LocalBroadcastManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -91,6 +95,7 @@ import static org.whispersystems.textsecure.internal.push.PushMessageProtos.Push
 public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
 
   private final static String TAG = GroupCreateActivity.class.getSimpleName();
+  private final static String DECODECROPANDSET_FILTER = "GroupCreateActivity_decodeCropAndSetReceiver";
 
   public static final String GROUP_RECIPIENT_EXTRA = "group_recipient";
   public static final String GROUP_THREAD_EXTRA    = "group_thread";
@@ -118,6 +123,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
   private MasterSecret   masterSecret;
   private Bitmap         avatarBmp;
   private Set<Recipient> selectedContacts;
+  private DecodeCropAndSetReceiver decodeCropAndSetReceiver;
 
   @Override
   protected void onPreCreate() {
@@ -134,6 +140,16 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
 
     selectedContacts = new HashSet<>();
     initializeResources();
+    decodeCropAndSetReceiver = new DecodeCropAndSetReceiver();
+    LocalBroadcastManager.getInstance(this)
+      .registerReceiver(decodeCropAndSetReceiver, new IntentFilter(DECODECROPANDSET_FILTER));
+  }
+
+  @Override
+  public void onDestroy() {
+    super.onDestroy();
+    if (decodeCropAndSetReceiver != null)
+      LocalBroadcastManager.getInstance(this).unregisterReceiver(decodeCropAndSetReceiver);
   }
 
   @Override
@@ -397,7 +413,10 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
         new Crop(data.getData()).output(outputFile).asSquare().start(this);
         break;
       case Crop.REQUEST_CROP:
-        new DecodeCropAndSetAsyncTask(Crop.getOutput(data)).execute();
+        Intent decodeCropAndSet = new Intent(this, DecodeCropAndSetService.class);
+        decodeCropAndSet.putExtra("masterSecret", masterSecret);
+        decodeCropAndSet.putExtra("avatarUri", Crop.getOutput(data));
+        this.startService(decodeCropAndSet);
     }
   }
 
@@ -491,29 +510,36 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
     return results;
   }
 
-  private class DecodeCropAndSetAsyncTask extends AsyncTask<Void,Void,Bitmap> {
-    private final Uri avatarUri;
+  private class DecodeCropAndSetReceiver extends BroadcastReceiver {
+    @Override
+    public void onReceive(Context receiverContext, Intent receiverIntent) {
+      avatarBmp = (Bitmap) receiverIntent.getParcelableExtra("avatarBmp");
+      if (avatarBmp != null) avatar.setImageBitmap(avatarBmp);
+    }
+  }
 
-    DecodeCropAndSetAsyncTask(Uri uri) {
-      avatarUri = uri;
+  public static class DecodeCropAndSetService extends IntentService {
+    private Bitmap avatarBmp;
+
+    public DecodeCropAndSetService() {
+      super("DecodeCropAndSetService");
     }
 
-    @Override
-    protected Bitmap doInBackground(Void... voids) {
+    public void onHandleIntent(Intent intent) {
+      MasterSecret masterSecret = (MasterSecret) intent.getParcelableExtra("masterSecret");
+      Uri avatarUri = (Uri) intent.getParcelableExtra("avatarUri");
+      Intent resultIntent = new Intent(DECODECROPANDSET_FILTER);
       if (avatarUri != null) {
         try {
-          avatarBmp = BitmapUtil.createScaledBitmap(GroupCreateActivity.this, masterSecret, avatarUri, AVATAR_SIZE, AVATAR_SIZE);
+          avatarBmp = BitmapUtil.createScaledBitmap(this, masterSecret, avatarUri, AVATAR_SIZE, AVATAR_SIZE);
         } catch (IOException | BitmapDecodingException e) {
           Log.w(TAG, e);
-          return null;
+          LocalBroadcastManager.getInstance(this).sendBroadcast(resultIntent);
+          return;
         }
       }
-      return avatarBmp;
-    }
-
-    @Override
-    protected void onPostExecute(Bitmap result) {
-      if (avatarBmp != null) avatar.setImageBitmap(avatarBmp);
+      resultIntent.putExtra("avatarBmp", avatarBmp);
+      LocalBroadcastManager.getInstance(this).sendBroadcast(resultIntent);
     }
   }
 
