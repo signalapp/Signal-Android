@@ -246,6 +246,8 @@
         </intent-filter>
     </service>
 
+    <service android:name=".ExportFragment$ExportPlaintextService" android:exported="false"/>
+
 
     <receiver android:name=".gcm.GcmBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND" >
         <intent-filter>
