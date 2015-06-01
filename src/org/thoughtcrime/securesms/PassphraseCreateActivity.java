@@ -16,8 +16,13 @@
  */
 package org.thoughtcrime.securesms;
 
-import android.os.AsyncTask;
+import android.app.IntentService;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.ActionBar;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
@@ -34,6 +39,10 @@ import org.thoughtcrime.securesms.util.VersionTracker;
 
 public class PassphraseCreateActivity extends PassphraseActivity {
 
+  private static final String GENERATOR_FILTER = "PassphraseCreateActivity_generatorReceiver";
+
+  private SecretGeneratorReceiver generatorReceiver;
+
   public PassphraseCreateActivity() { }
 
   @Override
@@ -49,32 +58,26 @@ public class PassphraseCreateActivity extends PassphraseActivity {
     getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
     getSupportActionBar().setCustomView(R.layout.centered_app_title);
 
-    new SecretGenerator().execute(MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
+    generatorReceiver = new SecretGeneratorReceiver();
+    LocalBroadcastManager.getInstance(this)
+      .registerReceiver(generatorReceiver, new IntentFilter(GENERATOR_FILTER));
+    Intent generator = new Intent(this, SecretGenerator.class);
+    generator.putExtra("passphrase", MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
+    this.startService(generator);
   }
 
-  private class SecretGenerator extends AsyncTask<String, Void, Void> {
+  public void onDestroy() {
+    super.onDestroy();
+    if (generatorReceiver != null)
+      LocalBroadcastManager.getInstance(this).unregisterReceiver(generatorReceiver);
+  }
+
+  private class SecretGeneratorReceiver extends BroadcastReceiver {
     private MasterSecret   masterSecret;
 
     @Override
-    protected void onPreExecute() {
-    }
-
-    @Override
-    protected Void doInBackground(String... params) {
-      String passphrase = params[0];
-      masterSecret      = MasterSecretUtil.generateMasterSecret(PassphraseCreateActivity.this,
-                                                                passphrase);
-
-      MasterSecretUtil.generateAsymmetricMasterSecret(PassphraseCreateActivity.this, masterSecret);
-      IdentityKeyUtil.generateIdentityKeys(PassphraseCreateActivity.this, masterSecret);
-      VersionTracker.updateLastSeenVersion(PassphraseCreateActivity.this);
-      TextSecurePreferences.setPasswordDisabled(PassphraseCreateActivity.this, true);
-
-      return null;
-    }
-
-    @Override
-    protected void onPostExecute(Void param) {
+    public void onReceive(Context receiverContext, Intent receiverIntent) {
+      masterSecret = (MasterSecret) receiverIntent.getParcelableExtra("masterSecret");
       setMasterSecret(masterSecret);
     }
   }
@@ -82,5 +85,26 @@ public class PassphraseCreateActivity extends PassphraseActivity {
   @Override
   protected void cleanup() {
     System.gc();
+  }
+
+  public static class SecretGenerator extends IntentService {
+    private MasterSecret masterSecret;
+
+    public SecretGenerator() {
+      super("SecretGenerator");
+    }
+
+    public void onHandleIntent(Intent intent) {
+      String passphrase = intent.getStringExtra("passphrase");
+      masterSecret = MasterSecretUtil.generateMasterSecret(this, passphrase);
+      MasterSecretUtil.generateAsymmetricMasterSecret(this, masterSecret);
+      IdentityKeyUtil.generateIdentityKeys(this, masterSecret);
+      VersionTracker.updateLastSeenVersion(this);
+      TextSecurePreferences.setPasswordDisabled(this, true);
+
+      Intent resultIntent = new Intent(GENERATOR_FILTER);
+      resultIntent.putExtra("masterSecret", masterSecret);
+      LocalBroadcastManager.getInstance(this).sendBroadcast(resultIntent);
+    }
   }
 }
