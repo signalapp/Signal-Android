@@ -254,6 +254,7 @@
     <service android:name=".ConversationListActivity$MarkAllRead" android:exported="false"/>
     <service android:name=".MediaPreviewActivity$FetchImage" android:exported="false"/>
     <service android:name=".GroupCreateActivity$DecodeCropAndSetService" android:exported="false"/>
+    <service android:name=".preferences.MmsPreferencesFragment$LoadApnDefaultsService" android:exported="false"/>
 
 
     <receiver android:name=".gcm.GcmBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND" >

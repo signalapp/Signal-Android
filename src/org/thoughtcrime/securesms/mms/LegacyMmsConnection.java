@@ -207,8 +207,9 @@ public abstract class LegacyMmsConnection {
     }};
   }
 
-  public static class Apn {
+  public static class Apn implements java.io.Serializable {
 
+    private static final long serialVersionUID = -7017083351546877014L;
     public static Apn EMPTY = new Apn("", "", "", "", "");
 
     private final String mmsc;
