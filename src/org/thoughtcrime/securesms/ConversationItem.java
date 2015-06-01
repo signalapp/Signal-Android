@@ -319,6 +319,9 @@ public class ConversationItem extends LinearLayout {
                  (messageRecord.isFailed()                     ||
                   messageRecord.isPendingInsecureSmsFallback() ||
                   messageRecord.isBundleKeyExchange()));
+    if (messageRecord.isFailed()) {
+      setOnLongClickListener(new MultiSelectLongClickListener());
+    }
   }
 
   private void setGroupMessageStatus(MessageRecord messageRecord) {
@@ -452,7 +455,9 @@ public class ConversationItem extends LinearLayout {
 
   private class ClickListener implements View.OnClickListener {
     public void onClick(View v) {
-      if (messageRecord.isFailed()) {
+      if (messageRecord.isFailed() && !batchSelected.isEmpty()) {
+        selectionClickListener.onItemClick(null, ConversationItem.this, -1, -1);
+      } else if(messageRecord.isFailed()) {
         Intent intent = new Intent(context, MessageDetailsActivity.class);
         intent.putExtra(MessageDetailsActivity.MASTER_SECRET_EXTRA, masterSecret);
         intent.putExtra(MessageDetailsActivity.MESSAGE_ID_EXTRA, messageRecord.getId());
