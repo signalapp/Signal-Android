@@ -39,6 +39,6 @@
         <item>@drawable/ic_action_hidemessage</item>
         <item>@drawable/check_cd</item>
         <item>@drawable/ic_action_settings</item>
-        <item>@drawable/ic_drawer</item>
+        <item>@drawable/ic_menu_lock_holo_light</item>
     </string-array>
 </resources>
