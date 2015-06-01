@@ -247,6 +247,8 @@
     </service>
 
     <service android:name=".ExportFragment$ExportPlaintextService" android:exported="false"/>
+    <service android:name=".ImportFragment$ImportPlaintextBackupService" android:exported="false"/>
+    <service android:name=".ImportFragment$ImportEncryptedBackupService" android:exported="false"/>
 
 
     <receiver android:name=".gcm.GcmBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND" >
