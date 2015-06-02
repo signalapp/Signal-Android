@@ -4,15 +4,15 @@
                 android:layout_height="match_parent"
               android:adjustViewBounds="true"
     android:orientation="vertical"
-    android:gravity="center">
+    android:gravity="center"
+    android:background="@color/white">
     <TextView
         android:id="@+id/textDialog"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textColor="?android:attr/textColorPrimary"
         android:gravity="center"
-        android:layout_marginTop="25dp"
-
+        android:paddingTop="25dp"
         />
             <org.thoughtcrime.securesms.components.ThumbnailView
                     android:id="@+id/imageDialog"
