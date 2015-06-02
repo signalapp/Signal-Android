@@ -34,21 +34,24 @@ public class PartDatabaseTest extends TextSecureTestCase {
   }
 
   public void testTaskNotRunWhenThumbnailExists() throws Exception {
-    when(database.getPart(new PartId(ROW_ID, UNIQUE_ID))).thenReturn(getPduPartSkeleton("x/x"));
-    doReturn(mock(InputStream.class)).when(database).getDataStream(any(MasterSecret.class), any(PartId.class), eq("thumbnail"));
+    final PartId partId = new PartId(ROW_ID, UNIQUE_ID);
 
-    database.getThumbnailStream(null, new PartId(ROW_ID, UNIQUE_ID));
+    when(database.getPart(partId)).thenReturn(getPduPartSkeleton("x/x"));
+    doReturn(mock(InputStream.class)).when(database).getDataStream(any(MasterSecret.class), any(PartId.class), eq("thumbnail"));
+    database.getThumbnailStream(null, partId);
 
     verify(database, never()).updatePartThumbnail(any(MasterSecret.class), any(PartId.class), any(PduPart.class), any(InputStream.class), anyFloat());
   }
 
   public void testTaskRunWhenThumbnailMissing() throws Exception {
-    when(database.getPart(new PartId(ROW_ID, UNIQUE_ID))).thenReturn(getPduPartSkeleton("image/png"));
+    final PartId partId = new PartId(ROW_ID, UNIQUE_ID);
+
+    when(database.getPart(partId)).thenReturn(getPduPartSkeleton("image/png"));
     doReturn(null).when(database).getDataStream(any(MasterSecret.class), any(PartId.class), eq("thumbnail"));
     doNothing().when(database).updatePartThumbnail(any(MasterSecret.class), any(PartId.class), any(PduPart.class), any(InputStream.class), anyFloat());
 
     try {
-      database.new ThumbnailFetchCallable(mock(MasterSecret.class), new PartId(ROW_ID, UNIQUE_ID)).call();
+      database.new ThumbnailFetchCallable(mock(MasterSecret.class), partId).call();
       throw new AssertionError("didn't try to generate thumbnail");
     } catch (FileNotFoundException fnfe) {
       // success
