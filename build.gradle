@@ -76,7 +76,11 @@ dependencies {
         exclude group: 'org.hamcrest', module: 'hamcrest-core'
     }
     androidTestCompile ('com.squareup.assertj:assertj-android:1.0.0') {
-        exclude group: 'org.hamcrest', module: 'hamcrest-core'
+        exclude group: 'org.hamcrest',        module: 'hamcrest-core'
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestCompile ('com.android.support.test:runner:0.2') {
+        exclude group: 'com.android.support', module: 'support-annotations'
     }
     androidTestCompile ('com.android.support.test.espresso:espresso-core:2.1') {
         exclude group: 'javax.inject'
@@ -131,7 +135,7 @@ dependencyVerification {
 android {
     compileSdkVersion 22
     buildToolsVersion '22.0.1'
-    testBuildType "testing"
+    testBuildType "debugTest"
 
     dexOptions {
         javaMaxHeapSize "4g"
@@ -186,8 +190,8 @@ android {
             proguardFiles = buildTypes.debug.proguardFiles
             signingConfig signingConfigs.release
         }
-        testing.initWith(buildTypes.debug)
-        testing {
+        debugTest.initWith(buildTypes.debug)
+        debugTest {
             proguardFile 'proguard-testing.pro'
             buildConfigField "String", "PUSH_URL", "\"https://textsecure-service-staging.whispersystems.org\""
         }
