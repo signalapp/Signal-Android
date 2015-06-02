@@ -19,8 +19,11 @@ import org.whispersystems.textsecure.api.TextSecureMessagePipe;
 import org.whispersystems.textsecure.api.TextSecureMessageReceiver;
 import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
@@ -37,6 +40,9 @@ public class MessageRetrievalService extends Service implements Runnable, Inject
 
   private NetworkRequirement         networkRequirement;
   private NetworkRequirementProvider networkRequirementProvider;
+  public static Map<Long, ArrayList<String>> recieversMap=new HashMap<>();
+
+  public static ArrayList<String> recieversList = new ArrayList<String>();
 
   @Inject
   public TextSecureMessageReceiver receiver;
@@ -84,6 +90,15 @@ public class MessageRetrievalService extends Service implements Runnable, Inject
                         @Override
                         public void onMessage(TextSecureEnvelope envelope) {
                           Log.w(TAG, "Retrieved envelope! " + envelope.getSource());
+
+                           if (envelope.getSource() != null) {
+                               if (recieversMap.containsKey(envelope.getTimestamp())) {
+                                    recieversMap.get(envelope.getTimestamp()).add(envelope.getSource());
+                               } else {
+                                    recieversMap.put(envelope.getTimestamp(), new ArrayList<String>());
+                                    recieversMap.get(envelope.getTimestamp()).add(envelope.getSource());
+                               }
+                           }
 
                           PushContentReceiveJob receiveJob = new PushContentReceiveJob(MessageRetrievalService.this);
                           receiveJob.handle(envelope, false);
