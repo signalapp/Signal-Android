@@ -33,7 +33,8 @@
     <string name="privacy_pw_dialog_toast_hide">Hiding conversations...</string>
     <string name="privacy_pw_dialog_toast_hide_single">Hiding conversation...</string>
 
-    <string name="privacy_toast_install_premium">You need the G DATA Internet Security, to use this feature.</string>
+    <string name="privacy_toast_install_premium">Für diese Funktion installieren Sie bitte die G Data Internet Security aus dem PlayStore.</string>
+    <string name="privacy_toast_unlock_premium">Sie müssen die Premiumfunktionen der G DATA Internet Security freischalten, um diese Funktionen nutzen zu können.</string>
 
     <string name="conversation_activity_invite_link">https://secure.gd/scg</string>
 

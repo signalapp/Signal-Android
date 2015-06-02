@@ -32,7 +32,7 @@
     <string name="privacy_pw_dialog_toast_hide">Unterhaltungen werden zum Verstecken vorbereitet...</string>
     <string name="privacy_pw_dialog_toast_hide_single">Unterhaltung wird versteckt...</string>
 
-    <string name="privacy_toast_install_premium">Für diese Funktion benötigen Sie die G DATA Internet Security für Android</string>
+    <string name="privacy_toast_install_premium">Für diese Funktion installieren Sie bitte die G Data Internet Security aus dem PlayStore.</string>
 
     <string name="conversation_activity_invite_link">https://secure.gd/scg</string>
 

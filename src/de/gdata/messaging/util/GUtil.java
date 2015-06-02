@@ -177,7 +177,14 @@ public static String extractCountryCode(String number) {
 
   public static boolean featureCheck(Context context, boolean toast) {
     boolean isInstalled = GService.isPremiumEnabled();
-    if (!isInstalled) {
+    if (GService.getServiceInstance() != null) {
+      if (!GService.isPremiumEnabled()) {
+        if (toast) {
+          Toast.makeText(context, context.getString(R.string.privacy_toast_unlock_premium),
+              Toast.LENGTH_LONG).show();
+        }
+      }
+    } else {
       if (toast) {
         Toast.makeText(context, context.getString(R.string.privacy_toast_install_premium),
             Toast.LENGTH_LONG).show();
