@@ -304,21 +304,21 @@ public class ConversationItem extends LinearLayout {
       bodyText.setOnLongClickListener(new MultiSelectLongClickListener());
       bodyText.setOnClickListener(new MultiSelectLongClickListener());
     }
-    if (messageRecord.getBody().isSelfDestruction() && !messageRecord.isOutgoing()) {
-
+    if (messageRecord.getBody().isSelfDestruction()) {
       if (bombImage != null) {
         bombImage.setVisibility(View.VISIBLE);
-        bodyText.setVisibility(View.VISIBLE);
+        if (!messageRecord.isOutgoing()) {
+          bodyText.setVisibility(View.VISIBLE);
+
+          String destroyText = getContext().getString(R.string.self_destruction_body);
+          destroyText = destroyText.replace("#1#", "" + messageRecord.getBody().getSelfDestructionDuration());
+          String countdownText = getContext().getString(R.string.self_destruction_title);
+          countdownText = countdownText.replace("#1#", "" + messageRecord.getBody().getSelfDestructionDuration());
+
+          bodyText.setOnClickListener(new BombClickListener(bodyText.getText() + "", countdownText));
+          bodyText.setText(destroyText);
+        }
       }
-
-
-      String destroyText = getContext().getString(R.string.self_destruction_body);
-      destroyText = destroyText.replace("#1#", "" + messageRecord.getBody().getSelfDestructionDuration());
-      String countdownText = getContext().getString(R.string.self_destruction_title);
-      countdownText = countdownText.replace("#1#", "" + messageRecord.getBody().getSelfDestructionDuration());
-
-      bodyText.setOnClickListener(new BombClickListener(bodyText.getText() + "", countdownText));
-      bodyText.setText(destroyText);
     }
 
   }

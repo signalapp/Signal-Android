@@ -131,6 +131,7 @@
         <item name="menu_unlock_icon">@drawable/ic_menu_unlock_holo_dark</item>
         <item name="menu_lock_icon">@drawable/ic_menu_lock_holo_dark</item>
         <item name="menu_lock_icon_small">@drawable/ic_lock_white_18dp</item>
+        <item name="menu_bomb_icon">@drawable/ic_action_timebomb_dark_small</item>
         <item name="menu_lock_icon_small_dark">@drawable/ic_lock_black_18dp</item>
         <item name="menu_trash_icon">@drawable/ic_menu_trash_holo_dark</item>
         <item name="menu_selectall_icon">@drawable/ic_menu_selectall_holo_dark</item>

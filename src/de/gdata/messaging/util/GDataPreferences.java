@@ -75,9 +75,13 @@ public class GDataPreferences {
       ArrayList<Long> recipients = JsonUtils.fromJson(mPreferences.getString(SAVED_HIDDEN_RECIPIENTS, JsonUtils.toJson(new ArrayList<Long>())), ArrayList.class);
 
       hiddenRecipients = new ArrayList<Recipient>();
-      for (Long recId : recipients) {
-        hiddenRecipients.add(RecipientFactory.getRecipientForId(mContext, recId, false));
-      }
+      try {
+        for (Long recId : recipients) {
+          hiddenRecipients.add(RecipientFactory.getRecipientForId(mContext, recId, false));
+        }
+      } catch(ClassCastException ex) {
+        Log.e("GDataPreferences", ex.getMessage());
+        }
     } catch (IOException e) {
       Log.e("GDataPreferences", e.getMessage());
     }

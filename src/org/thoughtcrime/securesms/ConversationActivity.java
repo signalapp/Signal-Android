@@ -844,6 +844,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     bombTransportButton.setOnClickListener(bombTransportButtonListener);
     bombTransportButton.setEnabled(true);
+    bombTransportButton.setComposeTextView(composeText);
 
     composeText.setOnKeyListener(composeKeyPressedListener);
     composeText.addTextChangedListener(composeKeyPressedListener);

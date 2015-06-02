@@ -18,6 +18,12 @@
         <item>5</item>
         <item>0</item>
     </string-array>
+    <string-array name="bomb_selection_compose_text">
+        <item>@string/self_destruction</item>
+        <item>@string/self_destruction</item>
+        <item>@string/self_destruction</item>
+        <item>@string/self_destruction</item>
+    </string-array>
     <string-array
         name="array_nav_labels">
         <item>@string/text_secure_normal__menu_new_group</item>

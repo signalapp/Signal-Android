@@ -34,6 +34,7 @@
     <attr name="conversation_send_button_sms_secure" format="reference"/>
     <attr name="conversation_send_button_sms_insecure" format="reference"/>
     <attr name="conversation_delivery_delivered" format="reference"/>
+    <attr name="menu_bomb_icon" format="reference"/>
     <attr name="conversation_transport_sms_indicator" format="reference"/>
     <attr name="conversation_transport_push_indicator" format="reference"/>
     <attr name="conversation_transport_indicators" format="reference"/>
