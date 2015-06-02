@@ -26,12 +26,15 @@
 Ще се наложи да регистрираш своя номер повторно, за да използваш интернет съобщения в бъдеще.
 </string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Грешка при свързване със сървъра!</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">SMS разрешени</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Натисни, за да зададеш SMS програма по подразбиране</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">SMS забранени</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Натисни, за да зададеш TextSecure като SMS програма по подразбиране</string>
   <string name="ApplicationPreferencesActivity_on">вкл</string>
   <string name="ApplicationPreferencesActivity_On">Включено</string>
   <string name="ApplicationPreferencesActivity_off">изкл</string>
   <string name="ApplicationPreferencesActivity_Off">Изключено</string>
+  <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <string name="AppProtectionPreferenceFragment_minutes">%d минути</string>
   <!--DraftDatabase-->
@@ -41,6 +44,7 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Неуспешно откирване на папка за избор на файл.</string>
   <!--AttachmentTypeSelectorAdapter-->
+  <string name="AttachmentTypeSelectorAdapter_take_photo">Направи снимка</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Картина</string>
   <string name="AttachmentTypeSelectorAdapter_video">Видео</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Аудио</string>
@@ -79,7 +83,7 @@
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">За съжеление, избраното audio надвишава допустимия максимален размер (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Получателя не е с валиден SMS или имейл!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Съобщението е празно!</string>
-  <string name="ConversationActivity_group_conversation_recipients">Участници в груповия разговор</string>
+  <string name="ConversationActivity_group_members">Членове на групата</string>
   <string name="ConversationActivity_group_conversation">Групов разговор</string>
   <string name="ConversationActivity_unnamed_group">Безименна група</string>
   <string name="ConversationActivity_d_recipients_in_group">%d участника</string>
@@ -94,8 +98,11 @@
   <string name="ConversationActivity_transport_insecure_mms">Некриптиран MMS</string>
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_get_with_it">Започвай: %s</string>
-  <string name="ConversationActivity_install_textsecure">Инсталирай TextSecure: %s</string>
+  <string name="ConversationActivity_lets_use_this_to_chat">Нека да го използваме за: %s</string>
   <string name="ConversationActivity_error_leaving_group">Грешка при напускането на група...</string>
+  <string name="ConversationActivity_mms_not_supported_title">MMS не се поддържа</string>
+  <string name="ConversationActivity_mms_not_supported_message">Това съобщение не може да бъде изпратезо, защото мобилния Ви оператор не поддържа MMS.</string>
+  <string name="ConversationActivity_specify_recipient">Моля избери контакт</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Информация за съобщението</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Транспорт: %1$s\nИзпратени/Получени: %2$s</string>
@@ -162,7 +169,6 @@
   <string name="GroupCreateActivity_loading_group_details">Зареждане на информация за групата...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Аз</string>
-  <string name="GroupMembersDialog_members">Участници...</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Внеси</string>
   <string name="ImportExportActivity_export">Изнеси</string>
@@ -212,6 +218,7 @@ SMS съобщенията от системната базата данни в 
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Паролите не съвпадат!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Грешна стара парола!</string>
+  <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Въведи нова парола!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Свържи това устройство?</string>
   <string name="DeviceProvisioningActivity_cancel">ОТКАЖИ</string>
@@ -232,6 +239,14 @@ SMS съобщенията от системната базата данни в 
   <string name="PassphrasePromptActivity_watermark_content_description">Икона на TextSecure</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Задай паролата</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Грешна парола!</string>
+  <!--PlayServicesProblemFragment-->
+  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Версията на Google Play Services, която сте инсталирали не функционира правилно. Моля, преинсталирайте Google Play Services и опитайте пак.</string>
+  <!--RatingManager-->
+  <string name="RatingManager_rate_this_app">Оцени тази програма</string>
+  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Ако харесваш тази програма, отдели една секунда и ни помогни като ѝ дадеш оценка.</string>
+  <string name="RatingManager_rate_now">Оцени сега!</string>
+  <string name="RatingManager_no_thanks">Не благодаря</string>
+  <string name="RatingManager_later">По-късно</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different"> 
 Подписът получен при обмяната на ключове е по-различен от този, който си получавал преди от същия
@@ -354,8 +369,8 @@ SMS съобщенията от системната базата данни в 
   <string name="KeyCachingService_passphrase_cached">TextSecure е отключен</string>
   <string name="KeyCachingService_lock">Заключи паролата</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages">%d нови съобщения</string>
-  <string name="MessageNotifier_most_recent_from_s">Най-скорошното от: %s</string>
+  <string name="MessageNotifier_d_messages_in_d_conversations">%1$d съобщения в %2$d чата</string>
+  <string name="MessageNotifier_most_recent_from_s">Най-скорошно от: %1$s</string>
   <string name="MessageNotifier_encrypted_message">Шифровано съобщение...</string>
   <string name="MessageNotifier_media_message_with_text">Медийно съобщение: %s</string>
   <string name="MessageNotifier_no_subject">(Няма зададена тема)</string>
@@ -397,7 +412,6 @@ SMS съобщенията от системната базата данни в 
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Изтегляне на медийно съобщение</string>
   <string name="conversation_item__mms_image_description">Медийно съобщение</string>
-  <string name="conversation_item__play_button_description">Бутон за възпроизвеждане</string>
   <string name="conversation_item__secure_message_description">Подсигурено съобщение</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Изтегли</string>
@@ -462,8 +476,8 @@ SMS съобщенията от системната базата данни в 
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure се нуждае от MMS настройки, за да може да достави медийни и групови съобщения през мрежата. Устройството ти не прави тази информация достъпна, което се случва понякога за заключени устройва и други ограничени конфигурации.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">За да изптратиш медийни и групови съобщения, избери \'ОК\' и нагласи изискваните настройки. MMS настройките на твоя мобилен оператор могат да бъдат намерени като потърсиш \'APN настройки\'. Нужно е да изпълниш тази стъпка само веднъж.</string>
-  <!--receive_key_activity-->
-  <string name="receive_key_activity__complete">Завършен</string>
+  <!--receive_key_dialog-->
+  <string name="receive_key_dialog__complete">Приключи</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 Потвърди своя телфонен номер, за да се свържеш с TextSecure</string>
@@ -559,6 +573,7 @@ TextSecure чака твърде дълго за SMS потвърждение.
   <string name="AndroidManifest__media_preview">Преглед на файла</string>
   <string name="AndroidManifest__media_overview">Всички изображения</string>
   <string name="AndroidManifest__media_overview_named">Всички изображения с %1$s</string>
+  <string name="AndroidManifest__message_details">Информаця за съобщението</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Внасяне / изнасяне</string>
   <string name="arrays__my_identity_key">Моят ключ за самоличност</string>
@@ -578,6 +593,8 @@ TextSecure чака твърде дълго за SMS потвърждение.
   <string name="preferences__sms_mms">SMS и MMS</string>
   <string name="preferences__pref_all_sms_title">Използвай за всички SMS-и</string>
   <string name="preferences__pref_all_mms_title">Използвай за всички MMS-и</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Използвай TextSecure за всички входящи текстови съобщения</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Използвай TextSecure за всички входящи мултимедийни съобщения</string>
   <string name="preferences__input_settings">Настройки на въвеждането</string>
   <string name="preferences__enable_enter_key_title">Разреши клавиша Enter</string>
   <string name="preferences__replace_smiley_with_enter_key">Замени клавиша за емотикони с клавиша Enter</string>
@@ -637,6 +654,7 @@ TextSecure чака твърде дълго за SMS потвърждение.
   <string name="preferences__custom">Ръчно</string>
   <string name="preferences__advanced">Допълнителни</string>
   <string name="preferences__app_protection">Защита на приложението</string>
+  <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Ръчни MMS настройки</string>
   <string name="preferences__enable_manual_mms">Използвай ръчни MMS настройки</string>
   <string name="preferences__override_system_mms_settings">Промени системните MMS настройки със следната инфромация.</string>
@@ -660,6 +678,9 @@ TextSecure чака твърде дълго за SMS потвърждение.
   <string name="preferences__default">По подразбиране</string>
   <string name="preferences__language">Език</string>
   <string name="preferences__language_summary">Език %s</string>
+  <string name="preferences__textsecure_messages">TextSecure съобщения</string>
+  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
+Безплатни, лични съобщебия до TextSecure и Signal потребители</string>
   <string name="preferences__submit_debug_log">Изпрати доклад</string>
   <string name="preferences__support_wifi_calling">Съвместим режим \'WiFi Calling\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Включете ако устройството ти използва SMS/MMS през WiFi (използвай само, когато \'WiFi Calling\' e включено на устройството ти).</string>
@@ -698,7 +719,6 @@ TextSecure чака твърде дълго за SMS потвърждение.
   <string name="conversation_list__menu_search">Търси</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Изображение на контакта</string>
-  <string name="conversation_list_item_view__attachment_indicator">Индикатор за прикачен файл</string>
   <string name="conversation_list_item_view__error_alert">Известие за грешка</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Нов разговор</string>

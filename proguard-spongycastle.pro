@@ -1,0 +1,2 @@
+-keep class org.spongycastle.** {*;}
+-dontwarn javax.naming.**

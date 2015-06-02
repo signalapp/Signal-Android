@@ -56,7 +56,6 @@ Thao tác này sẽ tắt tin nhắn đẩy bằng cách gỡ đăng ký bạn r
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Xin lỗi, có lỗi thiết đặt tập tin đính kèm của bạn.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Nơi nhận không phải là SMS hay địa chỉ email có hiệu lực!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Tin nhắn trống không!</string>
-  <string name="ConversationActivity_group_conversation_recipients">Gom nhóm theo người chat</string>
   <string name="ConversationActivity_group_conversation">Gom nhóm chat</string>
   <string name="ConversationActivity_unnamed_group">Nhóm chưa đặt tên</string>
   <string name="ConversationActivity_d_recipients_in_group">%d thành viên</string>
@@ -151,6 +150,8 @@ Phục hồi bản sao lưu có mã hóa sẽ thay thế hoàn toàn các chìa 
   <string name="PassphrasePromptActivity_watermark_content_description">Biểu tượng TextSecure</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Gửi phần cụm từ mã hóa</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Cụm từ mã hóa không hợp lệ!</string>
+  <!--PlayServicesProblemFragment-->
+  <!--RatingManager-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Chữ ký của việc trao đổi chìa khóa này khác với lần trao đổi trước nhận được từ người liên lạc này. Điều này có nghĩa là có ai đó tìm cách chận bắt liên lạc thông tin của bạn, hoặc đơn thuần là người này cài đặt lại TextSecure và có chìa khóa nhận diện mới.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Bạn có thể muốn kiểm chứng
@@ -244,8 +245,6 @@ Nhận thông tin về chìa khóa nhận diện không rõ. Bấm để xử l�
   <string name="KeyCachingService_passphrase_cached">TextSecure được mở khóa</string>
   <string name="KeyCachingService_lock">Khóa bằng mật khẩu</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages">%d tin mới</string>
-  <string name="MessageNotifier_most_recent_from_s">Mới nhất đến từ: %s</string>
   <string name="MessageNotifier_encrypted_message">Mã hóa tin nhắn...</string>
   <string name="MessageNotifier_message_delivery_failed">Phân phối tin nhắn bị thất bại.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Thất bại trong việc phân phối tin.</string>
@@ -315,8 +314,8 @@ Nhập tập tin sao lưu thường-không mã hóa. Tương thích với \'Sao 
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure </string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Để gửi tin nhắn đa phương tiện hoặc tin nhắn nhóm, bấm \'OK\' và hoàn tất các thiết đặt cần thiết. Thiết đặt MMS cho nhà mạng di động có thể tìm thấy bằng cách tìm \'your carrier APN\'. Bạn chỉ cần làm bước này một lần.</string>
-  <!--receive_key_activity-->
-  <string name="receive_key_activity__complete">Hoàn tất</string>
+  <!--receive_key_dialog-->
+  <string name="receive_key_dialog__complete">Hoàn tất</string>
   <!--registration_activity-->
   <string name="registration_activity__your_country">QUỐC GIA BẠN</string>
   <string name="registration_activity__your_country_code_and_phone_number">MÃ SỐ QUỐC GIA VÀ

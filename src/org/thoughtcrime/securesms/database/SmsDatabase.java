@@ -303,7 +303,7 @@ public class SmsDatabase extends MessagingDatabase {
     database.update(TABLE_NAME, contentValues, null, null);
   }
 
-  protected void updateMessageBodyAndType(long messageId, String body, long maskOff, long maskOn) {
+  protected Pair<Long, Long> updateMessageBodyAndType(long messageId, String body, long maskOff, long maskOn) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     db.execSQL("UPDATE " + TABLE_NAME + " SET " + BODY + " = ?, " +
                    TYPE + " = (" + TYPE + " & " + (Types.TOTAL_MASK - maskOff) + " | " + maskOn + ") " +
@@ -315,6 +315,8 @@ public class SmsDatabase extends MessagingDatabase {
     DatabaseFactory.getThreadDatabase(context).update(threadId);
     notifyConversationListeners(threadId);
     notifyConversationListListeners();
+
+    return new Pair<>(messageId, threadId);
   }
 
   public Pair<Long, Long> copyMessageInbox(long messageId) {
@@ -421,14 +423,12 @@ public class SmsDatabase extends MessagingDatabase {
   }
 
   protected long insertMessageOutbox(long threadId, OutgoingTextMessage message,
-                                     long type, boolean forceSms)
+                                     long type, boolean forceSms, long date)
   {
     if      (message.isKeyExchange())   type |= Types.KEY_EXCHANGE_BIT;
     else if (message.isSecureMessage()) type |= Types.SECURE_MESSAGE_BIT;
     else if (message.isEndSession())    type |= Types.END_SESSION_BIT;
     if      (forceSms)                  type |= Types.MESSAGE_FORCE_SMS_BIT;
-
-    long date = System.currentTimeMillis();
 
     ContentValues contentValues = new ContentValues(6);
     contentValues.put(ADDRESS, PhoneNumberUtils.formatNumber(message.getRecipients().getPrimaryRecipient().getNumber()));
@@ -482,13 +482,14 @@ public class SmsDatabase extends MessagingDatabase {
     return cursor;
   }
 
-  public void deleteMessage(long messageId) {
+  public boolean deleteMessage(long messageId) {
     Log.w("MessageDatabase", "Deleting: " + messageId);
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     long threadId     = getThreadIdForMessage(messageId);
     db.delete(TABLE_NAME, ID_WHERE, new String[] {messageId+""});
-    DatabaseFactory.getThreadDatabase(context).update(threadId);
+    boolean threadDeleted = DatabaseFactory.getThreadDatabase(context).update(threadId);
     notifyConversationListeners(threadId);
+    return threadDeleted;
   }
 
   /*package */void deleteThread(long threadId) {

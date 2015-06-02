@@ -20,7 +20,9 @@
 Això desactivarà els missatges push des-registran-te del servidor.
 Necessitaràs tornar a registrar el teu número de telèfon per utilitzar els missatges push una altra vegada.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Error connectant amb el servidor!</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">SMS Habilitats</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Toca per canviar la teva app d\'SMS predeterminada</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">SMS Deshabilitats</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Toca per fer TextSecure la teva app d\'SMS predeterminada</string>
   <!--AppProtectionPreferenceFragment-->
   <!--DraftDatabase-->
@@ -115,6 +117,8 @@ Necessitaràs tornar a registrar el teu número de telèfon per utilitzar els mi
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Frase contrasenya antiga incorrecta!</string>
   <!--DeviceProvisioningActivity-->
   <!--PassphrasePromptActivity-->
+  <!--PlayServicesProblemFragment-->
+  <!--RatingManager-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">La signatura en aquest intercanvi de claus és diferent que el que havies rebut prèviament d\'aquest contacte. Això pot voler dir tant que algú està intentant interceptar la teva comunicació, o que aquest contacte simplement ha re-instal·lat TextSecure i ara té una clau d\'identitat nova.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Pot ser que vulguis verificar aquest contacte.</string>
@@ -201,8 +205,6 @@ Necessitaràs tornar a registrar el teu número de telèfon per utilitzar els mi
   <string name="KeyCachingService_passphrase_cached">TextSecure està desbloquejat</string>
   <string name="KeyCachingService_lock">Bloqueja amb una frase contrasenya</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages">%d nous missatges</string>
-  <string name="MessageNotifier_most_recent_from_s">Més recent de: %s</string>
   <string name="MessageNotifier_encrypted_message">Missatge encriptat...</string>
   <string name="MessageNotifier_message_delivery_failed">Entrega del missatge fallida.</string>
   <string name="MessageNotifier_failed_to_deliver_message">No s\'ha pogut entregar el missatge.</string>
@@ -264,8 +266,8 @@ des de l\'app de missatgeria predeterminada del sistema.</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure necessita ajustaments MMS per entregar missatges de grup i multimèdia a través de l\'operador inalàmbric. El teu dispositiu no fa que aquesta informació estigui disponible, cosa que és certa ocasionalment en dispositius bloquejats o amb altres configuracions restringides.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Per enviar missatges multimèdia i de grup, clica \'OK\' i completa els ajustaments demanats. Els ajustaments MMS de la teva operadora normalment poden ser trobats buscant \'latevaoperadora APN\'. Només necessitaràs fer això una vegada.</string>
-  <!--receive_key_activity-->
-  <string name="receive_key_activity__complete">Complet</string>
+  <!--receive_key_dialog-->
+  <string name="receive_key_dialog__complete">Complet</string>
   <!--registration_activity-->
   <string name="registration_activity__your_country">EL TEU PAÍS</string>
   <string name="registration_activity__your_country_code_and_phone_number">EL TEU CODI DE PAÍS I NÚMERO DE TELÈFON</string>

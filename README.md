@@ -2,8 +2,7 @@
 
 TextSecure is a messaging app for simple private communication with friends.
 
-TextSecure can use either data (WiFi/3G/4G) or SMS to communicate securely, and all TextSecure
-messages can also be encrypted locally on your device.
+TextSecure uses your phone's data connection (WiFi/3G/4G) to communicate securely, optionally supports plain SMS/MMS to function as a unified messenger, and can also encrypt the stored messages on your phone.
 
 Currently available on the Play store.
 
@@ -22,7 +21,7 @@ You can subscribe to TextSecure Beta releases in two steps:
 1. Join the [TextSecure Beta Google+ Community](https://plus.google.com/communities/114424213916773497091).
 1. After you've joined the community, [subscribe to the beta](https://play.google.com/apps/testing/org.thoughtcrime.securesms).
 
-If you're interesting a life of peace and tranquility, stick with the standard releases.
+If you're interested in a life of peace and tranquility, stick with the standard releases.
 
 ## Contributing Translations
 Interested in helping to translate TextSecure? Contribute here:

@@ -27,9 +27,9 @@ public class IncomingMediaMessage {
   private final String     groupId;
   private final boolean    push;
 
-  public IncomingMediaMessage(RetrieveConf retreived) {
-    this.headers = retreived.getPduHeaders();
-    this.body    = retreived.getBody();
+  public IncomingMediaMessage(RetrieveConf retrieved) {
+    this.headers = retrieved.getPduHeaders();
+    this.body    = retrieved.getBody();
     this.groupId = null;
     this.push    = false;
   }

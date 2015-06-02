@@ -4,6 +4,7 @@
   <string name="yes">כן</string>
   <string name="no">לא</string>
   <string name="delete">מחק</string>
+  <string name="please_wait">המתן בבקשה...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">עכשיו: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">עדיין לא הגדרת סיסמה!</string>
@@ -107,6 +108,8 @@
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">סיסמה ישנה לא נכונה.</string>
   <!--DeviceProvisioningActivity-->
   <!--PassphrasePromptActivity-->
+  <!--PlayServicesProblemFragment-->
+  <!--RatingManager-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">החתימה
 על החלפת המפתח הזאת שונה ממה שקיבלת בעבר מאיש הקשר הזה.
@@ -164,8 +167,6 @@
   <string name="ApplicationMigrationService_import_in_progress">בתהליך ייבוא</string>
   <!--KeyCachingService-->
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages">%d הודעות חדשות</string>
-  <string name="MessageNotifier_most_recent_from_s">האחרון מ-: %s</string>
   <string name="MessageNotifier_encrypted_message">הודעה מוצפנת...</string>
   <string name="MessageNotifier_message_delivery_failed">מסירת ההודעה נכשלה.</string>
   <string name="MessageNotifier_failed_to_deliver_message">כישלון במסירת ההודעה.</string>
@@ -227,8 +228,8 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure דורש הגדרות MMS כדי לשלוח הודעות מולטימדיה או הודעות קבוצתיות דרך ספק השירות שלך. המכשיר שלך לא מספק את המידע הזה, זה קורה לעיתים במכשירים נעולים או קונפיגורציות מוגבלות אחרות.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">כדי לשלוח הודעות מולטימדיה או הודעות קבוצתיות,לחץ \'אישור\' והשלם את ההגדרות המתבקשות.את הגדרות ה-MMS עבור ספק השירות שלך אתה יכול למצוא בד\"כ ע\"י חיפוש \"ספק השרות APN\". אתה תצטרך להשלים מידע זה רק פעם אחת.</string>
-  <!--receive_key_activity-->
-  <string name="receive_key_activity__complete">השלם</string>
+  <!--receive_key_dialog-->
+  <string name="receive_key_dialog__complete">השלם</string>
   <!--registration_activity-->
   <!--registration_problems-->
   <!--registration_progress_activity-->

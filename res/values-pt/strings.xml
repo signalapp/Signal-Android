@@ -26,7 +26,9 @@ Isto vai desactivar as mensagens push, eliminando o seu registo do servidor.
 Vai necessitar de re-registar o seu número de telefone se pretender utilizar esta funcionalidade novamente.
 </string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Erro ao conectar-se com o servidor!</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">SMS Activos</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Definir como aplicação SMS por omissão</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">SMS Inactivos</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Pressione para tornar TextSecure a sua applicação SMS por omissão</string>
   <string name="ApplicationPreferencesActivity_on">ligado</string>
   <string name="ApplicationPreferencesActivity_On">Ligado</string>
@@ -74,7 +76,6 @@ Vai necessitar de re-registar o seu número de telefone se pretender utilizar es
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Lamento, o áudio seleccionado excede as restrições de tamanho da mensagem (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Destinatário não é um endereço SMS ou email válido!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">A mensagem está vazia!</string>
-  <string name="ConversationActivity_group_conversation_recipients">Agrupar destinatários de conversa</string>
   <string name="ConversationActivity_group_conversation">Conversa em grupo</string>
   <string name="ConversationActivity_unnamed_group">Grupo sem nome</string>
   <string name="ConversationActivity_d_recipients_in_group">%d membros</string>
@@ -89,7 +90,6 @@ Vai necessitar de re-registar o seu número de telefone se pretender utilizar es
   <string name="ConversationActivity_transport_insecure_mms">MMS insegura</string>
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_get_with_it">Alinha: %s</string>
-  <string name="ConversationActivity_install_textsecure">Instalar TextSecure: %s</string>
   <string name="ConversationActivity_error_leaving_group">Erro a abandonar grupo...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalhes da mensagem</string>
@@ -154,7 +154,6 @@ irá exportar o conteúdo de texto das suas mensagens TextSecure para o cartão 
   <string name="GroupCreateActivity_loading_group_details">A carregar detalhes do grupo...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Eu</string>
-  <string name="GroupMembersDialog_members">Membros...</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Importar</string>
   <string name="ImportExportActivity_export">Exportar</string>
@@ -224,6 +223,8 @@ importá-lo novamente resultará em mensagens duplicadas.</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icon TextSecure</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Enviar frase-chave</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Palavra-chave inválida!</string>
+  <!--PlayServicesProblemFragment-->
+  <!--RatingManager-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">A
 assinatura deste intercâmbio de chaves é diferente da previamente recebida deste contacto.
@@ -348,8 +349,6 @@ Recebida mensagem com chave de identidade desconhecida. Clique para processar e 
   <string name="KeyCachingService_passphrase_cached">O TextSecure está desbloqueado</string>
   <string name="KeyCachingService_lock">Bloquear com frase-chave</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages">(%d) novas mensagens</string>
-  <string name="MessageNotifier_most_recent_from_s">Mais recente de: %s</string>
   <string name="MessageNotifier_encrypted_message">Mensagem cifrada...</string>
   <string name="MessageNotifier_no_subject">(Sem Assunto)</string>
   <string name="MessageNotifier_message_delivery_failed">A remessa de mensagem falhou.</string>
@@ -388,7 +387,6 @@ Recebida mensagem com chave de identidade desconhecida. Clique para processar e 
   <string name="conversation_activity__emoji_toggle_description">Teclado emoji</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Mensagem media</string>
-  <string name="conversation_item__play_button_description">Botão play</string>
   <string name="conversation_item__secure_message_description">Mensagem segura</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Transferir</string>
@@ -453,8 +451,8 @@ Importar uma cópia de segurança de texto simples. Compatível com \'SMSBackup 
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">O TextSecure precisa de configurações MMS para transmitir média e mensagens de grupo através da sua operadora. O seu aparelho não disponibiliza essa informação, o que pode ocorrer em aparelhos bloqueados ou com configurações restritivas.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Para enviar média e mensagens de grupo, clique \'OK\' e complete as configurações pedidas. As configurações MMS da sua operadora geralmente podem ser encontradas procurando por \'operadora APN\'. Você só precisará fazer isto uma vez.</string>
-  <!--receive_key_activity-->
-  <string name="receive_key_activity__complete">Completo</string>
+  <!--receive_key_dialog-->
+  <string name="receive_key_dialog__complete">Completo</string>
   <!--registration_activity-->
   <string name="registration_activity__your_country">PAÍS</string>
   <string name="registration_activity__your_country_code_and_phone_number">PAÍS E

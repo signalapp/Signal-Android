@@ -24,6 +24,7 @@ import java.util.Locale;
 
 import org.thoughtcrime.securesms.R;
 
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -39,7 +40,12 @@ public class DateUtils extends android.text.format.DateUtils {
     return (int) to.convert(System.currentTimeMillis() - millis, TimeUnit.MILLISECONDS);
   }
 
-  public static String getBriefRelativeTimeSpanString(final Context c, final long timestamp) {
+  private static String getFormattedDateTime(long time, String template, Locale locale) {
+    String localizedPattern = new SimpleDateFormat(template, locale).toLocalizedPattern();
+    return new SimpleDateFormat(localizedPattern, locale).format(new Date(time));
+  }
+
+  public static String getBriefRelativeTimeSpanString(final Context c, final Locale locale, final long timestamp) {
     if (isWithin(timestamp, 1, TimeUnit.MINUTES)) {
       return c.getString(R.string.DateUtils_now);
     } else if (isWithin(timestamp, 1, TimeUnit.HOURS)) {
@@ -49,34 +55,34 @@ public class DateUtils extends android.text.format.DateUtils {
       int hours = convertDelta(timestamp, TimeUnit.HOURS);
       return c.getResources().getQuantityString(R.plurals.hours_ago, hours, hours);
     } else if (isWithin(timestamp, 6, TimeUnit.DAYS)) {
-      return formatDateTime(c, timestamp, DateUtils.FORMAT_SHOW_WEEKDAY | DateUtils.FORMAT_ABBREV_WEEKDAY);
+      return getFormattedDateTime(timestamp, "EEE", locale);
     } else if (isWithin(timestamp, 365, TimeUnit.DAYS)) {
-      return formatDateTime(c, timestamp, DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_NO_YEAR | DateUtils.FORMAT_ABBREV_ALL);
+      return getFormattedDateTime(timestamp, "MMM d", locale);
     } else {
-      return formatDateTime(c, timestamp, DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
+      return getFormattedDateTime(timestamp, "MMM d, yyyy", locale);
     }
   }
 
-  public static String getExtendedRelativeTimeSpanString(final Context c, final long timestamp) {
+  public static String getExtendedRelativeTimeSpanString(final Context c, final Locale locale, final long timestamp) {
     if (isWithin(timestamp, 1, TimeUnit.MINUTES)) {
       return c.getString(R.string.DateUtils_now);
     } else if (isWithin(timestamp, 1, TimeUnit.HOURS)) {
       int mins = (int)TimeUnit.MINUTES.convert(System.currentTimeMillis() - timestamp, TimeUnit.MILLISECONDS);
       return c.getResources().getQuantityString(R.plurals.minutes_ago, mins, mins);
     } else {
-      int formatFlags = DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_ABBREV_TIME;
-      if (isWithin(timestamp, 6, TimeUnit.DAYS)) {
-        formatFlags |= DateUtils.FORMAT_SHOW_WEEKDAY | DateUtils.FORMAT_ABBREV_WEEKDAY;
-      } else if (isWithin(timestamp, 365, TimeUnit.DAYS)) {
-        formatFlags |= DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_NO_YEAR | DateUtils.FORMAT_ABBREV_ALL;
-      } else {
-        formatFlags |= DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL;
-      }
-      return DateUtils.formatDateTime(c, timestamp, formatFlags);
+      StringBuilder format = new StringBuilder();
+      if      (isWithin(timestamp,   6, TimeUnit.DAYS)) format.append("EEE ");
+      else if (isWithin(timestamp, 365, TimeUnit.DAYS)) format.append("MMM d, ");
+      else                                              format.append("MMM d, yyyy, ");
+
+      if (DateFormat.is24HourFormat(c)) format.append("HH:mm");
+      else                              format.append("hh:mm a");
+
+      return getFormattedDateTime(timestamp, format.toString(), locale);
     }
   }
 
-  public static SimpleDateFormat getDetailedDateFormatter(Context context) {
+  public static SimpleDateFormat getDetailedDateFormatter(Context context, Locale locale) {
     String dateFormatPattern;
 
     if (DateFormat.is24HourFormat(context)) {
@@ -85,7 +91,7 @@ public class DateUtils extends android.text.format.DateUtils {
       dateFormatPattern = "MMM d, yyyy hh:mm:ss a zzz";
     }
 
-    return new SimpleDateFormat(dateFormatPattern, Locale.getDefault());
+    return new SimpleDateFormat(dateFormatPattern, locale);
   }
 
 }

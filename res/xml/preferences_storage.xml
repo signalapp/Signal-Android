@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <CheckBoxPreference android:defaultValue="false"
+    <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+                        android:defaultValue="false"
                         android:key="pref_trim_threads"
                         android:summary="@string/preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length"
                         android:title="@string/preferences__delete_old_messages" />

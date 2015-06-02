@@ -1,35 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
                                                                  android:id="@+id/container"
                                                                  android:orientation="vertical"
                                                                  android:layout_width="match_parent"
                                                                  android:layout_height="match_parent">
 
-    <LinearLayout android:background="#ff333333"
+    <LinearLayout android:background="@color/emoji_tab_strip_background"
                   android:orientation="horizontal"
                   android:layout_width="match_parent"
-                  android:layout_height="wrap_content">
+                  android:layout_height="40dp">
 
         <com.astuetz.PagerSlidingTabStrip android:id="@+id/tabs"
                                           android:layout_weight="1"
                                           android:layout_width="0dp"
-                                          android:layout_height="45dp" />
+                                          android:layout_height="match_parent"
+                                          android:background="@color/emoji_tab_strip_background"
+                                          app:pstsShouldExpand="true"
+                                          app:pstsTabPaddingLeftRight="@dimen/emoji_drawer_left_right_padding"
+                                          app:pstsUnderlineColor="@color/emoji_tab_underline"
+                                          app:pstsIndicatorColor="@color/emoji_tab_indicator"
+                                          app:pstsIndicatorHeight="@dimen/emoji_drawer_indicator_height" />
 
-        <ImageButton android:id="@+id/backspace"
-                     android:src="@drawable/ic_emoji_backspace"
-                     android:background="@color/emoji_tab_underline"
-                     android:paddingLeft="@dimen/emoji_drawer_left_right_padding"
-                     android:paddingRight="@dimen/emoji_drawer_left_right_padding"
-                     android:layout_width="wrap_content"
-                     android:layout_height="match_parent" />
+        <View android:layout_width="1px"
+              android:layout_height="match_parent"
+              android:background="#ffcccccc"
+              android:layout_marginTop="10dp"
+              android:layout_marginBottom="10dp" />
+
+        <org.thoughtcrime.securesms.components.RepeatableImageKey
+                android:id="@+id/backspace"
+                android:background="@color/emoji_tab_strip_background"
+                android:src="@drawable/ic_backspace_grey600_24dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
 
     </LinearLayout>
 
-    <android.support.v4.view.ViewPager android:id="@+id/emoji_pager"
-                                       android:visibility="visible"
-                                       android:layout_width="match_parent"
-                                       android:layout_height="match_parent"
-                                       android:background="#ff333333" />
+    <android.support.v4.view.ViewPager
+            android:id="@+id/emoji_pager"
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ffeeeeee" />
 
 </org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout>

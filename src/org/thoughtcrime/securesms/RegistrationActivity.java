@@ -25,9 +25,9 @@ import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
 
@@ -197,8 +197,7 @@ public class RegistrationActivity extends BaseActionBarActivity {
 
       AlertDialogWrapper.Builder dialog = new AlertDialogWrapper.Builder(self);
       dialog.setTitle(PhoneNumberFormatter.getInternationalFormatFromE164(e164number));
-      dialog.setMessage(String.format(getString(R.string.RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s),
-                                      PhoneNumberFormatter.getInternationalFormatFromE164(e164number)));
+      dialog.setMessage(R.string.RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s);
       dialog.setPositiveButton(getString(R.string.RegistrationActivity_continue),
                                new DialogInterface.OnClickListener() {
                                  @Override
@@ -285,7 +284,7 @@ public class RegistrationActivity extends BaseActionBarActivity {
       Intent nextIntent = getIntent().getParcelableExtra("next_intent");
 
       if (nextIntent == null) {
-        nextIntent = new Intent(RegistrationActivity.this, RoutingActivity.class);
+        nextIntent = new Intent(RegistrationActivity.this, ConversationListActivity.class);
       }
 
       startActivity(nextIntent);

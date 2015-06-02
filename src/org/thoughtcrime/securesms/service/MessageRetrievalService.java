@@ -9,7 +9,7 @@ import android.util.Log;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.gcm.GcmBroadcastReceiver;
-import org.thoughtcrime.securesms.jobs.PushReceiveJob;
+import org.thoughtcrime.securesms.jobs.PushContentReceiveJob;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.jobqueue.requirements.NetworkRequirementProvider;
@@ -85,13 +85,15 @@ public class MessageRetrievalService extends Service implements Runnable, Inject
                         public void onMessage(TextSecureEnvelope envelope) {
                           Log.w(TAG, "Retrieved envelope! " + envelope.getSource());
 
-                          PushReceiveJob receiveJob = new PushReceiveJob(MessageRetrievalService.this);
+                          PushContentReceiveJob receiveJob = new PushContentReceiveJob(MessageRetrievalService.this);
                           receiveJob.handle(envelope, false);
 
                           decrementPushReceived();
                         }
                       });
-          } catch (TimeoutException | InvalidVersionException e) {
+          } catch (TimeoutException e) {
+            Log.w(TAG, "Application level read timeout...");
+          } catch (InvalidVersionException e) {
             Log.w(TAG, e);
           }
         }

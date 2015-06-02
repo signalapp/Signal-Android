@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.Release;
@@ -74,7 +75,7 @@ public class AvatarDownloadJob extends MasterSecretJob {
 
         Recipient groupRecipient = RecipientFactory.getRecipientsFromString(context, GroupUtil.getEncodedId(groupId), true)
                                                    .getPrimaryRecipient();
-        groupRecipient.setContactPhoto(avatar);
+        groupRecipient.setContactPhoto(new BitmapDrawable(avatar));
       }
     } catch (InvalidMessageException | BitmapDecodingException | NonSuccessfulResponseCodeException e) {
       Log.w(TAG, e);

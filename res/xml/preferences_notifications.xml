@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <CheckBoxPreference android:key="pref_key_enable_notifications"
+    <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+                        android:key="pref_key_enable_notifications"
                         android:title="@string/preferences__notifications"
                         android:summary="@string/preferences__display_message_notifications_in_status_bar"
                         android:defaultValue="true" />
@@ -21,7 +22,7 @@
 
     <ListPreference
         android:key="pref_led_color"
-        android:defaultValue="green"
+        android:defaultValue="blue"
         android:title="@string/preferences__led_color"
         android:dependency="pref_key_enable_notifications"
         android:entries="@array/pref_led_color_entries"

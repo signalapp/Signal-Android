@@ -67,7 +67,7 @@ vérifier ce contact.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Appuyez pour utiliser la solution de repli non sécurisée</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Utiliser la solution de repli sur les SMS non chiffrés ?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Utiliser la solution de repli sur les MMS non chiffrés ?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ce message ne sera <b>pas</b> chiffré car une session sécurisée n\'a pu être établie.\n\n Envoyer un message non sécurisé ?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ce message ne sera <b>pas</b> chiffré car le destinataire n\'est plus un utilisateur de TextSecure.\n\n Envoyer un message non sécurisé ?</string>
   <string name="ConversationItem_unable_to_open_media">Impossible de trouver une application pour ouvrir le média.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Initier une session sécurisée ?</string>
@@ -84,7 +84,7 @@ vérifier ce contact.</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Désolé, le fichier audio sélectionné dépasse les restrictions de taille de message (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Le destinataire n’est pas une adresse SMS ou e-mail valide !</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Le message est vide !</string>
-  <string name="ConversationActivity_group_conversation_recipients">Destinataires de la conversation de groupe</string>
+  <string name="ConversationActivity_group_members">Membres du groupe</string>
   <string name="ConversationActivity_group_conversation">Conversation de groupe</string>
   <string name="ConversationActivity_unnamed_group">Groupe sans nom</string>
   <string name="ConversationActivity_d_recipients_in_group">%d membres</string>
@@ -99,8 +99,11 @@ vérifier ce contact.</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS non-sécurisé</string>
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_get_with_it">Mettez-vous-y: %s</string>
-  <string name="ConversationActivity_install_textsecure">Installez TextSecure : %s</string>
+  <string name="ConversationActivity_lets_use_this_to_chat">Utilisons cela pour chatter : %s</string>
   <string name="ConversationActivity_error_leaving_group">Erreur en quittant le groupe...</string>
+  <string name="ConversationActivity_mms_not_supported_title">MMS non supportés</string>
+  <string name="ConversationActivity_mms_not_supported_message">Ce message ne peut être envoyé car votre opérateur ne supporte pas les MMS</string>
+  <string name="ConversationActivity_specify_recipient">S\'il vous plait, choisissez un contact</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Détails du message</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nEnvoyé/Reçu: %2$s</string>
@@ -167,7 +170,6 @@ exportera le contenu de vos messages TextSecure en clair sur la carte SD.</strin
   <string name="GroupCreateActivity_loading_group_details">Chargement des détails du groupe...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Moi</string>
-  <string name="GroupMembersDialog_members">Membres...</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Importer</string>
   <string name="ImportExportActivity_export">Exporter</string>
@@ -217,6 +219,7 @@ Merci de demander à l’expéditeur de mettre à jour TextSecure dans sa versio
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Les phrases de passe ne correspondent pas !</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Ancienne phrase de passe incorrecte !</string>
+  <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Entrer la nouvelle phrase de passe !</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Lier cet appareil?</string>
   <string name="DeviceProvisioningActivity_cancel">ANNULER</string>
@@ -238,6 +241,14 @@ Merci de demander à l’expéditeur de mettre à jour TextSecure dans sa versio
   <string name="PassphrasePromptActivity_watermark_content_description">Icône TextSecure</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Soumettre la phrase de passe</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Phrase de passe incorrecte !</string>
+  <!--PlayServicesProblemFragment-->
+  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">La version de Google Play Services installée ne fonctionne pas correctement. Veuillez réinstaller Google Play Services et réessayer.</string>
+  <!--RatingManager-->
+  <string name="RatingManager_rate_this_app">Notez cette application</string>
+  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Si vous aimez cette application, aidez-nous en prenant un moment pour la noter.</string>
+  <string name="RatingManager_rate_now">Noter maintenant!</string>
+  <string name="RatingManager_no_thanks">Non merci</string>
+  <string name="RatingManager_later">Plus tard</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">La
 signature de cet échange de clé est différente de celle que vous avez précédemment reçue de ce
@@ -361,8 +372,8 @@ Un message avec une clé de chiffrement inconnue a été reçu. Cliquer pour l\'
   <string name="KeyCachingService_passphrase_cached">TextSecure est déverrouillé</string>
   <string name="KeyCachingService_lock">Verrouiller avec la phrase de passe</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages">%d nouveaux messages</string>
-  <string name="MessageNotifier_most_recent_from_s">Dernier de : %s</string>
+  <string name="MessageNotifier_d_messages_in_d_conversations">%1$d messages dans %2$d conversations</string>
+  <string name="MessageNotifier_most_recent_from_s">Plus récent de : %1$s</string>
   <string name="MessageNotifier_encrypted_message">Message chiffré…</string>
   <string name="MessageNotifier_media_message_with_text">Message média : %s</string>
   <string name="MessageNotifier_no_subject">(Aucun sujet)</string>
@@ -404,7 +415,6 @@ Un message avec une clé de chiffrement inconnue a été reçu. Cliquer pour l\'
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Téléchargement du message média</string>
   <string name="conversation_item__mms_image_description">Message média</string>
-  <string name="conversation_item__play_button_description">Bouton play</string>
   <string name="conversation_item__secure_message_description">Message sécurisé</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Télécharger</string>
@@ -468,12 +478,11 @@ Importer un fichier de sauvegarde en texte clair. Compatible avec «SMSBackup An
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure nécessite les paramètres MMS pour envoyer des médias et des messages groupés par votre fournisseur sans fil. Votre appareil ne fournit pas ces informations ; cela se produit parfois sur les appareils verrouillés et autres configurations restrictives.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Pour envoyer des médias et messages groupés, cliquez « OK » et renseignez les paramètres demandés. Les paramètres MMS de votre fournisseur peuvent en général être trouvés en recherchant « APN votre fournisseur ». Vous aurez besoin de faire cela seulement une fois.</string>
-  <!--receive_key_activity-->
-  <string name="receive_key_activity__complete">Compléter</string>
+  <!--receive_key_dialog-->
+  <string name="receive_key_dialog__complete">Compléter</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-        Veuillez vérifier votre numéro de téléphone pour vous connecter avec TextSecure.
-    </string>
+Veuillez vérifier votre numéro de téléphone pour vous connecter avec TextSecure.</string>
   <string name="registration_activity__your_country">VOTRE PAYS</string>
   <string name="registration_activity__your_country_code_and_phone_number">VOTRE CODE PAYS ET
 VOTRE NUMÉRO DE TÉLÉPHONE</string>
@@ -559,6 +568,7 @@ par SMS.</string>
   <string name="AndroidManifest__media_preview">Prévisualisation du média.</string>
   <string name="AndroidManifest__media_overview">Toutes les images</string>
   <string name="AndroidManifest__media_overview_named">Toutes les images avec %1$s</string>
+  <string name="AndroidManifest__message_details">Détails du message</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importer / exporter</string>
   <string name="arrays__my_identity_key">Ma clé d\'identité</string>
@@ -578,8 +588,8 @@ par SMS.</string>
   <string name="preferences__sms_mms">SMS et MMS</string>
   <string name="preferences__pref_all_sms_title">Recevoir tous les SMS</string>
   <string name="preferences__pref_all_mms_title">Recevoir tous les MMS</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Utiliser TextSecure pour tous messages entrants</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Utiliser TextSecure pour tous les messages média</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Utiliser TextSecure pour tous les messages textes entrants</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Utiliser TextSecure pour tous les messages média entrants</string>
   <string name="preferences__input_settings">Paramètres de saisie</string>
   <string name="preferences__enable_enter_key_title">Activer la touche Entrée</string>
   <string name="preferences__replace_smiley_with_enter_key">Remplacer la touche smiley par une touche Entrée</string>
@@ -639,6 +649,7 @@ par SMS.</string>
   <string name="preferences__custom">Personnalisé</string>
   <string name="preferences__advanced">Avancé</string>
   <string name="preferences__app_protection">Protection de l\'application</string>
+  <string name="preferences__mms_user_agent">User Agent MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Paramètres MMS manuels</string>
   <string name="preferences__enable_manual_mms">Utiliser les parametres MMS manuels</string>
   <string name="preferences__override_system_mms_settings">Remplacer les paramètres MMS du système avec les informations ci-dessous.</string>
@@ -704,7 +715,6 @@ Messages privés gratuits vers les utilisateurs TextSecure et Signal
   <string name="conversation_list__menu_search">Chercher</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Photo de contact</string>
-  <string name="conversation_list_item_view__attachment_indicator">Indicateur de pièce jointe</string>
   <string name="conversation_list_item_view__error_alert">Alerte d\'erreur</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nouvelle conversation</string>

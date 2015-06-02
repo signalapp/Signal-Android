@@ -20,11 +20,11 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.text.TextUtils;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.mms.ApnUnavailableException;
-import org.thoughtcrime.securesms.mms.MmsConnection.Apn;
+import org.thoughtcrime.securesms.mms.LegacyMmsConnection.Apn;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libaxolotl.util.guava.Optional;
@@ -90,9 +90,13 @@ public class ApnDatabase {
     Util.copy(context.getAssets().open(ASSET_PATH, AssetManager.ACCESS_STREAMING),
               new FileOutputStream(dbFile));
 
-    this.db = SQLiteDatabase.openDatabase(context.getDatabasePath(DATABASE_NAME).getPath(),
-                                          null,
-                                          SQLiteDatabase.OPEN_READONLY | SQLiteDatabase.NO_LOCALIZED_COLLATORS);
+    try {
+      this.db = SQLiteDatabase.openDatabase(context.getDatabasePath(DATABASE_NAME).getPath(),
+                                            null,
+                                            SQLiteDatabase.OPEN_READONLY | SQLiteDatabase.NO_LOCALIZED_COLLATORS);
+    } catch (SQLiteException e) {
+      throw new IOException(e);
+    }
   }
 
   private Apn getCustomApnParameters() {

@@ -28,16 +28,18 @@ import android.util.Log;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.jobs.SmsReceiveJob;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
-import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 
-import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class SmsListener extends BroadcastReceiver {
 
   private static final String SMS_RECEIVED_ACTION  = Telephony.Sms.Intents.SMS_RECEIVED_ACTION;
   private static final String SMS_DELIVERED_ACTION = Telephony.Sms.Intents.SMS_DELIVER_ACTION;
+
+  private static final Pattern CHALLENGE_PATTERN = Pattern.compile(".*Your TextSecure verification code: ([0-9]{3,4})-([0-9]{3,4}).*");
 
   private boolean isExemption(SmsMessage message, String messageBody) {
 
@@ -128,7 +130,7 @@ public class SmsListener extends BroadcastReceiver {
     if (messageBody == null)
       return false;
 
-    if (messageBody.matches(".*Your TextSecure verification code: [0-9]{3,4}-[0-9]{3,4}") &&
+    if (CHALLENGE_PATTERN.matcher(messageBody).matches() &&
         TextSecurePreferences.isVerifying(context))
     {
       return true;
@@ -138,11 +140,14 @@ public class SmsListener extends BroadcastReceiver {
   }
 
   private String parseChallenge(Context context, Intent intent) {
-    String messageBody    = getSmsMessageBodyFromIntent(intent);
-    String[] messageParts = messageBody.split(":");
-    String[] codeParts    = messageParts[1].trim().split("-");
+    String  messageBody      = getSmsMessageBodyFromIntent(intent);
+    Matcher challengeMatcher = CHALLENGE_PATTERN.matcher(messageBody);
 
-    return codeParts[0] + codeParts[1];
+    if (!challengeMatcher.matches()) {
+      throw new AssertionError("Expression should match.");
+    }
+
+    return challengeMatcher.group(1) + challengeMatcher.group(2);
   }
 
   @Override

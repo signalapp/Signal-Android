@@ -21,8 +21,10 @@
     <attr name="conversation_received_text_secondary_color" format="reference|color"/>
 
     <attr name="fab_color" format="reference|color" />
-    <attr name="actionbar_icon" format="reference" />
     <attr name="lower_right_divet" format="reference" />
+
+    <attr name="centered_app_title_color" format="reference|color" />
+    <attr name="ic_arrow_forward" format="reference" />
 
     <attr name="conversation_background" format="reference|color"/>
     <attr name="conversation_editor_background" format="reference"/>
@@ -33,11 +35,12 @@
     <attr name="conversation_transport_popup_background" format="reference"/>
     <attr name="conversation_emoji_toggle" format="reference"/>
     <attr name="conversation_keyboard_toggle" format="reference"/>
-    <attr name="conversation_attach_file" format="reference"/>
     <attr name="conversation_attach_image" format="reference"/>
     <attr name="conversation_attach_video" format="reference"/>
     <attr name="conversation_attach_sound" format="reference"/>
     <attr name="conversation_attach_contact_info" format="reference"/>
+    <attr name="conversation_attach_photo" format="reference"/>
+    <attr name="conversation_attach" format="reference"/>
 
     <attr name="conversation_item_background" format="reference"/>
     <attr name="conversation_item_received_background" format="reference" />
@@ -113,4 +116,5 @@
     </declare-styleable>
 
     <attr name="group_members_dialog_icon" format="reference"/>
+    <attr name="lockscreen_watermark" format="reference" />
 </resources>

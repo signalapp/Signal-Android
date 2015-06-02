@@ -17,14 +17,17 @@
 package org.thoughtcrime.securesms.util;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.graphics.Shader;
 import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.os.Build.VERSION;
+import android.os.Build.VERSION_CODES;
+import android.os.Handler;
+import android.os.Looper;
 import android.provider.Telephony;
+import android.support.annotation.Nullable;
 import android.telephony.TelephonyManager;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -33,7 +36,7 @@ import android.text.style.StyleSpan;
 import android.widget.EditText;
 
 import org.thoughtcrime.securesms.BuildConfig;
-import org.thoughtcrime.securesms.TextSecureExpiredException;
+import org.thoughtcrime.securesms.mms.OutgoingLegacyMmsConnection;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
 import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
 
@@ -44,6 +47,7 @@ import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -56,10 +60,11 @@ import ws.com.google.android.mms.pdu.CharacterSets;
 import ws.com.google.android.mms.pdu.EncodedStringValue;
 
 public class Util {
+  public static Handler handler = new Handler(Looper.getMainLooper());
 
   public static String join(Collection<String> list, String delimiter) {
     StringBuilder result = new StringBuilder();
-    int i=0;
+    int i = 0;
 
     for (String item : list) {
       result.append(item);
@@ -126,7 +131,7 @@ public class Util {
     }
   }
 
-  public static void wait(Object lock, int timeout) {
+  public static void wait(Object lock, long timeout) {
     try {
       lock.wait(timeout);
     } catch (InterruptedException ie) {
@@ -195,6 +200,18 @@ public class Util {
     }
 
     return null;
+  }
+
+  public static <T> List<List<T>> partition(List<T> list, int partitionSize) {
+    List<List<T>> results = new LinkedList<>();
+
+    for (int index=0;index<list.size();index+=partitionSize) {
+      int subListSize = Math.min(partitionSize, list.size() - index);
+
+      results.add(list.subList(index, index + subListSize));
+    }
+
+    return results;
   }
 
   public static List<String> split(String source, String delimiter) {
@@ -278,5 +295,33 @@ public class Util {
 
   public static boolean isBuildFresh() {
     return BuildConfig.BUILD_TIMESTAMP + TimeUnit.DAYS.toMillis(180) > System.currentTimeMillis();
+  }
+
+  @TargetApi(VERSION_CODES.LOLLIPOP)
+  public static boolean isMmsCapable(Context context) {
+    return (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) || OutgoingLegacyMmsConnection.isConnectionPossible(context);
+  }
+
+  public static boolean isMainThread() {
+    return Looper.myLooper() == Looper.getMainLooper();
+  }
+
+  public static void assertMainThread() {
+    if (!isMainThread()) {
+      throw new AssertionError("Main-thread assertion failed.");
+    }
+  }
+
+  public static void runOnMain(Runnable runnable) {
+    if (isMainThread()) runnable.run();
+    else                handler.post(runnable);
+  }
+
+  public static boolean equals(@Nullable Object a, @Nullable Object b) {
+    return a == b || (a != null && a.equals(b));
+  }
+
+  public static int hashCode(@Nullable Object... objects) {
+    return Arrays.hashCode(objects);
   }
 }

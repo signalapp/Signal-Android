@@ -80,7 +80,7 @@
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">На жаль, абранае аўдыё перавышае максімальны памеру паведамлення (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Атрымальнік ня ёсць дзейсным для адпраўкі SMS або email адрасам!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Паведамленне пустое!</string>
-  <string name="ConversationActivity_group_conversation_recipients">Атрымальнікі групавой гутаркі</string>
+  <string name="ConversationActivity_group_members">Удзельнікі групы</string>
   <string name="ConversationActivity_group_conversation">Групавая гутарка</string>
   <string name="ConversationActivity_unnamed_group">Неназваная група</string>
   <string name="ConversationActivity_d_recipients_in_group">%d удзельнікаў</string>
@@ -95,8 +95,10 @@
   <string name="ConversationActivity_transport_insecure_mms">Небяспечная MMS</string>
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_get_with_it">Атрымай з гэтым: %s</string>
-  <string name="ConversationActivity_install_textsecure">Усталяваць TextSecure: %s</string>
+  <string name="ConversationActivity_lets_use_this_to_chat">Выкарыстайце гэта, каб пачаць гутарку: %s</string>
   <string name="ConversationActivity_error_leaving_group">Памылка выхаду з групы...</string>
+  <string name="ConversationActivity_mms_not_supported_title">MMS не падтрымліваюцца</string>
+  <string name="ConversationActivity_mms_not_supported_message">Гэтае паведамленне ня можа быць даслана, бо ваша мабільны аператар не падтрымлівае MMS</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Дэталі паведамлення</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Транспарт: %1$s\nДаслана/Атрымана: %2$s</string>
@@ -163,7 +165,6 @@
   <string name="GroupCreateActivity_loading_group_details">Загрузка дэталяў групы...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Я</string>
-  <string name="GroupMembersDialog_members">Удзельнікі...</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Імпарт</string>
   <string name="ImportExportActivity_export">Экспарт</string>
@@ -210,6 +211,7 @@
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Паролі не супадаюць!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Няправільны стары пароль!</string>
+  <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Увядзіце новы пароль!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Прывязаць гэты дэвайс?</string>
   <string name="DeviceProvisioningActivity_cancel">АДМЕНА</string>
@@ -231,6 +233,8 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Іконка TextSecure</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Адправіць пароль</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Няправільны пароль!</string>
+  <!--PlayServicesProblemFragment-->
+  <!--RatingManager-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Подпіс падчас цяперашняга абмене ключамі адрозніваецца ад таго, які быў атрыманы ад гэтага кантакта мінулым разам. Гэта можа вызначаць, што нехта спрабуе перахапіць вашыя паведамленні, альбо гэты кантакт проста пераўсталяваў па-новай TextSecure і зараз мае новы ідэнтыфікацыйны ключ.
     </string>
@@ -342,8 +346,6 @@
   <string name="KeyCachingService_passphrase_cached">TextSecure разблакіравана</string>
   <string name="KeyCachingService_lock">Замкнуць гэты пароль</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages">%d новых паведамленняў</string>
-  <string name="MessageNotifier_most_recent_from_s">Самыя апошнія ад: %s</string>
   <string name="MessageNotifier_encrypted_message">Разшыфраванае паведамленне...</string>
   <string name="MessageNotifier_media_message_with_text">Мультымедыя паведамленне: %s</string>
   <string name="MessageNotifier_no_subject">(Няма тэмы)</string>
@@ -385,7 +387,6 @@
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Запампоўка медыя паведамлення</string>
   <string name="conversation_item__mms_image_description">Медыя паведамленне</string>
-  <string name="conversation_item__play_button_description">Кнопка Play</string>
   <string name="conversation_item__secure_message_description">Бяспечнае паведамленне</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Запампаваць</string>
@@ -450,8 +451,8 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure патрэбныя налады MMS для дастаўкі медыя і групавых паведамленняў праз аператара мабільнай сувязі. Ваша прылада не дазваляе атрымаць гэтыя налады.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Каб даслаць медыя ці групавыя паведамленні, націсніце \'OK\' і задайце неабходныя налады. Налады MMS для вашага аператара могуць быць атрыманыя праз пошук у \'APN вашага аператара\'. Вы можаце зрабіць гэта толькі адзін раз. </string>
-  <!--receive_key_activity-->
-  <string name="receive_key_activity__complete">Зроблена</string>
+  <!--receive_key_dialog-->
+  <string name="receive_key_dialog__complete">Зроблена</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 Праверце ваш тэлефонны нумар каб падлучыцца да TextSecure.</string>
@@ -612,6 +613,7 @@ TextSecure не дачакаўся параверачная SMS.</string>
   <string name="preferences__custom">Пэўны</string>
   <string name="preferences__advanced">Прасунуты</string>
   <string name="preferences__app_protection">Абарона аплікацыі</string>
+  <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Ручныя налады MMS</string>
   <string name="preferences__enable_manual_mms">Выкарыстоўваць ручныя налады MMS</string>
   <string name="preferences__override_system_mms_settings">Перапісаць сістэмныя налады MMS тымі, якія знаходзяцца ніжэй.</string>
@@ -676,7 +678,6 @@ TextSecure не дачакаўся параверачная SMS.</string>
   <string name="conversation_list__menu_search">Пошук</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Фота кантакта</string>
-  <string name="conversation_list_item_view__attachment_indicator">Індыкатар дадатку</string>
   <string name="conversation_list_item_view__error_alert">Папярэджванне пра памылкі</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Новая размова</string>

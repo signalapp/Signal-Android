@@ -42,6 +42,7 @@ Bu işlem sunucudan kaydınızı silerek itilen mesajları etkisizleştirir. Gel
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Seçtiğiniz medya için bir uygulama bulunamadı.</string>
   <!--AttachmentTypeSelectorAdapter-->
+  <string name="AttachmentTypeSelectorAdapter_take_photo">Foto Çek</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Resim</string>
   <string name="AttachmentTypeSelectorAdapter_video">Görüntü</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Ses</string>
@@ -80,7 +81,7 @@ isteyebilirsiniz.</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Üzgünüz, seçilen ses mesaj boyutu limitini aşıyor (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Alıcı geçerli bir SMS veya e-posta adresi değil!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Mesaj boş!</string>
-  <string name="ConversationActivity_group_conversation_recipients">Grup sohbeti alıcıları</string>
+  <string name="ConversationActivity_group_members">Grup üyeleri</string>
   <string name="ConversationActivity_group_conversation">Grup sohbeti</string>
   <string name="ConversationActivity_unnamed_group">Adlandırılmamış grup</string>
   <string name="ConversationActivity_d_recipients_in_group">%d üye</string>
@@ -95,8 +96,11 @@ isteyebilirsiniz.</string>
   <string name="ConversationActivity_transport_insecure_mms">Güvensiz MMS</string>
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_get_with_it">%s ile alın</string>
-  <string name="ConversationActivity_install_textsecure">TextSecure Kur: %s</string>
+  <string name="ConversationActivity_lets_use_this_to_chat">Bunu sohbet için kullan: %s</string>
   <string name="ConversationActivity_error_leaving_group">Gruptan ayrılma hatası...</string>
+  <string name="ConversationActivity_mms_not_supported_title">MMS desteklenmiyor</string>
+  <string name="ConversationActivity_mms_not_supported_message">Taşıyıcınız MMS desteklemediği için bu mesaj gönderilemez.</string>
+  <string name="ConversationActivity_specify_recipient">Lütfen bir kişi seç</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Mesaj detayları</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Taşıma: %1$s\nGönderme/Alma: %2$s</string>
@@ -164,7 +168,6 @@ Veri kanallarından iletişim etkisizleştirilmiş, TextSecure ayarlar menüsün
   <string name="GroupCreateActivity_loading_group_details">Grup detayları yükleniyor...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Ben</string>
-  <string name="GroupMembersDialog_members">Üyeler...</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">İçe Aktar</string>
   <string name="ImportExportActivity_export">Dışarı Aktar</string>
@@ -209,7 +212,8 @@ kurulumunuzda bulunan ancak yüklenecek yedekte bulunmayan tüm bilgiler kaybolu
   <string name="MessageRecord_updated_group">Grubu güncelle.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Parolalar uyuşmuyor!</string>
-  <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Yanlış eski şifre!</string>
+  <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Yanlış eski parola!</string>
+  <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Yeni parola girin!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Bu cihazı bağla?</string>
   <string name="DeviceProvisioningActivity_cancel">VAZGEÇ</string>
@@ -226,10 +230,18 @@ kurulumunuzda bulunan ancak yüklenecek yedekte bulunmayan tüm bilgiler kaybolu
   <string name="DeviceProvisioningActivity_content_progress_network_error">Ağ hatası.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Geçersiz QR kodu.</string>
   <!--PassphrasePromptActivity-->
-  <string name="PassphrasePromptActivity_enter_passphrase">Parola Girin</string>
+  <string name="PassphrasePromptActivity_enter_passphrase">Parola girin</string>
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure ikonu</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Parola gönder</string>
-  <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Geçersiz Parola!</string>
+  <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Geçersiz parola!</string>
+  <!--PlayServicesProblemFragment-->
+  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Google Play Services\'in kurulu sürümü doğru çalışmıyor. Lütfen Google Play Services\'i tekrar kurun ve yeniden deneyin.</string>
+  <!--RatingManager-->
+  <string name="RatingManager_rate_this_app">Bu uygulamaya puan verin</string>
+  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Bu uygulamayı kullanmaktan hoşlanıyorsanız, lütfen bir dakikanızı ayırıp ona puan vererek bize yardımcı olun.</string>
+  <string name="RatingManager_rate_now">Şimdi puan ver!</string>
+  <string name="RatingManager_no_thanks">Hayır teşekkürler</string>
+  <string name="RatingManager_later">Daha sonra</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Bu anahtar değişiminde alınan imza, bu kişi için daha önce alınandan farklı. Bu ya üçüncü bir kişi iletişiminizi dinlemeğe çalıştığında ya da iletişim kurduğunuz kişi TextSecure\'u yeniden kurarak yeni bir kimlik anahtarı sahibi olmuşsa mümkün olabilir.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Bu kişiyi doğrulamak 
@@ -349,8 +361,8 @@ Bilinmeyen kimlik anahtarı içeren bir mesaj alındı. İşlemek ve görüntül
   <string name="KeyCachingService_passphrase_cached">TextSecure kilitsiz</string>
   <string name="KeyCachingService_lock">Parola ile kilitle</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages">%d yeni mesaj</string>
-  <string name="MessageNotifier_most_recent_from_s">En yeni mesaj: %s</string>
+  <string name="MessageNotifier_d_messages_in_d_conversations">%2$d sohbette %1$d mesaj</string>
+  <string name="MessageNotifier_most_recent_from_s">En yeni mesaj: %1$s</string>
   <string name="MessageNotifier_encrypted_message">Şifrelenmiş mesaj...</string>
   <string name="MessageNotifier_media_message_with_text">Medya mesajı: %s</string>
   <string name="MessageNotifier_no_subject">(Konusuz)</string>
@@ -392,7 +404,6 @@ Bilinmeyen kimlik anahtarı içeren bir mesaj alındı. İşlemek ve görüntül
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Medya mesajı indiriliyor</string>
   <string name="conversation_item__mms_image_description">Medya mesajı</string>
-  <string name="conversation_item__play_button_description">Oynat butonu</string>
   <string name="conversation_item__secure_message_description">Güvenli mesaj</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">İndir</string>
@@ -457,8 +468,8 @@ Daha önce dışa aktarılmış bir şifrelenmiş TextSecure yedeğini yeniden y
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure medya ve grup mesajlarının kablosuz taşıyıcınız aracılığı ile taşınabilmesi için MMS ayarlarınızı gerektirir. Cihazınız bu bilgiyi sağlamamaktadır. Bu durum bazen kilitli veya diğer kısıtlı yapılandırılmış cihazlar için geçerli olabilmektedir.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Medya veya grup mesajları gönderebilmek için \'Tamam\' a tıklayınız ve istenen ayarları tamamlayınız. Taşıyıcınızın MMS ayarları genellikle \'taşıyıcı APN\' araştırılarak bulunabilir. Bunu bir kez yapmanız gerekecektir.</string>
-  <!--receive_key_activity-->
-  <string name="receive_key_activity__complete">Tamamlandı</string>
+  <!--receive_key_dialog-->
+  <string name="receive_key_dialog__complete">Tamamlandı</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 TextSecure\'a bağlanmak için telefon numaranızı doğrulayın</string>
@@ -535,16 +546,17 @@ başarısız.</string>
   <string name="message_details_header__with">İle:</string>
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Anahtar parolası oluştur</string>
-  <string name="AndroidManifest__enter_passphrase">Parola Girin</string>
+  <string name="AndroidManifest__enter_passphrase">Parola girin</string>
   <string name="AndroidManifest__select_contacts">Kişileri seç</string>
   <string name="AndroidManifest__textsecure_detected">TextSecure algılandı</string>
   <string name="AndroidManifest__public_identity_key">Kimlik anahtarım</string>
-  <string name="AndroidManifest__change_passphrase">Parola Değiştir</string>
+  <string name="AndroidManifest__change_passphrase">Parola değiştir</string>
   <string name="AndroidManifest__verify_identity">Kimliği doğrula</string>
   <string name="AndroidManifest__log_submit">Hata ayıklama kayıtlarını gönder</string>
   <string name="AndroidManifest__media_preview">Medya Önizleme</string>
   <string name="AndroidManifest__media_overview">Tüm resimler</string>
   <string name="AndroidManifest__media_overview_named">%1$s ile tüm resimler</string>
+  <string name="AndroidManifest__message_details">Mesaj Detayları</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">İçeri / Dışarı Aktar</string>
   <string name="arrays__my_identity_key">Kimlik anahtarım</string>
@@ -572,7 +584,7 @@ başarısız.</string>
   <string name="preferences__display_settings">Ekran ayarları</string>
   <string name="preferences__choose_identity">Kimlik seç</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Kişi girdinizi kişi listesinden seçin.</string>
-  <string name="preferences__change_passphrase">Parola Değiştir</string>
+  <string name="preferences__change_passphrase">Parola değiştir</string>
   <string name="preferences__change_my_passphrase">Parolamı değiştir</string>
   <string name="preferences__enable_passphrase">Parola etkinleştir</string>
   <string name="preferences__passphrase_summary">Parola %s</string>
@@ -623,6 +635,7 @@ başarısız.</string>
   <string name="preferences__custom">Özel</string>
   <string name="preferences__advanced">Gelişmiş</string>
   <string name="preferences__app_protection">App koruma</string>
+  <string name="preferences__mms_user_agent">MMS Kullanıcı Aracı</string>
   <string name="preferences__advanced_mms_access_point_names">Manüel MMS ayarları</string>
   <string name="preferences__enable_manual_mms">Manüel MMS ayarlarını kullan</string>
   <string name="preferences__override_system_mms_settings">Sistem MMS ayarları yerine aşağıda bilgileri olanları kullan.</string>
@@ -687,7 +700,6 @@ TextSecure ve Signal kullanıcıları ile ücretsiz gizli mesajlaşma</string>
   <string name="conversation_list__menu_search">Ara</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kişi Fotosu Resmi</string>
-  <string name="conversation_list_item_view__attachment_indicator">Ek Göstergesi</string>
   <string name="conversation_list_item_view__error_alert">Hata uyarısı</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Yeni sohbet</string>

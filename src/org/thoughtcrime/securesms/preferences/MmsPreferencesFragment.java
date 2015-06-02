@@ -26,7 +26,7 @@ import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.CustomDefaultPreference;
 import org.thoughtcrime.securesms.database.ApnDatabase;
-import org.thoughtcrime.securesms.mms.MmsConnection;
+import org.thoughtcrime.securesms.mms.LegacyMmsConnection;
 import org.thoughtcrime.securesms.util.TelephonyUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
@@ -52,10 +52,10 @@ public class MmsPreferencesFragment extends PreferenceFragment {
     new LoadApnDefaultsTask().execute();
   }
 
-  private class LoadApnDefaultsTask extends AsyncTask<Void, Void, MmsConnection.Apn> {
+  private class LoadApnDefaultsTask extends AsyncTask<Void, Void, LegacyMmsConnection.Apn> {
 
     @Override
-    protected MmsConnection.Apn doInBackground(Void... params) {
+    protected LegacyMmsConnection.Apn doInBackground(Void... params) {
       try {
         Context context = getActivity();
 
@@ -72,7 +72,7 @@ public class MmsPreferencesFragment extends PreferenceFragment {
     }
 
     @Override
-    protected void onPostExecute(MmsConnection.Apn apnDefaults) {
+    protected void onPostExecute(LegacyMmsConnection.Apn apnDefaults) {
       ((CustomDefaultPreference)findPreference(TextSecurePreferences.MMSC_HOST_PREF))
           .setValidator(new CustomDefaultPreference.UriValidator())
           .setDefaultValue(apnDefaults.getMmsc());
@@ -90,6 +90,9 @@ public class MmsPreferencesFragment extends PreferenceFragment {
 
       ((CustomDefaultPreference)findPreference(TextSecurePreferences.MMSC_PASSWORD_PREF))
           .setDefaultValue(apnDefaults.getPassword());
+
+      ((CustomDefaultPreference)findPreference(TextSecurePreferences.MMS_USER_AGENT))
+          .setDefaultValue(LegacyMmsConnection.USER_AGENT);
     }
   }
 

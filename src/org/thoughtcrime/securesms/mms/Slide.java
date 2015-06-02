@@ -16,19 +16,18 @@
  */
 package org.thoughtcrime.securesms.mms;
 
+import android.content.Context;
+import android.content.res.Resources.Theme;
+import android.net.Uri;
+import android.support.annotation.DrawableRes;
+import android.support.annotation.NonNull;
+import android.util.Log;
+
+import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.util.Util;
+
 import java.io.IOException;
 import java.io.InputStream;
-
-import org.thoughtcrime.securesms.util.ListenableFutureTask;
-import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.util.Log;
-import android.util.Pair;
 
 import ws.com.google.android.mms.pdu.PduPart;
 
@@ -38,26 +37,14 @@ public abstract class Slide {
   protected final Context      context;
   protected       MasterSecret masterSecret;
 
-  public Slide(Context context, PduPart part) {
+  public Slide(Context context, @NonNull PduPart part) {
     this.part    = part;
     this.context = context;
   }
 
-  public Slide(Context context, MasterSecret masterSecret, PduPart part) {
+  public Slide(Context context, @NonNull MasterSecret masterSecret, @NonNull PduPart part) {
     this(context, part);
     this.masterSecret = masterSecret;
-  }
-
-  protected byte[] getPartData() {
-    try {
-      if (part.getData() != null)
-        return part.getData();
-
-      return Util.readFully(PartAuthority.getPartStream(context, masterSecret, part.getDataUri()));
-    } catch (IOException e) {
-      Log.w("Slide", e);
-      return new byte[0];
-    }
   }
 
   public String getContentType() {
@@ -66,10 +53,6 @@ public abstract class Slide {
 
   public Uri getUri() {
     return part.getDataUri();
-  }
-
-  public ListenableFutureTask<Pair<Drawable,Boolean>> getThumbnail(Context context) {
-    throw new AssertionError("getThumbnail() called on non-thumbnail producing slide!");
   }
 
   public boolean hasImage() {
@@ -84,20 +67,20 @@ public abstract class Slide {
     return false;
   }
 
-  public Bitmap getImage() {
-    throw new AssertionError("getImage() called on non-image slide!");
-  }
-
-  public boolean hasText() {
-    return false;
-  }
-
-  public String getText() {
-    throw new AssertionError("getText() called on non-text slide!");
-  }
-
   public PduPart getPart() {
     return part;
+  }
+
+  public Uri getThumbnailUri() {
+    return null;
+  }
+
+  public @DrawableRes int getPlaceholderRes(Theme theme) {
+    throw new AssertionError("getPlaceholderRes() called for non-drawable slide");
+  }
+
+  public boolean isDraft() {
+    return !getPart().getPartId().isValid();
   }
 
   protected static void assertMediaSize(Context context, Uri uri)
@@ -113,4 +96,28 @@ public abstract class Slide {
       if (size > MmsMediaConstraints.MAX_MESSAGE_SIZE) throw new MediaTooLargeException("Media exceeds maximum message size.");
     }
   }
+
+  @Override
+  public boolean equals(Object other) {
+    if (!(other instanceof Slide)) return false;
+
+    Slide that = (Slide)other;
+
+    return Util.equals(this.getContentType(), that.getContentType()) &&
+           this.hasAudio() == that.hasAudio()                        &&
+           this.hasImage() == that.hasImage()                        &&
+           this.hasVideo() == that.hasVideo()                        &&
+           this.isDraft() == that.isDraft()                          &&
+           Util.equals(this.getUri(), that.getUri())                 &&
+           Util.equals(this.getThumbnailUri(), that.getThumbnailUri());
+  }
+
+  @Override
+  public int hashCode() {
+    return Util.hashCode(getContentType(), hasAudio(), hasImage(),
+                         hasVideo(), isDraft(), getUri(), getThumbnailUri());
+  }
+
+
+
 }

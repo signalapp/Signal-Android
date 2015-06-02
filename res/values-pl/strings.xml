@@ -80,7 +80,7 @@ ten kontakt.
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Przepraszamy, ten plik audio przekracza dozwolony rozmiar (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Podany numer lub adres e-mail jest niepoprawny!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Wiadomość jest pusta!</string>
-  <string name="ConversationActivity_group_conversation_recipients">Grupuj odbiorców rozmowy</string>
+  <string name="ConversationActivity_group_members">Użytkownicy grupy</string>
   <string name="ConversationActivity_group_conversation">Grupowa konwersacja</string>
   <string name="ConversationActivity_unnamed_group">Grupa bez nazwy</string>
   <string name="ConversationActivity_d_recipients_in_group">%d uczestników</string>
@@ -95,8 +95,11 @@ ten kontakt.
   <string name="ConversationActivity_transport_insecure_mms">Nieszyfrowany MMS</string>
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_get_with_it">Weź z: %s</string>
-  <string name="ConversationActivity_install_textsecure">Instaluj TextSecure: %s</string>
+  <string name="ConversationActivity_lets_use_this_to_chat">Użyjmy tego do rozmowy: %s</string>
   <string name="ConversationActivity_error_leaving_group">Błąd opuszczenia grupy...</string>
+  <string name="ConversationActivity_mms_not_supported_title">MMS nie są wspomagane</string>
+  <string name="ConversationActivity_mms_not_supported_message">Wiadomość nie może zostać wysłana, ponieważ Twój operator nie obsługuje usługi MMS.</string>
+  <string name="ConversationActivity_specify_recipient">Proszę wybierz kontakt</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Szczegóły wiadomości</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nWysłano/Otrzymano: %2$s</string>
@@ -162,7 +165,6 @@ ten kontakt.
   <string name="GroupCreateActivity_loading_group_details">Wczytywanie szczegółów grupy...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Ja</string>
-  <string name="GroupMembersDialog_members">Członkowie...</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Import</string>
   <string name="ImportExportActivity_export">Eksport</string>
@@ -206,6 +208,7 @@ Przywracanie szyfrowanej kopii zapasowej TextSecure spowoduje nadpisanie Twoich 
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Hasło niezgodne!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Nieprawidłowe stare hasło!</string>
+  <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Wpisz nowe hasło!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Połączyć z tym urządzeniem?</string>
   <string name="DeviceProvisioningActivity_cancel">ANULUJ</string>
@@ -228,6 +231,14 @@ Przywracanie szyfrowanej kopii zapasowej TextSecure spowoduje nadpisanie Twoich 
   <string name="PassphrasePromptActivity_watermark_content_description">Ikona TextSecure</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Wprowadź hasło</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Nieprawidłowe hasło!</string>
+  <!--PlayServicesProblemFragment-->
+  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Wersja Google Play Services którą masz zainstalowaną nie funkcjonuje poprawnie. Proszę przeinstaluj tą aplikację ponownie i spróbuj ponownie.</string>
+  <!--RatingManager-->
+  <string name="RatingManager_rate_this_app">Oceń tą aplikację</string>
+  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Jeśli lubisz używać tą aplikację, to prosimy o danie jej oceny.</string>
+  <string name="RatingManager_rate_now">Oceń teraz!</string>
+  <string name="RatingManager_no_thanks">Nie dzięki</string>
+  <string name="RatingManager_later">Później</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Podpis pod tą wymianą kluczy jest inny od tego, który otrzymałeś poprzednio od tego 
 kontaktu. Może to oznaczać, że ktoś próbuje przechwycić Twoją komunikację lub 
@@ -347,8 +358,8 @@ Otrzymano wiadomość z nieznanym kluczem tożsamości. Kliknij aby przetworzyć
   <string name="KeyCachingService_passphrase_cached">TextSecure jest odblokowany</string>
   <string name="KeyCachingService_lock">Zablokuj hasłem</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages">%d nowych wiadomości</string>
-  <string name="MessageNotifier_most_recent_from_s">Najnowsze zaczynając od: %s</string>
+  <string name="MessageNotifier_d_messages_in_d_conversations">%1$d wiadomości w %2$d wątkach</string>
+  <string name="MessageNotifier_most_recent_from_s">Najnowsza z: %1$s</string>
   <string name="MessageNotifier_encrypted_message">Szyfrowana wiadomość...</string>
   <string name="MessageNotifier_media_message_with_text">Wiadomość multimedialna: %s</string>
   <string name="MessageNotifier_no_subject">(Brak tematu)</string>
@@ -390,7 +401,6 @@ Otrzymano wiadomość z nieznanym kluczem tożsamości. Kliknij aby przetworzyć
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Trwa pobieranie wiadomości multimedialnej</string>
   <string name="conversation_item__mms_image_description">Wiadomość multimedialna</string>
-  <string name="conversation_item__play_button_description">Przycisk Play</string>
   <string name="conversation_item__secure_message_description">Bezpieczna wiadomość</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Pobierz</string>
@@ -455,8 +465,8 @@ Importuj niezaszyfrowany plik kopii zapasowej, kompatybilny z \'SMSBackup And Re
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure wymaga ustawień MMS w celu dostarczenia wiadomości multimedialnych za pośrednictwem Twojego operatora. Twoje urządzenie nie udostępnia tych informacji. Może to być spowodowane pewnymi restrykcyjnymi konfiguracjami w telefonie.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Aby mieć możliwość wysyłania wiadomości multimedialnych i wiadomości grupowych, kliknij \'OK\' i wypełnij pola, o które jesteś proszony. Dane MMS dla Twojego operatora, można znaleźć szukając w ustawieniach frazy typu \'Punkty Dostępu - APN\'. Wystarczy to zrobić tylko jeden raz.</string>
-  <!--receive_key_activity-->
-  <string name="receive_key_activity__complete">Zakończono</string>
+  <!--receive_key_dialog-->
+  <string name="receive_key_dialog__complete">Zakończono</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 Weryfikuj swój numer telefonu, aby połączyć się z TextSecure.</string>
@@ -532,6 +542,7 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="AndroidManifest__media_preview">Podgląd pliku</string>
   <string name="AndroidManifest__media_overview">Wszystkie obrazy</string>
   <string name="AndroidManifest__media_overview_named">Wszystkie obrazy z %1$s</string>
+  <string name="AndroidManifest__message_details">Szczegóły wiadomości</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Import / eksport</string>
   <string name="arrays__my_identity_key">Mój klucz tożsamości</string>
@@ -614,6 +625,7 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="preferences__custom">Własne</string>
   <string name="preferences__advanced">Zaawansowane</string>
   <string name="preferences__app_protection">Ochrona aplikacji</string>
+  <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Manualne ustawienia MMS</string>
   <string name="preferences__enable_manual_mms">Użyj manualnych ustawień MMS</string>
   <string name="preferences__override_system_mms_settings">Zastąp ustawienia systemowe MMS poniższymi informacjami.</string>
@@ -678,7 +690,6 @@ Darmowe i prywatne wiadomości do użytkowników TextSecure i Signal</string>
   <string name="conversation_list__menu_search">Szukaj</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Zdjęcie kontaktu</string>
-  <string name="conversation_list_item_view__attachment_indicator">Indykator załącznika</string>
   <string name="conversation_list_item_view__error_alert">Powiadomienie błedu</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nowa konwersacja</string>

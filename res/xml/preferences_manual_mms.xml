@@ -33,4 +33,10 @@
             android:title="@string/preferences__mmsc_password"
             android:inputType="textVisiblePassword"/>
 
+    <org.thoughtcrime.securesms.components.CustomDefaultPreference
+            app:custom_pref_toggle="pref_custom_mms_user_agent"
+            android:key="pref_mms_user_agent"
+            android:title="@string/preferences__mms_user_agent"
+            android:inputType="textNoSuggestions"/>
+
 </PreferenceScreen>

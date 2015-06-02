@@ -8,6 +8,7 @@
     <item android:left="83dp" android:right="10dp">
         <shape android:shape="rectangle">
             <solid android:color="@color/conversation_list_divider_dark" />
+            <size android:height="1px" />
         </shape>
     </item>
 </layer-list>

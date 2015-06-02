@@ -36,6 +36,8 @@ import ws.com.google.android.mms.pdu.PduParser;
 
 public class MmsListener extends BroadcastReceiver {
 
+  private static final String TAG = MmsListener.class.getSimpleName();
+
   private boolean isRelevant(Context context, Intent intent) {
     if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.DONUT) {
       return false;
@@ -62,8 +64,10 @@ public class MmsListener extends BroadcastReceiver {
     PduParser parser = new PduParser(mmsData);
     GenericPdu pdu   = parser.parse();
 
-    if (pdu.getMessageType() != PduHeaders.MESSAGE_TYPE_NOTIFICATION_IND)
+    if (pdu == null || pdu.getMessageType() != PduHeaders.MESSAGE_TYPE_NOTIFICATION_IND) {
+      Log.w(TAG, "Received Invalid notification PDU");
       return false;
+    }
 
     NotificationInd notificationPdu = (NotificationInd)pdu;
 
@@ -75,14 +79,14 @@ public class MmsListener extends BroadcastReceiver {
 
   @Override
     public void onReceive(Context context, Intent intent) {
-    Log.w("MmsListener", "Got MMS broadcast..." + intent.getAction());
+    Log.w(TAG, "Got MMS broadcast..." + intent.getAction());
 
     if ((Telephony.Sms.Intents.WAP_PUSH_DELIVER_ACTION.equals(intent.getAction())  &&
         Util.isDefaultSmsProvider(context))                                        ||
         (Telephony.Sms.Intents.WAP_PUSH_RECEIVED_ACTION.equals(intent.getAction()) &&
          isRelevant(context, intent)))
     {
-      Log.w("MmsListener", "Relevant!");
+      Log.w(TAG, "Relevant!");
       ApplicationContext.getInstance(context)
                         .getJobManager()
                         .add(new MmsReceiveJob(context, intent.getByteArrayExtra("data")));

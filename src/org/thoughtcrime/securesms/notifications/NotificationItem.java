@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.text.SpannableStringBuilder;
 
-import org.thoughtcrime.securesms.RoutingActivity;
+import org.thoughtcrime.securesms.ConversationActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.Util;
@@ -19,10 +19,11 @@ public class NotificationItem {
   private final long         threadId;
   private final CharSequence text;
   private final Uri          image;
+  private final long         timestamp;
 
   public NotificationItem(Recipient individualRecipient, Recipients recipients,
                           Recipients threadRecipients, long threadId,
-                          CharSequence text, Uri image)
+                          CharSequence text, Uri image, long timestamp)
   {
     this.individualRecipient = individualRecipient;
     this.recipients          = recipients;
@@ -30,6 +31,7 @@ public class NotificationItem {
     this.text                = text;
     this.image               = image;
     this.threadId            = threadId;
+    this.timestamp           = timestamp;
   }
 
   public Recipient getIndividualRecipient() {
@@ -42,6 +44,10 @@ public class NotificationItem {
 
   public CharSequence getText() {
     return text;
+  }
+
+  public long getTimestamp() {
+    return timestamp;
   }
 
   public Uri getImage() {
@@ -70,16 +76,12 @@ public class NotificationItem {
   }
 
   public PendingIntent getPendingIntent(Context context) {
-    Intent intent = new Intent(context, RoutingActivity.class);
-    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+    Intent intent = new Intent(context, ConversationActivity.class);
 
-    if (recipients != null || threadRecipients != null) {
-      if (threadRecipients != null) intent.putExtra("recipients", threadRecipients.getIds());
-      else                          intent.putExtra("recipients", recipients.getIds());
+    Recipients notifyRecipients = threadRecipients != null ? threadRecipients : recipients;
+    if (notifyRecipients != null) intent.putExtra("recipients", notifyRecipients.getIds());
 
-      intent.putExtra("thread_id", threadId);
-    }
-
+    intent.putExtra("thread_id", threadId);
     intent.setData((Uri.parse("custom://"+System.currentTimeMillis())));
 
     return PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);

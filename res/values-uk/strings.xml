@@ -16,7 +16,9 @@
   <string name="ApplicationPreferencesActivity_unregistering">Видалення реєстрації\u2026</string>
   <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Видалення реєстрації для обміну повідомленнями через Інтернет</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Помилка підключення до сервера!</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">SMS Вимкнено</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Торкніться, щоб змінити типову програму для SMS</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">SMS вимкнено</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Торкніться аби зробити TextSecure типовою програмою SMS</string>
   <!--AppProtectionPreferenceFragment-->
   <!--DraftDatabase-->
@@ -106,6 +108,8 @@
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Невірна стара фраза!</string>
   <!--DeviceProvisioningActivity-->
   <!--PassphrasePromptActivity-->
+  <!--PlayServicesProblemFragment-->
+  <!--RatingManager-->
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Підпис цього обміну ключами відрізняється від отриманого раніше від цього контакту. Це може означати, що хтось намагається перехопити вашу переписку, або цей контакт перевстановив TextSecure і тепер у нього новий ідентифікаційний ключ.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Можливо, вам потрібно перевірити цей контакт.</string>
@@ -187,8 +191,6 @@
   <string name="KeyCachingService_textsecure_passphrase_cached">Фраза-ключ TextSecure кешована</string>
   <string name="KeyCachingService_passphrase_cached">Фраза-ключ кешована</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages">%d нових повідомлень</string>
-  <string name="MessageNotifier_most_recent_from_s">Останні від: %s</string>
   <string name="MessageNotifier_encrypted_message">Зашифроване повідомлення\u2026</string>
   <string name="MessageNotifier_message_delivery_failed">Збій доставки повідомлення.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Не вдалось доставити повідомлення.</string>
@@ -248,8 +250,8 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">Для надсилання MMS-повідомлень TextSecure необхідно знати настройки APN вашого оператора. Однак ваш пристрій не надає цієї інформації - так іноді буває, якщо воно заблоковане або відповідним чином налаштоване.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Щоб мати можливість відправляти MMS-повідомлення, введіть інформацію про APN нижче. Потрібні значення для вашого оператора можна знайти в інтернеті за запитом \'оператор APN\' або в його службі підтримки. Це потрібно зробити тільки один раз.</string>
-  <!--receive_key_activity-->
-  <string name="receive_key_activity__complete">Виконати</string>
+  <!--receive_key_dialog-->
+  <string name="receive_key_dialog__complete">Виконати</string>
   <!--registration_activity-->
   <string name="registration_activity__your_country">ВАША КРАЇНА</string>
   <string name="registration_activity__your_country_code_and_phone_number">КОД ВАШОЇ КРАЇНИ ТА НОМЕР ТЕЛЕФОНУ

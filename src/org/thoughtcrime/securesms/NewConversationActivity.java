@@ -18,30 +18,21 @@ package org.thoughtcrime.securesms;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import org.thoughtcrime.securesms.contacts.ContactAccessor;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
-import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.thoughtcrime.securesms.util.NumberUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
-import static org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 
 /**
  * Activity container for selecting a list of contacts.
@@ -50,23 +41,22 @@ import static org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
  *
  */
 public class NewConversationActivity extends PassphraseRequiredActionBarActivity {
-  private final static String TAG                 = "ContactSelectActivity";
-  public  final static String MASTER_SECRET_EXTRA = "master_secret";
+  private static final String TAG = NewConversationActivity.class.getSimpleName();
 
   private final DynamicTheme    dynamicTheme    = new DynamicTheme   ();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
-  private       MasterSecret    masterSecret;
 
   private PushContactSelectionListFragment contactsFragment;
 
   @Override
-  protected void onCreate(Bundle icicle) {
+  protected void onPreCreate() {
     dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
-    super.onCreate(icicle);
+  }
 
+  @Override
+  protected void onCreate(Bundle icicle, @NonNull MasterSecret masterSecret) {
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
     setContentView(R.layout.new_conversation_activity);
     initializeResources();
   }
@@ -77,7 +67,6 @@ public class NewConversationActivity extends PassphraseRequiredActionBarActivity
     dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
     getSupportActionBar().setTitle(R.string.AndroidManifest__select_contacts);
-    masterSecret = getIntent().getParcelableExtra(MASTER_SECRET_EXTRA);
   }
 
   @Override
@@ -94,7 +83,6 @@ public class NewConversationActivity extends PassphraseRequiredActionBarActivity
     super.onOptionsItemSelected(item);
     switch (item.getItemId()) {
     case R.id.menu_refresh_directory:  handleDirectoryRefresh();  return true;
-    case R.id.menu_selection_finished: handleSelectionFinished(); return true;
     case android.R.id.home:            finish();                  return true;
     }
     return false;
@@ -104,22 +92,12 @@ public class NewConversationActivity extends PassphraseRequiredActionBarActivity
     contactsFragment = (PushContactSelectionListFragment) getSupportFragmentManager().findFragmentById(R.id.contact_selection_list_fragment);
     contactsFragment.setOnContactSelectedListener(new PushContactSelectionListFragment.OnContactSelectedListener() {
       @Override
-      public void onContactSelected(ContactData contactData) {
+      public void onContactSelected(String number) {
         Log.i(TAG, "Choosing contact from list.");
-        Recipients recipients = contactDataToRecipients(contactData);
+        Recipients recipients = RecipientFactory.getRecipientsFromString(NewConversationActivity.this, number, true);
         openNewConversation(recipients);
       }
     });
-  }
-
-  private void handleSelectionFinished() {
-    final Intent resultIntent = getIntent();
-    final List<ContactData> selectedContacts = contactsFragment.getSelectedContacts();
-    if (selectedContacts != null) {
-      resultIntent.putParcelableArrayListExtra("contacts", new ArrayList<ContactData>(contactsFragment.getSelectedContacts()));
-    }
-    setResult(RESULT_OK, resultIntent);
-    finish();
   }
 
   private void handleDirectoryRefresh() {
@@ -131,25 +109,10 @@ public class NewConversationActivity extends PassphraseRequiredActionBarActivity
     });
   }
 
-  private Recipients contactDataToRecipients(ContactData contactData) {
-    if (contactData == null || contactData.numbers == null) return null;
-    Recipients recipients = new Recipients(new LinkedList<Recipient>());
-    for (ContactAccessor.NumberData numberData : contactData.numbers) {
-      if (NumberUtil.isValidSmsOrEmailOrGroup(numberData.number)) {
-        Recipients recipientsForNumber = RecipientFactory.getRecipientsFromString(NewConversationActivity.this,
-                                                                                  numberData.number,
-                                                                                  false);
-        recipients.getRecipientsList().addAll(recipientsForNumber.getRecipientsList());
-      }
-    }
-    return recipients;
-  }
-
   private void openNewConversation(Recipients recipients) {
     if (recipients != null) {
       Intent intent = new Intent(this, ConversationActivity.class);
       intent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, recipients.getIds());
-      intent.putExtra(ConversationActivity.MASTER_SECRET_EXTRA, masterSecret);
       intent.putExtra(ConversationActivity.DRAFT_TEXT_EXTRA, getIntent().getStringExtra(ConversationActivity.DRAFT_TEXT_EXTRA));
       intent.putExtra(ConversationActivity.DRAFT_AUDIO_EXTRA, getIntent().getParcelableExtra(ConversationActivity.DRAFT_AUDIO_EXTRA));
       intent.putExtra(ConversationActivity.DRAFT_VIDEO_EXTRA, getIntent().getParcelableExtra(ConversationActivity.DRAFT_VIDEO_EXTRA));

@@ -3,7 +3,7 @@
   <string name="app_name">TextSecure</string>
   <string name="yes">Ja</string>
   <string name="no">Nee</string>
-  <string name="delete">Verwijder</string>
+  <string name="delete">Verwijderen</string>
   <string name="please_wait">Een moment alsjeblieft...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Momenteel: %s</string>
@@ -78,7 +78,7 @@ Je zal je telefoonnummer opnieuw moeten registreren als je pushberichten weer wi
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Excuses, het audiobestand overschrijdt de maximale berichtgrootte (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Ontvanger is niet een geldig SMS of e-mailadres!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Bericht is leeg!</string>
-  <string name="ConversationActivity_group_conversation_recipients">Groepsgesprek ontvangers</string>
+  <string name="ConversationActivity_group_members">Groepsleden</string>
   <string name="ConversationActivity_group_conversation">Groepsgesprek</string>
   <string name="ConversationActivity_unnamed_group">Naamloze groep</string>
   <string name="ConversationActivity_d_recipients_in_group">%d leden</string>
@@ -93,13 +93,16 @@ Je zal je telefoonnummer opnieuw moeten registreren als je pushberichten weer wi
   <string name="ConversationActivity_transport_insecure_mms">Onveilige MMS</string>
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_get_with_it">Kom erbij: %s</string>
-  <string name="ConversationActivity_install_textsecure">Installeer TextSecure: %s</string>
+  <string name="ConversationActivity_lets_use_this_to_chat">Laten we chatten via: %s</string>
   <string name="ConversationActivity_error_leaving_group">Fout bij het verlaten van de groep...</string>
+  <string name="ConversationActivity_mms_not_supported_title">MMS niet ondersteund</string>
+  <string name="ConversationActivity_mms_not_supported_message">Dit bericht kan niet verzonden worden omdat je provider MMS niet ondersteund.</string>
+  <string name="ConversationActivity_specify_recipient">Kies alsjeblieft een contact</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Berichtdetails</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Overdracht: %1$s\nVerzonden/Ontvangen: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Verzender: %1$s\nTransport: %2$s\nVerstuurd%3$s\n/Ontvangen:%4$s</string>
-  <string name="ConversationFragment_confirm_message_delete">Berichtverwijdering bevestigen</string>
+  <string name="ConversationFragment_confirm_message_delete">Verwijderen bericht bevestigen</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Weet je zeker dat je de geselecteerde berichten permanent wilt verwijderen?</string>
   <string name="ConversationFragment_save_to_sd_card">Opslaan?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Het opslaan van dit mediabestand maakt het toegankelijke voor alle apps op je telefoon.t.\n\nDoorgaan?</string>
@@ -160,7 +163,6 @@ Je zal je telefoonnummer opnieuw moeten registreren als je pushberichten weer wi
   <string name="GroupCreateActivity_loading_group_details">Groepsdetails laden...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">IK</string>
-  <string name="GroupMembersDialog_members">Leden...</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Importeer</string>
   <string name="ImportExportActivity_export">Exporteer</string>
@@ -204,6 +206,7 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Wachtwoorden komen niet overeen</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Incorrect oud wachtwoord!</string>
+  <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Voer nieuw wachtwoord in!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Dit apparaat koppelen?</string>
   <string name="DeviceProvisioningActivity_cancel">ANNULEREN</string>
@@ -225,6 +228,14 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure icoon</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Wachtwoord instellen</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Ongeldig wachtwoord!</string>
+  <!--PlayServicesProblemFragment-->
+  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">De versie van Google Play Services die je in gebruikt hebt functioneert niet correct. Installeer Google Play Services alsjeblieft opnieuw en probeer het nog eens.</string>
+  <!--RatingManager-->
+  <string name="RatingManager_rate_this_app">Beoordeel deze app</string>
+  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Gebruik je deze app graag? Help ons dan een momentje en geef je beoordeling.</string>
+  <string name="RatingManager_rate_now">Nu beoordelen!</string>
+  <string name="RatingManager_no_thanks">Nee dankjewel</string>
+  <string name="RatingManager_later">Later</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">De handtekening op deze sleuteluitwisseling is anders dan wat u eerder ontvangen heeft van dit contact. Dit kan betekenen dat iemand probeert uw communicatie the onderscheppen, of dat dit contact gewoon TextSecure opnieuw geïnstalleerd heeft en nu een nieuwe identiteitssleutel heeft.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Je wilt wellicht dit contact verifiëren.</string>
@@ -339,18 +350,18 @@ Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en 
   <string name="KeyCachingService_textsecure_passphrase_cached">Aanraken om te openen.</string>
   <string name="KeyCachingService_textsecure_passphrase_cached_with_lock">Aanraken om te openen of slot aanraken om te sluiten.</string>
   <string name="KeyCachingService_passphrase_cached">TextSecure is ontgrendeld</string>
-  <string name="KeyCachingService_lock">Vergrendel met wachtwoord</string>
+  <string name="KeyCachingService_lock">Vergrendelen met wachtwoord</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages">(%d) Nieuwe berichten</string>
-  <string name="MessageNotifier_most_recent_from_s">Meest recente van: %s</string>
+  <string name="MessageNotifier_d_messages_in_d_conversations">%1$d berichten in %2$d gesprekken</string>
+  <string name="MessageNotifier_most_recent_from_s">Meest recente van: %1$s</string>
   <string name="MessageNotifier_encrypted_message">Versleuteld bericht...</string>
   <string name="MessageNotifier_media_message_with_text">Mediabericht: %s</string>
   <string name="MessageNotifier_no_subject">(Geen onderwerp)</string>
   <string name="MessageNotifier_message_delivery_failed">Berichtaflevering mislukt.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Het bericht afleveren is mislukt.</string>
   <string name="MessageNotifier_error_delivering_message">Fout bij afleveren bericht.</string>
-  <string name="MessageNotifier_mark_all_as_read">Markeer alles als gelezen</string>
-  <string name="MessageNotifier_mark_as_read">Markeer als gelezen</string>
+  <string name="MessageNotifier_mark_all_as_read">Alles als gelezen markeren</string>
+  <string name="MessageNotifier_mark_as_read">Markeren als gelezen</string>
   <string name="MessageNotifier_media_message">Mediabericht</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Sorry, Quick Response wordt nog niet ondersteund door TextSecure!</string>
@@ -376,7 +387,7 @@ Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en 
   <string name="conversation_activity__type_message_sms_insecure">Verstuur onbeveiligde SMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Verstuur onbeveiligde MMS</string>
   <string name="conversation_activity__send">Verstuur</string>
-  <string name="conversation_activity__remove">Verwijder</string>
+  <string name="conversation_activity__remove">Verwijderen</string>
   <string name="conversation_activity__window_description">Gesprek met %1$s</string>
   <string name="conversation_activity__compose_description">Bericht samenstelling</string>
   <string name="conversation_activity__emoji_toggle_description">Wissel emoji toetsenbord</string>
@@ -384,7 +395,6 @@ Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en 
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Mediabericht aan het downloaden</string>
   <string name="conversation_item__mms_image_description">Mediabericht</string>
-  <string name="conversation_item__play_button_description">Afspeelknop</string>
   <string name="conversation_item__secure_message_description">Beveiligd bericht</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Download</string>
@@ -448,8 +458,8 @@ Importeer een niet-versleutelde back-up voor \'SMS Back-up En Herstellen\'.</str
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure heeft MMS-instellingen nodig om mediaberichten te kunnen versturen via uw telefoonprovider. Je toestel heeft deze informatie niet beschikbaar. Dit komt vaker voor bij gelockte toestellen en andere beperkende configuraties.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Om mediaberichten en groepsberichten te versturen, drukt u op \'OK\' en voert u de gevraagde gegevens in. De MMS-instellingen voor uw provider kunnen meestal gevonden worden door te zoeken naar \'&amp;lt;uw provider&amp;gt; APN\'. U hoeft dit maar eenmaal te doen.</string>
-  <!--receive_key_activity-->
-  <string name="receive_key_activity__complete">Voltooid</string>
+  <!--receive_key_dialog-->
+  <string name="receive_key_dialog__complete">Voltooid</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
         Verifieer je telefoonnummer om met TextSecure verbinding te maken.
@@ -535,8 +545,9 @@ TextSecure heeft te lang moeten wachten op het binnenkomen van de verificatie-SM
   <string name="AndroidManifest__media_preview">Media Voorvertoning</string>
   <string name="AndroidManifest__media_overview">Alle afbeeldingen</string>
   <string name="AndroidManifest__media_overview_named">Alle afbeeldingen met %1$s</string>
+  <string name="AndroidManifest__message_details">Bericht Details</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Importeer / exporteer </string>
+  <string name="arrays__import_export">Importeren / exporteren</string>
   <string name="arrays__my_identity_key">Mijn identiteitssleutel</string>
   <string name="arrays__use_default">Gebruik standaard</string>
   <string name="arrays__use_custom">Gebruik handmatig</string>
@@ -615,6 +626,7 @@ TextSecure heeft te lang moeten wachten op het binnenkomen van de verificatie-SM
   <string name="preferences__custom">Aangepast</string>
   <string name="preferences__advanced">Geavanceerd</string>
   <string name="preferences__app_protection">App beveiliging</string>
+  <string name="preferences__mms_user_agent">MMS Gebruikersagent</string>
   <string name="preferences__advanced_mms_access_point_names">Handmatige MMS instellingen</string>
   <string name="preferences__enable_manual_mms">Gebruik handmatige MMS instellingen</string>
   <string name="preferences__override_system_mms_settings">Gebruik onderstaande gegevens in plaats van de MMS instellingen van het systeem.</string>
@@ -680,7 +692,6 @@ TextSecure heeft te lang moeten wachten op het binnenkomen van de verificatie-SM
   <string name="conversation_list__menu_search">Zoeken</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Foto Contact</string>
-  <string name="conversation_list_item_view__attachment_indicator">Bijlage Indicator</string>
   <string name="conversation_list_item_view__error_alert">Foutmelding</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nieuw gesprek</string>
@@ -692,7 +703,7 @@ TextSecure heeft te lang moeten wachten op het binnenkomen van de verificatie-SM
   <string name="conversation__menu_add_attachment">Bijlage toevoegen</string>
   <string name="conversation__menu_update_group">Groep bijwerken</string>
   <string name="conversation__menu_leave_group">Groep verlaten</string>
-  <string name="conversation__menu_delete_thread">Verwijder gehele gesprek</string>
+  <string name="conversation__menu_delete_thread">Gehele gesprek verwijderen</string>
   <string name="conversation__menu_view_media">Alle afbeeldingen</string>
   <!--conversation_callable-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Toevoegen aan contacten</string>
@@ -709,8 +720,8 @@ TextSecure heeft te lang moeten wachten op het binnenkomen van de verificatie-SM
   <string name="text_secure_normal__menu_new_message">Nieuw bericht</string>
   <string name="text_secure_normal__menu_new_group">Nieuwe groep</string>
   <string name="text_secure_normal__menu_settings">Instellingen</string>
-  <string name="text_secure_normal__menu_clear_passphrase">Vergrendel</string>
-  <string name="text_secure_normal__mark_all_as_read">Markeer alles als gelezen</string>
+  <string name="text_secure_normal__menu_clear_passphrase">Vergrendelen</string>
+  <string name="text_secure_normal__mark_all_as_read">Alles als gelezen markeren</string>
   <!--reminder_header-->
   <string name="reminder_header_expired_build">Je build van TextSecure is verlopen!</string>
   <string name="reminder_header_expired_build_details">Berichten zullen niet langer verzonden worden, gelieve te updaten naar de recentste versie.</string>

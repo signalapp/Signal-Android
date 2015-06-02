@@ -50,6 +50,7 @@
     <string name="AttachmentManager_cant_open_media_selection">Can\'t find an app to select media.</string>
 
     <!-- AttachmentTypeSelectorAdapter -->
+    <string name="AttachmentTypeSelectorAdapter_take_photo">Take Photo</string>
     <string name="AttachmentTypeSelectorAdapter_picture">Picture</string>
     <string name="AttachmentTypeSelectorAdapter_video">Video</string>
     <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
@@ -113,6 +114,9 @@
     <string name="ConversationActivity_get_with_it">Get with it: %s</string>
     <string name="ConversationActivity_lets_use_this_to_chat">Let\'s use this to chat: %s</string>
     <string name="ConversationActivity_error_leaving_group">Error leaving group...</string>
+    <string name="ConversationActivity_mms_not_supported_title">MMS not supported</string>
+    <string name="ConversationActivity_mms_not_supported_message">This message cannot be sent since your carrier doesn\'t support MMS.</string>
+    <string name="ConversationActivity_specify_recipient">Please choose a contact</string>
 
     <!-- ConversationFragment -->
     <string name="ConversationFragment_message_details">Message details</string>
@@ -190,7 +194,6 @@
 
     <!-- GroupMembersDialog -->
     <string name="GroupMembersDialog_me">Me</string>
-    <string name="GroupMembersDialog_members">Members...</string>
 
     <!-- ImportExportActivity -->
     <string name="ImportExportActivity_import">Import</string>
@@ -275,6 +278,16 @@
     <string name="PassphrasePromptActivity_watermark_content_description">TextSecure icon</string>
     <string name="PassphrasePromptActivity_ok_button_content_description">Submit passphrase</string>
     <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Invalid passphrase!</string>
+
+    <!-- PlayServicesProblemFragment -->
+    <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">The version of Google Play Services you have installed is not functioning correctly.  Please reinstall Google Play Services and try again.</string>
+
+    <!-- RatingManager -->
+    <string name="RatingManager_rate_this_app">Rate this app</string>
+    <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">If you enjoy using this app, please take a moment to help us by rating it.</string>
+    <string name="RatingManager_rate_now">Rate now!</string>
+    <string name="RatingManager_no_thanks">No thanks</string>
+    <string name="RatingManager_later">Later</string>
 
     <!-- ReceiveKeyActivity -->
     <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">The
@@ -425,8 +438,8 @@
     <string name="KeyCachingService_lock">Lock with passphrase</string>
 
     <!-- MessageNotifier -->
-    <string name="MessageNotifier_d_new_messages">%d new messages</string>
-    <string name="MessageNotifier_most_recent_from_s">Most recent from: %s</string>
+    <string name="MessageNotifier_d_messages_in_d_conversations">%1$d messages in %2$d conversations</string>
+    <string name="MessageNotifier_most_recent_from_s">Most recent from: %1$s</string>
     <string name="MessageNotifier_encrypted_message">Encrypted message...</string>
     <string name="MessageNotifier_media_message_with_text">Media message: %s</string>
     <string name="MessageNotifier_no_subject">(No subject)</string>
@@ -476,7 +489,6 @@
     <!-- conversation_item -->
     <string name="conversation_item__mms_downloading_description">Media message downloading</string>
     <string name="conversation_item__mms_image_description">Media message</string>
-    <string name="conversation_item__play_button_description">Play button</string>
     <string name="conversation_item__secure_message_description">Secure message</string>
 
     <!-- conversation_item_sent -->
@@ -558,8 +570,8 @@
     <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure requires MMS settings to deliver media and group messages through your wireless carrier. Your device does not make this information available, which is occasionally true for locked devices and other restrictive configurations.</string>
     <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">To send media and group messages, click \'OK\' and complete the requested settings. The MMS settings for your carrier can generally be located by searching for \'your carrier APN\'. You will only need to do this once.</string>
 
-    <!-- receive_key_activity -->
-    <string name="receive_key_activity__complete">Complete</string>
+    <!-- receive_key_dialog -->
+    <string name="receive_key_dialog__complete">Complete</string>
 
     <!-- registration_activity -->
     <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
@@ -674,6 +686,7 @@
     <string name="AndroidManifest__media_preview">Media Preview</string>
     <string name="AndroidManifest__media_overview">All images</string>
     <string name="AndroidManifest__media_overview_named">All images with %1$s</string>
+    <string name="AndroidManifest__message_details">Message Details</string>
 
     <!-- arrays.xml -->
     <string name="arrays__import_export">Import / export</string>
@@ -758,6 +771,7 @@
     <string name="preferences__custom">Custom</string>
     <string name="preferences__advanced">Advanced</string>
     <string name="preferences__app_protection">App protection</string>
+    <string name="preferences__mms_user_agent">MMS User Agent</string>
     <string name="preferences__advanced_mms_access_point_names">Manual MMS settings</string>
     <string name="preferences__enable_manual_mms">Use manual MMS settings</string>
     <string name="preferences__override_system_mms_settings">Override system MMS settings with the information below.</string>
@@ -835,7 +849,6 @@
 
     <!-- conversation_list_item_view -->
     <string name="conversation_list_item_view__contact_photo_image">Contact Photo Image</string>
-    <string name="conversation_list_item_view__attachment_indicator">Attachment Indicator</string>
     <string name="conversation_list_item_view__error_alert">Error alert</string>
 
     <!-- conversation_list_fragment -->

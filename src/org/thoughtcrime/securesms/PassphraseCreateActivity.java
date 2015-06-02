@@ -23,7 +23,6 @@ import android.support.v7.app.ActionBar;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
-import org.thoughtcrime.securesms.util.MemoryCleaner;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.VersionTracker;
 
@@ -48,7 +47,7 @@ public class PassphraseCreateActivity extends PassphraseActivity {
 
   private void initializeResources() {
     getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-    getSupportActionBar().setCustomView(R.layout.light_centered_app_title);
+    getSupportActionBar().setCustomView(R.layout.centered_app_title);
 
     new SecretGenerator().execute(MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
   }
@@ -65,8 +64,6 @@ public class PassphraseCreateActivity extends PassphraseActivity {
       String passphrase = params[0];
       masterSecret      = MasterSecretUtil.generateMasterSecret(PassphraseCreateActivity.this,
                                                                 passphrase);
-
-      MemoryCleaner.clean(passphrase);
 
       MasterSecretUtil.generateAsymmetricMasterSecret(PassphraseCreateActivity.this, masterSecret);
       IdentityKeyUtil.generateIdentityKeys(PassphraseCreateActivity.this, masterSecret);

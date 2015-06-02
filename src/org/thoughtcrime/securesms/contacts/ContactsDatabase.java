@@ -75,19 +75,7 @@ public class ContactsDatabase {
   public static final int PUSH_TYPE   = 1;
   public static final int GROUP_TYPE  = 2;
 
-  private static ContactsDatabase instance = null;
-
-  public synchronized static ContactsDatabase getInstance(Context context) {
-    if (instance == null) instance = new ContactsDatabase(context);
-    return instance;
-  }
-
-  public synchronized static void destroyInstance() {
-    if (instance != null) instance.close();
-    instance = null;
-  }
-
-  private ContactsDatabase(Context context) {
+  public ContactsDatabase(Context context) {
     this.dbHelper = new DatabaseOpenHelper(context);
     this.context  = context;
   }
@@ -112,7 +100,7 @@ public class ContactsDatabase {
       androidCursor = null;
     }
 
-    if (includeAndroidContacts && !TextUtils.isEmpty(filter) && NumberUtil.isValidSmsOrEmail(filter)) {
+    if (!TextUtils.isEmpty(filter) && NumberUtil.isValidSmsOrEmail(filter)) {
       newNumberCursor = new MatrixCursor(CONTACTS_PROJECTION, 1);
       newNumberCursor.addRow(new Object[]{-1L, context.getString(R.string.contact_selection_list__unknown_contact),
                              ContactsContract.CommonDataKinds.Phone.TYPE_CUSTOM, "\u21e2", filter, NORMAL_TYPE});

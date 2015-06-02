@@ -17,14 +17,12 @@
                  android:paddingRight="10dp"
                  android:visibility="visible">
 
-        <com.makeramen.RoundedImageView
+        <org.thoughtcrime.securesms.components.AvatarImageView
             android:id="@+id/contact_photo_image"
             android:foreground="@drawable/contact_photo_background"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            app:riv_oval="true"
             android:cropToPadding="true"
-            android:scaleType="centerCrop"
             android:visibility="gone"
             tools:src="@drawable/ic_contact_picture"
             android:contentDescription="@string/conversation_list_item_view__contact_photo_image"
@@ -49,7 +47,8 @@
             android:weightSum="1"
             android:gravity="bottom">
 
-            <TextView android:id="@+id/from"
+            <org.thoughtcrime.securesms.components.FromTextView
+                      android:id="@+id/from"
                       android:layout_weight="1"
                       android:layout_width="0dp"
                       android:layout_height="wrap_content"
@@ -58,14 +57,6 @@
                       android:singleLine="true"
                       tools:text="Jules Bonnot"
                       android:ellipsize="marquee" />
-
-            <ImageView android:id="@+id/attachment"
-                       android:layout_marginLeft="3dip"
-                       android:layout_height="match_parent"
-                       android:layout_width="20sp"
-                       android:visibility="gone"
-                       android:src="@drawable/ic_attachment_universal_small"
-                       android:contentDescription="@string/conversation_list_item_view__attachment_indicator" />
 
             <ImageView android:id="@+id/error"
                        android:layout_marginLeft="3dip"
@@ -87,7 +78,8 @@
                       android:layout_gravity="top" />
             </LinearLayout>
 
-        <TextView android:id="@+id/subject"
+        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+                  android:id="@+id/subject"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:textAppearance="?android:attr/textAppearanceSmall"

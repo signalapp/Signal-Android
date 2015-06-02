@@ -45,6 +45,7 @@ import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 
 public class ConversationFragment extends ListFragment
   implements LoaderManager.LoaderCallbacks<Cursor>
@@ -60,6 +61,14 @@ public class ConversationFragment extends ListFragment
   private Recipients   recipients;
   private long         threadId;
   private ActionMode   actionMode;
+  private Locale       locale;
+
+  @Override
+  public void onCreate(Bundle icicle) {
+    super.onCreate(icicle);
+    this.masterSecret = getArguments().getParcelable("master_secret");
+    this.locale       = (Locale) getArguments().getSerializable(PassphraseRequiredActionBarActivity.LOCALE_EXTRA);
+  }
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -97,22 +106,24 @@ public class ConversationFragment extends ListFragment
 
     initializeResources();
     initializeListAdapter();
-    getLoaderManager().restartLoader(0, null, this);
+
+    if (threadId == -1) {
+      getLoaderManager().restartLoader(0, null, this);
+    }
   }
 
   private void initializeResources() {
-    this.masterSecret = this.getActivity().getIntent().getParcelableExtra("master_secret");
     this.recipients   = RecipientFactory.getRecipientsForIds(getActivity(), getActivity().getIntent().getLongArrayExtra("recipients"), true);
     this.threadId     = this.getActivity().getIntent().getLongExtra("thread_id", -1);
   }
 
   private void initializeListAdapter() {
     if (this.recipients != null && this.threadId != -1) {
-      this.setListAdapter(new ConversationAdapter(getActivity(), masterSecret, selectionClickListener,
+      this.setListAdapter(new ConversationAdapter(getActivity(), masterSecret, locale, selectionClickListener,
                                                   (!this.recipients.isSingleRecipient()) || this.recipients.isGroupRecipient(),
                                                   DirectoryHelper.isPushDestination(getActivity(), this.recipients)));
       getListView().setRecyclerListener((ConversationAdapter)getListAdapter());
-      getLoaderManager().initLoader(0, null, this);
+      getLoaderManager().restartLoader(0, null, this);
     }
   }
 
@@ -122,12 +133,9 @@ public class ConversationFragment extends ListFragment
   }
 
   private void setCorrectMenuVisibility(Menu menu) {
-    ConversationAdapter adapter        = (ConversationAdapter) getListAdapter();
     List<MessageRecord> messageRecords = getSelectedMessageRecords();
 
     if (actionMode != null && messageRecords.size() == 0) {
-      adapter.getBatchSelected().clear();
-      adapter.notifyDataSetChanged();
       actionMode.finish();
       return;
     }
@@ -165,9 +173,11 @@ public class ConversationFragment extends ListFragment
 
   public void reload(Recipients recipients, long threadId) {
     this.recipients = recipients;
-    this.threadId   = threadId;
 
-    initializeListAdapter();
+    if (this.threadId != threadId) {
+      this.threadId = threadId;
+      initializeListAdapter();
+    }
   }
 
   public void scrollToBottom() {
@@ -205,10 +215,17 @@ public class ConversationFragment extends ListFragment
           @Override
           protected Void doInBackground(MessageRecord... messageRecords) {
             for (MessageRecord messageRecord : messageRecords) {
+              boolean threadDeleted;
+
               if (messageRecord.isMms()) {
-                DatabaseFactory.getMmsDatabase(getActivity()).delete(messageRecord.getId());
+                threadDeleted = DatabaseFactory.getMmsDatabase(getActivity()).delete(messageRecord.getId());
               } else {
-                DatabaseFactory.getSmsDatabase(getActivity()).deleteMessage(messageRecord.getId());
+                threadDeleted = DatabaseFactory.getSmsDatabase(getActivity()).deleteMessage(messageRecord.getId());
+              }
+
+              if (threadDeleted) {
+                threadId = -1;
+                listener.setThreadId(threadId);
               }
             }
 
@@ -232,8 +249,7 @@ public class ConversationFragment extends ListFragment
 
   private void handleForwardMessage(MessageRecord message) {
     Intent composeIntent = new Intent(getActivity(), ShareActivity.class);
-    composeIntent.putExtra(ConversationActivity.DRAFT_TEXT_EXTRA, message.getDisplayBody().toString());
-    composeIntent.putExtra(ShareActivity.MASTER_SECRET_EXTRA, masterSecret);
+    composeIntent.putExtra(Intent.EXTRA_TEXT, message.getDisplayBody().toString());
     startActivity(composeIntent);
   }
 
@@ -277,16 +293,22 @@ public class ConversationFragment extends ListFragment
 
   @Override
   public void onLoadFinished(Loader<Cursor> arg0, Cursor cursor) {
-    ((CursorAdapter)getListAdapter()).changeCursor(cursor);
+    if (getListAdapter() != null) {
+      ((CursorAdapter) getListAdapter()).changeCursor(cursor);
+    }
   }
 
   @Override
   public void onLoaderReset(Loader<Cursor> arg0) {
-    ((CursorAdapter)getListAdapter()).changeCursor(null);
+    if (getListAdapter() != null) {
+      ((CursorAdapter) getListAdapter()).changeCursor(null);
+    }
   }
 
   public interface ConversationFragmentListener {
     public void setComposeText(String text);
+
+    public void setThreadId(long threadId);
   }
 
   public interface SelectionClickListener extends

@@ -58,7 +58,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
   public static final int ASYMMETRIC_MASTER_SECRET_FIX_VERSION = 73;
   public static final int NO_V1_VERSION                        = 83;
   public static final int SIGNED_PREKEY_VERSION                = 83;
-  public static final int NO_DECRYPT_QUEUE_VERSION             = 84;
+  public static final int NO_DECRYPT_QUEUE_VERSION             = 113;
 
   private static final SortedSet<Integer> UPGRADE_VERSIONS = new TreeSet<Integer>() {{
     add(NO_MORE_KEY_EXCHANGE_PREFIX_VERSION);

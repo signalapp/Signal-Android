@@ -24,12 +24,15 @@ Atenție, acestă acțiune va dezactiva stocarea criptată a tuturor mesajelor �
         Numărul tău de telefon va trebui înregistrat din nou pentru a utiliza mesajele de tip push pe viitor.
     </string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Eroare de conectare cu serverul!</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">SMS activat</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Atingeţi pentru a schimba aplicaţia SMS implicită</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">SMS Dezactivat</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Atingeţi pentru a seta TextSecure ca şi aplicaţie SMS implicită</string>
   <string name="ApplicationPreferencesActivity_on">activat</string>
   <string name="ApplicationPreferencesActivity_On">Activat</string>
   <string name="ApplicationPreferencesActivity_off">dezactivat</string>
   <string name="ApplicationPreferencesActivity_Off">Dezactivat</string>
+  <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <string name="AppProtectionPreferenceFragment_minutes">%d minute</string>
   <!--DraftDatabase-->
@@ -48,6 +51,7 @@ Atenție, acestă acțiune va dezactiva stocarea criptată a tuturor mesajelor �
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Marimea mesajului: %d KB</string>
   <string name="ConversationItem_expires_s">Expira in: %s</string>
+  <string name="ConversationItem_error_not_delivered">Nelivrat</string>
   <string name="ConversationItem_view_secure_media_question">Afișez datele securizate?</string>
   <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Aceste date au fost salvate într-o bază de date criptată. Din păcate, pentru a putea vizualiza datele cu ajutorul unui viewer de date extern, este necesar ca datele să fie temporar decriptate și salvate pe disc. Ești sigur că dorești acest lucru?</string>
   <string name="ConversationItem_error_received_stale_key_exchange_message">Eroare, mesajul pentru schimbul de chei este vechi.</string>
@@ -73,7 +77,7 @@ Atenție, acestă acțiune va dezactiva stocarea criptată a tuturor mesajelor �
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Ne pare rău, fișierul audio selectat depășește restricția marimii mesajului (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Destinatarul nu este o adresă validă de SMS sau e-mail.</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Mesajul este gol!</string>
-  <string name="ConversationActivity_group_conversation_recipients">Grupează destinatarii conversaţiei</string>
+  <string name="ConversationActivity_group_members">Membrii grupului</string>
   <string name="ConversationActivity_group_conversation">Grupează conversaţia</string>
   <string name="ConversationActivity_unnamed_group">Grup nedenumit</string>
   <string name="ConversationActivity_d_recipients_in_group">%d membrii</string>
@@ -88,8 +92,11 @@ Atenție, acestă acțiune va dezactiva stocarea criptată a tuturor mesajelor �
   <string name="ConversationActivity_transport_insecure_mms">MMS nesecurizat</string>
   <string name="ConversationActivity_transport_textsecure">TextSecure</string>
   <string name="ConversationActivity_get_with_it">Descarcă-l de aici: %s</string>
-  <string name="ConversationActivity_install_textsecure">Instalează TextSecure: %s</string>
+  <string name="ConversationActivity_lets_use_this_to_chat">Hai să utilizăm aplicaţia asta pentru chat: %s</string>
   <string name="ConversationActivity_error_leaving_group">Eroare la parăsirea grupului...</string>
+  <string name="ConversationActivity_mms_not_supported_title">MMS-ul nu este suportat</string>
+  <string name="ConversationActivity_mms_not_supported_message">Acest mesaj nu poate fi trimis deoarece operatorul de telefonie mobilă nu suportă MMS.</string>
+  <string name="ConversationActivity_specify_recipient">Te rog alege un contact</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalii mesaj</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nTrimis/Primit: %2$s</string>
@@ -152,7 +159,6 @@ Atenție, acestă acțiune va dezactiva stocarea criptată a tuturor mesajelor �
   <string name="GroupCreateActivity_loading_group_details">Se încarcă detaliile grupului...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Eu</string>
-  <string name="GroupMembersDialog_members">Membrii...</string>
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Importă</string>
   <string name="ImportExportActivity_export">Exportă</string>
@@ -181,6 +187,7 @@ Restaurarea unui backup criptat va înlocui complet cheile existente, setările 
   <string name="KeyScanningActivity_install_barcode_Scanner">Instalez scannerul de coduri de bare?</string>
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">TextSecure are nevoie de Barcode Scanner pentru codurile QR.</string>
   <!--MessageDetailsRecipient-->
+  <string name="MessageDetailsRecipient_failed_to_send">Expediere eşuată</string>
   <string name="MessageDetailsRecipient_new_identity">Identitate nouă</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Eroare la stocarea MMS-ului!</string>
@@ -195,6 +202,7 @@ Restaurarea unui backup criptat va înlocui complet cheile existente, setările 
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Parolele nu se potrivesc!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Parola veche este incorectă!</string>
+  <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Introduceţi parola nouă!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_cancel">ANULEAZĂ</string>
   <string name="DeviceProvisioningActivity_continue">CONTINUĂ</string>
@@ -213,6 +221,13 @@ Restaurarea unui backup criptat va înlocui complet cheile existente, setările 
   <string name="PassphrasePromptActivity_watermark_content_description">Icoană TextSecure</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Trimite parola</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Parolă incorectă!</string>
+  <!--PlayServicesProblemFragment-->
+  <!--RatingManager-->
+  <string name="RatingManager_rate_this_app">Evaluează aplicaţia</string>
+  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Dacă îţi place aplicaţia, te rog ajută-ne cu o evaluare.</string>
+  <string name="RatingManager_rate_now">Evaluează acum!</string>
+  <string name="RatingManager_no_thanks">Nu mulţumesc</string>
+  <string name="RatingManager_later">Mai târziu</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Semnătura digitală din acest schimb de chei este diferită fața de ce ai primit anterior de la această persoană. Asta poate însemna că cineva încearcă să intercepteze comunicația sau că această persoană a reinstalat TextSecure și acum are o nouă cheie de identitate.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Probabil ca doresti sa verifici aceasta persoana.</string>
@@ -328,8 +343,8 @@ Primit mesaj trimis cu o cheie de identitate necunoscută. Faceți click pentru 
   <string name="KeyCachingService_passphrase_cached">TextSecure e deblocat.</string>
   <string name="KeyCachingService_lock">Blocare acces cu parola</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages">%d mesaje noi</string>
-  <string name="MessageNotifier_most_recent_from_s">Cel mai recent de la: %s</string>
+  <string name="MessageNotifier_d_messages_in_d_conversations">%1$d mesaje în %2$d conversaţii</string>
+  <string name="MessageNotifier_most_recent_from_s">Cel mai recent de la: %1$s</string>
   <string name="MessageNotifier_encrypted_message">Mesaj criptat...</string>
   <string name="MessageNotifier_media_message_with_text">Mesaje media: %s</string>
   <string name="MessageNotifier_no_subject">(Fără subiect)</string>
@@ -371,7 +386,6 @@ Primit mesaj trimis cu o cheie de identitate necunoscută. Faceți click pentru 
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Mesajul media se descarcă</string>
   <string name="conversation_item__mms_image_description">Mesaj media</string>
-  <string name="conversation_item__play_button_description">Buton redare</string>
   <string name="conversation_item__secure_message_description">Mesaj securizat</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Descarca</string>
@@ -416,7 +430,7 @@ Restaurează un backup criptat exportat anterior din TextSecure.</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Importă un fișier de backup text. Compatibil cu \'SMSBackup And Restore.\'</string>
   <!--media_overview_activity-->
-  <string name="media_overview_activity__no_images">Nici o imagine</string>
+  <string name="media_overview_activity__no_images">Nu sunt imagini</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__verify">VERIFICĂ</string>
   <string name="message_recipients_list_item__resend">RE-TRIMITE</string>
@@ -436,8 +450,8 @@ Importă un fișier de backup text. Compatibil cu \'SMSBackup And Restore.\'</st
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure are nevoie de setările APN pentru a trimite mesaje multimedia prin operatorul wireless. Acest aparat nu oferă informațiile necesare, lucru care se poate întâmpla uneori pentru dispozitive blocate sau alte configurații restrictive.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Pentru a putea trimite mesaje multimedia cât și mesaje într-un grup, apăsați \'OK\' și completați setările solicitate. Setările MMS pentru operatorul dvs. pot fi găsite cautând după \'APN operatorul tău\'. Această operațiune este necesară o singură dată.</string>
-  <!--receive_key_activity-->
-  <string name="receive_key_activity__complete">Complet</string>
+  <!--receive_key_dialog-->
+  <string name="receive_key_dialog__complete">Complet</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
         Verifică numărul tău de telefon pentru a te conecta la TextSecure.
@@ -520,6 +534,7 @@ Operaţiunea iniţiată de TextSecure a expirat în timpul aşteptării primirii
   <string name="AndroidManifest__media_preview">Previzualizare media</string>
   <string name="AndroidManifest__media_overview">Toate imaginile</string>
   <string name="AndroidManifest__media_overview_named">Toate imaginile cu %1$s</string>
+  <string name="AndroidManifest__message_details">Detalii mesaj</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importă / Exportă</string>
   <string name="arrays__my_identity_key">Cheia mea de identitate</string>
@@ -600,6 +615,7 @@ Operaţiunea iniţiată de TextSecure a expirat în timpul aşteptării primirii
   <string name="preferences__custom">Specific</string>
   <string name="preferences__advanced">Avansat</string>
   <string name="preferences__app_protection">Protecție aplicație</string>
+  <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Setări MMS manuale</string>
   <string name="preferences__enable_manual_mms">Utilizează setări MMS manuale</string>
   <string name="preferences__override_system_mms_settings">Suprascrie setările MMS de sistem cu informațiile de mai jos.</string>
@@ -623,6 +639,7 @@ Operaţiunea iniţiată de TextSecure a expirat în timpul aşteptării primirii
   <string name="preferences__default">Implicit</string>
   <string name="preferences__language">Limba</string>
   <string name="preferences__language_summary">Limba %s</string>
+  <string name="preferences__textsecure_messages">Mesaje TextSecure</string>
   <string name="preferences__submit_debug_log">Trimite log-urile de depanare</string>
   <string name="preferences__support_wifi_calling">Mod compatibilitate \"Apelare WiFi\"</string>
   <!--****************************************-->
@@ -660,7 +677,6 @@ Operaţiunea iniţiată de TextSecure a expirat în timpul aşteptării primirii
   <string name="conversation_list__menu_search">Caută</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Poză contact</string>
-  <string name="conversation_list_item_view__attachment_indicator">Indicator atașament</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Conversație nouă</string>
   <!--conversation_secure_verified-->
