@@ -18,7 +18,6 @@ package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
 import android.content.res.Resources.Theme;
-import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore.Audio;
 import android.support.annotation.DrawableRes;
@@ -56,24 +55,15 @@ public class AudioSlide extends Slide {
     return ResUtil.getDrawableRes(theme, R.attr.conversation_icon_attach_audio);
   }
 
-  public static PduPart constructPartFromUri(Context context, Uri uri) throws IOException, MediaTooLargeException {
+  private static PduPart constructPartFromUri(Context context, Uri uri) throws IOException, MediaTooLargeException {
     PduPart part = new PduPart();
 
-    assertMediaSize(context, uri, MmsMediaConstraints.MAX_MESSAGE_SIZE);
-
-    Cursor cursor = null;
-
-    try {
-      cursor = context.getContentResolver().query(uri, new String[]{Audio.Media.MIME_TYPE}, null, null, null);
-
-      if (cursor != null && cursor.moveToFirst())
-        part.setContentType(cursor.getString(0).getBytes());
-      else
-        throw new IOException("Unable to query content type.");
-    } finally {
-      if (cursor != null)
-        cursor.close();
-    } 
+    if (PartAuthority.isPartAuthorityPart(uri)) {
+      part.setContentType(getContentTypeForPartInDb(context, uri));
+    } else {
+      assertMediaSize(context, uri, MmsMediaConstraints.MAX_MESSAGE_SIZE);
+      part.setContentType(getContentTypeForPartOutsideDb(context, uri, Audio.Media.MIME_TYPE));
+    }
 
     part.setDataUri(uri);
     part.setContentId((System.currentTimeMillis()+"").getBytes());
