@@ -3,6 +3,8 @@
     <color name="textsecure_primary">#ff2090ea</color>
     <color name="textsecure_primary_dark">#ff1c7ac5</color>
 
+    <color name="textsecure_primary_alpha33">#552090ea</color>
+
     <color name="white">#ffffffff</color>
     <color name="black">#ff000000</color>
     <color name="gray5">#ffeeeeee</color>
