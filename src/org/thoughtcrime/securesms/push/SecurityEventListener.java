@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.push;
 
 import android.content.Context;
+import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -21,7 +22,7 @@ public class SecurityEventListener implements TextSecureMessageSender.EventListe
 
   @Override
   public void onSecurityEvent(TextSecureAddress textSecureAddress) {
-    Recipients recipients = RecipientFactory.getRecipientsForIds(context, textSecureAddress.getNumber(), false);
+    Recipients recipients = RecipientFactory.getRecipientsFromString(context, textSecureAddress.getNumber(), false);
     long       threadId   = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
 
     SecurityEvent.broadcastSecurityUpdateEvent(context, threadId);
