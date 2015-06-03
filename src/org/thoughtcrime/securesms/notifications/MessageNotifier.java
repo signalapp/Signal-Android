@@ -30,11 +30,14 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationCompat.Action;
 import android.support.v4.app.NotificationCompat.BigTextStyle;
 import android.support.v4.app.NotificationCompat.InboxStyle;
+import android.telephony.TelephonyManager;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -420,11 +423,21 @@ public class MessageNotifier {
     String ledBlinkPattern       = TextSecurePreferences.getNotificationLedPattern(context);
     String ledBlinkPatternCustom = TextSecurePreferences.getNotificationLedPatternCustom(context);
     String[] blinkPatternArray   = parseBlinkPattern(ledBlinkPattern, ledBlinkPatternCustom);
+    Uri ringtoneUri              = TextUtils.isEmpty(ringtone) || !signal ? null : Uri.parse(ringtone);
+    TelephonyManager telephony   = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+    AudioManager audioManager    = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
 
-    builder.setSound(TextUtils.isEmpty(ringtone) || !signal ? null : Uri.parse(ringtone));
+    if (telephony.getCallState() == TelephonyManager.CALL_STATE_IDLE) {
+      builder.setSound(ringtoneUri);
 
-    if (signal && vibrate) {
-      builder.setDefaults(Notification.DEFAULT_VIBRATE);
+      if (signal && vibrate) {
+        builder.setDefaults(Notification.DEFAULT_VIBRATE);
+      }
+    }
+    else if (audioManager.getRingerMode() == AudioManager.RINGER_MODE_NORMAL && ringtoneUri != null) {
+      Ringtone tone = RingtoneManager.getRingtone(context, Uri.parse(ringtone));
+      tone.setStreamType(AudioManager.STREAM_VOICE_CALL);
+      tone.play();
     }
 
     if (!ledColor.equals("none")) {
