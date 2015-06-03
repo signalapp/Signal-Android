@@ -135,7 +135,7 @@ public abstract class MessageRecord extends DisplayRecord {
   }
 
   public boolean isPush() {
-    return SmsDatabase.Types.isPushType(type);
+    return SmsDatabase.Types.isPushType(type) && !SmsDatabase.Types.isForcedSms(type);
   }
 
   public boolean isForcedSms() {
