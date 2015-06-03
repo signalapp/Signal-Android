@@ -1,16 +1,16 @@
 /**
  * Copyright (C) 2012 Moxie Marlinpsike
- *
+ * <p/>
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * <p/>
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * <p/>
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -29,12 +29,11 @@ import android.text.style.StyleSpan;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;
-import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
+import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.GroupUtil;
-import org.whispersystems.libaxolotl.logging.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,50 +46,73 @@ import java.util.regex.Pattern;
  * Encapsulates the shared data between both SMS and MMS messages.
  *
  * @author Moxie Marlinspike
- *
  */
 public abstract class MessageRecord extends DisplayRecord {
 
-  public static final int DELIVERY_STATUS_NONE     = 0;
+  public static final int DELIVERY_STATUS_NONE = 0;
   public static final int DELIVERY_STATUS_RECEIVED = 1;
-  public static final int DELIVERY_STATUS_PENDING  = 2;
-  public static final int DELIVERY_STATUS_FAILED   = 3;
+  public static final int DELIVERY_STATUS_PENDING = 2;
+  public static final int DELIVERY_STATUS_FAILED = 3;
 
   private static final int MAX_DISPLAY_LENGTH = 2000;
 
-  private final Recipient                 individualRecipient;
-  private final int                       recipientDeviceId;
-  private final long                      id;
-  private final int                       deliveryStatus;
-  private final int                       receiptCount;
+  private final Recipient individualRecipient;
+  private final int recipientDeviceId;
+  private final long id;
+  private final int deliveryStatus;
+  private final int receiptCount;
   private final List<IdentityKeyMismatch> mismatches;
-  private final List<NetworkFailure>      networkFailures;
+  private final List<NetworkFailure> networkFailures;
 
   MessageRecord(Context context, long id, Body body, Recipients recipients,
-                Recipient individualRecipient, int recipientDeviceId,
-                long dateSent, long dateReceived, long threadId,
-                int deliveryStatus, int receiptCount, long type,
-                List<IdentityKeyMismatch> mismatches,
-                List<NetworkFailure> networkFailures)
-  {
+          Recipient individualRecipient, int recipientDeviceId,
+          long dateSent, long dateReceived, long threadId,
+          int deliveryStatus, int receiptCount, long type,
+          List<IdentityKeyMismatch> mismatches,
+          List<NetworkFailure> networkFailures) {
     super(context, body, recipients, dateSent, dateReceived, threadId, type);
-    this.id                  = id;
+    this.id = id;
     this.individualRecipient = individualRecipient;
-    this.recipientDeviceId   = recipientDeviceId;
-    this.deliveryStatus      = deliveryStatus;
-    this.receiptCount        = receiptCount;
-    this.mismatches          = mismatches;
-    this.networkFailures     = networkFailures;
+    this.recipientDeviceId = recipientDeviceId;
+    this.deliveryStatus = deliveryStatus;
+    this.receiptCount = receiptCount;
+    this.mismatches = mismatches;
+    this.networkFailures = networkFailures;
+  }
+
+  public static String findContactName(Context context, String phoneNumber) {
+
+    ContentResolver cr = context.getContentResolver();
+    Uri uri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI,
+                                   Uri.encode(phoneNumber));
+    Cursor cursor = cr.query(uri, new String[]{ContactsContract.PhoneLookup.DISPLAY_NAME}, null,
+                             null, null);
+    if (cursor == null) {
+      return null;
+    }
+    String contactName = null;
+    if (cursor.moveToFirst()) {
+      contactName = cursor.getString(
+              cursor.getColumnIndex(ContactsContract.PhoneLookup.DISPLAY_NAME));
+    }
+
+    if (cursor != null && !cursor.isClosed()) {
+      cursor.close();
+    }
+
+    return contactName;
+
   }
 
   public abstract boolean isMms();
+
   public abstract boolean isMmsNotification();
 
   public boolean isFailed() {
     return
-        MmsSmsColumns.Types.isFailedMessageType(type)            ||
-        MmsSmsColumns.Types.isPendingSecureSmsFallbackType(type) ||
-        getDeliveryStatus() == DELIVERY_STATUS_FAILED;
+            MmsSmsColumns.Types.isFailedMessageType(type) ||
+                    MmsSmsColumns.Types.isPendingSecureSmsFallbackType(type) ||
+                    getDeliveryStatus() == DELIVERY_STATUS_FAILED;
   }
 
   public boolean isOutgoing() {
@@ -122,25 +144,30 @@ public abstract class MessageRecord extends DisplayRecord {
     } else if (isGroupQuit() && isOutgoing()) {
       return emphasisAdded(context.getString(R.string.MessageRecord_left_group));
     } else if (isGroupQuit()) {
-      return emphasisAdded(context.getString(R.string.ConversationItem_group_action_left, getIndividualRecipient().toShortString()));
+      return emphasisAdded(context.getString(R.string.ConversationItem_group_action_left,
+                                             getIndividualRecipient().toShortString()));
     } else if (getBody().getBody().length() > MAX_DISPLAY_LENGTH) {
-      return new SpannableString(getBody().getBody().substring(0, MAX_DISPLAY_LENGTH));
+      return new SpannableString(addContactNameAsideContactNumber(
+              getBody().getBody().substring(0, MAX_DISPLAY_LENGTH)));
     }
+    String body = addContactNameAsideContactNumber(getBody().getBody());
+    return new SpannableString(body);
+  }
 
+  private String addContactNameAsideContactNumber(String message) {
+    ArrayList<KnownPhoneNumbers> knownPhoneNumbersArrayList = checkForPhoneNumber(
+            message);
 
-      ArrayList<KnownPhoneNumbers> knownPhoneNumbersArrayList= checkForPhoneNumber(getBody().getBody());
-      String message=getBody().getBody();
-
-      if(knownPhoneNumbersArrayList.size()>0){
-          int offset=0;
-          for(KnownPhoneNumbers knownN: knownPhoneNumbersArrayList) {
-              message=(message.substring(0, knownN.getEnd()+offset)).concat("(").concat(knownN.getContactName()).concat(")").concat(message.substring(knownN.getEnd()+offset, message.length()));
-              offset+=knownN.getContactName().length()+2;
-          }
-
-          Log.w("two contacts", message);
+    if (knownPhoneNumbersArrayList.size() > 0) {
+      int offset = 0;
+      for (KnownPhoneNumbers knownN : knownPhoneNumbersArrayList) {
+        message = (message.substring(0, knownN.getEnd() + offset)).concat("(").concat(
+                knownN.getContactName()).concat(")").concat(
+                message.substring(knownN.getEnd() + offset, message.length()));
+        offset += knownN.getContactName().length() + 2;
       }
-    return new SpannableString(message);
+    }
+    return message;
   }
 
   public long getId() {
@@ -221,111 +248,88 @@ public abstract class MessageRecord extends DisplayRecord {
 
   protected SpannableString emphasisAdded(String sequence) {
     SpannableString spannable = new SpannableString(sequence);
-    spannable.setSpan(new RelativeSizeSpan(0.9f), 0, sequence.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-    spannable.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), 0, sequence.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+    spannable.setSpan(new RelativeSizeSpan(0.9f), 0, sequence.length(),
+                      Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+    spannable.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), 0, sequence.length(),
+                      Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
     return spannable;
   }
 
   public boolean equals(Object other) {
-    return other != null                              &&
-           other instanceof MessageRecord             &&
-           ((MessageRecord) other).getId() == getId() &&
-           ((MessageRecord) other).isMms() == isMms();
+    return other != null &&
+            other instanceof MessageRecord &&
+            ((MessageRecord) other).getId() == getId() &&
+            ((MessageRecord) other).isMms() == isMms();
   }
 
   public int hashCode() {
-    return (int)getId();
+    return (int) getId();
   }
 
-  public static String findContactName(Context context, String phoneNumber) {
+  ArrayList<KnownPhoneNumbers> checkForPhoneNumber(String message) {
 
-    ContentResolver cr = context.getContentResolver();
-    Uri uri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(phoneNumber));
-    Cursor cursor = cr.query(uri, new String[]{ContactsContract.PhoneLookup.DISPLAY_NAME}, null, null, null);
-    if (cursor == null) {
-      return null;
-    }
+    ArrayList<KnownPhoneNumbers> knownPhoneNumbersList = new ArrayList<>();
+    String numberRegEx = "((?:\\+?(\\d{1,3}))?\\d{10})";
+    Pattern phoneNumberPattern = Pattern.compile(numberRegEx);
+
+
+    Matcher phoneNumberMatcher = phoneNumberPattern.matcher(message);
+    int numbersInMessageCount = 0;
     String contactName = null;
-    if(cursor.moveToFirst()) {
-      contactName = cursor.getString(cursor.getColumnIndex(ContactsContract.PhoneLookup.DISPLAY_NAME));
+    while (phoneNumberMatcher.find()) {
+      contactName = findContactName(this.context, phoneNumberMatcher.group(0));
+      if (contactName != null) {
+
+        knownPhoneNumbersList.add(
+                new KnownPhoneNumbers(phoneNumberMatcher.group(numbersInMessageCount), contactName,
+                                      phoneNumberMatcher.start(), phoneNumberMatcher.end()));
+
+      }
+      numbersInMessageCount++;
     }
 
-    if(cursor != null && !cursor.isClosed()) {
-      cursor.close();
-    }
 
-    return contactName;
-
+    return knownPhoneNumbersList;
   }
 
-    public ArrayList<KnownPhoneNumbers> checkForPhoneNumber(String message){
+  class KnownPhoneNumbers {
+    private String number;
+    private String contactName;
+    private int start;
+    private int end;
 
-        ArrayList<KnownPhoneNumbers> knownPhoneNumbersList=new ArrayList<>();
-        String numberRegEx="((?:\\+?(\\d{1,3}))?\\d{10})";
-        Pattern phoneNumberPattern= Pattern.compile(numberRegEx);
-
-
-      Matcher phoneNumberMatcher=phoneNumberPattern.matcher(message);
-        int containingNumbers=0;
-        String contactName=null;
-        while(phoneNumberMatcher.find()) {
-            contactName=findContactName(this.context, phoneNumberMatcher.group(0));
-            if(contactName!=null) {
-
-                knownPhoneNumbersList.add(new KnownPhoneNumbers(phoneNumberMatcher.group(containingNumbers), contactName, phoneNumberMatcher.start(), phoneNumberMatcher.end()));
-                //Log.w("added", (new StringBuilder().append(matcher.group(i)).append("  ").append(matcher.start()).append("  ").append(matcher.end()).toString()));
-            }
-            containingNumbers++;
-        }
-
-
-
-        return knownPhoneNumbersList;
+    public KnownPhoneNumbers(String number, String contactName, int start, int end) {
+      this.number = number;
+      this.contactName = contactName;
+      this.start = start;
+      this.end = end;
     }
 
-    public class KnownPhoneNumbers {
-        private String number;
-        private String contactName;
-        private int start;
-        private int end;
-
-        public KnownPhoneNumbers(String number, String contactName, int start, int end) {
-            this.number = number;
-            this.contactName = contactName;
-            this.start = start;
-            this.end = end;
-        }
-
-        public String getNumber() {
-            return number;
-        }
-
-        public String getContactName() {
-            return contactName;
-        }
-
-        public int getStart() {
-            return start;
-        }
-
-        public int getEnd() {
-            return end;
-        }
-
-        public void setStart(int start) {
-            this.start = start;
-        }
-
-        public void setEnd(int end) {
-            this.end = end;
-        }
+    public String getNumber() {
+      return number;
     }
 
+    public String getContactName() {
+      return contactName;
+    }
 
+    public int getStart() {
+      return start;
+    }
 
+    public void setStart(int start) {
+      this.start = start;
+    }
 
+    public int getEnd() {
+      return end;
+    }
 
+    public void setEnd(int end) {
+      this.end = end;
+    }
+  }
 
 
 }
