@@ -33,6 +33,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.service.MessageRetrievalService;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -55,6 +56,9 @@ import java.text.SimpleDateFormat;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Locale;
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * @author Jake McGinty
@@ -79,6 +83,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
   private TextView         transport;
   private TextView         toFrom;
   private ListView         recipientsList;
+  private ListView         nonReceiversList;
   private LayoutInflater   inflater;
 
   private DynamicTheme     dynamicTheme    = new DynamicTheme();
@@ -115,6 +120,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     isPushGroup       = getIntent().getBooleanExtra(IS_PUSH_GROUP_EXTRA, false);
     itemParent        = (ViewGroup) header.findViewById(R.id.item_container);
     recipientsList    = (ListView ) findViewById(R.id.recipients_list);
+    nonReceiversList     = (ListView) findViewById(R.id.non_receivers_list);
     metadataContainer =             header.findViewById(R.id.metadata_container);
     errorText         = (TextView ) header.findViewById(R.id.error_text);
     sentDate          = (TextView ) header.findViewById(R.id.sent_time);
@@ -124,6 +130,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     toFrom            = (TextView ) header.findViewById(R.id.tofrom);
     recipientsList.setHeaderDividersEnabled(false);
     recipientsList.addHeaderView(header, null, false);
+    nonReceiversList.setHeaderDividersEnabled(false);
   }
 
   private void updateTransport(MessageRecord messageRecord) {
@@ -175,8 +182,26 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
                          new HashSet<MessageRecord>(), new NullSelectionListener(),
                          recipients != messageRecord.getRecipients(),
                          DirectoryHelper.isPushDestination(this, recipients));
-    recipientsList.setAdapter(new MessageDetailsRecipientAdapter(this, masterSecret, messageRecord,
-                                                                 recipients, isPushGroup));
+
+
+
+      Recipients isReceiv = isReceived(messageRecord, recipients);
+      Recipients isNotReceiv = isNotReceived(messageRecord,recipients);
+
+      if(isReceiv.getRecipientsList().size() == recipients.getRecipientsList().size()) {
+          recipientsList.setAdapter(new MessageDetailsRecipientAdapter(this, masterSecret, messageRecord,
+                  recipients, isPushGroup));
+
+      } else {
+          recipientsList.setAdapter(new MessageDetailsRecipientAdapter(this, masterSecret, messageRecord,
+                  isReceiv, isPushGroup));
+
+          nonReceiversList.setAdapter(new MessageDetailsRecipientAdapter(this, masterSecret, messageRecord,
+                  isNotReceiv, isPushGroup));
+      }
+
+
+
   }
 
   private void inflateMessageViewIfAbsent(MessageRecord messageRecord) {
@@ -312,4 +337,49 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
       return false;
     }
   }
+
+
+    public Recipients isReceived (MessageRecord messageRecord, Recipients recipients) {
+        List<Recipient> received = new ArrayList<Recipient>();
+        ArrayList<String> recMapList = MessageRetrievalService.recieversMap.get(messageRecord.getDateReceived());
+
+        for (int i=0; i < recipients.getRecipientsList().size(); i++) {
+            if (recMapList.toString().contains(recipientsCorrected(recipients,i))) {
+                received.add(recipients.getRecipientsList().get(i));
+
+
+            }
+            Log.d(TAG, "exoume mpei sthn if sthn isReceived : " + recipients.getRecipientsList().get(i).getName());
+        }
+
+        return new Recipients(received);
+
+    }
+
+
+    public Recipients isNotReceived(MessageRecord messageRecord, Recipients recipients) {
+        List<Recipient> received = new ArrayList<Recipient>();
+        ArrayList<String> recMapList = MessageRetrievalService.recieversMap.get(messageRecord.getDateReceived());
+
+        for (int i=0; i < recipients.getRecipientsList().size(); i++) {
+            if (!recMapList.toString().contains(recipientsCorrected(recipients,i))) {
+                received.add(recipients.getRecipientsList().get(i));
+
+
+            }
+            Log.d(TAG, "exoume mpei sthn if sthn isNotReceived : " + recipients.getRecipientsList().get(i).getName());
+        }
+
+        return new Recipients(received);
+
+    }
+
+    public String recipientsCorrected (Recipients recipients, int i) {
+        String recipient = recipients.getRecipientsList().get(i).getNumber().replaceAll("\\s","");
+
+        Log.d(TAG, "recipientsCorrected : " + recipient);
+
+        return recipient;
+
+    }
 }
