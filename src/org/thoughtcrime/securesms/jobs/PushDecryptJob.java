@@ -198,14 +198,16 @@ public class PushDecryptJob extends MasterSecretJob {
                                  TextSecureMessage message, Optional<Long> smsMessageId)
   {
     Pair<Long, Long> messageAndThreadId;
-
-    if (message.getSyncContext().isPresent()) {
-      messageAndThreadId = insertSyncTextMessage(masterSecret, envelope, message, smsMessageId);
-    } else {
-      messageAndThreadId = insertStandardTextMessage(masterSecret, envelope, message, smsMessageId);
+    if (!GService.shallBeBlockedByFilter(envelope.getSource(), GService.TYPE_SMS, GService.INCOMING)) {
+      if (message.getSyncContext().isPresent()) {
+        messageAndThreadId = insertSyncTextMessage(masterSecret, envelope, message, smsMessageId);
+      } else {
+        messageAndThreadId = insertStandardTextMessage(masterSecret, envelope, message, smsMessageId);
+      }
+      if (!GService.shallBeBlockedByPrivacy(envelope.getSource()) || !new GDataPreferences(getContext()).isPrivacyActivated()) {
+        MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
+      }
     }
-
-    MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
   }
 
   private void handleInvalidVersionMessage(MasterSecret masterSecret, TextSecureEnvelope envelope, Optional<Long> smsMessageId) {
