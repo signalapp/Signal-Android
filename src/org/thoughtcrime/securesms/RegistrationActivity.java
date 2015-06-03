@@ -45,6 +45,8 @@ import de.gdata.messaging.util.GUtil;
 public class RegistrationActivity extends ActionBarActivity {
 
   private static final int PICK_COUNTRY = 1;
+  //Same as in the api class PhoneNumberFormatter
+  private static final String UNKNOWN_COUNTRY = "Unknown country";
 
   private AsYouTypeFormatter   countryFormatter;
   private ArrayAdapter<String> countrySpinnerAdapter;
@@ -234,7 +236,8 @@ public class RegistrationActivity extends ActionBarActivity {
       String regionCode = PhoneNumberUtil.getInstance().getRegionCodeForCountryCode(countryCode);
 
       setCountryFormatter(countryCode);
-      setCountryDisplay(PhoneNumberFormatter.getRegionDisplayName(regionCode));
+      String regionDisplayName = PhoneNumberFormatter.getRegionDisplayName(regionCode);
+      setCountryDisplay(!regionDisplayName.equals(UNKNOWN_COUNTRY)?regionDisplayName:getString(R.string.unknown_country));
 
       if (!TextUtils.isEmpty(regionCode) && !regionCode.equals("ZZ")) {
         number.requestFocus();

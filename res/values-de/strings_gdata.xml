@@ -45,4 +45,5 @@
     <string name="preferences_notification_title">Warnungen wiederholen</string>
 
     <string name="tk_mail">sc-feedback@gdata.de</string>
+    <string name="unknown_country">Unbekanntes Land</string>
 </resources>
