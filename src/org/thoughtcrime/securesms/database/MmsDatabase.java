@@ -378,7 +378,7 @@ public class MmsDatabase extends MessagingDatabase {
   }
 
   public void markAsForcedSms(long messageId) {
-    updateMailboxBitmask(messageId, 0, Types.MESSAGE_FORCE_SMS_BIT);
+    updateMailboxBitmask(messageId, Types.PUSH_MESSAGE_BIT, Types.MESSAGE_FORCE_SMS_BIT);
     notifyConversationListeners(getThreadIdForMessage(messageId));
   }
 
