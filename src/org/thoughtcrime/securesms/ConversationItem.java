@@ -764,7 +764,7 @@ public class ConversationItem extends LinearLayout {
 
     public void onClick(final View v, final Slide slide) {
       boolean isAudio = slide instanceof AudioSlide;
-      if((isAudio && messageRecord.getBody().isSelfDestruction()) || !messageRecord.getBody().isSelfDestruction()) {
+      if((isAudio && messageRecord.getBody().isSelfDestruction()) || !messageRecord.getBody().isSelfDestruction() || messageRecord.isOutgoing()) {
         if (!batchSelected.isEmpty()) {
           selectionClickListener.onItemClick(null, ConversationItem.this, -1, -1);
         } else if (MediaPreviewActivity.isContentTypeSupported(slide.getContentType())) {
