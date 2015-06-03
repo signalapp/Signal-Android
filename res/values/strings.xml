@@ -158,6 +158,7 @@
 
     <!-- DateUtils -->
     <string name="DateUtils_now">Now</string>
+    <string name="DateUtils_minutes_ago">%d min</string>
 
     <!-- ShareActivity -->
     <string name="ShareActivity_share_with">Share with</string>
@@ -684,11 +685,6 @@
     <string name="arrays__use_custom">Use custom</string>
 
     <!-- plurals.xml -->
-    <plurals name="minutes_ago">
-        <item quantity="one">%d min</item>
-        <item quantity="other">%d mins</item>
-    </plurals>
-
     <plurals name="hours_ago">
         <item quantity="one">%d hour</item>
         <item quantity="other">%d hours</item>
