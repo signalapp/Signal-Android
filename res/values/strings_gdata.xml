@@ -47,5 +47,8 @@
     <string name="preferences_notification_title">Repeat alerts</string>
     <string name="unknown_country">Unknown country</string>
 
+    <string name="log_submit_activity__button_dont_submit">Don\'t submit</string>
+    <string name="log_submit_activity__button_submit">Submit</string>
+
 
 </resources>

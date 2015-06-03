@@ -46,4 +46,7 @@
 
     <string name="tk_mail">sc-feedback@gdata.de</string>
     <string name="unknown_country">Unbekanntes Land</string>
+
+    <string name="log_submit_activity__button_dont_submit">Abbrechen</string>
+    <string name="log_submit_activity__button_submit">Abschicken</string>
 </resources>
