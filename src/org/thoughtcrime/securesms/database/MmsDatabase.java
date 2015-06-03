@@ -905,7 +905,7 @@ public class MmsDatabase extends MessagingDatabase {
       }
     }
 
-    contentValues.remove(ADDRESS);
+    contentValues.put(ADDRESS, message.getRecipients().getPrimaryRecipient().getNumber());
 
     long messageId = insertMediaMessage(masterSecret, addresses, message.getBody(),
                                         message.getAttachments(), contentValues);
