@@ -198,7 +198,7 @@ public class SmsDatabase extends MessagingDatabase {
   }
 
   public void markAsForcedSms(long id) {
-    updateTypeBitmask(id, 0, Types.MESSAGE_FORCE_SMS_BIT);
+    updateTypeBitmask(id, Types.PUSH_MESSAGE_BIT, Types.MESSAGE_FORCE_SMS_BIT);
   }
 
   public void markAsDecryptFailed(long id) {
