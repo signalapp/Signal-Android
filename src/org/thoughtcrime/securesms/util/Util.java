@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms.util;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
@@ -323,5 +324,13 @@ public class Util {
 
   public static int hashCode(@Nullable Object... objects) {
     return Arrays.hashCode(objects);
+  }
+
+  @TargetApi(VERSION_CODES.KITKAT)
+  public static boolean isLowMemory(Context context) {
+    ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+
+    return (VERSION.SDK_INT >= VERSION_CODES.KITKAT && activityManager.isLowRamDevice()) ||
+           activityManager.getMemoryClass() <= 64;
   }
 }
