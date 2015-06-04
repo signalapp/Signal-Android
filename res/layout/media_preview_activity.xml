@@ -8,8 +8,7 @@
     <ImageView android:id="@+id/image"
                android:layout_width="match_parent"
                android:layout_height="match_parent"
-               android:contentDescription="@string/media_preview_activity__image_content_description"
-               android:visibility="gone"/>
+               android:contentDescription="@string/media_preview_activity__image_content_description" />
 
     <TextView android:id="@+id/error"
               android:layout_width="wrap_content"

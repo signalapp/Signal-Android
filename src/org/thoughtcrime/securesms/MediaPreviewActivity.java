@@ -37,18 +37,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
+
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipient.RecipientModifiedListener;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.util.BitmapDecodingException;
-import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
-
-import java.io.IOException;
 
 import uk.co.senab.photoview.PhotoViewAttacher;
 
@@ -64,7 +64,6 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   private MasterSecret masterSecret;
-  private boolean      paused;
 
   private TextView          errorText;
   private Bitmap            bitmap;
@@ -121,7 +120,6 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   @Override
   public void onResume() {
     super.onResume();
-    paused = false;
     dynamicLanguage.onResume(this);
     if (recipient != null) recipient.addListener(this);
     initializeMedia();
@@ -130,7 +128,6 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   @Override
   public void onPause() {
     super.onPause();
-    paused = true;
     if (recipient != null) recipient.removeListener(this);
     cleanupMedia();
   }
@@ -188,39 +185,17 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   }
 
   private void displayImage() {
-    new AsyncTask<Void,Void,Bitmap>() {
-      @Override
-      protected Bitmap doInBackground(Void... params) {
-        try {
-          int[] maxTextureSizeParams = new int[1];
-          GLES20.glGetIntegerv(GLES20.GL_MAX_TEXTURE_SIZE, maxTextureSizeParams, 0);
-          int maxTextureSize = Math.max(maxTextureSizeParams[0], 2048);
-          Log.w(TAG, "reported GL_MAX_TEXTURE_SIZE: " + maxTextureSize);
-          return BitmapUtil.createScaledBitmap(MediaPreviewActivity.this, masterSecret, mediaUri,
-                                               maxTextureSize, maxTextureSize);
-        } catch (IOException | BitmapDecodingException e) {
-          return null;
-        }
-      }
-
-      @Override
-      protected void onPostExecute(Bitmap bitmap) {
-        if (paused) {
-          if (bitmap != null) bitmap.recycle();
-          return;
-        }
-
-        if (bitmap == null) {
-          errorText.setText(R.string.MediaPreviewActivity_cant_display);
-          errorText.setVisibility(View.VISIBLE);
-        } else {
-          MediaPreviewActivity.this.bitmap = bitmap;
-          image.setImageBitmap(bitmap);
-          image.setVisibility(View.VISIBLE);
-          imageAttacher.update();
-        }
-      }
-    }.execute();
+    Glide.with(this)
+         .load(new DecryptableUri(masterSecret, mediaUri))
+         .asBitmap()
+         .dontTransform()
+         .dontAnimate()
+         .into(new BitmapImageViewTarget(image) {
+           @Override protected void setResource(Bitmap resource) {
+             super.setResource(resource);
+             imageAttacher.update();
+           }
+         });
   }
 
   private void saveToDisk() {
