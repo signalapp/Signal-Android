@@ -21,8 +21,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.opengl.GLES20;
-import android.os.AsyncTask;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
@@ -33,15 +31,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.BitmapImageViewTarget;
-
+import org.thoughtcrime.securesms.components.ZoomingImageView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipient.RecipientModifiedListener;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
@@ -49,8 +42,6 @@ import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
-
-import uk.co.senab.photoview.PhotoViewAttacher;
 
 /**
  * Activity for displaying media attachments in-app
@@ -65,10 +56,8 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
 
   private MasterSecret masterSecret;
 
-  private TextView          errorText;
   private Bitmap            bitmap;
-  private ImageView         image;
-  private PhotoViewAttacher imageAttacher;
+  private ZoomingImageView  image;
   private Uri               mediaUri;
   private String            mediaType;
   private Recipient         recipient;
@@ -113,7 +102,8 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     } else {
       relativeTimeSpan = null;
     }
-    getSupportActionBar().setTitle(recipient == null ? getString(R.string.MediaPreviewActivity_you) : recipient.toShortString());
+    getSupportActionBar().setTitle(recipient == null ? getString(R.string.MediaPreviewActivity_you)
+                                                     : recipient.toShortString());
     getSupportActionBar().setSubtitle(relativeTimeSpan);
   }
 
@@ -142,9 +132,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   }
 
   private void initializeViews() {
-    errorText     = (TextView)  findViewById(R.id.error);
-    image         = (ImageView) findViewById(R.id.image);
-    imageAttacher = new PhotoViewAttacher(image);
+    image = (ZoomingImageView)findViewById(R.id.image);
   }
 
   private void initializeResources() {
@@ -172,7 +160,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     Log.w(TAG, "Loading Part URI: " + mediaUri);
 
     if (mediaType != null && mediaType.startsWith("image/")) {
-      displayImage();
+      image.setImageUri(masterSecret, mediaUri);
     }
   }
 
@@ -182,20 +170,6 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
       bitmap.recycle();
       bitmap = null;
     }
-  }
-
-  private void displayImage() {
-    Glide.with(this)
-         .load(new DecryptableUri(masterSecret, mediaUri))
-         .asBitmap()
-         .dontTransform()
-         .dontAnimate()
-         .into(new BitmapImageViewTarget(image) {
-           @Override protected void setResource(Bitmap resource) {
-             super.setResource(resource);
-             imageAttacher.update();
-           }
-         });
   }
 
   private void saveToDisk() {
