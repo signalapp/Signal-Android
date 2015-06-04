@@ -17,12 +17,7 @@
 Attenzione, così facendo interromperai la cifratura di tutti i messaggi e le chiavi che hai salvato. Le tue sessioni cifrate continueranno a funzionare, ma chiunque avrà accesso fisico al tuo dispositivo sarà in grado di accedere ad esse.</string>
   <string name="ApplicationPreferencesActivity_disable">Disabilita</string>
   <string name="ApplicationPreferencesActivity_unregistering">Annullamento della registrazione ...</string>
-  <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Annullamento della registrazione dei dati di base della Comunicazione</string>
-  <string name="ApplicationPreferencesActivity_disable_push_messages">Disattivare messaggi push?</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">
-Questo disabiliterà i messaggi push e annullerà la tua registrazione sul server.
-Avrai bisogno di registrare di nuovo il tuo numero di telefono per usare i messaggi push in futuro.
-</string>
+  <string name="ApplicationPreferencesActivity_disable_textsecure_messages">Disattivare i messaggi TextSecure?</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Errore durante la connessione al server!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS Abilitati</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Tocca per cambiare l\'applicazione predefinita per gli SMS</string>
@@ -51,6 +46,7 @@ Avrai bisogno di registrare di nuovo il tuo numero di telefono per usare i messa
   <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">La chiave che identificava %1$s è cambiata. Questo può significare che qualcuno sta cercando di intercettare la tua comunicazione, o che %2$s ha semplicemente reinstallato TextSecure e ora ha una nuova chiave identificativa.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Dovresti verificare
 questo contatto.</string>
+  <string name="ConfirmIdentityDialog_accept">Accetta</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Dimensione Messaggio: %d KB</string>
   <string name="ConversationItem_expires_s">Scadenza: %s</string>
@@ -120,6 +116,8 @@ questo contatto.</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Cancellazione...</string>
   <string name="ConversationFragment_deleting_messages">Cancellazione messaggi...</string>
+  <!--ConversationListActivity-->
+  <string name="ConversationListActivity_search">Cerca...</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Cancellare i threads?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Sei sicuro di voler cancellare TUTTE le conversazioni selezionate?</string>
@@ -133,6 +131,7 @@ questo contatto.</string>
   <string name="CustomDefaultPreference_none">Nessuna</string>
   <!--DateUtils-->
   <string name="DateUtils_now">Adesso</string>
+  <string name="DateUtils_minutes_ago">%d minuto</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Condividi con</string>
   <!--ExportFragment-->
@@ -246,15 +245,6 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="RatingManager_rate_now">Vota ora!</string>
   <string name="RatingManager_no_thanks">No grazie</string>
   <string name="RatingManager_later">Più tardi</string>
-  <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">La
-firma su questo scambio di chiavi è diversa da quella ricevuta precedentemente. Questo potrebbe significare che qualcuno sta cercando di intercettare la tua comunicazione
-o
-che il contatto ha reinstallato TextSecure e ora ha una nuova chiave.</string>
-  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Dovresti verificare
-questo contatto.</string>
-  <string name="ReceiveKeyActivity_processing">Elaborazione</string>
-  <string name="ReceiveKeyActivity_processing_key_exchange">Elaborazione scambio delle chiavi…</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">Connetti Con TextSecure</string>
   <string name="RegistrationActivity_select_your_country">Seleziona il tuo paese</string>
@@ -477,8 +467,6 @@ Importo una copia in chiaro. Compatibile con \"SMSBackup And Restore\"</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure ha bisogno delle impostazioni degli MMS per poter inviare messaggi multimediali e di gruppo con il tuo operatore. Il tuo dispositivo non fornisce queste impostazioni, probabilmente perché ha un operatore bloccato o altre configurazioni restrittive.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Per inviare contenuti multimediali e messaggi di gruppo, tocca \"OK\" e completa le impostazioni richieste. Le impostazioni MMS del proprio operatore possono essere trovate generalmente cercando \"APN proprio operatore\". Sarà necessario eseguire una sola volta questa procedura.</string>
-  <!--receive_key_dialog-->
-  <string name="receive_key_dialog__complete">Completa</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
         Verifica il tuo numero di telefono per connetterti a TextSecure.
@@ -587,10 +575,6 @@ non riuscita.
   <string name="arrays__use_default">Usa predefinito</string>
   <string name="arrays__use_custom">Usa personalizzato</string>
   <!--plurals.xml-->
-  <plurals name="minutes_ago">
-    <item quantity="one">%d minuto</item>
-    <item quantity="other">%d minuti</item>
-  </plurals>
   <plurals name="hours_ago">
     <item quantity="one">%d ora</item>
     <item quantity="other">%d ore</item>

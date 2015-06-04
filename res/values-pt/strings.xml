@@ -19,12 +19,6 @@ As suas sessões continuam cifradas, mas qualquer pessoa com acesso físico ao d
 terá acesso ás mensagens e chaves.</string>
   <string name="ApplicationPreferencesActivity_disable">Desactivar</string>
   <string name="ApplicationPreferencesActivity_unregistering">A desregistrar...</string>
-  <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">A desregistrar-se da comunicação de dados</string>
-  <string name="ApplicationPreferencesActivity_disable_push_messages">Desactivar mensagens push?</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">
-Isto vai desactivar as mensagens push, eliminando o seu registo do servidor.
-Vai necessitar de re-registar o seu número de telefone se pretender utilizar esta funcionalidade novamente.
-</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Erro ao conectar-se com o servidor!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS Activos</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Definir como aplicação SMS por omissão</string>
@@ -108,6 +102,7 @@ Vai necessitar de re-registar o seu número de telefone se pretender utilizar es
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">A apagar...</string>
   <string name="ConversationFragment_deleting_messages">A apagar mensagens...</string>
+  <!--ConversationListActivity-->
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Apagar conversas?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Tem a certeza que pretende apagar TODAS as conversas seleccionadas?</string>
@@ -225,15 +220,6 @@ importá-lo novamente resultará em mensagens duplicadas.</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Palavra-chave inválida!</string>
   <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
-  <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">A
-assinatura deste intercâmbio de chaves é diferente da previamente recebida deste contacto.
-Isto pode significar que alguém está a tentar interceptar esta comunicação ou simplesmente
-que este contacto reinstalou TextSecure e tem agora uma nova chave de identidade.
-</string>
-  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Pode ser desejável verificar este contracto.</string>
-  <string name="ReceiveKeyActivity_processing">A processar</string>
-  <string name="ReceiveKeyActivity_processing_key_exchange">A processar troca de chaves...</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">Conectar-se ao TextSecure</string>
   <string name="RegistrationActivity_select_your_country">Escolha o seu país</string>
@@ -451,8 +437,6 @@ Importar uma cópia de segurança de texto simples. Compatível com \'SMSBackup 
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">O TextSecure precisa de configurações MMS para transmitir média e mensagens de grupo através da sua operadora. O seu aparelho não disponibiliza essa informação, o que pode ocorrer em aparelhos bloqueados ou com configurações restritivas.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Para enviar média e mensagens de grupo, clique \'OK\' e complete as configurações pedidas. As configurações MMS da sua operadora geralmente podem ser encontradas procurando por \'operadora APN\'. Você só precisará fazer isto uma vez.</string>
-  <!--receive_key_dialog-->
-  <string name="receive_key_dialog__complete">Completo</string>
   <!--registration_activity-->
   <string name="registration_activity__your_country">PAÍS</string>
   <string name="registration_activity__your_country_code_and_phone_number">PAÍS E
@@ -535,10 +519,6 @@ falhou.
   <string name="arrays__import_export">Importar / Exportar</string>
   <string name="arrays__my_identity_key">A minha chave de identidade</string>
   <!--plurals.xml-->
-  <plurals name="minutes_ago">
-    <item quantity="one">%d min</item>
-    <item quantity="other">%d mins</item>
-  </plurals>
   <plurals name="hours_ago">
     <item quantity="one">%d hora</item>
     <item quantity="other">%d horas</item>

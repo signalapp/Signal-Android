@@ -7,9 +7,9 @@
   <string name="please_wait">Por favor, espere...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Actualmente: %s</string>
-  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">¡No ha elegido aún una clave de acceso!</string>
+  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">¡Todavía no ha elegido una clave de acceso!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">%s mensajes por conversación</string>
-  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">¿Eliminar ahora todos los mensajes antiguos?</string>
+  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">¿Eliminar todos los mensajes antiguos?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">¿Está seguro de que quiere recortar inmediatamente todos los hilos de conversación a los %s últimos mensajes?</string>
   <string name="ApplicationPreferencesActivity_delete">Eliminar</string>
   <string name="ApplicationPreferencesActivity_disable_storage_encryption">¿Deshabilitar cifrado del almacenamiento?</string>
@@ -19,11 +19,11 @@
     </string>
   <string name="ApplicationPreferencesActivity_disable">Desactivar</string>
   <string name="ApplicationPreferencesActivity_unregistering">Cancelando registro...</string>
-  <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Cancelando registro para comunicación basada en datos</string>
-  <string name="ApplicationPreferencesActivity_disable_push_messages">¿Deshabilitar mensajes push?</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">
-Esto deshabilitará los mensajes push al eliminar su registro del servidor.
-Tendrá que volver a registrarse con su número de teléfono si quiere volver a usar los mensajes push en un futuro.</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Desregistrándose de los mensajes TextSecure</string>
+  <string name="ApplicationPreferencesActivity_disable_textsecure_messages">¿Deshabilitar los mensajes de TextSecure?</string>
+  <string name="ApplicationPreferencesActivity_this_will_disable_textsecure_messages">
+Esto deshabilitará los mensajes de TextSecure desregistrándolos de su servidor.
+En el futuro tendrá que volver a registrar su número de teléfono para usar de nuevo los mensajes de TextSecure.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">¡Error conectando al servidor!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS habilitados</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Pulse para cambiar la aplicación de SMS predeterminada</string>
@@ -56,6 +56,7 @@ nueva clave de identidad.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Puede que dese verificar
 este contacto.
 </string>
+  <string name="ConfirmIdentityDialog_accept">Aceptar</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Tamaño del mensaje: %d KB</string>
   <string name="ConversationItem_expires_s">Expira: %s</string>
@@ -129,6 +130,8 @@ Recibido:%4$s</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Borrando...</string>
   <string name="ConversationFragment_deleting_messages">Borrando mensajes...</string>
+  <!--ConversationListActivity-->
+  <string name="ConversationListActivity_search">Buscar...</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">¿Borrar conversaciones?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">¿Está seguro de que quiere borrar TODAS las conversaciones seleccionadas?</string>
@@ -142,6 +145,7 @@ Recibido:%4$s</string>
   <string name="CustomDefaultPreference_none">Ninguno</string>
   <!--DateUtils-->
   <string name="DateUtils_now">Ahora</string>
+  <string name="DateUtils_minutes_ago">%d min</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Compartir con</string>
   <!--ExportFragment-->
@@ -261,13 +265,6 @@ Por favor pida al remitente que actualice a la versión más reciente y reenvíe
   <string name="RatingManager_rate_now">¡Evaluar ahora!</string>
   <string name="RatingManager_no_thanks">No, gracias</string>
   <string name="RatingManager_later">Más tarde</string>
-  <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">La firma en este intercambio de claves es diferente de lo que previamente ha recibido de este contacto. Esto podría significar que alguien está intentando interceptar las comunicaciones o que este contacto simplemente reinstaló TextSecure y ahora tiene una nueva clave de identidad.</string>
-  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Puede que dese verificar
-este contacto.
-</string>
-  <string name="ReceiveKeyActivity_processing">Procesando</string>
-  <string name="ReceiveKeyActivity_processing_key_exchange">Procesando intercambio de claves...</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">Conectar con TextSecure</string>
   <string name="RegistrationActivity_select_your_country">Seleccione su país</string>
@@ -405,7 +402,7 @@ Se recibió un mensaje con una clave de identidad desconocida. Haga clic para pr
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">CLAVE DE ACCESO ANTERIOR:</string>
   <string name="change_passphrase_activity__new_passphrase">CLAVE DE ACCESO NUEVA:</string>
-  <string name="change_passphrase_activity__repeat_new_passphrase">REPITA LA CLAVE DE ACCESO NUEVA:</string>
+  <string name="change_passphrase_activity__repeat_new_passphrase">REPITA LA NUEVA CLAVE DE ACCESO:</string>
   <!--contact_selection_group_activity-->
   <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">No hay contactos.</string>
@@ -459,7 +456,7 @@ Se recibió un mensaje con una clave de identidad desconocida. Haga clic para pr
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">La base de datos de sistema por defecto no será modificada o alterada de ningún modo.</string>
   <string name="database_migration_activity__skip">Saltar</string>
   <string name="database_migration_activity__import">Importar</string>
-  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Esto podría tardar un rato. Por favor, se paciente, te informaremos cuando la importación sea completada.</string>
+  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Esto podría tardar un rato. Por favor, sea paciente, le informaremos en cuanto la importación sea completada.</string>
   <string name="database_migration_activity__importing">IMPORTANDO</string>
   <!--database_upgrade_activity-->
   <string name="database_upgrade_activity__updating_database">Actualizando base de datos...</string>
@@ -498,8 +495,6 @@ Importar una copia de seguridad en texto plano. Compatible con \'SMSBackup And R
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure necesita los datos de configuración de MMS para poder enviar mensajes de grupo a través de su proveedor de telefonía. Su dispositivo no hace pública esta información, cosa que ocurre ocasionalmente para dispositivos bloqueados y otras configuraciones restrictivas.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Para enviar contenido multimedia y mensajes de grupo haga click en \'OK\' y realice la configuración requerida. Las opciones de MMS de su proveedor de telefonía pueden ser encontradas normalmente buscando el \'APN de su proveedor\'. Solo necesitará hacer esto una vez.</string>
-  <!--receive_key_dialog-->
-  <string name="receive_key_dialog__complete">Completo</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 Verifique su número de teléfono para conectar con TextSecure.</string>
@@ -618,10 +613,6 @@ por SMS.
   <string name="arrays__use_default">Usar el predeterminado</string>
   <string name="arrays__use_custom">Usar el personalizado</string>
   <!--plurals.xml-->
-  <plurals name="minutes_ago">
-    <item quantity="one">%d min</item>
-    <item quantity="other">%d min</item>
-  </plurals>
   <plurals name="hours_ago">
     <item quantity="one">%d hora</item>
     <item quantity="other">%d horas</item>

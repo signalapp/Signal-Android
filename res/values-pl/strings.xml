@@ -17,11 +17,6 @@
 Uwaga, szyfrowanie wszystkich Twoich wiadomości i kluczy zostanie wyłączone. Twoje szyfrowane sesje będą dalej funkcjonować, jednak każdy z fizycznym dostępem do Twojego telefonu będzie mógł uzyskać dostęp do Twoich wiadomości.</string>
   <string name="ApplicationPreferencesActivity_disable">Wyłącz</string>
   <string name="ApplicationPreferencesActivity_unregistering">Wyrejestrowywanie...</string>
-  <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Wyrejestrowanie dla transmisji danych</string>
-  <string name="ApplicationPreferencesActivity_disable_push_messages">Wyłączyć wiadomości push?</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">
-Wiadomości push zostaną wyłączone poprzez wyrejestrowanie Ciebie z serwera.
-Będziesz musiał ponownie zarejestrować swój numer, aby w przyszłości ponownie używać wiadomości push.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Błąd połączenia z serwerem!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS Włączone</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Dotknij aby zmienić swoją domyślną aplikację SMS</string>
@@ -41,6 +36,7 @@ Będziesz musiał ponownie zarejestrować swój numer, aby w przyszłości ponow
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nie można znaleźć aplikacji, aby wybrać media.</string>
   <!--AttachmentTypeSelectorAdapter-->
+  <string name="AttachmentTypeSelectorAdapter_take_photo">Zrób zdjęcie</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Zdjęcie</string>
   <string name="AttachmentTypeSelectorAdapter_video">Film</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Dźwięk</string>
@@ -119,6 +115,7 @@ ten kontakt.
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Usuwanie...</string>
   <string name="ConversationFragment_deleting_messages">Usuwanie wiadomości...</string>
+  <!--ConversationListActivity-->
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Usunąć wątki?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Usunąć wybrane wątki? </string>
@@ -132,6 +129,7 @@ ten kontakt.
   <string name="CustomDefaultPreference_none">Brak</string>
   <!--DateUtils-->
   <string name="DateUtils_now">Teraz</string>
+  <string name="DateUtils_minutes_ago">%d minuta</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Podziel się z</string>
   <!--ExportFragment-->
@@ -239,15 +237,6 @@ Przywracanie szyfrowanej kopii zapasowej TextSecure spowoduje nadpisanie Twoich 
   <string name="RatingManager_rate_now">Oceń teraz!</string>
   <string name="RatingManager_no_thanks">Nie dzięki</string>
   <string name="RatingManager_later">Później</string>
-  <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Podpis pod tą wymianą kluczy jest inny od tego, który otrzymałeś poprzednio od tego 
-kontaktu. Może to oznaczać, że ktoś próbuje przechwycić Twoją komunikację lub 
-Twój kontakt przeinstalował program TextSecure i posiada teraz nowy klucz tożsamości.</string>
-  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Możesz chcieć zweryfikować 
-ten kontakt.
-</string>
-  <string name="ReceiveKeyActivity_processing">Przetwarzanie</string>
-  <string name="ReceiveKeyActivity_processing_key_exchange">Przetwarzanie wymiany kluczy...</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">Połącz z TextSecure</string>
   <string name="RegistrationActivity_select_your_country">Wybierz swój kraj</string>
@@ -465,8 +454,6 @@ Importuj niezaszyfrowany plik kopii zapasowej, kompatybilny z \'SMSBackup And Re
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure wymaga ustawień MMS w celu dostarczenia wiadomości multimedialnych za pośrednictwem Twojego operatora. Twoje urządzenie nie udostępnia tych informacji. Może to być spowodowane pewnymi restrykcyjnymi konfiguracjami w telefonie.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Aby mieć możliwość wysyłania wiadomości multimedialnych i wiadomości grupowych, kliknij \'OK\' i wypełnij pola, o które jesteś proszony. Dane MMS dla Twojego operatora, można znaleźć szukając w ustawieniach frazy typu \'Punkty Dostępu - APN\'. Wystarczy to zrobić tylko jeden raz.</string>
-  <!--receive_key_dialog-->
-  <string name="receive_key_dialog__complete">Zakończono</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 Weryfikuj swój numer telefonu, aby połączyć się z TextSecure.</string>
@@ -549,11 +536,6 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="arrays__use_default">Użyj domyślnych</string>
   <string name="arrays__use_custom">Użyj własnych</string>
   <!--plurals.xml-->
-  <plurals name="minutes_ago">
-    <item quantity="one">%d minuta</item>
-    <item quantity="few">%d minut</item>
-    <item quantity="other">%d minut</item>
-  </plurals>
   <plurals name="hours_ago">
     <item quantity="one">%d godzina</item>
     <item quantity="few">%d godzin</item>

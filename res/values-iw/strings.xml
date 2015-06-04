@@ -50,6 +50,7 @@
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">פרטי הודעה</string>
   <string name="ConversationFragment_success_exclamation">הצליח!</string>
+  <!--ConversationListActivity-->
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">למחוק שרשורים?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">אתה בטוח שאתה רוצה למחוק את השרשורים של כל השיחות שנבחרו?</string>
@@ -110,16 +111,6 @@
   <!--PassphrasePromptActivity-->
   <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
-  <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">החתימה
-על החלפת המפתח הזאת שונה ממה שקיבלת בעבר מאיש הקשר הזה.
-זה יכול להעיד שמישהו מנסה ליירט את התקשורת שלך
-או
-שאיש הקשר פשוט התקין מחדש את TextSecure ועכשיו יש לו מפתח זהות חדש.
-</string>
-  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">ייתכן שתרצה לאמת
-את איש הקשר הזה.
-</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_continue">המשך</string>
   <!--RegistrationProblemsActivity-->
@@ -228,8 +219,6 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure דורש הגדרות MMS כדי לשלוח הודעות מולטימדיה או הודעות קבוצתיות דרך ספק השירות שלך. המכשיר שלך לא מספק את המידע הזה, זה קורה לעיתים במכשירים נעולים או קונפיגורציות מוגבלות אחרות.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">כדי לשלוח הודעות מולטימדיה או הודעות קבוצתיות,לחץ \'אישור\' והשלם את ההגדרות המתבקשות.את הגדרות ה-MMS עבור ספק השירות שלך אתה יכול למצוא בד\"כ ע\"י חיפוש \"ספק השרות APN\". אתה תצטרך להשלים מידע זה רק פעם אחת.</string>
-  <!--receive_key_dialog-->
-  <string name="receive_key_dialog__complete">השלם</string>
   <!--registration_activity-->
   <!--registration_problems-->
   <!--registration_progress_activity-->

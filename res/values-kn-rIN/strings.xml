@@ -19,12 +19,6 @@
 ಸಾಧ್ಯವಾಗುತ್ತದೆ.</string>
   <string name="ApplicationPreferencesActivity_disable">ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
   <string name="ApplicationPreferencesActivity_unregistering">ನೋಂದಣಿಯನ್ನು ರದ್ದುಗೊಳಿಸಲಾಗುತ್ತಿದೆ...</string>
-  <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">ಮಾಹಿತಿ ಆಧಾರಿತ ಸಂವಹನವನ್ನು ರದ್ದುಗೊಳಿಸಲು</string>
-  <string name="ApplicationPreferencesActivity_disable_push_messages">ಪುಷ್ ಸಂದೇಶವನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ </string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">ಈ ಸರ್ವರ್ನಿಂದ ನಿಮ್ಮ ನೋಂದಣಿಯನ್ನು ರದ್ದು ಮೂಲಕ ಪುಶ್ ಸಂದೇಶಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸುತ್ತದೆ.
-ನೀವು ಭವಿಷ್ಯದಲ್ಲಿ ಮತ್ತೆ ಪುಶ್ ಸಂದೇಶಗಳನ್ನು ಬಳಸಲು ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ಮರು ನೋಂದಾಯಿಸಿಕೊಳ್ಳಬಹುದು.
-
-</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">ಸರ್ವರ್ಗೆ ಸಂಪರ್ಕಿಸುವಾಗ ದೋಷ!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">ಎಸ್.ಎಮ್.ಎಸನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">ನಿಮ್ಮ ಪೂರ್ವನಿಯೋಜಿತ ಎಸ್.ಎಮ್.ಎಸ್ ಅಪ್ಲಿಕೇಶನ್ನು ಬದಲಾಯಿಸಲು ಸ್ಪರ್ಶಿಸಿ</string>
@@ -121,6 +115,7 @@
   <string name="ConversationFragment_sms">ಎಸ್ ಎಮ್ ಎಸ್</string>
   <string name="ConversationFragment_deleting">ಅಳಿಸಲಾಗುತ್ತಿದೆ...</string>
   <string name="ConversationFragment_deleting_messages">ಸಂದೇಶವನ್ನು ಅಳಿಸಲಾಗುತ್ತಿದೆ...</string>
+  <!--ConversationListActivity-->
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">ಸಂವಾದದ ಎಳೆಗಳನ್ನು ಅಳಿಸು?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">ನೀವು ಆಯ್ಕೆ ಮಾಡಲಾದ ಎಲ್ಲಾ ಸಂವಾದವನ್ನು ಎಳೆಗಳನ್ನು ಅಳಿಸಲು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?</string>
@@ -243,12 +238,6 @@
   <string name="RatingManager_rate_now">ಈಗ ಮೌಲ್ಯೀಕರಿಸಿ!</string>
   <string name="RatingManager_no_thanks">ಧನ್ಯವಾದಗಳು. ಸಧ್ಯಕ್ಕೆ ಇಲ್ಲ.</string>
   <string name="RatingManager_later">ನಂತರ</string>
-  <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">ಈ ಕೀಲಿ ವಿನಿಮಯದ ಮೇಲಿನ ಸಹಿ ನೀವು ಹಿಂದೆ ಈ ಸಂಪರ್ಕದಿಂದ ಸ್ವೀಕರಿಸಿದ್ದಕಿಂತ ಭಿನ್ನವಾಗಿದೆ. ಇದು ಯಾರಾದರೂ ನಿಮ್ಮ ಸಂವಹನವನ್ನು ಅಡ್ಡಿಪಡಿಸಲು ಪ್ರಯತ್ನಿಸುತ್ತಿರಬಹುದು ಅಥವಾ ಈ ಸಂಪರ್ಕ ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯೂರ್ ಮರು ಸ್ಥಾಪಿಸಿ, ಈಗ ಹೊಸ ಗುರುತನ್ನು ಕೀಲಿ ಹೊಂದಿದೆ ಅರ್ಥ.</string>
-  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">ನೀವು ಪರಿಶೀಲಿಸಲು ಇಚ್ಛಿಸಬಹುದಾದ ⏎ 
-ಸಂಪರ್ಕ. ⏎</string>
-  <string name="ReceiveKeyActivity_processing">ಸಂಸ್ಕರಿಸಲಾಗುತ್ತಿದೆ</string>
-  <string name="ReceiveKeyActivity_processing_key_exchange">ಕೀಲಿ ವಿನಿಮಯ ಸಂಸ್ಕರಿಸಲಾಗುತ್ತಿದೆ...</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯೂರ್ ಜೋತೆಗೆ ಸಂಪರ್ಕ</string>
   <string name="RegistrationActivity_select_your_country">ನಿಮ್ಮ ರಾಷ್ಟ್ರವನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
@@ -468,8 +457,6 @@
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯುರಗೆ  ನಿಮ್ಮ ನಿಸ್ತಂತು ವಾಹಕ ಮೂಲಕ ಮಾಧ್ಯಮ ಮತ್ತು ಗುಂಪು ಸಂದೇಶಗಳನ್ನು ತಲುಪಿಸಲು ಎಂಎಂಎಸ್ ಸೆಟ್ಟಿಂಗ್ಗಳ ಅಗತ್ಯವಿದೆ.
 ನಿಮ್ಮ ಸಾಧನ, ಈ ಮಾಹಿತಿಯನ್ನು ಲಭ್ಯ ಮಾಡುವುದಿಲ್ಲ. ಇದು ಲಾಕ್ ಮಾಡಲಾದ ಸಾಧನಗಳು ಮತ್ತು ಇತರ ನಿರ್ಬಂಧಿತ ಸಂರಚನೆಗಳನ್ನು ಉಳ್ಳ ಸಾಧನಗಳಲ್ಲಿ ಕೆಲವೊಮ್ಮೆ ಆಗುತ್ತದೆ.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">ಮಾಧ್ಯಮ ಮತ್ತು ಗುಂಪು ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು, \'OK\' ಅನ್ನು ಕ್ಲಿಕ್ ಮಾಡಿ ಮತ್ತು ವಿನಂತಿಸಿದ ಸೆಟ್ಟಿಂಗ್ಗಳನ್ನು ಪೂರ್ಣಗೊಳಿಸಿ. ನಿಮ್ಮ ವಾಹಕದ   ಎಂಎಂಎಸ್ ಸೆಟ್ಟಿಂಗ್ಗಳನ್ನು ಸಾಮಾನ್ಯ ಹುಡುಕಾಟದ ಮೂಲಕ ಕಂಡುಹಿಡಿಯಬಹುದು. </string>
-  <!--receive_key_dialog-->
-  <string name="receive_key_dialog__complete">ಪೂರ್ಣಗೊಳಿಸಿ</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 ಟೆಕ್ಸ್ಟ್-ಸೆಕ್ಯೂರ್ ಬಳಸಲು ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ದಯವಿಟ್ಟು ಪರಿಶೀಲಿಸಿ.</string>
@@ -558,9 +545,6 @@
   <string name="arrays__import_export">ಆಮದು / ರಫ್ತು</string>
   <string name="arrays__my_identity_key">ನನ್ನ ಗುರುತಿನ ಕೀಲಿ</string>
   <!--plurals.xml-->
-  <plurals name="minutes_ago">
-    <item quantity="other">%d ನಿಮಿಷಗಳು</item>
-  </plurals>
   <plurals name="hours_ago">
     <item quantity="other">%d ಗಂಟೆಗಳು</item>
   </plurals>

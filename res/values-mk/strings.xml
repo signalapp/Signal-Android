@@ -20,12 +20,6 @@
     </string>
   <string name="ApplicationPreferencesActivity_disable">Оневозможи</string>
   <string name="ApplicationPreferencesActivity_unregistering">Бришење на контото...</string>
-  <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Бришење на контото за TextSecure-пораки</string>
-  <string name="ApplicationPreferencesActivity_disable_push_messages">Деактивирај TextSecure-пораки?</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">
-        Со деактивирање на TextSecure-пораките ќе се избрише вашата регистрација од серверот.
-        Ќе мора повторно да го регистрирате вашиот број за да може да добивате пораки.
-    </string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Грешка при поврзување со серверот!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS активиран</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Промена на стандардната SMS апликација</string>
@@ -122,6 +116,7 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Бришење...</string>
   <string name="ConversationFragment_deleting_messages">Бришење на пораките...</string>
+  <!--ConversationListActivity-->
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Избриши теми на разговор?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Дали сте сигурни дека сакате да се избришат СИТЕ избрани теми?</string>
@@ -249,14 +244,6 @@
   <string name="RatingManager_rate_now">Сега оцени!</string>
   <string name="RatingManager_no_thanks">Не, благодарам</string>
   <string name="RatingManager_later">Покасно</string>
-  <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Потписот
-        на размената на клучеви е поинаков од потписот што претходно сте го примиле од овај
-        контакт. Ова може или да значи дека некој сака да ја пресретне вашата комуникација, или
-        или пак овај контакт ја преинсталирал TextSecure и сега има нов клуч.</string>
-  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Овој контакт би требало да го верфивикувате.</string>
-  <string name="ReceiveKeyActivity_processing">Процесирање</string>
-  <string name="ReceiveKeyActivity_processing_key_exchange">Се процесира размената на клучеви...</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">Конектирајте се со TextSecure</string>
   <string name="RegistrationActivity_select_your_country">Изберете држава</string>
@@ -478,8 +465,6 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">За TextSecure се потребни MMS подесувања за да може да доставува медиа и групни пораки преку вашиот wireless провајдер. Вашиот уред не ги стави на располагање овие информации, што е некогаш случај со заклучени уреди или други рестриктивни конфигурации.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">За испраќање на медиа и групни пораки, притиснете \'OK\' и подесете ги потребните податоци. MMS подесувањата за вашиот провајдер можат вообичаено да се најдат доколку пребарате \'ваш провајдер APN\'. Ова е потребно да го направите само еднаш.</string>
-  <!--receive_key_dialog-->
-  <string name="receive_key_dialog__complete">Завршено</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 Верификувајте го вашиот телефонски број за да се конектирате со TextSecure.</string>
@@ -577,10 +562,6 @@ TextSecure автоматски ќе го провери вашиот број �
   <string name="arrays__use_default">Користете стандардно</string>
   <string name="arrays__use_custom">Користете прилагодено</string>
   <!--plurals.xml-->
-  <plurals name="minutes_ago">
-    <item quantity="one">%d минута</item>
-    <item quantity="other">%d минути</item>
-  </plurals>
   <plurals name="hours_ago">
     <item quantity="one">%d час</item>
     <item quantity="other">%d часа</item>

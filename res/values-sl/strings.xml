@@ -17,10 +17,11 @@
 Pozor, s tem boste onemogočili šifriranje sporočil in ključev v pomnilniku naprave. Vaše šifrirane komunikacije bodo še vedno varne, toda vsakdo s fizičnim dostopom do vaše naprave bo lahko dostopal do njih.</string>
   <string name="ApplicationPreferencesActivity_disable">Onemogoči</string>
   <string name="ApplicationPreferencesActivity_unregistering">Odjava poteka...</string>
-  <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Odjava komunikacije preko podatkovne povezave</string>
-  <string name="ApplicationPreferencesActivity_disable_push_messages">Izključim potisna sporočila?</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">S tem boste izključili potisna sporočila in se odjavili s strežnika.
-Za ponovno uporabo potisnih sporočil se boste morali zopet prijaviti s svojo telefonsko številko.</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Izklop sporočil TextSecure</string>
+  <string name="ApplicationPreferencesActivity_disable_textsecure_messages">Izklopim sporočila TextSecure?</string>
+  <string name="ApplicationPreferencesActivity_this_will_disable_textsecure_messages">
+S tem boste izključili sporočila TextSecure in se odjavili s strežnika.
+Za ponovno uporabo sporočil TextSecure se boste morali zopet prijaviti s svojo telefonsko številko.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Napaka pri povezavi s strežnikom!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">Sporočila SMS omogočena</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Dotaknite se za spremembo privzete aplikacije za sporočila SMS</string>
@@ -40,6 +41,7 @@ Za ponovno uporabo potisnih sporočil se boste morali zopet prijaviti s svojo te
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Ne najdem aplikacije za izbor datotek.</string>
   <!--AttachmentTypeSelectorAdapter-->
+  <string name="AttachmentTypeSelectorAdapter_take_photo">Posnami fotografijo</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Slika</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Zvok</string>
@@ -48,6 +50,7 @@ Za ponovno uporabo potisnih sporočil se boste morali zopet prijaviti s svojo te
   <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Identifikacijski ključ osebe %1$s je bil spremenjen. To lahko pomeni, da nekdo prestreza komunikacijo, ali pa, da je oseba %2$s ponovno namestila TextSecure in ima zato nov identifikacijski ključ.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Morda bi želeli
 preveriti ta stik.</string>
+  <string name="ConfirmIdentityDialog_accept">Sprejmi</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Velikost sporočila: %d KB</string>
   <string name="ConversationItem_expires_s">Poteče: %s</string>
@@ -117,6 +120,8 @@ preveriti ta stik.</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Brišem...</string>
   <string name="ConversationFragment_deleting_messages">Brišem sporočila...</string>
+  <!--ConversationListActivity-->
+  <string name="ConversationListActivity_search">Iščem...</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Izbris pogovorov?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Ste prepričani, da želite izbrisati VSE izbrane pogovore?</string>
@@ -130,6 +135,7 @@ preveriti ta stik.</string>
   <string name="CustomDefaultPreference_none">Brez</string>
   <!--DateUtils-->
   <string name="DateUtils_now">Ravnokar</string>
+  <string name="DateUtils_minutes_ago">%d min</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Deli z</string>
   <!--ExportFragment-->
@@ -234,12 +240,6 @@ preveriti ta stik.</string>
   <string name="RatingManager_rate_now">Oceni zdaj!</string>
   <string name="RatingManager_no_thanks">Ne, hvala!</string>
   <string name="RatingManager_later">Kasneje</string>
-  <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Podpis pri izmenjavi ključev se razlikuje od tistih pri predhodno izmenjanih ključih s to osebo. To lahko pomeni, da nekdo prestreza komunikacijo, ali pa, da je oseba ponovno namestila TextSecure in ima zdaj nov identifikacijski ključ.</string>
-  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Morda bi želeli
-preveriti ta stik.</string>
-  <string name="ReceiveKeyActivity_processing">Obdelujem</string>
-  <string name="ReceiveKeyActivity_processing_key_exchange">Izmenjava ključev poteka...</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">Poveži s TextSecure</string>
   <string name="RegistrationActivity_select_your_country">Izberite svojo državo</string>
@@ -450,8 +450,6 @@ Prejeto sporočilo z neznanim identifikacijskim ključem. Kliknite za obdelavo i
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">Za pošiljanje multimedijskih in skupinskih sporočil potrebuje aplikacija TextSecure nastavitve MMS vašega mobilnega operaterja. Teh podatkov ni moč pridobiti iz vaše naprave, kar je značilno za zaklenjene naprave in druge omejene konfiguracije. </string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Za pošiljanje multimedijskih in skupinskih sporočil kliknite \'OK\' in vnesite potrebne podatke. Nastavitve MMS za vašo napravo najdete pod \'APN operaterja\'. Podatke morate vnesti samo enkrat.</string>
-  <!--receive_key_dialog-->
-  <string name="receive_key_dialog__complete">Dokončaj</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 Za uporabo sporočil TextSecure potrdite svojo telefonsko številko.</string>
@@ -544,12 +542,6 @@ bila uspešna.</string>
   <string name="arrays__use_default">Uporabi prednastavljeno</string>
   <string name="arrays__use_custom">Uporabi izbirno</string>
   <!--plurals.xml-->
-  <plurals name="minutes_ago">
-    <item quantity="one">%d min</item>
-    <item quantity="two">%d min</item>
-    <item quantity="few">%d min</item>
-    <item quantity="other">%d min</item>
-  </plurals>
   <plurals name="hours_ago">
     <item quantity="one">%d ura</item>
     <item quantity="two">%d uri</item>

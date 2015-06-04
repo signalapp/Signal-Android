@@ -19,10 +19,6 @@ oturumlarınız işlevlerini sürdürür, fakat cihazınıza fiziksel erişimi o
 erişebilir.</string>
   <string name="ApplicationPreferencesActivity_disable">Etkisizleştir</string>
   <string name="ApplicationPreferencesActivity_unregistering">Kayıt siliniyor...</string>
-  <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Veri temelli iletişim için kayıt siliniyor</string>
-  <string name="ApplicationPreferencesActivity_disable_push_messages">Anlık bildirimler etkisizleştirilsin mi?</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">
-Bu işlem sunucudan kaydınızı silerek itilen mesajları etkisizleştirir. Gelecekte anında mesajlaşmayı kullanmak isterseniz telefon numaranızı yeniden kaydettirmeniz gerekir.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Sunucu bağlantı hatası!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS Etkinleştirildi</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Varsayılan SMS uygulamanızı değiştirmek için dokunun</string>
@@ -120,6 +116,7 @@ isteyebilirsiniz.</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Siliniyor...</string>
   <string name="ConversationFragment_deleting_messages">Mesajlar siliniyor...</string>
+  <!--ConversationListActivity-->
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Başlıkları sil?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Seçili bütün konuşmaları silmek istediğinizden emin misiniz?</string>
@@ -133,6 +130,7 @@ isteyebilirsiniz.</string>
   <string name="CustomDefaultPreference_none">Hiçbiri</string>
   <!--DateUtils-->
   <string name="DateUtils_now">Şimdi</string>
+  <string name="DateUtils_minutes_ago">%d dk.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Paylaşılan kişi</string>
   <!--ExportFragment-->
@@ -242,12 +240,6 @@ kurulumunuzda bulunan ancak yüklenecek yedekte bulunmayan tüm bilgiler kaybolu
   <string name="RatingManager_rate_now">Şimdi puan ver!</string>
   <string name="RatingManager_no_thanks">Hayır teşekkürler</string>
   <string name="RatingManager_later">Daha sonra</string>
-  <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Bu anahtar değişiminde alınan imza, bu kişi için daha önce alınandan farklı. Bu ya üçüncü bir kişi iletişiminizi dinlemeğe çalıştığında ya da iletişim kurduğunuz kişi TextSecure\'u yeniden kurarak yeni bir kimlik anahtarı sahibi olmuşsa mümkün olabilir.</string>
-  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Bu kişiyi doğrulamak 
-isteyebilirsiniz.</string>
-  <string name="ReceiveKeyActivity_processing">İşleniyor</string>
-  <string name="ReceiveKeyActivity_processing_key_exchange">Anahtar takası işleniyor...</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">TextSecure ile Bağlan</string>
   <string name="RegistrationActivity_select_your_country">Ülkenizi seçin</string>
@@ -468,8 +460,6 @@ Daha önce dışa aktarılmış bir şifrelenmiş TextSecure yedeğini yeniden y
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure medya ve grup mesajlarının kablosuz taşıyıcınız aracılığı ile taşınabilmesi için MMS ayarlarınızı gerektirir. Cihazınız bu bilgiyi sağlamamaktadır. Bu durum bazen kilitli veya diğer kısıtlı yapılandırılmış cihazlar için geçerli olabilmektedir.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Medya veya grup mesajları gönderebilmek için \'Tamam\' a tıklayınız ve istenen ayarları tamamlayınız. Taşıyıcınızın MMS ayarları genellikle \'taşıyıcı APN\' araştırılarak bulunabilir. Bunu bir kez yapmanız gerekecektir.</string>
-  <!--receive_key_dialog-->
-  <string name="receive_key_dialog__complete">Tamamlandı</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 TextSecure\'a bağlanmak için telefon numaranızı doğrulayın</string>
@@ -563,9 +553,6 @@ başarısız.</string>
   <string name="arrays__use_default">Varsayılanı kullan</string>
   <string name="arrays__use_custom">Özelleştirilmiş kullan</string>
   <!--plurals.xml-->
-  <plurals name="minutes_ago">
-    <item quantity="other">%d dakika</item>
-  </plurals>
   <plurals name="hours_ago">
     <item quantity="other">%d saat</item>
   </plurals>

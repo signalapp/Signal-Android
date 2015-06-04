@@ -17,10 +17,6 @@
 تحذير: سيتم إلغاء تشفير مساحة تخزين الرسائل والمفاتيح. سوف تستمر محادثاتك المشفرة في العمل، ولكن سيكون أي شخص قادر على النفاذ إليهم إذا تمكن من الوصول إلى الهاتف.</string>
   <string name="ApplicationPreferencesActivity_disable">تعطيل</string>
   <string name="ApplicationPreferencesActivity_unregistering">إلغاء التسجيل جارٍ...</string>
-  <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">إلغاء تسجيل الاتصال عبر بيانات شبكة الجوال</string>
-  <string name="ApplicationPreferencesActivity_disable_push_messages">تعطيل دفع الوصول إلى الرسائل؟</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">
-هذا سيقوم بتعطيل دفع الوصول إلى الرسائل من خلال إلغاء تسجيلك في الخادم. سيتوجب عليك إعادة تسجيل رقم هاتفك المحمول لاستخدام دفع وصول الرسائل في المستقبل.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">خطأ في الاتصال بالخادم!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">الرسائل النصية مفعلة</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">أضغط لتغيير التطبيق الافتراضي للرسائل</string>
@@ -117,6 +113,7 @@
   <string name="ConversationFragment_sms">رسالة نصية</string>
   <string name="ConversationFragment_deleting">الحذف جارٍ...</string>
   <string name="ConversationFragment_deleting_messages">حذف الرسائل جارٍ...</string>
+  <!--ConversationListActivity-->
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">حذف رسائل المحادثة؟</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">هل تريد حذف كل المحادثات المختارة نهائياَ؟</string>
@@ -235,11 +232,6 @@
   <string name="RatingManager_rate_now">قَيّم الآن</string>
   <string name="RatingManager_no_thanks">لا، شكرا</string>
   <string name="RatingManager_later">فيما بعد</string>
-  <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">المفتاح لجهة الاتصال هذه مختلف عن المرة السابقة. هذا قد يعني ان هناك محاولة لاعتراض اتصالاتك، أو ان جهة الاتصال قام\قامت بإعادة تنصيب تكست سيكيور لديهم.</string>
-  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">ربما تود التحقق من جهة الاتصال هذه.</string>
-  <string name="ReceiveKeyActivity_processing">جاري العمل</string>
-  <string name="ReceiveKeyActivity_processing_key_exchange">جاري تبادل المفاتيح...</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">الاتصال بتيكست سيكيور</string>
   <string name="RegistrationActivity_select_your_country">اختر بلدك</string>
@@ -453,8 +445,6 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">يتطلب تيكست سيكيور إعدادات خدمة الوسائط المتعددة من أجل تسليم رسائل الوسائط المتعددة والمجموعات عبر المشغل اللاسلكي. في بعض الأحوال لا تتاح هذه المعلومات مع الهواتف المقفولة أو ذات الإعدادات المقيدة.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">من اجل إرسال وسائط متعددة ورسائل إلى مجموعات أضغط على \"تم\" وأكمل الإعدادات المطلوبة. يمكن العثور على إعدادات رسائل الوسائط المتعددة الخاصة بمشغل شبكة الجوال الخاصة بك بالبحث عن \"أسم المشغل APN\". سوف تحتاج إلى القيام  بهذه الخطوة مرة واحدة.</string>
-  <!--receive_key_dialog-->
-  <string name="receive_key_dialog__complete">تم</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 تحقق من رقم تليفونك للاتصال بتيكست سيكيور</string>
@@ -538,14 +528,6 @@
   <string name="arrays__use_default">استخدم الافتراضي</string>
   <string name="arrays__use_custom">تخصيص</string>
   <!--plurals.xml-->
-  <plurals name="minutes_ago">
-    <item quantity="zero">%d صفر</item>
-    <item quantity="one">%d دقيقة</item>
-    <item quantity="two">%d دقيقتان</item>
-    <item quantity="few">%d قليلة</item>
-    <item quantity="many">%d كثيرة</item>
-    <item quantity="other">%d أخرى</item>
-  </plurals>
   <plurals name="hours_ago">
     <item quantity="zero">%d صفر</item>
     <item quantity="one">%d ساعة</item>

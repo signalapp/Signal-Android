@@ -34,6 +34,7 @@
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">འཕྲིན་ཐུང་གི་ཞིབ་ཆ།</string>
   <string name="ConversationFragment_success_exclamation">ལེགས་འགྲུབ། </string>
+  <!--ConversationListActivity-->
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">འཕྲིན་ཐུང་སྐུད་རིམ་གསུབ་རྒྱུ་ཡིན་ནམ།</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">ཁྱོད་ཀྱིས་དངོས་གནས་འཕྲིན་ཐུང་སྐུད་རིམ་འདེམས་པ་ཆ་ཚང་གསུབ་རྒྱུ་ཡིན་ནམ།</string>
@@ -71,7 +72,6 @@
   <!--PassphrasePromptActivity-->
   <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
-  <!--ReceiveKeyActivity-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_continue">མུ་མཐུད། </string>
   <!--RegistrationProblemsActivity-->
@@ -164,7 +164,6 @@
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">སྒོ་ཕྱེས། </string>
   <!--prompt_mms_activity-->
-  <!--receive_key_dialog-->
   <!--registration_activity-->
   <!--registration_problems-->
   <!--registration_progress_activity-->

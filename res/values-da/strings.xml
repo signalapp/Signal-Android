@@ -20,12 +20,6 @@ men alle med fysisk adgang til din enhed kan få adgang til dem.
 </string>
   <string name="ApplicationPreferencesActivity_disable">Deaktivere</string>
   <string name="ApplicationPreferencesActivity_unregistering">Afregistrerer...</string>
-  <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Afregistrerer for data kommunikation</string>
-  <string name="ApplicationPreferencesActivity_disable_push_messages">Deaktiver \'push\' beskeder?</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">
-Dette vil deaktivere \'push\' beskeder, og afregistrerer dig fra tjenesten.
-Du skal registrere dit telefonnummer påny hvis du vil bruge \'push\' beskeder i fremtiden.
-</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Kunne ikke oprette forbindelse til serveren!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS slået til</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Brug som standard SMS program</string>
@@ -97,6 +91,7 @@ denne kontakt.</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Sletter...</string>
   <string name="ConversationFragment_deleting_messages">Sletter beskeder...</string>
+  <!--ConversationListActivity-->
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Slet tråde?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Er du sikker på at du vil slette ALLE valgte samtaletråde?</string>
@@ -187,14 +182,6 @@ Genoprettelse af en krypteret backup vil overskrive eksisterende nøgler, indsti
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Ugyldigt kodeord!</string>
   <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
-  <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Signaturen på denne udvekslingsnøgle er ikke ens med den som du tidligere modtog fra denne
-kontakt. Det kan enten betyde, at der er nogle som prøver på at kompromitterer din kommunikation eller
-at din kontakt har installeret TextSecure på ny og dermed fået en ny udvekslingsnøgle.</string>
-  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Du bør verificere
-denne kontakt.</string>
-  <string name="ReceiveKeyActivity_processing">Arbejder</string>
-  <string name="ReceiveKeyActivity_processing_key_exchange">Arbejder på nøgleudvekling...</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">Forbind med TextSecure</string>
   <string name="RegistrationActivity_select_your_country">Vælg land</string>
@@ -392,8 +379,6 @@ Importer en klartekst backup fil. Kompatibel med \'SMSBackup og Restore\'.</stri
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure har brug for at kende MMS-indstillingerne for at sende medieindhold og gruppebeskeder gennem din teleudbyder. Din enhed gør ikke disse oplysninger tilgængelige, hvilket kan forekomme for f.eks. låste enheder.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">For at sende multimedia- og gruppebeskeder klik \'OK\' og udfyld indstillingerne. MMS-indstillingerne for din teleoperatør kan ofte findes ved at søge på \'din operatør APN\'. Du behøver kun gøre dette en gang.</string>
-  <!--receive_key_dialog-->
-  <string name="receive_key_dialog__complete">Udført</string>
   <!--registration_activity-->
   <string name="registration_activity__your_country">DIT LAND</string>
   <string name="registration_activity__your_country_code_and_phone_number">DIN LANDEKODE OG DIT

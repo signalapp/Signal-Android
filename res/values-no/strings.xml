@@ -17,11 +17,6 @@
 Advarsel! Dette vil deaktivere kryptert lagring av alle meldinger og nøkler. Dine krypterte sesjoner vil fortsette å fungere, men alle med fysisk tilgang til enheten din vil kunne få tilgang til dem.</string>
   <string name="ApplicationPreferencesActivity_disable">Deaktiver</string>
   <string name="ApplicationPreferencesActivity_unregistering">Avregistrerer...</string>
-  <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Avregistrerer for kommunikasjon via data kanal</string>
-  <string name="ApplicationPreferencesActivity_disable_push_messages">Deaktiver \'push\' meldinger?</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">
-Dette vil deaktivere \'push\' meldinger ved å avregistrere deg fra tjenesten.
-Du må registrere telefonnummeret ditt på nytt dersom du ønsker å benytte \'push\' meldinger i fremtiden.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Feil ved tilkobling til meldingstjener!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS aktivert</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Klikk for å endre standard SMS applikasjon</string>
@@ -119,6 +114,7 @@ denne kontakten.</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Sletter...</string>
   <string name="ConversationFragment_deleting_messages">Sletter meldinger...</string>
+  <!--ConversationListActivity-->
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Slette trådene?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Er du sikker på at du vil slette ALLE valgte samtaletråder?</string>
@@ -132,6 +128,7 @@ denne kontakten.</string>
   <string name="CustomDefaultPreference_none">Ingen</string>
   <!--DateUtils-->
   <string name="DateUtils_now">Nå</string>
+  <string name="DateUtils_minutes_ago">%d min</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Del med</string>
   <!--ExportFragment-->
@@ -238,14 +235,6 @@ Gjenoppretting av en kryptert backup vil overskrive eksisterende nøkler, innsti
   <string name="RatingManager_rate_now">Vurder nå!</string>
   <string name="RatingManager_no_thanks">Nei takk</string>
   <string name="RatingManager_later">Senere</string>
-  <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Signaturen på denne nøkkelutvekslingen er ikke lik den du tidligere mottok fra denne
-kontakten. Det kan enten bety at noen prøver å avskjære kommunikasjonen din eller
-at denne kontakten har installert TextSecure på nytt og dermed fått en ny identitetsnøkkel.</string>
-  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Du bør verifisere
-denne kontakten.</string>
-  <string name="ReceiveKeyActivity_processing">Prosesserer</string>
-  <string name="ReceiveKeyActivity_processing_key_exchange">Prosesserer nøkkelutveksling...</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">Koble til TextSecure</string>
   <string name="RegistrationActivity_select_your_country">Velg land</string>
@@ -461,8 +450,6 @@ Importer en klartekst backup kompatibel med \'SMSBackup And Restore\'.</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure trenger MMS innstillinger for å levere media og gruppemeldinger via din telefonoperatør. Enheten din er ikke i stand til å oppgi denne informasjonen automatisk, noe som ofte skjer dersom den er låst til operatør eller er konfigurert med andre restriksjoner.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">For å sende media og gruppemeldinger, klikk \'OK\' og fullfør de forespurte instillingene. MMS oppsettet for din operatør kan ofte finnes ved å søke etter \'din operatørs APN\'. Du trenger kun å gjøre dette én gang.</string>
-  <!--receive_key_dialog-->
-  <string name="receive_key_dialog__complete">Ferdig</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 Verifiser telefonnummeret dit for å koble til TextSecure.
@@ -551,10 +538,6 @@ feilet.</string>
   <string name="arrays__use_default">Benytt standard</string>
   <string name="arrays__use_custom">Benytt egendefinert</string>
   <!--plurals.xml-->
-  <plurals name="minutes_ago">
-    <item quantity="one">%d minutt</item>
-    <item quantity="other">%d minutter</item>
-  </plurals>
   <plurals name="hours_ago">
     <item quantity="one">%d time</item>
     <item quantity="other">%d timer</item>

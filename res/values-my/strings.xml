@@ -34,6 +34,7 @@
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">စာတို အသေးစိတ်အချက်အလက်များ</string>
   <string name="ConversationFragment_success_exclamation">အောင်မြင်!</string>
+  <!--ConversationListActivity-->
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">စကားဝိုင်းကိုဖျက်မည်လား</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">စကားဝိုင်းတွင်စကားစမည်ပြောထားသည်များကိုဖျက်မည်မှာသေချာပြီလား</string>
@@ -69,7 +70,6 @@
   <!--PassphrasePromptActivity-->
   <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
-  <!--ReceiveKeyActivity-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_continue">ရှေ့ဆက်</string>
   <!--RegistrationProblemsActivity-->
@@ -162,7 +162,6 @@
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">ပိတ်ထားသည်ကိုဖွင့်</string>
   <!--prompt_mms_activity-->
-  <!--receive_key_dialog-->
   <!--registration_activity-->
   <!--registration_problems-->
   <!--registration_progress_activity-->

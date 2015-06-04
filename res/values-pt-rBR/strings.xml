@@ -20,12 +20,6 @@
     </string>
   <string name="ApplicationPreferencesActivity_disable">Desabilitar</string>
   <string name="ApplicationPreferencesActivity_unregistering">Descadastrando...</string>
-  <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Descadastrando-se da comunicação de dados</string>
-  <string name="ApplicationPreferencesActivity_disable_push_messages">Desabilitar mensagens push?</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">
-        Isto irá desabilitar mensagens push, descadastrando-o do servidor.
-        Você precisará recadastrar seu número telefônico para usar mensagens push futuramente.
-    </string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Erro ao conectar-se com o servidor!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS habilitado</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Toque para mudar seu app padrão de SMS</string>
@@ -129,6 +123,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Excluindo...</string>
   <string name="ConversationFragment_deleting_messages">Excluindo mensagens...</string>
+  <!--ConversationListActivity-->
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Excluir conversas?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Tem certeza que deseja excluir TODAS as conversas selecionadas?</string>
@@ -142,6 +137,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="CustomDefaultPreference_none">Nenhum</string>
   <!--DateUtils-->
   <string name="DateUtils_now">Agora</string>
+  <string name="DateUtils_minutes_ago">%d min</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Compartilhar com</string>
   <!--ExportFragment-->
@@ -259,17 +255,6 @@ Tem certeza que deseja fazer isto?</string>
   <string name="RatingManager_rate_now">Avaliar agora!</string>
   <string name="RatingManager_no_thanks">Não, obrigado</string>
   <string name="RatingManager_later">Mais tarde</string>
-  <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">A
-        assinatura nesta troca de chaves é diferente da que você recebeu anteriormente deste
-        contato. Isto pode significar que alguém está tentando interceptar sua comunicação, ou
-        que este contato reinstalou o TextSecure e agora tem uma nova chave de identidade.
-    </string>
-  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Talvez você queira verificar
-        este contato.
-    </string>
-  <string name="ReceiveKeyActivity_processing">Processando</string>
-  <string name="ReceiveKeyActivity_processing_key_exchange">Processando troca de chaves...</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">Conectar-se ao TextSecure</string>
   <string name="RegistrationActivity_select_your_country">Selecione seu país</string>
@@ -500,8 +485,6 @@ Tem certeza que deseja fazer isto?</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure precisa de configurações MMS para transmitir mídia e mensagens de grupo através da sua operadora. Seu aparelho não disponibiliza essa informação, o que pode ocorrer em aparelhos bloqueados ou com configurações restritivas.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Para enviar mídia e mensagens de grupo, clique \'OK\' e complete as configurações pedidas. As configurações MMS da sua operadora geralmente podem ser encontradas procurando por \'operadora APN\'. Você só precisará fazer isto uma vez.</string>
-  <!--receive_key_dialog-->
-  <string name="receive_key_dialog__complete">Concluído</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
         Verifique seu número telefônico para conectar-se ao TextSecure.
@@ -609,10 +592,6 @@ falhou.</string>
   <string name="arrays__use_default">Usar padrão</string>
   <string name="arrays__use_custom">Usar personalização</string>
   <!--plurals.xml-->
-  <plurals name="minutes_ago">
-    <item quantity="one">%d min</item>
-    <item quantity="other">%d mins</item>
-  </plurals>
   <plurals name="hours_ago">
     <item quantity="one">%d hora</item>
     <item quantity="other">%d horas</item>

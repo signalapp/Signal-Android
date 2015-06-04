@@ -18,11 +18,11 @@ Varoitus. Viestiesi ja avaimiesi tallennustilan salaus poistetaan käytöstä. S
 jatkavat toimintaansa, mutta kuka tahansa, jolla on fyysinen pääsy laitteeseesi voi lukea ne.</string>
   <string name="ApplicationPreferencesActivity_disable">Poista käytöstä</string>
   <string name="ApplicationPreferencesActivity_unregistering">Puretaan rekisteröintiä...</string>
-  <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Tietoverkkovälitteiseen viestintään vaadittua rekisteröintiä puretaan</string>
-  <string name="ApplicationPreferencesActivity_disable_push_messages">Poistetaanko pikaviestit käytöstä?</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">
-Tämä lopettaa pikaviestipalvelun poistamalla tietosi palvelimelta.
-Jos haluat käyttää pikaviestipalvelua jatkossa, sinun täytyy rekisteröityä uudelleen.</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Puretaan rekisteröintiä TextSecure-viestipalvelusta</string>
+  <string name="ApplicationPreferencesActivity_disable_textsecure_messages">Poistetaanko TextSecure-viestit käytöstä?</string>
+  <string name="ApplicationPreferencesActivity_this_will_disable_textsecure_messages">
+Tämä lopettaa TextSecure-viestipalvelun poistamalla tietosi palvelimelta.
+Jos haluat käyttää TextSecure-viestejä jatkossa, sinun täytyy rekisteröityä uudelleen.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Virhe yhdistettäessä palvelimeen!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">Tekstiviestit käytössä</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Kosketa, jos haluat vaihtaa oletustekstiviestisovellustasi</string>
@@ -54,6 +54,7 @@ viestiliikennettänne, tai sitä, että %2$s on uudelleenasentanut TextSecuren, 
 uutta identiteettiavainta.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Saatat haluta varmentaa
 tämän yhteystiedon.</string>
+  <string name="ConfirmIdentityDialog_accept">Hyväksy</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Viestin koko: %d kt</string>
   <string name="ConversationItem_expires_s">Umpeutuu: %s</string>
@@ -116,7 +117,7 @@ Vastaanotettu: %4$s</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Haluatko varmasti poistaa kaikki valitut viestit pysyvästi?</string>
   <string name="ConversationFragment_save_to_sd_card">Tallenna muistiin?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Jos tallennat tämän tiedoston muistiin, niin kaikki muutkin sovellukset voivat käyttää sitä.\n\nHaluatko jatkaa?</string>
-  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Tiedoston tallennuksessa tapahtui virhe!</string>
+  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Tiedoston tallennuksessa sattui virhe!</string>
   <string name="ConversationFragment_success_exclamation">Onnistui!</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Muistiin tallentaminen epäonnistui!</string>
   <string name="ConversationFragment_saving_attachment">Liitettä tallennetaan</string>
@@ -127,6 +128,8 @@ Vastaanotettu: %4$s</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Poistetaan...</string>
   <string name="ConversationFragment_deleting_messages">Viestejä poistetaan...</string>
+  <!--ConversationListActivity-->
+  <string name="ConversationListActivity_search">Hae...</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Poista viestiketjut?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Haluatko varmasti poistaa KAIKKI valitut viestiketjut?</string>
@@ -140,6 +143,7 @@ Vastaanotettu: %4$s</string>
   <string name="CustomDefaultPreference_none">Ei asetettu</string>
   <!--DateUtils-->
   <string name="DateUtils_now">Nyt</string>
+  <string name="DateUtils_minutes_ago">%d min</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Jaa</string>
   <!--ExportFragment-->
@@ -250,15 +254,6 @@ aiemmin, seuraa niiden uudelleen tuonnista viestien kaksoiskappaleita.</string>
   <string name="RatingManager_rate_now">Arvostele nyt!</string>
   <string name="RatingManager_no_thanks">Ei kiitos</string>
   <string name="RatingManager_later">Myöhemmin</string>
-  <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Tämän
-avaintenvaihdon sormenjälki eroaa tältä yhteystiedolta aiemmin saadusta sormenjäljestä.
-Tämä voi tarkoittaa joko sitä, että joku yrittää kaapata viestiliikennettänne, tai sitä, että yhteystietosi
-on uudelleenasentanut TextSecuren ja käyttää nyt uutta tunnisteavainta.</string>
-  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Saatat haluta varmentaa
-tämän yhteystiedon.</string>
-  <string name="ReceiveKeyActivity_processing">Käsitellään</string>
-  <string name="ReceiveKeyActivity_processing_key_exchange">Käsitellään avaintenvaihtoa...</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">Yhdistä TextSecurella</string>
   <string name="RegistrationActivity_select_your_country">Valitse maasi</string>
@@ -480,8 +475,6 @@ Tuo salaamaton varmuuskopiotiedosto. Yhteensopiva SMS Backup And Restore:lla.</s
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">Jotta TextSecure voisi lähettää mediatiedostoja ja ryhmäviestejä puhelinoperaattorisi kautta, täytyy MMS-asetusten olla määritelty. Tällä hetkellä nämä asetukset eivät ole saatavilla laitteessasi, mikä voi johtua laitteesi operaattorilukituksesta tai muista rajoittavista asetuksista.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Jotta voit lähettää mediatiedostoja ja ryhmäviestejä, napsauta \"OK\" ja täydennä pyydetyt asetukset. Puhelinoperaattorisi MMS-asetukset yleensä löytyvät, kun haet Internetistä operaattorisi nimellä ja termillä \"APN\". Tämä asetusten säätö tarvitsee tehdä vain kerran.</string>
-  <!--receive_key_dialog-->
-  <string name="receive_key_dialog__complete">Jatka</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 Jotta voit ottaa TextSecuren käyttöön, tulee sinun ensin vahvistaa puhelinnumerosi.</string>
@@ -524,7 +517,7 @@ tarvitsee verkkoyhteyttä tämän TextSecuren ominaisuuden käyttämiseen. Tarki
 on yhdistettynä 3G- tai WiFi-verkkoon.</string>
   <string name="registration_progress_activity__restrictive_firewall">Rajoittava palomuuri.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
-Jos olet yhdistänyt WiFi-verkkoon, on mahdollista että palomuuri estää pääsyn TextSecuren palvelimelle. Kokeille toista verkkoa tai mobiiliverkkoa.</string>
+Jos olet yhdistänyt WiFi-verkkoon, on mahdollista että palomuuri estää pääsyn TextSecuren palvelimelle. Kokeile toista verkkoa tai mobiiliverkkoa.</string>
   <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
 TextSecure vahvistaa nyt puhelinnumerosi automaattisesti tekstiviestillä.</string>
   <string name="registration_progress_activity__connecting">Yhdistetään...</string>
@@ -572,13 +565,9 @@ epäonnistui.</string>
   <string name="arrays__use_default">Käytä oletusta</string>
   <string name="arrays__use_custom">Käytä mukautettua</string>
   <!--plurals.xml-->
-  <plurals name="minutes_ago">
-    <item quantity="one">%d min</item>
-    <item quantity="other">%d min</item>
-  </plurals>
   <plurals name="hours_ago">
-    <item quantity="one">%d h</item>
-    <item quantity="other">%d h</item>
+    <item quantity="one">%d tunti</item>
+    <item quantity="other">%d tuntia</item>
   </plurals>
   <!--preferences.xml-->
   <string name="preferences__general">Yleistä</string>
@@ -591,7 +580,7 @@ epäonnistui.</string>
   <string name="preferences__enable_enter_key_title">Ota rivinvaihto käyttöön</string>
   <string name="preferences__replace_smiley_with_enter_key">Korvaa hymiönäppäin rivinvaihtonäppäimellä</string>
   <string name="preferences__pref_enter_sends_title">Rivinvaihto lähettää</string>
-  <string name="preferences__pressing_the_enter_key_will_send_text_messages">Rivinvaihdon painallus lähettää tekstiviestin</string>
+  <string name="preferences__pressing_the_enter_key_will_send_text_messages">Rivinvaihdon painallus lähettää viestin</string>
   <string name="preferences__display_settings">Näytön asetukset</string>
   <string name="preferences__choose_identity">Valitse identiteetti</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Valitse yhteystieto osoitekirjasta.</string>
@@ -748,7 +737,7 @@ Ilmaiset ja yksityiset viestit TextSecuren ja Signalin käyttäjille</string>
   <string name="reminder_header_sms_default_text">Napsauta, jos haluat tehdä TextSecuresta oletustekstiviestisovelluksesi.</string>
   <string name="reminder_header_sms_import_title">Tuo järjestelmän tekstiviestit?</string>
   <string name="reminder_header_sms_import_text">Napsauta, jos haluat kopioida puhelimesi tekstiviestit TextSecuren salattuun tietokantaan.</string>
-  <string name="reminder_header_push_title">Ota käyttöön TextSecure-pikaviestipalvelu?</string>
+  <string name="reminder_header_push_title">Ota käyttöön TextSecure-viestipalvelu?</string>
   <string name="reminder_header_push_text">Napsauta tästä, jos haluat sanoa ei tekstiviestimaksuille ja kyllä vahvemmalle yksityisyydensuojalle sekä nopeille viesteille.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Sinä</string>

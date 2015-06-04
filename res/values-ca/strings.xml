@@ -14,11 +14,6 @@
   <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">Alerta, això desactivarà l\'emmagatzematge encriptat per a tots els missatges i claus. Les teves sessions continuaran funcionant, però qualsevol persona amb accés físic al teu dispositiu podrà accedir-hi.</string>
   <string name="ApplicationPreferencesActivity_disable">Desactiva</string>
   <string name="ApplicationPreferencesActivity_unregistering">Des-registrant...</string>
-  <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Des-registrant per les comunicacions basades en dades</string>
-  <string name="ApplicationPreferencesActivity_disable_push_messages">Desactivar els missatges push?</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">
-Això desactivarà els missatges push des-registran-te del servidor.
-Necessitaràs tornar a registrar el teu número de telèfon per utilitzar els missatges push una altra vegada.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Error connectant amb el servidor!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS Habilitats</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Toca per canviar la teva app d\'SMS predeterminada</string>
@@ -60,6 +55,7 @@ Necessitaràs tornar a registrar el teu número de telèfon per utilitzar els mi
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalls del missatge</string>
   <string name="ConversationFragment_success_exclamation">Èxit!</string>
+  <!--ConversationListActivity-->
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Esborrar fils de conversa?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Estàs segur que vols esborrar TOTS els fils de conversa seleccionats?</string>
@@ -119,11 +115,6 @@ Necessitaràs tornar a registrar el teu número de telèfon per utilitzar els mi
   <!--PassphrasePromptActivity-->
   <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
-  <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">La signatura en aquest intercanvi de claus és diferent que el que havies rebut prèviament d\'aquest contacte. Això pot voler dir tant que algú està intentant interceptar la teva comunicació, o que aquest contacte simplement ha re-instal·lat TextSecure i ara té una clau d\'identitat nova.</string>
-  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Pot ser que vulguis verificar aquest contacte.</string>
-  <string name="ReceiveKeyActivity_processing">Processant</string>
-  <string name="ReceiveKeyActivity_processing_key_exchange">Processant intercanvi de clau...</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">Connecta amb TextSecure</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Has d\'especificar el teu codi de país</string>
@@ -266,8 +257,6 @@ des de l\'app de missatgeria predeterminada del sistema.</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure necessita ajustaments MMS per entregar missatges de grup i multimèdia a través de l\'operador inalàmbric. El teu dispositiu no fa que aquesta informació estigui disponible, cosa que és certa ocasionalment en dispositius bloquejats o amb altres configuracions restringides.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Per enviar missatges multimèdia i de grup, clica \'OK\' i completa els ajustaments demanats. Els ajustaments MMS de la teva operadora normalment poden ser trobats buscant \'latevaoperadora APN\'. Només necessitaràs fer això una vegada.</string>
-  <!--receive_key_dialog-->
-  <string name="receive_key_dialog__complete">Complet</string>
   <!--registration_activity-->
   <string name="registration_activity__your_country">EL TEU PAÍS</string>
   <string name="registration_activity__your_country_code_and_phone_number">EL TEU CODI DE PAÍS I NÚMERO DE TELÈFON</string>

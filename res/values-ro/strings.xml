@@ -17,12 +17,6 @@
 Atenție, acestă acțiune va dezactiva stocarea criptată a tuturor mesajelor și cheilor. Sesiunile actuale criptate vor continua să funcționeze, dar oricine care are acces la dispozitiv va putea să le acceseze.</string>
   <string name="ApplicationPreferencesActivity_disable">Dezactivează</string>
   <string name="ApplicationPreferencesActivity_unregistering">Anulare înregistrării se află în desfășurare...</string>
-  <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Anulare inregistrarii comunicatiilor de date</string>
-  <string name="ApplicationPreferencesActivity_disable_push_messages">Dezactivează mesajele push?</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">
-        Mesajele de tip push vor fi dezactivate prin dezabonarea de la server.
-        Numărul tău de telefon va trebui înregistrat din nou pentru a utiliza mesajele de tip push pe viitor.
-    </string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Eroare de conectare cu serverul!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS activat</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Atingeţi pentru a schimba aplicaţia SMS implicită</string>
@@ -115,6 +109,7 @@ Atenție, acestă acțiune va dezactiva stocarea criptată a tuturor mesajelor �
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Se șterge...</string>
   <string name="ConversationFragment_deleting_messages">Se șterg mesajele...</string>
+  <!--ConversationListActivity-->
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Şterg conversaţiile?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Eşti sigur că doreşti ştergerea TUTUROR conversaţiilor selectate?</string>
@@ -228,11 +223,6 @@ Restaurarea unui backup criptat va înlocui complet cheile existente, setările 
   <string name="RatingManager_rate_now">Evaluează acum!</string>
   <string name="RatingManager_no_thanks">Nu mulţumesc</string>
   <string name="RatingManager_later">Mai târziu</string>
-  <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Semnătura digitală din acest schimb de chei este diferită fața de ce ai primit anterior de la această persoană. Asta poate însemna că cineva încearcă să intercepteze comunicația sau că această persoană a reinstalat TextSecure și acum are o nouă cheie de identitate.</string>
-  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Probabil ca doresti sa verifici aceasta persoana.</string>
-  <string name="ReceiveKeyActivity_processing">Procesare</string>
-  <string name="ReceiveKeyActivity_processing_key_exchange">Se proceseaza schimbul de chei...</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">Conectare prin TextSecure</string>
   <string name="RegistrationActivity_select_your_country">Alegeţi ţara dumneavostră</string>
@@ -450,8 +440,6 @@ Importă un fișier de backup text. Compatibil cu \'SMSBackup And Restore.\'</st
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure are nevoie de setările APN pentru a trimite mesaje multimedia prin operatorul wireless. Acest aparat nu oferă informațiile necesare, lucru care se poate întâmpla uneori pentru dispozitive blocate sau alte configurații restrictive.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Pentru a putea trimite mesaje multimedia cât și mesaje într-un grup, apăsați \'OK\' și completați setările solicitate. Setările MMS pentru operatorul dvs. pot fi găsite cautând după \'APN operatorul tău\'. Această operațiune este necesară o singură dată.</string>
-  <!--receive_key_dialog-->
-  <string name="receive_key_dialog__complete">Complet</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
         Verifică numărul tău de telefon pentru a te conecta la TextSecure.
@@ -541,11 +529,6 @@ Operaţiunea iniţiată de TextSecure a expirat în timpul aşteptării primirii
   <string name="arrays__use_default">Implicit</string>
   <string name="arrays__use_custom">Specific</string>
   <!--plurals.xml-->
-  <plurals name="minutes_ago">
-    <item quantity="one">%d min</item>
-    <item quantity="few">%d min</item>
-    <item quantity="other">%d min</item>
-  </plurals>
   <plurals name="hours_ago">
     <item quantity="one">%d oră</item>
     <item quantity="few">%d ore</item>

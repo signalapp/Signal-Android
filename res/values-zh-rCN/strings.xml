@@ -17,11 +17,6 @@
 警告：这将会禁用所有信息和密钥的存储加密。您的加密会话继续有效，但是任何能物理接触到此设备的人都能够访问这些数据。</string>
   <string name="ApplicationPreferencesActivity_disable">禁用</string>
   <string name="ApplicationPreferencesActivity_unregistering">取消注册...</string>
-  <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">取消数据通信注册</string>
-  <string name="ApplicationPreferencesActivity_disable_push_messages">禁用消息推送？</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">
-这将在服务器上注销您的号码以禁用推送信息。
-将来如果想再次使用推送信息您需要重新注册电话号码。</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">连接服务器错误！</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">已开启短信</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">点击来改变默认的短信应用</string>
@@ -119,6 +114,7 @@
   <string name="ConversationFragment_sms">短信</string>
   <string name="ConversationFragment_deleting">正在删除…</string>
   <string name="ConversationFragment_deleting_messages">正在删除信息…</string>
+  <!--ConversationListActivity-->
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">删除线程？</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">是否确定要删除所有选定对话线程？</string>
@@ -238,11 +234,6 @@
   <string name="RatingManager_rate_now">立刻评价！</string>
   <string name="RatingManager_no_thanks">不，谢谢。</string>
   <string name="RatingManager_later">稍后</string>
-  <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">此人当前签名所使用的密钥与之前所接收到的密钥不一致，这可能是由于某人正试图拦截您的通信，或者此人重新安装TextSecure而有了新密钥。</string>
-  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">您可能希望验证这个联系人。</string>
-  <string name="ReceiveKeyActivity_processing">处理中</string>
-  <string name="ReceiveKeyActivity_processing_key_exchange">正在处理密钥交换</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">通过TextSecure连接</string>
   <string name="RegistrationActivity_select_your_country">选择您的国家</string>
@@ -460,8 +451,6 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure需要通过运营商获取您的彩信设置才能接受彩信或组播信息，但是您的设备没有这些信息，可能是由于设备被锁定或者访问受到限制。</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">想发送多媒体和组播信息，需点击“好”来完成所需的设置。您可以通过搜索“您的运营商 APN”（如百度／谷歌：中国移动 APN）来获取这些信息。通常，您只需要设置一次。</string>
-  <!--receive_key_dialog-->
-  <string name="receive_key_dialog__complete">完成</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 通过验证您的手机号码来连接到 TextSecure 。</string>
@@ -559,9 +548,6 @@ TextSecure 在等待短信验证时超时。</string>
   <string name="arrays__use_default">使用默认</string>
   <string name="arrays__use_custom">使用定制</string>
   <!--plurals.xml-->
-  <plurals name="minutes_ago">
-    <item quantity="other">%d 分钟</item>
-  </plurals>
   <plurals name="hours_ago">
     <item quantity="other">%d 小时</item>
   </plurals>

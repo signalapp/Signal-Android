@@ -19,11 +19,6 @@ sessioner kommer fortsätta att fungera, men vem som helst med fysisk tillgång 
 kommer kunna komma åt dem.</string>
   <string name="ApplicationPreferencesActivity_disable">Inaktivera</string>
   <string name="ApplicationPreferencesActivity_unregistering">Avregistrerar...</string>
-  <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Avregistrerar för datakommunikation</string>
-  <string name="ApplicationPreferencesActivity_disable_push_messages">Inaktivera push-meddelanden?</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">
-Det här kommer slå av pushmeddelanden genom att avregistrera dig från servern. Du kommer behöva återregistrera ditt telefonnummer för att använda pushmeddelanden igen i framtiden.
-</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Fel vid anslutning till server!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS aktiverat</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Tryck för att ändra din standardapp för SMS</string>
@@ -122,6 +117,7 @@ verifiera denna kontakt.</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Raderar...</string>
   <string name="ConversationFragment_deleting_messages">Raderar meddelanden...</string>
+  <!--ConversationListActivity-->
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Radera trådar?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Är du säker på att du vill radera ALLA markerade konversationstrådar?</string>
@@ -135,6 +131,7 @@ verifiera denna kontakt.</string>
   <string name="CustomDefaultPreference_none">Inga</string>
   <!--DateUtils-->
   <string name="DateUtils_now">Nu</string>
+  <string name="DateUtils_minutes_ago">%d min</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Dela med</string>
   <!--ExportFragment-->
@@ -244,13 +241,6 @@ som för närvarande finns i TextSecure.</string>
   <string name="RatingManager_rate_now">Betygsätt nu!</string>
   <string name="RatingManager_no_thanks">Nej tack</string>
   <string name="RatingManager_later">Senare</string>
-  <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Signaturen för detta nyckelutbytet skiljer sig från det som du tidigare har mottagit från denna kontakt.
-Detta kan innebära antingen att någon försöker avlyssna din kommunikation, eller att denna kontakt helt enkelt installerade om TextSecure och nu har en ny identitetsnyckel.</string>
-  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Det kan vara en bra idé att
-verifiera denna kontakt.</string>
-  <string name="ReceiveKeyActivity_processing">Bearbetar</string>
-  <string name="ReceiveKeyActivity_processing_key_exchange">Bearbetar nyckelutbyte...</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">Anslut med TextSecure</string>
   <string name="RegistrationActivity_select_your_country">Välj ditt land</string>
@@ -462,8 +452,6 @@ från systemets standardapp för meddelanden.</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure kräver MMS inställningar för att leverera medie- och gruppmeddelanden via din mobilöperatör. Din enhet gör inte den här informationen tillgänglig, vilket ibland stämmer för låsta enheter och andra restriktiva konfigurationer.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">För att skicka medie- och gruppmeddelande, klicka \'OK\' och fyll i de begärda inställningarna. MMS inställningarna för din operatör kan generellt hittas genom att söka efter \'din operatör APN\'. Du behöver bara göra det här en gång.</string>
-  <!--receive_key_dialog-->
-  <string name="receive_key_dialog__complete">Klart</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 Verifiera ditt telefonnummer för att ansluta till TextSecure.</string>
@@ -550,10 +538,6 @@ TextSecure uppnådde tidsgränsen för sms-verifiering.</string>
   <string name="arrays__use_default">Använd standardinställning</string>
   <string name="arrays__use_custom">Använd anpassad inställning</string>
   <!--plurals.xml-->
-  <plurals name="minutes_ago">
-    <item quantity="one">%d minut</item>
-    <item quantity="other">%d minuter</item>
-  </plurals>
   <plurals name="hours_ago">
     <item quantity="one">%d timme</item>
     <item quantity="other">%d timmar</item>

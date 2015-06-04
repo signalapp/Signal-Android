@@ -21,12 +21,6 @@ získa aj prístup k týmto odosieaným informáciám.
 </string>
   <string name="ApplicationPreferencesActivity_disable">Vypnúť</string>
   <string name="ApplicationPreferencesActivity_unregistering">Prebieha odhlasovanie...</string>
-  <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Vypína sa prenos dát</string>
-  <string name="ApplicationPreferencesActivity_disable_push_messages">Vypnúť správy \"push\"?</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">
-Týmto sa odhlásite zo serveru a vypnete príjem správ typu \"push\".
-Ak budete v budúcnosti chcieť dostávať upozornenia zo serveru,
-budete musieť znovu zaregistrovať vaše telefónne číslo.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Chyba pripojenia na server!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS zapnuté</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Dotykom sem môžete zmeniť Vašu predvolenú aplikáciu pre SMS.</string>
@@ -122,6 +116,7 @@ identitu tohto kontaktu.
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Maže sa...</string>
   <string name="ConversationFragment_deleting_messages">Mažú sa správy...</string>
+  <!--ConversationListActivity-->
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Zmazať vlákna?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Ste si istí, že chcete naozaj zmazať VŠETKY označené vlákna konverzácií?</string>
@@ -240,16 +235,6 @@ opätovným importom zduplikujete správy.
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Nesprávne heslo!</string>
   <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
-  <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Elektronický podpis použítý pri tejto výmene šifrovacích kľúčov sa líši od podpisu,
-ktorý bol v minulosti použitý týmto kontaktom. To môže znamenať buď to,
-že sa niekto snaží odpočúvať Vašu komunikáciu, alebo to,
-že tento kontakt jednoducho preinštaloval TextSecure a teraz má nový elektronický podpis.
-</string>
-  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Možno by ste mali overiť
-identitu tohto kontaktu.</string>
-  <string name="ReceiveKeyActivity_processing">Spracováva sa</string>
-  <string name="ReceiveKeyActivity_processing_key_exchange">Spracovávajú sa kľúče vymeny</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">Pripojiť s TextSecure</string>
   <string name="RegistrationActivity_select_your_country">Vyber svoju krajinu</string>
@@ -472,8 +457,6 @@ Importovať nezakryptovanú zálohu. Kompatibilné so \'SMSBackup And Restore\'.
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure potrebuje nastavenia MMS pre doručenie médií a skupinových správ s pomocou Vášho operátora. Vaše zariadenie nedalo tieto informácie k dispozícií, čo sa niekedy stáva u zablokovaných zariadení alebo kvôli príliš obmedzujúcim nastaveniam.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Pre odosielanie multimédií a skupinových správ vyberte \'OK\' a preveďte potrebné nastavenia. Nastavenia MMS pre Vášho operátora sa väčšinou dajú nájsť zadaním \'Váš operátor APN\' do vyhľadávača na internete. Toto nastavenie je potrebné dokončiť iba prvykrát.</string>
-  <!--receive_key_dialog-->
-  <string name="receive_key_dialog__complete">Dokončené</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 Pre spojenie s TextSecure overte Vaše telefónne číslo.
@@ -582,11 +565,6 @@ zlyhalo.
   <string name="arrays__use_default">Použiť predvolené</string>
   <string name="arrays__use_custom">Použiť vlastné</string>
   <!--plurals.xml-->
-  <plurals name="minutes_ago">
-    <item quantity="one">%d minúta</item>
-    <item quantity="few">%d minúty</item>
-    <item quantity="other">%d minút</item>
-  </plurals>
   <plurals name="hours_ago">
     <item quantity="one">%d hodina</item>
     <item quantity="few">%d hodiny</item>

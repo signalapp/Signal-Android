@@ -19,11 +19,6 @@
     </string>
   <string name="ApplicationPreferencesActivity_disable">Онемогући</string>
   <string name="ApplicationPreferencesActivity_unregistering">Одјављујем...</string>
-  <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Одјављујем се са комуникације преко интернета</string>
-  <string name="ApplicationPreferencesActivity_disable_push_messages">Онемогућити сигурне поруке?</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">
-Ово ће да онемогући сигурне поруке одјављујући вас са сервера.
-Мораћете поново да пријавите ваш број телефона да бисте опет користили сигурне поруке.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Грешка повезивања на сервер!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">СМС омогућен</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Додирните да бисте променили подразумевану апликацију за СМС</string>
@@ -124,6 +119,7 @@
   <string name="ConversationFragment_sms">СМС</string>
   <string name="ConversationFragment_deleting">Брисање...</string>
   <string name="ConversationFragment_deleting_messages">Бришем поруке...</string>
+  <!--ConversationListActivity-->
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Обрисати нити?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Желите ли заиста да обришете СВЕ изабране нити преписки?</string>
@@ -137,6 +133,7 @@
   <string name="CustomDefaultPreference_none">Ниједна</string>
   <!--DateUtils-->
   <string name="DateUtils_now">Сад</string>
+  <string name="DateUtils_minutes_ago">%d минута</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Подели са</string>
   <!--ExportFragment-->
@@ -250,15 +247,6 @@
   <string name="RatingManager_rate_now">Оцени одмах!</string>
   <string name="RatingManager_no_thanks">Не, хвала</string>
   <string name="RatingManager_later">Касније</string>
-  <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Потпис
-ове размене кључева је другачији од претходно примљеног потписа од овог контакта.
-Ово може да значи или да неко покушава да пресретне вашу комуникацију или
-да је контакт поново инсталирао Сигурне поруке и сад има нови кључ идентитета.</string>
-  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Можда желите да оверите
-овај контакт.</string>
-  <string name="ReceiveKeyActivity_processing">Обрађујем</string>
-  <string name="ReceiveKeyActivity_processing_key_exchange">Обрађујем размену кључева…</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">Повежите се на Сигурне поруке</string>
   <string name="RegistrationActivity_select_your_country">Изаберите вашу државу</string>
@@ -479,8 +467,6 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">Сигурне поруке захтевају ММС поставке да би испоручиле мултимедијалне и групне поруке преко вашег оператера. Ваш уређај не даје ове податке на располагање, што повремено важи за закључане уређаје и друге ограничавајуће конфигурације.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Да бисте слали мултимедијалне и групне поруке додирните „У реду“ и попуните захтеване поставке. ММС поставке за вашег оператера углавном можете наћи претрагом „мој оператер APN“. Ово треба да урадите само једном.</string>
-  <!--receive_key_dialog-->
-  <string name="receive_key_dialog__complete">Доврши</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 Потврдите ваш број телефона да бисте се пријавили на Сигурне поруке.
@@ -576,11 +562,6 @@
   <string name="arrays__use_default">Користи подразумевано</string>
   <string name="arrays__use_custom">Користи посебно</string>
   <!--plurals.xml-->
-  <plurals name="minutes_ago">
-    <item quantity="one">%d минута</item>
-    <item quantity="few">%d минуте</item>
-    <item quantity="other">%d минута</item>
-  </plurals>
   <plurals name="hours_ago">
     <item quantity="one">%d сат</item>
     <item quantity="few">%d сата</item>

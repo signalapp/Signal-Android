@@ -18,11 +18,6 @@
     </string>
   <string name="ApplicationPreferencesActivity_disable">Выключыць</string>
   <string name="ApplicationPreferencesActivity_unregistering">Працэс адмены рэгістрацыі...</string>
-  <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Адмена рэгістрацыі для дадзеных сувязі</string>
-  <string name="ApplicationPreferencesActivity_disable_push_messages">Адключыць імгненныя паведамленні?</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">
-Гэта адключыць функцыю імгненных паведамленняў, вы згубіце рэгістрацыю на серверы.
-Вам трэба будзе перарэгістраваць свой нумар тэлефона, каб выкарыстоўваць паслугу паведамленняў ізноў.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Памылка падлучэння да сервера!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS уключаны</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Націсніце, каб змяніць стандартную праграму для SMS</string>
@@ -118,6 +113,7 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Выдаленне...</string>
   <string name="ConversationFragment_deleting_messages">Выдаленне паведамлення...</string>
+  <!--ConversationListActivity-->
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Выдаліць гутарку?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Вы ўпэўнены, што хочаце выдаліць УСЕ абраныя гутаркі?</string>
@@ -235,12 +231,6 @@
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Няправільны пароль!</string>
   <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
-  <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Подпіс падчас цяперашняга абмене ключамі адрозніваецца ад таго, які быў атрыманы ад гэтага кантакта мінулым разам. Гэта можа вызначаць, што нехта спрабуе перахапіць вашыя паведамленні, альбо гэты кантакт проста пераўсталяваў па-новай TextSecure і зараз мае новы ідэнтыфікацыйны ключ.
-    </string>
-  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Магчыма Вы жадаеце верыфікаваць гэты кантакт?</string>
-  <string name="ReceiveKeyActivity_processing">У працэсе</string>
-  <string name="ReceiveKeyActivity_processing_key_exchange">Працэс абмена ключамі...</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">Падключыць да TextSecure</string>
   <string name="RegistrationActivity_select_your_country">Абярыце вашу краіну</string>
@@ -451,8 +441,6 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure патрэбныя налады MMS для дастаўкі медыя і групавых паведамленняў праз аператара мабільнай сувязі. Ваша прылада не дазваляе атрымаць гэтыя налады.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Каб даслаць медыя ці групавыя паведамленні, націсніце \'OK\' і задайце неабходныя налады. Налады MMS для вашага аператара могуць быць атрыманыя праз пошук у \'APN вашага аператара\'. Вы можаце зрабіць гэта толькі адзін раз. </string>
-  <!--receive_key_dialog-->
-  <string name="receive_key_dialog__complete">Зроблена</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 Праверце ваш тэлефонны нумар каб падлучыцца да TextSecure.</string>
@@ -535,12 +523,6 @@ TextSecure не дачакаўся параверачная SMS.</string>
   <string name="arrays__use_default">Выкарыстоўваць стандартны</string>
   <string name="arrays__use_custom">Выкарыстоўваць кастамны</string>
   <!--plurals.xml-->
-  <plurals name="minutes_ago">
-    <item quantity="one">%d хвіліна</item>
-    <item quantity="few">%d хвілін</item>
-    <item quantity="many">%d хвілін</item>
-    <item quantity="other">%d хвілін</item>
-  </plurals>
   <plurals name="hours_ago">
     <item quantity="one">%d гадзіна</item>
     <item quantity="few">%d гадзін</item>

@@ -19,11 +19,11 @@ bude i nadále šifrována, ale bude si ji moci přečíst kdokoliv s fyzickým 
 k vašemu zařízení.</string>
   <string name="ApplicationPreferencesActivity_disable">Deaktivovat</string>
   <string name="ApplicationPreferencesActivity_unregistering">Rušení registrace...</string>
-  <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Probíháhá zrušení datové komunikace</string>
-  <string name="ApplicationPreferencesActivity_disable_push_messages">Zakázat TextSecure zprávy?</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">
-Tímto zakážete TextSecure zprávy odregistrací ze serveru.
-Abyste mohli používat TextSecure zprávy v budoucnosti, budete muset znovu registrovat vaše telefonní číslo.</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Probíhá odregistrování ze služby TextSecure</string>
+  <string name="ApplicationPreferencesActivity_disable_textsecure_messages">Zakázat TextSecure zprávy?</string>
+  <string name="ApplicationPreferencesActivity_this_will_disable_textsecure_messages">
+Tímto zakážete textSecure zprávy odregistrací tohoto telefonního čísla ze serveru.
+Abyste mohli v budoucnu používat TextSecure zprávy, bude nutno toto telefonní číslo znovu zaregistrovat.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Chyba při připojování k serveru!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS povoleny</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Dotykem nastavte výchozí aplikaci pro SMS</string>
@@ -55,6 +55,7 @@ zachytit vaši konverzaci, nebo že %2$s jen přeinstaloval TextSecure a nyní m
 identifikační klíč.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Zkontrolovat tento
 kontakt</string>
+  <string name="ConfirmIdentityDialog_accept">Akceptovat</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Délka zprávy: %d KB</string>
   <string name="ConversationItem_expires_s">Vyprší: %s</string>
@@ -124,6 +125,8 @@ kontakt</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Mažu...</string>
   <string name="ConversationFragment_deleting_messages">Mažu zprávy...</string>
+  <!--ConversationListActivity-->
+  <string name="ConversationListActivity_search">Vyhhledávám...</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Smazat konverzace?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Opravdu chcete smazat VŠECHNY označené konverzace?</string>
@@ -137,6 +140,7 @@ kontakt</string>
   <string name="CustomDefaultPreference_none">Nic</string>
   <!--DateUtils-->
   <string name="DateUtils_now">teď</string>
+  <string name="DateUtils_minutes_ago">%d minuta</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Sdílet s</string>
   <!--ExportFragment-->
@@ -151,7 +155,7 @@ kontakt</string>
   <string name="ExportFragment_success">Úspěšně dokončeno!</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_TextSecure_communication_failure">Trvalá chyba komunikace TextSecure</string>
-  <string name="GcmRefreshJob_TextSecure_was_unable_to_register_with_Google_Play_Services">TextSecure se nemůže registrovat k službě Google Play. Datová komunikca byla zakázána, prosím zkuste se znovu registrovat v menu  nastavení TextSecure.</string>
+  <string name="GcmRefreshJob_TextSecure_was_unable_to_register_with_Google_Play_Services">TextSecure se nemůže registrovat k službě Google Play. Datová komunikace byla zakázána, prosím zkuste se znovu registrovat v menu nastavení TextSecure.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Nová skupina</string>
   <string name="GroupCreateActivity_actionbar_update_title">Upravit skupinu</string>
@@ -244,14 +248,6 @@ Poslat zprávy Vaším jménem.</string>
   <string name="RatingManager_rate_now">Ohodnotit teď!</string>
   <string name="RatingManager_no_thanks">Ne díky</string>
   <string name="RatingManager_later">Později</string>
-  <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Podpis na této výměně klíčů je jiný, než jaký jste od tohoto kontaktu obdrželi dříve. To může
-znamenat, že se někdo pokouší zachytit vaši konverzaci, nebo jen že si váš kontakt
-přeinstaloval TextSecure a má teď nový identifikační klíč.</string>
-  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Zkontrolovat tento
-kontakt</string>
-  <string name="ReceiveKeyActivity_processing">Probíhá zpracování</string>
-  <string name="ReceiveKeyActivity_processing_key_exchange">Probíhá výměna klíčů...</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">Připojení pomocí TextSecure</string>
   <string name="RegistrationActivity_select_your_country">Zvolte svou zemi</string>
@@ -466,8 +462,6 @@ Importovat nešifrovanou zálohu kompatibilní s \"SMSBackup And Restore\".</str
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure vyžaduje informace o nastavení MMS, aby mohly být média a skupinové zprávy doručovány. Váš přístroj tyto informace neposkytuje, což se stává u zamknutých nebo jinak upravených přístrojů.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Pro odesílání médií a skupinových zpráv klepněte na OK a vyplňte požadované informace. Nastavení MMS pro vašeho operátora lze většinou zjistit hledáním \"*váš operátor* APN\". Toto je je třeba udělat pouze jednou.</string>
-  <!--receive_key_dialog-->
-  <string name="receive_key_dialog__complete">Hotovo</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 Ověření vašeho telefoního čísla pro připojení k TextSecure</string>
@@ -568,11 +562,6 @@ TextSecure nyní automaticky ověří vaše telefonní číslo pomocí potvrzova
   <string name="arrays__use_default">Použít defualtní</string>
   <string name="arrays__use_custom">Použít vlastní</string>
   <!--plurals.xml-->
-  <plurals name="minutes_ago">
-    <item quantity="one">%d minuta</item>
-    <item quantity="few">%d minuty</item>
-    <item quantity="other">%d minut</item>
-  </plurals>
   <plurals name="hours_ago">
     <item quantity="one">%d hodina</item>
     <item quantity="few">%d hodiny</item>

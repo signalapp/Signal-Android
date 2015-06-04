@@ -19,12 +19,6 @@ Zure enkriptatutako saioek funtzionatzen jarraituko dute, baina zure gailua fisi
 gai izango da saiootan sartzeko.</string>
   <string name="ApplicationPreferencesActivity_disable">Desgaitu</string>
   <string name="ApplicationPreferencesActivity_unregistering">Deserregistratzen...</string>
-  <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Deserregistratzen datuetan oinarritutako komunikaziorako</string>
-  <string name="ApplicationPreferencesActivity_disable_push_messages">Push mezuak desgaitu?</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">
-Honek push mezuak desgaituko du zu zerbitzaritik deserregistratuz.
-Zure telefono zenbakia bererregistratu beharko duzu push mezuak berriro erabili ahal izateko.
-</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Errorea zerbitzariarekin konektatzerakoan!</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Ukitu zure SMS aplikazio lehenetsia aldatzeko</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Ukitu TextSecure zure SMS aplikazio lehenetsia bihurtzeko</string>
@@ -106,6 +100,7 @@ Zure telefono zenbakia bererregistratu beharko duzu push mezuak berriro erabili 
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Ezabatzen...</string>
   <string name="ConversationFragment_deleting_messages">Mezuak ezabatzen...</string>
+  <!--ConversationListActivity-->
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Hariak ezabatu?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Ziur zaude aukeratutako solasaldi hari GUZTIAK ezabatu nahi izateaz?</string>
@@ -207,15 +202,6 @@ Babeskopia hau lehenago inportatu baduzu, mezu bikoiztuak sortu daitezke.
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Pasahitz baliogabea!</string>
   <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
-  <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Gako
-elkar-trukatzen honen sinadura kontaktu honengandik aurretik jaso duzunaz desberdina da.
-Izan daiteke norbait zure komunikazioaren erdian egotea edo, era berean, posible da kontaktu honek TextSecure berrinstalatu izana eta gako berri bat edukitzea.
-
-</string>
-  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Agian kontaktu hau egiaztatu beharko zenuke.</string>
-  <string name="ReceiveKeyActivity_processing">Prozesatzen</string>
-  <string name="ReceiveKeyActivity_processing_key_exchange">Gakoaren datu-elkartrukea prozesatzen...</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">TextSecure-ekin Konektatu</string>
   <string name="RegistrationActivity_select_your_country">Zure herrialdea aukeratu</string>
@@ -431,8 +417,6 @@ Enkriptatu gabeko babeskopia bat inportatu. Bateragarria \'SMSBackup Eta Restore
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecurek MMS ezarpenak behar ditu media eta taldeko mezuak banatu ahal izateko zure hari-gabeko hornitzailearen bitartez. Zure gailuak ez dauka informazio hau eskuragarri. Hau batzuetan gertatzen da blokeatuta dauden eta beste konfigurazio murrizgarriak dituzten gailuetan.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Media eta taldeko mezuak bidaltzeko, klik egin \'OK\'-n eta osatu beharrezkoak diren ezarpenak. Zure hornitzailearentzako ezarpenak normalean topa daitezke zure hornitzailearen APNa bilatuz. Bakarrik behin egin beharko duzu hau.</string>
-  <!--receive_key_dialog-->
-  <string name="receive_key_dialog__complete">Osatuta</string>
   <!--registration_activity-->
   <string name="registration_activity__your_country">ZURE HERRIALDEA</string>
   <string name="registration_activity__your_country_code_and_phone_number">ZURE HERRIALDEA ETA 

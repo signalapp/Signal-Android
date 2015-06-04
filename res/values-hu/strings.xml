@@ -20,12 +20,6 @@ hozzáférhet az üzenetekhez és a kulcsokhoz!
  </string>
   <string name="ApplicationPreferencesActivity_disable">Tiltás</string>
   <string name="ApplicationPreferencesActivity_unregistering">Regisztráció törlése...</string>
-  <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Az adat alapú kommunikáció regisztrációjának törlése.</string>
-  <string name="ApplicationPreferencesActivity_disable_push_messages">Letiltod az azonnali üzeneteket?</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">
-Ez letiltja az azonnali üzeneteket a regisztrációd törlésével a kiszolgálón.
-A telefonod újra regisztrálása szükséges az azonnali üzenetek jövőbeli használatához.
- </string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Hiba a kiszolgálóhoz való kapcsolódáskor!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS engedélyezett</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Érintsd meg az alapértelmezett SMS alkalmazás megváltoztatásához</string>
@@ -45,6 +39,7 @@ A telefonod újra regisztrálása szükséges az azonnali üzenetek jövőbeli h
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nem található alkalmazás a média kiválasztásához</string>
   <!--AttachmentTypeSelectorAdapter-->
+  <string name="AttachmentTypeSelectorAdapter_take_photo">Fénykép készítése</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Kép</string>
   <string name="AttachmentTypeSelectorAdapter_video">Mozgókép</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Hang</string>
@@ -127,6 +122,7 @@ Elküldöd a titkosítatlan üzenetet?</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Törlés...</string>
   <string name="ConversationFragment_deleting_messages">Üzenetek törlése...</string>
+  <!--ConversationListActivity-->
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Töröljük az üzenetfolyamot?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Biztosan törölni szeretnéd az összes kiválasztott üzenetváltást?</string>
@@ -140,6 +136,7 @@ Elküldöd a titkosítatlan üzenetet?</string>
   <string name="CustomDefaultPreference_none">Egyik sem</string>
   <!--DateUtils-->
   <string name="DateUtils_now">Most</string>
+  <string name="DateUtils_minutes_ago">%d perc</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Megosztás...</string>
   <!--ExportFragment-->
@@ -256,17 +253,6 @@ Kérlek telepíts újra a Google Play Szolgáltatásokat és próbálkozz újra!
   <string name="RatingManager_rate_now">Értékeld most!</string>
   <string name="RatingManager_no_thanks">Nem, köszönöm!</string>
   <string name="RatingManager_later">Később</string>
-  <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Az
-aláírás ezen a csere kulcson különbözik amit korábban kaptál ettől a
-személytől. Ez jelentheti, hogy valaki megpróbál betekinteni a kommunikációba, vagy
-azt, hogy ez a személy egyszerűen újra telepítette a TextSecure és így most egy új azonosító kulcsa van.
- </string>
-  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Talán érdemes ellenőrizni
-ezt a névjegyet.
- </string>
-  <string name="ReceiveKeyActivity_processing">Feldolgozás</string>
-  <string name="ReceiveKeyActivity_processing_key_exchange">Kulcs csere folyamatban...</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">Csatlakozás a TextSecure-höz</string>
   <string name="RegistrationActivity_select_your_country">Saját ország kiválasztása </string>
@@ -496,8 +482,6 @@ Egy titkosítatlan biztonsági mentés fájl importálása. \"SMS biztonsági me
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">A TextSecure az MMS beállítások megadását igényli a média és csoportos üzenetek kézbesítéséhez a szolgáltatódon keresztül. Az eszközöd nem tesz elérhetővé ilyen információkat, ami igaz lehet zárolt eszközök és egyéb korlátozó beállítások esetén.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">A média és csoportos üzeneteke küldéséhez kattints az \"OK\" feliratra és add meg a kívánt beállításokat! A szolgáltatód MMS beállításai általában megtalálhatók a \"saját szolgáltató APN\" keresésével. Csupán egyszer van szüksége ezt megtenni.</string>
-  <!--receive_key_dialog-->
-  <string name="receive_key_dialog__complete">Befejezés</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 Ellenőrizd a telefonszámodat a TextSecure alkalmazással történő kapcsolódáshoz.</string>
@@ -610,10 +594,6 @@ sikertelen.
   <string name="arrays__use_default">Alapértelmezett</string>
   <string name="arrays__use_custom">Egyéni</string>
   <!--plurals.xml-->
-  <plurals name="minutes_ago">
-    <item quantity="one">%d perc</item>
-    <item quantity="other">%d perc</item>
-  </plurals>
   <plurals name="hours_ago">
     <item quantity="one">%d óra</item>
     <item quantity="other">%d óra</item>

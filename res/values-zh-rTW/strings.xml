@@ -18,12 +18,6 @@
     </string>
   <string name="ApplicationPreferencesActivity_disable">解除</string>
   <string name="ApplicationPreferencesActivity_unregistering">正在取消註冊...</string>
-  <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">正在取消資料為準的通訊</string>
-  <string name="ApplicationPreferencesActivity_disable_push_messages">取消即時訊息？</string>
-  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">
-        若從伺服器取消註冊，將會取消即時訊息的功能。
-        將來您若欲重新使用即時訊息，則須把您的手機號碼再重新註冊一次。
-    </string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">與伺服器的連線發生錯誤！</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">按這裡來變更您預設的手機簡訊APP</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">按這裡將 TextSecure 設為預設的手機簡訊APP</string>
@@ -86,6 +80,7 @@
   <string name="ConversationFragment_saving_attachment">正在儲存附件檔案</string>
   <string name="ConversationFragment_saving_attachment_to_sd_card">正在寫入儲存裝置中...</string>
   <string name="ConversationFragment_deleting">刪除中...</string>
+  <!--ConversationListActivity-->
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">刪除對話群組？</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">您確定要刪除已選擇的對話群組？</string>
@@ -180,16 +175,6 @@
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">無效的『自訂密碼』！</string>
   <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
-  <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">此次
-        金鑰確認所使用的數位簽名與同一名連絡人上次金鑰確認時所用的值並不一致。
-        這有可能是有不明人士試圖攔截您的通訊／對話內容。或
-        因為該名連絡人重新安裝過 TextSecure APP，以至於他的數位簽名值也跟著變更了。
-    </string>
-  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">您想要對這名連絡人
-進行認證嗎？</string>
-  <string name="ReceiveKeyActivity_processing">處理中</string>
-  <string name="ReceiveKeyActivity_processing_key_exchange">金鑰交換處理中...</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">正在與 TextSecure 連線</string>
   <string name="RegistrationActivity_select_your_country">選擇您的國家／地區</string>
@@ -390,8 +375,6 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure 需要您通信業者的 MMS多媒體簡訊設定以發送媒體檔案與群組訊息。目前您的裝置並未提供完整的相關資訊，有時是因為裝置出廠時即被鎖定／限制該方面的功能。</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">傳送媒體檔案或群組訊息，請按下 \"OK\" 並完成必要的設定。您所使用電信業者相關的MMS多媒體簡訊設定可能羅列在 \'無線與網路／行動網路\'的設定項目內。且您只需設定一次。</string>
-  <!--receive_key_dialog-->
-  <string name="receive_key_dialog__complete">完成</string>
   <!--registration_activity-->
   <string name="registration_activity__your_country">您的國家／區域</string>
   <string name="registration_activity__your_country_code_and_phone_number">您的國碼與
