@@ -1,13 +1,16 @@
 package org.thoughtcrime.securesms;
 
 import android.app.AlertDialog;
+import android.app.IntentService;
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.AsyncTask;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,15 +32,39 @@ import java.io.IOException;
 
 public class ImportFragment extends Fragment {
 
+  private static final String IMPORTPLAINTEXT_FILTER = "ImportFragment_importPlaintextReceiver";
+  private static final String IMPORTENCRYPTED_FILTER = "ImportFragment_importEncryptedReceiver";
   private static final int SUCCESS    = 0;
   private static final int NO_SD_CARD = 1;
   private static final int ERROR_IO   = 2;
 
   private MasterSecret masterSecret;
   private ProgressDialog progressDialog;
+  private ImportPlaintextBackupReceiver importPlaintextReceiver;
+  private ImportEncryptedBackupReceiver importEncryptedReceiver;
 
   public void setMasterSecret(MasterSecret masterSecret) {
     this.masterSecret = masterSecret;
+  }
+
+  @Override
+  public void onAttach(android.app.Activity activity) {
+    super.onAttach(activity);
+    importPlaintextReceiver = new ImportPlaintextBackupReceiver();
+    LocalBroadcastManager.getInstance(activity)
+      .registerReceiver(importPlaintextReceiver, new IntentFilter(IMPORTPLAINTEXT_FILTER));
+    importEncryptedReceiver = new ImportEncryptedBackupReceiver();
+    LocalBroadcastManager.getInstance(activity)
+      .registerReceiver(importEncryptedReceiver, new IntentFilter(IMPORTENCRYPTED_FILTER));
+  }
+
+  @Override
+  public void onDetach() {
+    super.onDetach();
+    if (importPlaintextReceiver != null)
+      LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(importPlaintextReceiver);
+    if (importEncryptedReceiver != null)
+      LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(importEncryptedReceiver);
   }
 
   @Override
@@ -113,7 +140,9 @@ public class ImportFragment extends Fragment {
     builder.setPositiveButton(getActivity().getString(R.string.ImportFragment_restore), new AlertDialog.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialog, int which) {
-        new ImportEncryptedBackupTask().execute();
+        Intent importEncrypted = new Intent(getActivity(), ImportEncryptedBackupService.class);
+        importEncryptedReceiver.showProgressDialog();
+        getActivity().startService(importEncrypted);
       }
     });
     builder.setNegativeButton(getActivity().getString(R.string.ImportFragment_cancel), null);
@@ -128,24 +157,28 @@ public class ImportFragment extends Fragment {
     builder.setPositiveButton(getActivity().getString(R.string.ImportFragment_import), new AlertDialog.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialog, int which) {
-        new ImportPlaintextBackupTask().execute();
+        Intent importPlaintext = new Intent(getActivity(), ImportPlaintextBackupService.class);
+        importPlaintextReceiver.showProgressDialog();
+        importPlaintext.putExtra("masterSecret", masterSecret);
+        getActivity().startService(importPlaintext);
       }
     });
     builder.setNegativeButton(getActivity().getString(R.string.ImportFragment_cancel), null);
     builder.show();
   }
 
-  private class ImportPlaintextBackupTask extends AsyncTask<Void, Void, Integer> {
+  private class ImportPlaintextBackupReceiver extends BroadcastReceiver {
 
-    @Override
-    protected void onPreExecute() {
+    public void showProgressDialog() {
       progressDialog = ProgressDialog.show(getActivity(),
                                            getActivity().getString(R.string.ImportFragment_importing),
                                            getActivity().getString(R.string.ImportFragment_import_plaintext_backup_elipse),
                                            true, false);
     }
 
-    protected void onPostExecute(Integer result) {
+    @Override
+    public void onReceive(Context receiverContext, Intent receiverIntent) {
+      int result = receiverIntent.getIntExtra("returnValue", SUCCESS);
       Context context = getActivity();
 
       if (progressDialog != null)
@@ -172,33 +205,46 @@ public class ImportFragment extends Fragment {
           break;
       }
     }
+  }
 
-    @Override
-    protected Integer doInBackground(Void... params) {
+  public static class ImportPlaintextBackupService extends IntentService {
+    private MasterSecret masterSecret;
+
+    public ImportPlaintextBackupService() {
+      super("ImportPlaintextBackupService");
+    }
+
+    public void onHandleIntent(Intent intent) {
+      this.masterSecret = (MasterSecret) intent.getParcelableExtra("masterSecret");
+      Intent resultIntent = new Intent(IMPORTPLAINTEXT_FILTER);
       try {
-        PlaintextBackupImporter.importPlaintextFromSd(getActivity(), masterSecret);
-        return SUCCESS;
+        PlaintextBackupImporter.importPlaintextFromSd(this, masterSecret);
+        resultIntent.putExtra("returnValue", SUCCESS);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(resultIntent);
       } catch (NoExternalStorageException e) {
         Log.w("ImportFragment", e);
-        return NO_SD_CARD;
+        resultIntent.putExtra("returnValue", NO_SD_CARD);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(resultIntent);
       } catch (IOException e) {
         Log.w("ImportFragment", e);
-        return ERROR_IO;
+        resultIntent.putExtra("returnValue", ERROR_IO);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(resultIntent);
       }
     }
-}
+  }
 
-  private class ImportEncryptedBackupTask extends AsyncTask<Void, Void, Integer> {
+  private class ImportEncryptedBackupReceiver extends BroadcastReceiver {
 
-    @Override
-    protected void onPreExecute() {
+    public void showProgressDialog() {
       progressDialog = ProgressDialog.show(getActivity(),
                                            getActivity().getString(R.string.ImportFragment_restoring),
                                            getActivity().getString(R.string.ImportFragment_restoring_encrypted_backup),
                                            true, false);
     }
 
-    protected void onPostExecute(Integer result) {
+    @Override
+    public void onReceive(Context receiverContext, Intent receiverIntent) {
+      int result = receiverIntent.getIntExtra("returnValue", SUCCESS);
       Context context = getActivity();
 
       if (progressDialog != null)
@@ -229,20 +275,29 @@ public class ImportFragment extends Fragment {
                          Toast.LENGTH_LONG).show();
       }
     }
+  }
 
-    @Override
-    protected Integer doInBackground(Void... params) {
+  public static class ImportEncryptedBackupService extends IntentService {
+
+    public ImportEncryptedBackupService() {
+      super("ImportEncryptedBackupService");
+    }
+
+    public void onHandleIntent(Intent intent) {
+      Intent resultIntent = new Intent(IMPORTENCRYPTED_FILTER);
       try {
-        EncryptedBackupExporter.importFromSd(getActivity());
-        return SUCCESS;
+        EncryptedBackupExporter.importFromSd(this);
+        resultIntent.putExtra("returnValue", SUCCESS);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(resultIntent);
       } catch (NoExternalStorageException e) {
         Log.w("ImportFragment", e);
-        return NO_SD_CARD;
+        resultIntent.putExtra("returnValue", NO_SD_CARD);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(resultIntent);
       } catch (IOException e) {
         Log.w("ImportFragment", e);
-        return ERROR_IO;
+        resultIntent.putExtra("returnValue", ERROR_IO);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(resultIntent);
       }
     }
   }
-
 }

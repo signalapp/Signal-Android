@@ -16,14 +16,15 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.app.IntentService;
 import android.content.Intent;
 import android.database.ContentObserver;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.util.Log;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
@@ -196,14 +197,9 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   }
 
   private void handleMarkAllRead() {
-    new AsyncTask<Void, Void, Void>() {
-      @Override
-      protected Void doInBackground(Void... params) {
-        DatabaseFactory.getThreadDatabase(ConversationListActivity.this).setAllThreadsRead();
-        MessageNotifier.updateNotification(ConversationListActivity.this, masterSecret);
-        return null;
-      }
-    }.execute();
+    Intent markAllRead = new Intent(this, MarkAllRead.class);
+    markAllRead.putExtra("masterSecret", masterSecret);
+    startService(markAllRead);
   }
 
   private void initializeContactUpdatesReceiver() {
@@ -225,5 +221,17 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
     getContentResolver().registerContentObserver(ContactsContract.Contacts.CONTENT_URI,
                                                  true, observer);
+  }
+
+  public static class MarkAllRead extends IntentService {
+    public MarkAllRead() {
+      super("MarkAllRead");
+    }
+
+    public void onHandleIntent(Intent intent) {
+      MasterSecret masterSecret = (MasterSecret) intent.getParcelableExtra("masterSecret");
+      DatabaseFactory.getThreadDatabase(this).setAllThreadsRead();
+      MessageNotifier.updateNotification(this, masterSecret);
+    }
   }
 }

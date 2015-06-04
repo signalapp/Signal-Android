@@ -16,9 +16,13 @@
  */
 package org.thoughtcrime.securesms.preferences;
 
+import android.app.IntentService;
+import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.os.AsyncTask;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.preference.PreferenceFragment;
 import android.util.Log;
 
@@ -36,6 +40,9 @@ import java.io.IOException;
 public class MmsPreferencesFragment extends PreferenceFragment {
 
   private static final String TAG = MmsPreferencesFragment.class.getSimpleName();
+  private static final String LOADAPN_FILTER = "MmsPreferencesFragment_loadApnReceiver";
+
+  private LoadApnDefaultsReceiver loadApnReceiver;
 
   @Override
   public void onCreate(Bundle paramBundle) {
@@ -49,30 +56,24 @@ public class MmsPreferencesFragment extends PreferenceFragment {
   @Override
   public void onResume() {
     super.onResume();
-    new LoadApnDefaultsTask().execute();
+    loadApnReceiver = new LoadApnDefaultsReceiver();
+    LocalBroadcastManager.getInstance(getActivity())
+      .registerReceiver(loadApnReceiver, new IntentFilter(LOADAPN_FILTER));
+    Intent loadApn = new Intent(getActivity(), LoadApnDefaultsService.class);
+    getActivity().startService(loadApn);
   }
 
-  private class LoadApnDefaultsTask extends AsyncTask<Void, Void, LegacyMmsConnection.Apn> {
+  @Override
+  public void onPause() {
+    if (loadApnReceiver != null)
+        LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(loadApnReceiver);
+  }
+
+  private class LoadApnDefaultsReceiver extends BroadcastReceiver {
 
     @Override
-    protected LegacyMmsConnection.Apn doInBackground(Void... params) {
-      try {
-        Context context = getActivity();
-
-        if (context != null) {
-          return ApnDatabase.getInstance(context)
-                            .getDefaultApnParameters(TelephonyUtil.getMccMnc(context),
-                                                     TelephonyUtil.getApn(context));
-        }
-      } catch (IOException e) {
-        Log.w(TAG, e);
-      }
-
-      return null;
-    }
-
-    @Override
-    protected void onPostExecute(LegacyMmsConnection.Apn apnDefaults) {
+    public void onReceive(Context receiverContext, Intent receiverIntent) {
+      LegacyMmsConnection.Apn apnDefaults = (LegacyMmsConnection.Apn) receiverIntent.getSerializableExtra("apn");
       ((CustomDefaultPreference)findPreference(TextSecurePreferences.MMSC_HOST_PREF))
           .setValidator(new CustomDefaultPreference.UriValidator())
           .setDefaultValue(apnDefaults.getMmsc());
@@ -96,4 +97,20 @@ public class MmsPreferencesFragment extends PreferenceFragment {
     }
   }
 
+  public static class LoadApnDefaultsService extends IntentService {
+    public LoadApnDefaultsService() {
+      super("LoadApnDefaultsService");
+  }
+
+    public void onHandleIntent(Intent intent) {
+      Intent resultIntent = new Intent(LOADAPN_FILTER);
+      try {
+        resultIntent.putExtra("apn", ApnDatabase.getInstance(this).getDefaultApnParameters(
+                                     TelephonyUtil.getMccMnc(this), TelephonyUtil.getApn(this)));
+        LocalBroadcastManager.getInstance(this).sendBroadcast(resultIntent);
+      } catch (IOException e) {
+        Log.w(TAG, e);
+      }
+    }
+  }
 }

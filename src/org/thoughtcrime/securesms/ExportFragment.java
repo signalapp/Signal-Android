@@ -1,12 +1,16 @@
 package org.thoughtcrime.securesms;
 
 import android.app.Dialog;
+import android.app.IntentService;
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.os.AsyncTask;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,14 +28,31 @@ import java.io.IOException;
 
 public class ExportFragment extends Fragment {
 
+  private static final String EXPORT_FILTER = "ExportFragment_exportReceiver";
   private static final int SUCCESS    = 0;
   private static final int NO_SD_CARD = 1;
   private static final int IO_ERROR   = 2;
 
   private MasterSecret masterSecret;
+  private ExportPlaintextReceiver exportReceiver;
 
   public void setMasterSecret(MasterSecret masterSecret) {
     this.masterSecret = masterSecret;
+  }
+
+  @Override
+  public void onAttach(android.app.Activity activity) {
+    super.onAttach(activity);
+    exportReceiver = new ExportPlaintextReceiver();
+    LocalBroadcastManager.getInstance(activity)
+      .registerReceiver(exportReceiver, new IntentFilter(EXPORT_FILTER));
+  }
+
+  @Override
+  public void onDetach() {
+    super.onDetach();
+    if (exportReceiver != null)
+      LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(exportReceiver);
   }
 
   @Override
@@ -80,18 +101,20 @@ public class ExportFragment extends Fragment {
     builder.setPositiveButton(getActivity().getString(R.string.ExportFragment_export), new Dialog.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialog, int which) {
-        new ExportPlaintextTask().execute();
+        Intent exportText = new Intent(getActivity(), ExportPlaintextService.class);
+        exportReceiver.showProgressDialog();
+        exportText.putExtra("masterSecret", masterSecret);
+        getActivity().startService(exportText);
       }
     });
     builder.setNegativeButton(getActivity().getString(R.string.ExportFragment_cancel), null);
     builder.show();
   }
 
-  private class ExportPlaintextTask extends AsyncTask<Void, Void, Integer> {
+  private class ExportPlaintextReceiver extends BroadcastReceiver {
     private ProgressDialog dialog;
 
-    @Override
-    protected void onPreExecute() {
+    public void showProgressDialog() {
       dialog = ProgressDialog.show(getActivity(), 
                                    getActivity().getString(R.string.ExportFragment_exporting), 
                                    getActivity().getString(R.string.ExportFragment_exporting_plaintext_to_sd_card),
@@ -99,21 +122,8 @@ public class ExportFragment extends Fragment {
     }
 
     @Override
-    protected Integer doInBackground(Void... params) {
-      try {
-        PlaintextBackupExporter.exportPlaintextToSd(getActivity(), masterSecret);
-        return SUCCESS;
-      } catch (NoExternalStorageException e) {
-        Log.w("ExportFragment", e);
-        return NO_SD_CARD;
-      } catch (IOException e) {
-        Log.w("ExportFragment", e);
-        return IO_ERROR;
-      }
-    }
-
-    @Override
-    protected void onPostExecute(Integer result) {
+    public void onReceive(Context receiverContext, Intent receiverIntent) {
+      int result = receiverIntent.getIntExtra("returnValue", SUCCESS);
       Context context = getActivity();
 
       if (dialog != null)
@@ -138,6 +148,32 @@ public class ExportFragment extends Fragment {
                          context.getString(R.string.ExportFragment_success),
                          Toast.LENGTH_LONG).show();
           break;
+      }
+    }
+  }
+
+  public static class ExportPlaintextService extends IntentService {
+    private MasterSecret masterSecret;
+
+    public ExportPlaintextService() {
+      super("ExportPlaintextService");
+    }
+
+    public void onHandleIntent(Intent intent) {
+      this.masterSecret = (MasterSecret) intent.getParcelableExtra("masterSecret");
+      Intent resultIntent = new Intent(EXPORT_FILTER);
+      try {
+        PlaintextBackupExporter.exportPlaintextToSd(this, masterSecret);
+        resultIntent.putExtra("returnValue", SUCCESS);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(resultIntent);
+      } catch (NoExternalStorageException e) {
+        Log.w("ExportFragment", e);
+        resultIntent.putExtra("returnValue", NO_SD_CARD);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(resultIntent);
+      } catch (IOException e) {
+        Log.w("ExportFragment", e);
+        resultIntent.putExtra("returnValue", IO_ERROR);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(resultIntent);
       }
     }
   }

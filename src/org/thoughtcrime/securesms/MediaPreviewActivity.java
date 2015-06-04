@@ -17,16 +17,20 @@
 package org.thoughtcrime.securesms;
 
 import android.annotation.TargetApi;
+import android.app.IntentService;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.opengl.GLES20;
-import android.os.AsyncTask;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -57,6 +61,7 @@ import uk.co.senab.photoview.PhotoViewAttacher;
  */
 public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity implements RecipientModifiedListener {
   private final static String TAG = MediaPreviewActivity.class.getSimpleName();
+  private final static String FETCHIMAGE_FILTER = "MediaPreviewActivity_fetchImageReceiver";
 
   public static final String RECIPIENT_EXTRA = "recipient";
   public static final String DATE_EXTRA      = "date";
@@ -74,6 +79,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   private String            mediaType;
   private Recipient         recipient;
   private long              date;
+  private BroadcastReceiver fetchImageReceiver;
 
   @Override
   protected void onCreate(Bundle bundle, @NonNull MasterSecret masterSecret) {
@@ -133,6 +139,8 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     paused = true;
     if (recipient != null) recipient.removeListener(this);
     cleanupMedia();
+    if (fetchImageReceiver != null)
+      LocalBroadcastManager.getInstance(this).unregisterReceiver(fetchImageReceiver);
   }
 
   @Override
@@ -188,23 +196,10 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   }
 
   private void displayImage() {
-    new AsyncTask<Void,Void,Bitmap>() {
+    fetchImageReceiver = new BroadcastReceiver() {
       @Override
-      protected Bitmap doInBackground(Void... params) {
-        try {
-          int[] maxTextureSizeParams = new int[1];
-          GLES20.glGetIntegerv(GLES20.GL_MAX_TEXTURE_SIZE, maxTextureSizeParams, 0);
-          int maxTextureSize = Math.max(maxTextureSizeParams[0], 2048);
-          Log.w(TAG, "reported GL_MAX_TEXTURE_SIZE: " + maxTextureSize);
-          return BitmapUtil.createScaledBitmap(MediaPreviewActivity.this, masterSecret, mediaUri,
-                                               maxTextureSize, maxTextureSize);
-        } catch (IOException | BitmapDecodingException e) {
-          return null;
-        }
-      }
-
-      @Override
-      protected void onPostExecute(Bitmap bitmap) {
+      public void onReceive(Context receiverContext, Intent receiverIntent) {
+        Bitmap bitmap = (Bitmap) receiverIntent.getParcelableExtra("returnValue");
         if (paused) {
           if (bitmap != null) bitmap.recycle();
           return;
@@ -220,7 +215,13 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
           imageAttacher.update();
         }
       }
-    }.execute();
+    };
+    LocalBroadcastManager.getInstance(this)
+      .registerReceiver(fetchImageReceiver, new IntentFilter(FETCHIMAGE_FILTER));
+    Intent fetchImage = new Intent(this, FetchImage.class);
+    fetchImage.putExtra("masterSecret", masterSecret);
+    fetchImage.putExtra("mediaUri", mediaUri);
+    this.startService(fetchImage);
   }
 
   private void saveToDisk() {
@@ -258,5 +259,28 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
 
   public static boolean isContentTypeSupported(final String contentType) {
     return contentType != null && contentType.startsWith("image/");
+  }
+
+  public static class FetchImage extends IntentService {
+    public FetchImage() {
+      super("FetchImage");
+    }
+
+    public void onHandleIntent(Intent intent) {
+      MasterSecret masterSecret = (MasterSecret) intent.getParcelableExtra("masterSecret");
+      Uri mediaUri = (Uri) intent.getParcelableExtra("mediaUri");
+      Intent resultIntent = new Intent(FETCHIMAGE_FILTER);
+      try {
+        int[] maxTextureSizeParams = new int[1];
+        GLES20.glGetIntegerv(GLES20.GL_MAX_TEXTURE_SIZE, maxTextureSizeParams, 0);
+        int maxTextureSize = Math.max(maxTextureSizeParams[0], 2048);
+        Log.w(TAG, "reported GL_MAX_TEXTURE_SIZE: " + maxTextureSize);
+        resultIntent.putExtra("returnValue", BitmapUtil.createScaledBitmap(
+                              this, masterSecret, mediaUri, maxTextureSize, maxTextureSize));
+        LocalBroadcastManager.getInstance(this).sendBroadcast(resultIntent);
+      } catch (IOException | BitmapDecodingException e) {
+        LocalBroadcastManager.getInstance(this).sendBroadcast(resultIntent);
+      }
+    }
   }
 }
