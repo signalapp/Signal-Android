@@ -29,7 +29,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
-import android.media.MediaPlayer;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationCompat.Action;
@@ -60,7 +61,6 @@ import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.concurrent.TimeUnit;
@@ -294,48 +294,27 @@ public class MessageNotifier {
   }
 
   private static void sendInThreadNotification(Context context) {
-    try {
-      if (!TextSecurePreferences.isInThreadNotifications(context)) {
-        return;
-      }
-
-      String ringtone = TextSecurePreferences.getNotificationRingtone(context);
-
-      if (ringtone == null) {
-        Log.w(TAG, "ringtone preference was null.");
-        return;
-      }
-
-      Uri uri = Uri.parse(ringtone);
-
-      if (uri == null) {
-        Log.w(TAG, "couldn't parse ringtone uri " + ringtone);
-        return;
-      }
-
-      MediaPlayer player = new MediaPlayer();
-      player.setAudioStreamType(AudioManager.STREAM_NOTIFICATION);
-      player.setDataSource(context, uri);
-      player.setLooping(false);
-      player.setVolume(0.25f, 0.25f);
-      player.prepare();
-
-      final AudioManager audioManager = ((AudioManager)context.getSystemService(Context.AUDIO_SERVICE));
-
-      audioManager.requestAudioFocus(null, AudioManager.STREAM_NOTIFICATION,
-                                     AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK);
-
-      player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-        @Override
-        public void onCompletion(MediaPlayer mp) {
-          audioManager.abandonAudioFocus(null);
-        }
-      });
-
-      player.start();
-    } catch (IOException ioe) {
-      Log.w("MessageNotifier", ioe);
+    if (!TextSecurePreferences.isInThreadNotifications(context)) {
+      return;
     }
+
+    String ringtone = TextSecurePreferences.getNotificationRingtone(context);
+
+    if (ringtone == null) {
+      Log.w(TAG, "ringtone preference was null.");
+      return;
+    }
+
+    Uri uri = Uri.parse(ringtone);
+
+    if (uri == null) {
+      Log.w(TAG, "couldn't parse ringtone uri " + ringtone);
+      return;
+    }
+
+    Ringtone tone = RingtoneManager.getRingtone(context, uri);
+    tone.setStreamType(AudioManager.STREAM_NOTIFICATION);
+    tone.play();
   }
 
   private static void appendPushNotificationState(Context context,
