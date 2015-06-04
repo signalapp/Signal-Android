@@ -299,7 +299,7 @@
               android:grantUriPermissions="true"
               android:authorities="org.thoughtcrime.provider.securesms" />
 
-    <provider android:name=".providers.MmsBodyProvider"
+    <provider android:name=".providers.BodyProvider"
               android:grantUriPermissions="true"
               android:authorities="org.thoughtcrime.provider.securesms.mms" />
 

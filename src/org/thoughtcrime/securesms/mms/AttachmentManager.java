@@ -31,9 +31,10 @@ import android.widget.Toast;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.ThumbnailView;
+import org.thoughtcrime.securesms.providers.BodyProvider;
+import org.thoughtcrime.securesms.providers.BodyProvider.Pointer;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 
-import java.io.File;
 import java.io.IOException;
 
 public class AttachmentManager {
@@ -46,14 +47,14 @@ public class AttachmentManager {
   private final SlideDeck          slideDeck;
   private final AttachmentListener attachmentListener;
 
-  private File captureFile;
+  private Pointer captureFile;
 
   public AttachmentManager(Activity view, AttachmentListener listener) {
-    this.attachmentView     = view.findViewById(R.id.attachment_editor);
-    this.thumbnail          = (ThumbnailView)view.findViewById(R.id.attachment_thumbnail);
-    this.removeButton       = (Button)view.findViewById(R.id.remove_image_button);
-    this.slideDeck          = new SlideDeck();
-    this.context            = view;
+    this.attachmentView = view.findViewById(R.id.attachment_editor);
+    this.thumbnail      = (ThumbnailView) view.findViewById(R.id.attachment_thumbnail);
+    this.removeButton   = (Button)        view.findViewById(R.id.remove_image_button);
+    this.slideDeck      = new SlideDeck();
+    this.context        = view;
     this.attachmentListener = listener;
 
     this.removeButton.setOnClickListener(new RemoveButtonListener());
@@ -65,8 +66,13 @@ public class AttachmentManager {
     attachmentListener.onAttachmentChanged();
   }
 
+  public void abandon() {
+    clear();
+    cleanup();
+  }
+
   public void cleanup() {
-    if (captureFile != null) captureFile.delete();
+    if (captureFile != null) captureFile.close();
     captureFile = null;
   }
 
@@ -98,21 +104,17 @@ public class AttachmentManager {
     return slideDeck;
   }
 
-  public File getCaptureFile() {
+  public Pointer getCaptureFile() {
     return captureFile;
   }
 
   public void capturePhoto(Activity activity, int requestCode) {
-    try {
-      Intent captureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+    Intent captureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
-      if (captureIntent.resolveActivity(activity.getPackageManager()) != null) {
-        captureFile = File.createTempFile(String.valueOf(System.currentTimeMillis()), ".jpg", activity.getExternalFilesDir(null));
-        captureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(captureFile));
-        activity.startActivityForResult(captureIntent, requestCode);
-      }
-    } catch (IOException e) {
-      Log.w(TAG, e);
+    if (captureIntent.resolveActivity(activity.getPackageManager()) != null) {
+      captureFile = BodyProvider.makeDirectCapturePointer(context);
+      captureIntent.putExtra(MediaStore.EXTRA_OUTPUT, captureFile.getUri());
+      activity.startActivityForResult(captureIntent, requestCode);
     }
   }
 
@@ -159,8 +161,7 @@ public class AttachmentManager {
   private class RemoveButtonListener implements View.OnClickListener {
     @Override
     public void onClick(View v) {
-      clear();
-      cleanup();
+      abandon();
     }
   }
 

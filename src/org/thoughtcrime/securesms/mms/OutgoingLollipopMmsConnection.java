@@ -26,7 +26,7 @@ import android.support.annotation.Nullable;
 import android.telephony.SmsManager;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.providers.MmsBodyProvider;
+import org.thoughtcrime.securesms.providers.BodyProvider;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.Util;
 
@@ -62,7 +62,7 @@ public class OutgoingLollipopMmsConnection extends LollipopMmsConnection impleme
   public @Nullable synchronized SendConf send(@NonNull byte[] pduBytes) throws UndeliverableMessageException {
     beginTransaction();
     try {
-      MmsBodyProvider.Pointer pointer = MmsBodyProvider.makeTemporaryPointer(getContext());
+      BodyProvider.Pointer pointer = BodyProvider.makeMmsBodyPointer(getContext());
       Util.copy(new ByteArrayInputStream(pduBytes), pointer.getOutputStream());
 
       SmsManager.getDefault().sendMultimediaMessage(getContext(),

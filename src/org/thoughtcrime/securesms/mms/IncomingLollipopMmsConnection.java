@@ -26,7 +26,7 @@ import android.support.annotation.Nullable;
 import android.telephony.SmsManager;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.providers.MmsBodyProvider;
+import org.thoughtcrime.securesms.providers.BodyProvider;
 import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.Util;
 
@@ -63,7 +63,7 @@ public class IncomingLollipopMmsConnection extends LollipopMmsConnection impleme
     beginTransaction();
 
     try {
-      MmsBodyProvider.Pointer pointer = MmsBodyProvider.makeTemporaryPointer(getContext());
+      BodyProvider.Pointer pointer = BodyProvider.makeMmsBodyPointer(getContext());
 
       Log.w(TAG, "downloading multimedia from " + contentLocation + " to " + pointer.getUri());
       SmsManager.getDefault().downloadMultimediaMessage(getContext(),

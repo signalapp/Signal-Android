@@ -31,17 +31,21 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public class MmsBodyProvider extends ContentProvider {
-  private static final String TAG                = MmsBodyProvider.class.getSimpleName();
-  private static final String CONTENT_URI_STRING = "content://org.thoughtcrime.provider.securesms.mms/mms";
-  public  static final Uri    CONTENT_URI        = Uri.parse(CONTENT_URI_STRING);
-  private static final int    SINGLE_ROW         = 1;
+public class BodyProvider extends ContentProvider {
+  private static final String TAG                    = BodyProvider.class.getSimpleName();
+  private static final String MMS_CONTENT_URI_STRING = "content://org.thoughtcrime.provider.securesms.mms/mms";
+  private static final String CAP_CONTENT_URI_STRING = "content://org.thoughtcrime.provider.securesms.mms/capture";
+  public static final  Uri    MMS_CONTENT_URI        = Uri.parse(MMS_CONTENT_URI_STRING);
+  public static final  Uri    CAP_CONTENT_URI        = Uri.parse(CAP_CONTENT_URI_STRING);
+  private static final int    MMS_ROW                = 1;
+  private static final int    CAP_ROW                = 2;
 
   private static final UriMatcher uriMatcher;
 
   static {
     uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-    uriMatcher.addURI("org.thoughtcrime.provider.securesms.mms", "mms/#", SINGLE_ROW);
+    uriMatcher.addURI("org.thoughtcrime.provider.securesms.mms", "mms/#", MMS_ROW);
+    uriMatcher.addURI("org.thoughtcrime.provider.securesms.mms", "capture/#", CAP_ROW);
   }
 
   @Override
@@ -52,7 +56,14 @@ public class MmsBodyProvider extends ContentProvider {
 
   private File getFile(Uri uri) {
     long id = Long.parseLong(uri.getPathSegments().get(1));
-    return new File(getContext().getCacheDir(), id + ".mmsbody");
+    switch (uriMatcher.match(uri)) {
+    case MMS_ROW:
+      return new File(getContext().getCacheDir(), id + ".mmsbody");
+    case CAP_ROW:
+      return new File(getContext().getFilesDir(), id + ".capture");
+    default:
+      throw new AssertionError("unrecognized uri");
+    }
   }
 
   @Override
@@ -60,7 +71,8 @@ public class MmsBodyProvider extends ContentProvider {
     Log.w(TAG, "openFile(" + uri + ", " + mode + ")");
 
     switch (uriMatcher.match(uri)) {
-    case SINGLE_ROW:
+    case MMS_ROW:
+    case CAP_ROW:
       Log.w(TAG, "Fetching message body for a single row...");
       File tmpFile = getFile(uri);
 
@@ -83,7 +95,8 @@ public class MmsBodyProvider extends ContentProvider {
   @Override
   public int delete(Uri uri, String arg1, String[] arg2) {
     switch (uriMatcher.match(uri)) {
-    case SINGLE_ROW:
+    case MMS_ROW:
+    case CAP_ROW:
       return getFile(uri).delete() ? 1 : 0;
     }
     return 0;
@@ -108,8 +121,13 @@ public class MmsBodyProvider extends ContentProvider {
   public int update(Uri arg0, ContentValues arg1, String arg2, String[] arg3) {
     return 0;
   }
-  public static Pointer makeTemporaryPointer(Context context) {
-    return new Pointer(context, ContentUris.withAppendedId(MmsBodyProvider.CONTENT_URI, System.currentTimeMillis()));
+
+  public static Pointer makeMmsBodyPointer(Context context) {
+    return new Pointer(context, ContentUris.withAppendedId(BodyProvider.MMS_CONTENT_URI, System.currentTimeMillis()));
+  }
+
+  public static Pointer makeDirectCapturePointer(Context context) {
+    return new Pointer(context, ContentUris.withAppendedId(BodyProvider.CAP_CONTENT_URI, System.currentTimeMillis()));
   }
 
   public static class Pointer {

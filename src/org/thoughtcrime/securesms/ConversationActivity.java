@@ -258,7 +258,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       break;
     case CAPTURE_PHOTO:
       if (attachmentManager.getCaptureFile() != null) {
-        addAttachmentImage(Uri.fromFile(attachmentManager.getCaptureFile()));
+        addAttachmentImage(attachmentManager.getCaptureFile().getUri());
       }
       break;
     case GROUP_EDIT:
@@ -801,7 +801,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       attachmentManager.setImage(imageUri);
     } catch (IOException | BitmapDecodingException e) {
       Log.w(TAG, e);
-      attachmentManager.clear();
+      attachmentManager.abandon();
       Toast.makeText(this, R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
                      Toast.LENGTH_LONG).show();
     }
@@ -811,12 +811,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     try {
       attachmentManager.setVideo(videoUri);
     } catch (IOException e) {
-      attachmentManager.clear();
+      attachmentManager.abandon();
       Toast.makeText(this, R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
                      Toast.LENGTH_LONG).show();
       Log.w("ComposeMessageActivity", e);
     } catch (MediaTooLargeException e) {
-      attachmentManager.clear();
+      attachmentManager.abandon();
 
       Toast.makeText(this, getString(R.string.ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions,
                                      (MmsMediaConstraints.MAX_MESSAGE_SIZE/1024)),
@@ -829,12 +829,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     try {
       attachmentManager.setAudio(audioUri);
     } catch (IOException e) {
-      attachmentManager.clear();
+      attachmentManager.abandon();
       Toast.makeText(this, R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
                      Toast.LENGTH_LONG).show();
       Log.w("ComposeMessageActivity", e);
     } catch (MediaTooLargeException e) {
-      attachmentManager.clear();
+      attachmentManager.abandon();
       Toast.makeText(this, getString(R.string.ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions,
                                      (MmsMediaConstraints.MAX_MESSAGE_SIZE/1024)),
                      Toast.LENGTH_LONG).show();
