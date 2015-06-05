@@ -50,5 +50,6 @@
     <string name="log_submit_activity__button_dont_submit">Don\'t submit</string>
     <string name="log_submit_activity__button_submit">Submit</string>
 
+    <string name="import_complete_dialog">SecureChat system database import is complete.</string>
 
 </resources>
