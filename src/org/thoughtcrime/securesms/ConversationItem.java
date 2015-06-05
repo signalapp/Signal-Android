@@ -33,6 +33,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.AlertDialogWrapper;
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.afollestad.materialdialogs.MaterialDialog.ButtonCallback;
 
 import org.thoughtcrime.securesms.ConversationFragment.SelectionClickListener;
 import org.thoughtcrime.securesms.components.AvatarImageView;
@@ -412,18 +414,13 @@ public class ConversationItem extends LinearLayout {
 
         context.startActivity(intent);
       } else {
-        AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(context);
-        builder.setTitle(R.string.ConversationItem_view_secure_media_question);
-        builder.setIconAttribute(R.attr.dialog_alert_icon);
-        builder.setCancelable(true);
-        builder.setMessage(R.string.ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning);
-        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-          public void onClick(DialogInterface dialog, int which) {
+        ExternalMediaWarningDialog.showIfNecessary(context, new ButtonCallback() {
+          @Override
+          public void onPositive(MaterialDialog dialog) {
+            super.onPositive(dialog);
             fireIntent(slide);
           }
         });
-        builder.setNegativeButton(R.string.no, null);
-        builder.show();
       }
     }
   }
