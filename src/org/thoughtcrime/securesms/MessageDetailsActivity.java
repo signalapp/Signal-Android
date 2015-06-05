@@ -252,7 +252,60 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     }
 
     return false;
+
   }
+
+
+   /**
+    * Used to create a Recipients object that includes only the receivers of a message
+    * @param messageRecord the record of each message
+    * @param recipients the Recipients object that includes all the members of the conversation
+    * @return the receivers of the message
+    */
+   public Recipients isReceived (MessageRecord messageRecord, Recipients recipients) {
+       List<Recipient> received = new ArrayList<>();
+       ArrayList<String> recMapList = MessageRetrievalService.receiversMap.get(messageRecord.getDateReceived());
+
+       for (int i=0; i < recipients.getRecipientsList().size(); i++) {
+           if (recMapList.toString().contains(recipientsCorrected(recipients,i))) {
+               received.add(recipients.getRecipientsList().get(i));
+           }
+       }
+       return new Recipients(received);
+   }
+
+   /**
+    * Used to create a Recipients object that includes only those who haven't received the message yet
+    * @param messageRecord the record of each message
+    * @param recipients the Recipients object that includes all the members of the conversation
+    * @return the non-receivers of the message
+    */
+
+   public Recipients isNotReceived(MessageRecord messageRecord, Recipients recipients) {
+       List<Recipient> received = new ArrayList<>();
+       ArrayList<String> recMapList = MessageRetrievalService.receiversMap.get(messageRecord.getDateReceived());
+
+       for (int i=0; i < recipients.getRecipientsList().size(); i++) {
+           if (!recMapList.toString().contains(recipientsCorrected(recipients,i))) {
+               received.add(recipients.getRecipientsList().get(i));
+           }
+       }
+       return new Recipients(received);
+   }
+
+   /**
+    * The number of the recipients appears differently in the envelope from the messageRecord. This method
+    * is used to get them to the same form by removing special characters and blank spaces.
+    * @param recipients represents the recipients of each message
+    * @param i represents the position in the recipients list
+    * @return the corrected number in the form of a String
+    */
+   public String recipientsCorrected (Recipients recipients, int i) {
+       String recipient = recipients.getRecipientsList().get(i).getNumber().replaceAll("\\s","");
+       return recipient;
+   }
+
+
 
   private class MessageRecipientAsyncTask extends AsyncTask<Void,Void,Recipients> {
     private WeakReference<Context> weakContext;
@@ -329,55 +382,5 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
       return false;
     }
-  }
-
-
-    /**
-     * Used to create a Recipients object that includes only the receivers of a message
-     * @param messageRecord the record of each message
-     * @param recipients the Recipients object that includes all the members of the conversation
-     * @return the receivers of the message
-     */
-  public Recipients isReceived (MessageRecord messageRecord, Recipients recipients) {
-     List<Recipient> received = new ArrayList<>();
-     ArrayList<String> recMapList = MessageRetrievalService.receiversMap.get(messageRecord.getDateReceived());
-
-     for (int i=0; i < recipients.getRecipientsList().size(); i++) {
-       if (recMapList.toString().contains(recipientsCorrected(recipients,i))) {
-         received.add(recipients.getRecipientsList().get(i));
-       }
-     }
-     return new Recipients(received);
-   }
-
-    /**
-     * Used to create a Recipients object that includes only those who haven't received the message yet
-     * @param messageRecord the record of each message
-     * @param recipients the Recipients object that includes all the members of the conversation
-     * @return the non-receivers of the message
-     */
-
-  public Recipients isNotReceived(MessageRecord messageRecord, Recipients recipients) {
-    List<Recipient> received = new ArrayList<>();
-    ArrayList<String> recMapList = MessageRetrievalService.receiversMap.get(messageRecord.getDateReceived());
-
-    for (int i=0; i < recipients.getRecipientsList().size(); i++) {
-      if (!recMapList.toString().contains(recipientsCorrected(recipients,i))) {
-        received.add(recipients.getRecipientsList().get(i));
-      }
-    }
-    return new Recipients(received);
-  }
-
-    /**
-     * The number of the recipients appears differently in the envelope from the messageRecord. This method
-     * is used to get them to the same form by removing special characters and blank spaces.
-     * @param recipients represents the recipients of each message
-     * @param i represents the position in the recipients list
-     * @return the corrected number in the form of a String
-     */
-  public String recipientsCorrected (Recipients recipients, int i) {
-    String recipient = recipients.getRecipientsList().get(i).getNumber().replaceAll("\\s","");
-    return recipient;
   }
 }
