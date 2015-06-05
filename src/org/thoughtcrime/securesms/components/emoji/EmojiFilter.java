@@ -1,18 +1,16 @@
 package org.thoughtcrime.securesms.components.emoji;
 
-import android.content.Context;
 import android.text.InputFilter;
 import android.text.Spannable;
 import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.TextUtils.TruncateAt;
 import android.view.View;
+import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.TextView;
 
-/**
- * Created by kaonashi on 6/1/15.
- */
-public class EmojiFilter implements InputFilter {
-  private View view;
+public class EmojiFilter implements InputFilter, OnGlobalLayoutListener {
+  private TextView view;
 
   public EmojiFilter(TextView view) {
     this.view = view;
@@ -27,6 +25,26 @@ public class EmojiFilter implements InputFilter {
     if (source instanceof Spanned) {
       TextUtils.copySpansFrom((Spanned) source, start, end, null, emojified, 0);
     }
-    return emojified;
+    view.getViewTreeObserver().addOnGlobalLayoutListener(this);
+    if (view.getWidth() == 0 || view.getEllipsize() != TruncateAt.END) {
+      return emojified;
+    } else {
+      return TextUtils.ellipsize(emojified,
+                                 view.getPaint(),
+                                 view.getWidth() - view.getPaddingRight() - view.getPaddingLeft(),
+                                 TruncateAt.END);
+    }
+  }
+
+  @SuppressWarnings("deprecation")
+  @Override public void onGlobalLayout() {
+    if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+      view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+    }
+    else {
+      view.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+    }
+
+    view.invalidate();
   }
 }
