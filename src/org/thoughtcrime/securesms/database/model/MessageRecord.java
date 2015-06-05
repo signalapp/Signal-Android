@@ -80,7 +80,7 @@ public abstract class MessageRecord extends DisplayRecord {
     this.networkFailures = networkFailures;
   }
 
-  public static String findContactName(Context context, String phoneNumber) {
+  private static String findContactName(Context context, String phoneNumber) {
 
     ContentResolver cr = context.getContentResolver();
     Uri uri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI,
@@ -152,22 +152,6 @@ public abstract class MessageRecord extends DisplayRecord {
     }
     String body = addContactNameAsideContactNumber(getBody().getBody());
     return new SpannableString(body);
-  }
-
-  private String addContactNameAsideContactNumber(String message) {
-    ArrayList<KnownPhoneNumbers> knownPhoneNumbersArrayList = checkForPhoneNumber(
-            message);
-
-    if (knownPhoneNumbersArrayList.size() > 0) {
-      int offset = 0;
-      for (KnownPhoneNumbers knownN : knownPhoneNumbersArrayList) {
-        message = (message.substring(0, knownN.getEnd() + offset)).concat("(").concat(
-                knownN.getContactName()).concat(")").concat(
-                message.substring(knownN.getEnd() + offset, message.length()));
-        offset += knownN.getContactName().length() + 2;
-      }
-    }
-    return message;
   }
 
   public long getId() {
@@ -292,6 +276,23 @@ public abstract class MessageRecord extends DisplayRecord {
 
     return knownPhoneNumbersList;
   }
+
+  private String addContactNameAsideContactNumber(String message) {
+    ArrayList<KnownPhoneNumbers> knownPhoneNumbersArrayList = checkForPhoneNumber(
+            message);
+
+    if (knownPhoneNumbersArrayList.size() > 0) {
+      int offset = 0;
+      for (KnownPhoneNumbers knownN : knownPhoneNumbersArrayList) {
+        message = (message.substring(0, knownN.getEnd() + offset)).concat("(").concat(
+                knownN.getContactName()).concat(")").concat(
+                message.substring(knownN.getEnd() + offset, message.length()));
+        offset += knownN.getContactName().length() + 2;
+      }
+    }
+    return message;
+  }
+
 
   class KnownPhoneNumbers {
     private String number;
