@@ -123,7 +123,7 @@ public class PushContactSelectionListFragment extends    Fragment
       @Override
       public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
         cursorFilter = charSequence.toString();
-        getLoaderManager().restartLoader(0, null, PushContactSelectionListFragment.this);
+        update();
       }
 
       @Override
@@ -151,8 +151,6 @@ public class PushContactSelectionListFragment extends    Fragment
   public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
     ((CursorAdapter) listView.getAdapter()).changeCursor(data);
     emptyText.setText(R.string.contact_selection_group_activity__no_contacts);
-    if (data != null && data.getCount() < 40) listView.setFastScrollAlwaysVisible(false);
-    else                                      listView.setFastScrollAlwaysVisible(true);
   }
 
   @Override
