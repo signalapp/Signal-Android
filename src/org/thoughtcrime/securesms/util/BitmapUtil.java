@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.util;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
+import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -141,6 +142,7 @@ public class BitmapUtil {
 
     options.inSampleSize       = scaler;
     options.inJustDecodeBounds = false;
+    options.inPreferredConfig  = constrainedMemory ? Config.RGB_565 : Config.ARGB_8888;
 
     BufferedInputStream is = new BufferedInputStream(data);
     Bitmap roughThumbnail  = BitmapFactory.decodeStream(is, null, options);
