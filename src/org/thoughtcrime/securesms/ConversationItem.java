@@ -47,6 +47,7 @@ import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
+import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
 import org.thoughtcrime.securesms.jobs.MmsDownloadJob;
 import org.thoughtcrime.securesms.jobs.MmsSendJob;
 import org.thoughtcrime.securesms.jobs.SmsSendJob;
@@ -75,6 +76,7 @@ public class ConversationItem extends LinearLayout {
   private Locale        locale;
   private boolean       groupThread;
   private boolean       pushDestination;
+  public boolean isDeliveredToAll = false;
 
   private View            bodyBubble;
   private TextView        bodyText;
@@ -271,7 +273,7 @@ public class ConversationItem extends LinearLayout {
 
     secureImage.setVisibility(messageRecord.isSecure() ? View.VISIBLE : View.GONE);
     bodyText.setCompoundDrawablesWithIntrinsicBounds(0, 0, messageRecord.isKeyExchange() ? R.drawable.ic_menu_login : 0, 0);
-    deliveryImage.setVisibility(!messageRecord.isKeyExchange() && messageRecord.isDelivered() ? View.VISIBLE : View.GONE);
+    //deliveryImage.setVisibility(!messageRecord.isKeyExchange() && messageRecord.isDelivered() ? View.VISIBLE : View.GONE);
 
     mmsDownloadButton.setVisibility(View.GONE);
     mmsDownloadingLabel.setVisibility(View.GONE);
@@ -280,6 +282,11 @@ public class ConversationItem extends LinearLayout {
     else if (messageRecord.isPendingInsecureSmsFallback()) setFallbackStatusIcons();
     else if (messageRecord.isPending())                    dateText.setText(" ··· ");
     else                                                   setSentStatusIcons();
+
+    if (isDeliveredToAll) {
+        deliveryImage.setVisibility(!messageRecord.isKeyExchange() && messageRecord.isDelivered() ? View.VISIBLE : View.GONE);
+    }
+
   }
 
   private void setSentStatusIcons() {
@@ -288,6 +295,26 @@ public class ConversationItem extends LinearLayout {
     else                        timestamp = messageRecord.getDateReceived();
 
     dateText.setText(DateUtils.getExtendedRelativeTimeSpanString(getContext(), locale, timestamp));
+    int rep ;
+    int rec ;
+
+    if (!ConversationActivity.isGroupConv) {
+      rep = 1;
+      rec = 1;
+
+    } else {
+      rep = PushGroupSendJob.getRecipients();
+      rec = messageRecord.getReceiptCount();
+    }
+
+    if (!checkIfDeliveredToAll(rec,rep)) {
+      isDeliveredToAll = false;
+      dateText.setText(DateUtils.getExtendedRelativeTimeSpanString(getContext(), locale, timestamp)+" "+rec +"/" +rep+" ");
+    } else {
+      isDeliveredToAll = true;
+      dateText.setText(DateUtils.getExtendedRelativeTimeSpanString(getContext(), locale, timestamp));
+    }
+
   }
 
   private void setFailedStatusIcons() {
@@ -536,4 +563,11 @@ public class ConversationItem extends LinearLayout {
     });
     builder.show();
   }
+   public boolean checkIfDeliveredToAll (int rec, int rep) {
+       if (rec < rep) {
+           return false;
+       } else {
+           return true;
+       }
+   }
 }

@@ -342,7 +342,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     public Recipients isReceived (MessageRecord messageRecord, Recipients recipients) {
         List<Recipient> received = new ArrayList<Recipient>();
         ArrayList<String> recMapList = MessageRetrievalService.recieversMap.get(messageRecord.getDateReceived());
-
+        
         for (int i=0; i < recipients.getRecipientsList().size(); i++) {
             if (recMapList.toString().contains(recipientsCorrected(recipients,i))) {
                 received.add(recipients.getRecipientsList().get(i));

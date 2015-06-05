@@ -130,6 +130,10 @@ public abstract class MessageRecord extends DisplayRecord {
     return deliveryStatus;
   }
 
+  public int getReceiptCount() {
+    return receiptCount;
+  }
+
   public boolean isDelivered() {
     return getDeliveryStatus() == DELIVERY_STATUS_RECEIVED || receiptCount > 0;
   }
