@@ -130,6 +130,10 @@ public abstract class MessageRecord extends DisplayRecord {
     return deliveryStatus;
   }
 
+    /**
+     * Used to return the number of the receivers for a specific message.
+     * @return the receiptCount
+     */
   public int getReceiptCount() {
     return receiptCount;
   }

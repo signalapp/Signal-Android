@@ -83,6 +83,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
   private TextView         transport;
   private TextView         toFrom;
   private ListView         recipientsList;
+  //creating listview to display the members who haven't received the message in a gray background
   private ListView         nonReceiversList;
   private LayoutInflater   inflater;
 
@@ -183,25 +184,17 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
                          recipients != messageRecord.getRecipients(),
                          DirectoryHelper.isPushDestination(this, recipients));
 
+    //creating two objects with the receivers and non-receivers of the message
+    Recipients isReceiv = isReceived(messageRecord, recipients);
+    Recipients isNotReceiv = isNotReceived(messageRecord,recipients);
 
-
-      Recipients isReceiv = isReceived(messageRecord, recipients);
-      Recipients isNotReceiv = isNotReceived(messageRecord,recipients);
-
-      if(isReceiv.getRecipientsList().size() == recipients.getRecipientsList().size()) {
-          recipientsList.setAdapter(new MessageDetailsRecipientAdapter(this, masterSecret, messageRecord,
-                  recipients, isPushGroup));
-
-      } else {
-          recipientsList.setAdapter(new MessageDetailsRecipientAdapter(this, masterSecret, messageRecord,
-                  isReceiv, isPushGroup));
-
-          nonReceiversList.setAdapter(new MessageDetailsRecipientAdapter(this, masterSecret, messageRecord,
-                  isNotReceiv, isPushGroup));
-      }
-
-
-
+    //checking if the message is delivered to all or not and displaying the according list
+    if(isReceiv.getRecipientsList().size() == recipients.getRecipientsList().size()) {
+      recipientsList.setAdapter(new MessageDetailsRecipientAdapter(this, masterSecret, messageRecord, recipients, isPushGroup));
+    } else {
+      recipientsList.setAdapter(new MessageDetailsRecipientAdapter(this, masterSecret, messageRecord, isReceiv, isPushGroup));
+        nonReceiversList.setAdapter(new MessageDetailsRecipientAdapter(this, masterSecret, messageRecord, isNotReceiv, isPushGroup));
+    }
   }
 
   private void inflateMessageViewIfAbsent(MessageRecord messageRecord) {
@@ -339,47 +332,52 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
   }
 
 
-    public Recipients isReceived (MessageRecord messageRecord, Recipients recipients) {
-        List<Recipient> received = new ArrayList<Recipient>();
-        ArrayList<String> recMapList = MessageRetrievalService.recieversMap.get(messageRecord.getDateReceived());
-        
-        for (int i=0; i < recipients.getRecipientsList().size(); i++) {
-            if (recMapList.toString().contains(recipientsCorrected(recipients,i))) {
-                received.add(recipients.getRecipientsList().get(i));
+    /**
+     * Used to create a Recipients object that includes only the receivers of a message
+     * @param messageRecord the record of each message
+     * @param recipients the Recipients object that includes all the members of the conversation
+     * @return the receivers of the message
+     */
+  public Recipients isReceived (MessageRecord messageRecord, Recipients recipients) {
+     List<Recipient> received = new ArrayList<>();
+     ArrayList<String> recMapList = MessageRetrievalService.receiversMap.get(messageRecord.getDateReceived());
 
+     for (int i=0; i < recipients.getRecipientsList().size(); i++) {
+       if (recMapList.toString().contains(recipientsCorrected(recipients,i))) {
+         received.add(recipients.getRecipientsList().get(i));
+       }
+     }
+     return new Recipients(received);
+   }
 
-            }
-            Log.d(TAG, "exoume mpei sthn if sthn isReceived : " + recipients.getRecipientsList().get(i).getName());
-        }
+    /**
+     * Used to create a Recipients object that includes only those who haven't received the message yet
+     * @param messageRecord the record of each message
+     * @param recipients the Recipients object that includes all the members of the conversation
+     * @return the non-receivers of the message
+     */
 
-        return new Recipients(received);
+  public Recipients isNotReceived(MessageRecord messageRecord, Recipients recipients) {
+    List<Recipient> received = new ArrayList<>();
+    ArrayList<String> recMapList = MessageRetrievalService.receiversMap.get(messageRecord.getDateReceived());
 
+    for (int i=0; i < recipients.getRecipientsList().size(); i++) {
+      if (!recMapList.toString().contains(recipientsCorrected(recipients,i))) {
+        received.add(recipients.getRecipientsList().get(i));
+      }
     }
+    return new Recipients(received);
+  }
 
-
-    public Recipients isNotReceived(MessageRecord messageRecord, Recipients recipients) {
-        List<Recipient> received = new ArrayList<Recipient>();
-        ArrayList<String> recMapList = MessageRetrievalService.recieversMap.get(messageRecord.getDateReceived());
-
-        for (int i=0; i < recipients.getRecipientsList().size(); i++) {
-            if (!recMapList.toString().contains(recipientsCorrected(recipients,i))) {
-                received.add(recipients.getRecipientsList().get(i));
-
-
-            }
-            Log.d(TAG, "exoume mpei sthn if sthn isNotReceived : " + recipients.getRecipientsList().get(i).getName());
-        }
-
-        return new Recipients(received);
-
-    }
-
-    public String recipientsCorrected (Recipients recipients, int i) {
-        String recipient = recipients.getRecipientsList().get(i).getNumber().replaceAll("\\s","");
-
-        Log.d(TAG, "recipientsCorrected : " + recipient);
-
-        return recipient;
-
-    }
+    /**
+     * The number of the recipients appears differently in the envelope from the messageRecord. This method
+     * is used to get them to the same form by removing special characters and blank spaces.
+     * @param recipients represents the recipients of each message
+     * @param i represents the position in the recipients list
+     * @return the corrected number in the form of a String
+     */
+  public String recipientsCorrected (Recipients recipients, int i) {
+    String recipient = recipients.getRecipientsList().get(i).getNumber().replaceAll("\\s","");
+    return recipient;
+  }
 }

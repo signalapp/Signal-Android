@@ -183,6 +183,10 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
     return addresses;
   }
 
+    /**
+     * This method is used to return all the members of a group conversation.
+     * @return the number of the group members
+     */
   public static int getRecipients(){
     return allRecipients;
   }

@@ -273,7 +273,6 @@ public class ConversationItem extends LinearLayout {
 
     secureImage.setVisibility(messageRecord.isSecure() ? View.VISIBLE : View.GONE);
     bodyText.setCompoundDrawablesWithIntrinsicBounds(0, 0, messageRecord.isKeyExchange() ? R.drawable.ic_menu_login : 0, 0);
-    //deliveryImage.setVisibility(!messageRecord.isKeyExchange() && messageRecord.isDelivered() ? View.VISIBLE : View.GONE);
 
     mmsDownloadButton.setVisibility(View.GONE);
     mmsDownloadingLabel.setVisibility(View.GONE);
@@ -283,8 +282,9 @@ public class ConversationItem extends LinearLayout {
     else if (messageRecord.isPending())                    dateText.setText(" ··· ");
     else                                                   setSentStatusIcons();
 
+    //checking if the message is to delivered to everyone in order to display the tick image in the conversation bubble
     if (isDeliveredToAll) {
-        deliveryImage.setVisibility(!messageRecord.isKeyExchange() && messageRecord.isDelivered() ? View.VISIBLE : View.GONE);
+      deliveryImage.setVisibility(!messageRecord.isKeyExchange() && messageRecord.isDelivered() ? View.VISIBLE : View.GONE);
     }
 
   }
@@ -295,18 +295,20 @@ public class ConversationItem extends LinearLayout {
     else                        timestamp = messageRecord.getDateReceived();
 
     dateText.setText(DateUtils.getExtendedRelativeTimeSpanString(getContext(), locale, timestamp));
-    int rep ;
-    int rec ;
 
+    int rep ; // represents the recipients of the message
+    int rec ; // represents the receivers of the message
+
+    //in case it's a single person conversation we can only have one recipient and one receiver.
     if (!ConversationActivity.isGroupConv) {
       rep = 1;
       rec = 1;
-
     } else {
       rep = PushGroupSendJob.getRecipients();
       rec = messageRecord.getReceiptCount();
     }
 
+    //displaying in the message bubble the receivers / recipients
     if (!checkIfDeliveredToAll(rec,rep)) {
       isDeliveredToAll = false;
       dateText.setText(DateUtils.getExtendedRelativeTimeSpanString(getContext(), locale, timestamp)+" "+rec +"/" +rep+" ");
@@ -314,7 +316,6 @@ public class ConversationItem extends LinearLayout {
       isDeliveredToAll = true;
       dateText.setText(DateUtils.getExtendedRelativeTimeSpanString(getContext(), locale, timestamp));
     }
-
   }
 
   private void setFailedStatusIcons() {
@@ -563,11 +564,18 @@ public class ConversationItem extends LinearLayout {
     });
     builder.show();
   }
-   public boolean checkIfDeliveredToAll (int rec, int rep) {
-       if (rec < rep) {
-           return false;
-       } else {
-           return true;
-       }
-   }
+
+    /**
+     * The message is delivered to all only when the number of the receivers equals the number sof the recipients
+     * @param rec the number of the receivers
+     * @param rep the number of the recipients
+     * @return true when the message is delivered to everyone
+     */
+  public boolean checkIfDeliveredToAll (int rec, int rep) {
+    if (rec < rep) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 }
