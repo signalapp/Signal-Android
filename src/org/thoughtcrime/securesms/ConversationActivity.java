@@ -159,6 +159,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private int        distributionType;
   private boolean    isEncryptedConversation;
   private boolean    isMmsEnabled = true;
+  public static boolean isGroupConv = false;
 
   private DynamicTheme    dynamicTheme    = new DynamicTheme();
   private DynamicLanguage dynamicLanguage = new DynamicLanguage();
@@ -282,8 +283,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     if (isSingleConversation()) {
       inflater.inflate(R.menu.conversation_callable, menu);
+      isGroupConv = false;
     } else if (isGroupConversation()) {
       inflater.inflate(R.menu.conversation_group_options, menu);
+      isGroupConv = true;
 
       if (!isPushGroupConversation()) {
         inflater.inflate(R.menu.conversation_mms_group_options, menu);

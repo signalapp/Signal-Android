@@ -19,8 +19,11 @@ import org.whispersystems.textsecure.api.TextSecureMessagePipe;
 import org.whispersystems.textsecure.api.TextSecureMessageReceiver;
 import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
@@ -37,6 +40,10 @@ public class MessageRetrievalService extends Service implements Runnable, Inject
 
   private NetworkRequirement         networkRequirement;
   private NetworkRequirementProvider networkRequirementProvider;
+  // creating a receivers to map timestamps of a message with the according receivers
+  //note: the timestamp is unique for each message and is the same as the dateReceived from MessageRecord
+  public static Map<Long, ArrayList<String>> receiversMap=new HashMap<>();
+
 
   @Inject
   public TextSecureMessageReceiver receiver;
@@ -84,6 +91,15 @@ public class MessageRetrievalService extends Service implements Runnable, Inject
                         @Override
                         public void onMessage(TextSecureEnvelope envelope) {
                           Log.w(TAG, "Retrieved envelope! " + envelope.getSource());
+                           //mapping thee timestamp with the receivers
+                          if (envelope.getSource() != null) {
+                            if (receiversMap.containsKey(envelope.getTimestamp())) {
+                                receiversMap.get(envelope.getTimestamp()).add(envelope.getSource());
+                            } else {
+                                receiversMap.put(envelope.getTimestamp(), new ArrayList<String>());
+                                receiversMap.get(envelope.getTimestamp()).add(envelope.getSource());
+                            }
+                          }
 
                           PushContentReceiveJob receiveJob = new PushContentReceiveJob(MessageRetrievalService.this);
                           receiveJob.handle(envelope, false);

@@ -33,6 +33,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.service.MessageRetrievalService;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -55,6 +56,9 @@ import java.text.SimpleDateFormat;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Locale;
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * @author Jake McGinty
@@ -79,6 +83,8 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
   private TextView         transport;
   private TextView         toFrom;
   private ListView         recipientsList;
+  //creating listview to display the members who haven't received the message in a gray background
+  private ListView         nonReceiversList;
   private LayoutInflater   inflater;
 
   private DynamicTheme     dynamicTheme    = new DynamicTheme();
@@ -115,6 +121,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     isPushGroup       = getIntent().getBooleanExtra(IS_PUSH_GROUP_EXTRA, false);
     itemParent        = (ViewGroup) header.findViewById(R.id.item_container);
     recipientsList    = (ListView ) findViewById(R.id.recipients_list);
+    nonReceiversList     = (ListView) findViewById(R.id.non_receivers_list);
     metadataContainer =             header.findViewById(R.id.metadata_container);
     errorText         = (TextView ) header.findViewById(R.id.error_text);
     sentDate          = (TextView ) header.findViewById(R.id.sent_time);
@@ -124,6 +131,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     toFrom            = (TextView ) header.findViewById(R.id.tofrom);
     recipientsList.setHeaderDividersEnabled(false);
     recipientsList.addHeaderView(header, null, false);
+    nonReceiversList.setHeaderDividersEnabled(false);
   }
 
   private void updateTransport(MessageRecord messageRecord) {
@@ -175,8 +183,18 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
                          new HashSet<MessageRecord>(), new NullSelectionListener(),
                          recipients != messageRecord.getRecipients(),
                          DirectoryHelper.isPushDestination(this, recipients));
-    recipientsList.setAdapter(new MessageDetailsRecipientAdapter(this, masterSecret, messageRecord,
-                                                                 recipients, isPushGroup));
+
+    //creating two objects with the receivers and non-receivers of the message
+    Recipients isReceiv = isReceived(messageRecord, recipients);
+    Recipients isNotReceiv = isNotReceived(messageRecord,recipients);
+
+    //checking if the message is delivered to all or not and displaying the according list
+    if(isReceiv.getRecipientsList().size() == recipients.getRecipientsList().size()) {
+      recipientsList.setAdapter(new MessageDetailsRecipientAdapter(this, masterSecret, messageRecord, recipients, isPushGroup));
+    } else {
+      recipientsList.setAdapter(new MessageDetailsRecipientAdapter(this, masterSecret, messageRecord, isReceiv, isPushGroup));
+        nonReceiversList.setAdapter(new MessageDetailsRecipientAdapter(this, masterSecret, messageRecord, isNotReceiv, isPushGroup));
+    }
   }
 
   private void inflateMessageViewIfAbsent(MessageRecord messageRecord) {
@@ -234,7 +252,60 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     }
 
     return false;
+
   }
+
+
+   /**
+    * Used to create a Recipients object that includes only the receivers of a message
+    * @param messageRecord the record of each message
+    * @param recipients the Recipients object that includes all the members of the conversation
+    * @return the receivers of the message
+    */
+   public Recipients isReceived (MessageRecord messageRecord, Recipients recipients) {
+       List<Recipient> received = new ArrayList<>();
+       ArrayList<String> recMapList = MessageRetrievalService.receiversMap.get(messageRecord.getDateReceived());
+
+       for (int i=0; i < recipients.getRecipientsList().size(); i++) {
+           if (recMapList.toString().contains(recipientsCorrected(recipients,i))) {
+               received.add(recipients.getRecipientsList().get(i));
+           }
+       }
+       return new Recipients(received);
+   }
+
+   /**
+    * Used to create a Recipients object that includes only those who haven't received the message yet
+    * @param messageRecord the record of each message
+    * @param recipients the Recipients object that includes all the members of the conversation
+    * @return the non-receivers of the message
+    */
+
+   public Recipients isNotReceived(MessageRecord messageRecord, Recipients recipients) {
+       List<Recipient> received = new ArrayList<>();
+       ArrayList<String> recMapList = MessageRetrievalService.receiversMap.get(messageRecord.getDateReceived());
+
+       for (int i=0; i < recipients.getRecipientsList().size(); i++) {
+           if (!recMapList.toString().contains(recipientsCorrected(recipients,i))) {
+               received.add(recipients.getRecipientsList().get(i));
+           }
+       }
+       return new Recipients(received);
+   }
+
+   /**
+    * The number of the recipients appears differently in the envelope from the messageRecord. This method
+    * is used to get them to the same form by removing special characters and blank spaces.
+    * @param recipients represents the recipients of each message
+    * @param i represents the position in the recipients list
+    * @return the corrected number in the form of a String
+    */
+   public String recipientsCorrected (Recipients recipients, int i) {
+       String recipient = recipients.getRecipientsList().get(i).getNumber().replaceAll("\\s","");
+       return recipient;
+   }
+
+
 
   private class MessageRecipientAsyncTask extends AsyncTask<Void,Void,Recipients> {
     private WeakReference<Context> weakContext;

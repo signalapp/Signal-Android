@@ -47,7 +47,7 @@ import static org.thoughtcrime.securesms.dependencies.TextSecureCommunicationMod
 public class PushGroupSendJob extends PushSendJob implements InjectableType {
 
   private static final String TAG = PushGroupSendJob.class.getSimpleName();
-
+  private static int allRecipients;
   @Inject transient TextSecureMessageSenderFactory messageSenderFactory;
 
   private final long messageId;
@@ -81,6 +81,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
 
     try {
       deliver(masterSecret, message, filterRecipientId);
+
 
       database.markAsPush(messageId);
       database.markAsSecure(messageId);
@@ -138,6 +139,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
     Recipients                 recipients    = DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupId, false);
     List<TextSecureAttachment> attachments   = getAttachments(masterSecret, message);
     List<TextSecureAddress>    addresses;
+    allRecipients = (recipients.getRecipientsList().size());
 
     if (filterRecipientId >= 0) addresses = getPushAddresses(filterRecipientId);
     else                        addresses = getPushAddresses(recipients);
@@ -179,6 +181,14 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
     List<TextSecureAddress> addresses = new LinkedList<>();
     addresses.add(getPushAddress(RecipientFactory.getRecipientForId(context, filterRecipientId, false).getNumber()));
     return addresses;
+  }
+
+    /**
+     * This method is used to return all the members of a group conversation.
+     * @return the number of the group members
+     */
+  public static int getRecipients(){
+    return allRecipients;
   }
 
 }

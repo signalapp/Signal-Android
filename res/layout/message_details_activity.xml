@@ -11,4 +11,11 @@
               android:layout_height="wrap_content"
               tools:listitem="@layout/message_recipient_list_item" />
 
+
+    <ListView android:id="@+id/non_receivers_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/message_received_not"
+        tools:listitem="@layout/message_recipient_list_item" />
+
 </LinearLayout>
