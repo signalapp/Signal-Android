@@ -20,25 +20,36 @@ import android.content.Context;
 import android.content.res.Resources.Theme;
 import android.net.Uri;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.Nullable;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.crypto.DecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
+import org.thoughtcrime.securesms.util.Util;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 import ws.com.google.android.mms.ContentType;
 import ws.com.google.android.mms.pdu.PduPart;
 
 public class ImageSlide extends Slide {
   private static final String TAG = ImageSlide.class.getSimpleName();
+  private boolean encrypted = false;
 
   public ImageSlide(Context context, MasterSecret masterSecret, PduPart part) {
     super(context, masterSecret, part);
   }
 
   public ImageSlide(Context context, Uri uri) throws IOException, BitmapDecodingException {
-    super(context, constructPartFromUri(uri));
+    this(context, null, uri);
+  }
+
+  public ImageSlide(Context context, MasterSecret masterSecret, Uri uri) throws IOException, BitmapDecodingException {
+    super(context, masterSecret, constructPartFromByteArrayAndUri(uri, decryptContent(uri, masterSecret), masterSecret != null));
+    encrypted = masterSecret != null;
   }
 
   @Override
@@ -62,12 +73,32 @@ public class ImageSlide extends Slide {
     return true;
   }
 
-  private static PduPart constructPartFromUri(Uri uri)
+  @Override
+  public boolean isEncrypted() {
+    return encrypted;
+  }
+
+  private static byte[] decryptContent(Uri uri, MasterSecret masterSecret) {
+    try {
+      if (masterSecret != null) {
+        InputStream inputStream = new DecryptingPartInputStream(new File(uri.getPath()), masterSecret);
+        return Util.readFully(inputStream);
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return null;
+  }
+
+  private static PduPart constructPartFromByteArrayAndUri(Uri uri, @Nullable byte[] data, boolean encrypted)
       throws IOException, BitmapDecodingException
   {
     PduPart part = new PduPart();
 
     part.setDataUri(uri);
+    if (data != null)
+      part.setData(data);
+    part.setEncrypted(encrypted);
     part.setContentType(ContentType.IMAGE_JPEG.getBytes());
     part.setContentId((System.currentTimeMillis()+"").getBytes());
     part.setName(("Image" + System.currentTimeMillis()).getBytes());
