@@ -91,7 +91,7 @@
                         android:paddingRight="0dp"
                         android:paddingLeft="0dp"
                         android:imeOptions="actionSend|flagNoEnterAction|flagNoExtractUi"
-                        android:inputType="textAutoCorrect|textCapSentences|textMultiLine"
+                        android:inputType="textAutoCorrect|textCapSentences|textMultiLine|textShortMessage"
                         android:maxLength="2000"
                         android:maxLines="4"
                         android:nextFocusForward="@+id/send_button"
