@@ -20,8 +20,8 @@
         able to access them.
     </string>
     <string name="ApplicationPreferencesActivity_disable">Disable</string>
-    <string name="ApplicationPreferencesActivity_unregistering">Unregistering...</string>
-    <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Unregistering from TextSecure messages</string>
+    <string name="ApplicationPreferencesActivity_unregistering">Unregistering</string>
+    <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Unregistering from TextSecure messages...</string>
     <string name="ApplicationPreferencesActivity_disable_textsecure_messages">Disable TextSecure messages?</string>
     <string name="ApplicationPreferencesActivity_this_will_disable_textsecure_messages">
         This will disable TextSecure messages by unregistering you from the server.
@@ -136,7 +136,7 @@
     <string name="ConversationFragment_push">Data (TextSecure)</string>
     <string name="ConversationFragment_mms">MMS</string>
     <string name="ConversationFragment_sms">SMS</string>
-    <string name="ConversationFragment_deleting">Deleting...</string>
+    <string name="ConversationFragment_deleting">Deleting</string>
     <string name="ConversationFragment_deleting_messages">Deleting messages...</string>
 
     <!-- ConversationListActivity -->
@@ -225,7 +225,7 @@
         importing again will result in duplicated messages.
     </string>
     <string name="ImportFragment_importing">Importing</string>
-    <string name="ImportFragment_import_plaintext_backup_elipse">Import plaintext backup...</string>
+    <string name="ImportFragment_import_plaintext_backup_elipse">Importing plaintext backup...</string>
     <string name="ImportFragment_no_plaintext_backup_found">No plaintext backup found!</string>
     <string name="ImportFragment_error_importing_backup">Error importing backup!</string>
     <string name="ImportFragment_import_complete">Import complete!</string>
@@ -271,7 +271,7 @@
         - Read all your messages
         \n- Send messages in your name
     </string>
-    <string name="DeviceProvisioningActivity_content_progress_title">Adding device...</string>
+    <string name="DeviceProvisioningActivity_content_progress_title">Adding device</string>
     <string name="DeviceProvisioningActivity_content_progress_content">Adding new device...</string>
     <string name="DeviceProvisioningActivity_content_progress_success">Device added!</string>
     <string name="DeviceProvisioningActivity_content_progress_no_device">No device found.</string>
@@ -730,7 +730,7 @@
     <string name="preferences__sound">Sound</string>
     <string name="preferences__change_notification_sound">Change notification sound</string>
     <string name="preferences__inthread_notifications">In-thread notifications</string>
-    <string name="preferences__play_inthread_notifications">Play notification sound when viewing an active conversation.</string>
+    <string name="preferences__play_inthread_notifications">Play notification sound when viewing an active conversation</string>
     <string name="preferences__repeat_alerts">Repeat alerts</string>
     <string name="preferences__never">Never</string>
     <string name="preferences__one_time">One time</string>
@@ -786,7 +786,7 @@
     </string>
     <string name="preferences__submit_debug_log">Submit debug log</string>
     <string name="preferences__support_wifi_calling">\'WiFi Calling\' compatibility mode</string>
-    <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Enable if your device uses SMS/MMS delivery over WiFi (only enable when \'WiFi Calling\' is enabled on your device).</string>
+    <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Enable if your device uses SMS/MMS delivery over WiFi (only enable when \'WiFi Calling\' is enabled on your device)</string>
 
     <!-- **************************************** -->
     <!-- menus -->
@@ -894,7 +894,7 @@
     <string name="media_preview_activity__image_content_description">Image Preview</string>
 
     <!-- Trimmer -->
-    <string name="trimmer__deleting">Deleting...</string>
+    <string name="trimmer__deleting">Deleting</string>
     <string name="trimmer__deleting_old_messages">Deleting old messages...</string>
     <string name="trimmer__old_messages_successfully_deleted">Old messages successfully deleted</string>
 
