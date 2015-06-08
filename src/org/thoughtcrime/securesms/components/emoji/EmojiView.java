@@ -5,7 +5,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Paint.Align;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Build.VERSION_CODES;
@@ -13,7 +12,8 @@ import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.google.common.base.Optional;
+import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.ResUtil;
 
 public class EmojiView extends View implements Drawable.Callback {
   private String   emoji;
@@ -58,7 +58,7 @@ public class EmojiView extends View implements Drawable.Callback {
     } else {
       float targetFontSize = 0.75f * getHeight() - getPaddingTop() - getPaddingBottom();
       paint.setTextSize(targetFontSize);
-      paint.setColor(Color.BLACK);
+      paint.setColor(ResUtil.getColor(getContext(), R.attr.emoji_text_color));
       paint.getTextBounds(emoji, 0, emoji.length(), textBounds);
       float overflow = textBounds.width() / (getWidth() - getPaddingLeft() - getPaddingRight());
       if (overflow > 1f) {
