@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -10,7 +9,7 @@
         android:background="?conversation_background"
         android:orientation="vertical">
 
-<org.thoughtcrime.securesms.components.QuickAttachmentDrawer
+<org.thoughtcrime.securesms.components.camera.QuickAttachmentDrawer
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/quick_attachment_drawer"
     android:layout_width="match_parent"
@@ -99,15 +98,17 @@
                         android:nextFocusForward="@+id/send_button"
                         android:nextFocusRight="@+id/send_button"
                         tools:hint="Send TextSecure message" />
-                </LinearLayout>
 
-                <ImageButton android:id="@+id/quick_attachment_toggle"
-                             android:layout_width="wrap_content"
-                             android:layout_height="44dp"
-                             android:src="?quick_camera_icon"
-                             android:background="@drawable/touch_highlight_background"
-                             android:contentDescription="@string/conversation_activity__quick_attachment_drawer_toggle_description"
-                             android:padding="10dp"/>
+                    <org.thoughtcrime.securesms.components.camera.HidingImageButton
+                            android:id="@+id/quick_attachment_toggle"
+                            android:layout_width="37dp"
+                            android:layout_height="37dp"
+                            android:layout_gravity="bottom"
+                            android:src="?quick_camera_icon"
+                            android:background="@drawable/touch_highlight_background"
+                            android:contentDescription="@string/conversation_activity__quick_attachment_drawer_toggle_description"
+                            android:padding="10dp"/>
+                </LinearLayout>
 
                 <org.thoughtcrime.securesms.components.AnimatingToggle
                     android:id="@+id/button_toggle"
@@ -156,5 +157,5 @@
         </LinearLayout>
     </RelativeLayout>
 
-</org.thoughtcrime.securesms.components.QuickAttachmentDrawer>
+</org.thoughtcrime.securesms.components.camera.QuickAttachmentDrawer>
 </org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout>
