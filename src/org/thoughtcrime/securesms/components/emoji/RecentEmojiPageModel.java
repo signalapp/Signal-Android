@@ -42,8 +42,8 @@ public class RecentEmojiPageModel implements EmojiPageModel {
     }
   }
 
-  @Override public int getIconRes() {
-    return R.drawable.emoji_category_recent;
+  @Override public int getIconAttr() {
+    return R.attr.emoji_category_recent;
   }
 
   @Override public String[] getEmoji() {

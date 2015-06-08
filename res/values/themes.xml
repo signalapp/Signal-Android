@@ -86,6 +86,21 @@
         <item name="conversation_attach_photo">@drawable/ic_photo_camera_light</item>
         <item name="conversation_attach">@drawable/ic_attach_grey600_24dp</item>
 
+        <item name="emoji_tab_strip_background">@color/gray12</item>
+        <item name="emoji_tab_indicator">#66555555</item>
+        <item name="emoji_tab_underline">#44555555</item>
+        <item name="emoji_tab_seperator">@color/gray20</item>
+        <item name="emoji_background">@color/gray5</item>
+        <item name="emoji_text_color">@color/black</item>
+
+        <item name="emoji_category_recent">@drawable/emoji_category_recent_light</item>
+        <item name="emoji_category_people">@drawable/emoji_category_people_light</item>
+        <item name="emoji_category_objects">@drawable/emoji_category_objects_light</item>
+        <item name="emoji_category_nature">@drawable/emoji_category_nature_light</item>
+        <item name="emoji_category_places">@drawable/emoji_category_places_light</item>
+        <item name="emoji_category_symbol">@drawable/emoji_category_symbol_light</item>
+        <item name="emoji_category_emoticons">@drawable/emoji_category_emoticons_light</item>
+
         <item name="conversation_item_background">@drawable/conversation_item_background</item>
         <item name="conversation_item_received_background">@color/conversation_item_received_background_light</item>
         <item name="conversation_item_sent_background">@color/conversation_item_sent_background_light</item>
@@ -219,6 +234,21 @@
         <item name="conversation_attach_contact_info">@drawable/ic_account_box_dark</item>
         <item name="conversation_attach_photo">@drawable/ic_photo_camera_dark</item>
         <item name="conversation_attach">@drawable/ic_attach_white_24dp</item>
+
+        <item name="emoji_tab_strip_background">@color/gray95</item>
+        <item name="emoji_tab_indicator">@color/gray65</item>
+        <item name="emoji_tab_underline">@color/gray78</item>
+        <item name="emoji_tab_seperator">@color/gray70</item>
+        <item name="emoji_background">@color/black</item>
+        <item name="emoji_text_color">@color/white</item>
+
+        <item name="emoji_category_recent">@drawable/emoji_category_recent_dark</item>
+        <item name="emoji_category_people">@drawable/emoji_category_people_dark</item>
+        <item name="emoji_category_objects">@drawable/emoji_category_objects_dark</item>
+        <item name="emoji_category_nature">@drawable/emoji_category_nature_dark</item>
+        <item name="emoji_category_places">@drawable/emoji_category_places_dark</item>
+        <item name="emoji_category_symbol">@drawable/emoji_category_symbol_dark</item>
+        <item name="emoji_category_emoticons">@drawable/emoji_category_emoticons_dark</item>
 
         <item name="menu_new_conversation_icon">@drawable/ic_add_white_24dp</item>
         <item name="menu_group_icon">@drawable/ic_group_white_24dp</item>
