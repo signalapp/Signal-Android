@@ -454,7 +454,7 @@ SMS съобщенията от системната базата данни в 
 Някои програми, като Handcent или GoSMS, 
 се държат лошо и
 прехващат всички SMS-и. Провери дали си получил съобщение, което започва 
-с \'Your TextSecure verification code:\', в който случай се налага да пренастроиш
+с \'Your SecureChat verification code:\', в който случай се налага да пренастроиш
 програмата, която го е получила да го пропусне.
 </string>
   <string name="registration_problems__incorrect_number">Грешен номер.</string>

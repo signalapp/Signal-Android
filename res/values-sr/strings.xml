@@ -145,8 +145,8 @@
   <string name="ExportFragment_error_while_writing_to_sd_card">Грешка уписа на СД картицу.</string>
   <string name="ExportFragment_success">Успех!</string>
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_TextSecure_communication_failure">Трајни неуспех комуникације Сигурних порука!</string>
-  <string name="GcmRefreshJob_TextSecure_was_unable_to_register_with_Google_Play_Services">Сигурне поруке нису успеле да се пријаве на Гуглов Плеј сервис. Комуникација преко канала података је онемогућена, покушајте поново да се пријавите преко менија поставки Сигурних порука.</string>
+  <string name="GcmRefreshJob_Permanent_SecureChat_communication_failure">Трајни неуспех комуникације Сигурних порука!</string>
+  <string name="GcmRefreshJob_SecureChat_was_unable_to_register_with_Google_Play_Services">Сигурне поруке нису успеле да се пријаве на Гуглов Плеј сервис. Комуникација преко канала података је онемогућена, покушајте поново да се пријавите преко менија поставки Сигурних порука.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Нова група</string>
   <string name="GroupCreateActivity_actionbar_update_title">Ажурирај групу</string>
@@ -465,7 +465,7 @@
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
 Неки клијенти за поруке треће стране, какви су Хандцент или ГоСМС, понашају се лоше и
 пресрећу све долазне СМС поруке. Проверите да ли сте добили текстуалну поруку која почиње са
-„Your TextSecure verification code:“, и у том случају мораћете да подесите вашу апликацију
+„Your SecureChat verification code:“, и у том случају мораћете да подесите вашу апликацију
 за поруке да пропушта текстуалне поруке.</string>
   <string name="registration_problems__incorrect_number">Нетачан број.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">

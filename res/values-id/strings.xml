@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">TextSecure</string>
+  <string name="app_name">SecureChat</string>
   <string name="yes">Ya</string>
   <string name="no">Tidak</string>
   <string name="delete">Hapus</string>
@@ -21,7 +21,7 @@ dapat mengaksesnya</string>
   <string name="ApplicationPreferencesActivity_disable_push_messages">Jangan gunakan push message</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Kesalahan dalam menghubungkan ke server!</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Sentuh untuk mengubah aplikasi SMS default</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Sentuh untuk membuat TextSecure sebagai aplikasi SMS default</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Sentuh untuk membuat SecureChat sebagai aplikasi SMS default</string>
   <!--AppProtectionPreferenceFragment-->
   <!--DraftDatabase-->
   <!--AttchmentManager-->
@@ -53,7 +53,7 @@ dapat mengaksesnya</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Perangkat ini sepertinya tidak mendukung untuk panggilan.</string>
   <string name="ConversationActivity_leave_group">Tinggalkan grup?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Anda yakin ingin meninggalkan grup ini?</string>
-  <string name="ConversationActivity_transport_textsecure">TextSecure</string>
+  <string name="ConversationActivity_transport_textsecure">SecureChat</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Rincian pesan</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Apakah anda yakin akan menghapus pesan ini secara permanen?</string>
@@ -69,7 +69,7 @@ dapat mengaksesnya</string>
   <!--ExportFragment-->
   <string name="ExportFragment_export">Eksport</string>
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Peringatan, ini akan
-mengeksport konten pesan teks polos TextSecure anda ke kartu SD</string>
+mengeksport konten pesan teks polos SecureChat anda ke kartu SD</string>
   <string name="ExportFragment_cancel">Batal</string>
   <string name="ExportFragment_exporting">Mengeksport</string>
   <string name="ExportFragment_exporting_plaintext_to_sd_card">Mengeksport teks polos ke kartu SD...
@@ -82,8 +82,8 @@ SD!
   <string name="ExportFragment_success">Sukses!</string>
   <!--GcmRefreshJob-->
   <!--GroupCreateActivity-->
-  <string name="GroupCreateActivity_contacts_dont_support_push">Anda telah memilih kontak yang tidak mendukung grup TextSecure, sehingga grup ini akan menggunakan MMS.</string>
-  <string name="GroupCreateActivity_you_dont_support_push">Anda tidak terdaftar untuk menggunakan saluran data, sehingga grup TextSecure dimatikan.</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Anda telah memilih kontak yang tidak mendukung grup SecureChat, sehingga grup ini akan menggunakan MMS.</string>
+  <string name="GroupCreateActivity_you_dont_support_push">Anda tidak terdaftar untuk menggunakan saluran data, sehingga grup SecureChat dimatikan.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Terjadi kesalahan tidak terduga yang menggagalkan pembuatan grup.</string>
   <string name="GroupCreateActivity_contacts_no_members">Anda butuh minimal satu orang dalam grup anda!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Salah satu anggota grup anda memiliki nomor yang tidak dapat dibaca, silakan perbaiki atau keluarkan kontak tersebut dan coba lagi.</string>
@@ -94,19 +94,19 @@ SD!
   <string name="ImportExportActivity_export">Eksport</string>
   <!--ImportFragment-->
   <string name="ImportFragment_this_will_import_messages_from_the_system">Ini akan mengimport
-pesan dari basis data SMS default ke TextSecure. Jika anda sebelumnya
+pesan dari basis data SMS default ke SecureChat. Jika anda sebelumnya
 telah mengimport basis data sistem SMS, hal ini akan menyebabkan adanya duplikasi pesan.
 </string>
   <string name="ImportFragment_import">Import</string>
   <string name="ImportFragment_cancel">Batal</string>
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
 Memulihkan dari cadangan yang enkripsi akan sepenuhnya mengganti kunci, preferensi dan
-pesan anda. Anda akan kehilangan informasi yang ada di instalasi TextSecure saat ini tetapi
+pesan anda. Anda akan kehilangan informasi yang ada di instalasi SecureChat saat ini tetapi
 cadangan anda tetap aman.
 </string>
   <string name="ImportFragment_restore">Pulihkan</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Ini akan mengimport
-pesan dari basis data SMS standar ke TextSecure. Jika anda sebelumnya
+pesan dari basis data SMS standar ke SecureChat. Jika anda sebelumnya
 telah mengimport basis data sistem SMS, hal ini akan menyebabkan adanya duplikasi pesan.</string>
   <string name="ImportFragment_importing">Mengimport</string>
   <string name="ImportFragment_import_plaintext_backup_elipse">Mengimport cadangan teks polos...</string>
@@ -132,7 +132,7 @@ telah mengimport basis data sistem SMS, hal ini akan menyebabkan adanya duplikas
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Isi
 tanda tangan dalam pertukaran kunci ini berbeda dengan apa yang telah anda terima sebelumnya dari
 kontak ini. Hal ini bisa berarti bahwa seseorang mencoba mencegat komunikasi anda, atau
-kontak ini telah menginstall ulang TextSecure dan sekarang memiliki kunci identitas baru.</string>
+kontak ini telah menginstall ulang SecureChat dan sekarang memiliki kunci identitas baru.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Anda mungkin ingin memverifikasi
 kontak ini.
 </string>
@@ -143,7 +143,7 @@ secara otomatis\'</string>
   <string name="ReceiveKeyActivity_processing">Memproses</string>
   <string name="ReceiveKeyActivity_processing_key_exchange">Memproses pertukaran kunci...</string>
   <!--RegistrationActivity-->
-  <string name="RegistrationActivity_connect_with_textsecure">Hubungkan dengan TextSecure</string>
+  <string name="RegistrationActivity_connect_with_textsecure">Hubungkan dengan SecureChat</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Anda harus menetapkan kode
 Negara anda
 </string>
@@ -174,8 +174,8 @@ isikan (%s) tidak tepat.
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Anda telah meminta panggilan suara. Anda dapat meminta lagi dalam 20 menit kemudian.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Konflik pendaftaran</string>
   <!--RegistrationService-->
-  <string name="RegistrationService_textsecure_registration_has_successfully_completed">Pendaftaran TextSecure telah berhasil.</string>
-  <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Pendaftaran TextSecure mengalami masalah.</string>
+  <string name="RegistrationService_textsecure_registration_has_successfully_completed">Pendaftaran SecureChat telah berhasil.</string>
+  <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Pendaftaran SecureChat mengalami masalah.</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Pesan menerima dan 
 memproses pertukaran kunci korupsi.</string>
@@ -230,7 +230,7 @@ Menerima pesan dengan identitas kunci tidak diketahui. Klik untuk memproses dan 
   <!--KeyCachingService-->
   <string name="KeyCachingService_textsecure_passphrase_cached">Sentuh untuk membuka.</string>
   <string name="KeyCachingService_textsecure_passphrase_cached_with_lock">Sentuh untuk membuka, atau sentuh untuk menutup.</string>
-  <string name="KeyCachingService_passphrase_cached">TextSecure tidak dikunci</string>
+  <string name="KeyCachingService_passphrase_cached">SecureChat tidak dikunci</string>
   <string name="KeyCachingService_lock">Kunci dengan kata sandi</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">%d pesan baru</string>
@@ -242,9 +242,9 @@ Menerima pesan dengan identitas kunci tidak diketahui. Klik untuk memproses dan 
   <string name="MessageNotifier_mark_all_as_read">Tandai telah dibaca semuanya</string>
   <string name="MessageNotifier_mark_as_read">Tandai telah dibaca</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Maaf, Jawaban cepat masih belum didukung oleh TextSecure!</string>
+  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Maaf, Jawaban cepat masih belum didukung oleh SecureChat!</string>
   <!--auto_initiate_activity-->
-  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Anda telah menerima pesan dari perangkat yang mendukung sesi terenkripsi oleh TextSecure. Apakah anda ingin memulai koneksi aman?</string>
+  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Anda telah menerima pesan dari perangkat yang mendukung sesi terenkripsi oleh SecureChat. Apakah anda ingin memulai koneksi aman?</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">KATA KUNCI LAMA</string>
   <string name="change_passphrase_activity__new_passphrase">KATA KUNCI BARU</string>
@@ -277,7 +277,7 @@ Menerima pesan dengan identitas kunci tidak diketahui. Klik untuk memproses dan 
   <string name="log_submit_activity__log_fetch_failed">Tidak dapat mengambil catatan log dari perangkat anda. Anda masih dapat menggunakan ADB untuk mendapat catatan debug.</string>
   <string name="log_submit_activity__thanks">Terimakasih atas bantuan anda</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Apakah anda ingin mengimport pesan anda ke dalam basis data terenkripsi TextSecure?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Apakah anda ingin mengimport pesan anda ke dalam basis data terenkripsi SecureChat?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Basis data sistem standar tidak akan diubah atau dimodifikasi</string>
   <string name="database_migration_activity__skip">Lewati</string>
   <string name="database_migration_activity__import">Import</string>
@@ -290,7 +290,7 @@ Export cadangan ke teks polos yang kompatibel dengan \'SMSBackup And Restore\'  
 dari aplikasi perpesan bawaan
 </string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">
-Pulihkan dari cadangan teracak TextSecure.
+Pulihkan dari cadangan teracak SecureChat.
 </string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Import cadangan dalam texks polos. Kompatibel dengan aplikasi \'SMSBackup And Restore\'.</string>
@@ -299,7 +299,7 @@ Import cadangan dalam texks polos. Kompatibel dengan aplikasi \'SMSBackup And Re
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Buka Kunci</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure memerlukan pengaturan MMS untuk mengantar pesan dan media grup melalui operator anda. Perangkan anda tidak menyediakan informasi tersebut, yang biasanya disebabkan oleh perangkat yang dikunci atau pengaturan yang ketat.</string>
+  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">SecureChat memerlukan pengaturan MMS untuk mengantar pesan dan media grup melalui operator anda. Perangkan anda tidak menyediakan informasi tersebut, yang biasanya disebabkan oleh perangkat yang dikunci atau pengaturan yang ketat.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Untuk mengirim pesan dan media grup klik \'OK\' dan selesaikan pengaturan yang diminta. Pengaturan MMS untuk operator anda biasanya dapat ditemukan dengan mencari \'APN operator anda\'. Hal ini hanya diperlukan sekali saja.</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Selesai</string>
@@ -317,13 +317,13 @@ termasuk:
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
 Beberapa aplikasi sms pihak ketiga seperti Hancent atau GoSMS bekerja dengan agresif dan
 menghadang seluruh pesan SMS masuk. Periksa jika anda menerima pesan yg berawalan
-\'Your TextSecure verification code:\', dalam hal ini anda perlu untuk mengkonfigurasi
+\'Your SecureChat verification code:\', dalam hal ini anda perlu untuk mengkonfigurasi
 aplikasi SMS pihak ketiga anda untuk memperbolehkan pesan SMS masuk.
 </string>
   <string name="registration_problems__incorrect_number">nomor salah.</string>
   <string name="registration_problems__google_voice">Google Voice.</string>
   <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">
-TextSecure tidak akan berfungsi dengan nomor Google Voice
+SecureChat tidak akan berfungsi dengan nomor Google Voice
 </string>
   <!--registration_progress_activity-->
   <string name="registration_progress_activity__verify">Verifikasi</string>
@@ -342,7 +342,7 @@ jaringan.
 SMS...</string>
   <string name="registration_progress_activity__registering_with_server">Mendaftarkan ke server...</string>
   <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">
-TextSecure kehabisan waktu saat menunggu verifikasi pesan SMS.
+SecureChat kehabisan waktu saat menunggu verifikasi pesan SMS.
 </string>
   <string name="registration_progress_activity__sms_verification_failed">Verifikasi SMS
 Telah gagal
@@ -361,8 +361,8 @@ Telah gagal
   <string name="preferences__general">Umum</string>
   <string name="preferences__pref_all_sms_title">Terima semua SMS</string>
   <string name="preferences__pref_all_mms_title">Terima semua MMS</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Gunakan TextSecure untuk melihat dan menyimpan semua pesan teks yang masuk</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Gunakan TextSecure untuk melihat dan menyimpan semua pesan multimedia yang masuk</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Gunakan SecureChat untuk melihat dan menyimpan semua pesan teks yang masuk</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Gunakan SecureChat untuk melihat dan menyimpan semua pesan multimedia yang masuk</string>
   <string name="preferences__input_settings">Seting Masukan</string>
   <string name="preferences__enable_enter_key_title">Gunakan tombol Enter</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Pilih kontak anda dari daftar kontak yang ada.</string>
@@ -417,11 +417,11 @@ Telah gagal
   <string name="preferences__default">Default</string>
   <string name="preferences__language">Bahasa</string>
   <string name="preferences__make_default_sms_app">Jadikan sebagai aplikasi SMS default</string>
-  <string name="preferences__make_textsecure_the_default_sms_mms_app">Jadikan TextSecure sebagai palikasi default untuk SMS/MMS.</string>
+  <string name="preferences__make_textsecure_the_default_sms_mms_app">Jadikan SecureChat sebagai palikasi default untuk SMS/MMS.</string>
   <string name="preferences__use_data_channel">Pesan Push</string>
   <string name="preferences__submit_debug_log">Kirim debug log</string>
-  <string name="preferences__sms_outgoing_push_users">Pengguna TextSecure</string>
-  <string name="preferences__sms_fallback_non_push_users">Bukan pengguna TextSecure</string>
+  <string name="preferences__sms_outgoing_push_users">Pengguna SecureChat</string>
+  <string name="preferences__sms_fallback_non_push_users">Bukan pengguna SecureChat</string>
   <string name="preferences__sms_fallback_nobody">Tak seorangpun</string>
   <!--****************************************-->
   <!--menus-->

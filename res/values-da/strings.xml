@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">TextSecure</string>
+  <string name="app_name">SecureChat</string>
   <string name="yes">Ja</string>
   <string name="no">Nej</string>
   <string name="delete">Slet</string>
@@ -28,7 +28,7 @@ Du skal registrere dit telefonnummer påny hvis du vil bruge \'push\' beskeder i
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS aktiveret</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Brug som standard SMS program</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS deaktiveret</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Brug TextSecure som dit standard SMS program</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Brug SecureChat som dit standard SMS program</string>
   <!--AppProtectionPreferenceFragment-->
   <!--DraftDatabase-->
   <!--AttchmentManager-->
@@ -77,7 +77,7 @@ Du skal registrere dit telefonnummer påny hvis du vil bruge \'push\' beskeder i
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Din enhed understøtter ikke initieret opkald.</string>
   <string name="ConversationActivity_leave_group">Forlad gruppe?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Er du sikker at du vil forlade denne gruppe?</string>
-  <string name="ConversationActivity_transport_textsecure">TextSecure</string>
+  <string name="ConversationActivity_transport_textsecure">SecureChat</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Besked detaljer</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Overførsel: %1$s\nSendt/Modtaget: %2$s</string>
@@ -98,7 +98,7 @@ Du skal registrere dit telefonnummer påny hvis du vil bruge \'push\' beskeder i
   <!--ExportFragment-->
   <string name="ExportFragment_export">Eksportér</string>
   <string name="ExportFragment_export_plaintext_to_sd_card">Eksportere klartekst til SD-kort?</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Advarsel! Dette vil eksportere dine TextSecure beskeder i klartekst til SD-kortet.</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Advarsel! Dette vil eksportere dine SecureChat beskeder i klartekst til SD-kortet.</string>
   <string name="ExportFragment_cancel">Afbryd</string>
   <string name="ExportFragment_exporting">Eksporterer</string>
   <string name="ExportFragment_exporting_plaintext_to_sd_card">Eksporterer klartekst til SD-kort...</string>
@@ -111,27 +111,27 @@ Du skal registrere dit telefonnummer påny hvis du vil bruge \'push\' beskeder i
   <string name="GroupCreateActivity_actionbar_update_title">Opdater gruppe</string>
   <string name="GroupCreateActivity_group_name_hint">Gruppenavn</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Ny MMS gruppe</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Du har valgt en kontaktperson, der ikke understøtter TextSecure grupper, så denne vil blive en MMS gruppe.</string>
-  <string name="GroupCreateActivity_you_dont_support_push">Du har ikke registreret dig som bruger af data, så TextSecure grupper er deaktivert.</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Du har valgt en kontaktperson, der ikke understøtter SecureChat grupper, så denne vil blive en MMS gruppe.</string>
+  <string name="GroupCreateActivity_you_dont_support_push">Du har ikke registreret dig som bruger af data, så SecureChat grupper er deaktivert.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">En ukendt fejl har medført, at oprettelse af gruppen mislykkedes.</string>
   <string name="GroupCreateActivity_contacts_no_members">Der skal være mindst én person i gruppen!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">En kontaktperson i gruppen har et nummer der ikke kan læses. Ret nummeret eller slet kontakten, og prøv igen.</string>
   <string name="GroupCreateActivity_avatar_content_description">Gruppe ikon</string>
   <string name="GroupCreateActivity_menu_create_title">Opret gruppe</string>
   <string name="GroupCreateActivity_creating_group">Opretter %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Kan ikke tilføje ikke-TextSecure kontakter til en eksisterende TextSecure gruppe</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Kan ikke tilføje ikke-SecureChat kontakter til en eksisterende SecureChat gruppe</string>
   <!--GroupMembersDialog-->
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Importer</string>
   <string name="ImportExportActivity_export">Eksportér</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Importer enhedens SMS database?</string>
-  <string name="ImportFragment_this_will_import_messages_from_the_system">Dette vil importere beskeder fra enhedens standard SMS database til TextSecure.</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">Dette vil importere beskeder fra enhedens standard SMS database til SecureChat.</string>
   <string name="ImportFragment_import">Importer</string>
   <string name="ImportFragment_cancel">Afbryd</string>
   <string name="ImportFragment_restore_encrypted_backup">Genopret en krypteret backup?</string>
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
-Genoprettelse af en krypteret backup vil overskrive eksisterende nøgler, indstillinger og beskeder. Du vil miste de informationer i TextSecure som ikke findes i din backup.</string>
+Genoprettelse af en krypteret backup vil overskrive eksisterende nøgler, indstillinger og beskeder. Du vil miste de informationer i SecureChat som ikke findes i din backup.</string>
   <string name="ImportFragment_restore">Genopret</string>
   <string name="ImportFragment_import_plaintext_backup">Importer klartekst backup?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Dette vil importere beskeder fra en klartekst backup. Hvis du tidligere har importeret den samme backup, vil det resultere i dupletter.</string>
@@ -153,19 +153,19 @@ Genoprettelse af en krypteret backup vil overskrive eksisterende nøgler, indsti
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">MMS-besked</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Modtog en besked, krypteret med en ældre version af TextSecure, der ikke længere understøttes. Bed venligst afsenderen om at opgradere til den nyeste version, og at sende beskeden igen.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Modtog en besked, krypteret med en ældre version af SecureChat, der ikke længere understøttes. Bed venligst afsenderen om at opgradere til den nyeste version, og at sende beskeden igen.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Kodeord matcher ikke!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Fejl! Gammelt kodeord</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Indtast kodeord</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">TextSecure ikon</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">SecureChat ikon</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Godkend kodeord</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Ugyldigt kodeord!</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Signaturen på denne udvekslingsnøgle er ikke ens med den som du tidligere modtog fra denne
 kontakt. Det kan enten betyde, at der er nogle som prøver på at kompromitterer din kommunikation eller
-at din kontakt har installeret TextSecure på ny og dermed fået en ny udvekslingsnøgle.</string>
+at din kontakt har installeret SecureChat på ny og dermed fået en ny udvekslingsnøgle.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Du bør verificere
 denne kontakt.</string>
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">Signaturen på denne udvekslingsnøgle er til at stole på, men du har deaktiveret indstillingen
@@ -173,7 +173,7 @@ denne kontakt.</string>
   <string name="ReceiveKeyActivity_processing">Arbejder</string>
   <string name="ReceiveKeyActivity_processing_key_exchange">Arbejder på nøgleudvekling...</string>
   <!--RegistrationActivity-->
-  <string name="RegistrationActivity_connect_with_textsecure">Forbind med TextSecure</string>
+  <string name="RegistrationActivity_connect_with_textsecure">Forbind med SecureChat</string>
   <string name="RegistrationActivity_select_your_country">Vælg land</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Du skal vælge din
 landekode</string>
@@ -211,12 +211,12 @@ Vi vil nu kontrollere om følgende nummer hører til denne enhed:\n\n%s\n\n Er d
   <string name="RegistrationProgressActivity_too_many_requests">For mange forsøg</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Du har allerede anmodet om et opkald. Du kan anmode om et nyt om 20 minutter.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Registrerings-konflikt</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Dette nummeret er allerede registreret hos en anden TextSecure tjeneste (CyanogenMod?). Du skal først afmelde dig der før du kan registrere dig her.</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Dette nummeret er allerede registreret hos en anden SecureChat tjeneste (CyanogenMod?). Du skal først afmelde dig der før du kan registrere dig her.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Registrering fuldført</string>
-  <string name="RegistrationService_textsecure_registration_has_successfully_completed">TextSecure er blevet registreret.</string>
+  <string name="RegistrationService_textsecure_registration_has_successfully_completed">SecureChat er blevet registreret.</string>
   <string name="RegistrationService_registration_error">Registreringsfejl</string>
-  <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Der opstod en fejl under registreringen af TextSecure.</string>
+  <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Der opstod en fejl under registreringen af SecureChat.</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Modtog en ugyldig
 nøgle-besked!</string>
@@ -276,7 +276,7 @@ Modtog en besked med en ukendt identitetsnøgle. Klik for at se og behandle den.
   <!--KeyCachingService-->
   <string name="KeyCachingService_textsecure_passphrase_cached">Klik for at åbne.</string>
   <string name="KeyCachingService_textsecure_passphrase_cached_with_lock">Klik for at åbne eller klik på låsen for at lukke.</string>
-  <string name="KeyCachingService_passphrase_cached">TextSecure er låst op</string>
+  <string name="KeyCachingService_passphrase_cached">SecureChat er låst op</string>
   <string name="KeyCachingService_lock">Lås med et kodeord</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">(%d) Nye beskeder</string>
@@ -289,9 +289,9 @@ Modtog en besked med en ukendt identitetsnøgle. Klik for at se og behandle den.
   <string name="MessageNotifier_mark_all_as_read">Marker alle som læst</string>
   <string name="MessageNotifier_mark_as_read">Marker som læst</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">TextSecure understøtter desværre endnu ikke \"Quick Response\".</string>
+  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">SecureChat understøtter desværre endnu ikke \"Quick Response\".</string>
   <!--auto_initiate_activity-->
-  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Du har modtaget en besked fra en som understøtter TextSecure krypterede sessioner. Ønsker du at starte en sikker session?</string>
+  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Du har modtaget en besked fra en som understøtter SecureChat krypterede sessioner. Ønsker du at starte en sikker session?</string>
   <string name="auto_initiate_activity__initiate_exchange">Start nøgleudveksling</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">GAMMELT KODEORD:</string>
@@ -311,7 +311,7 @@ Modtog en besked med en ukendt identitetsnøgle. Klik for at se og behandle den.
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Ingen nye samtaler.</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Send TextSecure besked</string>
+  <string name="conversation_activity__type_message_push">Send SecureChat besked</string>
   <string name="conversation_activity__type_message_sms_secure">Send krypteret SMS</string>
   <string name="conversation_activity__type_message_mms_secure">Send krypteret MMS</string>
   <string name="conversation_activity__send">Send</string>
@@ -344,7 +344,7 @@ Modtog en besked med en ukendt identitetsnøgle. Klik for at se og behandle den.
   <string name="log_submit_activity__thanks">Tak for hjælpen!</string>
   <string name="log_submit_activity__submitting">Sender</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Ønsker du at importere dine eksisterende beskeder til TextSecures krypterede database?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Ønsker du at importere dine eksisterende beskeder til SecureChats krypterede database?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Den eksisterende systemdatabase vil ikke blive ændret.</string>
   <string name="database_migration_activity__skip">Spring over</string>
   <string name="database_migration_activity__import">Importer</string>
@@ -358,7 +358,7 @@ Modtog en besked med en ukendt identitetsnøgle. Klik for at se og behandle den.
   <string name="import_fragment__import_the_database_from_the_default_system">Importer databasen fra systemets standard SMS applikation.</string>
   <string name="import_fragment__import_encrypted_backup">Importer krypteret backup</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">
-Genopret en tidligere eksporteret krypteret TextSecure backup.</string>
+Genopret en tidligere eksporteret krypteret SecureChat backup.</string>
   <string name="import_fragment__import_plaintext_backup">Importer klartekst backup</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Importer en klartekst backup fil. Kompatibel med \'SMSBackup og Restore\'.</string>
@@ -367,7 +367,7 @@ Importer en klartekst backup fil. Kompatibel med \'SMSBackup og Restore\'.</stri
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Lås op</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure har brug for at kende MMS-indstillingerne for at sende medieindhold og gruppebeskeder gennem din teleudbyder. Din enhed gør ikke disse oplysninger tilgængelige, hvilket kan forekomme for f.eks. låste enheder.</string>
+  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">SecureChat har brug for at kende MMS-indstillingerne for at sende medieindhold og gruppebeskeder gennem din teleudbyder. Din enhed gør ikke disse oplysninger tilgængelige, hvilket kan forekomme for f.eks. låste enheder.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">For at sende multimedia- og gruppebeskeder klik \'OK\' og udfyld indstillingerne. MMS-indstillingerne for din teleoperatør kan ofte findes ved at søge på \'din operatør APN\'. Du behøver kun gøre dette en gang.</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Udført</string>
@@ -383,34 +383,34 @@ TELEFONNUMMER</string>
   <string name="registration_problems__sms_interceptors">SMS blokering.</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
 Visse tredjeparts SMS-apps som f.eks. Handcent og GoSMS overtager alle modtagne SMSer.
-Se om du har modtaget en SMS som starter med \"Your TextSecure verification code:\". 
+Se om du har modtaget en SMS som starter med \"Your SecureChat verification code:\". 
 Hvis dette er tilfældet skal du konfigurere din tredjeparts SMS-app til at lade tekst-beskeder slippe igennem.</string>
   <string name="registration_problems__incorrect_number">Forkert nummer.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
 Tjek venligst om du har indtastet din landekode og dit telefonnummer korrekt.</string>
   <string name="registration_problems__google_voice">Google Voice.</string>
   <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">
-TextSecure virker ikke med Google Voice numre.
+SecureChat virker ikke med Google Voice numre.
 </string>
   <!--registration_progress_activity-->
   <string name="registration_progress_activity__voice_verification">Stemme godkendelse</string>
   <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">
-TextSecure kan også ringe dig op for at kontrollere dit nummer. Klik \"Ring mig op\" og
+SecureChat kan også ringe dig op for at kontrollere dit nummer. Klik \"Ring mig op\" og
 indtast det sekscifrede nummer du hører.</string>
   <string name="registration_progress_activity__verify">Godkend</string>
   <string name="registration_progress_activity__call_me">Ring mig op</string>
   <string name="registration_progress_activity__edit_number">Rediger nummer</string>
   <string name="registration_progress_activity__connectivity_error">Forbindelsesfejl.</string>
   <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">
-TextSecure kunne ikke oprette forbindelse til \'push\' tjenesten.</string>
+SecureChat kunne ikke oprette forbindelse til \'push\' tjenesten.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Mulige problemer:</string>
   <string name="registration_progress_activity__no_network_connectivity">Ingen netværksforbindelse.</string>
   <string name="registration_progress_activity__your_device_needs_network_connectivity">Din enhed kræver en netværksforbindelse. Tjek om enheden har forbindelse til Edge, 3G, LTE eller et trådløst netværk.</string>
   <string name="registration_progress_activity__restrictive_firewall">Restriktiv firewall.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
-Hvis du er tilsluttet til Internet via et trådløst netværk, så er det muligt at en firewall blokkerer adgangen til TextSecure´s server. Prøv et andet trådløst netværk eller brug mobil data.</string>
+Hvis du er tilsluttet til Internet via et trådløst netværk, så er det muligt at en firewall blokkerer adgangen til SecureChat´s server. Prøv et andet trådløst netværk eller brug mobil data.</string>
   <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
-TextSecure vil automatisk verificere dit telefonnummer ved at sende en bekræftelse via SMS.</string>
+SecureChat vil automatisk verificere dit telefonnummer ved at sende en bekræftelse via SMS.</string>
   <string name="registration_progress_activity__connecting">Forbinder...</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">Venter på SMS
 godkendelse...
@@ -418,7 +418,7 @@ godkendelse...
   <string name="registration_progress_activity__registering_with_server">Server behandler din registrering...</string>
   <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Dette kan tage et stykke tid. Vent venligst - vi siger til når godkendelsen er afsluttet.</string>
   <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">
-Tiden udløb mens TextSecure ventede på en SMS godkendelse.</string>
+Tiden udløb mens SecureChat ventede på en SMS godkendelse.</string>
   <string name="registration_progress_activity__sms_verification_failed">SMS godkendelse
 fejlede.
 </string>
@@ -433,7 +433,7 @@ fejlede.
   <string name="AndroidManifest__create_passphrase">Indtast kodeord</string>
   <string name="AndroidManifest__enter_passphrase">Opret kodeord</string>
   <string name="AndroidManifest__select_contacts">Vælg kontakter</string>
-  <string name="AndroidManifest__textsecure_detected">TextSecure er fundet</string>
+  <string name="AndroidManifest__textsecure_detected">SecureChat er fundet</string>
   <string name="AndroidManifest__public_identity_key">Offentlig ID nøgle</string>
   <string name="AndroidManifest__change_passphrase">Ændre kodeord</string>
   <string name="AndroidManifest__verify_identity">Verificer identitet</string>
@@ -447,8 +447,8 @@ fejlede.
   <string name="preferences__push_sms_category">\'Push\' og SMS</string>
   <string name="preferences__pref_all_sms_title">Modtag alle SMS</string>
   <string name="preferences__pref_all_mms_title">Modtag alle MMS</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Brug TextSecure til at læse og gemme alle indkommende SMS beskeder.</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Brug TextSecure til at læse og gemme alle indkommende MMS beskeder.</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Brug SecureChat til at læse og gemme alle indkommende SMS beskeder.</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Brug SecureChat til at læse og gemme alle indkommende MMS beskeder.</string>
   <string name="preferences__input_settings">Indstillinger</string>
   <string name="preferences__enable_enter_key_title">Slå enter-knap til</string>
   <string name="preferences__replace_smiley_with_enter_key">Erstat \\"Smiley-knap\\" med en \\"Enter-knap\\"</string>
@@ -462,7 +462,7 @@ fejlede.
   <string name="preferences__complete_key_exchanges">Fuldfør nøgleudveksling</string>
   <string name="preferences__screen_security">Skærm sikkerhed</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Fuldfør automatisk nøgleudveksling for nye sessioner eller sessioner med samme ID-nøgle</string>
-  <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokér skærmbillede (screenshots) i listen \\"forrige apps\\" og i TextSecure</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokér skærmbillede (screenshots) i listen \\"forrige apps\\" og i SecureChat</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Fjern kodeord fra hukommelsen efter et givent interval</string>
   <string name="preferences__timeout_passphrase">Kodeords timeout</string>
   <string name="preferences__pref_timeout_interval_dialogtitle">Vælg kodeord timeout</string>
@@ -513,14 +513,14 @@ fejlede.
   <string name="preferences__default">Standard</string>
   <string name="preferences__language">Sprog</string>
   <string name="preferences__make_default_sms_app">Brug som standard SMS-app</string>
-  <string name="preferences__make_textsecure_the_default_sms_mms_app">Gør TextSecure til standard SMS/MMS-applikationen for dit system.</string>
+  <string name="preferences__make_textsecure_the_default_sms_mms_app">Gør SecureChat til standard SMS/MMS-applikationen for dit system.</string>
   <string name="preferences__use_data_channel">Push besked</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
-Styrk sikkerheden af din data kommunikation og undgå SMS gebyrer ved at bruge mobil data når du kommunikerer med andre TextSecure brugere.</string>
+Styrk sikkerheden af din data kommunikation og undgå SMS gebyrer ved at bruge mobil data når du kommunikerer med andre SecureChat brugere.</string>
   <string name="preferences__submit_debug_log">Indsend fejlfindings log</string>
-  <string name="preferences__sms_outgoing_push_users">TextSecure brugere</string>
+  <string name="preferences__sms_outgoing_push_users">SecureChat brugere</string>
   <string name="preferences__sms_outgoing_push_users_description">Send sikker sms, hvis data-forbindelse er tabt</string>
-  <string name="preferences__sms_fallback_non_push_users">Brugere uden TextSecure</string>
+  <string name="preferences__sms_fallback_non_push_users">Brugere uden SecureChat</string>
   <string name="preferences__sms_fallback_nobody">Ingen</string>
   <!--****************************************-->
   <!--menus-->
@@ -536,7 +536,7 @@ Styrk sikkerheden af din data kommunikation og undgå SMS gebyrer ved at bruge m
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Opdater kontakt liste</string>
   <!--conversation_button_context-->
-  <string name="conversation_button_context__send_textsecure_message">Send besked med TextSecure</string>
+  <string name="conversation_button_context__send_textsecure_message">Send besked med SecureChat</string>
   <string name="conversation_button_context__send_secure_sms">Send SMS krypteret</string>
   <string name="conversation_button_context__send_secure_mms">Send MMS krypteret</string>
   <!--conversation_callable-->
@@ -583,10 +583,10 @@ Styrk sikkerheden af din data kommunikation og undgå SMS gebyrer ved at bruge m
   <string name="text_secure_normal__mark_all_as_read">Marker alle som læst</string>
   <!--reminder_header-->
   <string name="reminder_header_sms_default_title">Anvend som standard SMS-app?</string>
-  <string name="reminder_header_sms_default_text">TextSecure er i øjeblikket ikke din standard SMS-app.</string>
+  <string name="reminder_header_sms_default_text">SecureChat er i øjeblikket ikke din standard SMS-app.</string>
   <string name="reminder_header_sms_import_title">Importer enhedens SMS?</string>
-  <string name="reminder_header_sms_import_text">TextSecure kan kopiere telefonens SMS beskeder til sin egen krypteret database.</string>
-  <string name="reminder_header_push_title">Aktiver TextSecure beskeder?</string>
+  <string name="reminder_header_sms_import_text">SecureChat kan kopiere telefonens SMS beskeder til sin egen krypteret database.</string>
+  <string name="reminder_header_push_title">Aktiver SecureChat beskeder?</string>
   <string name="reminder_header_push_text">Øjeblikkelig levering, stærkere privatliv, og ingen SMS gebyrer.</string>
   <!--MediaPreviewActivity-->
   <!--media_preview-->
