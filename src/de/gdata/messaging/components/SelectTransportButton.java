@@ -6,10 +6,12 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.RelativeSizeSpan;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.TransportOptions;
 
@@ -42,7 +44,9 @@ public class SelectTransportButton extends ImageButton {
             public void onChange(TransportOption newTransport) {
                 setImageResource(newTransport.drawable);
                 setContentDescription(newTransport.composeHint);
-                if (composeText != null) setComposeTextHint(newTransport.composeHint);
+                if (composeText != null && !((composeText.getHint()+"").contains(getResources().getString(R.string.self_destruction_compose_hint)))) {
+                    setComposeTextHint(newTransport.composeHint);
+                }
             }
         });
 
