@@ -7,7 +7,7 @@ import java.util.List;
 
 public class EmojiPages {
   public static final List<EmojiPageModel> PAGES = Arrays.<EmojiPageModel>asList(
-    new StaticEmojiPageModel(R.drawable.emoji_category_people, new String[] {
+    new StaticEmojiPageModel(R.attr.emoji_category_people, new String[] {
       "\u263a",       "\ud83d\ude0a", "\ud83d\ude00", "\ud83d\ude01", "\ud83d\ude02", "\ud83d\ude03",
       "\ud83d\ude04", "\ud83d\ude05", "\ud83d\ude06", "\ud83d\ude07", "\ud83d\ude08", "\ud83d\ude09",
       "\ud83d\ude2f", "\ud83d\ude10", "\ud83d\ude11", "\ud83d\ude15", "\ud83d\ude20", "\ud83d\ude2c",
@@ -35,7 +35,7 @@ public class EmojiPages {
       "\ud83d\udc4a", "\u261d",       "\ud83d\udc46", "\ud83d\udc47", "\ud83d\udc48", "\ud83d\udc49",
       "\ud83d\udc4b", "\ud83d\udc4f", "\ud83d\udc50",
     }, "emoji-people.png"),
-    new StaticEmojiPageModel(R.drawable.emoji_category_objects, new String[] {
+    new StaticEmojiPageModel(R.attr.emoji_category_objects, new String[] {
       "\ud83d\udd30", "\ud83d\udc84", "\ud83d\udc5e", "\ud83d\udc5f", "\ud83d\udc51", "\ud83d\udc52",
       "\ud83c\udfa9", "\ud83c\udf93", "\ud83d\udc53", "\u231a",       "\ud83d\udc54", "\ud83d\udc55",
       "\ud83d\udc56", "\ud83d\udc57", "\ud83d\udc58", "\ud83d\udc59", "\ud83d\udc60", "\ud83d\udc61",
@@ -64,7 +64,7 @@ public class EmojiPages {
       "\ud83d\udcfc", "\ud83c\udfa7", "\ud83c\udfa4", "\ud83c\udfb5", "\ud83c\udfb6", "\ud83c\udfbc",
       "\ud83c\udfbb", "\ud83c\udfb9", "\ud83c\udfb7", "\ud83c\udfba", "\ud83c\udfb8", "\u303d",
     }, "emoji-objects.png"),
-    new StaticEmojiPageModel(R.drawable.emoji_category_nature, new String[] {
+    new StaticEmojiPageModel(R.attr.emoji_category_nature, new String[] {
       "\ud83d\udc15", "\ud83d\udc36", "\ud83d\udc29", "\ud83d\udc08", "\ud83d\udc31", "\ud83d\udc00",
       "\ud83d\udc01", "\ud83d\udc2d", "\ud83d\udc39", "\ud83d\udc22", "\ud83d\udc07", "\ud83d\udc30",
       "\ud83d\udc13", "\ud83d\udc14", "\ud83d\udc23", "\ud83d\udc24", "\ud83d\udc25", "\ud83d\udc26",
@@ -96,7 +96,7 @@ public class EmojiPages {
       "\ud83c\udf06", "\ud83c\udf03", "\ud83c\udf0c", "\ud83c\udf09", "\ud83c\udf0a", "\ud83c\udf0b",
       "\ud83c\udf0e", "\ud83c\udf0f", "\ud83c\udf0d", "\ud83c\udf10",
     }, "emoji-nature.png"),
-    new StaticEmojiPageModel(R.drawable.emoji_category_places, new String[] {
+    new StaticEmojiPageModel(R.attr.emoji_category_places, new String[] {
       "\ud83c\udfe0", "\ud83c\udfe1", "\ud83c\udfe2", "\ud83c\udfe3", "\ud83c\udfe4", "\ud83c\udfe5",
       "\ud83c\udfe6", "\ud83c\udfe7", "\ud83c\udfe8", "\ud83c\udfe9", "\ud83c\udfea", "\ud83c\udfeb",
       "\u26ea",       "\u26f2",       "\ud83c\udfec", "\ud83c\udfef", "\ud83c\udff0", "\ud83c\udfed",
@@ -118,7 +118,7 @@ public class EmojiPages {
       "\ud83d\udea6", "\ud83d\udea7", "\ud83d\udea8", "\u2668",       "\ud83d\udc8c", "\ud83d\udc8d",
       "\ud83d\udc8e", "\ud83d\udc90", "\ud83d\udc92",
     }, "emoji-places.png"),
-    new StaticEmojiPageModel(R.drawable.emoji_category_symbol, new String[] {
+    new StaticEmojiPageModel(R.attr.emoji_category_symbol, new String[] {
       "\ud83d\udd1d", "\ud83d\udd19", "\ud83d\udd1b", "\ud83d\udd1c", "\ud83d\udd1a", "\u23f3",
       "\u231b",       "\u23f0",       "\u2648",       "\u2649",       "\u264a",       "\u264b",
       "\u264c",       "\u264d",       "\u264e",       "\u264f",       "\u2650",       "\u2651",
@@ -156,7 +156,7 @@ public class EmojiPages {
       "\ud83d\udd04", "\ud83d\udce7", "\ud83d\udd05", "\ud83d\udd06", "\ud83d\udd07", "\ud83d\udd08",
       "\ud83d\udd09", "\ud83d\udd0a",
     }, "emoji-symbol.png"),
-    new StaticEmojiPageModel(R.drawable.emoji_category_emoticons, new String[] {
+    new StaticEmojiPageModel(R.attr.emoji_category_emoticons, new String[] {
       "=-O",  ":-P",  ";-)", ":-(", ":-)", ":-!",
       ":-$",  "B-)",  ":O",  ":-*", ":-D", ":'(",
       ":-\\", "O:-)", ":-[",
