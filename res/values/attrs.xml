@@ -84,6 +84,8 @@
     <attr name="encrypted_backup" format="reference" />
     <attr name="plaintext_backup" format="reference" />
 
+    <attr name="registration_text_shadow_color" format="color" />
+
     <attr name="reminder_header_background" format="color"/>
 
     <attr name="menu_new_conversation_icon" format="reference" />
