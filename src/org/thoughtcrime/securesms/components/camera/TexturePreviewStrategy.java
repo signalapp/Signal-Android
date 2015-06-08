@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components;
+package org.thoughtcrime.securesms.components.camera;
 /***
  Copyright (c) 2013 CommonsWare, LLC
 

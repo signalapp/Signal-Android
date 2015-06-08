@@ -38,7 +38,6 @@
         <item name="ic_arrow_forward">@drawable/ic_arrow_forward_dark</item>
         <item name="lockscreen_watermark">@drawable/lockscreen_watermark_dark</item>
         <item name="android:windowBackground">@color/black</item>
-        <item name="conversation_background">@color/black</item>
     </style>
 
     <style name="PopupAnimation" parent="@android:style/Animation">

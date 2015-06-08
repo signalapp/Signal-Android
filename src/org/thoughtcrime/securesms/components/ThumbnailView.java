@@ -4,8 +4,6 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Handler;
@@ -17,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 
+import com.bumptech.glide.DrawableTypeRequest;
 import com.bumptech.glide.GenericRequestBuilder;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestListener;
@@ -77,10 +76,6 @@ public class ThumbnailView extends RoundedImageView {
     this.slideDeckFuture.addListener(this.slideDeckListener);
   }
 
-  public void setImageResource(@NonNull Slide slide) {
-    setImageResource(slide, null);
-  }
-
   public void setImageResource(@NonNull Slide slide, @Nullable MasterSecret masterSecret) {
     if (isContextValid()) {
       if (!Util.equals(slide, this.slide)) buildGlideRequest(slide, masterSecret).into(this);
@@ -111,7 +106,7 @@ public class ThumbnailView extends RoundedImageView {
   {
     final GenericRequestBuilder builder;
     if (slide.getPart().isPendingPush()) {
-      builder = buildPendingGlideRequest(slide);
+      builder = buildPendingGlideRequest();
     } else if (slide.getThumbnailUri() != null) {
       builder = buildThumbnailGlideRequest(slide, masterSecret);
     } else {
@@ -121,7 +116,7 @@ public class ThumbnailView extends RoundedImageView {
     return builder.error(R.drawable.ic_missing_thumbnail_picture);
   }
 
-  private GenericRequestBuilder buildPendingGlideRequest(Slide slide) {
+  private GenericRequestBuilder buildPendingGlideRequest() {
     return Glide.with(getContext()).load(R.drawable.stat_sys_download_anim0)
                                    .dontTransform()
                                    .skipMemoryCache(true)
@@ -131,29 +126,22 @@ public class ThumbnailView extends RoundedImageView {
   private GenericRequestBuilder buildThumbnailGlideRequest(Slide slide, MasterSecret masterSecret) {
 
     final GenericRequestBuilder builder;
-    if      (slide.isDraft() && slide.isEncrypted()) builder = buildEncryptedDraftGlideRequest(slide, masterSecret);
-    else if (slide.isDraft())                        builder = buildDraftGlideRequest(slide);
-    else                                             builder = buildEncryptedPartGlideRequest(slide, masterSecret);
+    if   (slide.isDraft()) builder = buildDraftGlideRequest(slide, masterSecret);
+    else                   builder = buildPartGlideRequest(slide, masterSecret);
     return builder;
   }
 
-  private GenericRequestBuilder buildDraftGlideRequest(Slide slide) {
-    return Glide.with(getContext()).load(slide.getThumbnailUri()).asBitmap()
-                                   .fitCenter()
-                                   .listener(new PduThumbnailSetListener(slide.getPart()));
+  private GenericRequestBuilder buildDraftGlideRequest(Slide slide, MasterSecret masterSecret) {
+    final DrawableTypeRequest<?> request;
+    if (masterSecret == null) request = Glide.with(getContext()).load(slide.getThumbnailUri());
+    else                      request = Glide.with(getContext()).load(new DecryptableUri(masterSecret, slide.getThumbnailUri()));
+
+    return request.asBitmap()
+                  .fitCenter()
+                  .listener(new PduThumbnailSetListener(slide.getPart()));
   }
 
-  private GenericRequestBuilder buildEncryptedDraftGlideRequest(Slide slide, MasterSecret masterSecret) {
-    if (masterSecret == null) {
-      throw new IllegalStateException("null MasterSecret when loading encrypted draft thumbnail");
-    }
-
-    return Glide.with(getContext()).load(new DecryptableUri(masterSecret, slide.getThumbnailUri()))
-        .fitCenter()
-        .transform(new ThumbnailTransform(getContext()));
-  }
-
-  private GenericRequestBuilder buildEncryptedPartGlideRequest(Slide slide, MasterSecret masterSecret) {
+  private GenericRequestBuilder buildPartGlideRequest(Slide slide, MasterSecret masterSecret) {
     if (masterSecret == null) {
       throw new IllegalStateException("null MasterSecret when loading non-draft thumbnail");
     }
@@ -234,7 +222,7 @@ public class ThumbnailView extends RoundedImageView {
     }
   }
 
-  private static class PduThumbnailSetListener implements RequestListener<Uri, Bitmap> {
+  private static class PduThumbnailSetListener implements RequestListener<Object, Bitmap> {
     private PduPart part;
 
     public PduThumbnailSetListener(@NonNull PduPart part) {
@@ -242,12 +230,12 @@ public class ThumbnailView extends RoundedImageView {
     }
 
     @Override
-    public boolean onException(Exception e, Uri model, Target<Bitmap> target, boolean isFirstResource) {
+    public boolean onException(Exception e, Object model, Target<Bitmap> target, boolean isFirstResource) {
       return false;
     }
 
     @Override
-    public boolean onResourceReady(Bitmap resource, Uri model, Target<Bitmap> target, boolean isFromMemoryCache, boolean isFirstResource) {
+    public boolean onResourceReady(Bitmap resource, Object model, Target<Bitmap> target, boolean isFromMemoryCache, boolean isFirstResource) {
       part.setThumbnail(resource);
       return false;
     }

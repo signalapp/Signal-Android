@@ -12,10 +12,11 @@
  limitations under the License.
  */
 
-package org.thoughtcrime.securesms.components;
+package org.thoughtcrime.securesms.components.camera;
 
 import android.hardware.Camera;
 import android.media.MediaRecorder;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
