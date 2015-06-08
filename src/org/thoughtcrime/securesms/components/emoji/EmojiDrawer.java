@@ -19,24 +19,24 @@ import android.widget.RelativeLayout;
 import com.astuetz.PagerSlidingTabStrip;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout;
 import org.thoughtcrime.securesms.components.RepeatableImageKey;
 import org.thoughtcrime.securesms.components.RepeatableImageKey.KeyEventListener;
 import org.thoughtcrime.securesms.components.emoji.EmojiPageView.EmojiSelectionListener;
 import org.thoughtcrime.securesms.util.ResUtil;
+import org.thoughtcrime.securesms.util.SoftKeyboardUtil;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class EmojiDrawer extends KeyboardAwareLinearLayout {
+public class EmojiDrawer extends LinearLayout {
   private static final KeyEvent DELETE_KEY_EVENT = new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL);
 
-  private EmojiEditText             composeText;
-  private KeyboardAwareLinearLayout container;
-  private ViewPager                 pager;
-  private List<EmojiPageModel>      models;
-  private PagerSlidingTabStrip      strip;
-  private RecentEmojiPageModel      recentModel;
+  private EmojiEditText        composeText;
+  private LinearLayout         container;
+  private ViewPager            pager;
+  private List<EmojiPageModel> models;
+  private PagerSlidingTabStrip strip;
+  private RecentEmojiPageModel recentModel;
 
   public EmojiDrawer(Context context) {
     super(context);
@@ -66,9 +66,9 @@ public class EmojiDrawer extends KeyboardAwareLinearLayout {
 
   private void initializeResources(View v) {
     Log.w("EmojiDrawer", "initializeResources()");
-    this.container = (KeyboardAwareLinearLayout) v.findViewById(R.id.container);
-    this.pager     = (ViewPager)                 v.findViewById(R.id.emoji_pager);
-    this.strip     = (PagerSlidingTabStrip)      v.findViewById(R.id.tabs);
+    this.container = (LinearLayout)         v.findViewById(R.id.container);
+    this.pager     = (ViewPager)            v.findViewById(R.id.emoji_pager);
+    this.strip     = (PagerSlidingTabStrip) v.findViewById(R.id.tabs);
 
     RepeatableImageKey backspace = (RepeatableImageKey)v.findViewById(R.id.backspace);
     backspace.setOnKeyEventListener(new KeyEventListener() {
@@ -85,7 +85,7 @@ public class EmojiDrawer extends KeyboardAwareLinearLayout {
   }
 
   public void show() {
-    int keyboardHeight = container.getKeyboardHeight();
+    int keyboardHeight = SoftKeyboardUtil.getKeyboardHeight(getContext());
     Log.w("EmojiDrawer", "setting emoji drawer to height " + keyboardHeight);
     container.setLayoutParams(new LinearLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, keyboardHeight));
     container.requestLayout();
