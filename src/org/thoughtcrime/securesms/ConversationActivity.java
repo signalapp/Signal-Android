@@ -184,8 +184,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                             masterSecret, dynamicLanguage.getCurrentLocale());
 
     initializeReceivers();
-    initializeViews();
     initializeActionBar();
+    initializeViews();
     initializeResources();
     initializeDraft();
   }
@@ -724,7 +724,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     composeText    = (ComposeText) findViewById(R.id.embedded_text_editor);
     charactersLeft = (TextView)    findViewById(R.id.space_left);
     emojiToggle    = (EmojiToggle) findViewById(R.id.emoji_toggle);
-    titleView      = (ConversationTitleView) LayoutInflater.from(this).inflate(R.layout.conversation_title_view_inflater, null);
+    titleView      = (ConversationTitleView) getSupportActionBar().getCustomView();
     unblockButton  = (Button)      findViewById(R.id.unblock_button);
     composePanel   =               findViewById(R.id.bottom_panel);
 
@@ -771,8 +771,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void initializeActionBar() {
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    getSupportActionBar().setCustomView(titleView, new LayoutParams(LayoutParams.FILL_PARENT,
-                                                                    LayoutParams.FILL_PARENT));
+    getSupportActionBar().setCustomView(R.layout.conversation_title_view);
     getSupportActionBar().setDisplayShowCustomEnabled(true);
     getSupportActionBar().setDisplayShowTitleEnabled(false);
   }

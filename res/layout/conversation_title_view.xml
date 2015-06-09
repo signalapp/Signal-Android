@@ -1,31 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<org.thoughtcrime.securesms.ConversationTitleView
+              xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <RelativeLayout
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-
-        <TextView android:id="@+id/title"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_alignParentStart="true"
-                  android:layout_alignParentLeft="true"
-                  android:layout_toLeftOf="@+id/muted"
-                  android:layout_toStartOf="@+id/muted"
-                  android:singleLine="true"
-                  android:ellipsize="end"/>
 
         <ImageView android:id="@+id/muted"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:src="@drawable/ic_volume_off_white_18dp"
                    android:visibility="gone"
-                   android:layout_alignParentRight="true"
-                   android:layout_alignParentEnd="true"
+                   android:paddingRight="5dp"
                    android:contentDescription="@string/conversation_title_view__conversation_muted"/>
 
         <ImageView android:id="@+id/blocked"
@@ -33,16 +23,23 @@
                    android:layout_height="wrap_content"
                    android:src="@drawable/ic_block_white_18dp"
                    android:visibility="gone"
-                   android:layout_alignParentRight="true"
-                   android:layout_alignParentEnd="true"
+                   android:paddingRight="5dp"
                    android:contentDescription="@string/recipient_preference_activity__blocked"/>
 
-    </RelativeLayout>
+        <TextView android:id="@+id/title"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:singleLine="true"
+                  android:ellipsize="end"
+                  style="@style/TextSecure.TitleTextStyle"/>
+
+    </LinearLayout>
 
     <TextView android:id="@+id/subtitle"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:singleLine="true"
-              android:ellipsize="end"/>
+              android:ellipsize="end"
+              style="@style/TextSecure.SubtitleTextStyle"/>
 
-</LinearLayout>
+</org.thoughtcrime.securesms.ConversationTitleView>

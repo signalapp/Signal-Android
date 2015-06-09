@@ -50,7 +50,8 @@
                       android:textColor="?attr/conversation_list_item_contact_color"
                       android:singleLine="true"
                       tools:text="Jules Bonnot"
-                      android:ellipsize="marquee" />
+                      android:ellipsize="end"
+                      android:drawablePadding="5dp"/>
 
             <ImageView android:id="@+id/error"
                        android:layout_marginLeft="3dip"

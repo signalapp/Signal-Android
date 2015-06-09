@@ -2,12 +2,8 @@ package org.thoughtcrime.securesms;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
-import android.support.v7.internal.widget.TintTypedArray;
-import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -30,26 +26,20 @@ public class ConversationTitleView extends LinearLayout {
   }
 
   public ConversationTitleView(Context context, AttributeSet attrs) {
-    this(context, attrs, R.attr.toolbarStyle);
-  }
-
-  public ConversationTitleView(Context context, AttributeSet attrs, int defStyle) {
     super(context, attrs);
 
-    TintTypedArray typedArray = TintTypedArray.obtainStyledAttributes(getContext(), attrs, R.styleable.ActionBar, defStyle, 0);
-    LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-    inflater.inflate(R.layout.conversation_title_view, this, true);
+  }
+
+  @Override
+  public void onFinishInflate() {
+    super.onFinishInflate();
 
     this.title       = (TextView) findViewById(R.id.title);
     this.subtitle    = (TextView) findViewById(R.id.subtitle);
     this.muteIcon    = (ImageView) findViewById(R.id.muted);
     this.blockedIcon = (ImageView) findViewById(R.id.blocked);
-
-    this.title.setTextAppearance(context, typedArray.getResourceId(R.styleable.ActionBar_titleTextStyle, 0));
-    this.subtitle.setTextAppearance(context, typedArray.getResourceId(R.styleable.ActionBar_subtitleTextStyle, 0));
-
-    typedArray.recycle();
   }
+
 
   public void setTitle(@Nullable Recipients recipients) {
     if      (recipients == null)             setComposeTitle();
