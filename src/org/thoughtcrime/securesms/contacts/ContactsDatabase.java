@@ -36,7 +36,9 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Database to supply all types of contacts that TextSecure needs to know about
@@ -121,15 +123,45 @@ public class ContactsDatabase {
   }
 
   private Cursor queryAndroidDb(String filter) {
-    final Uri baseUri;
+    final Uri      baseUri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
+    final String   selection;
+    final String[] selectionArgs;
+
     if (!TextUtils.isEmpty(filter)) {
-      baseUri = Uri.withAppendedPath(ContactsContract.CommonDataKinds.Phone.CONTENT_FILTER_URI,
-                                     Uri.encode(filter));
+      selection     = FILTER_SELECTION;
+      selectionArgs = new String[]{"%" + filter + "%", "%" + filter + "%"};
     } else {
-      baseUri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
+      selection     = null;
+      selectionArgs = null;
     }
-    Cursor cursor = context.getContentResolver().query(baseUri, ANDROID_PROJECTION, null, null, CONTACT_LIST_SORT);
-    return cursor == null ? null : new TypedCursorWrapper(cursor);
+
+    Cursor cursor = context.getContentResolver().query(baseUri, ANDROID_PROJECTION, selection, selectionArgs, CONTACT_LIST_SORT);
+    if (cursor == null) {
+      return null;
+    }
+
+    try {
+      MatrixCursor distinctResults = new MatrixCursor(ANDROID_PROJECTION);
+      Set<String>  phonesSeen      = new HashSet<>();
+
+      while (cursor.moveToNext()) {
+        String phoneNumber = cursor.getString(cursor.getColumnIndexOrThrow(NUMBER_COLUMN));
+        if (!phonesSeen.contains(phoneNumber)) {
+          phonesSeen.add(phoneNumber);
+          distinctResults.addRow(new Object[]{
+              cursor.getLong(cursor.getColumnIndexOrThrow(ID_COLUMN)),
+              cursor.getString(cursor.getColumnIndexOrThrow(NAME_COLUMN)),
+              cursor.getInt(cursor.getColumnIndexOrThrow(NUMBER_TYPE_COLUMN)),
+              cursor.getString(cursor.getColumnIndexOrThrow(LABEL_COLUMN)),
+              cursor.getString(cursor.getColumnIndexOrThrow(NUMBER_COLUMN))
+          });
+        }
+      }
+
+      return new TypedCursorWrapper(distinctResults);
+    } finally {
+      cursor.close();
+    }
   }
 
   private Cursor queryLocalDb(String filter) {
