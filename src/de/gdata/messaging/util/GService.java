@@ -60,17 +60,15 @@ public class GService extends Service {
     refreshPrivacyData(false);
   }
   public static void bindISFAService() {
-    boolean isInstalled = true;
+    boolean isInstalled = false;
     try {
       if (mService == null) {
         Log.d("GDATA", "Trying to bind service " + (mService == null) + " - " + (appContext == null));
         if (appContext != null) {
           try {
-            Intent serviceIntent = new Intent(GDataPreferences.INTENT_ACCESS_SERVER);
-            serviceIntent.setPackage(GDataPreferences.ISFA_PACKAGE);
-            isInstalled = appContext.bindService(serviceIntent, mConnection, Context.BIND_AUTO_CREATE);
-            if(!isInstalled) {
-              serviceIntent.setPackage(GDataPreferences.ISFA_PACKAGE_2);
+            for(int i = 0; i < GDataPreferences.ISFA_PACKAGES.length && !isInstalled;i++) {
+              Intent serviceIntent = new Intent(GDataPreferences.INTENT_ACCESS_SERVER);
+              serviceIntent.setPackage(GDataPreferences.ISFA_PACKAGES[i]);
               isInstalled = appContext.bindService(serviceIntent, mConnection, Context.BIND_AUTO_CREATE);
             }
           } catch(java.lang.IllegalArgumentException ex) {

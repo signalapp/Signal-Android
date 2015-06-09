@@ -19,6 +19,12 @@ public class GDataPreferences {
   public static final String INTENT_ACCESS_SERVER = "de.gdata.mobilesecurity.ACCESS_SERVER";
   public static final String ISFA_PACKAGE = "de.gdata.mobilesecurity";
   public static final String ISFA_PACKAGE_2 = "de.gdata.mobilesecurity2";
+  public static final String ISFA_PACKAGE_3 = "de.gdata.mobilesecurity2g";
+  public static final String ISFA_PACKAGE_4 = "de.gdata.mobilesecurity2b";
+  public static final String ISFA_PACKAGE_5 = "de.gdata.mobilesecurityorange";
+
+  public static final String[] ISFA_PACKAGES = {ISFA_PACKAGE, ISFA_PACKAGE_2, ISFA_PACKAGE_3, ISFA_PACKAGE_4, ISFA_PACKAGE_5};
+
   private static final String VIEW_PAGER_LAST_PAGE = "VIEW_PAGER_LAST_PAGE";
   private static final String APPLICATION_FONT = "APPLICATION_FONT";
   private static final String PRIVACY_ACTIVATED = "PRIVACY_ACTIVATED";
