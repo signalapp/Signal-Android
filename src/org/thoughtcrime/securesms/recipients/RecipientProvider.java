@@ -142,6 +142,7 @@ public class RecipientProvider {
 
   void clearCache() {
     recipientCache.clear();
+    recipientsCache.clear();
   }
 
   private RecipientDetails getRecipientDetails(Context context, String number) {
