@@ -22,27 +22,34 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.PhoneLookup;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.database.CanonicalAddressDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase;
+import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.LRUCache;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 
 public class RecipientProvider {
 
-  private static final Map<Long,Recipient> recipientCache         = Collections.synchronizedMap(new LRUCache<Long,Recipient>(1000));
-  private static final ExecutorService     asyncRecipientResolver = Util.newSingleThreadedLifoExecutor();
+  private static final Map<Long,Recipient>          recipientCache         = Collections.synchronizedMap(new LRUCache<Long,Recipient>(1000));
+  private static final Map<RecipientIds,Recipients> recipientsCache        = Collections.synchronizedMap(new LRUCache<RecipientIds, Recipients>(1000));
+  private static final ExecutorService              asyncRecipientResolver = Util.newSingleThreadedLifoExecutor();
 
   private static final String[] CALLER_ID_PROJECTION = new String[] {
     PhoneLookup.DISPLAY_NAME,
@@ -51,12 +58,29 @@ public class RecipientProvider {
     PhoneLookup.NUMBER
   };
 
-  public Recipient getRecipient(Context context, long recipientId, boolean asynchronous) {
+  Recipient getRecipient(Context context, long recipientId, boolean asynchronous) {
     Recipient cachedRecipient = recipientCache.get(recipientId);
 
-    if (cachedRecipient != null) return cachedRecipient;
-    else if (asynchronous)       return getAsynchronousRecipient(context, recipientId);
-    else                         return getSynchronousRecipient(context, recipientId);
+    if      (cachedRecipient != null) return cachedRecipient;
+    else if (asynchronous)            return getAsynchronousRecipient(context, recipientId);
+    else                              return getSynchronousRecipient(context, recipientId);
+  }
+
+  Recipients getRecipients(Context context, long[] recipientIds, boolean asynchronous) {
+    Recipients cachedRecipients = recipientsCache.get(new RecipientIds(recipientIds));
+    if (cachedRecipients != null) return cachedRecipients;
+
+    List<Recipient> recipientList = new LinkedList<>();
+
+    for (long recipientId : recipientIds) {
+      recipientList.add(getRecipient(context, recipientId, false));
+    }
+
+    if (asynchronous) cachedRecipients = new Recipients(recipientList, getRecipientsPreferencesAsync(context, recipientIds));
+    else              cachedRecipients = new Recipients(recipientList, getRecipientsPreferencesSync(context, recipientIds));
+
+    recipientsCache.put(new RecipientIds(recipientIds), cachedRecipients);
+    return cachedRecipients;
   }
 
   private Recipient getSynchronousRecipient(final Context context, final long recipientId) {
@@ -116,13 +140,8 @@ public class RecipientProvider {
     return recipient;
   }
 
-  public void clearCache() {
+  void clearCache() {
     recipientCache.clear();
-  }
-
-  public void clearCache(Recipient recipient) {
-    if (recipientCache.containsKey(recipient.getRecipientId()))
-      recipientCache.remove(recipient.getRecipientId());
   }
 
   private RecipientDetails getRecipientDetails(Context context, String number) {
@@ -164,6 +183,25 @@ public class RecipientProvider {
     }
   }
 
+  private @Nullable RecipientsPreferences getRecipientsPreferencesSync(Context context, long[] recipientIds) {
+    return DatabaseFactory.getRecipientPreferenceDatabase(context)
+                          .getRecipientsPreferences(recipientIds)
+                          .orNull();
+  }
+
+  private ListenableFutureTask<RecipientsPreferences> getRecipientsPreferencesAsync(final Context context, final long[] recipientIds) {
+    ListenableFutureTask<RecipientsPreferences> task = new ListenableFutureTask<>(new Callable<RecipientsPreferences>() {
+      @Override
+      public RecipientsPreferences call() throws Exception {
+        return getRecipientsPreferencesSync(context, recipientIds);
+      }
+    });
+
+    asyncRecipientResolver.execute(task);
+
+    return task;
+  }
+
   public static class RecipientDetails {
     public final String   name;
     public final String   number;
@@ -177,6 +215,24 @@ public class RecipientProvider {
       this.contactUri    = contactUri;
     }
   }
+
+  private static class RecipientIds {
+    private final long[] ids;
+
+    private RecipientIds(long[] ids) {
+      this.ids = ids;
+    }
+
+    public boolean equals(Object other) {
+      if (other == null || !(other instanceof RecipientIds)) return false;
+      return Arrays.equals(this.ids, ((RecipientIds) other).ids);
+    }
+
+    public int hashCode() {
+      return Arrays.hashCode(ids);
+    }
+  }
+
 
 
 }

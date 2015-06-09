@@ -17,6 +17,7 @@ import com.doomonafireball.betterpickers.hmspicker.HmsPickerBuilder;
 import com.doomonafireball.betterpickers.hmspicker.HmsPickerDialogFragment;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
+import org.thoughtcrime.securesms.BlockedContactsActivity;
 import org.thoughtcrime.securesms.PassphraseChangeActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -27,6 +28,9 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import java.util.concurrent.TimeUnit;
 
 public class AppProtectionPreferenceFragment extends PreferenceFragment {
+
+  private static final String PREFERENCE_CATEGORY_BLOCKED = "preference_category_blocked";
+
   private MasterSecret       masterSecret;
   private CheckBoxPreference disablePassphrase;
 
@@ -42,6 +46,8 @@ public class AppProtectionPreferenceFragment extends PreferenceFragment {
         .setOnPreferenceClickListener(new ChangePassphraseClickListener());
     this.findPreference(TextSecurePreferences.PASSPHRASE_TIMEOUT_INTERVAL_PREF)
         .setOnPreferenceClickListener(new PassphraseIntervalClickListener());
+    this.findPreference(PREFERENCE_CATEGORY_BLOCKED)
+        .setOnPreferenceClickListener(new BlockedContactsClickListener());
     disablePassphrase
         .setOnPreferenceChangeListener(new DisablePassphraseClickListener());
   }
@@ -71,6 +77,15 @@ public class AppProtectionPreferenceFragment extends PreferenceFragment {
     int timeoutMinutes = TextSecurePreferences.getPassphraseTimeoutInterval(getActivity());
     this.findPreference(TextSecurePreferences.PASSPHRASE_TIMEOUT_INTERVAL_PREF)
         .setSummary(getString(R.string.AppProtectionPreferenceFragment_minutes, timeoutMinutes));
+  }
+
+  private class BlockedContactsClickListener implements Preference.OnPreferenceClickListener {
+    @Override
+    public boolean onPreferenceClick(Preference preference) {
+      Intent intent = new Intent(getActivity(), BlockedContactsActivity.class);
+      startActivity(intent);
+      return true;
+    }
   }
 
   private class ChangePassphraseClickListener implements Preference.OnPreferenceClickListener {

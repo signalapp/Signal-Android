@@ -171,4 +171,23 @@
       <item>@string/arrays__use_custom</item>
   </string-array>
 
+  <string-array name="mute_durations">
+      <item>@string/arrays__mute_for_one_hour</item>
+      <item>@string/arrays__mute_for_two_hours</item>
+      <item>@string/arrays__mute_for_one_day</item>
+      <item>@string/arrays__mute_for_seven_days</item>
+  </string-array>
+
+  <string-array name="recipient_vibrate_entries">
+      <item>@string/arrays__settings_default</item>
+      <item>@string/arrays__enabled</item>
+      <item>@string/arrays__disabled</item>
+  </string-array>
+
+  <string-array name="recipient_vibrate_values">
+      <item>0</item>
+      <item>1</item>
+      <item>2</item>
+  </string-array>
+
 </resources>

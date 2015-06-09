@@ -345,7 +345,7 @@ public class MmsDatabase extends MessagingDatabase {
                       ? Util.toIsoString(notification.getFrom().getTextString())
                       : "";
     Recipients recipients = RecipientFactory.getRecipientsFromString(context, fromString, false);
-    if (recipients.isEmpty()) recipients = new Recipients(Recipient.getUnknownRecipient(context));
+    if (recipients.isEmpty()) recipients = RecipientFactory.getRecipientsFor(context, Recipient.getUnknownRecipient(context), false);
     return DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
   }
 
@@ -1054,13 +1054,13 @@ public class MmsDatabase extends MessagingDatabase {
 
     private Recipients getRecipientsFor(String address) {
       if (TextUtils.isEmpty(address) || address.equals("insert-address-token")) {
-        return new Recipients(Recipient.getUnknownRecipient(context));
+        return RecipientFactory.getRecipientsFor(context, Recipient.getUnknownRecipient(context), false);
       }
 
       Recipients recipients =  RecipientFactory.getRecipientsFromString(context, address, false);
 
       if (recipients == null || recipients.isEmpty()) {
-        return new Recipients(Recipient.getUnknownRecipient(context));
+        return RecipientFactory.getRecipientsFor(context, Recipient.getUnknownRecipient(context), false);
       }
 
       return recipients;

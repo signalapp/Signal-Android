@@ -3,9 +3,14 @@ package org.thoughtcrime.securesms.notifications;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase;
+import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.VibrateState;
+import org.thoughtcrime.securesms.recipients.Recipients;
 
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -14,8 +19,8 @@ import java.util.Set;
 
 public class NotificationState {
 
-  private final LinkedList<NotificationItem> notifications = new LinkedList<NotificationItem>();
-  private final Set<Long>                    threads       = new HashSet<Long>();
+  private final LinkedList<NotificationItem> notifications = new LinkedList<>();
+  private final Set<Long>                    threads       = new HashSet<>();
 
   private int notificationCount = 0;
 
@@ -23,6 +28,30 @@ public class NotificationState {
     notifications.addFirst(item);
     threads.add(item.getThreadId());
     notificationCount++;
+  }
+
+  public @Nullable Uri getRingtone() {
+    if (!notifications.isEmpty()) {
+      Recipients recipients = notifications.getFirst().getRecipients();
+
+      if (recipients != null) {
+        return recipients.getRingtone();
+      }
+    }
+
+    return null;
+  }
+
+  public VibrateState getVibrate() {
+    if (!notifications.isEmpty()) {
+      Recipients recipients = notifications.getFirst().getRecipients();
+
+      if (recipients != null) {
+        return recipients.getVibrate();
+      }
+    }
+
+    return VibrateState.DEFAULT;
   }
 
   public boolean hasMultipleThreads() {

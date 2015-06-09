@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="TextSecure.LightNoActionBar" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="actionBarStyle">@style/TextSecure.LightActionBar</item>
+        <item name="actionBarTabBarStyle">@style/TextSecure.LightActionBar.TabBar</item>
+        <item name="colorPrimary">@color/textsecure_primary</item>
+        <item name="colorPrimaryDark">@color/textsecure_primary_dark</item>
+        <item name="colorAccent">@color/textsecure_primary_dark</item>
+    </style>
+
+    <style name="TextSecure.DarkNoActionBar" parent="@style/Theme.AppCompat.NoActionBar">
+        <item name="actionBarStyle">@style/TextSecure.DarkActionBar</item>
+        <item name="actionBarTabBarStyle">@style/TextSecure.DarkActionBar.TabBar</item>
+        <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
+    </style>
+
     <style name="TextSecure.LightIntroTheme" parent="@style/Theme.AppCompat.Light">
         <!--<item name="colorPrimary">@android:color/transparent</item>-->
         <item name="actionBarStyle">@style/TextSecure.IntroActionBar</item>

@@ -19,10 +19,11 @@ package org.thoughtcrime.securesms.recipients;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
-import android.util.Log;
 
 import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.database.CanonicalAddressDatabase;
+import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -34,59 +35,73 @@ public class RecipientFactory {
 
   public static Recipients getRecipientsForIds(Context context, String recipientIds, boolean asynchronous) {
     if (TextUtils.isEmpty(recipientIds))
-      return new Recipients(new LinkedList<Recipient>());
+      return new Recipients();
 
-    List<Recipient> results   = new LinkedList<>();
-    StringTokenizer tokenizer = new StringTokenizer(recipientIds.trim(), " ");
+    return getRecipientsForIds(context, Util.split(recipientIds, " "), asynchronous);
+  }
 
-    while (tokenizer.hasMoreTokens()) {
-      String recipientId  = tokenizer.nextToken();
-      Recipient recipient = getRecipientFromProviderId(context, Long.parseLong(recipientId), asynchronous);
+  public static Recipients getRecipientsFor(Context context, List<Recipient> recipients, boolean asynchronous) {
+    long[] ids = new long[recipients.size()];
+    int    i   = 0;
 
-      results.add(recipient);
+    for (Recipient recipient : recipients) {
+      ids[i++] = recipient.getRecipientId();
     }
 
-    return new Recipients(results);
+    return provider.getRecipients(context, ids, asynchronous);
+  }
+
+  public static Recipients getRecipientsFor(Context context, Recipient recipient, boolean asynchronous) {
+    long[] ids = new long[1];
+    ids[0] = recipient.getRecipientId();
+
+    return provider.getRecipients(context, ids, asynchronous);
   }
 
   public static Recipient getRecipientForId(Context context, long recipientId, boolean asynchronous) {
-    return getRecipientFromProviderId(context, recipientId, asynchronous);
-  }
-
-  public static Recipients getRecipientsForIds(Context context, long[] recipientIds, boolean asynchronous) {
-    List<Recipient> results = new LinkedList<>();
-    if (recipientIds == null) return new Recipients(results);
-    for (long recipientId : recipientIds) {
-      results.add(getRecipientFromProviderId(context, recipientId, asynchronous));
-    }
-    return new Recipients(results);
-  }
-
-  private static Recipient getRecipientForNumber(Context context, String number, boolean asynchronous) {
-    long recipientId = CanonicalAddressDatabase.getInstance(context).getCanonicalAddressId(number);
     return provider.getRecipient(context, recipientId, asynchronous);
   }
 
-  public static Recipients getRecipientsFromString(Context context, @NonNull String rawText, boolean asynchronous) {
-    List<Recipient> results   = new LinkedList<>();
-    StringTokenizer tokenizer = new StringTokenizer(rawText, ",");
-
-    while (tokenizer.hasMoreTokens()) {
-      Recipient recipient = parseRecipient(context, tokenizer.nextToken(), asynchronous);
-      if( recipient != null )
-        results.add(recipient);
-    }
-
-    return new Recipients(results);
+  public static Recipients getRecipientsForIds(Context context, long[] recipientIds, boolean asynchronous) {
+    return provider.getRecipients(context, recipientIds, asynchronous);
   }
 
-  private static Recipient getRecipientFromProviderId(Context context, long recipientId, boolean asynchronous) {
-    try {
-      return provider.getRecipient(context, recipientId, asynchronous);
-    } catch (NumberFormatException e) {
-      Log.w("RecipientFactory", e);
-      return Recipient.getUnknownRecipient(context);
+  public static Recipients getRecipientsFromString(Context context, @NonNull String rawText, boolean asynchronous) {
+    StringTokenizer tokenizer = new StringTokenizer(rawText, ",");
+    List<String>    ids       = new LinkedList<>();
+
+    while (tokenizer.hasMoreTokens()) {
+      Optional<Long> id = getRecipientIdFromNumber(context, tokenizer.nextToken());
+
+      if (id.isPresent()) {
+        ids.add(String.valueOf(id.get()));
+      }
     }
+
+    return getRecipientsForIds(context, ids, asynchronous);
+  }
+
+  private static Recipients getRecipientsForIds(Context context, List<String> idStrings, boolean asynchronous) {
+    long[]       ids      = new long[idStrings.size()];
+    int          i        = 0;
+
+    for (String id : idStrings) {
+      ids[i++] = Long.parseLong(id);
+    }
+
+    return provider.getRecipients(context, ids, asynchronous);
+  }
+
+  private static Optional<Long> getRecipientIdFromNumber(Context context, String number) {
+    number = number.trim();
+
+    if (number.isEmpty()) return Optional.absent();
+
+    if (hasBracketedNumber(number)) {
+      number = parseBracketedNumber(number);
+    }
+
+    return Optional.of(CanonicalAddressDatabase.getInstance(context).getCanonicalAddressId(number));
   }
 
   private static boolean hasBracketedNumber(String recipient) {
@@ -104,26 +119,9 @@ public class RecipientFactory {
     return value;
   }
 
-  private static Recipient parseRecipient(Context context, String recipient, boolean asynchronous) {
-    recipient = recipient.trim();
-
-    if( recipient.length() == 0 )
-      return null;
-
-    if (hasBracketedNumber(recipient))
-      return getRecipientForNumber(context, parseBracketedNumber(recipient), asynchronous);
-
-    return getRecipientForNumber(context, recipient, asynchronous);
-  }
-
   public static void clearCache() {
     ContactPhotoFactory.clearCache();
     provider.clearCache();
-  }
-
-  public static void clearCache(Recipient recipient) {
-    ContactPhotoFactory.clearCache(recipient);
-    provider.clearCache(recipient);
   }
 
 }

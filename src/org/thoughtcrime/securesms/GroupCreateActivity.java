@@ -465,7 +465,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
   }
 
   private long handleCreateMmsGroup(Set<Recipient> members) {
-    Recipients recipients = new Recipients(new LinkedList<Recipient>(members));
+    Recipients recipients = RecipientFactory.getRecipientsFor(this, new LinkedList<>(members), false);
     return DatabaseFactory.getThreadDatabase(this)
                           .getThreadIdFor(recipients,
                                           ThreadDatabase.DistributionTypes.CONVERSATION);
@@ -532,7 +532,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
         intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT);
 
         ArrayList<Recipient> selectedContactsList = setToArrayList(selectedContacts);
-        intent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, new Recipients(selectedContactsList).getIds());
+        intent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, RecipientFactory.getRecipientsFor(GroupCreateActivity.this, selectedContactsList, true).getIds());
         startActivity(intent);
         finish();
       } else {

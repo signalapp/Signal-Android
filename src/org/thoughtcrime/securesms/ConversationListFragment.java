@@ -25,7 +25,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -248,7 +248,7 @@ public class ConversationListFragment extends Fragment
 
   @Override
   public void onItemLongClick(ConversationListItem item) {
-    actionMode = ((ActionBarActivity)getActivity()).startSupportActionMode(ConversationListFragment.this);
+    actionMode = ((AppCompatActivity)getActivity()).startSupportActionMode(ConversationListFragment.this);
 
     getListAdapter().initializeBatchMode(true);
     getListAdapter().toggleThreadInBatchSet(item.getThreadId());
