@@ -80,8 +80,6 @@ public class ConversationListItem extends RelativeLayout
     this.fromView          = (FromTextView) findViewById(R.id.from);
     this.dateView          = (TextView) findViewById(R.id.date);
     this.contactPhotoImage = (AvatarImageView) findViewById(R.id.contact_photo_image);
-
-    initializeContactWidgetVisibility();
   }
 
   public void set(ThreadRecord thread, Locale locale, Set<Long> selectedThreads, boolean batchMode) {
@@ -110,10 +108,6 @@ public class ConversationListItem extends RelativeLayout
   public void unbind() {
     if (this.recipients != null)
       this.recipients.removeListener(this);
-  }
-
-  private void initializeContactWidgetVisibility() {
-    contactPhotoImage.setVisibility(View.VISIBLE);
   }
 
   private void setBatchState(boolean batch) {

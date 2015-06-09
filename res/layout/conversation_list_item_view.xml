@@ -17,7 +17,6 @@
         android:layout_marginTop="3dp"
         android:layout_marginBottom="3dp"
         android:cropToPadding="true"
-        android:visibility="gone"
         tools:src="@drawable/ic_contact_picture"
         android:contentDescription="@string/conversation_list_item_view__contact_photo_image"
         android:layout_marginRight="10dp"

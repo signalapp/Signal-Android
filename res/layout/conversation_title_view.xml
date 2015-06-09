@@ -3,43 +3,27 @@
               xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:layout_gravity="center_vertical"
+              android:gravity="center_vertical">
 
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-        <ImageView android:id="@+id/muted"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:src="@drawable/ic_volume_off_white_18dp"
-                   android:visibility="gone"
-                   android:paddingRight="5dp"
-                   android:contentDescription="@string/conversation_title_view__conversation_muted"/>
-
-        <ImageView android:id="@+id/blocked"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:src="@drawable/ic_block_white_18dp"
-                   android:visibility="gone"
-                   android:paddingRight="5dp"
-                   android:contentDescription="@string/recipient_preference_activity__blocked"/>
-
-        <TextView android:id="@+id/title"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:singleLine="true"
-                  android:ellipsize="end"
-                  style="@style/TextSecure.TitleTextStyle"/>
-
-    </LinearLayout>
+    <TextView android:id="@+id/title"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:singleLine="true"
+              android:ellipsize="end"
+              android:drawablePadding="5dp"
+              android:gravity="center_vertical"
+              android:layout_gravity="center_vertical"
+              style="@style/TextSecure.TitleTextStyle"/>
 
     <TextView android:id="@+id/subtitle"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:singleLine="true"
               android:ellipsize="end"
+              android:layout_gravity="center_vertical"
+              android:gravity="center_vertical"
               style="@style/TextSecure.SubtitleTextStyle"/>
 
 </org.thoughtcrime.securesms.ConversationTitleView>

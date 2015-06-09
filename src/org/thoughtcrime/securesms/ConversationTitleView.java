@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -18,8 +17,6 @@ public class ConversationTitleView extends LinearLayout {
 
   private TextView  title;
   private TextView  subtitle;
-  private ImageView muteIcon;
-  private ImageView blockedIcon;
 
   public ConversationTitleView(Context context) {
     this(context, null);
@@ -34,10 +31,8 @@ public class ConversationTitleView extends LinearLayout {
   public void onFinishInflate() {
     super.onFinishInflate();
 
-    this.title       = (TextView) findViewById(R.id.title);
-    this.subtitle    = (TextView) findViewById(R.id.subtitle);
-    this.muteIcon    = (ImageView) findViewById(R.id.muted);
-    this.blockedIcon = (ImageView) findViewById(R.id.blocked);
+    this.title    = (TextView) findViewById(R.id.title);
+    this.subtitle = (TextView) findViewById(R.id.subtitle);
   }
 
 
@@ -47,20 +42,18 @@ public class ConversationTitleView extends LinearLayout {
     else                                     setRecipientsTitle(recipients);
 
     if (recipients != null && recipients.isBlocked()) {
-      this.blockedIcon.setVisibility(View.VISIBLE);
-      this.muteIcon.setVisibility(View.GONE);
+      title.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_block_white_18dp, 0, 0, 0);
     } else if (recipients != null && recipients.isMuted()) {
-      this.muteIcon.setVisibility(View.VISIBLE);
-      this.blockedIcon.setVisibility(View.GONE);
+      title.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_volume_off_white_18dp, 0, 0, 0);
     } else {
-      this.muteIcon.setVisibility(View.GONE);
-      this.blockedIcon.setVisibility(View.GONE);
+      title.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
     }
   }
 
   private void setComposeTitle() {
     this.title.setText(R.string.ConversationActivity_compose_message);
     this.subtitle.setText(null);
+    this.subtitle.setVisibility(View.GONE);
   }
 
   private void setRecipientTitle(Recipient recipient) {
@@ -68,9 +61,11 @@ public class ConversationTitleView extends LinearLayout {
       if (TextUtils.isEmpty(recipient.getName())) {
         this.title.setText(recipient.getNumber());
         this.subtitle.setText(null);
+        this.subtitle.setVisibility(View.GONE);
       } else {
         this.title.setText(recipient.getName());
         this.subtitle.setText(recipient.getNumber());
+        this.subtitle.setVisibility(View.VISIBLE);
       }
     } else {
       String groupName = (!TextUtils.isEmpty(recipient.getName())) ?
@@ -79,6 +74,7 @@ public class ConversationTitleView extends LinearLayout {
 
       this.title.setText(groupName);
       this.subtitle.setText(null);
+      this.subtitle.setVisibility(View.GONE);
     }
   }
 
@@ -88,6 +84,7 @@ public class ConversationTitleView extends LinearLayout {
     title.setText(getContext().getString(R.string.ConversationActivity_group_conversation));
     subtitle.setText((size == 1) ? getContext().getString(R.string.ConversationActivity_d_recipients_in_group_singular) :
                          String.format(getContext().getString(R.string.ConversationActivity_d_recipients_in_group), size));
+    subtitle.setVisibility(View.VISIBLE);
   }
 
 
