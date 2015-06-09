@@ -96,11 +96,6 @@ public class ContactPhotoFactory {
     localUserContactPhotoCache.clear();
   }
 
-  public static void clearCache(Recipient recipient) {
-    if (localUserContactPhotoCache.containsKey(recipient.getContactUri()))
-    localUserContactPhotoCache.remove(recipient.getContactUri());
-  }
-
   public static Drawable getContactPhoto(Context context, Uri uri, String name) {
     final InputStream inputStream = getContactPhotoStream(context, uri);
     final int         targetSize  = context.getResources().getDimensionPixelSize(R.dimen.contact_photo_target_size);

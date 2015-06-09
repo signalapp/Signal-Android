@@ -27,7 +27,6 @@ import android.widget.TextView;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.FromTextView;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
-import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DateUtils;
 
@@ -44,7 +43,7 @@ import static org.thoughtcrime.securesms.util.SpanUtil.color;
  */
 
 public class ConversationListItem extends RelativeLayout
-                                  implements Recipient.RecipientModifiedListener
+                                  implements Recipients.RecipientsModifiedListener
 {
   private final static String TAG = ConversationListItem.class.getSimpleName();
 
@@ -76,12 +75,11 @@ public class ConversationListItem extends RelativeLayout
 
   @Override
   protected void onFinishInflate() {
+    super.onFinishInflate();
     this.subjectView       = (TextView) findViewById(R.id.subject);
     this.fromView          = (FromTextView) findViewById(R.id.from);
     this.dateView          = (TextView) findViewById(R.id.date);
     this.contactPhotoImage = (AvatarImageView) findViewById(R.id.contact_photo_image);
-
-    initializeContactWidgetVisibility();
   }
 
   public void set(ThreadRecord thread, Locale locale, Set<Long> selectedThreads, boolean batchMode) {
@@ -112,10 +110,6 @@ public class ConversationListItem extends RelativeLayout
       this.recipients.removeListener(this);
   }
 
-  private void initializeContactWidgetVisibility() {
-    contactPhotoImage.setVisibility(View.VISIBLE);
-  }
-
   private void setBatchState(boolean batch) {
     setSelected(batch && selectedThreads.contains(threadId));
   }
@@ -133,7 +127,7 @@ public class ConversationListItem extends RelativeLayout
   }
 
   @Override
-  public void onModified(Recipient recipient) {
+  public void onModified(final Recipients recipients) {
     handler.post(new Runnable() {
       @Override
       public void run() {

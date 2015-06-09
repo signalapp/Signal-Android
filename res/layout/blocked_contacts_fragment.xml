@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:paddingLeft="16dip"
+              android:paddingRight="16dip">
+
+    <ListView android:id="@id/android:list"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_weight="1"
+              android:drawSelectorOnTop="false"/>
+
+    <TextView android:id="@id/android:empty"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_gravity="center|center_vertical"
+              android:gravity="center|center_vertical"
+              android:textSize="20sp"
+              android:text="@string/blocked_contacts_fragment__no_blocked_contacts"/>
+
+</LinearLayout>

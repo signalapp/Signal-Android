@@ -77,6 +77,17 @@ public class Util {
     return result.toString();
   }
 
+  public static String join(long[] list, String delimeter) {
+    StringBuilder sb = new StringBuilder();
+
+    for (int j=0;j<list.length;j++) {
+      if (j != 0) sb.append(delimeter);
+      sb.append(list[j]);
+    }
+
+    return sb.toString();
+  }
+
   public static ExecutorService newSingleThreadedLifoExecutor() {
     ThreadPoolExecutor executor = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingLifoQueue<Runnable>());
 

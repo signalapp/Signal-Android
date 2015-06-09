@@ -82,23 +82,38 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
 
   protected <T extends Fragment> T initFragment(@IdRes int target,
                                                 @NonNull T fragment,
+                                                @NonNull MasterSecret masterSecret)
+  {
+    return initFragment(target, fragment, masterSecret, null);
+  }
+
+  protected <T extends Fragment> T initFragment(@IdRes int target,
+                                                @NonNull T fragment,
                                                 @NonNull MasterSecret masterSecret,
-                                                @Nullable Locale locale) {
+                                                @Nullable Locale locale)
+  {
+    return initFragment(target, fragment, masterSecret, locale, null);
+  }
+
+  protected <T extends Fragment> T initFragment(@IdRes int target,
+                                                @NonNull T fragment,
+                                                @NonNull MasterSecret masterSecret,
+                                                @Nullable Locale locale,
+                                                @Nullable Bundle extras)
+  {
     Bundle args = new Bundle();
     args.putParcelable("master_secret", masterSecret);
     args.putSerializable(LOCALE_EXTRA, locale);
+
+    if (extras != null) {
+      args.putAll(extras);
+    }
 
     fragment.setArguments(args);
     getSupportFragmentManager().beginTransaction()
                                .replace(target, fragment)
                                .commit();
     return fragment;
-  }
-
-  protected <T extends Fragment> T initFragment(@IdRes int target,
-                                                @NonNull T fragment,
-                                                @NonNull MasterSecret masterSecret) {
-    return initFragment(target, fragment, masterSecret, null);
   }
 
   private void routeApplicationState(MasterSecret masterSecret) {
