@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.api.TextSecureAccountManager;
+import org.whispersystems.textsecure.api.push.exceptions.AuthorizationFailedException;
 import org.whispersystems.textsecure.api.push.exceptions.ExpectationFailedException;
 import org.whispersystems.textsecure.api.push.exceptions.RateLimitException;
 import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
@@ -521,6 +522,9 @@ public class RegistrationProgressActivity extends ActionBarActivity {
             accountManager.verifyAccount(code, signalingKey, true, registrationId);
 
             return SUCCESS;
+          } catch(AuthorizationFailedException aex){
+            Log.w("RegistrationProgressActivity", aex);
+            return VERIFICATION_ERROR;
           } catch (ExpectationFailedException e) {
             Log.w("RegistrationProgressActivity", e);
             return MULTI_REGISTRATION_ERROR;
