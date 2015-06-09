@@ -6,7 +6,7 @@
 
     <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
-            android:layout_height="150dp"
+            android:layout_height="130dp"
             android:layout_width="match_parent"
             android:minHeight="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
@@ -20,8 +20,8 @@
             <org.thoughtcrime.securesms.components.AvatarImageView
                     android:id="@+id/avatar"
                     android:foreground="@drawable/contact_photo_background"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:cropToPadding="true"
                     android:layout_marginLeft="0dp"
                     android:layout_alignParentLeft="true"/>
