@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="gdata_red">#a02020</color>
+    <color name="transparent">@android:color/transparent</color>
     <color name="gdata_conversation_list_item_background_read">#ffffff</color>
     <color name="gdata_conversation_list_item_background_unread">@color/gray5</color>
     <color name="gdata_conversation_list_divider">@color/gray5</color>

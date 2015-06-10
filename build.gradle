@@ -65,7 +65,7 @@ dependencies {
         exclude module: 'support-v4'
     }
     compile 'com.squareup.dagger:dagger:1.2.2'
-    compile ("com.doomonafireball.betterpickers:library:1.5.3") {
+    compile ("com.doomonafireball.betterpickers:library:1.6.0") {
         exclude group: 'com.android.support', module: 'support-v4'
     }
     provided 'com.squareup.dagger:dagger-compiler:1.2.2'
