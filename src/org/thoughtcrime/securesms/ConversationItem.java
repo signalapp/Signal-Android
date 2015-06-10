@@ -25,9 +25,6 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.Matrix;
-import android.graphics.Point;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.TransitionDrawable;
@@ -37,13 +34,10 @@ import android.os.Message;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.QuickContact;
 import android.util.AttributeSet;
-import android.view.Display;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -65,26 +59,20 @@ import org.thoughtcrime.securesms.jobs.MmsDownloadJob;
 import org.thoughtcrime.securesms.jobs.MmsSendJob;
 import org.thoughtcrime.securesms.jobs.SmsSendJob;
 import org.thoughtcrime.securesms.mms.AudioSlide;
-import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DateUtils;
-import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.Emoji;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
-import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libaxolotl.logging.Log;
 
 import java.io.InputStream;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 import de.gdata.messaging.util.GDataLinkMovementMethod;
-import ws.com.google.android.mms.ContentType;
-import ws.com.google.android.mms.pdu.PduPart;
 
 /**
  * A view that displays an individual conversation item within a conversation
@@ -308,8 +296,6 @@ public class ConversationItem extends LinearLayout {
       if (bombImage != null) {
         bombImage.setVisibility(View.VISIBLE);
         if (!messageRecord.isOutgoing()) {
-          bodyText.setVisibility(View.VISIBLE);
-
           String destroyText = getContext().getString(R.string.self_destruction_body);
           destroyText = destroyText.replace("#1#", "" + messageRecord.getBody().getSelfDestructionDuration());
           String countdownText = getContext().getString(R.string.self_destruction_title);
@@ -319,8 +305,9 @@ public class ConversationItem extends LinearLayout {
           bodyText.setText(destroyText);
         }
       }
+    } else if(bombImage != null) {
+      bombImage.setVisibility(View.GONE);
     }
-
   }
 
   public class BombClickListener implements OnClickListener {
