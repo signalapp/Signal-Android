@@ -177,7 +177,6 @@ public class ConversationItem extends LinearLayout {
     if (failedImage != null) failedImage.setOnClickListener(failedIconClickListener);
     if (mmsDownloadButton != null) mmsDownloadButton.setOnClickListener(mmsDownloadClickListener);
     if (mmsThumbnail != null) {
-
       mmsThumbnail.setThumbnailClickListener(new ThumbnailClickListener());
       mmsThumbnail.setOnLongClickListener(new MultiSelectLongClickListener());
       mmsThumbnail.setVisibility(View.GONE);
@@ -295,6 +294,7 @@ public class ConversationItem extends LinearLayout {
     if (messageRecord.getBody().isSelfDestruction()) {
       if (bombImage != null) {
         bombImage.setVisibility(View.VISIBLE);
+      }
         if (!messageRecord.isOutgoing()) {
           String destroyText = getContext().getString(R.string.self_destruction_body);
           destroyText = destroyText.replace("#1#", "" + messageRecord.getBody().getSelfDestructionDuration());
@@ -304,7 +304,6 @@ public class ConversationItem extends LinearLayout {
           bodyText.setOnClickListener(new BombClickListener(bodyText.getText() + "", countdownText));
           bodyText.setText(destroyText);
         }
-      }
     } else if(bombImage != null) {
       bombImage.setVisibility(View.GONE);
     }
@@ -348,7 +347,7 @@ public class ConversationItem extends LinearLayout {
             alreadyDestroyed = true;
             deleteMessage(messageRecord);
           }
-        } else {
+        } else if ((messageRecord.getBody().getSelfDestructionDuration() - currentCountdown) > 1){
           if (hasMedia(messageRecord)) {
             image.setVisibility(View.VISIBLE);
             image.setImageResource(masterSecret, ((MediaMmsMessageRecord) messageRecord).getId(),
@@ -441,6 +440,7 @@ public class ConversationItem extends LinearLayout {
               }
             });
           }
+          MediaPreviewActivity.closeActivity();
         }
       }).start();
 
@@ -755,7 +755,7 @@ public class ConversationItem extends LinearLayout {
 
     public void onClick(final View v, final Slide slide) {
       boolean isAudio = slide instanceof AudioSlide;
-      if((isAudio && messageRecord.getBody().isSelfDestruction()) || !messageRecord.getBody().isSelfDestruction() || messageRecord.isOutgoing()) {
+     // if((isAudio && messageRecord.getBody().isSelfDestruction()) || !messageRecord.getBody().isSelfDestruction() || messageRecord.isOutgoing()) {
         if (!batchSelected.isEmpty()) {
           selectionClickListener.onItemClick(null, ConversationItem.this, -1, -1);
         } else if (MediaPreviewActivity.isContentTypeSupported(slide.getContentType())) {
@@ -763,10 +763,10 @@ public class ConversationItem extends LinearLayout {
           intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
           intent.setDataAndType(slide.getUri(), slide.getContentType());
           intent.putExtra(MediaPreviewActivity.MASTER_SECRET_EXTRA, masterSecret);
+          intent.putExtra("destroyImage", true);
           if (!messageRecord.isOutgoing())
             intent.putExtra(MediaPreviewActivity.RECIPIENT_EXTRA, messageRecord.getIndividualRecipient().getRecipientId());
           intent.putExtra(MediaPreviewActivity.DATE_EXTRA, messageRecord.getDateReceived());
-
           context.startActivity(intent);
         } else {
           AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(context);
@@ -782,7 +782,7 @@ public class ConversationItem extends LinearLayout {
           builder.setNegativeButton(R.string.no, null);
           builder.show();
         }
-      }
+    //  }
     }
   }
   private class MmsDownloadClickListener implements View.OnClickListener {
