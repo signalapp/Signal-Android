@@ -380,7 +380,11 @@ public class ConversationItem extends LinearLayout {
       builder.setCancelable(false);
       LayoutInflater vi = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
       LinearLayout rlView = (LinearLayout) vi.inflate(R.layout.destroy_dialog, null);
-      ((TextView) rlView.findViewById(R.id.textDialog)).setText(text);
+
+      ((TextView) rlView.findViewById(R.id.textDialog)).setText(Emoji.getInstance(context).emojify(text,
+              new Emoji.InvalidatingPageLoadedListener(((TextView) rlView.findViewById(R.id.textDialog)))),
+          TextView.BufferType.SPANNABLE);
+
       builder.setView(rlView);
       builder.setPositiveButton(R.string.self_destruction, new DialogInterface.OnClickListener() {
         @Override
