@@ -144,11 +144,14 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
   private void initNavDrawer(String[] labels, TypedArray icons) {
     // Set the adapter for the list view
-    mDrawerList.setAdapter(new NavDrawerAdapter(this, labels, icons));
+    NavDrawerAdapter adapter = new NavDrawerAdapter(this, labels, icons);
     // Set the list's click listener
+    mDrawerList.setAdapter(adapter);
     mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
     mDrawerList.setItemChecked(0, false);
     mDrawerList.invalidate();
+    mDrawerList.invalidateViews();
+    adapter.notifyDataSetChanged();
   }
 
   /* The click listner for ListView in the navigation drawer */
