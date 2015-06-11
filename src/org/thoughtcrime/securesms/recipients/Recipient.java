@@ -91,16 +91,6 @@ public class Recipient {
     return this.contactUri;
   }
 
-  public synchronized void setContactPhoto(Drawable bitmap) {
-    this.contactPhoto = bitmap;
-    notifyListeners();
-  }
-
-  public synchronized void setName(String name) {
-    this.name = name;
-    notifyListeners();
-  }
-
   public synchronized String getName() {
     return this.name;
   }
