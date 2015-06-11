@@ -43,7 +43,7 @@ public class GroupUtil {
       String        title        = groupContext.getName();
 
       if (!members.isEmpty()) {
-        description.append(context.getString(R.string.GroupUtil_joined_the_group, Util.join(members, ", ")));
+        description.append(context.getString(R.string.GroupUtil_joined_the_group, Util.join(members, ", ", context)));
       }
 
       if (title != null && !title.trim().isEmpty()) {

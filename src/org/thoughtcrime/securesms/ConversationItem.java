@@ -84,6 +84,8 @@ import de.gdata.messaging.util.GDataLinkMovementMethod;
 public class ConversationItem extends LinearLayout {
   private final static String TAG = ConversationItem.class.getSimpleName();
   private static final int SECOND = 1000;
+  //Workaround to hide encryption string from group creation
+  private static final long TYPE_WRONG_ENCRYPTED = -2136932329;
 
   private final int STYLE_ATTRIBUTES[] = new int[]{R.attr.conversation_item_sent_push_background,
       R.attr.conversation_item_sent_push_triangle_background,
@@ -281,10 +283,11 @@ public class ConversationItem extends LinearLayout {
     bodyText.setClickable(false);
     bodyText.setFocusable(false);
 
-    bodyText.setText(Emoji.getInstance(context).emojify(messageRecord.getDisplayBody(),
-            new Emoji.InvalidatingPageLoadedListener(bodyText)),
-        TextView.BufferType.SPANNABLE);
-
+    if(!(messageRecord.isGroupAction() && messageRecord.type == TYPE_WRONG_ENCRYPTED)) {
+      bodyText.setText(Emoji.getInstance(context).emojify(messageRecord.getDisplayBody(),
+              new Emoji.InvalidatingPageLoadedListener(bodyText)),
+          TextView.BufferType.SPANNABLE);
+    }
     if (!messageRecord.isKeyExchange() && !messageRecord.isPendingSmsFallback()) {
       bodyText.setMovementMethod(GDataLinkMovementMethod.getInstance(conversationFragment));
     }

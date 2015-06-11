@@ -39,6 +39,7 @@ import android.text.style.StyleSpan;
 import android.widget.EditText;
 
 import org.thoughtcrime.securesms.BuildConfig;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
 import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
 
@@ -63,20 +64,29 @@ import ws.com.google.android.mms.pdu.EncodedStringValue;
 
 public class Util {
 
-  public static String join(Collection<String> list, String delimiter) {
+  public static String join(Collection<String> list, String delimiter, Context context) {
     StringBuilder result = new StringBuilder();
     int i=0;
 
     for (String item : list) {
-      result.append(item);
-
+      result.append(RecipientFactory.getRecipientsFromString(context, item, false).getPrimaryRecipient().getName());
       if (++i < list.size())
         result.append(delimiter);
     }
 
     return result.toString();
   }
+  public static String join(Collection<String> list, String delimiter) {
+    StringBuilder result = new StringBuilder();
+    int i=0;
 
+    for (String item : list) {
+      result.append(item);
+      if (++i < list.size())
+        result.append(delimiter);
+    }
+    return result.toString();
+  }
   public static ExecutorService newSingleThreadedLifoExecutor() {
     ThreadPoolExecutor executor = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingLifoQueue<Runnable>());
 
