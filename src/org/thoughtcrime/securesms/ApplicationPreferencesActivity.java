@@ -16,8 +16,11 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.support.annotation.NonNull;
@@ -25,6 +28,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.preference.PreferenceFragment;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.preferences.AdvancedPreferenceFragment;
@@ -136,6 +145,13 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
     }
 
     @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
+      View settingsView = super.onCreateView(inflater, container, bundle);
+      addFooter(settingsView, inflater);
+      return settingsView;
+    }
+
+    @Override
     public void onResume() {
       super.onResume();
       ((ApplicationPreferencesActivity) getActivity()).getSupportActionBar().setTitle(R.string.text_secure_normal__menu_settings);
@@ -153,6 +169,31 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
           .setSummary(AppearancePreferenceFragment.getSummary(getActivity()));
       this.findPreference(PREFERENCE_CATEGORY_STORAGE)
           .setSummary(StoragePreferenceFragment.getSummary(getActivity()));
+    }
+
+    private void addFooter(View settingsView, LayoutInflater inflater) {
+      ListView settingsList = (ListView) settingsView.findViewById(android.R.id.list);
+      View footer = inflater.inflate(R.layout.preferences_footer_item, settingsList, false);
+
+      TextView appNameText = (TextView) footer.findViewById(R.id.app_name);
+      TextView appVersionText = (TextView) footer.findViewById(R.id.app_version);
+      Context context = settingsView.getContext();
+      appNameText.setText(R.string.app_name);
+      appVersionText.setText(findVersionName(context));
+
+      settingsList.addFooterView(footer);
+      settingsList.setFooterDividersEnabled(false);
+    }
+
+    private String findVersionName(Context context) {
+      String versionName = "";
+      try {
+        PackageInfo info = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
+        versionName = info.versionName;
+      } catch (PackageManager.NameNotFoundException e) {
+        Log.w(ApplicationPreferenceFragment.class.getSimpleName(), e);
+      }
+      return versionName;
     }
 
     private class CategoryClickListener implements Preference.OnPreferenceClickListener {
