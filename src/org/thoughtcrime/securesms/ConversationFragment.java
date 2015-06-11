@@ -11,7 +11,7 @@ import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.CursorAdapter;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ActionMode;
 import android.text.ClipboardManager;
 import android.util.Log;
@@ -335,7 +335,7 @@ public class ConversationFragment extends ListFragment
         ((ConversationAdapter) getListAdapter()).toggleBatchSelected(messageRecord);
         ((ConversationAdapter) getListAdapter()).notifyDataSetChanged();
 
-        actionMode = ((ActionBarActivity)getActivity()).startSupportActionMode(actionModeCallback);
+        actionMode = ((AppCompatActivity)getActivity()).startSupportActionMode(actionModeCallback);
         return true;
       }
 

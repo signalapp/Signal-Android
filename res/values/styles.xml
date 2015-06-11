@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Theme.AppCompat.NoActionBar" parent="@style/Theme.AppCompat">
-        <item name="android:windowNoTitle">true</item>
-    </style>
-
     <style name="NoAnimation.Theme.BlackScreen" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowAnimationStyle">@null</item>
         <item name="android:windowBackground">@android:color/black</item>
@@ -32,7 +28,8 @@
         <item name="logo">@drawable/actionbar_icon_holo_dark</item>
         <item name="android:popupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
         <item name="popupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
-
+        <item name="titleTextStyle">@style/TextSecure.TitleTextStyle</item>
+        <item name="subtitleTextStyle">@style/TextSecure.SubtitleTextStyle</item>
     </style>
 
     <style name="TextSecure.LightActionBar"
@@ -42,6 +39,9 @@
         <item name="logo">@drawable/actionbar_icon_holo_dark</item>
         <item name="icon">@drawable/actionbar_icon_holo_dark</item>
         <item name="titleTextStyle">@style/TextSecure.TitleTextStyle</item>
+        <item name="subtitleTextStyle">@style/TextSecure.SubtitleTextStyle</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">#99ffffff</item>
     </style>
 
     <style name="TextSecure.DarkActionBar.TabBar"
@@ -58,10 +58,11 @@
 
     <style name="TextSecure.TitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/white</item>
     </style>
 
     <style name="TextSecure.SubtitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Subtitle">
-        <item name="android:textColor">#ff555555</item>
+        <item name="android:textColor">#99ffffff</item>
     </style>
 
     <style name="TextSecure.IntroActionBar" parent="Widget.AppCompat.Light.ActionBar.Solid.Inverse">

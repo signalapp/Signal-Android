@@ -116,4 +116,6 @@
 
     <attr name="group_members_dialog_icon" format="reference"/>
     <attr name="lockscreen_watermark" format="reference" />
+
+    <attr name="recipient_preference_blocked" format="color"/>
 </resources>

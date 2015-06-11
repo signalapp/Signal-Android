@@ -12,6 +12,7 @@ import com.afollestad.materialdialogs.AlertDialogWrapper;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -45,7 +46,7 @@ public class GroupMembersDialog extends AsyncTask<Void, Void, Recipients> {
                             .getGroupMembers(GroupUtil.getDecodedId(groupId), true);
     } catch (IOException e) {
       Log.w(TAG, e);
-      return new Recipients(new LinkedList<Recipient>());
+      return RecipientFactory.getRecipientsFor(context, new LinkedList<Recipient>(), true);
     }
   }
 

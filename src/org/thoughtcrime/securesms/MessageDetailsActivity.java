@@ -41,6 +41,7 @@ import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.loaders.MessageDetailsLoader;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
@@ -275,7 +276,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
                                       .getGroupMembers(GroupUtil.getDecodedId(groupId), false);
         } catch (IOException e) {
           Log.w(TAG, e);
-         recipients = new Recipients(new LinkedList<Recipient>());
+         recipients = RecipientFactory.getRecipientsFor(MessageDetailsActivity.this, new LinkedList<Recipient>(), false);
         }
       }
 

@@ -7,6 +7,8 @@ import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.NotInDirectoryException;
 import org.thoughtcrime.securesms.database.TextSecureDirectory;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.thoughtcrime.securesms.recipients.Recipients;
 import org.whispersystems.jobqueue.JobManager;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
@@ -34,16 +36,21 @@ public abstract class PushReceivedJob extends ContextJob {
   }
 
   private void handleMessage(TextSecureEnvelope envelope, boolean sendExplicitReceipt) {
+    Recipients recipients = RecipientFactory.getRecipientsFromString(context, envelope.getSource(), false);
     JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
-    long       messageId  = DatabaseFactory.getPushDatabase(context).insert(envelope);
+
+    if (!recipients.isBlocked()) {
+      long messageId = DatabaseFactory.getPushDatabase(context).insert(envelope);
+      jobManager.add(new PushDecryptJob(context, messageId, envelope.getSource()));
+    } else {
+      Log.w(TAG, "*** Received blocked push message, ignoring...");
+    }
 
     if (sendExplicitReceipt) {
       jobManager.add(new DeliveryReceiptJob(context, envelope.getSource(),
                                             envelope.getTimestamp(),
                                             envelope.getRelay()));
     }
-
-    jobManager.add(new PushDecryptJob(context, messageId, envelope.getSource()));
   }
 
   private void handleReceipt(TextSecureEnvelope envelope) {

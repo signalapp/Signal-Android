@@ -4,6 +4,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.annotation.Nullable;
 import android.text.SpannableStringBuilder;
 
 import org.thoughtcrime.securesms.ConversationActivity;
@@ -32,6 +33,10 @@ public class NotificationItem {
     this.image               = image;
     this.threadId            = threadId;
     this.timestamp           = timestamp;
+  }
+
+  public @Nullable Recipients getRecipients() {
+    return threadRecipients;
   }
 
   public Recipient getIndividualRecipient() {

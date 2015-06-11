@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+            android:key="pref_key_recipient_mute"
+            android:title="@string/recipient_preferences__mute_conversation"
+            android:summary="@string/recipient_preferences__disable_notifications_for_this_conversation"
+            android:defaultValue="false"
+            android:disableDependentsState="true"
+            android:persistent="false" />
+
+    <RingtonePreference android:dependency="pref_key_recipient_mute"
+                        android:key="pref_key_recipient_ringtone"
+                        android:title="@string/recipient_preferences__ringtone"
+                        android:ringtoneType="notification"
+                        android:showSilent="false"
+                        android:showDefault="true"
+                        android:persistent="false"/>
+
+    <ListPreference android:dependency="pref_key_recipient_mute"
+                    android:key="pref_key_recipient_vibrate"
+                    android:title="@string/recipient_preferences__vibrate"
+                    android:entries="@array/recipient_vibrate_entries"
+                    android:entryValues="@array/recipient_vibrate_values"
+                    android:defaultValue="0"
+                    android:persistent="false"/>
+
+    <Preference android:key="pref_key_recipient_block"
+                android:title="@string/recipient_preferences__block" />
+
+
+</PreferenceScreen>

@@ -27,13 +27,13 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
-import android.telephony.PhoneNumberUtils;
+import android.support.v7.app.ActionBar.LayoutParams;
 import android.text.Editable;
 import android.text.InputType;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -44,6 +44,7 @@ import android.view.View.OnKeyListener;
 import android.view.ViewStub;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,9 +55,9 @@ import com.google.protobuf.ByteString;
 import org.thoughtcrime.securesms.TransportOptions.OnTransportChangedListener;
 import org.thoughtcrime.securesms.components.AnimatingToggle;
 import org.thoughtcrime.securesms.components.ComposeText;
+import org.thoughtcrime.securesms.components.SendButton;
 import org.thoughtcrime.securesms.components.emoji.EmojiDrawer;
 import org.thoughtcrime.securesms.components.emoji.EmojiToggle;
-import org.thoughtcrime.securesms.components.SendButton;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
@@ -83,6 +84,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.recipients.Recipients.RecipientsModifiedListener;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
@@ -107,7 +109,6 @@ import java.util.List;
 
 import static org.thoughtcrime.securesms.TransportOption.Type;
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
-import static org.thoughtcrime.securesms.recipients.Recipient.RecipientModifiedListener;
 import static org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.GroupContext;
 
 /**
@@ -120,7 +121,7 @@ import static org.whispersystems.textsecure.internal.push.PushMessageProtos.Push
 public class ConversationActivity extends PassphraseRequiredActionBarActivity
     implements ConversationFragment.ConversationFragmentListener,
                AttachmentManager.AttachmentListener,
-               RecipientModifiedListener
+               RecipientsModifiedListener
 {
   private static final String TAG = ConversationActivity.class.getSimpleName();
 
@@ -139,13 +140,16 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private static final int GROUP_EDIT        = 5;
   private static final int CAPTURE_PHOTO     = 6;
 
-  private MasterSecret         masterSecret;
-  private ComposeText          composeText;
-  private AnimatingToggle      buttonToggle;
-  private SendButton           sendButton;
-  private ImageButton          attachButton;
-  private TextView             charactersLeft;
-  private ConversationFragment fragment;
+  private MasterSecret          masterSecret;
+  private ComposeText           composeText;
+  private AnimatingToggle       buttonToggle;
+  private SendButton            sendButton;
+  private ImageButton           attachButton;
+  private ConversationTitleView titleView;
+  private TextView              charactersLeft;
+  private ConversationFragment  fragment;
+  private Button                unblockButton;
+  private View                  composePanel;
 
   private AttachmentTypeSelectorAdapter attachmentAdapter;
   private AttachmentManager             attachmentManager;
@@ -175,10 +179,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     this.masterSecret = masterSecret;
 
     setContentView(R.layout.conversation_activity);
-    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    fragment = initFragment(R.id.fragment_content, new ConversationFragment(), masterSecret, dynamicLanguage.getCurrentLocale());
+
+    fragment = initFragment(R.id.fragment_content, new ConversationFragment(),
+                            masterSecret, dynamicLanguage.getCurrentLocale());
 
     initializeReceivers();
+    initializeActionBar();
     initializeViews();
     initializeResources();
     initializeDraft();
@@ -210,10 +216,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     dynamicLanguage.onResume(this);
 
     initializeSecurity();
-    initializeTitleBar();
     initializeEnabledCheck();
     initializeMmsEnabledCheck();
     initializeIme();
+
+    titleView.setTitle(recipients);
+    setBlockedUserState(recipients);
     calculateCharactersRemaining();
 
     MessageNotifier.setVisibleThread(threadId);
@@ -263,7 +271,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       break;
     case GROUP_EDIT:
       this.recipients = RecipientFactory.getRecipientsForIds(this, data.getLongArrayExtra(GroupCreateActivity.GROUP_RECIPIENT_EXTRA), true);
-      initializeTitleBar();
+      titleView.setTitle(recipients);
+      setBlockedUserState(recipients);
+      supportInvalidateOptionsMenu();
       break;
     }
   }
@@ -299,6 +309,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     inflater.inflate(R.menu.conversation, menu);
 
+    if (recipients != null && recipients.isMuted()) inflater.inflate(R.menu.conversation_muted, menu);
+    else                                            inflater.inflate(R.menu.conversation_unmuted, menu);
+
     if (isSingleConversation() && getRecipients().getPrimaryRecipient().getContactUri() == null) {
       inflater.inflate(R.menu.conversation_add_to_contacts, menu);
     }
@@ -324,6 +337,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     case R.id.menu_edit_group:                handleEditPushGroup();                             return true;
     case R.id.menu_leave:                     handleLeavePushGroup();                            return true;
     case R.id.menu_invite:                    handleInviteLink();                                return true;
+    case R.id.menu_mute_notifications:        handleMuteNotifications();                         return true;
+    case R.id.menu_unmute_notifications:      handleUnmuteNotifications();                       return true;
     case android.R.id.home:                   handleReturnToConversationList();                  return true;
     }
 
@@ -347,6 +362,61 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
     startActivity(intent);
     finish();
+  }
+
+  private void handleMuteNotifications() {
+    MuteDialog.show(this, new MuteDialog.MuteSelectionListener() {
+      @Override
+      public void onMuted(final long until) {
+        recipients.setMuted(until);
+
+        new AsyncTask<Void, Void, Void>() {
+          @Override
+          protected Void doInBackground(Void... params) {
+            DatabaseFactory.getRecipientPreferenceDatabase(ConversationActivity.this)
+                           .setMuted(recipients, until);
+
+            return null;
+          }
+        }.execute();
+      }
+    });
+  }
+
+  private void handleUnmuteNotifications() {
+    recipients.setMuted(0);
+
+    new AsyncTask<Void, Void, Void>() {
+      @Override
+      protected Void doInBackground(Void... params) {
+        DatabaseFactory.getRecipientPreferenceDatabase(ConversationActivity.this)
+                       .setMuted(recipients, 0);
+
+        return null;
+      }
+    }.execute();
+  }
+
+  private void handleUnblock() {
+    new AlertDialogWrapper.Builder(this)
+        .setTitle(R.string.ConversationActivity_unblock_question)
+        .setMessage(R.string.ConversationActivity_are_you_sure_you_want_to_unblock_this_contact)
+        .setNegativeButton(android.R.string.cancel, null)
+        .setPositiveButton(R.string.ConversationActivity_unblock, new DialogInterface.OnClickListener() {
+          @Override
+          public void onClick(DialogInterface dialog, int which) {
+            recipients.setBlocked(false);
+
+            new AsyncTask<Void, Void, Void>() {
+              @Override
+              protected Void doInBackground(Void... params) {
+                DatabaseFactory.getRecipientPreferenceDatabase(ConversationActivity.this)
+                               .setBlocked(recipients, false);
+                return null;
+              }
+            }.execute();
+          }
+        }).show();
   }
 
   private void handleInviteLink() {
@@ -551,45 +621,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   ///// Initializers
 
-  private void initializeTitleBar() {
-    final String    title;
-    final String    subtitle;
-    final Recipient recipient = getRecipients().getPrimaryRecipient();
-
-    if (isSingleConversation()) {
-      if (TextUtils.isEmpty(recipient.getName())) {
-        title    = recipient.getNumber();
-        subtitle = null;
-      } else {
-        title    = recipient.getName();
-        subtitle = PhoneNumberUtils.formatNumber(recipient.getNumber());
-      }
-    } else if (isGroupConversation()) {
-      if (isPushGroupConversation()) {
-        final String groupName = recipient.getName();
-
-        title    = (!TextUtils.isEmpty(groupName)) ? groupName : getString(R.string.ConversationActivity_unnamed_group);
-        subtitle = null;
-      } else {
-        final int size = getRecipients().getRecipientsList().size();
-
-        title    = getString(R.string.ConversationActivity_group_conversation);
-        subtitle = (size == 1) ? getString(R.string.ConversationActivity_d_recipients_in_group_singular)
-                               : String.format(getString(R.string.ConversationActivity_d_recipients_in_group), size);
-      }
-    } else {
-      title    = getString(R.string.ConversationActivity_compose_message);
-      subtitle = null;
-    }
-
-    getSupportActionBar().setTitle(title);
-    getSupportActionBar().setSubtitle(subtitle);
-
-    getWindow().getDecorView().setContentDescription(getString(R.string.conversation_activity__window_description, title));
-
-    this.supportInvalidateOptionsMenu();
-  }
-
   private void initializeDraft() {
     String draftText  = getIntent().getStringExtra(DRAFT_TEXT_EXTRA);
     Uri    draftImage = getIntent().getParcelableExtra(DRAFT_IMAGE_EXTRA);
@@ -659,6 +690,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     else                         sendButton.setDefaultTransport(Type.SMS);
 
     calculateCharactersRemaining();
+    supportInvalidateOptionsMenu();
   }
 
   private void initializeMmsEnabledCheck() {
@@ -692,6 +724,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     composeText    = (ComposeText) findViewById(R.id.embedded_text_editor);
     charactersLeft = (TextView)    findViewById(R.id.space_left);
     emojiToggle    = (EmojiToggle) findViewById(R.id.emoji_toggle);
+    titleView      = (ConversationTitleView) getSupportActionBar().getCustomView();
+    unblockButton  = (Button)      findViewById(R.id.unblock_button);
+    composePanel   =               findViewById(R.id.bottom_panel);
 
     attachmentAdapter = new AttachmentTypeSelectorAdapter(this);
     attachmentManager = new AttachmentManager(this, this);
@@ -710,12 +745,35 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       }
     });
 
+    titleView.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent intent = new Intent(ConversationActivity.this, RecipientPreferenceActivity.class);
+        intent.putExtra(RecipientPreferenceActivity.RECIPIENTS_EXTRA, recipients.getIds());
+        startActivity(intent);
+      }
+    });
+
+    unblockButton.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        handleUnblock();
+      }
+    });
+
     composeText.setOnKeyListener(composeKeyPressedListener);
     composeText.addTextChangedListener(composeKeyPressedListener);
     composeText.setOnEditorActionListener(sendButtonListener);
     composeText.setOnClickListener(composeKeyPressedListener);
     composeText.setOnFocusChangeListener(composeKeyPressedListener);
     emojiToggle.setOnClickListener(new EmojiToggleListener());
+  }
+
+  private void initializeActionBar() {
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    getSupportActionBar().setCustomView(R.layout.conversation_title_view);
+    getSupportActionBar().setDisplayShowCustomEnabled(true);
+    getSupportActionBar().setDisplayShowTitleEnabled(false);
   }
 
   private EmojiDrawer getEmojiDrawer() {
@@ -739,8 +797,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   @Override
-  public void onModified(Recipient recipient) {
-    initializeTitleBar();
+  public void onModified(Recipients recipients) {
+    titleView.setTitle(recipients);
+    setBlockedUserState(recipients);
   }
 
   private void initializeReceivers() {
@@ -751,7 +810,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
         if (eventThreadId == threadId || eventThreadId == -2) {
           initializeSecurity();
-          initializeTitleBar();
           calculateCharactersRemaining();
         }
       }
@@ -765,7 +823,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
           long[] ids = recipients.getIds();
           Log.w("ConversationActivity", "Looking up new recipients...");
           recipients = RecipientFactory.getRecipientsForIds(context, ids, false);
-          initializeTitleBar();
+          titleView.setTitle(recipients);
         }
       }
     };
@@ -917,6 +975,16 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }.execute(thisThreadId);
   }
 
+  private void setBlockedUserState(Recipients recipients) {
+    if (recipients.isBlocked()) {
+      unblockButton.setVisibility(View.VISIBLE);
+      composePanel.setVisibility(View.GONE);
+    } else {
+      composePanel.setVisibility(View.VISIBLE);
+      unblockButton.setVisibility(View.GONE);
+    }
+  }
+
   private void calculateCharactersRemaining() {
     int            charactersSpent = composeText.getText().toString().length();
     TransportOption transportOption = sendButton.getSelectedTransport();
@@ -994,7 +1062,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     if (refreshFragment) {
       fragment.reload(recipients, threadId);
 
-      initializeTitleBar();
       initializeSecurity();
     }
 
