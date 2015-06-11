@@ -69,7 +69,8 @@ public class Util {
     int i=0;
 
     for (String item : list) {
-      result.append(RecipientFactory.getRecipientsFromString(context, item, false).getPrimaryRecipient().getName());
+      String name = RecipientFactory.getRecipientsFromString(context, item, false).getPrimaryRecipient().getName();
+      result.append(name != null ? name : item);
       if (++i < list.size())
         result.append(delimiter);
     }
