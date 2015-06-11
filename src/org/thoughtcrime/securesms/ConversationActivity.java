@@ -797,9 +797,14 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   @Override
-  public void onModified(Recipients recipients) {
-    titleView.setTitle(recipients);
-    setBlockedUserState(recipients);
+  public void onModified(final Recipients recipients) {
+    titleView.post(new Runnable() {
+      @Override
+      public void run() {
+        titleView.setTitle(recipients);
+        setBlockedUserState(recipients);
+      }
+    });
   }
 
   private void initializeReceivers() {
