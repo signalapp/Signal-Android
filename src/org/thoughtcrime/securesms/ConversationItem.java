@@ -208,6 +208,8 @@ public class ConversationItem extends LinearLayout {
       setMinimumWidth();
 
       setMediaAttributes(messageRecord);
+    } else {
+      bodyText.setTextColor(Color.BLACK);
     }
   }
 
