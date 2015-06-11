@@ -188,8 +188,13 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
         vibratePreference.setSummary("Disabled");
       }
 
-      if (recipients.isBlocked()) blockPreference.setTitle("Unblock");
-      else                        blockPreference.setTitle("Block");
+      if (recipients.isSingleRecipient() && recipients.getPrimaryRecipient().isGroupRecipient()) {
+        blockPreference.setEnabled(false);
+      } else {
+        blockPreference.setEnabled(true);
+        if (recipients.isBlocked()) blockPreference.setTitle("Unblock");
+        else                        blockPreference.setTitle("Block");
+      }
     }
 
     @Override
