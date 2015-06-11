@@ -9,7 +9,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.CheckBoxPreference;
+import android.preference.ListPreference;
 import android.preference.Preference;
+import android.preference.RingtonePreference;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -164,8 +166,8 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
     private void setSummaries(Recipients recipients) {
       CheckBoxPreference mutePreference     = (CheckBoxPreference) this.findPreference(PREFERENCE_MUTED);
-      Preference         ringtonePreference = this.findPreference(PREFERENCE_TONE);
-      Preference         vibratePreference  = this.findPreference(PREFERENCE_VIBRATE);
+      RingtonePreference ringtonePreference = (RingtonePreference) this.findPreference(PREFERENCE_TONE);
+      ListPreference     vibratePreference  = (ListPreference) this.findPreference(PREFERENCE_VIBRATE);
       Preference         blockPreference    = this.findPreference(PREFERENCE_BLOCK);
 
       mutePreference.setChecked(recipients.isMuted());
@@ -182,10 +184,13 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
       if (recipients.getVibrate() == VibrateState.DEFAULT) {
         vibratePreference.setSummary(R.string.preferences__default);
+        vibratePreference.setValueIndex(0);
       } else if (recipients.getVibrate() == VibrateState.ENABLED) {
         vibratePreference.setSummary("Enabled");
+        vibratePreference.setValueIndex(1);
       } else {
         vibratePreference.setSummary("Disabled");
+        vibratePreference.setValueIndex(2);
       }
 
       if (!recipients.isSingleRecipient() || recipients.isGroupRecipient()) {
