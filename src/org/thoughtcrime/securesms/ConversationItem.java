@@ -85,6 +85,7 @@ public class ConversationItem extends LinearLayout {
   private final static String TAG = ConversationItem.class.getSimpleName();
   private static final int SECOND = 1000;
   //Workaround to hide encryption string from group creation
+  private static final long TYPE_WRONG_CREATED = -2139029483;
   private static final long TYPE_WRONG_ENCRYPTED = -2136932329;
 
   private final int STYLE_ATTRIBUTES[] = new int[]{R.attr.conversation_item_sent_push_background,
@@ -283,8 +284,12 @@ public class ConversationItem extends LinearLayout {
     bodyText.setClickable(false);
     bodyText.setFocusable(false);
 
-    if(!(messageRecord.isGroupAction() && messageRecord.type == TYPE_WRONG_ENCRYPTED)) {
+    if(!(messageRecord.isGroupAction() && (messageRecord.type == TYPE_WRONG_ENCRYPTED || messageRecord.type == TYPE_WRONG_CREATED))) {
       bodyText.setText(Emoji.getInstance(context).emojify(messageRecord.getDisplayBody(),
+              new Emoji.InvalidatingPageLoadedListener(bodyText)),
+          TextView.BufferType.SPANNABLE);
+    } else {
+      bodyText.setText(Emoji.getInstance(context).emojify(context.getString(R.string.GroupUtil_group_updated),
               new Emoji.InvalidatingPageLoadedListener(bodyText)),
           TextView.BufferType.SPANNABLE);
     }
@@ -308,6 +313,7 @@ public class ConversationItem extends LinearLayout {
 
           bodyText.setOnClickListener(new BombClickListener(bodyText.getText() + "", countdownText));
           bodyText.setText(destroyText);
+          bodyText.setVisibility(View.VISIBLE);
         }
     } else if(bombImage != null) {
       bombImage.setVisibility(View.GONE);
@@ -372,11 +378,6 @@ public class ConversationItem extends LinearLayout {
       if (!hasMedia(messageRecord)) {
         alreadyDestroyed = true;
         deleteMessage(messageRecord);
-      }
-      bodyText.setText(text);
-      if (bombImage != null) {
-        bombImage.setVisibility(View.GONE);
-        bodyText.setVisibility(View.GONE);
       }
       AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
       builder.setTitle(countdown);
