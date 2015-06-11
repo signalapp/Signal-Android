@@ -768,6 +768,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void initializeSecurity() {
+    updateSendBarViews();
     SessionStore sessionStore = new TextSecureSessionStore(this, masterSecret);
     Recipient primaryRecipient = getRecipients() == null ? null : getRecipients().getPrimaryRecipient();
     boolean isPushDestination = DirectoryHelper.isPushDestination(this, getRecipients());
@@ -908,7 +909,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void updateSendBarViews() {
-      if (!"".equals(composeText.getText().toString())) {
+      if (!"".equals(composeText.getText().toString()) || attachmentManager.isAttachmentPresent()) {
           sendButton.setOnClickListener(sendButtonListener);
           sendButton.setEnabled(true);
           sendButton.setComposeTextView(composeText);
