@@ -43,7 +43,7 @@
                       android:text="@string/recipient_preference_activity__blocked"
                       android:textSize="12sp"
                       android:textStyle="bold"
-                      android:textColor="#f44336"
+                      android:textColor="#ffeb3b"
                       android:textAllCaps="true" />
 
 
