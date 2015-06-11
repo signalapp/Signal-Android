@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
@@ -51,8 +52,10 @@ public class AdvancedPreferenceFragment extends PreferenceFragment {
     initializePushMessagingToggle();
     initializeIdentitySelection();
 
-    this.findPreference(SUBMIT_DEBUG_LOG_PREF)
-      .setOnPreferenceClickListener(new SubmitDebugLogListener());
+    Preference submitDebug = this.findPreference(SUBMIT_DEBUG_LOG_PREF);
+    submitDebug.setOnPreferenceClickListener(new SubmitDebugLogListener());
+    Context context = getActivity().getApplicationContext();
+    submitDebug.setSummary(getLocalizedVersionName(context));
   }
 
   @Override
@@ -95,6 +98,17 @@ public class AdvancedPreferenceFragment extends PreferenceFragment {
 
       preference.setOnPreferenceClickListener(new IdentityPreferenceClickListener());
     }
+  }
+
+  private String getLocalizedVersionName(Context context) {
+    String appName = context.getResources().getString(R.string.app_name);
+    String versionName = "";
+    try {
+       versionName = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionName;
+    } catch (PackageManager.NameNotFoundException e) {
+      Log.w(AdvancedPreferenceFragment.class.getSimpleName(), e);
+    }
+    return appName + " " + versionName;
   }
 
   private class IdentityPreferenceClickListener implements Preference.OnPreferenceClickListener {
