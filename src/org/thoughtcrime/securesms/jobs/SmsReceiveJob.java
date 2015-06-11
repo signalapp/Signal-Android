@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
 import android.telephony.SmsMessage;
+import android.util.Log;
 import android.util.Pair;
 
 import org.thoughtcrime.securesms.ApplicationContext;
@@ -47,6 +48,8 @@ public class SmsReceiveJob extends ContextJob {
     if (message.isPresent() && !isBlocked(message.get())) {
       Pair<Long, Long> messageAndThreadId = storeMessage(message.get());
       MessageNotifier.updateNotification(context, KeyCachingService.getMasterSecret(context), messageAndThreadId.second);
+    } else if (message.isPresent()) {
+      Log.w(TAG, "*** Received blocked SMS, ignoring...");
     }
   }
 
