@@ -7,12 +7,14 @@
         <item name="colorPrimary">@color/textsecure_primary</item>
         <item name="colorPrimaryDark">@color/textsecure_primary_dark</item>
         <item name="colorAccent">@color/textsecure_primary_dark</item>
+        <item name="recipient_preference_blocked">#8e0000</item>
     </style>
 
     <style name="TextSecure.DarkNoActionBar" parent="@style/Theme.AppCompat.NoActionBar">
         <item name="actionBarStyle">@style/TextSecure.DarkActionBar</item>
         <item name="actionBarTabBarStyle">@style/TextSecure.DarkActionBar.TabBar</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
+        <item name="recipient_preference_blocked">#d00000</item>
     </style>
 
     <style name="TextSecure.LightIntroTheme" parent="@style/Theme.AppCompat.Light">
