@@ -20,6 +20,7 @@ import java.util.Arrays;
 public class RecipientPreferenceDatabase extends Database {
 
   private static final String TAG = RecipientPreferenceDatabase.class.getSimpleName();
+  private static final String RECIPIENT_PREFERENCES_URI = "content://textsecure/recipients/";
 
   private static final String TABLE_NAME    = "recipient_preferences";
   private static final String ID            = "_id";
@@ -63,8 +64,11 @@ public class RecipientPreferenceDatabase extends Database {
   public Cursor getBlocked() {
     SQLiteDatabase database = databaseHelper.getReadableDatabase();
 
-    return database.query(TABLE_NAME, new String[] {ID, RECIPIENT_IDS}, BLOCK + " = 1",
-                          null, null, null, null, null);
+    Cursor cursor = database.query(TABLE_NAME, new String[] {ID, RECIPIENT_IDS}, BLOCK + " = 1",
+                                   null, null, null, null, null);
+    cursor.setNotificationUri(context.getContentResolver(), Uri.parse(RECIPIENT_PREFERENCES_URI));
+
+    return cursor;
   }
 
   public Optional<RecipientsPreferences> getRecipientsPreferences(@NonNull long[] recipients) {
@@ -138,6 +142,8 @@ public class RecipientPreferenceDatabase extends Database {
 
     database.setTransactionSuccessful();
     database.endTransaction();
+
+    context.getContentResolver().notifyChange(Uri.parse(RECIPIENT_PREFERENCES_URI), null);
   }
 
   public static class RecipientsPreferences {
