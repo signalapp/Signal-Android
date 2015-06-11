@@ -19,7 +19,6 @@ Dine krypterede sessioner vil fortsætte med at fungere,
 men alle med fysisk adgang til din enhed kan få adgang til dem.
 </string>
   <string name="ApplicationPreferencesActivity_disable">Deaktivere</string>
-  <string name="ApplicationPreferencesActivity_unregistering">Afregistrerer...</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Kunne ikke oprette forbindelse til serveren!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS slået til</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Brug som standard SMS program</string>
@@ -38,6 +37,7 @@ men alle med fysisk adgang til din enhed kan få adgang til dem.
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Lyd</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Kontakt information</string>
+  <!--BlockedContactsActivity-->
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Du bør verificere
 denne kontakt.</string>
@@ -89,7 +89,6 @@ denne kontakt.</string>
   <string name="ConversationFragment_saving_attachment">Gem vedhæftning</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
-  <string name="ConversationFragment_deleting">Sletter...</string>
   <string name="ConversationFragment_deleting_messages">Sletter beskeder...</string>
   <!--ConversationListActivity-->
   <!--ConversationListFragment-->
@@ -147,7 +146,6 @@ Genoprettelse af en krypteret backup vil overskrive eksisterende nøgler, indsti
   <string name="ImportFragment_import_plaintext_backup">Importer klartekst backup?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Dette vil importere beskeder fra en klartekst backup. Hvis du tidligere har importeret den samme backup, vil det resultere i dupletter.</string>
   <string name="ImportFragment_importing">Importerer</string>
-  <string name="ImportFragment_import_plaintext_backup_elipse">Importerer klartekst backup...</string>
   <string name="ImportFragment_no_plaintext_backup_found">Der blev ikke fundet en klartekst backup!</string>
   <string name="ImportFragment_error_importing_backup">Fejl opstod ved import af backup!</string>
   <string name="ImportFragment_import_complete">Import fuldført!</string>
@@ -182,6 +180,7 @@ Genoprettelse af en krypteret backup vil overskrive eksisterende nøgler, indsti
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Ugyldigt kodeord!</string>
   <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
+  <!--RecipientPreferencesActivity-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">Forbind med TextSecure</string>
   <string name="RegistrationActivity_select_your_country">Vælg land</string>
@@ -316,8 +315,10 @@ Modtog en besked med en ukendt identitetsnøgle. Klik for at se og behandle den.
   <string name="SingleContactSelectionActivity_contact_photo">Kontaktbillede</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Vælg</string>
+  <!--blocked_contacts_fragment-->
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Ingen nye samtaler.</string>
+  <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Send TextSecure besked</string>
   <string name="conversation_activity__type_message_sms_insecure">Send usikker (ikke krypteret) SMS</string>
@@ -379,6 +380,8 @@ Importer en klartekst backup fil. Kompatibel med \'SMSBackup og Restore\'.</stri
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure har brug for at kende MMS-indstillingerne for at sende medieindhold og gruppebeskeder gennem din teleudbyder. Din enhed gør ikke disse oplysninger tilgængelige, hvilket kan forekomme for f.eks. låste enheder.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">For at sende multimedia- og gruppebeskeder klik \'OK\' og udfyld indstillingerne. MMS-indstillingerne for din teleoperatør kan ofte findes ved at søge på \'din operatør APN\'. Du behøver kun gøre dette en gang.</string>
+  <!--recipient_preferences_activity-->
+  <!--recipient_preferences-->
   <!--registration_activity-->
   <string name="registration_activity__your_country">DIT LAND</string>
   <string name="registration_activity__your_country_code_and_phone_number">DIN LANDEKODE OG DIT
@@ -482,7 +485,6 @@ fejlede.
   <string name="preferences__sound">Lyd</string>
   <string name="preferences__change_notification_sound">Ændre notifikations-lyd</string>
   <string name="preferences__inthread_notifications">I beskeder</string>
-  <string name="preferences__play_inthread_notifications">Afspil en notifikationslyd når den viste samtale opdateres.</string>
   <string name="preferences__vibrate">Vibrér</string>
   <string name="preferences__also_vibrate_when_notified">Vibrér også ved tilbagemelding</string>
   <string name="preferences__minutes">Minutter</string>
@@ -551,6 +553,8 @@ fejlede.
   <string name="conversation_secure_verified__menu_security">Sikkerhed</string>
   <string name="conversation_secure_verified__menu_verify_identity">Verificer identitet</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">Afslut sikker forbindelse</string>
+  <!--conversation_muted-->
+  <!--conversation_unmuted-->
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Vedhæft fil</string>
   <string name="conversation__menu_update_group">Opdater gruppe</string>

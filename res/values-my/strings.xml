@@ -17,6 +17,7 @@
   <string name="AttachmentTypeSelectorAdapter_picture">ပုံ</string>
   <string name="AttachmentTypeSelectorAdapter_video">ဗွီဒီယို</string>
   <string name="AttachmentTypeSelectorAdapter_audio">အသံ</string>
+  <!--BlockedContactsActivity-->
   <!--ConfirmIdentityDialog-->
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">စာတိုအရွယ်အစား: %d KB</string>
@@ -70,6 +71,7 @@
   <!--PassphrasePromptActivity-->
   <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
+  <!--RecipientPreferencesActivity-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_continue">ရှေ့ဆက်</string>
   <!--RegistrationProblemsActivity-->
@@ -131,8 +133,10 @@
   <!--single_contact_selection_activity-->
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">အတွက်　ရွေးချယ်ပါ</string>
+  <!--blocked_contacts_fragment-->
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">မကြာသေးမှီကခေါ်ဆိုထားမှုများမရှိ</string>
+  <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__send">ပို့</string>
   <string name="conversation_activity__remove">ဖယ်ပစ်</string>
@@ -162,6 +166,8 @@
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">ပိတ်ထားသည်ကိုဖွင့်</string>
   <!--prompt_mms_activity-->
+  <!--recipient_preferences_activity-->
+  <!--recipient_preferences-->
   <!--registration_activity-->
   <!--registration_problems-->
   <!--registration_progress_activity-->
@@ -229,6 +235,8 @@
   <!--conversation_list_fragment-->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">လုံခြုံရေး</string>
+  <!--conversation_muted-->
+  <!--conversation_unmuted-->
   <!--conversation-->
   <string name="conversation__menu_add_attachment">ပူးတွဲမှုအားပေါင်းထည့်</string>
   <string name="conversation__menu_delete_thread">စာတွဲကိုဖျက်ပါ</string>

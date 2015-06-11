@@ -13,7 +13,6 @@
   <string name="ApplicationPreferencesActivity_disable_storage_encryption">Вимкнути шифрування сховища?</string>
   <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">Увага, це відключить шифрування для всіх повідомлень і ключів. Ваші шифровані сесії продовжать працювати, але будь-яка особа з фізичним доступом до вашого пристрою може переглянути їх.</string>
   <string name="ApplicationPreferencesActivity_disable">Вимкнути</string>
-  <string name="ApplicationPreferencesActivity_unregistering">Видалення реєстрації\u2026</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Помилка підключення до сервера!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS Вимкнено</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Торкніться, щоб змінити типову програму для SMS</string>
@@ -26,6 +25,7 @@
   <string name="AttachmentTypeSelectorAdapter_picture">Зображення</string>
   <string name="AttachmentTypeSelectorAdapter_video">Відео</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Аудіо</string>
+  <!--BlockedContactsActivity-->
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Можливо, вам потрібно перевірити цей контакт.</string>
   <!--ConversationItem-->
@@ -87,7 +87,6 @@
   <string name="ImportFragment_restore">Відновити</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Це імпортує повідомлення з текстової резервної копії. Якщо ви до цього імпортували SMS з системної бази даних, повторний імпорт призведе до дублювання повідомлень.</string>
   <string name="ImportFragment_importing">Імпортування</string>
-  <string name="ImportFragment_import_plaintext_backup_elipse">Імпорт текстової резервної копії\u2026</string>
   <string name="ImportFragment_no_plaintext_backup_found">Незашифрована резервна копія не знайдена!</string>
   <string name="ImportFragment_error_importing_backup">Помилка при імпорті!</string>
   <string name="ImportFragment_import_complete">Імпортування завершено!</string>
@@ -110,6 +109,7 @@
   <!--PassphrasePromptActivity-->
   <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
+  <!--RecipientPreferencesActivity-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">Підключитися до TextSecure</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Ви маєте вказати код країни</string>
@@ -204,8 +204,10 @@
   <string name="SingleContactSelectionActivity_updating_directory">Оновлення теки</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Вибрати для</string>
+  <!--blocked_contacts_fragment-->
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Останнім часом ви нікому не телефонували.</string>
+  <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__send">Надіслати</string>
   <string name="conversation_activity__remove">Вилучити</string>
@@ -245,6 +247,8 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">Для надсилання MMS-повідомлень TextSecure необхідно знати настройки APN вашого оператора. Однак ваш пристрій не надає цієї інформації - так іноді буває, якщо воно заблоковане або відповідним чином налаштоване.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Щоб мати можливість відправляти MMS-повідомлення, введіть інформацію про APN нижче. Потрібні значення для вашого оператора можна знайти в інтернеті за запитом \'оператор APN\' або в його службі підтримки. Це потрібно зробити тільки один раз.</string>
+  <!--recipient_preferences_activity-->
+  <!--recipient_preferences-->
   <!--registration_activity-->
   <string name="registration_activity__your_country">ВАША КРАЇНА</string>
   <string name="registration_activity__your_country_code_and_phone_number">КОД ВАШОЇ КРАЇНИ ТА НОМЕР ТЕЛЕФОНУ
@@ -302,7 +306,6 @@
   <string name="preferences__sound">Звук</string>
   <string name="preferences__change_notification_sound">Змінити звук сповіщення</string>
   <string name="preferences__inthread_notifications">Повідомлення при розмові</string>
-  <string name="preferences__play_inthread_notifications">Програвати мелодію сповіщень навіть під час активного листування.</string>
   <string name="preferences__vibrate">Вібрувати</string>
   <string name="preferences__also_vibrate_when_notified">Також вібрувати під час сповіщення</string>
   <string name="preferences__minutes">хвилин</string>
@@ -357,6 +360,8 @@
   <!--conversation_list_fragment-->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Безпека</string>
+  <!--conversation_muted-->
+  <!--conversation_unmuted-->
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Додати вкладення</string>
   <string name="conversation__menu_delete_thread">Видалити розмову</string>

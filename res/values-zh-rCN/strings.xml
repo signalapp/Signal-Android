@@ -16,7 +16,6 @@
   <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
 警告：这将会禁用所有信息和密钥的存储加密。您的加密会话继续有效，但是任何能物理接触到此设备的人都能够访问这些数据。</string>
   <string name="ApplicationPreferencesActivity_disable">禁用</string>
-  <string name="ApplicationPreferencesActivity_unregistering">取消注册...</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">连接服务器错误！</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">已开启短信</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">点击来改变默认的短信应用</string>
@@ -41,6 +40,7 @@
   <string name="AttachmentTypeSelectorAdapter_video">视频</string>
   <string name="AttachmentTypeSelectorAdapter_audio">音频</string>
   <string name="AttachmentTypeSelectorAdapter_contact">联系人信息</string>
+  <!--BlockedContactsActivity-->
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">%1$s 的身份密钥已经改变，这可能是有人正在尝试拦截您的通信，或 %2$s 只是重新安装了 TextSecure ，并且获得了一个新的身份密钥。</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">您可能希望验证
@@ -112,7 +112,6 @@
   <string name="ConversationFragment_push">数据（TextSecure）</string>
   <string name="ConversationFragment_mms">彩信</string>
   <string name="ConversationFragment_sms">短信</string>
-  <string name="ConversationFragment_deleting">正在删除…</string>
   <string name="ConversationFragment_deleting_messages">正在删除信息…</string>
   <!--ConversationListActivity-->
   <!--ConversationListFragment-->
@@ -177,7 +176,6 @@
 来自明文备份的信息。如果您以前已经导入过该备份，
 再次导入将会出现重复信息。</string>
   <string name="ImportFragment_importing">导入中</string>
-  <string name="ImportFragment_import_plaintext_backup_elipse">导入明文备份…</string>
   <string name="ImportFragment_no_plaintext_backup_found">没有发现明文备份！</string>
   <string name="ImportFragment_error_importing_backup">导入备份的过程中发生错误！</string>
   <string name="ImportFragment_import_complete">导入完成！</string>
@@ -215,7 +213,6 @@
   <string name="DeviceProvisioningActivity_content_bullets">
 - 读取你所有的信息
 \n - 以你的名义发送信息</string>
-  <string name="DeviceProvisioningActivity_content_progress_title">正在添加设备…</string>
   <string name="DeviceProvisioningActivity_content_progress_content">正在添加新设备…</string>
   <string name="DeviceProvisioningActivity_content_progress_success">设备已添加！</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">没有找到设备。</string>
@@ -234,6 +231,7 @@
   <string name="RatingManager_rate_now">立刻评价！</string>
   <string name="RatingManager_no_thanks">不，谢谢。</string>
   <string name="RatingManager_later">稍后</string>
+  <!--RecipientPreferencesActivity-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">通过TextSecure连接</string>
   <string name="RegistrationActivity_select_your_country">选择您的国家</string>
@@ -374,8 +372,10 @@
   <string name="SingleContactSelectionActivity_contact_photo">联系人照片</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">选择</string>
+  <!--blocked_contacts_fragment-->
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">没有最近呼叫。</string>
+  <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">发送 TextSecure 信息</string>
   <string name="conversation_activity__type_message_sms_insecure">发送未加密的短信</string>
@@ -451,6 +451,8 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure需要通过运营商获取您的彩信设置才能接受彩信或组播信息，但是您的设备没有这些信息，可能是由于设备被锁定或者访问受到限制。</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">想发送多媒体和组播信息，需点击“好”来完成所需的设置。您可以通过搜索“您的运营商 APN”（如百度／谷歌：中国移动 APN）来获取这些信息。通常，您只需要设置一次。</string>
+  <!--recipient_preferences_activity-->
+  <!--recipient_preferences-->
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 通过验证您的手机号码来连接到 TextSecure 。</string>
@@ -547,6 +549,8 @@ TextSecure 在等待短信验证时超时。</string>
   <string name="arrays__my_identity_key">我的身份密钥</string>
   <string name="arrays__use_default">使用默认</string>
   <string name="arrays__use_custom">使用定制</string>
+  <string name="arrays__enabled">启用</string>
+  <string name="arrays__disabled">禁用</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="other">%d 小时</item>
@@ -591,7 +595,6 @@ TextSecure 在等待短信验证时超时。</string>
   <string name="preferences__sound">声音</string>
   <string name="preferences__change_notification_sound">改变提示音</string>
   <string name="preferences__inthread_notifications">线程内通知</string>
-  <string name="preferences__play_inthread_notifications">正在查看的会话接到新信息时播放提醒声音。</string>
   <string name="preferences__repeat_alerts">重复警报</string>
   <string name="preferences__never">永不</string>
   <string name="preferences__one_time">一次</string>
@@ -646,7 +649,6 @@ TextSecure 在等待短信验证时超时。</string>
 免费的私密短信至 TextSecure 和单个用户</string>
   <string name="preferences__submit_debug_log">提交调试日志</string>
   <string name="preferences__support_wifi_calling">“Wifi呼叫”兼容模式</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">如果您的设备使用 WiFi 来接受或发送短信，请启用此选项（仅当您的设备启用WiFi呼叫时启用）。</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -689,6 +691,8 @@ TextSecure 在等待短信验证时超时。</string>
   <string name="conversation_secure_verified__menu_security">安全性</string>
   <string name="conversation_secure_verified__menu_verify_identity">验证身份</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">结束安全会话</string>
+  <!--conversation_muted-->
+  <!--conversation_unmuted-->
   <!--conversation-->
   <string name="conversation__menu_add_attachment">添加附件</string>
   <string name="conversation__menu_update_group">更新群组</string>
@@ -730,7 +734,6 @@ TextSecure 在等待短信验证时超时。</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">图片预览</string>
   <!--Trimmer-->
-  <string name="trimmer__deleting">正在删除…</string>
   <string name="trimmer__deleting_old_messages">正在删除旧信息…</string>
   <string name="trimmer__old_messages_successfully_deleted">旧信息已被成功删除。</string>
   <!--transport_selection_list_item-->

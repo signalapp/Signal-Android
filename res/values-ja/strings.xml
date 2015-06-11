@@ -17,7 +17,6 @@
 警告、この作業によって、携帯端末に保存されるすべてのメッセージと鍵の暗号化が無効になります！
 通信上（セッション）の暗号化は引き続き行われますが、お使いの携帯端末それ自体に、誰かが物理的な接触を試みた場合、メッセージや鍵などの情報が入手されてしまう可能性があります。</string>
   <string name="ApplicationPreferencesActivity_disable">無効</string>
-  <string name="ApplicationPreferencesActivity_unregistering">登録破棄中…</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">サーバー接続中にエラーが発生しました！</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS 有効</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">タッチしてデフォルトSMSアプリを変更</string>
@@ -42,6 +41,7 @@
   <string name="AttachmentTypeSelectorAdapter_video">動画</string>
   <string name="AttachmentTypeSelectorAdapter_audio">音声</string>
   <string name="AttachmentTypeSelectorAdapter_contact">連絡先情報</string>
+  <!--BlockedContactsActivity-->
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">この
 鍵IDの内容である %1$s が変化しています。誰かがあなたの通信を
@@ -116,7 +116,6 @@
   <string name="ConversationFragment_push">データ (TextSecure)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
-  <string name="ConversationFragment_deleting">削除...</string>
   <string name="ConversationFragment_deleting_messages">メッセージの削除...</string>
   <!--ConversationListActivity-->
   <!--ConversationListFragment-->
@@ -181,7 +180,6 @@
   <string name="ImportFragment_import_plaintext_backup">平文のバックアップをインポートしますか？</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">暗号化されていないテキストのバックアップ・ファイルからメッセージをインポートします。以前に同じバックアップ・ファイルをインポートしたことがある場合、メッセージが重複することになります。</string>
   <string name="ImportFragment_importing">インポート中…</string>
-  <string name="ImportFragment_import_plaintext_backup_elipse">非暗号テキストのバックアップ・ファイルをインポート中…</string>
   <string name="ImportFragment_no_plaintext_backup_found">非暗号テキストのバックアップ・ファイルが見つかりませんでした。</string>
   <string name="ImportFragment_error_importing_backup">バックアップ・ファイルのインポート中にエラーが発生しました。</string>
   <string name="ImportFragment_import_complete">インポート完了！</string>
@@ -220,7 +218,6 @@
         - あなたへのすべてのメッセージを読むこと
         \n- あなたの名前でメッセージを送ること
     </string>
-  <string name="DeviceProvisioningActivity_content_progress_title">デバイスの追加...</string>
   <string name="DeviceProvisioningActivity_content_progress_content">新規デバイスの追加...</string>
   <string name="DeviceProvisioningActivity_content_progress_success">デバイスを追加!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">デバイスがありません。</string>
@@ -239,6 +236,7 @@
   <string name="RatingManager_rate_now">今評価する!</string>
   <string name="RatingManager_no_thanks">しません</string>
   <string name="RatingManager_later">後で</string>
+  <!--RecipientPreferencesActivity-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">TextSecureで接続</string>
   <string name="RegistrationActivity_select_your_country">国を選択</string>
@@ -374,8 +372,10 @@
   <string name="SingleContactSelectionActivity_contact_photo">連絡先の写真</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">選択</string>
+  <!--blocked_contacts_fragment-->
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">最近の通話はありません。</string>
+  <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">TextSecureメッセージを送信</string>
   <string name="conversation_activity__type_message_sms_insecure">セキュアではないSMSを送信</string>
@@ -453,6 +453,8 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecureでは、無線通信事業者からファイル付きメッセージを配信するのに、APN設定が必要です。お使いの携帯端末では、この設定のための情報が取得できません。ロックされた端末であるか、その他の制限設定があるとこのような状況が生じます。</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">ファイル付き及びグループ・メッセージを配信するのに、OKをクリックして設定を完了してください。お使いの通信事業者への設定値は通常、\"通信事業者APN”で検索すると設定できます。この作業の実行は一度だけでいいです。</string>
+  <!--recipient_preferences_activity-->
+  <!--recipient_preferences-->
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
         あなたの電話番号をTextSecureに接続するための検証。
@@ -582,7 +584,6 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
   <string name="preferences__sound">着信音</string>
   <string name="preferences__change_notification_sound">通知音を変更</string>
   <string name="preferences__inthread_notifications">スレッド内通知</string>
-  <string name="preferences__play_inthread_notifications">会話を表示している間、通知音を再生する。</string>
   <string name="preferences__repeat_alerts">アラートの繰り返し</string>
   <string name="preferences__never">なし</string>
   <string name="preferences__one_time">1回</string>
@@ -638,7 +639,6 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
     </string>
   <string name="preferences__submit_debug_log">デバッグログを提出</string>
   <string name="preferences__support_wifi_calling">\'WiFi Calling\' 互換モード</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">あなたのデバイスで  WiFi (ただし \'WiFi Calling\' があなたのデバイスで有効になっている場合のみ)での SMS/MMS の配送を有効にする。</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -681,6 +681,8 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
   <string name="conversation_secure_verified__menu_security">セキュリティ</string>
   <string name="conversation_secure_verified__menu_verify_identity">認証検証</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">セキュア・セッションを終了</string>
+  <!--conversation_muted-->
+  <!--conversation_unmuted-->
   <!--conversation-->
   <string name="conversation__menu_add_attachment">添付</string>
   <string name="conversation__menu_update_group">グループを更新する</string>
@@ -722,7 +724,6 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">画像プレビュー表示</string>
   <!--Trimmer-->
-  <string name="trimmer__deleting">削除...</string>
   <string name="trimmer__deleting_old_messages">古いメッセージを削除...</string>
   <string name="trimmer__old_messages_successfully_deleted">古いメッセージの削除に成功</string>
   <!--transport_selection_list_item-->

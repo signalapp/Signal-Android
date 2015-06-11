@@ -18,7 +18,6 @@
 ಸೆಷನ್ಸ್ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತವೆ, ಆದರೆ ನಿಮ್ಮ ಸಾಧನದ ಭೌತಿಕ ಪ್ರವೇಶದೊಂದಿಗೆ ಯಾರಿಗಾದರೂ ಅವುಗಳನ್ನು ನಿಲುಕಿಸಿಕೊಳ್ಳಲು 
 ಸಾಧ್ಯವಾಗುತ್ತದೆ.</string>
   <string name="ApplicationPreferencesActivity_disable">ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
-  <string name="ApplicationPreferencesActivity_unregistering">ನೋಂದಣಿಯನ್ನು ರದ್ದುಗೊಳಿಸಲಾಗುತ್ತಿದೆ...</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">ಸರ್ವರ್ಗೆ ಸಂಪರ್ಕಿಸುವಾಗ ದೋಷ!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">ಎಸ್.ಎಮ್.ಎಸನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">ನಿಮ್ಮ ಪೂರ್ವನಿಯೋಜಿತ ಎಸ್.ಎಮ್.ಎಸ್ ಅಪ್ಲಿಕೇಶನ್ನು ಬದಲಾಯಿಸಲು ಸ್ಪರ್ಶಿಸಿ</string>
@@ -42,6 +41,7 @@
   <string name="AttachmentTypeSelectorAdapter_video">ದೃಶ್ಯ</string>
   <string name="AttachmentTypeSelectorAdapter_audio">ಶ್ರಾವ್ಯ</string>
   <string name="AttachmentTypeSelectorAdapter_contact">ಸಂಪರ್ಕದ ವಿವರಗಳು</string>
+  <!--BlockedContactsActivity-->
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different"> %1$sನ ಗುರುತಿಸುವ ಕೀಲಿಗಳು ಬದಲಾಗಿವೆ. ಇದರ ಆರ್ಥ ನಿಮ್ಮ ಸಂಭಾಷಣೆಯನ್ನು ಯಾರೊ ಕದ್ದು ಕೇಳಲು ಪ್ರಯತ್ನಿಸುತ್ತಿದ್ದಾರೆ ಅಥವ %2$s ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯೂರನ್ನು ಮರು ಸ್ಥಾಪಿಸಿದ ಕಾರಣ ಹೋಗುರುತಿಸುವ ಕೀಲಿಗಳನ್ನು ಹೊಂದಿದ್ದಾರೆ.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">ನೀವು ಪರಿಶೀಲಿಸಲು ಇಚ್ಛಿಸಬಹುದಾದ ⏎ 
@@ -113,7 +113,6 @@
   <string name="ConversationFragment_push">ದತ್ತಾಂಶ (ಟೆಕ್ಸ್ಟ್  ಸೆಕ್ಯೂರ್)</string>
   <string name="ConversationFragment_mms">ಎಮ್ ಎಮ್ ಎಸ್</string>
   <string name="ConversationFragment_sms">ಎಸ್ ಎಮ್ ಎಸ್</string>
-  <string name="ConversationFragment_deleting">ಅಳಿಸಲಾಗುತ್ತಿದೆ...</string>
   <string name="ConversationFragment_deleting_messages">ಸಂದೇಶವನ್ನು ಅಳಿಸಲಾಗುತ್ತಿದೆ...</string>
   <!--ConversationListActivity-->
   <!--ConversationListFragment-->
@@ -180,7 +179,6 @@
   <string name="ImportFragment_import_plaintext_backup">ಸರಳಪಠ್ಯದ  ಬ್ಯಾಕಪ್ ಅನ್ನು ಆಮದು ಮಾಡಿಕೊಳ್ಳಿ...</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">ಇದು ಒಂದು ಸರಳಪಠ್ಯ ಬ್ಯಾಕ್ಅಪ್ನಿಂದ ಸಂದೇಶಗಳನ್ನು ಆಮದು ಮಾಡಿಕೊಳ್ಳುತ್ತದೆ. ನೀವು ಈ ಹಿಂದೆ, ಈ ಬ್ಯಾಕ್ಅಪ್ನಿಂದ ಸಂದೇಶಗಳನ್ನು ಆಮದು ಮಾಡಿಕೊಂಡಿದ್ದರೆ, ಮತ್ತೆ ಆಮದು, ನಕಲು ಸಂದೇಶಗಳಿಗೆ ಕಾರಣವಾಗುತ್ತದೆ.</string>
   <string name="ImportFragment_importing">ಆಮದು ಮಾಡಲಾಗುತ್ತಿದೆ</string>
-  <string name="ImportFragment_import_plaintext_backup_elipse">ಸರಳಪಠ್ಯದ  ಬ್ಯಾಕಪ್ ಅನ್ನು ಆಮದು ಮಾಡಿಕೊಳ್ಳಿ...</string>
   <string name="ImportFragment_no_plaintext_backup_found">ಸರಳಪಠ್ಯದ ಬ್ಯಾಕ್ಅಪ್ ಕಂಡುಬಂದಿಲ್ಲ!</string>
   <string name="ImportFragment_error_importing_backup">ಬ್ಯಾಕ್ಅಪ್ ಅನ್ನು ಆಮದು ಮಾಡಿಕೊಳ್ಳುವಾಗ ದೋಷವಾಗಿದೆ!</string>
   <string name="ImportFragment_import_complete">ಆಮದು ಪೂರ್ಣಗೊಂಡಿದೆ!</string>
@@ -219,7 +217,6 @@
         - ನಿಮ್ಮ ಎಲ್ಲಾ ಸಂದೇಶಗಳನ್ನು ಓದಿ
         \n- ನಿಮ್ಮ ಹೆಸರಿನಲ್ಲಿ ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಿ
     </string>
-  <string name="DeviceProvisioningActivity_content_progress_title">ಸಾಧನವನ್ನು ಸೇರಿಸಲಾಗುತ್ತಿದೆ ...</string>
   <string name="DeviceProvisioningActivity_content_progress_content">ಹೋಸ ಸಾಧನವನ್ನು ಸೇರಿಸಲಾಗುತ್ತಿದೆ ...</string>
   <string name="DeviceProvisioningActivity_content_progress_success">ಸಾಧನವನ್ನು ಸೇರಿಸಲಾಯಿತು!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">ಯಾವುದೇ ಸಾಧನವನ್ನು ಕಂಡುಹಿಡಿಯಲಾಗಿಲ್ಲ.</string>
@@ -238,6 +235,7 @@
   <string name="RatingManager_rate_now">ಈಗ ಮೌಲ್ಯೀಕರಿಸಿ!</string>
   <string name="RatingManager_no_thanks">ಧನ್ಯವಾದಗಳು. ಸಧ್ಯಕ್ಕೆ ಇಲ್ಲ.</string>
   <string name="RatingManager_later">ನಂತರ</string>
+  <!--RecipientPreferencesActivity-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯೂರ್ ಜೋತೆಗೆ ಸಂಪರ್ಕ</string>
   <string name="RegistrationActivity_select_your_country">ನಿಮ್ಮ ರಾಷ್ಟ್ರವನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
@@ -378,8 +376,10 @@
   <string name="SingleContactSelectionActivity_contact_photo">ಸಂಪರ್ಕದ ಛಾಯಾಚಿತ್ರ</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">ಗೆ ಆಯ್ಕೆಮಾಡಿ</string>
+  <!--blocked_contacts_fragment-->
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">ಯಾವುದೇ ಇತ್ತೀಚಿನ ಕರೆಗಳಿಲ್ಲ.</string>
+  <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯೂರ್ ಸಂದೇಶವನ್ನು ಕಳುಹಿಸಿ</string>
   <string name="conversation_activity__type_message_sms_insecure">ಅಸುರಕ್ಷಿತ ಎಸ್ಎಂಎಸ್ ಕಳುಹಿಸಿ</string>
@@ -457,6 +457,8 @@
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯುರಗೆ  ನಿಮ್ಮ ನಿಸ್ತಂತು ವಾಹಕ ಮೂಲಕ ಮಾಧ್ಯಮ ಮತ್ತು ಗುಂಪು ಸಂದೇಶಗಳನ್ನು ತಲುಪಿಸಲು ಎಂಎಂಎಸ್ ಸೆಟ್ಟಿಂಗ್ಗಳ ಅಗತ್ಯವಿದೆ.
 ನಿಮ್ಮ ಸಾಧನ, ಈ ಮಾಹಿತಿಯನ್ನು ಲಭ್ಯ ಮಾಡುವುದಿಲ್ಲ. ಇದು ಲಾಕ್ ಮಾಡಲಾದ ಸಾಧನಗಳು ಮತ್ತು ಇತರ ನಿರ್ಬಂಧಿತ ಸಂರಚನೆಗಳನ್ನು ಉಳ್ಳ ಸಾಧನಗಳಲ್ಲಿ ಕೆಲವೊಮ್ಮೆ ಆಗುತ್ತದೆ.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">ಮಾಧ್ಯಮ ಮತ್ತು ಗುಂಪು ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು, \'OK\' ಅನ್ನು ಕ್ಲಿಕ್ ಮಾಡಿ ಮತ್ತು ವಿನಂತಿಸಿದ ಸೆಟ್ಟಿಂಗ್ಗಳನ್ನು ಪೂರ್ಣಗೊಳಿಸಿ. ನಿಮ್ಮ ವಾಹಕದ   ಎಂಎಂಎಸ್ ಸೆಟ್ಟಿಂಗ್ಗಳನ್ನು ಸಾಮಾನ್ಯ ಹುಡುಕಾಟದ ಮೂಲಕ ಕಂಡುಹಿಡಿಯಬಹುದು. </string>
+  <!--recipient_preferences_activity-->
+  <!--recipient_preferences-->
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 ಟೆಕ್ಸ್ಟ್-ಸೆಕ್ಯೂರ್ ಬಳಸಲು ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ದಯವಿಟ್ಟು ಪರಿಶೀಲಿಸಿ.</string>
@@ -584,7 +586,6 @@
   <string name="preferences__sound">ಶಬ್ದ</string>
   <string name="preferences__change_notification_sound">ಸೂಚನೆಯ ಶಬ್ದ ಬದಲಾಯಿಸಿ</string>
   <string name="preferences__inthread_notifications">ಎಳೆಗಳಲ್ಲಿನ ಸೂಚನೆಗಳು</string>
-  <string name="preferences__play_inthread_notifications">ಸಕ್ರಿಯ ಸಂಭಾಷಣೆಯನ್ನು ನೋಡುವಾಗ ಸೂಚನೆ ಶಬ್ದವನ್ನು ನುಡಿಸಿ.</string>
   <string name="preferences__one_time">ಒಮ್ಮೆ</string>
   <string name="preferences__two_times">ಎರಡು ಬಾರಿ</string>
   <string name="preferences__three_times">ಮೂರು ಬಾರಿ</string>
@@ -633,7 +634,6 @@
 ಟೆಕ್ಸ್ಟ್-ಸೆಕ್ಯೂರ್ ಮತ್ತು ಸಿಗ್ನಲ್ ಬಳಕೆದಾರರಿಗೆ ಉಚಿತ ಖಾಸಗಿ ಸಂದೇಶ</string>
   <string name="preferences__submit_debug_log">ಡೀಬಗ್ ಲಾಗ್ ಸಲ್ಲಿಸಿ</string>
   <string name="preferences__support_wifi_calling">\'ವೈಫೈ ಕಾಲಿಂಗ್\' ಹೊಂದಾಣಿಕೆ ಮೋಡ್</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">ನಿಮ್ಮ ಸಾಧನ ಎಸ್ಎಂಎಸ್ / ಎಂಎಂಎಸ್ನ್ನು ವೈಫೈ ಮೇಲೆ ಬಳಸಿದರೆ ಇದನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ (\'ವೈಫೈ ಕಾಲಿಂಗ್\' ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿ ಸಕ್ರಿಯಗೊಳಿಸಿದ್ದಾಗ ಮಾತ್ರ) </string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -676,6 +676,8 @@
   <string name="conversation_secure_verified__menu_security">ಸುರಕ್ಷತೆ</string>
   <string name="conversation_secure_verified__menu_verify_identity">ಗುರುತನ್ನು ಪರಿಶೀಲಿಸಿ</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">ಸುರಕ್ಷಿತ ಸೆಷನ್ ಕೊನೆಗೊಳಿಸು</string>
+  <!--conversation_muted-->
+  <!--conversation_unmuted-->
   <!--conversation-->
   <string name="conversation__menu_add_attachment">ಲಗತ್ತು ಸೇರಿಸಿ</string>
   <string name="conversation__menu_update_group">ಸಮೂಹವನ್ನು ನವೀಕರಿಸಿ</string>
@@ -717,7 +719,6 @@
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">ಚಿತ್ರ ಮುನ್ನೋಟ</string>
   <!--Trimmer-->
-  <string name="trimmer__deleting">ಅಳಿಸಲಾಗುತ್ತಿದೆ...</string>
   <string name="trimmer__deleting_old_messages">ಹಳೆಯ ಸಂದೇಶವನ್ನು ಅಳಿಸಲಾಗುತ್ತಿದೆ...</string>
   <string name="trimmer__old_messages_successfully_deleted">ಹಳೆಯ ಸಂದೇಶಗಳನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಅಳಿಸಲಾಗಿದೆ</string>
   <!--transport_selection_list_item-->

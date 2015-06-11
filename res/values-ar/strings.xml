@@ -16,7 +16,6 @@
   <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
 تحذير: سيتم إلغاء تشفير مساحة تخزين الرسائل والمفاتيح. سوف تستمر محادثاتك المشفرة في العمل، ولكن سيكون أي شخص قادر على النفاذ إليهم إذا تمكن من الوصول إلى الهاتف.</string>
   <string name="ApplicationPreferencesActivity_disable">تعطيل</string>
-  <string name="ApplicationPreferencesActivity_unregistering">إلغاء التسجيل جارٍ...</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">خطأ في الاتصال بالخادم!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">الرسائل النصية مفعلة</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">أضغط لتغيير التطبيق الافتراضي للرسائل</string>
@@ -41,6 +40,7 @@
   <string name="AttachmentTypeSelectorAdapter_video">فيديو</string>
   <string name="AttachmentTypeSelectorAdapter_audio">صوت</string>
   <string name="AttachmentTypeSelectorAdapter_contact">بيانات الاتصال</string>
+  <!--BlockedContactsActivity-->
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">لقد تغير المفتاح التعريفي الخاص بـ%1$s. وهذا يعني أن شخص ما يحاول اعتراض المحادثة أو %2$s  قام بإعادة تثبيت تيكست سيكيور وأصبح لديه مفتاح تعريفي جديد.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">ربما تود التحقق من جهة الاتصال.</string>
@@ -111,7 +111,6 @@
   <string name="ConversationFragment_push">بيانات (تيكست سيكيور)</string>
   <string name="ConversationFragment_mms">رسالة وسائط متعددة</string>
   <string name="ConversationFragment_sms">رسالة نصية</string>
-  <string name="ConversationFragment_deleting">الحذف جارٍ...</string>
   <string name="ConversationFragment_deleting_messages">حذف الرسائل جارٍ...</string>
   <!--ConversationListActivity-->
   <!--ConversationListFragment-->
@@ -175,7 +174,6 @@
   <string name="ImportFragment_import_plaintext_backup">استيارد نسخة احتياطية غير مشفرة؟</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">سيتم استيراد رسائل ظاهرة من نسخة احتياطية. إذا قمت سابقا باستيراد هذه النسخة الاحتياطية فسوف يؤدي اسيترادها مرة أخرى إلى تكرار الرسائل.</string>
   <string name="ImportFragment_importing">الاستيراد جارٍ...</string>
-  <string name="ImportFragment_import_plaintext_backup_elipse">استيراد النسخ الاحتياطية الغير المشفرة جارٍ...</string>
   <string name="ImportFragment_no_plaintext_backup_found">لم يتم العثور على نسخ احتياطية غير مشفرة!</string>
   <string name="ImportFragment_error_importing_backup">خطأ باستيراد النسخة الاحتياطية!</string>
   <string name="ImportFragment_import_complete">تم الاستيراد!</string>
@@ -213,7 +211,6 @@
   <string name="DeviceProvisioningActivity_content_bullets">
 قراءة كل رسائلك.
 \n- استخدام أسمك للإرسال</string>
-  <string name="DeviceProvisioningActivity_content_progress_title">جارٍ إضافة الجهاز...</string>
   <string name="DeviceProvisioningActivity_content_progress_content">جارٍ إضافة جهاز جديد...</string>
   <string name="DeviceProvisioningActivity_content_progress_success">تم إضافة الجهاز!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">لم يتم العثور على جهاز.</string>
@@ -232,6 +229,7 @@
   <string name="RatingManager_rate_now">قَيّم الآن</string>
   <string name="RatingManager_no_thanks">لا، شكرا</string>
   <string name="RatingManager_later">فيما بعد</string>
+  <!--RecipientPreferencesActivity-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">الاتصال بتيكست سيكيور</string>
   <string name="RegistrationActivity_select_your_country">اختر بلدك</string>
@@ -367,8 +365,10 @@
   <string name="SingleContactSelectionActivity_contact_photo">صورة جهة الاتصال</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">اختيار من أجل</string>
+  <!--blocked_contacts_fragment-->
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">لا توجد مكالمات حديثة.</string>
+  <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">أرسل رسالة تيكست سيكيور</string>
   <string name="conversation_activity__type_message_sms_insecure">أرسل رسالة نصية غير آمنة</string>
@@ -445,6 +445,8 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">يتطلب تيكست سيكيور إعدادات خدمة الوسائط المتعددة من أجل تسليم رسائل الوسائط المتعددة والمجموعات عبر المشغل اللاسلكي. في بعض الأحوال لا تتاح هذه المعلومات مع الهواتف المقفولة أو ذات الإعدادات المقيدة.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">من اجل إرسال وسائط متعددة ورسائل إلى مجموعات أضغط على \"تم\" وأكمل الإعدادات المطلوبة. يمكن العثور على إعدادات رسائل الوسائط المتعددة الخاصة بمشغل شبكة الجوال الخاصة بك بالبحث عن \"أسم المشغل APN\". سوف تحتاج إلى القيام  بهذه الخطوة مرة واحدة.</string>
+  <!--recipient_preferences_activity-->
+  <!--recipient_preferences-->
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 تحقق من رقم تليفونك للاتصال بتيكست سيكيور</string>
@@ -576,7 +578,6 @@
   <string name="preferences__sound">صوت</string>
   <string name="preferences__change_notification_sound">تغيير صوت التنبيه</string>
   <string name="preferences__inthread_notifications">تنبيهات داخل المحادثة</string>
-  <string name="preferences__play_inthread_notifications">تشغيل صوت التنبيهات أثناء متابعة محادثة نشطة.</string>
   <string name="preferences__repeat_alerts">تكرار التنبيهات</string>
   <string name="preferences__never">أبدا</string>
   <string name="preferences__one_time">مرة واحدة</string>
@@ -631,7 +632,6 @@
 رسائل مجانية وآمنة مع مستخدمي تيكست سيكيور وسيجنال</string>
   <string name="preferences__submit_debug_log">إرسال سجل التصحيح</string>
   <string name="preferences__support_wifi_calling">وضع التوافق مع \'مكالمات الواي فاي\'</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">مكن في حال كان جهازك يستخدم خاصية الرسالة القصيرة أو الرسائل الوسائط المتعددة بإستخدام الواي-فاي (مكن فقط في حال تفعيل خاصية \'مكالمات الواي-فاي\' في جهزك)</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -674,6 +674,8 @@
   <string name="conversation_secure_verified__menu_security">الأمن</string>
   <string name="conversation_secure_verified__menu_verify_identity">تحقق من الهوية</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">انِهِ المحادثة الآمنة</string>
+  <!--conversation_muted-->
+  <!--conversation_unmuted-->
   <!--conversation-->
   <string name="conversation__menu_add_attachment">إضافات</string>
   <string name="conversation__menu_update_group">تحديث المجموعة</string>
@@ -715,7 +717,6 @@
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">معاينة الصورة</string>
   <!--Trimmer-->
-  <string name="trimmer__deleting">جار الحذف...</string>
   <string name="trimmer__deleting_old_messages">جار حذف الرسائل القديمة...</string>
   <string name="trimmer__old_messages_successfully_deleted">تم حذف الرسائل القديمة بنجاح</string>
   <!--transport_selection_list_item-->

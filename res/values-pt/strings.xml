@@ -18,7 +18,6 @@ Atenção, isto desativa a cifra de armazenamento para todas as mensagens e chav
 As suas sessões continuam cifradas, mas qualquer pessoa com acesso físico ao dispositivo
 terá acesso ás mensagens e chaves.</string>
   <string name="ApplicationPreferencesActivity_disable">Desactivar</string>
-  <string name="ApplicationPreferencesActivity_unregistering">A desregistrar...</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Erro ao conectar-se com o servidor!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS Activos</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Definir como aplicação SMS por omissão</string>
@@ -41,6 +40,7 @@ terá acesso ás mensagens e chaves.</string>
   <string name="AttachmentTypeSelectorAdapter_video">Vídeo</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Áudio</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Informação de contacto</string>
+  <!--BlockedContactsActivity-->
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Pode ser desejável verificar este contracto.</string>
   <!--ConversationItem-->
@@ -100,7 +100,6 @@ terá acesso ás mensagens e chaves.</string>
   <string name="ConversationFragment_saving_attachment_to_sd_card">A guardar anexo para o armazenamento local...</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
-  <string name="ConversationFragment_deleting">A apagar...</string>
   <string name="ConversationFragment_deleting_messages">A apagar mensagens...</string>
   <!--ConversationListActivity-->
   <!--ConversationListFragment-->
@@ -171,7 +170,6 @@ Irá perder todas as informações na sua instalação atual do TextSecure, mas 
 mensagens de um backup em texto simples. Se você já importou este backup anteriormente,
 importá-lo novamente resultará em mensagens duplicadas.</string>
   <string name="ImportFragment_importing">A importar</string>
-  <string name="ImportFragment_import_plaintext_backup_elipse">A importar cópia de segurança em texto simples</string>
   <string name="ImportFragment_no_plaintext_backup_found">Não foi encontrada uma cópia de segurança em texto simples!</string>
   <string name="ImportFragment_error_importing_backup">Erro a importar cópia de segurança!</string>
   <string name="ImportFragment_import_complete">Importação completa!</string>
@@ -207,7 +205,6 @@ importá-lo novamente resultará em mensagens duplicadas.</string>
 - Ler todas as suas mensagens
 \n- Enviar mensagens em seu nome
 </string>
-  <string name="DeviceProvisioningActivity_content_progress_title">A adicionar dispositivo...</string>
   <string name="DeviceProvisioningActivity_content_progress_content">A adicionar um novo dispositivo...</string>
   <string name="DeviceProvisioningActivity_content_progress_success">Dispositivo adicionado!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Nenhum dispositivo encontrado.</string>
@@ -220,6 +217,7 @@ importá-lo novamente resultará em mensagens duplicadas.</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Palavra-chave inválida!</string>
   <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
+  <!--RecipientPreferencesActivity-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">Conectar-se ao TextSecure</string>
   <string name="RegistrationActivity_select_your_country">Escolha o seu país</string>
@@ -360,8 +358,10 @@ Recebida mensagem com chave de identidade desconhecida. Clique para processar e 
   <string name="SingleContactSelectionActivity_contact_photo">Foto de Contacto</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Seleccionar para</string>
+  <!--blocked_contacts_fragment-->
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Sem chamadas recentes.</string>
+  <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Enviar mensagem TextSecure</string>
   <string name="conversation_activity__type_message_sms_insecure">Enviar SMS insegura</string>
@@ -437,6 +437,8 @@ Importar uma cópia de segurança de texto simples. Compatível com \'SMSBackup 
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">O TextSecure precisa de configurações MMS para transmitir média e mensagens de grupo através da sua operadora. O seu aparelho não disponibiliza essa informação, o que pode ocorrer em aparelhos bloqueados ou com configurações restritivas.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Para enviar média e mensagens de grupo, clique \'OK\' e complete as configurações pedidas. As configurações MMS da sua operadora geralmente podem ser encontradas procurando por \'operadora APN\'. Você só precisará fazer isto uma vez.</string>
+  <!--recipient_preferences_activity-->
+  <!--recipient_preferences-->
   <!--registration_activity-->
   <string name="registration_activity__your_country">PAÍS</string>
   <string name="registration_activity__your_country_code_and_phone_number">PAÍS E
@@ -559,7 +561,6 @@ falhou.
   <string name="preferences__sound">Som</string>
   <string name="preferences__change_notification_sound">Alterar som de notificação</string>
   <string name="preferences__inthread_notifications">Notificações em conversas</string>
-  <string name="preferences__play_inthread_notifications">Reproduzir som de notificação durante a visualização de uma conversa em curso.</string>
   <string name="preferences__vibrate">Vibrar</string>
   <string name="preferences__also_vibrate_when_notified">Vibrar também quando notificado</string>
   <string name="preferences__minutes">minutos</string>
@@ -596,7 +597,6 @@ falhou.
   <string name="preferences__language">Língua</string>
   <string name="preferences__submit_debug_log">Submeter registo de depuração</string>
   <string name="preferences__support_wifi_calling">Modo de compatibilidade \"Chamada WiFi\"</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Activar se o seu dispositivo utiliza entrega SMS/MMS via WiFi (apenas active se \"Chamada WiFi\" está activa no seu dispositivo).</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -635,6 +635,8 @@ falhou.
   <string name="conversation_secure_verified__menu_security">Segurança</string>
   <string name="conversation_secure_verified__menu_verify_identity">Verificar identidade</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">Terminar sessão segura</string>
+  <!--conversation_muted-->
+  <!--conversation_unmuted-->
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Adicionar anexo</string>
   <string name="conversation__menu_update_group">Actualizar grupo</string>
@@ -676,7 +678,6 @@ falhou.
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Antevisão de imagem</string>
   <!--Trimmer-->
-  <string name="trimmer__deleting">A apagar...</string>
   <string name="trimmer__deleting_old_messages">A apagar mensagens antigas...</string>
   <string name="trimmer__old_messages_successfully_deleted">Mensagens antigas apagadas com sucesso</string>
   <!--transport_selection_list_item-->

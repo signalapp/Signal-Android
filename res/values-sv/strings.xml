@@ -18,7 +18,10 @@ Varning, detta inaktiverar lagringskryptering för alla meddelanden och nycklar.
 sessioner kommer fortsätta att fungera, men vem som helst med fysisk tillgång till din enhet
 kommer kunna komma åt dem.</string>
   <string name="ApplicationPreferencesActivity_disable">Inaktivera</string>
-  <string name="ApplicationPreferencesActivity_unregistering">Avregistrerar...</string>
+  <string name="ApplicationPreferencesActivity_disable_textsecure_messages">Inaktivera TextSecure meddelanden?</string>
+  <string name="ApplicationPreferencesActivity_this_will_disable_textsecure_messages">
+        Detta kommer att inaktivera TextSecure meddelanden genom att avregistrera dig från servern.
+        Du behöver registrera ditt telefonnummer igen för att använda TextSecure meddelanden i framtiden.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Fel vid anslutning till server!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS aktiverat</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Tryck för att ändra din standardapp för SMS</string>
@@ -28,6 +31,7 @@ kommer kunna komma åt dem.</string>
   <string name="ApplicationPreferencesActivity_On">På</string>
   <string name="ApplicationPreferencesActivity_off">av</string>
   <string name="ApplicationPreferencesActivity_Off">Av</string>
+  <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <string name="AppProtectionPreferenceFragment_minutes">%d minuter</string>
   <!--DraftDatabase-->
@@ -37,10 +41,12 @@ kommer kunna komma åt dem.</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Kan ej hitta app för att välja media.</string>
   <!--AttachmentTypeSelectorAdapter-->
+  <string name="AttachmentTypeSelectorAdapter_take_photo">Ta foto</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Bild</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Ljud</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Kontaktinformation</string>
+  <!--BlockedContactsActivity-->
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Identifieringsnyckeln 
 för %1$s has ändrats. Detta kan innebära att någon försöker
@@ -48,6 +54,7 @@ avlyssna din kommunikation, eller att %2$s helt enkelt installerat om TextSecure
 identitetsnyckel.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Det kan vara en bra idé att
 verifiera denna kontakt.</string>
+  <string name="ConfirmIdentityDialog_accept">Acceptera</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Meddelandestorlek: %d kB</string>
   <string name="ConversationItem_expires_s">Går ut: %s</string>
@@ -115,9 +122,9 @@ verifiera denna kontakt.</string>
   <string name="ConversationFragment_push">Data (TextSecure)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
-  <string name="ConversationFragment_deleting">Raderar...</string>
   <string name="ConversationFragment_deleting_messages">Raderar meddelanden...</string>
   <!--ConversationListActivity-->
+  <string name="ConversationListActivity_search">Sök...</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Radera trådar?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Är du säker på att du vill radera ALLA markerade konversationstrådar?</string>
@@ -184,7 +191,6 @@ som för närvarande finns i TextSecure.</string>
   <string name="ImportFragment_import_plaintext_backup">Importera okrypterad backup?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Denna åtgärd importerar meddelanden från en säkerhetskopia i klartext. Om du redan har importerat denna säkerhetskopia och importerar igen kommer du att få duplicerade meddelanden.</string>
   <string name="ImportFragment_importing">Importerar</string>
-  <string name="ImportFragment_import_plaintext_backup_elipse">Importera okrypterad säkerhetskopia...</string>
   <string name="ImportFragment_no_plaintext_backup_found">Ingen okrypterad säkerhetskopia kunde hittas!</string>
   <string name="ImportFragment_error_importing_backup">Ett fel inträffade vid importering av säkerhetskopian.</string>
   <string name="ImportFragment_import_complete">Importeringen lyckades!</string>
@@ -222,7 +228,6 @@ som för närvarande finns i TextSecure.</string>
   <string name="DeviceProvisioningActivity_content_bullets">
 - Läsa alla dina meddelanden
 \n- Skicka meddelanden i ditt namn</string>
-  <string name="DeviceProvisioningActivity_content_progress_title">Lägger till enhet...</string>
   <string name="DeviceProvisioningActivity_content_progress_content">Lägger till ny enhet...</string>
   <string name="DeviceProvisioningActivity_content_progress_success">Enhet tillagd!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Ingen enhet hittades.</string>
@@ -241,6 +246,7 @@ som för närvarande finns i TextSecure.</string>
   <string name="RatingManager_rate_now">Betygsätt nu!</string>
   <string name="RatingManager_no_thanks">Nej tack</string>
   <string name="RatingManager_later">Senare</string>
+  <!--RecipientPreferencesActivity-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">Anslut med TextSecure</string>
   <string name="RegistrationActivity_select_your_country">Välj ditt land</string>
@@ -376,8 +382,10 @@ Tog emot meddelande med okänd identitetsnyckel. Tryck för att bearbeta och vis
   <string name="SingleContactSelectionActivity_contact_photo">Kontaktfoto</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Välj för</string>
+  <!--blocked_contacts_fragment-->
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Inga nyliga samtal.</string>
+  <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Skicka TextSecure-meddelande</string>
   <string name="conversation_activity__type_message_sms_insecure">Skicka okrypterat SMS</string>
@@ -452,6 +460,8 @@ från systemets standardapp för meddelanden.</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure kräver MMS inställningar för att leverera medie- och gruppmeddelanden via din mobilöperatör. Din enhet gör inte den här informationen tillgänglig, vilket ibland stämmer för låsta enheter och andra restriktiva konfigurationer.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">För att skicka medie- och gruppmeddelande, klicka \'OK\' och fyll i de begärda inställningarna. MMS inställningarna för din operatör kan generellt hittas genom att söka efter \'din operatör APN\'. Du behöver bara göra det här en gång.</string>
+  <!--recipient_preferences_activity-->
+  <!--recipient_preferences-->
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 Verifiera ditt telefonnummer för att ansluta till TextSecure.</string>
@@ -582,7 +592,6 @@ TextSecure uppnådde tidsgränsen för sms-verifiering.</string>
   <string name="preferences__sound">Ljud</string>
   <string name="preferences__change_notification_sound">Ändra notifieringsljud</string>
   <string name="preferences__inthread_notifications">Inom-tråd notifikationer</string>
-  <string name="preferences__play_inthread_notifications">Spela notifikationsljud när en aktiv konversation visas</string>
   <string name="preferences__repeat_alerts">Upprepa notifieringar</string>
   <string name="preferences__never">Aldrig</string>
   <string name="preferences__one_time">En gång</string>
@@ -608,6 +617,7 @@ TextSecure uppnådde tidsgränsen för sms-verifiering.</string>
   <string name="preferences__custom">Skräddarsydd</string>
   <string name="preferences__advanced">Avancerade</string>
   <string name="preferences__app_protection">Appskydd</string>
+  <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuella MMS-inställningar</string>
   <string name="preferences__enable_manual_mms">Använd manuella MMS-inställningar</string>
   <string name="preferences__override_system_mms_settings">Åsidosätt systemets MMS-inställningar med nedanstående.</string>
@@ -636,7 +646,6 @@ TextSecure uppnådde tidsgränsen för sms-verifiering.</string>
 Fria privata meddelanden till användare av TextSecure och Signal</string>
   <string name="preferences__submit_debug_log">Skicka in loggfilen för felsökning</string>
   <string name="preferences__support_wifi_calling">\'WiFi Calling\' kompatibilitetsläge</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktivera om din enhet skickar SMS/MMS över WiFi (aktivera endast när \'WiFi Calling\' är aktiverat på din enhet).</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -679,6 +688,8 @@ Fria privata meddelanden till användare av TextSecure och Signal</string>
   <string name="conversation_secure_verified__menu_security">Säkerhet</string>
   <string name="conversation_secure_verified__menu_verify_identity">Verifiera identiteten</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">Avsluta säker session</string>
+  <!--conversation_muted-->
+  <!--conversation_unmuted-->
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Bifoga fil</string>
   <string name="conversation__menu_update_group">Uppdatera grupp</string>
@@ -720,7 +731,6 @@ Fria privata meddelanden till användare av TextSecure och Signal</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Förhandsvisning av bild</string>
   <!--Trimmer-->
-  <string name="trimmer__deleting">Raderar...</string>
   <string name="trimmer__deleting_old_messages">Raderar gamla meddelanden...</string>
   <string name="trimmer__old_messages_successfully_deleted">Gamla meddelanden har raderats</string>
   <!--transport_selection_list_item-->

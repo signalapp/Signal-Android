@@ -17,6 +17,7 @@
   <string name="AttachmentTypeSelectorAdapter_picture">འདྲ་པར།</string>
   <string name="AttachmentTypeSelectorAdapter_video">བརྙན་པར།</string>
   <string name="AttachmentTypeSelectorAdapter_audio">སྒྲ་ཟློས། </string>
+  <!--BlockedContactsActivity-->
   <!--ConfirmIdentityDialog-->
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">འཕྲིན་ཐུང་ཆེ་ཆུང་།%d KB</string>
@@ -72,6 +73,7 @@
   <!--PassphrasePromptActivity-->
   <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
+  <!--RecipientPreferencesActivity-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_continue">མུ་མཐུད། </string>
   <!--RegistrationProblemsActivity-->
@@ -133,8 +135,10 @@
   <!--single_contact_selection_activity-->
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">ཆེད་དུ་འདེམས།</string>
+  <!--blocked_contacts_fragment-->
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">ཉེ་ཆར་ཁ་པར་བཏང་བ་མི་འདུག </string>
+  <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__send">ཐོངས། </string>
   <string name="conversation_activity__remove">ཕྱིར་ཕུད། </string>
@@ -164,6 +168,8 @@
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">སྒོ་ཕྱེས། </string>
   <!--prompt_mms_activity-->
+  <!--recipient_preferences_activity-->
+  <!--recipient_preferences-->
   <!--registration_activity-->
   <!--registration_problems-->
   <!--registration_progress_activity-->
@@ -233,6 +239,8 @@
   <!--conversation_list_fragment-->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">ཉེན་སྲུང་།</string>
+  <!--conversation_muted-->
+  <!--conversation_unmuted-->
   <!--conversation-->
   <string name="conversation__menu_add_attachment">ཟུར་སྣོན་ཞོག </string>
   <string name="conversation__menu_delete_thread">འཕྲིན་ཐུང་སྐུད་རིམ་གསུབ།</string>

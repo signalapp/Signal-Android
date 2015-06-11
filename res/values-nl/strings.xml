@@ -16,8 +16,6 @@
   <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
 Let op, dit schakelt opslagversleuteling uit voor alle berichten en sleutels. Je versleutelde sessies zullen blijven werken, maar iedereen met fysieke toegang tot je apparaat zal er toegang toe hebben.</string>
   <string name="ApplicationPreferencesActivity_disable">Uitschakelen</string>
-  <string name="ApplicationPreferencesActivity_unregistering">Afmelden...</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Afmelden voor TextSecure berichten</string>
   <string name="ApplicationPreferencesActivity_disable_textsecure_messages">TextSecure berichten uitschakelen?</string>
   <string name="ApplicationPreferencesActivity_this_will_disable_textsecure_messages">
 Dit schakelt TextSecure berichten uit door je af te melden bij de server. 
@@ -46,6 +44,7 @@ Indien je in de toekomst weer TextSecure berichten wilt gebruiken zul je je tele
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Contact info</string>
+  <!--BlockedContactsActivity-->
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">De identificerende sleutel van %1$s is veranderd. Dit kan betekenen dat iemand je communicatie probeert te onderscheppen of dat %2$s simpelweg TextSecure opnieuw geïnstalleerd heeft en nu een nieuwe identiteit heeft.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Je wilt wellicht dit contact verifiëren.</string>
@@ -117,7 +116,6 @@ Indien je in de toekomst weer TextSecure berichten wilt gebruiken zul je je tele
   <string name="ConversationFragment_push">Data (TextSecure)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
-  <string name="ConversationFragment_deleting">Verwijderen...</string>
   <string name="ConversationFragment_deleting_messages">Berichten verwijderen...</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">Zoeken...</string>
@@ -183,7 +181,6 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="ImportFragment_import_plaintext_backup">Onversleutelde back-up importeren?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Dit zal berichten importeren uit een platte tekstbackup. Als je deze backup eerder al eens hebt geimporteerd, zal het opnieuw importeren resulteren in dubbele berichten.</string>
   <string name="ImportFragment_importing">Importeren</string>
-  <string name="ImportFragment_import_plaintext_backup_elipse">Niet-versleutelde back-up importeren...</string>
   <string name="ImportFragment_no_plaintext_backup_found">Geen niet-versleutelde back-up gevonden!</string>
   <string name="ImportFragment_error_importing_backup">Fout bij het importeren van back-up!</string>
   <string name="ImportFragment_import_complete">Importeren voltooid!</string>
@@ -222,7 +219,6 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
         - Al je berichten lezen
         \n- Berichten versturen namens jou
     </string>
-  <string name="DeviceProvisioningActivity_content_progress_title">Apparaat aan het koppelen...</string>
   <string name="DeviceProvisioningActivity_content_progress_content">Nieuw apparaat aan het toevoegen...</string>
   <string name="DeviceProvisioningActivity_content_progress_success">Apparaat toegevoegd!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Geen apparaat gevonden.</string>
@@ -241,6 +237,7 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
   <string name="RatingManager_rate_now">Nu beoordelen!</string>
   <string name="RatingManager_no_thanks">Nee dankjewel</string>
   <string name="RatingManager_later">Later</string>
+  <!--RecipientPreferencesActivity-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">Verbind met TextSecure</string>
   <string name="RegistrationActivity_select_your_country">Selecteer je land</string>
@@ -380,8 +377,10 @@ Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en 
   <string name="SingleContactSelectionActivity_contact_photo">Contactfoto</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Selecteer voor</string>
+  <!--blocked_contacts_fragment-->
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Geen recente gesprekken.</string>
+  <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">TextSecure bericht versturen</string>
   <string name="conversation_activity__type_message_sms_insecure">Verstuur onbeveiligde SMS</string>
@@ -458,6 +457,8 @@ Importeer een niet-versleutelde back-up voor \'SMS Back-up En Herstellen\'.</str
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure heeft MMS-instellingen nodig om mediaberichten te kunnen versturen via uw telefoonprovider. Je toestel heeft deze informatie niet beschikbaar. Dit komt vaker voor bij gelockte toestellen en andere beperkende configuraties.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Om mediaberichten en groepsberichten te versturen, drukt u op \'OK\' en voert u de gevraagde gegevens in. De MMS-instellingen voor uw provider kunnen meestal gevonden worden door te zoeken naar \'&amp;lt;uw provider&amp;gt; APN\'. U hoeft dit maar eenmaal te doen.</string>
+  <!--recipient_preferences_activity-->
+  <!--recipient_preferences-->
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
         Verifieer je telefoonnummer om met TextSecure verbinding te maken.
@@ -594,7 +595,6 @@ TextSecure heeft te lang moeten wachten op het binnenkomen van de verificatie-SM
   <string name="preferences__sound">Geluid</string>
   <string name="preferences__change_notification_sound">Verander notificatiegeluid</string>
   <string name="preferences__inthread_notifications">Notificaties in een gesprek</string>
-  <string name="preferences__play_inthread_notifications">Notificatiegeluid afspelen tijdens het bekijken van een actief gesprek.</string>
   <string name="preferences__repeat_alerts">Herhaal meldingen</string>
   <string name="preferences__never">Nooit</string>
   <string name="preferences__one_time">Eén keer</string>
@@ -650,7 +650,6 @@ TextSecure heeft te lang moeten wachten op het binnenkomen van de verificatie-SM
     </string>
   <string name="preferences__submit_debug_log">Dien debug log in</string>
   <string name="preferences__support_wifi_calling">\'Bellen via WiFi\' compatibiliteitsmodus</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aanzetten als je toestel SMS/MMS ontvangst via WiFi gebruikt (enkel aanzetten als \'Bellen via WiFi\' aan staat).</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -693,6 +692,8 @@ TextSecure heeft te lang moeten wachten op het binnenkomen van de verificatie-SM
   <string name="conversation_secure_verified__menu_security">Beveiliging</string>
   <string name="conversation_secure_verified__menu_verify_identity">Identiteit verifiëren</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">Beveiligde sessie beëindigen</string>
+  <!--conversation_muted-->
+  <!--conversation_unmuted-->
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Bijlage toevoegen</string>
   <string name="conversation__menu_update_group">Groep bijwerken</string>
@@ -734,7 +735,6 @@ TextSecure heeft te lang moeten wachten op het binnenkomen van de verificatie-SM
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Afbeelding Voorvertoning</string>
   <!--Trimmer-->
-  <string name="trimmer__deleting">Verwijderen...</string>
   <string name="trimmer__deleting_old_messages">Oude berichten verwijderen...</string>
   <string name="trimmer__old_messages_successfully_deleted">Oude berichten succesvol verwijderd</string>
   <!--transport_selection_list_item-->

@@ -13,7 +13,6 @@
   <string name="ApplicationPreferencesActivity_disable_storage_encryption">Desactivar l\'encriptació del magatzem de dades?</string>
   <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">Alerta, això desactivarà l\'emmagatzematge encriptat per a tots els missatges i claus. Les teves sessions continuaran funcionant, però qualsevol persona amb accés físic al teu dispositiu podrà accedir-hi.</string>
   <string name="ApplicationPreferencesActivity_disable">Desactiva</string>
-  <string name="ApplicationPreferencesActivity_unregistering">Des-registrant...</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Error connectant amb el servidor!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS Habilitats</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Toca per canviar la teva app d\'SMS predeterminada</string>
@@ -26,6 +25,7 @@
   <string name="AttachmentTypeSelectorAdapter_picture">Fotografia</string>
   <string name="AttachmentTypeSelectorAdapter_video">Vídeo</string>
   <string name="AttachmentTypeSelectorAdapter_audio">So</string>
+  <!--BlockedContactsActivity-->
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Pot ser que vulguis verificar aquest contacte.</string>
   <!--ConversationItem-->
@@ -92,7 +92,6 @@
   <string name="ImportFragment_restore">Restaura</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Això importarà els missatges des d\'una còpia de seguretat en text pla. Si has importat prèviament la base de dades SMS del sistema, importar-la de nou provocarà la generació de missatges duplicats.</string>
   <string name="ImportFragment_importing">Important</string>
-  <string name="ImportFragment_import_plaintext_backup_elipse">Importa còpia de seguretat en text pla...</string>
   <string name="ImportFragment_no_plaintext_backup_found">No s\'ha trobat la còpia de seguretat en text pla!</string>
   <string name="ImportFragment_error_importing_backup">Error important la còpia de seguretat!</string>
   <string name="ImportFragment_import_complete">Importació completada!</string>
@@ -115,6 +114,7 @@
   <!--PassphrasePromptActivity-->
   <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
+  <!--RecipientPreferencesActivity-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">Connecta amb TextSecure</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Has d\'especificar el teu codi de país</string>
@@ -215,8 +215,10 @@
   <string name="SingleContactSelectionActivity_updating_directory">Actualitzant directori</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Selecciona per</string>
+  <!--blocked_contacts_fragment-->
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Sense trucades recents.</string>
+  <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__send">Envia</string>
   <string name="conversation_activity__remove">Treu</string>
@@ -257,6 +259,8 @@ des de l\'app de missatgeria predeterminada del sistema.</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure necessita ajustaments MMS per entregar missatges de grup i multimèdia a través de l\'operador inalàmbric. El teu dispositiu no fa que aquesta informació estigui disponible, cosa que és certa ocasionalment en dispositius bloquejats o amb altres configuracions restringides.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Per enviar missatges multimèdia i de grup, clica \'OK\' i completa els ajustaments demanats. Els ajustaments MMS de la teva operadora normalment poden ser trobats buscant \'latevaoperadora APN\'. Només necessitaràs fer això una vegada.</string>
+  <!--recipient_preferences_activity-->
+  <!--recipient_preferences-->
   <!--registration_activity-->
   <string name="registration_activity__your_country">EL TEU PAÍS</string>
   <string name="registration_activity__your_country_code_and_phone_number">EL TEU CODI DE PAÍS I NÚMERO DE TELÈFON</string>
@@ -315,7 +319,6 @@ des de l\'app de missatgeria predeterminada del sistema.</string>
   <string name="preferences__sound">So</string>
   <string name="preferences__change_notification_sound">Canvia el so de notificació</string>
   <string name="preferences__inthread_notifications">Notificacions dins del fil</string>
-  <string name="preferences__play_inthread_notifications">Reprodueix un so de notificació quan s\'estigui mirant una conversació activa</string>
   <string name="preferences__vibrate">Vibra</string>
   <string name="preferences__also_vibrate_when_notified">Vibra també en notificar</string>
   <string name="preferences__minutes">minuts</string>
@@ -371,6 +374,8 @@ des de l\'app de missatgeria predeterminada del sistema.</string>
   <!--conversation_list_fragment-->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">Seguretat</string>
+  <!--conversation_muted-->
+  <!--conversation_unmuted-->
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Afegeix un adjunt</string>
   <string name="conversation__menu_delete_thread">Esborra fil</string>

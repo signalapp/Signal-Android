@@ -26,6 +26,7 @@
   <string name="AttachmentTypeSelectorAdapter_picture">תמונה</string>
   <string name="AttachmentTypeSelectorAdapter_video">וידאו</string>
   <string name="AttachmentTypeSelectorAdapter_audio">שמע</string>
+  <!--BlockedContactsActivity-->
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">ייתכן שתרצה לאמת
 את איש הקשר הזה.
@@ -88,7 +89,6 @@
 </string>
   <string name="ImportFragment_restore">שחזר</string>
   <string name="ImportFragment_importing">מייבא</string>
-  <string name="ImportFragment_import_plaintext_backup_elipse">יבא גיבוי לא מוצפן...</string>
   <string name="ImportFragment_no_plaintext_backup_found">לא נמצא גיבוי לא מוצפן!</string>
   <string name="ImportFragment_error_importing_backup">שגיאה בייבוא הגיבוי!</string>
   <string name="ImportFragment_import_complete">הייבוא הסתיים!</string>
@@ -111,6 +111,7 @@
   <!--PassphrasePromptActivity-->
   <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
+  <!--RecipientPreferencesActivity-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_continue">המשך</string>
   <!--RegistrationProblemsActivity-->
@@ -175,8 +176,10 @@
   <!--single_contact_selection_activity-->
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">בחר עבור</string>
+  <!--blocked_contacts_fragment-->
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">אין שיחות אחרונות.</string>
+  <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__send">שלח</string>
   <string name="conversation_activity__remove">הסר</string>
@@ -219,6 +222,8 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure דורש הגדרות MMS כדי לשלוח הודעות מולטימדיה או הודעות קבוצתיות דרך ספק השירות שלך. המכשיר שלך לא מספק את המידע הזה, זה קורה לעיתים במכשירים נעולים או קונפיגורציות מוגבלות אחרות.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">כדי לשלוח הודעות מולטימדיה או הודעות קבוצתיות,לחץ \'אישור\' והשלם את ההגדרות המתבקשות.את הגדרות ה-MMS עבור ספק השירות שלך אתה יכול למצוא בד\"כ ע\"י חיפוש \"ספק השרות APN\". אתה תצטרך להשלים מידע זה רק פעם אחת.</string>
+  <!--recipient_preferences_activity-->
+  <!--recipient_preferences-->
   <!--registration_activity-->
   <!--registration_problems-->
   <!--registration_progress_activity-->
@@ -247,7 +252,6 @@
   <string name="preferences__pref_led_blink_title">תבנית הבהוב ה- LED</string>
   <string name="preferences__sound">קול</string>
   <string name="preferences__inthread_notifications">התראות תוך-שרשוריות</string>
-  <string name="preferences__play_inthread_notifications">נגן צליל התראות כשצופים בשיחה פעילה.</string>
   <string name="preferences__vibrate">רטט</string>
   <string name="preferences__also_vibrate_when_notified">הפעל רטט בקבלת התראה</string>
   <string name="preferences__minutes">דקות</string>
@@ -301,6 +305,8 @@
   <!--conversation_list_fragment-->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_security">אבטחה</string>
+  <!--conversation_muted-->
+  <!--conversation_unmuted-->
   <!--conversation-->
   <string name="conversation__menu_add_attachment">צרף קובץ</string>
   <string name="conversation__menu_delete_thread">מחק שרשור</string>

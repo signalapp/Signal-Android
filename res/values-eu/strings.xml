@@ -18,7 +18,6 @@ Kontuz, honek desgaituko du biltegiaren enkriptaketa mezu eta gako guztietarako.
 Zure enkriptatutako saioek funtzionatzen jarraituko dute, baina zure gailua fisikoki uki dezakeen edonor
 gai izango da saiootan sartzeko.</string>
   <string name="ApplicationPreferencesActivity_disable">Desgaitu</string>
-  <string name="ApplicationPreferencesActivity_unregistering">Deserregistratzen...</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Errorea zerbitzariarekin konektatzerakoan!</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Ukitu zure SMS aplikazio lehenetsia aldatzeko</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Ukitu TextSecure zure SMS aplikazio lehenetsia bihurtzeko</string>
@@ -39,6 +38,7 @@ gai izango da saiootan sartzeko.</string>
   <string name="AttachmentTypeSelectorAdapter_video">Bideoa</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Audioa</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Kontaktuaren informazioa</string>
+  <!--BlockedContactsActivity-->
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Agian kontaktu hau egiaztatu beharko zenuke.</string>
   <!--ConversationItem-->
@@ -98,7 +98,6 @@ gai izango da saiootan sartzeko.</string>
   <string name="ConversationFragment_saving_attachment_to_sd_card">Eranskina biltegian gordetzen...</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
-  <string name="ConversationFragment_deleting">Ezabatzen...</string>
   <string name="ConversationFragment_deleting_messages">Mezuak ezabatzen...</string>
   <!--ConversationListActivity-->
   <!--ConversationListFragment-->
@@ -168,7 +167,6 @@ batetik mezuak inportatuko dira.
 Babeskopia hau lehenago inportatu baduzu, mezu bikoiztuak sortu daitezke.
 </string>
   <string name="ImportFragment_importing">Inportatzen</string>
-  <string name="ImportFragment_import_plaintext_backup_elipse">Inportatu enkriptatuko gabeko babeskopia...</string>
   <string name="ImportFragment_no_plaintext_backup_found">Ez da enkriptatu gabeko babeskopiarik topatu!</string>
   <string name="ImportFragment_error_importing_backup">Errorea babeskopia inportatzerakoan!</string>
   <string name="ImportFragment_import_complete">Inportaketa bukatuta!</string>
@@ -202,6 +200,7 @@ Babeskopia hau lehenago inportatu baduzu, mezu bikoiztuak sortu daitezke.
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Pasahitz baliogabea!</string>
   <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
+  <!--RecipientPreferencesActivity-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">TextSecure-ekin Konektatu</string>
   <string name="RegistrationActivity_select_your_country">Zure herrialdea aukeratu</string>
@@ -343,8 +342,10 @@ Nortasun gako ezezagun batekin jaso da mezua. Klik egin prozesatzeko eta erakust
   <string name="SingleContactSelectionActivity_contact_photo">Kontaktuaren Argazkia</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Hautatu egiteko...</string>
+  <!--blocked_contacts_fragment-->
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Ez dago azken deirik.</string>
+  <!--conversation_title_view-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Bidali TextSecure-eko mezua</string>
   <string name="conversation_activity__type_message_sms_insecure">SMS ez segurua bidali</string>
@@ -417,6 +418,8 @@ Enkriptatu gabeko babeskopia bat inportatu. Bateragarria \'SMSBackup Eta Restore
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecurek MMS ezarpenak behar ditu media eta taldeko mezuak banatu ahal izateko zure hari-gabeko hornitzailearen bitartez. Zure gailuak ez dauka informazio hau eskuragarri. Hau batzuetan gertatzen da blokeatuta dauden eta beste konfigurazio murrizgarriak dituzten gailuetan.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Media eta taldeko mezuak bidaltzeko, klik egin \'OK\'-n eta osatu beharrezkoak diren ezarpenak. Zure hornitzailearentzako ezarpenak normalean topa daitezke zure hornitzailearen APNa bilatuz. Bakarrik behin egin beharko duzu hau.</string>
+  <!--recipient_preferences_activity-->
+  <!--recipient_preferences-->
   <!--registration_activity-->
   <string name="registration_activity__your_country">ZURE HERRIALDEA</string>
   <string name="registration_activity__your_country_code_and_phone_number">ZURE HERRIALDEA ETA 
@@ -532,7 +535,6 @@ huts egin du.
   <string name="preferences__sound">Soinua</string>
   <string name="preferences__change_notification_sound">Aldatu jakinarazpenaren soinua</string>
   <string name="preferences__inthread_notifications">Hari barruko jakinarazpenak</string>
-  <string name="preferences__play_inthread_notifications">Jakinarazpen soinua erreproduzitu indarrean dagoen solasaldi bat ikustean</string>
   <string name="preferences__vibrate">Bibratu</string>
   <string name="preferences__also_vibrate_when_notified">Jakinarazpena denean ere bibratu</string>
   <string name="preferences__minutes">minutuak</string>
@@ -569,7 +571,6 @@ huts egin du.
   <string name="preferences__language">Hizkuntza</string>
   <string name="preferences__submit_debug_log">Arazketaren log-a bidali</string>
   <string name="preferences__support_wifi_calling">\'\"WiFi Calling\' modu bateragarria</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Gaitu zure gailuak WiFi bidezko SMS/MMS banaketa erabiltzen badu (bakarrik gaitu \'WiFi Calling\' gaituta badago zure gailuan).</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -608,6 +609,8 @@ huts egin du.
   <string name="conversation_secure_verified__menu_security">Segurtasuna</string>
   <string name="conversation_secure_verified__menu_verify_identity">Nortasuna egiaztatu</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">Saio segurua bukatu</string>
+  <!--conversation_muted-->
+  <!--conversation_unmuted-->
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Eranskina gehitu</string>
   <string name="conversation__menu_update_group">Taldea eguneratu</string>
@@ -643,7 +646,6 @@ huts egin du.
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Irudiaren Aurrebista</string>
   <!--Trimmer-->
-  <string name="trimmer__deleting">Ezabatzen...</string>
   <string name="trimmer__deleting_old_messages">Mezu zaharrak ezabatzen...</string>
   <string name="trimmer__old_messages_successfully_deleted">Mezu zaharrak ondo ezabatu dira</string>
   <!--transport_selection_list_item-->
