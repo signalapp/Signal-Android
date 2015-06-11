@@ -66,7 +66,6 @@ import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import de.gdata.messaging.SlidingTabLayout;
 import de.gdata.messaging.util.GService;
@@ -89,6 +88,8 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   private GDataPreferences gDataPreferences;
   private ContentObserver observer;
   private static String inputText = "";
+  private String[] navLabels;
+  private TypedArray navIcons;
 
   @Override
   public void onCreate(Bundle icicle) {
@@ -97,22 +98,8 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     super.onCreate(icicle);
     gDataPreferences = new GDataPreferences(getBaseContext());
     setContentView(R.layout.gdata_conversation_list_activity);
-
-    initNavDrawer();
-
-    getSupportActionBar().setHomeButtonEnabled(true);
-    getSupportActionBar().setTitle(R.string.app_name);
-    initViewPagerLayout();
-    GUtil.forceOverFlowMenu(getApplicationContext());
-    startService(new Intent(this, GService.class));
-    new GService().init(getApplicationContext());
-    LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
-        new IntentFilter("reloadAdapter"));
-  }
-
-  private void initNavDrawer() {
-    String[] labels = getResources().getStringArray(R.array.array_nav_labels);
-    TypedArray icons = getResources().obtainTypedArray(R.array.array_nav_icons);
+    navLabels = getResources().getStringArray(R.array.array_nav_labels);
+    navIcons = getResources().obtainTypedArray(R.array.array_nav_icons);
     mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
     mDrawerToggle = new ActionBarDrawerToggle(
         this,                  /* host Activity */
@@ -125,7 +112,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
       public void onDrawerClosed(View view) {
         super.onDrawerClosed(view);
         getSupportActionBar().setTitle(R.string.app_name);
-        initNavDrawer();
+        initNavDrawer(navLabels, navIcons);
       }
 
       /** Called when a drawer has settled in a completely open state. */
@@ -142,6 +129,20 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
     mDrawerList = (ListView) findViewById(R.id.left_drawer);
     mDrawerLayout.setScrimColor(Color.argb(0xC8, 0xFF, 0xFF, 0xFF));
+
+    initNavDrawer(navLabels, navIcons);
+
+    getSupportActionBar().setHomeButtonEnabled(true);
+    getSupportActionBar().setTitle(R.string.app_name);
+    initViewPagerLayout();
+    GUtil.forceOverFlowMenu(getApplicationContext());
+    startService(new Intent(this, GService.class));
+    new GService().init(getApplicationContext());
+    LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
+        new IntentFilter("reloadAdapter"));
+  }
+
+  private void initNavDrawer(String[] labels, TypedArray icons) {
     // Set the adapter for the list view
     mDrawerList.setAdapter(new NavDrawerAdapter(this, labels, icons));
     // Set the list's click listener
@@ -210,7 +211,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     super.onResume();
     dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
-    initNavDrawer();
+    initNavDrawer(navLabels, navIcons);
   }
 
   @Override
