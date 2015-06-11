@@ -4,11 +4,14 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.preference.PreferenceFragment;
 import android.util.Log;
 import android.widget.Toast;
@@ -51,8 +54,9 @@ public class AdvancedPreferenceFragment extends PreferenceFragment {
     initializePushMessagingToggle();
     initializeIdentitySelection();
 
-    this.findPreference(SUBMIT_DEBUG_LOG_PREF)
-      .setOnPreferenceClickListener(new SubmitDebugLogListener());
+    Preference submitDebugLog = this.findPreference(SUBMIT_DEBUG_LOG_PREF);
+    submitDebugLog.setOnPreferenceClickListener(new SubmitDebugLogListener());
+    submitDebugLog.setSummary(getVersion(getActivity()));
   }
 
   @Override
@@ -94,6 +98,20 @@ public class AdvancedPreferenceFragment extends PreferenceFragment {
       }
 
       preference.setOnPreferenceClickListener(new IdentityPreferenceClickListener());
+    }
+  }
+
+  private @NonNull String getVersion(@Nullable Context context) {
+    try {
+      if (context == null) return "";
+
+      String app     = context.getString(R.string.app_name);
+      String version = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionName;
+
+      return String.format("%s %s", app, version);
+    } catch (PackageManager.NameNotFoundException e) {
+      Log.w(TAG, e);
+      return context.getString(R.string.app_name);
     }
   }
 
