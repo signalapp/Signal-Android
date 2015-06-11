@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.TransportOptions;
 public class SelectTransportButton extends ImageButton {
     private TransportOptions transportOptions;
     private EditText composeText;
+    private SelfDestructionButton destroyButtonReference;
 
     @SuppressWarnings("unused")
     public SelectTransportButton(Context context) {
@@ -46,6 +47,14 @@ public class SelectTransportButton extends ImageButton {
                 setContentDescription(newTransport.composeHint);
                 if (composeText != null && !((composeText.getHint()+"").contains(getResources().getString(R.string.self_destruction_compose_hint)))) {
                     setComposeTextHint(newTransport.composeHint);
+                }
+                if(newTransport.key.contains("insecure_sms")) {
+                    destroyButtonReference.setVisibility(View.GONE);
+                    destroyButtonReference.setEnabled(false);
+                    setComposeTextHint(newTransport.composeHint);
+                } else {
+                    destroyButtonReference.setVisibility(View.VISIBLE);
+                    destroyButtonReference.setEnabled(true);
                 }
             }
         });
@@ -92,6 +101,10 @@ public class SelectTransportButton extends ImageButton {
             span.setSpan(new RelativeSizeSpan(0.8f), 0, hint.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
             this.composeText.setHint(span);
         }
+    }
+
+    public void setDestroyButtonReference(SelfDestructionButton pDestroyButtonReference) {
+        destroyButtonReference = pDestroyButtonReference;
     }
 }
 

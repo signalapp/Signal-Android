@@ -840,6 +840,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     ComposeKeyPressedListener composeKeyPressedListener = new ComposeKeyPressedListener();
 
     transportButton.setOnClickListener(selectTransportButtonListener);
+    transportButton.setDestroyButtonReference(bombTransportButton);
     transportButton.setEnabled(true);
     transportButton.setComposeTextView(composeText);
 
@@ -1109,7 +1110,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private String getMessage() throws InvalidMessageException {
     String rawText = composeText.getText().toString();
     String destroyTime = "";
-    if(bombTransportButton.getSelectedSelfDestTime() != null) {
+    if(bombTransportButton.getSelectedSelfDestTime() != null && bombTransportButton.isEnabled()) {
       destroyTime = bombTransportButton.getSelectedSelfDestTime().key;
       int value = Integer.parseInt(destroyTime);
       if(value>0) {
