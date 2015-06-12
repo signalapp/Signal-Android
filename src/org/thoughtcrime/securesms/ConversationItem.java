@@ -403,7 +403,9 @@ public class ConversationItem extends LinearLayout {
     public void onClick(final View v, final Slide slide) {
       if (!batchSelected.isEmpty()) {
         selectionClickListener.onItemClick(null, ConversationItem.this, -1, -1);
-      } else if (MediaPreviewActivity.isContentTypeSupported(slide.getContentType())) {
+      } else if (MediaPreviewActivity.isContentTypeSupported(slide.getContentType()) &&
+                 slide.getThumbnailUri() != null)
+      {
         Intent intent = new Intent(context, MediaPreviewActivity.class);
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         intent.setDataAndType(slide.getUri(), slide.getContentType());
@@ -411,7 +413,7 @@ public class ConversationItem extends LinearLayout {
         intent.putExtra(MediaPreviewActivity.DATE_EXTRA, messageRecord.getDateReceived());
 
         context.startActivity(intent);
-      } else {
+      } else if (slide.getThumbnailUri() != null) {
         AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(context);
         builder.setTitle(R.string.ConversationItem_view_secure_media_question);
         builder.setIconAttribute(R.attr.dialog_alert_icon);
