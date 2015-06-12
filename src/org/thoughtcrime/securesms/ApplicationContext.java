@@ -19,6 +19,8 @@ package org.thoughtcrime.securesms;
 import android.app.Application;
 import android.content.Context;
 
+import com.squareup.leakcanary.LeakCanary;
+
 import org.thoughtcrime.securesms.crypto.PRNGFixes;
 import org.thoughtcrime.securesms.dependencies.AxolotlStorageModule;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
@@ -57,6 +59,7 @@ public class ApplicationContext extends Application implements DependencyInjecto
 
   @Override
   public void onCreate() {
+    LeakCanary.install(this);
     initializeRandomNumberFix();
     initializeLogging();
     initializeDependencyInjection();
