@@ -56,6 +56,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.melnykov.fab.FloatingActionButton;
+
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
@@ -90,6 +92,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   private static String inputText = "";
   private String[] navLabels;
   private TypedArray navIcons;
+  private FloatingActionButton fab;
 
   @Override
   public void onCreate(Bundle icicle) {
@@ -129,7 +132,14 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
     mDrawerList = (ListView) findViewById(R.id.left_drawer);
     mDrawerLayout.setScrimColor(Color.argb(0xC8, 0xFF, 0xFF, 0xFF));
-
+    fab = (FloatingActionButton) findViewById(R.id.fab);
+    fab.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        openSingleContactSelection();
+      }
+    });
+    fab.hide();
     initNavDrawer(navLabels, navIcons);
 
     getSupportActionBar().setHomeButtonEnabled(true);
@@ -215,6 +225,13 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
     initNavDrawer(navLabels, navIcons);
+    fab.show();
+  }
+
+  @Override
+  protected void onPause() {
+    super.onPause();
+    fab.hide();
   }
 
   @Override
@@ -237,7 +254,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     MenuInflater inflater = this.getMenuInflater();
     menu.clear();
 
-    inflater.inflate(R.menu.gdata_text_secure_normal, menu);
+//    inflater.inflate(R.menu.gdata_text_secure_normal, menu);
 
     if (!(this.masterSecret != null && gDataPreferences.getViewPagersLastPage() == 0)) {
       menu.clear();
@@ -480,6 +497,11 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
       public void onPageSelected(int i) {
         gDataPreferences.setViewPagerLastPage(i);
         supportInvalidateOptionsMenu();
+        if(i == 0) {
+          fab.show();
+        } else {
+          fab.hide();
+        }
       }
 
       @Override
