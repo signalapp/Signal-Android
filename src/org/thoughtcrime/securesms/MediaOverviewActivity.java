@@ -46,7 +46,7 @@ import org.thoughtcrime.securesms.util.DynamicLanguage;
 /**
  * Activity for displaying media attachments in-app
  */
-public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity implements LoaderManager.LoaderCallbacks<Cursor>, RecipientModifiedListener {
   private final static String TAG = MediaOverviewActivity.class.getSimpleName();
 
   public static final String RECIPIENT_EXTRA = "recipient";
@@ -114,6 +114,14 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
     super.onPause();
   }
 
+  @Override
+  public void onDestroy() {
+    super.onDestroy();
+    if (recipient != null) {
+      recipient.removeListener(this);
+    }
+  }
+
   private void initializeResources() {
     threadId = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
 
@@ -126,15 +134,15 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity i
     final long recipientId = getIntent().getLongExtra(RECIPIENT_EXTRA, -1);
     if (recipientId > -1) {
       recipient = RecipientFactory.getRecipientForId(this, recipientId, true);
-      recipient.addListener(new RecipientModifiedListener() {
-        @Override
-        public void onModified(Recipient recipient) {
-          initializeActionBar();
-        }
-      });
+      recipient.addListener(this);
     } else {
       recipient = null;
     }
+  }
+
+  @Override
+  public void onModified(Recipient recipient) {
+    initializeActionBar();
   }
 
   @Override
