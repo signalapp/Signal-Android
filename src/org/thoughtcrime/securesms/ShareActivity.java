@@ -119,6 +119,10 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
 
   private Uri getStreamExtra() {
     Uri streamUri = getIntent().getParcelableExtra(Intent.EXTRA_STREAM);
+    if (streamUri == null) {
+      return null;
+    }
+
     if (streamUri.getAuthority().equals("com.google.android.apps.photos.contentprovider") &&
         streamUri.toString().endsWith("/ACTUAL"))
     {
