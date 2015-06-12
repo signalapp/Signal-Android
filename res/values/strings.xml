@@ -307,6 +307,8 @@
     <string name="RecipientPreferenceActivity_unblock_this_contact_question">Unblock this contact?</string>
     <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Are you sure you want to unblock this contact?</string>
     <string name="RecipientPreferenceActivity_unblock">Unblock</string>
+    <string name="RecipientPreferenceActivity_enabled">Enabled</string>
+    <string name="RecipientPreferenceActivity_disabled">Disabled</string>
 
     <!-- RegistrationActivity -->
     <string name="RegistrationActivity_connect_with_textsecure">Connect With TextSecure</string>
