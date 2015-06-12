@@ -20,6 +20,7 @@ import android.content.Context;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
+import static android.support.test.espresso.Espresso.openContextualActionModeOverflowMenu;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
@@ -42,12 +43,21 @@ public class ConversationActivityActions {
     onView(withText(R.string.conversation__menu_delete_thread)).perform(click());
   }
 
+  public static void clickForwardMessage() throws Exception {
+    openContextualActionModeOverflowMenu();
+    onView(withText(R.string.conversation_context__menu_forward_message)).perform(click());
+  }
+
   public static void toggleEmojiKeyboard() throws Exception {
     onView(withId(R.id.emoji_toggle)).perform(click());
   }
 
   public static void typeMessage(String message) throws Exception {
     typeTextAndCloseKeyboard(onView(withId(R.id.embedded_text_editor)), message);
+  }
+
+  public static void clickSend() throws Exception {
+    onView(withId(R.id.send_button)).perform(click());
   }
 
 }
