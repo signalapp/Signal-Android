@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.PartDatabase;
 import org.thoughtcrime.securesms.mms.PartUriParser;
 import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.util.Util;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -68,13 +69,7 @@ public class PartProvider extends ContentProvider {
     File tmpFile          = File.createTempFile("test", ".jpg", tmpDir);
     FileOutputStream fout = new FileOutputStream(tmpFile);
 
-    byte[] buffer         = new byte[512];
-    int read;
-
-    while ((read = in.read(buffer)) != -1)
-      fout.write(buffer, 0, read);
-
-    in.close();
+    Util.copy(in, fout);
 
     return tmpFile;
   }
