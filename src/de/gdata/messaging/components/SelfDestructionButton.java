@@ -19,6 +19,7 @@ import de.gdata.messaging.selfdestruction.SelfDestOptions;
 public class SelfDestructionButton extends ImageButton {
     private SelfDestOptions SelfDestOptions;
     private EditText composeText;
+    private SelectTransportButton selectTransportButtonReference;
 
     @SuppressWarnings("unused")
     public SelfDestructionButton(Context context) {
@@ -52,7 +53,7 @@ public class SelfDestructionButton extends ImageButton {
                         setComposeTextHint(getResources().getString(R.string.self_destruction_compose_hint) + " (" + newTransport.key+")");
                 } else {
                     if (composeText != null) {
-                        setComposeTextHint("");
+                        setComposeTextHint(selectTransportButtonReference.getSelectedTransport().composeHint);
                 }
             }
         }
@@ -94,6 +95,9 @@ public class SelfDestructionButton extends ImageButton {
             span.setSpan(new RelativeSizeSpan(0.8f), 0, hint.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
             this.composeText.setHint(span);
         }
+    }
+    public void setSelectTransportButtonReference(SelectTransportButton pSelectTransportButtonReference) {
+        selectTransportButtonReference = pSelectTransportButtonReference;
     }
 }
 
