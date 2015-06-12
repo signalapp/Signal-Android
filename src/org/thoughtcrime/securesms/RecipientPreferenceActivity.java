@@ -186,10 +186,10 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
         vibratePreference.setSummary(R.string.preferences__default);
         vibratePreference.setValueIndex(0);
       } else if (recipients.getVibrate() == VibrateState.ENABLED) {
-        vibratePreference.setSummary("Enabled");
+        vibratePreference.setSummary(R.string.RecipientPreferenceActivity_enabled);
         vibratePreference.setValueIndex(1);
       } else {
-        vibratePreference.setSummary("Disabled");
+        vibratePreference.setSummary(R.string.RecipientPreferenceActivity_disabled);
         vibratePreference.setValueIndex(2);
       }
 
@@ -197,8 +197,8 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
         blockPreference.setEnabled(false);
       } else {
         blockPreference.setEnabled(true);
-        if (recipients.isBlocked()) blockPreference.setTitle("Unblock");
-        else                        blockPreference.setTitle("Block");
+        if (recipients.isBlocked()) blockPreference.setTitle(R.string.RecipientPreferenceActivity_unblock);
+        else                        blockPreference.setTitle(R.string.RecipientPreferenceActivity_block);
       }
     }
 
