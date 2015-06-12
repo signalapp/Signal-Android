@@ -794,7 +794,7 @@
     <string name="preferences__slow">Slow</string>
     <string name="preferences__custom">Custom</string>
     <string name="preferences__advanced">Advanced</string>
-    <string name="preferences__app_protection">App protection</string>
+    <string name="preferences__privacy">Privacy</string>
     <string name="preferences__mms_user_agent">MMS User Agent</string>
     <string name="preferences__advanced_mms_access_point_names">Manual MMS settings</string>
     <string name="preferences__enable_manual_mms">Use manual MMS settings</string>
@@ -826,7 +826,6 @@
     <string name="preferences__submit_debug_log">Submit debug log</string>
     <string name="preferences__support_wifi_calling">\'WiFi Calling\' compatibility mode</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Enable if your device uses SMS/MMS delivery over WiFi (only enable when \'WiFi Calling\' is enabled on your device)</string>
-    <string name="preferences__privacy">Privacy</string>
     <string name="preferences_app_protection__blocked_contacts">Blocked contacts</string>
 
     <!-- **************************************** -->

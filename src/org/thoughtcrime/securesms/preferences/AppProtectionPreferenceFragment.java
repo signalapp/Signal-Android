@@ -55,7 +55,7 @@ public class AppProtectionPreferenceFragment extends PreferenceFragment {
   @Override
   public void onResume() {
     super.onResume();
-    ((ApplicationPreferencesActivity) getActivity()).getSupportActionBar().setTitle(R.string.preferences__app_protection);
+    ((ApplicationPreferencesActivity) getActivity()).getSupportActionBar().setTitle(R.string.preferences__privacy);
 
     initializePlatformSpecificOptions();
     initializeTimeoutSummary();
