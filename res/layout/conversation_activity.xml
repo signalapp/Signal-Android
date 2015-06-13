@@ -135,7 +135,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:padding="20dp"
-                    android:text="Unblock"
+                    android:text="@string/ConversationActivity_unblock"
                     android:visibility="gone"/>
 
            <TextView android:id="@+id/space_left"
