@@ -691,7 +691,7 @@
     <!-- GroupUtil -->
     <string name="GroupUtil_joined_the_group">%1$s joined the group.</string>
     <string name="GroupUtil_group_updated">Group updated.</string>
-    <string name="GroupUtil_title_is_now">Title is now \'%1$s\'.</string>
+    <string name="GroupUtil_group_name_is_now">Group name is now \'%1$s\'.</string>
 
     <!-- prompt_passphrase_activity -->
     <string name="prompt_passphrase_activity__unlock">Unlock</string>
