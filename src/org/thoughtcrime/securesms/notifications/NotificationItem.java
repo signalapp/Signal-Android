@@ -36,8 +36,8 @@ public class NotificationItem {
     this.timestamp           = timestamp;
   }
 
-  public @Nullable Recipients getRecipients() {
-    return threadRecipients;
+  public Recipients getRecipients() {
+    return threadRecipients == null ? recipients : threadRecipients;
   }
 
   public Recipient getIndividualRecipient() {
@@ -87,17 +87,6 @@ public class NotificationItem {
     if (notifyRecipients != null) intent.putExtra("recipients", notifyRecipients.getIds());
 
     intent.putExtra("thread_id", threadId);
-    intent.setData((Uri.parse("custom://"+System.currentTimeMillis())));
-
-    return PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-  }
-
-  public PendingIntent getReplyIntent(Context context) {
-    Intent     intent           = new Intent(context, ConversationPopupActivity.class);
-    Recipients notifyRecipients = threadRecipients != null ? threadRecipients : recipients;
-    if (notifyRecipients != null) intent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, notifyRecipients.getIds());
-
-    intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId);
     intent.setData((Uri.parse("custom://"+System.currentTimeMillis())));
 
     return PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);

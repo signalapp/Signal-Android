@@ -98,8 +98,8 @@ public class MessageNotifier {
       sendInThreadNotification(context, recipients);
     } else {
       Intent intent = new Intent(context, ConversationActivity.class);
-      intent.putExtra("recipients", recipients.getIds());
-      intent.putExtra("thread_id", threadId);
+      intent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, recipients.getIds());
+      intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId);
       intent.setData((Uri.parse("custom://"+System.currentTimeMillis())));
 
       NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
@@ -195,8 +195,8 @@ public class MessageNotifier {
 
     List<NotificationItem>     notifications       = notificationState.getNotifications();
     NotificationCompat.Builder builder             = new NotificationCompat.Builder(context);
-    Recipient                  recipient           = notifications.get(0).getIndividualRecipient();
     Recipients                 recipients          = notifications.get(0).getRecipients();
+    Recipient                  recipient           = notifications.get(0).getIndividualRecipient();
     int                        largeIconTargetSize = context.getResources().getDimensionPixelSize(R.dimen.contact_photo_target_size);
     Drawable                   recipientPhoto      = recipient.getContactPhoto().asDrawable(context, recipients == null ? ContactColors.UNKNOWN_COLOR.toConversationColor(context) :
                                                                                                      recipients.getColor().toConversationColor(context));
@@ -224,16 +224,16 @@ public class MessageNotifier {
     if (masterSecret != null) {
       Action markAsReadAction = new Action(R.drawable.check,
                                            context.getString(R.string.MessageNotifier_mark_read),
-                                           notificationState.getMarkAsReadIntent(context, masterSecret));
+                                           notificationState.getMarkAsReadIntent(context));
 
       Action replyAction = new Action(R.drawable.ic_reply_white_36dp,
                                       context.getString(R.string.MessageNotifier_reply),
-                                      notifications.get(0).getReplyIntent(context));
+                                      notificationState.getQuickReplyIntent(context, recipients));
 
       Action wearableReplyAction = new Action.Builder(R.drawable.ic_reply,
-                                                      context.getString(R.string.wear_reply_label),
-                                                      notificationState.getReplyIntent(context, masterSecret, recipient.getRecipientId()))
-          .addRemoteInput(new RemoteInput.Builder(EXTRA_VOICE_REPLY).setLabel(context.getString(R.string.wear_reply_label)).build())
+                                                      context.getString(R.string.MessageNotifier_reply),
+                                                      notificationState.getWearableReplyIntent(context, recipients))
+          .addRemoteInput(new RemoteInput.Builder(EXTRA_VOICE_REPLY).setLabel(context.getString(R.string.MessageNotifier_reply)).build())
           .build();
 
       builder.addAction(markAsReadAction);
@@ -296,7 +296,7 @@ public class MessageNotifier {
     if (masterSecret != null) {
        Action markAllAsReadAction = new Action(R.drawable.check,
                                                context.getString(R.string.MessageNotifier_mark_all_as_read),
-                                               notificationState.getMarkAsReadIntent(context, masterSecret));
+                                               notificationState.getMarkAsReadIntent(context));
        builder.addAction(markAllAsReadAction);
        builder.extend(new NotificationCompat.WearableExtender().addAction(markAllAsReadAction));
     }

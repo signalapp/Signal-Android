@@ -4,11 +4,11 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.ConversationActivity;
+import org.thoughtcrime.securesms.ConversationPopupActivity;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.VibrateState;
 import org.thoughtcrime.securesms.recipients.Recipients;
 
@@ -70,39 +70,48 @@ public class NotificationState {
     return notifications;
   }
 
-  public PendingIntent getMarkAsReadIntent(Context context, MasterSecret masterSecret) {
-    Bundle extras = new Bundle();
-    extras.putParcelable("master_secret", masterSecret);
-    return craftIntent(context, MarkReadReceiver.CLEAR_ACTION, extras);
-  }
-
-  public PendingIntent getReplyIntent(Context context, MasterSecret masterSecret, long recipientId) {
-    Bundle extras = new Bundle();
-    extras.putParcelable("master_secret", masterSecret);
-    extras.putLong("recipient_id", recipientId);
-    return craftIntent(context, WearReplyReceiver.REPLY_ACTION, extras);
-  }
-
-  private PendingIntent craftIntent(Context context, String intentAction, Bundle extras) {
+  public PendingIntent getMarkAsReadIntent(Context context) {
     long[] threadArray = new long[threads.size()];
-    int index          = 0;
+    int    index       = 0;
 
     for (long thread : threads) {
       Log.w("NotificationState", "Added thread: " + thread);
       threadArray[index++] = thread;
     }
 
-    Intent intent = new Intent(intentAction);
-    intent.putExtra("thread_ids", threadArray);
-    intent.putExtras(extras);
+    Intent intent = new Intent(MarkReadReceiver.CLEAR_ACTION);
+    intent.putExtra(MarkReadReceiver.THREAD_IDS_EXTRA, threadArray);
     intent.setPackage(context.getPackageName());
 
     // XXX : This is an Android bug.  If we don't pull off the extra
     // once before handing off the PendingIntent, the array will be
     // truncated to one element when the PendingIntent fires.  Thanks guys!
     Log.w("NotificationState", "Pending array off intent length: " +
-            intent.getLongArrayExtra("thread_ids").length);
+        intent.getLongArrayExtra("thread_ids").length);
 
     return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
   }
+
+  public PendingIntent getWearableReplyIntent(Context context, Recipients recipients) {
+    if (threads.size() != 1) throw new AssertionError("We only support replies to single thread notifications!");
+
+    Intent intent = new Intent(WearReplyReceiver.REPLY_ACTION);
+    intent.putExtra(WearReplyReceiver.RECIPIENT_IDS_EXTRA, recipients.getIds());
+    intent.setPackage(context.getPackageName());
+
+    return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+  }
+
+  public PendingIntent getQuickReplyIntent(Context context, Recipients recipients) {
+    if (threads.size() != 1) throw new AssertionError("We only support replies to single thread notifications!");
+
+    Intent     intent           = new Intent(context, ConversationPopupActivity.class);
+    intent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, recipients.getIds());
+    intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, (long)threads.toArray()[0]);
+    intent.setData((Uri.parse("custom://"+System.currentTimeMillis())));
+
+    return PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+  }
+
+
 }
