@@ -111,7 +111,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   }
 
   private void setHeader(Recipients recipients) {
-    this.avatar.setAvatar(recipients.getPrimaryRecipient(), true);
+    this.avatar.setAvatar(recipients, true);
     this.title.setText(recipients.toShortString());
 
     if (recipients.isBlocked()) this.blockedIndicator.setVisibility(View.VISIBLE);

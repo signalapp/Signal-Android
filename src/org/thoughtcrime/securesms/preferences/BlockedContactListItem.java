@@ -43,7 +43,7 @@ public class BlockedContactListItem extends RelativeLayout implements Recipients
 
   @Override
   public void onModified(Recipients recipients) {
-    this.contactPhotoImage.setAvatar(recipients.getPrimaryRecipient(), false);
+    this.contactPhotoImage.setAvatar(recipients, false);
     this.nameView.setText(recipients.toShortString());
   }
 
