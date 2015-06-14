@@ -952,8 +952,8 @@
 
 
     <!-- Wear Reply -->
-    <string name="wear_reply_label">Reply</string>
-    <string-array name="wear_replies">
+    <string name="MessageNotifier_reply">Reply</string>
+    <string-array name="MessageNotifier_wear_replies">
         <item>Yes</item>
         <item>No</item>
         <item>OK</item>

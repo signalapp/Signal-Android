@@ -35,8 +35,8 @@ public class NotificationItem {
     this.timestamp           = timestamp;
   }
 
-  public @Nullable Recipients getRecipients() {
-    return threadRecipients;
+  public Recipients getRecipients() {
+    return threadRecipients == null ? recipients : threadRecipients;
   }
 
   public Recipient getIndividualRecipient() {
