@@ -17,15 +17,15 @@
 
 package org.thoughtcrime.securesms.notifications;
 
-import android.app.NotificationManager;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.RemoteInput;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -37,34 +37,29 @@ import ws.com.google.android.mms.pdu.PduBody;
 /**
  * Get the response text from the Wearable Device and sends an message as a reply
  *
- * @author Alix Ducros (Ported to TextSecure-Codebase by Christoph Haefner)
+ * @author Christoph Haefner
  */
-public class WearReplyReceiver extends BroadcastReceiver {
+public class WearReplyReceiver extends MasterSecretBroadcastReceiver {
 
-  public static final String TAG = WearReplyReceiver.class.getSimpleName();
-  public static final String REPLY_ACTION = "org.thoughtcrime.securesms.notifications.WEAR_REPLY";
+  public static final String TAG                 = WearReplyReceiver.class.getSimpleName();
+  public static final String REPLY_ACTION        = "org.thoughtcrime.securesms.notifications.WEAR_REPLY";
+  public static final String RECIPIENT_IDS_EXTRA = "recipient_ids";
 
   @Override
-  public void onReceive(final Context context, Intent intent) {
-    if (!intent.getAction().equals(REPLY_ACTION))
-      return;
+  protected void onReceive(final Context context, Intent intent,
+                           final @Nullable MasterSecret masterSecret)
+  {
+    if (!REPLY_ACTION.equals(intent.getAction())) return;
 
     Bundle remoteInput = RemoteInput.getResultsFromIntent(intent);
-    if (remoteInput == null)
-      return;
 
-    final long[] threadIds = intent.getLongArrayExtra("thread_ids");
-    final MasterSecret masterSecret = intent.getParcelableExtra("master_secret");
-    final long recipientId = intent.getLongExtra("recipient_id", -1);
+    if (remoteInput == null) return;
+
+    final long[]       recipientIds = intent.getLongArrayExtra(RECIPIENT_IDS_EXTRA);
     final CharSequence responseText = remoteInput.getCharSequence(MessageNotifier.EXTRA_VOICE_REPLY);
+    final Recipients   recipients   = RecipientFactory.getRecipientsForIds(context, recipientIds, false);
 
-    final Recipients recipients = RecipientFactory.getRecipientsForIds(context, new long[]{recipientId}, false);
-
-    if (threadIds != null && masterSecret != null) {
-
-      ((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE))
-              .cancel(MessageNotifier.NOTIFICATION_ID);
-
+    if (masterSecret != null && responseText != null) {
       new AsyncTask<Void, Void, Void>() {
         @Override
         protected Void doInBackground(Void... params) {
@@ -77,13 +72,13 @@ public class WearReplyReceiver extends BroadcastReceiver {
             threadId = MessageSender.send(context, masterSecret, reply, -1, false);
           }
 
-          OutgoingTextMessage reply = new OutgoingTextMessage(recipients, responseText.toString());
-          MessageSender.send(context, masterSecret, reply, threadId, false);
-
+          DatabaseFactory.getThreadDatabase(context).setRead(threadId);
           MessageNotifier.updateNotification(context, masterSecret);
+
           return null;
         }
       }.execute();
     }
+
   }
 }
