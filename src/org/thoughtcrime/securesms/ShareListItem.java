@@ -72,7 +72,7 @@ public class ShareListItem extends RelativeLayout
     this.fromView.setText(recipients);
 
     setBackground();
-    this.contactPhotoImage.setAvatar(this.recipients.getPrimaryRecipient(), false);
+    this.contactPhotoImage.setAvatar(this.recipients, false);
   }
 
   public void unbind() {
@@ -106,7 +106,7 @@ public class ShareListItem extends RelativeLayout
       @Override
       public void run() {
         fromView.setText(recipients);
-        contactPhotoImage.setAvatar(recipients.getPrimaryRecipient(), false);
+        contactPhotoImage.setAvatar(recipients, false);
       }
     });
   }

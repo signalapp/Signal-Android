@@ -102,7 +102,7 @@ public class ConversationListItem extends RelativeLayout
     }
 
     setBatchState(batchMode);
-    this.contactPhotoImage.setAvatar(recipients.getPrimaryRecipient(), true);
+    this.contactPhotoImage.setAvatar(recipients, true);
   }
 
   public void unbind() {
@@ -132,7 +132,7 @@ public class ConversationListItem extends RelativeLayout
       @Override
       public void run() {
         fromView.setText(recipients, read);
-        contactPhotoImage.setAvatar(recipients.getPrimaryRecipient(), true);
+        contactPhotoImage.setAvatar(recipients, true);
       }
     });
   }
