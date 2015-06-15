@@ -1,43 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="ConversationActivity_gdata_selfdestroy_entry_1">5 minutes</string>
-    <string name="ConversationActivity_gdata_selfdestroy_entry_2">30 minutes</string>
-    <string name="ConversationActivity_gdata_selfdestroy_entry_3">1 hour</string>
-    <string name="ConversationActivity_gdata_selfdestroy_entry_0">Deactivate</string>
-
+    <string name="ConversationActivity_gdata_selfdestroy_entry_3">5 seconds</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_2">15 seconds</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_1">60 seconds</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_0">Disable</string>
     <string name="gdata_contact_selection_page_title">Contacts</string>
-
     <string name="gdata_conversation_list_page_title">Conversations</string>
-
     <string name="gd_dialog_fragment_phishing_title">Web protection</string>
     <string name="gd_dialog_fragment_phishing_message">This site is a known phishing site. Only continue if you are certain it poses no threat to you.</string>
     <string name="gd_dialog_fragment_phishing_block">Block</string>
     <string name="gd_dialog_fragment_phishing_continue">Continue</string>
-
     <string name="menu_filter">Block contacts</string>
     <string name="menu_privacy">Hide conversations</string>
     <string name="menu_privacy_unhide">Turn hiding on</string>
     <string name="menu_privacy_hide">Hiding [✔]</string>
     <string name="menu_privacy_single_hide">Hide conversation</string>
     <string name="menu_filter_block_contact">Block contact</string>
-
     <string name="self_destruction">Destroy</string>
-    <string name="self_destruction_title">#1# Sekunden bis zur Selbstzerstörung...</string>
-    <string name="self_destruction_body">Der Inhalt dieser Nachricht wird sich nach dem Öffnen in #1# Sekunden selbst löschen.</string>
+    <string name="self_destruction_title">#1# seconds to self-destruct...</string>
+    <string name="self_destruction_body">The contents of this message will self-destruct in #1# seconds after opening.</string>
     <string name="self_destruction_compose_hint">Selbstzerstörende Nachricht senden</string>
-
     <string name="privacy_pw_dialog_header">Enter password: </string>
-    <string name="privacy_pw_dialog_hint">Note: this is the password you defined in Internet Security for Android.</string>
+    <string name="privacy_pw_dialog_hint">Note: this is the password you selected in the Internet Security for Android.</string>
     <string name="privacy_pw_dialog_toast_wrong">The password you entered does not match that of the Internet Security.</string>
     <string name="privacy_pw_dialog_toast_reload">Restoring conversations...</string>
     <string name="privacy_pw_dialog_toast_hide">Hiding conversations...</string>
     <string name="privacy_pw_dialog_toast_hide_single">Hiding conversation...</string>
-
     <string name="privacy_toast_install_premium">Für diese Funktion installieren Sie bitte die G Data Internet Security aus dem PlayStore.</string>
     <string name="privacy_toast_unlock_premium">Sie müssen die Premiumfunktionen der G DATA Internet Security freischalten, um diese Funktionen nutzen zu können.</string>
-
     <string name="conversation_activity_invite_link">https://secure.gd/scg</string>
-
     <string name="preferences_notification_never">Never</string>
     <string name="preferences_notification_one_time">1x</string>
     <string name="preferences_notification_two_times">2x</string>
@@ -46,10 +37,7 @@
     <string name="preferences_notification_ten_times">10x</string>
     <string name="preferences_notification_title">Repeat alerts</string>
     <string name="unknown_country">Unknown country</string>
-
     <string name="log_submit_activity__button_dont_submit">Don\'t submit</string>
     <string name="log_submit_activity__button_submit">Submit</string>
-
     <string name="import_complete_dialog">SecureChat system database import is complete.</string>
-
 </resources>
