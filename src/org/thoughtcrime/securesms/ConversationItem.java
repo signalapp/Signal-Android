@@ -212,7 +212,7 @@ public class ConversationItem extends LinearLayout {
       setMediaAttributes(messageRecord);
       if (MmsDatabase.Types.isDuplicateMessageType(messageRecord.type) || SmsDatabase.Types.isDuplicateMessageType(messageRecord.type)) {
         deleteMessage(messageRecord);
-      }
+      } 
 
     } else {
       bodyText.setTextColor(Color.BLACK);
