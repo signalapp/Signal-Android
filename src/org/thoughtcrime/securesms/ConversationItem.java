@@ -209,8 +209,11 @@ public class ConversationItem extends LinearLayout {
       setGroupMessageStatus(messageRecord);
       setEvents(messageRecord);
       setMinimumWidth();
-
       setMediaAttributes(messageRecord);
+      if (MmsDatabase.Types.isDuplicateMessageType(messageRecord.type) || SmsDatabase.Types.isDuplicateMessageType(messageRecord.type)) {
+        deleteMessage(messageRecord);
+      }
+
     } else {
       bodyText.setTextColor(Color.BLACK);
     }
