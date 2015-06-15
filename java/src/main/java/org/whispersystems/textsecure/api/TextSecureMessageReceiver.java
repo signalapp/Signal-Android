@@ -19,6 +19,7 @@ package org.whispersystems.textsecure.api;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.textsecure.api.crypto.AttachmentCipherInputStream;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachmentPointer;
+import org.whispersystems.textsecure.api.messages.TextSecureDataMessage;
 import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 import org.whispersystems.textsecure.api.push.TrustStore;
 import org.whispersystems.textsecure.api.util.CredentialsProvider;
@@ -80,7 +81,7 @@ public class TextSecureMessageReceiver {
    * Retrieves a TextSecure attachment.
    *
    * @param pointer The {@link org.whispersystems.textsecure.api.messages.TextSecureAttachmentPointer}
-   *                received in a {@link org.whispersystems.textsecure.api.messages.TextSecureMessage}.
+   *                received in a {@link TextSecureDataMessage}.
    * @param destination The download destination for this attachment.
    *
    * @return An InputStream that streams the plaintext attachment contents.
@@ -119,7 +120,8 @@ public class TextSecureMessageReceiver {
     for (TextSecureEnvelopeEntity entity : entities) {
       TextSecureEnvelope envelope =  new TextSecureEnvelope(entity.getType(), entity.getSource(),
                                                             entity.getSourceDevice(), entity.getRelay(),
-                                                            entity.getTimestamp(), entity.getMessage());
+                                                            entity.getTimestamp(), entity.getMessage(),
+                                                            entity.getContent());
 
       callback.onMessage(envelope);
       results.add(envelope);

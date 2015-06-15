@@ -1,0 +1,89 @@
+package textsecure;
+
+option java_package = "org.whispersystems.textsecure.internal.push";
+option java_outer_classname = "TextSecureProtos";
+
+message Envelope {
+  enum Type {
+    UNKNOWN       = 0;
+    CIPHERTEXT    = 1;
+    KEY_EXCHANGE  = 2;
+    PREKEY_BUNDLE = 3;
+    RECEIPT       = 5;
+  }
+
+  optional Type   type          = 1;
+  optional string source        = 2;
+  optional uint32 sourceDevice  = 7;
+  optional string relay         = 3;
+  optional uint64 timestamp     = 5;
+  optional bytes  legacyMessage = 6; // Contains an encrypted DataMessage
+  optional bytes  content       = 8; // Contains an encrypted Content
+}
+
+message Content {
+  optional DataMessage dataMessage = 1;
+  optional SyncMessage syncMessage = 2;
+}
+
+message DataMessage {
+  enum Flags {
+    END_SESSION = 1;
+  }
+
+  optional string             body        = 1;
+  repeated AttachmentPointer  attachments = 2;
+  optional GroupContext       group       = 3;
+  optional uint32             flags       = 4;
+}
+
+message SyncMessage {
+  message Sent {
+    optional string      destination = 1;
+    optional uint64      timestamp   = 2;
+    optional DataMessage message     = 3;
+  }
+
+  message Contacts {
+    optional AttachmentPointer blob = 1;
+  }
+
+  message Group {
+    optional GroupContext group = 1;
+  }
+
+  optional Sent     sent     = 1;
+  optional Contacts contacts = 2;
+  optional Group    group    = 3;
+}
+
+message AttachmentPointer {
+  optional fixed64 id          = 1;
+  optional string  contentType = 2;
+  optional bytes   key         = 3;
+}
+
+message GroupContext {
+  enum Type {
+    UNKNOWN = 0;
+    UPDATE  = 1;
+    DELIVER = 2;
+    QUIT    = 3;
+  }
+  optional bytes             id      = 1;
+  optional Type              type    = 2;
+  optional string            name    = 3;
+  repeated string            members = 4;
+  optional AttachmentPointer avatar  = 5;
+}
+
+message ContactDetails {
+  message Avatar {
+    optional string contentType = 1;
+    optional uint64 length      = 2;
+  }
+
+  optional string number = 1;
+  optional string name   = 2;
+  optional Avatar avatar = 3;
+}

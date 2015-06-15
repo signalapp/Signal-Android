@@ -125,4 +125,18 @@ public class Util {
     }
   }
 
+  public static byte[] toVarint64(long value) {
+    ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+    while (true) {
+      if ((value & ~0x7FL) == 0) {
+        out.write((int) value);
+        return out.toByteArray();
+      } else {
+        out.write(((int) value & 0x7F) | 0x80);
+        value >>>= 7;
+      }
+    }
+  }
+
 }

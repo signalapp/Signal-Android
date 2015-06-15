@@ -32,31 +32,18 @@ public class OutgoingPushMessage {
   private int    destinationRegistrationId;
   @JsonProperty
   private String body;
+  @JsonProperty
+  private String content;
 
   public OutgoingPushMessage(int type,
                              int destinationDeviceId,
                              int destinationRegistrationId,
-                             String body)
+                             String legacyMessage, String content)
   {
     this.type                      = type;
     this.destinationDeviceId       = destinationDeviceId;
     this.destinationRegistrationId = destinationRegistrationId;
-    this.body                      = body;
-  }
-
-  public int getDestinationDeviceId() {
-    return destinationDeviceId;
-  }
-
-  public String getBody() {
-    return body;
-  }
-
-  public int getType() {
-    return type;
-  }
-
-  public int getDestinationRegistrationId() {
-    return destinationRegistrationId;
+    this.body                      = legacyMessage;
+    this.content                   = content;
   }
 }

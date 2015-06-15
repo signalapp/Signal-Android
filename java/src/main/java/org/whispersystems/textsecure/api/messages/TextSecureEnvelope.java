@@ -22,7 +22,7 @@ import org.whispersystems.libaxolotl.InvalidVersionException;
 import org.whispersystems.libaxolotl.logging.Log;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.push.TextSecureAddress;
-import org.whispersystems.textsecure.internal.push.PushMessageProtos.IncomingPushMessageSignal;
+import org.whispersystems.textsecure.internal.push.TextSecureProtos.Envelope;
 import org.whispersystems.textsecure.internal.util.Base64;
 import org.whispersystems.textsecure.internal.util.Hex;
 
@@ -63,7 +63,7 @@ public class TextSecureEnvelope {
   private static final int IV_LENGTH         = 16;
   private static final int CIPHERTEXT_OFFSET = IV_OFFSET + IV_LENGTH;
 
-  private final IncomingPushMessageSignal signal;
+  private final Envelope envelope;
 
   /**
    * Construct an envelope from a serialized, Base64 encoded TextSecureEnvelope, encrypted
@@ -99,42 +99,46 @@ public class TextSecureEnvelope {
 
     verifyMac(ciphertext, macKey);
 
-    this.signal = IncomingPushMessageSignal.parseFrom(getPlaintext(ciphertext, cipherKey));
+    this.envelope = Envelope.parseFrom(getPlaintext(ciphertext, cipherKey));
   }
 
   public TextSecureEnvelope(int type, String source, int sourceDevice,
-                            String relay, long timestamp, byte[] message)
+                            String relay, long timestamp,
+                            byte[] legacyMessage, byte[] content)
   {
-    this.signal = IncomingPushMessageSignal.newBuilder()
-                                           .setType(IncomingPushMessageSignal.Type.valueOf(type))
-                                           .setSource(source)
-                                           .setSourceDevice(sourceDevice)
-                                           .setRelay(relay)
-                                           .setTimestamp(timestamp)
-                                           .setMessage(ByteString.copyFrom(message))
-                                           .build();
+    Envelope.Builder builder = Envelope.newBuilder()
+                                       .setType(Envelope.Type.valueOf(type))
+                                       .setSource(source)
+                                       .setSourceDevice(sourceDevice)
+                                       .setRelay(relay)
+                                       .setTimestamp(timestamp);
+
+    if (legacyMessage != null) builder.setLegacyMessage(ByteString.copyFrom(legacyMessage));
+    if (content != null)       builder.setContent(ByteString.copyFrom(content));
+
+    this.envelope = builder.build();
   }
 
   /**
    * @return The envelope's sender.
    */
   public String getSource() {
-    return signal.getSource();
+    return envelope.getSource();
   }
 
   /**
    * @return The envelope's sender device ID.
    */
   public int getSourceDevice() {
-    return signal.getSourceDevice();
+    return envelope.getSourceDevice();
   }
 
   /**
    * @return The envelope's sender as a TextSecureAddress.
    */
   public TextSecureAddress getSourceAddress() {
-    return new TextSecureAddress(signal.getSource(),
-                                 signal.hasRelay() ? Optional.fromNullable(signal.getRelay()) :
+    return new TextSecureAddress(envelope.getSource(),
+                                 envelope.hasRelay() ? Optional.fromNullable(envelope.getRelay()) :
                                                      Optional.<String>absent());
   }
 
@@ -142,49 +146,70 @@ public class TextSecureEnvelope {
    * @return The envelope content type.
    */
   public int getType() {
-    return signal.getType().getNumber();
+    return envelope.getType().getNumber();
   }
 
   /**
    * @return The federated server this envelope came from.
    */
   public String getRelay() {
-    return signal.getRelay();
+    return envelope.getRelay();
   }
 
   /**
    * @return The timestamp this envelope was sent.
    */
   public long getTimestamp() {
-    return signal.getTimestamp();
+    return envelope.getTimestamp();
   }
 
   /**
-   * @return The envelope's containing message.
+   * @return Whether the envelope contains a TextSecureDataMessage
    */
-  public byte[] getMessage() {
-    return signal.getMessage().toByteArray();
+  public boolean hasLegacyMessage() {
+    return envelope.hasLegacyMessage();
+  }
+
+  /**
+   * @return The envelope's containing TextSecure message.
+   */
+  public byte[] getLegacyMessage() {
+    return envelope.getLegacyMessage().toByteArray();
+  }
+
+  /**
+   * @return Whether the envelope contains an encrypted TextSecureContent
+   */
+  public boolean hasContent() {
+    return envelope.hasContent();
+  }
+
+  /**
+   * @return The envelope's encrypted TextSecureContent.
+   */
+  public byte[] getContent() {
+    return envelope.getContent().toByteArray();
   }
 
   /**
    * @return true if the containing message is a {@link org.whispersystems.libaxolotl.protocol.WhisperMessage}
    */
   public boolean isWhisperMessage() {
-    return signal.getType().getNumber() == IncomingPushMessageSignal.Type.CIPHERTEXT_VALUE;
+    return envelope.getType().getNumber() == Envelope.Type.CIPHERTEXT_VALUE;
   }
 
   /**
    * @return true if the containing message is a {@link org.whispersystems.libaxolotl.protocol.PreKeyWhisperMessage}
    */
   public boolean isPreKeyWhisperMessage() {
-    return signal.getType().getNumber() == IncomingPushMessageSignal.Type.PREKEY_BUNDLE_VALUE;
+    return envelope.getType().getNumber() == Envelope.Type.PREKEY_BUNDLE_VALUE;
   }
 
   /**
    * @return true if the containing message is a delivery receipt.
    */
   public boolean isReceipt() {
-    return signal.getType().getNumber() == IncomingPushMessageSignal.Type.RECEIPT_VALUE;
+    return envelope.getType().getNumber() == Envelope.Type.RECEIPT_VALUE;
   }
 
   private byte[] getPlaintext(byte[] ciphertext, SecretKeySpec cipherKey) throws IOException {

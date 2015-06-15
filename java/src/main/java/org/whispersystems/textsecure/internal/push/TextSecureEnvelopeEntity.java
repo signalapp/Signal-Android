@@ -22,6 +22,9 @@ public class TextSecureEnvelopeEntity {
   @JsonProperty
   private byte[] message;
 
+  @JsonProperty
+  private byte[] content;
+
   public TextSecureEnvelopeEntity() {}
 
   public int getType() {
@@ -46,5 +49,9 @@ public class TextSecureEnvelopeEntity {
 
   public byte[] getMessage() {
     return message;
+  }
+
+  public byte[] getContent() {
+    return content;
   }
 }

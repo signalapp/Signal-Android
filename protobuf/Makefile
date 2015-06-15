@@ -1,3 +1,3 @@
 
 all:
-	protoc --java_out=../java/src/main/java/ IncomingPushMessageSignal.proto Provisioning.proto WebSocketResources.proto
+	protoc --java_out=../java/src/main/java/ TextSecure.proto Provisioning.proto WebSocketResources.proto

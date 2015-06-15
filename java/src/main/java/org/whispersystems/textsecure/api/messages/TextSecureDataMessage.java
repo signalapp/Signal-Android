@@ -24,13 +24,12 @@ import java.util.List;
 /**
  * Represents a decrypted text secure message.
  */
-public class TextSecureMessage {
+public class TextSecureDataMessage {
 
   private final long                                 timestamp;
   private final Optional<List<TextSecureAttachment>> attachments;
   private final Optional<String>                     body;
   private final Optional<TextSecureGroup>            group;
-  private final Optional<TextSecureSyncContext>      syncContext;
   private final boolean                              endSession;
 
   /**
@@ -39,11 +38,11 @@ public class TextSecureMessage {
    * @param timestamp The sent timestamp.
    * @param body The message contents.
    */
-  public TextSecureMessage(long timestamp, String body) {
+  public TextSecureDataMessage(long timestamp, String body) {
     this(timestamp, (List<TextSecureAttachment>)null, body);
   }
 
-  public TextSecureMessage(final long timestamp, final TextSecureAttachment attachment, final String body) {
+  public TextSecureDataMessage(final long timestamp, final TextSecureAttachment attachment, final String body) {
     this(timestamp, new LinkedList<TextSecureAttachment>() {{add(attachment);}}, body);
   }
 
@@ -54,7 +53,7 @@ public class TextSecureMessage {
    * @param attachments The attachments.
    * @param body The message contents.
    */
-  public TextSecureMessage(long timestamp, List<TextSecureAttachment> attachments, String body) {
+  public TextSecureDataMessage(long timestamp, List<TextSecureAttachment> attachments, String body) {
     this(timestamp, null, attachments, body);
   }
 
@@ -66,8 +65,8 @@ public class TextSecureMessage {
    * @param attachments The attachments.
    * @param body The message contents.
    */
-  public TextSecureMessage(long timestamp, TextSecureGroup group, List<TextSecureAttachment> attachments, String body) {
-    this(timestamp, group, attachments, body, null, false);
+  public TextSecureDataMessage(long timestamp, TextSecureGroup group, List<TextSecureAttachment> attachments, String body) {
+    this(timestamp, group, attachments, body, false);
   }
 
   /**
@@ -79,11 +78,10 @@ public class TextSecureMessage {
    * @param body The message contents.
    * @param endSession Flag indicating whether this message should close a session.
    */
-  public TextSecureMessage(long timestamp, TextSecureGroup group, List<TextSecureAttachment> attachments, String body, TextSecureSyncContext syncContext, boolean endSession) {
+  public TextSecureDataMessage(long timestamp, TextSecureGroup group, List<TextSecureAttachment> attachments, String body, boolean endSession) {
     this.timestamp   = timestamp;
     this.body        = Optional.fromNullable(body);
     this.group       = Optional.fromNullable(group);
-    this.syncContext = Optional.fromNullable(syncContext);
     this.endSession  = endSession;
 
     if (attachments != null && !attachments.isEmpty()) {
@@ -123,10 +121,6 @@ public class TextSecureMessage {
    */
   public Optional<TextSecureGroup> getGroupInfo() {
     return group;
-  }
-
-  public Optional<TextSecureSyncContext> getSyncContext() {
-    return syncContext;
   }
 
   public boolean isEndSession() {
@@ -182,9 +176,9 @@ public class TextSecureMessage {
       return this;
     }
 
-    public TextSecureMessage build() {
+    public TextSecureDataMessage build() {
       if (timestamp == 0) timestamp = System.currentTimeMillis();
-      return new TextSecureMessage(timestamp, group, attachments, body, null, endSession);
+      return new TextSecureDataMessage(timestamp, group, attachments, body, endSession);
     }
   }
 }
