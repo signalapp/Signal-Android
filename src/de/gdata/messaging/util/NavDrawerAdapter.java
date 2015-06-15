@@ -105,6 +105,7 @@ public class NavDrawerAdapter extends BaseAdapter {
       holder.text.setText("No Data");
     } else {
       if (holder.text != null) {
+        holder.rootLayout.setVisibility(View.VISIBLE);
         holder.text.setText(labels[position]);
         holder.text.setTextColor(Color.BLACK);
         holder.image.setImageResource(icons.getResourceId(position, -1));
