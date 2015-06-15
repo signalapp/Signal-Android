@@ -13,6 +13,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
+import android.os.RemoteException;
 import android.provider.ContactsContract;
 import android.util.Log;
 
@@ -75,12 +76,18 @@ public class GService extends Service {
             Log.e("GDATA", "IllegalArgumentException:  " + ex.getMessage());
           }
         }
+      } else {
+        isInstalled = true;
       }
     } catch (java.lang.SecurityException e) {
       Log.e("GDATA", "Remote Service Exception:  " + "wrong signatures " + e.getMessage());
     }
     if (preferences != null) {
-      if (!isInstalled) {
+      try {
+        if (!isInstalled || (mService!= null && !mService.hasPremiumEnabled())) {
+          preferences.setPrivacyActivated(false);
+        }
+      } catch (RemoteException e) {
         preferences.setPrivacyActivated(false);
       }
     }
