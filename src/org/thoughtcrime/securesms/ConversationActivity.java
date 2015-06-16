@@ -774,7 +774,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     Recipient primaryRecipient = getRecipients() == null ? null : getRecipients().getPrimaryRecipient();
     boolean isPushDestination = DirectoryHelper.isPushDestination(this, getRecipients());
     AxolotlAddress axolotlAddress = new AxolotlAddress(primaryRecipient.getNumber(), TextSecureAddress.DEFAULT_DEVICE_ID);
-    boolean isSecureDestination = (isSingleConversation() && sessionStore.containsSession(axolotlAddress)) || isPushGroupConversation();
+    boolean isSecureDestination = (isSingleConversation() && sessionStore.containsSession(axolotlAddress)) /*|| isPushGroupConversation()*/;
 
     if (isPushDestination || isSecureDestination) {
       this.isEncryptedConversation = true;
@@ -1169,7 +1169,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       if (recipients == null) {
         throw new RecipientFormattingException("Badly formatted");
       }
-
       if ((!recipients.isSingleRecipient() || recipients.isEmailRecipient()) && !isMmsEnabled) {
         handleManualMmsRequired();
       } else if (attachmentManager.isAttachmentPresent() || !recipients.isSingleRecipient() || recipients.isGroupRecipient() || recipients.isEmailRecipient()) {
