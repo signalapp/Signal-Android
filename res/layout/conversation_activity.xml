@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical">
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical">
 
     <RelativeLayout
             android:id="@+id/layout_container"
@@ -28,35 +29,34 @@
             <ScrollView android:layout_width="fill_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1">
-                <LinearLayout
+                <FrameLayout
                         android:id="@+id/attachment_editor"
-                        android:layout_width="fill_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
+                        android:layout_gravity="center_horizontal"
                         android:visibility="gone">
 
-                    <org.thoughtcrime.securesms.components.ThumbnailView
-                            android:id="@+id/attachment_thumbnail"
-                            android:layout_width="0dp"
-                            android:layout_height="150dip"
-                            android:layout_weight="1"
-                            android:contentDescription="@string/conversation_activity__attachment_thumbnail"/>
+                    <FrameLayout
+                            android:paddingLeft="10dp"
+                            android:paddingTop="10dp"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent">
 
-                    <LinearLayout
-                            android:orientation="vertical"
-                            android:layout_width="wrap_content"
-                            android:layout_height="fill_parent"
-                            android:gravity="center_vertical">
+                        <org.thoughtcrime.securesms.components.ThumbnailView
+                                android:id="@+id/attachment_thumbnail"
+                                android:layout_width="wrap_content"
+                                android:layout_height="150dip"
+                                app:riv_corner_radius="3dp"
+                                android:contentDescription="@string/conversation_activity__attachment_thumbnail"/>
+                    </FrameLayout>
 
-                        <Button
-                                android:id="@+id/remove_image_button"
-                                style="?android:attr/buttonStyleSmall"
-                                android:layout_width="100dip"
-                                android:layout_height="50dip"
-                                android:text="@string/conversation_activity__remove" />
+                    <ImageView android:id="@+id/remove_image_button"
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:src="@drawable/conversation_attachment_close_circle"
+                               android:layout_gravity="top|left"/>
 
-                    </LinearLayout>
-               </LinearLayout>
+               </FrameLayout>
             </ScrollView>
 
             <View android:layout_width="match_parent"

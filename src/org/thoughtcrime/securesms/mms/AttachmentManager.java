@@ -26,7 +26,12 @@ import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.R;
@@ -42,7 +47,7 @@ public class AttachmentManager {
   private final Context            context;
   private final View               attachmentView;
   private final ThumbnailView      thumbnail;
-  private final Button             removeButton;
+  private final ImageView          removeButton;
   private final SlideDeck          slideDeck;
   private final AttachmentListener attachmentListener;
 
@@ -51,7 +56,7 @@ public class AttachmentManager {
   public AttachmentManager(Activity view, AttachmentListener listener) {
     this.attachmentView     = view.findViewById(R.id.attachment_editor);
     this.thumbnail          = (ThumbnailView)view.findViewById(R.id.attachment_thumbnail);
-    this.removeButton       = (Button)view.findViewById(R.id.remove_image_button);
+    this.removeButton       = (ImageView)view.findViewById(R.id.remove_image_button);
     this.slideDeck          = new SlideDeck();
     this.context            = view;
     this.attachmentListener = listener;
@@ -60,9 +65,28 @@ public class AttachmentManager {
   }
 
   public void clear() {
-    slideDeck.clear();
-    attachmentView.setVisibility(View.GONE);
-    attachmentListener.onAttachmentChanged();
+    AlphaAnimation animation = new AlphaAnimation(1.0f, 0.0f);
+    animation.setDuration(200);
+    animation.setAnimationListener(new Animation.AnimationListener() {
+      @Override
+      public void onAnimationStart(Animation animation) {
+
+      }
+
+      @Override
+      public void onAnimationEnd(Animation animation) {
+        slideDeck.clear();
+        attachmentView.setVisibility(View.GONE);
+        attachmentListener.onAttachmentChanged();
+      }
+
+      @Override
+      public void onAnimationRepeat(Animation animation) {
+
+      }
+    });
+
+    attachmentView.startAnimation(animation);
   }
 
   public void cleanup() {
