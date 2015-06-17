@@ -1,0 +1,692 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="app_name">SecureChat</string>
+  <string name="yes">Да</string>
+  <string name="no">Нет</string>
+  <string name="delete">Удалить</string>
+  <string name="please_wait">Пожалуйста, подождите...</string>
+  <!--ApplicationPreferencesActivity-->
+  <string name="ApplicationPreferencesActivity_currently_s">Сейчас: %s</string>
+  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Вы ещё не задали парольную фразу!</string>
+  <string name="ApplicationPreferencesActivity_messages_per_conversation">%s сообщений в разговоре</string>
+  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Удалить все старые сообщения?</string>
+  <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Вы уверены, что хотите обрезать все разговоры до %s последних сообщений, удалив более старые?</string>
+  <string name="ApplicationPreferencesActivity_delete">Удалить</string>
+  <string name="ApplicationPreferencesActivity_disable_storage_encryption">Отключить шифрование базы?</string>
+  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
+Внимание, вы собираетесь отключить шифрование базы данных, в которой хранятся все ваши сообщения и ключи. При переписке шифрование продолжит работать, однако любой, кто имеет физический доступ к вашему устройству, сможет прочитать ваши сообщения.</string>
+  <string name="ApplicationPreferencesActivity_disable">Отключить</string>
+  <string name="ApplicationPreferencesActivity_unregistering">Отмена регистрации...</string>
+  <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Отменяем регистрацию для обмена сообщениями по каналу данных</string>
+  <string name="ApplicationPreferencesActivity_disable_push_messages">Отключить push-сообщения?</string>
+  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">
+Это отключит push-сообщения, отменив вашу регистрацию на сервере.
+Чтобы в будущем включить push-сообщения, вам нужно будет зарегистрироваться вновь.</string>
+  <string name="ApplicationPreferencesActivity_error_connecting_to_server">Ошибка при соединении с сервером!</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">Входящие SMS включены</string>
+  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Нажмите для выбора SMS-приложения по умолчанию</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">Входящие SMS отключены</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Нажмите, чтобы использовать SecureChat для всех SMS</string>
+  <string name="ApplicationPreferencesActivity_on">включено</string>
+  <string name="ApplicationPreferencesActivity_On">Включено</string>
+  <string name="ApplicationPreferencesActivity_off">выключено</string>
+  <string name="ApplicationPreferencesActivity_Off">Выключено</string>
+  <string name="ApplicationPreferencesActivity_partial">частично</string>
+  <string name="ApplicationPreferencesActivity_sms">SMS</string>
+  <string name="ApplicationPreferencesActivity_mms">MMS</string>
+  <string name="ApplicationPreferencesActivity_incoming_sms">Входящее</string>
+  <string name="ApplicationPreferencesActivity_outgoing_sms">исходящее</string>
+  <!--AppProtectionPreferenceFragment-->
+  <string name="AppProtectionPreferenceFragment_minutes">%d минут</string>
+  <!--DraftDatabase-->
+  <string name="DraftDatabase_Draft_image_snippet">(изображение)</string>
+  <string name="DraftDatabase_Draft_audio_snippet">(аудио)</string>
+  <string name="DraftDatabase_Draft_video_snippet">(видео)</string>
+  <!--AttchmentManager-->
+  <string name="AttachmentManager_cant_open_media_selection">Не найдено приложение для выбора медиа-файлов.</string>
+  <!--AttachmentTypeSelectorAdapter-->
+  <string name="AttachmentTypeSelectorAdapter_picture">Изображение</string>
+  <string name="AttachmentTypeSelectorAdapter_video">Видео</string>
+  <string name="AttachmentTypeSelectorAdapter_audio">Аудио</string>
+  <string name="AttachmentTypeSelectorAdapter_contact">Контактная информация</string>
+  <!--ConversationItem-->
+  <string name="ConversationItem_message_size_d_kb">Размер сообщения: %d Kб</string>
+  <string name="ConversationItem_expires_s">Истекает: %s</string>
+  <string name="ConversationItem_error_sending_message">Ошибка при отправке сообщения</string>
+  <string name="ConversationItem_view_secure_media_question">Просмотреть защищенный медиа-файл?</string>
+  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Этот медиа-файл хранится в зашифрованной базе данных. Чтобы просмотреть его через стороннее приложение, необходимо будет его временно расшифровать и записать на диск. Вы уверены, что хотите это сделать?</string>
+  <string name="ConversationItem_error_received_stale_key_exchange_message">Ошибка: получено устаревшее сообщение обмена ключами.</string>
+  <string name="ConversationItem_received_key_exchange_message_click_to_process">Получено сообщение обмена ключами. Нажмите, чтобы его обработать.</string>
+  <string name="ConversationItem_group_action_left">%1$s покинул группу.</string>
+  <string name="ConversationItem_click_to_approve_sms">Отправить как SMS</string>
+  <string name="ConversationItem_click_to_approve_mms">Отправить как MMS</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">Отправить незащищённым</string>
+  <string name="ConversationItem_click_to_approve_sms_dialog_title">Отправить как SMS?</string>
+  <string name="ConversationItem_click_to_approve_mms_dialog_title">Отправить как MMS?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Отправить как незашифрованное SMS?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Отправить как незашифрованное MMS?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Это сообщение <b>не будет</b> зашифровано, так как не удалось установить защищённый сеанс.\n\nОтправить сообщение незащищённым?</string>
+  <string name="ConversationItem_unable_to_open_media">Не найдено приложение, которое может открыть этот медиа-файл.</string>
+  <!--ConversationActivity-->
+  <string name="ConversationActivity_initiate_secure_session_question">Начать защищённый сеанс?</string>
+  <string name="ConversationActivity_initiate_secure_session_with_s_question">Начать защищённый сеанс связи с %s?</string>
+  <string name="ConversationActivity_abort_secure_session_confirmation">Подтвердите завершение сеанса</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Вы уверены, что хотите завершить этот защищённый сеанс связи?</string>
+  <string name="ConversationActivity_delete_thread_confirmation">Подтвердите удаление разговора</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Вы уверены, что хотите навсегда удалить этот разговор?</string>
+  <string name="ConversationActivity_add_attachment">Добавить вложение</string>
+  <string name="ConversationActivity_select_contact_info">Выбрать контакт</string>
+  <string name="ConversationActivity_compose_message">Написать сообщение</string>
+  <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Извините, произошла ошибка при обработке вложения.</string>
+  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Извините, выбранное видео превышает ограничение на размер сообщения (%1$sКБ).</string>
+  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Извините, выбранное аудио превышает ограничение на размер сообщения (%1$sКБ).</string>
+  <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Адрес получателя не является ни номером телефона, ни адресом электронной почты.</string>
+  <string name="ConversationActivity_message_is_empty_exclamation">Пустое сообщение!</string>
+  <string name="ConversationActivity_group_conversation_recipients">Участники группы</string>
+  <string name="ConversationActivity_group_conversation">Групповой разговор</string>
+  <string name="ConversationActivity_unnamed_group">Группа без названия</string>
+  <string name="ConversationActivity_d_recipients_in_group">%d участников</string>
+  <string name="ConversationActivity_d_recipients_in_group_singular">1 участник</string>
+  <string name="ConversationActivity_saved_draft">Черновик сохранён</string>
+  <string name="ConversationActivity_invalid_recipient">Неверный получатель!</string>
+  <string name="ConversationActivity_calls_not_supported">Звонки не поддерживаются</string>
+  <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Ваше устройство, по-видимому, не поддерживает набор номера.</string>
+  <string name="ConversationActivity_leave_group">Покинуть группу?</string>
+  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Вы уверены, что хотите покинуть эту группу?</string>
+  <string name="ConversationActivity_transport_insecure_sms">Незащищённое SMS</string>
+  <string name="ConversationActivity_transport_insecure_mms">Незащищённое MMS</string>
+  <string name="ConversationActivity_transport_secure_sms">Защищённое MMS</string>
+  <string name="ConversationActivity_transport_secure_mms">Защищённое MMS</string>
+  <string name="ConversationActivity_transport_textsecure">SecureChat</string>
+  <string name="ConversationActivity_get_with_it">Получить: %s</string>
+  <string name="ConversationActivity_install_textsecure">Установить SecureChat: %s</string>
+  <string name="ConversationActivity_error_leaving_group">Ошибка при выходе из группы...</string>
+  <!--ConversationFragment-->
+  <string name="ConversationFragment_message_details">Подробности</string>
+  <string name="ConversationFragment_transport_s_sent_received_s">Транспорт: %1$s\nОтправлено/Получено: %2$s</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Отправитель: %1$s\nТранспорт: %2$s\nОтправлено: %3$s\nПолучено: %4$s</string>
+  <string name="ConversationFragment_confirm_message_delete">Подтвердите удаление сообщения</string>
+  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Вы уверены что хотите навсегда удалить все выбранные сообщения?</string>
+  <string name="ConversationFragment_save_to_sd_card">Сохранить на SD-карту?</string>
+  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Если сохранить этот медиа-файл на SD-карту, любое приложение на вашем устройстве сможет иметь к нему доступ.\n\nПродолжить?</string>
+  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Ошибка при сохранении на SD-карту!</string>
+  <string name="ConversationFragment_success_exclamation">Успешно!</string>
+  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Невозможно произвести запись на SD-карту!</string>
+  <string name="ConversationFragment_saving_attachment">Сохранение вложения</string>
+  <string name="ConversationFragment_saving_attachment_to_sd_card">Сохраняем вложение на SD-карту...</string>
+  <string name="ConversationFragment_pending">ОЖИДАЮЩЕЕ</string>
+  <string name="ConversationFragment_push">PUSH</string>
+  <string name="ConversationFragment_mms">MMS</string>
+  <string name="ConversationFragment_sms">SMS</string>
+  <string name="ConversationFragment_deleting">Удаление...</string>
+  <string name="ConversationFragment_deleting_messages">Удаляем сообщения...</string>
+  <!--ConversationListFragment-->
+  <string name="ConversationListFragment_delete_threads_question">Удалить разговоры?</string>
+  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Вы уверены, что хотите удалить ВСЕ выбранные разговоры?</string>
+  <string name="ConversationListFragment_deleting">Удаление</string>
+  <string name="ConversationListFragment_deleting_selected_threads">Удаляем выбранные разговоры...</string>
+  <!--ConversationListItem-->
+  <string name="ConversationListItem_key_exchange_message">Сообщениe обмена ключами...</string>
+  <!--ShareActivity-->
+  <string name="ShareActivity_share_with">Поделиться с</string>
+  <!--ExportFragment-->
+  <string name="ExportFragment_export">Экспорт</string>
+  <string name="ExportFragment_export_plaintext_to_sd_card">Экспортировать открытым текстом?</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Внимание, вы собираетесь экспортировать на SD-карту свои сообщения в незашифрованном виде.</string>
+  <string name="ExportFragment_cancel">Отмена</string>
+  <string name="ExportFragment_exporting">Экспорт</string>
+  <string name="ExportFragment_exporting_plaintext_to_sd_card">Экспортируем открытым текстом на SD-карту...</string>
+  <string name="ExportFragment_error_unable_to_write_to_sd_card">Ошибка, невозможно произвести запись на SD-карту!</string>
+  <string name="ExportFragment_error_while_writing_to_sd_card">Ошибка при записи на SD-карту.</string>
+  <string name="ExportFragment_success">Успешно!</string>
+  <!--GcmRefreshJob-->
+  <string name="GcmRefreshJob_Permanent_TextSecure_communication_failure">Неустранимая ошибка соединения!</string>
+  <string name="GcmRefreshJob_TextSecure_was_unable_to_register_with_Google_Play_Services">TextSecyre не смог зарегистрироваться в службах Google Play. Канал передачи данных отключён. Пожалуйста, попробуйте зарегистрироваться заново из меню настроек.</string>
+  <!--GroupCreateActivity-->
+  <string name="GroupCreateActivity_actionbar_title">Новая группа</string>
+  <string name="GroupCreateActivity_actionbar_update_title">Обновить группу</string>
+  <string name="GroupCreateActivity_group_name_hint">Название группы</string>
+  <string name="GroupCreateActivity_actionbar_mms_title">Новая MMS-группа</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Выбранный контакт не поддерживает SecureChat-группы, поэтому эта группа будет преобразована в MMS.</string>
+  <string name="GroupCreateActivity_you_dont_support_push">Вы не зарегистрированы для использования канала передачи данных, поэтому группы отключены.</string>
+  <string name="GroupCreateActivity_contacts_mms_exception">Непредвиденная ошибка не позволила создать группу.</string>
+  <string name="GroupCreateActivity_contacts_no_members">Нужен как минимум один участник в группе!</string>
+  <string name="GroupCreateActivity_contacts_invalid_number">Один из участников имеет неправильный номер. Пожалуйста, исправьте или удалите этот контакт и попробуйте снова.</string>
+  <string name="GroupCreateActivity_avatar_content_description">Аватар группы</string>
+  <string name="GroupCreateActivity_menu_create_title">Создать группу</string>
+  <string name="GroupCreateActivity_creating_group">Создаём %1$s…</string>
+  <string name="GroupCreateActivity_updating_group">Обновляем %1$s...</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Нельзя добавить в SecureChat-группу собеседников, у которых SecureChat не установлен</string>
+  <string name="GroupCreateActivity_loading_group_details">Загружаем подробности о группе...</string>
+  <!--GroupMembersDialog-->
+  <string name="GroupMembersDialog_me">Я</string>
+  <string name="GroupMembersDialog_members">Участники...</string>
+  <!--ImportExportActivity-->
+  <string name="ImportExportActivity_import">Импорт</string>
+  <string name="ImportExportActivity_export">Экспорт</string>
+  <!--ImportFragment-->
+  <string name="ImportFragment_import_system_sms_database">Импортировать системную базу SMS?</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">Вы собираетесь импортировать SMS-сообщения из системной базы данных в SecureChat. Если вы уже это делали ранее, повторный импорт приведёт к дублированию сообщений.</string>
+  <string name="ImportFragment_import">Импортировать</string>
+  <string name="ImportFragment_cancel">Отмена</string>
+  <string name="ImportFragment_restore_encrypted_backup">Восстановить из зашифрованной резервной копии?</string>
+  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
+Восстановление из зашифрованной резервной копии полностью заменит существующие ключи, настройки и сообщения. Вы потеряете всю информацию, которая сейчас содержится в SecureChat, но не в резервной копии.</string>
+  <string name="ImportFragment_restore">Восстановить</string>
+  <string name="ImportFragment_import_plaintext_backup">Импортировать из простой резервной копии?</string>
+  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Вы собираетесь импортировать сообщения из простой резервной копии. Если вы ранее уже импортировали сообщения из этой копии, повторный импорт приведёт к их дублированию.</string>
+  <string name="ImportFragment_importing">Импорт</string>
+  <string name="ImportFragment_import_plaintext_backup_elipse">Импортируем из простой резервной копии...</string>
+  <string name="ImportFragment_no_plaintext_backup_found">Простая резервная копия не найдена!</string>
+  <string name="ImportFragment_error_importing_backup">Ошибка при импорте!</string>
+  <string name="ImportFragment_import_complete">Импорт завершён.</string>
+  <string name="ImportFragment_restoring">Восстановление</string>
+  <string name="ImportFragment_restoring_encrypted_backup">Восстановление из зашифрованной резервной копии...</string>
+  <string name="ImportFragment_no_encrypted_backup_found">Зашифрованная резервная копия не найдена!</string>
+  <string name="ImportFragment_restore_complete">Восстановление завершено.</string>
+  <!--KeyScanningActivity-->
+  <string name="KeyScanningActivity_no_scanned_key_found_exclamation">При сканировании ключ не обнаружен!</string>
+  <string name="KeyScanningActivity_install_barcode_Scanner">Установить сканер штрих-кодов?</string>
+  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">Приложению SecureChat необходим сканер штрих-кодов, чтобы читать QR-коды.</string>
+  <!--MmsDownloader-->
+  <string name="MmsDownloader_error_storing_mms">Ошибка при сохранении MMS!</string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">Ошибка подключения к провайдеру MMS...</string>
+  <string name="MmsDownloader_error_reading_mms_settings">Ошибка при чтении настроек MMS...</string>
+  <!--NotificationMmsMessageRecord-->
+  <string name="NotificationMmsMessageRecord_multimedia_message">MMS-сообщение</string>
+  <!--MessageRecord-->
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Полученное сообщение зашифровано старой версией SecureChat, которая больше не поддерживается. Пожалуйста, попросите отправителя обновиться до последней версии и заново послать сообщение.</string>
+  <string name="MessageRecord_left_group">Вы покинули группу.</string>
+  <string name="MessageRecord_updated_group">Группа обновлена.</string>
+  <!--PassphraseChangeActivity-->
+  <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Парольные фразы не совпадают!</string>
+  <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Неверная старая парольная фраза!</string>
+  <!--PassphrasePromptActivity-->
+  <string name="PassphrasePromptActivity_enter_passphrase">Введите парольную фразу</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Иконка SecureChat</string>
+  <string name="PassphrasePromptActivity_ok_button_content_description">Подтвердить парольную фразу</string>
+  <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Неверная парольная фраза!</string>
+  <!--ReceiveKeyActivity-->
+  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Подпись, полученная сейчас при обмене ключами, отличается от той, которой собеседник подписывался ранее. Это может означать, что кто-то пытается перехватить вашу переписку или что ваш собеседник переустановил SecureChat, и теперь у него новый личный ключ.</string>
+  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Возможно, вы захотите перепроверить этого собеседника.</string>
+  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">Подпись в этом обмене ключами является доверенной, но вы отключили в настройках автоматическое выполнение обменов.</string>
+  <string name="ReceiveKeyActivity_processing">Обработка</string>
+  <string name="ReceiveKeyActivity_processing_key_exchange">Обрабатываем обмен ключами...</string>
+  <!--RegistrationActivity-->
+  <string name="RegistrationActivity_connect_with_textsecure">Подключение к SecureChat</string>
+  <string name="RegistrationActivity_select_your_country">Выберите страну</string>
+  <string name="RegistrationActivity_you_must_specify_your_country_code">Необходимо указать код страны</string>
+  <string name="RegistrationActivity_you_must_specify_your_phone_number">Необходимо указать номер телефона</string>
+  <string name="RegistrationActivity_invalid_number">Неверный номер</string>
+  <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Указанный вами 
+номер телефона (%s) неверен.</string>
+  <string name="RegistrationActivity_unsupported">Устройство не поддерживается</string>
+  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">К сожалению, на вашем устройстве невозможен обмен сообщениями по каналу данных. На устройствах с Android версии ниже 4.0 должен быть зарегистрирован аккаунт Google. На устройствах с Android 4.0 или выше аккаунт Google необязателен, но должно иметься приложение «Play Маркет».</string>
+  <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
+Сейчас мы проверим, что с этим устройством связан следующий номер телефона:\n\n%s\n\n
+Номер указан верно или вы хотите его изменить?</string>
+  <string name="RegistrationActivity_continue">Продолжить</string>
+  <string name="RegistrationActivity_edit">Изменить</string>
+  <!--RegistrationProblemsActivity-->
+  <string name="RegistrationProblemsActivity_possible_problems">Возможные проблемы</string>
+  <!--RegistrationProgressActivity-->
+  <string name="RegistrationProgressActivity_verifying_number">Проверка номера</string>
+  <string name="RegistrationProgressActivity_edit_s">Изменить %s</string>
+  <string name="RegistrationProgressActivity_registration_complete">Регистрация завершена!</string>
+  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Сначала введите полученный вами код...</string>
+  <string name="RegistrationProgressActivity_connecting">Соединение</string>
+  <string name="RegistrationProgressActivity_connecting_for_verification">Соединяемся для проверки...</string>
+  <string name="RegistrationProgressActivity_network_error">Ошибка сети!</string>
+  <string name="RegistrationProgressActivity_unable_to_connect">Невозможно соединиться. Проверьте, есть ли подключение к интернету и попробуйте снова.</string>
+  <string name="RegistrationProgressActivity_verification_failed">Проверка не удалась!</string>
+  <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">Код подтверждения, введённый вами, неверен. Пожалуйста, попробуйте ещё раз.</string>
+  <string name="RegistrationProgressActivity_too_many_attempts">Слишком много попыток</string>
+  <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">Вы слишком много раз вводили неверный код подтверждения. Подождите минуту перед следующей попыткой.</string>
+  <string name="RegistrationProgressActivity_requesting_call">Запрашиваем звонок</string>
+  <string name="RegistrationProgressActivity_requesting_incoming_call">Запрашиваем входящий звонок для подтверждения...</string>
+  <string name="RegistrationProgressActivity_server_error">Ошибка сервера</string>
+  <string name="RegistrationProgressActivity_the_server_encountered_an_error">На сервере возникла ошибка. Пожалуйста, попробуйте ещё раз.</string>
+  <string name="RegistrationProgressActivity_too_many_requests">Слишком много запросов!</string>
+  <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Вы недавно уже запрашивали голосовой звонок. Запросить ещё один вы сможете через 20 минут.</string>
+  <string name="RegistrationProgressActivity_registration_conflict">Конфликт регистрации</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Этот номер уже зарегистрирован на другом сервере SecureChat (CyanogenMod?). Вам нужно удалить регистрацию там, что бы зарегистрироваться здесь.</string>
+  <!--RegistrationService-->
+  <string name="RegistrationService_registration_complete">Регистрация завершена</string>
+  <string name="RegistrationService_textsecure_registration_has_successfully_completed">Регистрация в SecureChat успешно завершена.</string>
+  <string name="RegistrationService_registration_error">Ошибка регистрации</string>
+  <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">При регистрации в SecureChat возникла ошибка.</string>
+  <!--SmsMessageRecord-->
+  <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Получено повреждённое
+сообщение обмена ключами!
+</string>
+  <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
+Получено сообщение обмена ключами для неверной версии протокола.
+</string>
+  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
+Получено сообщение с неизвестным личным ключом. Нажмите, чтобы обработать и показать его.</string>
+  <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Получены новые, но неизвестные данные о личности. Нажмите, чтобы проверить.</string>
+  <string name="SmsMessageRecord_secure_session_ended">Защищённый сеанс завершён.</string>
+  <string name="SmsMessageRecord_duplicate_message">Дубликат сообщения.</string>
+  <!--ThreadRecord-->
+  <string name="ThreadRecord_left_the_group">Вы покинули группу...</string>
+  <string name="TheadRecord_secure_session_ended">Защищённый сеанс завершён.</string>
+  <string name="ThreadRecord_draft">Черновик:</string>
+  <!--VerifyIdentityActivity-->
+  <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">У вас нет личного ключа.</string>
+  <string name="VerifyIdentityActivity_recipient_has_no_identity_key">У получателя нет личного ключа.</string>
+  <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">У получателя нет личного ключа!</string>
+  <string name="VerifyIdentityActivity_scan_their_key_to_compare">Cканировать ключ собеседника</string>
+  <string name="VerifyIdentityActivity_get_my_key_scanned">Дать сканировать мой ключ</string>
+  <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">ВНИМАНИЕ, просканированный ключ НЕ СОВПАДАЕТ! Внимательно проверьте текст отпечатка.</string>
+  <string name="VerifyIdentityActivity_not_verified_exclamation">НЕ подтверждено!</string>
+  <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Ключ собеседника верен. Также необходимо, чтобы собеседник подтвердил ваш ключ.</string>
+  <string name="VerifyIdentityActivity_verified_exclamation">Подтверждено!</string>
+  <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">У вас нет личного ключа!</string>
+  <!--ViewIdentityActivity-->
+  <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">У вас нет личного ключа.</string>
+  <string name="ViewIdentityActivity_scan_to_compare">Сканировать и сравнить</string>
+  <string name="ViewIdentityActivity_get_scanned_to_compare">Дать сканировать и сравнить</string>
+  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">ВНИМАНИЕ, просканированный ключ НЕ СОВПАДАЕТ!</string>
+  <string name="ViewIdentityActivity_not_verified_exclamation">НЕ подтверждено!</string>
+  <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Просканированный ключ совпадает.</string>
+  <string name="ViewIdentityActivity_verified_exclamation">Подтверждено!</string>
+  <string name="ViewIdentityActivity_my_identity_fingerprint">Мой отпечаток</string>
+  <!--KeyExchangeInitiator-->
+  <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Игнорировать предыдущий запрос?</string>
+  <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Вы уже отправили этому собеседнику запрос на начало сеанса. Вы уверены, что хотите отправить ещё один? Предыдущий будет аннулирован.</string>
+  <string name="KeyExchangeInitiator_send">Отправить</string>
+  <!--MessageDisplayHelper-->
+  <string name="MessageDisplayHelper_bad_encrypted_message">Зашифрованное сообщение испорчено...</string>
+  <string name="MessageDisplayHelper_decrypting_please_wait">Расшифровываем...</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Сообщение зашифровано для несуществующей сессии...</string>
+  <!--EncryptingSmsDatabase-->
+  <string name="EncryptingSmsDatabase_error_decrypting_message">Ошибка при расшифровке сообщения.</string>
+  <!--ThreadDatabase-->
+  <string name="ThreadDatabase_error_decrypting_message">Ошибка при расшифровке сообщения.</string>
+  <!--MmsDatabase-->
+  <string name="MmsDatabase_connecting_to_mms_server">Соединяемся с MMS-сервером...</string>
+  <string name="MmsDatabase_downloading_mms">Скачиваем MMS-сообщение...</string>
+  <string name="MmsDatabase_mms_download_failed">Не удалось скачать MMS-сообщение!</string>
+  <string name="MmsDatabase_downloading">Скачиваем...</string>
+  <string name="MmsDatabase_mms_pending_download">Чтобы продолжить скачивание, нажмите здесь и настройте MMS.</string>
+  <string name="MmsDatabase_error_decrypting_message">Ошибка при расшифровке сообщения.</string>
+  <!--MmsMessageRecord-->
+  <string name="MmsMessageRecord_decrypting_mms_please_wait">Расшифровываем MMS-сообщение...</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">Зашифрованное MMS-сообщение испорчено...</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS-сообщение зашифрованно для несуществующей сессии...</string>
+  <!--ApplicationMigrationService-->
+  <string name="ApplicationMigrationService_import_in_progress">Идёт импорт</string>
+  <string name="ApplicationMigrationService_importing_text_messages">Импорт текстовых сообщений</string>
+  <!--KeyCachingService-->
+  <string name="KeyCachingService_textsecure_passphrase_cached">Нажмите, чтобы открыть.</string>
+  <string name="KeyCachingService_textsecure_passphrase_cached_with_lock">Нажмите, чтобы открыть. Чтобы закрыть, нажмите на замок.</string>
+  <string name="KeyCachingService_passphrase_cached">SecureChat разблокирован</string>
+  <string name="KeyCachingService_lock">Заблокировать парольной фразой</string>
+  <!--MessageNotifier-->
+  <string name="MessageNotifier_d_new_messages">Новых сообщений: %d</string>
+  <string name="MessageNotifier_most_recent_from_s">Последнее — от %s</string>
+  <string name="MessageNotifier_encrypted_message">Зашифрованное сообщение...</string>
+  <string name="MessageNotifier_no_subject">(Нет темы)</string>
+  <string name="MessageNotifier_message_delivery_failed">Сбой доставки сообщения.</string>
+  <string name="MessageNotifier_failed_to_deliver_message">Не удалось доставить сообщение.</string>
+  <string name="MessageNotifier_error_delivering_message">Ошибка при доставке сообщения.</string>
+  <string name="MessageNotifier_mark_all_as_read">Отметить все как прочитанные</string>
+  <string name="MessageNotifier_mark_as_read">Отметить как прочитанное</string>
+  <!--QuickResponseService-->
+  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Извините, SecureChat пока не поддерживает быстрые ответы.</string>
+  <!--auto_initiate_activity-->
+  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Вы получили сообщение от собеседника, поддерживающего зашифрованное общение при помощи SecureChat. Хотите начать защищённый сеанс?</string>
+  <string name="auto_initiate_activity__initiate_exchange">Начать обмен</string>
+  <!--change_passphrase_activity-->
+  <string name="change_passphrase_activity__old_passphrase">СТАРАЯ ПАРОЛЬНАЯ ФРАЗА:</string>
+  <string name="change_passphrase_activity__new_passphrase">НОВАЯ ПАРОЛЬНАЯ ФРАЗА:</string>
+  <string name="change_passphrase_activity__repeat_new_passphrase">ПОВТОРИТЕ НОВУЮ ПАРОЛЬНУЮ ФРАЗУ:</string>
+  <!--contact_selection_group_activity-->
+  <!--contact_selection_list_activity-->
+  <string name="contact_selection_group_activity__no_contacts">Нет контактов.</string>
+  <string name="contact_selection_group_activity__finding_contacts">Загружаем контакты...</string>
+  <!--single_contact_selection_activity-->
+  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">Вы не зарегистрированы в push-службе...</string>
+  <string name="SingleContactSelectionActivity_updating_directory">Обновление каталога</string>
+  <string name="SingleContactSelectionActivity_updating_push_directory">Обновляем push-каталог...</string>
+  <string name="SingleContactSelectionActivity_contact_photo">Фото контактов</string>
+  <!--ContactSelectionListFragment-->
+  <string name="ContactSelectionlistFragment_select_for">Выбрать для</string>
+  <!--contact_selection_recent_activity-->
+  <string name="contact_selection_recent_activity__no_recent_calls">Нет недавних звонков.</string>
+  <!--conversation_activity-->
+  <string name="conversation_activity__type_message_push">Отправить сообщение SecureChat</string>
+  <string name="conversation_activity__type_message_sms_secure">Отправить защищённое SMS</string>
+  <string name="conversation_activity__type_message_sms_insecure">Отправить незащищённое SMS</string>
+  <string name="conversation_activity__type_message_mms_secure">Отправить защищённое MMS</string>
+  <string name="conversation_activity__type_message_mms_insecure">Отправить незащищённое MMS</string>
+  <string name="conversation_activity__send">Отправить</string>
+  <string name="conversation_activity__remove">Удалить</string>
+  <string name="conversation_activity__window_description">Разговор с %1$s</string>
+  <string name="conversation_activity__compose_description">Написание сообщения</string>
+  <string name="conversation_activity__emoji_toggle_description">Клавиатура смайликов</string>
+  <!--conversation_item-->
+  <string name="conversation_item__mms_image_description">MMS-сообщение</string>
+  <string name="conversation_item__play_button_description">Воспроизведение</string>
+  <string name="conversation_item__secure_message_description">Защищённое сообщение</string>
+  <!--conversation_item_sent-->
+  <string name="conversation_item_sent__download">Скачать</string>
+  <string name="conversation_item_sent__downloading">Скачивание</string>
+  <string name="conversation_item_sent__send_failed_indicator_description">Не удалось отправить</string>
+  <string name="conversation_item_sent__pending_approval_description">Ожидается одобрение</string>
+  <string name="conversation_item_sent__delivered_description">Доставлено</string>
+  <!--conversation_item_received-->
+  <string name="conversation_item_received__download">Скачать</string>
+  <string name="conversation_item_received__contact_photo_description">Фотография контакта</string>
+  <string name="conversation_item_received__downloading">Скачивание</string>
+  <!--conversation_fragment_cab-->
+  <string name="conversation_fragment_cab__batch_selection_mode">Выбрать несколько</string>
+  <string name="conversation_fragment_cab__batch_selection_amount">%s выбрано</string>
+  <!--country_selection_fragment-->
+  <string name="country_selection_fragment__loading_countries">Загружаем страны...</string>
+  <string name="country_selection_fragment__search">Поиск</string>
+  <!--log_submit_activity-->
+  <string name="log_submit_activity__log_fetch_failed">Не удается получить лог с вашего устройства. Вы можете воспользоваться для этого ADB.</string>
+  <string name="log_submit_activity__thanks">Спасибо за помощь!</string>
+  <string name="log_submit_activity__submitting">Отправка</string>
+  <string name="log_submit_activity__posting_logs">Отправляем логи на gist...</string>
+  <!--database_migration_activity-->
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Хотите ли вы импортировать имеющиеся текстовые сообщения в зашифрованную базу данных SecureChat?</string>
+  <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Cистемная база данных изменена не будет.</string>
+  <string name="database_migration_activity__skip">Пропустить</string>
+  <string name="database_migration_activity__import">Импортировать</string>
+  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Это может занять какое-то время. Пожалуйста, наберитесь терпения, мы вам сообщим, когда импортирование завершится.</string>
+  <string name="database_migration_activity__importing">ИМПОРТИРОВАНИЕ</string>
+  <!--database_upgrade_activity-->
+  <string name="database_upgrade_activity__updating_database">Обновляем базу данных...</string>
+  <string name="export_fragment__export_plaintext_backup">Экспорт простой резервной копии.</string>
+  <string name="export_fragment__export_a_plaintext_backup_compatible_with">
+Экспортировать на SD-карту простую резервную копию, совместимую с приложением «SMSBackup And Restore».</string>
+  <string name="import_fragment__import_system_sms_database">Импорт системной базы SMS</string>
+  <string name="import_fragment__import_the_database_from_the_default_system">Импортировать сообщения из базы данных SMS-приложения, которое используется сейчас по умолчанию.</string>
+  <string name="import_fragment__import_encrypted_backup">Импорт зашифрованной резервной копии</string>
+  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">
+Восстановить из ранее экспортированной зашифрованной резервной копии SecureChat.</string>
+  <string name="import_fragment__import_plaintext_backup">Импорт простой резервной копии</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">
+Импортировать из простой резервной копии. Совместимо с приложением «SMSBackup And Restore».</string>
+  <!--MmsPreferencesFragment-->
+  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Для вашего телефона необходимо настроить MMS вручную.</string>
+  <string name="MmsPreferencesFragment__enabled">Включено</string>
+  <string name="MmsPreferencesFragment__disabled">Отключено</string>
+  <string name="MmsPreferencesFragment__not_set">Не настроен</string>
+  <string name="MmsPreferencesFragment__invalid_uri">Введён неверный адрес</string>
+  <string name="MmsPreferencesFragment__invalid_host">Введён неверный адрес хоста</string>
+  <!--GroupUtil-->
+  <string name="GroupUtil_joined_the_group">%1$s присоединился к группе.</string>
+  <string name="GroupUtil_group_updated">Группа обновлена.</string>
+  <string name="GroupUtil_title_is_now">Заголовок изменён на \'%1$s\'.</string>
+  <!--prompt_passphrase_activity-->
+  <string name="prompt_passphrase_activity__unlock">Открыть</string>
+  <!--prompt_mms_activity-->
+  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">Приложению SecureChat необходимо знать настройки MMS вашего сотового оператора, чтобы отправлять и получать мультимедийные и групповые сообщения. Ваше устройство не даёт доступа к этой информации — так иногда бывает, если в телефоне запрещена смена SIM-карты и в некоторых иных случаях.</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Чтобы отправлять мультимедийные и групповые сообщения, нажмите «ОК» и настройте MMS. Это нужно сделать только один раз. Настройки для вашего оператора можно узнать в службе техподдержки или в интернете по запросу «ваш оператор APN».</string>
+  <!--receive_key_activity-->
+  <string name="receive_key_activity__complete">Выполнить</string>
+  <!--registration_activity-->
+  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
+Регистрация бесплатна и повышает безопасность при общении с другими пользователями SecureChat. Пожалуйста, подтвердите ваш номер телефона.</string>
+  <string name="registration_activity__your_country">ВАША СТРАНА</string>
+  <string name="registration_activity__your_country_code_and_phone_number">КОД ВАШЕЙ СТРАНЫ
+И НОМЕР ТЕЛЕФОНА</string>
+  <string name="registration_activity__phone_number">НОМЕР ТЕЛЕФОНА</string>
+  <string name="registration_activity__register">Зарегистрироваться</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">При регистрации на сервер передаётся некоторая контактная информация. Она не будет на нём сохранена.</string>
+  <string name="registration_activity__skip">Пропустить</string>
+  <!--registration_problems-->
+  <string name="registration_problems__some_possible_problems_include">Возможные причины:</string>
+  <string name="registration_problems__sms_interceptors">Обработчики SMS</string>
+  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
+Некоторые SMS-приложения сторонних разработчиков (например, Handcent или GoSMS) ведут себя неправильно и перехватывают все входящие SMS-сообщения. Проверьте, не получали ли вы сообщение, начинающееся со слов «Your SecureChat verification code». Если да, то вам необходимо настроить ваше SMS-приложение так, чтобы оно пропускало сообщения дальше. </string>
+  <string name="registration_problems__incorrect_number">Неверный номер.</string>
+  <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
+Пожалуйста, убедитесь, правильно ли вы указали свой номер и соответствует ли его формат
+вашему региону.
+</string>
+  <string name="registration_problems__google_voice">Google Voice.</string>
+  <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">
+SecureChat не работает с номерами Google Voice.</string>
+  <!--registration_progress_activity-->
+  <string name="registration_progress_activity__voice_verification">Голосовая проверка</string>
+  <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">
+Для проверки вашего номера SecureChat также может вам позвонить. Нажмите «Позвонить мне», дождитесь звонка и введите ниже шесть цифр, которые вы услышите.</string>
+  <string name="registration_progress_activity__verify">Проверить</string>
+  <string name="registration_progress_activity__call_me">Позвонить мне</string>
+  <string name="registration_progress_activity__edit_number">Изменить номер</string>
+  <string name="registration_progress_activity__connectivity_error">Ошибка связи.</string>
+  <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">
+SecureChat не смог соединиться с push-службой.</string>
+  <string name="registration_progress_activity__some_possible_problems_include">Возможные 
+причины:
+</string>
+  <string name="registration_progress_activity__no_network_connectivity">Нет соединения 
+с интернетом.
+</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">Для использования этой функции SecureChat необходимо подключение к интернету. Убедитесь, что ваше устройство подключено к 3G или Wi-Fi.</string>
+  <string name="registration_progress_activity__restrictive_firewall">Ограничения брандмауэра.
+</string>
+  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
+Если вы подключены по Wi-Fi, возможно, в сети имеется брандмауэр, который блокирует доступ к серверу SecureChat. Попробуйте воспользоваться другой беспроводной сетью либо мобильным интернетом.</string>
+  <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
+Сейчас SecureChat автоматически проверит ваш номер телефона при помощи SMS-сообщения.
+</string>
+  <string name="registration_progress_activity__connecting">Соединяемся...</string>
+  <string name="registration_progress_activity__waiting_for_sms_verification">Ожидаем
+SMS-подтверждения...
+</string>
+  <string name="registration_progress_activity__registering_with_server">Регистрируемся на сервере...</string>
+  <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Это может занять некоторое время. Пожалуйста, подождите. Мы сообщим вам, когда процесс подтверждения будет завершен.
+</string>
+  <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">
+Истекло время ожидания SMS-сообщения для подтверждения вашего номера.
+</string>
+  <string name="registration_progress_activity__sms_verification_failed">Подтверждение
+по SMS не удалось.
+</string>
+  <string name="registration_progress_activity__generating_keys">Генерируем ключи...</string>
+  <!--recipients_panel-->
+  <string name="recipients_panel__to"><small>Введите имя или номер</small></string>
+  <string name="recipients_panel__add_member">Добавить участника</string>
+  <!--verify_identity_activity-->
+  <string name="verify_identity_activity__their_identity_they_read">Личность собеседника (он читает):</string>
+  <string name="verify_identity_activity__your_identity_you_read">Ваша личность (вы читаете):</string>
+  <!--AndroidManifest.xml-->
+  <string name="AndroidManifest__create_passphrase">Создать парольную фразу</string>
+  <string name="AndroidManifest__enter_passphrase">Введите парольную фразу</string>
+  <string name="AndroidManifest__select_contacts">Выбрать контакты</string>
+  <string name="AndroidManifest__textsecure_detected">Обнаружен SecureChat</string>
+  <string name="AndroidManifest__public_identity_key">Публичный ключ</string>
+  <string name="AndroidManifest__change_passphrase">Изменить парольную фразу</string>
+  <string name="AndroidManifest__verify_identity">Подтвердить личность</string>
+  <string name="AndroidManifest__complete_key_exchange">Выполнить обмен ключами</string>
+  <string name="AndroidManifest__log_submit">Отправлять отладочные логи</string>
+  <string name="AndroidManifest__media_preview">Предпросмотр</string>
+  <!--arrays.xml-->
+  <string name="arrays__import_export">Импорт / экспорт</string>
+  <string name="arrays__my_identity_key">Мой личный ключ</string>
+  <!--preferences.xml-->
+  <string name="preferences__general">Общие</string>
+  <string name="preferences__sms_mms">SMS и MMS</string>
+  <string name="preferences__push_sms_category">Push и SMS</string>
+  <string name="preferences__pref_all_sms_title">Получать все SMS</string>
+  <string name="preferences__pref_all_mms_title">Получать все MMS</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Использовать SecureChat для просмотра и хранения всех входящих текстовых сообщений</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Использовать SecureChat для просмотра и хранения всех входящих мультимедийных сообщений</string>
+  <string name="preferences__input_settings">Настройки ввода</string>
+  <string name="preferences__enable_enter_key_title">Включить клавишу «Ввод»</string>
+  <string name="preferences__replace_smiley_with_enter_key">Заменить клавишу смайликов на «Ввод»</string>
+  <string name="preferences__pref_enter_sends_title">Отправка клавишей «Ввод»</string>
+  <string name="preferences__pressing_the_enter_key_will_send_text_messages">Нажатие клавиши ввода будет отправлять текстовые сообщения</string>
+  <string name="preferences__display_settings">Внешний вид</string>
+  <string name="preferences__choose_identity">Выберите личность</string>
+  <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Выберите себя из списка контактов.</string>
+  <string name="preferences__change_passphrase">Изменить парольную фразу</string>
+  <string name="preferences__change_my_passphrase">Изменить мою парольную фразу</string>
+  <string name="preferences__complete_key_exchanges">Выполнять обмены ключами</string>
+  <string name="preferences__enable_passphrase">Включить парольную фразу</string>
+  <string name="preferences__enable_local_encryption_of_messages_and_keys">Включить шифрование при хранении сообщений и ключей</string>
+  <string name="preferences__screen_security">Защита экрана</string>
+  <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Автоматически выполнять обмен ключами в новых сеансах, а также в существующих сеансах с не изменившимся личным ключом</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">Блокировать снимки экрана внутри приложения</string>
+  <string name="preferences__forget_passphrase_from_memory_after_some_interval">Стирать из памяти парольную фразу через некоторое время</string>
+  <string name="preferences__timeout_passphrase">Забывать парольную фразу</string>
+  <string name="preferences__pref_timeout_interval_dialogtitle">Выберите срок хранения парольной фразы</string>
+  <string name="preferences__pref_timeout_interval_title">Срок хранения</string>
+  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Время, по прошествии которого парольная фраза будет стёрта из памяти</string>
+  <string name="preferences__notifications">Уведомления</string>
+  <string name="preferences__display_message_notifications_in_status_bar">Показывать уведомления о сообщениях в статусной строке</string>
+  <string name="preferences__led_color">Цвет светодиода</string>
+  <string name="preferences__led_color_unknown">Неизвестен</string>
+  <string name="preferences__pref_led_blink_title">Мигание светодиода</string>
+  <string name="preferences__pref_led_blink_custom_pattern_title">Настроить мигание светодиода</string>
+  <string name="preferences__pref_led_blink_custom_pattern_on_for">Включён</string>
+  <string name="preferences__pref_led_blink_custom_pattern_off_for">Выключен</string>
+  <string name="preferences__pref_led_blink_custom_pattern_set">Мигание светодиода настроено!</string>
+  <string name="preferences__sound">Мелодия</string>
+  <string name="preferences__change_notification_sound">Изменить мелодию уведомления</string>
+  <string name="preferences__inthread_notifications">Уведомления при разговоре</string>
+  <string name="preferences__play_inthread_notifications">Проигрывать мелодию уведомления даже во время активной переписки</string>
+  <string name="preferences__vibrate">Вибрация</string>
+  <string name="preferences__also_vibrate_when_notified">Вибрировать при уведомлении</string>
+  <string name="preferences__minutes">мин.</string>
+  <string name="preferences__hours">час.</string>
+  <string name="preferences__green">Зелёный</string>
+  <string name="preferences__red">Красный</string>
+  <string name="preferences__blue">Синий</string>
+  <string name="preferences__orange">Оранжевый</string>
+  <string name="preferences__cyan">Голубой</string>
+  <string name="preferences__magenta">Пурпурный</string>
+  <string name="preferences__white">Белый</string>
+  <string name="preferences__none">Нет</string>
+  <string name="preferences__fast">Быстро</string>
+  <string name="preferences__normal">Средне</string>
+  <string name="preferences__slow">Медленно</string>
+  <string name="preferences__custom">Настроить...</string>
+  <string name="preferences__advanced">Расширенные</string>
+  <string name="preferences__app_protection">Защита приложения</string>
+  <string name="preferences__advanced_mms_access_point_names">Ручные настройки MMS</string>
+  <string name="preferences__enable_manual_mms">Использовать ручные настройки MMS</string>
+  <string name="preferences__override_system_mms_settings">Использовать вместо системных настроек MMS указанную ниже информацию.</string>
+  <string name="preferences__mmsc_url_required">Адрес MMS-центра (обязательно)</string>
+  <string name="preferences__mms_proxy_host_optional">Адрес прокси для MMS (необязательно)</string>
+  <string name="preferences__mms_proxy_port_optional">Порт прокси для MMS (необязательно)</string>
+  <string name="preferences__mmsc_username_optional">Имя пользователя MMSC (необязательно)</string>
+  <string name="preferences__mmsc_password_optional">Пароль MMSC (необязательно)</string>
+  <string name="preferences__sms_delivery_reports">Отчеты о доставке SMS</string>
+  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Запрашивать отчёт о доставке каждого отправленного SMS-сообщения</string>
+  <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Автоматически удалять старые сообщения, когда длина разговора превышает заданную</string>
+  <string name="preferences__delete_old_messages">Удалить старые сообщения</string>
+  <string name="preferences__conversation_length_limit">Ограничение длины разговора</string>
+  <string name="preferences__trim_all_threads_now">Обрезать все разговоры</string>
+  <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Привести длину всех разговоров в соответствие с заданной</string>
+  <string name="preferences__light_theme">Светлая</string>
+  <string name="preferences__dark_theme">Тёмная</string>
+  <string name="preferences__appearance">Внешний вид</string>
+  <string name="preferences__theme">Тема</string>
+  <string name="preferences__default">По умолчанию</string>
+  <string name="preferences__language">Язык (Language)</string>
+  <string name="preferences__make_default_sms_app">SMS-приложение по умолчанию</string>
+  <string name="preferences__make_textsecure_the_default_sms_mms_app">Сделать SecureChat приложением по умолчанию для SMS и MMS.</string>
+  <string name="preferences__use_data_channel">Push-сообщения</string>
+  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
+Повысить безопасность и снизить расходы на SMS, используя передачу данных при общении с другими пользователями SecureChat</string>
+  <string name="preferences__sms_fallback">Исходящие SMS/MMS</string>
+  <string name="preferences__submit_debug_log">Отправлять лог отладки</string>
+  <string name="preferences__sms_outgoing_push_users">Пользователи SecureChat</string>
+  <string name="preferences__sms_fallback_push_users_ask">сначала спросить</string>
+  <string name="preferences__sms_fallback_push_users_no_mms">кроме MMS</string>
+  <string name="preferences__sms_outgoing_push_users_description">Отправлять защищённые SMS, если нет интернета</string>
+  <string name="preferences__sms_fallback_ask_before_sending_sms_mms">Спросить перед отправкой SMS/MMS</string>
+  <string name="preferences__sms_fallback_never_send_mms">Никогда не отправлять MMS</string>
+  <string name="preferences__sms_fallback_non_push_users">Пользователи без SecureChat</string>
+  <string name="preferences__sms_fallback_nobody">Никто</string>
+  <string name="preferences__support_wifi_calling">Режим совместимости с WiFi-звонками</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Включите, если ваше устройство отправляет и принимает SMS/MMS через WiFi (и если WiFi-звонки включены)</string>
+  <!--****************************************-->
+  <!--menus-->
+  <!--****************************************-->
+  <!--contact_selection_list-->
+  <string name="contact_selection_list__menu_select_all">Выбрать все</string>
+  <string name="contact_selection_list__menu_unselect_all">Снять выделение</string>
+  <string name="contact_selection_list__header_textsecure_users">ПОЛЬЗОВАТЕЛИ SECURECHAT</string>
+  <string name="contact_selection_list__header_other">ВСЕ КОНТАКТЫ</string>
+  <string name="contact_selection_list__unknown_contact">Новое сообщение для...</string>
+  <!--contact_selection-->
+  <string name="contact_selection__menu_finished">Закончено</string>
+  <!--refreshing push directory from menu-->
+  <string name="push_directory__menu_refresh">Обновить контакты</string>
+  <!--conversation_button_context-->
+  <string name="conversation_button_context__send_textsecure_message">Отправить сообщение SecureChat</string>
+  <string name="conversation_button_context__send_secure_sms">Отправить защищённое SMS</string>
+  <string name="conversation_button_context__send_insecure_sms">Отправить незащищенное SMS</string>
+  <string name="conversation_button_context__send_secure_mms">Отправить защищённое MMS</string>
+  <string name="conversation_button_context__send_insecure_mms">Отправить незащищённое MMS</string>
+  <!--conversation_callable-->
+  <string name="conversation_callable__menu_call">Звонок</string>
+  <!--conversation_context-->
+  <string name="conversation_context__menu_message_details">Подробности</string>
+  <string name="conversation_context__menu_copy_text">Копировать текст</string>
+  <string name="conversation_context__menu_delete_message">Удалить сообщение</string>
+  <string name="conversation_context__menu_forward_message">Переслать сообщение</string>
+  <string name="conversation_context__menu_resend_message">Отправить заново</string>
+  <!--conversation_context_image-->
+  <string name="conversation_context_image__save_attachment">Сохранить вложение</string>
+  <!--conversation_insecure_no_push-->
+  <string name="conversation_insecure__menu_start_secure_session">Начать защищённый сеанс</string>
+  <!--conversation_list_batch-->
+  <string name="conversation_list_batch__menu_delete_selected">Удалить выбранное</string>
+  <string name="conversation_list_batch__menu_select_all">Выбрать все</string>
+  <!--conversation_list-->
+  <string name="conversation_list__menu_search">Поиск</string>
+  <!--conversation_secure_verified-->
+  <string name="conversation_secure_verified__menu_security">Безопасность</string>
+  <string name="conversation_secure_verified__menu_verify_identity">Подтвердить личность</string>
+  <string name="conversation_secure_verified__menu_abort_secure_session">Завершить защищённый сеанс</string>
+  <!--conversation-->
+  <string name="conversation__menu_add_attachment">Добавить вложение</string>
+  <string name="conversation__menu_update_group">Обновить группу</string>
+  <string name="conversation__menu_leave_group">Покинуть группу</string>
+  <string name="conversation__menu_delete_thread">Удалить разговор</string>
+  <!--conversation_callable-->
+  <string name="conversation_add_to_contacts__menu_add_to_contacts">Добавить в контакты</string>
+  <!--conversation_group_options-->
+  <string name="convesation_group_options__recipients_list">Список получателей</string>
+  <string name="conversation_group_options__delivery">Доставка</string>
+  <string name="conversation_group_options__conversation">Разговор</string>
+  <string name="conversation_group_options__broadcast">Вещание</string>
+  <!--key_scanning-->
+  <string name="key_scanning__menu_compare">Сравнить</string>
+  <string name="key_scanning__menu_get_scanned_to_compare">Дать сканировать для сравнения</string>
+  <string name="key_scanning__menu_scan_to_compare">Сканировать для сравнения</string>
+  <!--text_secure_normal-->
+  <string name="text_secure_normal__menu_new_message">Новое сообщение</string>
+  <string name="text_secure_normal__menu_new_group">Новая группа</string>
+  <string name="text_secure_normal__menu_settings">Настройки</string>
+  <string name="text_secure_normal__menu_clear_passphrase">Заблокировать</string>
+  <string name="text_secure_normal__mark_all_as_read">Отметить все как прочитанные</string>
+  <!--reminder_header-->
+  <string name="reminder_header_sms_default_title">Использовать как SMS-приложение по умолчанию?</string>
+  <string name="reminder_header_sms_default_text">SecureChat сейчас не используется как ваше SMS-приложение по умолчанию</string>
+  <string name="reminder_header_sms_import_title">Импортировать SMS из системы?</string>
+  <string name="reminder_header_sms_import_text">SecureChat может скопировать SMS из вашего телефона в свою зашифрованную базу.</string>
+  <string name="reminder_header_push_title">Включить общение через SecureChat?</string>
+  <string name="reminder_header_push_text">Мгновенная доставка, защита приватности и никакой платы за SMS.</string>
+  <!--MediaPreviewActivity-->
+  <string name="MediaPreviewActivity_you">Вы</string>
+  <string name="MediaPreviewActivity_cant_display">Не удалось просмотреть это изобажение</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">Тип медиа-файла не поддерживается</string>
+  <!--media_preview-->
+  <string name="media_preview__save_title">Сохранить</string>
+  <!--media_preview_activity-->
+  <string name="media_preview_activity__image_content_description">Предпросмотр</string>
+  <!--Trimmer-->
+  <string name="trimmer__deleting">Удаляем...</string>
+  <string name="trimmer__deleting_old_messages">Удаляем старые сообщения</string>
+  <string name="trimmer__old_messages_successfully_deleted">Старые сообщения успешно удалены</string>
+  <!--EOF-->
+</resources>

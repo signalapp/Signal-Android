@@ -1,0 +1,749 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="app_name">SecureChat</string>
+  <string name="yes">Sí</string>
+  <string name="no">No</string>
+  <string name="delete">Borrar</string>
+  <string name="please_wait">Por favor espere...</string>
+  <!--ApplicationPreferencesActivity-->
+  <string name="ApplicationPreferencesActivity_currently_s">Actualmente: %s</string>
+  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">¡No ha elegido aún una frase de contraseña!</string>
+  <string name="ApplicationPreferencesActivity_messages_per_conversation">%s mensajes por conversación</string>
+  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">¿Eliminar todos los mensajes viejos ahora?</string>
+  <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">¿Estás seguro de que te gustaría recortar inmediatamente todos los hilos de conversación a los %s últimos mensajes?</string>
+  <string name="ApplicationPreferencesActivity_delete">Eliminar</string>
+  <string name="ApplicationPreferencesActivity_disable_storage_encryption">¿Deshabilitar cifrado del almacenamiento?</string>
+  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
+        Atención, esto deshabilitará el cifrado del almacenamiento para todos los mensajes y claves. Sus sesiones cifradas
+        funcionarán pero cualquiera con acceso físico a su dispositivo podrá acceder a ellas.
+    </string>
+  <string name="ApplicationPreferencesActivity_disable">Desactivar</string>
+  <string name="ApplicationPreferencesActivity_unregistering">Cancelando registro...</string>
+  <string name="ApplicationPreferencesActivity_unregistering_for_data_based_communication">Cancelando registro para comunicación basada en datos</string>
+  <string name="ApplicationPreferencesActivity_disable_push_messages">¿Deshabilitar mensajes de datos activos (push)?</string>
+  <string name="ApplicationPreferencesActivity_this_will_disable_push_messages">
+Esto deshabilitará los mensajes de datos activos (push) desregistrándole del servidor 
+Tendrá que volver a registrar su número de teléfono para utilizar los mensajes activos de nuevo en el futuro.
+    </string>
+  <string name="ApplicationPreferencesActivity_error_connecting_to_server">¡Error conectando al servidor!</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">SMS entrantes habilitados</string>
+  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Pulse para cambiar la aplicación de SMS predeterminada</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">SMS entrantes deshabilitados</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Pulse para que SecureChat sea su aplicación de SMS predeterminada</string>
+  <string name="ApplicationPreferencesActivity_on">activo</string>
+  <string name="ApplicationPreferencesActivity_On">Activo</string>
+  <string name="ApplicationPreferencesActivity_off">inactivo</string>
+  <string name="ApplicationPreferencesActivity_Off">Inactivo</string>
+  <string name="ApplicationPreferencesActivity_partial">parcial</string>
+  <string name="ApplicationPreferencesActivity_sms">SMS</string>
+  <string name="ApplicationPreferencesActivity_mms">MMS</string>
+  <string name="ApplicationPreferencesActivity_incoming_sms">Entrante</string>
+  <string name="ApplicationPreferencesActivity_outgoing_sms">saliente</string>
+  <!--AppProtectionPreferenceFragment-->
+  <string name="AppProtectionPreferenceFragment_minutes">%d minutos</string>
+  <!--DraftDatabase-->
+  <string name="DraftDatabase_Draft_image_snippet">(imagen)</string>
+  <string name="DraftDatabase_Draft_audio_snippet">(audio)</string>
+  <string name="DraftDatabase_Draft_video_snippet">(vídeo)</string>
+  <!--AttchmentManager-->
+  <string name="AttachmentManager_cant_open_media_selection">No se pudo encontrar una aplicación para el medio seleccionado.</string>
+  <!--AttachmentTypeSelectorAdapter-->
+  <string name="AttachmentTypeSelectorAdapter_picture">Fotografía</string>
+  <string name="AttachmentTypeSelectorAdapter_video">Vídeo</string>
+  <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
+  <string name="AttachmentTypeSelectorAdapter_contact">Información de contacto</string>
+  <!--ConversationItem-->
+  <string name="ConversationItem_message_size_d_kb">Tamaño del mensaje: %d KB</string>
+  <string name="ConversationItem_expires_s">Expira: %s</string>
+  <string name="ConversationItem_error_sending_message">Error al enviar el mensaje</string>
+  <string name="ConversationItem_view_secure_media_question">¿Ver archivos de medios seguros?</string>
+  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Este archivo ha sido guardado en una base de datos cifrada. Desafortunadamente, para verlo con un visor de contenido externo se requiere que los datos sean descifrados temporalmente y escritos al disco. ¿Está seguro de que desea hacer esto?</string>
+  <string name="ConversationItem_error_received_stale_key_exchange_message">Error, recibió un mensaje de intercambio de claves expirado.</string>
+  <string name="ConversationItem_received_key_exchange_message_click_to_process">Ha recibido un mensaje de intercambio de claves, haga clic para proceder.</string>
+  <string name="ConversationItem_group_action_left">%1$s ha abandonado el grupo.</string>
+  <string name="ConversationItem_click_to_approve_sms">Pulse para recurrir al SMS</string>
+  <string name="ConversationItem_click_to_approve_mms">Pulse para recurrir al MMS</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">Pulse para cambiar a no cifrado</string>
+  <string name="ConversationItem_click_to_approve_sms_dialog_title">¿Recurrir al SMS?</string>
+  <string name="ConversationItem_click_to_approve_mms_dialog_title">¿Recurrir al MMS?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">¿Recurrir a SMS no cifrado?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">¿Recurir al MMS cifrado?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Este mensaje <b>no</b> será cifrado porque no se pudo establecer una sesión segura.\n\n¿Enviar mensaje no seguro?</string>
+  <string name="ConversationItem_unable_to_open_media">No se pudo encontrar una aplicación capaz de abrir este contenido.</string>
+  <!--ConversationActivity-->
+  <string name="ConversationActivity_initiate_secure_session_question">¿Iniciar sesión segura?</string>
+  <string name="ConversationActivity_initiate_secure_session_with_s_question">¿Iniciar sesión segura con %s?</string>
+  <string name="ConversationActivity_abort_secure_session_confirmation">Confirmación de finalización de sesión segura</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">¿Está seguro de que desea finalizar esta sesión segura?</string>
+  <string name="ConversationActivity_delete_thread_confirmation">Confirmación de borrado del hilo</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">¿Está seguro de que desea borrar esta conversación permanentemente?</string>
+  <string name="ConversationActivity_add_attachment">Añadir archivo adjunto</string>
+  <string name="ConversationActivity_select_contact_info">Seleccionar información de contacto</string>
+  <string name="ConversationActivity_compose_message">Componer mensaje</string>
+  <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Lo sentimos, hubo un error en su archivo adjunto.</string>
+  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Lo sentimos, el vídeo seleccionado excede las restricciones de tamaño del mensaje (%1$skB).</string>
+  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Lo sentimos, el audio seleccionado excede las restricciones de tamaño del mensaje (%1$skB).</string>
+  <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">El destinatario no es un SMS o correo electrónico válido</string>
+  <string name="ConversationActivity_message_is_empty_exclamation">¡El mensaje está vacío!</string>
+  <string name="ConversationActivity_group_conversation_recipients">Receptores de conversación de grupo</string>
+  <string name="ConversationActivity_group_conversation">Conversación de grupo</string>
+  <string name="ConversationActivity_unnamed_group">Grupo sin nombre</string>
+  <string name="ConversationActivity_d_recipients_in_group">%d miembros</string>
+  <string name="ConversationActivity_d_recipients_in_group_singular">1 miembro</string>
+  <string name="ConversationActivity_saved_draft">Guardar borrador</string>
+  <string name="ConversationActivity_invalid_recipient">Receptor inválido!</string>
+  <string name="ConversationActivity_calls_not_supported">Llamadas no soportadas</string>
+  <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Este dispositivo no es compatible con la función de realizar llamadas.</string>
+  <string name="ConversationActivity_leave_group">¿Abandonar grupo?</string>
+  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">¿Está seguro de que quiere dejar este grupo?</string>
+  <string name="ConversationActivity_transport_insecure_sms">SMS no seguro</string>
+  <string name="ConversationActivity_transport_insecure_mms">MMS no seguro</string>
+  <string name="ConversationActivity_transport_secure_sms">SMS seguro</string>
+  <string name="ConversationActivity_transport_secure_mms">MMS seguro</string>
+  <string name="ConversationActivity_transport_textsecure">SecureChat</string>
+  <string name="ConversationActivity_get_with_it">Hágase con él: %s</string>
+  <string name="ConversationActivity_install_textsecure">Instale SecureChat: %s</string>
+  <string name="ConversationActivity_error_leaving_group">Error al dejar el grupo...</string>
+  <!--ConversationFragment-->
+  <string name="ConversationFragment_message_details">Detalles del mensaje</string>
+  <string name="ConversationFragment_transport_s_sent_received_s">Transporte: %1$s
+Enviado/Recibido: %2$s</string>
+  <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Emisor: %1$s
+Transporte: %2$s
+Enviado: %3$s
+Recibido:%4$s</string>
+  <string name="ConversationFragment_confirm_message_delete">Confirmar borrado de mensaje</string>
+  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">¿Está seguro/a de que quiere borrar permanentemente todos los mensajes seleccionados?</string>
+  <string name="ConversationFragment_save_to_sd_card">¿Guardar en el almacenamiento?</string>
+  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Guardar este contenido en el almacenamiento permitirá acceder a él a cualquier otra aplicación en su teléfono.\n\n¿Continuar?</string>
+  <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">¡Error al guardar adjunto en el almacenamiento!</string>
+  <string name="ConversationFragment_success_exclamation">¡Completado!</string>
+  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">¡No se pudo escribir en el almacenamiento!</string>
+  <string name="ConversationFragment_saving_attachment">Guardando adjunto</string>
+  <string name="ConversationFragment_saving_attachment_to_sd_card">Guardando adjunto en el almacenamiento...</string>
+  <string name="ConversationFragment_pending">PENDIENTE</string>
+  <string name="ConversationFragment_push">DATOS ACTIVOS (PUSH)</string>
+  <string name="ConversationFragment_mms">MMS</string>
+  <string name="ConversationFragment_sms">SMS</string>
+  <string name="ConversationFragment_deleting">Borrando...</string>
+  <string name="ConversationFragment_deleting_messages">Borrando mensajes...</string>
+  <!--ConversationListFragment-->
+  <string name="ConversationListFragment_delete_threads_question">¿Borrar las conversaciones?</string>
+  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">¿Está seguro de que quiere borrar TODAS las conversaciones seleccionadas?</string>
+  <string name="ConversationListFragment_deleting">Eliminando</string>
+  <string name="ConversationListFragment_deleting_selected_threads">Eliminando hilos seleccionados...</string>
+  <!--ConversationListItem-->
+  <string name="ConversationListItem_key_exchange_message">Mensaje de intercambio de claves...</string>
+  <!--ShareActivity-->
+  <string name="ShareActivity_share_with">Compartir con</string>
+  <!--ExportFragment-->
+  <string name="ExportFragment_export">Exportar</string>
+  <string name="ExportFragment_export_plaintext_to_sd_card">¿Exportar texto simple a la tarjeta SD?</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Atención, esto
+        exportará sus mensajes en claro desde SecureChat a la tarjeta SD.
+    </string>
+  <string name="ExportFragment_cancel">Cancelar</string>
+  <string name="ExportFragment_exporting">Exportando</string>
+  <string name="ExportFragment_exporting_plaintext_to_sd_card">Exportando texto sin cifrar a la tarjeta SD....</string>
+  <string name="ExportFragment_error_unable_to_write_to_sd_card">Error, ¡no se pudo escribir en la tarjeta SD!
+     
+    </string>
+  <string name="ExportFragment_error_while_writing_to_sd_card">Se produjo un error al escribir en la tarjeta SD.
+    </string>
+  <string name="ExportFragment_success">¡Éxito!</string>
+  <!--GcmRefreshJob-->
+  <string name="GcmRefreshJob_Permanent_TextSecure_communication_failure">¡Fallo permanente de comunicación de SecureChat!</string>
+  <string name="GcmRefreshJob_TextSecure_was_unable_to_register_with_Google_Play_Services">SecureChat no pudo registrarse con los Servicios de Google Play. La comunicación sobre el canal de datos ha sido deshabilitada, por favor intente registrarse de nuevo desde el menú de configuración de SecureChat.</string>
+  <!--GroupCreateActivity-->
+  <string name="GroupCreateActivity_actionbar_title">Nuevo grupo</string>
+  <string name="GroupCreateActivity_actionbar_update_title">Actualizar grupo</string>
+  <string name="GroupCreateActivity_group_name_hint">Nombre del grupo</string>
+  <string name="GroupCreateActivity_actionbar_mms_title">Nuevo grupo de MMS</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Ha seleccionado un contacto que no soporta grupos SecureChat, así que este grupo será de MMS (mensajería multimedia).</string>
+  <string name="GroupCreateActivity_you_dont_support_push">No está registrado para usar el canal de datos, así que tiene los grupos SecureChat deshabilitados.</string>
+  <string name="GroupCreateActivity_contacts_mms_exception">Ocurrió un error inesperado que ha hecho fallar la creación del grupo.</string>
+  <string name="GroupCreateActivity_contacts_no_members">¡Necesita al menos una persona en su grupo!</string>
+  <string name="GroupCreateActivity_contacts_invalid_number">Uno de los miembros de su grupo tiene un número que no puede ser leído correctamente. Por favor arréglelo o elimine ese contacto, e inténtelo de nuevo.</string>
+  <string name="GroupCreateActivity_avatar_content_description">Avatar del grupo</string>
+  <string name="GroupCreateActivity_menu_create_title">Crear grupo</string>
+  <string name="GroupCreateActivity_creating_group">Creando %1$s…</string>
+  <string name="GroupCreateActivity_updating_group">Actualizando %1$s...</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">No se pudieron añadir contactos no-SecureChat a un grupo SecureChat existente</string>
+  <string name="GroupCreateActivity_loading_group_details">Cargando detalles de grupo...</string>
+  <!--GroupMembersDialog-->
+  <string name="GroupMembersDialog_me">Yo</string>
+  <string name="GroupMembersDialog_members">Miembros...</string>
+  <!--ImportExportActivity-->
+  <string name="ImportExportActivity_import">Importar</string>
+  <string name="ImportExportActivity_export">Exportar</string>
+  <!--ImportFragment-->
+  <string name="ImportFragment_import_system_sms_database">¿Importar base de datos de SMS del sistema?</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">Esto importará
+        los mensajes desde la base de datos de SMS del sistema a SecureChat. Si la ha importado
+        anteriormente, obtendrá mensajes duplicados.
+    </string>
+  <string name="ImportFragment_import">Importar</string>
+  <string name="ImportFragment_cancel">Cancelar</string>
+  <string name="ImportFragment_restore_encrypted_backup">¿Restaurar copia de seguridad cifrada?</string>
+  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
+        Restaurar una copia de seguridad cifrada reemplazará completamente sus claves, preferencias y
+        mensajes. Perderá cualquier información que se encuentre en su instalación actual de SecureChat pero no
+       en la copia de seguridad.
+    </string>
+  <string name="ImportFragment_restore">Restaurar</string>
+  <string name="ImportFragment_import_plaintext_backup">¿Importar copia de seguridad en texto simple?</string>
+  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Esto importará
+mensajes desde una copia de respaldo en texto plano. Si ha importado previamente esta copia de respaldo,
+importarla de nuevo dará como resultado mensajes duplicados.</string>
+  <string name="ImportFragment_importing">Importando</string>
+  <string name="ImportFragment_import_plaintext_backup_elipse">Importando copia de seguridad de mensajes en claro...</string>
+  <string name="ImportFragment_no_plaintext_backup_found">¡No se encontró una copia de seguridad de los mensajes en claro!</string>
+  <string name="ImportFragment_error_importing_backup">¡Error importando copia de seguridad!</string>
+  <string name="ImportFragment_import_complete">¡Se ha importado correctamente!</string>
+  <string name="ImportFragment_restoring">Restaurando</string>
+  <string name="ImportFragment_restoring_encrypted_backup">Restaurando copia de seguridad cifrada...</string>
+  <string name="ImportFragment_no_encrypted_backup_found">¡No se encontró la copia de seguridad cifrada!</string>
+  <string name="ImportFragment_restore_complete">¡Restauración completada!</string>
+  <!--KeyScanningActivity-->
+  <string name="KeyScanningActivity_no_scanned_key_found_exclamation">¡No se encontró una clave escaneada!</string>
+  <string name="KeyScanningActivity_install_barcode_Scanner">¿Instalar Barcode Scanner?</string>
+  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">SecureChat necesita Barcode Scanner para códigos QR.</string>
+  <!--MmsDownloader-->
+  <string name="MmsDownloader_error_storing_mms">¡Error guardando MMS!</string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">Error conectando al proveedor MMS...</string>
+  <string name="MmsDownloader_error_reading_mms_settings">Error leyendo las configuraciones MMS (sistema de mensajería multimedia) del provedor inalámbrico...</string>
+  <!--NotificationMmsMessageRecord-->
+  <string name="NotificationMmsMessageRecord_multimedia_message">Mensaje multimedia</string>
+  <!--MessageRecord-->
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Se recibió un mensaje cifrado con una versión antigua de SecureChat que ya no está soportada.
+Por favor pida al remitente que actualice a la versión más reciente y reenvíe el mensaje.</string>
+  <string name="MessageRecord_left_group">Has dejado el grupo.</string>
+  <string name="MessageRecord_updated_group">Grupo actualizado.</string>
+  <!--PassphraseChangeActivity-->
+  <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">¡Las frases contraseña no coinciden!</string>
+  <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">¡Frase de contraseña anterior incorrecta!</string>
+  <!--PassphrasePromptActivity-->
+  <string name="PassphrasePromptActivity_enter_passphrase">Introduzca frase contraseña</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Icono de SecureChat</string>
+  <string name="PassphrasePromptActivity_ok_button_content_description">Enviar frase contraseña</string>
+  <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">¡Frase contraseña no válida!</string>
+  <!--ReceiveKeyActivity-->
+  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">La firma en este intercambio de claves es diferente de lo que previamente ha recibido de este contacto. Esto podría significar que alguien está intentando interceptar las comunicaciones o que este contacto simplemente reinstaló SecureChat y ahora tiene una nueva clave de identidad.</string>
+  <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Puede que desees verificar⏎
+este contacto.⏎</string>
+  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">La firma en este intercambio de claves está verificada, pero pero tiene la opción \'intercambio de clave completa automático\', desactivada.</string>
+  <string name="ReceiveKeyActivity_processing">Procesando</string>
+  <string name="ReceiveKeyActivity_processing_key_exchange">Procesando intercambio de claves...</string>
+  <!--RegistrationActivity-->
+  <string name="RegistrationActivity_connect_with_textsecure">Conectar con SecureChat</string>
+  <string name="RegistrationActivity_select_your_country">Seleccione su país</string>
+  <string name="RegistrationActivity_you_must_specify_your_country_code">Debe especificar su
+código de país
+</string>
+  <string name="RegistrationActivity_you_must_specify_your_phone_number">Debe especificar su
+número de teléfono
+</string>
+  <string name="RegistrationActivity_invalid_number">Número inválido</string>
+  <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">El número que especificó
+(%s) no es válido.
+</string>
+  <string name="RegistrationActivity_unsupported">No soportado</string>
+  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Lo sentimos,
+este dispositivo no está soportado para mensajería de datos. Los dispositivos que ejecutan versiones de Android más antiguas
+que la 4.0, deben tener registrada una cuenta de Google. Los dispositivos que ejecutan Android 4.0 o más reciente no
+requieren una cuenta de Google, pero deben tener la aplicación de la Play Store instalada.
+ </string>
+  <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">
+        Ahora verificaremos que el siguiente número esté asociado con este dispositivo:
+
+%s
+
+
+        ¿Es correcto este número, o preferiría cambiarlo antes de continuar?
+    </string>
+  <string name="RegistrationActivity_continue">Continuar</string>
+  <string name="RegistrationActivity_edit">Editar</string>
+  <!--RegistrationProblemsActivity-->
+  <string name="RegistrationProblemsActivity_possible_problems">Posibles problemas</string>
+  <!--RegistrationProgressActivity-->
+  <string name="RegistrationProgressActivity_verifying_number">Verificando número</string>
+  <string name="RegistrationProgressActivity_edit_s">Editar %s</string>
+  <string name="RegistrationProgressActivity_registration_complete">¡Proceso de registro completado!</string>
+  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Debe introducir primero el código que recibió...</string>
+  <string name="RegistrationProgressActivity_connecting">Conectando</string>
+  <string name="RegistrationProgressActivity_connecting_for_verification">Conectando para verificación...</string>
+  <string name="RegistrationProgressActivity_network_error">¡Error de red!</string>
+  <string name="RegistrationProgressActivity_unable_to_connect">No se pudo conectar. Por favor compruebe su conexión a la red e inténtelo de nuevo.</string>
+  <string name="RegistrationProgressActivity_verification_failed">¡Fallo de verificación!</string>
+  <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">El código de verificación que envió no es correcto. Por favor inténtelo de nuevo.</string>
+  <string name="RegistrationProgressActivity_too_many_attempts">Demasiados intentos</string>
+  <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">Ha enviado un código de verificación incorrecto demasiadas veces. Por favor espere un minuto antes de intentarlo de nuevo.</string>
+  <string name="RegistrationProgressActivity_requesting_call">Solicitando llamada</string>
+  <string name="RegistrationProgressActivity_requesting_incoming_call">Solicitando llamada de verificación entrante...</string>
+  <string name="RegistrationProgressActivity_server_error">Error del servidor</string>
+  <string name="RegistrationProgressActivity_the_server_encountered_an_error">El servidor ha encontrado un error. Por favor inténtelo de nuevo.</string>
+  <string name="RegistrationProgressActivity_too_many_requests">¡Demasiadas peticiones!</string>
+  <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Usted ya ha solicitado recientemente una llamada de voz. Puede pedir otra en 20 minutos.</string>
+  <string name="RegistrationProgressActivity_registration_conflict">Confilicto al registrarse</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Este número ya está registrado en un servidor de SecureChat diferente (¿CyanogenMod?). Debe darse de baja allí antes de registrarse aquí.</string>
+  <!--RegistrationService-->
+  <string name="RegistrationService_registration_complete">Procedimiento de registro completado</string>
+  <string name="RegistrationService_textsecure_registration_has_successfully_completed">El proceso de registro de SecureChat ha finalizado con éxito.</string>
+  <string name="RegistrationService_registration_error">Error al registrarse</string>
+  <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">El proceso de registro de SecureChat ha encontrado un problema.</string>
+  <!--SmsMessageRecord-->
+  <string name="SmsMessageRecord_received_corrupted_key_exchange_message">¡Se recibió un mensaje corrupto
+de intercambio de claves!
+</string>
+  <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
+Se recibió un mensaje de intercambio de claves para una versión no válida del protocolo.
+</string>
+  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
+Se recibió un mensaje con una clave de identidad desconocida. Haga clic para procesar y mostrar.
+</string>
+  <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Recibí actualizado pero con información de identidad desconocida. Pulse para validar identidad.</string>
+  <string name="SmsMessageRecord_secure_session_ended">La sesión segura finalizó.</string>
+  <string name="SmsMessageRecord_duplicate_message">Duplicar mensaje.</string>
+  <!--ThreadRecord-->
+  <string name="ThreadRecord_left_the_group">Ha dejado el grupo...</string>
+  <string name="TheadRecord_secure_session_ended">La sesión segura finalizó.</string>
+  <string name="ThreadRecord_draft">Borrador:</string>
+  <!--VerifyIdentityActivity-->
+  <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">No tiene ninguna clave de identidad.</string>
+  <string name="VerifyIdentityActivity_recipient_has_no_identity_key">El destinatario no tiene clave de identidad.</string>
+  <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">¡El destinatario no tiene clave de identidad!</string>
+  <string name="VerifyIdentityActivity_scan_their_key_to_compare">Escanear la clave de ellos, para comparar</string>
+  <string name="VerifyIdentityActivity_get_my_key_scanned">Escanear mi clave</string>
+  <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">ADVERTENCIA: la clave escaneada NO coincide. Por favor verifique el texto de la huella cuidadosamente.</string>
+  <string name="VerifyIdentityActivity_not_verified_exclamation">¡NO verificado!</string>
+  <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">La clave de ellos es correcta. También es necesario verificar su clave con ellos.</string>
+  <string name="VerifyIdentityActivity_verified_exclamation">¡Verificado!</string>
+  <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">¡No tiene ninguna clave de identidad!</string>
+  <!--ViewIdentityActivity-->
+  <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Usted no tiene una clave de identidad.</string>
+  <string name="ViewIdentityActivity_scan_to_compare">Escanear para comparar</string>
+  <string name="ViewIdentityActivity_get_scanned_to_compare">Escanear su clave para comparar</string>
+  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">ADVERTENCIA, la clave escaneada NO coincide</string>
+  <string name="ViewIdentityActivity_not_verified_exclamation">¡NO verificada!</string>
+  <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">¡La clave escaneada coincide!</string>
+  <string name="ViewIdentityActivity_verified_exclamation">¡Verificado!</string>
+  <string name="ViewIdentityActivity_my_identity_fingerprint">Mi huella de validación de identidad</string>
+  <!--KeyExchangeInitiator-->
+  <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">¿Iniciar a pesar de la solicitud existente?</string>
+  <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Ya ha enviado una petición de inicio de sesión a este destinatario, ¿está seguro de que quiere enviar otra? Esto invalidará la primera petición. </string>
+  <string name="KeyExchangeInitiator_send">Enviar</string>
+  <!--MessageDisplayHelper-->
+  <string name="MessageDisplayHelper_bad_encrypted_message">Mensaje cifrado incorrecto...</string>
+  <string name="MessageDisplayHelper_decrypting_please_wait">Descifrando, por favor espere...</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Mensaje cifrado para una sesión no existente...</string>
+  <!--EncryptingSmsDatabase-->
+  <string name="EncryptingSmsDatabase_error_decrypting_message">Error al descifrar mensaje.</string>
+  <!--ThreadDatabase-->
+  <string name="ThreadDatabase_error_decrypting_message">Error al descifrar mensaje.</string>
+  <!--MmsDatabase-->
+  <string name="MmsDatabase_connecting_to_mms_server">Conectando con el servidor MMS...</string>
+  <string name="MmsDatabase_downloading_mms">Descargado MMS...</string>
+  <string name="MmsDatabase_mms_download_failed">¡Fallo de la descarga de MMS!</string>
+  <string name="MmsDatabase_downloading">Descargando...</string>
+  <string name="MmsDatabase_mms_pending_download">Pulse y configure las preferencias MMS para continuar la descarga.</string>
+  <string name="MmsDatabase_error_decrypting_message">Error al descifrar mensaje.</string>
+  <!--MmsMessageRecord-->
+  <string name="MmsMessageRecord_decrypting_mms_please_wait">Descifrando MMS, por favor espere...</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">Mensaje MMS mal cifrado</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Mensaje MMS cifrado para sesión no existente...</string>
+  <!--ApplicationMigrationService-->
+  <string name="ApplicationMigrationService_import_in_progress">Importación en progreso</string>
+  <string name="ApplicationMigrationService_importing_text_messages">Importando mensajes de texto</string>
+  <!--KeyCachingService-->
+  <string name="KeyCachingService_textsecure_passphrase_cached">Pulse para abrir.</string>
+  <string name="KeyCachingService_textsecure_passphrase_cached_with_lock">Pulse para abrir, o pulse el candado para cerrar.</string>
+  <string name="KeyCachingService_passphrase_cached">SecureChat está desbloqueado</string>
+  <string name="KeyCachingService_lock">Bloqueado con contraseña</string>
+  <!--MessageNotifier-->
+  <string name="MessageNotifier_d_new_messages">(%d) nuevos mensajes</string>
+  <string name="MessageNotifier_most_recent_from_s">Mensaje más reciente de: %s</string>
+  <string name="MessageNotifier_encrypted_message">Mensaje cifrado...</string>
+  <string name="MessageNotifier_no_subject">(Sin asunto)</string>
+  <string name="MessageNotifier_message_delivery_failed">Entrega de mensaje fallida.</string>
+  <string name="MessageNotifier_failed_to_deliver_message">Fallo al entregar mensaje.</string>
+  <string name="MessageNotifier_error_delivering_message">Error entregando mensaje.</string>
+  <string name="MessageNotifier_mark_all_as_read">Marcar todos como leídos</string>
+  <string name="MessageNotifier_mark_as_read">Marcar como leídos</string>
+  <!--QuickResponseService-->
+  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Lo sentimos, ¡la Respuesta Rápida aún no está soportada por SecureChat!</string>
+  <!--auto_initiate_activity-->
+  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Ha recibido un mensaje de alguien que tiene soporte para sesiones cifradas de SecureChat. ¿Desea iniciar una sesión segura?</string>
+  <string name="auto_initiate_activity__initiate_exchange">Iniciar intercambio</string>
+  <!--change_passphrase_activity-->
+  <string name="change_passphrase_activity__old_passphrase">Frase de contraseña anterior:</string>
+  <string name="change_passphrase_activity__new_passphrase">Nueva frase de contraseña:</string>
+  <string name="change_passphrase_activity__repeat_new_passphrase">Repita la nueva frase de contraseña:</string>
+  <!--contact_selection_group_activity-->
+  <!--contact_selection_list_activity-->
+  <string name="contact_selection_group_activity__no_contacts">No hay contactos.</string>
+  <string name="contact_selection_group_activity__finding_contacts">Cargando contactos...</string>
+  <!--single_contact_selection_activity-->
+  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">No está registrado con el servicio de mensajería de datos activos (push)...</string>
+  <string name="SingleContactSelectionActivity_updating_directory">Actualizando directorio</string>
+  <string name="SingleContactSelectionActivity_updating_push_directory">Actualizando el directorio de datos activos (push)...</string>
+  <string name="SingleContactSelectionActivity_contact_photo">Foto del contacto</string>
+  <!--ContactSelectionListFragment-->
+  <string name="ContactSelectionlistFragment_select_for">Seleccionar para</string>
+  <!--contact_selection_recent_activity-->
+  <string name="contact_selection_recent_activity__no_recent_calls">No hay llamadas recientes.</string>
+  <!--conversation_activity-->
+  <string name="conversation_activity__type_message_push">Enviar mensaje de SecureChat</string>
+  <string name="conversation_activity__type_message_sms_secure">Enviar SMS seguro</string>
+  <string name="conversation_activity__type_message_sms_insecure">Enviar mensaje SMS no seguro</string>
+  <string name="conversation_activity__type_message_mms_secure">Enviar MMS seguro</string>
+  <string name="conversation_activity__type_message_mms_insecure">Enviar mensaje MMS no seguro</string>
+  <string name="conversation_activity__send">Enviar</string>
+  <string name="conversation_activity__remove">Eliminar</string>
+  <string name="conversation_activity__window_description">Conversación con %1$s</string>
+  <string name="conversation_activity__compose_description">Composición de mensaje</string>
+  <string name="conversation_activity__emoji_toggle_description">Cambiar a teclado emoji</string>
+  <!--conversation_item-->
+  <string name="conversation_item__mms_image_description">Mensaje multimedia</string>
+  <string name="conversation_item__play_button_description">Botón de reproducción</string>
+  <string name="conversation_item__secure_message_description">Asegurar mensaje</string>
+  <!--conversation_item_sent-->
+  <string name="conversation_item_sent__download">Descarga</string>
+  <string name="conversation_item_sent__downloading">Descargando</string>
+  <string name="conversation_item_sent__send_failed_indicator_description">Fallo al enviar</string>
+  <string name="conversation_item_sent__pending_approval_description">Pendiente de aprobación</string>
+  <string name="conversation_item_sent__delivered_description">Entregado</string>
+  <!--conversation_item_received-->
+  <string name="conversation_item_received__download">Descarga</string>
+  <string name="conversation_item_received__contact_photo_description">Foto de contacto</string>
+  <string name="conversation_item_received__downloading">Descargando</string>
+  <!--conversation_fragment_cab-->
+  <string name="conversation_fragment_cab__batch_selection_mode">Modo de selección por lotes</string>
+  <string name="conversation_fragment_cab__batch_selection_amount">%s seleccionado</string>
+  <!--country_selection_fragment-->
+  <string name="country_selection_fragment__loading_countries">Cargando países...</string>
+  <string name="country_selection_fragment__search">Buscar</string>
+  <!--log_submit_activity-->
+  <string name="log_submit_activity__log_fetch_failed">No pudieron tomarse los registros de actividad (logs) de su dispositivo. Aún puede usar ADB (Android debug bridge) para obtener los registros de depuración en su lugar.</string>
+  <string name="log_submit_activity__thanks">¡Gracias por su ayuda!</string>
+  <string name="log_submit_activity__submitting">Enviando</string>
+  <string name="log_submit_activity__posting_logs">Publicando registros (logs) en gist...</string>
+  <!--database_migration_activity-->
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">¿Te gustaría importar los mensajes de texto existentes en la base de datos cifrada de SecureChat?</string>
+  <string name="database_migration_activity__the_default_system_database_will_not_be_modified">La base de datos de sistema por defecto no será modificada o alterada de ningún modo.</string>
+  <string name="database_migration_activity__skip">Saltar</string>
+  <string name="database_migration_activity__import">Importar</string>
+  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Esto podría tardar un rato. Por favor, se paciente, te informaremos cuando la importación sea completada.</string>
+  <string name="database_migration_activity__importing">IMPORTANDO</string>
+  <!--database_upgrade_activity-->
+  <string name="database_upgrade_activity__updating_database">Actualizando base de datos...</string>
+  <string name="export_fragment__export_plaintext_backup">Exportar copia de seguridad en texto simple</string>
+  <string name="export_fragment__export_a_plaintext_backup_compatible_with">
+        Exportar una copia de seguridad de los mensajes en claro compatible con \'SMSBackup And Restore\'  a la tarjeta SD.</string>
+  <string name="import_fragment__import_system_sms_database">Importar base de datos de SMS del sistema</string>
+  <string name="import_fragment__import_the_database_from_the_default_system">Importar la base de datos
+        desde la aplicación de mensajería del sistema por defecto.
+    </string>
+  <string name="import_fragment__import_encrypted_backup">Importar copia de seguridad cifrada</string>
+  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">
+       Restaurar una copia de seguridad cifrada previamente exportada desde SecureChat.
+    </string>
+  <string name="import_fragment__import_plaintext_backup">Importar copia de seguridad en texto simple</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">
+        Importar una copia de seguridad de mensajes en claro compatible con \'SMSBackup And Restore.\'</string>
+  <!--MmsPreferencesFragment-->
+  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Se requiere configuración manual de MMS para su teléfono.</string>
+  <string name="MmsPreferencesFragment__enabled">Habilitado</string>
+  <string name="MmsPreferencesFragment__disabled">Deshabilitado</string>
+  <string name="MmsPreferencesFragment__not_set">No establecido</string>
+  <string name="MmsPreferencesFragment__invalid_uri">El texto introducido no era una URI válida</string>
+  <string name="MmsPreferencesFragment__invalid_host">El texto introducido no era un servidor (host) válido</string>
+  <!--GroupUtil-->
+  <string name="GroupUtil_joined_the_group">%1$s se ha unido al grupo.</string>
+  <string name="GroupUtil_group_updated">Grupo actualizado.</string>
+  <string name="GroupUtil_title_is_now">El título ahora es \'%1$s\'.</string>
+  <!--prompt_passphrase_activity-->
+  <string name="prompt_passphrase_activity__unlock">Desbloquear</string>
+  <!--prompt_mms_activity-->
+  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">SecureChat requiere configuraciones MMS (sistema de mensajería multimedia) para entregar mensajes audiovisuales y de grupo a través de su transportador inalámbrico. Su dispositivo no hace disponible esta información, lo cual ocurre ocasionalmente para dispositivos bloqueados y otras configuraciones restrictivas.</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Para enviar mensajes audiovisuales y de grupo, haga clic en \'Aceptar\' y complete las configuraciones requeridas. Las configuraciones MMS (sistema de mensajería multimedia) para su transportador pueden ser localizadas generalmente buscando \'el APN (nombre de punto de acceso) de su transportador\'. Sólo necesitará hacer esto una vez.</string>
+  <!--receive_key_activity-->
+  <string name="receive_key_activity__complete">Completo</string>
+  <!--registration_activity-->
+  <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
+Registrarse es gratuito e incrementa la privacidad al enviar mensajes a otros usuarios de SecureChat. Por favor verifique su número de teléfono.
+</string>
+  <string name="registration_activity__your_country">SU PAÍS</string>
+  <string name="registration_activity__your_country_code_and_phone_number">SU CÓDIGO DE PAÍS Y
+NÚMERO DE TELÉFONO
+</string>
+  <string name="registration_activity__phone_number">NÚMERO DE TELÉFONO</string>
+  <string name="registration_activity__register">Registro</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Al registrarse transmite alguna información de contacto al servidor. No se almacena.</string>
+  <string name="registration_activity__skip">Saltar</string>
+  <!--registration_problems-->
+  <string name="registration_problems__some_possible_problems_include">Algunos posibles problemas
+incluyen:
+</string>
+  <string name="registration_problems__sms_interceptors">Interceptores de SMS.</string>
+  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
+Algunos clientes de mensajería de texto de terceras partes, tales como Handcent o GoSMS, tienen un pobre comportamiento
+e interceptan todos los mensajes SMS entrantes. Compruebe si no recibió un mensaje de texto que comience con
+\'Your SecureChat verification code:\' (su mensaje de código de verificación), en cuyo caso necesitará configurar
+su aplicación de mensajería de texto de tercera parte para permitir que los mensajes pasen a través de ella.
+</string>
+  <string name="registration_problems__incorrect_number">Número incorrecto.</string>
+  <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
+        Por favor asegúrese de que introdujo su número de teléfono correctamente, y de que tiene el formato
+        correcto para su región.
+    </string>
+  <string name="registration_problems__google_voice">Google Voice.</string>
+  <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">
+        SecureChat no funcionará con números de Google Voice.
+    </string>
+  <!--registration_progress_activity-->
+  <string name="registration_progress_activity__voice_verification">Verificación de voz</string>
+  <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">
+        SecureChat también puede llamarle para verificar su número. Pulse \"Llamarme\' e introduzca
+        debajo el código de seis dígitos que escuche.
+    </string>
+  <string name="registration_progress_activity__verify">Verificar</string>
+  <string name="registration_progress_activity__call_me">Llamarme</string>
+  <string name="registration_progress_activity__edit_number">Editar número</string>
+  <string name="registration_progress_activity__connectivity_error">Fallo de conectividad.</string>
+  <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">
+SecureChat no se pudo conectar al servicio de mensajería de datos activos (push).
+    </string>
+  <string name="registration_progress_activity__some_possible_problems_include">Algunos problemas
+        posibles incluyen:
+    </string>
+  <string name="registration_progress_activity__no_network_connectivity">Sin conectividad
+        a la red.
+    </string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">Su
+dispositivo necesita conectividad de red para usar esta característica de SecureChat. Compruébelo para asegurarse de que está conectado a 3G o Wi-Fi.
+</string>
+  <string name="registration_progress_activity__restrictive_firewall">Cortafuegos (firewall) restrictivo.</string>
+  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
+Si está conectado vía Wi-Fi, es posible que haya un cortafuegos (firewall) bloqueando el acceso al
+servidor de SecureChat. Pruebe con otra red o transporte de datos móvil/celular.
+</string>
+  <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
+        SecureChat ahora verificará automáticamente su número de teléfono con un mensaje SMS de confirmación.
+    </string>
+  <string name="registration_progress_activity__connecting">Conectando...</string>
+  <string name="registration_progress_activity__waiting_for_sms_verification">Esperando al SMS
+        de verificación...
+    </string>
+  <string name="registration_progress_activity__registering_with_server">Registrándose con el servidor...</string>
+  <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Esto
+        puede llevar un rato. Por favor tenga paciencia, cuando se complete la verificación se lo notificaremos.
+    </string>
+  <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">
+        El proceso de registro de SecureChat expiró mientras esperaba un mensaje SMS de verificación.
+    </string>
+  <string name="registration_progress_activity__sms_verification_failed">Fallo de la
+        verificación SMS.
+    </string>
+  <string name="registration_progress_activity__generating_keys">Generando claves...</string>
+  <!--recipients_panel-->
+  <string name="recipients_panel__to"><small>Introduzca un nombre o número</small></string>
+  <string name="recipients_panel__add_member">Añadir miembro</string>
+  <!--verify_identity_activity-->
+  <string name="verify_identity_activity__their_identity_they_read">Identidad de ellos (ellos leen):</string>
+  <string name="verify_identity_activity__your_identity_you_read">Su identidad (usted lee):</string>
+  <!--AndroidManifest.xml-->
+  <string name="AndroidManifest__create_passphrase">Crear frase contraseña</string>
+  <string name="AndroidManifest__enter_passphrase">Introduzca frase contraseña</string>
+  <string name="AndroidManifest__select_contacts">Seleccionar contactos</string>
+  <string name="AndroidManifest__textsecure_detected">SecureChat detectado</string>
+  <string name="AndroidManifest__public_identity_key">Clave pública de identidad</string>
+  <string name="AndroidManifest__change_passphrase">Cambiar frase de contraseña</string>
+  <string name="AndroidManifest__verify_identity">Verificar identidad</string>
+  <string name="AndroidManifest__complete_key_exchange">Completar intercambio de claves</string>
+  <string name="AndroidManifest__log_submit">Enviar registros (logs) de depuración</string>
+  <string name="AndroidManifest__media_preview">Previsualización del contenido</string>
+  <!--arrays.xml-->
+  <string name="arrays__import_export">Importar / exportar</string>
+  <string name="arrays__my_identity_key">Mi clave de identidad</string>
+  <!--preferences.xml-->
+  <string name="preferences__general">General</string>
+  <string name="preferences__sms_mms">SMS y MMS</string>
+  <string name="preferences__push_sms_category">Datos activos (push) y SMS</string>
+  <string name="preferences__pref_all_sms_title">Recibir todos los SMS</string>
+  <string name="preferences__pref_all_mms_title">Recibir todos los MMS</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Usar SecureChat para ver y guardar todos los mensajes de texto entrantes</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Usar SecureChat para ver y guardar todos los mensajes multimedia entrantes</string>
+  <string name="preferences__input_settings">Preferencias de escritura</string>
+  <string name="preferences__enable_enter_key_title">Habilitar tecla Intro</string>
+  <string name="preferences__replace_smiley_with_enter_key">Reemplazar la tecla de emoticono con una tecla Intro</string>
+  <string name="preferences__pref_enter_sends_title">La tecla Intro envía</string>
+  <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pulsando la tecla Intro enviará los mensajes de texto</string>
+  <string name="preferences__display_settings">Configuraciones de pantalla</string>
+  <string name="preferences__choose_identity">Elegir identidad</string>
+  <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Elija su registro de contacto de la lista de contactos.</string>
+  <string name="preferences__change_passphrase">Cambiar frase de contraseña</string>
+  <string name="preferences__change_my_passphrase">Cambiar mi frase de contraseña</string>
+  <string name="preferences__complete_key_exchanges">Completar intercambio de claves</string>
+  <string name="preferences__enable_passphrase">Habilitar frase-contraseña</string>
+  <string name="preferences__enable_local_encryption_of_messages_and_keys">Habilitar cifrado local de mensajes y claves</string>
+  <string name="preferences__screen_security">Seguridad de la pantalla</string>
+  <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Completar automáticamente los intercambios de clave para nuevas sesiones o para sesiones existentes con la misma clave de identidad</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">Bloquear capturas de pantalla en las listas recientes y dentro de la aplicación</string>
+  <string name="preferences__forget_passphrase_from_memory_after_some_interval">Olvidar la frase de contraseña de la memoria después de un intervalo de tiempo</string>
+  <string name="preferences__timeout_passphrase">Expirar la frase de contraseña</string>
+  <string name="preferences__pref_timeout_interval_dialogtitle">Seleccionar periodo de inactividad hasta bloqueo con frase contraseña</string>
+  <string name="preferences__pref_timeout_interval_title">Intervalo de expiración</string>
+  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">El intervalo de tiempo a esperar antes de olvidar la frase de contraseña de la memoria</string>
+  <string name="preferences__notifications">Notificaciones</string>
+  <string name="preferences__display_message_notifications_in_status_bar">Desplegar notificaciones de mensaje en la barra de estado</string>
+  <string name="preferences__led_color">Color del LED</string>
+  <string name="preferences__led_color_unknown">Desconocido</string>
+  <string name="preferences__pref_led_blink_title">Patrón de parpadeo del LED</string>
+  <string name="preferences__pref_led_blink_custom_pattern_title">Configurar patrón personalizado de intermitencia del LED</string>
+  <string name="preferences__pref_led_blink_custom_pattern_on_for">Encendido durante:</string>
+  <string name="preferences__pref_led_blink_custom_pattern_off_for">Apagado durante:</string>
+  <string name="preferences__pref_led_blink_custom_pattern_set">¡Se ha establecido el patrón de parpadeo personalizado de LED!</string>
+  <string name="preferences__sound">Sonido</string>
+  <string name="preferences__change_notification_sound">Cambiar sonido de notificación</string>
+  <string name="preferences__inthread_notifications">Notificaciones en-el-hilo</string>
+  <string name="preferences__play_inthread_notifications">Reproducir sonido de notificación cuando esté viendo una conversación activa.</string>
+  <string name="preferences__vibrate">Vibración</string>
+  <string name="preferences__also_vibrate_when_notified">También vibrar con notificaciones</string>
+  <string name="preferences__minutes">minutos</string>
+  <string name="preferences__hours">horas</string>
+  <string name="preferences__green">Verde</string>
+  <string name="preferences__red">Rojo</string>
+  <string name="preferences__blue">Azul</string>
+  <string name="preferences__orange">Naranja</string>
+  <string name="preferences__cyan">Turquesa</string>
+  <string name="preferences__magenta">Magenta</string>
+  <string name="preferences__white">Blanco</string>
+  <string name="preferences__none">Ninguno</string>
+  <string name="preferences__fast">Rápido</string>
+  <string name="preferences__normal">Normal</string>
+  <string name="preferences__slow">Despacio</string>
+  <string name="preferences__custom">Personalizado</string>
+  <string name="preferences__advanced">Avanzado</string>
+  <string name="preferences__app_protection">Protección de la aplicación</string>
+  <string name="preferences__advanced_mms_access_point_names">Configuración manual de MMS</string>
+  <string name="preferences__enable_manual_mms">Usar configuración manual de MMS</string>
+  <string name="preferences__override_system_mms_settings">Hacer que la información de debajo prevalezca sobre las configuraciones MMS del sistema.</string>
+  <string name="preferences__mmsc_url_required">MMSC URL (Requerido)</string>
+  <string name="preferences__mms_proxy_host_optional">MMS Proxy Host (Opcional)</string>
+  <string name="preferences__mms_proxy_port_optional">Puerto de Proxy MMS (Opcional)</string>
+  <string name="preferences__mmsc_username_optional">Nombre de usuario MMSC (Opcional)</string>
+  <string name="preferences__mmsc_password_optional">Contraseña MMSC (Opcional)</string>
+  <string name="preferences__sms_delivery_reports">Noticias de entrega de SMS</string>
+  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Pide una noticia de entrega por cada mensaje SMS que envías</string>
+  <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Elimina automáticamente los mensajes más viejos una vez el hilo de conversación excede el límite de longitud</string>
+  <string name="preferences__delete_old_messages">Eliminar mensajes viejos</string>
+  <string name="preferences__conversation_length_limit">Límite de longitud de la conversación</string>
+  <string name="preferences__trim_all_threads_now">Recorta todos los hilos ahora</string>
+  <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Búsqueda a través de todos los hilos de conversación y fuerza los límites de longitud de la misma</string>
+  <string name="preferences__light_theme">Claro</string>
+  <string name="preferences__dark_theme">Oscuro</string>
+  <string name="preferences__appearance">Apariencia</string>
+  <string name="preferences__theme">Tema</string>
+  <string name="preferences__default">Por defecto</string>
+  <string name="preferences__language">Idioma</string>
+  <string name="preferences__make_default_sms_app">Establecer como la aplicación SMS predeterminada</string>
+  <string name="preferences__make_textsecure_the_default_sms_mms_app">Hace de SecureChat la aplicación SMS/MMS predeterminada para su sistema.</string>
+  <string name="preferences__use_data_channel">Mensajes de datos activos (push)</string>
+  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
+Incremente la privacidad y evite tarifas SMS al usar el canal de datos para la comunicación con otros usuarios de SecureChat
+</string>
+  <string name="preferences__sms_fallback">SMS/MMS saliente</string>
+  <string name="preferences__submit_debug_log">Enviar registro de depuración</string>
+  <string name="preferences__sms_outgoing_push_users">Usuarios de SecureChat</string>
+  <string name="preferences__sms_fallback_push_users_ask">preguntar primero</string>
+  <string name="preferences__sms_fallback_push_users_no_mms">sin MMS</string>
+  <string name="preferences__sms_outgoing_push_users_description">Enviar SMS seguros si se perdió la conectividad de datos</string>
+  <string name="preferences__sms_fallback_ask_before_sending_sms_mms">Preguntar antes de enviar SMS/MMS</string>
+  <string name="preferences__sms_fallback_never_send_mms">Nunca enviar MMS</string>
+  <string name="preferences__sms_fallback_non_push_users">Usuarios no-de-SecureChat</string>
+  <string name="preferences__sms_fallback_nobody">Nadie</string>
+  <string name="preferences__support_wifi_calling">Modo de compatibilidad \'Llamada por WiFi\'</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Habilítelo si su dispositivo utiliza entrega de SMS/MMS por WiFi (actívelo sólo cuando \'Llamada por WiFi\' esté activada en su dispositivo).</string>
+  <!--****************************************-->
+  <!--menus-->
+  <!--****************************************-->
+  <!--contact_selection_list-->
+  <string name="contact_selection_list__menu_select_all">Seleccionar todos</string>
+  <string name="contact_selection_list__menu_unselect_all">Deseleccionar todos</string>
+  <string name="contact_selection_list__header_textsecure_users">USUARIOS DE SECURECHAT</string>
+  <string name="contact_selection_list__header_other">TODOS LOS CONTACTOS</string>
+  <string name="contact_selection_list__unknown_contact">Nuevo mensaje a...</string>
+  <!--contact_selection-->
+  <string name="contact_selection__menu_finished">Terminado</string>
+  <!--refreshing push directory from menu-->
+  <string name="push_directory__menu_refresh">Refrescar lista de contactos</string>
+  <!--conversation_button_context-->
+  <string name="conversation_button_context__send_textsecure_message">Enviar mensaje de SecureChat</string>
+  <string name="conversation_button_context__send_secure_sms">Enviar SMS seguro</string>
+  <string name="conversation_button_context__send_insecure_sms">Enviar mensaje SMS no seguro</string>
+  <string name="conversation_button_context__send_secure_mms">Enviar MMS seguro</string>
+  <string name="conversation_button_context__send_insecure_mms">Enviar mensaje MMS no seguro</string>
+  <!--conversation_callable-->
+  <string name="conversation_callable__menu_call">Llamar</string>
+  <!--conversation_context-->
+  <string name="conversation_context__menu_message_details">Detalles del mensaje</string>
+  <string name="conversation_context__menu_copy_text">Copiar texto</string>
+  <string name="conversation_context__menu_delete_message">Borrar mensaje</string>
+  <string name="conversation_context__menu_forward_message">Reenviar mensaje</string>
+  <string name="conversation_context__menu_resend_message">Reenviar mensaje</string>
+  <!--conversation_context_image-->
+  <string name="conversation_context_image__save_attachment">Guardar adjunto</string>
+  <!--conversation_insecure_no_push-->
+  <string name="conversation_insecure__menu_start_secure_session">Iniciar sesión segura</string>
+  <!--conversation_list_batch-->
+  <string name="conversation_list_batch__menu_delete_selected">Borrar seleccionado</string>
+  <string name="conversation_list_batch__menu_select_all">Seleccionar todo</string>
+  <!--conversation_list-->
+  <string name="conversation_list__menu_search">Buscar</string>
+  <!--conversation_secure_verified-->
+  <string name="conversation_secure_verified__menu_security">Seguridad</string>
+  <string name="conversation_secure_verified__menu_verify_identity">Verificar identidad</string>
+  <string name="conversation_secure_verified__menu_abort_secure_session">Finalizar sesión segura</string>
+  <!--conversation-->
+  <string name="conversation__menu_add_attachment">Añadir archivo adjunto</string>
+  <string name="conversation__menu_update_group">Actualizar grupo</string>
+  <string name="conversation__menu_leave_group">Abandonar grupo</string>
+  <string name="conversation__menu_delete_thread">Borrar conversación</string>
+  <!--conversation_callable-->
+  <string name="conversation_add_to_contacts__menu_add_to_contacts">Añadir a contactos</string>
+  <!--conversation_group_options-->
+  <string name="convesation_group_options__recipients_list">Lista de receptores</string>
+  <string name="conversation_group_options__delivery">Entrega</string>
+  <string name="conversation_group_options__conversation">Conversación</string>
+  <string name="conversation_group_options__broadcast">Transmisión</string>
+  <!--key_scanning-->
+  <string name="key_scanning__menu_compare">Comparar</string>
+  <string name="key_scanning__menu_get_scanned_to_compare">Escanear mi clave para comparar</string>
+  <string name="key_scanning__menu_scan_to_compare">Escanear para comparar</string>
+  <!--text_secure_normal-->
+  <string name="text_secure_normal__menu_new_message">Nuevo mensaje</string>
+  <string name="text_secure_normal__menu_new_group">Nuevo grupo</string>
+  <string name="text_secure_normal__menu_settings">Preferencias</string>
+  <string name="text_secure_normal__menu_clear_passphrase">Bloquear</string>
+  <string name="text_secure_normal__mark_all_as_read">Marcar todos como leídos</string>
+  <!--reminder_header-->
+  <string name="reminder_header_sms_default_title">¿Usar como apllicación de SMS por defecto?</string>
+  <string name="reminder_header_sms_default_text">SecureChat actualmente no es su aplicación SMS por defecto.</string>
+  <string name="reminder_header_sms_import_title">¿Importar SMS del sistema?</string>
+  <string name="reminder_header_sms_import_text">SecureChat puede copiar los mensajes SMS de su teléfono en la base de datos cifrada.</string>
+  <string name="reminder_header_push_title">¿Habilitar mensajes de SecureChat?</string>
+  <string name="reminder_header_push_text">Entrega instantánea, privacidad más robusta, y sin cargos por SMS.</string>
+  <!--MediaPreviewActivity-->
+  <string name="MediaPreviewActivity_you">Usted</string>
+  <string name="MediaPreviewActivity_cant_display">Fallo al previsualizar esta imagen</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">Tipo de medio no soportado</string>
+  <!--media_preview-->
+  <string name="media_preview__save_title">Guardar</string>
+  <!--media_preview_activity-->
+  <string name="media_preview_activity__image_content_description">Previsualización de la imagen</string>
+  <!--Trimmer-->
+  <string name="trimmer__deleting">Borrando...</string>
+  <string name="trimmer__deleting_old_messages">Borrando mensajes antiguos...</string>
+  <string name="trimmer__old_messages_successfully_deleted">Mensajes antiguos borrados con éxito</string>
+  <!--EOF-->
+</resources>
