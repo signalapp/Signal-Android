@@ -20,6 +20,7 @@ package org.thoughtcrime.securesms;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -140,11 +141,15 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
     final Intent intent = new Intent(this, target);
     final Intent originalIntent = getIntent();
     final String draftText   = originalIntent.getStringExtra(ConversationActivity.DRAFT_TEXT_EXTRA);
-    final Uri    draftMedia  = originalIntent.getParcelableExtra(ConversationActivity.DRAFT_MEDIA_EXTRA);
+    final Uri    draftImage  = originalIntent.getParcelableExtra(ConversationActivity.DRAFT_IMAGE_EXTRA);
+    final Uri    draftVideo  = originalIntent.getParcelableExtra(ConversationActivity.DRAFT_VIDEO_EXTRA);
+    final Uri    draftAudio  = originalIntent.getParcelableExtra(ConversationActivity.DRAFT_AUDIO_EXTRA);
     final String mediaType   = originalIntent.getStringExtra(ConversationActivity.DRAFT_MEDIA_TYPE_EXTRA);
-
+    Log.d("MYLOG", "MYLOG getBaseShareIntent " + draftImage);
     intent.putExtra(ConversationActivity.DRAFT_TEXT_EXTRA, draftText);
-    intent.putExtra(ConversationActivity.DRAFT_MEDIA_EXTRA, draftMedia);
+    intent.putExtra(ConversationActivity.DRAFT_IMAGE_EXTRA, draftImage);
+    intent.putExtra(ConversationActivity.DRAFT_VIDEO_EXTRA, draftVideo);
+    intent.putExtra(ConversationActivity.DRAFT_AUDIO_EXTRA, draftAudio);
     intent.putExtra(ConversationActivity.DRAFT_MEDIA_TYPE_EXTRA, mediaType);
     intent.putExtra(NewConversationActivity.MASTER_SECRET_EXTRA, masterSecret);
 

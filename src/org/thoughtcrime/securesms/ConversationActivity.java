@@ -717,7 +717,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     Uri    draftImage = getIntent().getParcelableExtra(DRAFT_IMAGE_EXTRA);
     Uri    draftAudio = getIntent().getParcelableExtra(DRAFT_AUDIO_EXTRA);
     Uri    draftVideo = getIntent().getParcelableExtra(DRAFT_VIDEO_EXTRA);
-
+    Log.d("MYLOG","MYLOG DRAFT "+ (draftText != null)+ ""+(draftImage != null));
     if (draftText != null)  composeText.setText(draftText);
     if (draftImage != null) addAttachmentImage(draftImage);
     if (draftAudio != null) addAttachmentAudio(draftAudio);

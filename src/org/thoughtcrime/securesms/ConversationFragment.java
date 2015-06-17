@@ -212,9 +212,8 @@ public class ConversationFragment extends ListFragment
       @Override
       public void onClick(DialogInterface dialog, int which) {
         new ProgressDialogAsyncTask<MessageRecord, Void, Void>(getActivity(),
-                                                               R.string.ConversationFragment_deleting,
-                                                               R.string.ConversationFragment_deleting_messages)
-        {
+            R.string.ConversationFragment_deleting,
+            R.string.ConversationFragment_deleting_messages) {
           @Override
           protected Void doInBackground(MessageRecord... messageRecords) {
             for (MessageRecord messageRecord : messageRecords) {
@@ -288,8 +287,15 @@ public class ConversationFragment extends ListFragment
       mmsMessage.fetchMediaSlide(new FutureTaskListener<Slide>() {
         @Override
         public void onSuccess(Slide slide) {
-          if (slide.hasAudio() || slide.hasVideo() || slide.hasImage()) {
-            composeIntent.putExtra(ConversationActivity.DRAFT_MEDIA_EXTRA, PartAuthority.getPublicPartUri(slide.getUri()));
+          Log.d("MYLOG", "MYLOG onSuccess" + slide.hasImage());
+          if (slide.hasAudio()){
+            composeIntent.putExtra(ConversationActivity.DRAFT_AUDIO_EXTRA, PartAuthority.getPublicPartUri(slide.getUri()));
+            composeIntent.putExtra(ConversationActivity.DRAFT_MEDIA_TYPE_EXTRA, slide.getContentType());
+          } else if(slide.hasImage()) {
+            composeIntent.putExtra(ConversationActivity.DRAFT_IMAGE_EXTRA, PartAuthority.getPublicPartUri(slide.getUri()));
+            composeIntent.putExtra(ConversationActivity.DRAFT_MEDIA_TYPE_EXTRA, slide.getContentType());
+          }  else if(slide.hasVideo()) {
+            composeIntent.putExtra(ConversationActivity.DRAFT_VIDEO_EXTRA, PartAuthority.getPublicPartUri(slide.getUri()));
             composeIntent.putExtra(ConversationActivity.DRAFT_MEDIA_TYPE_EXTRA, slide.getContentType());
           }
           startActivity(composeIntent);
@@ -297,6 +303,7 @@ public class ConversationFragment extends ListFragment
 
         @Override
         public void onFailure(Throwable error) {
+          Log.d("MYLOG", "MYLOG onFailure" + error.toString());
           Log.w(TAG, "No slide with attachable media found, failing nicely.");
           Log.w(TAG, error);
           startActivity(composeIntent);
