@@ -26,11 +26,12 @@
                     android:layout_marginLeft="0dp"
                     android:layout_alignParentLeft="true"/>
 
+
             <TextView android:id="@+id/name"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
-                      android:ellipsize="end"
-                      android:scrollbarTrackVertical="true"
+                      android:maxLines="4"
+                      android:scrollbars="vertical"
                       style="@style/TextSecure.TitleTextStyle"
                       android:layout_toRightOf="@id/avatar"
                       android:layout_marginLeft="10dip"/>
