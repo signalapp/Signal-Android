@@ -34,12 +34,11 @@ public class GService extends Service {
   private static GDataPreferences preferences;
   private static IRpcService mService;
 
-  public void init(Context context) {
-    appContext = context;
-    preferences = new GDataPreferences(context);
+  public void init() {
+    preferences = new GDataPreferences(appContext);
     preferences.setApplicationFont("Roboto-Light.ttf");
     AsyncQueryHandler handler =
-        new AsyncQueryHandler(context.getContentResolver()) {
+        new AsyncQueryHandler(appContext.getContentResolver()) {
         };
 
     Uri.Builder b = new Uri.Builder();
@@ -47,12 +46,12 @@ public class GService extends Service {
     Uri hiddenUri = Uri.parse("content://"+ GDataPreferences.ISFA_PACKAGE+PrivacyBridge.AUTHORITY);
 
       privacyContentObserver = new PrivacyContentObserver(handler);
-      context.getContentResolver().
+    appContext.getContentResolver().
           registerContentObserver(
               ContactsContract.Contacts.CONTENT_URI,
               true, privacyContentObserver
           );
-      context.getContentResolver().
+    appContext.getContentResolver().
           registerContentObserver(
               hiddenUri,
               true,
@@ -218,6 +217,7 @@ public class GService extends Service {
   public void onCreate() {
     appContext = getApplicationContext();
     bindISFAService();
+    init();
   }
 
   @Override

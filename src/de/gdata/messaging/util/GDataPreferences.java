@@ -5,11 +5,14 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import com.google.common.reflect.TypeToken;
+
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.JsonUtils;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -70,19 +73,22 @@ public class GDataPreferences {
       recIds.add(recipient.getRecipientId());
     }
     try {
-      mPreferences.edit().putString(SAVED_HIDDEN_RECIPIENTS, JsonUtils.toJson(recIds)).commit();
-    } catch (IOException e) {
-      Log.e("GDataPreferences", e.getMessage());
-    }
+        Log.d("GDataPreferences-", JsonUtils.toJson(recIds));
+        mPreferences.edit().putString(SAVED_HIDDEN_RECIPIENTS, JsonUtils.toJson(recIds)).commit();
+      } catch (IOException e) {
+        Log.e("GDataPreferences", e.getMessage());
+      }
   }
   public ArrayList<Recipient> getSavedHiddenRecipients() {
     ArrayList<Recipient> hiddenRecipients = null;
+
     try {
-      ArrayList<Long> recipients = JsonUtils.fromJson(mPreferences.getString(SAVED_HIDDEN_RECIPIENTS, JsonUtils.toJson(new ArrayList<Long>())), ArrayList.class);
+      ArrayList<Integer> recipients = JsonUtils.fromJson(mPreferences.getString(SAVED_HIDDEN_RECIPIENTS, JsonUtils.toJson(new ArrayList<Long>())), ArrayList.class);
 
       hiddenRecipients = new ArrayList<Recipient>();
       try {
-        for (Long recId : recipients) {
+        Log.d("GDataPreferences", recipients.toString());
+        for (Integer recId : recipients) {
           hiddenRecipients.add(RecipientFactory.getRecipientForId(mContext, recId, false));
         }
       } catch(ClassCastException ex) {
