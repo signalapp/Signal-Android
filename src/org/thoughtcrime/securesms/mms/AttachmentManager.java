@@ -32,6 +32,7 @@ import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import org.thoughtcrime.securesms.MediaPreviewActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -63,6 +64,7 @@ public class AttachmentManager {
     this.attachmentListener = listener;
 
     this.removeButton.setOnClickListener(new RemoveButtonListener());
+    this.thumbnail.setThumbnailClickListener(new ThumbnailClickListener());
   }
 
   public void clear() {
@@ -124,6 +126,17 @@ public class AttachmentManager {
 
   public SlideDeck getSlideDeck() {
     return slideDeck;
+  }
+
+  private void previewImageDraft(Slide slide) {
+    if (MediaPreviewActivity.isContentTypeSupported(slide.getContentType()) && slide.getThumbnailUri() != null) {
+      Intent intent = new Intent(context, MediaPreviewActivity.class);
+      intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+      intent.setDataAndType(slide.getUri(), slide.getContentType());
+      intent.putExtra(MediaPreviewActivity.DATE_EXTRA, System.currentTimeMillis());
+
+      context.startActivity(intent);
+    }
   }
 
   public static void selectVideo(Activity activity, int requestCode) {
@@ -192,6 +205,13 @@ public class AttachmentManager {
     public void onClick(View v) {
       clear();
       cleanup();
+    }
+  }
+
+  private class ThumbnailClickListener implements ThumbnailView.ThumbnailClickListener {
+    @Override
+    public void onClick(View v, Slide slide) {
+      previewImageDraft(slide);
     }
   }
 
