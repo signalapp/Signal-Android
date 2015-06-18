@@ -217,7 +217,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       attachmentManager.clear();
       composeText.setText("");
     }
-
     setIntent(intent);
 
     initializeResources();
@@ -717,11 +716,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     Uri    draftImage = getIntent().getParcelableExtra(DRAFT_IMAGE_EXTRA);
     Uri    draftAudio = getIntent().getParcelableExtra(DRAFT_AUDIO_EXTRA);
     Uri    draftVideo = getIntent().getParcelableExtra(DRAFT_VIDEO_EXTRA);
-    Log.d("MYLOG","MYLOG DRAFT "+ (draftText != null)+ ""+(draftImage != null));
+    String contentType = getIntent().getStringExtra(DRAFT_MEDIA_TYPE_EXTRA);
     if (draftText != null)  composeText.setText(draftText);
     if (draftImage != null) addAttachmentImage(draftImage);
-    if (draftAudio != null) addAttachmentAudio(draftAudio);
-    if (draftVideo != null) addAttachmentVideo(draftVideo);
+    if (draftAudio != null && ContentType.isAudioType(contentType)) addAttachmentAudio(draftAudio, contentType);
+    if (draftVideo != null&& ContentType.isVideoType(contentType))  addAttachmentVideo(draftVideo, contentType);
 
     if (draftText == null && draftImage == null && draftAudio == null && draftVideo == null) {
       initializeDraftFromDatabase();
@@ -971,7 +970,39 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       Log.w("ComposeMessageActivity", e);
     }
   }
+  private void addAttachmentVideo(Uri videoUri, String contentType) {
+    try {
+      attachmentManager.setVideo(videoUri, contentType);
+    } catch (IOException e) {
+      attachmentManager.clear();
+      Toast.makeText(this, R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
+          Toast.LENGTH_LONG).show();
+      Log.w("ComposeMessageActivity", e);
+    } catch (MediaTooLargeException e) {
+      attachmentManager.clear();
 
+      Toast.makeText(this, getString(R.string.ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions,
+              (MmsMediaConstraints.MAX_MESSAGE_SIZE/1024)),
+          Toast.LENGTH_LONG).show();
+      Log.w("ComposeMessageActivity", e);
+    }
+  }
+  private void addAttachmentAudio(Uri audioUri, String contentType) {
+    try {
+      attachmentManager.setAudio(audioUri, contentType);
+    } catch (IOException e) {
+      attachmentManager.clear();
+      Toast.makeText(this, R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
+          Toast.LENGTH_LONG).show();
+      Log.w("ComposeMessageActivity", e);
+    } catch (MediaTooLargeException e) {
+      attachmentManager.clear();
+      Toast.makeText(this, getString(R.string.ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions,
+              (MmsMediaConstraints.MAX_MESSAGE_SIZE/1024)),
+          Toast.LENGTH_LONG).show();
+      Log.w("ComposeMessageActivity", e);
+    }
+  }
   private void addAttachmentAudio(Uri audioUri) {
     try {
       attachmentManager.setAudio(audioUri);
@@ -1193,9 +1224,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     final Context context = getApplicationContext();
     SlideDeck slideDeck;
 
-    if (attachmentManager.isAttachmentPresent())
+    if (attachmentManager.isAttachmentPresent()) {
       slideDeck = new SlideDeck(attachmentManager.getSlideDeck());
-    else slideDeck = new SlideDeck();
+    } else slideDeck = new SlideDeck();
 
     OutgoingMediaMessage outgoingMessage = new OutgoingMediaMessage(this, recipients, slideDeck,
         getMessage(), distributionType);
@@ -1348,7 +1379,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     private class AddAttachmentListener implements OnClickListener, TextView.OnEditorActionListener {
         @Override
         public void onClick(View v) {
-            Log.d("GDATA", "ATTACHMENT CLICK");
             handleAddAttachment();
         }
 

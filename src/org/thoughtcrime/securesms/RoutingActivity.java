@@ -134,7 +134,9 @@ public class RoutingActivity extends PassphraseRequiredActionBarActivity {
     intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, parameters.thread);
     intent.putExtra(ConversationActivity.MASTER_SECRET_EXTRA, masterSecret);
     intent.putExtra(ConversationActivity.DRAFT_TEXT_EXTRA, parameters.draftText);
-    intent.putExtra(ConversationActivity.DRAFT_MEDIA_EXTRA, parameters.draftMedia);
+    intent.putExtra(ConversationActivity.DRAFT_AUDIO_EXTRA, parameters.draftAudio);
+    intent.putExtra(ConversationActivity.DRAFT_IMAGE_EXTRA, parameters.draftImage);
+    intent.putExtra(ConversationActivity.DRAFT_VIDEO_EXTRA, parameters.draftVideo);
     intent.putExtra(ConversationActivity.DRAFT_MEDIA_TYPE_EXTRA, parameters.draftMediaType);
 
     return intent;
@@ -146,7 +148,9 @@ public class RoutingActivity extends PassphraseRequiredActionBarActivity {
 
     if (parameters != null) {
       intent.putExtra(ConversationActivity.DRAFT_TEXT_EXTRA, parameters.draftText);
-      intent.putExtra(ConversationActivity.DRAFT_MEDIA_EXTRA, parameters.draftMedia);
+      intent.putExtra(ConversationActivity.DRAFT_AUDIO_EXTRA, parameters.draftAudio);
+      intent.putExtra(ConversationActivity.DRAFT_IMAGE_EXTRA, parameters.draftImage);
+      intent.putExtra(ConversationActivity.DRAFT_VIDEO_EXTRA, parameters.draftVideo);
       intent.putExtra(ConversationActivity.DRAFT_MEDIA_TYPE_EXTRA, parameters.draftMediaType);
     }
 
@@ -202,25 +206,22 @@ public class RoutingActivity extends PassphraseRequiredActionBarActivity {
     recipients = RecipientFactory.getRecipientsFromString(this, data, false);
     threadId   = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipients);
 
-    return new ConversationParameters(threadId, recipients, body, null, null);
+    return new ConversationParameters(threadId, recipients, body, null, null, null, null);
   }
 
   private ConversationParameters getConversationParametersForShareAction() {
     String type       = getIntent().getType();
     String draftText  = getIntent().getStringExtra(Intent.EXTRA_TEXT);
-    Uri    draftMedia = null;
+    Uri    draftImage = getIntent().getParcelableExtra(ConversationActivity.DRAFT_IMAGE_EXTRA);
+    Uri    draftVideo = getIntent().getParcelableExtra(ConversationActivity.DRAFT_VIDEO_EXTRA);
+    Uri    draftAudio = getIntent().getParcelableExtra(ConversationActivity.DRAFT_AUDIO_EXTRA);
 
     Uri streamExtra = getIntent().getParcelableExtra(Intent.EXTRA_STREAM);
 
     if (streamExtra != null) {
       type = getMimeType(streamExtra);
     }
-
-    if (ContentType.isAudioType(type) || ContentType.isVideoType(type) || ContentType.isImageType(type)) {
-      draftMedia = streamExtra;
-    }
-
-    return new ConversationParameters(-1, null, draftText, draftMedia, type);
+    return new ConversationParameters(-1, null, draftText, draftImage, draftVideo, draftAudio, type);
   }
 
   private String getMimeType(Uri uri) {
@@ -239,7 +240,7 @@ public class RoutingActivity extends PassphraseRequiredActionBarActivity {
     long[] recipientIds   = getIntent().getLongArrayExtra("recipients");
     Recipients recipients = recipientIds == null ? null : RecipientFactory.getRecipientsForIds(this, recipientIds, true);
 
-    return new ConversationParameters(threadId, recipients, null, null, null);
+    return new ConversationParameters(threadId, recipients, null, null, null, null, null);
   }
 
   private boolean isShareAction() {
@@ -254,16 +255,20 @@ public class RoutingActivity extends PassphraseRequiredActionBarActivity {
     public final long       thread;
     public final Recipients recipients;
     public final String     draftText;
-    public final Uri        draftMedia;
+    public final Uri        draftImage;
+    public final Uri        draftVideo;
+    public final Uri        draftAudio;
     public final String     draftMediaType;
 
     public ConversationParameters(long thread, Recipients recipients,
-                                  String draftText, Uri draftMedia, String draftMediaType)
+                                  String draftText, Uri draftImage, Uri draftVideo, Uri draftAudio, String draftMediaType)
     {
       this.thread         = thread;
       this.recipients     = recipients;
       this.draftText      = draftText;
-      this.draftMedia     = draftMedia;
+      this.draftImage     = draftImage;
+      this.draftVideo     = draftVideo;
+      this.draftAudio     = draftAudio;
       this.draftMediaType = draftMediaType;
     }
   }

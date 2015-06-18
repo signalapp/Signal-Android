@@ -154,7 +154,12 @@ public class AttachmentManager {
   public void setVideo(Uri video) throws IOException, MediaTooLargeException {
     setMedia(new VideoSlide(context, video));
   }
-
+  public void setVideo(Uri video, String contentType) throws IOException, MediaTooLargeException {
+    setMedia(new VideoSlide(context, video, contentType));
+  }
+  public void setAudio(Uri audio, String contentType) throws IOException, MediaTooLargeException {
+    setMedia(new AudioSlide(context, audio, contentType));
+  }
   public void setAudio(Uri audio) throws IOException, MediaTooLargeException {
     setMedia(new AudioSlide(context, audio));
   }

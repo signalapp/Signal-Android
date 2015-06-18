@@ -45,7 +45,9 @@ public class VideoSlide extends Slide {
   public VideoSlide(Context context, Uri uri) throws IOException, MediaTooLargeException {
     super(context, constructPartFromUri(context, uri));
   }
-
+  public VideoSlide(Context context, Uri uri, String contentType) throws IOException, MediaTooLargeException {
+    super(context, constructPartFromUri(context, uri, contentType));
+  }
   public VideoSlide(Context context, MasterSecret masterSecret, PduPart part) {
     super(context, masterSecret, part);
   }
@@ -88,10 +90,6 @@ public class VideoSlide extends Slide {
     PduPart part  = new PduPart();
 
     assertMediaSize(context, uri);
-
-    if (contentType == null || ContentType.isUnspecified(contentType))
-      contentType = getContentTypeFromUri(context, uri, Video.Media.MIME_TYPE);
-
     Log.w(TAG, "Setting mime type: " + contentType);
     part.setContentType(contentType.getBytes());
 

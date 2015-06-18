@@ -49,6 +49,9 @@ public class AudioSlide extends Slide {
   public AudioSlide(Context context, Uri uri) throws IOException, MediaTooLargeException {
     super(context, constructPartFromUri(context, uri));
   }
+  public AudioSlide(Context context, Uri uri, String contentType) throws IOException, MediaTooLargeException {
+    super(context, constructPartFromUri(context, uri, contentType));
+  }
   @Override
   public boolean hasImage() {
     return true;
@@ -75,17 +78,12 @@ public class AudioSlide extends Slide {
     return null;
   }
 
-  private static PduPart constructPartFromUri(Context context, Uri uri, String contentType)
-      throws IOException, MediaTooLargeException {
-    PduPart part  = new PduPart();
+public static PduPart constructPartFromUri(Context context, Uri uri) throws IOException, MediaTooLargeException {
+    PduPart part = new PduPart();
 
     assertMediaSize(context, uri);
 
-    if (contentType == null || ContentType.isUnspecified(contentType))
-      contentType = getContentTypeFromUri(context, uri, Audio.Media.MIME_TYPE);
-
-    Log.w(TAG, "Setting mime type: " + contentType);
-    part.setContentType(contentType.getBytes());
+    part.setContentType(getContentTypeFromUri(context, uri, Audio.Media.MIME_TYPE).getBytes());
 
     part.setDataUri(uri);
     part.setContentId((System.currentTimeMillis()+"").getBytes());
@@ -93,24 +91,12 @@ public class AudioSlide extends Slide {
 
     return part;
   }
-  public static PduPart constructPartFromUri(Context context, Uri uri) throws IOException, MediaTooLargeException {
+  public static PduPart constructPartFromUri(Context context, Uri uri, String contentType) throws IOException, MediaTooLargeException {
     PduPart part = new PduPart();
 
     assertMediaSize(context, uri);
 
-    Cursor cursor = null;
-
-    try {
-      cursor = context.getContentResolver().query(uri, new String[]{Audio.Media.MIME_TYPE}, null, null, null);
-
-      if (cursor != null && cursor.moveToFirst())
-        part.setContentType(cursor.getString(0).getBytes());
-      else
-        throw new IOException("Unable to query content type.");
-    } finally {
-      if (cursor != null)
-        cursor.close();
-    }
+    part.setContentType(contentType.getBytes());
 
     part.setDataUri(uri);
     part.setContentId((System.currentTimeMillis()+"").getBytes());
