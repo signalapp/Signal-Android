@@ -19,9 +19,11 @@ Figyelmeztetés, ez letiltja a titkosított tárolást minden üzenethez és kul
 hozzáférhet az üzenetekhez és a kulcsokhoz!
  </string>
   <string name="ApplicationPreferencesActivity_disable">Tiltás</string>
+  <string name="ApplicationPreferencesActivity_unregistering">Leregisztrálás</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Leregisztrálás TextSecure üzenetekről...</string>
   <string name="ApplicationPreferencesActivity_disable_textsecure_messages">TextSecure üzenetek tiltása?</string>
   <string name="ApplicationPreferencesActivity_this_will_disable_textsecure_messages">
-        Ez letiltja a TextSecure üzeneteket azáltal, hogy megszünteti a regisztrációdat a szerveren.
+        Ez letiltja a TextSecure üzeneteket azáltal, hogy megszünteti a regisztrációdat a kiszolgálónál.
         Újra kell regisztrálnod a telefonszámod, hogy a TextSecure üzeneteket a jövőben újra használhasd.
     </string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Hiba a kiszolgálóhoz való kapcsolódáskor!</string>
@@ -47,8 +49,9 @@ hozzáférhet az üzenetekhez és a kulcsokhoz!
   <string name="AttachmentTypeSelectorAdapter_picture">Kép</string>
   <string name="AttachmentTypeSelectorAdapter_video">Mozgókép</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Hang</string>
-  <string name="AttachmentTypeSelectorAdapter_contact">Névjegy adatok</string>
+  <string name="AttachmentTypeSelectorAdapter_contact">Névjegy infó</string>
   <!--BlockedContactsActivity-->
+  <string name="BlockedContactsActivity_blocked_contacts">Tiltott névjegyek</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Az
 azonosító kulcs %1$s vonatkozásában megváltozott. Ez jelentheti, hogy valaki megpróbál beavatkozni a kommunikációba, vagy azt, hogy %2$s egyszerűen újra telepítette a TextSecure alkalmazást és így most egy új azonosító kulcsa van.
@@ -82,7 +85,7 @@ Elküldöd a titkosítatlan üzenetet?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Üzenetfolyam törlésének megerősítése</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Biztosan teljesen törölni szeretnéd ezt a beszélgetést?</string>
   <string name="ConversationActivity_add_attachment">Melléklet hozzáadása</string>
-  <string name="ConversationActivity_select_contact_info">Válassz névjegy adatot!</string>
+  <string name="ConversationActivity_select_contact_info">Válassz névjegy infót!</string>
   <string name="ConversationActivity_compose_message">Üzenetírás</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Sajnos nem sikerült a melléklet beállítása.</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Sajnos a kiválasztott mozgókép mérete meghaladja a maximális üzenetméret határt (%1$skB).</string>
@@ -109,6 +112,9 @@ Elküldöd a titkosítatlan üzenetet?</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS nem támogatott</string>
   <string name="ConversationActivity_mms_not_supported_message">Ezt az üzenetet nem lehet elküldeni, mivel a szolgáltató nem támogatja az MMS-t.</string>
   <string name="ConversationActivity_specify_recipient">Válassz egy névjegyet!</string>
+  <string name="ConversationActivity_unblock_question">Tiltás feloldása?</string>
+  <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Biztosan feloldod ennek a névjegynek a tiltását?</string>
+  <string name="ConversationActivity_unblock">Tiltás feloldása</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Üzenet részletei</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Átviteli mód: %1$s\nKüldött/Fogadott: %2$s</string>
@@ -126,6 +132,7 @@ Elküldöd a titkosítatlan üzenetet?</string>
   <string name="ConversationFragment_push">Adat (TS)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
+  <string name="ConversationFragment_deleting">Törlés</string>
   <string name="ConversationFragment_deleting_messages">Üzenetek törlése...</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">Keresés...</string>
@@ -165,11 +172,11 @@ exportálni fogja a TextSecure üzenetek titkosítatlan tartalmait az SD kárty�
   <string name="GroupCreateActivity_actionbar_update_title">Csoport frissítése</string>
   <string name="GroupCreateActivity_group_name_hint">Csoport név</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Új MMS csoport</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Olyan személyt választottál akinél nincs TexSecure csoport támogatás, így ez a csoport az MMS lesz.</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Olyan névjegyet választottál akinél nincs TexSecure csoport támogatás, így ez a csoport az MMS lesz.</string>
   <string name="GroupCreateActivity_you_dont_support_push">Nem vagy regisztrálva adat csatorna használatára, így a TextSecure csoportok le vannak tiltva.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Egy váratlan hiba történt, ami a csoport létrehozását meghiúsította.</string>
   <string name="GroupCreateActivity_contacts_no_members">A csoporthoz legalább egy emberre szükség van!</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">A csoportod egyik tagjának számát nem lehet megfelelően olvasni. Kérlek javítsd ki, vagy távolítsd el a névjegyzékből és próbáld újra!</string>
+  <string name="GroupCreateActivity_contacts_invalid_number">A csoportod egyik tagjának számát nem lehet megfelelően olvasni. Kérlek javítsd ki, vagy távolítsd el a névjegyet és próbáld újra!</string>
   <string name="GroupCreateActivity_avatar_content_description">Csoport maszk</string>
   <string name="GroupCreateActivity_menu_create_title">Csoport létrehozása</string>
   <string name="GroupCreateActivity_creating_group">Létrehozás %1$s...</string>
@@ -201,6 +208,7 @@ nincs a biztonsági mentésben.
 az üzeneteket egy titkosítatlan biztonsági mentésből. Ha már korábban importáltad ezt a biztonsági mentést,
 akkor az újbóli importálás duplikált üzeneteket eredményez.</string>
   <string name="ImportFragment_importing">Importálás</string>
+  <string name="ImportFragment_import_plaintext_backup_elipse">Titkosítatlan biztonsági mentés importálása...</string>
   <string name="ImportFragment_no_plaintext_backup_found">Nem található kódolatlan biztonsági mentés!</string>
   <string name="ImportFragment_error_importing_backup">Hiba a biztonsági mentés importálásakor!</string>
   <string name="ImportFragment_import_complete">Importálás befejezve!</string>
@@ -238,6 +246,7 @@ akkor az újbóli importálás duplikált üzeneteket eredményez.</string>
   <string name="DeviceProvisioningActivity_content_bullets">
 - Az összes üzenet olvasása
 \n- Üzenetek küldése a nevedben</string>
+  <string name="DeviceProvisioningActivity_content_progress_title">Eszköz hozzáadása</string>
   <string name="DeviceProvisioningActivity_content_progress_content">Új eszköz hozzáadása...</string>
   <string name="DeviceProvisioningActivity_content_progress_success">Eszköz hozzáadása megtörtént!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Nem található eszköz</string>
@@ -258,6 +267,14 @@ Kérlek telepíts újra a Google Play Szolgáltatásokat és próbálkozz újra!
   <string name="RatingManager_no_thanks">Nem, köszönöm!</string>
   <string name="RatingManager_later">Később</string>
   <!--RecipientPreferencesActivity-->
+  <string name="RecipientPreferenceActivity_block_this_contact_question">Letiltod ezt a névjegyet?</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_see_messages_from_this_user">Többé nem látod az ettől a felhasználótól érkező üzeneteket.</string>
+  <string name="RecipientPreferenceActivity_block">Letiltás</string>
+  <string name="RecipientPreferenceActivity_unblock_this_contact_question">Feloldod ennek a névjegynek a tiltát?</string>
+  <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Biztosan feloldod ennek a névjegynek a tiltását?</string>
+  <string name="RecipientPreferenceActivity_unblock">Tiltás feloldása</string>
+  <string name="RecipientPreferenceActivity_enabled">Engedélyezett</string>
+  <string name="RecipientPreferenceActivity_disabled">Letiltott</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">Csatlakozás a TextSecure-höz</string>
   <string name="RegistrationActivity_select_your_country">Saját ország kiválasztása </string>
@@ -359,7 +376,7 @@ Ismeretlen azonosító kulcsú üzenet érkezett. Kattints rá a feldolgozáshoz
   <!--ThreadDatabase-->
   <string name="ThreadDatabase_error_decrypting_message">Hiba az üzenet dekódolása közben.</string>
   <!--MmsDatabase-->
-  <string name="MmsDatabase_connecting_to_mms_server">Kapcsolódás az MMS szerverhez...</string>
+  <string name="MmsDatabase_connecting_to_mms_server">Kapcsolódás az MMS kiszolgálóhoz...</string>
   <string name="MmsDatabase_downloading_mms">MMS letöltése...</string>
   <string name="MmsDatabase_mms_download_failed">MMS letöltés sikertelen!</string>
   <string name="MmsDatabase_downloading">Letöltés...</string>
@@ -397,8 +414,8 @@ Ismeretlen azonosító kulcsú üzenet érkezett. Kattints rá a feldolgozáshoz
   <string name="change_passphrase_activity__repeat_new_passphrase">ISMÉTELD MEG AZ ÚJ JELSZÓT:</string>
   <!--contact_selection_group_activity-->
   <!--contact_selection_list_activity-->
-  <string name="contact_selection_group_activity__no_contacts">Üres névjegyzék.</string>
-  <string name="contact_selection_group_activity__finding_contacts">Névjegyzék betöltése...</string>
+  <string name="contact_selection_group_activity__no_contacts">Nincsenek névjegyek.</string>
+  <string name="contact_selection_group_activity__finding_contacts">Névjegyek betöltése...</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">Nem vagy regisztrálva az azonnali üzenetküldési szolgáltatás használatához...</string>
   <string name="SingleContactSelectionActivity_updating_directory">Könyvtár frissítése</string>
@@ -407,9 +424,11 @@ Ismeretlen azonosító kulcsú üzenet érkezett. Kattints rá a feldolgozáshoz
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Kiválasztás...</string>
   <!--blocked_contacts_fragment-->
+  <string name="blocked_contacts_fragment__no_blocked_contacts">Nincs letiltott névjegy...</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">A híváslista üres.</string>
   <!--conversation_title_view-->
+  <string name="conversation_title_view__conversation_muted">Beszélgetés némítva</string>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">TextSecure üzenet küldése</string>
   <string name="conversation_activity__type_message_sms_insecure">Nem biztonságos SMS küldése</string>
@@ -490,7 +509,13 @@ Egy titkosítatlan biztonsági mentés fájl importálása. \"SMS biztonsági me
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">A TextSecure az MMS beállítások megadását igényli a média és csoportos üzenetek kézbesítéséhez a szolgáltatódon keresztül. Az eszközöd nem tesz elérhetővé ilyen információkat, ami igaz lehet zárolt eszközök és egyéb korlátozó beállítások esetén.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">A média és csoportos üzeneteke küldéséhez kattints az \"OK\" feliratra és add meg a kívánt beállításokat! A szolgáltatód MMS beállításai általában megtalálhatók a \"saját szolgáltató APN\" keresésével. Csupán egyszer van szüksége ezt megtenni.</string>
   <!--recipient_preferences_activity-->
+  <string name="recipient_preference_activity__blocked">LETILTVA</string>
   <!--recipient_preferences-->
+  <string name="recipient_preferences__mute_conversation">Beszélgetés némítása</string>
+  <string name="recipient_preferences__disable_notifications_for_this_conversation">Értesítések tiltása ehhez a beszélgetéshez</string>
+  <string name="recipient_preferences__ringtone">Csengőhang</string>
+  <string name="recipient_preferences__vibrate">Rezgés</string>
+  <string name="recipient_preferences__block">Letiltás</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 Ellenőrizd a telefonszámodat a TextSecure alkalmazással történő kapcsolódáshoz.</string>
@@ -500,7 +525,7 @@ TELEFONSZÁM
  </string>
   <string name="registration_activity__phone_number">TELEFONSZÁM</string>
   <string name="registration_activity__register">Regisztrálás</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">A regisztrálás néhány személyes információt juttat el a kiszolgálóhoz. Az adatok nem kerülnek tárolásra.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">A regisztrálás néhány névjegy információt juttat el a kiszolgálóhoz. Az adatok nem kerülnek tárolásra.</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Néhány lehetséges probléma
 beleértve:
@@ -547,7 +572,7 @@ eszköz hálózati kapcsolattal kell rendelkezzen, hogy a TextSecure ezen szolg�
   <string name="registration_progress_activity__restrictive_firewall">Korlátozó tűzfal.
  </string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
-Ha WiFi-vel kapcsolódsz az internetre, akkor lehetséges, hogy egy tűzfal korlátozza
+Ha WiFi-vel kapcsolódsz az internetre, akkor lehetséges, hogy egy tűzfal letiltja
 a TexSecure kiszolgáló elérését. Próbálj másik kapcsolatot, vagy mobilnetet használni!</string>
   <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
 A TextSecure most már automatikusan ellenőrzi a számodat egy ellenőrző SMS üzenettel.
@@ -587,7 +612,7 @@ sikertelen.
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Jelszó létrehozása</string>
   <string name="AndroidManifest__enter_passphrase">Jelszó megadása</string>
-  <string name="AndroidManifest__select_contacts">Névjegy kiválasztása</string>
+  <string name="AndroidManifest__select_contacts">Névjegyek kiválasztása</string>
   <string name="AndroidManifest__textsecure_detected">A TextSecure detektált</string>
   <string name="AndroidManifest__public_identity_key">Nyilvános azonosító kulcs</string>
   <string name="AndroidManifest__change_passphrase">Jelszó megváltoztatása</string>
@@ -602,6 +627,13 @@ sikertelen.
   <string name="arrays__my_identity_key">Saját azonosító kulcs</string>
   <string name="arrays__use_default">Alapértelmezett</string>
   <string name="arrays__use_custom">Egyéni</string>
+  <string name="arrays__mute_for_one_hour">Némítás 1 órára</string>
+  <string name="arrays__mute_for_two_hours">Némítás 2 órára</string>
+  <string name="arrays__mute_for_one_day">Némítás 1 napra</string>
+  <string name="arrays__mute_for_seven_days">Némítás 7 napra</string>
+  <string name="arrays__settings_default">Alapértelmezett beállítások</string>
+  <string name="arrays__enabled">Engedélyezett</string>
+  <string name="arrays__disabled">Letiltott</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d óra</item>
@@ -647,6 +679,7 @@ sikertelen.
   <string name="preferences__sound">Hang</string>
   <string name="preferences__change_notification_sound">Értesítési hang megváltoztatása</string>
   <string name="preferences__inthread_notifications">Értesítések a beszélgetések során.</string>
+  <string name="preferences__play_inthread_notifications">Értesítési hang lejátszása, amikor aktív beszélgetést nézel</string>
   <string name="preferences__repeat_alerts">Figyelmeztetések megismétlése</string>
   <string name="preferences__never">Soha</string>
   <string name="preferences__one_time">Egyszer</string>
@@ -671,7 +704,7 @@ sikertelen.
   <string name="preferences__slow">Lassú</string>
   <string name="preferences__custom">Egyéni</string>
   <string name="preferences__advanced">Haladó</string>
-  <string name="preferences__app_protection">Alkalmazás védelem</string>
+  <string name="preferences__privacy">Magánélet</string>
   <string name="preferences__mms_user_agent">MMS felhasználó ügynök</string>
   <string name="preferences__advanced_mms_access_point_names">MMS beállítások manuális megadása</string>
   <string name="preferences__enable_manual_mms">Manuális MMS beállítások használata</string>
@@ -701,6 +734,8 @@ sikertelen.
 Ingyenes biztonságos üzenet küldés TextSecure és Signal felhasználóknak</string>
   <string name="preferences__submit_debug_log">Hibakeresési napló küldése</string>
   <string name="preferences__support_wifi_calling">\'WiFi hívás\' kompatibilitási mód</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Engedélyezd, ha az eszközöd az SMS/MMS-t WiFi-n keresztül kézbesíti (csak akkor engedélyezd, ha a \'WiFi hívás\' engedélyezve van az eszközödön)</string>
+  <string name="preferences_app_protection__blocked_contacts">Letiltott névjegyek</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -744,7 +779,9 @@ Ingyenes biztonságos üzenet küldés TextSecure és Signal felhasználóknak</
   <string name="conversation_secure_verified__menu_verify_identity">Azonosító ellenőrzése</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">Biztonságos üzenetváltás befejezése</string>
   <!--conversation_muted-->
+  <string name="conversation_muted__unmute">Némítás feloldása</string>
   <!--conversation_unmuted-->
+  <string name="conversation_unmuted__mute_notifications">Értesítések némítása</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Melléklet hozzáadása</string>
   <string name="conversation__menu_update_group">Csoport frissítése</string>
@@ -786,9 +823,11 @@ Ingyenes biztonságos üzenet küldés TextSecure és Signal felhasználóknak</
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Kép előnézet</string>
   <!--Trimmer-->
+  <string name="trimmer__deleting">Törlés</string>
   <string name="trimmer__deleting_old_messages">Régi üzenetek törlése...</string>
   <string name="trimmer__old_messages_successfully_deleted">A régi üzenetek sikeresen törlődtek</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Átvitel ikon</string>
+  <string name="MuteDialog_mute_notifications">Értesítések némítása</string>
   <!--EOF-->
 </resources>

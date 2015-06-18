@@ -602,7 +602,6 @@
   <string name="preferences__slow">بطىء</string>
   <string name="preferences__custom">مخصص</string>
   <string name="preferences__advanced">متقدم</string>
-  <string name="preferences__app_protection">حماية التطبيق</string>
   <string name="preferences__mms_user_agent">الوكيل المستخدم لرسائل الوسائط المتعددة</string>
   <string name="preferences__advanced_mms_access_point_names">الإعدادات اليدوية لرسائل الوسائط المتعددة</string>
   <string name="preferences__enable_manual_mms">استخدم الإعدادات اليدوية لرسائل الوسائط المتعددة</string>

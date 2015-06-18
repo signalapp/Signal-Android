@@ -18,6 +18,8 @@ Uyarı, bu tüm mesaj ve anahtarlar için depolama alanı şifrelemesini etkisiz
 oturumlarınız işlevlerini sürdürür, fakat cihazınıza fiziksel erişimi olan herhangi biri onlara
 erişebilir.</string>
   <string name="ApplicationPreferencesActivity_disable">Etkisizleştir</string>
+  <string name="ApplicationPreferencesActivity_unregistering">Kayıt siliniyor</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">TextSecure mesajlarından kaydınız siliniyor</string>
   <string name="ApplicationPreferencesActivity_disable_textsecure_messages">TextSecure mesajları etkisizleştirilsin mi?</string>
   <string name="ApplicationPreferencesActivity_this_will_disable_textsecure_messages">Bu işlem sunucudan kaydınızı silerek TextSecure mesajlarını etkisizleştirir. 
 Gelecekte TextSecure mesajlarını tekrar kullanmak isterseniz telefon numaranızı yeniden kaydettirmeniz gerekir.</string>
@@ -118,6 +120,7 @@ isteyebilirsiniz.</string>
   <string name="ConversationFragment_push">Veri (TextSecure)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
+  <string name="ConversationFragment_deleting">Siliniyor</string>
   <string name="ConversationFragment_deleting_messages">Mesajlar siliniyor...</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">Ara...</string>
@@ -243,6 +246,8 @@ kurulumunuzda bulunan ancak yüklenecek yedekte bulunmayan tüm bilgiler kaybolu
   <string name="RatingManager_no_thanks">Hayır teşekkürler</string>
   <string name="RatingManager_later">Daha sonra</string>
   <!--RecipientPreferencesActivity-->
+  <string name="RecipientPreferenceActivity_enabled">Etkinleştirildi</string>
+  <string name="RecipientPreferenceActivity_disabled">Etkisizleştirildi</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">TextSecure ile Bağlan</string>
   <string name="RegistrationActivity_select_your_country">Ülkenizi seçin</string>
@@ -467,6 +472,7 @@ Daha önce dışa aktarılmış bir şifrelenmiş TextSecure yedeğini yeniden y
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Medya veya grup mesajları gönderebilmek için \'Tamam\' a tıklayınız ve istenen ayarları tamamlayınız. Taşıyıcınızın MMS ayarları genellikle \'taşıyıcı APN\' araştırılarak bulunabilir. Bunu bir kez yapmanız gerekecektir.</string>
   <!--recipient_preferences_activity-->
   <!--recipient_preferences-->
+  <string name="recipient_preferences__vibrate">Titreş</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 TextSecure\'a bağlanmak için telefon numaranızı doğrulayın</string>
@@ -559,6 +565,9 @@ başarısız.</string>
   <string name="arrays__my_identity_key">Kimlik anahtarım</string>
   <string name="arrays__use_default">Varsayılanı kullan</string>
   <string name="arrays__use_custom">Özelleştirilmiş kullan</string>
+  <string name="arrays__settings_default">Ayarlar varsayılan</string>
+  <string name="arrays__enabled">Etkinleştirildi</string>
+  <string name="arrays__disabled">Etkisizleştirildi</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="other">%d saat</item>
@@ -627,7 +636,6 @@ başarısız.</string>
   <string name="preferences__slow">Yavaş</string>
   <string name="preferences__custom">Özel</string>
   <string name="preferences__advanced">Gelişmiş</string>
-  <string name="preferences__app_protection">App koruma</string>
   <string name="preferences__mms_user_agent">MMS Kullanıcı Aracı</string>
   <string name="preferences__advanced_mms_access_point_names">Manüel MMS ayarları</string>
   <string name="preferences__enable_manual_mms">Manüel MMS ayarlarını kullan</string>
@@ -742,6 +750,7 @@ TextSecure ve Signal kullanıcıları ile ücretsiz gizli mesajlaşma</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Resim Önizleme</string>
   <!--Trimmer-->
+  <string name="trimmer__deleting">Siliniyor</string>
   <string name="trimmer__deleting_old_messages">Eski mesajlar siliniyor...</string>
   <string name="trimmer__old_messages_successfully_deleted">Eski mesajlar silindi</string>
   <!--transport_selection_list_item-->

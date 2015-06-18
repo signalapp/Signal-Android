@@ -659,7 +659,6 @@ zlyhalo.
   <string name="preferences__slow">Pomaly</string>
   <string name="preferences__custom">Vlastné</string>
   <string name="preferences__advanced">Rozšírené</string>
-  <string name="preferences__app_protection">Ochrana aplikácie</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuálne MMS nastavenia</string>
   <string name="preferences__enable_manual_mms">Použť manuálne MMS nastavenia</string>

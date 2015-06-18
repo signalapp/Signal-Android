@@ -578,7 +578,6 @@ falhou.
   <string name="preferences__slow">Lento</string>
   <string name="preferences__custom">Personalizado</string>
   <string name="preferences__advanced">Avançado</string>
-  <string name="preferences__app_protection">Protecção da aplicação</string>
   <string name="preferences__advanced_mms_access_point_names">Configuração MMS manual</string>
   <string name="preferences__enable_manual_mms">Utilizar configuração MMS Manual</string>
   <string name="preferences__override_system_mms_settings">Usar a informação abaixo ao invés das configurações MMS do sistema.</string>

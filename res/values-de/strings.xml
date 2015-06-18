@@ -17,11 +17,11 @@
 Warnung: Dies wird die verschlüsselte Speicherung für alle Nachrichten und Schlüssel deaktivieren.
 Ihre verschlüsselten Unterhaltungen werden weiterhin funktionieren, aber jemand mit physischem Zugriff auf Ihr Gerät kann dann auf sie zugreifen.</string>
   <string name="ApplicationPreferencesActivity_disable">Deaktivieren</string>
-  <string name="ApplicationPreferencesActivity_unregistering">Konto löschen</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">TextSecure-Benutzerkonto wird gelöscht …</string>
+  <string name="ApplicationPreferencesActivity_unregistering">Registrierung löschen</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">TextSecure-Registrierung wird gelöscht …</string>
   <string name="ApplicationPreferencesActivity_disable_textsecure_messages">TextSecure-Nachrichten deaktivieren?</string>
   <string name="ApplicationPreferencesActivity_this_will_disable_textsecure_messages">
-Dies wird TextSecure-Nachrichten deaktivieren durch Löschung Ihres Benutzerkontos vom Server.
+Dies wird TextSecure-Nachrichten deaktivieren, indem Ihre Registrierung vom Server gelöscht wird.
 Sie werden Ihre Rufnummer erneut registrieren müssen, um TextSecure-Nachrichten zukünftig wieder nutzen zu können.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Fehler beim Verbinden zum Server!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS aktiviert</string>
@@ -105,7 +105,7 @@ Dies könnte bedeuten, dass jemand versucht, Ihr Gespräch abzuhören. Vielleich
   <string name="ConversationActivity_mms_not_supported_message">Diese Nachricht kann nicht gesendet werden, da Ihr Mobilfunkbetreiber MMS nicht unterstützt.</string>
   <string name="ConversationActivity_specify_recipient">Bitte einen Kontakt auswählen</string>
   <string name="ConversationActivity_unblock_question">Blockierung aufheben?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Sind Sie sicher, dass Sie die Blockierung für diesen Kontakt aufheben möchten?</string>
+  <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Sind Sie sicher, dass Sie die Blockierung dieses Kontakts aufheben möchten?</string>
   <string name="ConversationActivity_unblock">Blockierung aufheben</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Nachrichtendetails</string>
@@ -253,11 +253,13 @@ Bitten Sie den Absender, TextSecure zu aktualisieren und die Nachricht erneut zu
   <string name="RatingManager_later">Später</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Diesen Kontakt blockieren?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_see_messages_from_this_user">Sie werden Nachrichten dieses Benutzers nicht mehr sehen.</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_see_messages_from_this_user">Nachrichten dieses Benutzers werden nicht mehr angezeigt werden.</string>
   <string name="RecipientPreferenceActivity_block">Blockieren</string>
-  <string name="RecipientPreferenceActivity_unblock_this_contact_question">Blockierung für diesen Kontakt aufheben?</string>
-  <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Sind Sie sicher, dass Sie die Blockierung für diesen Kontakt aufheben möchten?</string>
+  <string name="RecipientPreferenceActivity_unblock_this_contact_question">Blockierung dieses Kontakts aufheben?</string>
+  <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Sind Sie sicher, dass Sie die Blockierung dieses Kontakts aufheben möchten?</string>
   <string name="RecipientPreferenceActivity_unblock">Blockierung aufheben</string>
+  <string name="RecipientPreferenceActivity_enabled">Aktiviert</string>
+  <string name="RecipientPreferenceActivity_disabled">Deaktiviert</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">Mit TextSecure verbinden</string>
   <string name="RegistrationActivity_select_your_country">Wählen Sie Ihr Land aus</string>
@@ -444,15 +446,15 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <string name="database_upgrade_activity__updating_database">Datenbank wird aktualisiert …</string>
   <string name="export_fragment__export_plaintext_backup">Klartextsicherung exportieren</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-Eine mit \"SMS Backup + Restore\" kompatible Klartextsicherung exportieren.</string>
+Eine mit \"SMS Backup + Restore\" kompatible Klartextsicherung exportieren</string>
   <string name="import_fragment__import_system_sms_database">SMS-Systemdatenbank importieren</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">Datenbank aus der Standard-SMS-App importieren.</string>
+  <string name="import_fragment__import_the_database_from_the_default_system">Datenbank aus der Standard-SMS-App importieren</string>
   <string name="import_fragment__import_encrypted_backup">Verschlüsselte Sicherung importieren</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">
-Eine zuvor exportierte, verschlüsselte TextSecure-Datensicherung wiederherstellen.</string>
+Eine zuvor exportierte, verschlüsselte TextSecure-Datensicherung wiederherstellen</string>
   <string name="import_fragment__import_plaintext_backup">Klartextsicherung importieren</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
-Eine mit \"SMS Backup + Restore\" kompatible Klartextsicherung importieren.</string>
+Eine mit \"SMS Backup + Restore\" kompatible Klartextsicherung importieren</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Keine Bilder</string>
   <!--message_recipients_list_item-->
@@ -479,7 +481,7 @@ Eine mit \"SMS Backup + Restore\" kompatible Klartextsicherung importieren.</str
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Unterhaltung stummschalten</string>
   <string name="recipient_preferences__disable_notifications_for_this_conversation">Benachrichtigungen für diese Unterhaltung deaktivieren</string>
-  <string name="recipient_preferences__ringtone">Klingelton</string>
+  <string name="recipient_preferences__ringtone">Benachrichtigungston</string>
   <string name="recipient_preferences__vibrate">Vibrieren</string>
   <string name="recipient_preferences__block">Blockieren</string>
   <!--registration_activity-->
@@ -562,11 +564,11 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="arrays__my_identity_key">Mein Schlüssel</string>
   <string name="arrays__use_default">Standard verwenden</string>
   <string name="arrays__use_custom">Benutzerdefiniert verwenden</string>
-  <string name="arrays__mute_for_one_hour">Für 1 Stunde stummschalten</string>
-  <string name="arrays__mute_for_two_hours">Für 2 Stunden stummschalten</string>
-  <string name="arrays__mute_for_one_day">Für 1 Tag stummschalten</string>
-  <string name="arrays__mute_for_seven_days">Für 7 Tage stummschalten</string>
-  <string name="arrays__settings_default">Standardeinstellungen</string>
+  <string name="arrays__mute_for_one_hour">Für 1 Stunde</string>
+  <string name="arrays__mute_for_two_hours">Für 2 Stunden</string>
+  <string name="arrays__mute_for_one_day">Für 1 Tag</string>
+  <string name="arrays__mute_for_seven_days">Für 7 Tage</string>
+  <string name="arrays__settings_default">Standardeinstellung</string>
   <string name="arrays__enabled">Aktiviert</string>
   <string name="arrays__disabled">Deaktiviert</string>
   <!--plurals.xml-->
@@ -577,8 +579,8 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <!--preferences.xml-->
   <string name="preferences__general">Allgemein</string>
   <string name="preferences__sms_mms">SMS und MMS</string>
-  <string name="preferences__pref_all_sms_title">Für SMS-Empfang benutzen</string>
-  <string name="preferences__pref_all_mms_title">Für MMS-Empfang benutzen</string>
+  <string name="preferences__pref_all_sms_title">Für SMS-Empfang verwenden</string>
+  <string name="preferences__pref_all_mms_title">Für MMS-Empfang verwenden</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">TextSecure für alle eingehenden SMS verwenden</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">TextSecure für alle eingehenden MMS verwenden</string>
   <string name="preferences__input_settings">Eingabe</string>
@@ -614,7 +616,7 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="preferences__sound">Benachrichtigungston</string>
   <string name="preferences__change_notification_sound">Benachrichtigungston ändern</string>
   <string name="preferences__inthread_notifications">Immer benachrichtigen</string>
-  <string name="preferences__play_inthread_notifications">Benachrichtigungston während aktiver Unterhaltungen abspielen</string>
+  <string name="preferences__play_inthread_notifications">Benachrichtigungston während aktiver Unterhaltungen wiedergeben</string>
   <string name="preferences__repeat_alerts">Benachrichtigungen wiederholen</string>
   <string name="preferences__never">Nie</string>
   <string name="preferences__one_time">Einmal</string>
@@ -639,11 +641,11 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="preferences__slow">Langsam</string>
   <string name="preferences__custom">Benutzerdefiniert</string>
   <string name="preferences__advanced">Weitere Einstellungen</string>
-  <string name="preferences__app_protection">Anwendungsschutz</string>
+  <string name="preferences__privacy">Datenschutz</string>
   <string name="preferences__mms_user_agent">MMS-Benutzer-Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuelle MMS-Einstellungen</string>
   <string name="preferences__enable_manual_mms">Manuelle MMS-Einstellungen</string>
-  <string name="preferences__override_system_mms_settings">Statt der Systemeinstellungen für MMS die unten genannten Einstellungen benutzen</string>
+  <string name="preferences__override_system_mms_settings">Statt der Systemeinstellungen für MMS die unten genannten Einstellungen verwenden</string>
   <string name="preferences__mmsc_url">MMSC-URL</string>
   <string name="preferences__mms_proxy_host">MMS-Proxy-Host</string>
   <string name="preferences__mms_proxy_port">MMS-Proxy-Port</string>
@@ -670,7 +672,6 @@ Kostenlos verschlüsselte Nachrichten mit TextSecure- und Signal-Nutzern austaus
   <string name="preferences__submit_debug_log">Diagnoseprotokoll übermitteln</string>
   <string name="preferences__support_wifi_calling">Kompatibilität WLAN-Telefonie</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktivieren, falls das Gerät SMS/MMS über WLAN nutzt (nur bei aktivierter WLAN-Telefonie)</string>
-  <string name="preferences__privacy">Datenschutz</string>
   <string name="preferences_app_protection__blocked_contacts">Blockierte Kontakte</string>
   <!--****************************************-->
   <!--menus-->
@@ -717,7 +718,7 @@ Kostenlos verschlüsselte Nachrichten mit TextSecure- und Signal-Nutzern austaus
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">Stummschaltung aufheben</string>
   <!--conversation_unmuted-->
-  <string name="conversation_unmuted__mute_notifications">Benachrichtigungen stummschalten</string>
+  <string name="conversation_unmuted__mute_notifications">Stummschalten</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Anhang hinzufügen</string>
   <string name="conversation__menu_update_group">Gruppe bearbeiten</string>

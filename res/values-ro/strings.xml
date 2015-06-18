@@ -598,7 +598,6 @@ Operaţiunea iniţiată de TextSecure a expirat în timpul aşteptării primirii
   <string name="preferences__slow">Încet</string>
   <string name="preferences__custom">Specific</string>
   <string name="preferences__advanced">Avansat</string>
-  <string name="preferences__app_protection">Protecție aplicație</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Setări MMS manuale</string>
   <string name="preferences__enable_manual_mms">Utilizează setări MMS manuale</string>

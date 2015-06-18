@@ -552,7 +552,6 @@ huts egin du.
   <string name="preferences__slow">Motela</string>
   <string name="preferences__custom">Pertsonalizatua</string>
   <string name="preferences__advanced">Aurreratua</string>
-  <string name="preferences__app_protection">Aplikazioaren babesa</string>
   <string name="preferences__advanced_mms_access_point_names">MMS eskuzko ezarpenak</string>
   <string name="preferences__enable_manual_mms">MMS eskuzko ezarpenak erabili</string>
   <string name="preferences__override_system_mms_settings">Jaramonik ez sistemaren MMS ezarpenei azpian dagoen informazioa erabiliz.</string>

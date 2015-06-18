@@ -634,7 +634,6 @@ neuspješno.</string>
   <string name="preferences__slow">Sporo</string>
   <string name="preferences__custom">Prilagodi</string>
   <string name="preferences__advanced">Napredno</string>
-  <string name="preferences__app_protection">Zaštita aplikacije</string>
   <string name="preferences__mms_user_agent">MMS korisnički agent</string>
   <string name="preferences__advanced_mms_access_point_names">Ručne MMS postavke</string>
   <string name="preferences__enable_manual_mms">Koristi ručne MMS postavke</string>

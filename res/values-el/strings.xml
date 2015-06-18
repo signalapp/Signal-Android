@@ -653,7 +653,6 @@ SMS της συσκευής σας στο TextSecure. Αν έχετε ήδη ε�
   <string name="preferences__slow">Αργό</string>
   <string name="preferences__custom">Προσαρμοσμένο</string>
   <string name="preferences__advanced">Για προχωρημένους</string>
-  <string name="preferences__app_protection">Προστασία εφαρμογής</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Ρυθμίσεις MMS</string>
   <string name="preferences__enable_manual_mms">Χρήση μη αυτόματων ρυθμίσεων MMS</string>

@@ -517,7 +517,6 @@
   <string name="preferences__slow">آهسته</string>
   <string name="preferences__custom">دلخواه</string>
   <string name="preferences__advanced">تنظیمات پیشرفته</string>
-  <string name="preferences__app_protection">حفاظت برنامه</string>
   <string name="preferences__mms_user_agent">عامل کاربر MMS</string>
   <string name="preferences__advanced_mms_access_point_names">تنظیمات MMS دستی</string>
   <string name="preferences__enable_manual_mms">استفاده از کتابچه تنظیمات MMS</string>

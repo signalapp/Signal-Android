@@ -595,7 +595,6 @@ TextSecure не дачакаўся параверачная SMS.</string>
   <string name="preferences__slow">Павольна</string>
   <string name="preferences__custom">Пэўны</string>
   <string name="preferences__advanced">Прасунуты</string>
-  <string name="preferences__app_protection">Абарона аплікацыі</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Ручныя налады MMS</string>
   <string name="preferences__enable_manual_mms">Выкарыстоўваць ручныя налады MMS</string>

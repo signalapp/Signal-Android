@@ -20,7 +20,7 @@ en mesure d’y accéder.</string>
   <string name="ApplicationPreferencesActivity_disable">Désactiver</string>
   <string name="ApplicationPreferencesActivity_unregistering">Annulation de l\'enregistrement</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Annulation de l\'enregistrement aux messages TextSecure</string>
-  <string name="ApplicationPreferencesActivity_disable_textsecure_messages">Désactiver les messages TextSecure?</string>
+  <string name="ApplicationPreferencesActivity_disable_textsecure_messages">Désactiver les messages TextSecure ?</string>
   <string name="ApplicationPreferencesActivity_this_will_disable_textsecure_messages">
         Ceci va désactiver les messages TextSecure en vous désinscrivant du serveur.
         Vous devrez réenregistrer votre numéro de téléphone pour utiliser à nouveau les messages TextSecure dans le futur.
@@ -109,8 +109,8 @@ vérifier ce contact.</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS non supportés</string>
   <string name="ConversationActivity_mms_not_supported_message">Ce message ne peut être envoyé car votre opérateur ne supporte pas les MMS</string>
   <string name="ConversationActivity_specify_recipient">S\'il vous plait, choisissez un contact</string>
-  <string name="ConversationActivity_unblock_question">Débloquer?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Êtes-vous sur de vouloir débloquer ce contact?</string>
+  <string name="ConversationActivity_unblock_question">Débloquer ?</string>
+  <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Êtes-vous sur de vouloir débloquer ce contact ?</string>
   <string name="ConversationActivity_unblock">Débloquer</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Détails du message</string>
@@ -118,8 +118,8 @@ vérifier ce contact.</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Émetteur: %1$s\nTransport: %2$s\nEnvoyé: %3$s\nReçu: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Confirmer la suppression du message</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Êtes-vous sûr de vouloir supprimer de façon permanente les messages sélectionnés ?</string>
-  <string name="ConversationFragment_save_to_sd_card">Enregistrer dans l\'espace de stockage?</string>
-  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">La sauvegarde de média dans l\'espace de stockage autorisera d\'autres applications à y accéder.\n\n Continuer?</string>
+  <string name="ConversationFragment_save_to_sd_card">Enregistrer dans l\'espace de stockage ?</string>
+  <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">La sauvegarde de média dans l\'espace de stockage autorisera d\'autres applications à y accéder.\n\n Continuer ?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Erreur lors de l\'enregistrement de la pièce jointe sur l\'espace de stockage!</string>
   <string name="ConversationFragment_success_exclamation">Réussite !</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Impossible d’écrire dans l\'espace de stockage!</string>
@@ -211,7 +211,7 @@ l\'importer à nouveau se traduira par des messages dupliqués.</string>
   <string name="ImportFragment_restore_complete">Restauration terminée !</string>
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Aucune clé scannée n’a été trouvée !</string>
-  <string name="KeyScanningActivity_install_barcode_Scanner">Installer Barcode Scanner?</string>
+  <string name="KeyScanningActivity_install_barcode_Scanner">Installer Barcode Scanner ?</string>
   <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">TextSecure a besoin de Barcode Scanner pour les QR codes.</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Échec de l’envoi</string>
@@ -232,10 +232,10 @@ Merci de demander à l’expéditeur de mettre à jour TextSecure dans sa versio
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Ancienne phrase de passe incorrecte !</string>
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Entrer la nouvelle phrase de passe !</string>
   <!--DeviceProvisioningActivity-->
-  <string name="DeviceProvisioningActivity_link_this_device">Lier cet appareil?</string>
+  <string name="DeviceProvisioningActivity_link_this_device">Lier cet appareil ?</string>
   <string name="DeviceProvisioningActivity_cancel">ANNULER</string>
   <string name="DeviceProvisioningActivity_continue">CONTINUER</string>
-  <string name="DeviceProvisioningActivity_title">Lier cet appareil?</string>
+  <string name="DeviceProvisioningActivity_title">Lier cet appareil ?</string>
   <string name="DeviceProvisioningActivity_content_intro">Il sera capable de</string>
   <string name="DeviceProvisioningActivity_content_bullets">
         - Lire tous vos messages
@@ -261,12 +261,14 @@ Merci de demander à l’expéditeur de mettre à jour TextSecure dans sa versio
   <string name="RatingManager_no_thanks">Non merci</string>
   <string name="RatingManager_later">Plus tard</string>
   <!--RecipientPreferencesActivity-->
-  <string name="RecipientPreferenceActivity_block_this_contact_question">Bloquer ce contact?</string>
+  <string name="RecipientPreferenceActivity_block_this_contact_question">Bloquer ce contact ?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_see_messages_from_this_user">Vous ne verrez plus les messages de cet utilisateur.</string>
   <string name="RecipientPreferenceActivity_block">Bloquer</string>
-  <string name="RecipientPreferenceActivity_unblock_this_contact_question">Débloquer ce contact?</string>
-  <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Êtes-vous sur de vouloir débloquer ce contact?</string>
+  <string name="RecipientPreferenceActivity_unblock_this_contact_question">Débloquer ce contact ?</string>
+  <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Êtes-vous sur de vouloir débloquer ce contact ?</string>
   <string name="RecipientPreferenceActivity_unblock">Débloquer</string>
+  <string name="RecipientPreferenceActivity_enabled">Activé</string>
+  <string name="RecipientPreferenceActivity_disabled">Désactivé</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">Se connecter avec TextSecure</string>
   <string name="RegistrationActivity_select_your_country">Sélectionner votre pays</string>
@@ -414,7 +416,7 @@ Un message avec une clé de chiffrement inconnue a été reçu. Cliquer pour l\'
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Aucun appel récent.</string>
   <!--conversation_title_view-->
-  <string name="conversation_title_view__conversation_muted">Conversation rendue muette</string>
+  <string name="conversation_title_view__conversation_muted">Conversation mise en silencieux</string>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Envoyer un message TextSecure</string>
   <string name="conversation_activity__type_message_sms_insecure">Envoyer un SMS non-sécurisé</string>
@@ -494,7 +496,7 @@ Importer un fichier de sauvegarde en texte clair. Compatible avec «SMSBackup An
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__blocked">BLOQUÉ</string>
   <!--recipient_preferences-->
-  <string name="recipient_preferences__mute_conversation">Rendre la conversation muette</string>
+  <string name="recipient_preferences__mute_conversation">Mettre la conversation en silencieux</string>
   <string name="recipient_preferences__disable_notifications_for_this_conversation">Désactiver les notifications pour cette conversation</string>
   <string name="recipient_preferences__ringtone">Sonnerie</string>
   <string name="recipient_preferences__vibrate">Vibreur</string>
@@ -593,10 +595,11 @@ par SMS.</string>
   <string name="arrays__my_identity_key">Ma clé d\'identité</string>
   <string name="arrays__use_default">Par défaut</string>
   <string name="arrays__use_custom">Personnalisé</string>
-  <string name="arrays__mute_for_one_hour">Rendre muette pendant 1 heure</string>
-  <string name="arrays__mute_for_two_hours">Rendre muette pendant 2 heures</string>
-  <string name="arrays__mute_for_one_day">Rendre muette pendant 1 jour</string>
-  <string name="arrays__mute_for_seven_days">Rendre muette pendant 7 jours</string>
+  <string name="arrays__mute_for_one_hour">Mettre en silencieux pendant 1 heure</string>
+  <string name="arrays__mute_for_two_hours">Mettre en silencieux pendant 2 heures</string>
+  <string name="arrays__mute_for_one_day">Mettre en silencieux pendant 1 jour</string>
+  <string name="arrays__mute_for_seven_days">Mettre en silencieux pendant 7 jours</string>
+  <string name="arrays__settings_default">Paramètres par défaut</string>
   <string name="arrays__enabled">Activé</string>
   <string name="arrays__disabled">Désactivé</string>
   <!--plurals.xml-->
@@ -669,7 +672,7 @@ par SMS.</string>
   <string name="preferences__slow">Lent</string>
   <string name="preferences__custom">Personnalisé</string>
   <string name="preferences__advanced">Avancé</string>
-  <string name="preferences__app_protection">Protection de l\'application</string>
+  <string name="preferences__privacy">Vie privée</string>
   <string name="preferences__mms_user_agent">User Agent MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Paramètres MMS manuels</string>
   <string name="preferences__enable_manual_mms">Utiliser les parametres MMS manuels</string>
@@ -701,7 +704,6 @@ Messages privés gratuits vers les utilisateurs TextSecure et Signal
   <string name="preferences__submit_debug_log">Envoyer un rapport de débogage</string>
   <string name="preferences__support_wifi_calling">Compatibilité \'WiFi Calling\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Activer si votre appareil délivre les SMS/MMS à l\'aide du WiFI (N\'activer que lorsque \'WiFi Calling\' est activé sur votre appareil).</string>
-  <string name="preferences__privacy">Vie privée</string>
   <string name="preferences_app_protection__blocked_contacts">Contacts bloqués</string>
   <!--****************************************-->
   <!--menus-->
@@ -746,7 +748,9 @@ Messages privés gratuits vers les utilisateurs TextSecure et Signal
   <string name="conversation_secure_verified__menu_verify_identity">Vérifier l’identité</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">Terminer la session sécurisée</string>
   <!--conversation_muted-->
+  <string name="conversation_muted__unmute">Réactiver les notifications</string>
   <!--conversation_unmuted-->
+  <string name="conversation_unmuted__mute_notifications">Désactiver les notifications</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Ajouter une pièce jointe</string>
   <string name="conversation__menu_update_group">Mettre à jour le groupe</string>
@@ -793,5 +797,6 @@ Messages privés gratuits vers les utilisateurs TextSecure et Signal
   <string name="trimmer__old_messages_successfully_deleted">Anciens messages supprimés avec succès</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icône de transport</string>
+  <string name="MuteDialog_mute_notifications">Désactiver les notifications</string>
   <!--EOF-->
 </resources>

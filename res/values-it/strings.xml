@@ -16,7 +16,12 @@
   <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
 Attenzione, così facendo interromperai la cifratura di tutti i messaggi e le chiavi che hai salvato. Le tue sessioni cifrate continueranno a funzionare, ma chiunque avrà accesso fisico al tuo dispositivo sarà in grado di accedere ad esse.</string>
   <string name="ApplicationPreferencesActivity_disable">Disabilita</string>
+  <string name="ApplicationPreferencesActivity_unregistering">Disiscriviti</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Disicriviti dai messaggi di TextSecure</string>
   <string name="ApplicationPreferencesActivity_disable_textsecure_messages">Disattivare i messaggi TextSecure?</string>
+  <string name="ApplicationPreferencesActivity_this_will_disable_textsecure_messages">
+Questo disabiliterà i messaggi di TextSecure disicrivendoti dal server.
+Dovrai registrare nuovamente il tuo numero di telefono per poter utilizzare di nuovo i messaggi di TextSecure.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Errore durante la connessione al server!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS Abilitati</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Tocca per cambiare l\'applicazione predefinita per gli SMS</string>
@@ -256,6 +261,8 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Sbloccare questo contatto?</string>
   <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Vuoi davvero sbloccare questo contatto?</string>
   <string name="RecipientPreferenceActivity_unblock">Sblocca</string>
+  <string name="RecipientPreferenceActivity_enabled">Attivato</string>
+  <string name="RecipientPreferenceActivity_disabled">Disattivato</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">Connetti Con TextSecure</string>
   <string name="RegistrationActivity_select_your_country">Seleziona il tuo paese</string>
@@ -404,6 +411,7 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Nessuna chiamata recente.</string>
   <!--conversation_title_view-->
+  <string name="conversation_title_view__conversation_muted">Conversazione mutata</string>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Invia messaggio TextSecure</string>
   <string name="conversation_activity__type_message_sms_insecure">Invia SMS non cifrato</string>
@@ -673,7 +681,7 @@ non riuscita.
   <string name="preferences__slow">Lento</string>
   <string name="preferences__custom">Personalizzato</string>
   <string name="preferences__advanced">Avanzate</string>
-  <string name="preferences__app_protection">Protezione app</string>
+  <string name="preferences__privacy">Privacy</string>
   <string name="preferences__mms_user_agent">User agent MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Impostazioni manuali MMS</string>
   <string name="preferences__enable_manual_mms">Usa le impostazioni manuali degli MMS</string>
@@ -703,7 +711,7 @@ non riuscita.
 Chatta gratis con gli utenti TextSecure e Signal</string>
   <string name="preferences__submit_debug_log">Invia log di debug</string>
   <string name="preferences__support_wifi_calling">Modalità di compatibilità \'WiFi Calling\'</string>
-  <string name="preferences__privacy">Privacy</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Abilitare se il tuo device spedisce gli SMM/MMS  via WiFi ( abilita solo quando \"WiFi Calling\" è abilitato per il tuo dispositivo )</string>
   <string name="preferences_app_protection__blocked_contacts">Contatti bloccati</string>
   <!--****************************************-->
   <!--menus-->

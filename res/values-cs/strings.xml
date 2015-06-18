@@ -18,9 +18,11 @@ Varování: Tímto znemožníte šifrování všech uložených zpráv a klíč�
 bude i nadále šifrována, ale bude si ji moci přečíst kdokoliv s fyzickým přístupem
 k vašemu zařízení.</string>
   <string name="ApplicationPreferencesActivity_disable">Deaktivovat</string>
+  <string name="ApplicationPreferencesActivity_unregistering">Rušení registrace</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Odregistrace TextSecure zpráv</string>
   <string name="ApplicationPreferencesActivity_disable_textsecure_messages">Zakázat TextSecure zprávy?</string>
   <string name="ApplicationPreferencesActivity_this_will_disable_textsecure_messages">
-Tímto zakážete textSecure zprávy odregistrací tohoto telefonního čísla ze serveru.
+Tímto zakážete TextSecure zprávy odregistrací tohoto telefonního čísla ze serveru.
 Abyste mohli v budoucnu používat TextSecure zprávy, bude nutno toto telefonní číslo znovu zaregistrovat.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Chyba při připojování k serveru!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS povoleny</string>
@@ -47,12 +49,13 @@ Abyste mohli v budoucnu používat TextSecure zprávy, bude nutno toto telefonn�
   <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Informace o kontaktu</string>
   <!--BlockedContactsActivity-->
+  <string name="BlockedContactsActivity_blocked_contacts">Blokovaný kontakt</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Idenitifkační
 klíč %1$s byl změněn. To může znamenat, že se buď někdo snaží
 zachytit vaši konverzaci, nebo že %2$s jen přeinstaloval TextSecure a nyní má nový
 identifikační klíč.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Zkontrolovat tento
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Možná budete chtít ověřit tento
 kontakt</string>
   <string name="ConfirmIdentityDialog_accept">Akceptovat</string>
   <!--ConversationItem-->
@@ -76,7 +79,7 @@ kontakt</string>
   <string name="ConversationActivity_abort_secure_session_confirmation">Potvrzení ukončení zabezpečené komunikace</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Opravdu chcete ukončit tuto zabezpečenou relaci?</string>
   <string name="ConversationActivity_delete_thread_confirmation">Potvrzení smazání konverzace</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Opravdu chcete zcela smazat tuto konverzaci?</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Opravdu chcete trvale smazat tuto konverzaci?</string>
   <string name="ConversationActivity_add_attachment">Přidat přílohu</string>
   <string name="ConversationActivity_select_contact_info">Vybrat informace o kontaktu</string>
   <string name="ConversationActivity_compose_message">Napište zprávu</string>
@@ -105,6 +108,9 @@ kontakt</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS nejsou podporovány</string>
   <string name="ConversationActivity_mms_not_supported_message">Zpráva nemůže být odeslána protože váš operátor nepodporuje MMS.</string>
   <string name="ConversationActivity_specify_recipient">Vyberte prosím kontakt</string>
+  <string name="ConversationActivity_unblock_question">Odblokovat?</string>
+  <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Opravdu chcete odblokovat tento kontakt?</string>
+  <string name="ConversationActivity_unblock">Odblokovat</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Podrobnosti zprávy</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Přenos: %1$s\nOdesláno/Přijato: %2$s</string>
@@ -122,6 +128,7 @@ kontakt</string>
   <string name="ConversationFragment_push">Data (TextSecure)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
+  <string name="ConversationFragment_deleting">Mažu</string>
   <string name="ConversationFragment_deleting_messages">Mažu zprávy...</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">Vyhhledávám...</string>
@@ -137,7 +144,7 @@ kontakt</string>
   <string name="CustomDefaultPreference_using_default">Používá se výchozí: %s</string>
   <string name="CustomDefaultPreference_none">Nic</string>
   <!--DateUtils-->
-  <string name="DateUtils_now">teď</string>
+  <string name="DateUtils_now">Teď</string>
   <string name="DateUtils_minutes_ago">%d minuta</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Sdílet s</string>
@@ -189,6 +196,7 @@ Obnova zašifrované zálohy zcela nahradí vaše současné klíče, nastavení
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Tímto importujete zprávy z nešifrované zálohy. Pokud jste již někdy
 tuto zálohu importovali, mohou se některé zprávy objevit vícekrát.</string>
   <string name="ImportFragment_importing">Importuji</string>
+  <string name="ImportFragment_import_plaintext_backup_elipse">Importuji nešifrovanou zálohu</string>
   <string name="ImportFragment_no_plaintext_backup_found">Nenalezena záloha ve formě prostého textu!</string>
   <string name="ImportFragment_error_importing_backup">Chyba při importování zálohy!</string>
   <string name="ImportFragment_import_complete">Import dokončen!</string>
@@ -226,6 +234,7 @@ tuto zálohu importovali, mohou se některé zprávy objevit vícekrát.</string
   <string name="DeviceProvisioningActivity_content_bullets">
 Přečíst všechny zprávy
 Poslat zprávy Vaším jménem.</string>
+  <string name="DeviceProvisioningActivity_content_progress_title">Přidat zařízení</string>
   <string name="DeviceProvisioningActivity_content_progress_content">Přidává se nové zařízení</string>
   <string name="DeviceProvisioningActivity_content_progress_success">Zařízení přidáno.</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Nenalezeno žádné zařízení.</string>
@@ -245,6 +254,14 @@ Poslat zprávy Vaším jménem.</string>
   <string name="RatingManager_no_thanks">Ne díky</string>
   <string name="RatingManager_later">Později</string>
   <!--RecipientPreferencesActivity-->
+  <string name="RecipientPreferenceActivity_block_this_contact_question">Zablokovat tento kontakt?</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_see_messages_from_this_user">Zprávy od tohoto uživatele se již více nebudou zobrazovat.</string>
+  <string name="RecipientPreferenceActivity_block">Blokovat</string>
+  <string name="RecipientPreferenceActivity_unblock_this_contact_question">Odblokovat tento kontakt?</string>
+  <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Opravdu chcete odblokovat tento kontakt?</string>
+  <string name="RecipientPreferenceActivity_unblock">Odblokovat</string>
+  <string name="RecipientPreferenceActivity_enabled">Povoleno</string>
+  <string name="RecipientPreferenceActivity_disabled">Zakázáno</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">Připojení pomocí TextSecure</string>
   <string name="RegistrationActivity_select_your_country">Zvolte svou zemi</string>
@@ -381,9 +398,11 @@ Obdržena zpráva s neznámým identifikačním klíčem. Klepněte pro její zp
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Vybrat</string>
   <!--blocked_contacts_fragment-->
+  <string name="blocked_contacts_fragment__no_blocked_contacts">Nezablokované kontakty...</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Žádné nedávné hovory</string>
   <!--conversation_title_view-->
+  <string name="conversation_title_view__conversation_muted">Konverzace ztišena</string>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Poslat TextSecure zprávu</string>
   <string name="conversation_activity__type_message_sms_insecure">Poslat nezabezpečenou SMS</string>
@@ -462,7 +481,13 @@ Importovat nešifrovanou zálohu kompatibilní s \"SMSBackup And Restore\".</str
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure vyžaduje informace o nastavení MMS, aby mohly být média a skupinové zprávy doručovány. Váš přístroj tyto informace neposkytuje, což se stává u zamknutých nebo jinak upravených přístrojů.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Pro odesílání médií a skupinových zpráv klepněte na OK a vyplňte požadované informace. Nastavení MMS pro vašeho operátora lze většinou zjistit hledáním \"*váš operátor* APN\". Toto je je třeba udělat pouze jednou.</string>
   <!--recipient_preferences_activity-->
+  <string name="recipient_preference_activity__blocked">BLOKOVÁN</string>
   <!--recipient_preferences-->
+  <string name="recipient_preferences__mute_conversation">Ztišit konverzaci</string>
+  <string name="recipient_preferences__disable_notifications_for_this_conversation">Zakázat upozornění pro tuto konverzaci</string>
+  <string name="recipient_preferences__ringtone">Vyzvánění</string>
+  <string name="recipient_preferences__vibrate">Vibrace</string>
+  <string name="recipient_preferences__block">Blokovat</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 Ověření vašeho telefoního čísla pro připojení k TextSecure</string>
@@ -562,6 +587,13 @@ TextSecure nyní automaticky ověří vaše telefonní číslo pomocí potvrzova
   <string name="arrays__my_identity_key">Můj identifikační klíč</string>
   <string name="arrays__use_default">Použít defualtní</string>
   <string name="arrays__use_custom">Použít vlastní</string>
+  <string name="arrays__mute_for_one_hour">Ztišit na 1 hodinu</string>
+  <string name="arrays__mute_for_two_hours">Ztišit na 2 hodiny</string>
+  <string name="arrays__mute_for_one_day">Ztišit na 1 den</string>
+  <string name="arrays__mute_for_seven_days">Ztišit na 7 dnů</string>
+  <string name="arrays__settings_default">Výchozí nastavení</string>
+  <string name="arrays__enabled">Povoleno</string>
+  <string name="arrays__disabled">Zakázáno</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d hodina</item>
@@ -608,6 +640,7 @@ TextSecure nyní automaticky ověří vaše telefonní číslo pomocí potvrzova
   <string name="preferences__sound">Zvuk</string>
   <string name="preferences__change_notification_sound">Změnit zvuk upozornění</string>
   <string name="preferences__inthread_notifications">Upozornění v konverzaci</string>
+  <string name="preferences__play_inthread_notifications">Přehrát zvuk oznámení při prohlížení aktivní konverzace</string>
   <string name="preferences__repeat_alerts">Opakovat upozornění</string>
   <string name="preferences__never">Nikdy</string>
   <string name="preferences__one_time">Jednou</string>
@@ -632,7 +665,7 @@ TextSecure nyní automaticky ověří vaše telefonní číslo pomocí potvrzova
   <string name="preferences__slow">Pomalu</string>
   <string name="preferences__custom">Vlastní</string>
   <string name="preferences__advanced">Rozšířené možnosti</string>
-  <string name="preferences__app_protection">Ochrana aplikace</string>
+  <string name="preferences__privacy">Soukromí</string>
   <string name="preferences__mms_user_agent">MMS  User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuální nastavení MMS</string>
   <string name="preferences__enable_manual_mms">Použijte manuální nastavení MMS</string>
@@ -662,6 +695,8 @@ TextSecure nyní automaticky ověří vaše telefonní číslo pomocí potvrzova
 Svobodná šifrovaná komunikace s uživateli TextSecure a Signal</string>
   <string name="preferences__submit_debug_log">Odeslat ladící log</string>
   <string name="preferences__support_wifi_calling">\'Wifi volání\' kompatibilní mód</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Povolit pokud vaše zařízení používá doručování SMS/MMS přes Wifi (povoleno pouze když je na zařízení povoleno \'Wifi volání\')</string>
+  <string name="preferences_app_protection__blocked_contacts">Blokované kontakt</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -705,7 +740,9 @@ Svobodná šifrovaná komunikace s uživateli TextSecure a Signal</string>
   <string name="conversation_secure_verified__menu_verify_identity">Ověření identity</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">Ukončit zabezpečenou konverzaci</string>
   <!--conversation_muted-->
+  <string name="conversation_muted__unmute">Nahlas</string>
   <!--conversation_unmuted-->
+  <string name="conversation_unmuted__mute_notifications">Ztišit upozornění</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Přidat přílohu</string>
   <string name="conversation__menu_update_group">Upravit skupinu</string>
@@ -747,9 +784,11 @@ Svobodná šifrovaná komunikace s uživateli TextSecure a Signal</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Náhled obrázku</string>
   <!--Trimmer-->
+  <string name="trimmer__deleting">Mažu</string>
   <string name="trimmer__deleting_old_messages">Mazání starých zpráv...</string>
   <string name="trimmer__old_messages_successfully_deleted">Staré zprávy byly úspěšně smazány.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona přenosu</string>
+  <string name="MuteDialog_mute_notifications">Ztišit upozornění</string>
   <!--EOF-->
 </resources>

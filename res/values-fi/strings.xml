@@ -10,7 +10,7 @@
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Et ole vielä määritellyt salalausetta!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">%s viestiä per keskustelu</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Poistetaanko kaikki vanhat viestit nyt?</string>
-  <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Haluatko varmasti rajata kaikki keskusteluketjut %s viimeisimpään viestiin?</string>
+  <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Haluatko varmasti rajata kaikki keskustelut %s viimeisimpään viestiin?</string>
   <string name="ApplicationPreferencesActivity_delete">Poista</string>
   <string name="ApplicationPreferencesActivity_disable_storage_encryption">Poistetaanko tallennustilan salaus käytöstä?</string>
   <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
@@ -77,7 +77,7 @@ tämän yhteystiedon.</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Aloita salattu istunto yhteystiedon %s kanssa?</string>
   <string name="ConversationActivity_abort_secure_session_confirmation">Varmista salatun istunnon lopetus</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Haluatko varmasti lopettaa salatun istunnon?</string>
-  <string name="ConversationActivity_delete_thread_confirmation">Varmista viestiketjun poisto</string>
+  <string name="ConversationActivity_delete_thread_confirmation">Varmista keskustelun poisto</string>
   <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Haluatko varmasti poistaa tämän keskustelun pysyvästi?</string>
   <string name="ConversationActivity_add_attachment">Lisää liite</string>
   <string name="ConversationActivity_select_contact_info">Valitse yhteystieto</string>
@@ -136,10 +136,10 @@ Vastaanotettu: %4$s</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">Hae...</string>
   <!--ConversationListFragment-->
-  <string name="ConversationListFragment_delete_threads_question">Poista viestiketjut?</string>
-  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Haluatko varmasti poistaa KAIKKI valitut keskusteluketjut?</string>
+  <string name="ConversationListFragment_delete_threads_question">Poista keskustelut?</string>
+  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Haluatko varmasti poistaa KAIKKI valitut keskustelut?</string>
   <string name="ConversationListFragment_deleting">Poistetaan</string>
-  <string name="ConversationListFragment_deleting_selected_threads">Valittuja viestiketjuja poistetaan...</string>
+  <string name="ConversationListFragment_deleting_selected_threads">Valittuja keskusteluja poistetaan...</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Avaintenvaihtoviesti...</string>
   <!--CustomDefaultPreference-->
@@ -266,6 +266,8 @@ aiemmin, seuraa niiden uudelleen tuonnista viestien kaksoiskappaleita.</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Poista esto tältä yhteystiedolta?</string>
   <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Haluatko varmasti poistaa eston tältä yhteystiedolta?</string>
   <string name="RecipientPreferenceActivity_unblock">Poista esto</string>
+  <string name="RecipientPreferenceActivity_enabled">Päällä</string>
+  <string name="RecipientPreferenceActivity_disabled">Poissa päältä</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">Yhdistä TextSecurella</string>
   <string name="RegistrationActivity_select_your_country">Valitse maasi</string>
@@ -495,7 +497,7 @@ Tuo salaamaton varmuuskopiotiedosto. Yhteensopiva SMS Backup And Restore:lla.</s
   <string name="recipient_preference_activity__blocked">ESTETTY</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Mykistä keskustelu</string>
-  <string name="recipient_preferences__disable_notifications_for_this_conversation">Aseta tämän keskustelun ilmoitukset pois päältä</string>
+  <string name="recipient_preferences__disable_notifications_for_this_conversation">Mykistä kaikki ilmoitukset tästä keskustelusta</string>
   <string name="recipient_preferences__ringtone">Ilmoitusääni</string>
   <string name="recipient_preferences__vibrate">Värinä</string>
   <string name="recipient_preferences__block">Estä</string>
@@ -592,9 +594,9 @@ epäonnistui.</string>
   <string name="arrays__mute_for_two_hours">Mykistä 2 tunniksi</string>
   <string name="arrays__mute_for_one_day">Mykistä 1 päiväksi</string>
   <string name="arrays__mute_for_seven_days">Mykistä 7 päiväksi</string>
-  <string name="arrays__settings_default">Oletusasetus</string>
+  <string name="arrays__settings_default">Oletus</string>
   <string name="arrays__enabled">Päällä</string>
-  <string name="arrays__disabled">Poissa päältä</string>
+  <string name="arrays__disabled">Poissa</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d tunti</item>
@@ -665,7 +667,7 @@ epäonnistui.</string>
   <string name="preferences__slow">Hidas</string>
   <string name="preferences__custom">Mukautettu</string>
   <string name="preferences__advanced">Lisäasetukset</string>
-  <string name="preferences__app_protection">Sovelluksen suojaus</string>
+  <string name="preferences__privacy">Yksityisyys</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuaaliset MMS-asetukset</string>
   <string name="preferences__enable_manual_mms">Käytä manuaalisia MMS-asetuksia</string>
@@ -677,11 +679,11 @@ epäonnistui.</string>
   <string name="preferences__mmsc_password">MMSC salasana</string>
   <string name="preferences__sms_delivery_reports">SMS toimitusvahvistukset</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Pyydä vahvistus jokaisen lähetetyn tekstiviestin toimituksesta</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Poista vanhimpia viestejä automaattisesti, kun keskusteluketju ylittää määritetyn pituusrajan</string>
+  <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Poista vanhimpia viestejä automaattisesti, kun keskustelu ylittää määritetyn pituusrajan</string>
   <string name="preferences__delete_old_messages">Vanhojen viestien poisto</string>
   <string name="preferences__conversation_length_limit">Keskustelun pituusraja</string>
-  <string name="preferences__trim_all_threads_now">Karsi kaikki viestiketjut nyt</string>
-  <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Käy läpi kaikki keskusteluketjut ja pakota niihin pituusrajat</string>
+  <string name="preferences__trim_all_threads_now">Karsi kaikki keskustelut nyt</string>
+  <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Käy läpi kaikki keskustelut ja pakota niihin pituusrajat</string>
   <string name="preferences__light_theme">Vaalea</string>
   <string name="preferences__dark_theme">Tumma</string>
   <string name="preferences__appearance">Ulkonäkö</string>
@@ -695,8 +697,7 @@ epäonnistui.</string>
 Ilmaiset ja yksityiset viestit TextSecuren ja Signalin käyttäjille</string>
   <string name="preferences__submit_debug_log">Lähetä virheenkorjausloki</string>
   <string name="preferences__support_wifi_calling">\'WiFi Calling\' -yhteensopiva tila</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Ota käyttöön jos laitteesi lähettää SMS/MMS-viestit WiFi-yhteyden kautta (ota käyttöön vain kun \'WiFi Calling\' on käytössä laitteessasi).</string>
-  <string name="preferences__privacy">Yksityisyys</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Ota käyttöön, jos laitteesi lähettää SMS/MMS-viestit WiFi-yhteyden kautta (ota käyttöön vain kun \'WiFi Calling\' on käytössä laitteessasi).</string>
   <string name="preferences_app_protection__blocked_contacts">Estetyt yhteystiedot</string>
   <!--****************************************-->
   <!--menus-->
@@ -748,7 +749,7 @@ Ilmaiset ja yksityiset viestit TextSecuren ja Signalin käyttäjille</string>
   <string name="conversation__menu_add_attachment">Lisää liite</string>
   <string name="conversation__menu_update_group">Päivitä ryhmää</string>
   <string name="conversation__menu_leave_group">Poistu ryhmästä</string>
-  <string name="conversation__menu_delete_thread">Poista viestiketju</string>
+  <string name="conversation__menu_delete_thread">Poista keskustelu</string>
   <string name="conversation__menu_view_media">Kaikki kuvat</string>
   <!--conversation_callable-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Lisää yhteystietoihin</string>

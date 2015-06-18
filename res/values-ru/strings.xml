@@ -16,6 +16,8 @@
   <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
 Внимание, вы собираетесь отключить шифрование базы данных, в которой хранятся все ваши сообщения и ключи. При переписке шифрование продолжит работать, однако любой, кто имеет физический доступ к вашему устройству, сможет прочитать ваши сообщения.</string>
   <string name="ApplicationPreferencesActivity_disable">Отключить</string>
+  <string name="ApplicationPreferencesActivity_unregistering">Отмена регистрации</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Отмена регистрации в TextSecure...</string>
   <string name="ApplicationPreferencesActivity_disable_textsecure_messages">Выключить общение через TextSecure?</string>
   <string name="ApplicationPreferencesActivity_this_will_disable_textsecure_messages">
 Это отключит сообщения TextSecure, отменив вашу регистрацию на сервере.
@@ -45,6 +47,7 @@
   <string name="AttachmentTypeSelectorAdapter_audio">Аудио</string>
   <string name="AttachmentTypeSelectorAdapter_contact">Контактная информация</string>
   <!--BlockedContactsActivity-->
+  <string name="BlockedContactsActivity_blocked_contacts">Заблокированные контакты</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Ключ, идентифицирующий личность %1$s, изменился. Это может означать, что кто-то пытается перехватить вашу переписку, либо что %2$s просто переустановил TextSecure и теперь у него новый личный ключ. </string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Возможно, этого собеседника
@@ -100,6 +103,9 @@
   <string name="ConversationActivity_mms_not_supported_title">MMS не поддерживаются</string>
   <string name="ConversationActivity_mms_not_supported_message">Сообщение не может быть отправлено, так как ваш оператор не поддерживает MMS.</string>
   <string name="ConversationActivity_specify_recipient">Выберите контакт</string>
+  <string name="ConversationActivity_unblock_question">Разблокировать?</string>
+  <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Вы уверены, что хотите разблокировать этот контакт?</string>
+  <string name="ConversationActivity_unblock">Разблокировать</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Подробности</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Транспорт: %1$s\nОтправлено/Получено: %2$s</string>
@@ -117,6 +123,7 @@
   <string name="ConversationFragment_push">Данные (TextSecure)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
+  <string name="ConversationFragment_deleting">Удаление</string>
   <string name="ConversationFragment_deleting_messages">Удаляем сообщения...</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">Поиск...</string>
@@ -182,6 +189,7 @@
   <string name="ImportFragment_import_plaintext_backup">Импортировать из простой резервной копии?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Вы собираетесь импортировать сообщения из простой резервной копии. Если вы ранее уже импортировали сообщения из этой копии, повторный импорт приведёт к их дублированию.</string>
   <string name="ImportFragment_importing">Импорт</string>
+  <string name="ImportFragment_import_plaintext_backup_elipse">Импорт открытой резервной копии...</string>
   <string name="ImportFragment_no_plaintext_backup_found">Простая резервная копия не найдена!</string>
   <string name="ImportFragment_error_importing_backup">Ошибка при импорте!</string>
   <string name="ImportFragment_import_complete">Импорт завершён.</string>
@@ -219,6 +227,7 @@
   <string name="DeviceProvisioningActivity_content_bullets">
 - читать все ваши сообщения
 \n - отправлять сообщения от вашего имени</string>
+  <string name="DeviceProvisioningActivity_content_progress_title">Добавление устройства</string>
   <string name="DeviceProvisioningActivity_content_progress_content">Добавляем нового устройства...</string>
   <string name="DeviceProvisioningActivity_content_progress_success">Устройство добавлено!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Устройство не найдено.</string>
@@ -238,6 +247,12 @@
   <string name="RatingManager_no_thanks">Нет, спасибо</string>
   <string name="RatingManager_later">Позже</string>
   <!--RecipientPreferencesActivity-->
+  <string name="RecipientPreferenceActivity_block_this_contact_question">Заблокировать этот контакт?</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_see_messages_from_this_user">Вы больше не будете видеть сообщения этого пользователя.</string>
+  <string name="RecipientPreferenceActivity_block">Заблокировать</string>
+  <string name="RecipientPreferenceActivity_unblock_this_contact_question">Разблокировать этот контакт?</string>
+  <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Вы уверены, что хотите разблокировать этот контакт?</string>
+  <string name="RecipientPreferenceActivity_unblock">Разблокировать</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">Подключение к TextSecure</string>
   <string name="RegistrationActivity_select_your_country">Выберите страну</string>
@@ -377,6 +392,7 @@
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Выбрать для</string>
   <!--blocked_contacts_fragment-->
+  <string name="blocked_contacts_fragment__no_blocked_contacts">Нет заблокированных контактов...</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Нет недавних звонков.</string>
   <!--conversation_title_view-->
@@ -458,6 +474,10 @@
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Чтобы отправлять мультимедийные и групповые сообщения, нажмите «ОК» и настройте MMS. Это нужно сделать только один раз. Настройки для вашего оператора можно узнать в службе техподдержки или в интернете по запросу «ваш оператор APN».</string>
   <!--recipient_preferences_activity-->
   <!--recipient_preferences-->
+  <string name="recipient_preferences__disable_notifications_for_this_conversation">Отключить уведомления для этого разговора</string>
+  <string name="recipient_preferences__ringtone">Мелодия</string>
+  <string name="recipient_preferences__vibrate">Вибрация</string>
+  <string name="recipient_preferences__block">Заблокировать</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 Подтвердите свой номер телефона, чтобы подключиться к TextSecure</string>
@@ -553,6 +573,8 @@ SMS-подтверждения...
   <string name="arrays__my_identity_key">Мой личный ключ</string>
   <string name="arrays__use_default">Использовать настройку по умолчанию</string>
   <string name="arrays__use_custom">Использовать пользовательскую настройку</string>
+  <string name="arrays__enabled">Включено</string>
+  <string name="arrays__disabled">Отключено</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d час</item>
@@ -624,7 +646,7 @@ SMS-подтверждения...
   <string name="preferences__slow">Медленно</string>
   <string name="preferences__custom">Настроить...</string>
   <string name="preferences__advanced">Расширенные</string>
-  <string name="preferences__app_protection">Защита приложения</string>
+  <string name="preferences__privacy">Конфиденциальность</string>
   <string name="preferences__mms_user_agent">MMS-агент</string>
   <string name="preferences__advanced_mms_access_point_names">Ручные настройки MMS</string>
   <string name="preferences__enable_manual_mms">Использовать ручные настройки MMS</string>
@@ -654,6 +676,7 @@ SMS-подтверждения...
 Бесплатные приватные сообщения пользователям TextSecure и Signal</string>
   <string name="preferences__submit_debug_log">Отправить лог отладки</string>
   <string name="preferences__support_wifi_calling">Совместимость с Wi-Fi звонками</string>
+  <string name="preferences_app_protection__blocked_contacts">Заблокированные контакты</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -739,6 +762,7 @@ SMS-подтверждения...
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">Предпросмотр</string>
   <!--Trimmer-->
+  <string name="trimmer__deleting">Удаление</string>
   <string name="trimmer__deleting_old_messages">Удаляем старые сообщения</string>
   <string name="trimmer__old_messages_successfully_deleted">Старые сообщения успешно удалены</string>
   <!--transport_selection_list_item-->

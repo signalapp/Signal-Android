@@ -275,6 +275,8 @@ Tem certeza que deseja fazer isto?</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Desbloquear este contato?</string>
   <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Tem certeza que deseja desbloquear este contato?</string>
   <string name="RecipientPreferenceActivity_unblock">Desbloquear</string>
+  <string name="RecipientPreferenceActivity_enabled">Habilitado</string>
+  <string name="RecipientPreferenceActivity_disabled">Desabilitado</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">Conectar-se ao TextSecure</string>
   <string name="RegistrationActivity_select_your_country">Selecione seu país</string>
@@ -700,7 +702,7 @@ falhou.</string>
   <string name="preferences__slow">Lento</string>
   <string name="preferences__custom">Personalizado</string>
   <string name="preferences__advanced">Avançado</string>
-  <string name="preferences__app_protection">Proteção do app</string>
+  <string name="preferences__privacy">Privacidade</string>
   <string name="preferences__mms_user_agent">Agente de usuário MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Configurações manuais de MMS</string>
   <string name="preferences__enable_manual_mms">Usar configurações manuais de MMS</string>
@@ -732,7 +734,6 @@ falhou.</string>
   <string name="preferences__submit_debug_log">Enviar log de depuração</string>
   <string name="preferences__support_wifi_calling">Modo de compatibilidade \'WiFi Calling\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Habilite se o seu dispositivo usa entrega de SMS/MMS via WiFi (somente habilite quando \'WiFi Calling\' estiver habilitado no seu dispositivo)</string>
-  <string name="preferences__privacy">Privacidade</string>
   <string name="preferences_app_protection__blocked_contacts">Contatos bloqueados</string>
   <!--****************************************-->
   <!--menus-->
