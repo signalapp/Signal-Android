@@ -146,10 +146,11 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     getSupportActionBar().setTitle(R.string.app_name);
     initViewPagerLayout();
     GUtil.forceOverFlowMenu(getApplicationContext());
-    startService(new Intent(this, GService.class));
-    new GService().init(getApplicationContext());
     LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
         new IntentFilter("reloadAdapter"));
+
+    startService(new Intent(this, GService.class));
+
   }
 
   private void initNavDrawer(String[] labels, TypedArray icons) {
