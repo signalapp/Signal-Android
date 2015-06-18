@@ -45,6 +45,8 @@ public class GroupDatabase extends Database {
   private static final String TIMESTAMP           = "timestamp";
   private static final String ACTIVE              = "active";
 
+  private static final int MAX_TITLE_SIZE         = 255;
+
   public static final String CREATE_TABLE =
       "CREATE TABLE " + TABLE_NAME +
           " (" + ID + " INTEGER PRIMARY KEY, " +
@@ -106,6 +108,8 @@ public class GroupDatabase extends Database {
   public void create(byte[] groupId, String title, List<String> members,
                      TextSecureAttachmentPointer avatar, String relay)
   {
+    if ( title.length() > MAX_TITLE_SIZE) title = title.substring(0, MAX_TITLE_SIZE);
+
     ContentValues contentValues = new ContentValues();
     contentValues.put(GROUP_ID, GroupUtil.getEncodedId(groupId));
     contentValues.put(TITLE, title);
@@ -126,6 +130,7 @@ public class GroupDatabase extends Database {
 
   public void update(byte[] groupId, String title, TextSecureAttachmentPointer avatar) {
     ContentValues contentValues = new ContentValues();
+    if ( title.length() > MAX_TITLE_SIZE) title = title.substring(0, MAX_TITLE_SIZE);
     if (title != null) contentValues.put(TITLE, title);
 
     if (avatar != null) {
@@ -144,6 +149,7 @@ public class GroupDatabase extends Database {
 
   public void updateTitle(byte[] groupId, String title) {
     ContentValues contentValues = new ContentValues();
+    if ( title.length() > MAX_TITLE_SIZE) title = title.substring(0, MAX_TITLE_SIZE);
     contentValues.put(TITLE, title);
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues, GROUP_ID +  " = ?",
                                                 new String[] {GroupUtil.getEncodedId(groupId)});
