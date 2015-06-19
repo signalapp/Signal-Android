@@ -1,16 +1,16 @@
 /**
  * Copyright (C) 2011 Whisper Systems
- *
+ * <p/>
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * <p/>
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * <p/>
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -72,13 +72,14 @@ import org.thoughtcrime.securesms.database.MmsSmsColumns.Types;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
 import org.thoughtcrime.securesms.mms.AttachmentTypeSelectorAdapter;
+import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.MediaTooLargeException;
 import org.thoughtcrime.securesms.mms.MmsMediaConstraints;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingLegacyMmsConnection;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
-import org.thoughtcrime.securesms.mms.OutgoingMmsConnection;
 import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
+import org.thoughtcrime.securesms.mms.PushMediaConstraints;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
@@ -99,7 +100,6 @@ import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.thoughtcrime.securesms.util.Emoji;
 import org.thoughtcrime.securesms.util.EncryptedCharacterCalculator;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
@@ -115,18 +115,14 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
-
-import de.gdata.messaging.components.SelfDestructionButton;
 import de.gdata.messaging.components.SelectTransportButton;
+import de.gdata.messaging.components.SelfDestructionButton;
 import de.gdata.messaging.util.GDataPreferences;
 import de.gdata.messaging.util.GUtil;
 import de.gdata.messaging.util.PrivacyBridge;
-
 import ws.com.google.android.mms.ContentType;
-
 
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import static org.thoughtcrime.securesms.recipients.Recipient.RecipientModifiedListener;
@@ -151,8 +147,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   public static final String DRAFT_IMAGE_EXTRA = "draft_image";
   public static final String DRAFT_AUDIO_EXTRA = "draft_audio";
   public static final String DRAFT_VIDEO_EXTRA = "draft_video";
-  public static final String DRAFT_MEDIA_EXTRA       = "draft_media";
-  public static final String DRAFT_MEDIA_TYPE_EXTRA  = "draft_media_type";
+  public static final String DRAFT_MEDIA_EXTRA = "draft_media";
+  public static final String DRAFT_MEDIA_TYPE_EXTRA = "draft_media_type";
 
   public static final String DISTRIBUTION_TYPE_EXTRA = "distribution_type";
 
@@ -192,6 +188,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private BombTransportListener bombTransportButtonListener = new BombTransportListener();
   private SendButtonListener sendButtonListener = new SendButtonListener();
   private AddAttachmentListener addAttachmentButtonListener = new AddAttachmentListener();
+  private int currentMediaSize;
 
   @Override
   protected void onCreate(Bundle state) {
@@ -207,7 +204,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     initializeViews();
     initializeResources();
     initializeDraft();
-
   }
 
   @Override
@@ -272,7 +268,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     switch (reqCode) {
 
       case SET_CALLFILTER:
-        new GDataPreferences(getApplicationContext()).saveFilterGroupIdForContact(recipients.getPrimaryRecipient().getNumber(),data.getExtras().getLong("filterGroupId"));
+        new GDataPreferences(getApplicationContext()).saveFilterGroupIdForContact(recipients.getPrimaryRecipient().getNumber(), data.getExtras().getLong("filterGroupId"));
         break;
       case PICK_IMAGE:
         addAttachmentImage(data.getData());
@@ -332,7 +328,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
     MenuItem itemHide = menu.findItem(R.id.menu_hide_contact);
     MenuItem itemBlock = menu.findItem(R.id.menu_block_contact);
-    if(!isSingleConversation()) {
+    if (!isSingleConversation()) {
       if (itemHide != null && itemBlock != null) {
         itemHide.setVisible(false);
         itemBlock.setVisible(false);
@@ -356,7 +352,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         handleAddAttachment();
         return true;
       case R.id.menu_hide_contact:
-          handleHideContact();
+        handleHideContact();
         return true;
       case R.id.menu_block_contact:
         handleBlockContact();
@@ -407,6 +403,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       PrivacyBridge.addContactToPrivacy(recipients.getPrimaryRecipient().getName(), numbers);
     }
   }
+
   private void handleBlockContact() {
     if (GUtil.featureCheck(getApplicationContext(), true)) {
       try {
@@ -417,10 +414,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         intent.putExtra("filterGroupId", new GDataPreferences(getApplicationContext()).getFilterGroupIdForContact(recipients.getPrimaryRecipient().getNumber()));
         startActivityForResult(intent, SET_CALLFILTER);
       } catch (Exception e) {
-        Log.d("GDATA", "Activity not found "+e.toString());
+        Log.d("GDATA", "Activity not found " + e.toString());
       }
     }
   }
+
   @Override
   public void onBackPressed() {
     if (emojiDrawer.getVisibility() == View.VISIBLE) {
@@ -712,15 +710,17 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void initializeDraft() {
-    String draftText  = getIntent().getStringExtra(DRAFT_TEXT_EXTRA);
-    Uri    draftImage = getIntent().getParcelableExtra(DRAFT_IMAGE_EXTRA);
-    Uri    draftAudio = getIntent().getParcelableExtra(DRAFT_AUDIO_EXTRA);
-    Uri    draftVideo = getIntent().getParcelableExtra(DRAFT_VIDEO_EXTRA);
+    String draftText = getIntent().getStringExtra(DRAFT_TEXT_EXTRA);
+    Uri draftImage = getIntent().getParcelableExtra(DRAFT_IMAGE_EXTRA);
+    Uri draftAudio = getIntent().getParcelableExtra(DRAFT_AUDIO_EXTRA);
+    Uri draftVideo = getIntent().getParcelableExtra(DRAFT_VIDEO_EXTRA);
     String contentType = getIntent().getStringExtra(DRAFT_MEDIA_TYPE_EXTRA);
-    if (draftText != null)  composeText.setText(draftText);
+    if (draftText != null) composeText.setText(draftText);
     if (draftImage != null) addAttachmentImage(draftImage);
-    if (draftAudio != null && ContentType.isAudioType(contentType)) addAttachmentAudio(draftAudio, contentType);
-    if (draftVideo != null&& ContentType.isVideoType(contentType))  addAttachmentVideo(draftVideo, contentType);
+    if (draftAudio != null && ContentType.isAudioType(contentType))
+      addAttachmentAudio(draftAudio, contentType);
+    if (draftVideo != null && ContentType.isVideoType(contentType))
+      addAttachmentVideo(draftVideo, contentType);
 
     if (draftText == null && draftImage == null && draftAudio == null && draftVideo == null) {
       initializeDraftFromDatabase();
@@ -742,9 +742,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     new AsyncTask<Void, Void, List<Draft>>() {
       @Override
       protected List<Draft> doInBackground(Void... params) {
-        MasterCipher masterCipher   = new MasterCipher(masterSecret);
+        MasterCipher masterCipher = new MasterCipher(masterSecret);
         DraftDatabase draftDatabase = DatabaseFactory.getDraftDatabase(ConversationActivity.this);
-        List<Draft> results         = draftDatabase.getDrafts(masterCipher, threadId);
+        List<Draft> results = draftDatabase.getDrafts(masterCipher, threadId);
 
         draftDatabase.clearDrafts(threadId);
 
@@ -767,6 +767,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       }
     }.execute();
   }
+
   private void initializeSecurity() {
     updateSendBarViews();
     SessionStore sessionStore = new TextSecureSessionStore(this, masterSecret);
@@ -789,14 +790,15 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     if (!isSecureDestination) transportButton.disableTransport("secure_sms");
 
     if (isPushDestination) {
-        transportButton.setDefaultTransport("textsecure");
+      transportButton.setDefaultTransport("textsecure");
     } else if (isSecureDestination) {
-        transportButton.setDefaultTransport("secure_sms");
+      transportButton.setDefaultTransport("secure_sms");
     } else {
-        transportButton.setDefaultTransport("insecure_sms");
+      transportButton.setDefaultTransport("insecure_sms");
     }
 
     calculateCharactersRemaining();
+    getCurrentMediaSize();
   }
 
   private void initializeMmsEnabledCheck() {
@@ -911,17 +913,17 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void updateSendBarViews() {
-      if (!"".equals(composeText.getText().toString()) || attachmentManager.isAttachmentPresent()) {
-          sendButton.setOnClickListener(sendButtonListener);
-          sendButton.setEnabled(true);
-          sendButton.setComposeTextView(composeText);
-          sendButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_send_sms_gdata));
-      } else {
-          sendButton.setOnClickListener(addAttachmentButtonListener);
-          sendButton.setEnabled(true);
-          sendButton.setComposeTextView(composeText);
-          sendButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_attachment_gdata));
-      }
+    if (!"".equals(composeText.getText().toString()) || attachmentManager.isAttachmentPresent()) {
+      sendButton.setOnClickListener(sendButtonListener);
+      sendButton.setEnabled(true);
+      sendButton.setComposeTextView(composeText);
+      sendButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_send_sms_gdata));
+    } else {
+      sendButton.setOnClickListener(addAttachmentButtonListener);
+      sendButton.setEnabled(true);
+      sendButton.setComposeTextView(composeText);
+      sendButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_attachment_gdata));
+    }
   }
 
   //////// Helper Methods
@@ -943,6 +945,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         break;
     }
   }
+
   private void addAttachmentImage(Uri imageUri) {
     try {
       attachmentManager.setImage(imageUri);
@@ -953,9 +956,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
           Toast.LENGTH_LONG).show();
     }
   }
+
   private void addAttachmentVideo(Uri videoUri) {
     try {
-      attachmentManager.setVideo(videoUri);
+      attachmentManager.setVideo(videoUri, true);
     } catch (IOException e) {
       attachmentManager.clear();
       Toast.makeText(this, R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
@@ -965,14 +969,15 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       attachmentManager.clear();
 
       Toast.makeText(this, getString(R.string.ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions,
-              (MmsMediaConstraints.MAX_MESSAGE_SIZE/1024)),
+              (getCurrentMediaSize() / 1024)),
           Toast.LENGTH_LONG).show();
       Log.w("ComposeMessageActivity", e);
     }
   }
+
   private void addAttachmentVideo(Uri videoUri, String contentType) {
     try {
-      attachmentManager.setVideo(videoUri, contentType);
+      attachmentManager.setVideo(videoUri, contentType, true);
     } catch (IOException e) {
       attachmentManager.clear();
       Toast.makeText(this, R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
@@ -982,14 +987,15 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       attachmentManager.clear();
 
       Toast.makeText(this, getString(R.string.ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions,
-              (MmsMediaConstraints.MAX_MESSAGE_SIZE/1024)),
+              (getCurrentMediaSize() / 1024)),
           Toast.LENGTH_LONG).show();
       Log.w("ComposeMessageActivity", e);
     }
   }
+
   private void addAttachmentAudio(Uri audioUri, String contentType) {
     try {
-      attachmentManager.setAudio(audioUri, contentType);
+      attachmentManager.setAudio(audioUri, contentType, true);
     } catch (IOException e) {
       attachmentManager.clear();
       Toast.makeText(this, R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
@@ -998,14 +1004,15 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     } catch (MediaTooLargeException e) {
       attachmentManager.clear();
       Toast.makeText(this, getString(R.string.ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions,
-              (MmsMediaConstraints.MAX_MESSAGE_SIZE/1024)),
+              (getCurrentMediaSize() / 1024)),
           Toast.LENGTH_LONG).show();
       Log.w("ComposeMessageActivity", e);
     }
   }
+
   private void addAttachmentAudio(Uri audioUri) {
     try {
-      attachmentManager.setAudio(audioUri);
+      attachmentManager.setAudio(audioUri, true);
     } catch (IOException e) {
       attachmentManager.clear();
       Toast.makeText(this, R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
@@ -1014,7 +1021,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     } catch (MediaTooLargeException e) {
       attachmentManager.clear();
       Toast.makeText(this, getString(R.string.ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions,
-              (MmsMediaConstraints.MAX_MESSAGE_SIZE/1024)),
+              (getCurrentMediaSize() / 1024)),
           Toast.LENGTH_LONG).show();
       Log.w("ComposeMessageActivity", e);
     }
@@ -1024,8 +1031,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     ContactAccessor contactDataList = ContactAccessor.getInstance();
     ContactData contactData = contactDataList.getContactData(this, contactUri);
 
-    if      (contactData.numbers.size() == 1) composeText.append(contactData.numbers.get(0).number);
-    else if (contactData.numbers.size() > 1)  selectContactInfo(contactData);
+    if (contactData.numbers.size() == 1) composeText.append(contactData.numbers.get(0).number);
+    else if (contactData.numbers.size() > 1) selectContactInfo(contactData);
   }
 
   private void selectContactInfo(ContactData contactData) {
@@ -1082,7 +1089,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(ConversationActivity.this);
         if (drafts.size() > 0) {
           threadDatabase.updateSnippet(thisThreadId, drafts.getSnippet(ConversationActivity.this),
-                  System.currentTimeMillis(), Types.BASE_DRAFT_TYPE);
+              System.currentTimeMillis(), Types.BASE_DRAFT_TYPE);
         } else {
           threadDatabase.update(thisThreadId);
         }
@@ -1141,12 +1148,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private String getMessage() throws InvalidMessageException {
     String rawText = composeText.getText().toString();
     String destroyTime = "";
-    if(bombTransportButton.getSelectedSelfDestTime() != null && bombTransportButton.isEnabled()) {
+    if (bombTransportButton.getSelectedSelfDestTime() != null && bombTransportButton.isEnabled()) {
       destroyTime = bombTransportButton.getSelectedSelfDestTime().key;
       int value = Integer.parseInt(destroyTime);
-      if(value>0) {
-        destroyTime = GUtil.DESTROY_FLAG+value;
-        rawText = rawText+ " " +destroyTime;
+      if (value > 0) {
+        destroyTime = GUtil.DESTROY_FLAG + value;
+        rawText = rawText + " " + destroyTime;
       }
     }
     if (rawText.length() < 1 && !attachmentManager.isAttachmentPresent())
@@ -1277,7 +1284,16 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }.execute(message);
   }
 
-
+  public int getCurrentMediaSize() {
+    int currentSize = MediaConstraints.CURRENT_MEDIA_SIZE;
+    if(transportButton != null) {
+      currentSize = (transportButton.getSelectedTransport().key.equals("secure_sms")
+          || transportButton.getSelectedTransport().key.equals("insecure_sms")) ?
+          MmsMediaConstraints.MAX_MESSAGE_SIZE : PushMediaConstraints.MAX_MESSAGE_SIZE;
+      MediaConstraints.CURRENT_MEDIA_SIZE = currentSize;
+    }
+    return currentSize;
+  }
   // Listeners
 
   private class AttachmentTypeListener implements DialogInterface.OnClickListener {
@@ -1347,23 +1363,25 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
-    private class SelectTransportListener implements OnClickListener, TextView.OnEditorActionListener {
-        @Override
-        public void onClick(View v) {
-            charactersLeft.setVisibility(View.GONE);
-            transportButton.performLongClick();
-        }
-
-        @Override
-        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-            if (actionId == EditorInfo.IME_ACTION_SEND) {
-                sendButton.performClick();
-                composeText.clearFocus();
-                return true;
-            }
-            return false;
-        }
+  private class SelectTransportListener implements OnClickListener, TextView.OnEditorActionListener {
+    @Override
+    public void onClick(View v) {
+      charactersLeft.setVisibility(View.GONE);
+      transportButton.performLongClick();
+      attachmentManager.clear();
     }
+
+    @Override
+    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+      if (actionId == EditorInfo.IME_ACTION_SEND) {
+        sendButton.performClick();
+        composeText.clearFocus();
+        return true;
+      }
+      return false;
+    }
+  }
+
   private class BombTransportListener implements OnClickListener, TextView.OnEditorActionListener {
     @Override
     public void onClick(View v) {
@@ -1376,22 +1394,23 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       return false;
     }
   }
-    private class AddAttachmentListener implements OnClickListener, TextView.OnEditorActionListener {
-        @Override
-        public void onClick(View v) {
-            handleAddAttachment();
-        }
 
-        @Override
-        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-            if (actionId == EditorInfo.IME_ACTION_SEND) {
-                sendButton.performClick();
-                composeText.clearFocus();
-                return true;
-            }
-            return false;
-        }
+  private class AddAttachmentListener implements OnClickListener, TextView.OnEditorActionListener {
+    @Override
+    public void onClick(View v) {
+      handleAddAttachment();
     }
+
+    @Override
+    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+      if (actionId == EditorInfo.IME_ACTION_SEND) {
+        sendButton.performClick();
+        composeText.clearFocus();
+        return true;
+      }
+      return false;
+    }
+  }
 
   private class ComposeKeyPressedListener implements OnKeyListener, OnClickListener, TextWatcher, OnFocusChangeListener {
     @Override

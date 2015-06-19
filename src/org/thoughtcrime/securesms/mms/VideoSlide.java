@@ -25,28 +25,25 @@ import org.w3c.dom.smil.SMILDocument;
 import org.w3c.dom.smil.SMILMediaElement;
 import org.w3c.dom.smil.SMILRegionElement;
 
-import ws.com.google.android.mms.ContentType;
 import ws.com.google.android.mms.pdu.PduPart;
 
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.Resources;
 import android.database.Cursor;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.MediaStore;
-import android.provider.MediaStore.Video;
 import android.support.annotation.DrawableRes;
 import android.util.Log;
 
 public class VideoSlide extends Slide {
   private static final String TAG = VideoSlide.class.getSimpleName();
 
-  public VideoSlide(Context context, Uri uri) throws IOException, MediaTooLargeException {
-    super(context, constructPartFromUri(context, uri));
+  public VideoSlide(Context context, Uri uri, boolean sendOrReceive) throws IOException, MediaTooLargeException {
+    super(context, constructPartFromUri(context, uri, sendOrReceive));
   }
-  public VideoSlide(Context context, Uri uri, String contentType) throws IOException, MediaTooLargeException {
-    super(context, constructPartFromUri(context, uri, contentType));
+  public VideoSlide(Context context, Uri uri, String contentType, boolean sendOrReceive) throws IOException, MediaTooLargeException {
+    super(context, constructPartFromUri(context, uri, contentType, sendOrReceive));
   }
   public VideoSlide(Context context, MasterSecret masterSecret, PduPart part) {
     super(context, masterSecret, part);
@@ -84,12 +81,12 @@ public class VideoSlide extends Slide {
     return SmilUtil.createMediaElement("video", document, new String(getPart().getName()));
   }
 
-  private static PduPart constructPartFromUri(Context context, Uri uri, String contentType)
+  private static PduPart constructPartFromUri(Context context, Uri uri, String contentType, boolean sendOrReceive)
       throws IOException, MediaTooLargeException
   {
     PduPart part  = new PduPart();
 
-    assertMediaSize(context, uri);
+    assertMediaSize(context, uri, sendOrReceive);
     Log.w(TAG, "Setting mime type: " + contentType);
     part.setContentType(contentType.getBytes());
 
@@ -99,7 +96,7 @@ public class VideoSlide extends Slide {
 
     return part;
   }
-  private static PduPart constructPartFromUri(Context context, Uri uri)
+  private static PduPart constructPartFromUri(Context context, Uri uri, boolean sendOrReceive)
       throws IOException, MediaTooLargeException
   {
     PduPart         part     = new PduPart();
@@ -117,7 +114,7 @@ public class VideoSlide extends Slide {
         cursor.close();
     }
 
-    assertMediaSize(context, uri);
+    assertMediaSize(context, uri, sendOrReceive);
     part.setDataUri(uri);
     part.setContentId((System.currentTimeMillis()+"").getBytes());
     part.setName(("Video" + System.currentTimeMillis()).getBytes());

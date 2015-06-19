@@ -22,7 +22,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.Util;
@@ -87,7 +86,7 @@ public abstract class Slide {
     return !getPart().getPartId().isValid();
   }
 
-  protected static void assertMediaSize(Context context, Uri uri)
+  protected static void assertMediaSize(Context context, Uri uri, boolean sendOrReceive)
       throws MediaTooLargeException, IOException
   {
     InputStream in = context.getContentResolver().openInputStream(uri);
@@ -97,7 +96,7 @@ public abstract class Slide {
 
     while ((read = in.read(buffer)) != -1) {
       size += read;
-      if (size > MmsMediaConstraints.MAX_MESSAGE_SIZE) throw new MediaTooLargeException("Media exceeds maximum message size.");
+      if (size > (sendOrReceive ? MediaConstraints.CURRENT_MEDIA_SIZE:PushMediaConstraints.MAX_MESSAGE_SIZE)) throw new MediaTooLargeException("Media exceeds maximum message size.");
     }
   }
 

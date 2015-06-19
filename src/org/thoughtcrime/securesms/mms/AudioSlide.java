@@ -19,7 +19,6 @@ package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
 import android.content.res.Resources.Theme;
-import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore.Audio;
 import android.support.annotation.DrawableRes;
@@ -34,23 +33,17 @@ import org.w3c.dom.smil.SMILRegionElement;
 import java.io.IOException;
 
 
-import ws.com.google.android.mms.ContentType;
-import ws.com.google.android.mms.pdu.PduPart;
-import android.util.Log;
-
-
-
 import ws.com.google.android.mms.pdu.PduPart;
 
 public class AudioSlide extends Slide {
 
   private static final String TAG = AudioSlide.class.getSimpleName();
 
-  public AudioSlide(Context context, Uri uri) throws IOException, MediaTooLargeException {
-    super(context, constructPartFromUri(context, uri));
+  public AudioSlide(Context context, Uri uri, boolean sendOrReceive) throws IOException, MediaTooLargeException {
+    super(context, constructPartFromUri(context, uri, sendOrReceive));
   }
-  public AudioSlide(Context context, Uri uri, String contentType) throws IOException, MediaTooLargeException {
-    super(context, constructPartFromUri(context, uri, contentType));
+  public AudioSlide(Context context, Uri uri, String contentType, boolean sendOrReceive) throws IOException, MediaTooLargeException {
+    super(context, constructPartFromUri(context, uri, contentType, sendOrReceive));
   }
   @Override
   public boolean hasImage() {
@@ -78,10 +71,10 @@ public class AudioSlide extends Slide {
     return null;
   }
 
-public static PduPart constructPartFromUri(Context context, Uri uri) throws IOException, MediaTooLargeException {
+public static PduPart constructPartFromUri(Context context, Uri uri, boolean sendOrReceive) throws IOException, MediaTooLargeException {
     PduPart part = new PduPart();
 
-    assertMediaSize(context, uri);
+    assertMediaSize(context, uri, sendOrReceive);
 
     part.setContentType(getContentTypeFromUri(context, uri, Audio.Media.MIME_TYPE).getBytes());
 
@@ -91,10 +84,10 @@ public static PduPart constructPartFromUri(Context context, Uri uri) throws IOEx
 
     return part;
   }
-  public static PduPart constructPartFromUri(Context context, Uri uri, String contentType) throws IOException, MediaTooLargeException {
+  public static PduPart constructPartFromUri(Context context, Uri uri, String contentType, boolean sendOrReceive) throws IOException, MediaTooLargeException {
     PduPart part = new PduPart();
 
-    assertMediaSize(context, uri);
+    assertMediaSize(context, uri, sendOrReceive);
 
     part.setContentType(contentType.getBytes());
 

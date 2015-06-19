@@ -151,17 +151,17 @@ public class AttachmentManager {
     setMedia(new ImageSlide(context, image));
   }
 
-  public void setVideo(Uri video) throws IOException, MediaTooLargeException {
-    setMedia(new VideoSlide(context, video));
+  public void setVideo(Uri video, boolean sendOrReceive) throws IOException, MediaTooLargeException {
+    setMedia(new VideoSlide(context, video, sendOrReceive));
   }
-  public void setVideo(Uri video, String contentType) throws IOException, MediaTooLargeException {
-    setMedia(new VideoSlide(context, video, contentType));
+  public void setVideo(Uri video, String contentType, boolean sendOrReceive) throws IOException, MediaTooLargeException {
+    setMedia(new VideoSlide(context, video, contentType, sendOrReceive));
   }
-  public void setAudio(Uri audio, String contentType) throws IOException, MediaTooLargeException {
-    setMedia(new AudioSlide(context, audio, contentType));
+  public void setAudio(Uri audio, String contentType, boolean sendOrReceive) throws IOException, MediaTooLargeException {
+    setMedia(new AudioSlide(context, audio, contentType, sendOrReceive));
   }
-  public void setAudio(Uri audio) throws IOException, MediaTooLargeException {
-    setMedia(new AudioSlide(context, audio));
+  public void setAudio(Uri audio, boolean sendOrReceive) throws IOException, MediaTooLargeException {
+    setMedia(new AudioSlide(context, audio, sendOrReceive));
   }
   private class RemoveButtonListener implements View.OnClickListener {
     @Override
