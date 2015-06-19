@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.mms;
 
 public class MmsMediaConstraints extends MediaConstraints {
   private static final int MAX_IMAGE_DIMEN  = 1280;
-  public  static final int MAX_MESSAGE_SIZE = 10240 * 1024;
+  public  static final int MAX_MESSAGE_SIZE = 280 * 1024;
 
   @Override
   public int getImageMaxWidth() {
