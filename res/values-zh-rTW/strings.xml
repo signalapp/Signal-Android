@@ -30,9 +30,11 @@
   <string name="ApplicationPreferencesActivity_sms_disabled">已關閉手機簡按這裡來變更您預設的手機簡訊APP訊接收功能</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">按這裡將 SecureChat 設為預設的手機簡訊APP</string>
   <!--AppProtectionPreferenceFragment-->
+  <string name="AppProtectionPreferenceFragment_minutes">%d 分鍾</string>
   <!--DraftDatabase-->
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">找不到合適的 APP 來選擇媒體檔案。</string>
+  <string name="AttachmentTypeSelectorAdapter_contact">聯系人信息</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">照片</string>
   <string name="AttachmentTypeSelectorAdapter_video">影片</string>
@@ -52,6 +54,8 @@
   <string name="ConversationItem_click_to_approve_mms_dialog_title">撤回多媒體簡訊？</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">撤回未加密的手機簡訊？</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">撤回未加密的多媒體簡訊？</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">點擊發送未加密的信息</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">由于安全會話不能建立，此消息將<B>不會</ b>被加密。\n\n確定要發送不安全的消息？</string>
   <string name="ConversationItem_unable_to_open_media">找不到合適的 APP 來開啟媒體檔案。</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">開啟一條安全連線？</string>
@@ -493,7 +497,7 @@ SecureChat 等候驗證用的手機簡訊已逾時。</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">使用 SecureChat 來檢視與儲存所有接收到的文字簡訊</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">使用 SecureChat 來檢視與儲存所有接收到的多媒體簡訊</string>
   <string name="preferences__input_settings">輸入設定</string>
-  <string name="preferences__enable_enter_key_title">啟用 Enter 鍵</string>
+  <string name="preferences__enable_enter_key_title">啓用Enter鍵</string>
   <string name="preferences__replace_smiley_with_enter_key">把介面上的表情符號按鈕，換成 Enter 按鈕</string>
   <string name="preferences__pref_enter_sends_title">啟用 按 Enter 鍵 就送出訊息</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">若按下 Enter 鍵，不會換行，而是直接把訊息送出</string>
@@ -567,6 +571,12 @@ SecureChat 等候驗證用的手機簡訊已逾時。</string>
   <string name="preferences__sms_outgoing_push_users_description">如果網路斷線，改送出付費的加密手機簡訊</string>
   <string name="preferences__sms_fallback_non_push_users">非 SecureChat 使用者</string>
   <string name="preferences__sms_fallback_nobody">無人</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">啓用此功能，當您的設備通過WiFi發送SMS/MMS時（只有當您的設備上啓用了\'WiFi呼叫\'時）。</string>
+  <string name="preferences__enable_local_encryption_of_messages_and_keys">啓用消息和密鑰的本地加密</string>
+  <string name="preferences__enable_manual_mms">使用手動MMS設置</string>
+  <string name="preferences__enable_passphrase">啓用密碼</string>
+  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">抱歉，所選擇的音頻超出郵件大小限制(%1$skB).</string>
+  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">抱歉，所選擇的視頻超出郵件大小限制(%1$skB).</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -643,5 +653,13 @@ SecureChat 等候驗證用的手機簡訊已逾時。</string>
   <string name="trimmer__deleting">刪除中...</string>
   <string name="trimmer__deleting_old_messages">正在刪除舊訊息...</string>
   <string name="trimmer__old_messages_successfully_deleted">已完成刪除舊訊息。</string>
+  <string name="ApplicationPreferencesActivity_incoming_sms">收到的</string>
+  <string name="ApplicationPreferencesActivity_messages_per_conversation">對話包含%條信息</string>
+  <string name="ApplicationPreferencesActivity_mms">關閉</string>
+  <string name="ApplicationPreferencesActivity_off">開啓</string>
+  <string name="ApplicationPreferencesActivity_on">發送的</string>
+  <string name="ApplicationPreferencesActivity_outgoing_sms">部分的</string>
+  <string name="ApplicationPreferencesActivity_partial">短信</string>
+  <string name="ApplicationPreferencesActivity_sms">開啓</string>
   <!--EOF-->
 </resources>
