@@ -448,7 +448,6 @@ Wi-Fiに接続している場合、ファイアウォールがSecureChatサー�
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">受信する全てのSMS（テキストメッセージ）の表示、及び保存にSecureChatを使用します</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">受信する全てのMMS（ファイル付きメッセージ）の表示、及び保存にSecureChatを使用します</string>
   <string name="preferences__input_settings">設定入力</string>
-  <string name="preferences__enable_enter_key_title">エンターキーを使えるようにする</string>
   <string name="preferences__replace_smiley_with_enter_key">顔文字キーをエンターキーに変える</string>
   <string name="preferences__pref_enter_sends_title">エンターキーで送信</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">エンターキーを押すとテキストメッセージが送信されます</string>
@@ -593,6 +592,26 @@ Wi-Fiに接続している場合、ファイアウォールがSecureChatサー�
   <string name="media_preview__save_title">保存</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">画像プレビュー表示</string>
+
+  <string name="AppProtectionPreferenceFragment_minutes">%d 分</string>
+  <string name="AttachmentTypeSelectorAdapter_contact">連絡先情報</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">タップして未暗号化メッセージを送付 (フォールバック時)</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">安全なセッションが確立されなかったため、このメッセージは 暗号化<b>されません</b> 。\n\nメッセージを送信しますか?</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">WiFi 経由でSMS/MMS送信している場合、有効にする(\'WiFi 通話\' が端末上で有効化されている場合にのみ有効)。</string>
+  <string name="preferences__enable_local_encryption_of_messages_and_keys">メッセージとキーのローカル暗号化を有効にする</string>
+  <string name="preferences__enable_manual_mms">使用手動MMS設置</string>
+  <string name="preferences__enable_passphrase">啓用密碼</string>
+  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">選択した動画ファイルはメッセージ容量制限 (%1$skB) を越えています。</string>
+  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">選択したオーディオファイルはメッセージ容量制限(%1$skB) を越えています。</string>
+  <string name="ApplicationPreferencesActivity_incoming_sms">着信</string>
+  <string name="ApplicationPreferencesActivity_messages_per_conversation">%s 件のメッセージ (チャット履歴)</string>
+  <string name="ApplicationPreferencesActivity_mms">MMS</string>
+  <string name="ApplicationPreferencesActivity_off">オフ</string>
+  <string name="ApplicationPreferencesActivity_on">オン</string>
+  <string name="ApplicationPreferencesActivity_outgoing_sms">発信</string>
+  <string name="ApplicationPreferencesActivity_partial">部分的</string>
+  <string name="ApplicationPreferencesActivity_sms">SMS</string>
+  <string name="preferences__enable_enter_key_title">Enter キーを有効にする</string>
   <!--Trimmer-->
   <!--EOF-->
 </resources>

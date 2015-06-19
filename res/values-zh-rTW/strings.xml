@@ -55,7 +55,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">撤回未加密的手機簡訊？</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">撤回未加密的多媒體簡訊？</string>
   <string name="ConversationItem_click_to_approve_unencrypted">點擊發送未加密的信息</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">由于安全會話不能建立，此消息將<B>不會</ b>被加密。\n\n確定要發送不安全的消息？</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">由于安全會話不能建立，此消息將<B>不會</B>被加密。\n\n確定要發送不安全的消息？</string>
   <string name="ConversationItem_unable_to_open_media">找不到合適的 APP 來開啟媒體檔案。</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">開啟一條安全連線？</string>
