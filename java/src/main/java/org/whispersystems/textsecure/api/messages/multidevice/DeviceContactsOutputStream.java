@@ -4,6 +4,7 @@ import org.whispersystems.textsecure.internal.push.TextSecureProtos;
 import org.whispersystems.textsecure.internal.util.Util;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 
 public class DeviceContactsOutputStream {
@@ -25,7 +26,16 @@ public class DeviceContactsOutputStream {
 
   private void writeAvatarImage(DeviceContact contact) throws IOException {
     if (contact.getAvatar().isPresent()) {
-      Util.copy(contact.getAvatar().get().getInputStream(), out);
+      InputStream in     = contact.getAvatar().get().getInputStream();
+      byte[]      buffer = new byte[4096];
+
+      int read;
+
+      while ((read = in.read(buffer)) != -1) {
+        out.write(buffer, 0, read);
+      }
+
+      in.close();
     }
   }
 
@@ -41,6 +51,7 @@ public class DeviceContactsOutputStream {
       TextSecureProtos.ContactDetails.Avatar.Builder avatarBuilder = TextSecureProtos.ContactDetails.Avatar.newBuilder();
       avatarBuilder.setContentType(contact.getAvatar().get().getContentType());
       avatarBuilder.setLength(contact.getAvatar().get().getLength());
+      contactDetails.setAvatar(avatarBuilder);
     }
 
     byte[] serializedContactDetails = contactDetails.build().toByteArray();

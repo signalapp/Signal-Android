@@ -26,6 +26,7 @@ import org.whispersystems.libaxolotl.ecc.ECPublicKey;
 import org.whispersystems.libaxolotl.state.PreKeyRecord;
 import org.whispersystems.libaxolotl.state.SignedPreKeyRecord;
 import org.whispersystems.libaxolotl.util.guava.Optional;
+import org.whispersystems.textsecure.api.messages.multidevice.DeviceInfo;
 import org.whispersystems.textsecure.api.push.ContactTokenDetails;
 import org.whispersystems.textsecure.api.push.SignedPreKeyEntity;
 import org.whispersystems.textsecure.api.push.TrustStore;
@@ -232,6 +233,14 @@ public class TextSecureAccountManager {
 
     byte[] ciphertext = cipher.encrypt(message);
     this.pushServiceSocket.sendProvisioningMessage(deviceIdentifier, ciphertext);
+  }
+
+  public List<DeviceInfo> getDevices() throws IOException {
+    return this.pushServiceSocket.getDevices();
+  }
+
+  public void removeDevice(long deviceId) throws IOException {
+    this.pushServiceSocket.removeDevice(deviceId);
   }
 
   private String createDirectoryServerToken(String e164number, boolean urlSafe) {

@@ -191,11 +191,12 @@ public class TextSecureMessageSender {
   }
 
   private byte[] createMultiDeviceContactsContent(TextSecureAttachmentStream contacts) throws IOException {
-    SyncMessage.Builder builder = SyncMessage.newBuilder();
+    Content.Builder     container = Content.newBuilder();
+    SyncMessage.Builder builder   = SyncMessage.newBuilder();
     builder.setContacts(SyncMessage.Contacts.newBuilder()
                                             .setBlob(createAttachmentPointer(contacts)));
 
-    return builder.build().toByteArray();
+    return container.setSyncMessage(builder).build().toByteArray();
   }
 
   private byte[] createSentTranscriptMessage(byte[] content, Optional<TextSecureAddress> recipient, long timestamp) {

@@ -39,6 +39,7 @@ import org.whispersystems.textsecure.api.messages.TextSecureContent;
 import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 import org.whispersystems.textsecure.api.messages.TextSecureGroup;
 import org.whispersystems.textsecure.api.messages.TextSecureDataMessage;
+import org.whispersystems.textsecure.api.messages.multidevice.RequestMessage;
 import org.whispersystems.textsecure.api.messages.multidevice.SentTranscriptMessage;
 import org.whispersystems.textsecure.api.messages.multidevice.TextSecureSyncMessage;
 import org.whispersystems.textsecure.api.push.TextSecureAddress;
@@ -175,8 +176,12 @@ public class TextSecureCipher {
     if (content.hasSent()) {
       SyncMessage.Sent sentContent = content.getSent();
       return new TextSecureSyncMessage(new SentTranscriptMessage(sentContent.getDestination(),
-                                                                        sentContent.getTimestamp(),
-                                                                        createTextSecureMessage(envelope, sentContent.getMessage())));
+                                                                 sentContent.getTimestamp(),
+                                                                 createTextSecureMessage(envelope, sentContent.getMessage())));
+    }
+
+    if (content.hasRequest()) {
+      return new TextSecureSyncMessage(new RequestMessage(content.getRequest()));
     }
 
     return new TextSecureSyncMessage();

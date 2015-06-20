@@ -52,9 +52,19 @@ message SyncMessage {
     optional GroupContext group = 1;
   }
 
+  message Request {
+    enum Type {
+      UNKNOWN  = 0;
+      CONTACTS = 1;
+    }
+
+    optional Type type = 1;
+  }
+
   optional Sent     sent     = 1;
   optional Contacts contacts = 2;
   optional Group    group    = 3;
+  optional Request  request  = 4;
 }
 
 message AttachmentPointer {
