@@ -50,6 +50,7 @@ import org.whispersystems.textsecure.api.messages.TextSecureContent;
 import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 import org.whispersystems.textsecure.api.messages.TextSecureGroup;
 import org.whispersystems.textsecure.api.messages.TextSecureDataMessage;
+import org.whispersystems.textsecure.api.messages.multidevice.RequestMessage;
 import org.whispersystems.textsecure.api.messages.multidevice.SentTranscriptMessage;
 import org.whispersystems.textsecure.api.messages.multidevice.TextSecureSyncMessage;
 import org.whispersystems.textsecure.api.push.TextSecureAddress;
@@ -126,7 +127,8 @@ public class PushDecryptJob extends MasterSecretJob {
       } else if (content.getSyncMessage().isPresent()) {
         TextSecureSyncMessage syncMessage = content.getSyncMessage().get();
 
-        if (syncMessage.getSent().isPresent()) handleSynchronizeSentMessage(masterSecret, syncMessage.getSent().get(), smsMessageId);
+        if      (syncMessage.getSent().isPresent())    handleSynchronizeSentMessage(masterSecret, syncMessage.getSent().get(), smsMessageId);
+        else if (syncMessage.getRequest().isPresent()) handleSynchronizeRequestMessage(masterSecret, syncMessage.getRequest().get());
       }
 
       if (envelope.isPreKeyWhisperMessage()) {
@@ -195,6 +197,14 @@ public class PushDecryptJob extends MasterSecretJob {
       handleSynchronizeSentMediaMessage(masterSecret, message, smsMessageId);
     } else {
       handleSynchronizeSentTextMessage(masterSecret, message, smsMessageId);
+    }
+  }
+
+  private void handleSynchronizeRequestMessage(MasterSecret masterSecret, RequestMessage message) {
+    if (message.isContactsRequest()) {
+      ApplicationContext.getInstance(context)
+                        .getJobManager()
+                        .add(new MultiDeviceContactUpdateJob(getContext()));
     }
   }
 

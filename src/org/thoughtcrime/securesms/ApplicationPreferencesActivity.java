@@ -55,6 +55,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
   private static final String PREFERENCE_CATEGORY_APP_PROTECTION = "preference_category_app_protection";
   private static final String PREFERENCE_CATEGORY_APPEARANCE     = "preference_category_appearance";
   private static final String PREFERENCE_CATEGORY_STORAGE        = "preference_category_storage";
+  private static final String PREFERENCE_CATEGORY_DEVICES        = "preference_category_devices";
   private static final String PREFERENCE_CATEGORY_ADVANCED       = "preference_category_advanced";
 
   private final DynamicTheme    dynamicTheme    = new DynamicTheme();
@@ -131,6 +132,8 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
         .setOnPreferenceClickListener(new CategoryClickListener(masterSecret, PREFERENCE_CATEGORY_APPEARANCE));
       this.findPreference(PREFERENCE_CATEGORY_STORAGE)
         .setOnPreferenceClickListener(new CategoryClickListener(masterSecret, PREFERENCE_CATEGORY_STORAGE));
+      this.findPreference(PREFERENCE_CATEGORY_DEVICES)
+        .setOnPreferenceClickListener(new CategoryClickListener(masterSecret, PREFERENCE_CATEGORY_DEVICES));
       this.findPreference(PREFERENCE_CATEGORY_ADVANCED)
         .setOnPreferenceClickListener(new CategoryClickListener(masterSecret, PREFERENCE_CATEGORY_ADVANCED));
     }
@@ -166,7 +169,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
 
       @Override
       public boolean onPreferenceClick(Preference preference) {
-        Fragment fragment;
+        Fragment fragment = null;
 
         switch (category) {
         case PREFERENCE_CATEGORY_SMS_MMS:
@@ -184,6 +187,10 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
         case PREFERENCE_CATEGORY_STORAGE:
           fragment = new StoragePreferenceFragment();
           break;
+        case PREFERENCE_CATEGORY_DEVICES:
+          Intent intent = new Intent(getActivity(), DeviceListActivity.class);
+          startActivity(intent);
+          break;
         case PREFERENCE_CATEGORY_ADVANCED:
           fragment = new AdvancedPreferenceFragment();
           break;
@@ -191,15 +198,17 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
           throw new AssertionError();
         }
 
-        Bundle args = new Bundle();
-        args.putParcelable("master_secret", masterSecret);
-        fragment.setArguments(args);
+        if (fragment != null) {
+          Bundle args = new Bundle();
+          args.putParcelable("master_secret", masterSecret);
+          fragment.setArguments(args);
 
-        FragmentManager     fragmentManager     = getActivity().getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(android.R.id.content, fragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
+          FragmentManager     fragmentManager     = getActivity().getSupportFragmentManager();
+          FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+          fragmentTransaction.replace(android.R.id.content, fragment);
+          fragmentTransaction.addToBackStack(null);
+          fragmentTransaction.commit();
+        }
 
         return true;
       }
