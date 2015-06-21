@@ -91,6 +91,12 @@ public class SmsSendJob extends SendJob {
     ArrayList<PendingIntent> deliveredIntents = constructDeliveredIntents(message.getId(), message.getType(), messages);
     String recipient                          = message.getIndividualRecipient().getNumber();
 
+    // remove characters for visible number formatting - they break sending sms on some phones (issue #1516)
+    // stripSeparator() to rigid? what will people try to send here? - see discussion on #3099
+    //recipient = PhoneNumberUtils.stripSeparators(recipient);
+    // minimum required to fix the issue - brackets are no dialable chars...
+    recipient = recipient.replaceAll("[\\(\\)]", "");
+
     // NOTE 11/04/14 -- There's apparently a bug where for some unknown recipients
     // and messages, this will throw an NPE.  We have no idea why, so we're just
     // catching it and marking the message as a failure.  That way at least it doesn't
