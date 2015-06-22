@@ -23,8 +23,10 @@ import android.net.Uri;
 import android.provider.MediaStore.Audio;
 import android.support.annotation.DrawableRes;
 
+import android.util.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ResUtil;
 
 import java.io.IOException;
@@ -66,10 +68,18 @@ public class AudioSlide extends Slide {
     try {
       cursor = context.getContentResolver().query(uri, new String[]{Audio.Media.MIME_TYPE}, null, null, null);
 
-      if (cursor != null && cursor.moveToFirst())
+      if (cursor != null && cursor.moveToFirst()) {
         part.setContentType(cursor.getString(0).getBytes());
-      else
-        throw new IOException("Unable to query content type.");
+      } else {
+         // query above does not give result for media set via ShareActivity (external share intents with files)
+         final String contentType = MediaUtil.getMimeTyp(uri);
+         if (contentType != null) {
+           Log.i("AudioSlide", "Setting mime type: " + contentType);
+           part.setContentType(contentType.getBytes());
+         }
+         else
+           throw new IOException("Unable to query content type.");
+      }
     } finally {
       if (cursor != null)
         cursor.close();
