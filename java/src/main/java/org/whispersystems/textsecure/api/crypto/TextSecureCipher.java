@@ -28,7 +28,6 @@ import org.whispersystems.libaxolotl.LegacyMessageException;
 import org.whispersystems.libaxolotl.NoSessionException;
 import org.whispersystems.libaxolotl.SessionCipher;
 import org.whispersystems.libaxolotl.UntrustedIdentityException;
-import org.whispersystems.libaxolotl.logging.Log;
 import org.whispersystems.libaxolotl.protocol.CiphertextMessage;
 import org.whispersystems.libaxolotl.protocol.PreKeyWhisperMessage;
 import org.whispersystems.libaxolotl.protocol.WhisperMessage;
@@ -36,9 +35,9 @@ import org.whispersystems.libaxolotl.state.AxolotlStore;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachmentPointer;
 import org.whispersystems.textsecure.api.messages.TextSecureContent;
+import org.whispersystems.textsecure.api.messages.TextSecureDataMessage;
 import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 import org.whispersystems.textsecure.api.messages.TextSecureGroup;
-import org.whispersystems.textsecure.api.messages.TextSecureDataMessage;
 import org.whispersystems.textsecure.api.messages.multidevice.RequestMessage;
 import org.whispersystems.textsecure.api.messages.multidevice.SentTranscriptMessage;
 import org.whispersystems.textsecure.api.messages.multidevice.TextSecureSyncMessage;
@@ -175,16 +174,16 @@ public class TextSecureCipher {
   private TextSecureSyncMessage createSynchronizeMessage(TextSecureEnvelope envelope, SyncMessage content) {
     if (content.hasSent()) {
       SyncMessage.Sent sentContent = content.getSent();
-      return new TextSecureSyncMessage(new SentTranscriptMessage(sentContent.getDestination(),
-                                                                 sentContent.getTimestamp(),
-                                                                 createTextSecureMessage(envelope, sentContent.getMessage())));
+      return TextSecureSyncMessage.forSentTranscript(new SentTranscriptMessage(sentContent.getDestination(),
+                                                                               sentContent.getTimestamp(),
+                                                                               createTextSecureMessage(envelope, sentContent.getMessage())));
     }
 
     if (content.hasRequest()) {
-      return new TextSecureSyncMessage(new RequestMessage(content.getRequest()));
+      return TextSecureSyncMessage.forRequest(new RequestMessage(content.getRequest()));
     }
 
-    return new TextSecureSyncMessage();
+    return TextSecureSyncMessage.empty();
   }
 
   private TextSecureGroup createGroupInfo(TextSecureEnvelope envelope, DataMessage content) {

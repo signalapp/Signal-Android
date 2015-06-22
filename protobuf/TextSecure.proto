@@ -48,14 +48,15 @@ message SyncMessage {
     optional AttachmentPointer blob = 1;
   }
 
-  message Group {
-    optional GroupContext group = 1;
+  message Groups {
+    optional AttachmentPointer blob = 1;
   }
 
   message Request {
     enum Type {
       UNKNOWN  = 0;
       CONTACTS = 1;
+      GROUPS   = 2;
     }
 
     optional Type type = 1;
@@ -63,7 +64,7 @@ message SyncMessage {
 
   optional Sent     sent     = 1;
   optional Contacts contacts = 2;
-  optional Group    group    = 3;
+  optional Groups   groups   = 3;
   optional Request  request  = 4;
 }
 
@@ -90,10 +91,22 @@ message GroupContext {
 message ContactDetails {
   message Avatar {
     optional string contentType = 1;
-    optional uint64 length      = 2;
+    optional uint32 length      = 2;
   }
 
   optional string number = 1;
   optional string name   = 2;
   optional Avatar avatar = 3;
+}
+
+message GroupDetails {
+  message Avatar {
+    optional string contentType = 1;
+    optional uint32 length      = 2;
+  }
+
+  optional bytes  id      = 1;
+  optional string name    = 2;
+  repeated string members = 3;
+  optional Avatar avatar  = 4;
 }

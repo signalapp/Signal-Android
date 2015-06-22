@@ -13,4 +13,8 @@ public class RequestMessage {
   public boolean isContactsRequest() {
     return request.getType() == Request.Type.CONTACTS;
   }
+
+  public boolean isGroupsRequest() {
+    return request.getType() == Request.Type.GROUPS;
+  }
 }

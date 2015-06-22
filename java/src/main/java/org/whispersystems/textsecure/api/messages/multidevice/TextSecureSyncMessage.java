@@ -8,50 +8,61 @@ public class TextSecureSyncMessage {
 
   private final Optional<SentTranscriptMessage> sent;
   private final Optional<TextSecureAttachment>  contacts;
-  private final Optional<TextSecureGroup>       group;
+  private final Optional<TextSecureAttachment>  groups;
   private final Optional<RequestMessage>        request;
 
-  public TextSecureSyncMessage() {
-    this.sent     = Optional.absent();
-    this.contacts = Optional.absent();
-    this.group    = Optional.absent();
-    this.request  = Optional.absent();
+  private TextSecureSyncMessage(Optional<SentTranscriptMessage> sent,
+                                Optional<TextSecureAttachment>  contacts,
+                                Optional<TextSecureAttachment>  groups,
+                                Optional<RequestMessage>        request)
+  {
+    this.sent     = sent;
+    this.contacts = contacts;
+    this.groups   = groups;
+    this.request  = request;
   }
 
-  public TextSecureSyncMessage(SentTranscriptMessage sent) {
-    this.sent     = Optional.of(sent);
-    this.contacts = Optional.absent();
-    this.group    = Optional.absent();
-    this.request  = Optional.absent();
+  public static TextSecureSyncMessage forSentTranscript(SentTranscriptMessage sent) {
+    return new TextSecureSyncMessage(Optional.of(sent),
+                                     Optional.<TextSecureAttachment>absent(),
+                                     Optional.<TextSecureAttachment>absent(),
+                                     Optional.<RequestMessage>absent());
   }
 
-  public TextSecureSyncMessage(TextSecureAttachment contacts) {
-    this.contacts = Optional.of(contacts);
-    this.sent     = Optional.absent();
-    this.group    = Optional.absent();
-    this.request  = Optional.absent();
+  public static TextSecureSyncMessage forContacts(TextSecureAttachment contacts) {
+    return new TextSecureSyncMessage(Optional.<SentTranscriptMessage>absent(),
+                                     Optional.of(contacts),
+                                     Optional.<TextSecureAttachment>absent(),
+                                     Optional.<RequestMessage>absent());
   }
 
-  public TextSecureSyncMessage(TextSecureGroup group) {
-    this.group    = Optional.of(group);
-    this.sent     = Optional.absent();
-    this.contacts = Optional.absent();
-    this.request  = Optional.absent();
+  public static TextSecureSyncMessage forGroups(TextSecureAttachment groups) {
+    return new TextSecureSyncMessage(Optional.<SentTranscriptMessage>absent(),
+                                     Optional.<TextSecureAttachment>absent(),
+                                     Optional.of(groups),
+                                     Optional.<RequestMessage>absent());
   }
 
-  public TextSecureSyncMessage(RequestMessage contactsRequest) {
-    this.request  = Optional.of(contactsRequest);
-    this.sent     = Optional.absent();
-    this.contacts = Optional.absent();
-    this.group    = Optional.absent();
+  public static TextSecureSyncMessage forRequest(RequestMessage request) {
+    return new TextSecureSyncMessage(Optional.<SentTranscriptMessage>absent(),
+                                     Optional.<TextSecureAttachment>absent(),
+                                     Optional.<TextSecureAttachment>absent(),
+                                     Optional.of(request));
+  }
+
+  public static TextSecureSyncMessage empty() {
+    return new TextSecureSyncMessage(Optional.<SentTranscriptMessage>absent(),
+                                     Optional.<TextSecureAttachment>absent(),
+                                     Optional.<TextSecureAttachment>absent(),
+                                     Optional.<RequestMessage>absent());
   }
 
   public Optional<SentTranscriptMessage> getSent() {
     return sent;
   }
 
-  public Optional<TextSecureGroup> getGroup() {
-    return group;
+  public Optional<TextSecureAttachment> getGroups() {
+    return groups;
   }
 
   public Optional<TextSecureAttachment> getContacts() {

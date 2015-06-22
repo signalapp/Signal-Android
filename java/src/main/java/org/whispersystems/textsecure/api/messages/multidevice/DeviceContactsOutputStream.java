@@ -1,18 +1,14 @@
 package org.whispersystems.textsecure.api.messages.multidevice;
 
 import org.whispersystems.textsecure.internal.push.TextSecureProtos;
-import org.whispersystems.textsecure.internal.util.Util;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 
-public class DeviceContactsOutputStream {
-
-  private final OutputStream out;
+public class DeviceContactsOutputStream extends ChunkedOutputStream {
 
   public DeviceContactsOutputStream(OutputStream out) {
-    this.out = out;
+    super(out);
   }
 
   public void write(DeviceContact contact) throws IOException {
@@ -26,16 +22,7 @@ public class DeviceContactsOutputStream {
 
   private void writeAvatarImage(DeviceContact contact) throws IOException {
     if (contact.getAvatar().isPresent()) {
-      InputStream in     = contact.getAvatar().get().getInputStream();
-      byte[]      buffer = new byte[4096];
-
-      int read;
-
-      while ((read = in.read(buffer)) != -1) {
-        out.write(buffer, 0, read);
-      }
-
-      in.close();
+      writeStream(contact.getAvatar().get().getInputStream());
     }
   }
 
@@ -50,7 +37,7 @@ public class DeviceContactsOutputStream {
     if (contact.getAvatar().isPresent()) {
       TextSecureProtos.ContactDetails.Avatar.Builder avatarBuilder = TextSecureProtos.ContactDetails.Avatar.newBuilder();
       avatarBuilder.setContentType(contact.getAvatar().get().getContentType());
-      avatarBuilder.setLength(contact.getAvatar().get().getLength());
+      avatarBuilder.setLength((int)contact.getAvatar().get().getLength());
       contactDetails.setAvatar(avatarBuilder);
     }
 
@@ -58,18 +45,6 @@ public class DeviceContactsOutputStream {
 
     writeVarint32(serializedContactDetails.length);
     out.write(serializedContactDetails);
-  }
-
-  private void writeVarint32(int value) throws IOException {
-    while (true) {
-      if ((value & ~0x7F) == 0) {
-        out.write(value);
-        return;
-      } else {
-        out.write((value & 0x7F) | 0x80);
-        value >>>= 7;
-      }
-    }
   }
 
 }

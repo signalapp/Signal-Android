@@ -32,6 +32,7 @@ import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachmentStream;
 import org.whispersystems.textsecure.api.messages.TextSecureDataMessage;
 import org.whispersystems.textsecure.api.messages.TextSecureGroup;
+import org.whispersystems.textsecure.api.messages.multidevice.TextSecureSyncMessage;
 import org.whispersystems.textsecure.api.push.TextSecureAddress;
 import org.whispersystems.textsecure.api.push.TrustStore;
 import org.whispersystems.textsecure.api.push.exceptions.EncapsulatedExceptions;
@@ -122,7 +123,7 @@ public class TextSecureMessageSender {
     SendMessageResponse response  = sendMessage(recipient, timestamp, content, true);
 
     if (response != null && response.getNeedsSync()) {
-      byte[] syncMessage = createSentTranscriptMessage(content, Optional.of(recipient), timestamp);
+      byte[] syncMessage = createMultiDeviceSentTranscriptContent(content, Optional.of(recipient), timestamp);
       sendMessage(localAddress, timestamp, syncMessage, false);
     }
 
@@ -152,7 +153,7 @@ public class TextSecureMessageSender {
 
     try {
       if (response != null && response.getNeedsSync()) {
-        byte[] syncMessage = createSentTranscriptMessage(content, Optional.<TextSecureAddress>absent(), timestamp);
+        byte[] syncMessage = createMultiDeviceSentTranscriptContent(content, Optional.<TextSecureAddress>absent(), timestamp);
         sendMessage(localAddress, timestamp, syncMessage, false);
       }
     } catch (UntrustedIdentityException e) {
@@ -160,10 +161,19 @@ public class TextSecureMessageSender {
     }
   }
 
-  public void sendMultiDeviceContactsUpdate(TextSecureAttachmentStream contacts)
+  public void sendMessage(TextSecureSyncMessage message)
       throws IOException, UntrustedIdentityException
   {
-    byte[] content = createMultiDeviceContactsContent(contacts);
+    byte[] content;
+
+    if (message.getContacts().isPresent()) {
+      content = createMultiDeviceContactsContent(message.getContacts().get().asStream());
+    } else if (message.getGroups().isPresent()) {
+      content = createMultiDeviceGroupsContent(message.getGroups().get().asStream());
+    } else {
+      throw new IOException("Unsupported sync message!");
+    }
+
     sendMessage(localAddress, System.currentTimeMillis(), content, false);
   }
 
@@ -199,7 +209,16 @@ public class TextSecureMessageSender {
     return container.setSyncMessage(builder).build().toByteArray();
   }
 
-  private byte[] createSentTranscriptMessage(byte[] content, Optional<TextSecureAddress> recipient, long timestamp) {
+  private byte[] createMultiDeviceGroupsContent(TextSecureAttachmentStream groups) throws IOException {
+    Content.Builder     container = Content.newBuilder();
+    SyncMessage.Builder builder   = SyncMessage.newBuilder();
+    builder.setGroups(SyncMessage.Groups.newBuilder()
+                                        .setBlob(createAttachmentPointer(groups)));
+
+    return container.setSyncMessage(builder).build().toByteArray();
+  }
+
+  private byte[] createMultiDeviceSentTranscriptContent(byte[] content, Optional<TextSecureAddress> recipient, long timestamp) {
     try {
       Content.Builder          container   = Content.newBuilder();
       SyncMessage.Builder      syncMessage = SyncMessage.newBuilder();
