@@ -18,7 +18,7 @@ public class DeviceContactsInputStream {
   }
 
   public DeviceContact read() throws IOException {
-    long   detailsLength     = readRawVarint64();
+    long   detailsLength     = readRawVarint32();
     byte[] detailsSerialized = new byte[(int)detailsLength];
     Util.readFully(in, detailsSerialized);
 
@@ -38,19 +38,40 @@ public class DeviceContactsInputStream {
     return new DeviceContact(number, name, avatar);
   }
 
-  private long readRawVarint64() throws IOException {
-    int shift = 0;
-    long result = 0;
-    while (shift < 64) {
-      final byte b = (byte)in.read();
-      result |= (long)(b & 0x7F) << shift;
-      if ((b & 0x80) == 0) {
-        return result;
+  public int readRawVarint32() throws IOException {
+    byte tmp = (byte)in.read();
+    if (tmp >= 0) {
+      return tmp;
+    }
+    int result = tmp & 0x7f;
+    if ((tmp = (byte)in.read()) >= 0) {
+      result |= tmp << 7;
+    } else {
+      result |= (tmp & 0x7f) << 7;
+      if ((tmp = (byte)in.read()) >= 0) {
+        result |= tmp << 14;
+      } else {
+        result |= (tmp & 0x7f) << 14;
+        if ((tmp = (byte)in.read()) >= 0) {
+          result |= tmp << 21;
+        } else {
+          result |= (tmp & 0x7f) << 21;
+          result |= (tmp = (byte)in.read()) << 28;
+          if (tmp < 0) {
+            // Discard upper 32 bits.
+            for (int i = 0; i < 5; i++) {
+              if ((byte)in.read() >= 0) {
+                return result;
+              }
+            }
+
+            throw new IOException("Malformed varint!");
+          }
+        }
       }
-      shift += 7;
     }
 
-    throw new IOException("Malformed varint!");
+    return result;
   }
 
   private static final class LimitedInputStream extends FilterInputStream {

@@ -56,17 +56,17 @@ public class DeviceContactsOutputStream {
 
     byte[] serializedContactDetails = contactDetails.build().toByteArray();
 
-    writeVarint64(serializedContactDetails.length);
+    writeVarint32(serializedContactDetails.length);
     out.write(serializedContactDetails);
   }
 
-  public void writeVarint64(long value) throws IOException {
+  private void writeVarint32(int value) throws IOException {
     while (true) {
-      if ((value & ~0x7FL) == 0) {
-        out.write((int) value);
+      if ((value & ~0x7F) == 0) {
+        out.write(value);
         return;
       } else {
-        out.write(((int) value & 0x7F) | 0x80);
+        out.write((value & 0x7F) | 0x80);
         value >>>= 7;
       }
     }
