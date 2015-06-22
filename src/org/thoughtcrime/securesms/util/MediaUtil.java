@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.util.Log;
+import android.webkit.MimeTypeMap;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -80,6 +81,11 @@ public class MediaUtil {
 
   public static boolean isVideo(PduPart part) {
     return ContentType.isVideoType(Util.toIsoString(part.getContentType()));
+  }
+
+  public static String getMimeTyp(Uri uri) {
+    final String extension = MimeTypeMap.getFileExtensionFromUrl(uri.toString());
+    return MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
   }
 
   public static class ThumbnailData {
