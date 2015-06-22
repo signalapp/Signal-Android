@@ -96,6 +96,16 @@ public class VideoSlide extends Slide {
 
     return part;
   }
+  @Override
+  public Uri getThumbnailUri() {
+    if (!getPart().isPendingPush() && getPart().getDataUri() != null) {
+      return isDraft()
+          ? getPart().getDataUri()
+          : PartAuthority.getThumbnailUri(getPart().getPartId());
+    }
+
+    return null;
+  }
   private static PduPart constructPartFromUri(Context context, Uri uri, boolean sendOrReceive)
       throws IOException, MediaTooLargeException
   {
