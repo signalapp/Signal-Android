@@ -94,9 +94,6 @@ task packageSources(type: Jar) {
 }
 
 artifacts {
-    archives(packageJavadoc) {
-        type = 'javadoc'
-    }
-
+    archives packageJavadoc
     archives packageSources
 }
