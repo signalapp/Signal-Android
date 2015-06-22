@@ -23,6 +23,8 @@ import org.whispersystems.textsecure.api.crypto.UntrustedIdentityException;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachmentStream;
 import org.whispersystems.textsecure.api.messages.multidevice.DeviceContact;
 import org.whispersystems.textsecure.api.messages.multidevice.DeviceContactsOutputStream;
+import org.whispersystems.textsecure.api.messages.multidevice.TextSecureSyncMessage;
+import org.whispersystems.textsecure.api.push.exceptions.PushNetworkException;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -79,7 +81,7 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
 
   @Override
   public boolean onShouldRetryThrowable(Exception exception) {
-    if (exception instanceof NetworkException) return true;
+    if (exception instanceof PushNetworkException) return true;
     return false;
   }
 
@@ -102,7 +104,7 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
                                                                                    contactsFile.length());
 
     try {
-      messageSender.sendMultiDeviceContactsUpdate(attachmentStream);
+      messageSender.sendMessage(TextSecureSyncMessage.forContacts(attachmentStream));
     } catch (IOException ioe) {
       throw new NetworkException(ioe);
     }

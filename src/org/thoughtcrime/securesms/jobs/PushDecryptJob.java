@@ -206,6 +206,12 @@ public class PushDecryptJob extends MasterSecretJob {
                         .getJobManager()
                         .add(new MultiDeviceContactUpdateJob(getContext()));
     }
+
+    if (message.isGroupsRequest()) {
+      ApplicationContext.getInstance(context)
+                        .getJobManager()
+                        .add(new MultiDeviceGroupUpdateJob(getContext()));
+    }
   }
 
   private void handleMediaMessage(MasterSecret masterSecret, TextSecureEnvelope envelope,
