@@ -37,6 +37,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -405,6 +406,8 @@ public class ConversationItem extends LinearLayout {
         }
       });
       alertDialogDestroy = builder.show();
+      alertDialogDestroy.getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,
+          WindowManager.LayoutParams.FLAG_SECURE);
       new Thread(new Runnable() {
 
 
