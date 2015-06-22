@@ -1,7 +1,5 @@
 package org.thoughtcrime.securesms;
 
-import android.app.ActivityManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -18,7 +16,6 @@ import android.view.WindowManager;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class ConversationPopupActivity extends ConversationActivity {
@@ -91,6 +88,8 @@ public class ConversationPopupActivity extends ConversationActivity {
               startActivity(intent);
               overridePendingTransition(R.anim.fade_scale_in, R.anim.slide_to_right);
             }
+
+            finish();
           }
 
           @Override
