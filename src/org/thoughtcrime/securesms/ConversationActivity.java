@@ -789,6 +789,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     if (!isPushDestination) transportButton.disableTransport("textsecure");
     if (!isSecureDestination) transportButton.disableTransport("secure_sms");
 
+    if(isGroupConversation()) {
+      transportButton.disableTransport("secure_sms");
+      transportButton.disableTransport("insecure_sms");
+    }
+
     if (isPushDestination) {
       transportButton.setDefaultTransport("textsecure");
     } else if (isSecureDestination) {
