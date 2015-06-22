@@ -1,10 +1,14 @@
 package org.thoughtcrime.securesms;
 
+import android.app.ActivityOptions;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.ViewConfiguration;
 
 import java.lang.reflect.Field;
@@ -50,6 +54,14 @@ public abstract class BaseActionBarActivity extends AppCompatActivity {
       Log.w(TAG, "Failed to force overflow menu.");
     } catch (NoSuchFieldException e) {
       Log.w(TAG, "Failed to force overflow menu.");
+    }
+  }
+
+  protected void startActivitySceneTransition(Intent intent, View sharedView, String transitionName) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+      startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this, sharedView, transitionName).toBundle());
+    } else {
+      startActivity(intent);
     }
   }
 }
