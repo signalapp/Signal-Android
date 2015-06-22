@@ -52,7 +52,7 @@ public class PlaintextBackupExporter {
             new XmlBackup.XmlBackupItem(0, record.getIndividualRecipient().getNumber(),
                                         record.getDateReceived(),
                                         MmsSmsColumns.Types.translateToSystemBaseType(record.getType()),
-                                        null, record.getDisplayBody().toString(), null,
+                                        null, record.getBody().getBody(), null,
                                         1, record.getDeliveryStatus());
 
         writer.writeItem(item);
