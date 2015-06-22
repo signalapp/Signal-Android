@@ -27,13 +27,11 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
-import android.support.v7.app.ActionBar.LayoutParams;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -750,7 +748,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       public void onClick(View v) {
         Intent intent = new Intent(ConversationActivity.this, RecipientPreferenceActivity.class);
         intent.putExtra(RecipientPreferenceActivity.RECIPIENTS_EXTRA, recipients.getIds());
-        startActivity(intent);
+
+        startActivitySceneTransition(intent, titleView.findViewById(R.id.title), "recipient_name");
       }
     });
 
