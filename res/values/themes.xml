@@ -39,6 +39,23 @@
         <item name="android:windowBackground">@color/black</item>
     </style>
 
+    <style name="PopupAnimation" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/slide_from_top</item>
+        <item name="android:windowExitAnimation">@anim/slide_to_top</item>
+    </style>
+
+    <style name="TextSecure.LightTheme.Popup" parent="TextSecure.LightTheme">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowSoftInputMode">stateUnchanged</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowActionModeOverlay" tools:targetApi="honeycomb">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowAnimationStyle">@style/PopupAnimation</item>
+        <item name="android:windowCloseOnTouchOutside" tools:targetApi="honeycomb">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
     <style name="TextSecure.LightTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
         <item name="actionBarStyle">@style/TextSecure.LightActionBar</item>
         <item name="actionBarTabBarStyle">@style/TextSecure.LightActionBar.TabBar</item>
@@ -131,6 +148,7 @@
         <item name="menu_group_icon">@drawable/ic_group_white_24dp</item>
         <item name="menu_search_icon">@drawable/ic_search_white_24dp</item>
         <item name="menu_call_icon">@drawable/ic_call_white_24dp</item>
+        <item name="menu_popup_expand">@drawable/ic_launch_white_24dp</item>
         <item name="menu_unlock_icon">@drawable/ic_unlocked_white_24dp</item>
         <item name="menu_lock_icon">@drawable/ic_lock_white_24dp</item>
         <item name="menu_lock_icon_small">@drawable/ic_lock_white_18dp</item>
@@ -254,6 +272,7 @@
         <item name="menu_group_icon">@drawable/ic_group_white_24dp</item>
         <item name="menu_search_icon">@drawable/ic_search_white_24dp</item>
         <item name="menu_call_icon">@drawable/ic_call_white_24dp</item>
+        <item name="menu_popup_expand">@drawable/ic_launch_white_24dp</item>
         <item name="menu_unlock_icon">@drawable/ic_unlocked_white_24dp</item>
         <item name="menu_lock_icon">@drawable/ic_lock_white_24dp</item>
         <item name="menu_lock_icon_small">@drawable/ic_lock_white_18dp</item>

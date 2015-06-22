@@ -97,6 +97,8 @@ import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
+import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
@@ -138,16 +140,16 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private static final int GROUP_EDIT        = 5;
   private static final int CAPTURE_PHOTO     = 6;
 
-  private MasterSecret          masterSecret;
-  private ComposeText           composeText;
-  private AnimatingToggle       buttonToggle;
-  private SendButton            sendButton;
-  private ImageButton           attachButton;
-  private ConversationTitleView titleView;
-  private TextView              charactersLeft;
-  private ConversationFragment  fragment;
-  private Button                unblockButton;
-  private View                  composePanel;
+  private   MasterSecret          masterSecret;
+  protected ComposeText           composeText;
+  private   AnimatingToggle       buttonToggle;
+  private   SendButton            sendButton;
+  private   ImageButton           attachButton;
+  private   ConversationTitleView titleView;
+  private   TextView              charactersLeft;
+  private   ConversationFragment  fragment;
+  private   Button                unblockButton;
+  private   View                  composePanel;
 
   private AttachmentTypeSelectorAdapter attachmentAdapter;
   private AttachmentManager             attachmentManager;
@@ -169,7 +171,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   protected void onPreCreate() {
     dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
-    overridePendingTransition(R.anim.slide_from_right, R.anim.fade_scale_out);
   }
 
   @Override
@@ -768,7 +769,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     emojiToggle.setOnClickListener(new EmojiToggleListener());
   }
 
-  private void initializeActionBar() {
+  protected void initializeActionBar() {
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     getSupportActionBar().setCustomView(R.layout.conversation_title_view);
     getSupportActionBar().setDisplayShowCustomEnabled(true);
@@ -950,18 +951,22 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     return drafts;
   }
 
-  private void saveDraft() {
-    if (this.recipients == null || this.recipients.isEmpty())
-      return;
+  protected ListenableFuture<Long> saveDraft() {
+    final SettableFuture<Long> future = new SettableFuture<>();
+
+    if (this.recipients == null || this.recipients.isEmpty()) {
+      future.set(threadId);
+      return future;
+    }
 
     final Drafts       drafts               = getDraftsForCurrentState();
     final long         thisThreadId         = this.threadId;
     final MasterSecret thisMasterSecret     = this.masterSecret.parcelClone();
     final int          thisDistributionType = this.distributionType;
 
-    new AsyncTask<Long, Void, Void>() {
+    new AsyncTask<Long, Void, Long>() {
       @Override
-      protected Void doInBackground(Long... params) {
+      protected Long doInBackground(Long... params) {
         ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(ConversationActivity.this);
         DraftDatabase  draftDatabase  = DatabaseFactory.getDraftDatabase(ConversationActivity.this);
         long           threadId       = params[0];
@@ -974,9 +979,18 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         } else if (threadId > 0) {
           threadDatabase.update(threadId);
         }
-        return null;
+
+        return threadId;
       }
+
+      @Override
+      protected void onPostExecute(Long result) {
+        future.set(result);
+      }
+
     }.execute(thisThreadId);
+
+    return future;
   }
 
   private void setBlockedUserState(Recipients recipients) {
@@ -1031,8 +1045,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     return getRecipients() != null && getRecipients().isGroupRecipient();
   }
 
-  private Recipients getRecipients() {
+  protected Recipients getRecipients() {
     return this.recipients;
+  }
+
+  protected long getThreadId() {
+    return this.threadId;
   }
 
   private String getMessage() throws InvalidMessageException {
@@ -1055,7 +1073,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }.execute(threadId);
   }
 
-  private void sendComplete(long threadId) {
+  protected void sendComplete(long threadId) {
     boolean refreshFragment = (threadId != this.threadId);
     this.threadId = threadId;
 
