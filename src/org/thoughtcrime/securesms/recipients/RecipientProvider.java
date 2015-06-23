@@ -178,12 +178,14 @@ public class RecipientProvider {
   }
 
   public static class RecipientDetails {
-    public final String       name;
-    public final String       number;
-    public final ContactPhoto avatar;
-    public final Uri          contactUri;
+    @Nullable public final String       name;
+    @NonNull  public final String       number;
+    @NonNull  public final ContactPhoto avatar;
+    @Nullable public final Uri          contactUri;
 
-    public RecipientDetails(String name, String number, Uri contactUri, ContactPhoto avatar) {
+    public RecipientDetails(@Nullable String name, @NonNull String number,
+                            @Nullable Uri contactUri, @NonNull ContactPhoto avatar)
+    {
       this.name          = name;
       this.number        = number;
       this.avatar        = avatar;

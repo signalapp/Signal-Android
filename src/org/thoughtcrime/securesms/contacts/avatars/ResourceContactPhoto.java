@@ -11,16 +11,14 @@ import com.makeramen.roundedimageview.RoundedDrawable;
 public class ResourceContactPhoto implements ContactPhoto {
 
   private final int resourceId;
-  private final int color;
 
-  ResourceContactPhoto(int resourceId, int color) {
+  ResourceContactPhoto(int resourceId) {
     this.resourceId = resourceId;
-    this.color      = color;
   }
 
   @Override
-  public Drawable asDrawable(Context context) {
-    Drawable        background = TextDrawable.builder().buildRound(" ", color);
+  public Drawable asDrawable(Context context, int backgroundColor) {
+    Drawable        background = TextDrawable.builder().buildRound(" ", backgroundColor);
     RoundedDrawable foreground = (RoundedDrawable) RoundedDrawable.fromDrawable(context.getResources().getDrawable(resourceId));
     foreground.setScaleType(ImageView.ScaleType.CENTER);
 

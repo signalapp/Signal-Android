@@ -10,7 +10,7 @@ public class TransparentContactPhoto implements ContactPhoto {
   TransparentContactPhoto() {}
 
   @Override
-  public Drawable asDrawable(Context context) {
+  public Drawable asDrawable(Context context, int background) {
     return RoundedDrawable.fromDrawable(context.getResources().getDrawable(android.R.color.transparent));
   }
 }

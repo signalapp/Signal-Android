@@ -19,19 +19,17 @@ import java.io.InputStream;
 public class ContactPhotoFactory {
   private static final String TAG = ContactPhotoFactory.class.getSimpleName();
 
-  private static final int UNKNOWN_COLOR = 0xff9E9E9E;
-
   public static ContactPhoto getLoadingPhoto() {
     return new TransparentContactPhoto();
   }
 
   public static ContactPhoto getDefaultContactPhoto(@Nullable String name) {
     if (!TextUtils.isEmpty(name)) return new GeneratedContactPhoto(name);
-    else                          return new GeneratedContactPhoto("#", UNKNOWN_COLOR);
+    else                          return new GeneratedContactPhoto("#");
   }
 
   public static ContactPhoto getDefaultGroupPhoto() {
-    return new ResourceContactPhoto(R.drawable.ic_group_white_24dp, UNKNOWN_COLOR);
+    return new ResourceContactPhoto(R.drawable.ic_group_white_24dp);
   }
 
   public static ContactPhoto getContactPhoto(Context context, Uri uri, String name) {
