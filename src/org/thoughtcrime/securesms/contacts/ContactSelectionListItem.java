@@ -97,7 +97,7 @@ public class ContactSelectionListItem extends RelativeLayout implements Recipien
 
   private void setContactPhotoImage(@Nullable Recipient recipient) {
     if (recipient!= null) {
-      contactPhotoImage.setImageDrawable(recipient.getContactPhoto());
+      contactPhotoImage.setImageDrawable(recipient.getContactPhoto().asDrawable(getContext()));
       recipient.addListener(this);
     } else {
       contactPhotoImage.setImageDrawable(null);
@@ -111,7 +111,7 @@ public class ContactSelectionListItem extends RelativeLayout implements Recipien
       this.contactPhotoImage.post(new Runnable() {
         @Override
         public void run() {
-          contactPhotoImage.setImageDrawable(recipient.getContactPhoto());
+          contactPhotoImage.setImageDrawable(recipient.getContactPhoto().asDrawable(getContext()));
         }
       });
     }

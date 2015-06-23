@@ -192,7 +192,7 @@ public class MessageNotifier {
     List<NotificationItem>     notifications       = notificationState.getNotifications();
     NotificationCompat.Builder builder             = new NotificationCompat.Builder(context);
     Recipient                  recipient           = notifications.get(0).getIndividualRecipient();
-    Drawable                   recipientPhoto      = recipient.getContactPhoto();
+    Drawable                   recipientPhoto      = recipient.getContactPhoto().asDrawable(context);
     int                        largeIconTargetSize = context.getResources().getDimensionPixelSize(R.dimen.contact_photo_target_size);
 
     if (recipientPhoto != null) {
