@@ -8,7 +8,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
 
-import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
+import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -27,10 +27,10 @@ public class AvatarImageView extends ImageView {
 
   public void setAvatar(@Nullable Recipients recipients, boolean quickContactEnabled) {
     if (recipients != null) {
-      setImageDrawable(recipients.getContactPhoto(getContext()));
+      setImageDrawable(recipients.getContactPhoto().asDrawable(getContext()));
       setAvatarClickHandler(recipients, quickContactEnabled);
     } else {
-      setImageDrawable(ContactPhotoFactory.getDefaultContactPhoto(getContext(), null));
+      setImageDrawable(ContactPhotoFactory.getDefaultContactPhoto(null).asDrawable(getContext()));
       setOnClickListener(null);
     }
   }

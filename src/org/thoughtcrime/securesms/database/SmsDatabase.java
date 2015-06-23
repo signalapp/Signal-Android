@@ -368,7 +368,7 @@ public class SmsDatabase extends MessagingDatabase {
       recipients = RecipientFactory.getRecipientsFromString(context, message.getSender(), true);
     } else {
       Log.w(TAG, "Sender is null, returning unknown recipient");
-      recipients = RecipientFactory.getRecipientsFor(context, Recipient.getUnknownRecipient(context), false);
+      recipients = RecipientFactory.getRecipientsFor(context, Recipient.getUnknownRecipient(), false);
     }
 
     Recipients groupRecipients;
@@ -615,13 +615,13 @@ public class SmsDatabase extends MessagingDatabase {
         Recipients recipients = RecipientFactory.getRecipientsFromString(context, address, false);
 
         if (recipients == null || recipients.isEmpty()) {
-          return RecipientFactory.getRecipientsFor(context, Recipient.getUnknownRecipient(context), false);
+          return RecipientFactory.getRecipientsFor(context, Recipient.getUnknownRecipient(), false);
         }
 
         return recipients;
       } else {
         Log.w(TAG, "getRecipientsFor() address is null");
-        return RecipientFactory.getRecipientsFor(context, Recipient.getUnknownRecipient(context), false);
+        return RecipientFactory.getRecipientsFor(context, Recipient.getUnknownRecipient(), false);
       }
     }
 
