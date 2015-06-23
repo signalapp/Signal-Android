@@ -166,6 +166,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
     @Override
     public void onDestroy() {
+      super.onDestroy();
       this.recipients.removeListener(this);
     }
 
