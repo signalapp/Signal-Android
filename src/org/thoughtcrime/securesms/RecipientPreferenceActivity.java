@@ -164,6 +164,11 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       setSummaries(recipients);
     }
 
+    @Override
+    public void onDestroy() {
+      this.recipients.removeListener(this);
+    }
+
     private void setSummaries(Recipients recipients) {
       CheckBoxPreference mutePreference     = (CheckBoxPreference) this.findPreference(PREFERENCE_MUTED);
       RingtonePreference ringtonePreference = (RingtonePreference) this.findPreference(PREFERENCE_TONE);
