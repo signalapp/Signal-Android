@@ -95,6 +95,7 @@
     <attr name="menu_new_conversation_icon" format="reference" />
     <attr name="menu_search_icon" format="reference" />
     <attr name="menu_call_icon" format="reference" />
+    <attr name="menu_popup_expand" format="reference"/>
     <attr name="menu_unlock_icon" format="reference" />
     <attr name="menu_lock_icon" format="reference" />
     <attr name="menu_lock_icon_small" format="reference" />

@@ -94,7 +94,6 @@ public class MessageNotifier {
       sendInThreadNotification(context, recipients);
     } else {
       Intent intent = new Intent(context, ConversationActivity.class);
-      intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
       intent.putExtra("recipients", recipients.getIds());
       intent.putExtra("thread_id", threadId);
       intent.setData((Uri.parse("custom://"+System.currentTimeMillis())));
@@ -221,6 +220,7 @@ public class MessageNotifier {
                                            context.getString(R.string.MessageNotifier_mark_as_read),
                                            notificationState.getMarkAsReadIntent(context, masterSecret));
       builder.addAction(markAsReadAction);
+      builder.addAction(new Action(R.drawable.ic_reply_white_36dp, context.getString(R.string.MessageNotifier_reply), notifications.get(0).getReplyIntent(context)));
       builder.extend(new NotificationCompat.WearableExtender().addAction(markAsReadAction));
     }
 

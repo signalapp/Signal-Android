@@ -436,6 +436,9 @@
     <string name="MmsMessageRecord_bad_encrypted_mms_message">Bad encrypted MMS message...</string>
     <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS message encrypted for non-existing session...</string>
 
+    <!-- MuteDialog -->
+    <string name="MuteDialog_mute_notifications">Mute notifications</string>
+
     <!-- ApplicationMigrationService -->
     <string name="ApplicationMigrationService_import_in_progress">Import in progress</string>
     <string name="ApplicationMigrationService_importing_text_messages">Importing text messages</string>
@@ -458,6 +461,7 @@
     <string name="MessageNotifier_mark_all_as_read">Mark all as read</string>
     <string name="MessageNotifier_mark_as_read">Mark as read</string>
     <string name="MessageNotifier_media_message">Media message</string>
+    <string name="MessageNotifier_reply">Reply</string>
 
     <!-- QuickResponseService -->
     <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Sorry, Quick Response is not yet supported by TextSecure!</string>
@@ -899,6 +903,9 @@
     <string name="conversation__menu_delete_thread">Delete thread</string>
     <string name="conversation__menu_view_media">All images</string>
 
+    <!-- conversation_popup -->
+    <string name="conversation_popup__menu_expand_popup">Expand popup</string>
+
     <!-- conversation_callable -->
     <string name="conversation_add_to_contacts__menu_add_to_contacts">Add to contacts</string>
 
@@ -948,7 +955,6 @@
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Transport icon</string>
-    <string name="MuteDialog_mute_notifications">Mute notifications</string>
 
 
     <!-- EOF -->
