@@ -1,29 +1,28 @@
 package org.thoughtcrime.securesms.contacts;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.thoughtcrime.securesms.recipients.Recipients;
 
-public class ContactSelectionListItem extends RelativeLayout implements Recipient.RecipientModifiedListener {
+public class ContactSelectionListItem extends RelativeLayout implements Recipients.RecipientsModifiedListener {
 
-  private ImageView contactPhotoImage;
-  private TextView  numberView;
-  private TextView  nameView;
-  private TextView  labelView;
-  private CheckBox  checkBox;
+  private AvatarImageView contactPhotoImage;
+  private TextView        numberView;
+  private TextView        nameView;
+  private TextView        labelView;
+  private CheckBox        checkBox;
 
-  private long      id;
-  private String    number;
-  private Recipient recipient;
+  private long       id;
+  private String     number;
+  private Recipients recipients;
 
   public ContactSelectionListItem(Context context) {
     super(context);
@@ -39,11 +38,12 @@ public class ContactSelectionListItem extends RelativeLayout implements Recipien
 
   @Override
   protected void onFinishInflate() {
-    this.contactPhotoImage = (ImageView) findViewById(R.id.contact_photo_image);
-    this.numberView        = (TextView)  findViewById(R.id.number);
-    this.labelView         = (TextView)  findViewById(R.id.label);
-    this.nameView          = (TextView)  findViewById(R.id.name);
-    this.checkBox          = (CheckBox)  findViewById(R.id.check_box);
+    super.onFinishInflate();
+    this.contactPhotoImage = (AvatarImageView) findViewById(R.id.contact_photo_image);
+    this.numberView        = (TextView)        findViewById(R.id.number);
+    this.labelView         = (TextView)        findViewById(R.id.label);
+    this.nameView          = (TextView)        findViewById(R.id.name);
+    this.checkBox          = (CheckBox)        findViewById(R.id.check_box);
   }
 
   public void set(long id, int type, String name, String number, String label, int color, boolean multiSelect) {
@@ -51,15 +51,15 @@ public class ContactSelectionListItem extends RelativeLayout implements Recipien
     this.number = number;
 
     if (number != null) {
-      this.recipient = RecipientFactory.getRecipientsFromString(getContext(), number, true)
-                                       .getPrimaryRecipient();
+      this.recipients = RecipientFactory.getRecipientsFromString(getContext(), number, true);
+      this.recipients.addListener(this);
     }
 
     this.nameView.setTextColor(color);
     this.numberView.setTextColor(color);
+    this.contactPhotoImage.setAvatar(recipients, false);
 
     setText(type, name, number, label);
-    setContactPhotoImage(recipient);
 
     if (multiSelect) this.checkBox.setVisibility(View.VISIBLE);
     else             this.checkBox.setVisibility(View.GONE);
@@ -70,9 +70,9 @@ public class ContactSelectionListItem extends RelativeLayout implements Recipien
   }
 
   public void unbind() {
-    if (recipient != null) {
-      recipient.removeListener(this);
-      recipient = null;
+    if (recipients != null) {
+      recipients.removeListener(this);
+      recipients = null;
     }
   }
 
@@ -95,33 +95,23 @@ public class ContactSelectionListItem extends RelativeLayout implements Recipien
     this.nameView.setText(name);
   }
 
-  private void setContactPhotoImage(@Nullable Recipient recipient) {
-    if (recipient!= null) {
-      contactPhotoImage.setImageDrawable(recipient.getContactPhoto().asDrawable(getContext()));
-      recipient.addListener(this);
-    } else {
-      contactPhotoImage.setImageDrawable(null);
-    }
-  }
-
-  @Override
-  public void onModified(final Recipient recipient) {
-    if (this.recipient == recipient) {
-      recipient.removeListener(this);
-      this.contactPhotoImage.post(new Runnable() {
-        @Override
-        public void run() {
-          contactPhotoImage.setImageDrawable(recipient.getContactPhoto().asDrawable(getContext()));
-        }
-      });
-    }
-  }
-
   public long getContactId() {
     return id;
   }
 
   public String getNumber() {
     return number;
+  }
+
+  @Override
+  public void onModified(final Recipients recipients) {
+    if (this.recipients == recipients) {
+      this.contactPhotoImage.post(new Runnable() {
+        @Override
+        public void run() {
+          contactPhotoImage.setAvatar(recipients, false);
+        }
+      });
+    }
   }
 }

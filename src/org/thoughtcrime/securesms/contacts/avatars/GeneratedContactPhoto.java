@@ -12,19 +12,13 @@ import org.thoughtcrime.securesms.R;
 public class GeneratedContactPhoto implements ContactPhoto {
 
   private final String name;
-  private final int    color;
 
   GeneratedContactPhoto(@NonNull String name) {
-    this(name, ColorGenerator.MATERIAL.getColor(name));
-  }
-
-  GeneratedContactPhoto(@NonNull String name, int color) {
     this.name  = name;
-    this.color = color;
   }
 
   @Override
-  public Drawable asDrawable(Context context) {
+  public Drawable asDrawable(Context context, int background) {
     int targetSize = context.getResources().getDimensionPixelSize(R.dimen.contact_photo_target_size);
 
     return TextDrawable.builder()
@@ -32,6 +26,6 @@ public class GeneratedContactPhoto implements ContactPhoto {
                        .width(targetSize)
                        .height(targetSize)
                        .endConfig()
-                       .buildRound(String.valueOf(name.charAt(0)), color);
+                       .buildRound(String.valueOf(name.charAt(0)), background);
   }
 }
