@@ -73,7 +73,7 @@ public class RecipientProvider {
     List<Recipient> recipientList = new LinkedList<>();
 
     for (long recipientId : recipientIds) {
-      recipientList.add(getRecipient(context, recipientId, false));
+      recipientList.add(getRecipient(context, recipientId, asynchronous));
     }
 
     if (asynchronous) cachedRecipients = new Recipients(recipientList, getRecipientsPreferencesAsync(context, recipientIds));
