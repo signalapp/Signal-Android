@@ -460,7 +460,9 @@
     <string name="MessageNotifier_media_message">Media message</string>
 
     <!-- QuickResponseService -->
-    <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Sorry, Quick Response is not yet supported by TextSecure!</string>
+    <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">Quick response unavailable when TextSecure is locked!</string>
+    <string name="QuickResponseService_problem_sending_message">Problem sending message!</string>
+
 
     <!-- change_passphrase_activity -->
     <string name="change_passphrase_activity__old_passphrase">OLD PASSPHRASE:</string>
