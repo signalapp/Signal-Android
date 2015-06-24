@@ -5,7 +5,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.0.1'
+        classpath 'com.android.tools.build:gradle:1.2.3'
         classpath files('libs/gradle-witness.jar')
     }
 }
@@ -69,6 +69,8 @@ dependencies {
     compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
     compile 'org.whispersystems:textsecure-android:1.5.0'
 
+    compile 'com.squareup.leakcanary:leakcanary-android:1.3.1'
+
     androidTestCompile 'com.google.dexmaker:dexmaker:1.2'
     androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.2'
 
@@ -83,6 +85,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
     androidTestCompile ('com.android.support.test.espresso:espresso-core:2.1') {
+        exclude group: 'com.android.support', module: 'support-annotations'
         exclude group: 'javax.inject'
     }
 }
@@ -135,7 +138,7 @@ dependencyVerification {
 android {
     compileSdkVersion 22
     buildToolsVersion '22.0.1'
-    testBuildType "debugTest"
+    testBuildType "automation"
 
     dexOptions {
         javaMaxHeapSize "4g"
@@ -148,6 +151,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField "long", "BUILD_TIMESTAMP", System.currentTimeMillis() + "L"
         buildConfigField "String", "PUSH_URL", "\"https://textsecure-service.whispersystems.org\""
+        buildConfigField "boolean", "DEV_BUILD", "false"
     }
 
     compileOptions {
@@ -190,10 +194,14 @@ android {
             proguardFiles = buildTypes.debug.proguardFiles
             signingConfig signingConfigs.release
         }
-        debugTest.initWith(buildTypes.debug)
-        debugTest {
-            proguardFile 'proguard-testing.pro'
+        automation.initWith(buildTypes.debug)
+        automation {
+            proguardFile 'proguard-automation.pro'
             buildConfigField "String", "PUSH_URL", "\"https://textsecure-service-staging.whispersystems.org\""
+        }
+        dev.initWith(buildTypes.debug)
+        dev {
+            buildConfigField "boolean", "DEV_BUILD", "true"
         }
     }
 
