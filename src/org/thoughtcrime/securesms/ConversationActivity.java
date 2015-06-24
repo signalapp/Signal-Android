@@ -72,6 +72,8 @@ import org.thoughtcrime.securesms.database.MmsSmsColumns.Types;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
 import org.thoughtcrime.securesms.mms.AttachmentTypeSelectorAdapter;
+import org.thoughtcrime.securesms.mms.ImageSlide;
+import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.MediaTooLargeException;
 import org.thoughtcrime.securesms.mms.MmsMediaConstraints;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
@@ -123,6 +125,7 @@ import de.gdata.messaging.components.SelectTransportButton;
 import de.gdata.messaging.util.GDataPreferences;
 import de.gdata.messaging.util.GUtil;
 import de.gdata.messaging.util.PrivacyBridge;
+import de.gdata.messaging.util.ProfileAccessor;
 
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import static org.thoughtcrime.securesms.recipients.Recipient.RecipientModifiedListener;
@@ -267,6 +270,14 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         new GDataPreferences(getApplicationContext()).saveFilterGroupIdForContact(recipients.getPrimaryRecipient().getNumber(),data.getExtras().getLong("filterGroupId"));
         break;
       case PICK_IMAGE:
+        try {
+          ProfileAccessor.setProfilePicture(getApplicationContext(), new ImageSlide(getApplicationContext(), data.getData()));
+          ProfileAccessor.setProfileStatus(getApplicationContext(), "MY STATUS");
+        } catch (IOException e) {
+          Log.w("GDATA", e);
+        } catch (BitmapDecodingException e) {
+          Log.w("GDATA", e);
+        }
         addAttachmentImage(data.getData());
         break;
       case PICK_VIDEO:
@@ -330,6 +341,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         itemBlock.setVisible(false);
       }
     }
+
     super.onPrepareOptionsMenu(menu);
     return true;
   }
@@ -339,7 +351,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     super.onOptionsItemSelected(item);
     switch (item.getItemId()) {
       case R.id.menu_call:
-        handleDial(getRecipients().getPrimaryRecipient());
+       // handleDial(getRecipients().getPrimaryRecipient());
+        try {
+          ProfileAccessor.sendProfileUpdate(getApplicationContext(), masterSecret, recipients);
+        } catch (InvalidMessageException e) {
+          Log.w("GDATA", e);
+        }
         return true;
       case R.id.menu_delete_thread:
         handleDeleteThread();
@@ -1221,7 +1238,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       }
     }.execute(outgoingMessage);
   }
-
   private void sendTextMessage(boolean forcePlaintext, final boolean forceSms)
       throws InvalidMessageException {
     final Context context = getApplicationContext();
@@ -1238,7 +1254,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     new AsyncTask<OutgoingTextMessage, Void, Long>() {
       @Override
       protected Long doInBackground(OutgoingTextMessage... messages) {
-        return MessageSender.send(context, masterSecret, messages[0], threadId, forceSms);
+
+        return  MessageSender.send(context, masterSecret, messages[0], threadId, forceSms);
       }
 
       @Override
@@ -1246,6 +1263,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         sendComplete(result);
       }
     }.execute(message);
+
   }
 
 

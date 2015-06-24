@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.jobs.DeliveryReceiptJob;
 import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
 import org.thoughtcrime.securesms.jobs.PushMediaSendJob;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
+import org.thoughtcrime.securesms.jobs.PushProfileSendJob;
 import org.thoughtcrime.securesms.jobs.PushTextSendJob;
 import org.thoughtcrime.securesms.jobs.RefreshPreKeysJob;
 import org.thoughtcrime.securesms.push.SecurityEventListener;
@@ -33,8 +34,8 @@ import dagger.Provides;
                                      PushTextSendJob.class,
                                      PushMediaSendJob.class,
                                      AttachmentDownloadJob.class,
-                                     RefreshPreKeysJob.class,
-                                     PushNotificationReceiveJob.class})
+                                     RefreshPreKeysJob.class, PushNotificationReceiveJob.class,
+                                     PushProfileSendJob.class})
 public class TextSecureCommunicationModule {
 
   private final Context context;

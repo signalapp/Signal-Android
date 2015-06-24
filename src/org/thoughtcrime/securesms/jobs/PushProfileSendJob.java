@@ -8,14 +8,12 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureAxolotlStore;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
-import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.PartParser;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.IncomingIdentityUpdateMessage;
 import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
@@ -41,15 +39,15 @@ import ws.com.google.android.mms.pdu.SendReq;
 
 import static org.thoughtcrime.securesms.dependencies.TextSecureCommunicationModule.TextSecureMessageSenderFactory;
 
-public class PushMediaSendJob extends PushSendJob implements InjectableType {
+public class PushProfileSendJob extends PushSendJob implements InjectableType {
 
-  private static final String TAG = PushMediaSendJob.class.getSimpleName();
+  private static final String TAG = PushProfileSendJob.class.getSimpleName();
 
   @Inject transient TextSecureMessageSenderFactory messageSenderFactory;
 
   private final long messageId;
 
-  public PushMediaSendJob(Context context, long messageId, String destination) {
+  public PushProfileSendJob(Context context, long messageId, String destination) {
     super(context, constructParameters(context, destination, true));
     this.messageId = messageId;
   }
@@ -67,7 +65,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
     SendReq     message  = database.getOutgoingMessage(masterSecret, messageId);
 
     try {
-      deliver(masterSecret, message, false);
+      deliver(masterSecret, message, true);
       database.markAsPush(messageId);
       database.markAsSecure(messageId);
       database.markAsSent(messageId, "push".getBytes(), 0);

@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 import android.util.Log;
 import android.util.Pair;
+import android.widget.Toast;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -109,6 +110,7 @@ public class PushDecryptJob extends MasterSecretJob {
 
       if      (message.isEndSession())               handleEndSessionMessage(masterSecret, envelope, message, smsMessageId);
       else if (message.isGroupUpdate())              handleGroupMessage(masterSecret, envelope, message, smsMessageId);
+      else if (message.isProfileUpdate())            handleProfileUpdate(message);
       else if (message.getAttachments().isPresent()) handleMediaMessage(masterSecret, envelope, message, smsMessageId);
       else                                           handleTextMessage(masterSecret, envelope, message, smsMessageId);
 
@@ -193,7 +195,13 @@ public class PushDecryptJob extends MasterSecretJob {
 
     MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
   }
+  private void handleProfileUpdate(TextSecureMessage message)
+      throws MmsException
+  {
+    Log.d("MYLOG", "handleProfileUpdate Status: " + message.getBody().get());
+    Log.d("MYLOG", "handleProfileUpdate Attachment: " + message.getAttachments().isPresent());
 
+  }
   private void handleTextMessage(MasterSecret masterSecret, TextSecureEnvelope envelope,
                                  TextSecureMessage message, Optional<Long> smsMessageId)
   {
