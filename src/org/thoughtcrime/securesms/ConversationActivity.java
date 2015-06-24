@@ -43,7 +43,6 @@ import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.View.OnKeyListener;
 import android.view.ViewStub;
-import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -53,7 +52,6 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.AlertDialogWrapper;
 import com.google.protobuf.ByteString;
-import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 import org.thoughtcrime.securesms.TransportOptions.OnTransportChangedListener;
 import org.thoughtcrime.securesms.components.AnimatingToggle;
@@ -805,7 +803,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   public void onModified(final Recipients recipients) {
-    Log.w(TAG, "onModified()");
     titleView.post(new Runnable() {
       @Override
       public void run() {

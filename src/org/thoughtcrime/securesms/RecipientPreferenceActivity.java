@@ -18,6 +18,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.preference.PreferenceFragment;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -28,11 +29,13 @@ import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.VibrateState;
+import org.thoughtcrime.securesms.preferences.ColorPreference;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.whispersystems.libaxolotl.util.guava.Optional;
 
 public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActivity implements Recipients.RecipientsModifiedListener
 {
@@ -44,6 +47,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   private static final String PREFERENCE_TONE    = "pref_key_recipient_ringtone";
   private static final String PREFERENCE_VIBRATE = "pref_key_recipient_vibrate";
   private static final String PREFERENCE_BLOCK   = "pref_key_recipient_block";
+  private static final String PREFERENCE_COLOR   = "pref_key_recipient_color";
 
   private final DynamicTheme    dynamicTheme    = new DynamicNoActionBarTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
@@ -156,6 +160,8 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
           .setOnPreferenceClickListener(new MuteClickedListener());
       this.findPreference(PREFERENCE_BLOCK)
           .setOnPreferenceClickListener(new BlockClickedListener());
+      this.findPreference(PREFERENCE_COLOR)
+          .setOnPreferenceChangeListener(new ColorChangeListener());
     }
 
     @Override
@@ -168,6 +174,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       CheckBoxPreference mutePreference     = (CheckBoxPreference) this.findPreference(PREFERENCE_MUTED);
       RingtonePreference ringtonePreference = (RingtonePreference) this.findPreference(PREFERENCE_TONE);
       ListPreference     vibratePreference  = (ListPreference) this.findPreference(PREFERENCE_VIBRATE);
+      ColorPreference    colorPreference    = (ColorPreference)    this.findPreference(PREFERENCE_COLOR);
       Preference         blockPreference    = this.findPreference(PREFERENCE_BLOCK);
 
       mutePreference.setChecked(recipients.isMuted());
@@ -191,6 +198,14 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       } else {
         vibratePreference.setSummary(R.string.RecipientPreferenceActivity_disabled);
         vibratePreference.setValueIndex(2);
+      }
+
+      if (recipients.getColor().isPresent()) {
+        colorPreference.setValue(recipients.getColor().get());
+        colorPreference.setEnabled(true);
+      } else {
+        colorPreference.setValue(getResources().getColor(R.color.textsecure_primary));
+        colorPreference.setEnabled(false);
       }
 
       if (!recipients.isSingleRecipient() || recipients.isGroupRecipient()) {
@@ -258,6 +273,28 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
         }.execute();
 
         return false;
+      }
+    }
+
+    private class ColorChangeListener implements Preference.OnPreferenceChangeListener {
+
+      @Override
+      public boolean onPreferenceChange(Preference preference, Object newValue) {
+        final int value = (Integer)newValue;
+
+        if (value != recipients.getColor().get()) {
+          recipients.setColor(Optional.of(value));
+
+          new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... params) {
+              DatabaseFactory.getRecipientPreferenceDatabase(getActivity())
+                             .setColor(recipients, value);
+              return null;
+            }
+          }.execute();
+        }
+        return true;
       }
     }
 

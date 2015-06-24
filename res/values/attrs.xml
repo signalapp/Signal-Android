@@ -133,4 +133,11 @@
     <attr name="lockscreen_watermark" format="reference" />
 
     <attr name="recipient_preference_blocked" format="color"/>
+
+    <declare-styleable name="ColorPreference">
+        <attr name="itemLayout" format="reference" />
+        <attr name="choices" format="reference" />
+        <attr name="numColumns" format="integer" />
+    </declare-styleable>
+
 </resources>

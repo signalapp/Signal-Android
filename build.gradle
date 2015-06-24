@@ -57,6 +57,10 @@ dependencies {
     compile ('com.android.support:support-v4-preferencefragment:1.0.0@aar'){
         exclude module: 'support-v4'
     }
+    compile ('com.android.support:gridlayout-v7:22.2.0') {
+        exclude module: 'support-v4'
+    }
+
     compile 'com.squareup.dagger:dagger:1.2.2'
     compile ("com.doomonafireball.betterpickers:library:1.5.3") {
         exclude group: 'com.android.support', module: 'support-v4'

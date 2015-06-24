@@ -594,6 +594,8 @@
     <string name="recipient_preferences__ringtone">Ringtone</string>
     <string name="recipient_preferences__vibrate">Vibrate</string>
     <string name="recipient_preferences__block">Block</string>
+    <string name="recipient_preferences__color">Color</string>
+    <string name="recipient_preferences__color_for_this_contact">Color for this contact</string>
 
     <!-- registration_activity -->
     <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
