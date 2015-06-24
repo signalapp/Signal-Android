@@ -83,25 +83,27 @@ public class MessageNotifier {
     if (visibleThread == threadId) {
       sendInThreadNotification(context);
     } else {
-      Intent intent = new Intent(context, RoutingActivity.class);
-      intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-      intent.putExtra("recipients", recipients.getIds());
-      intent.putExtra("thread_id", threadId);
-      intent.setData((Uri.parse("custom://"+System.currentTimeMillis())));
+      if(recipients != null) {
+        Intent intent = new Intent(context, RoutingActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        intent.putExtra("recipients", recipients.getIds());
+        intent.putExtra("thread_id", threadId);
+        intent.setData((Uri.parse("custom://" + System.currentTimeMillis())));
 
-      NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
-      builder.setSmallIcon(R.drawable.icon_notification_gdata);
-      builder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(),
-                                                        R.drawable.ic_action_warning_red));
-      builder.setContentTitle(context.getString(R.string.MessageNotifier_message_delivery_failed));
-      builder.setContentText(context.getString(R.string.MessageNotifier_failed_to_deliver_message));
-      builder.setTicker(context.getString(R.string.MessageNotifier_error_delivering_message));
-      builder.setContentIntent(PendingIntent.getActivity(context, 0, intent, 0));
-      builder.setAutoCancel(true);
-      setNotificationAlarms(context, builder, true);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
+        builder.setSmallIcon(R.drawable.icon_notification_gdata);
+        builder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(),
+            R.drawable.ic_action_warning_red));
+        builder.setContentTitle(context.getString(R.string.MessageNotifier_message_delivery_failed));
+        builder.setContentText(context.getString(R.string.MessageNotifier_failed_to_deliver_message));
+        builder.setTicker(context.getString(R.string.MessageNotifier_error_delivering_message));
+        builder.setContentIntent(PendingIntent.getActivity(context, 0, intent, 0));
+        builder.setAutoCancel(true);
+        setNotificationAlarms(context, builder, true);
 
-      ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
-        .notify((int)threadId, builder.build());
+        ((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE))
+            .notify((int) threadId, builder.build());
+      }
     }
   }
 

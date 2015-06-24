@@ -1,6 +1,3 @@
 [submodule "IsfaServerDefinitions"]
 	path = IsfaServerDefinitions
 	url = git@gitlab.gdatasoftware.com:mobile/isfaserverdefinitions.git
-[submodule "libtextsecure-java"]
-	path = libtextsecure-java
-	url = git@gitlab.gdatasoftware.com:mobile/libtextsecure-java.git

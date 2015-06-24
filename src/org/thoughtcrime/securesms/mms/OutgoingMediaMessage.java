@@ -21,6 +21,7 @@ public class OutgoingMediaMessage {
   private   final Recipients recipients;
   protected final PduBody    body;
   private   final int        distributionType;
+  private boolean isProfileUpdateMessage = false;
 
   public OutgoingMediaMessage(Context context, Recipients recipients, PduBody body,
                               String message, int distributionType)
@@ -33,7 +34,9 @@ public class OutgoingMediaMessage {
       this.body.addPart(new TextSlide(context, message).getPart());
     }
   }
-
+  public void setProfileUpdateMessage() {
+    isProfileUpdateMessage = true;
+  }
   public OutgoingMediaMessage(Context context, Recipients recipients, SlideDeck slideDeck,
                               String message, int distributionType)
   {
@@ -72,6 +75,10 @@ public class OutgoingMediaMessage {
 
   public boolean isGroup() {
     return false;
+  }
+
+  public boolean isProfileUpdate() {
+    return isProfileUpdateMessage;
   }
 
   private static PduBody pduBodyFor(MasterSecret masterSecret, List<TextSecureAttachment> attachments) {

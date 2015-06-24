@@ -687,8 +687,9 @@ public class MmsDatabase extends MessagingDatabase {
     long type = Types.BASE_OUTBOX_TYPE | Types.ENCRYPTION_SYMMETRIC_BIT;
 
     if (message.isSecure()) type |= Types.SECURE_MESSAGE_BIT;
+    if (message.isProfileUpdate()) type |= Types.PROFILE_UPDATE_BIT;
     if (forceSms)           type |= Types.MESSAGE_FORCE_SMS_BIT;
-
+    Log.d("MYLOG", "insertMessageOutbox isProfileUpdate()" + message.isProfileUpdate()+" - "+ type);
     if (message.isGroup()) {
       if      (((OutgoingGroupMediaMessage)message).isGroupUpdate()) type |= Types.GROUP_UPDATE_BIT;
       else if (((OutgoingGroupMediaMessage)message).isGroupQuit())   type |= Types.GROUP_QUIT_BIT;

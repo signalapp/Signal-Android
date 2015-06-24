@@ -142,6 +142,9 @@ public abstract class MessageRecord extends DisplayRecord {
     return SmsDatabase.Types.isForcedSms(type);
   }
 
+  public boolean isUpdateProfile() {
+    return SmsDatabase.Types.isUpdateProfile(type);
+  }
   public boolean isStaleKeyExchange() {
     return SmsDatabase.Types.isStaleKeyExchange(type);
   }

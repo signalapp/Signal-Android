@@ -33,7 +33,9 @@ public class GDataPreferences {
   private static final String PRIVACY_ACTIVATED = "PRIVACY_ACTIVATED";
   private static final String SAVED_HIDDEN_RECIPIENTS = "SAVED_HIDDEN_RECIPIENTS";
   private static final String SAVE_E164_NUMBER = "SAVE_E164_NUMBER";
-  private static final String DELETED_MESSAGES = "DELETED_MESSAGES";
+
+  private static final String PROFILE_PICTURE_URI = "PROFILE_PICTURE_URI";
+  private static final String PROFILE_STATUS = "PROFILE_STATUS";
 
 
   private final SharedPreferences mPreferences;
@@ -56,6 +58,19 @@ public class GDataPreferences {
 
   public boolean isPrivacyActivated() {
     return mPreferences.getBoolean(PRIVACY_ACTIVATED, true);
+  }
+
+  public void setProfilePictureUri(String uri) {
+    mPreferences.edit().putString(PROFILE_PICTURE_URI, uri).commit();
+  }
+  public String getProfilePictureUri() {
+    return mPreferences.getString(PROFILE_PICTURE_URI, "");
+  }
+  public void setProfileStatus(String profileStatus) {
+    mPreferences.edit().putString(PROFILE_STATUS, profileStatus).commit();
+  }
+  public String getProfileStatus() {
+    return mPreferences.getString(PROFILE_STATUS, "");
   }
 
   public void setApplicationFont(String applicationFont) {
