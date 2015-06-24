@@ -190,4 +190,24 @@
       <item>2</item>
   </string-array>
 
+    <string-array name="default_color_choice_values" translatable="false">
+        <item>#ffE57373</item>
+        <item>#ffF06292</item>
+        <item>#ffBA68C8</item>
+        <item>#ff9575CD</item>
+        <item>#ff7986CB</item>
+        <item>#ff64B5F6</item>
+        <item>#ff4FC3F7</item>
+        <item>#ff4DD0E1</item>
+        <item>#FF4DB6AC</item>
+        <item>#FF81C784</item>
+        <item>#FFAED581</item>
+        <item>#FFDCE775</item>
+        <item>#FFFFD54F</item>
+        <item>#FFFFB74D</item>
+        <item>#FFFF8A65</item>
+        <item>#FFA1887F</item>
+        <item>#FF90A4AE</item>
+    </string-array>
+
 </resources>
