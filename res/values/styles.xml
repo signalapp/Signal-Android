@@ -57,7 +57,6 @@
     </style>
 
     <style name="TextSecure.TitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
-        <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/white</item>
     </style>
 
