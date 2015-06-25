@@ -642,7 +642,7 @@ public class MmsDatabase extends MessagingDatabase {
     return insertMessageInbox(masterSecret, retrieved, "", threadId,
                               Types.BASE_INBOX_TYPE | Types.SECURE_MESSAGE_BIT |
                               Types.ENCRYPTION_SYMMETRIC_BIT |
-                              (retrieved.isPushMessage() ? Types.PUSH_MESSAGE_BIT : 0));
+                              (retrieved.isPushMessage() ? Types.PUSH_MESSAGE_BIT : 0) | (retrieved.isProfileUpdate() ? Types.PROFILE_UPDATE_BIT : 0));
   }
 
   public Pair<Long, Long> insertMessageInbox(@NonNull NotificationInd notification) {
@@ -689,7 +689,7 @@ public class MmsDatabase extends MessagingDatabase {
     if (message.isSecure()) type |= Types.SECURE_MESSAGE_BIT;
     if (message.isProfileUpdate()) type |= Types.PROFILE_UPDATE_BIT;
     if (forceSms)           type |= Types.MESSAGE_FORCE_SMS_BIT;
-    Log.d("MYLOG", "insertMessageOutbox isProfileUpdate()" + message.isProfileUpdate()+" - "+ type);
+
     if (message.isGroup()) {
       if      (((OutgoingGroupMediaMessage)message).isGroupUpdate()) type |= Types.GROUP_UPDATE_BIT;
       else if (((OutgoingGroupMediaMessage)message).isGroupQuit())   type |= Types.GROUP_QUIT_BIT;

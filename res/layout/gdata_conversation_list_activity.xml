@@ -4,21 +4,23 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:fitsSystemWindows="true">
+    >
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     xmlns:tools="http://schemas.android.com/tools"
                     xmlns:fab="http://schemas.android.com/apk/res-auto"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:fitsSystemWindows="true"
         >
+        <include android:id="@+id/toolbar" layout="@layout/toolbar"/>
 
         <LinearLayout android:id="@+id/drawer_layout_ll"
                       xmlns:android="http://schemas.android.com/apk/res/android"
                       android:layout_width="match_parent"
                       android:layout_height="match_parent"
-                      android:orientation="vertical">
+                      android:orientation="vertical"
+                        android:layout_below="@+id/toolbar">
 
             <de.gdata.messaging.SlidingTabLayout
                 android:id="@+id/sliding_tabs"
@@ -33,7 +35,6 @@
                                                android:layout_width="match_parent"
                                                android:layout_height="wrap_content"
                                                android:layout_below="@+id/sliding_tabs"
-                                               android:fitsSystemWindows="true"
                                                android:textSize="20dp"
                                                android:textStyle="bold"
                                                tools:context=".ActivityUser"/>
@@ -54,6 +55,62 @@
 
     </RelativeLayout>
     <!-- The navigation drawer -->
+    <LinearLayout
+        android:id="@+id/drawerll"
+        android:layout_width="240dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:orientation="vertical"
+        android:fitsSystemWindows="true"
+        >
+    <LinearLayout
+        android:id="@+id/drawer"
+        android:paddingTop="?attr/actionBarSize"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:background="@color/gdata_red"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <org.thoughtcrime.securesms.components.ThumbnailView
+            android:id="@+id/profile_picture"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_gravity="left"
+            android:layout_weight="2"
+            android:paddingBottom="20dp"
+            android:scaleType="centerInside"
+            android:visibility="visible"/>
+
+        <LinearLayout
+            android:id="@+id/drawer2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_weight="2"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="01776747346"
+                android:id="@+id/profileName"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="test@gmail.com"
+                android:id="@+id/profileStatus"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>
     <ListView
         android:id="@+id/left_drawer"
         android:layout_width="240dp"
@@ -64,4 +121,5 @@
         android:divider="@color/menuDivider"
         android:dividerHeight="1px"
         android:scrollbars="none"/>
+    </LinearLayout>
 </android.support.v4.widget.DrawerLayout>

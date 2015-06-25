@@ -30,6 +30,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.v7.widget.Toolbar;
 import android.telephony.PhoneNumberUtils;
 import android.text.Editable;
 import android.text.InputType;
@@ -194,7 +195,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
     super.onCreate(state);
-
     setContentView(R.layout.conversation_activity);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -353,7 +353,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       case R.id.menu_call:
        // handleDial(getRecipients().getPrimaryRecipient());
         try {
-          ProfileAccessor.sendProfileUpdate(getApplicationContext(), masterSecret, recipients);
+          ProfileAccessor.sendProfileUpdate(getApplicationContext(), masterSecret, recipients, isEncryptedConversation);
         } catch (InvalidMessageException e) {
           Log.w("GDATA", e);
         }
@@ -709,7 +709,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       }
     } else {
       title = getString(R.string.ConversationActivity_compose_message);
-      subtitle = null;
+      subtitle = "";
     }
 
     getSupportActionBar().setTitle(title);

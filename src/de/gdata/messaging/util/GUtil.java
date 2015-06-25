@@ -250,4 +250,8 @@ public static String extractCountryCode(String number) {
     }
 
   }
+
+  public static Long numberToLong(String number) {
+    return Long.parseLong(number.replace(" ", "").replace("+", "").replace("-", "").replace("#", "").replace("*", ""));
+  }
 }
