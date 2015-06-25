@@ -145,6 +145,8 @@
   <!--DateUtils-->
   <string name="DateUtils_now">Сега</string>
   <string name="DateUtils_minutes_ago">%d минути</string>
+  <!--DeviceListActivity-->
+  <!--DeviceListItem-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Сподели со</string>
   <!--ExportFragment-->
@@ -373,6 +375,8 @@
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Дешифрирање на MMS пораката, ве молиме почекајте...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Погрешно шифрирана MMS порака...</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS пораката е шифрирана за непостоечка сесија...</string>
+  <!--MuteDialog-->
+  <string name="MuteDialog_mute_notifications">Безвучни известувања</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Импортирањето е во прогрес</string>
   <string name="ApplicationMigrationService_importing_text_messages">Импортирање на текстуални пораки</string>
@@ -394,7 +398,6 @@
   <string name="MessageNotifier_mark_as_read">Обележи ги како прочитани</string>
   <string name="MessageNotifier_media_message">Медиа порака</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Брз одговор сеуште не е поддржан во TextSecure!</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">СТАРА ЛОЗИНКА:</string>
   <string name="change_passphrase_activity__new_passphrase">НОВА ЛОЗИНКА:</string>
@@ -446,6 +449,7 @@
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Вчитување на држави...</string>
   <string name="country_selection_fragment__search">Барај</string>
+  <!--device_list_fragment-->
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Не е можен пристап до логовите на вашиот уред. Сеуште можете да го искористете ADB за да ги добиете дебуг логовите.</string>
   <string name="log_submit_activity__thanks">Ви благодариме за вашата помош!</string>
@@ -758,6 +762,7 @@ TextSecure автоматски ќе го провери вашиот број �
   <string name="conversation__menu_leave_group">Напушти група</string>
   <string name="conversation__menu_delete_thread">Избриши тема</string>
   <string name="conversation__menu_view_media">Сите слики</string>
+  <!--conversation_popup-->
   <!--conversation_callable-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Додади во контакти</string>
   <!--conversation_group_options-->
@@ -798,6 +803,5 @@ TextSecure автоматски ќе го провери вашиот број �
   <string name="trimmer__old_messages_successfully_deleted">Старите пораки се успешно избришани</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Симбол за транспорт</string>
-  <string name="MuteDialog_mute_notifications">Безвучни известувања</string>
   <!--EOF-->
 </resources>

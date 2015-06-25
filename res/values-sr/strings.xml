@@ -71,7 +71,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted">Тапни за необезбеђену одступницу</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Да спаднем на нешифровани СМС?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Да спаднем на нешифровани ММС?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ова порука <b>неће</b> бити шифрована јер корисник више није пријављен на Сигурне поруке.\n\nДа пошаљем небезбедну поруку?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ова порука <b>неће</b> бити шифрована јер корисник више није пријављен на Сигурне поруке.\n\nДа пошаљем необезбеђену поруку?</string>
   <string name="ConversationItem_unable_to_open_media">Нема апликације која може да отвори овај медијум.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Започети безбедну сесију?</string>
@@ -146,6 +146,18 @@
   <!--DateUtils-->
   <string name="DateUtils_now">Сад</string>
   <string name="DateUtils_minutes_ago">%d минута</string>
+  <!--DeviceListActivity-->
+  <string name="DeviceListActivity_disconnect_s">Да прекинем везу са „%s“?</string>
+  <string name="DeviceListActivity_by_disconnecting_this_device_it_will_no_longer_be_able_to_send_or_receive">Овај уређај више неће моћи да шаље или прима поруке ако му прекинете везу:</string>
+  <string name="DeviceListActivity_network_connection_failed">Повезивање на мрежу није успело...</string>
+  <string name="DeviceListActivity_try_again">Покушај поново</string>
+  <string name="DeviceListActivity_disconnecting_device">Прекидам везу са уређајем..</string>
+  <string name="DeviceListActivity_disconnecting_device_no_ellipse">Прекидам везу са уређајем</string>
+  <string name="DeviceListActivity_network_failed">Неуспех мреже!</string>
+  <!--DeviceListItem-->
+  <string name="DeviceListItem_unnamed_device">Неименован уређај</string>
+  <string name="DeviceListItem_created_s">Направљено %s</string>
+  <string name="DeviceListItem_last_active_s">Задња активност %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Подели са</string>
   <!--ExportFragment-->
@@ -246,6 +258,7 @@
   <string name="DeviceProvisioningActivity_content_progress_no_device">Није нађен уређај.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Грешка мреже.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Неисправан бар-кôд.</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_registered_already">Већ имате превише пријављених уређаја, уклоните неке од њих...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Унесите лозинку</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Икона Сигурних порука</string>
@@ -372,6 +385,8 @@
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Дешифрујем ММС, сачекајте...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Лоше шифрована ММС порука...</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">ММС порука шифрована за непостојећу сесију...</string>
+  <!--MuteDialog-->
+  <string name="MuteDialog_mute_notifications">Утишај обавештења</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Увоз у току</string>
   <string name="ApplicationMigrationService_importing_text_messages">Увозим текстуалне поруке</string>
@@ -391,9 +406,11 @@
   <string name="MessageNotifier_error_delivering_message">Грешка при испоруци поруке.</string>
   <string name="MessageNotifier_mark_all_as_read">Означи све прочитаним</string>
   <string name="MessageNotifier_mark_as_read">Означи као прочитано</string>
-  <string name="MessageNotifier_media_message">Медија порука</string>
+  <string name="MessageNotifier_media_message">Мултимедијална порука</string>
+  <string name="MessageNotifier_reply">Одговори</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Нажалост, Сигурне поруке још не подржавају брзи одговор!</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">Брзи одговор није доступан ако су Сигурне поруке закључане!</string>
+  <string name="QuickResponseService_problem_sending_message">Проблем са слањем поруке!</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">СТАРА ЛОЗИНКА:</string>
   <string name="change_passphrase_activity__new_passphrase">НОВА ЛОЗИНКА:</string>
@@ -427,7 +444,7 @@
   <string name="conversation_activity__attachment_thumbnail">Сличица прилога</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Преузимање мултимедијалне поруке</string>
-  <string name="conversation_item__mms_image_description">Медија порука</string>
+  <string name="conversation_item__mms_image_description">Мултимедијална порука</string>
   <string name="conversation_item__secure_message_description">Сигурна порука</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__download">Преузимање</string>
@@ -445,6 +462,8 @@
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Учитавам државе...</string>
   <string name="country_selection_fragment__search">Тражи</string>
+  <!--device_list_fragment-->
+  <string name="device_list_fragment__no_devices_paired">Нема упарених уређаја...</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Не могу да дохватим дневник са вашег уређаја. Можете да искористите АДБ да бисте добавили дневник исправљања грешака.</string>
   <string name="log_submit_activity__thanks">Хвала вам на помоћи!</string>
@@ -589,6 +608,7 @@
   <string name="AndroidManifest__media_overview">Све слике</string>
   <string name="AndroidManifest__media_overview_named">Све слика са %1$s</string>
   <string name="AndroidManifest__message_details">Детаљи поруке</string>
+  <string name="AndroidManifest_manage_paired_devices">Управљај упареним уређајима</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Увоз/извоз</string>
   <string name="arrays__my_identity_key">Мој кључ идентитета</string>
@@ -756,6 +776,8 @@
   <string name="conversation__menu_leave_group">Напусти групу</string>
   <string name="conversation__menu_delete_thread">Обриши преписку</string>
   <string name="conversation__menu_view_media">Све слике</string>
+  <!--conversation_popup-->
+  <string name="conversation_popup__menu_expand_popup">Рашири прозорче</string>
   <!--conversation_callable-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Додај у контакте</string>
   <!--conversation_group_options-->
@@ -796,6 +818,5 @@
   <string name="trimmer__old_messages_successfully_deleted">Старе поруке успешно обрисане</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Икона преноса</string>
-  <string name="MuteDialog_mute_notifications">Утишај обавештења</string>
   <!--EOF-->
 </resources>

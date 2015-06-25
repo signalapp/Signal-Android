@@ -147,6 +147,8 @@ vérifier ce contact.</string>
   <!--DateUtils-->
   <string name="DateUtils_now">À l\'instant</string>
   <string name="DateUtils_minutes_ago">%d min</string>
+  <!--DeviceListActivity-->
+  <!--DeviceListItem-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Partager avec</string>
   <!--ExportFragment-->
@@ -374,6 +376,8 @@ Un message avec une clé de chiffrement inconnue a été reçu. Cliquer pour l\'
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Déchiffrement du MMS, veuillez patienter…</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Message MMS mal chiffré…</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Message MMS chiffré pour une session non-existante…</string>
+  <!--MuteDialog-->
+  <string name="MuteDialog_mute_notifications">Désactiver les notifications</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importation en cours</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importation des messages textes</string>
@@ -395,7 +399,6 @@ Un message avec une clé de chiffrement inconnue a été reçu. Cliquer pour l\'
   <string name="MessageNotifier_mark_as_read">Marquer comme lu</string>
   <string name="MessageNotifier_media_message">Message média</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Désolé, la Réponse Rapide n’est pas encore supportée par TextSecure !</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Ancienne phrase de passe :</string>
   <string name="change_passphrase_activity__new_passphrase">Nouvelle phrase de passe :</string>
@@ -447,6 +450,7 @@ Un message avec une clé de chiffrement inconnue a été reçu. Cliquer pour l\'
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Chargement des pays...</string>
   <string name="country_selection_fragment__search">Chercher</string>
+  <!--device_list_fragment-->
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">TextSecure n\'a pas pu obtenir les logs de votre téléphone. Vous pouvez utiliser ADB pour récupérer les logs de debug.</string>
   <string name="log_submit_activity__thanks">Merci pour votre aide !</string>
@@ -595,10 +599,10 @@ par SMS.</string>
   <string name="arrays__my_identity_key">Ma clé d\'identité</string>
   <string name="arrays__use_default">Par défaut</string>
   <string name="arrays__use_custom">Personnalisé</string>
-  <string name="arrays__mute_for_one_hour">Mettre en silencieux pendant 1 heure</string>
-  <string name="arrays__mute_for_two_hours">Mettre en silencieux pendant 2 heures</string>
-  <string name="arrays__mute_for_one_day">Mettre en silencieux pendant 1 jour</string>
-  <string name="arrays__mute_for_seven_days">Mettre en silencieux pendant 7 jours</string>
+  <string name="arrays__mute_for_one_hour">Pendant 1 heure</string>
+  <string name="arrays__mute_for_two_hours">Pendant 2 heures</string>
+  <string name="arrays__mute_for_one_day">Pendant 1 jour</string>
+  <string name="arrays__mute_for_seven_days">Pendant 7 jours</string>
   <string name="arrays__settings_default">Paramètres par défaut</string>
   <string name="arrays__enabled">Activé</string>
   <string name="arrays__disabled">Désactivé</string>
@@ -757,6 +761,7 @@ Messages privés gratuits vers les utilisateurs TextSecure et Signal
   <string name="conversation__menu_leave_group">Quitter le groupe</string>
   <string name="conversation__menu_delete_thread">Supprimer le fil de discussion</string>
   <string name="conversation__menu_view_media">Toutes les images</string>
+  <!--conversation_popup-->
   <!--conversation_callable-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Ajouter aux contacts</string>
   <!--conversation_group_options-->
@@ -797,6 +802,5 @@ Messages privés gratuits vers les utilisateurs TextSecure et Signal
   <string name="trimmer__old_messages_successfully_deleted">Anciens messages supprimés avec succès</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icône de transport</string>
-  <string name="MuteDialog_mute_notifications">Désactiver les notifications</string>
   <!--EOF-->
 </resources>

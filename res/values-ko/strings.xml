@@ -137,6 +137,8 @@
   <!--DateUtils-->
   <string name="DateUtils_now">방금 전</string>
   <string name="DateUtils_minutes_ago">%d분 전</string>
+  <!--DeviceListActivity-->
+  <!--DeviceListItem-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">공유 대상</string>
   <!--ExportFragment-->
@@ -343,6 +345,8 @@
   <string name="MmsMessageRecord_decrypting_mms_please_wait">MMS 메시지를 복호화하는 중입니다. 잠시 기다려 주세요…</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">암호화된 MMS 메시지가 잘못되었습니다.</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS 메시지가 암호화된 세션이 없습니다.</string>
+  <!--MuteDialog-->
+  <string name="MuteDialog_mute_notifications">대화 알림 끄기</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">가져오는 중입니다.</string>
   <string name="ApplicationMigrationService_importing_text_messages">메시지 가져오기</string>
@@ -364,7 +368,6 @@
   <string name="MessageNotifier_mark_as_read">읽음으로 표시</string>
   <string name="MessageNotifier_media_message">미디어 메시지</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">TextSecure에서 빠른 응답 아직 지원하지 않음</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">기존 암호:</string>
   <string name="change_passphrase_activity__new_passphrase">새 암호:</string>
@@ -416,6 +419,7 @@
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">국가 로드 중…</string>
   <string name="country_selection_fragment__search">검색</string>
+  <!--device_list_fragment-->
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">기기에서 로그 가져올 수 없지만 ADB로 수동 가져올 수 있음</string>
   <string name="log_submit_activity__thanks">도와주셔서 감사합니다.</string>
@@ -697,6 +701,7 @@
   <string name="conversation__menu_leave_group">그룹 나가기</string>
   <string name="conversation__menu_delete_thread">대화 삭제</string>
   <string name="conversation__menu_view_media">전체 이미지</string>
+  <!--conversation_popup-->
   <!--conversation_callable-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">주소록에 추가</string>
   <!--conversation_group_options-->
@@ -737,6 +742,5 @@
   <string name="trimmer__old_messages_successfully_deleted">이전 메시지 삭제됨</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">전송 아이콘</string>
-  <string name="MuteDialog_mute_notifications">대화 알림 끄기</string>
   <!--EOF-->
 </resources>

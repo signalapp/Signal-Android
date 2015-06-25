@@ -101,6 +101,8 @@ denne kontakt.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_none">Ingen</string>
   <!--DateUtils-->
+  <!--DeviceListActivity-->
+  <!--DeviceListItem-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Del med</string>
   <!--ExportFragment-->
@@ -281,6 +283,7 @@ Modtog en besked med en ukendt identitetsnøgle. Klik for at se og behandle den.
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Dekrypterer MMS, vent venligst...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Ugyldig krypteret MMS...</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS krypteret fra en ikke-eksisterende session...</string>
+  <!--MuteDialog-->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Henter...</string>
   <string name="ApplicationMigrationService_importing_text_messages">Henter tekstbeskeder</string>
@@ -299,7 +302,6 @@ Modtog en besked med en ukendt identitetsnøgle. Klik for at se og behandle den.
   <string name="MessageNotifier_mark_as_read">Marker som læst</string>
   <string name="MessageNotifier_media_message">Multimedie besked</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">TextSecure understøtter desværre endnu ikke \"Quick Response\".</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">GAMMELT KODEORD:</string>
   <string name="change_passphrase_activity__new_passphrase">NYT KODEORD:</string>
@@ -347,6 +349,7 @@ Modtog en besked med en ukendt identitetsnøgle. Klik for at se og behandle den.
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Indlæser lande...</string>
   <string name="country_selection_fragment__search">Søg</string>
+  <!--device_list_fragment-->
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Kunne ikke hente loggene fra din enhed. Du kan stadig bruge ADB til loggen.</string>
   <string name="log_submit_activity__thanks">Tak for hjælpen!</string>
@@ -560,6 +563,7 @@ fejlede.
   <string name="conversation__menu_update_group">Opdater gruppe</string>
   <string name="conversation__menu_leave_group">Forlad gruppe</string>
   <string name="conversation__menu_delete_thread">Slet tråd</string>
+  <!--conversation_popup-->
   <!--conversation_callable-->
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Modtager liste</string>

@@ -143,6 +143,8 @@
   <!--DateUtils-->
   <string name="DateUtils_now">Сега</string>
   <string name="DateUtils_minutes_ago">%d мин</string>
+  <!--DeviceListActivity-->
+  <!--DeviceListItem-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Сподели с</string>
   <!--ExportFragment-->
@@ -368,6 +370,8 @@ SMS съобщенията от системната базата данни в 
   <string name="MmsMessageRecord_decrypting_mms_please_wait">MMS-а се разшифрова, моля изчакайте...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Лошо шифровано MMS съобщение...</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS съобщението е шифровано за не съществуваща сесия...</string>
+  <!--MuteDialog-->
+  <string name="MuteDialog_mute_notifications">Тих режим за известия</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Извършва се внасяне</string>
   <string name="ApplicationMigrationService_importing_text_messages">Внасяне на текстови съобщения</string>
@@ -389,7 +393,6 @@ SMS съобщенията от системната базата данни в 
   <string name="MessageNotifier_mark_as_read">Прочетено</string>
   <string name="MessageNotifier_media_message">Медийно съобщение</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">За съжаление, TextSecure все още не поддържа Quick Response!</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">СТАРА ПАРОЛА: </string>
   <string name="change_passphrase_activity__new_passphrase">НОВА ПАРОЛА: </string>
@@ -441,6 +444,7 @@ SMS съобщенията от системната базата данни в 
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Зареждане на държавите...</string>
   <string name="country_selection_fragment__search">Търси</string>
+  <!--device_list_fragment-->
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Не успешен опит да се сдобием с доклада от устройството ти. Въпреки това можеш да ползваш ADB, за да се добиеш с доклада.</string>
   <string name="log_submit_activity__thanks">Благодаря за помоща!</string>
@@ -758,6 +762,7 @@ TextSecure чака твърде дълго за SMS потвърждение.
   <string name="conversation__menu_leave_group">Напусни група</string>
   <string name="conversation__menu_delete_thread">Изтрий разговора</string>
   <string name="conversation__menu_view_media">Всички изображения</string>
+  <!--conversation_popup-->
   <!--conversation_callable-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Добави в контакти</string>
   <!--conversation_group_options-->
@@ -798,6 +803,5 @@ TextSecure чака твърде дълго за SMS потвърждение.
   <string name="trimmer__old_messages_successfully_deleted">Старите съобщения бяха успешно изтрити</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Икона за транспорт</string>
-  <string name="MuteDialog_mute_notifications">Тих режим за известия</string>
   <!--EOF-->
 </resources>

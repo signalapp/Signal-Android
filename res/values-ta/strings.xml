@@ -124,6 +124,8 @@
   <string name="CustomDefaultPreference_none">எதுவும் இல்லை</string>
   <!--DateUtils-->
   <string name="DateUtils_now">இப்போது</string>
+  <!--DeviceListActivity-->
+  <!--DeviceListItem-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">பகிர்</string>
   <!--ExportFragment-->
@@ -334,6 +336,7 @@ SMS-களை இறக்குமதி செய்திருந்தா�
   <string name="MmsMessageRecord_decrypting_mms_please_wait">MMS மறைவிலக்கபடுகிறது, தயவுசெய்து காத்திருக்கவும்...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">முறைதவறி மறையாக்கப்பட MMS செய்தி...</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">இல்லாத அமர்வுக்கு MMS செய்தி மறையாக்கப்பட்டுள்ளது...</string>
+  <!--MuteDialog-->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">இறக்குமதி முன்னேறுகிறது </string>
   <string name="ApplicationMigrationService_importing_text_messages">குறுஞ்செய்திகளை இறக்குமதி செய்யப்படுகிறது.</string>
@@ -353,7 +356,6 @@ SMS-களை இறக்குமதி செய்திருந்தா�
   <string name="MessageNotifier_mark_as_read"> படித்தாக குறியிடு</string>
   <string name="MessageNotifier_media_message">மீடியா செய்தி</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">மன்னிக்கவும், TextSecure-இல் விரைவு பதிலுக்கு இன்னும் ஆதரவில்லை!</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">பழைய கடவுச்சொல்:</string>
   <string name="change_passphrase_activity__new_passphrase">புதிய கடவுச்சொல்:</string>
@@ -403,6 +405,7 @@ SMS-களை இறக்குமதி செய்திருந்தா�
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">நாடுகள் ஏற்றப்படுகிறது...</string>
   <string name="country_selection_fragment__search">தேடல்</string>
+  <!--device_list_fragment-->
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">உங்கள் சாதனத்தில் இருந்து பதிவுகளை பெறமுடியவில்லை. இதற்கு பதிலாக சரிசெய்வதற்கான பதிவுகளை ADB பயன்படுத்தி பெற முடியும்.</string>
   <string name="log_submit_activity__thanks">உங்கள் உதவிக்கு நன்றி!</string>
@@ -693,6 +696,7 @@ TextSecure சரிபார்ப்பு SMS-செய்திக்கா�
   <string name="conversation__menu_leave_group">குழுவிலுருந்து விலகு</string>
   <string name="conversation__menu_delete_thread">உரையாடல்நூலை நீக்கு</string>
   <string name="conversation__menu_view_media">அனைத்து படங்கள்</string>
+  <!--conversation_popup-->
   <!--conversation_callable-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">தொடர்புகளுடன் சேர்க்க</string>
   <!--conversation_group_options-->

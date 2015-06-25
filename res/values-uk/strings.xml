@@ -65,6 +65,8 @@
   <string name="ConversationListItem_key_exchange_message">Повідомлення обміну ключами\u2026</string>
   <!--CustomDefaultPreference-->
   <!--DateUtils-->
+  <!--DeviceListActivity-->
+  <!--DeviceListItem-->
   <!--ShareActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export">Експортувати</string>
@@ -180,6 +182,7 @@
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Розшифрування MMS, зачекайте, будь ласка\u2026</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Зашифроване MMS повідомлення зіпсоване\u2026</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS повідомлення зашифровано для неіснуючої сесії\u2026</string>
+  <!--MuteDialog-->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Триває імпортування</string>
   <!--KeyCachingService-->
@@ -222,6 +225,7 @@
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Завантаження країн\u2026</string>
   <string name="country_selection_fragment__search">Пошук</string>
+  <!--device_list_fragment-->
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Не вдалось захопити журнал відлагодження. Натомість ви можете скористатись ADB, щоб це зробити.</string>
   <string name="log_submit_activity__thanks">Дякуємо за вашу допомогу!</string>
@@ -365,6 +369,7 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Додати вкладення</string>
   <string name="conversation__menu_delete_thread">Видалити розмову</string>
+  <!--conversation_popup-->
   <!--conversation_callable-->
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Список одержувачів</string>

@@ -85,6 +85,8 @@
   <string name="ConversationActivity_error_leaving_group">خطا ترک گروه ...</string>
   <string name="ConversationActivity_mms_not_supported_title">MMS پشتیبانی نمی شود</string>
   <string name="ConversationActivity_specify_recipient">لطفا یک تماس را انتخاب کنید</string>
+  <string name="ConversationActivity_unblock_question">رفع انسداد؟</string>
+  <string name="ConversationActivity_unblock">رفع انسداد</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">جزییات پیام</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">فرستنده: %1$s\nنوع انتقال: %2$s\nزمان ارسال: %3$s\nزمان دریافت: %4$s</string>
@@ -114,6 +116,8 @@
   <string name="CustomDefaultPreference_none">هیچ کدام</string>
   <!--DateUtils-->
   <string name="DateUtils_now">اکنون</string>
+  <!--DeviceListActivity-->
+  <!--DeviceListItem-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">به اشتراک گذاشتن با</string>
   <!--ExportFragment-->
@@ -198,6 +202,10 @@
   <string name="RatingManager_no_thanks">نه ممنون</string>
   <string name="RatingManager_later">بعد</string>
   <!--RecipientPreferencesActivity-->
+  <string name="RecipientPreferenceActivity_block">بلوک</string>
+  <string name="RecipientPreferenceActivity_unblock">رفع انسداد</string>
+  <string name="RecipientPreferenceActivity_enabled">فعال</string>
+  <string name="RecipientPreferenceActivity_disabled">غیر فعال</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_connect_with_textsecure">اتصال با TextSecure</string>
   <string name="RegistrationActivity_select_your_country">کشور خود را انتخاب کنید</string>
@@ -289,6 +297,8 @@
   <string name="MmsMessageRecord_decrypting_mms_please_wait">رمزگشایی MMS، لطفاً صبر کنید...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">پیام MMS بد رمزگذاری شده...</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">پیام MMS رمزگذاری شده برای جلسه غیر موجود...</string>
+  <!--MuteDialog-->
+  <string name="MuteDialog_mute_notifications">بیصدا کردن اعلان ها</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">واردکردن در حال پیشرفت</string>
   <string name="ApplicationMigrationService_importing_text_messages">واردکردن پیام های متنی</string>
@@ -326,6 +336,7 @@
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">بدون تماس های جدید.</string>
   <!--conversation_title_view-->
+  <string name="conversation_title_view__conversation_muted">مکالمه خاموش</string>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">ارسال پیام TextSecure</string>
   <string name="conversation_activity__type_message_sms_insecure">ارسال نا امن SMS</string>
@@ -356,6 +367,7 @@
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">کشورهای در حال بارگذاری ...</string>
   <string name="country_selection_fragment__search">جستجو</string>
+  <!--device_list_fragment-->
   <!--log_submit_activity-->
   <string name="log_submit_activity__thanks">تشکر از کمک شما!</string>
   <string name="log_submit_activity__submitting">ارسال</string>
@@ -386,7 +398,12 @@
   <string name="prompt_passphrase_activity__unlock">قفل باز شود</string>
   <!--prompt_mms_activity-->
   <!--recipient_preferences_activity-->
+  <string name="recipient_preference_activity__blocked">مسدود</string>
   <!--recipient_preferences-->
+  <string name="recipient_preferences__mute_conversation">مکالمه صامت</string>
+  <string name="recipient_preferences__ringtone">آهنگ های زنگ</string>
+  <string name="recipient_preferences__vibrate">لرزش</string>
+  <string name="recipient_preferences__block">بلوک</string>
   <!--registration_activity-->
   <string name="registration_activity__your_country">کشور شما</string>
   <string name="registration_activity__your_country_code_and_phone_number">کد کشور شما و
@@ -450,6 +467,13 @@
   <string name="arrays__my_identity_key">کلید هویت من</string>
   <string name="arrays__use_default">استفاده از پیش فرض</string>
   <string name="arrays__use_custom">استفاده از سفارشی</string>
+  <string name="arrays__mute_for_one_hour">بی صدا به مدت 1 ساعت</string>
+  <string name="arrays__mute_for_two_hours">بی صدا به مدت 2 ساعت</string>
+  <string name="arrays__mute_for_one_day">بی صدا برای 1 روز</string>
+  <string name="arrays__mute_for_seven_days">بی صدا به مدت 7 روز</string>
+  <string name="arrays__settings_default">تنظیمات پیش فرض</string>
+  <string name="arrays__enabled">فعال</string>
+  <string name="arrays__disabled">غیر فعال</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="other">%d ساعت</item>
@@ -517,6 +541,7 @@
   <string name="preferences__slow">آهسته</string>
   <string name="preferences__custom">دلخواه</string>
   <string name="preferences__advanced">تنظیمات پیشرفته</string>
+  <string name="preferences__privacy">خلوت</string>
   <string name="preferences__mms_user_agent">عامل کاربر MMS</string>
   <string name="preferences__advanced_mms_access_point_names">تنظیمات MMS دستی</string>
   <string name="preferences__enable_manual_mms">استفاده از کتابچه تنظیمات MMS</string>
@@ -585,13 +610,16 @@
   <string name="conversation_secure_verified__menu_verify_identity">تشخیص هویت</string>
   <string name="conversation_secure_verified__menu_abort_secure_session">پایان گفتگوی امن</string>
   <!--conversation_muted-->
+  <string name="conversation_muted__unmute">وصل نمودن صدای مکالمه</string>
   <!--conversation_unmuted-->
+  <string name="conversation_unmuted__mute_notifications">بیصدا کردن اعلان ها</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">پیوست فایل</string>
   <string name="conversation__menu_update_group">به روز رسانی گروه</string>
   <string name="conversation__menu_leave_group">مرخص شدن از گروه</string>
   <string name="conversation__menu_delete_thread">حذف موضوع</string>
   <string name="conversation__menu_view_media">همه تصاویر</string>
+  <!--conversation_popup-->
   <!--conversation_callable-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">افزودن به مخاطب‌ها</string>
   <!--conversation_group_options-->

@@ -65,6 +65,8 @@
   <string name="ConversationListItem_key_exchange_message">Missatge d\'intercanvi de clau...</string>
   <!--CustomDefaultPreference-->
   <!--DateUtils-->
+  <!--DeviceListActivity-->
+  <!--DeviceListItem-->
   <!--ShareActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export">Exporta</string>
@@ -188,6 +190,7 @@
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Desencriptant MMS, si us plau espera...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Missatge MMS mal encriptat...</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Missatge MMS encriptat per una sessió no existent...</string>
+  <!--MuteDialog-->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importació en curs</string>
   <!--KeyCachingService-->
@@ -203,7 +206,6 @@
   <string name="MessageNotifier_mark_all_as_read">Marca-ho tot com a llegit</string>
   <string name="MessageNotifier_mark_as_read">Marca com a llegit</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Ho sento, La resposta ràpida encara no està suportada per TextSecure!</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">FRASE CONTRASENYA ANTIGA:</string>
   <string name="change_passphrase_activity__new_passphrase">NOVA FRASE CONTRASENYA:</string>
@@ -233,6 +235,7 @@
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Carregant països...</string>
   <string name="country_selection_fragment__search">Cerca</string>
+  <!--device_list_fragment-->
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">No s\'han pogut recollir els registres del teu dispositiu. Encara pots utilitzar ADB per aconseguir els registres de depuració.</string>
   <string name="log_submit_activity__thanks">Gràcies per la teva ajuda!</string>
@@ -379,6 +382,7 @@ des de l\'app de missatgeria predeterminada del sistema.</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Afegeix un adjunt</string>
   <string name="conversation__menu_delete_thread">Esborra fil</string>
+  <!--conversation_popup-->
   <!--conversation_callable-->
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Llista de destinataris</string>

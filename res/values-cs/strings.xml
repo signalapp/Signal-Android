@@ -146,6 +146,18 @@ kontakt</string>
   <!--DateUtils-->
   <string name="DateUtils_now">Teď</string>
   <string name="DateUtils_minutes_ago">%d minuta</string>
+  <!--DeviceListActivity-->
+  <string name="DeviceListActivity_disconnect_s">Odpojit \'%s\'?</string>
+  <string name="DeviceListActivity_by_disconnecting_this_device_it_will_no_longer_be_able_to_send_or_receive">Po odpojení toho zařízení již nebude možno přijímat nebo odesílat zprávy.</string>
+  <string name="DeviceListActivity_network_connection_failed">Síťové spojení slehalo...</string>
+  <string name="DeviceListActivity_try_again">Zkusit znovu</string>
+  <string name="DeviceListActivity_disconnecting_device">Odpojuji zařízení...</string>
+  <string name="DeviceListActivity_disconnecting_device_no_ellipse">Odpojuji zařízení</string>
+  <string name="DeviceListActivity_network_failed">Síť selhala</string>
+  <!--DeviceListItem-->
+  <string name="DeviceListItem_unnamed_device">Nepojmenované zřízení</string>
+  <string name="DeviceListItem_created_s">Vytvořeno %s</string>
+  <string name="DeviceListItem_last_active_s">Naposled aktivní %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Sdílet s</string>
   <!--ExportFragment-->
@@ -240,6 +252,7 @@ Poslat zprávy Vaším jménem.</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Nenalezeno žádné zařízení.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Chyba sítě.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Neplatný QR kód.</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_registered_already">Omlouváme se, ale máte zaregistrováno příliš mnoho zařízení, pokuste se některé odebrat...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Zadat heslo</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Ikona TextSecure</string>
@@ -360,6 +373,8 @@ Obdržena zpráva s neznámým identifikačním klíčem. Klepněte pro její zp
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Dešifruji MMS, čekejte prosím...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Chybně zašifrovaná MMS ...</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS zpráva byla zašifrována pro neexistující komunikaci</string>
+  <!--MuteDialog-->
+  <string name="MuteDialog_mute_notifications">Ztišit upozornění</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Probíhá import</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importuji textové zprávy</string>
@@ -380,8 +395,10 @@ Obdržena zpráva s neznámým identifikačním klíčem. Klepněte pro její zp
   <string name="MessageNotifier_mark_all_as_read">Označit vše jako přečtené</string>
   <string name="MessageNotifier_mark_as_read">Označit jako přečtené</string>
   <string name="MessageNotifier_media_message">Multimediální zpráva</string>
+  <string name="MessageNotifier_reply">Odpověď</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Omlouváme se, ale TextSecure zatím nepodporuje možnost rychlé odpovědi</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">Rychlá dopověď není dostupná pokud je TextSecure uzamčen!</string>
+  <string name="QuickResponseService_problem_sending_message">Problém při odesílání zprávy!</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">STARÉ HESLO</string>
   <string name="change_passphrase_activity__new_passphrase">NOVÉ HESLO</string>
@@ -433,6 +450,8 @@ Obdržena zpráva s neznámým identifikačním klíčem. Klepněte pro její zp
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Načítám země...</string>
   <string name="country_selection_fragment__search">Hledat</string>
+  <!--device_list_fragment-->
+  <string name="device_list_fragment__no_devices_paired">Žádné zařízení není spárováno</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Nepodařilo se zaznamenat logy z vašeho zařízení. Jěště můžete zkusit použít pro získání debug logů nástroj ADB.</string>
   <string name="log_submit_activity__thanks">Díky za Vaši pomoc!</string>
@@ -582,6 +601,7 @@ TextSecure nyní automaticky ověří vaše telefonní číslo pomocí potvrzova
   <string name="AndroidManifest__media_overview">Všechny obrázky</string>
   <string name="AndroidManifest__media_overview_named">Všechny obrázky s %1$s</string>
   <string name="AndroidManifest__message_details">Podrobnosti zprávy</string>
+  <string name="AndroidManifest_manage_paired_devices">Spravovat spárovaná zařízení</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Import / export</string>
   <string name="arrays__my_identity_key">Můj identifikační klíč</string>
@@ -749,6 +769,8 @@ Svobodná šifrovaná komunikace s uživateli TextSecure a Signal</string>
   <string name="conversation__menu_leave_group">Opustit skupinu</string>
   <string name="conversation__menu_delete_thread">Smazat konverzaci</string>
   <string name="conversation__menu_view_media">Všechny obrázky</string>
+  <!--conversation_popup-->
+  <string name="conversation_popup__menu_expand_popup">Rozbalit menu</string>
   <!--conversation_callable-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Přidat do kontaktů</string>
   <!--conversation_group_options-->
@@ -789,6 +811,5 @@ Svobodná šifrovaná komunikace s uživateli TextSecure a Signal</string>
   <string name="trimmer__old_messages_successfully_deleted">Staré zprávy byly úspěšně smazány.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona přenosu</string>
-  <string name="MuteDialog_mute_notifications">Ztišit upozornění</string>
   <!--EOF-->
 </resources>

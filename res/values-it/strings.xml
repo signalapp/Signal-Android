@@ -141,6 +141,18 @@ questo contatto.</string>
   <!--DateUtils-->
   <string name="DateUtils_now">Adesso</string>
   <string name="DateUtils_minutes_ago">%d minuto</string>
+  <!--DeviceListActivity-->
+  <string name="DeviceListActivity_disconnect_s">Disconnettere \'%s\'?</string>
+  <string name="DeviceListActivity_by_disconnecting_this_device_it_will_no_longer_be_able_to_send_or_receive">Disconnettendo questo dispositivo, esso non sarà più in grado di ricevere nè inviare messaggi.</string>
+  <string name="DeviceListActivity_network_connection_failed">Connessione di rete fallita....</string>
+  <string name="DeviceListActivity_try_again">Riprova</string>
+  <string name="DeviceListActivity_disconnecting_device">Scollegamento dispositivo..</string>
+  <string name="DeviceListActivity_disconnecting_device_no_ellipse">Scollegamento dispositivo</string>
+  <string name="DeviceListActivity_network_failed">Errore di rete!</string>
+  <!--DeviceListItem-->
+  <string name="DeviceListItem_unnamed_device">Dispositivo senza nome</string>
+  <string name="DeviceListItem_created_s">Creato %s</string>
+  <string name="DeviceListItem_last_active_s">Ultima attività %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Condividi con</string>
   <!--ExportFragment-->
@@ -241,6 +253,7 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Nessun dispositivo trovato.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Errore di rete.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Codice QR non valido.</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_registered_already">Ci spiace, hai già troppi dispositivi registrati, prova a rimuoverne alcuni...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Inserire la password</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icona TextSecure</string>
@@ -369,6 +382,8 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Decifratura MMS in corso, attendere...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Cifratura MMS invalida..</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Messaggio MMS cifrato per una sessione non esistente</string>
+  <!--MuteDialog-->
+  <string name="MuteDialog_mute_notifications">SIlenzia notifiche</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importazione in corso</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importando i messaggi</string>
@@ -389,8 +404,10 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <string name="MessageNotifier_mark_all_as_read">Segna tutto come già letto</string>
   <string name="MessageNotifier_mark_as_read">Segna come già letto</string>
   <string name="MessageNotifier_media_message">Messaggio multimediale</string>
+  <string name="MessageNotifier_reply">Rispondi</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">La risposta rapida non è ancora supportata in TextSecure!</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">Risposta veloce non disponibile quando TextSecure è bloccato!</string>
+  <string name="QuickResponseService_problem_sending_message">Problema nell\'invio del messaggio!</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Vecchia password:</string>
   <string name="change_passphrase_activity__new_passphrase">Nuova password:</string>
@@ -442,6 +459,8 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Caricamento dei paese...</string>
   <string name="country_selection_fragment__search">Cerca</string>
+  <!--device_list_fragment-->
+  <string name="device_list_fragment__no_devices_paired">Nessun dispositivo collegato...</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Non riesco a recuperare i log dal tuo dispositivo. Puoi sempre utilizzare ADB per ottenere i log di debug.</string>
   <string name="log_submit_activity__thanks">Grazie dell\'aiuto!</string>
@@ -599,6 +618,7 @@ non riuscita.
   <string name="AndroidManifest__media_overview">Tutte le immagini</string>
   <string name="AndroidManifest__media_overview_named">Tutte le immagini con %1$s</string>
   <string name="AndroidManifest__message_details">Dettagli messaggio</string>
+  <string name="AndroidManifest_manage_paired_devices">Gestisci dispositivi collegati</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importa / Esporta</string>
   <string name="arrays__my_identity_key">La chiave della mia identità</string>
@@ -765,6 +785,8 @@ Chatta gratis con gli utenti TextSecure e Signal</string>
   <string name="conversation__menu_leave_group">Abbandona il gruppo</string>
   <string name="conversation__menu_delete_thread">Cancella conversazione</string>
   <string name="conversation__menu_view_media">Tutte le immagini</string>
+  <!--conversation_popup-->
+  <string name="conversation_popup__menu_expand_popup">Espandi popup</string>
   <!--conversation_callable-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Aggiungi ai contatti</string>
   <!--conversation_group_options-->
@@ -805,6 +827,5 @@ Chatta gratis con gli utenti TextSecure e Signal</string>
   <string name="trimmer__old_messages_successfully_deleted">Vecchi messaggi cancellati con successo</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icona trasporto</string>
-  <string name="MuteDialog_mute_notifications">SIlenzia notifiche</string>
   <!--EOF-->
 </resources>
