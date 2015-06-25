@@ -22,8 +22,6 @@ import android.os.StrictMode;
 import android.os.StrictMode.ThreadPolicy;
 import android.os.StrictMode.VmPolicy;
 
-import com.squareup.leakcanary.LeakCanary;
-
 import org.thoughtcrime.securesms.crypto.PRNGFixes;
 import org.thoughtcrime.securesms.dependencies.AxolotlStorageModule;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
@@ -82,7 +80,7 @@ public class ApplicationContext extends Application implements DependencyInjecto
 
   private void initializeDeveloperBuild() {
     if (BuildConfig.DEV_BUILD) {
-      LeakCanary.install(this);
+//      LeakCanary.install(this);
       StrictMode.setThreadPolicy(new ThreadPolicy.Builder().detectAll()
                                                            .penaltyLog()
                                                            .build());
