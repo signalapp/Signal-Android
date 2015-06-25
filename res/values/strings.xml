@@ -171,7 +171,7 @@
     <string name="DeviceListActivity_by_disconnecting_this_device_it_will_no_longer_be_able_to_send_or_receive">By disconnecting this device, it will no longer be able to send or receive messages.</string>
     <string name="DeviceListActivity_network_connection_failed">Network connection failed...</string>
     <string name="DeviceListActivity_try_again">Try again</string>
-    <string name="DeviceListActivity_disconnecting_device">Disconnecting device..</string>
+    <string name="DeviceListActivity_disconnecting_device">Disconnecting device...</string>
     <string name="DeviceListActivity_disconnecting_device_no_ellipse">Disconnecting device</string>
     <string name="DeviceListActivity_network_failed">Network failed!</string>
 
