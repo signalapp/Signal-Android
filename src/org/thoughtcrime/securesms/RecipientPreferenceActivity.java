@@ -11,7 +11,6 @@ import android.os.Handler;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
-import android.preference.RingtonePreference;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -28,6 +27,7 @@ import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.VibrateState;
+import org.thoughtcrime.securesms.preferences.AdvancedRingtonePreference;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
@@ -172,7 +172,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
     private void setSummaries(Recipients recipients) {
       CheckBoxPreference mutePreference     = (CheckBoxPreference) this.findPreference(PREFERENCE_MUTED);
-      RingtonePreference ringtonePreference = (RingtonePreference) this.findPreference(PREFERENCE_TONE);
+      AdvancedRingtonePreference ringtonePreference = (AdvancedRingtonePreference) this.findPreference(PREFERENCE_TONE);
       ListPreference     vibratePreference  = (ListPreference) this.findPreference(PREFERENCE_VIBRATE);
       Preference         blockPreference    = this.findPreference(PREFERENCE_BLOCK);
 
@@ -183,6 +183,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
         if (tone != null) {
           ringtonePreference.setSummary(tone.getTitle(getActivity()));
+          ringtonePreference.setCurrentRingtone(recipients.getRingtone());
         }
       } else {
         ringtonePreference.setSummary(R.string.preferences__default);
