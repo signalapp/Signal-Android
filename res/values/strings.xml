@@ -854,6 +854,7 @@
     <string name="preferences__support_wifi_calling">\'WiFi Calling\' compatibility mode</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Enable if your device uses SMS/MMS delivery over WiFi (only enable when \'WiFi Calling\' is enabled on your device)</string>
     <string name="preferences_app_protection__blocked_contacts">Blocked contacts</string>
+    <string name="preferences__devices">Devices</string>
 
     <!-- **************************************** -->
     <!-- menus -->
