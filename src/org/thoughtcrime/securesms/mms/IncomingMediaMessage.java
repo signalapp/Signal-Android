@@ -26,6 +26,7 @@ public class IncomingMediaMessage {
   private final PduBody    body;
   private final String     groupId;
   private final boolean    push;
+  private boolean profileUpdate;
 
   public IncomingMediaMessage(RetrieveConf retrieved) {
     this.headers = retrieved.getPduHeaders();
@@ -109,5 +110,12 @@ public class IncomingMediaMessage {
         !Util.isEmpty(headers.getEncodedStringValues(PduHeaders.CC)) ||
         (headers.getEncodedStringValues(PduHeaders.TO) != null &&
          headers.getEncodedStringValues(PduHeaders.TO).length > 1);
+  }
+
+  public void setProfileUpdate(boolean profileUpdate) {
+    this.profileUpdate = profileUpdate;
+  }
+  public boolean isProfileUpdate() {
+    return profileUpdate;
   }
 }

@@ -27,6 +27,7 @@ import android.content.IntentFilter;
 import android.content.res.TypedArray;
 import android.database.ContentObserver;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -41,6 +42,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
@@ -59,26 +61,34 @@ import android.widget.Toast;
 
 import com.melnykov.fab.FloatingActionButton;
 
+import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.PartDatabase;
+import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
+
+import java.io.IOException;
 
 import de.gdata.messaging.SlidingTabLayout;
 import de.gdata.messaging.util.GService;
 import de.gdata.messaging.util.GDataPreferences;
 import de.gdata.messaging.util.GUtil;
 import de.gdata.messaging.util.NavDrawerAdapter;
+import de.gdata.messaging.util.ProfileAccessor;
+import ws.com.google.android.mms.pdu.PduPart;
 
 public class ConversationListActivity extends PassphraseRequiredActionBarActivity implements
     ConversationListFragment.ConversationSelectedListener {
-  private final DynamicTheme dynamicTheme = new DynamicTheme();
+ // private final DynamicTheme dynamicTheme = new DynamicTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   private DrawerLayout mDrawerLayout;
@@ -97,14 +107,18 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
   @Override
   public void onCreate(Bundle icicle) {
-    dynamicTheme.onCreate(this);
+    //dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
     super.onCreate(icicle);
     gDataPreferences = new GDataPreferences(getBaseContext());
     setContentView(R.layout.gdata_conversation_list_activity);
+    Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+    toolbar.setTitleTextColor(Color.WHITE);
+    setSupportActionBar(toolbar);
     navLabels = getResources().getStringArray(R.array.array_nav_labels);
     navIcons = getResources().obtainTypedArray(R.array.array_nav_icons);
     mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
     mDrawerToggle = new ActionBarDrawerToggle(
         this,                  /* host Activity */
         mDrawerLayout,         /* DrawerLayout object */
@@ -149,8 +163,26 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     GUtil.forceOverFlowMenu(getApplicationContext());
     LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
         new IntentFilter("reloadAdapter"));
-
     startService(new Intent(this, GService.class));
+refreshProfile();
+  }
+
+  private void refreshProfile() {
+    ThumbnailView profileImageView = (ThumbnailView) findViewById(R.id.profile_picture);
+  //  profileImageView.setImageResource(ProfileAccessor.getProfilePictureSlide(this));
+    PartDatabase database       = DatabaseFactory.getPartDatabase(this);
+    PduPart part = database.getPart(ProfileAccessor.getPartId(this, "15222787563"));
+
+      if(part != null) {
+        Log.d("MYLOG", "MYLOG TRYING TO SET IMAGE uri: " + part.getDataUri()
+            + " type: " + part.getContentType()
+            + " size: " + part.getDataSize() + " part " + (part.getEncrypted()));
+          profileImageView.setImageResource(new ImageSlide(this, masterSecret, part), masterSecret);
+      }
+
+    TextView profileName = (TextView) findViewById(R.id.profileName);
+    TextView profileStatus = (TextView) findViewById(R.id.profileStatus);
+    profileStatus.setText(ProfileAccessor.getProfileStatus(this));
 
   }
 
@@ -207,7 +239,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         handleDisplaySettings();
         break;
     }
-     mDrawerLayout.closeDrawer(mDrawerList);
+//     mDrawerLayout.closeDrawer(mDrawerList);
   }
   private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
     @Override
@@ -224,9 +256,10 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   @Override
   public void onResume() {
     super.onResume();
-    dynamicTheme.onResume(this);
+   // dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
     initNavDrawer(navLabels, navIcons);
+    refreshProfile();
     fab.show();
   }
 

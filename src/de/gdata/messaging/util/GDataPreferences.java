@@ -66,6 +66,19 @@ public class GDataPreferences {
   public String getProfilePictureUri() {
     return mPreferences.getString(PROFILE_PICTURE_URI, "");
   }
+
+  public void setProfilePartId(String profileId, Long profilePartId) {
+    mPreferences.edit().putLong("id:" + profileId, profilePartId).commit();
+  }
+  public void setProfilePartRow(String profileId, Long profilePartId) {
+    mPreferences.edit().putLong("row:" + profileId, profilePartId).commit();
+  }
+  public Long getProfilePartId(String profileId) {
+    return mPreferences.getLong("id:" +profileId, 0L);
+  }
+  public Long getProfilePartRow(String profileId) {
+    return mPreferences.getLong("row:"+profileId, 0L);
+  }
   public void setProfileStatus(String profileStatus) {
     mPreferences.edit().putString(PROFILE_STATUS, profileStatus).commit();
   }

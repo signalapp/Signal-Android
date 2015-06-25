@@ -34,8 +34,8 @@ public class OutgoingMediaMessage {
       this.body.addPart(new TextSlide(context, message).getPart());
     }
   }
-  public void setProfileUpdateMessage() {
-    isProfileUpdateMessage = true;
+  public void setProfileUpdateMessage(boolean isProfileUpdateMessage) {
+    this.isProfileUpdateMessage = isProfileUpdateMessage;
   }
   public OutgoingMediaMessage(Context context, Recipients recipients, SlideDeck slideDeck,
                               String message, int distributionType)
@@ -81,7 +81,7 @@ public class OutgoingMediaMessage {
     return isProfileUpdateMessage;
   }
 
-  private static PduBody pduBodyFor(MasterSecret masterSecret, List<TextSecureAttachment> attachments) {
+  public static PduBody pduBodyFor(MasterSecret masterSecret, List<TextSecureAttachment> attachments) {
     PduBody body = new PduBody();
 
     for (TextSecureAttachment attachment : attachments) {

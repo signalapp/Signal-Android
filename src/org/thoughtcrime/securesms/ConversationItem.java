@@ -59,20 +59,25 @@ import org.thoughtcrime.securesms.jobs.MmsDownloadJob;
 import org.thoughtcrime.securesms.jobs.MmsSendJob;
 import org.thoughtcrime.securesms.jobs.SmsSendJob;
 import org.thoughtcrime.securesms.mms.AudioSlide;
+import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Emoji;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Set;
 
 import de.gdata.messaging.util.GDataLinkMovementMethod;
+git add Conv
 import de.gdata.messaging.util.GDataPreferences;
+
 
 /**
  * A view that displays an individual conversation item within a conversation
@@ -481,14 +486,13 @@ public class ConversationItem extends LinearLayout {
     }
   }
 
-    public void deleteMessage(MessageRecord mr) {
-      if (mr.isMms()) {
-        DatabaseFactory.getMmsDatabase(getContext()).delete(mr.getId());
-      } else {
-        DatabaseFactory.getSmsDatabase(getContext()).deleteMessage(mr.getId());
-      }
+  public void deleteMessage(MessageRecord mr) {
+    if (mr.isMms()) {
+      DatabaseFactory.getMmsDatabase(getContext()).delete(mr.getId());
+    } else {
+      DatabaseFactory.getSmsDatabase(getContext()).deleteMessage(mr.getId());
     }
-
+  }
     private void setContactPhoto(MessageRecord messageRecord) {
       if (!messageRecord.isOutgoing()) {
         setContactPhotoForRecipient(messageRecord.getIndividualRecipient());
@@ -601,16 +605,33 @@ public class ConversationItem extends LinearLayout {
 
     private void resolveMedia(MediaMmsMessageRecord messageRecord) {
       if (hasMedia(messageRecord)) {
-          if (!messageRecord.getBody().isSelfDestruction() || messageRecord.isOutgoing()) {
-            mmsThumbnail.setVisibility(View.VISIBLE);
-            mmsContainer.setVisibility(View.VISIBLE);
-            mmsThumbnail.setImageResource(masterSecret, messageRecord.getId(),
-                messageRecord.getDateReceived(),
-                messageRecord.getSlideDeckFuture());
-          } else {
-            mmsThumbnail.setVisibility(View.GONE);
-            mmsContainer.setVisibility(View.GONE);
+
+        if (!messageRecord.getBody().isSelfDestruction() || messageRecord.isOutgoing()) {
+          mmsThumbnail.setVisibility(View.VISIBLE);
+          mmsContainer.setVisibility(View.VISIBLE);
+          mmsThumbnail.setImageResource(masterSecret, messageRecord.getId(),
+              messageRecord.getDateReceived(),
+              messageRecord.getSlideDeckFuture());
+
+          if(messageRecord.isUpdateProfile() && ((MediaMmsMessageRecord) messageRecord).containsMediaSlide()) {
+
+          /*  SlideDeck slideDeckProfile = ((MediaMmsMessageRecord) messageRecord).getSlideDeckSync();
+            try {
+              ProfileAccessor.setProfilePicture(context, new ImageSlide(context, slideDeckProfile.getSlides().get(0).getThumbnailUri()));
+              Log.d("MYLOG", "setProfilePicture " + messageRecord.isUpdateProfile());
+              //deleteMessage(messageRecord);
+            } catch (IOException e) {
+              Log.w("GDATA", e);
+            } catch (BitmapDecodingException e) {
+              Log.w("GDATA", e);
+            }*/
           }
+
+        } else {
+          mmsThumbnail.setVisibility(View.GONE);
+          mmsContainer.setVisibility(View.GONE);
+        }
+
       }
     }
 

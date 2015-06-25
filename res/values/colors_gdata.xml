@@ -16,6 +16,7 @@
     <color name="menuBackgroundStart">@color/menuItemBackground</color>
     <color name="menuBackgroundEnd">@color/menuItemBackground</color>
     <color name="menuCacheHint">#00000000</color>
+    <color name="statusBarAlpha">#55a02020</color>
     <color name="menuDivider">#a0ffffff</color>
     <color name="menuItemSelectedText">#ffcccccc</color>
     <color name="menuItemBackground">#ffdddddd</color>

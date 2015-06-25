@@ -222,7 +222,7 @@ public class PartDatabase extends Database {
     }
   }
 
-  void insertParts(MasterSecret masterSecret, long mmsId, PduBody body) throws MmsException {
+ public void insertParts(MasterSecret masterSecret, long mmsId, PduBody body) throws MmsException {
     for (int i=0;i<body.getPartsNum();i++) {
       PduPart part = body.getPart(i);
       PartId partId = insertPart(masterSecret, part, mmsId, part.getThumbnail());

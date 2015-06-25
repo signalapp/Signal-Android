@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
+import org.thoughtcrime.securesms.database.PartDatabase;
 import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.groups.GroupMessageProcessor;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
@@ -47,15 +48,24 @@ import org.whispersystems.libaxolotl.state.AxolotlStore;
 import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.crypto.TextSecureCipher;
+import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
 import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 import org.whispersystems.textsecure.api.messages.TextSecureGroup;
 import org.whispersystems.textsecure.api.messages.TextSecureMessage;
 import org.whispersystems.textsecure.api.messages.TextSecureSyncContext;
 import org.whispersystems.textsecure.api.push.TextSecureAddress;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
+
 import de.gdata.messaging.util.GDataPreferences;
 import de.gdata.messaging.util.GService;
+import de.gdata.messaging.util.GUtil;
+import de.gdata.messaging.util.ProfileAccessor;
 import ws.com.google.android.mms.MmsException;
+import ws.com.google.android.mms.pdu.PduBody;
+import ws.com.google.android.mms.pdu.PduPart;
 
 public class PushDecryptJob extends MasterSecretJob {
 
@@ -110,7 +120,7 @@ public class PushDecryptJob extends MasterSecretJob {
 
       if      (message.isEndSession())               handleEndSessionMessage(masterSecret, envelope, message, smsMessageId);
       else if (message.isGroupUpdate())              handleGroupMessage(masterSecret, envelope, message, smsMessageId);
-      else if (message.isProfileUpdate())            handleProfileUpdate(message);
+      else if (message.isProfileUpdate())            handleProfileUpdate(message, masterSecret, envelope);
       else if (message.getAttachments().isPresent()) handleMediaMessage(masterSecret, envelope, message, smsMessageId);
       else                                           handleTextMessage(masterSecret, envelope, message, smsMessageId);
 
@@ -195,11 +205,26 @@ public class PushDecryptJob extends MasterSecretJob {
       }
     }
   }
-  private void handleProfileUpdate(TextSecureMessage message)
+  private void handleProfileUpdate(TextSecureMessage message, MasterSecret masterSecret, TextSecureEnvelope envelope)
       throws MmsException
   {
+    Set<List<TextSecureAttachment>> attachmentSet = message.getAttachments().asSet();
+    List<TextSecureAttachment> attachments = new LinkedList<>();
+    for(List<TextSecureAttachment> attachmentList : attachmentSet) {
+      attachments = attachmentList;
+    }
+    PduBody parts = OutgoingMediaMessage.pduBodyFor(masterSecret, attachments);
+    Long numberAsLong = GUtil.numberToLong(RecipientFactory.getRecipientsFromString(context, envelope.getSource(), false).getPrimaryRecipient().getNumber());
+    PartDatabase database = DatabaseFactory.getPartDatabase(context);;
+    database.insertParts(masterSecret, numberAsLong, parts);
+
+    ApplicationContext.getInstance(context)
+        .getJobManager()
+        .add(new ProfileImageDownloadJob(context, numberAsLong));
+
     Log.d("MYLOG", "handleProfileUpdate Status: " + message.getBody().get());
     Log.d("MYLOG", "handleProfileUpdate Attachment: " + message.getAttachments().isPresent());
+    ProfileAccessor.setProfileStatus(context, message.getBody().get());
 
   }
   private void handleTextMessage(MasterSecret masterSecret, TextSecureEnvelope envelope,
@@ -378,7 +403,7 @@ public class PushDecryptJob extends MasterSecretJob {
             message.getBody().orNull());
 
     mediaMessage = new OutgoingSecureMediaMessage(mediaMessage);
-
+    mediaMessage.setProfileUpdateMessage(message.isProfileUpdate());
     long threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
     long messageId = database.insertMessageOutbox(masterSecret, mediaMessage, threadId, false, syncContext.getTimestamp());
 
@@ -401,6 +426,7 @@ public class PushDecryptJob extends MasterSecretJob {
             message.getBody(),
             message.getGroupInfo(),
             message.getAttachments());
+    mediaMessage.setProfileUpdate(message.isProfileUpdate());
 
     return database.insertSecureDecryptedMessageInbox(masterSecret, mediaMessage, -1);
   }
