@@ -171,10 +171,10 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     }
 
     private void setSummaries(Recipients recipients) {
-      CheckBoxPreference mutePreference     = (CheckBoxPreference) this.findPreference(PREFERENCE_MUTED);
+      CheckBoxPreference         mutePreference     = (CheckBoxPreference) this.findPreference(PREFERENCE_MUTED);
       AdvancedRingtonePreference ringtonePreference = (AdvancedRingtonePreference) this.findPreference(PREFERENCE_TONE);
-      ListPreference     vibratePreference  = (ListPreference) this.findPreference(PREFERENCE_VIBRATE);
-      Preference         blockPreference    = this.findPreference(PREFERENCE_BLOCK);
+      ListPreference             vibratePreference  = (ListPreference) this.findPreference(PREFERENCE_VIBRATE);
+      Preference                 blockPreference    = this.findPreference(PREFERENCE_BLOCK);
 
       mutePreference.setChecked(recipients.isMuted());
 
