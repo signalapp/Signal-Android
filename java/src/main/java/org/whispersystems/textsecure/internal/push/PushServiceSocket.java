@@ -27,10 +27,11 @@ import org.whispersystems.libaxolotl.state.PreKeyRecord;
 import org.whispersystems.libaxolotl.state.SignedPreKeyRecord;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.crypto.AttachmentCipherOutputStream;
+import org.whispersystems.textsecure.api.messages.TextSecureAttachment.ProgressListener;
 import org.whispersystems.textsecure.api.messages.multidevice.DeviceInfo;
 import org.whispersystems.textsecure.api.push.ContactTokenDetails;
-import org.whispersystems.textsecure.api.push.TextSecureAddress;
 import org.whispersystems.textsecure.api.push.SignedPreKeyEntity;
+import org.whispersystems.textsecure.api.push.TextSecureAddress;
 import org.whispersystems.textsecure.api.push.TrustStore;
 import org.whispersystems.textsecure.api.push.exceptions.AuthorizationFailedException;
 import org.whispersystems.textsecure.api.push.exceptions.ExpectationFailedException;
@@ -335,12 +336,12 @@ public class PushServiceSocket {
     Log.w(TAG, "Got attachment content location: " + attachmentKey.getLocation());
 
     uploadAttachment("PUT", attachmentKey.getLocation(), attachment.getData(),
-                     attachment.getDataSize(), attachment.getKey());
+                     attachment.getDataSize(), attachment.getKey(), attachment.getListener());
 
     return attachmentKey.getId();
   }
 
-  public void retrieveAttachment(String relay, long attachmentId, File destination) throws IOException {
+  public void retrieveAttachment(String relay, long attachmentId, File destination, ProgressListener listener) throws IOException {
     String path = String.format(ATTACHMENT_PATH, String.valueOf(attachmentId));
 
     if (!Util.isEmpty(relay)) {
@@ -352,7 +353,7 @@ public class PushServiceSocket {
 
     Log.w(TAG, "Attachment: " + attachmentId + " is at: " + descriptor.getLocation());
 
-    downloadExternalFile(descriptor.getLocation(), destination);
+    downloadExternalFile(descriptor.getLocation(), destination, listener);
   }
 
   public List<ContactTokenDetails> retrieveDirectory(Set<String> contactTokens)
@@ -374,7 +375,7 @@ public class PushServiceSocket {
     }
   }
 
-  private void downloadExternalFile(String url, File localDestination)
+  private void downloadExternalFile(String url, File localDestination, ProgressListener listener)
       throws IOException
   {
     URL               downloadUrl = new URL(url);
@@ -388,13 +389,19 @@ public class PushServiceSocket {
         throw new NonSuccessfulResponseCodeException("Bad response: " + connection.getResponseCode());
       }
 
-      OutputStream output = new FileOutputStream(localDestination);
-      InputStream input   = connection.getInputStream();
-      byte[] buffer       = new byte[4096];
-      int read;
+      OutputStream output        = new FileOutputStream(localDestination);
+      InputStream  input         = connection.getInputStream();
+      byte[]       buffer        = new byte[4096];
+      int          contentLength = connection.getContentLength();
+      int         read,totalRead = 0;
 
       while ((read = input.read(buffer)) != -1) {
         output.write(buffer, 0, read);
+        totalRead += read;
+
+        if (listener != null) {
+          listener.onAttachmentProgress(contentLength, totalRead);
+        }
       }
 
       output.close();
@@ -406,7 +413,8 @@ public class PushServiceSocket {
     }
   }
 
-  private void uploadAttachment(String method, String url, InputStream data, long dataSize, byte[] key)
+  private void uploadAttachment(String method, String url, InputStream data,
+                                long dataSize, byte[] key, ProgressListener listener)
     throws IOException
   {
     URL                uploadUrl  = new URL(url);
@@ -427,9 +435,21 @@ public class PushServiceSocket {
     try {
       OutputStream                 stream = connection.getOutputStream();
       AttachmentCipherOutputStream out    = new AttachmentCipherOutputStream(key, stream);
+      byte[]                       buffer = new byte[4096];
+      int                   read, written = 0;
 
-      Util.copy(data, out);
+      while ((read = data.read(buffer)) != -1) {
+        out.write(buffer, 0, read);
+        written += read;
+
+        if (listener != null) {
+          listener.onAttachmentProgress(dataSize, written);
+        }
+      }
+
+      data.close();
       out.flush();
+      out.close();
 
       if (connection.getResponseCode() != 200) {
         throw new IOException("Bad response: " + connection.getResponseCode() + " " + connection.getResponseMessage());

@@ -47,9 +47,10 @@ public abstract class TextSecureAttachment {
 
   public static class Builder {
 
-    private InputStream inputStream;
-    private String      contentType;
-    private long        length;
+    private InputStream      inputStream;
+    private String           contentType;
+    private long             length;
+    private ProgressListener listener;
 
     private Builder() {}
 
@@ -68,12 +69,21 @@ public abstract class TextSecureAttachment {
       return this;
     }
 
+    public Builder withListener(ProgressListener listener) {
+      this.listener = listener;
+      return this;
+    }
+
     public TextSecureAttachmentStream build() {
       if (inputStream == null) throw new IllegalArgumentException("Must specify stream!");
       if (contentType == null) throw new IllegalArgumentException("No content type specified!");
       if (length == 0)         throw new IllegalArgumentException("No length specified!");
 
-      return new TextSecureAttachmentStream(inputStream, contentType, length);
+      return new TextSecureAttachmentStream(inputStream, contentType, length, listener);
     }
+  }
+
+  public interface ProgressListener {
+    public void onAttachmentProgress(long total, long progress);
   }
 }

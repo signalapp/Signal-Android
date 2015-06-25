@@ -23,13 +23,15 @@ import java.io.InputStream;
  */
 public class TextSecureAttachmentStream extends TextSecureAttachment {
 
-  private final InputStream inputStream;
-  private final long        length;
+  private final InputStream      inputStream;
+  private final long             length;
+  private final ProgressListener listener;
 
-  public TextSecureAttachmentStream(InputStream inputStream, String contentType, long length) {
+  public TextSecureAttachmentStream(InputStream inputStream, String contentType, long length, ProgressListener listener) {
     super(contentType);
     this.inputStream = inputStream;
     this.length      = length;
+    this.listener    = listener;
   }
 
   @Override
@@ -48,5 +50,9 @@ public class TextSecureAttachmentStream extends TextSecureAttachment {
 
   public long getLength() {
     return length;
+  }
+
+  public ProgressListener getListener() {
+    return listener;
   }
 }

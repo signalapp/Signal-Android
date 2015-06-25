@@ -335,6 +335,7 @@ public class TextSecureMessageSender {
     PushAttachmentData attachmentData = new PushAttachmentData(attachment.getContentType(),
                                                                attachment.getInputStream(),
                                                                attachment.getLength(),
+                                                               attachment.getListener(),
                                                                attachmentKey);
 
     long attachmentId = socket.sendAttachment(attachmentData);

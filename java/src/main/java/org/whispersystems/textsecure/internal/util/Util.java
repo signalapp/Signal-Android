@@ -96,7 +96,6 @@ public class Util {
     }
   }
 
-
   public static void copy(InputStream in, OutputStream out) throws IOException {
     byte[] buffer = new byte[4096];
     int read;
@@ -124,19 +123,4 @@ public class Util {
       throw new AssertionError(e);
     }
   }
-
-  public static byte[] toVarint64(long value) {
-    ByteArrayOutputStream out = new ByteArrayOutputStream();
-
-    while (true) {
-      if ((value & ~0x7FL) == 0) {
-        out.write((int) value);
-        return out.toByteArray();
-      } else {
-        out.write(((int) value & 0x7F) | 0x80);
-        value >>>= 7;
-      }
-    }
-  }
-
 }

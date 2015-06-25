@@ -18,6 +18,8 @@ package org.whispersystems.textsecure.api;
 
 import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.textsecure.api.crypto.AttachmentCipherInputStream;
+import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
+import org.whispersystems.textsecure.api.messages.TextSecureAttachment.ProgressListener;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachmentPointer;
 import org.whispersystems.textsecure.api.messages.TextSecureDataMessage;
 import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
@@ -88,10 +90,10 @@ public class TextSecureMessageReceiver {
    * @throws IOException
    * @throws InvalidMessageException
    */
-  public InputStream retrieveAttachment(TextSecureAttachmentPointer pointer, File destination)
+  public InputStream retrieveAttachment(TextSecureAttachmentPointer pointer, File destination, ProgressListener listener)
       throws IOException, InvalidMessageException
   {
-    socket.retrieveAttachment(pointer.getRelay().orNull(), pointer.getId(), destination);
+    socket.retrieveAttachment(pointer.getRelay().orNull(), pointer.getId(), destination, listener);
     return new AttachmentCipherInputStream(destination, pointer.getKey());
   }
 
