@@ -61,6 +61,8 @@ import ws.com.google.android.mms.MmsException;
 
 public class PushDecryptJob extends MasterSecretJob {
 
+  private static final long serialVersionUID = 1L;
+
   public static final String TAG = PushDecryptJob.class.getSimpleName();
 
   private final long messageId;

@@ -36,6 +36,8 @@ import static org.thoughtcrime.securesms.dependencies.TextSecureCommunicationMod
 
 public class PushMediaSendJob extends PushSendJob implements InjectableType {
 
+  private static final long serialVersionUID = 1L;
+
   private static final String TAG = PushMediaSendJob.class.getSimpleName();
 
   @Inject transient TextSecureMessageSenderFactory messageSenderFactory;

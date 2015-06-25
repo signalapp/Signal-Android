@@ -46,6 +46,8 @@ import static org.thoughtcrime.securesms.dependencies.TextSecureCommunicationMod
 
 public class PushGroupSendJob extends PushSendJob implements InjectableType {
 
+  private static final long serialVersionUID = 1L;
+
   private static final String TAG = PushGroupSendJob.class.getSimpleName();
 
   @Inject transient TextSecureMessageSenderFactory messageSenderFactory;

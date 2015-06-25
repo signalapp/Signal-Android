@@ -30,6 +30,8 @@ import javax.inject.Inject;
 
 public class MultiDeviceGroupUpdateJob extends MasterSecretJob implements InjectableType {
 
+  private static final long serialVersionUID = 1L;
+
   @Inject
   transient TextSecureCommunicationModule.TextSecureMessageSenderFactory messageSenderFactory;
 
