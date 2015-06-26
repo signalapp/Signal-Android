@@ -8,6 +8,7 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.PartDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.mms.ImageSlide;
@@ -54,10 +55,10 @@ public class ProfileAccessor {
         getPreferences(context).setProfilePartId(profileId+"", partId);
   }
   public static void setProfilePartRow(Context context, Long profileId, Long partRow) {
-    getPreferences(context).setProfilePartRow(profileId+"", partRow);
+    getPreferences(context).setProfilePartRow(profileId + "", partRow);
   }
   public static PartDatabase.PartId getPartId(Context context, String profileId) {
-    return new PartDatabase.PartId(getPreferences(context).getProfilePartRow(profileId), getPreferences(context).getProfilePartId(profileId));
+    return new PartDatabase.PartId(getPreferences(context).getProfilePartRow(profileId+""), getPreferences(context).getProfilePartId(profileId+""));
   }
   public static void setProfilePicture(Context context, ImageSlide profileP) {
     if (profileP != null) {
@@ -88,6 +89,12 @@ public class ProfileAccessor {
   public static String getProfileStatus(Context context) {
     return getPreferences(context).getProfileStatus();
   }
+  public static void setStatusForProfileId(Context context, String profileId, String status) {
+    getPreferences(context).setProfileStatusForProfileId(profileId, status);
+  }
+  public static String getProfileStatusForRecepient(Context context, String profileId) {
+    return getPreferences(context).getProfileStatusForProfileId(profileId);
+  }
   public static void sendProfileUpdate(final Context context, final MasterSecret masterSecret, Recipients recipients, boolean encrypted)
       throws InvalidMessageException {
     SlideDeck slideDeck = new SlideDeck();
@@ -110,5 +117,17 @@ public class ProfileAccessor {
         }
       }.execute(outgoingMessage);
     }
+  }
+  public static ImageSlide getProfileAsImageSlide(Context context, MasterSecret masterSecret, String profileId) {
+    PartDatabase database       = DatabaseFactory.getPartDatabase(context);
+    PduPart part = database.getPart(ProfileAccessor.getPartId(context, "15222787563"));
+
+    if(part != null) {
+      Log.d("MYLOG", "MYLOG TRYING TO SET IMAGE uri: " + part.getDataUri()
+          + " type: " + part.getContentType()
+          + " size: " + part.getDataSize() + " part " + (part.getEncrypted()));
+      return new ImageSlide(context, masterSecret, part);
+    }
+    return null;
   }
 }

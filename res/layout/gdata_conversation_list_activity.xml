@@ -12,6 +12,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fitsSystemWindows="true"
+                    android:background="@color/gdata_red"
         >
         <include android:id="@+id/toolbar" layout="@layout/toolbar"/>
 
@@ -20,6 +21,7 @@
                       android:layout_width="match_parent"
                       android:layout_height="match_parent"
                       android:orientation="vertical"
+                      android:background="@color/white"
                         android:layout_below="@+id/toolbar">
 
             <de.gdata.messaging.SlidingTabLayout
@@ -33,7 +35,7 @@
                                                xmlns:android="http://schemas.android.com/apk/res/android"
                                                xmlns:tools="http://schemas.android.com/tools"
                                                android:layout_width="match_parent"
-                                               android:layout_height="wrap_content"
+                                               android:layout_height="match_parent"
                                                android:layout_below="@+id/sliding_tabs"
                                                android:textSize="20dp"
                                                android:textStyle="bold"

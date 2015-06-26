@@ -85,7 +85,12 @@ public class GDataPreferences {
   public String getProfileStatus() {
     return mPreferences.getString(PROFILE_STATUS, "");
   }
-
+  public void setProfileStatusForProfileId(String profileId, String status) {
+    mPreferences.edit().putString("status:" + profileId, status).commit();
+  }
+  public String getProfileStatusForProfileId(String profileId) {
+    return mPreferences.getString("status:" +profileId, "");
+  }
   public void setApplicationFont(String applicationFont) {
     mPreferences.edit().putString(APPLICATION_FONT, applicationFont).commit();
   }

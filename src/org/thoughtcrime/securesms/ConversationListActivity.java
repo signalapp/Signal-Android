@@ -169,16 +169,8 @@ refreshProfile();
 
   private void refreshProfile() {
     ThumbnailView profileImageView = (ThumbnailView) findViewById(R.id.profile_picture);
-  //  profileImageView.setImageResource(ProfileAccessor.getProfilePictureSlide(this));
-    PartDatabase database       = DatabaseFactory.getPartDatabase(this);
-    PduPart part = database.getPart(ProfileAccessor.getPartId(this, "15222787563"));
 
-      if(part != null) {
-        Log.d("MYLOG", "MYLOG TRYING TO SET IMAGE uri: " + part.getDataUri()
-            + " type: " + part.getContentType()
-            + " size: " + part.getDataSize() + " part " + (part.getEncrypted()));
-          profileImageView.setImageResource(new ImageSlide(this, masterSecret, part), masterSecret);
-      }
+    profileImageView.setImageResource(ProfileAccessor.getProfileAsImageSlide(this, masterSecret, "15222787563" + ""), masterSecret);
 
     TextView profileName = (TextView) findViewById(R.id.profileName);
     TextView profileStatus = (TextView) findViewById(R.id.profileStatus);
