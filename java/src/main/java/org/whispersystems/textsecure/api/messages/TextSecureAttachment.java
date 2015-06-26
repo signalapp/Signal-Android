@@ -83,7 +83,17 @@ public abstract class TextSecureAttachment {
     }
   }
 
+  /**
+   * An interface to receive progress information on upload/download of
+   * an attachment.
+   */
   public interface ProgressListener {
+    /**
+     * Called on a progress change event.
+     *
+     * @param total The total amount to transmit/receive in bytes.
+     * @param progress The amount that has been transmitted/received in bytes thus far
+     */
     public void onAttachmentProgress(long total, long progress);
   }
 }

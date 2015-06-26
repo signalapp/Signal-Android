@@ -90,6 +90,25 @@ public class TextSecureMessageReceiver {
    * @throws IOException
    * @throws InvalidMessageException
    */
+  public InputStream retrieveAttachment(TextSecureAttachmentPointer pointer, File destination)
+      throws IOException, InvalidMessageException
+  {
+    return retrieveAttachment(pointer, destination, null);
+  }
+
+
+  /**
+   * Retrieves a TextSecure attachment.
+   *
+   * @param pointer The {@link org.whispersystems.textsecure.api.messages.TextSecureAttachmentPointer}
+   *                received in a {@link TextSecureDataMessage}.
+   * @param destination The download destination for this attachment.
+   * @param listener An optional listener (may be null) to receive callbacks on download progress.
+   *
+   * @return An InputStream that streams the plaintext attachment contents.
+   * @throws IOException
+   * @throws InvalidMessageException
+   */
   public InputStream retrieveAttachment(TextSecureAttachmentPointer pointer, File destination, ProgressListener listener)
       throws IOException, InvalidMessageException
   {
