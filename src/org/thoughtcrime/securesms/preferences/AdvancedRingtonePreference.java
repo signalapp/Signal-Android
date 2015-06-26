@@ -10,13 +10,13 @@ public class AdvancedRingtonePreference extends RingtonePreference {
 
     private Uri currentRingtone;
 
-    public AdvancedRingtonePreference (Context context, AttributeSet attrs, int defStyleAttr){
+    public AdvancedRingtonePreference (Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
-    public AdvancedRingtonePreference (Context context, AttributeSet attrs){
+    public AdvancedRingtonePreference (Context context, AttributeSet attrs) {
         super(context, attrs);
     }
-    public AdvancedRingtonePreference (Context context){
+    public AdvancedRingtonePreference (Context context) {
         super(context);
     }
 

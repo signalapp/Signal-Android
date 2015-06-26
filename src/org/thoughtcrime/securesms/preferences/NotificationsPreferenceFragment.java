@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceManager;
+import android.preference.RingtonePreference;
 import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
@@ -34,7 +35,7 @@ public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragme
     initializeListSummary((ListPreference) findPreference(TextSecurePreferences.LED_COLOR_PREF));
     initializeListSummary((ListPreference) findPreference(TextSecurePreferences.LED_BLINK_PREF));
     initializeListSummary((ListPreference) findPreference(TextSecurePreferences.REPEAT_ALERTS_PREF));
-    initializeRingtoneSummary((AdvancedRingtonePreference) findPreference(TextSecurePreferences.RINGTONE_PREF));
+    initializeRingtoneSummary((RingtonePreference) findPreference(TextSecurePreferences.RINGTONE_PREF));
   }
 
   @Override
@@ -61,7 +62,7 @@ public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragme
     }
   }
 
-  private void initializeRingtoneSummary(AdvancedRingtonePreference pref) {
+  private void initializeRingtoneSummary(RingtonePreference pref) {
     RingtoneSummaryListener listener =
       (RingtoneSummaryListener) pref.getOnPreferenceChangeListener();
     SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
