@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterCipher;
@@ -10,13 +11,18 @@ import org.thoughtcrime.securesms.database.PartDatabase;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.mms.ImageSlide;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
+import org.thoughtcrime.securesms.util.BitmapUtil;
+import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.textsecure.api.TextSecureMessageReceiver;
+import org.whispersystems.textsecure.api.crypto.AttachmentCipherInputStream;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachmentPointer;
 import org.whispersystems.textsecure.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.textsecure.api.push.exceptions.PushNetworkException;
@@ -95,6 +101,20 @@ public class ProfileImageDownloadJob extends MasterSecretJob implements Injectab
 
       TextSecureAttachmentPointer pointer    = createAttachmentPointer(masterSecret, part);
       InputStream                 attachment = messageReceiver.retrieveAttachment(pointer, attachmentFile);
+
+   /*   InputStream scaleInputStream   = new AttachmentCipherInputStream(attachmentFile, part.getContentId());
+      InputStream measureInputStream = new AttachmentCipherInputStream(attachmentFile, part.getContentId());
+
+      try {
+        Bitmap avatar             = BitmapUtil.createScaledBitmap(measureInputStream, scaleInputStream, 500, 500);
+        Recipient recipient = RecipientFactory.getRecipientsFromString(context, profileId+"", true)
+            .getPrimaryRecipient();
+
+        recipient.setContactPhoto(avatar);
+      } catch (BitmapDecodingException e) {
+        e.printStackTrace();
+      }
+*/
       database.updateDownloadedPart(masterSecret, profileId, partId, part, attachment);
     } catch (InvalidPartException | NonSuccessfulResponseCodeException | InvalidMessageException e) {
       Log.w(TAG, e);

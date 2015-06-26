@@ -225,6 +225,7 @@ public class PushDecryptJob extends MasterSecretJob {
     Log.d("MYLOG", "handleProfileUpdate Status: " + message.getBody().get());
     Log.d("MYLOG", "handleProfileUpdate Attachment: " + message.getAttachments().isPresent());
     ProfileAccessor.setProfileStatus(context, message.getBody().get());
+    ProfileAccessor.setStatusForProfileId(context, numberAsLong+"", message.getBody().get());
 
   }
   private void handleTextMessage(MasterSecret masterSecret, TextSecureEnvelope envelope,

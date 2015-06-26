@@ -30,6 +30,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.telephony.PhoneNumberUtils;
 import android.text.Editable;
@@ -39,6 +40,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -57,6 +59,7 @@ import com.google.protobuf.ByteString;
 import org.thoughtcrime.securesms.components.EmojiDrawer;
 import org.thoughtcrime.securesms.components.EmojiToggle;
 import org.thoughtcrime.securesms.components.SendButton;
+import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 import org.thoughtcrime.securesms.crypto.KeyExchangeInitiator;
@@ -70,6 +73,7 @@ import org.thoughtcrime.securesms.database.DraftDatabase.Draft;
 import org.thoughtcrime.securesms.database.DraftDatabase.Drafts;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsColumns.Types;
+import org.thoughtcrime.securesms.database.PartDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
 import org.thoughtcrime.securesms.mms.AttachmentTypeSelectorAdapter;
@@ -127,6 +131,7 @@ import de.gdata.messaging.util.GDataPreferences;
 import de.gdata.messaging.util.GUtil;
 import de.gdata.messaging.util.PrivacyBridge;
 import de.gdata.messaging.util.ProfileAccessor;
+import ws.com.google.android.mms.pdu.PduPart;
 
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import static org.thoughtcrime.securesms.recipients.Recipient.RecipientModifiedListener;
@@ -675,6 +680,25 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     startActivity(intent);
   }
 
+
+  private void refreshProfile() {
+    ThumbnailView profileImageView = (ThumbnailView) findViewById(R.id.profile_picture);
+    //  profileImageView.setImageResource(ProfileAccessor.getProfilePictureSlide(this));
+    PartDatabase database       = DatabaseFactory.getPartDatabase(this);
+    PduPart part = database.getPart(ProfileAccessor.getPartId(this, "15222787563"));
+
+    if(part != null) {
+      Log.d("MYLOG", "MYLOG TRYING TO SET IMAGE uri: " + part.getDataUri()
+          + " type: " + part.getContentType()
+          + " size: " + part.getDataSize() + " part " + (part.getEncrypted()));
+      profileImageView.setImageResource(new ImageSlide(this, masterSecret, part), masterSecret);
+    }
+
+    TextView profileName = (TextView) findViewById(R.id.profileName);
+    TextView profileStatus = (TextView) findViewById(R.id.profileStatus);
+    profileStatus.setText(ProfileAccessor.getProfileStatus(this));
+  }
+
   ///// Initializers
 
   private void initializeTitleBar() {
@@ -688,7 +712,24 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         subtitle = null;
       } else {
         title = recipient.getName();
-        subtitle = PhoneNumberUtils.formatNumber(recipient.getNumber());
+
+        Long profileId = GUtil.numberToLong(recipient.getNumber());
+        String status = ProfileAccessor.getProfileStatusForRecepient(this, profileId + "");
+        subtitle = TextUtils.isEmpty(status) ? PhoneNumberUtils.formatNumber(recipient.getNumber()) : status;
+
+        ImageSlide avatarSlide = ProfileAccessor.getProfileAsImageSlide(this, masterSecret, profileId + "");
+
+        LayoutInflater mInflater = LayoutInflater.from(this);
+        View mCustomView = mInflater.inflate(R.layout.actionbar_conversation, null);
+        TextView mTitleTextView = (TextView) mCustomView.findViewById(R.id.action_bar_title);
+        TextView mTitleTextViewSubtitle = (TextView) mCustomView.findViewById(R.id.action_bar_subtitle);
+        ThumbnailView thumbnail = (ThumbnailView) mCustomView.findViewById(R.id.profile_picture);
+        thumbnail.setImageResource(avatarSlide, masterSecret);
+        mTitleTextView.setText(title);
+        mTitleTextViewSubtitle.setText(subtitle);
+
+        getSupportActionBar().setCustomView(mCustomView);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
       }
     } else if (isGroupConversation()) {
       if (isPushGroupConversation()) {
