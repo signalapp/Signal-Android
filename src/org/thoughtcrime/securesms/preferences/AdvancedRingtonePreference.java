@@ -8,24 +8,24 @@ import android.util.AttributeSet;
 
 public class AdvancedRingtonePreference extends RingtonePreference {
 
-    private Uri currentRingtone;
+  private Uri currentRingtone;
 
-    public AdvancedRingtonePreference(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-    }
-    public AdvancedRingtonePreference(Context context, AttributeSet attrs) {
-        super(context, attrs);
-    }
-    public AdvancedRingtonePreference(Context context) {
-        super(context);
-    }
+  public AdvancedRingtonePreference(Context context, AttributeSet attrs, int defStyleAttr) {
+    super(context, attrs, defStyleAttr);
+  }
+  public AdvancedRingtonePreference(Context context, AttributeSet attrs) {
+    super(context, attrs);
+  }
+  public AdvancedRingtonePreference(Context context) {
+    super(context);
+  }
 
-    @Override
-    protected Uri onRestoreRingtone() {
-        return currentRingtone;
-    }
+  @Override
+  protected Uri onRestoreRingtone() {
+    return currentRingtone;
+  }
 
-    public void setCurrentRingtone(Uri uri) {
-        currentRingtone = uri;
-    }
+  public void setCurrentRingtone(Uri uri) {
+    currentRingtone = uri;
+  }
 }
