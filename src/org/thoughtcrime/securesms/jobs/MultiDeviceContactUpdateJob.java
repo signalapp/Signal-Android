@@ -103,7 +103,8 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
     FileInputStream            contactsFileStream = new FileInputStream(contactsFile);
     TextSecureAttachmentStream attachmentStream   = new TextSecureAttachmentStream(contactsFileStream,
                                                                                    "application/octet-stream",
-                                                                                   contactsFile.length());
+                                                                                   contactsFile.length(),
+                                                                                   null);
 
     try {
       messageSender.sendMessage(TextSecureSyncMessage.forContacts(attachmentStream));
@@ -117,7 +118,7 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
       try {
         Uri                 displayPhotoUri = Uri.withAppendedPath(uri, ContactsContract.Contacts.Photo.DISPLAY_PHOTO);
         AssetFileDescriptor fd              = context.getContentResolver().openAssetFileDescriptor(displayPhotoUri, "r");
-        return Optional.of(new TextSecureAttachmentStream(fd.createInputStream(), "image/*", fd.getLength()));
+        return Optional.of(new TextSecureAttachmentStream(fd.createInputStream(), "image/*", fd.getLength(), null));
       } catch (IOException e) {
         Log.w(TAG, e);
       }
@@ -140,7 +141,7 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
         byte[] data = cursor.getBlob(0);
 
         if (data != null) {
-          return Optional.of(new TextSecureAttachmentStream(new ByteArrayInputStream(data), "image/*", data.length));
+          return Optional.of(new TextSecureAttachmentStream(new ByteArrayInputStream(data), "image/*", data.length, null));
         }
       }
 

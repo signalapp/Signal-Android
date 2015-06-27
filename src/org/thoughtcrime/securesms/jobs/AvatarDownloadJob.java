@@ -96,7 +96,7 @@ public class AvatarDownloadJob extends MasterSecretJob {
 
     destination.deleteOnExit();
 
-    socket.retrieveAttachment(relay, contentLocation, destination);
+    socket.retrieveAttachment(relay, contentLocation, destination, null);
 
     return destination;
   }
