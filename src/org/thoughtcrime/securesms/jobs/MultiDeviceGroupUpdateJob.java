@@ -95,7 +95,8 @@ public class MultiDeviceGroupUpdateJob extends MasterSecretJob implements Inject
     FileInputStream            contactsFileStream = new FileInputStream(contactsFile);
     TextSecureAttachmentStream attachmentStream   = new TextSecureAttachmentStream(contactsFileStream,
                                                                                    "application/octet-stream",
-                                                                                   contactsFile.length());
+                                                                                   contactsFile.length(),
+                                                                                   null);
 
     messageSender.sendMessage(TextSecureSyncMessage.forGroups(attachmentStream));
   }
@@ -105,7 +106,7 @@ public class MultiDeviceGroupUpdateJob extends MasterSecretJob implements Inject
     if (avatar == null) return Optional.absent();
 
     return Optional.of(new TextSecureAttachmentStream(new ByteArrayInputStream(avatar),
-                                                      "image/*", avatar.length));
+                                                      "image/*", avatar.length, null));
   }
 
   private File createTempFile(String prefix) throws IOException {

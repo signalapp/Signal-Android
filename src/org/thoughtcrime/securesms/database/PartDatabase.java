@@ -437,7 +437,7 @@ public class PartDatabase extends Database {
     SQLiteDatabase   database = databaseHelper.getWritableDatabase();
     Pair<File, Long> partData = null;
 
-    if (!part.isPendingPush()) {
+    if (part.getData() != null || part.getDataUri() != null) {
       partData = writePartData(masterSecret, part);
       Log.w(TAG, "Wrote part to file: " + partData.first.getAbsolutePath());
     }
@@ -484,6 +484,17 @@ public class PartDatabase extends Database {
     database.update(TABLE_NAME, values, PART_ID_WHERE, partId.toStrings());
 
     thumbnailExecutor.submit(new ThumbnailFetchCallable(masterSecret, partId));
+
+    notifyConversationListeners(DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(messageId));
+  }
+
+  public void markPartUploaded(long messageId, PduPart part) {
+    ContentValues  values   = new ContentValues(1);
+    SQLiteDatabase database = databaseHelper.getWritableDatabase();
+
+    part.setPendingPush(false);
+    values.put(PENDING_PUSH_ATTACHMENT, false);
+    database.update(TABLE_NAME, values, PART_ID_WHERE, part.getPartId().toStrings());
 
     notifyConversationListeners(DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(messageId));
   }
@@ -639,6 +650,23 @@ public class PartDatabase extends Database {
 
     public boolean isValid() {
       return rowId >= 0 && uniqueId >= 0;
+    }
+
+    @Override public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
+
+      PartId partId = (PartId)o;
+
+      if (rowId != partId.rowId) return false;
+      return uniqueId == partId.uniqueId;
+
+    }
+
+    @Override public int hashCode() {
+      int result = (int)(rowId ^ (rowId >>> 32));
+      result = 31 * result + (int)(uniqueId ^ (uniqueId >>> 32));
+      return result;
     }
   }
 }

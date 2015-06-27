@@ -280,6 +280,7 @@ public class ConversationItem extends LinearLayout {
     mmsDownloadButton.setVisibility(View.GONE);
     mmsDownloadingLabel.setVisibility(View.GONE);
     indicatorText.setVisibility(View.GONE);
+    mediaThumbnail.setShowProgress(!messageRecord.isFailed());
 
     secureImage.setVisibility(messageRecord.isSecure() ? View.VISIBLE : View.GONE);
     bodyText.setCompoundDrawablesWithIntrinsicBounds(0, 0, messageRecord.isKeyExchange() ? R.drawable.ic_menu_login : 0, 0);
@@ -374,7 +375,7 @@ public class ConversationItem extends LinearLayout {
     contactPhoto.setAvatar(recipient, true);
     contactPhoto.setVisibility(View.VISIBLE);
   }
-  
+
   /// Event handlers
 
   private void handleApproveIdentity() {
