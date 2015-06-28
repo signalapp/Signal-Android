@@ -164,8 +164,8 @@ public class DeviceListActivity extends PassphraseRequiredActionBarActivity {
 
     private void handleDisconnectDevice(final long deviceId) {
       new ProgressDialogAsyncTask<Void, Void, Void>(getActivity(),
-                                                    R.string.DeviceListActivity_disconnecting_device,
-                                                    R.string.DeviceListActivity_disconnecting_device_no_ellipse)
+                                                    R.string.DeviceListActivity_disconnecting_device_no_ellipse,
+                                                    R.string.DeviceListActivity_disconnecting_device)
       {
         @Override
         protected Void doInBackground(Void... params) {
