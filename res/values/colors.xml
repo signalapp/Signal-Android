@@ -35,20 +35,7 @@
     <color name="touch_highlight">#400099cc</color>
     <color name="light_button">#33ffffff</color>
     <color name="light_button_highlight">#66ffffff</color>
-    <color name="conversation_item_sent_background_dark">#ff284e0a</color>
-    <color name="conversation_item_sent_background_light">#ff64a926</color>
-    <color name="conversation_item_sent_shadow_light">#ffd5d5d5</color>
-    <color name="conversation_item_sent_shadow_dark">#ff222222</color>
-    <color name="conversation_item_sent_pending_background_light">#5564A926</color>
-    <color name="conversation_item_sent_pending_background_dark">#90284e0a</color>
-    <color name="conversation_item_sent_push_background_light">#ff2090ea</color>
-    <color name="conversation_item_sent_push_background_dark">#ff183b7a</color>
-    <color name="conversation_item_sent_push_pending_background_light">#ff5cace6</color>
-    <color name="conversation_item_sent_push_pending_background_dark">#ff122d5e</color>
-    <color name="conversation_item_received_background_light">#fff3f3f3</color>
-    <color name="conversation_item_received_background_dark">#ff333333</color>
-    <color name="conversation_item_received_shadow_light">#ffefefef</color>
-    <color name="conversation_item_received_shadow_dark">#ff222222</color>
+
     <color name="import_export_item_background_light">#ffeeeeee</color>
     <color name="import_export_item_background_dark">#ff333333</color>
     <color name="import_export_item_background_shadow_light">#ffd5d5d5</color>

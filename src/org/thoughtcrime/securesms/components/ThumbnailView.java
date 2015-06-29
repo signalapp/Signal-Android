@@ -14,11 +14,14 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewParent;
 
 import com.bumptech.glide.GenericRequestBuilder;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
+import com.makeramen.roundedimageview.RoundedImageView;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -32,7 +35,7 @@ import org.thoughtcrime.securesms.util.Util;
 
 import ws.com.google.android.mms.pdu.PduPart;
 
-public class ThumbnailView extends ForegroundImageView {
+public class ThumbnailView extends RoundedImageView {
 
   private ListenableFutureTask<SlideDeck> slideDeckFuture        = null;
   private SlideDeckListener               slideDeckListener      = null;
@@ -94,6 +97,13 @@ public class ThumbnailView extends ForegroundImageView {
 
   public void clear() {
     if (isContextValid()) Glide.clear(this);
+  }
+
+  @Override
+  protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    View dv = ((Activity) this.getContext()).getWindow().getDecorView();
+    int size = Math.min(dv.getWidth(), dv.getHeight()) * 55 / 100;
+    setMeasuredDimension(size, size);
   }
 
   @TargetApi(VERSION_CODES.JELLY_BEAN_MR1)
@@ -238,4 +248,5 @@ public class ThumbnailView extends ForegroundImageView {
       return false;
     }
   }
+
 }
