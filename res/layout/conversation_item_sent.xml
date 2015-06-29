@@ -147,20 +147,24 @@
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:layout_gravity="center_vertical|end"
-                           android:src="@drawable/ic_done_grey600_18dp"
+                           android:src="@drawable/ic_done_white_18dp"
                            android:paddingLeft="2dp"
                            android:paddingBottom="2dp"
                            android:visibility="gone"
+                           android:tint="?conversation_item_sent_text_secondary_color"
+                           android:tintMode="multiply"
                            android:contentDescription="@string/conversation_item_sent__delivered_description" />
 
                 <ImageView android:id="@+id/delivered_indicator"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:layout_gravity="center_vertical|end"
-                           android:src="@drawable/ic_done_all_grey600_18dp"
+                           android:src="@drawable/ic_done_all_white_18dp"
                            android:paddingLeft="2dp"
                            android:paddingBottom="2dp"
                            android:visibility="gone"
+                           android:tint="?conversation_item_sent_text_secondary_color"
+                           android:tintMode="multiply"
                            android:contentDescription="@string/conversation_item_sent__delivered_description" />
 
                 <ImageView android:id="@+id/secure_indicator"
@@ -171,6 +175,8 @@
                            android:layout_gravity="center_vertical|end"
                            android:paddingLeft="2dp"
                            android:paddingBottom="3dp"
+                           android:tint="?conversation_item_sent_text_secondary_color"
+                           android:tintMode="multiply"
                            android:contentDescription="@string/conversation_item__secure_message_description" />
 
             </LinearLayout>

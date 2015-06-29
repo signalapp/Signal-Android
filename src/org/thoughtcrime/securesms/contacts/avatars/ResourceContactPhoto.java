@@ -1,8 +1,12 @@
 package org.thoughtcrime.securesms.contacts.avatars;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
+import android.support.v4.graphics.ColorUtils;
 import android.widget.ImageView;
 
 import com.amulyakhare.textdrawable.TextDrawable;
@@ -17,10 +21,20 @@ public class ResourceContactPhoto implements ContactPhoto {
   }
 
   @Override
-  public Drawable asDrawable(Context context, int backgroundColor) {
-    Drawable        background = TextDrawable.builder().buildRound(" ", backgroundColor);
+  public Drawable asDrawable(Context context, int color) {
+    return asDrawable(context, color, false);
+  }
+
+  @Override
+  public Drawable asDrawable(Context context, int color, boolean inverted) {
+    Drawable        background = TextDrawable.builder().buildRound(" ", inverted ? Color.WHITE : color);
     RoundedDrawable foreground = (RoundedDrawable) RoundedDrawable.fromDrawable(context.getResources().getDrawable(resourceId));
+
     foreground.setScaleType(ImageView.ScaleType.CENTER);
+
+    if (inverted) {
+      foreground.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+    }
 
     return new ExpandingLayerDrawable(new Drawable[] {background, foreground});
   }

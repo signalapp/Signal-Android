@@ -22,7 +22,6 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.util.Patterns;
 
-import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.RecipientsPreferences;
@@ -51,11 +50,10 @@ public class Recipients implements Iterable<Recipient>, RecipientModifiedListene
   private final Set<RecipientsModifiedListener> listeners = Collections.newSetFromMap(new WeakHashMap<RecipientsModifiedListener, Boolean>());
   private final List<Recipient> recipients;
 
-  private Uri               ringtone   = null;
-  private long              mutedUntil = 0;
-  private boolean           blocked    = false;
-  private VibrateState      vibrate    = VibrateState.DEFAULT;
-  private Optional<Integer> color      = Optional.absent();
+  private Uri          ringtone   = null;
+  private long         mutedUntil = 0;
+  private boolean      blocked    = false;
+  private VibrateState vibrate    = VibrateState.DEFAULT;
 
   Recipients() {
     this(new LinkedList<Recipient>(), (RecipientsPreferences)null);
@@ -69,7 +67,6 @@ public class Recipients implements Iterable<Recipient>, RecipientModifiedListene
       mutedUntil = preferences.getMuteUntil();
       vibrate    = preferences.getVibrateState();
       blocked    = preferences.isBlocked();
-      color      = preferences.getColor();
     }
   }
 
@@ -88,7 +85,6 @@ public class Recipients implements Iterable<Recipient>, RecipientModifiedListene
             mutedUntil = result.getMuteUntil();
             vibrate    = result.getVibrateState();
             blocked    = result.isBlocked();
-            color      = result.getColor();
 
             localListeners = new HashSet<>(listeners);
           }
@@ -104,21 +100,6 @@ public class Recipients implements Iterable<Recipient>, RecipientModifiedListene
         Log.w(TAG, error);
       }
     });
-  }
-
-  public synchronized Optional<Integer> getColor() {
-    if      (color.isPresent())                   return color;
-    else if (isGroupRecipient())                  return Optional.absent();
-    else if (recipients.get(0).getName() == null) return Optional.absent();
-    else    return Optional.of(ContactColors.generateFor(recipients.get(0).getName()));
-  }
-
-  public void setColor(Optional<Integer> color) {
-    synchronized (this) {
-      this.color = color;
-    }
-
-    notifyListeners();
   }
 
   public synchronized @Nullable Uri getRingtone() {
@@ -169,10 +150,20 @@ public class Recipients implements Iterable<Recipient>, RecipientModifiedListene
     notifyListeners();
   }
 
-  public @NonNull
-  ContactPhoto getContactPhoto() {
+  public @NonNull ContactPhoto getContactPhoto() {
     if (recipients.size() == 1) return recipients.get(0).getContactPhoto();
     else                        return ContactPhotoFactory.getDefaultGroupPhoto();
+  }
+
+  public synchronized @NonNull Optional<Integer> getColor() {
+    if      (!isSingleRecipient() || isGroupRecipient()) return Optional.absent();
+    else if (isEmpty())                                  return Optional.absent();
+    else                                                 return recipients.get(0).getColor();
+  }
+
+  public synchronized void setColor(Optional<Integer> color) {
+    if      (!isSingleRecipient() || isGroupRecipient()) throw new AssertionError("Groups don't have colors!");
+    else if (!isEmpty())                                 recipients.get(0).setColor(color);
   }
 
   public synchronized void addListener(RecipientsModifiedListener listener) {

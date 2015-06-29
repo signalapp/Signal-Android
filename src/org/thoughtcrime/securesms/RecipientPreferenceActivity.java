@@ -6,6 +6,7 @@ import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.CheckBoxPreference;
@@ -18,7 +19,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.preference.PreferenceFragment;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -26,6 +26,7 @@ import android.widget.TextView;
 import com.afollestad.materialdialogs.AlertDialogWrapper;
 
 import org.thoughtcrime.securesms.components.AvatarImageView;
+import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.VibrateState;
@@ -53,6 +54,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   private AvatarImageView avatar;
+  private Toolbar         toolbar;
   private TextView        title;
   private TextView        blockedIndicator;
 
@@ -103,7 +105,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   }
 
   private void initializeToolbar() {
-    Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+    this.toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
 
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -115,8 +117,18 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   }
 
   private void setHeader(Recipients recipients) {
+    Optional<Integer> color = recipients.getColor();
+
     this.avatar.setAvatar(recipients, true);
     this.title.setText(recipients.toShortString());
+    this.toolbar.setBackgroundColor(color.or(getResources().getColor(R.color.textsecure_primary)));
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+      int primaryDark = getResources().getColor(R.color.textsecure_primary_dark);
+
+      if (color.isPresent()) getWindow().setStatusBarColor(ContactColors.getStatusTinted(color.get()).or(primaryDark));
+      else                   getWindow().setStatusBarColor(primaryDark);
+    }
 
     if (recipients.isBlocked()) this.blockedIndicator.setVisibility(View.VISIBLE);
     else                        this.blockedIndicator.setVisibility(View.GONE);
@@ -207,11 +219,11 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       }
 
       if (recipients.getColor().isPresent()) {
-        colorPreference.setValue(recipients.getColor().get());
         colorPreference.setEnabled(true);
+        colorPreference.setValue(recipients.getColor().get());
       } else {
-        colorPreference.setValue(getResources().getColor(R.color.textsecure_primary));
         colorPreference.setEnabled(false);
+        colorPreference.setValue(getResources().getColor(R.color.textsecure_primary));
       }
 
       if (!recipients.isSingleRecipient() || recipients.isGroupRecipient()) {
@@ -288,7 +300,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       public boolean onPreferenceChange(Preference preference, Object newValue) {
         final int value = (Integer)newValue;
 
-        if (value != recipients.getColor().get()) {
+        if (preference.isEnabled() && value != recipients.getColor().get()) {
           recipients.setColor(Optional.of(value));
 
           new AsyncTask<Void, Void, Void>() {

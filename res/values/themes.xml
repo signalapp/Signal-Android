@@ -78,8 +78,6 @@
         <item name="lower_right_divet">@drawable/divet_lower_right_dark</item>
 
         <item name="conversation_group_member_name">#99000000</item>
-        <item name="conversation_received_text_primary_color">#ff333333</item>
-        <item name="conversation_received_text_secondary_color">#99333333</item>
 
         <item name="contact_selection_push_user">#ff000000</item>
         <item name="contact_selection_lay_user">#a0000000</item>
@@ -116,10 +114,13 @@
         <item name="emoji_category_symbol">@drawable/emoji_category_symbol_light</item>
         <item name="emoji_category_emoticons">@drawable/emoji_category_emoticons_light</item>
 
-        <item name="conversation_item_sent_text_primary_color">#99000000</item>
+
         <item name="conversation_item_bubble_background">@color/white</item>
+        <item name="conversation_item_sent_text_primary_color">#99000000</item>
         <item name="conversation_item_sent_text_secondary_color">#bb000000</item>
         <item name="conversation_item_sent_text_indicator_tab_color">#99000000</item>
+        <item name="conversation_item_received_text_primary_color">@color/white</item>
+        <item name="conversation_item_received_text_secondary_color">#BFffffff</item>
         <item name="conversation_item_background">@drawable/conversation_item_background</item>
         <item name="conversation_item_sent_indicator_text_background">@drawable/conversation_item_sent_indicator_text_shape</item>
 
@@ -140,8 +141,7 @@
         <item name="menu_popup_expand">@drawable/ic_launch_white_24dp</item>
         <item name="menu_unlock_icon">@drawable/ic_unlocked_white_24dp</item>
         <item name="menu_lock_icon">@drawable/ic_lock_white_24dp</item>
-        <item name="menu_lock_icon_small">@drawable/ic_lock_black_18dp</item>
-        <item name="menu_lock_icon_small_received">@drawable/ic_lock_black_18dp</item>
+        <item name="menu_lock_icon_small">@drawable/ic_lock_white_18dp</item>
         <item name="menu_trash_icon">@drawable/ic_delete_white_24dp</item>
         <item name="menu_selectall_icon">@drawable/ic_select_all_white_24dp</item>
         <item name="menu_split_icon">@drawable/ic_call_split_white_24dp</item>
@@ -188,8 +188,6 @@
         <item name="share_list_item_divider">@drawable/share_list_divider_shape_dark</item>
 
         <item name="conversation_group_member_name">#99ffffff</item>
-        <item name="conversation_received_text_primary_color">#ffeeeeee</item>
-        <item name="conversation_received_text_secondary_color">#99eeeeee</item>
 
         <item name="contact_selection_push_user">#ffeeeeee</item>
         <item name="contact_selection_lay_user">#afeeeeee</item>
@@ -201,6 +199,8 @@
         <item name="conversation_item_sent_text_primary_color">#ffffffff</item>
         <item name="conversation_item_sent_text_secondary_color">#aaeeeeee</item>
         <item name="conversation_item_sent_text_indicator_tab_color">#99ffffff</item>
+        <item name="conversation_item_received_text_primary_color">@color/white</item>
+        <item name="conversation_item_received_text_secondary_color">#BFffffff</item>
         <item name="conversation_item_sent_indicator_text_background">@drawable/conversation_item_sent_indicator_text_shape_dark</item>
 
         <item name="dialog_info_icon">@drawable/ic_info_outline_dark</item>
@@ -254,7 +254,6 @@
         <item name="menu_unlock_icon">@drawable/ic_unlocked_white_24dp</item>
         <item name="menu_lock_icon">@drawable/ic_lock_white_24dp</item>
         <item name="menu_lock_icon_small">@drawable/ic_lock_white_18dp</item>
-        <item name="menu_lock_icon_small_received">@drawable/ic_lock_white_18dp</item>
         <item name="menu_trash_icon">@drawable/ic_delete_white_24dp</item>
         <item name="menu_selectall_icon">@drawable/ic_select_all_white_24dp</item>
         <item name="menu_split_icon">@drawable/ic_call_split_white_24dp</item>

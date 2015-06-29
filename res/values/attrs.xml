@@ -14,8 +14,7 @@
     <attr name="conversation_sent_card_background" format="reference|color"/>
     <attr name="conversation_group_member_name" format="reference|color"/>
     <attr name="conversation_received_card_background" format="reference|color"/>
-    <attr name="conversation_received_text_primary_color" format="reference|color"/>
-    <attr name="conversation_received_text_secondary_color" format="reference|color"/>
+
 
     <attr name="fab_color" format="reference|color" />
     <attr name="lower_right_divet" format="reference" />
@@ -57,6 +56,8 @@
     <attr name="conversation_item_bubble_background" format="reference|color"/>
     <attr name="conversation_item_sent_text_primary_color" format="reference|color"/>
     <attr name="conversation_item_sent_text_secondary_color" format="reference|color"/>
+    <attr name="conversation_item_received_text_primary_color" format="reference|color"/>
+    <attr name="conversation_item_received_text_secondary_color" format="reference|color"/>
     <attr name="conversation_item_sent_text_indicator_tab_color" format="reference|color"/>
     <attr name="conversation_item_sent_indicator_text_background" format="reference" />
 
@@ -87,7 +88,6 @@
     <attr name="menu_unlock_icon" format="reference" />
     <attr name="menu_lock_icon" format="reference" />
     <attr name="menu_lock_icon_small" format="reference" />
-    <attr name="menu_lock_icon_small_received" format="reference" />
     <attr name="menu_trash_icon" format="reference" />
     <attr name="menu_selectall_icon" format="reference" />
     <attr name="menu_group_icon" format="reference" />
@@ -128,6 +128,10 @@
         <attr name="itemLayout" format="reference" />
         <attr name="choices" format="reference" />
         <attr name="numColumns" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="AvatarImageView">
+        <attr name="inverted" format="boolean"/>
     </declare-styleable>
 
 </resources>

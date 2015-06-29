@@ -188,10 +188,18 @@ public class ConversationItem extends LinearLayout {
   /// MessageRecord Attribute Parsers
 
   private void setBubbleState(MessageRecord messageRecord) {
-    int[]      attributes = new int[]{R.attr.conversation_item_bubble_background};
-    TypedArray colors     = context.obtainStyledAttributes(attributes);
+    int[]      attributes   = new int[]{R.attr.conversation_item_bubble_background};
+    TypedArray colors       = context.obtainStyledAttributes(attributes);
+    int        defaultColor = colors.getColor(0, 0xFFFFFF);
 
-    bodyBubble.getBackground().setColorFilter(colors.getColor(0, 0xFFFFFFFF), PorterDuff.Mode.MULTIPLY);
+    if (messageRecord.isOutgoing()) {
+      bodyBubble.getBackground().setColorFilter(defaultColor, PorterDuff.Mode.MULTIPLY);
+    } else {
+      bodyBubble.getBackground().setColorFilter(messageRecord.getIndividualRecipient()
+                                                             .getColor()
+                                                             .or(defaultColor),
+                                                PorterDuff.Mode.MULTIPLY);
+    }
 
     colors.recycle();
   }

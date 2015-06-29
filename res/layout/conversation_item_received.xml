@@ -65,7 +65,7 @@
                     android:paddingLeft="4dp"
                     android:paddingRight="4dp"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="?conversation_received_text_primary_color"
+                    android:textColor="?conversation_item_received_text_primary_color"
                     android:textSize="16sp"
                     android:autoLink="all"
                     android:linksClickable="true" />
@@ -117,9 +117,11 @@
                            android:layout_gravity="center_vertical"
                            android:paddingRight="4dp"
                            android:paddingTop="2dp"
-                           android:src="?menu_lock_icon_small_received"
+                           android:src="?menu_lock_icon_small"
                            android:contentDescription="@string/conversation_item__secure_message_description"
-                           android:visibility="gone" />
+                           android:visibility="gone"
+                           android:tint="?conversation_item_received_text_secondary_color"
+                           android:tintMode="multiply"/>
 
                 <FrameLayout android:id="@+id/pending_indicator_stub"
                              android:layout_width="wrap_content"
@@ -131,7 +133,7 @@
                           android:layout_gravity="left"
                           android:paddingTop="1dip"
                           android:textAppearance="?android:attr/textAppearanceSmall"
-                          android:textColor="?conversation_received_text_secondary_color"
+                          android:textColor="?conversation_item_received_text_secondary_color"
                           android:textSize="@dimen/conversation_item_date_text_size"
                           android:fontFamily="sans-serif-light"
                           android:autoLink="none"
