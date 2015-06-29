@@ -118,11 +118,13 @@ public class ConversationItem extends LinearLayout {
   protected void onFinishInflate() {
     super.onFinishInflate();
 
-    ViewGroup      pendingIndicatorStub = (ViewGroup) findViewById(R.id.pending_indicator_stub);
-    LayoutInflater inflater             = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    ViewGroup pendingIndicatorStub = (ViewGroup) findViewById(R.id.pending_indicator_stub);
 
-    if (Build.VERSION.SDK_INT >= 11) inflater.inflate(R.layout.conversation_item_pending_v11, pendingIndicatorStub, true);
-    else                             inflater.inflate(R.layout.conversation_item_pending, pendingIndicatorStub, true);
+    if (pendingIndicatorStub != null) {
+      LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+      if (Build.VERSION.SDK_INT >= 11) inflater.inflate(R.layout.conversation_item_pending_v11, pendingIndicatorStub, true);
+      else                             inflater.inflate(R.layout.conversation_item_pending, pendingIndicatorStub, true);
+    }
 
     this.bodyText                 = (TextView)        findViewById(R.id.conversation_item_body);
     this.dateText                 = (TextView)        findViewById(R.id.conversation_item_date);

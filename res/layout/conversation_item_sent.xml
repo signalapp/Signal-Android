@@ -137,6 +137,7 @@
                           android:textColor="?conversation_item_sent_text_secondary_color"
                           android:textSize="@dimen/conversation_item_date_text_size"
                           android:paddingTop="1dip"
+                          android:paddingBottom="2dp"
                           tools:text="30 mins" />
 
                 <FrameLayout android:id="@+id/pending_indicator_stub"
@@ -193,7 +194,7 @@
             android:paddingBottom="3dp"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="22dp"
-            android:layout_marginTop="-1dp"
+            android:layout_marginTop="-3dp"
             android:textSize="12sp"
             android:textColor="?conversation_item_sent_text_indicator_tab_color"
             android:background="?conversation_item_sent_indicator_text_background"
