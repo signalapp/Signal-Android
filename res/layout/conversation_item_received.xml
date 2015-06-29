@@ -47,12 +47,8 @@
 
             <org.thoughtcrime.securesms.components.ThumbnailView
                     android:id="@+id/image_view"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/media_bubble_height"
                     android:layout_height="@dimen/media_bubble_height"
-                    android:layout_marginLeft="4dip"
-                    android:layout_marginTop="4dip"
-                    android:layout_marginRight="4dip"
-                    android:layout_gravity="center"
                     android:scaleType="centerCrop"
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/conversation_item__mms_image_description"
@@ -66,9 +62,8 @@
                     android:id="@+id/conversation_item_body"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingTop="5dip"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="?conversation_received_text_primary_color"
                     android:textSize="16sp"
@@ -101,9 +96,8 @@
             <LinearLayout android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:paddingTop="2dip"
-                          android:paddingLeft="8dp"
-                          android:paddingRight="5dp"
-                          android:paddingBottom="5dp"
+                          android:paddingLeft="4dp"
+                          android:paddingRight="4dp"
                           android:orientation="horizontal"
                           android:gravity="left">
 

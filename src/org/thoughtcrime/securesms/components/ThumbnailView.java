@@ -99,13 +99,6 @@ public class ThumbnailView extends RoundedImageView {
     if (isContextValid()) Glide.clear(this);
   }
 
-  @Override
-  protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-    View dv = ((Activity) this.getContext()).getWindow().getDecorView();
-    int size = Math.min(dv.getWidth(), dv.getHeight()) * 55 / 100;
-    setMeasuredDimension(size, size);
-  }
-
   @TargetApi(VERSION_CODES.JELLY_BEAN_MR1)
   private boolean isContextValid() {
     return !(getContext() instanceof Activity)            ||

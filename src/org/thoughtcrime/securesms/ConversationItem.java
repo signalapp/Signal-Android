@@ -191,7 +191,7 @@ public class ConversationItem extends LinearLayout {
     int[]      attributes = new int[]{R.attr.conversation_item_bubble_background};
     TypedArray colors     = context.obtainStyledAttributes(attributes);
 
-    bodyBubble.getBackground().setColorFilter(colors.getColor(0, 0xFFFFFF), PorterDuff.Mode.SRC_ATOP);
+    bodyBubble.getBackground().setColorFilter(colors.getColor(0, 0xFFFFFFFF), PorterDuff.Mode.MULTIPLY);
 
     colors.recycle();
   }

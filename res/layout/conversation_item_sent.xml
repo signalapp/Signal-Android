@@ -50,18 +50,16 @@
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:layout_alignParentRight="true"
-                      android:paddingRight="15dip"
-                      android:paddingLeft="5dip"
                       android:layout_marginLeft="50dp"
-                      android:layout_marginRight="12dp"
+                      android:layout_marginRight="5dp"
                       android:background="@drawable/sent_bubble"
                       android:orientation="vertical">
 
             <org.thoughtcrime.securesms.components.ThumbnailView
                     android:id="@+id/image_view"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/media_bubble_height"
                     android:layout_height="@dimen/media_bubble_height"
-                    android:layout_marginTop="4dip"
+                    android:layout_marginBottom="5dp"
                     android:layout_gravity="center"
                     android:scaleType="centerCrop"
                     android:adjustViewBounds="true"
@@ -77,7 +75,8 @@
                     android:autoLink="all"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingTop="5dip"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
                     android:linksClickable="true"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="?conversation_item_sent_text_primary_color"
@@ -111,7 +110,8 @@
             <LinearLayout android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:orientation="horizontal"
-                          android:paddingTop="0dip"
+                          android:paddingLeft="4dp"
+                          android:paddingRight="4dp"
                           android:layout_gravity="right">
 
                 <TextView android:id="@+id/group_message_status"
@@ -137,7 +137,6 @@
                           android:textColor="?conversation_item_sent_text_secondary_color"
                           android:textSize="@dimen/conversation_item_date_text_size"
                           android:paddingTop="1dip"
-                          android:paddingBottom="5dp"
                           tools:text="30 mins" />
 
                 <FrameLayout android:id="@+id/pending_indicator_stub"
