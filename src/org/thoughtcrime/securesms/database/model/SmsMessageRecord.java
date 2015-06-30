@@ -50,7 +50,7 @@ public class SmsMessageRecord extends MessageRecord {
                           int status, List<IdentityKeyMismatch> mismatches)
   {
     super(context, id, body, recipients, individualRecipient, recipientDeviceId,
-          dateSent, dateReceived, threadId, receiptCount, getGenericDeliveryStatus(status), type,
+          dateSent, dateReceived, threadId, getGenericDeliveryStatus(status), receiptCount, type,
           mismatches, new LinkedList<NetworkFailure>());
   }
 

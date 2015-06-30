@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView android:id="@+id/pending_indicator"
+              android:layout_width="20dp"
+              android:layout_height="wrap_content"
+              android:visibility="gone"
+              android:textAppearance="?android:attr/textAppearanceSmall"
+              android:fontFamily="sans-serif-light"
+              android:textColor="?conversation_item_sent_text_secondary_color"
+              android:textSize="@dimen/conversation_item_date_text_size"
+              android:paddingTop="1dip"
+              android:paddingLeft="2dip"
+              android:paddingBottom="5dp"
+              android:text="..."/>
+
+</merge>

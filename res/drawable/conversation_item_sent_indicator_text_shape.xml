@@ -3,14 +3,14 @@
 
     <item>
         <shape  android:shape="rectangle">
-            <solid android:color="#09000000" />
+            <solid android:color="#0d000000" />
             <corners android:radius="@dimen/message_bubble_corner_radius" />
         </shape>
     </item>
 
     <item android:bottom="@dimen/message_bubble_shadow_distance">
         <shape xmlns:android="http://schemas.android.com/apk/res/android">
-            <solid android:color="@color/conversation_item_received_background_light" />
+            <solid android:color="#fff3f3f3" />
             <corners android:bottomLeftRadius="@dimen/message_bubble_corner_radius" android:bottomRightRadius="@dimen/message_bubble_corner_radius" />
         </shape>
     </item>
