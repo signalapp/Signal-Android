@@ -67,6 +67,7 @@
                     android:paddingRight="4dp"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="?conversation_item_received_text_primary_color"
+                    android:textColorLink="?conversation_item_received_text_primary_color"
                     android:textSize="16sp"
                     android:autoLink="all"
                     android:linksClickable="true" />
