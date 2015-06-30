@@ -54,6 +54,8 @@ import com.afollestad.materialdialogs.AlertDialogWrapper;
 import com.google.protobuf.ByteString;
 
 import org.thoughtcrime.securesms.TransportOptions.OnTransportChangedListener;
+import org.thoughtcrime.securesms.color.MaterialColor;
+import org.thoughtcrime.securesms.color.ThemeType;
 import org.thoughtcrime.securesms.components.AnimatingToggle;
 import org.thoughtcrime.securesms.components.ComposeText;
 import org.thoughtcrime.securesms.components.SendButton;
@@ -61,7 +63,6 @@ import org.thoughtcrime.securesms.components.emoji.EmojiDrawer;
 import org.thoughtcrime.securesms.components.emoji.EmojiToggle;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
-import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
@@ -225,7 +226,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     initializeIme();
 
     titleView.setTitle(recipients);
-    setActionBarColor(recipients.getColor());
+    setActionBarColor(recipients.getColor(this));
     setBlockedUserState(recipients);
     calculateCharactersRemaining();
 
@@ -809,7 +810,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       public void run() {
         titleView.setTitle(recipients);
         setBlockedUserState(recipients);
-        setActionBarColor(recipients.getColor());
+        setActionBarColor(recipients.getColor(ConversationActivity.this));
       }
     });
   }
@@ -1000,15 +1001,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     return future;
   }
 
-  private void setActionBarColor(Optional<Integer> color) {
-    int colorPrimary     = getResources().getColor(R.color.textsecure_primary);
-    int colorPrimaryDark = getResources().getColor(R.color.textsecure_primary_dark);
+  private void setActionBarColor(MaterialColor color) {
+    ThemeType themeType = ThemeType.getCurrent(this);
 
-    getSupportActionBar().setBackgroundDrawable(new ColorDrawable(color.or(colorPrimary)));
+    getSupportActionBar().setBackgroundDrawable(new ColorDrawable(color.toActionBarColor(themeType)));
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      if (color.isPresent()) getWindow().setStatusBarColor(ContactColors.getStatusTinted(color.get()).or(colorPrimaryDark));
-      else                   getWindow().setStatusBarColor(colorPrimaryDark);
+      getWindow().setStatusBarColor(color.toStatusBarColor(themeType));
     }
   }
 

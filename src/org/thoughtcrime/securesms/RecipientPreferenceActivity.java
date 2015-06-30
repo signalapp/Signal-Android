@@ -19,14 +19,17 @@ import android.support.v4.app.Fragment;
 import android.support.v4.preference.PreferenceFragment;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.AlertDialogWrapper;
 
+import org.thoughtcrime.securesms.color.MaterialColor;
+import org.thoughtcrime.securesms.color.MaterialColors;
+import org.thoughtcrime.securesms.color.ThemeType;
 import org.thoughtcrime.securesms.components.AvatarImageView;
-import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.VibrateState;
@@ -36,7 +39,6 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.whispersystems.libaxolotl.util.guava.Optional;
 
 public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActivity implements Recipients.RecipientsModifiedListener
 {
@@ -117,17 +119,14 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   }
 
   private void setHeader(Recipients recipients) {
-    Optional<Integer> color = recipients.getColor();
+    ThemeType themeType = ThemeType.getCurrent(this);
 
     this.avatar.setAvatar(recipients, true);
     this.title.setText(recipients.toShortString());
-    this.toolbar.setBackgroundColor(color.or(getResources().getColor(R.color.textsecure_primary)));
+    this.toolbar.setBackgroundColor(recipients.getColor(this).toActionBarColor(themeType));
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      int primaryDark = getResources().getColor(R.color.textsecure_primary_dark);
-
-      if (color.isPresent()) getWindow().setStatusBarColor(ContactColors.getStatusTinted(color.get()).or(primaryDark));
-      else                   getWindow().setStatusBarColor(primaryDark);
+      getWindow().setStatusBarColor(recipients.getColor(this).toStatusBarColor(themeType));
     }
 
     if (recipients.isBlocked()) this.blockedIndicator.setVisibility(View.VISIBLE);
@@ -194,6 +193,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       ListPreference     vibratePreference  = (ListPreference) this.findPreference(PREFERENCE_VIBRATE);
       ColorPreference    colorPreference    = (ColorPreference)    this.findPreference(PREFERENCE_COLOR);
       Preference         blockPreference    = this.findPreference(PREFERENCE_BLOCK);
+      ThemeType          themeType          = ThemeType.getCurrent(getActivity());
 
       mutePreference.setChecked(recipients.isMuted());
 
@@ -218,13 +218,9 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
         vibratePreference.setValueIndex(2);
       }
 
-      if (recipients.getColor().isPresent()) {
-        colorPreference.setEnabled(true);
-        colorPreference.setValue(recipients.getColor().get());
-      } else {
-        colorPreference.setEnabled(false);
-        colorPreference.setValue(getResources().getColor(R.color.textsecure_primary));
-      }
+      colorPreference.setEnabled(recipients.isSingleRecipient() && !recipients.isGroupRecipient());
+      colorPreference.setChoices(MaterialColors.CONVERSATION_PALETTE.asConversationColorArray(themeType));
+      colorPreference.setValue(recipients.getColor(getActivity()).toActionBarColor(ThemeType.getCurrent(getActivity())));
 
       if (!recipients.isSingleRecipient() || recipients.isGroupRecipient()) {
         blockPreference.setEnabled(false);
@@ -298,16 +294,20 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
       @Override
       public boolean onPreferenceChange(Preference preference, Object newValue) {
-        final int value = (Integer)newValue;
+        final int           value         = (Integer) newValue;
+        final MaterialColor selectedColor = MaterialColors.CONVERSATION_PALETTE.getByColor(value);
+        final MaterialColor currentColor  = recipients.getColor(getActivity());
 
-        if (preference.isEnabled() && value != recipients.getColor().get()) {
-          recipients.setColor(Optional.of(value));
+        if (selectedColor == null) return false;
+
+        if (preference.isEnabled() && !currentColor.equals(selectedColor)) {
+          recipients.setColor(selectedColor);
 
           new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
               DatabaseFactory.getRecipientPreferenceDatabase(getActivity())
-                             .setColor(recipients, value);
+                             .setColor(recipients, selectedColor);
               return null;
             }
           }.execute();
