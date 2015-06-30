@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <attr name="theme_type" format="string"/>
     <attr name="conversation_list_item_background_selected" format="reference"/>
     <attr name="conversation_list_item_background_read" format="reference"/>
     <attr name="conversation_list_item_background_unread" format="reference"/>

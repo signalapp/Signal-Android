@@ -25,6 +25,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
 import org.thoughtcrime.securesms.database.CanonicalAddressDatabase;
@@ -122,7 +123,7 @@ public class RecipientProvider {
 
   private @NonNull RecipientDetails getIndividualRecipientDetails(Context context, long recipientId, String number) {
     Optional<RecipientsPreferences> preferences = DatabaseFactory.getRecipientPreferenceDatabase(context).getRecipientsPreferences(new long[]{recipientId});
-    Optional<Integer>               color       = preferences.isPresent() ? preferences.get().getColor() : Optional.<Integer>absent();
+    MaterialColor                   color       = preferences.isPresent() ? preferences.get().getColor() : null;
     Uri                             uri         = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, Uri.encode(number));
     Cursor                          cursor      = context.getContentResolver().query(uri, CALLER_ID_PROJECTION,
                                                                                      null, null, null);
@@ -152,13 +153,13 @@ public class RecipientProvider {
 
       if (record != null) {
         ContactPhoto contactPhoto = ContactPhotoFactory.getGroupContactPhoto(record.getAvatar());
-        return new RecipientDetails(record.getTitle(), groupId, null, contactPhoto, Optional.<Integer>absent());
+        return new RecipientDetails(record.getTitle(), groupId, null, contactPhoto, null);
       }
 
-      return new RecipientDetails(null, groupId, null, ContactPhotoFactory.getDefaultGroupPhoto(), Optional.<Integer>absent());
+      return new RecipientDetails(null, groupId, null, ContactPhotoFactory.getDefaultGroupPhoto(), null);
     } catch (IOException e) {
       Log.w("RecipientProvider", e);
-      return new RecipientDetails(null, groupId, null, ContactPhotoFactory.getDefaultGroupPhoto(), Optional.<Integer>absent());
+      return new RecipientDetails(null, groupId, null, ContactPhotoFactory.getDefaultGroupPhoto(), null);
     }
   }
 
@@ -182,21 +183,21 @@ public class RecipientProvider {
   }
 
   public static class RecipientDetails {
-    @Nullable public final String            name;
-    @NonNull  public final String            number;
-    @NonNull  public final ContactPhoto      avatar;
-    @Nullable public final Uri               contactUri;
-    @NonNull  public final Optional<Integer> color;
+    @Nullable public final String        name;
+    @NonNull  public final String        number;
+    @NonNull  public final ContactPhoto  avatar;
+    @Nullable public final Uri           contactUri;
+    @Nullable public final MaterialColor color;
 
     public RecipientDetails(@Nullable String name, @NonNull String number,
                             @Nullable Uri contactUri, @NonNull ContactPhoto avatar,
-                            @NonNull  Optional<Integer> color)
+                            @Nullable MaterialColor color)
     {
-      this.name          = name;
-      this.number        = number;
-      this.avatar        = avatar;
-      this.contactUri    = contactUri;
-      this.color         = color;
+      this.name       = name;
+      this.number     = number;
+      this.avatar     = avatar;
+      this.contactUri = contactUri;
+      this.color      = color;
     }
   }
 
