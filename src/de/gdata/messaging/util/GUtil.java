@@ -2,7 +2,10 @@ package de.gdata.messaging.util;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.view.View;
@@ -16,11 +19,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.load.resource.bitmap.GlideBitmapDrawable;
+import com.bumptech.glide.request.target.SquaringDrawable;
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.BitmapUtil;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -252,6 +258,21 @@ public static String extractCountryCode(String number) {
   }
 
   public static Long numberToLong(String number) {
-    return Long.parseLong(number.replace(" ", "").replace("+", "").replace("-", "").replace("#", "").replace("*", ""));
+    number = number.replaceAll(" ", "");
+    String longNumber = "";
+    for (int i = 0; i < number.length(); ++i)
+    {
+      char a = number.charAt(i);
+      if (('0' <= a && a <= '9')) {
+        longNumber += a;
+      }
+    }
+    return Long.parseLong(longNumber);
+  }
+
+  public static Drawable createCircledBitmapFromDrawable(Context context, GlideBitmapDrawable profileImage) {
+    return new BitmapDrawable(context.getResources(),
+        BitmapUtil.getScaledCircleBitmap(context, ((GlideBitmapDrawable) profileImage)
+            .getBitmap()));
   }
 }

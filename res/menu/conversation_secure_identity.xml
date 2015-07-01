@@ -3,7 +3,7 @@
     <item android:title="@string/conversation_secure_verified__menu_security"
           android:id="@+id/menu_security"
           android:icon="?menu_lock_icon"
-          app:showAsAction="ifRoom">
+          app:showAsAction="never">
           <menu>
               <item android:title="@string/conversation_secure_verified__menu_verify_identity"
                     android:id="@+id/menu_verify_identity"/>

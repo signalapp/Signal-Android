@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:paddingBottom="@dimen/md_dialog_frame_margin"
+              android:paddingLeft="@dimen/md_dialog_frame_margin"
+              android:paddingRight="@dimen/md_dialog_frame_margin"
+              android:paddingTop="@dimen/md_dialog_frame_margin"
+              android:weightSum="2"
+              android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_weight="1.5"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <org.thoughtcrime.securesms.components.ThumbnailView
+            android:id="@+id/profile_picture"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:scaleType="fitXY"
+            android:padding="1dp"
+            android:visibility="visible"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/image_border"
+            android:padding="0dp"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="image"
+            android:clickable="true"
+            android:padding="4dp"
+            android:layout_margin="8dp"
+            android:scaleType="fitXY"
+            android:background="@drawable/editor_states"
+            android:src="@android:drawable/ic_menu_edit"
+            android:id="@+id/profile_picture_edit"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="0.25"
+        android:layout_marginTop="@dimen/md_dialog_frame_margin">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/profile_status"
+            android:background="@drawable/textview_border"
+            android:hint="..."
+            android:paddingTop="6dp"
+            android:paddingBottom="8dp"
+            android:paddingLeft="6dp"
+            android:textSize="18sp"
+            android:enabled="false"
+            android:gravity="center_vertical"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="image"
+            android:id="@+id/profile_status_edit"
+            android:clickable="true"
+            android:padding="4dp"
+            android:layout_margin="8dp"
+            android:scaleType="fitXY"
+            android:background="@drawable/editor_states"
+            android:src="@android:drawable/ic_menu_edit"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
+</LinearLayout>

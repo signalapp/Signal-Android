@@ -67,21 +67,21 @@
         >
     <LinearLayout
         android:id="@+id/drawer"
-        android:paddingTop="?attr/actionBarSize"
+        android:paddingTop="30dp"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:background="@color/gdata_red"
         android:gravity="center_vertical"
-        android:orientation="horizontal" >
+        android:orientation="vertical" >
 
-        <org.thoughtcrime.securesms.components.ThumbnailView
+        <org.thoughtcrime.securesms.components.CircledImageView
             android:id="@+id/profile_picture"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_gravity="left"
             android:layout_weight="2"
-            android:paddingBottom="20dp"
+            android:layout_marginLeft="20dp"
             android:scaleType="centerInside"
             android:visibility="visible"/>
 
@@ -89,7 +89,7 @@
             android:id="@+id/drawer2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
+            android:layout_margin="20dp"
             android:layout_weight="2"
             android:orientation="vertical" >
 
@@ -97,10 +97,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="01776747346"
+                android:text=""
                 android:id="@+id/profileName"
                 android:textColor="@color/white"
-                android:textSize="14sp" />
+                android:textSize="10sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -110,7 +110,7 @@
                 android:text="test@gmail.com"
                 android:id="@+id/profileStatus"
                 android:textColor="@color/white"
-                android:textSize="14sp" />
+                android:textSize="10sp" />
         </LinearLayout>
     </LinearLayout>
     <ListView

@@ -96,9 +96,9 @@ public class DirectoryHelper {
         return true;
       }
 
-      final String number = recipients.getPrimaryRecipient().getNumber();
+      String number = recipients.getPrimaryRecipient().getNumber();
 
-      if (number == null) {
+      if (number == null || number.length()< 0) {
         return false;
       }
 

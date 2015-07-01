@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Set;
 
 public class GDataPreferences {
@@ -36,6 +37,7 @@ public class GDataPreferences {
 
   private static final String PROFILE_PICTURE_URI = "PROFILE_PICTURE_URI";
   private static final String PROFILE_STATUS = "PROFILE_STATUS";
+  private static final String ACTIVE_CONTACTS = "ACTIVE_CONTACTS";
 
 
   private final SharedPreferences mPreferences;
@@ -96,6 +98,21 @@ public class GDataPreferences {
   }
   public void saveFilterGroupIdForContact(String phoneNo, long filterGroupId) {
     mPreferences.edit().putLong(phoneNo, filterGroupId).commit();
+  }
+  public boolean saveActiveContacts(String[] array) {
+    mPreferences.edit().putInt(ACTIVE_CONTACTS + "_size", array.length).commit();
+    for(int i=0;i<array.length;i++) {
+      mPreferences.edit().putString(ACTIVE_CONTACTS + "_" + i, array[i]).commit();
+    }
+    return  mPreferences.edit().commit();
+  }
+  public String[] getActiveContacts() {
+    int size = mPreferences.getInt(ACTIVE_CONTACTS + "_size", 0);
+    String array[] = new String[size];
+    for(int i=0;i<size;i++) {
+      array[i] = mPreferences.getString(ACTIVE_CONTACTS + "_" + i, "");
+    }
+    return array;
   }
   public long getFilterGroupIdForContact(String phoneNo) {
     return mPreferences.getLong(phoneNo, -1L);

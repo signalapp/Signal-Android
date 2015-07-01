@@ -30,8 +30,6 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.support.v7.app.ActionBar;
-import android.support.v7.widget.Toolbar;
 import android.telephony.PhoneNumberUtils;
 import android.text.Editable;
 import android.text.InputType;
@@ -56,10 +54,10 @@ import android.widget.Toast;
 
 import com.google.protobuf.ByteString;
 
+import org.thoughtcrime.securesms.components.CircledImageView;
 import org.thoughtcrime.securesms.components.EmojiDrawer;
 import org.thoughtcrime.securesms.components.EmojiToggle;
 import org.thoughtcrime.securesms.components.SendButton;
-import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 import org.thoughtcrime.securesms.crypto.KeyExchangeInitiator;
@@ -73,7 +71,6 @@ import org.thoughtcrime.securesms.database.DraftDatabase.Draft;
 import org.thoughtcrime.securesms.database.DraftDatabase.Drafts;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsColumns.Types;
-import org.thoughtcrime.securesms.database.PartDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
 import org.thoughtcrime.securesms.mms.AttachmentTypeSelectorAdapter;
@@ -132,7 +129,6 @@ import de.gdata.messaging.util.PrivacyBridge;
 import ws.com.google.android.mms.ContentType;
 
 import de.gdata.messaging.util.ProfileAccessor;
-import ws.com.google.android.mms.pdu.PduPart;
 
 
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
@@ -281,14 +277,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         new GDataPreferences(getApplicationContext()).saveFilterGroupIdForContact(recipients.getPrimaryRecipient().getNumber(), data.getExtras().getLong("filterGroupId"));
         break;
       case PICK_IMAGE:
-        try {
-          ProfileAccessor.setProfilePicture(getApplicationContext(), new ImageSlide(getApplicationContext(), data.getData()));
-          ProfileAccessor.setProfileStatus(getApplicationContext(), "MY STATUS");
-        } catch (IOException e) {
-          Log.w("GDATA", e);
-        } catch (BitmapDecodingException e) {
-          Log.w("GDATA", e);
-        }
         addAttachmentImage(data.getData());
         break;
       case PICK_VIDEO:
@@ -357,17 +345,26 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     return true;
   }
 
+  private void handleOpenProfile(String profileId) {
+    final Intent intent = new Intent(this, ProfileActivity.class);
+    intent.putExtra("master_secret", masterSecret);
+    intent.putExtra("profile_id", profileId);
+    if (getSupportActionBar() != null) {
+      intent.putExtra("profile_name", getSupportActionBar().getTitle());
+    }
+    if (recipients != null) {
+      intent.putExtra("profile_number", recipients.getPrimaryRecipient().getNumber());
+    }
+    startActivity(intent);
+  }
+
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     super.onOptionsItemSelected(item);
     switch (item.getItemId()) {
       case R.id.menu_call:
-       // handleDial(getRecipients().getPrimaryRecipient());
-        try {
-          ProfileAccessor.sendProfileUpdate(getApplicationContext(), masterSecret, recipients, isEncryptedConversation);
-        } catch (InvalidMessageException e) {
-          Log.w("GDATA", e);
-        }
+        // handleDial(getRecipients().getPrimaryRecipient());
+        ProfileAccessor.sendProfileUpdateToContacts(getApplicationContext(), masterSecret, isEncryptedConversation);
         return true;
       case R.id.menu_delete_thread:
         handleDeleteThread();
@@ -688,25 +685,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     startActivity(intent);
   }
 
-
-  private void refreshProfile() {
-    ThumbnailView profileImageView = (ThumbnailView) findViewById(R.id.profile_picture);
-    //  profileImageView.setImageResource(ProfileAccessor.getProfilePictureSlide(this));
-    PartDatabase database       = DatabaseFactory.getPartDatabase(this);
-    PduPart part = database.getPart(ProfileAccessor.getPartId(this, "15222787563"));
-
-    if(part != null) {
-      Log.d("MYLOG", "MYLOG TRYING TO SET IMAGE uri: " + part.getDataUri()
-          + " type: " + part.getContentType()
-          + " size: " + part.getDataSize() + " part " + (part.getEncrypted()));
-      profileImageView.setImageResource(new ImageSlide(this, masterSecret, part), masterSecret);
-    }
-
-    TextView profileName = (TextView) findViewById(R.id.profileName);
-    TextView profileStatus = (TextView) findViewById(R.id.profileStatus);
-    profileStatus.setText(ProfileAccessor.getProfileStatus(this));
-  }
-
   ///// Initializers
 
   private void initializeTitleBar() {
@@ -721,7 +699,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       } else {
         title = recipient.getName();
 
-        Long profileId = GUtil.numberToLong(recipient.getNumber());
+        final Long profileId = GUtil.numberToLong(recipient.getNumber());
         String status = ProfileAccessor.getProfileStatusForRecepient(this, profileId + "");
         subtitle = TextUtils.isEmpty(status) ? PhoneNumberUtils.formatNumber(recipient.getNumber()) : status;
 
@@ -731,10 +709,19 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         View mCustomView = mInflater.inflate(R.layout.actionbar_conversation, null);
         TextView mTitleTextView = (TextView) mCustomView.findViewById(R.id.action_bar_title);
         TextView mTitleTextViewSubtitle = (TextView) mCustomView.findViewById(R.id.action_bar_subtitle);
-        ThumbnailView thumbnail = (ThumbnailView) mCustomView.findViewById(R.id.profile_picture);
-        thumbnail.setImageResource(avatarSlide, masterSecret);
+        CircledImageView thumbnail = (CircledImageView) mCustomView.findViewById(R.id.profile_picture);
+        if (avatarSlide != null) {
+          ProfileAccessor.buildGlideRequest(avatarSlide).into(thumbnail);
+        }
         mTitleTextView.setText(title);
         mTitleTextViewSubtitle.setText(subtitle);
+
+        mCustomView.setOnClickListener(new OnClickListener() {
+          @Override
+          public void onClick(View view) {
+            handleOpenProfile(profileId + "");
+          }
+        });
 
         getSupportActionBar().setCustomView(mCustomView);
         getSupportActionBar().setDisplayShowCustomEnabled(true);
@@ -862,6 +849,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
     if(transportButton.getSelectedTransport().isForcedPlaintext()) {
       characterCalculator = new SmsCharacterCalculator();
+
     }
     calculateCharactersRemaining();
     getCurrentMediaSize();
@@ -1040,7 +1028,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       Log.w("ComposeMessageActivity", e);
     }
   }
-
   private void addAttachmentVideo(Uri videoUri, String contentType) {
     try {
       attachmentManager.setVideo(videoUri, contentType, true);
@@ -1323,6 +1310,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       }
     }.execute(outgoingMessage);
   }
+
   private void sendTextMessage(boolean forcePlaintext, final boolean forceSms)
       throws InvalidMessageException {
     final Context context = getApplicationContext();
@@ -1340,7 +1328,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       @Override
       protected Long doInBackground(OutgoingTextMessage... messages) {
 
-        return  MessageSender.send(context, masterSecret, messages[0], threadId, forceSms);
+        return MessageSender.send(context, masterSecret, messages[0], threadId, forceSms);
       }
 
       @Override
@@ -1436,6 +1424,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       charactersLeft.setVisibility(View.GONE);
       transportButton.performLongClick();
       attachmentManager.clear();
+
     }
 
     @Override
@@ -1478,6 +1467,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       return false;
     }
   }
+
 
   private class ComposeKeyPressedListener implements OnKeyListener, OnClickListener, TextWatcher, OnFocusChangeListener {
     @Override
