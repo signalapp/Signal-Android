@@ -230,7 +230,6 @@ public class MessageNotifier {
                                               notificationState.getReplyIntent(context, recipients))
           .addRemoteInput(new RemoteInput.Builder(EXTRA_VOICE_REPLY)
                               .setLabel(context.getString(R.string.MessageNotifier_reply))
-                              .setChoices(context.getResources().getStringArray(R.array.MessageNotifier_wear_replies))
                               .build())
           .build();
 
