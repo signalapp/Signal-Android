@@ -23,6 +23,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.ColorStateList;
+import android.content.res.TypedArray;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -30,6 +35,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -154,6 +160,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private   ConversationFragment  fragment;
   private   Button                unblockButton;
   private   View                  composePanel;
+  private   View                  composeBubble;
 
   private AttachmentTypeSelectorAdapter attachmentAdapter;
   private AttachmentManager             attachmentManager;
@@ -732,6 +739,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     titleView      = (ConversationTitleView) getSupportActionBar().getCustomView();
     unblockButton  = (Button)      findViewById(R.id.unblock_button);
     composePanel   =               findViewById(R.id.bottom_panel);
+    composeBubble  =               findViewById(R.id.compose_bubble);
+
+    int[]      attributes   = new int[]{R.attr.conversation_item_bubble_background};
+    TypedArray colors       = obtainStyledAttributes(attributes);
+    int        defaultColor = colors.getColor(0, Color.WHITE);
+    composeBubble.getBackground().setColorFilter(defaultColor, PorterDuff.Mode.MULTIPLY);
+    colors.recycle();
 
     attachmentAdapter = new AttachmentTypeSelectorAdapter(this);
     attachmentManager = new AttachmentManager(this, this);
@@ -747,6 +761,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       public void onChange(TransportOption newTransport) {
         calculateCharactersRemaining();
         composeText.setHint(newTransport.getComposeHint());
+        buttonToggle.getBackground().setColorFilter(newTransport.getBackgroundColor(), Mode.MULTIPLY);
       }
     });
 

@@ -176,4 +176,18 @@
         <item name="android:background">@drawable/error_round</item>
     </style>
 
+    <style name="ComposeEditText" parent="@style/Widget.AppCompat.EditText">
+        <item name="android:padding">2dp</item>
+        <item name="android:background">@null</item>
+        <item name="android:maxLines">4</item>
+        <item name="android:maxLength">2000</item>
+        <item name="android:textColor">?conversation_item_sent_text_primary_color</item>
+        <item name="android:capitalize">sentences</item>
+        <item name="android:autoText">true</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:imeOptions">actionSend|flagNoEnterAction|flagNoExtractUi</item>
+        <item name="android:inputType">textAutoCorrect|textCapSentences|textMultiLine</item>
+        <item name="android:contentDescription">@string/conversation_activity__compose_description</item>
+    </style>
+
 </resources>
