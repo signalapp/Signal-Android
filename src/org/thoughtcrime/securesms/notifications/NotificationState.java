@@ -4,11 +4,11 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.VibrateState;
 import org.thoughtcrime.securesms.recipients.Recipients;
 
@@ -70,9 +70,9 @@ public class NotificationState {
     return notifications;
   }
 
-  public PendingIntent getMarkAsReadIntent(Context context, MasterSecret masterSecret) {
+  public PendingIntent getMarkAsReadIntent(Context context) {
     long[] threadArray = new long[threads.size()];
-    int index          = 0;
+    int    index       = 0;
 
     for (long thread : threads) {
       Log.w("NotificationState", "Added thread: " + thread);
@@ -80,15 +80,24 @@ public class NotificationState {
     }
 
     Intent intent = new Intent(MarkReadReceiver.CLEAR_ACTION);
-    intent.putExtra("thread_ids", threadArray);
-    intent.putExtra("master_secret", masterSecret);
+    intent.putExtra(MarkReadReceiver.THREAD_IDS_EXTRA, threadArray);
     intent.setPackage(context.getPackageName());
 
     // XXX : This is an Android bug.  If we don't pull off the extra
     // once before handing off the PendingIntent, the array will be
     // truncated to one element when the PendingIntent fires.  Thanks guys!
     Log.w("NotificationState", "Pending array off intent length: " +
-        intent.getLongArrayExtra("thread_ids").length);
+          intent.getLongArrayExtra("thread_ids").length);
+
+    return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+  }
+
+  public PendingIntent getReplyIntent(Context context, Recipients recipients) {
+    if (threads.size() != 1) throw new AssertionError("We only support replies to single thread notifications!");
+
+    Intent intent = new Intent(WearReplyReceiver.REPLY_ACTION);
+    intent.putExtra(WearReplyReceiver.RECIPIENT_IDS_EXTRA, recipients.getIds());
+    intent.setPackage(context.getPackageName());
 
     return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
   }

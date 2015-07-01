@@ -36,6 +36,7 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationCompat.Action;
 import android.support.v4.app.NotificationCompat.BigTextStyle;
 import android.support.v4.app.NotificationCompat.InboxStyle;
+import android.support.v4.app.RemoteInput;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -85,6 +86,8 @@ public class MessageNotifier {
 
   private volatile static long visibleThread = -1;
 
+  public static final String EXTRA_VOICE_REPLY = "extra_voice_reply";
+
   public static void setVisibleThread(long threadId) {
     visibleThread = threadId;
   }
@@ -94,8 +97,9 @@ public class MessageNotifier {
       sendInThreadNotification(context, recipients);
     } else {
       Intent intent = new Intent(context, ConversationActivity.class);
-      intent.putExtra("recipients", recipients.getIds());
-      intent.putExtra("thread_id", threadId);
+      intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+      intent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, recipients.getIds());
+      intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId);
       intent.setData((Uri.parse("custom://"+System.currentTimeMillis())));
 
       NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
@@ -191,6 +195,7 @@ public class MessageNotifier {
 
     List<NotificationItem>     notifications       = notificationState.getNotifications();
     NotificationCompat.Builder builder             = new NotificationCompat.Builder(context);
+    Recipients                 recipients          = notifications.get(0).getRecipients();
     Recipient                  recipient           = notifications.get(0).getIndividualRecipient();
     Drawable                   recipientPhoto      = recipient.getContactPhoto();
     int                        largeIconTargetSize = context.getResources().getDimensionPixelSize(R.dimen.contact_photo_target_size);
@@ -218,10 +223,21 @@ public class MessageNotifier {
     if (masterSecret != null) {
       Action markAsReadAction = new Action(R.drawable.check,
                                            context.getString(R.string.MessageNotifier_mark_as_read),
-                                           notificationState.getMarkAsReadIntent(context, masterSecret));
-      builder.addAction(markAsReadAction);
-      builder.addAction(new Action(R.drawable.ic_reply_white_36dp, context.getString(R.string.MessageNotifier_reply), notifications.get(0).getReplyIntent(context)));
-      builder.extend(new NotificationCompat.WearableExtender().addAction(markAsReadAction));
+
+                                           notificationState.getMarkAsReadIntent(context));
+
+      Action replyAction = new Action.Builder(R.drawable.ic_reply,
+                                              context.getString(R.string.MessageNotifier_reply),
+                                              notificationState.getReplyIntent(context, recipients))
+          .addRemoteInput(new RemoteInput.Builder(EXTRA_VOICE_REPLY)
+                              .setLabel(context.getString(R.string.MessageNotifier_reply))
+                              .build())
+          .build();
+
+      NotificationCompat.WearableExtender wearableExtender = new NotificationCompat.WearableExtender();
+      wearableExtender.addAction(replyAction);
+      wearableExtender.addAction(markAsReadAction);
+      builder.extend(wearableExtender);
     }
 
     SpannableStringBuilder content = new SpannableStringBuilder();
@@ -277,7 +293,7 @@ public class MessageNotifier {
     if (masterSecret != null) {
        Action markAllAsReadAction = new Action(R.drawable.check,
                                                context.getString(R.string.MessageNotifier_mark_all_as_read),
-                                               notificationState.getMarkAsReadIntent(context, masterSecret));
+                                               notificationState.getMarkAsReadIntent(context));
        builder.addAction(markAllAsReadAction);
        builder.extend(new NotificationCompat.WearableExtender().addAction(markAllAsReadAction));
     }
