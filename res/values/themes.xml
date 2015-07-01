@@ -3,7 +3,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="TextSecure.LightNoActionBar" parent="@style/Theme.AppCompat.Light.NoActionBar">
-        <item name="theme_type">light</item>
+        <item name="conversation_color_material_weight">500</item>
+        <item name="actionbar_color_material_weight">500</item>
+        <item name="statusbar_color_material_weight">700</item>
+
         <item name="actionBarStyle">@style/TextSecure.LightActionBar</item>
         <item name="actionBarTabBarStyle">@style/TextSecure.LightActionBar.TabBar</item>
         <item name="colorPrimary">@color/textsecure_primary</item>
@@ -13,7 +16,10 @@
     </style>
 
     <style name="TextSecure.DarkNoActionBar" parent="@style/Theme.AppCompat.NoActionBar">
-        <item name="theme_type">dark</item>
+        <item name="conversation_color_material_weight">900</item>
+        <item name="actionbar_color_material_weight">900</item>
+        <item name="statusbar_color_material_weight">700</item>
+
         <item name="actionBarStyle">@style/TextSecure.DarkActionBar</item>
         <item name="actionBarTabBarStyle">@style/TextSecure.DarkActionBar.TabBar</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
@@ -60,7 +66,10 @@
     </style>
 
     <style name="TextSecure.LightTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
-        <item name="theme_type">light</item>
+        <item name="conversation_color_material_weight">500</item>
+        <item name="actionbar_color_material_weight">500</item>
+        <item name="statusbar_color_material_weight">700</item>
+
         <item name="actionBarStyle">@style/TextSecure.LightActionBar</item>
         <item name="actionBarTabBarStyle">@style/TextSecure.LightActionBar.TabBar</item>
         <item name="colorPrimary">@color/textsecure_primary</item>
@@ -174,7 +183,10 @@
     </style>
 
     <style name="TextSecure.DarkTheme" parent="@style/Theme.AppCompat">
-        <item name="theme_type">dark</item>
+        <item name="conversation_color_material_weight">900</item>
+        <item name="actionbar_color_material_weight">900</item>
+        <item name="statusbar_color_material_weight">700</item>
+
         <item name="actionBarStyle">@style/TextSecure.DarkActionBar</item>
         <item name="actionBarTabBarStyle">@style/TextSecure.DarkActionBar.TabBar</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
