@@ -7,8 +7,12 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
+
+import org.thoughtcrime.securesms.R;
 
 public class AnimatingToggle extends FrameLayout {
 
@@ -38,29 +42,19 @@ public class AnimatingToggle extends FrameLayout {
     } else {
       child.setVisibility(View.GONE);
     }
+    child.setClickable(false);
   }
 
   public void display(View view) {
     if (view == current) return;
 
-    int oldViewIndex = getViewIndex(current);
-    int newViewIndex = getViewIndex(view);
-
-    int sign;
-
-    if (oldViewIndex < newViewIndex) sign = -1;
-    else                             sign = 1;
-
-    TranslateAnimation oldViewAnimation = createTranslation(0.0f, sign * 1.0f);
-    TranslateAnimation newViewAnimation = createTranslation(sign * -1.0f, 0.0f);
-
-    animateOut(current, oldViewAnimation);
-    animateIn(view, newViewAnimation);
+    animateOut(current, AnimationUtils.loadAnimation(getContext(), R.anim.animation_toggle_out));
+    animateIn(view, AnimationUtils.loadAnimation(getContext(), R.anim.animation_toggle_in));
 
     current = view;
   }
 
-  private void animateOut(final View view, TranslateAnimation animation) {
+  private void animateOut(final View view, Animation animation) {
     animation.setAnimationListener(new Animation.AnimationListener() {
       @Override
       public void onAnimationStart(Animation animation) {
@@ -79,7 +73,7 @@ public class AnimatingToggle extends FrameLayout {
     view.startAnimation(animation);
   }
 
-  private void animateIn(View view, TranslateAnimation animation) {
+  private void animateIn(View view, Animation animation) {
     animation.setInterpolator(new FastOutSlowInInterpolator());
     view.setVisibility(View.VISIBLE);
     view.startAnimation(animation);
@@ -92,17 +86,4 @@ public class AnimatingToggle extends FrameLayout {
 
     throw new IllegalArgumentException("Not a parent of this view.");
   }
-
-  private TranslateAnimation createTranslation(float startY, float endY) {
-    TranslateAnimation translateAnimation = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f,
-                                                                   Animation.RELATIVE_TO_SELF, 0.0f,
-                                                                   Animation.RELATIVE_TO_SELF, startY,
-                                                                   Animation.RELATIVE_TO_SELF, endY);
-
-    translateAnimation.setDuration(SPEED_MILLIS);
-    translateAnimation.setInterpolator(new FastOutSlowInInterpolator());
-
-    return translateAnimation;
-  }
-
 }
