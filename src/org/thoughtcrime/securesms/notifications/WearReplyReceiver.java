@@ -60,8 +60,14 @@ public class WearReplyReceiver extends MasterSecretBroadcastReceiver {
       new AsyncTask<Void, Void, Void>() {
         @Override
         protected Void doInBackground(Void... params) {
-          OutgoingTextMessage reply    = new OutgoingTextMessage(recipients, responseText.toString());
-          long                threadId = MessageSender.send(context, masterSecret, reply, -1, false);
+          long threadId;
+          if(recipients.isGroupRecipient()) {
+            OutgoingMediaMessage reply = new OutgoingMediaMessage(context, recipients, new PduBody(), responseText.toString(), 0);
+            threadId = MessageSender.send(context, masterSecret, reply, -1, false);
+          } else {
+            OutgoingTextMessage reply = new OutgoingTextMessage(recipients, responseText.toString());
+            threadId = MessageSender.send(context, masterSecret, reply, -1, false);
+          }
 
           DatabaseFactory.getThreadDatabase(context).setRead(threadId);
           MessageNotifier.updateNotification(context, masterSecret);
