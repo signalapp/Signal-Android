@@ -20,6 +20,7 @@ import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.TextSecureMessageSender;
 import org.whispersystems.textsecure.api.crypto.UntrustedIdentityException;
+import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachmentStream;
 import org.whispersystems.textsecure.api.messages.multidevice.DeviceContact;
 import org.whispersystems.textsecure.api.messages.multidevice.DeviceContactsOutputStream;
@@ -101,10 +102,11 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
       throws IOException, UntrustedIdentityException, NetworkException
   {
     FileInputStream            contactsFileStream = new FileInputStream(contactsFile);
-    TextSecureAttachmentStream attachmentStream   = new TextSecureAttachmentStream(contactsFileStream,
-                                                                                   "application/octet-stream",
-                                                                                   contactsFile.length(),
-                                                                                   null);
+    TextSecureAttachmentStream attachmentStream   = TextSecureAttachment.newStreamBuilder()
+                                                                        .withStream(contactsFileStream)
+                                                                        .withContentType("application/octet-stream")
+                                                                        .withLength(contactsFile.length())
+                                                                        .build();
 
     try {
       messageSender.sendMessage(TextSecureSyncMessage.forContacts(attachmentStream));
@@ -118,7 +120,12 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
       try {
         Uri                 displayPhotoUri = Uri.withAppendedPath(uri, ContactsContract.Contacts.Photo.DISPLAY_PHOTO);
         AssetFileDescriptor fd              = context.getContentResolver().openAssetFileDescriptor(displayPhotoUri, "r");
-        return Optional.of(new TextSecureAttachmentStream(fd.createInputStream(), "image/*", fd.getLength(), null));
+
+        return Optional.of(TextSecureAttachment.newStreamBuilder()
+                                               .withStream(fd.createInputStream())
+                                               .withContentType("image/*")
+                                               .withLength(fd.getLength())
+                                               .build());
       } catch (IOException e) {
         Log.w(TAG, e);
       }
@@ -141,7 +148,11 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
         byte[] data = cursor.getBlob(0);
 
         if (data != null) {
-          return Optional.of(new TextSecureAttachmentStream(new ByteArrayInputStream(data), "image/*", data.length, null));
+          return Optional.of(TextSecureAttachment.newStreamBuilder()
+                                                 .withStream(new ByteArrayInputStream(data))
+                                                 .withContentType("image/*")
+                                                 .withLength(data.length)
+                                                 .build());
         }
       }
 

@@ -14,6 +14,7 @@ import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.TextSecureMessageSender;
 import org.whispersystems.textsecure.api.crypto.UntrustedIdentityException;
+import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachmentStream;
 import org.whispersystems.textsecure.api.messages.multidevice.DeviceGroup;
 import org.whispersystems.textsecure.api.messages.multidevice.DeviceGroupsOutputStream;
@@ -93,10 +94,11 @@ public class MultiDeviceGroupUpdateJob extends MasterSecretJob implements Inject
       throws IOException, UntrustedIdentityException
   {
     FileInputStream            contactsFileStream = new FileInputStream(contactsFile);
-    TextSecureAttachmentStream attachmentStream   = new TextSecureAttachmentStream(contactsFileStream,
-                                                                                   "application/octet-stream",
-                                                                                   contactsFile.length(),
-                                                                                   null);
+    TextSecureAttachmentStream attachmentStream   = TextSecureAttachment.newStreamBuilder()
+                                                                        .withStream(contactsFileStream)
+                                                                        .withContentType("application/octet-stream")
+                                                                        .withLength(contactsFile.length())
+                                                                        .build();
 
     messageSender.sendMessage(TextSecureSyncMessage.forGroups(attachmentStream));
   }
@@ -105,8 +107,11 @@ public class MultiDeviceGroupUpdateJob extends MasterSecretJob implements Inject
   private Optional<TextSecureAttachmentStream> getAvatar(@Nullable byte[] avatar) {
     if (avatar == null) return Optional.absent();
 
-    return Optional.of(new TextSecureAttachmentStream(new ByteArrayInputStream(avatar),
-                                                      "image/*", avatar.length, null));
+    return Optional.of(TextSecureAttachment.newStreamBuilder()
+                                           .withStream(new ByteArrayInputStream(avatar))
+                                           .withContentType("image/*")
+                                           .withLength(avatar.length)
+                                           .build());
   }
 
   private File createTempFile(String prefix) throws IOException {

@@ -67,11 +67,16 @@ public abstract class PushSendJob extends SendJob {
       {
         try {
           InputStream is = PartAuthority.getPartStream(context, masterSecret, part.getDataUri());
-          attachments.add(new TextSecureAttachmentStream(is, contentType, part.getDataSize(), new ProgressListener() {
-            @Override public void onAttachmentProgress(long total, long progress) {
-              EventBus.getDefault().postSticky(new PartProgressEvent(part.getPartId(), total, progress));
-            }
-          }));
+          attachments.add(TextSecureAttachment.newStreamBuilder()
+                                              .withStream(is)
+                                              .withContentType(contentType)
+                                              .withLength(part.getDataSize())
+                                              .withListener(new ProgressListener() {
+                                                @Override public void onAttachmentProgress(long total, long progress) {
+                                                  EventBus.getDefault().postSticky(new PartProgressEvent(part.getPartId(), total, progress));
+                                                }
+                                              })
+                                              .build());
         } catch (IOException ioe) {
           Log.w(TAG, "Couldn't open attachment", ioe);
         }
