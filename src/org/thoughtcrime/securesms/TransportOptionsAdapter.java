@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,6 +55,7 @@ public class TransportOptionsAdapter extends BaseAdapter {
     ImageView       imageView = (ImageView) convertView.findViewById(R.id.icon);
     TextView        textView  = (TextView) convertView.findViewById(R.id.text);
 
+    DrawableCompat.setTint(imageView.getBackground(), transport.getBackgroundColor());
     imageView.setImageResource(transport.getDrawable());
     textView.setText(transport.getDescription());
 

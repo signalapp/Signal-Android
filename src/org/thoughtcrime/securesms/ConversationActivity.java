@@ -16,17 +16,23 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.annotation.TargetApi;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.ColorStateList;
+import android.graphics.PorterDuff.Mode;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -58,6 +64,7 @@ import org.thoughtcrime.securesms.components.emoji.EmojiDrawer;
 import org.thoughtcrime.securesms.components.emoji.EmojiToggle;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
+import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
@@ -167,6 +174,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private DynamicTheme    dynamicTheme    = new DynamicTheme();
   private DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
+  @TargetApi(Build.VERSION_CODES.KITKAT)
   @Override
   protected void onPreCreate() {
     dynamicTheme.onCreate(this);
@@ -220,6 +228,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     initializeIme();
 
     titleView.setTitle(recipients);
+    setActionBarColor(recipients.getColor());
     setBlockedUserState(recipients);
     calculateCharactersRemaining();
 
@@ -741,6 +750,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       public void onChange(TransportOption newTransport) {
         calculateCharactersRemaining();
         composeText.setHint(newTransport.getComposeHint());
+        DrawableCompat.setTint(buttonToggle.getBackground(), newTransport.getBackgroundColor());
       }
     });
 
@@ -803,6 +813,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       public void run() {
         titleView.setTitle(recipients);
         setBlockedUserState(recipients);
+        setActionBarColor(recipients.getColor());
       }
     });
   }
@@ -991,6 +1002,18 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }.execute(thisThreadId);
 
     return future;
+  }
+
+  private void setActionBarColor(Optional<Integer> color) {
+    int colorPrimary     = getResources().getColor(R.color.textsecure_primary);
+    int colorPrimaryDark = getResources().getColor(R.color.textsecure_primary_dark);
+
+    getSupportActionBar().setBackgroundDrawable(new ColorDrawable(color.or(colorPrimary)));
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+      if (color.isPresent()) getWindow().setStatusBarColor(ContactColors.getStatusTinted(color.get()).or(colorPrimaryDark));
+      else                   getWindow().setStatusBarColor(colorPrimaryDark);
+    }
   }
 
   private void setBlockedUserState(Recipients recipients) {

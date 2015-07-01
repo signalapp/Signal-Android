@@ -29,6 +29,9 @@ repositories {
     maven { // textdrawable
         url 'https://dl.bintray.com/amulyakhare/maven'
     }
+    maven {
+        url "https://jitpack.io"
+    }
     jcenter()
     mavenLocal()
 }
@@ -49,14 +52,20 @@ dependencies {
         exclude module: 'support-annotations'
     }
 
+    compile 'pl.tajchert:waitingdots:0.1.0'
     compile 'com.soundcloud.android:android-crop:0.9.10@aar'
     compile 'com.android.support:appcompat-v7:22.1.1'
     compile 'com.android.support:recyclerview-v7:21.0.3'
     compile 'com.melnykov:floatingactionbutton:1.1.0'
     compile 'com.google.zxing:android-integration:3.1.0'
+    compile 'com.github.mcginty:material-colors:1.0.1'
     compile ('com.android.support:support-v4-preferencefragment:1.0.0@aar'){
         exclude module: 'support-v4'
     }
+    compile ('com.android.support:gridlayout-v7:22.2.0') {
+        exclude module: 'support-v4'
+    }
+
     compile 'com.squareup.dagger:dagger:1.2.2'
     compile ("com.doomonafireball.betterpickers:library:1.5.3") {
         exclude group: 'com.android.support', module: 'support-v4'
@@ -100,12 +109,14 @@ dependencyVerification {
             'com.github.bumptech.glide:glide:adf657e6bddccb168a29e18ab0954043af46a9b5c736d8c3193c9783fd83d69e',
             'com.makeramen:roundedimageview:1f5a1865796b308c6cdd114acc6e78408b110f0a62fc63553278fbeacd489cd1',
             'com.afollestad:material-dialogs:c17205f0d300baa307599c428a5473a6659684c94a5f68ae3c2b84b5e4741172',
+            'pl.tajchert:waitingdots:2835d49e0787dbcb606c5a60021ced66578503b1e9fddcd7a5ef0cd5f095ba2c',
             'com.soundcloud.android:android-crop:ffd4b973cf6e97f7d64118a0dc088df50e9066fd5634fe6911dd0c0c5d346177',
             'com.android.support:appcompat-v7:9a2355537c2f01cf0b95523605c18606b8d824017e6e94a05c77b0cfc8f21c96',
             'com.android.support:recyclerview-v7:e525ad3f33c84bb12b73d2dc975b55364a53f0f2d0697e043efba59ba73e22d2',
             'com.melnykov:floatingactionbutton:0679ad9f7d61eb7aeab91e8dc56358cdedd5b1c1b9c48464499ffa05c40d3985',
             'com.google.zxing:android-integration:89e56aadf1164bd71e57949163c53abf90af368b51669c0d4a47a163335f95c4',
             'com.android.support:support-v4-preferencefragment:5470f5872514a6226fa1fc6f4e000991f38805691c534cf0bd2778911fc773ad',
+            'com.android.support:gridlayout-v7:a9b770cffca2c7c5cd83cba4dd12503365de5e8d9c79c479165adf18ab3bc25b',
             'com.squareup.dagger:dagger:789aca24537022e49f91fc6444078d9de8f1dd99e1bfb090f18491b186967883',
             'com.doomonafireball.betterpickers:library:132ecd685c95a99e7377c4e27bfadbb2d7ed0bea995944060cd62d4369fdaf3d',
             'com.madgag.spongycastle:prov:b8c3fec3a59aac1aa04ccf4dad7179351e54ef7672f53f508151b614c131398a',
@@ -132,7 +143,6 @@ dependencyVerification {
             'com.android.support:support-annotations:7bc07519aa613b186001160403bcfd68260fa82c61cc7e83adeedc9b862b94ae',
     ]
 }
-
 
 android {
     compileSdkVersion 22

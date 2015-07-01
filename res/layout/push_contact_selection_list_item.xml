@@ -6,16 +6,16 @@
                 android:layout_height="?android:attr/listPreferredItemHeight"
                 android:paddingRight="50dp">
 
-    <ImageView
-        android:id="@+id/contact_photo_image"
-        android:layout_width="@dimen/contact_selection_photo_size"
-        android:layout_height="@dimen/contact_selection_photo_size"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="10dp"
-        android:cropToPadding="true"
-        android:scaleType="centerCrop"
-        android:contentDescription="@string/SingleContactSelectionActivity_contact_photo" />
+    <org.thoughtcrime.securesms.components.AvatarImageView
+            android:id="@+id/contact_photo_image"
+            android:layout_width="@dimen/contact_selection_photo_size"
+            android:layout_height="@dimen/contact_selection_photo_size"
+            android:foreground="@drawable/contact_photo_background"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:cropToPadding="true"
+            android:contentDescription="@string/SingleContactSelectionActivity_contact_photo" />
 
     <LinearLayout
             android:id="@+id/number_container"
