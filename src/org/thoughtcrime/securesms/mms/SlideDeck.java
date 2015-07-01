@@ -66,7 +66,6 @@ public class SlideDeck {
 
     for (Slide slide : slides) {
       PduPart part = slide.getPart();
-      part.setPendingPush(true);
       body.addPart(part);
     }
 

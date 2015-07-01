@@ -123,7 +123,7 @@ public class ThumbnailView extends FrameLayout {
     }
 
     this.slide = slide;
-    if (slide.getPart().isPendingPush() && showProgress) {
+    if (slide.isInProgress() && showProgress) {
       progress.spin();
       progress.setVisibility(VISIBLE);
     } else {
@@ -165,7 +165,11 @@ public class ThumbnailView extends FrameLayout {
       builder = buildPlaceholderGlideRequest(slide);
     }
 
-    return builder.error(R.drawable.ic_missing_thumbnail_picture);
+    if (slide.isInProgress() && showProgress) {
+      return builder;
+    } else {
+      return builder.error(R.drawable.ic_missing_thumbnail_picture);
+    }
   }
 
   private GenericRequestBuilder buildThumbnailGlideRequest(Slide slide, MasterSecret masterSecret) {

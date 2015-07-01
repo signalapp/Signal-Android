@@ -263,6 +263,7 @@ public class ConversationItem extends LinearLayout {
       mediaThumbnail.setImageResource(masterSecret, messageRecord.getId(),
                                       messageRecord.getDateReceived(),
                                       ((MediaMmsMessageRecord)messageRecord).getSlideDeckFuture());
+      mediaThumbnail.setShowProgress(!messageRecord.isFailed());
       bodyText.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
     } else {
       mediaThumbnail.setVisibility(View.GONE);
@@ -280,7 +281,6 @@ public class ConversationItem extends LinearLayout {
     mmsDownloadButton.setVisibility(View.GONE);
     mmsDownloadingLabel.setVisibility(View.GONE);
     indicatorText.setVisibility(View.GONE);
-    mediaThumbnail.setShowProgress(!messageRecord.isFailed());
 
     secureImage.setVisibility(messageRecord.isSecure() ? View.VISIBLE : View.GONE);
     bodyText.setCompoundDrawablesWithIntrinsicBounds(0, 0, messageRecord.isKeyExchange() ? R.drawable.ic_menu_login : 0, 0);

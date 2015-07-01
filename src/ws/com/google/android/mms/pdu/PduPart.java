@@ -135,7 +135,7 @@ public class PduPart {
      private long    rowId = -1;
      private long    uniqueId = -1;
      private boolean isEncrypted;
-     private boolean isPendingPush;
+     private boolean isInProgress;
      private long    dataSize;
      private Bitmap  thumbnail;
 
@@ -164,12 +164,12 @@ public class PduPart {
      }
 
 
-     public void setPendingPush(boolean isPendingPush) {
-       this.isPendingPush = isPendingPush;
+     public void setInProgress(boolean isInProgress) {
+       this.isInProgress = isInProgress;
      }
 
-     public boolean isPendingPush() {
-       return isPendingPush;
+     public boolean isInProgress() {
+       return isInProgress;
      }
 
      /**
