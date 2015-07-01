@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <attr name="theme_type" format="string"/>
     <attr name="conversation_list_item_background_selected" format="reference"/>
     <attr name="conversation_list_item_background_read" format="reference"/>
     <attr name="conversation_list_item_background_unread" format="reference"/>
@@ -21,10 +22,6 @@
 
     <attr name="centered_app_title_color" format="reference|color" />
     <attr name="ic_arrow_forward" format="reference" />
-
-    <attr name="conversation_color_material_weight" format="string"/>
-    <attr name="actionbar_color_material_weight" format="string"/>
-    <attr name="statusbar_color_material_weight" format="string"/>
 
     <attr name="conversation_background" format="reference|color"/>
     <attr name="conversation_editor_background" format="reference|color"/>

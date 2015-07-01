@@ -2,82 +2,116 @@ package org.thoughtcrime.securesms.color;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.util.TypedValue;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.Util;
 
-import java.util.Map;
+public enum MaterialColor {
 
-public abstract class MaterialColor {
+  RED        (R.color.red_500,         R.color.red_900,         R.color.red_700,         "red"),
+  PINK       (R.color.pink_500,        R.color.pink_900,        R.color.pink_700,        "pink"),
+  PURPLE     (R.color.purple_500,      R.color.purple_900,      R.color.purple_700,      "purple"),
+  DEEP_PURPLE(R.color.deep_purple_500, R.color.deep_purple_900, R.color.deep_purple_700, "deep_purple"),
+  INDIGO     (R.color.indigo_500,      R.color.indigo_900,      R.color.indigo_700,      "indigo"),
+  BLUE       (R.color.blue_500,        R.color.blue_900,        R.color.blue_700,        "blue"),
+  LIGHT_BLUE (R.color.light_blue_500,  R.color.light_blue_900,  R.color.light_blue_700,  "light_blue"),
+  CYAN       (R.color.cyan_500,        R.color.cyan_900,        R.color.cyan_700,        "cyan"),
+  TEAL       (R.color.teal_500,        R.color.teal_900,        R.color.teal_700,        "teal"),
+  GREEN      (R.color.green_500,       R.color.green_900,       R.color.green_700,       "green"),
+  LIGHT_GREEN(R.color.light_green_500, R.color.light_green_900, R.color.light_green_700, "light_green"),
+  LIME       (R.color.lime_500,        R.color.lime_900,        R.color.lime_700,        "lime"),
+  YELLOW     (R.color.yellow_500,      R.color.yellow_900,      R.color.yellow_700,      "yellow"),
+  AMBER      (R.color.amber_500,       R.color.amber_900,       R.color.amber_700,       "amber"),
+  ORANGE     (R.color.orange_500,      R.color.orange_900,      R.color.orange_700,      "orange"),
+  DEEP_ORANGE(R.color.deep_orange_500, R.color.deep_orange_900, R.color.deep_orange_700, "deep_orange"),
+  BROWN      (R.color.brown_500,       R.color.brown_900,       R.color.brown_700,       "brown"),
+  GREY       (R.color.grey_500,        R.color.grey_900,        R.color.grey_700,        "grey"),
+  BLUE_GREY  (R.color.blue_grey_500,   R.color.blue_grey_900,   R.color.blue_grey_700,   "blue_grey"),
 
-  private final Map<String, Integer> colorWeightMap;
+  GROUP      (GREY.conversationColorLight, R.color.textsecure_primary, R.color.textsecure_primary_dark,
+              GREY.conversationColorDark, R.color.textsecure_primary, R.color.textsecure_primary_dark,
+              "group_color");
 
-  protected MaterialColor(@NonNull Map<String, Integer> colorWeightMap) {
-    this.colorWeightMap = colorWeightMap;
+  private final int conversationColorLight;
+  private final int actionBarColorLight;
+  private final int statusBarColorLight;
+  private final int conversationColorDark;
+  private final int actionBarColorDark;
+  private final int statusBarColorDark;
+  private final String serialized;
+
+  MaterialColor(int conversationColorLight, int actionBarColorLight,
+                int statusBarColorLight, int conversationColorDark,
+                int actionBarColorDark, int statusBarColorDark,
+                String serialized)
+  {
+    this.conversationColorLight = conversationColorLight;
+    this.actionBarColorLight    = actionBarColorLight;
+    this.statusBarColorLight    = statusBarColorLight;
+    this.conversationColorDark  = conversationColorDark;
+    this.actionBarColorDark     = actionBarColorDark;
+    this.statusBarColorDark     = statusBarColorDark;
+    this.serialized             = serialized;
+  }
+
+  MaterialColor(int lightColor, int darkColor, int statusBarColor, String serialized) {
+    this(lightColor, lightColor, statusBarColor, darkColor, darkColor, statusBarColor, serialized);
   }
 
   public int toConversationColor(@NonNull Context context) {
-    return colorWeightMap.get(getWeight(context, R.attr.conversation_color_material_weight, "500"));
+    if (getAttribute(context, R.attr.theme_type, "light").equals("dark")) {
+      return context.getResources().getColor(conversationColorDark);
+    } else {
+      return context.getResources().getColor(conversationColorLight);
+    }
   }
 
   public int toActionBarColor(@NonNull Context context) {
-    return colorWeightMap.get(getWeight(context, R.attr.actionbar_color_material_weight, "500"));
+    if (getAttribute(context, R.attr.theme_type, "light").equals("dark")) {
+      return context.getResources().getColor(actionBarColorDark);
+    } else {
+      return context.getResources().getColor(actionBarColorLight);
+    }
   }
 
   public int toStatusBarColor(@NonNull Context context) {
-    return colorWeightMap.get(getWeight(context, R.attr.statusbar_color_material_weight, "700"));
+    if (getAttribute(context, R.attr.theme_type, "light").equals("dark")) {
+      return context.getResources().getColor(statusBarColorDark);
+    } else {
+      return context.getResources().getColor(statusBarColorLight);
+    }
   }
 
-  public boolean represents(int colorValue) {
-    return colorWeightMap.values().contains(colorValue);
+  public boolean represents(Context context, int colorValue) {
+    return context.getResources().getColor(conversationColorDark)  == colorValue ||
+           context.getResources().getColor(conversationColorLight) == colorValue ||
+           context.getResources().getColor(actionBarColorDark) == colorValue ||
+           context.getResources().getColor(actionBarColorLight) == colorValue ||
+           context.getResources().getColor(statusBarColorLight) == colorValue ||
+           context.getResources().getColor(statusBarColorDark) == colorValue;
   }
 
-  @Override
-  public boolean equals(Object other) {
-    if (other == null || !(other instanceof MaterialColor)) return false;
-    return serialize().equals(((MaterialColor)other).serialize());
+  public String serialize() {
+    return serialized;
   }
 
-  @Override
-  public int hashCode() {
-    return Util.hashCode(serialize());
-  }
-
-  public abstract String serialize();
-
-  private String getWeight(Context context, int attribute, String defaultWeight) {
+  private String getAttribute(Context context, int attribute, String defaultValue) {
     TypedValue outValue = new TypedValue();
 
     if (context.getTheme().resolveAttribute(attribute, outValue, true)) {
       return outValue.coerceToString().toString();
     } else {
-      return defaultWeight;
+      return defaultValue;
     }
   }
 
-  public static MaterialColor fromSerialized(String serialized) throws UnknownColorException {
-    switch (serialized) {
-      case RedMaterialColor.SERIALIZED_NAME:        return new RedMaterialColor();
-      case PinkMaterialColor.SERIALIZED_NAME:       return new PinkMaterialColor();
-      case PurpleMaterialColor.SERIALIZED_NAME:     return new PurpleMaterialColor();
-      case DeepPurpleMaterialColor.SERIALIZED_NAME: return new DeepPurpleMaterialColor();
-      case IndigoMaterialColor.SERIALIZED_NAME:     return new IndigoMaterialColor();
-      case BlueMaterialColor.SERIALIZED_NAME:       return new BlueMaterialColor();
-      case LightBlueMaterialColor.SERIALIZED_NAME:  return new LightBlueMaterialColor();
-      case CyanMaterialColor.SERIALIZED_NAME:       return new CyanMaterialColor();
-      case TealMaterialColor.SERIALIZED_NAME:       return new TealMaterialColor();
-      case GreenMaterialColor.SERIALIZED_NAME:      return new GreenMaterialColor();
-      case LightGreenMaterialColor.SERIALIZED_NAME: return new LightGreenMaterialColor();
-      case OrangeMaterialColor.SERIALIZED_NAME:     return new OrangeMaterialColor();
-      case DeepOrangeMaterialColor.SERIALIZED_NAME: return new DeepOrangeMaterialColor();
-      case BrownMaterialColor.SERIALIZED_NAME:      return new BrownMaterialColor();
-      case GreyMaterialColor.SERIALIZED_NAME:       return new GreyMaterialColor();
-      case BlueGreyMaterialColor.SERIALIZED_NAME:   return new BlueGreyMaterialColor();
 
-      default: throw new UnknownColorException("Unknown color: " + serialized);
+  public static MaterialColor fromSerialized(String serialized) throws UnknownColorException {
+    for (MaterialColor color : MaterialColor.values()) {
+      if (color.serialized.equals(serialized)) return color;
     }
+
+    throw new UnknownColorException("Unknown color: " + serialized);
   }
 
   public static class UnknownColorException extends Exception {
@@ -85,4 +119,5 @@ public abstract class MaterialColor {
       super(message);
     }
   }
+
 }
