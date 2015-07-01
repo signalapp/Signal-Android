@@ -29,6 +29,9 @@ repositories {
     maven { // textdrawable
         url 'https://dl.bintray.com/amulyakhare/maven'
     }
+    maven {
+        url "https://jitpack.io"
+    }
     jcenter()
     mavenLocal()
 }
@@ -55,6 +58,7 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:21.0.3'
     compile 'com.melnykov:floatingactionbutton:1.1.0'
     compile 'com.google.zxing:android-integration:3.1.0'
+    compile 'com.github.mcginty:material-colors:1.0.1'
     compile ('com.android.support:support-v4-preferencefragment:1.0.0@aar'){
         exclude module: 'support-v4'
     }

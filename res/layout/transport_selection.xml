@@ -4,7 +4,8 @@
               android:orientation="vertical"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:background="?conversation_transport_popup_background">
+              android:background="?conversation_transport_popup_background"
+              android:elevation="2dp">
     <ListView android:id="@+id/transport_selection_list"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content" />
