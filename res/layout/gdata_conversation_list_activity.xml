@@ -73,6 +73,7 @@
         android:layout_gravity="start"
         android:background="@color/gdata_red"
         android:gravity="center_vertical"
+        android:paddingLeft="20dp"
         android:orientation="vertical" >
 
         <org.thoughtcrime.securesms.components.CircledImageView
@@ -81,7 +82,6 @@
             android:layout_height="150dp"
             android:layout_gravity="left"
             android:layout_weight="2"
-            android:layout_marginLeft="20dp"
             android:scaleType="centerInside"
             android:visibility="visible"/>
 
@@ -89,8 +89,9 @@
             android:id="@+id/drawer2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
             android:layout_weight="2"
+            android:paddingBottom="5dp"
+            android:paddingTop="10dp"
             android:orientation="vertical" >
 
             <TextView

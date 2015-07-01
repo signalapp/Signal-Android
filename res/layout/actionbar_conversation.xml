@@ -14,7 +14,7 @@
         <org.thoughtcrime.securesms.components.CircledImageView
             android:id="@+id/profile_picture"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:padding="2dp"
             android:scaleType="centerInside"
             android:layout_weight="3"
@@ -33,7 +33,7 @@
     <TextView
         android:id="@+id/action_bar_title"
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="#fff"
         android:textStyle="bold" />
@@ -41,7 +41,7 @@
     <TextView
         android:id="@+id/action_bar_subtitle"
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="#fff"
         android:textStyle="italic" />
