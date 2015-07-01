@@ -149,7 +149,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private   AnimatingToggle       buttonToggle;
   private   SendButton            sendButton;
   private   ImageButton           attachButton;
-  private   ConversationTitleView titleView;
+  protected ConversationTitleView titleView;
   private   TextView              charactersLeft;
   private   ConversationFragment  fragment;
   private   Button                unblockButton;
