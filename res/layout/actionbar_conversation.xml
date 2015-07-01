@@ -7,16 +7,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
+        android:gravity="left"
+        android:padding="2dp"
         >
 
-        <org.thoughtcrime.securesms.components.ThumbnailView
+        <org.thoughtcrime.securesms.components.CircledImageView
             android:id="@+id/profile_picture"
-            android:layout_width="100dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:padding="2dp"
             android:scaleType="centerInside"
+            android:layout_weight="3"
             android:visibility="visible"/>
+
     <LinearLayout
         android:id="@+id/drawerll"
         android:layout_width="match_parent"
@@ -24,13 +27,13 @@
         android:layout_gravity="center_vertical"
         android:orientation="vertical"
         android:paddingLeft="5dp"
+        android:layout_weight="1"
         android:gravity="center_vertical"
-        android:layout_weight="2"
         >
     <TextView
         android:id="@+id/action_bar_title"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="#fff"
         android:textStyle="bold" />
@@ -38,7 +41,7 @@
     <TextView
         android:id="@+id/action_bar_subtitle"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="#fff"
         android:textStyle="italic" />

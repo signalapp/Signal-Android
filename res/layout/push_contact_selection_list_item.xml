@@ -5,7 +5,7 @@
     android:layout_height="?android:attr/listPreferredItemHeight"
     android:paddingRight="25dip">
 
-    <ImageView android:id="@+id/contact_photo_image"
+    <org.thoughtcrime.securesms.components.CircledImageView android:id="@+id/contact_photo_image"
         android:layout_width="@dimen/contact_selection_photo_size"
         android:layout_height="@dimen/contact_selection_photo_size"
         android:layout_alignParentLeft="true"

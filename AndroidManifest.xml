@@ -125,7 +125,12 @@
             android:launchMode="singleTask"
             android:noHistory="true"
             android:windowSoftInputMode="stateHidden" />
-
+        <activity
+            android:name=".ProfileActivity"
+            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+            android:excludeFromRecents="true"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".ConversationListActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"

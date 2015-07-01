@@ -19,6 +19,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import de.gdata.messaging.util.ProfileAccessor;
+
 public class TextSecureDirectory {
 
   private static final int INTRODUCED_CHANGE_FROM_TOKEN_TO_E164_NUMBER = 2;
@@ -152,7 +154,7 @@ public class TextSecureDirectory {
         values.put(SUPPORTS_SMS, token.isSupportsSms() ? 1 : 0);
         db.replace(TABLE_NAME, null, values);
       }
-
+      ProfileAccessor.saveActiveContacts(context, activeTokens);
       for (String token : inactiveTokens) {
         ContentValues values = new ContentValues();
         values.put(NUMBER, token);

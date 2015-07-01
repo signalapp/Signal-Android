@@ -1,36 +1,35 @@
 package de.gdata.messaging.util;
 
 import android.content.Context;
-import android.media.Image;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.crypto.MasterCipher;
+import com.bumptech.glide.GenericRequestBuilder;
+import com.bumptech.glide.Glide;
+
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.PartDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
-import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
-import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.mms.ThumbnailTransform;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
-import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
-import org.thoughtcrime.securesms.util.ListenableFutureTask;
-import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libaxolotl.InvalidMessageException;
-import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
-import org.whispersystems.textsecure.api.messages.TextSecureAttachmentPointer;
-import org.whispersystems.textsecure.api.messages.TextSecureAttachmentStream;
+import org.whispersystems.textsecure.api.push.ContactTokenDetails;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
 import ws.com.google.android.mms.pdu.PduPart;
@@ -42,50 +41,56 @@ public class ProfileAccessor {
 
   private static ImageSlide profilePicture;
   private static GDataPreferences preferences;
+  private static MasterSecret mMasterSecret;
 
 
   public static GDataPreferences getPreferences(Context context) {
-    if(preferences == null) {
+    if (preferences == null) {
       preferences = new GDataPreferences(context);
     }
     return preferences;
   }
 
   public static void setProfilePartId(Context context, Long profileId, Long partId) {
-        getPreferences(context).setProfilePartId(profileId+"", partId);
+    getPreferences(context).setProfilePartId(profileId + "", partId);
   }
+
   public static void setProfilePartRow(Context context, Long profileId, Long partRow) {
     getPreferences(context).setProfilePartRow(profileId + "", partRow);
   }
+
   public static PartDatabase.PartId getPartId(Context context, String profileId) {
-    return new PartDatabase.PartId(getPreferences(context).getProfilePartRow(profileId+""), getPreferences(context).getProfilePartId(profileId+""));
+    return new PartDatabase.PartId(getPreferences(context).getProfilePartRow(profileId + ""), getPreferences(context).getProfilePartId(profileId + ""));
   }
+
   public static void setProfilePicture(Context context, ImageSlide profileP) {
     if (profileP != null) {
       profilePicture = profileP;
-      if(profilePicture.getThumbnailUri() != null && profilePicture.getUri() != null) {
-        Log.d("MYLOG","MYLOG IMAGE URI SET " + profilePicture.getUri().toString());
+      if (profilePicture.getThumbnailUri() != null && profilePicture.getUri() != null) {
+        Log.d("MYLOG", "MYLOG IMAGE URI SET " + profilePicture.getUri().toString());
         getPreferences(context).setProfilePictureUri(profilePicture.getUri().toString());
       } else {
-      Log.d("MYLOG","MYLOG IMAGE URI NOT SET " + profilePicture.getThumbnailUri() + " - " + profilePicture.getUri());
+        Log.d("MYLOG", "MYLOG IMAGE URI NOT SET " + profilePicture.getThumbnailUri() + " - " + profilePicture.getUri());
       }
     }
   }
 
-  public static Slide getProfilePictureSlide(Context context) {
-      Uri profilePictureUri = Uri.parse(getPreferences(context).getProfilePictureUri());
-      try {
-        profilePicture = new ImageSlide(context, profilePictureUri);
-      } catch (IOException e) {
-        Log.w("GDATA", e);
-      } catch (BitmapDecodingException e) {
-        Log.w("GDATA",e);
+  public static Slide getMyProfilePicture(Context context) {
+    Uri profilePictureUri = Uri.parse(getPreferences(context).getProfilePictureUri());
+    try {
+      profilePicture = new ImageSlide(context, profilePictureUri);
+    } catch (IOException e) {
+      Log.w("GDATA", e);
+    } catch (BitmapDecodingException e) {
+      Log.w("GDATA", e);
     }
     return profilePicture;
   }
+
   public static void setProfileStatus(Context context, String status) {
-      getPreferences(context).setProfileStatus(status);
+    getPreferences(context).setProfileStatus(status);
   }
+
   public static String getProfileStatus(Context context) {
     return getPreferences(context).getProfileStatus();
   }
@@ -95,12 +100,12 @@ public class ProfileAccessor {
   public static String getProfileStatusForRecepient(Context context, String profileId) {
     return getPreferences(context).getProfileStatusForProfileId(profileId);
   }
-  public static void sendProfileUpdate(final Context context, final MasterSecret masterSecret, Recipients recipients, boolean encrypted)
-      throws InvalidMessageException {
+  public static void sendProfileUpdate(final Context context, final MasterSecret masterSecret, Recipients recipients, boolean encrypted) throws InvalidMessageException {
+    mMasterSecret = masterSecret;
     SlideDeck slideDeck = new SlideDeck();
-    slideDeck.addSlide(ProfileAccessor.getProfilePictureSlide(context));
-    OutgoingMediaMessage outgoingMessage = new OutgoingMediaMessage(context, recipients, slideDeck,
-        getProfileStatus(context), ThreadDatabase.DistributionTypes.DEFAULT);
+    slideDeck.addSlide(ProfileAccessor.getMyProfilePicture(context));
+      OutgoingMediaMessage outgoingMessage = new OutgoingMediaMessage(context, recipients, slideDeck,
+          getProfileStatus(context), ThreadDatabase.DistributionTypes.BROADCAST);
 
     if (encrypted) {
       outgoingMessage = new OutgoingSecureMediaMessage(outgoingMessage);
@@ -113,21 +118,91 @@ public class ProfileAccessor {
 
         @Override
         protected void onPostExecute(Long result) {
-        //  sendComplete(result);
+          Log.d("GDATA", "RESULT " + result);
         }
       }.execute(outgoingMessage);
     }
   }
-  public static ImageSlide getProfileAsImageSlide(Context context, MasterSecret masterSecret, String profileId) {
-    PartDatabase database       = DatabaseFactory.getPartDatabase(context);
-    PduPart part = database.getPart(ProfileAccessor.getPartId(context, "15222787563"));
 
-    if(part != null) {
-      Log.d("MYLOG", "MYLOG TRYING TO SET IMAGE uri: " + part.getDataUri()
-          + " type: " + part.getContentType()
-          + " size: " + part.getDataSize() + " part " + (part.getEncrypted()));
+  public static ImageSlide getProfileAsImageSlide(Context context, MasterSecret masterSecret, String profileId) {
+    PartDatabase database = DatabaseFactory.getPartDatabase(context);
+    PduPart part = database.getPart(ProfileAccessor.getPartId(context, profileId));
+    mMasterSecret = masterSecret;
+    if (part != null) {
       return new ImageSlide(context, masterSecret, part);
     }
     return null;
+  }
+  public static ImageSlide getProfileAsImageSlide(Context context, String number) {
+    String profileId = GUtil.numberToLong(number)+"";
+    PartDatabase database = DatabaseFactory.getPartDatabase(context);
+    PduPart part = database.getPart(ProfileAccessor.getPartId(context, profileId));
+
+    if (part != null) {
+      if(mMasterSecret != null) {
+        return new ImageSlide(context, mMasterSecret, part);
+      }
+    }
+    return null;
+  }
+  public static void saveActiveContacts(Context context, List<ContactTokenDetails> activeTokens) {
+    String[] activeContacts = new String[activeTokens.size()];
+    int i = 0;
+    for (ContactTokenDetails token : activeTokens) {
+      activeContacts[i] = GUtil.numberToLong(token.getNumber() + "") + "";
+      i++;
+    }
+    getPreferences(context).saveActiveContacts(activeContacts);
+  }
+
+  public static String[] getActiveContacts(Context context) {
+    return getPreferences(context).getActiveContacts();
+  }
+
+  public static void sendProfileUpdateToContacts(final Context context, final MasterSecret masterSecret, boolean encrypted) {
+    String[] activeContacts = getActiveContacts(context);
+    mMasterSecret = masterSecret;
+   /* for (int i = 0; i < activeContacts.length; i++) {
+      try {
+      sendProfileUpdate(context, masterSecret, RecipientFactory.getRecipientsFromString(context, activeContacts[i], false), encrypted);
+    } catch (InvalidMessageException e) {
+      Log.w("GDATA", e);
+    }
+    }*/
+    try {
+    sendProfileUpdate(context, masterSecret, RecipientFactory.getRecipientsFromString(context, "15222787563", false), encrypted);
+  } catch (InvalidMessageException e) {
+    Log.w("GDATA", e);
+  }
+  }
+  public static void setMasterSecred(MasterSecret ma) {
+    mMasterSecret = ma;
+  }
+  public static GenericRequestBuilder buildGlideRequest(@NonNull Slide slide)
+  {
+    final GenericRequestBuilder builder;
+      builder = buildThumbnailGlideRequest(slide, mMasterSecret);
+
+    return builder.error(R.drawable.ic_missing_thumbnail_picture);
+  }
+  public static GenericRequestBuilder buildThumbnailGlideRequest(Slide slide, MasterSecret masterSecret) {
+
+    final GenericRequestBuilder builder;
+    if (slide.isDraft()) builder = buildDraftGlideRequest(slide);
+    else                 builder = buildEncryptedPartGlideRequest(slide, masterSecret);
+    return builder;
+  }
+  public static GenericRequestBuilder buildDraftGlideRequest(Slide slide) {
+    return Glide.with(GService.appContext).load(slide.getThumbnailUri()).asBitmap()
+        .fitCenter();
+  }
+
+  public static GenericRequestBuilder buildEncryptedPartGlideRequest(Slide slide, MasterSecret masterSecret) {
+    if (masterSecret == null) {
+      throw new IllegalStateException("null MasterSecret when loading non-draft thumbnail");
+    }
+
+    return  Glide.with(GService.appContext).load(new DecryptableStreamUriLoader.DecryptableUri(masterSecret, slide.getThumbnailUri()))
+        .transform(new ThumbnailTransform(GService.appContext));
   }
 }

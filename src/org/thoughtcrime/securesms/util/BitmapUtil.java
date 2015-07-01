@@ -22,6 +22,7 @@ import android.util.Pair;
 
 import com.android.gallery3d.data.Exif;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 
@@ -89,9 +90,9 @@ public class BitmapUtil {
     InputStream is = PartAuthority.getPartStream(context, masterSecret, uri);
     if (is == null) throw new IOException("Couldn't obtain InputStream");
     return createScaledBitmap(is,
-                              PartAuthority.getPartStream(context, masterSecret, uri),
-                              PartAuthority.getPartStream(context, masterSecret, uri),
-                              maxWidth, maxHeight, constrainedMemory);
+        PartAuthority.getPartStream(context, masterSecret, uri),
+        PartAuthority.getPartStream(context, masterSecret, uri),
+        maxWidth, maxHeight, constrainedMemory);
   }
 
   private static Bitmap createScaledBitmap(InputStream measure, InputStream orientationStream, InputStream data,
@@ -257,6 +258,27 @@ public class BitmapUtil {
 
     return output;
   }
+  public static Bitmap getScaledCircleBitmap(Context context, Bitmap bitmap) {
+    final int size = context.getResources().getDimensionPixelSize(R.dimen.contact_selection_photo_size);
+    final Bitmap output = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888);
+    final Canvas canvas = new Canvas(output);
+    bitmap = bitmap.createScaledBitmap(bitmap, size, size, true);
+    final int   color = Color.RED;
+    final Paint paint = new Paint();
+    final Rect  rect  = new Rect(0, 0, size, size);
+    final RectF rectF = new RectF(rect);
+
+    paint.setAntiAlias(true);
+    canvas.drawARGB(0, 0, 0, 0);
+    paint.setColor(color);
+    canvas.drawOval(rectF, paint);
+
+    paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+    canvas.drawBitmap(bitmap, rect, rect, paint);
+
+    return output;
+  }
+
 
   public static Bitmap createFromDrawable(final Drawable drawable, final int width, final int height) {
     final AtomicBoolean created = new AtomicBoolean(false);

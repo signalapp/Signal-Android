@@ -44,6 +44,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
@@ -60,6 +61,7 @@ import android.widget.Toast;
 
 import com.melnykov.fab.FloatingActionButton;
 
+import org.thoughtcrime.securesms.components.CircledImageView;
 import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -156,6 +158,13 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     fab.hide();
     initNavDrawer(navLabels, navIcons);
 
+    LinearLayout profileDrawer = (LinearLayout) findViewById(R.id.drawer);
+    profileDrawer.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        handleOpenProfile();
+      }
+    });
     getSupportActionBar().setHomeButtonEnabled(true);
     getSupportActionBar().setTitle(R.string.app_name);
     initViewPagerLayout();
@@ -165,19 +174,33 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
         new IntentFilter("reloadAdapter"));
 
-refreshProfile();
+    refreshProfile();
   }
-
+  private void handleOpenProfile() {
+    final Intent intent = new Intent(this, ProfileActivity.class);
+    intent.putExtra("master_secret", masterSecret);
+    intent.putExtra("profile_id", gDataPreferences.getE164Number());
+    if(getSupportActionBar() != null) {
+      intent.putExtra("profile_name", getSupportActionBar().getTitle());
+    }
+    intent.putExtra("profile_number", gDataPreferences.getE164Number());
+    startActivity(intent);
+  }
   private void refreshProfile() {
-    ThumbnailView profileImageView = (ThumbnailView) findViewById(R.id.profile_picture);
-
-    profileImageView.setImageResource(ProfileAccessor.getProfileAsImageSlide(this, masterSecret, "15222787563" + ""), masterSecret);
-
+    CircledImageView profileImageView = (CircledImageView) findViewById(R.id.profile_picture);
+    if(masterSecret != null) {
+      ProfileAccessor.buildDraftGlideRequest(ProfileAccessor.getMyProfilePicture(getApplicationContext())).into(profileImageView);
+    }
     TextView profileName = (TextView) findViewById(R.id.profileName);
     TextView profileStatus = (TextView) findViewById(R.id.profileStatus);
     profileStatus.setText(ProfileAccessor.getProfileStatus(this));
+    profileName.setText(gDataPreferences.getE164Number());
   }
-
+  public float dpToPx(int dp) {
+    DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+    float px = (float) ((dp * displayMetrics.density) + 0.5);
+    return px;
+  }
   private void initNavDrawer(String[] labels, TypedArray icons) {
     // Set the adapter for the list view
     NavDrawerAdapter adapter = new NavDrawerAdapter(this, labels, icons);
