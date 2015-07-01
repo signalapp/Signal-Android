@@ -220,7 +220,7 @@ public class MessageNotifier {
 
     if (masterSecret != null) {
       Action markAsReadAction = new Action(R.drawable.check,
-                                           context.getString(R.string.MessageNotifier_mark_as_read),
+                                           context.getString(R.string.MessageNotifier_mark_read),
                                            notificationState.getMarkAsReadIntent(context, masterSecret));
       builder.addAction(markAsReadAction);
       builder.addAction(new Action(R.drawable.ic_reply_white_36dp, context.getString(R.string.MessageNotifier_reply), notifications.get(0).getReplyIntent(context)));
