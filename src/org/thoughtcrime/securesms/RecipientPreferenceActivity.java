@@ -119,10 +119,10 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   private void setHeader(Recipients recipients) {
     this.avatar.setAvatar(recipients, true);
     this.title.setText(recipients.toShortString());
-    this.toolbar.setBackgroundColor(recipients.getColor(this).toActionBarColor(this));
+    this.toolbar.setBackgroundColor(recipients.getColor().toActionBarColor(this));
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      getWindow().setStatusBarColor(recipients.getColor(this).toStatusBarColor(this));
+      getWindow().setStatusBarColor(recipients.getColor().toStatusBarColor(this));
     }
 
     if (recipients.isBlocked()) this.blockedIndicator.setVisibility(View.VISIBLE);
@@ -186,7 +186,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     private void setSummaries(Recipients recipients) {
       CheckBoxPreference mutePreference     = (CheckBoxPreference) this.findPreference(PREFERENCE_MUTED);
       RingtonePreference ringtonePreference = (RingtonePreference) this.findPreference(PREFERENCE_TONE);
-      ListPreference     vibratePreference  = (ListPreference) this.findPreference(PREFERENCE_VIBRATE);
+      ListPreference     vibratePreference  = (ListPreference)     this.findPreference(PREFERENCE_VIBRATE);
       ColorPreference    colorPreference    = (ColorPreference)    this.findPreference(PREFERENCE_COLOR);
       Preference         blockPreference    = this.findPreference(PREFERENCE_BLOCK);
 
@@ -215,7 +215,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
       colorPreference.setEnabled(recipients.isSingleRecipient() && !recipients.isGroupRecipient());
       colorPreference.setChoices(MaterialColors.CONVERSATION_PALETTE.asConversationColorArray(getActivity()));
-      colorPreference.setValue(recipients.getColor(getActivity()).toActionBarColor(getActivity()));
+      colorPreference.setValue(recipients.getColor().toActionBarColor(getActivity()));
 
       if (!recipients.isSingleRecipient() || recipients.isGroupRecipient()) {
         blockPreference.setEnabled(false);
@@ -290,10 +290,10 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       @Override
       public boolean onPreferenceChange(Preference preference, Object newValue) {
         final int           value         = (Integer) newValue;
-        final MaterialColor selectedColor = MaterialColors.CONVERSATION_PALETTE.getByColor(value);
-        final MaterialColor currentColor  = recipients.getColor(getActivity());
+        final MaterialColor selectedColor = MaterialColors.CONVERSATION_PALETTE.getByColor(getActivity(), value);
+        final MaterialColor currentColor  = recipients.getColor();
 
-        if (selectedColor == null) return false;
+        if (selectedColor == null) return true;
 
         if (preference.isEnabled() && !currentColor.equals(selectedColor)) {
           recipients.setColor(selectedColor);

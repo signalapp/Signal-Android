@@ -225,7 +225,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     initializeIme();
 
     titleView.setTitle(recipients);
-    setActionBarColor(recipients.getColor(this));
+    setActionBarColor(recipients.getColor());
     setBlockedUserState(recipients);
     calculateCharactersRemaining();
 
@@ -809,7 +809,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       public void run() {
         titleView.setTitle(recipients);
         setBlockedUserState(recipients);
-        setActionBarColor(recipients.getColor(ConversationActivity.this));
+        setActionBarColor(recipients.getColor());
       }
     });
   }
