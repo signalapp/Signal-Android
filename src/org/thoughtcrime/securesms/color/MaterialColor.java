@@ -1,5 +1,11 @@
 package org.thoughtcrime.securesms.color;
 
+import android.content.Context;
+import android.support.annotation.NonNull;
+import android.util.Log;
+import android.util.TypedValue;
+
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.util.Map;
@@ -8,21 +14,20 @@ public abstract class MaterialColor {
 
   private final Map<String, Integer> colorWeightMap;
 
-  protected MaterialColor(Map<String, Integer> colorWeightMap) {
+  protected MaterialColor(@NonNull Map<String, Integer> colorWeightMap) {
     this.colorWeightMap = colorWeightMap;
   }
 
-  public int toConversationColor(ThemeType themeType) {
-    if (themeType == ThemeType.DARK) return colorWeightMap.get("900");
-    else                             return colorWeightMap.get("500");
+  public int toConversationColor(@NonNull Context context) {
+    return colorWeightMap.get(getWeight(context, R.attr.conversation_color_material_weight, "500"));
   }
 
-  public int toActionBarColor(ThemeType themeType) {
-    return toConversationColor(themeType);
+  public int toActionBarColor(@NonNull Context context) {
+    return colorWeightMap.get(getWeight(context, R.attr.actionbar_color_material_weight, "500"));
   }
 
-  public int toStatusBarColor(ThemeType themeType) {
-    return colorWeightMap.get("700");
+  public int toStatusBarColor(@NonNull Context context) {
+    return colorWeightMap.get(getWeight(context, R.attr.statusbar_color_material_weight, "700"));
   }
 
   public boolean represents(int colorValue) {
@@ -41,6 +46,16 @@ public abstract class MaterialColor {
   }
 
   public abstract String serialize();
+
+  private String getWeight(Context context, int attribute, String defaultWeight) {
+    TypedValue outValue = new TypedValue();
+
+    if (context.getTheme().resolveAttribute(attribute, outValue, true)) {
+      return outValue.coerceToString().toString();
+    } else {
+      return defaultWeight;
+    }
+  }
 
   public static MaterialColor fromSerialized(String serialized) throws UnknownColorException {
     switch (serialized) {

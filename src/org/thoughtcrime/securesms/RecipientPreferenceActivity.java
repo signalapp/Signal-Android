@@ -19,7 +19,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.preference.PreferenceFragment;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -28,7 +27,6 @@ import com.afollestad.materialdialogs.AlertDialogWrapper;
 
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.color.MaterialColors;
-import org.thoughtcrime.securesms.color.ThemeType;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -119,14 +117,12 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   }
 
   private void setHeader(Recipients recipients) {
-    ThemeType themeType = ThemeType.getCurrent(this);
-
     this.avatar.setAvatar(recipients, true);
     this.title.setText(recipients.toShortString());
-    this.toolbar.setBackgroundColor(recipients.getColor(this).toActionBarColor(themeType));
+    this.toolbar.setBackgroundColor(recipients.getColor(this).toActionBarColor(this));
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      getWindow().setStatusBarColor(recipients.getColor(this).toStatusBarColor(themeType));
+      getWindow().setStatusBarColor(recipients.getColor(this).toStatusBarColor(this));
     }
 
     if (recipients.isBlocked()) this.blockedIndicator.setVisibility(View.VISIBLE);
@@ -193,7 +189,6 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       ListPreference     vibratePreference  = (ListPreference) this.findPreference(PREFERENCE_VIBRATE);
       ColorPreference    colorPreference    = (ColorPreference)    this.findPreference(PREFERENCE_COLOR);
       Preference         blockPreference    = this.findPreference(PREFERENCE_BLOCK);
-      ThemeType          themeType          = ThemeType.getCurrent(getActivity());
 
       mutePreference.setChecked(recipients.isMuted());
 
@@ -219,8 +214,8 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       }
 
       colorPreference.setEnabled(recipients.isSingleRecipient() && !recipients.isGroupRecipient());
-      colorPreference.setChoices(MaterialColors.CONVERSATION_PALETTE.asConversationColorArray(themeType));
-      colorPreference.setValue(recipients.getColor(getActivity()).toActionBarColor(ThemeType.getCurrent(getActivity())));
+      colorPreference.setChoices(MaterialColors.CONVERSATION_PALETTE.asConversationColorArray(getActivity()));
+      colorPreference.setValue(recipients.getColor(getActivity()).toActionBarColor(getActivity()));
 
       if (!recipients.isSingleRecipient() || recipients.isGroupRecipient()) {
         blockPreference.setEnabled(false);

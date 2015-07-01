@@ -40,7 +40,6 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.AlertDialogWrapper;
 
 import org.thoughtcrime.securesms.ConversationFragment.SelectionClickListener;
-import org.thoughtcrime.securesms.color.ThemeType;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -201,7 +200,7 @@ public class ConversationItem extends LinearLayout {
     } else {
       bodyBubble.getBackground().setColorFilter(messageRecord.getIndividualRecipient()
                                                              .getColor()
-                                                             .toConversationColor(ThemeType.getCurrent(context)),
+                                                             .toConversationColor(context),
                                                 PorterDuff.Mode.MULTIPLY);
     }
 

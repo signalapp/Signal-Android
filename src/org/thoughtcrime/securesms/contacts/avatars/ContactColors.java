@@ -2,25 +2,17 @@ package org.thoughtcrime.securesms.contacts.avatars;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.util.SparseIntArray;
-
-import com.amulyakhare.textdrawable.util.ColorGenerator;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.color.MaterialColors;
-import org.thoughtcrime.securesms.color.ThemeType;
-import org.whispersystems.libaxolotl.util.guava.Optional;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 
 public class ContactColors {
 
   public static final MaterialColor UNKNOWN_COLOR = MaterialColors.GREY;
-  
+
   public static MaterialColor generateFor(@NonNull String name) {
     return MaterialColors.CONVERSATION_PALETTE.get(Math.abs(name.hashCode()) % MaterialColors.CONVERSATION_PALETTE.size());
   }
@@ -31,17 +23,17 @@ public class ContactColors {
 
     return new MaterialColor(new HashMap<String, Integer>()) {
       @Override
-      public int toConversationColor(ThemeType themeType) {
-        return UNKNOWN_COLOR.toConversationColor(themeType);
+      public int toConversationColor(@NonNull Context context) {
+        return UNKNOWN_COLOR.toConversationColor(context);
       }
 
       @Override
-      public int toActionBarColor(ThemeType themeType) {
+      public int toActionBarColor(@NonNull Context context) {
         return actionBarColor;
       }
 
       @Override
-      public int toStatusBarColor(ThemeType themeType) {
+      public int toStatusBarColor(@NonNull Context context) {
         return statusBarColor;
       }
 
@@ -50,12 +42,5 @@ public class ContactColors {
         return "group_color";
       }
     };
-
   }
-
-//  public static Optional<Integer> getStatusTinted(int color) {
-//    int statusTinted = MATERIAL_500_TO_700.get(color, -1);
-//    return statusTinted == -1 ? Optional.<Integer>absent() : Optional.of(statusTinted);
-//  }
-
 }
