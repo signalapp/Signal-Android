@@ -41,7 +41,7 @@
         <item name="titleTextStyle">@style/TextSecure.TitleTextStyle</item>
         <item name="subtitleTextStyle">@style/TextSecure.SubtitleTextStyle</item>
         <item name="android:textColorPrimary">@color/white</item>
-        <item name="android:textColorSecondary">#99ffffff</item>
+        <item name="android:textColorSecondary">#BFffffff</item>
     </style>
 
     <style name="TextSecure.DarkActionBar.TabBar"
@@ -61,7 +61,7 @@
     </style>
 
     <style name="TextSecure.SubtitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Subtitle">
-        <item name="android:textColor">#99ffffff</item>
+        <item name="android:textColor">#BFffffff</item>
     </style>
 
     <style name="TextSecure.IntroActionBar" parent="Widget.AppCompat.Light.ActionBar.Solid.Inverse">

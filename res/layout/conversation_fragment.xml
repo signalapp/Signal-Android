@@ -6,7 +6,6 @@
               android:orientation="vertical">
 
     <ListView android:id="@android:id/list"
-              style="?android:attr/listViewWhiteStyle"
               android:layout_width="fill_parent"
               android:layout_height="0dp"
               android:layout_weight="1.0"
@@ -19,6 +18,6 @@
               android:divider="@android:color/transparent"
               android:dividerHeight="0dp"
               android:layout_marginBottom="1dip"
-              android:cacheColorHint="?android:attr/windowBackground" />
+              android:cacheColorHint="?conversation_background" />
 
 </LinearLayout>

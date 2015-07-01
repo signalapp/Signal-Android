@@ -46,6 +46,7 @@ import android.util.Log;
 import org.thoughtcrime.securesms.ConversationActivity;
 import org.thoughtcrime.securesms.ConversationListActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
@@ -192,8 +193,10 @@ public class MessageNotifier {
     List<NotificationItem>     notifications       = notificationState.getNotifications();
     NotificationCompat.Builder builder             = new NotificationCompat.Builder(context);
     Recipient                  recipient           = notifications.get(0).getIndividualRecipient();
-    Drawable                   recipientPhoto      = recipient.getContactPhoto();
+    Recipients                 recipients          = notifications.get(0).getRecipients();
     int                        largeIconTargetSize = context.getResources().getDimensionPixelSize(R.dimen.contact_photo_target_size);
+    Drawable                   recipientPhoto      = recipient.getContactPhoto().asDrawable(context, recipients == null ? ContactColors.UNKNOWN_COLOR :
+                                                                                                     recipients.getColor().or(ContactColors.UNKNOWN_COLOR));
 
     if (recipientPhoto != null) {
       Bitmap recipientPhotoBitmap = BitmapUtil.createFromDrawable(recipientPhoto, largeIconTargetSize, largeIconTargetSize);
@@ -217,7 +220,7 @@ public class MessageNotifier {
 
     if (masterSecret != null) {
       Action markAsReadAction = new Action(R.drawable.check,
-                                           context.getString(R.string.MessageNotifier_mark_as_read),
+                                           context.getString(R.string.MessageNotifier_mark_read),
                                            notificationState.getMarkAsReadIntent(context, masterSecret));
       builder.addAction(markAsReadAction);
       builder.addAction(new Action(R.drawable.ic_reply_white_36dp, context.getString(R.string.MessageNotifier_reply), notifications.get(0).getReplyIntent(context)));

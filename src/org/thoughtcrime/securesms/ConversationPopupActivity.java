@@ -47,6 +47,8 @@ public class ConversationPopupActivity extends ConversationActivity {
     else                getWindow().setLayout((int) (width * .7), (int) (height * .75));
 
     super.onCreate(bundle, masterSecret);
+
+    titleView.setOnClickListener(null);
   }
 
   @Override
