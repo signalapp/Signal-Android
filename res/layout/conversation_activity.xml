@@ -46,8 +46,8 @@
 
                         <org.thoughtcrime.securesms.components.ThumbnailView
                                 android:id="@+id/attachment_thumbnail"
-                                android:layout_width="wrap_content"
-                                android:layout_height="150dip"
+                                android:layout_width="230dp"
+                                android:layout_height="150dp"
                                 app:riv_corner_radius="3dp"
                                 android:contentDescription="@string/conversation_activity__attachment_thumbnail"/>
                     </FrameLayout>

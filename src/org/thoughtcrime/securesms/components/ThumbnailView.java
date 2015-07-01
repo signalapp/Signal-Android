@@ -4,56 +4,87 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewParent;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.Animation.AnimationListener;
+import android.widget.FrameLayout;
 
 import com.bumptech.glide.GenericRequestBuilder;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.makeramen.roundedimageview.RoundedImageView;
+import com.pnikosis.materialishprogress.ProgressWheel;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.jobs.PartProgressEvent;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
-import org.thoughtcrime.securesms.mms.ThumbnailTransform;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.Util;
 
+import de.greenrobot.event.EventBus;
 import ws.com.google.android.mms.pdu.PduPart;
 
-public class ThumbnailView extends RoundedImageView {
+public class ThumbnailView extends FrameLayout {
+  private static final String TAG = ThumbnailView.class.getSimpleName();
+
+  private boolean          showProgress = true;
+  private RoundedImageView image;
+  private ProgressWheel    progress;
 
   private ListenableFutureTask<SlideDeck> slideDeckFuture        = null;
   private SlideDeckListener               slideDeckListener      = null;
   private ThumbnailClickListener          thumbnailClickListener = null;
   private String                          slideId                = null;
   private Slide                           slide                  = null;
-  private Handler                         handler                = new Handler();
 
   public ThumbnailView(Context context) {
-    super(context);
+    this(context, null);
   }
 
   public ThumbnailView(Context context, AttributeSet attrs) {
-    super(context, attrs);
+    this(context, attrs, 0);
   }
 
   public ThumbnailView(Context context, AttributeSet attrs, int defStyle) {
     super(context, attrs, defStyle);
+    inflate(context, R.layout.thumbnail_view, this);
+    image    = (RoundedImageView) findViewById(R.id.thumbnail_image);
+    progress = (ProgressWheel)    findViewById(R.id.progress_wheel);
+  }
+
+  @Override protected void onAttachedToWindow() {
+    super.onAttachedToWindow();
+    EventBus.getDefault().registerSticky(this);
+  }
+
+  @Override protected void onDetachedFromWindow() {
+    super.onDetachedFromWindow();
+    EventBus.getDefault().unregister(this);
+  }
+
+  @SuppressWarnings("unused")
+  public void onEventAsync(final PartProgressEvent event) {
+    if (this.slide != null && event.partId.equals(this.slide.getPart().getPartId())) {
+      Util.runOnMain(new Runnable() {
+        @Override public void run() {
+          progress.setInstantProgress(((float) event.progress) / event.total);
+          if (event.progress >= event.total) animateOutProgress();
+        }
+      });
+    }
   }
 
   public void setImageResource(@Nullable MasterSecret masterSecret,
@@ -67,7 +98,7 @@ public class ThumbnailView extends RoundedImageView {
     String slideId = id + "::" + timestamp;
 
     if (!slideId.equals(this.slideId)) {
-      setImageDrawable(null);
+      image.setImageDrawable(null);
       this.slide   = null;
       this.slideId = slideId;
     }
@@ -82,13 +113,24 @@ public class ThumbnailView extends RoundedImageView {
   }
 
   public void setImageResource(@NonNull Slide slide, @Nullable MasterSecret masterSecret) {
-    if (isContextValid()) {
-      if (!Util.equals(slide, this.slide)) buildGlideRequest(slide, masterSecret).into(this);
-      this.slide = slide;
-      setOnClickListener(new ThumbnailClickDispatcher(thumbnailClickListener, slide));
-    } else {
-      Log.w(TAG, "Not going to load resource, context is invalid");
+    if (Util.equals(slide, this.slide)) {
+      Log.w(TAG, "Not loading resource, slide was identical");
+      return;
     }
+    if (!isContextValid()) {
+      Log.w(TAG, "Not loading resource, context is invalid");
+      return;
+    }
+
+    this.slide = slide;
+    if (slide.isInProgress() && showProgress) {
+      progress.spin();
+      progress.setVisibility(VISIBLE);
+    } else {
+      progress.setVisibility(GONE);
+    }
+    buildGlideRequest(slide, masterSecret).into(image);
+    setOnClickListener(new ThumbnailClickDispatcher(thumbnailClickListener, slide));
   }
 
   public void setThumbnailClickListener(ThumbnailClickListener listener) {
@@ -97,6 +139,13 @@ public class ThumbnailView extends RoundedImageView {
 
   public void clear() {
     if (isContextValid()) Glide.clear(this);
+  }
+
+  public void setShowProgress(boolean showProgress) {
+    this.showProgress = showProgress;
+    if (progress.getVisibility() == View.VISIBLE && !showProgress) {
+      animateOutProgress();
+    }
   }
 
   @TargetApi(VERSION_CODES.JELLY_BEAN_MR1)
@@ -110,22 +159,17 @@ public class ThumbnailView extends RoundedImageView {
                                                   @Nullable MasterSecret masterSecret)
   {
     final GenericRequestBuilder builder;
-    if (slide.getPart().isPendingPush()) {
-      builder = buildPendingGlideRequest(slide);
-    } else if (slide.getThumbnailUri() != null) {
+    if (slide.getThumbnailUri() != null) {
       builder = buildThumbnailGlideRequest(slide, masterSecret);
     } else {
       builder = buildPlaceholderGlideRequest(slide);
     }
 
-    return builder.error(R.drawable.ic_missing_thumbnail_picture);
-  }
-
-  private GenericRequestBuilder buildPendingGlideRequest(Slide slide) {
-    return Glide.with(getContext()).load(R.drawable.stat_sys_download_anim0)
-                                   .dontTransform()
-                                   .skipMemoryCache(true)
-                                   .crossFade();
+    if (slide.isInProgress() && showProgress) {
+      return builder;
+    } else {
+      return builder.error(R.drawable.ic_missing_thumbnail_picture);
+    }
   }
 
   private GenericRequestBuilder buildThumbnailGlideRequest(Slide slide, MasterSecret masterSecret) {
@@ -148,13 +192,26 @@ public class ThumbnailView extends RoundedImageView {
     }
 
     return  Glide.with(getContext()).load(new DecryptableUri(masterSecret, slide.getThumbnailUri()))
-                 .transform(new ThumbnailTransform(getContext()));
+                                    .centerCrop();
   }
 
   private GenericRequestBuilder buildPlaceholderGlideRequest(Slide slide) {
     return Glide.with(getContext()).load(slide.getPlaceholderRes(getContext().getTheme()))
                                    .fitCenter()
                                    .crossFade();
+  }
+
+  private void animateOutProgress() {
+    AlphaAnimation animation = new AlphaAnimation(1f, 0f);
+    animation.setDuration(200);
+    animation.setAnimationListener(new AnimationListener() {
+      @Override public void onAnimationStart(Animation animation) { }
+      @Override public void onAnimationRepeat(Animation animation) { }
+      @Override public void onAnimationEnd(Animation animation) {
+        progress.setVisibility(View.GONE);
+      }
+    });
+    progress.startAnimation(animation);
   }
 
   private class SlideDeckListener implements FutureTaskListener<SlideDeck> {
@@ -170,14 +227,14 @@ public class ThumbnailView extends RoundedImageView {
 
       final Slide slide = slideDeck.getThumbnailSlide(getContext());
       if (slide != null) {
-        handler.post(new Runnable() {
+        Util.runOnMain(new Runnable() {
           @Override
           public void run() {
             setImageResource(slide, masterSecret);
           }
         });
       } else {
-        handler.post(new Runnable() {
+        Util.runOnMain(new Runnable() {
           @Override
           public void run() {
             Log.w(TAG, "Resolved slide was null!");
@@ -190,7 +247,7 @@ public class ThumbnailView extends RoundedImageView {
     @Override
     public void onFailure(Throwable error) {
       Log.w(TAG, error);
-      handler.post(new Runnable() {
+      Util.runOnMain(new Runnable() {
         @Override
         public void run() {
           Log.w(TAG, "onFailure!");

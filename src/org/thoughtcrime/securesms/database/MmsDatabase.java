@@ -721,6 +721,12 @@ public class MmsDatabase extends MessagingDatabase {
     contentValues.put(DATE_RECEIVED, contentValues.getAsLong(DATE_SENT));
     contentValues.remove(ADDRESS);
 
+    if (sendRequest.getBody() != null) {
+      for (int i = 0; i < sendRequest.getBody().getPartsNum(); i++) {
+        sendRequest.getBody().getPart(i).setInProgress(true);
+      }
+    }
+
     long messageId = insertMediaMessage(masterSecret, sendRequest.getPduHeaders(),
                                         sendRequest.getBody(), contentValues);
     jobManager.add(new TrimThreadJob(context, threadId));

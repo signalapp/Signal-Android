@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:app="http://schemas.android.com/apk/res-auto"
-             xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="vertical"
-             android:layout_width="wrap_content"
-             android:layout_height="210dp">
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <org.thoughtcrime.securesms.components.ForegroundImageView
-        android:id="@+id/image_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:visibility="gone"
-        android:scaleType="centerCrop"
-        android:adjustViewBounds="true"
-        android:contentDescription="@string/conversation_item__mms_image_description"
-        app:riv_corner_radius="@dimen/message_bubble_corner_radius"
-        app:riv_border_width="@dimen/media_bubble_border_width"
-        tools:src="@drawable/ic_video_light"
-        tools:visibility="visible" />
+    <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/thumbnail_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/conversation_item__mms_image_description"
+            android:layout_margin="@dimen/media_bubble_border_width"
+            app:riv_corner_radius="@dimen/message_bubble_corner_radius" />
 
-</LinearLayout>
+    <com.pnikosis.materialishprogress.ProgressWheel
+            android:id="@+id/progress_wheel"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:background="@drawable/progress_background"
+            android:visibility="gone"
+            app:matProg_barColor="@color/white"
+            app:matProg_linearProgress="true"
+            app:matProg_spinSpeed="0.333" />
+
+</merge>

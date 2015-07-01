@@ -57,26 +57,26 @@ import ws.com.google.android.mms.pdu.PduPart;
 public class PartDatabase extends Database {
   private static final String TAG = PartDatabase.class.getSimpleName();
 
-  private static final String TABLE_NAME              = "part";
-  private static final String ROW_ID                  = "_id";
-  private static final String MMS_ID                  = "mid";
-  private static final String SEQUENCE                = "seq";
-  private static final String CONTENT_TYPE            = "ct";
-  private static final String NAME                    = "name";
-  private static final String CHARSET                 = "chset";
-  private static final String CONTENT_DISPOSITION     = "cd";
-  private static final String FILENAME                = "fn";
-  private static final String CONTENT_ID              = "cid";
-  private static final String CONTENT_LOCATION        = "cl";
-  private static final String CONTENT_TYPE_START      = "ctt_s";
-  private static final String CONTENT_TYPE_TYPE       = "ctt_t";
-  private static final String ENCRYPTED               = "encrypted";
-  private static final String DATA                    = "_data";
-  private static final String PENDING_PUSH_ATTACHMENT = "pending_push";
-  private static final String SIZE                    = "data_size";
-  private static final String THUMBNAIL               = "thumbnail";
-  private static final String ASPECT_RATIO            = "aspect_ratio";
-  private static final String UNIQUE_ID               = "unique_id";
+  private static final String TABLE_NAME          = "part";
+  private static final String ROW_ID              = "_id";
+  private static final String MMS_ID              = "mid";
+  private static final String SEQUENCE            = "seq";
+  private static final String CONTENT_TYPE        = "ct";
+  private static final String NAME                = "name";
+  private static final String CHARSET             = "chset";
+  private static final String CONTENT_DISPOSITION = "cd";
+  private static final String FILENAME            = "fn";
+  private static final String CONTENT_ID          = "cid";
+  private static final String CONTENT_LOCATION    = "cl";
+  private static final String CONTENT_TYPE_START  = "ctt_s";
+  private static final String CONTENT_TYPE_TYPE   = "ctt_t";
+  private static final String ENCRYPTED           = "encrypted";
+  private static final String DATA                = "_data";
+  private static final String IN_PROGRESS         = "pending_push";
+  private static final String SIZE                = "data_size";
+  private static final String THUMBNAIL           = "thumbnail";
+  private static final String ASPECT_RATIO        = "aspect_ratio";
+  private static final String UNIQUE_ID           = "unique_id";
 
   private static final String PART_ID_WHERE = ROW_ID + " = ? AND " + UNIQUE_ID + " = ?";
 
@@ -86,12 +86,12 @@ public class PartDatabase extends Database {
     CONTENT_DISPOSITION + " TEXT, " + FILENAME + " TEXT, " + CONTENT_ID + " TEXT, "  +
     CONTENT_LOCATION + " TEXT, " + CONTENT_TYPE_START + " INTEGER, "                 +
     CONTENT_TYPE_TYPE + " TEXT, " + ENCRYPTED + " INTEGER, "                         +
-    PENDING_PUSH_ATTACHMENT + " INTEGER, "+ DATA + " TEXT, " + SIZE + " INTEGER, "   +
+    IN_PROGRESS + " INTEGER, "+ DATA + " TEXT, " + SIZE + " INTEGER, "   +
     THUMBNAIL + " TEXT, " + ASPECT_RATIO + " REAL, " + UNIQUE_ID + " INTEGER NOT NULL);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS part_mms_id_index ON " + TABLE_NAME + " (" + MMS_ID + ");",
-    "CREATE INDEX IF NOT EXISTS pending_push_index ON " + TABLE_NAME + " (" + PENDING_PUSH_ATTACHMENT + ");",
+    "CREATE INDEX IF NOT EXISTS pending_push_index ON " + TABLE_NAME + " (" + IN_PROGRESS + ");",
   };
 
   private final static String IMAGES_QUERY = "SELECT " + TABLE_NAME + "." + ROW_ID + ", "
@@ -127,7 +127,7 @@ public class PartDatabase extends Database {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
 
     part.setContentDisposition(new byte[0]);
-    part.setPendingPush(false);
+    part.setInProgress(false);
 
     ContentValues values = getContentValuesForPart(part);
 
@@ -275,10 +275,10 @@ public class PartDatabase extends Database {
     if (!cursor.isNull(encryptedColumn))
       part.setEncrypted(cursor.getInt(encryptedColumn) == 1);
 
-    int pendingPushColumn = cursor.getColumnIndexOrThrow(PENDING_PUSH_ATTACHMENT);
+    int inProgressColumn = cursor.getColumnIndexOrThrow(IN_PROGRESS);
 
-    if (!cursor.isNull(pendingPushColumn))
-      part.setPendingPush(cursor.getInt(pendingPushColumn) == 1);
+    if (!cursor.isNull(inProgressColumn))
+      part.setInProgress(cursor.getInt(inProgressColumn) == 1);
 
     int sizeColumn = cursor.getColumnIndexOrThrow(SIZE);
 
@@ -325,7 +325,7 @@ public class PartDatabase extends Database {
     }
 
     contentValues.put(ENCRYPTED, part.getEncrypted() ? 1 : 0);
-    contentValues.put(PENDING_PUSH_ATTACHMENT, part.isPendingPush() ? 1 : 0);
+    contentValues.put(IN_PROGRESS, part.isInProgress() ? 1 : 0);
     contentValues.put(UNIQUE_ID, part.getUniqueId());
 
     return contentValues;
@@ -437,7 +437,7 @@ public class PartDatabase extends Database {
     SQLiteDatabase   database = databaseHelper.getWritableDatabase();
     Pair<File, Long> partData = null;
 
-    if (!part.isPendingPush()) {
+    if (part.getData() != null || part.getDataUri() != null) {
       partData = writePartData(masterSecret, part);
       Log.w(TAG, "Wrote part to file: " + partData.first.getAbsolutePath());
     }
@@ -457,7 +457,7 @@ public class PartDatabase extends Database {
       Log.w(TAG, "inserting pre-generated thumbnail");
       ThumbnailData data = new ThumbnailData(thumbnail);
       updatePartThumbnail(masterSecret, partId, part, data.toDataStream(), data.getAspectRatio());
-    } else if (!part.isPendingPush()) {
+    } else if (!part.isInProgress()) {
       thumbnailExecutor.submit(new ThumbnailFetchCallable(masterSecret, partId));
     }
 
@@ -472,7 +472,7 @@ public class PartDatabase extends Database {
     Pair<File, Long> partData = writePartData(masterSecret, part, data);
 
     part.setContentDisposition(new byte[0]);
-    part.setPendingPush(false);
+    part.setInProgress(false);
 
     ContentValues values = getContentValuesForPart(part);
 
@@ -484,6 +484,17 @@ public class PartDatabase extends Database {
     database.update(TABLE_NAME, values, PART_ID_WHERE, partId.toStrings());
 
     thumbnailExecutor.submit(new ThumbnailFetchCallable(masterSecret, partId));
+
+    notifyConversationListeners(DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(messageId));
+  }
+
+  public void markPartUploaded(long messageId, PduPart part) {
+    ContentValues  values   = new ContentValues(1);
+    SQLiteDatabase database = databaseHelper.getWritableDatabase();
+
+    part.setInProgress(false);
+    values.put(IN_PROGRESS, false);
+    database.update(TABLE_NAME, values, PART_ID_WHERE, part.getPartId().toStrings());
 
     notifyConversationListeners(DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(messageId));
   }
@@ -639,6 +650,21 @@ public class PartDatabase extends Database {
 
     public boolean isValid() {
       return rowId >= 0 && uniqueId >= 0;
+    }
+
+    @Override public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
+
+      PartId partId = (PartId)o;
+
+      if (rowId != partId.rowId) return false;
+      return uniqueId == partId.uniqueId;
+
+    }
+
+    @Override public int hashCode() {
+      return Util.hashCode(rowId, uniqueId);
     }
   }
 }

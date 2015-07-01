@@ -10,13 +10,12 @@ import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.GroupUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
+import org.whispersystems.textsecure.api.messages.TextSecureAttachment.ProgressListener;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachmentStream;
 import org.whispersystems.textsecure.api.push.TextSecureAddress;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
@@ -26,6 +25,7 @@ import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
 
+import de.greenrobot.event.EventBus;
 import ws.com.google.android.mms.ContentType;
 import ws.com.google.android.mms.pdu.PduPart;
 import ws.com.google.android.mms.pdu.SendReq;
@@ -59,16 +59,19 @@ public abstract class PushSendJob extends SendJob {
     List<TextSecureAttachment> attachments = new LinkedList<>();
 
     for (int i=0;i<message.getBody().getPartsNum();i++) {
-      PduPart part = message.getBody().getPart(i);
-      String contentType = Util.toIsoString(part.getContentType());
+      final PduPart part        = message.getBody().getPart(i);
+      final String  contentType = Util.toIsoString(part.getContentType());
       if (ContentType.isImageType(contentType) ||
           ContentType.isAudioType(contentType) ||
           ContentType.isVideoType(contentType))
       {
-
         try {
           InputStream is = PartAuthority.getPartStream(context, masterSecret, part.getDataUri());
-          attachments.add(new TextSecureAttachmentStream(is, contentType, part.getDataSize()));
+          attachments.add(new TextSecureAttachmentStream(is, contentType, part.getDataSize(), new ProgressListener() {
+            @Override public void onAttachmentProgress(long total, long progress) {
+              EventBus.getDefault().postSticky(new PartProgressEvent(part.getPartId(), total, progress));
+            }
+          }));
         } catch (IOException ioe) {
           Log.w(TAG, "Couldn't open attachment", ioe);
         }
