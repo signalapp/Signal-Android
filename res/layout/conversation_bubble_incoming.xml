@@ -23,7 +23,6 @@
                 android:id="@+id/image_view"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/media_bubble_height"
-                android:layout_marginRight="@dimen/message_bubble_end_padding"
                 android:visibility="gone"
                 android:layout_gravity="center"
                 android:scaleType="centerInside"
