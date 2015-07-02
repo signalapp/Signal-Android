@@ -1,33 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
+              android:layout_width="wrap_content"
               android:layout_height="match_parent"
-              android:paddingBottom="@dimen/md_dialog_frame_margin"
-              android:paddingLeft="@dimen/md_dialog_frame_margin"
-              android:paddingRight="@dimen/md_dialog_frame_margin"
-              android:paddingTop="@dimen/md_dialog_frame_margin"
-              android:weightSum="2"
-              android:orientation="vertical" >
-
+              android:orientation="vertical"
+              android:background="@color/transparent">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="wrap_content"
+                  android:layout_height="fill_parent"
+                  android:orientation="vertical"
+                  android:layout_marginTop="100dp"
+                  android:background="@color/light_button"
+        >
     <RelativeLayout
-        android:layout_weight="1.5"
-        android:layout_width="match_parent"
-        android:layout_height="0dp">
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1.0">
 
         <org.thoughtcrime.securesms.components.ThumbnailView
             android:id="@+id/profile_picture"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="2"
-            android:scaleType="fitXY"
+            android:scaleType="centerCrop"
             android:padding="1dp"
-            android:visibility="visible"/>
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/image_border"
-            android:padding="0dp"/>
+            android:visibility="visible"
+            android:background="@android:color/transparent"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -41,37 +38,103 @@
             android:id="@+id/profile_picture_edit"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="image"
+            android:clickable="true"
+            android:padding="4dp"
+            android:layout_margin="8dp"
+            android:scaleType="fitXY"
+            android:background="@drawable/editor_states"
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            android:id="@+id/profile_close"
+            android:layout_alignParentBottom="false"
+            android:layout_alignParentRight="true"/>
     </RelativeLayout>
+    <View
+        android:id="@+id/devider"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="1dp"
+        android:layout_marginTop="1dp"
+        android:background="?android:attr/listDivider" />
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="0.25"
-        android:layout_marginTop="@dimen/md_dialog_frame_margin">
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        android:layout_weight="1.5"
+        android:background="@drawable/textview_border"
+        >
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                      android:layout_width="fill_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="vertical"
+                      android:id="@+id/profile_status_ll"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/profile_header"
+                android:hint=""
+                android:paddingTop="25dp"
+                android:paddingBottom="8dp"
+                android:paddingLeft="6dp"
+                android:textSize="18sp"
+                android:layout_weight="1"
+                android:text="Status"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:gravity="center_vertical"/>
+            <View
+                android:id="@+id/devider_two"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="1dp"
+                android:layout_marginTop="1dp"
+                android:background="?android:attr/listDivider" />
+        </LinearLayout>
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                      android:layout_width="fill_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:layout_below="@+id/profile_status_ll"
+            >
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/profile_status"
-            android:background="@drawable/textview_border"
-            android:hint="..."
-            android:paddingTop="6dp"
+            android:hint=""
+            android:paddingTop="25dp"
             android:paddingBottom="8dp"
             android:paddingLeft="6dp"
             android:textSize="18sp"
             android:enabled="false"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:gravity="center_vertical"/>
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                      android:layout_width="fill_parent"
+                      android:layout_height="fill_parent"
+                      android:orientation="horizontal"
+                      android:gravity="right"
+                      android:layout_weight="5"
+            >
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="image"
             android:id="@+id/profile_status_edit"
             android:clickable="true"
-            android:padding="4dp"
-            android:layout_margin="8dp"
+            android:padding="1dp"
+            android:layout_margin="4dp"
             android:scaleType="fitXY"
+            android:layout_gravity="center"
             android:background="@drawable/editor_states"
-            android:src="@android:drawable/ic_menu_edit"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"/>
-
+            android:src="@android:drawable/ic_menu_edit"/>
+            </LinearLayout>
+        </LinearLayout>
     </RelativeLayout>
+    </LinearLayout>
 </LinearLayout>

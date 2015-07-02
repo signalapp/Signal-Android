@@ -236,6 +236,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     initializeIme();
     initializeCharactersLeftViewEnabledCheck();
     calculateCharactersRemaining();
+    ProfileAccessor.updateProfileInformations(getRecipients());
 
     MessageNotifier.setVisibleThread(threadId);
     markThreadAsRead();
@@ -354,8 +355,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     super.onOptionsItemSelected(item);
     switch (item.getItemId()) {
       case R.id.menu_call:
-        // handleDial(getRecipients().getPrimaryRecipient());
-        ProfileAccessor.sendProfileUpdateToContacts(getApplicationContext(), masterSecret, isEncryptedConversation);
+        handleDial(getRecipients().getPrimaryRecipient());
+      //  ProfileAccessor.sendProfileUpdateToAllContacts(getApplicationContext(), masterSecret, isEncryptedConversation);
         return true;
       case R.id.menu_delete_thread:
         handleDeleteThread();
@@ -703,6 +704,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         CircledImageView thumbnail = (CircledImageView) mCustomView.findViewById(R.id.profile_picture);
         if (avatarSlide != null) {
           ProfileAccessor.buildGlideRequest(avatarSlide).into(thumbnail);
+        } else {
+          thumbnail.setImageBitmap(recipient.getCircleCroppedContactPhoto());
         }
         mTitleTextView.setText(title);
         mTitleTextViewSubtitle.setText(subtitle);
@@ -842,7 +845,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     calculateCharactersRemaining();
   }
-
   private void initializeMmsEnabledCheck() {
     new AsyncTask<Void, Void, Boolean>() {
       @Override

@@ -14,6 +14,7 @@ import android.util.AttributeSet;
 import android.widget.ImageView;
 
 import com.bumptech.glide.load.resource.bitmap.GlideBitmapDrawable;
+import com.bumptech.glide.request.target.SquaringDrawable;
 
 import org.thoughtcrime.securesms.util.BitmapUtil;
 
@@ -41,7 +42,7 @@ public class CircledImageView extends ImageView {
     if (getWidth() == 0 || getHeight() == 0) {
       return;
     }
-    if (!(drawable instanceof GlideBitmapDrawable)) {
+    if (!(drawable instanceof GlideBitmapDrawable) && !(drawable instanceof SquaringDrawable)) {
       Bitmap b = ((BitmapDrawable) drawable).getBitmap();
       Bitmap bitmap = b.copy(Bitmap.Config.ARGB_8888, true);
 
@@ -49,12 +50,16 @@ public class CircledImageView extends ImageView {
 
       Bitmap roundBitmap = getRoundedCroppedBitmap(bitmap, w);
       canvas.drawBitmap(roundBitmap, 0, 0, null);
-    } else {
+    } else if(!(drawable instanceof SquaringDrawable)){
       Bitmap b = ((GlideBitmapDrawable) drawable).getBitmap();
       Bitmap bitmap = b.copy(Bitmap.Config.ARGB_8888, true);
 
       Bitmap roundBitmap = BitmapUtil.getScaledCircleBitmap(context, bitmap);
       canvas.drawBitmap(roundBitmap, 0, 0, null);
+    } else {
+      canvas.save();
+      drawable.draw(canvas);
+      canvas.restore();
     }
   }
   public static Bitmap getRoundedCroppedBitmap(Bitmap bitmap, int radius) {
