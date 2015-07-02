@@ -8,6 +8,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
@@ -267,7 +268,16 @@ public static String extractCountryCode(String number) {
         longNumber += a;
       }
     }
-    return Long.parseLong(longNumber);
+    if(longNumber.trim().length()<=0) {
+      longNumber = "0";
+    }
+    Long longId = 0L;
+    try {
+      longId = Long.parseLong(longNumber);
+    } catch(NumberFormatException e) {
+      Log.w("MYLOG ", "If not parseable, no profile id - so no problem");
+    }
+    return longId;
   }
 
   public static Drawable createCircledBitmapFromDrawable(Context context, GlideBitmapDrawable profileImage) {

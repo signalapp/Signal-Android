@@ -120,6 +120,7 @@
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:excludeFromRecents="true"
             android:launchMode="singleTask"
+            android:theme="@style/Theme.Transparent"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".ConversationListActivity"

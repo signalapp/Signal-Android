@@ -40,6 +40,7 @@ import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
 import org.thoughtcrime.securesms.mms.AudioSlide;
+import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
@@ -75,19 +76,25 @@ public class ProfileFragment extends Fragment {
     boolean isMyProfile = (GUtil.numberToLong(gDataPreferences.getE164Number()+"")+"").contains(GUtil.numberToLong(profileId)+"");
     profileStatus = (EditText) getView().findViewById(R.id.profile_status);
     ThumbnailView profilePicture = (ThumbnailView) getView().findViewById(R.id.profile_picture);
-    if(masterSecret != null && !isMyProfile) {
+    ImageSlide slide = ProfileAccessor.getProfileAsImageSlide(getActivity(), masterSecret, profileId);
+    if(slide != null || !isMyProfile) {
+    if(masterSecret != null) {
       try {
-        profilePicture.setImageResource(ProfileAccessor.getProfileAsImageSlide(getActivity(), masterSecret, profileId), masterSecret);
+        profilePicture.setImageResource(slide, masterSecret);
       } catch (IllegalStateException e) {
         Log.w("GDATA", "UNABLE TO LOAD PROFILE IMAGE");
       }
-      profileStatus.setText(ProfileAccessor.getProfileStatusForRecepient(getActivity(), profileId), TextView.BufferType.EDITABLE);
-      profileStatus.setEnabled(false);
-    } else {
-      profilePicture.setImageResource(ProfileAccessor.getMyProfilePicture(getActivity()));
-      profileStatus.setText(ProfileAccessor.getProfileStatus(getActivity()), TextView.BufferType.EDITABLE);
-    }
+        profileStatus.setText(ProfileAccessor.getProfileStatusForRecepient(getActivity(), profileId), TextView.BufferType.EDITABLE);
+        profileStatus.setEnabled(false);
+      }
     profilePicture.setThumbnailClickListener(new ThumbnailClickListener());
+    } else if(ProfileAccessor.getMyProfilePicture(getActivity()).hasImage() && isMyProfile){
+        profilePicture.setImageResource(ProfileAccessor.getMyProfilePicture(getActivity()));
+        profileStatus.setText(ProfileAccessor.getProfileStatus(getActivity()), TextView.BufferType.EDITABLE);
+        profilePicture.setThumbnailClickListener(new ThumbnailClickListener());
+      } else {
+      profilePicture.setImageBitmap(RecipientFactory.getRecipientsFromString(getActivity(), profileId, false).getPrimaryRecipient().getContactPhoto());
+    }
     final ImageView profileStatusEdit = (ImageView) getView().findViewById(R.id.profile_status_edit);
     ImageView profileImageEdit = (ImageView) getView().findViewById(R.id.profile_picture_edit);
     if(!isMyProfile) {
@@ -143,26 +150,28 @@ public class ProfileFragment extends Fragment {
     }
   }
   public void onClick(final View v, final Slide slide) {
-     if (MediaPreviewActivity.isContentTypeSupported(slide.getContentType())) {
-      Intent intent = new Intent(getActivity(), MediaPreviewActivity.class);
-      intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-      intent.setDataAndType(slide.getUri(), slide.getContentType());
-      intent.putExtra(MediaPreviewActivity.MASTER_SECRET_EXTRA, masterSecret);
-       intent.putExtra(MediaPreviewActivity.RECIPIENT_EXTRA, RecipientFactory.getRecipientsFromString(getActivity(), String.valueOf(profileId), false).getPrimaryRecipient().getRecipientId());
-      getActivity().startActivity(intent);
-    } else {
-      AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(getActivity());
-      builder.setTitle(R.string.ConversationItem_view_secure_media_question);
-      builder.setIconAttribute(R.attr.dialog_alert_icon);
-      builder.setCancelable(true);
-      builder.setMessage(R.string.ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning);
-      builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-        public void onClick(DialogInterface dialog, int which) {
-          fireIntent(slide);
-        }
-      });
-      builder.setNegativeButton(R.string.no, null);
-      builder.show();
+    if(slide != null) {
+      if (MediaPreviewActivity.isContentTypeSupported(slide.getContentType())) {
+        Intent intent = new Intent(getActivity(), MediaPreviewActivity.class);
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        intent.setDataAndType(slide.getUri(), slide.getContentType());
+        intent.putExtra(MediaPreviewActivity.MASTER_SECRET_EXTRA, masterSecret);
+        intent.putExtra(MediaPreviewActivity.RECIPIENT_EXTRA, RecipientFactory.getRecipientsFromString(getActivity(), String.valueOf(profileId), false).getPrimaryRecipient().getRecipientId());
+        getActivity().startActivity(intent);
+      } else {
+        AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(getActivity());
+        builder.setTitle(R.string.ConversationItem_view_secure_media_question);
+        builder.setIconAttribute(R.attr.dialog_alert_icon);
+        builder.setCancelable(true);
+        builder.setMessage(R.string.ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning);
+        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+          public void onClick(DialogInterface dialog, int which) {
+            fireIntent(slide);
+          }
+        });
+        builder.setNegativeButton(R.string.no, null);
+        builder.show();
+      }
     }
     //  }
   }

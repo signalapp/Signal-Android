@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.PartDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
@@ -22,12 +23,17 @@ import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.mms.ThumbnailTransform;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
+import org.thoughtcrime.securesms.util.DirectoryHelper;
+import org.whispersystems.libaxolotl.AxolotlAddress;
 import org.whispersystems.libaxolotl.InvalidMessageException;
+import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.textsecure.api.push.ContactTokenDetails;
+import org.whispersystems.textsecure.api.push.TextSecureAddress;
 
 import java.io.IOException;
 import java.util.List;
@@ -159,21 +165,30 @@ public class ProfileAccessor {
     return getPreferences(context).getActiveContacts();
   }
 
-  public static void sendProfileUpdateToContacts(final Context context, final MasterSecret masterSecret, boolean encrypted) {
+  public static void sendProfileUpdateToAllContacts(final Context context, final MasterSecret masterSecret, boolean encrypted) {
     String[] activeContacts = getActiveContacts(context);
     mMasterSecret = masterSecret;
-   /* for (int i = 0; i < activeContacts.length; i++) {
-      try {
-      sendProfileUpdate(context, masterSecret, RecipientFactory.getRecipientsFromString(context, activeContacts[i], false), encrypted);
-    } catch (InvalidMessageException e) {
-      Log.w("GDATA", e);
+    for (int i = 0; i < activeContacts.length; i++) {
+        updateProfileInformations(RecipientFactory.getRecipientsFromString(context, activeContacts[i], false));
     }
-    }*/
-    try {
-    sendProfileUpdate(context, masterSecret, RecipientFactory.getRecipientsFromString(context, "15222787563", false), encrypted);
-  } catch (InvalidMessageException e) {
-    Log.w("GDATA", e);
   }
+  public static void updateProfileInformations(Recipients recipients) {
+    SessionStore sessionStore = new TextSecureSessionStore(GService.appContext, mMasterSecret);
+    Recipient primaryRecipient = recipients == null ? null : recipients.getPrimaryRecipient();
+    boolean isPushDestination = DirectoryHelper.isPushDestination(GService.appContext, recipients);
+    AxolotlAddress axolotlAddress = new AxolotlAddress(primaryRecipient.getNumber(), TextSecureAddress.DEFAULT_DEVICE_ID);
+    boolean isSecureDestination = isSingleConversation(recipients) && sessionStore.containsSession(axolotlAddress);
+
+    if(isPushDestination && isSecureDestination) {
+      try {
+        ProfileAccessor.sendProfileUpdate(GService.appContext, mMasterSecret, recipients, true);
+      } catch (InvalidMessageException e) {
+        Log.w("GDATA", e);
+      }
+    }
+  }
+  private static boolean isSingleConversation(Recipients recipients) {
+    return recipients != null && recipients.isSingleRecipient() && !recipients.isGroupRecipient();
   }
   public static void setMasterSecred(MasterSecret ma) {
     mMasterSecret = ma;

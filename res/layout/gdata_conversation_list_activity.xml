@@ -63,6 +63,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:orientation="vertical"
+        android:background="@drawable/textview_border"
         android:fitsSystemWindows="true"
         >
     <LinearLayout
