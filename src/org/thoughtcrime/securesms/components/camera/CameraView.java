@@ -21,38 +21,40 @@ import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.hardware.Camera;
 import android.hardware.Camera.PreviewCallback;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.util.Pair;
 import android.view.OrientationEventListener;
 import android.view.Surface;
 import android.view.View;
 import android.view.ViewGroup;
 import java.io.IOException;
+import java.util.concurrent.CountDownLatch;
 
 import com.commonsware.cwac.camera.CameraHost;
 import com.commonsware.cwac.camera.CameraHost.FailureReason;
 import com.commonsware.cwac.camera.PreviewStrategy;
 
+import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.jobqueue.Job;
+import org.whispersystems.jobqueue.JobParameters;
 
 @SuppressWarnings("deprecation")
 public class CameraView extends ViewGroup {
   private static final String TAG = CameraView.class.getSimpleName();
 
-  private PreviewStrategy     previewStrategy;
-  private Camera.Size         previewSize;
-  private Camera              camera                 = null;
-  private boolean             inPreview              = false;
-  private CameraHost          host                   = null;
-  private OnOrientationChange onOrientationChange    = null;
-  private int                 displayOrientation     = -1;
-  private int                 outputOrientation      = -1;
-  private int                 cameraId               = -1;
-  private int                 lastPictureOrientation = -1;
+  private          PreviewStrategy     previewStrategy        = null;
+  private          Camera.Size         previewSize            = null;
+  private volatile Camera              camera                 = null;
+  private          boolean             inPreview              = false;
+  private          CameraHost          host                   = null;
+  private          OnOrientationChange onOrientationChange    = null;
+  private          int                 displayOrientation     = -1;
+  private          int                 outputOrientation      = -1;
+  private          int                 cameraId               = -1;
+  private          int                 lastPictureOrientation = -1;
 
   public CameraView(Context context) {
     this(context, null);
@@ -85,32 +87,34 @@ public class CameraView extends ViewGroup {
   @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
   public void onResume() {
     final CameraHost host = getHost();
-    new AsyncTask<Void, Void, Pair<Camera,FailureReason>>() {
-      @Override protected Pair<Camera,FailureReason> doInBackground(Void... params) {
-        final Camera camera;
+    submitTask(new SerializedAsyncTask<FailureReason>() {
+      @Override protected void onPreMain() {
+        addView(previewStrategy.getWidget());
+      }
+
+      @Override protected FailureReason onRunBackground() {
         try {
           cameraId = host.getCameraId();
-
           if (cameraId >= 0) {
             camera = Camera.open(cameraId);
           } else {
-            return new Pair<>(null, FailureReason.NO_CAMERAS_REPORTED);
+            return FailureReason.NO_CAMERAS_REPORTED;
           }
         } catch (Exception e) {
-          return new Pair<>(null, FailureReason.UNKNOWN);
+          return FailureReason.UNKNOWN;
         }
-        return new Pair<>(camera, null);
+
+        return null;
       }
 
-      @Override protected void onPostExecute(Pair<Camera, FailureReason> result) {
-        if (result.second != null) {
-          host.onCameraFail(result.second);
+      @Override protected void onPostMain(FailureReason result) {
+        if (result != null) {
+          host.onCameraFail(result);
           return;
         }
         if (getActivity().getRequestedOrientation() != ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED) {
           onOrientationChange.enable();
         }
-        camera = result.first;
         setCameraDisplayOrientation();
         requestLayout();
         invalidate();
@@ -118,29 +122,31 @@ public class CameraView extends ViewGroup {
           CameraView.this.notifyAll();
         }
       }
-    }.execute();
-    addView(previewStrategy.getWidget());
+    });
   }
 
   public void onPause() {
-    if (camera == null || previewSize == null) {
-      synchronized (CameraView.this) {
-        while (camera == null || previewSize == null) {
-          Util.wait(CameraView.this, 0);
-        }
+    submitTask(new SerializedAsyncTask<Void>() {
+      @Override protected void onPreMain() {
+        removeView(previewStrategy.getWidget());
       }
-    }
 
-    if (camera != null) {
-      previewDestroyed();
-    }
-    removeView(previewStrategy.getWidget());
-    onOrientationChange.disable();
-    previewSize = null;
-    displayOrientation     = -1;
-    outputOrientation      = -1;
-    cameraId               = -1;
-    lastPictureOrientation = -1;
+      @Override protected Void onRunBackground() {
+        if (camera != null) {
+          previewDestroyed();
+        }
+        return null;
+      }
+
+      @Override protected void onPostMain(Void avoid) {
+        onOrientationChange.disable();
+        previewSize = null;
+        displayOrientation = -1;
+        outputOrientation = -1;
+        cameraId = -1;
+        lastPictureOrientation = -1;
+      }
+    });
   }
 
   // based on CameraPreview.java from ApiDemos
@@ -240,18 +246,18 @@ public class CameraView extends ViewGroup {
 
   void previewCreated() {
     final CameraHost host = getHost();
-    new PostInitializationTask() {
-      @Override
-      public void onPostExecute(Void aVoid) {
+    submitTask(new PostInitializationTask<Void>() {
+      @Override protected void onPostMain(Void avoid) {
         try {
           if (camera != null) {
             previewStrategy.attach(camera);
+          } else {
           }
         } catch (IOException e) {
           host.handleException(e);
         }
       }
-    }.execute();
+    });
   }
 
   void previewDestroyed() {
@@ -279,8 +285,8 @@ public class CameraView extends ViewGroup {
 
   @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
   public void initPreview(int w, int h, boolean firstRun) {
-    new PostInitializationTask() {
-      @Override protected void onPostExecute(Void aVoid) {
+    submitTask(new PostInitializationTask<Void>() {
+      @Override protected void onPostMain(Void avoid) {
         if (camera != null) {
           Camera.Parameters parameters = camera.getParameters();
 
@@ -294,9 +300,10 @@ public class CameraView extends ViewGroup {
           startPreview();
           requestLayout();
           invalidate();
+        } else {
         }
       }
-    }.execute();
+    });
   }
 
   private void startPreview() {
@@ -426,15 +433,72 @@ public class CameraView extends ViewGroup {
     }
   }
 
-  private class PostInitializationTask extends AsyncTask<Void,Void,Void> {
+  private void submitTask(SerializedAsyncTask job) {
+    ApplicationContext.getInstance(getContext()).getJobManager().add(job);
+  }
 
-    @Override protected Void doInBackground(Void... params) {
+  private abstract class SerializedAsyncTask<Result> extends Job {
+
+    public SerializedAsyncTask() {
+      super(JobParameters.newBuilder().withGroupId(CameraView.class.getSimpleName()).create());
+    }
+
+    @Override public void onAdded() {}
+
+    @Override public final void onRun() {
+      onWait();
+      runOnMainSync(new Runnable() {
+        @Override public void run() {
+          onPreMain();
+        }
+      });
+
+      final Result result = onRunBackground();
+
+      runOnMainSync(new Runnable() {
+        @Override public void run() {
+          onPostMain(result);
+        }
+      });
+    }
+
+    @Override public boolean onShouldRetry(Exception e) {
+      return false;
+    }
+
+    @Override public void onCanceled() { }
+
+    private void runOnMainSync(final Runnable runnable) {
+      final CountDownLatch sync = new CountDownLatch(1);
+      Util.runOnMain(new Runnable() {
+        @Override public void run() {
+          try {
+            runnable.run();
+          } finally {
+            sync.countDown();
+          }
+        }
+      });
+      try {
+        sync.await();
+      } catch (InterruptedException ie) {
+        throw new AssertionError(ie);
+      }
+    }
+
+    protected void onWait() {}
+    protected void onPreMain() {}
+    protected Result onRunBackground() { return null; }
+    protected void onPostMain(Result result) {}
+  }
+
+  private abstract class PostInitializationTask<Result> extends SerializedAsyncTask<Result> {
+    @Override protected void onWait() {
       synchronized (CameraView.this) {
         while (camera == null || previewSize == null) {
           Util.wait(CameraView.this, 0);
         }
       }
-      return null;
     }
   }
 }
