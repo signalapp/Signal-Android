@@ -98,15 +98,16 @@
                         android:nextFocusForward="@+id/send_button"
                         android:nextFocusRight="@+id/send_button"
                         tools:hint="Send TextSecure message" />
-                </LinearLayout>
 
-                <ImageButton android:id="@+id/quick_attachment_toggle"
-                             android:layout_width="wrap_content"
-                             android:layout_height="44dp"
-                             android:src="?quick_camera_icon"
-                             android:background="@drawable/touch_highlight_background"
-                             android:contentDescription="@string/conversation_activity__quick_attachment_drawer_toggle_description"
-                             android:padding="10dp"/>
+                    <ImageButton android:id="@+id/quick_attachment_toggle"
+                                 android:layout_width="37dp"
+                                 android:layout_height="37dp"
+                                 android:layout_gravity="bottom"
+                                 android:src="?quick_camera_icon"
+                                 android:background="@drawable/touch_highlight_background"
+                                 android:contentDescription="@string/conversation_activity__quick_attachment_drawer_toggle_description"
+                                 android:padding="10dp"/>
+                </LinearLayout>
 
                 <org.thoughtcrime.securesms.components.AnimatingToggle
                     android:id="@+id/button_toggle"
