@@ -174,7 +174,7 @@
     </style>
 
     <style name="TextSecure.DarkTheme" parent="@style/Theme.AppCompat">
-        <item name="theme_type">light</item>
+        <item name="theme_type">dark</item>
         <item name="actionBarStyle">@style/TextSecure.DarkActionBar</item>
         <item name="actionBarTabBarStyle">@style/TextSecure.DarkActionBar.TabBar</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
