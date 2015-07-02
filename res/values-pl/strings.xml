@@ -143,7 +143,16 @@ ten kontakt.
   <string name="DateUtils_now">Teraz</string>
   <string name="DateUtils_minutes_ago">%d minuta</string>
   <!--DeviceListActivity-->
+  <string name="DeviceListActivity_disconnect_s">Rozłączyć \'%s\'?</string>
+  <string name="DeviceListActivity_by_disconnecting_this_device_it_will_no_longer_be_able_to_send_or_receive">Poprzez odłączenie tego urządzenia, nie będzie ono otrzymywać wiadomości.</string>
+  <string name="DeviceListActivity_network_connection_failed">Brak połączenia internetowego...</string>
+  <string name="DeviceListActivity_try_again">Spróbuj ponownie</string>
+  <string name="DeviceListActivity_disconnecting_device_no_ellipse">Rozłączanie urządzenia</string>
+  <string name="DeviceListActivity_network_failed">Błąd sieci!</string>
   <!--DeviceListItem-->
+  <string name="DeviceListItem_unnamed_device">Nieznane urządzenie</string>
+  <string name="DeviceListItem_created_s">Utworzono %s</string>
+  <string name="DeviceListItem_last_active_s">Ostatnio aktywny %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Podziel się z</string>
   <!--ExportFragment-->
@@ -238,6 +247,7 @@ Przywracanie szyfrowanej kopii zapasowej TextSecure spowoduje nadpisanie Twoich 
   <string name="DeviceProvisioningActivity_content_progress_no_device">Nie znaleziono żadnych urządzeń.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Błąd sieci.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Niepoprawny kod QR.</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_registered_already">Niestety masz już zbyt wiele zarejestrowanych urządzeń, usuń któryś, aby dodać nowy...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Podaj hasło</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Ikona TextSecure</string>
@@ -381,9 +391,11 @@ Otrzymano wiadomość z nieznanym kluczem tożsamości. Kliknij aby przetworzyć
   <string name="MessageNotifier_failed_to_deliver_message">Dostarczenie wiadomości nie powiodło się.</string>
   <string name="MessageNotifier_error_delivering_message">Błąd przy wysyłaniu wiadomości.</string>
   <string name="MessageNotifier_mark_all_as_read">Oznacz wszystkie jako przeczytane</string>
-  <string name="MessageNotifier_mark_as_read">Oznacz jako przeczytane</string>
   <string name="MessageNotifier_media_message">Wiadomość multimedialna</string>
+  <string name="MessageNotifier_reply">Odpowiedź</string>
   <!--QuickResponseService-->
+  <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">Szybka odpowiedź jest niedostępna kiedy TextSecure jest zablokowany!</string>
+  <string name="QuickResponseService_problem_sending_message">Wystąpił błąd przy wysyłaniu wiadomości!</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">STARE HASŁO:</string>
   <string name="change_passphrase_activity__new_passphrase">NOWE HASŁO:</string>
@@ -436,6 +448,7 @@ Otrzymano wiadomość z nieznanym kluczem tożsamości. Kliknij aby przetworzyć
   <string name="country_selection_fragment__loading_countries">Wczytywanie krajów...</string>
   <string name="country_selection_fragment__search">Szukaj</string>
   <!--device_list_fragment-->
+  <string name="device_list_fragment__no_devices_paired">Brak połączonych urządzeń...</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Nie udało się odczytać logów z Twojego urządzenia. W dalszym ciągu możesz użyć ADB, aby pobrać logi debugowania.</string>
   <string name="log_submit_activity__thanks">Dziękujemy za Twoją pomoc!</string>
@@ -567,6 +580,7 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="AndroidManifest__media_overview">Wszystkie obrazy</string>
   <string name="AndroidManifest__media_overview_named">Wszystkie obrazy z %1$s</string>
   <string name="AndroidManifest__message_details">Szczegóły wiadomości</string>
+  <string name="AndroidManifest_manage_paired_devices">Zarządzaj połączonymi urządzeniami</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Import / eksport</string>
   <string name="arrays__my_identity_key">Mój klucz tożsamości</string>
@@ -735,6 +749,7 @@ Darmowe i prywatne wiadomości do użytkowników TextSecure i Signal</string>
   <string name="conversation__menu_delete_thread">Usuń wątek</string>
   <string name="conversation__menu_view_media">Wszystkie obrazy</string>
   <!--conversation_popup-->
+  <string name="conversation_popup__menu_expand_popup">Powiększ okno</string>
   <!--conversation_callable-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Dodaj do kontaktów</string>
   <!--conversation_group_options-->

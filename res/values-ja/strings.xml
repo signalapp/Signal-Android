@@ -380,7 +380,6 @@
   <string name="MessageNotifier_failed_to_deliver_message">メッセージの配信に失敗しました。</string>
   <string name="MessageNotifier_error_delivering_message">メッセージ配信中にエラーがありました。</string>
   <string name="MessageNotifier_mark_all_as_read">すべて既読にする</string>
-  <string name="MessageNotifier_mark_as_read">既読にする</string>
   <string name="MessageNotifier_media_message">メディアーメッセージ</string>
   <!--QuickResponseService-->
   <!--change_passphrase_activity-->

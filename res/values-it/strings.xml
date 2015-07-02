@@ -146,7 +146,7 @@ questo contatto.</string>
   <string name="DeviceListActivity_by_disconnecting_this_device_it_will_no_longer_be_able_to_send_or_receive">Disconnettendo questo dispositivo, esso non sarà più in grado di ricevere nè inviare messaggi.</string>
   <string name="DeviceListActivity_network_connection_failed">Connessione di rete fallita....</string>
   <string name="DeviceListActivity_try_again">Riprova</string>
-  <string name="DeviceListActivity_disconnecting_device">Scollegamento dispositivo..</string>
+  <string name="DeviceListActivity_disconnecting_device">Disconnessione dispositivo...</string>
   <string name="DeviceListActivity_disconnecting_device_no_ellipse">Scollegamento dispositivo</string>
   <string name="DeviceListActivity_network_failed">Errore di rete!</string>
   <!--DeviceListItem-->
@@ -402,7 +402,7 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <string name="MessageNotifier_failed_to_deliver_message">Non è riuscito l\'invio del messaggio</string>
   <string name="MessageNotifier_error_delivering_message">C\'è stato un errore durante l\'invio del messaggio</string>
   <string name="MessageNotifier_mark_all_as_read">Segna tutto come già letto</string>
-  <string name="MessageNotifier_mark_as_read">Segna come già letto</string>
+  <string name="MessageNotifier_mark_read">Ho letto</string>
   <string name="MessageNotifier_media_message">Messaggio multimediale</string>
   <string name="MessageNotifier_reply">Rispondi</string>
   <!--QuickResponseService-->
@@ -516,6 +516,8 @@ Importo una copia in chiaro. Compatibile con \"SMSBackup And Restore\"</string>
   <string name="recipient_preferences__ringtone">Suoneria</string>
   <string name="recipient_preferences__vibrate">Vibra</string>
   <string name="recipient_preferences__block">Blocca</string>
+  <string name="recipient_preferences__color">Colore</string>
+  <string name="recipient_preferences__color_for_this_contact">Colore per questo contatto</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
         Verifica il tuo numero di telefono per connetterti a TextSecure.
@@ -526,6 +528,7 @@ NUMERO DI TELEFONO</string>
   <string name="registration_activity__phone_number">NUMERO DI TELEFONO</string>
   <string name="registration_activity__register">Registro</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">La registrazione trasmette delle informazioni sui contatti al server. Non vengono conservate.</string>
+  <string name="registration_activity__powered_by_twilio">Powered by twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Alcuni possibili problemi
 tra cui:

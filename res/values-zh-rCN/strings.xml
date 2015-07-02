@@ -381,7 +381,6 @@
   <string name="MessageNotifier_failed_to_deliver_message">信息发送失败</string>
   <string name="MessageNotifier_error_delivering_message">发送信息错误。</string>
   <string name="MessageNotifier_mark_all_as_read">全部标记为已读</string>
-  <string name="MessageNotifier_mark_as_read">标记为已读</string>
   <string name="MessageNotifier_media_message">媒体信息</string>
   <!--QuickResponseService-->
   <!--change_passphrase_activity-->

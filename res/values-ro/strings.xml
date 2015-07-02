@@ -343,7 +343,6 @@ Primit mesaj trimis cu o cheie de identitate necunoscută. Faceți click pentru 
   <string name="MessageNotifier_failed_to_deliver_message">Mesajul nu a putut fi trimis.</string>
   <string name="MessageNotifier_error_delivering_message">A aparut o eroare la trimiterea mesajului.</string>
   <string name="MessageNotifier_mark_all_as_read">Marchează tot ca citit</string>
-  <string name="MessageNotifier_mark_as_read">Marchează ca citit</string>
   <string name="MessageNotifier_media_message">Mesaj media</string>
   <!--QuickResponseService-->
   <!--change_passphrase_activity-->

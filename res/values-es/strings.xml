@@ -156,7 +156,6 @@ Recibido:%4$s</string>
   <string name="DeviceListActivity_by_disconnecting_this_device_it_will_no_longer_be_able_to_send_or_receive">Al desconectar este dispositivo, ya no podrá enviar y recibir mensajes.</string>
   <string name="DeviceListActivity_network_connection_failed">Fallo de conexión a la red...</string>
   <string name="DeviceListActivity_try_again">Intentar de nuevo</string>
-  <string name="DeviceListActivity_disconnecting_device">Desconectando dispositivo...</string>
   <string name="DeviceListActivity_disconnecting_device_no_ellipse">Desconectando dispositivo</string>
   <string name="DeviceListActivity_network_failed">¡Fallo de red!</string>
   <!--DeviceListItem-->
@@ -424,7 +423,6 @@ Se recibió un mensaje con una clave de identidad desconocida. Haga clic para pr
   <string name="MessageNotifier_failed_to_deliver_message">Fallo al entregar mensaje.</string>
   <string name="MessageNotifier_error_delivering_message">Error entregando mensaje.</string>
   <string name="MessageNotifier_mark_all_as_read">Marcar todos como leídos</string>
-  <string name="MessageNotifier_mark_as_read">Marcar como leídos</string>
   <string name="MessageNotifier_media_message">Mensaje multimedia</string>
   <string name="MessageNotifier_reply">Responder</string>
   <!--QuickResponseService-->

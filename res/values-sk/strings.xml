@@ -382,7 +382,6 @@ Bola prijatá správa s neznámou identou. Kliknite pre spracovanie a zobrazenie
   <string name="MessageNotifier_failed_to_deliver_message">Zlyhanie doručenia správy.</string>
   <string name="MessageNotifier_error_delivering_message">Chyba doručovania správy.</string>
   <string name="MessageNotifier_mark_all_as_read">Označ všetko ako prečítané</string>
-  <string name="MessageNotifier_mark_as_read">Označ ako prečítané</string>
   <string name="MessageNotifier_media_message">Multimediálna správa</string>
   <!--QuickResponseService-->
   <!--change_passphrase_activity-->

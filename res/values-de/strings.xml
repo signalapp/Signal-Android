@@ -147,9 +147,8 @@ Dies könnte bedeuten, dass jemand versucht, Ihr Gespräch abzuhören. Vielleich
   <string name="DeviceListActivity_by_disconnecting_this_device_it_will_no_longer_be_able_to_send_or_receive">Durch Trennung dieses Geräts wird es keine weiteren Nachrichten senden oder empfangen können.</string>
   <string name="DeviceListActivity_network_connection_failed">Netzwerkverbindung fehlgeschlagen …</string>
   <string name="DeviceListActivity_try_again">Erneut versuchen</string>
-  <string name="DeviceListActivity_disconnecting_device">Trennen</string>
   <string name="DeviceListActivity_disconnecting_device_no_ellipse">Gerät wird getrennt …</string>
-  <string name="DeviceListActivity_network_failed">Netzwerk fehlgeschlagen!</string>
+  <string name="DeviceListActivity_network_failed">Netzwerkfehler!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Unbenanntes Gerät</string>
   <string name="DeviceListItem_created_s">Erstellt %s</string>
@@ -250,7 +249,7 @@ Bitten Sie den Absender, TextSecure zu aktualisieren und die Nachricht erneut zu
   <string name="DeviceProvisioningActivity_content_progress_no_device">Kein Gerät gefunden.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Netzwerkfehler.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Ungültiger QR-Code.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_registered_already">Es sind bereits zu viele Geräte registriert. Versuchen Sie, einige zu entfernen …</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_registered_already">Es sind bereits zu viele Geräte registriert. Versuchen Sie, mindestens eines zu entfernen …</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Passwort eingeben</string>
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure-Symbol</string>
@@ -390,7 +389,6 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Nachrichtenübermittlung fehlgeschlagen.</string>
   <string name="MessageNotifier_error_delivering_message">Nachrichtenübermittlung fehlgeschlagen.</string>
   <string name="MessageNotifier_mark_all_as_read">Alle als gelesen markieren</string>
-  <string name="MessageNotifier_mark_as_read">Als gelesen markieren</string>
   <string name="MessageNotifier_media_message">Mediennachricht</string>
   <string name="MessageNotifier_reply">Antworten</string>
   <!--QuickResponseService-->

@@ -353,7 +353,6 @@ SMS-களை இறக்குமதி செய்திருந்தா�
   <string name="MessageNotifier_failed_to_deliver_message">செய்தி விநியோகிப்பது தோல்வியடைந்தது.</string>
   <string name="MessageNotifier_error_delivering_message">செய்தி விநியோகிப்பதில் பிழை.</string>
   <string name="MessageNotifier_mark_all_as_read">அனைத்தையும் படித்தாக குறியிடு</string>
-  <string name="MessageNotifier_mark_as_read"> படித்தாக குறியிடு</string>
   <string name="MessageNotifier_media_message">மீடியா செய்தி</string>
   <!--QuickResponseService-->
   <!--change_passphrase_activity-->

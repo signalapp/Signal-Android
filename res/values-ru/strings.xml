@@ -375,7 +375,6 @@
   <string name="MessageNotifier_failed_to_deliver_message">Не удалось доставить сообщение.</string>
   <string name="MessageNotifier_error_delivering_message">Ошибка при доставке сообщения.</string>
   <string name="MessageNotifier_mark_all_as_read">Отметить все как прочитанные</string>
-  <string name="MessageNotifier_mark_as_read">Отметить как прочитанное</string>
   <string name="MessageNotifier_media_message">MMS-сообщение</string>
   <!--QuickResponseService-->
   <!--change_passphrase_activity-->

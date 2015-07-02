@@ -386,7 +386,6 @@ SMS της συσκευής σας στο TextSecure. Αν έχετε ήδη ε�
   <string name="MessageNotifier_failed_to_deliver_message">Αποτυχία παράδοσης του μήνυματος.</string>
   <string name="MessageNotifier_error_delivering_message">Σφάλμα κατά την παράδοση του μηνύματος.</string>
   <string name="MessageNotifier_mark_all_as_read">Επισήμανση όλων ως αναγνωσμένα</string>
-  <string name="MessageNotifier_mark_as_read">Επισήμανση ως αναγνωσμένο</string>
   <string name="MessageNotifier_media_message">Μήνυμα πολυμέσων</string>
   <!--QuickResponseService-->
   <!--change_passphrase_activity-->

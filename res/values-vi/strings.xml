@@ -243,7 +243,6 @@ Nhận thông tin về chìa khóa nhận diện không rõ. Bấm để xử l�
   <string name="MessageNotifier_failed_to_deliver_message">Thất bại trong việc phân phối tin.</string>
   <string name="MessageNotifier_error_delivering_message">Có lỗi khi phân phối tin.</string>
   <string name="MessageNotifier_mark_all_as_read">Đánh dấu tất cả đã đọc</string>
-  <string name="MessageNotifier_mark_as_read">Đánh dấu đã đọc</string>
   <!--QuickResponseService-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">MẬT KHẨU CŨ:</string>

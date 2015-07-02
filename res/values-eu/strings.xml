@@ -326,7 +326,6 @@ Nortasun gako ezezagun batekin jaso da mezua. Klik egin prozesatzeko eta erakust
   <string name="MessageNotifier_failed_to_deliver_message">Mezuaren banaketak huts egin du.</string>
   <string name="MessageNotifier_error_delivering_message">Errorea mezua banatzen.</string>
   <string name="MessageNotifier_mark_all_as_read">Denak irrakurritako gisa markatu</string>
-  <string name="MessageNotifier_mark_as_read">Irakurritako gisa markatu</string>
   <string name="MessageNotifier_media_message">Media mezua</string>
   <!--QuickResponseService-->
   <!--change_passphrase_activity-->

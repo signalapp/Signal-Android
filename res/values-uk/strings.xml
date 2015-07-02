@@ -194,7 +194,6 @@
   <string name="MessageNotifier_failed_to_deliver_message">Не вдалось доставити повідомлення.</string>
   <string name="MessageNotifier_error_delivering_message">Помилка доставки повідомлення.</string>
   <string name="MessageNotifier_mark_all_as_read">Позначити все як прочитане</string>
-  <string name="MessageNotifier_mark_as_read">Позначити як прочитане</string>
   <!--QuickResponseService-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">СТАРА ФРАЗА-КЛЮЧ:</string>

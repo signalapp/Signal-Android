@@ -395,7 +395,6 @@
   <string name="MessageNotifier_failed_to_deliver_message">Неуспешно доставување на пораката.</string>
   <string name="MessageNotifier_error_delivering_message">Грешка при доставувањето на пораката.</string>
   <string name="MessageNotifier_mark_all_as_read">Обележи ги сите како прочитани</string>
-  <string name="MessageNotifier_mark_as_read">Обележи ги како прочитани</string>
   <string name="MessageNotifier_media_message">Медиа порака</string>
   <!--QuickResponseService-->
   <!--change_passphrase_activity-->

@@ -360,7 +360,6 @@
   <string name="MessageNotifier_failed_to_deliver_message">ಸಂದೇಶ ತಲುಪಿಸಲು ವಿಫಲವಾಗಿದೆ.</string>
   <string name="MessageNotifier_error_delivering_message">ಸಂದೇಶವನ್ನು ತಲುಪಿಸುವುದರಲ್ಲಿದೋಷ ಸಂಭವಿಸಿದೆ</string>
   <string name="MessageNotifier_mark_all_as_read">ಎಲ್ಲವನ್ನು ಓದಿದೆ ಎಂದು ಗುರುತು ಮಾಡಿ</string>
-  <string name="MessageNotifier_mark_as_read">ಓದಿದೆ ಎಂದು ಗುರುತು ಮಾಡಿ</string>
   <string name="MessageNotifier_media_message">ಬಹುಮಾಧ್ಯಮ ಸಂದೇಶ</string>
   <!--QuickResponseService-->
   <!--change_passphrase_activity-->

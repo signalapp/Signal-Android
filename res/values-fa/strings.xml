@@ -315,7 +315,6 @@
   <string name="MessageNotifier_failed_to_deliver_message">ناموفق برای تحویل پیام.</string>
   <string name="MessageNotifier_error_delivering_message">خطا در تحویل پیام.</string>
   <string name="MessageNotifier_mark_all_as_read">علامت همه به عنوان خوانده شده</string>
-  <string name="MessageNotifier_mark_as_read">علامت گذاری به عنوان خوانده شده</string>
   <string name="MessageNotifier_media_message">پیام رسانه</string>
   <!--QuickResponseService-->
   <!--change_passphrase_activity-->

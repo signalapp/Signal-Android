@@ -342,7 +342,6 @@ Recebida mensagem com chave de identidade desconhecida. Clique para processar e 
   <string name="MessageNotifier_failed_to_deliver_message">Falhou a remessa de mensagem.</string>
   <string name="MessageNotifier_error_delivering_message">Erro a remeter a mensagem.</string>
   <string name="MessageNotifier_mark_all_as_read">Marcar todas como lidas</string>
-  <string name="MessageNotifier_mark_as_read">Marcar como lidas</string>
   <string name="MessageNotifier_media_message">Mensagem media</string>
   <!--QuickResponseService-->
   <!--change_passphrase_activity-->

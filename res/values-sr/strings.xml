@@ -151,7 +151,6 @@
   <string name="DeviceListActivity_by_disconnecting_this_device_it_will_no_longer_be_able_to_send_or_receive">Овај уређај више неће моћи да шаље или прима поруке ако му прекинете везу:</string>
   <string name="DeviceListActivity_network_connection_failed">Повезивање на мрежу није успело...</string>
   <string name="DeviceListActivity_try_again">Покушај поново</string>
-  <string name="DeviceListActivity_disconnecting_device">Прекидам везу са уређајем..</string>
   <string name="DeviceListActivity_disconnecting_device_no_ellipse">Прекидам везу са уређајем</string>
   <string name="DeviceListActivity_network_failed">Неуспех мреже!</string>
   <!--DeviceListItem-->
@@ -405,7 +404,6 @@
   <string name="MessageNotifier_failed_to_deliver_message">Нисам успео да испоручим поруку.</string>
   <string name="MessageNotifier_error_delivering_message">Грешка при испоруци поруке.</string>
   <string name="MessageNotifier_mark_all_as_read">Означи све прочитаним</string>
-  <string name="MessageNotifier_mark_as_read">Означи као прочитано</string>
   <string name="MessageNotifier_media_message">Мултимедијална порука</string>
   <string name="MessageNotifier_reply">Одговори</string>
   <!--QuickResponseService-->

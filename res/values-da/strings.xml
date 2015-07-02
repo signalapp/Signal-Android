@@ -299,7 +299,6 @@ Modtog en besked med en ukendt identitetsnøgle. Klik for at se og behandle den.
   <string name="MessageNotifier_failed_to_deliver_message">Kunne ikke sende besked.</string>
   <string name="MessageNotifier_error_delivering_message">Fejl ved levering af besked.</string>
   <string name="MessageNotifier_mark_all_as_read">Marker alle som læst</string>
-  <string name="MessageNotifier_mark_as_read">Marker som læst</string>
   <string name="MessageNotifier_media_message">Multimedie besked</string>
   <!--QuickResponseService-->
   <!--change_passphrase_activity-->

@@ -145,7 +145,6 @@ Indien je in de toekomst weer TextSecure berichten wilt gebruiken zul je je tele
   <string name="DeviceListActivity_by_disconnecting_this_device_it_will_no_longer_be_able_to_send_or_receive">Door dit apparaat te ontkoppelen zal het niet langer berichten kunnen verzenden en ontvangen.</string>
   <string name="DeviceListActivity_network_connection_failed">Netwerkverbinding mislukt..</string>
   <string name="DeviceListActivity_try_again">Probeer opnieuw</string>
-  <string name="DeviceListActivity_disconnecting_device">Apparaat aan het loskoppelen...</string>
   <string name="DeviceListActivity_disconnecting_device_no_ellipse">Apparaat aan het loskoppelen</string>
   <string name="DeviceListActivity_network_failed">Netwerkfout!</string>
   <!--DeviceListItem-->
@@ -390,7 +389,6 @@ Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en 
   <string name="MessageNotifier_failed_to_deliver_message">Het bericht afleveren is mislukt.</string>
   <string name="MessageNotifier_error_delivering_message">Fout bij afleveren bericht.</string>
   <string name="MessageNotifier_mark_all_as_read">Alles als gelezen markeren</string>
-  <string name="MessageNotifier_mark_as_read">Markeren als gelezen</string>
   <string name="MessageNotifier_media_message">Mediabericht</string>
   <string name="MessageNotifier_reply">Reageren</string>
   <!--QuickResponseService-->

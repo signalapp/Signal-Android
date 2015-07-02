@@ -167,7 +167,6 @@
   <string name="MessageNotifier_failed_to_deliver_message">כישלון במסירת ההודעה.</string>
   <string name="MessageNotifier_error_delivering_message">שגיאה במסירת ההודעה.</string>
   <string name="MessageNotifier_mark_all_as_read">סמן הכל כנקרא</string>
-  <string name="MessageNotifier_mark_as_read">סמן כנקרא</string>
   <!--QuickResponseService-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">סיסמה ישנה:</string>

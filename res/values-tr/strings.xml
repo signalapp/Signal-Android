@@ -373,7 +373,6 @@ Bilinmeyen kimlik anahtarı içeren bir mesaj alındı. İşlemek ve görüntül
   <string name="MessageNotifier_failed_to_deliver_message">Mesaj iletimi başarısız oldu.</string>
   <string name="MessageNotifier_error_delivering_message">Hata mesaj iletimi</string>
   <string name="MessageNotifier_mark_all_as_read">Tümünü okundu işaretle</string>
-  <string name="MessageNotifier_mark_as_read">Okundu işaretle</string>
   <string name="MessageNotifier_media_message">Medya mesajı</string>
   <!--QuickResponseService-->
   <!--change_passphrase_activity-->

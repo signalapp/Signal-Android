@@ -204,7 +204,6 @@
   <string name="MessageNotifier_failed_to_deliver_message">No s\'ha pogut entregar el missatge.</string>
   <string name="MessageNotifier_error_delivering_message">Error entregant el missatge.</string>
   <string name="MessageNotifier_mark_all_as_read">Marca-ho tot com a llegit</string>
-  <string name="MessageNotifier_mark_as_read">Marca com a llegit</string>
   <!--QuickResponseService-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">FRASE CONTRASENYA ANTIGA:</string>

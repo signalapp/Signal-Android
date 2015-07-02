@@ -344,7 +344,6 @@
   <string name="MessageNotifier_failed_to_deliver_message">Памылка дастаўкі паведамлення.</string>
   <string name="MessageNotifier_error_delivering_message">Памылка дастаўкі паведамлення.</string>
   <string name="MessageNotifier_mark_all_as_read">Пазначыць усе як прачытаныя</string>
-  <string name="MessageNotifier_mark_as_read">Пазначыць як прачытанае</string>
   <string name="MessageNotifier_media_message">Мультымедыя паведамленне</string>
   <!--QuickResponseService-->
   <!--change_passphrase_activity-->
