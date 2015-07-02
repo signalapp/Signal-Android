@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:background="?conversation_background"
-              android:orientation="vertical">
+<org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/layout_container"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="?conversation_background"
+        android:orientation="vertical">
 
-    <RelativeLayout
-            android:id="@+id/layout_container"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="bottom">
+    <RelativeLayout android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="bottom">
 
         <FrameLayout android:id="@+id/fragment_content"
                      android:layout_width="match_parent"
@@ -141,11 +141,4 @@
 
         </LinearLayout>
     </RelativeLayout>
-
-    <ViewStub android:id="@+id/emoji_drawer_stub"
-              android:inflatedId="@+id/emoji_drawer"
-              android:layout="@layout/emoji_drawer_stub"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content" />
-
-</LinearLayout>
+</org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout>
