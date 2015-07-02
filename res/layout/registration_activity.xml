@@ -58,6 +58,12 @@
 
         </LinearLayout>
 
+        <ImageView android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:src="@drawable/ic_twilio_shoutout_white"
+                   android:layout_gravity="right"
+                   android:tint="@color/grey_800"/>
+
         <TextView style="@style/Registration.Description"
                   android:layout_width="fill_parent"
                   android:layout_marginBottom="8dip"
