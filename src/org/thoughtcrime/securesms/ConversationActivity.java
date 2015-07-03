@@ -322,7 +322,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     inflater.inflate(R.menu.conversation, menu);
 
     if (recipients != null && recipients.isMuted()) inflater.inflate(R.menu.conversation_muted, menu);
-    else                                            inflater.inflate(R.menu.conversation_unmuted, menu);
 
     if (isSingleConversation() && getRecipients().getPrimaryRecipient().getContactUri() == null) {
       inflater.inflate(R.menu.conversation_add_to_contacts, menu);
@@ -349,7 +348,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     case R.id.menu_edit_group:                handleEditPushGroup();                             return true;
     case R.id.menu_leave:                     handleLeavePushGroup();                            return true;
     case R.id.menu_invite:                    handleInviteLink();                                return true;
-    case R.id.menu_mute_notifications:        handleMuteNotifications();                         return true;
+    case R.id.menu_notification_settings:     handleNotificationSettings();                      return true;
     case R.id.menu_unmute_notifications:      handleUnmuteNotifications();                       return true;
     case android.R.id.home:                   handleReturnToConversationList();                  return true;
     }
@@ -376,23 +375,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     finish();
   }
 
-  private void handleMuteNotifications() {
-    MuteDialog.show(this, new MuteDialog.MuteSelectionListener() {
-      @Override
-      public void onMuted(final long until) {
-        recipients.setMuted(until);
-
-        new AsyncTask<Void, Void, Void>() {
-          @Override
-          protected Void doInBackground(Void... params) {
-            DatabaseFactory.getRecipientPreferenceDatabase(ConversationActivity.this)
-                           .setMuted(recipients, until);
-
-            return null;
-          }
-        }.execute();
-      }
-    });
+  private void handleNotificationSettings() {
+    Intent intent = new Intent(ConversationActivity.this, RecipientPreferenceActivity.class);
+    intent.putExtra(RecipientPreferenceActivity.RECIPIENTS_EXTRA, recipients.getIds());
+    startActivity(intent);
   }
 
   private void handleUnmuteNotifications() {
