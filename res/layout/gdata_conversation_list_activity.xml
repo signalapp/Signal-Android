@@ -63,7 +63,6 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:orientation="vertical"
-        android:background="@drawable/textview_border"
         android:fitsSystemWindows="true"
         >
     <LinearLayout
@@ -74,16 +73,15 @@
         android:layout_gravity="start"
         android:background="@color/gdata_red"
         android:gravity="center_vertical"
-        android:paddingLeft="20dp"
         android:orientation="vertical" >
 
         <org.thoughtcrime.securesms.components.CircledImageView
             android:id="@+id/profile_picture"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_gravity="left"
+            android:layout_gravity="center"
             android:layout_weight="2"
-            android:scaleType="centerInside"
+            android:scaleType="centerCrop"
             android:visibility="visible"/>
 
         <LinearLayout

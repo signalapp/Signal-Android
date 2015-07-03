@@ -11,6 +11,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -37,6 +38,9 @@ public class ProfileActivity extends PassphraseRequiredActionBarActivity {
     dynamicTheme.onCreate(this);
     super.onCreate(savedInstanceState);
     setContentView(R.layout.profile_activity);
+    View decorView = getWindow().getDecorView();
+    int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+    decorView.setSystemUiVisibility(uiOptions);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     getSupportActionBar().setTitle(getIntent().getStringExtra("profile_name"));
     getSupportActionBar().setSubtitle(getIntent().getStringExtra("profile_number"));

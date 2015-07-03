@@ -20,17 +20,24 @@ import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.DragEvent;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,8 +50,10 @@ import org.thoughtcrime.securesms.mms.AudioSlide;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.BitmapUtil;
+import org.thoughtcrime.securesms.util.Dialogs;
 
 import de.gdata.messaging.util.GDataPreferences;
 import de.gdata.messaging.util.GUtil;
@@ -52,12 +61,20 @@ import de.gdata.messaging.util.ProfileAccessor;
 
 public class ProfileFragment extends Fragment {
 
+  private static final int PADDING_TOP = 250;
   private MasterSecret masterSecret;
   private GDataPreferences gDataPreferences;
   private String profileId = "";
 
   private static final int PICK_IMAGE = 1;
   private EditText profileStatus;
+  private ImageView xCloseButton;
+  private ImageView phoneCall;
+  private TextView imageText;
+  private TextView profilePhone;
+  private ThumbnailView profilePicture;
+  private Recipient recipient;
+  private ScrollView scrollView;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -75,25 +92,36 @@ public class ProfileFragment extends Fragment {
     gDataPreferences = new GDataPreferences(getActivity());
     boolean isMyProfile = (GUtil.numberToLong(gDataPreferences.getE164Number()+"")+"").contains(GUtil.numberToLong(profileId)+"");
     profileStatus = (EditText) getView().findViewById(R.id.profile_status);
-    ThumbnailView profilePicture = (ThumbnailView) getView().findViewById(R.id.profile_picture);
+    xCloseButton = (ImageView) getView().findViewById(R.id.profile_close);
+    imageText = (TextView) getView().findViewById(R.id.image_text);
+    profilePhone = (TextView) getView().findViewById(R.id.profile_phone);
+    profilePhone.setText(profileId);
+    profilePicture = (ThumbnailView) getView().findViewById(R.id.profile_picture);
+    phoneCall = (ImageView) getView().findViewById(R.id.phone_call);
+    recipient = RecipientFactory.getRecipientsFromString(getActivity(), profileId, false).getPrimaryRecipient();
+    scrollView = (ScrollView) getView().findViewById(R.id.scrollView);
     ImageSlide slide = ProfileAccessor.getProfileAsImageSlide(getActivity(), masterSecret, profileId);
     if(slide != null || !isMyProfile) {
     if(masterSecret != null) {
       try {
         profilePicture.setImageResource(slide, masterSecret);
       } catch (IllegalStateException e) {
-        Log.w("GDATA", "UNABLE TO LOAD PROFILE IMAGE");
+        Log.w("GDATA", "Unable to load profile image");
       }
         profileStatus.setText(ProfileAccessor.getProfileStatusForRecepient(getActivity(), profileId), TextView.BufferType.EDITABLE);
         profileStatus.setEnabled(false);
+       imageText.setText(recipient.getName());
       }
     profilePicture.setThumbnailClickListener(new ThumbnailClickListener());
     } else if(ProfileAccessor.getMyProfilePicture(getActivity()).hasImage() && isMyProfile){
         profilePicture.setImageResource(ProfileAccessor.getMyProfilePicture(getActivity()));
         profileStatus.setText(ProfileAccessor.getProfileStatus(getActivity()), TextView.BufferType.EDITABLE);
+        imageText.setText(getString(R.string.MediaPreviewActivity_you));
         profilePicture.setThumbnailClickListener(new ThumbnailClickListener());
       } else {
-      profilePicture.setImageBitmap(RecipientFactory.getRecipientsFromString(getActivity(), profileId, false).getPrimaryRecipient().getContactPhoto());
+
+      imageText.setText(recipient.getName());
+      profilePicture.setImageBitmap(recipient.getContactPhoto());
     }
     final ImageView profileStatusEdit = (ImageView) getView().findViewById(R.id.profile_status_edit);
     ImageView profileImageEdit = (ImageView) getView().findViewById(R.id.profile_picture_edit);
@@ -122,8 +150,58 @@ public class ProfileFragment extends Fragment {
         }
       });
     }
-  }
+    xCloseButton.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        getActivity().finish();
+      }
+    });
+    phoneCall.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        handleDial(recipient);
+      }
+    });
+    final RelativeLayout scrollContainer = (RelativeLayout) getView().findViewById(R.id.scrollContainer);
+    final LinearLayout mainLayout = (LinearLayout) getView().findViewById(R.id.mainlayout);
+    scrollView.setSmoothScrollingEnabled(true);
+    ViewTreeObserver vto = scrollView.getViewTreeObserver();
+    vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+      public void onGlobalLayout() {
+        scrollView.scrollTo(0, mainLayout.getTop() - PADDING_TOP);
+      }
+    });
+    scrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
 
+      @Override
+      public void onScrollChanged() {
+        if(BuildConfig.VERSION_CODE >= 11 ) {
+          scrollContainer.setBackgroundColor(Color.WHITE);
+          scrollContainer.setAlpha((float) ((1000.0 / scrollContainer.getHeight()) * scrollView.getHeight()));
+        }
+        if ((mainLayout.getTop() - scrollView.getHeight()) > scrollView.getScrollY()) {
+          getActivity().finish();
+        }
+        if(mainLayout.getTop()*2 < scrollView.getScrollY()+PADDING_TOP) {
+          getActivity().finish();
+        }
+      }
+    });
+
+  }
+  private void handleDial(Recipient recipient) {
+    try {
+      if (recipient == null) return;
+
+      Intent dialIntent = new Intent(Intent.ACTION_DIAL,
+          Uri.parse("tel:" + recipient.getNumber()));
+      startActivity(dialIntent);
+    } catch (ActivityNotFoundException anfe) {
+      Dialogs.showAlertDialog(getActivity(),
+          getString(R.string.ConversationActivity_calls_not_supported),
+          getString(R.string.ConversationActivity_this_device_does_not_appear_to_support_dial_actions));
+    }
+  }
   @Override
   public void onResume() {
     super.onResume();
