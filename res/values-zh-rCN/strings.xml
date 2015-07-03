@@ -141,6 +141,8 @@
   <!--DateUtils-->
   <string name="DateUtils_now">现在</string>
   <string name="DateUtils_minutes_ago">%d 分钟</string>
+  <!--DeviceListActivity-->
+  <!--DeviceListItem-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">共享给</string>
   <!--ExportFragment-->
@@ -359,6 +361,8 @@
   <string name="MmsMessageRecord_decrypting_mms_please_wait">正在解密彩信，请稍后...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">已损坏的加密彩信…</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">已为不存在的会话加密彩信消息...</string>
+  <!--MuteDialog-->
+  <string name="MuteDialog_mute_notifications">静音通知</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">正在导入数据</string>
   <string name="ApplicationMigrationService_importing_text_messages">正在导入文本信息</string>
@@ -377,10 +381,8 @@
   <string name="MessageNotifier_failed_to_deliver_message">信息发送失败</string>
   <string name="MessageNotifier_error_delivering_message">发送信息错误。</string>
   <string name="MessageNotifier_mark_all_as_read">全部标记为已读</string>
-  <string name="MessageNotifier_mark_as_read">标记为已读</string>
   <string name="MessageNotifier_media_message">媒体信息</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">抱歉，TextSecure目前还不支持快速回复。</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">旧密码：</string>
   <string name="change_passphrase_activity__new_passphrase">新密码：</string>
@@ -432,6 +434,7 @@
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">正在读取国家列表...</string>
   <string name="country_selection_fragment__search">搜索</string>
+  <!--device_list_fragment-->
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">无法获取您设备上的日志，不过您仍然可以以ADB方式来获得您的调试日志。</string>
   <string name="log_submit_activity__thanks">感谢！</string>
@@ -741,6 +744,7 @@ TextSecure 在等待短信验证时超时。</string>
   <string name="conversation__menu_leave_group">离开群组</string>
   <string name="conversation__menu_delete_thread">删除线程</string>
   <string name="conversation__menu_view_media">所有图片</string>
+  <!--conversation_popup-->
   <!--conversation_callable-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">添加到联系人</string>
   <!--conversation_group_options-->
@@ -781,6 +785,5 @@ TextSecure 在等待短信验证时超时。</string>
   <string name="trimmer__old_messages_successfully_deleted">旧信息已被成功删除。</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">传输图标</string>
-  <string name="MuteDialog_mute_notifications">静音通知</string>
   <!--EOF-->
 </resources>

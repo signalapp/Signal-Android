@@ -151,6 +151,17 @@ Recibido:%4$s</string>
   <!--DateUtils-->
   <string name="DateUtils_now">Ahora</string>
   <string name="DateUtils_minutes_ago">%d mins</string>
+  <!--DeviceListActivity-->
+  <string name="DeviceListActivity_disconnect_s">¿Desconectar \'%s\'?</string>
+  <string name="DeviceListActivity_by_disconnecting_this_device_it_will_no_longer_be_able_to_send_or_receive">Al desconectar este dispositivo, ya no podrá enviar y recibir mensajes.</string>
+  <string name="DeviceListActivity_network_connection_failed">Fallo de conexión a la red...</string>
+  <string name="DeviceListActivity_try_again">Intentar de nuevo</string>
+  <string name="DeviceListActivity_disconnecting_device_no_ellipse">Desconectando dispositivo</string>
+  <string name="DeviceListActivity_network_failed">¡Fallo de red!</string>
+  <!--DeviceListItem-->
+  <string name="DeviceListItem_unnamed_device">Dispositivo sin nombre</string>
+  <string name="DeviceListItem_created_s">Creado el %s</string>
+  <string name="DeviceListItem_last_active_s">Activo por última vez el %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Compartir con</string>
   <!--ExportFragment-->
@@ -257,6 +268,7 @@ Por favor pida al remitente que actualice a la versión más reciente y reenvíe
   <string name="DeviceProvisioningActivity_content_progress_no_device">No se encontró ningun dispositivo.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Error de red.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Código QR no válido.</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_registered_already">Lo sentimos, tiene ya registrados demasiados dispositivos. Pruebe a eliminar algunos...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Introduzca clave de acceso</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icono de TextSecure</string>
@@ -391,6 +403,8 @@ Se recibió un mensaje con una clave de identidad desconocida. Haga clic para pr
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Descifrando MMS, por favor espere...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Mensaje MMS mal cifrado</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Mensaje MMS cifrado para sesión no existente...</string>
+  <!--MuteDialog-->
+  <string name="MuteDialog_mute_notifications">Silenciar notificaciones</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importación en progreso</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importando mensajes de texto</string>
@@ -409,10 +423,11 @@ Se recibió un mensaje con una clave de identidad desconocida. Haga clic para pr
   <string name="MessageNotifier_failed_to_deliver_message">Fallo al entregar mensaje.</string>
   <string name="MessageNotifier_error_delivering_message">Error entregando mensaje.</string>
   <string name="MessageNotifier_mark_all_as_read">Marcar todos como leídos</string>
-  <string name="MessageNotifier_mark_as_read">Marcar como leídos</string>
   <string name="MessageNotifier_media_message">Mensaje multimedia</string>
+  <string name="MessageNotifier_reply">Responder</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Lo sentimos, ¡la Respuesta Rápida aún no está soportada por TextSecure!</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">¡Respuesta rápida no disponible cuando TextSecure está bloqueado!</string>
+  <string name="QuickResponseService_problem_sending_message">¡Hubo un problema al enviar el mensaje!</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">CLAVE DE ACCESO ANTERIOR:</string>
   <string name="change_passphrase_activity__new_passphrase">CLAVE DE ACCESO NUEVA:</string>
@@ -464,6 +479,8 @@ Se recibió un mensaje con una clave de identidad desconocida. Haga clic para pr
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Cargando países...</string>
   <string name="country_selection_fragment__search">Buscar</string>
+  <!--device_list_fragment-->
+  <string name="device_list_fragment__no_devices_paired">No hay dispositivos emparejados...</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">No se pudieron obtener los registros de actividad de su dispositivo. En su lugar, aún puede usar ADB para acceder a los registros de depuración.</string>
   <string name="log_submit_activity__thanks">¡Gracias por su ayuda!</string>
@@ -633,6 +650,7 @@ por SMS.
   <string name="AndroidManifest__media_overview">Todas las imágenes</string>
   <string name="AndroidManifest__media_overview_named">Todas la imágenes con %1$s</string>
   <string name="AndroidManifest__message_details">Detalles del mensaje</string>
+  <string name="AndroidManifest_manage_paired_devices">Administrar dispositivos emparejados</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importar/exportar</string>
   <string name="arrays__my_identity_key">Mi clave de identidad</string>
@@ -799,6 +817,8 @@ Mensajería privada gratuita con usuarios de TextSecure y Signal</string>
   <string name="conversation__menu_leave_group">Abandonar grupo</string>
   <string name="conversation__menu_delete_thread">Borrar conversación</string>
   <string name="conversation__menu_view_media">Todas las imágenes</string>
+  <!--conversation_popup-->
+  <string name="conversation_popup__menu_expand_popup">Expandir emergente</string>
   <!--conversation_callable-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Añadir a contactos</string>
   <!--conversation_group_options-->
@@ -839,6 +859,5 @@ Mensajería privada gratuita con usuarios de TextSecure y Signal</string>
   <string name="trimmer__old_messages_successfully_deleted">Mensajes antiguos borrados con éxito</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icono de transporte</string>
-  <string name="MuteDialog_mute_notifications">Silenciar notificaciones</string>
   <!--EOF-->
 </resources>

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="TextSecure.LightNoActionBar" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="theme_type">light</item>
         <item name="actionBarStyle">@style/TextSecure.LightActionBar</item>
         <item name="actionBarTabBarStyle">@style/TextSecure.LightActionBar.TabBar</item>
         <item name="colorPrimary">@color/textsecure_primary</item>
@@ -11,6 +13,7 @@
     </style>
 
     <style name="TextSecure.DarkNoActionBar" parent="@style/Theme.AppCompat.NoActionBar">
+        <item name="theme_type">dark</item>
         <item name="actionBarStyle">@style/TextSecure.DarkActionBar</item>
         <item name="actionBarTabBarStyle">@style/TextSecure.DarkActionBar.TabBar</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
@@ -39,7 +42,25 @@
         <item name="android:windowBackground">@color/black</item>
     </style>
 
+    <style name="PopupAnimation" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/slide_from_top</item>
+        <item name="android:windowExitAnimation">@anim/slide_to_top</item>
+    </style>
+
+    <style name="TextSecure.LightTheme.Popup" parent="TextSecure.LightTheme">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowSoftInputMode">stateUnchanged</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowActionModeOverlay" tools:targetApi="honeycomb">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowAnimationStyle">@style/PopupAnimation</item>
+        <item name="android:windowCloseOnTouchOutside" tools:targetApi="honeycomb">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
     <style name="TextSecure.LightTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <item name="theme_type">light</item>
         <item name="actionBarStyle">@style/TextSecure.LightActionBar</item>
         <item name="actionBarTabBarStyle">@style/TextSecure.LightActionBar.TabBar</item>
         <item name="colorPrimary">@color/textsecure_primary</item>
@@ -60,20 +81,15 @@
         <item name="lower_right_divet">@drawable/divet_lower_right_dark</item>
 
         <item name="conversation_group_member_name">#99000000</item>
-        <item name="conversation_sent_text_primary_color">#ffffffff</item>
-        <item name="conversation_sent_text_secondary_color">#bbffffff</item>
-        <item name="conversation_sent_text_indicator_tab_color">#99000000</item>
-        <item name="conversation_received_text_primary_color">#ff333333</item>
-        <item name="conversation_received_text_secondary_color">#99333333</item>
 
         <item name="contact_selection_push_user">#ff000000</item>
         <item name="contact_selection_lay_user">#a0000000</item>
         <item name="contact_selection_label_text">#66000000</item>
         <item name="conversation_selection_header_text">#44000000</item>
 
+        <item name="conversation_background">#eeeeee</item>
         <item name="conversation_editor_background">#22000000</item>
         <item name="conversation_editor_text_color">#ff111111</item>
-        <item name="conversation_delivery_delivered">@drawable/ic_delivery_delivered_dark</item>
         <item name="conversation_transport_sms_indicator">@drawable/ic_send_sms_insecure</item>
         <item name="conversation_transport_push_indicator">@drawable/ic_send_push</item>
         <item name="conversation_transport_popup_background">@color/white</item>
@@ -101,21 +117,15 @@
         <item name="emoji_category_symbol">@drawable/emoji_category_symbol_light</item>
         <item name="emoji_category_emoticons">@drawable/emoji_category_emoticons_light</item>
 
-        <item name="conversation_item_background">@drawable/conversation_item_background</item>
-        <item name="conversation_item_received_background">@color/conversation_item_received_background_light</item>
-        <item name="conversation_item_sent_background">@color/conversation_item_sent_background_light</item>
-        <item name="conversation_item_sent_push_background">@color/conversation_item_sent_push_background_light</item>
-        <item name="conversation_item_sent_pending_background">@color/conversation_item_sent_pending_background_light</item>
-        <item name="conversation_item_sent_push_pending_background">@color/conversation_item_sent_push_pending_background_light</item>
-        <item name="conversation_item_sent_indicator_text_background">@drawable/conversation_item_sent_indicator_text_shape</item>
-        <item name="conversation_item_shadow">@color/conversation_item_received_shadow_light</item>
-        <item name="conversation_item_mms_pending_mask">#99ffffff</item>
 
-        <item name="triangle_tick_incoming">@drawable/triangle_tick_incoming_light</item>
-        <item name="triangle_tick_outgoing_sent_sms">@drawable/triangle_tick_outgoing_sent_sms_light</item>
-        <item name="triangle_tick_outgoing_sent_push">@drawable/triangle_tick_outgoing_sent_push_light</item>
-        <item name="triangle_tick_outgoing_pending_sms">@drawable/triangle_tick_outgoing_pending_sms_light</item>
-        <item name="triangle_tick_outgoing_pending_push">@drawable/triangle_tick_outgoing_pending_push_light</item>
+        <item name="conversation_item_bubble_background">@color/white</item>
+        <item name="conversation_item_sent_text_primary_color">#99000000</item>
+        <item name="conversation_item_sent_text_secondary_color">#bb000000</item>
+        <item name="conversation_item_sent_text_indicator_tab_color">#99000000</item>
+        <item name="conversation_item_received_text_primary_color">@color/white</item>
+        <item name="conversation_item_received_text_secondary_color">#BFffffff</item>
+        <item name="conversation_item_background">@drawable/conversation_item_background</item>
+        <item name="conversation_item_sent_indicator_text_background">@drawable/conversation_item_sent_indicator_text_shape</item>
 
         <item name="dialog_info_icon">@drawable/ic_info_outline_light</item>
         <item name="dialog_alert_icon">@drawable/ic_warning_light</item>
@@ -131,10 +141,10 @@
         <item name="menu_group_icon">@drawable/ic_group_white_24dp</item>
         <item name="menu_search_icon">@drawable/ic_search_white_24dp</item>
         <item name="menu_call_icon">@drawable/ic_call_white_24dp</item>
+        <item name="menu_popup_expand">@drawable/ic_launch_white_24dp</item>
         <item name="menu_unlock_icon">@drawable/ic_unlocked_white_24dp</item>
         <item name="menu_lock_icon">@drawable/ic_lock_white_24dp</item>
         <item name="menu_lock_icon_small">@drawable/ic_lock_white_18dp</item>
-        <item name="menu_lock_icon_small_received">@drawable/ic_lock_black_18dp</item>
         <item name="menu_trash_icon">@drawable/ic_delete_white_24dp</item>
         <item name="menu_selectall_icon">@drawable/ic_select_all_white_24dp</item>
         <item name="menu_split_icon">@drawable/ic_call_split_white_24dp</item>
@@ -155,6 +165,7 @@
         <item name="pref_ic_app_protection">@drawable/ic_app_protection_black</item>
         <item name="pref_ic_appearance">@drawable/ic_brightness_6_black</item>
         <item name="pref_ic_storage">@drawable/ic_delete_black</item>
+        <item name="pref_ic_devices">@drawable/ic_devices_black_48dp</item>
         <item name="pref_ic_advanced">@drawable/ic_advanced_black</item>
 
         <item name="app_protect_timeout_picker_color">@style/BetterPickersDialogFragment.Light</item>
@@ -163,6 +174,7 @@
     </style>
 
     <style name="TextSecure.DarkTheme" parent="@style/Theme.AppCompat">
+        <item name="theme_type">dark</item>
         <item name="actionBarStyle">@style/TextSecure.DarkActionBar</item>
         <item name="actionBarTabBarStyle">@style/TextSecure.DarkActionBar.TabBar</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
@@ -180,11 +192,6 @@
         <item name="share_list_item_divider">@drawable/share_list_divider_shape_dark</item>
 
         <item name="conversation_group_member_name">#99ffffff</item>
-        <item name="conversation_sent_text_primary_color">#ffffffff</item>
-        <item name="conversation_sent_text_secondary_color">#aaeeeeee</item>
-        <item name="conversation_sent_text_indicator_tab_color">#99ffffff</item>
-        <item name="conversation_received_text_primary_color">#ffeeeeee</item>
-        <item name="conversation_received_text_secondary_color">#99eeeeee</item>
 
         <item name="contact_selection_push_user">#ffeeeeee</item>
         <item name="contact_selection_lay_user">#afeeeeee</item>
@@ -192,20 +199,13 @@
         <item name="conversation_selection_header_text">#66eeeeee</item>
 
         <item name="conversation_item_background">@drawable/conversation_item_background_dark</item>
-        <item name="conversation_item_received_background">@color/conversation_item_received_background_dark</item>
-        <item name="conversation_item_sent_background">@color/conversation_item_sent_background_dark</item>
-        <item name="conversation_item_sent_push_background">@color/conversation_item_sent_push_background_dark</item>
-        <item name="conversation_item_sent_pending_background">@color/conversation_item_sent_pending_background_dark</item>
-        <item name="conversation_item_sent_push_pending_background">@color/conversation_item_sent_push_pending_background_dark</item>
+        <item name="conversation_item_bubble_background">#ff333333</item>
+        <item name="conversation_item_sent_text_primary_color">#ffffffff</item>
+        <item name="conversation_item_sent_text_secondary_color">#aaeeeeee</item>
+        <item name="conversation_item_sent_text_indicator_tab_color">#99ffffff</item>
+        <item name="conversation_item_received_text_primary_color">@color/white</item>
+        <item name="conversation_item_received_text_secondary_color">#BFffffff</item>
         <item name="conversation_item_sent_indicator_text_background">@drawable/conversation_item_sent_indicator_text_shape_dark</item>
-        <item name="conversation_item_shadow">@color/conversation_item_received_shadow_dark</item>
-        <item name="conversation_item_mms_pending_mask">#99000000</item>
-
-        <item name="triangle_tick_incoming">@drawable/triangle_tick_incoming_dark</item>
-        <item name="triangle_tick_outgoing_sent_sms">@drawable/triangle_tick_outgoing_sent_sms_dark</item>
-        <item name="triangle_tick_outgoing_sent_push">@drawable/triangle_tick_outgoing_sent_push_dark</item>
-        <item name="triangle_tick_outgoing_pending_sms">@drawable/triangle_tick_outgoing_pending_sms_dark</item>
-        <item name="triangle_tick_outgoing_pending_push">@drawable/triangle_tick_outgoing_pending_push_dark</item>
 
         <item name="dialog_info_icon">@drawable/ic_info_outline_dark</item>
         <item name="dialog_alert_icon">@drawable/ic_warning_dark</item>
@@ -220,9 +220,9 @@
         <item name="fab_color">@color/textsecure_primary_dark</item>
         <item name="lower_right_divet">@drawable/divet_lower_right_light</item>
 
+        <item name="conversation_background">#22ffffff</item>
         <item name="conversation_editor_background">#22ffffff</item>
         <item name="conversation_editor_text_color">#ffeeeeee</item>
-        <item name="conversation_delivery_delivered">@drawable/ic_delivery_delivered_dark</item>
         <item name="conversation_transport_sms_indicator">@drawable/ic_send_sms_insecure_dark</item>
         <item name="conversation_transport_push_indicator">@drawable/ic_send_push</item>
         <item name="conversation_transport_popup_background">@color/black</item>
@@ -254,10 +254,10 @@
         <item name="menu_group_icon">@drawable/ic_group_white_24dp</item>
         <item name="menu_search_icon">@drawable/ic_search_white_24dp</item>
         <item name="menu_call_icon">@drawable/ic_call_white_24dp</item>
+        <item name="menu_popup_expand">@drawable/ic_launch_white_24dp</item>
         <item name="menu_unlock_icon">@drawable/ic_unlocked_white_24dp</item>
         <item name="menu_lock_icon">@drawable/ic_lock_white_24dp</item>
         <item name="menu_lock_icon_small">@drawable/ic_lock_white_18dp</item>
-        <item name="menu_lock_icon_small_received">@drawable/ic_lock_white_18dp</item>
         <item name="menu_trash_icon">@drawable/ic_delete_white_24dp</item>
         <item name="menu_selectall_icon">@drawable/ic_select_all_white_24dp</item>
         <item name="menu_split_icon">@drawable/ic_call_split_white_24dp</item>
@@ -278,6 +278,7 @@
         <item name="pref_ic_app_protection">@drawable/ic_app_protection_gray</item>
         <item name="pref_ic_appearance">@drawable/ic_brightness_6_gray</item>
         <item name="pref_ic_storage">@drawable/ic_delete_gray</item>
+        <item name="pref_ic_devices">@drawable/ic_devices_grey600_48dp</item>
         <item name="pref_ic_advanced">@drawable/ic_advanced_gray</item>
 
         <item name="app_protect_timeout_picker_color">@style/BetterPickersDialogFragment</item>

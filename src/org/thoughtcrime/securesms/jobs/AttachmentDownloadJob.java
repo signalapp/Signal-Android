@@ -3,10 +3,12 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 import android.util.Log;
 
+
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.PartDatabase;
+import org.thoughtcrime.securesms.database.PartDatabase.PartId;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.util.Base64;
@@ -15,6 +17,7 @@ import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.textsecure.api.TextSecureMessageReceiver;
+import org.whispersystems.textsecure.api.messages.TextSecureAttachment.ProgressListener;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachmentPointer;
 import org.whispersystems.textsecure.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.textsecure.api.push.exceptions.PushNetworkException;
@@ -26,6 +29,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import de.greenrobot.event.EventBus;
 import ws.com.google.android.mms.MmsException;
 import ws.com.google.android.mms.pdu.PduPart;
 
@@ -82,15 +86,19 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
   private void retrievePart(MasterSecret masterSecret, PduPart part, long messageId)
       throws IOException
   {
-    PartDatabase        database       = DatabaseFactory.getPartDatabase(context);
-    File                attachmentFile = null;
-    PartDatabase.PartId partId         = part.getPartId();
+    PartDatabase database       = DatabaseFactory.getPartDatabase(context);
+    File         attachmentFile = null;
 
+    final PartId partId = part.getPartId();
     try {
       attachmentFile = createTempFile();
 
       TextSecureAttachmentPointer pointer    = createAttachmentPointer(masterSecret, part);
-      InputStream                 attachment = messageReceiver.retrieveAttachment(pointer, attachmentFile);
+      InputStream                 attachment = messageReceiver.retrieveAttachment(pointer, attachmentFile, new ProgressListener() {
+        @Override public void onAttachmentProgress(long total, long progress) {
+          EventBus.getDefault().postSticky(new PartProgressEvent(partId, total, progress));
+        }
+      });
 
       database.updateDownloadedPart(masterSecret, messageId, partId, part, attachment);
     } catch (InvalidPartException | NonSuccessfulResponseCodeException | InvalidMessageException | MmsException e) {
@@ -145,4 +153,5 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
   private class InvalidPartException extends Exception {
     public InvalidPartException(Exception e) {super(e);}
   }
+
 }

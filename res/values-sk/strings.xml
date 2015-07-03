@@ -142,6 +142,8 @@ identitu tohto kontaktu.
   <!--DateUtils-->
   <string name="DateUtils_now">Teraz</string>
   <string name="DateUtils_minutes_ago">%d min</string>
+  <!--DeviceListActivity-->
+  <!--DeviceListItem-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Zdieľaj s</string>
   <!--ExportFragment-->
@@ -361,6 +363,7 @@ Bola prijatá správa s neznámou identou. Kliknite pre spracovanie a zobrazenie
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Prosím čakaj, dekryptujem MMS...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Nesprávne kryptovaná MMS správa...</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS správa zakryptovaná pre neexistujúcu session...</string>
+  <!--MuteDialog-->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Prebieha import</string>
   <string name="ApplicationMigrationService_importing_text_messages">Nahrávanie textových správ</string>
@@ -379,10 +382,8 @@ Bola prijatá správa s neznámou identou. Kliknite pre spracovanie a zobrazenie
   <string name="MessageNotifier_failed_to_deliver_message">Zlyhanie doručenia správy.</string>
   <string name="MessageNotifier_error_delivering_message">Chyba doručovania správy.</string>
   <string name="MessageNotifier_mark_all_as_read">Označ všetko ako prečítané</string>
-  <string name="MessageNotifier_mark_as_read">Označ ako prečítané</string>
   <string name="MessageNotifier_media_message">Multimediálna správa</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Bohužiaľ, Quick Response zatiaľ nie je v TextSecure spodporované!</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Staré heslo:</string>
   <string name="change_passphrase_activity__new_passphrase">Nové heslo:</string>
@@ -432,6 +433,7 @@ Bola prijatá správa s neznámou identou. Kliknite pre spracovanie a zobrazenie
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Načítavanie krajín...</string>
   <string name="country_selection_fragment__search">Hľadaj</string>
+  <!--device_list_fragment-->
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Nepodarilo sa získať logy z Vašeho zariadenia. Stále môžete použiť ADB na stiahnutie ladiacich logov.</string>
   <string name="log_submit_activity__thanks">Ďakujem za tvoju pomoc!</string>
@@ -739,6 +741,7 @@ Bezplatné šifrované správy medzi používateľmi TextSecure
   <string name="conversation__menu_leave_group">Opusti skupinu</string>
   <string name="conversation__menu_delete_thread">Zmaž vlákno</string>
   <string name="conversation__menu_view_media">Všetky obrázky</string>
+  <!--conversation_popup-->
   <!--conversation_callable-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Pridať do kontaktov</string>
   <!--conversation_group_options-->

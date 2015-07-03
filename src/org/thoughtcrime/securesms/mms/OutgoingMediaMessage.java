@@ -85,7 +85,6 @@ public class OutgoingMediaMessage {
         media.setContentType(Util.toIsoBytes(attachment.getContentType()));
         media.setContentLocation(Util.toIsoBytes(String.valueOf(attachment.asPointer().getId())));
         media.setContentDisposition(Util.toIsoBytes(Base64.encodeBytes(encryptedKey)));
-        media.setPendingPush(true);
 
         body.addPart(media);
       }

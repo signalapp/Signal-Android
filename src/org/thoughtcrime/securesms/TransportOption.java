@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms;
 
+import android.support.annotation.DrawableRes;
+
 import org.thoughtcrime.securesms.util.CharacterCalculator;
 import org.thoughtcrime.securesms.util.CharacterCalculator.CharacterState;
 
@@ -11,19 +13,22 @@ public class TransportOption {
   }
 
   private int                 drawable;
+  private int                 backgroundColor;
   private String              text;
   private Type                type;
   private String              composeHint;
   private CharacterCalculator characterCalculator;
 
   public TransportOption(Type type,
-                         int drawable,
+                         @DrawableRes int drawable,
+                         int backgroundColor,
                          String text,
                          String composeHint,
                          CharacterCalculator characterCalculator)
   {
     this.type                = type;
     this.drawable            = drawable;
+    this.backgroundColor     = backgroundColor;
     this.text                = text;
     this.composeHint         = composeHint;
     this.characterCalculator = characterCalculator;
@@ -37,10 +42,6 @@ public class TransportOption {
     return this.type == type;
   }
 
-  public boolean isPlaintext() {
-    return type == Type.SMS;
-  }
-
   public boolean isSms() {
     return type == Type.SMS;
   }
@@ -49,8 +50,12 @@ public class TransportOption {
     return characterCalculator.calculateCharacters(charactersSpent);
   }
 
-  public int getDrawable() {
+  public @DrawableRes int getDrawable() {
     return drawable;
+  }
+
+  public int getBackgroundColor() {
+    return backgroundColor;
   }
 
   public String getComposeHint() {

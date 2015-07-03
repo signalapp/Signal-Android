@@ -113,6 +113,8 @@ terá acesso ás mensagens e chaves.</string>
   <string name="CustomDefaultPreference_none">Nenhum</string>
   <!--DateUtils-->
   <string name="DateUtils_now">Agora</string>
+  <!--DeviceListActivity-->
+  <!--DeviceListItem-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Partilhar com</string>
   <!--ExportFragment-->
@@ -324,6 +326,7 @@ Recebida mensagem com chave de identidade desconhecida. Clique para processar e 
   <string name="MmsMessageRecord_decrypting_mms_please_wait">A decifrar MMS, por favor, aguarde...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Mensagem MMS cifrada corrompida...</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Mensagem MMS cifrada para sessão inexistente...</string>
+  <!--MuteDialog-->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importação em progresso</string>
   <string name="ApplicationMigrationService_importing_text_messages">A importar mensages de texto</string>
@@ -339,10 +342,8 @@ Recebida mensagem com chave de identidade desconhecida. Clique para processar e 
   <string name="MessageNotifier_failed_to_deliver_message">Falhou a remessa de mensagem.</string>
   <string name="MessageNotifier_error_delivering_message">Erro a remeter a mensagem.</string>
   <string name="MessageNotifier_mark_all_as_read">Marcar todas como lidas</string>
-  <string name="MessageNotifier_mark_as_read">Marcar como lidas</string>
   <string name="MessageNotifier_media_message">Mensagem media</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Desculpe, a \'Resposta Rápida\' ainda não é suportada pelo TextSecure!</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Frase-chave anterior:</string>
   <string name="change_passphrase_activity__new_passphrase">Frase-chave nova:</string>
@@ -390,6 +391,7 @@ Recebida mensagem com chave de identidade desconhecida. Clique para processar e 
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">A carregar lista de países...</string>
   <string name="country_selection_fragment__search">Procurar</string>
+  <!--device_list_fragment-->
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Não foi possível obter os registos do seu dispositivo. Alternativamente, pode utilizar o ADB para os obter.</string>
   <string name="log_submit_activity__thanks">Obrigado pela sua ajuda!</string>
@@ -642,6 +644,7 @@ falhou.
   <string name="conversation__menu_leave_group">Deixar grupo</string>
   <string name="conversation__menu_delete_thread">Apagar conversa</string>
   <string name="conversation__menu_view_media">Todas as imagens</string>
+  <!--conversation_popup-->
   <!--conversation_callable-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Adicionar aos contactos</string>
   <!--conversation_group_options-->

@@ -43,7 +43,7 @@ public class PduBody {
 
     public boolean containsPushInProgress() {
       for (int i=0;i<getPartsNum();i++) {
-        if (getPart(i).isPendingPush()) {
+        if (getPart(i).isInProgress()) {
           return true;
         }
       }

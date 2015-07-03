@@ -147,6 +147,8 @@
   <!--DateUtils-->
   <string name="DateUtils_now">Τώρα</string>
   <string name="DateUtils_minutes_ago">%d λεπτό</string>
+  <!--DeviceListActivity-->
+  <!--DeviceListItem-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Διαμοιρασμός με</string>
   <!--ExportFragment-->
@@ -365,6 +367,7 @@ SMS της συσκευής σας στο TextSecure. Αν έχετε ήδη ε�
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Γίνεται αποκρυπτογράφηση MMS, παρακαλώ περιμένετε...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Κακώς κρυπτογραφημένο μήνυμα MMS...</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Το μήνυμα MMS κρυπτογραφήθηκε για ανύπαρκτη συνεδρία...</string>
+  <!--MuteDialog-->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Εισαγωγή σε εξέλιξη</string>
   <string name="ApplicationMigrationService_importing_text_messages">Εισάγονται τα Μηνύματα Κειμένου</string>
@@ -383,10 +386,8 @@ SMS της συσκευής σας στο TextSecure. Αν έχετε ήδη ε�
   <string name="MessageNotifier_failed_to_deliver_message">Αποτυχία παράδοσης του μήνυματος.</string>
   <string name="MessageNotifier_error_delivering_message">Σφάλμα κατά την παράδοση του μηνύματος.</string>
   <string name="MessageNotifier_mark_all_as_read">Επισήμανση όλων ως αναγνωσμένα</string>
-  <string name="MessageNotifier_mark_as_read">Επισήμανση ως αναγνωσμένο</string>
   <string name="MessageNotifier_media_message">Μήνυμα πολυμέσων</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Λυπούμαστε, η Άμεση Απάντηση δεν υποστηρίζεται ακόμα από το TextSecure!</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">ΠΑΛΙΟ ΣΥΝΘΗΜΑΤΙΚΟ</string>
   <string name="change_passphrase_activity__new_passphrase">ΝΕΟ ΣΥΝΘΗΜΑΤΙΚΟ:</string>
@@ -436,6 +437,7 @@ SMS της συσκευής σας στο TextSecure. Αν έχετε ήδη ε�
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Γίνεται φόρτωση χωρών...</string>
   <string name="country_selection_fragment__search">Αναζήτηση</string>
+  <!--device_list_fragment-->
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Δεν μπορέσαμε να δημιουργήσουμε αρχείο συμβάντων για τη συσκευή σας. Μπορείτε να χρησιμοποιήσετε το ADB για να ανακτήσετε τα debug logs.</string>
   <string name="log_submit_activity__thanks">Ευχαριστούμε για τη βοήθειά σας!</string>
@@ -732,6 +734,7 @@ SMS της συσκευής σας στο TextSecure. Αν έχετε ήδη ε�
   <string name="conversation__menu_leave_group">Αποχωρήστε απο την ομάδα</string>
   <string name="conversation__menu_delete_thread">Διαγραφή συζήτησης</string>
   <string name="conversation__menu_view_media">Όλες οι εικόνες</string>
+  <!--conversation_popup-->
   <!--conversation_callable-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Προσθήκη στις επαφές</string>
   <!--conversation_group_options-->

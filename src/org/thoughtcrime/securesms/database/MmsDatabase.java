@@ -345,7 +345,7 @@ public class MmsDatabase extends MessagingDatabase {
                       ? Util.toIsoString(notification.getFrom().getTextString())
                       : "";
     Recipients recipients = RecipientFactory.getRecipientsFromString(context, fromString, false);
-    if (recipients.isEmpty()) recipients = RecipientFactory.getRecipientsFor(context, Recipient.getUnknownRecipient(context), false);
+    if (recipients.isEmpty()) recipients = RecipientFactory.getRecipientsFor(context, Recipient.getUnknownRecipient(), false);
     return DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
   }
 
@@ -721,6 +721,12 @@ public class MmsDatabase extends MessagingDatabase {
     contentValues.put(DATE_RECEIVED, contentValues.getAsLong(DATE_SENT));
     contentValues.remove(ADDRESS);
 
+    if (sendRequest.getBody() != null) {
+      for (int i = 0; i < sendRequest.getBody().getPartsNum(); i++) {
+        sendRequest.getBody().getPart(i).setInProgress(true);
+      }
+    }
+
     long messageId = insertMediaMessage(masterSecret, sendRequest.getPduHeaders(),
                                         sendRequest.getBody(), contentValues);
     jobManager.add(new TrimThreadJob(context, threadId));
@@ -1054,13 +1060,13 @@ public class MmsDatabase extends MessagingDatabase {
 
     private Recipients getRecipientsFor(String address) {
       if (TextUtils.isEmpty(address) || address.equals("insert-address-token")) {
-        return RecipientFactory.getRecipientsFor(context, Recipient.getUnknownRecipient(context), false);
+        return RecipientFactory.getRecipientsFor(context, Recipient.getUnknownRecipient(), false);
       }
 
       Recipients recipients =  RecipientFactory.getRecipientsFromString(context, address, false);
 
       if (recipients == null || recipients.isEmpty()) {
-        return RecipientFactory.getRecipientsFor(context, Recipient.getUnknownRecipient(context), false);
+        return RecipientFactory.getRecipientsFor(context, Recipient.getUnknownRecipient(), false);
       }
 
       return recipients;

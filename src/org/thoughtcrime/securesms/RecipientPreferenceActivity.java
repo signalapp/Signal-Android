@@ -6,12 +6,12 @@ import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
-import android.preference.RingtonePreference;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -24,10 +24,14 @@ import android.widget.TextView;
 
 import com.afollestad.materialdialogs.AlertDialogWrapper;
 
+import org.thoughtcrime.securesms.color.MaterialColor;
+import org.thoughtcrime.securesms.color.MaterialColors;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientPreferenceDatabase.VibrateState;
+import org.thoughtcrime.securesms.preferences.AdvancedRingtonePreference;
+import org.thoughtcrime.securesms.preferences.ColorPreference;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
@@ -44,11 +48,13 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   private static final String PREFERENCE_TONE    = "pref_key_recipient_ringtone";
   private static final String PREFERENCE_VIBRATE = "pref_key_recipient_vibrate";
   private static final String PREFERENCE_BLOCK   = "pref_key_recipient_block";
+  private static final String PREFERENCE_COLOR   = "pref_key_recipient_color";
 
   private final DynamicTheme    dynamicTheme    = new DynamicNoActionBarTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   private AvatarImageView avatar;
+  private Toolbar         toolbar;
   private TextView        title;
   private TextView        blockedIndicator;
 
@@ -99,7 +105,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   }
 
   private void initializeToolbar() {
-    Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+    this.toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
 
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -113,6 +119,11 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   private void setHeader(Recipients recipients) {
     this.avatar.setAvatar(recipients, true);
     this.title.setText(recipients.toShortString());
+    this.toolbar.setBackgroundColor(recipients.getColor().toActionBarColor(this));
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+      getWindow().setStatusBarColor(recipients.getColor().toStatusBarColor(this));
+    }
 
     if (recipients.isBlocked()) this.blockedIndicator.setVisibility(View.VISIBLE);
     else                        this.blockedIndicator.setVisibility(View.GONE);
@@ -156,6 +167,8 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
           .setOnPreferenceClickListener(new MuteClickedListener());
       this.findPreference(PREFERENCE_BLOCK)
           .setOnPreferenceClickListener(new BlockClickedListener());
+      this.findPreference(PREFERENCE_COLOR)
+          .setOnPreferenceChangeListener(new ColorChangeListener());
     }
 
     @Override
@@ -164,11 +177,18 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       setSummaries(recipients);
     }
 
+    @Override
+    public void onDestroy() {
+      super.onDestroy();
+      this.recipients.removeListener(this);
+    }
+
     private void setSummaries(Recipients recipients) {
-      CheckBoxPreference mutePreference     = (CheckBoxPreference) this.findPreference(PREFERENCE_MUTED);
-      RingtonePreference ringtonePreference = (RingtonePreference) this.findPreference(PREFERENCE_TONE);
-      ListPreference     vibratePreference  = (ListPreference) this.findPreference(PREFERENCE_VIBRATE);
-      Preference         blockPreference    = this.findPreference(PREFERENCE_BLOCK);
+      CheckBoxPreference         mutePreference     = (CheckBoxPreference) this.findPreference(PREFERENCE_MUTED);
+      AdvancedRingtonePreference ringtonePreference = (AdvancedRingtonePreference) this.findPreference(PREFERENCE_TONE);
+      ListPreference             vibratePreference  = (ListPreference) this.findPreference(PREFERENCE_VIBRATE);
+      ColorPreference            colorPreference    = (ColorPreference) this.findPreference(PREFERENCE_COLOR);
+      Preference                 blockPreference    = this.findPreference(PREFERENCE_BLOCK);
 
       mutePreference.setChecked(recipients.isMuted());
 
@@ -177,6 +197,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
         if (tone != null) {
           ringtonePreference.setSummary(tone.getTitle(getActivity()));
+          ringtonePreference.setCurrentRingtone(recipients.getRingtone());
         }
       } else {
         ringtonePreference.setSummary(R.string.preferences__default);
@@ -192,6 +213,10 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
         vibratePreference.setSummary(R.string.RecipientPreferenceActivity_disabled);
         vibratePreference.setValueIndex(2);
       }
+
+      colorPreference.setEnabled(recipients.isSingleRecipient() && !recipients.isGroupRecipient());
+      colorPreference.setChoices(MaterialColors.CONVERSATION_PALETTE.asConversationColorArray(getActivity()));
+      colorPreference.setValue(recipients.getColor().toActionBarColor(getActivity()));
 
       if (!recipients.isSingleRecipient() || recipients.isGroupRecipient()) {
         blockPreference.setEnabled(false);
@@ -258,6 +283,32 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
         }.execute();
 
         return false;
+      }
+    }
+
+    private class ColorChangeListener implements Preference.OnPreferenceChangeListener {
+
+      @Override
+      public boolean onPreferenceChange(Preference preference, Object newValue) {
+        final int           value         = (Integer) newValue;
+        final MaterialColor selectedColor = MaterialColors.CONVERSATION_PALETTE.getByColor(getActivity(), value);
+        final MaterialColor currentColor  = recipients.getColor();
+
+        if (selectedColor == null) return true;
+
+        if (preference.isEnabled() && !currentColor.equals(selectedColor)) {
+          recipients.setColor(selectedColor);
+
+          new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... params) {
+              DatabaseFactory.getRecipientPreferenceDatabase(getActivity())
+                             .setColor(recipients, selectedColor);
+              return null;
+            }
+          }.execute();
+        }
+        return true;
       }
     }
 

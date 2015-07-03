@@ -151,6 +151,17 @@ Tem certeza que deseja fazer isto?</string>
   <!--DateUtils-->
   <string name="DateUtils_now">Agora</string>
   <string name="DateUtils_minutes_ago">%d min</string>
+  <!--DeviceListActivity-->
+  <string name="DeviceListActivity_disconnect_s">Desconectar \'%s\'?</string>
+  <string name="DeviceListActivity_by_disconnecting_this_device_it_will_no_longer_be_able_to_send_or_receive">Ao desconectar este dispositivo, ele não poderá mais enviar ou receber mensagens.</string>
+  <string name="DeviceListActivity_network_connection_failed">Conexão de rede falhou...</string>
+  <string name="DeviceListActivity_try_again">Tentar de novo</string>
+  <string name="DeviceListActivity_disconnecting_device_no_ellipse">Desconectando dispositivo</string>
+  <string name="DeviceListActivity_network_failed">Rede falhou!</string>
+  <!--DeviceListItem-->
+  <string name="DeviceListItem_unnamed_device">Dispositivo sem nome</string>
+  <string name="DeviceListItem_created_s">Criado %s</string>
+  <string name="DeviceListItem_last_active_s">Último ativo %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Compartilhar com</string>
   <!--ExportFragment-->
@@ -255,6 +266,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Nenhum dispositivo encontrado.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Erro de rede.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Código QR inválido.</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_registered_already">Desculpe, você já possui muitos dispositivos registrados, tente remover alguns...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Inserir frase-chave</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Ícone do TextSecure</string>
@@ -389,6 +401,8 @@ Tem certeza que deseja fazer isto?</string>
   <string name="MmsMessageRecord_decrypting_mms_please_wait">A decifrar MMS, por favor aguarde...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Mensagem MMS cifrada corrompida...</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Mensagem MMS cifrada para sessão inexistente...</string>
+  <!--MuteDialog-->
+  <string name="MuteDialog_mute_notifications">Silenciar notificações</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importação em andamento</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importando mensagens de texto</string>
@@ -407,10 +421,11 @@ Tem certeza que deseja fazer isto?</string>
   <string name="MessageNotifier_failed_to_deliver_message">Falha ao enviar mensagem.</string>
   <string name="MessageNotifier_error_delivering_message">Erro ao enviar mensagem.</string>
   <string name="MessageNotifier_mark_all_as_read">Marcar todas como lidas</string>
-  <string name="MessageNotifier_mark_as_read">Marcar como lida</string>
   <string name="MessageNotifier_media_message">Mensagem multimídia</string>
+  <string name="MessageNotifier_reply">Responder</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Desculpe, Resposta Rápida ainda não é suportado pelo TextSecure!</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">Responder rápido não está disponível quando o TextSecure está travado!</string>
+  <string name="QuickResponseService_problem_sending_message">Problema ao enviar mensagem!</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Frase-chave anterior:</string>
   <string name="change_passphrase_activity__new_passphrase">Frase-chave nova:</string>
@@ -462,6 +477,8 @@ Tem certeza que deseja fazer isto?</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Carregando países...</string>
   <string name="country_selection_fragment__search">Procurar</string>
+  <!--device_list_fragment-->
+  <string name="device_list_fragment__no_devices_paired">Nenhum dispositivo pareado...</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Não foi possível captar logs do seu dispositivo. É possível usar como alternativa o ADB para captar logs de debug.</string>
   <string name="log_submit_activity__thanks">Obrigado por sua ajuda!</string>
@@ -620,6 +637,7 @@ falhou.</string>
   <string name="AndroidManifest__media_overview">Todas as imagens</string>
   <string name="AndroidManifest__media_overview_named">Todas as imagens com %1$s</string>
   <string name="AndroidManifest__message_details">Detalhes da mensagem</string>
+  <string name="AndroidManifest_manage_paired_devices">Gerenciar dispositivos pareados</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importar / exportar</string>
   <string name="arrays__my_identity_key">Minha chave de identidade</string>
@@ -787,6 +805,8 @@ falhou.</string>
   <string name="conversation__menu_leave_group">Sair do grupo</string>
   <string name="conversation__menu_delete_thread">Excluir conversa</string>
   <string name="conversation__menu_view_media">Todas as imagens</string>
+  <!--conversation_popup-->
+  <string name="conversation_popup__menu_expand_popup">Expandir popup</string>
   <!--conversation_callable-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Adicionar aos contatos</string>
   <!--conversation_group_options-->
@@ -827,6 +847,5 @@ falhou.</string>
   <string name="trimmer__old_messages_successfully_deleted">Mensagens antigas excluídas com sucesso</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ícone do transporte</string>
-  <string name="MuteDialog_mute_notifications">Silenciar notificações</string>
   <!--EOF-->
 </resources>

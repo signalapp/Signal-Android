@@ -141,6 +141,8 @@
   <!--DateUtils-->
   <string name="DateUtils_now">Только что</string>
   <string name="DateUtils_minutes_ago">%d мин</string>
+  <!--DeviceListActivity-->
+  <!--DeviceListItem-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Поделиться с</string>
   <!--ExportFragment-->
@@ -354,6 +356,7 @@
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Расшифровываем MMS-сообщение...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Зашифрованное MMS-сообщение испорчено...</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS-сообщение зашифрованно для несуществующей сессии...</string>
+  <!--MuteDialog-->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Идёт импорт</string>
   <string name="ApplicationMigrationService_importing_text_messages">Импорт текстовых сообщений</string>
@@ -372,10 +375,8 @@
   <string name="MessageNotifier_failed_to_deliver_message">Не удалось доставить сообщение.</string>
   <string name="MessageNotifier_error_delivering_message">Ошибка при доставке сообщения.</string>
   <string name="MessageNotifier_mark_all_as_read">Отметить все как прочитанные</string>
-  <string name="MessageNotifier_mark_as_read">Отметить как прочитанное</string>
   <string name="MessageNotifier_media_message">MMS-сообщение</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Извините, TextSecure пока не поддерживает быстрые ответы.</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">СТАРАЯ ПАРОЛЬНАЯ ФРАЗА:</string>
   <string name="change_passphrase_activity__new_passphrase">НОВАЯ ПАРОЛЬНАЯ ФРАЗА:</string>
@@ -426,6 +427,7 @@
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Загружаем страны...</string>
   <string name="country_selection_fragment__search">Поиск</string>
+  <!--device_list_fragment-->
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Не удается получить лог с вашего устройства. Вы можете воспользоваться для этого ADB.</string>
   <string name="log_submit_activity__thanks">Спасибо за помощь!</string>
@@ -727,6 +729,7 @@ SMS-подтверждения...
   <string name="conversation__menu_leave_group">Покинуть группу</string>
   <string name="conversation__menu_delete_thread">Удалить разговор</string>
   <string name="conversation__menu_view_media">Все изображения</string>
+  <!--conversation_popup-->
   <!--conversation_callable-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Добавить в контакты</string>
   <!--conversation_group_options-->

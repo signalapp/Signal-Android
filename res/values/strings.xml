@@ -166,6 +166,20 @@
     <string name="DateUtils_now">Now</string>
     <string name="DateUtils_minutes_ago">%d min</string>
 
+    <!-- DeviceListActivity -->
+    <string name="DeviceListActivity_disconnect_s">Disconnect \'%s\'?</string>
+    <string name="DeviceListActivity_by_disconnecting_this_device_it_will_no_longer_be_able_to_send_or_receive">By disconnecting this device, it will no longer be able to send or receive messages.</string>
+    <string name="DeviceListActivity_network_connection_failed">Network connection failed...</string>
+    <string name="DeviceListActivity_try_again">Try again</string>
+    <string name="DeviceListActivity_disconnecting_device">Disconnecting device...</string>
+    <string name="DeviceListActivity_disconnecting_device_no_ellipse">Disconnecting device</string>
+    <string name="DeviceListActivity_network_failed">Network failed!</string>
+
+    <!-- DeviceListItem -->
+    <string name="DeviceListItem_unnamed_device">Unnamed device</string>
+    <string name="DeviceListItem_created_s">Created %s</string>
+    <string name="DeviceListItem_last_active_s">Last active %s</string>
+
     <!-- ShareActivity -->
     <string name="ShareActivity_share_with">Share with</string>
 
@@ -283,6 +297,7 @@
     <string name="DeviceProvisioningActivity_content_progress_no_device">No device found.</string>
     <string name="DeviceProvisioningActivity_content_progress_network_error">Network error.</string>
     <string name="DeviceProvisioningActivity_content_progress_key_error">Invalid QR code.</string>
+    <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_registered_already">Sorry, you have too many devices registered already, try removing some...</string>
 
     <!-- PassphrasePromptActivity -->
     <string name="PassphrasePromptActivity_enter_passphrase">Enter passphrase</string>
@@ -436,6 +451,9 @@
     <string name="MmsMessageRecord_bad_encrypted_mms_message">Bad encrypted MMS message...</string>
     <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS message encrypted for non-existing session...</string>
 
+    <!-- MuteDialog -->
+    <string name="MuteDialog_mute_notifications">Mute notifications</string>
+
     <!-- ApplicationMigrationService -->
     <string name="ApplicationMigrationService_import_in_progress">Import in progress</string>
     <string name="ApplicationMigrationService_importing_text_messages">Importing text messages</string>
@@ -456,8 +474,9 @@
     <string name="MessageNotifier_failed_to_deliver_message">Failed to deliver message.</string>
     <string name="MessageNotifier_error_delivering_message">Error delivering message.</string>
     <string name="MessageNotifier_mark_all_as_read">Mark all as read</string>
-    <string name="MessageNotifier_mark_as_read">Mark as read</string>
+    <string name="MessageNotifier_mark_read">Mark read</string>
     <string name="MessageNotifier_media_message">Media message</string>
+    <string name="MessageNotifier_reply">Reply</string>
 
     <!-- QuickResponseService -->
     <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">Quick response unavailable when TextSecure is locked!</string>
@@ -528,6 +547,9 @@
     <string name="country_selection_fragment__loading_countries">Loading countries...</string>
     <string name="country_selection_fragment__search">Search</string>
 
+    <!-- device_list_fragment -->
+    <string name="device_list_fragment__no_devices_paired">No devices paired...</string>
+
     <!-- log_submit_activity -->
     <string name="log_submit_activity__log_fetch_failed">Could not grab logs from your device. You can still use ADB to get debug logs instead.</string>
     <string name="log_submit_activity__thanks">Thanks for your help!</string>
@@ -596,6 +618,8 @@
     <string name="recipient_preferences__ringtone">Ringtone</string>
     <string name="recipient_preferences__vibrate">Vibrate</string>
     <string name="recipient_preferences__block">Block</string>
+    <string name="recipient_preferences__color">Color</string>
+    <string name="recipient_preferences__color_for_this_contact">Color for this contact</string>
 
     <!-- registration_activity -->
     <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
@@ -608,6 +632,7 @@
     <string name="registration_activity__phone_number">PHONE NUMBER</string>
     <string name="registration_activity__register">Register</string>
     <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Registration transmits some contact information to the server. It is not stored.</string>
+    <string name="registration_activity__powered_by_twilio">Powered by twilio</string>
 
     <!-- registration_problems -->
     <string name="registration_problems__some_possible_problems_include">Some possible problems
@@ -711,6 +736,7 @@
     <string name="AndroidManifest__media_overview">All images</string>
     <string name="AndroidManifest__media_overview_named">All images with %1$s</string>
     <string name="AndroidManifest__message_details">Message Details</string>
+    <string name="AndroidManifest_manage_paired_devices">Manage paired devices</string>
 
     <!-- arrays.xml -->
     <string name="arrays__import_export">Import / export</string>
@@ -901,6 +927,9 @@
     <string name="conversation__menu_delete_thread">Delete thread</string>
     <string name="conversation__menu_view_media">All images</string>
 
+    <!-- conversation_popup -->
+    <string name="conversation_popup__menu_expand_popup">Expand popup</string>
+
     <!-- conversation_callable -->
     <string name="conversation_add_to_contacts__menu_add_to_contacts">Add to contacts</string>
 
@@ -950,7 +979,6 @@
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Transport icon</string>
-    <string name="MuteDialog_mute_notifications">Mute notifications</string>
 
 
     <!-- EOF -->

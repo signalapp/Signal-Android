@@ -105,10 +105,12 @@ public class ApplicationMigrationService extends Service
   private void setState(ImportState state) {
     this.state = state;
 
-    Handler handler = this.handler.get();
+    if (this.handler != null) {
+      Handler handler = this.handler.get();
 
-    if (handler != null) {
-      handler.obtainMessage(state.state, state.progress).sendToTarget();
+      if (handler != null) {
+        handler.obtainMessage(state.state, state.progress).sendToTarget();
+      }
     }
 
     if (state.progress != null && state.progress.secondaryComplete == 0) {

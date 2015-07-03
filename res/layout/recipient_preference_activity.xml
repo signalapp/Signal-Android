@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
@@ -24,15 +26,18 @@
                     android:layout_height="50dp"
                     android:cropToPadding="true"
                     android:layout_marginLeft="0dp"
-                    android:layout_alignParentLeft="true"/>
+                    android:layout_alignParentLeft="true"
+                    app:inverted="true"/>
 
             <TextView android:id="@+id/name"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:ellipsize="end"
+                      android:transitionName="recipient_name"
                       style="@style/TextSecure.TitleTextStyle"
                       android:layout_toRightOf="@id/avatar"
-                      android:layout_marginLeft="10dip"/>
+                      android:layout_marginLeft="10dip"
+                      tools:ignore="UnusedAttribute"/>
 
             <TextView android:id="@+id/blocked_indicator"
                       android:layout_width="wrap_content"

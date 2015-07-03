@@ -17,7 +17,12 @@
 警告、この作業によって、携帯端末に保存されるすべてのメッセージと鍵の暗号化が無効になります！
 通信上（セッション）の暗号化は引き続き行われますが、お使いの携帯端末それ自体に、誰かが物理的な接触を試みた場合、メッセージや鍵などの情報が入手されてしまう可能性があります。</string>
   <string name="ApplicationPreferencesActivity_disable">無効</string>
+  <string name="ApplicationPreferencesActivity_unregistering">未登録</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">TextSecureメッセージが未登録...</string>
   <string name="ApplicationPreferencesActivity_disable_textsecure_messages">TextSecureメッセージを無効にしますか？</string>
+  <string name="ApplicationPreferencesActivity_this_will_disable_textsecure_messages">
+サーバーから登録を取消し、TextSecureメッセージを無効化します。
+再びTextSecureメッセージを使用するには、あなたの電話番号上で再登録をしてくさい。</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">サーバー接続中にエラーが発生しました！</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS 有効</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">タッチしてデフォルトSMSアプリを変更</string>
@@ -103,6 +108,7 @@
   <string name="ConversationActivity_mms_not_supported_message">あなたのキャリアがMMSをサポートしていないので、このメッセージは送信できません。</string>
   <string name="ConversationActivity_specify_recipient">連絡先を選択してください</string>
   <string name="ConversationActivity_unblock_question">ブロックを解除する?</string>
+  <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">この連絡先のブロックを解除しますか?</string>
   <string name="ConversationActivity_unblock">ブロック解除</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">メッセージの詳細</string>
@@ -139,6 +145,8 @@
   <!--DateUtils-->
   <string name="DateUtils_now">今</string>
   <string name="DateUtils_minutes_ago">%d 分</string>
+  <!--DeviceListActivity-->
+  <!--DeviceListItem-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">共有</string>
   <!--ExportFragment-->
@@ -247,8 +255,10 @@
   <string name="RatingManager_later">後で</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">この連絡先をブロックしますか?</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_see_messages_from_this_user">このユーザーから送信されたメッセージをもう見ることはなくなります。</string>
   <string name="RecipientPreferenceActivity_block">ブロック</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">この連絡先のブロックを解除しますか?</string>
+  <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">この連絡先のブロックを解除しますか?</string>
   <string name="RecipientPreferenceActivity_unblock">ブロック解除</string>
   <string name="RecipientPreferenceActivity_enabled">有効</string>
   <string name="RecipientPreferenceActivity_disabled">無効</string>
@@ -350,6 +360,8 @@
   <string name="MmsMessageRecord_decrypting_mms_please_wait">MMSを復号しています。お待ち下さい…</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">MMSメッセージが正しく暗号化されていません…</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMSメッセージは存在しないセッションのために暗号化されています…</string>
+  <!--MuteDialog-->
+  <string name="MuteDialog_mute_notifications">消音通知</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">インポート中</string>
   <string name="ApplicationMigrationService_importing_text_messages">メッセージをインポート中</string>
@@ -368,10 +380,8 @@
   <string name="MessageNotifier_failed_to_deliver_message">メッセージの配信に失敗しました。</string>
   <string name="MessageNotifier_error_delivering_message">メッセージ配信中にエラーがありました。</string>
   <string name="MessageNotifier_mark_all_as_read">すべて既読にする</string>
-  <string name="MessageNotifier_mark_as_read">既読にする</string>
   <string name="MessageNotifier_media_message">メディアーメッセージ</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">申し訳ありませんが、クイック返信はTextSecureではまだできません！</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">既存のパスワード：</string>
   <string name="change_passphrase_activity__new_passphrase">新規のパスワード：</string>
@@ -423,6 +433,7 @@
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">国名を読み込み中...</string>
   <string name="country_selection_fragment__search">検索</string>
+  <!--device_list_fragment-->
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">デバッグログの入手に失敗しました。ADBを使ってログの入手は、可能です。</string>
   <string name="log_submit_activity__thanks">提出どうもありがとうございます！</string>
@@ -474,6 +485,7 @@
   <string name="recipient_preference_activity__blocked">ブロック済み</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">消音しての会話</string>
+  <string name="recipient_preferences__disable_notifications_for_this_conversation">会話を表示している間の通知無効化</string>
   <string name="recipient_preferences__ringtone">着信音</string>
   <string name="recipient_preferences__vibrate">振動</string>
   <string name="recipient_preferences__block">ブロック</string>
@@ -565,6 +577,7 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
   <string name="arrays__mute_for_two_hours">2時間消音</string>
   <string name="arrays__mute_for_one_day">1日消音</string>
   <string name="arrays__mute_for_seven_days">7日消音</string>
+  <string name="arrays__settings_default">デフォルト設定</string>
   <string name="arrays__enabled">有効</string>
   <string name="arrays__disabled">無効</string>
   <!--plurals.xml-->
@@ -612,6 +625,7 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
   <string name="preferences__sound">着信音</string>
   <string name="preferences__change_notification_sound">通知音を変更</string>
   <string name="preferences__inthread_notifications">スレッド内通知</string>
+  <string name="preferences__play_inthread_notifications">アクティブな会話を表示している間で通知音を再生</string>
   <string name="preferences__repeat_alerts">アラートの繰り返し</string>
   <string name="preferences__never">なし</string>
   <string name="preferences__one_time">1回</string>
@@ -667,6 +681,7 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
     </string>
   <string name="preferences__submit_debug_log">デバッグログを提出</string>
   <string name="preferences__support_wifi_calling">\'WiFi Calling\' 互換モード</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">あなたのデバイスでSMS/MMSの配送をWi-Fi(Wi-Fi Callingが有効にできるデバイスで有効にしある時のみ)上で行うのを有効にする</string>
   <string name="preferences_app_protection__blocked_contacts">ブロックした連絡先</string>
   <!--****************************************-->
   <!--menus-->
@@ -720,6 +735,7 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
   <string name="conversation__menu_leave_group">グループを抜ける</string>
   <string name="conversation__menu_delete_thread">スレッドを削除</string>
   <string name="conversation__menu_view_media">すべての画像</string>
+  <!--conversation_popup-->
   <!--conversation_callable-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">連絡帳に追加</string>
   <!--conversation_group_options-->
@@ -760,6 +776,5 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
   <string name="trimmer__old_messages_successfully_deleted">古いメッセージの削除に成功</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">転送アイコン</string>
-  <string name="MuteDialog_mute_notifications">消音通知</string>
   <!--EOF-->
 </resources>

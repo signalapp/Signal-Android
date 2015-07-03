@@ -122,6 +122,8 @@ Atenție, acestă acțiune va dezactiva stocarea criptată a tuturor mesajelor �
   <string name="CustomDefaultPreference_none">Niciuna</string>
   <!--DateUtils-->
   <string name="DateUtils_now">Acum</string>
+  <!--DeviceListActivity-->
+  <!--DeviceListItem-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Partajează cu</string>
   <!--ExportFragment-->
@@ -322,6 +324,7 @@ Primit mesaj trimis cu o cheie de identitate necunoscută. Faceți click pentru 
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Se decripteaza MMS, te rog asteapta...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Mesaj MMS criptat incorect...</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Mesaj MMS criptat pentru o sesiune inexistenta...</string>
+  <!--MuteDialog-->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Import în curs</string>
   <string name="ApplicationMigrationService_importing_text_messages">Mesajele text sunt importate</string>
@@ -340,10 +343,8 @@ Primit mesaj trimis cu o cheie de identitate necunoscută. Faceți click pentru 
   <string name="MessageNotifier_failed_to_deliver_message">Mesajul nu a putut fi trimis.</string>
   <string name="MessageNotifier_error_delivering_message">A aparut o eroare la trimiterea mesajului.</string>
   <string name="MessageNotifier_mark_all_as_read">Marchează tot ca citit</string>
-  <string name="MessageNotifier_mark_as_read">Marchează ca citit</string>
   <string name="MessageNotifier_media_message">Mesaj media</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Ne pare rău, funcția Răspuns Rapid nu este momentan implementată în TextSecure!</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">PAROLA VECHE:</string>
   <string name="change_passphrase_activity__new_passphrase">NOUA PAROLĂ:</string>
@@ -393,6 +394,7 @@ Primit mesaj trimis cu o cheie de identitate necunoscută. Faceți click pentru 
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Incarcarea tarilor...</string>
   <string name="country_selection_fragment__search">Caută</string>
+  <!--device_list_fragment-->
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Nu au putut fi obţinute log-urile pentru dispozitiv. Puteţi folosi în schimb ADB pentru a obţine log-urile.</string>
   <string name="log_submit_activity__thanks">Vă mulțumim pentru ajutor!</string>
@@ -674,6 +676,7 @@ Operaţiunea iniţiată de TextSecure a expirat în timpul aşteptării primirii
   <string name="conversation__menu_leave_group">Părăseşte grupul</string>
   <string name="conversation__menu_delete_thread">Șterge conversația</string>
   <string name="conversation__menu_view_media">Toate imaginile</string>
+  <!--conversation_popup-->
   <!--conversation_callable-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Adaugă la contacte</string>
   <!--conversation_group_options-->
