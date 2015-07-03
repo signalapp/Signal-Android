@@ -57,9 +57,12 @@ public class CircledImageView extends ImageView {
       Bitmap roundBitmap = BitmapUtil.getScaledCircleBitmap(context, bitmap);
       canvas.drawBitmap(roundBitmap, 0, 0, null);
     } else {
-      canvas.save();
-      drawable.draw(canvas);
-      canvas.restore();
+      SquaringDrawable squaringDrawable = (SquaringDrawable) drawable;
+      Bitmap b = ((GlideBitmapDrawable) squaringDrawable.getCurrent()).getBitmap();
+      Bitmap bitmap = b.copy(Bitmap.Config.ARGB_8888, true);
+
+      Bitmap roundBitmap = BitmapUtil.getScaledCircleBitmap(context, bitmap);
+      canvas.drawBitmap(roundBitmap, 0, 0, null);
     }
   }
   public static Bitmap getRoundedCroppedBitmap(Bitmap bitmap, int radius) {
