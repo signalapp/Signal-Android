@@ -16,8 +16,13 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.graphics.Typeface;
+import android.graphics.drawable.RippleDrawable;
+import android.os.Build.VERSION;
+import android.os.Build.VERSION_CODES;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.View;
@@ -102,6 +107,7 @@ public class ConversationListItem extends RelativeLayout
     }
 
     setBatchState(batchMode);
+    setRippleColor(recipients);
     this.contactPhotoImage.setAvatar(recipients, true);
   }
 
@@ -126,6 +132,14 @@ public class ConversationListItem extends RelativeLayout
     return distributionType;
   }
 
+  @TargetApi(VERSION_CODES.LOLLIPOP)
+  public void setRippleColor(Recipients recipients) {
+    if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
+      ((RippleDrawable)(getBackground()).mutate())
+          .setColor(ColorStateList.valueOf(recipients.getColor().toConversationColor(context)));
+    }
+  }
+
   @Override
   public void onModified(final Recipients recipients) {
     handler.post(new Runnable() {
@@ -133,6 +147,7 @@ public class ConversationListItem extends RelativeLayout
       public void run() {
         fromView.setText(recipients, read);
         contactPhotoImage.setAvatar(recipients, true);
+        setRippleColor(recipients);
       }
     });
   }

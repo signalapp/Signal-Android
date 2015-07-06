@@ -127,6 +127,7 @@
 
     <declare-styleable name="AvatarImageView">
         <attr name="inverted" format="boolean"/>
+        <attr name="selectedColor" format="reference|color"/>
     </declare-styleable>
 
 </resources>

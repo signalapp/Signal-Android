@@ -52,7 +52,7 @@
                       android:layout_alignParentRight="true"
                       android:layout_marginLeft="50dp"
                       android:layout_marginRight="5dp"
-                      android:background="@drawable/sent_bubble"
+                      android:background="@drawable/sent_bubble_background"
                       android:orientation="vertical">
 
             <org.thoughtcrime.securesms.components.ThumbnailView
