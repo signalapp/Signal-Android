@@ -46,10 +46,10 @@ public class EmojiProvider {
 
   public static final double EMOJI_FULL       = 1.00;
   public static final double EMOJI_SMALL      = 0.60;
-  public static final int    EMOJI_RAW_HEIGHT = 96;
-  public static final int    EMOJI_RAW_WIDTH  = 102;
-  public static final int    EMOJI_VERT_PAD   = 6;
-  public static final int    EMOJI_PER_ROW    = 15;
+  public static final int    EMOJI_RAW_HEIGHT = 64;
+  public static final int    EMOJI_RAW_WIDTH  = 64;
+  public static final int    EMOJI_VERT_PAD   = 0;
+  public static final int    EMOJI_PER_ROW    = 32;
 
   private final Context context;
   private final double  drawWidth;
