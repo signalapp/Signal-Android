@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">TextSecure</string>
+  <string name="app_name">SecureChat</string>
   <string name="yes">Áno</string>
   <string name="no">Nie</string>
   <string name="delete">Zmaž</string>
@@ -57,7 +57,7 @@ Upozornenie, toto vypne kryptovanie úložiska správ a kľúčov. Vaše bezpeč
   <string name="ConversationActivity_calls_not_supported">Hovory nie sú podporované</string>
   <string name="ConversationActivity_leave_group">Opustiť skupinu?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Ste si istí že chcete opustiť túto skupinu?</string>
-  <string name="ConversationActivity_transport_textsecure">TextSecure</string>
+  <string name="ConversationActivity_transport_textsecure">SecureChat</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detaily správy</string>
   <string name="ConversationFragment_confirm_message_delete">Potvrď zmazanie správy</string>
@@ -77,7 +77,7 @@ Upozornenie, toto vypne kryptovanie úložiska správ a kľúčov. Vaše bezpeč
   <string name="ExportFragment_export">Export</string>
   <string name="ExportFragment_export_plaintext_to_sd_card">Exportuj čistý text na SD kartu?</string>
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Upozornenie, toto
-exportuje nekryptovaný obsah TextSecure správy na SD kartu.</string>
+exportuje nekryptovaný obsah SecureChat správy na SD kartu.</string>
   <string name="ExportFragment_cancel">Zrušiť</string>
   <string name="ExportFragment_exporting">Exportujem</string>
   <string name="ExportFragment_exporting_plaintext_to_sd_card">Exportujem nekryptovaný text na SD kartu...</string>
@@ -103,13 +103,13 @@ kartu!</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Importovať systémovú databázu SMS?</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">Toto naimportuje
-správy zo štandardnej systémovj databázy SMS správ do TextSecure. Ak ste predým
+správy zo štandardnej systémovj databázy SMS správ do SecureChat. Ak ste predým
 importovali systémovú databázu SMS, opakovaný import zduplikuje správy.</string>
   <string name="ImportFragment_import">Import</string>
   <string name="ImportFragment_cancel">Zrušiť</string>
   <string name="ImportFragment_restore_encrypted_backup">Obnoviť zašifrovanú zálohu?</string>
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
-Obnovenie zakryptovanej zálohy prepíše všetky existujúce kryptovacie kľúče, nastavenia a správy. Všetky informácie v aktuálnej inštalácii TextSecure budú prepísané. Záloha zostane zachovaná.</string>
+Obnovenie zakryptovanej zálohy prepíše všetky existujúce kryptovacie kľúče, nastavenia a správy. Všetky informácie v aktuálnej inštalácii SecureChat budú prepísané. Záloha zostane zachovaná.</string>
   <string name="ImportFragment_restore">Obnovenie</string>
   <string name="ImportFragment_import_plaintext_backup">Importovať nezašifrovanú zálohu?</string>
   <string name="ImportFragment_importing">Importujem</string>
@@ -134,13 +134,13 @@ Obnovenie zakryptovanej zálohy prepíše všetky existujúce kryptovacie kľú�
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Nesprávne staré heslo!</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Zadaj heslo</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">TextSecure ikonka</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">SecureChat ikonka</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Nesprávne heslo!</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_processing">Spracováva sa</string>
   <string name="ReceiveKeyActivity_processing_key_exchange">Spracovávajú sa kľúče vymeny</string>
   <!--RegistrationActivity-->
-  <string name="RegistrationActivity_connect_with_textsecure">Pripojiť s TextSecure</string>
+  <string name="RegistrationActivity_connect_with_textsecure">Pripojiť s SecureChat</string>
   <string name="RegistrationActivity_select_your_country">Vyber svoju krajinu</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Ty musíš zadať tvoj
 
@@ -171,9 +171,9 @@ telefónne číslo</string>
   <string name="RegistrationProgressActivity_too_many_requests">Príliš veľa požiadaviek!</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Registrácia dokončená.</string>
-  <string name="RegistrationService_textsecure_registration_has_successfully_completed">TextSecure registrácia bola úspešne dokončená.</string>
+  <string name="RegistrationService_textsecure_registration_has_successfully_completed">SecureChat registrácia bola úspešne dokončená.</string>
   <string name="RegistrationService_registration_error">Chyba pri registrácii</string>
-  <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Pri TextSecure registrácii sa vyskytol problém.</string>
+  <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Pri SecureChat registrácii sa vyskytol problém.</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_secure_session_ended">Bezpečné spojenie ukončené.</string>
   <string name="SmsMessageRecord_duplicate_message">Zduplikuj správu.</string>
@@ -222,7 +222,7 @@ telefónne číslo</string>
   <string name="ApplicationMigrationService_importing_text_messages">Nahrávanie textových správ</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_textsecure_passphrase_cached">Kliknutím otvor</string>
-  <string name="KeyCachingService_passphrase_cached">TextSecure je otvorený</string>
+  <string name="KeyCachingService_passphrase_cached">SecureChat je otvorený</string>
   <string name="KeyCachingService_lock">Zamkni s heslom</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">(%d) nových správ</string>
@@ -236,7 +236,7 @@ telefónne číslo</string>
   <string name="MessageNotifier_mark_as_read">Označ ako prečítané</string>
   <!--QuickResponseService-->
   <!--auto_initiate_activity-->
-  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Dostali ste správu od klienta podporujúceho TextSecure bezpečnú session.  Želáte si vytvoriť bezpečnú session?</string>
+  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Dostali ste správu od klienta podporujúceho SecureChat bezpečnú session.  Želáte si vytvoriť bezpečnú session?</string>
   <string name="auto_initiate_activity__initiate_exchange">Začni vzájomnú výmenu</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Staré heslo:</string>
@@ -253,7 +253,7 @@ telefónne číslo</string>
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Žiadne nedávne hovory.</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Pošli TextSecure správu </string>
+  <string name="conversation_activity__type_message_push">Pošli SecureChat správu </string>
   <string name="conversation_activity__type_message_sms_secure">Pošli šifrovanú SMS</string>
   <string name="conversation_activity__type_message_mms_secure">Pošli šifrovanú MMS</string>
   <string name="conversation_activity__send">Odoslať</string>
@@ -277,7 +277,7 @@ telefónne číslo</string>
   <string name="log_submit_activity__thanks">Ďakujem za tvoju pomoc!</string>
   <string name="log_submit_activity__submitting">Posielanie</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Chcete importovať Vaše existujúce textové správy do kryptovanej databázy TextSecure? </string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Chcete importovať Vaše existujúce textové správy do kryptovanej databázy SecureChat? </string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Predvolená systémová databáza nebude modifikovaná alebo nahradenáv žiadnom prípade.</string>
   <string name="database_migration_activity__skip">Preskoč</string>
   <string name="database_migration_activity__import">Import</string>
@@ -293,7 +293,7 @@ Exportovať nezakryptovanú zálohu kompatibilnú so \'SMSBackup a Restore\' na 
 štandardnej systémovej aplikácie na správy.</string>
   <string name="import_fragment__import_encrypted_backup">Importovať zakryptovanú zálohu</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">
-Obnoviť predtým exportovanú zakryptovanú TextSecure zálohu.</string>
+Obnoviť predtým exportovanú zakryptovanú SecureChat zálohu.</string>
   <string name="import_fragment__import_plaintext_backup">Importovať nezakryptovanú zálohu</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Importovať nezakryptovanú zálohu. Kompatibilné so \'SMSBackup And Restore\'.</string>
@@ -317,7 +317,7 @@ telefónne číslo</string>
   <!--registration_progress_activity-->
   <string name="registration_progress_activity__voice_verification">Hlasové overovanie</string>
   <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">
-TextSecure Vám môže tiež zavolať kvôli overeniu Vášho čísla. Kliknite \"Zavolaj mi\" a vložte 6 číslic
+SecureChat Vám môže tiež zavolať kvôli overeniu Vášho čísla. Kliknite \"Zavolaj mi\" a vložte 6 číslic
 kód ktoré budete počuť.
 </string>
   <string name="registration_progress_activity__verify">Overené</string>
@@ -329,7 +329,7 @@ pripojenie.
 </string>
   <string name="registration_progress_activity__restrictive_firewall">Reštriktívny firewall</string>
   <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
-Teraz TextSecure automaticky overí tvoje číslo prostredníctvom overovacej SMS správy.
+Teraz SecureChat automaticky overí tvoje číslo prostredníctvom overovacej SMS správy.
 </string>
   <string name="registration_progress_activity__connecting">Pripájanie...</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">Čakanie na SMS
@@ -349,7 +349,7 @@ zlyhalo.
   <string name="AndroidManifest__create_passphrase">Vytvor heslo</string>
   <string name="AndroidManifest__enter_passphrase">Zadaj heslo</string>
   <string name="AndroidManifest__select_contacts">Vyber kontakty</string>
-  <string name="AndroidManifest__textsecure_detected">Detekovaný TextSecure</string>
+  <string name="AndroidManifest__textsecure_detected">Detekovaný SecureChat</string>
   <string name="AndroidManifest__public_identity_key">Kľúč verejnej totožnosti</string>
   <string name="AndroidManifest__change_passphrase">Zmeň heslo</string>
   <string name="AndroidManifest__verify_identity">Over totožnosť</string>
@@ -361,8 +361,8 @@ zlyhalo.
   <string name="preferences__general">Všeobecné</string>
   <string name="preferences__pref_all_sms_title">Príjmy všetky SMS</string>
   <string name="preferences__pref_all_mms_title">Príjmy všetky MMS</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Použi TextSecure na zobrazenie a uloženie všetkých prichádzajúcich správ</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Použi TextSecure na zobrazenie a uloženie všetkých prichádzajúcich miltimediálnych správ</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Použi SecureChat na zobrazenie a uloženie všetkých prichádzajúcich správ</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Použi SecureChat na zobrazenie a uloženie všetkých prichádzajúcich miltimediálnych správ</string>
   <string name="preferences__input_settings">Nastavenia vstupu</string>
   <string name="preferences__replace_smiley_with_enter_key">Náhrad smajlíkov s klasickými znakmi</string>
   <string name="preferences__display_settings">Nastavenia zobrazenia</string>
@@ -420,9 +420,9 @@ zlyhalo.
   <string name="preferences__language">Jazyk</string>
   <string name="preferences__make_default_sms_app">Nastav ako predvolebnú SMS aplikáciu</string>
   <string name="preferences__submit_debug_log">Odošli ladiaci log</string>
-  <string name="preferences__sms_outgoing_push_users">TextSecure používatelia</string>
+  <string name="preferences__sms_outgoing_push_users">SecureChat používatelia</string>
   <string name="preferences__sms_outgoing_push_users_description">Pošli bezpečnú SMS pokiaľ pripojenie je nedostupné </string>
-  <string name="preferences__sms_fallback_non_push_users">Nie-TextSecure používatelia </string>
+  <string name="preferences__sms_fallback_non_push_users">Nie-SecureChat používatelia </string>
   <string name="preferences__sms_fallback_nobody">Nikto</string>
   <!--****************************************-->
   <!--menus-->
@@ -438,7 +438,7 @@ zlyhalo.
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Obnov kontakty</string>
   <!--conversation_button_context-->
-  <string name="conversation_button_context__send_textsecure_message">Pošli TextSecure správu </string>
+  <string name="conversation_button_context__send_textsecure_message">Pošli SecureChat správu </string>
   <string name="conversation_button_context__send_secure_sms">Pošli šifrovanú SMS</string>
   <string name="conversation_button_context__send_secure_mms">Pošli šifrovanú MMS</string>
   <!--conversation_callable-->

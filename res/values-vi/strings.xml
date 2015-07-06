@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">TextSecure</string>
+  <string name="app_name">SecureChat</string>
   <string name="yes">Có</string>
   <string name="no">Không</string>
   <string name="delete">Xóa</string>
@@ -23,7 +23,7 @@ Thao tác này sẽ tắt tin nhắn đẩy bằng cách gỡ đăng ký bạn r
   <string name="ApplicationPreferencesActivity_sms_enabled">Cho Phép SMS Gửi Vào</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Chạm vào để đổi ứng dụng SMS mặc định</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Không Cho SMS Gửi Vào</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Chạm vào để chọn TextSecure làm ứng dụng SMS mặc định</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Chạm vào để chọn SecureChat làm ứng dụng SMS mặc định</string>
   <!--AppProtectionPreferenceFragment-->
   <!--DraftDatabase-->
   <!--AttchmentManager-->
@@ -70,7 +70,7 @@ Thao tác này sẽ tắt tin nhắn đẩy bằng cách gỡ đăng ký bạn r
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Thiết bị này không hỗ trợ thao tác gọi.</string>
   <string name="ConversationActivity_leave_group">Rời nhóm?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Bạn có chắc là muốn rời nhóm?</string>
-  <string name="ConversationActivity_transport_textsecure">TextSecure</string>
+  <string name="ConversationActivity_transport_textsecure">SecureChat</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Chi tiết tin nhắn</string>
   <string name="ConversationFragment_confirm_message_delete">Xác nhận xóa tin</string>
@@ -89,7 +89,7 @@ Thao tác này sẽ tắt tin nhắn đẩy bằng cách gỡ đăng ký bạn r
   <!--ExportFragment-->
   <string name="ExportFragment_export">Xuất</string>
   <string name="ExportFragment_export_plaintext_to_sd_card">Xuất dữ liệu dạng thuần văn bản ra thẻ nhớ?</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Cảnh báo, thao tác này sẽ xuất nội dung văn bản thường (không mã hóa) của các tin nhắn TextSecure ra thẻ nhớ SD.</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Cảnh báo, thao tác này sẽ xuất nội dung văn bản thường (không mã hóa) của các tin nhắn SecureChat ra thẻ nhớ SD.</string>
   <string name="ExportFragment_cancel">Hủy bỏ</string>
   <string name="ExportFragment_exporting">Đang xuất</string>
   <string name="ExportFragment_exporting_plaintext_to_sd_card">Đang xuất văn bản thường ra thẻ nhớ SD...</string>
@@ -102,27 +102,27 @@ Thao tác này sẽ tắt tin nhắn đẩy bằng cách gỡ đăng ký bạn r
   <string name="GroupCreateActivity_actionbar_update_title">Cập nhật nhóm</string>
   <string name="GroupCreateActivity_group_name_hint">Tên nhóm</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Tạo nhóm MMS mới</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Bạn chọn một người liên hệ mà họ không hỗ trợ nhóm TextSecure, do đó nhóm này sẽ là MMS.</string>
-  <string name="GroupCreateActivity_you_dont_support_push">Bạn không đăng ký dùng đường truyền internet, do đó nhóm TextSecure bị tắt.</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Bạn chọn một người liên hệ mà họ không hỗ trợ nhóm SecureChat, do đó nhóm này sẽ là MMS.</string>
+  <string name="GroupCreateActivity_you_dont_support_push">Bạn không đăng ký dùng đường truyền internet, do đó nhóm SecureChat bị tắt.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Có lỗi bất ngờ xảy ra do đó không lập nhóm được.</string>
   <string name="GroupCreateActivity_contacts_no_members">Cần có ít nhất một người trong nhóm!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Một người trong nhóm có số điện thoại không đọc được. Xin điều chỉnh hoặc xóa đi và thử lại.</string>
   <string name="GroupCreateActivity_avatar_content_description">Biểu tượng nhóm</string>
   <string name="GroupCreateActivity_menu_create_title">Tạo nhóm</string>
   <string name="GroupCreateActivity_creating_group">Tạo %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Không thể thêm địa chỉ liên hệ bên ngoài TextSecure vào trong nhóm TextSecure hiện thời</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Không thể thêm địa chỉ liên hệ bên ngoài SecureChat vào trong nhóm SecureChat hiện thời</string>
   <!--GroupMembersDialog-->
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Nhập</string>
   <string name="ImportExportActivity_export">Xuất</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Nhập dữ liệu từ SMS?</string>
-  <string name="ImportFragment_this_will_import_messages_from_the_system">Thao tác này sẽ nhập các tin nhắn từ cơ sở dữ liệu SMS mặc định của hệ thống vào TextSecure. Nếu bạn đã từng làm việc này trước đó, nhập vào lần nữa sẽ dẫn đến việc có các tin nhắn trùng lập.</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">Thao tác này sẽ nhập các tin nhắn từ cơ sở dữ liệu SMS mặc định của hệ thống vào SecureChat. Nếu bạn đã từng làm việc này trước đó, nhập vào lần nữa sẽ dẫn đến việc có các tin nhắn trùng lập.</string>
   <string name="ImportFragment_import">Nhập</string>
   <string name="ImportFragment_cancel">Hủy bỏ</string>
   <string name="ImportFragment_restore_encrypted_backup">Khôi phục phần sao lưu đã mã hóa?</string>
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
-Phục hồi bản sao lưu có mã hóa sẽ thay thế hoàn toàn các chìa khóa hiện thời, chọn lựa và tin nhắn. Bạn sẽ mất những thông tin nào có trong phiên bản TextSecure cài đặt hiện thời nhưng không có trong bản sao lưu.</string>
+Phục hồi bản sao lưu có mã hóa sẽ thay thế hoàn toàn các chìa khóa hiện thời, chọn lựa và tin nhắn. Bạn sẽ mất những thông tin nào có trong phiên bản SecureChat cài đặt hiện thời nhưng không có trong bản sao lưu.</string>
   <string name="ImportFragment_restore">Phục hồi</string>
   <string name="ImportFragment_import_plaintext_backup">Xuất dữ liệu sao lưu dạng thuần văn bản?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Thao tác này sẽ nhập các tin nhắn từ bản sao lưu thường (không mã hóa). Nếu bạn đã nhập sao lưu này trước đó, nhập lần nữa sẽ dẫn đến việc có tin nhắn trùng lập.</string>
@@ -150,11 +150,11 @@ Phục hồi bản sao lưu có mã hóa sẽ thay thế hoàn toàn các chìa 
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Mật khẩu cũ không đúng!</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Điền vào cụm từ mã hóa</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">Biểu tượng TextSecure</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Biểu tượng SecureChat</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Gửi phần cụm từ mã hóa</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Cụm từ mã hóa không hợp lệ!</string>
   <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Chữ ký của việc trao đổi chìa khóa này khác với lần trao đổi trước nhận được từ người liên lạc này. Điều này có nghĩa là có ai đó tìm cách chận bắt liên lạc thông tin của bạn, hoặc đơn thuần là người này cài đặt lại TextSecure và có chìa khóa nhận diện mới.</string>
+  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Chữ ký của việc trao đổi chìa khóa này khác với lần trao đổi trước nhận được từ người liên lạc này. Điều này có nghĩa là có ai đó tìm cách chận bắt liên lạc thông tin của bạn, hoặc đơn thuần là người này cài đặt lại SecureChat và có chìa khóa nhận diện mới.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Bạn có thể muốn kiểm chứng
 địa chỉ liên lạc này.
     </string>
@@ -162,7 +162,7 @@ Phục hồi bản sao lưu có mã hóa sẽ thay thế hoàn toàn các chìa 
   <string name="ReceiveKeyActivity_processing">Đang xử lý</string>
   <string name="ReceiveKeyActivity_processing_key_exchange">Xử lý trao đổi chìa khóa...</string>
   <!--RegistrationActivity-->
-  <string name="RegistrationActivity_connect_with_textsecure">Kết Nối Dùng TextSecure</string>
+  <string name="RegistrationActivity_connect_with_textsecure">Kết Nối Dùng SecureChat</string>
   <string name="RegistrationActivity_select_your_country">Chọn lựa quốc gia</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Bạn phải cho biết mã số quốc gia bạn</string>
   <string name="RegistrationActivity_you_must_specify_your_phone_number">Bạn phải cho biết số điện thoại của bạn</string>
@@ -188,8 +188,8 @@ Phục hồi bản sao lưu có mã hóa sẽ thay thế hoàn toàn các chìa 
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Bạn đã yêu cầu cú gọi gần đây. Bạn có thể yêu cầu lần nữa trong vòng 20 phút.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Đăng ký gặp va chạm</string>
   <!--RegistrationService-->
-  <string name="RegistrationService_textsecure_registration_has_successfully_completed">Đăng ký TextSecure đã hoàn tất tốt đẹp.</string>
-  <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Đăng ký TextSecure gặp phải vấn đề.</string>
+  <string name="RegistrationService_textsecure_registration_has_successfully_completed">Đăng ký SecureChat đã hoàn tất tốt đẹp.</string>
+  <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Đăng ký SecureChat gặp phải vấn đề.</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Nhận được thông tin
 trao đổi chìa khóa bị hỏng!</string>
@@ -244,7 +244,7 @@ Nhận thông tin về chìa khóa nhận diện không rõ. Bấm để xử l�
   <!--KeyCachingService-->
   <string name="KeyCachingService_textsecure_passphrase_cached">Chạm vào để mở.</string>
   <string name="KeyCachingService_textsecure_passphrase_cached_with_lock">Chạm vào để mở, hoặc chạm vào ổ khóa để đóng lại.</string>
-  <string name="KeyCachingService_passphrase_cached">TextSecure được mở khóa</string>
+  <string name="KeyCachingService_passphrase_cached">SecureChat được mở khóa</string>
   <string name="KeyCachingService_lock">Khóa bằng mật khẩu</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">%d tin mới</string>
@@ -256,9 +256,9 @@ Nhận thông tin về chìa khóa nhận diện không rõ. Bấm để xử l�
   <string name="MessageNotifier_mark_all_as_read">Đánh dấu tất cả đã đọc</string>
   <string name="MessageNotifier_mark_as_read">Đánh dấu đã đọc</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Xin lỗi, Hồi Âm Nhanh chưa được TextSecure hỗ trợ!</string>
+  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Xin lỗi, Hồi Âm Nhanh chưa được SecureChat hỗ trợ!</string>
   <!--auto_initiate_activity-->
-  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Bạn nhận được tin nhắn từ một người có dùng phiên trao đổi mã hóa TextSecure. Bạn có muốn khởi tạo một phiên trao đổi có mã hóa?</string>
+  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Bạn nhận được tin nhắn từ một người có dùng phiên trao đổi mã hóa SecureChat. Bạn có muốn khởi tạo một phiên trao đổi có mã hóa?</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">MẬT KHẨU CŨ:</string>
   <string name="change_passphrase_activity__new_passphrase">MẬT KHẨU MỚI:</string>
@@ -296,7 +296,7 @@ Nhận thông tin về chìa khóa nhận diện không rõ. Bấm để xử l�
   <string name="log_submit_activity__thanks">Cám ơn sự trợ giúp của bạn!</string>
   <string name="log_submit_activity__submitting">Đang nộp</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Bạn có muốn nhập các tin nhắn hiện có vào trong cơ sở dữ liệu có mã hóa của TextSecure?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Bạn có muốn nhập các tin nhắn hiện có vào trong cơ sở dữ liệu có mã hóa của SecureChat?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Cơ sở dữ liệu mặc định của hệ thống sẽ không bị sửa hay bị thay đổi gì cả.</string>
   <string name="database_migration_activity__skip">Bỏ qua</string>
   <string name="database_migration_activity__import">Nhập</string>
@@ -307,7 +307,7 @@ Nhận thông tin về chìa khóa nhận diện không rõ. Bấm để xử l�
 Xuất sao lưu thường tương thích với \'Sao Lưu và Phục Hồi SMS\' ra thẻ nhớ SD.</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Nhập cơ sở dữ liệu của ứng dụng tin nhắn mặc định của hệ thống.</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">
-Phục hồi sao lưu TextSecure có mã hóa từng xuất ra trước đó.</string>
+Phục hồi sao lưu SecureChat có mã hóa từng xuất ra trước đó.</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Nhập tập tin sao lưu thường-không mã hóa. Tương thích với \'Sao Lưu và Phục Hồi SMS\'.</string>
   <!--MmsPreferencesFragment-->
@@ -315,7 +315,7 @@ Nhập tập tin sao lưu thường-không mã hóa. Tương thích với \'Sao 
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Mở khóa</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure </string>
+  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">SecureChat </string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Để gửi tin nhắn đa phương tiện hoặc tin nhắn nhóm, bấm \'OK\' và hoàn tất các thiết đặt cần thiết. Thiết đặt MMS cho nhà mạng di động có thể tìm thấy bằng cách tìm \'your carrier APN\'. Bạn chỉ cần làm bước này một lần.</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Hoàn tất</string>
@@ -330,35 +330,35 @@ SỐ ĐIỆN THOẠI BẠN</string>
   <string name="registration_problems__some_possible_problems_include">Một số vấn đề có thể gặp
 bao gồm:</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
-Một số ứng dụng tin nhắn bên thứ ba, như Handcent hay GoSMS hành xử không hay và chận bắt tất cả tin nhắn SMS đi vào. Kiểm lại trong các ứng dụng đó xem coi có tin nhắn nào có hàng chữ \'Mã số kiểm chứng TextSecure của bạn:\', trong trường hợp đó bạn cần cấu hình ứng dụng đó cho phép tin nhắn đi xuyên qua.</string>
+Một số ứng dụng tin nhắn bên thứ ba, như Handcent hay GoSMS hành xử không hay và chận bắt tất cả tin nhắn SMS đi vào. Kiểm lại trong các ứng dụng đó xem coi có tin nhắn nào có hàng chữ \'Mã số kiểm chứng SecureChat của bạn:\', trong trường hợp đó bạn cần cấu hình ứng dụng đó cho phép tin nhắn đi xuyên qua.</string>
   <string name="registration_problems__incorrect_number">Số không đúng.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
 Xin xem lại số điền vào có đúng không, và dạng số phù hợp với vùng bạn cư ngụ. </string>
   <string name="registration_problems__google_voice">Google Voice.</string>
   <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">
-TextSecure không chạy với số của Google Voice.</string>
+SecureChat không chạy với số của Google Voice.</string>
   <!--registration_progress_activity-->
   <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">
-TextSecure cũng có thể gọi bạn để kiểm chứng số điện thoại. Nhấn vào \'Gọi Tôi\' và điền vào dưới đây mã 6 số mà bạn nghe được qua cú gọi.</string>
+SecureChat cũng có thể gọi bạn để kiểm chứng số điện thoại. Nhấn vào \'Gọi Tôi\' và điền vào dưới đây mã 6 số mà bạn nghe được qua cú gọi.</string>
   <string name="registration_progress_activity__verify">Kiểm chứng</string>
   <string name="registration_progress_activity__edit_number">Sửa số</string>
   <string name="registration_progress_activity__connectivity_error">Có lỗi kết nối.</string>
   <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">
-TextSecure không thể kết nối vào dịch vụ đẩy.</string>
+SecureChat không thể kết nối vào dịch vụ đẩy.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Một số vấn đề có
 thể gặp bao gồm:</string>
   <string name="registration_progress_activity__no_network_connectivity">Không có đường
 truyền mạng.</string>
   <string name="registration_progress_activity__restrictive_firewall">Tường lửa ngăn chận.</string>
   <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
-TextSecure bây giờ sẽ tự động kiểm chứng số điện thoại bạn với một tin nhắn SMS xác nhận.</string>
+SecureChat bây giờ sẽ tự động kiểm chứng số điện thoại bạn với một tin nhắn SMS xác nhận.</string>
   <string name="registration_progress_activity__connecting">Đang kết nối...</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">Chờ kiểm
 chứng SMS...</string>
   <string name="registration_progress_activity__registering_with_server">Đăng ký với máy chủ...</string>
   <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Việc này có thể mất chút thời gian. Xin kiên nhãn chờ, chúng tôi sẽ báo cho bạn biết khi kiểm chứng xong.</string>
   <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">
-TextSecure hết hạn chờ trong lúc đợi tin nhắn SMS xác nhận.</string>
+SecureChat hết hạn chờ trong lúc đợi tin nhắn SMS xác nhận.</string>
   <string name="registration_progress_activity__sms_verification_failed">Kiểm chứng SMS thất bại.</string>
   <string name="registration_progress_activity__generating_keys">Tạo chìa khóa...</string>
   <!--recipients_panel-->
@@ -377,7 +377,7 @@ TextSecure hết hạn chờ trong lúc đợi tin nhắn SMS xác nhận.</stri
   <string name="preferences__pref_all_sms_title">Nhận tất cả SMS</string>
   <string name="preferences__pref_all_mms_title">Nhận tất cả MMS</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Dùng TextScure để xem và lưu trữ tất cả tin nhắn gửi vào</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Dùng TextSecure để xem và lưu trữ tất cả tin nhắn đa phương tiện gửi vào</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Dùng SecureChat để xem và lưu trữ tất cả tin nhắn đa phương tiện gửi vào</string>
   <string name="preferences__input_settings">Thiết Đặt Cách Nhập</string>
   <string name="preferences__enable_enter_key_title">Mở phím Enter</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Chọn khoản mục liên lạc của bạn trong danh sách liên lạc.</string>
@@ -432,14 +432,14 @@ TextSecure hết hạn chờ trong lúc đợi tin nhắn SMS xác nhận.</stri
   <string name="preferences__default">Mặc định</string>
   <string name="preferences__language">Ngôn ngữ</string>
   <string name="preferences__make_default_sms_app">Chọn làm ứng dụng SMS mặc định</string>
-  <string name="preferences__make_textsecure_the_default_sms_mms_app">Chọn TextSecure làm ứng dụng SMS/MMS mặc định của hệ thống.</string>
+  <string name="preferences__make_textsecure_the_default_sms_mms_app">Chọn SecureChat làm ứng dụng SMS/MMS mặc định của hệ thống.</string>
   <string name="preferences__use_data_channel">Tin nhắn đẩy</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
-Tăng độ riêng tư và tránh cước SMS bằng cách dùng đường truyền internet để liên lạc với những người dùng TextSecure khác</string>
+Tăng độ riêng tư và tránh cước SMS bằng cách dùng đường truyền internet để liên lạc với những người dùng SecureChat khác</string>
   <string name="preferences__submit_debug_log">Nạp ký sự gỡ lỗi</string>
-  <string name="preferences__sms_outgoing_push_users">Người dùng TextSecure</string>
+  <string name="preferences__sms_outgoing_push_users">Người dùng SecureChat</string>
   <string name="preferences__sms_outgoing_push_users_description">Gửi qua SMS an toàn nếu đường truyền mạng bị đứt</string>
-  <string name="preferences__sms_fallback_non_push_users">Người không dùng TextSecure</string>
+  <string name="preferences__sms_fallback_non_push_users">Người không dùng SecureChat</string>
   <string name="preferences__sms_fallback_nobody">Không ai</string>
   <!--****************************************-->
   <!--menus-->

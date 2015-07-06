@@ -26,7 +26,7 @@
   <string name="ApplicationPreferencesActivity_sms_enabled">已开启接收短信</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">点击来改变默认的短信应用</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">已停用接收短信</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">点击将TextSecure设定为默认的短信应用</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">点击将SecureChat设定为默认的短信应用</string>
   <string name="ApplicationPreferencesActivity_on">开</string>
   <string name="ApplicationPreferencesActivity_On">开</string>
   <string name="ApplicationPreferencesActivity_off">关</string>

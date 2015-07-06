@@ -118,7 +118,7 @@
   <string name="ExportFragment_success">成功！</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_TextSecure_communication_failure">SecureChat 持續發生傳輸異常！</string>
-  <string name="GcmRefreshJob_TextSecure_was_unable_to_register_with_Google_Play_Services">SecureChat 無法順利註冊為 Google Play Services。指定的傳輸通道已被停用。請試著從TextSecure 的設定選單中，重新註冊。</string>
+  <string name="GcmRefreshJob_TextSecure_was_unable_to_register_with_Google_Play_Services">SecureChat 無法順利註冊為 Google Play Services。指定的傳輸通道已被停用。請試著從SecureChat 的設定選單中，重新註冊。</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">新增群組</string>
   <string name="GroupCreateActivity_actionbar_update_title">更新群組</string>
@@ -510,7 +510,7 @@ SecureChat 等候驗證用的手機簡訊已逾時。</string>
   <string name="preferences__screen_security">螢幕安全設定</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">自動完成新連線金鑰交換，或套用目前已存在連線同樣的身分識別金鑰</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">停用畫面擷取功能，在對話清單或APP內</string>
-  <string name="preferences__forget_passphrase_from_memory_after_some_interval">若閒置太久沒用，讓『自訂密碼』自動幫 TextSecure上鎖</string>
+  <string name="preferences__forget_passphrase_from_memory_after_some_interval">若閒置太久沒用，讓『自訂密碼』自動幫 SecureChat上鎖</string>
   <string name="preferences__timeout_passphrase">『自訂密碼』上鎖倒數</string>
   <string name="preferences__pref_timeout_interval_dialogtitle">選擇『自訂密碼』上鎖倒數的區間</string>
   <string name="preferences__pref_timeout_interval_title">倒數時間</string>
