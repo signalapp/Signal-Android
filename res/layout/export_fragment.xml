@@ -60,7 +60,8 @@
                       android:layout_height="wrap_content"
                       android:layout_marginTop="10dip"
                       android:background="?import_export_item_card_background"
-                      android:orientation="vertical">
+                      android:orientation="vertical"
+                      android:focusable="true">
 
             <LinearLayout android:orientation="horizontal"
                           android:layout_width="wrap_content"

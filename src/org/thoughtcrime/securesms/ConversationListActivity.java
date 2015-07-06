@@ -26,6 +26,7 @@ import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.SearchView;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -102,6 +103,15 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
     super.onPrepareOptionsMenu(menu);
     return true;
+  }
+
+  @Override
+  public boolean onKeyUp(int keyCode, @NonNull KeyEvent event) {
+    if (keyCode == KeyEvent.KEYCODE_SOFT_RIGHT) {
+      startActivity(new Intent(this, NewConversationActivity.class));
+      return true;
+    }
+    return super.onKeyUp(keyCode, event);
   }
 
   private void initializeSearch(MenuItem searchViewItem) {

@@ -24,7 +24,8 @@ public abstract class BaseActivity extends FragmentActivity {
 
   public static boolean isMenuWorkaroundRequired() {
     return VERSION.SDK_INT < VERSION_CODES.KITKAT          &&
-           VERSION.SDK_INT > VERSION_CODES.GINGERBREAD_MR1 &&
-           ("LGE".equalsIgnoreCase(Build.MANUFACTURER) || "E6710".equalsIgnoreCase(Build.DEVICE));
+           VERSION.SDK_INT >= VERSION_CODES.GINGERBREAD_MR1 &&
+           ("LGE".equalsIgnoreCase(Build.MANUFACTURER) || "E6710".equalsIgnoreCase(Build.DEVICE)||
+              "SHARP".equalsIgnoreCase(Build.MANUFACTURER));
   }
 }
