@@ -19,7 +19,7 @@ public class EmojiView extends View implements Drawable.Callback {
   private String   emoji;
   private Drawable drawable;
 
-  private final Paint paint      = new Paint(Paint.ANTI_ALIAS_FLAG);
+  private final Paint paint      = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
   private final Rect  textBounds = new Rect();
 
   public EmojiView(Context context) {
