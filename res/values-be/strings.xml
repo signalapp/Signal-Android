@@ -126,6 +126,8 @@
   <string name="CustomDefaultPreference_none">Не</string>
   <!--DateUtils-->
   <string name="DateUtils_now">Зараз</string>
+  <!--DeviceListActivity-->
+  <!--DeviceListItem-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Падзяліцца з</string>
   <!--ExportFragment-->
@@ -325,6 +327,7 @@
   <string name="MmsMessageRecord_decrypting_mms_please_wait">РасшыфроўкаMMS, пачакайце калі ласка...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Няправільна зашыфраванае MMS паведамленне...</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS паведамленне зашыфравана для ўжо неіснуючай сэсіі...</string>
+  <!--MuteDialog-->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Імпарт у працэсе</string>
   <string name="ApplicationMigrationService_importing_text_messages">Імпарт тэкставых паведамленняў</string>
@@ -341,10 +344,8 @@
   <string name="MessageNotifier_failed_to_deliver_message">Памылка дастаўкі паведамлення.</string>
   <string name="MessageNotifier_error_delivering_message">Памылка дастаўкі паведамлення.</string>
   <string name="MessageNotifier_mark_all_as_read">Пазначыць усе як прачытаныя</string>
-  <string name="MessageNotifier_mark_as_read">Пазначыць як прачытанае</string>
   <string name="MessageNotifier_media_message">Мультымедыя паведамленне</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Нажаль Quick Response больш не падтрымліваецца TextSecure!</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">СТАРЫ ПАРОЛЬ:</string>
   <string name="change_passphrase_activity__new_passphrase">НОВЫ ПАРОЛЬ:</string>
@@ -394,6 +395,7 @@
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Загрузка краінаў...</string>
   <string name="country_selection_fragment__search">Пошук</string>
+  <!--device_list_fragment-->
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Не атрымалася ўзяць логі з вашай прылады. Вы па-ранейшаму можаце выкарыстоўваць ADB, каб атрымаць логі замест гэтага.</string>
   <string name="log_submit_activity__thanks">Дзякуй за вашу дапамогу!</string>
@@ -674,6 +676,7 @@ TextSecure не дачакаўся параверачная SMS.</string>
   <string name="conversation__menu_leave_group">Пакінуць групу</string>
   <string name="conversation__menu_delete_thread">Выдаліць ланцужок</string>
   <string name="conversation__menu_view_media">Усе выявы</string>
+  <!--conversation_popup-->
   <!--conversation_callable-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Дадаць да кантактаў</string>
   <!--conversation_group_options-->

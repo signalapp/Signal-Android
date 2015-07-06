@@ -26,12 +26,12 @@ import org.whispersystems.textsecure.api.TextSecureMessageSender;
 import org.whispersystems.textsecure.api.crypto.UntrustedIdentityException;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
 import org.whispersystems.textsecure.api.messages.TextSecureGroup;
-import org.whispersystems.textsecure.api.messages.TextSecureMessage;
+import org.whispersystems.textsecure.api.messages.TextSecureDataMessage;
 import org.whispersystems.textsecure.api.push.TextSecureAddress;
 import org.whispersystems.textsecure.api.push.exceptions.EncapsulatedExceptions;
 import org.whispersystems.textsecure.api.push.exceptions.NetworkFailureException;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
-import org.whispersystems.textsecure.internal.push.PushMessageProtos;
+import org.whispersystems.textsecure.internal.push.TextSecureProtos.GroupContext;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -45,6 +45,8 @@ import ws.com.google.android.mms.pdu.SendReq;
 import static org.thoughtcrime.securesms.dependencies.TextSecureCommunicationModule.TextSecureMessageSenderFactory;
 
 public class PushGroupSendJob extends PushSendJob implements InjectableType {
+
+  private static final long serialVersionUID = 1L;
 
   private static final String TAG = PushGroupSendJob.class.getSimpleName();
 
@@ -148,18 +150,18 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
       String content = PartParser.getMessageText(message.getBody());
 
       if (content != null && !content.trim().isEmpty()) {
-        PushMessageProtos.PushMessageContent.GroupContext groupContext = PushMessageProtos.PushMessageContent.GroupContext.parseFrom(Base64.decode(content));
-        TextSecureAttachment avatar       = attachments.isEmpty() ? null : attachments.get(0);
-        TextSecureGroup.Type type         = MmsSmsColumns.Types.isGroupQuit(message.getDatabaseMessageBox()) ? TextSecureGroup.Type.QUIT : TextSecureGroup.Type.UPDATE;
-        TextSecureGroup      group        = new TextSecureGroup(type, groupId, groupContext.getName(), groupContext.getMembersList(), avatar);
-        TextSecureMessage groupMessage = new TextSecureMessage(message.getSentTimestamp(), group, null, null);
+        GroupContext          groupContext = GroupContext.parseFrom(Base64.decode(content));
+        TextSecureAttachment  avatar       = attachments.isEmpty() ? null : attachments.get(0);
+        TextSecureGroup.Type  type         = MmsSmsColumns.Types.isGroupQuit(message.getDatabaseMessageBox()) ? TextSecureGroup.Type.QUIT : TextSecureGroup.Type.UPDATE;
+        TextSecureGroup       group        = new TextSecureGroup(type, groupId, groupContext.getName(), groupContext.getMembersList(), avatar);
+        TextSecureDataMessage groupMessage = new TextSecureDataMessage(message.getSentTimestamp(), group, null, null);
 
         messageSender.sendMessage(addresses, groupMessage);
       }
     } else {
-      String            body         = PartParser.getMessageText(message.getBody());
-      TextSecureGroup   group        = new TextSecureGroup(groupId);
-      TextSecureMessage groupMessage = new TextSecureMessage(message.getSentTimestamp(), group, attachments, body);
+      String                body         = PartParser.getMessageText(message.getBody());
+      TextSecureGroup       group        = new TextSecureGroup(groupId);
+      TextSecureDataMessage groupMessage = new TextSecureDataMessage(message.getSentTimestamp(), group, attachments, body);
 
       messageSender.sendMessage(addresses, groupMessage);
     }

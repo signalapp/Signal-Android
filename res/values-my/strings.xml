@@ -45,6 +45,8 @@
   <string name="ConversationListItem_key_exchange_message">ကီးပြောင်းလဲခြင်းစာတို...</string>
   <!--CustomDefaultPreference-->
   <!--DateUtils-->
+  <!--DeviceListActivity-->
+  <!--DeviceListItem-->
   <!--ShareActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export">ထုတ်ယူ</string>
@@ -114,6 +116,7 @@
   <string name="MmsMessageRecord_decrypting_mms_please_wait">MMSမှဝှက်စာ ဖော်နေသည်၊ ခေတ္တစောင့်ပါ...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">ဝှက်ထားမှုလွဲနေသော MMS စာသား....</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS စာသားများကို နဂိုမရှိသောဆက်ရှင်အတွက် ဝှက်သိမ်းလိုက်ပါသည်...</string>
+  <!--MuteDialog-->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">သွင်းယူနေ</string>
   <!--KeyCachingService-->
@@ -150,6 +153,7 @@
   <!--conversation_fragment_cab-->
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__search">ရှာရန်</string>
+  <!--device_list_fragment-->
   <!--log_submit_activity-->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">အသင်၏ ရှိရင်းစွဲ စာသားများကို Textsecure၏ ဝှက်သိမ်းထားသော ဒေတာဘေ့စ်ထဲသို့ တင်သွင်းမည်လား။</string>
@@ -240,6 +244,7 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">ပူးတွဲမှုအားပေါင်းထည့်</string>
   <string name="conversation__menu_delete_thread">စာတွဲကိုဖျက်ပါ</string>
+  <!--conversation_popup-->
   <!--conversation_callable-->
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">လက်ခံမည့်သူစာရင်း</string>

@@ -91,6 +91,8 @@
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_none">無</string>
   <!--DateUtils-->
+  <!--DeviceListActivity-->
+  <!--DeviceListItem-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">分享給</string>
   <!--ExportFragment-->
@@ -277,6 +279,7 @@
   <string name="MmsMessageRecord_decrypting_mms_please_wait">解密 MMS多媒體訊息中，請稍後...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">失效的加密 MMS多媒體簡訊...</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">與 加密 MMS多媒體簡訊匹配的連線已不存在...</string>
+  <!--MuteDialog-->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">匯入中</string>
   <string name="ApplicationMigrationService_importing_text_messages">匯入文字簡訊</string>
@@ -292,10 +295,8 @@
   <string name="MessageNotifier_failed_to_deliver_message">無法傳送訊息。</string>
   <string name="MessageNotifier_error_delivering_message">傳送訊息發生失誤。</string>
   <string name="MessageNotifier_mark_all_as_read">全部標示為已讀</string>
-  <string name="MessageNotifier_mark_as_read">標示已讀</string>
   <string name="MessageNotifier_media_message">媒體訊息</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">抱歉，快速回覆（Quick Response）功能目前 TextSecure 還不支援！</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">舊的『自訂密碼』:</string>
   <string name="change_passphrase_activity__new_passphrase">新的『自訂密碼』:</string>
@@ -341,6 +342,7 @@
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">載入國家清單中...</string>
   <string name="country_selection_fragment__search">搜尋</string>
+  <!--device_list_fragment-->
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">無法從您的裝置上取得紀錄資料。 您還是可以改透過 ADB 來擷取除錯記錄檔。</string>
   <string name="log_submit_activity__thanks">感謝您的協助！</string>
@@ -564,6 +566,7 @@ TextSecure 等候驗證用的手機簡訊已逾時。</string>
   <string name="conversation__menu_update_group">更新群組</string>
   <string name="conversation__menu_leave_group">離開對話群組</string>
   <string name="conversation__menu_delete_thread">刪除對話群組</string>
+  <!--conversation_popup-->
   <!--conversation_callable-->
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">收件人清單</string>

@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.sms;
 
-import static org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.GroupContext;
+import static org.whispersystems.textsecure.internal.push.TextSecureProtos.GroupContext;
 
 public class IncomingGroupMessage extends IncomingTextMessage {
 

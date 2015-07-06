@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Context;
+import android.graphics.PorterDuff.Mode;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,6 +55,7 @@ public class TransportOptionsAdapter extends BaseAdapter {
     ImageView       imageView = (ImageView) convertView.findViewById(R.id.icon);
     TextView        textView  = (TextView) convertView.findViewById(R.id.text);
 
+    imageView.getBackground().setColorFilter(transport.getBackgroundColor(), Mode.MULTIPLY);
     imageView.setImageResource(transport.getDrawable());
     textView.setText(transport.getDescription());
 

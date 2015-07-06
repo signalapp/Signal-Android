@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libaxolotl.util.guava.Optional;
@@ -29,6 +30,7 @@ public class RecipientPreferenceDatabase extends Database {
   private static final String NOTIFICATION  = "notification";
   private static final String VIBRATE       = "vibrate";
   private static final String MUTE_UNTIL    = "mute_until";
+  private static final String COLOR         = "color";
 
   public enum VibrateState {
     DEFAULT(0), ENABLED(1), DISABLED(2);
@@ -55,7 +57,8 @@ public class RecipientPreferenceDatabase extends Database {
           BLOCK + " INTEGER DEFAULT 0," +
           NOTIFICATION + " TEXT DEFAULT NULL, " +
           VIBRATE + " INTEGER DEFAULT " + VibrateState.DEFAULT.getId() + ", " +
-          MUTE_UNTIL + " INTEGER DEFAULT 0);";
+          MUTE_UNTIL + " INTEGER DEFAULT 0, " +
+          COLOR + " TEXT DEFAULT NULL);";
 
   public RecipientPreferenceDatabase(Context context, SQLiteOpenHelper databaseHelper) {
     super(context, databaseHelper);
@@ -87,19 +90,35 @@ public class RecipientPreferenceDatabase extends Database {
         String  notification    = cursor.getString(cursor.getColumnIndexOrThrow(NOTIFICATION));
         int     vibrateState    = cursor.getInt(cursor.getColumnIndexOrThrow(VIBRATE));
         long    muteUntil       = cursor.getLong(cursor.getColumnIndexOrThrow(MUTE_UNTIL));
+        String  serializedColor = cursor.getString(cursor.getColumnIndexOrThrow(COLOR));
         Uri     notificationUri = notification == null ? null : Uri.parse(notification);
+
+        MaterialColor color;
+
+        try {
+          color = serializedColor == null ? null : MaterialColor.fromSerialized(serializedColor);
+        } catch (MaterialColor.UnknownColorException e) {
+          Log.w(TAG, e);
+          color = null;
+        }
 
         Log.w(TAG, "Muted until: " + muteUntil);
 
         return Optional.of(new RecipientsPreferences(blocked, muteUntil,
                                                      VibrateState.fromId(vibrateState),
-                                                     notificationUri));
+                                                     notificationUri, color));
       }
 
       return Optional.absent();
     } finally {
       if (cursor != null) cursor.close();
     }
+  }
+
+  public void setColor(Recipients recipients, MaterialColor color) {
+    ContentValues values = new ContentValues();
+    values.put(COLOR, color.serialize());
+    updateOrInsert(recipients, values);
   }
 
   public void setBlocked(Recipients recipients, boolean blocked) {
@@ -147,16 +166,26 @@ public class RecipientPreferenceDatabase extends Database {
   }
 
   public static class RecipientsPreferences {
-    private final boolean      blocked;
-    private final long         muteUntil;
-    private final VibrateState vibrateState;
-    private final Uri          notification;
+    private final boolean       blocked;
+    private final long          muteUntil;
+    private final VibrateState  vibrateState;
+    private final Uri           notification;
+    private final MaterialColor color;
 
-    public RecipientsPreferences(boolean blocked, long muteUntil, VibrateState vibrateState, Uri notification) {
+    public RecipientsPreferences(boolean blocked, long muteUntil,
+                                 @NonNull VibrateState vibrateState,
+                                 @Nullable Uri notification,
+                                 @Nullable MaterialColor color)
+    {
       this.blocked      = blocked;
       this.muteUntil    = muteUntil;
       this.vibrateState = vibrateState;
       this.notification = notification;
+      this.color        = color;
+    }
+
+    public @Nullable MaterialColor getColor() {
+      return color;
     }
 
     public boolean isBlocked() {

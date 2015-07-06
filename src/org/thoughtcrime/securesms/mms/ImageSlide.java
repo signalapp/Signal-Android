@@ -43,7 +43,7 @@ public class ImageSlide extends Slide {
 
   @Override
   public Uri getThumbnailUri() {
-    if (!getPart().isPendingPush() && getPart().getDataUri() != null) {
+    if (getPart().getDataUri() != null) {
       return isDraft()
              ? getPart().getDataUri()
              : PartAuthority.getThumbnailUri(getPart().getPartId());

@@ -87,6 +87,11 @@ public class GroupDatabase extends Database {
     return new Reader(cursor);
   }
 
+  public Reader getGroups() {
+    Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, null, null, null, null, null);
+    return new Reader(cursor);
+  }
+
   public Recipients getGroupMembers(byte[] groupId, boolean includeSelf) {
     String          localNumber = TextSecurePreferences.getLocalNumber(context);
     List<String>    members     = getCurrentMembers(groupId);

@@ -16,24 +16,31 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.annotation.TargetApi;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.ColorStateList;
+import android.content.res.TypedArray;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuff.Mode;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
-import android.support.v7.app.ActionBar.LayoutParams;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -53,6 +60,7 @@ import com.afollestad.materialdialogs.AlertDialogWrapper;
 import com.google.protobuf.ByteString;
 
 import org.thoughtcrime.securesms.TransportOptions.OnTransportChangedListener;
+import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.components.AnimatingToggle;
 import org.thoughtcrime.securesms.components.ComposeText;
 import org.thoughtcrime.securesms.components.SendButton;
@@ -99,6 +107,8 @@ import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
+import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 
@@ -109,7 +119,7 @@ import java.util.List;
 
 import static org.thoughtcrime.securesms.TransportOption.Type;
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
-import static org.whispersystems.textsecure.internal.push.PushMessageProtos.PushMessageContent.GroupContext;
+import static org.whispersystems.textsecure.internal.push.TextSecureProtos.GroupContext;
 
 /**
  * Activity for displaying a message thread, as well as
@@ -140,16 +150,17 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private static final int GROUP_EDIT        = 5;
   private static final int CAPTURE_PHOTO     = 6;
 
-  private MasterSecret          masterSecret;
-  private ComposeText           composeText;
-  private AnimatingToggle       buttonToggle;
-  private SendButton            sendButton;
-  private ImageButton           attachButton;
-  private ConversationTitleView titleView;
-  private TextView              charactersLeft;
-  private ConversationFragment  fragment;
-  private Button                unblockButton;
-  private View                  composePanel;
+  private   MasterSecret          masterSecret;
+  protected ComposeText           composeText;
+  private   AnimatingToggle       buttonToggle;
+  private   SendButton            sendButton;
+  private   ImageButton           attachButton;
+  protected ConversationTitleView titleView;
+  private   TextView              charactersLeft;
+  private   ConversationFragment  fragment;
+  private   Button                unblockButton;
+  private   View                  composePanel;
+  private   View                  composeBubble;
 
   private AttachmentTypeSelectorAdapter attachmentAdapter;
   private AttachmentManager             attachmentManager;
@@ -167,11 +178,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private DynamicTheme    dynamicTheme    = new DynamicTheme();
   private DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
+  @TargetApi(Build.VERSION_CODES.KITKAT)
   @Override
   protected void onPreCreate() {
     dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
-    overridePendingTransition(R.anim.slide_from_right, R.anim.fade_scale_out);
   }
 
   @Override
@@ -221,6 +232,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     initializeIme();
 
     titleView.setTitle(recipients);
+    setActionBarColor(recipients.getColor());
     setBlockedUserState(recipients);
     calculateCharactersRemaining();
 
@@ -727,6 +739,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     titleView      = (ConversationTitleView) getSupportActionBar().getCustomView();
     unblockButton  = (Button)      findViewById(R.id.unblock_button);
     composePanel   =               findViewById(R.id.bottom_panel);
+    composeBubble  =               findViewById(R.id.compose_bubble);
+
+    int[]      attributes   = new int[]{R.attr.conversation_item_bubble_background};
+    TypedArray colors       = obtainStyledAttributes(attributes);
+    int        defaultColor = colors.getColor(0, Color.WHITE);
+    composeBubble.getBackground().setColorFilter(defaultColor, PorterDuff.Mode.MULTIPLY);
+    colors.recycle();
 
     attachmentAdapter = new AttachmentTypeSelectorAdapter(this);
     attachmentManager = new AttachmentManager(this, this);
@@ -742,6 +761,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       public void onChange(TransportOption newTransport) {
         calculateCharactersRemaining();
         composeText.setHint(newTransport.getComposeHint());
+        buttonToggle.getBackground().setColorFilter(newTransport.getBackgroundColor(), Mode.MULTIPLY);
       }
     });
 
@@ -750,7 +770,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       public void onClick(View v) {
         Intent intent = new Intent(ConversationActivity.this, RecipientPreferenceActivity.class);
         intent.putExtra(RecipientPreferenceActivity.RECIPIENTS_EXTRA, recipients.getIds());
-        startActivity(intent);
+
+        startActivitySceneTransition(intent, titleView.findViewById(R.id.title), "recipient_name");
       }
     });
 
@@ -769,7 +790,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     emojiToggle.setOnClickListener(new EmojiToggleListener());
   }
 
-  private void initializeActionBar() {
+  protected void initializeActionBar() {
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     getSupportActionBar().setCustomView(R.layout.conversation_title_view);
     getSupportActionBar().setDisplayShowCustomEnabled(true);
@@ -803,6 +824,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       public void run() {
         titleView.setTitle(recipients);
         setBlockedUserState(recipients);
+        setActionBarColor(recipients.getColor());
       }
     });
   }
@@ -951,18 +973,22 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     return drafts;
   }
 
-  private void saveDraft() {
-    if (this.recipients == null || this.recipients.isEmpty())
-      return;
+  protected ListenableFuture<Long> saveDraft() {
+    final SettableFuture<Long> future = new SettableFuture<>();
+
+    if (this.recipients == null || this.recipients.isEmpty()) {
+      future.set(threadId);
+      return future;
+    }
 
     final Drafts       drafts               = getDraftsForCurrentState();
     final long         thisThreadId         = this.threadId;
     final MasterSecret thisMasterSecret     = this.masterSecret.parcelClone();
     final int          thisDistributionType = this.distributionType;
 
-    new AsyncTask<Long, Void, Void>() {
+    new AsyncTask<Long, Void, Long>() {
       @Override
-      protected Void doInBackground(Long... params) {
+      protected Long doInBackground(Long... params) {
         ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(ConversationActivity.this);
         DraftDatabase  draftDatabase  = DatabaseFactory.getDraftDatabase(ConversationActivity.this);
         long           threadId       = params[0];
@@ -975,9 +1001,26 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         } else if (threadId > 0) {
           threadDatabase.update(threadId);
         }
-        return null;
+
+        return threadId;
       }
+
+      @Override
+      protected void onPostExecute(Long result) {
+        future.set(result);
+      }
+
     }.execute(thisThreadId);
+
+    return future;
+  }
+
+  private void setActionBarColor(MaterialColor color) {
+    getSupportActionBar().setBackgroundDrawable(new ColorDrawable(color.toActionBarColor(this)));
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+      getWindow().setStatusBarColor(color.toStatusBarColor(this));
+    }
   }
 
   private void setBlockedUserState(Recipients recipients) {
@@ -1032,8 +1075,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     return getRecipients() != null && getRecipients().isGroupRecipient();
   }
 
-  private Recipients getRecipients() {
+  protected Recipients getRecipients() {
     return this.recipients;
+  }
+
+  protected long getThreadId() {
+    return this.threadId;
   }
 
   private String getMessage() throws InvalidMessageException {
@@ -1056,7 +1103,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }.execute(threadId);
   }
 
-  private void sendComplete(long threadId) {
+  protected void sendComplete(long threadId) {
     boolean refreshFragment = (threadId != this.threadId);
     this.threadId = threadId;
 

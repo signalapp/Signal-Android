@@ -21,6 +21,12 @@
                 android:title="@string/preferences__delete_old_messages"
                 android:icon="?pref_ic_storage"/>
 
+    <!--<Preference android:key="preference_category_devices"-->
+                <!--android:title="Devices"-->
+                <!--android:icon="?pref_ic_devices">-->
+
+    <!--</Preference>-->
+
     <Preference android:key="preference_category_advanced"
                 android:title="@string/preferences__advanced"
                 android:icon="?pref_ic_advanced"/>

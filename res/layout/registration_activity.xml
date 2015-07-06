@@ -93,5 +93,13 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"/>
         </LinearLayout>
 
+        <ImageView android:id="@+id/twilio_shoutout"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:src="@drawable/ic_twilio_shoutout_white"
+                   android:layout_gravity="right"
+                   android:tint="@color/grey_800"
+                   android:contentDescription="@string/registration_activity__powered_by_twilio"/>
+
     </LinearLayout>
 </ScrollView>

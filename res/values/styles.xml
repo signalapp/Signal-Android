@@ -41,7 +41,7 @@
         <item name="titleTextStyle">@style/TextSecure.TitleTextStyle</item>
         <item name="subtitleTextStyle">@style/TextSecure.SubtitleTextStyle</item>
         <item name="android:textColorPrimary">@color/white</item>
-        <item name="android:textColorSecondary">#99ffffff</item>
+        <item name="android:textColorSecondary">#BFffffff</item>
     </style>
 
     <style name="TextSecure.DarkActionBar.TabBar"
@@ -57,12 +57,11 @@
     </style>
 
     <style name="TextSecure.TitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
-        <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/white</item>
     </style>
 
     <style name="TextSecure.SubtitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Subtitle">
-        <item name="android:textColor">#99ffffff</item>
+        <item name="android:textColor">#BFffffff</item>
     </style>
 
     <style name="TextSecure.IntroActionBar" parent="Widget.AppCompat.Light.ActionBar.Solid.Inverse">
@@ -175,6 +174,20 @@
 
     <style name="ErrorButton" parent="@style/MaterialButton">
         <item name="android:background">@drawable/error_round</item>
+    </style>
+
+    <style name="ComposeEditText" parent="@style/Widget.AppCompat.EditText">
+        <item name="android:padding">2dp</item>
+        <item name="android:background">@null</item>
+        <item name="android:maxLines">4</item>
+        <item name="android:maxLength">2000</item>
+        <item name="android:textColor">?conversation_item_sent_text_primary_color</item>
+        <item name="android:capitalize">sentences</item>
+        <item name="android:autoText">true</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:imeOptions">actionSend|flagNoEnterAction|flagNoExtractUi</item>
+        <item name="android:inputType">textAutoCorrect|textCapSentences|textMultiLine</item>
+        <item name="android:contentDescription">@string/conversation_activity__compose_description</item>
     </style>
 
 </resources>

@@ -45,6 +45,8 @@
   <string name="ConversationListItem_key_exchange_message">ལྡེ་མིག་བརྗེ་ལེན་བྱེད་རྒྱུའི་བརྡ་ལན།</string>
   <!--CustomDefaultPreference-->
   <!--DateUtils-->
+  <!--DeviceListActivity-->
+  <!--DeviceListItem-->
   <!--ShareActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export">ཕྱི་འདྲེན་བྱོས། </string>
@@ -116,6 +118,7 @@
   <string name="MmsMessageRecord_decrypting_mms_please_wait">བརྒྱུད་ལམ་སྣ་མང་ཅན་གྱི་འཕྲིན་ཐུང་MMS གསང་གྲོལ་བྱེད་བཞིན་ཡོད། ཅུང་སྒུག་རོགས། </string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">མཁོ་མེད་གསང་སྡོམ་བྱས་བའི་བརྒྱུད་ལམ་སྣ་མང་ཅན་གྱི་འཕྲིན་ཐུང་MMS </string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">སྡེ་ཚན་མི་མངོན་པ་དེའི་ཆེད་དུ་།  བརྒྱུད་ལམ་སྣ་མང་ཅན་གྱི་འཕྲིན་ཐུང་MMS གསང་སྡོམ་བྱས་འདུག </string>
+  <!--MuteDialog-->
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">ནང་འདྲེན་བྱེད་བཞིན་ཡོད། </string>
   <!--KeyCachingService-->
@@ -152,6 +155,7 @@
   <!--conversation_fragment_cab-->
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__search">འཚོལ།</string>
+  <!--device_list_fragment-->
   <!--log_submit_activity-->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">ཁྱེད་ཀྱིས་ད་ཡོད་འཕྲིན་ཐུང་ཡི་གེ་དེ་གཡག་འཕྲིན་གསང་སྡོམ་མཛོད་ཀྱི་ཁོངས་སུ་བཅུག་འདོད་འདུག་གམ། </string>
@@ -244,6 +248,7 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">ཟུར་སྣོན་ཞོག </string>
   <string name="conversation__menu_delete_thread">འཕྲིན་ཐུང་སྐུད་རིམ་གསུབ།</string>
+  <!--conversation_popup-->
   <!--conversation_callable-->
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">འཕྲིན་ཐུང་འབྱོར་ཡུལ་གྱི་ཐོ་གཞུང་། </string>

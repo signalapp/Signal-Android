@@ -147,6 +147,17 @@ vérifier ce contact.</string>
   <!--DateUtils-->
   <string name="DateUtils_now">À l\'instant</string>
   <string name="DateUtils_minutes_ago">%d min</string>
+  <!--DeviceListActivity-->
+  <string name="DeviceListActivity_disconnect_s">Déconnecter \'%s\'?</string>
+  <string name="DeviceListActivity_by_disconnecting_this_device_it_will_no_longer_be_able_to_send_or_receive">Si vous déconnectez cet appareil, il ne sera plus capable d\'envoyer ou recevoir des messages.</string>
+  <string name="DeviceListActivity_network_connection_failed">Erreur de connection réseau...</string>
+  <string name="DeviceListActivity_try_again">Essayer à nouveau</string>
+  <string name="DeviceListActivity_disconnecting_device_no_ellipse">Déconnexion de l\'appareil</string>
+  <string name="DeviceListActivity_network_failed">Erreur réseau!</string>
+  <!--DeviceListItem-->
+  <string name="DeviceListItem_unnamed_device">Appareil sans nom</string>
+  <string name="DeviceListItem_created_s">%s créé</string>
+  <string name="DeviceListItem_last_active_s">Vu pour la dernière fois %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Partager avec</string>
   <!--ExportFragment-->
@@ -247,6 +258,7 @@ Merci de demander à l’expéditeur de mettre à jour TextSecure dans sa versio
   <string name="DeviceProvisioningActivity_content_progress_no_device">Pas d\'appareil trouvé.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Erreur réseau.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">QR code invalide.</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_registered_already">Désolé, vous avez trop d\'appareils déjà enregistrés, essayez d\'en enlever quelques-uns...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Entrez la phrase de passe</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icône TextSecure</string>
@@ -374,6 +386,8 @@ Un message avec une clé de chiffrement inconnue a été reçu. Cliquer pour l\'
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Déchiffrement du MMS, veuillez patienter…</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Message MMS mal chiffré…</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Message MMS chiffré pour une session non-existante…</string>
+  <!--MuteDialog-->
+  <string name="MuteDialog_mute_notifications">Désactiver les notifications</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importation en cours</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importation des messages textes</string>
@@ -392,10 +406,11 @@ Un message avec une clé de chiffrement inconnue a été reçu. Cliquer pour l\'
   <string name="MessageNotifier_failed_to_deliver_message">Échec de distribution du message.</string>
   <string name="MessageNotifier_error_delivering_message">Erreur lors de la distribution du message.</string>
   <string name="MessageNotifier_mark_all_as_read">Tout marquer comme lu</string>
-  <string name="MessageNotifier_mark_as_read">Marquer comme lu</string>
   <string name="MessageNotifier_media_message">Message média</string>
+  <string name="MessageNotifier_reply">Répondre</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Désolé, la Réponse Rapide n’est pas encore supportée par TextSecure !</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">Les réponses rapides ne sont pas disponibles quand TextSecure est bloqué!</string>
+  <string name="QuickResponseService_problem_sending_message">Erreur lors de l\'envoi du message!</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Ancienne phrase de passe :</string>
   <string name="change_passphrase_activity__new_passphrase">Nouvelle phrase de passe :</string>
@@ -447,6 +462,8 @@ Un message avec une clé de chiffrement inconnue a été reçu. Cliquer pour l\'
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Chargement des pays...</string>
   <string name="country_selection_fragment__search">Chercher</string>
+  <!--device_list_fragment-->
+  <string name="device_list_fragment__no_devices_paired">Aucun appareil appairé...</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">TextSecure n\'a pas pu obtenir les logs de votre téléphone. Vous pouvez utiliser ADB pour récupérer les logs de debug.</string>
   <string name="log_submit_activity__thanks">Merci pour votre aide !</string>
@@ -590,15 +607,16 @@ par SMS.</string>
   <string name="AndroidManifest__media_overview">Toutes les images</string>
   <string name="AndroidManifest__media_overview_named">Toutes les images avec %1$s</string>
   <string name="AndroidManifest__message_details">Détails du message</string>
+  <string name="AndroidManifest_manage_paired_devices">Gérer les appareils appairés</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importer / exporter</string>
   <string name="arrays__my_identity_key">Ma clé d\'identité</string>
   <string name="arrays__use_default">Par défaut</string>
   <string name="arrays__use_custom">Personnalisé</string>
-  <string name="arrays__mute_for_one_hour">Mettre en silencieux pendant 1 heure</string>
-  <string name="arrays__mute_for_two_hours">Mettre en silencieux pendant 2 heures</string>
-  <string name="arrays__mute_for_one_day">Mettre en silencieux pendant 1 jour</string>
-  <string name="arrays__mute_for_seven_days">Mettre en silencieux pendant 7 jours</string>
+  <string name="arrays__mute_for_one_hour">Pendant 1 heure</string>
+  <string name="arrays__mute_for_two_hours">Pendant 2 heures</string>
+  <string name="arrays__mute_for_one_day">Pendant 1 jour</string>
+  <string name="arrays__mute_for_seven_days">Pendant 7 jours</string>
   <string name="arrays__settings_default">Paramètres par défaut</string>
   <string name="arrays__enabled">Activé</string>
   <string name="arrays__disabled">Désactivé</string>
@@ -757,6 +775,8 @@ Messages privés gratuits vers les utilisateurs TextSecure et Signal
   <string name="conversation__menu_leave_group">Quitter le groupe</string>
   <string name="conversation__menu_delete_thread">Supprimer le fil de discussion</string>
   <string name="conversation__menu_view_media">Toutes les images</string>
+  <!--conversation_popup-->
+  <string name="conversation_popup__menu_expand_popup">Étendre la popup</string>
   <!--conversation_callable-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Ajouter aux contacts</string>
   <!--conversation_group_options-->
@@ -797,6 +817,5 @@ Messages privés gratuits vers les utilisateurs TextSecure et Signal
   <string name="trimmer__old_messages_successfully_deleted">Anciens messages supprimés avec succès</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icône de transport</string>
-  <string name="MuteDialog_mute_notifications">Désactiver les notifications</string>
   <!--EOF-->
 </resources>
