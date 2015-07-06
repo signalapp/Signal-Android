@@ -43,7 +43,7 @@
                       android:layout_toRightOf="@id/contact_photo"
                       android:layout_toEndOf="@id/contact_photo"
                       android:layout_marginRight="50dp"
-                      android:background="@drawable/received_bubble"
+                      android:background="@drawable/received_bubble_background"
                       android:orientation="vertical">
 
             <org.thoughtcrime.securesms.components.ThumbnailView

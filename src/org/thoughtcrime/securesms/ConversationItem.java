@@ -23,6 +23,7 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.PorterDuff.Mode;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
@@ -167,7 +168,6 @@ public class ConversationItem extends LinearLayout {
     this.groupThread            = groupThread;
     this.pushDestination        = pushDestination;
 
-    setSelectionBackgroundDrawables(messageRecord);
     setBodyText(messageRecord);
 
     if (hasConversationBubble(messageRecord)) {
@@ -195,31 +195,18 @@ public class ConversationItem extends LinearLayout {
     TypedArray colors       = context.obtainStyledAttributes(attributes);
     int        defaultColor = colors.getColor(0, Color.WHITE);
 
-    if (messageRecord.isOutgoing()) {
+    if (batchSelected.contains(messageRecord)) {
+      bodyBubble.getBackground().setColorFilter(getResources().getColor(R.color.textsecure_primary), Mode.MULTIPLY);
+    } else if (messageRecord.isOutgoing()) {
       bodyBubble.getBackground().setColorFilter(defaultColor, PorterDuff.Mode.MULTIPLY);
     } else {
       bodyBubble.getBackground().setColorFilter(messageRecord.getIndividualRecipient()
                                                              .getColor()
                                                              .toConversationColor(context),
-                                                PorterDuff.Mode.MULTIPLY);
+                                                Mode.MULTIPLY);
     }
 
     colors.recycle();
-  }
-
-  private void setSelectionBackgroundDrawables(MessageRecord messageRecord) {
-    int[]      attributes = new int[]{R.attr.conversation_list_item_background_selected,
-                                      R.attr.conversation_item_background};
-
-    TypedArray drawables  = context.obtainStyledAttributes(attributes);
-
-    if (batchSelected.contains(messageRecord)) {
-      setBackgroundDrawable(drawables.getDrawable(0));
-    } else {
-      setBackgroundDrawable(drawables.getDrawable(1));
-    }
-
-    drawables.recycle();
   }
 
   private boolean hasConversationBubble(MessageRecord messageRecord) {

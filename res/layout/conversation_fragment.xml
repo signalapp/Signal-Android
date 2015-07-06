@@ -13,6 +13,7 @@
               android:transcriptMode="normal"
               android:scrollbarAlwaysDrawVerticalTrack="false"
               android:scrollbarStyle="insideOverlay"
+              android:listSelector="@color/transparent"
               android:stackFromBottom="true"
               android:fadingEdge="none"
               android:divider="@android:color/transparent"
