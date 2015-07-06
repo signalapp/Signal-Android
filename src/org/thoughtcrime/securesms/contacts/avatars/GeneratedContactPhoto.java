@@ -14,8 +14,8 @@ public class GeneratedContactPhoto implements ContactPhoto {
 
   private final String name;
 
-  GeneratedContactPhoto(@NonNull String name) {
-    this.name  = name;
+  public GeneratedContactPhoto(@NonNull String name) {
+    this.name = name;
   }
 
   @Override

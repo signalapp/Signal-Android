@@ -197,13 +197,19 @@ public class ConversationItem extends LinearLayout {
 
     if (batchSelected.contains(messageRecord)) {
       bodyBubble.getBackground().setColorFilter(getResources().getColor(R.color.textsecure_primary), Mode.MULTIPLY);
-    } else if (messageRecord.isOutgoing()) {
-      bodyBubble.getBackground().setColorFilter(defaultColor, PorterDuff.Mode.MULTIPLY);
+      bodyText.setSelected(true);
+      if (contactPhoto != null) contactPhoto.setSelected(true);
     } else {
-      bodyBubble.getBackground().setColorFilter(messageRecord.getIndividualRecipient()
-                                                             .getColor()
-                                                             .toConversationColor(context),
-                                                Mode.MULTIPLY);
+      bodyText.setSelected(false);
+      if (contactPhoto != null) contactPhoto.setSelected(false);
+      if (messageRecord.isOutgoing()) {
+        bodyBubble.getBackground().setColorFilter(defaultColor, PorterDuff.Mode.MULTIPLY);
+      } else {
+        bodyBubble.getBackground().setColorFilter(messageRecord.getIndividualRecipient()
+                                                               .getColor()
+                                                               .toConversationColor(context),
+                                                  Mode.MULTIPLY);
+      }
     }
 
     colors.recycle();
