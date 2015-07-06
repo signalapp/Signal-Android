@@ -41,8 +41,8 @@ public class MessageRetrievalService extends Service implements Runnable, Inject
   @Inject
   public TextSecureMessageReceiver receiver;
 
-  private int          activeActivities = 0;
-  private List<Intent> pushPending      = new LinkedList<>();
+  private int     activeActivities = 0;
+  private List<Intent> pushPending = new LinkedList<>();
 
   @Override
   public void onCreate() {
@@ -150,7 +150,7 @@ public class MessageRetrievalService extends Service implements Runnable, Inject
                              networkRequirement.isPresent(), activeActivities, pushPending.size()));
 
     return TextSecurePreferences.isWebsocketRegistered(this) &&
-           (activeActivities > 0 || !pushPending.isEmpty())  &&
+           (!TextSecurePreferences.isGcmRegistered(this) || activeActivities > 0 || !pushPending.isEmpty())  &&
            networkRequirement.isPresent();
   }
 

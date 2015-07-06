@@ -204,7 +204,6 @@ public class RegistrationActivity extends BaseActionBarActivity {
           Dialogs.showAlertDialog(self, getString(R.string.RegistrationActivity_unsupported),
                                   getString(R.string.RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging));
         }
-        return;
       }
 
       AlertDialogWrapper.Builder dialog = new AlertDialogWrapper.Builder(self);

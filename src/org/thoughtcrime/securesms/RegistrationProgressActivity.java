@@ -34,8 +34,9 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.MaterialDialog;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
-import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.service.MessageRetrievalService;
 import org.thoughtcrime.securesms.service.RegistrationService;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -335,7 +336,9 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
     }
 
     shutdownService();
-    startActivity(new Intent(this, ConversationListActivity.class));
+    ApplicationContext.getInstance(this)
+                        .getJobManager()
+					   .add(new PushNotificationReceiveJob(this));
     finish();
   }
 
@@ -523,7 +526,7 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
             TextSecureAccountManager accountManager = TextSecureCommunicationFactory.createManager(context, e164number, password);
             int registrationId = TextSecurePreferences.getLocalRegistrationId(context);
 
-            accountManager.verifyAccount(code, signalingKey, true, registrationId);
+            accountManager.verifyAccount(code, signalingKey, true, true, registrationId);
 
             return SUCCESS;
           } catch (ExpectationFailedException e) {

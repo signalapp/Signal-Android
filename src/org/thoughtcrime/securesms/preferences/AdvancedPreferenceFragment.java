@@ -178,7 +178,9 @@ public class AdvancedPreferenceFragment extends PreferenceFragment {
           TextSecureAccountManager accountManager = TextSecureCommunicationFactory.createManager(context);
 
           accountManager.setGcmId(Optional.<String>absent());
-          GoogleCloudMessaging.getInstance(context).unregister();
+          if(TextSecurePreferences.isGcmRegistered(context)) {
+            GoogleCloudMessaging.getInstance(context).unregister();
+          }
 
           return SUCCESS;
         } catch (AuthorizationFailedException afe) {

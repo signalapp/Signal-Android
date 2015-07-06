@@ -1,3 +1,10 @@
+#WebSocket Support#
+
+This branch adds rudimentary WebSocket support to TextSecure.
+In order to build a modified version of libtextsecure is needed, for that [checkout](https://github.com/JavaJens/libtextsecure-java/tree/fix/maven_local) my fork
+
+and run: ````./gradlew tasks installArchives```` to install in local maven directory.
+
 # TextSecure [![Build Status](https://travis-ci.org/WhisperSystems/TextSecure.svg?branch=master)](https://travis-ci.org/WhisperSystems/TextSecure)
 
 TextSecure is a messaging app for simple private communication with friends.

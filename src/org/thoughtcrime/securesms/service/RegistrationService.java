@@ -10,6 +10,8 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import org.thoughtcrime.securesms.R;
@@ -202,7 +204,7 @@ public class RegistrationService extends Service {
 
       setState(new RegistrationState(RegistrationState.STATE_VERIFYING, number));
       String challenge = waitForChallenge();
-      accountManager.verifyAccount(challenge, signalingKey, true, registrationId);
+      accountManager.verifyAccount(challenge, signalingKey, true, true, registrationId);
 
       handleCommonRegistration(masterSecret, accountManager, number);
       markAsVerified(number, password, signalingKey);
@@ -240,13 +242,16 @@ public class RegistrationService extends Service {
     PreKeyRecord       lastResort   = PreKeyUtil.generateLastResortKey(this, masterSecret);
     SignedPreKeyRecord signedPreKey = PreKeyUtil.generateSignedPreKey(this, masterSecret, identityKey);
     accountManager.setPreKeys(identityKey.getPublicKey(),lastResort, signedPreKey, records);
+    int gcmStatus = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
+    if (gcmStatus == ConnectionResult.SUCCESS) {
+      setState(new RegistrationState(RegistrationState.STATE_GCM_REGISTERING, number));
 
-    setState(new RegistrationState(RegistrationState.STATE_GCM_REGISTERING, number));
+      String gcmRegistrationId = GoogleCloudMessaging.getInstance(this).register(GcmRefreshJob.REGISTRATION_ID);
+      accountManager.setGcmId(Optional.of(gcmRegistrationId));
 
-    String gcmRegistrationId = GoogleCloudMessaging.getInstance(this).register(GcmRefreshJob.REGISTRATION_ID);
-    accountManager.setGcmId(Optional.of(gcmRegistrationId));
-
-    TextSecurePreferences.setGcmRegistrationId(this, gcmRegistrationId);
+      TextSecurePreferences.setGcmRegistrationId(this, gcmRegistrationId);
+      TextSecurePreferences.setGcmRegistered(this, true);
+    }
     TextSecurePreferences.setWebsocketRegistered(this, true);
 
     DatabaseFactory.getIdentityDatabase(this).saveIdentity(masterSecret, self.getRecipientId(), identityKey.getPublicKey());
@@ -282,6 +287,7 @@ public class RegistrationService extends Service {
 
     if (verifying) {
       TextSecurePreferences.setPushRegistered(this, false);
+      TextSecurePreferences.setGcmRegistered(this, false);
     }
   }
 
