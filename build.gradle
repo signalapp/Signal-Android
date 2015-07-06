@@ -158,6 +158,7 @@ android {
     }
 
     defaultConfig {
+        applicationId "org.thoughtcrime.securesms"
         minSdkVersion 9
         targetSdkVersion 22
 
@@ -215,9 +216,19 @@ android {
         dev.initWith(buildTypes.debug)
         dev {
             buildConfigField "boolean", "DEV_BUILD", "true"
+            applicationIdSuffix ".dev"
+            versionNameSuffix "-dev"
         }
     }
 
+    productFlavors {
+      prod {
+        // defaults
+      }
+      staging {
+        buildConfigField "String", "PUSH_URL", "\"https://textsecure-service-staging.whispersystems.org\""
+      }
+    }
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
