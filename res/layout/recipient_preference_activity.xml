@@ -14,10 +14,10 @@
             android:background="?attr/colorPrimary"
             android:theme="@style/TextSecure.LightActionBar">
 
-        <RelativeLayout android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center_vertical"
-                        android:gravity="center_vertical">
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:orientation="horizontal"
+                      android:gravity="center_vertical">
 
             <org.thoughtcrime.securesms.components.AvatarImageView
                     android:id="@+id/avatar"
@@ -25,35 +25,34 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:cropToPadding="true"
-                    android:layout_marginLeft="0dp"
-                    android:layout_alignParentLeft="true"
-                    app:inverted="true"/>
+                    app:inverted="true" />
 
-            <TextView android:id="@+id/name"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:ellipsize="end"
-                      android:transitionName="recipient_name"
-                      style="@style/TextSecure.TitleTextStyle"
-                      android:layout_toRightOf="@id/avatar"
-                      android:layout_marginLeft="10dip"
-                      tools:ignore="UnusedAttribute"/>
+            <LinearLayout android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:orientation="vertical"
+                          android:paddingLeft="10dp">
 
-            <TextView android:id="@+id/blocked_indicator"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:layout_toRightOf="@id/avatar"
-                      android:layout_below="@id/name"
-                      android:layout_alignLeft="@id/name"
-                      android:text="@string/recipient_preference_activity__blocked"
-                      android:textSize="12sp"
-                      android:textStyle="bold"
-                      android:textColor="?recipient_preference_blocked"
-                      android:textAllCaps="true" />
+                <TextView android:id="@+id/name"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:ellipsize="end"
+                          android:transitionName="recipient_name"
+                          style="@style/TextSecure.TitleTextStyle"
+                          tools:ignore="UnusedAttribute" />
 
+                <TextView android:id="@+id/blocked_indicator"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="@string/recipient_preference_activity__blocked"
+                          android:textSize="12sp"
+                          android:textStyle="bold"
+                          android:textColor="?recipient_preference_blocked"
+                          android:textAllCaps="true"
+                          tools:ignore="UnusedAttribute" />
 
-        </RelativeLayout>
+            </LinearLayout>
 
+        </LinearLayout>
 
     </android.support.v7.widget.Toolbar>
 
