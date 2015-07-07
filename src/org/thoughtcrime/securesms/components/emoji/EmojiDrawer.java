@@ -80,6 +80,7 @@ public class EmojiDrawer extends LinearLayoutCompat {
                                            models,
                                            new EmojiSelectionListener() {
                                              @Override public void onEmojiSelected(String emoji) {
+                                               Log.w("EmojiDrawer", "onEmojiSelected()");
                                                recentModel.onCodePointSelected(emoji);
                                                if (listener != null) listener.onEmojiSelected(emoji);
                                              }

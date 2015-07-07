@@ -16,7 +16,6 @@
  */
 package org.thoughtcrime.securesms.components;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Rect;
 import android.os.Build;
@@ -27,9 +26,10 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Surface;
 import android.view.View;
-import android.view.WindowManager;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.thoughtcrime.securesms.util.Util;
 
 import java.lang.reflect.Field;
 import java.util.HashSet;
@@ -46,9 +46,10 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
   private final Rect                          newRect         = new Rect();
   private final Set<OnKeyboardHiddenListener> hiddenListeners = new HashSet<>();
   private final Set<OnKeyboardShownListener>  shownListeners  = new HashSet<>();
-  private final int                           minKeyboardSize;
+  private final int minKeyboardSize;
 
-  private boolean keyboardOpen;
+  private boolean keyboardOpen = false;
+  private int     rotation     = -1;
 
   public KeyboardAwareLinearLayout(Context context) {
     this(context, null);
@@ -64,16 +65,29 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
   }
 
   @Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    updateRotation();
+    updateKeyboardState();
     super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+  }
 
-    int res             = getResources().getIdentifier("status_bar_height", "dimen", "android");
+  private void updateRotation() {
+    int oldRotation = rotation;
+    rotation = getDeviceRotation();
+    if (oldRotation != rotation) {
+      onKeyboardClose();
+      oldRect.setEmpty();
+    }
+  }
+
+  private void updateKeyboardState() {
+    int res = getResources().getIdentifier("status_bar_height", "dimen", "android");
     int statusBarHeight = res > 0 ? getResources().getDimensionPixelSize(res) : 0;
 
     final int availableHeight = this.getRootView().getHeight() - statusBarHeight - getViewInset();
     getWindowVisibleDisplayFrame(newRect);
 
     final int oldKeyboardHeight = availableHeight - (oldRect.bottom - oldRect.top);
-    final int keyboardHeight    = availableHeight - (newRect.bottom - newRect.top);
+    final int keyboardHeight = availableHeight - (newRect.bottom - newRect.top);
 
     if (keyboardHeight - oldKeyboardHeight > minKeyboardSize && !keyboardOpen) {
       onKeyboardOpen(keyboardHeight);
@@ -84,11 +98,13 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
     oldRect.set(newRect);
   }
 
-  public void padForCustomKeyboard(int height) {
+  public void padForCustomKeyboard(final int height) {
+    Util.assertMainThread();
     setPadding(0, 0, 0, height);
   }
 
   public void unpadForCustomKeyboard() {
+    Util.assertMainThread();
     setPadding(0, 0, 0, 0);
   }
 
@@ -117,19 +133,8 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
 
   protected void onKeyboardOpen(int keyboardHeight) {
     keyboardOpen = true;
-    Log.w(TAG, "onKeyboardOpen(" + keyboardHeight + ")");
 
-    WindowManager wm = (WindowManager) getContext().getSystemService(Activity.WINDOW_SERVICE);
-    if (wm == null || wm.getDefaultDisplay() == null) {
-      return;
-    }
-    int rotation = wm.getDefaultDisplay().getRotation();
-
-    switch (rotation) {
-      case Surface.ROTATION_270:
-      case Surface.ROTATION_90:
-        setKeyboardLandscapeHeight(keyboardHeight);
-        break;
+    switch (getDeviceRotation()) {
       case Surface.ROTATION_0:
       case Surface.ROTATION_180:
         setKeyboardPortraitHeight(keyboardHeight);
@@ -140,7 +145,6 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
 
   protected void onKeyboardClose() {
     keyboardOpen = false;
-    Log.w(TAG, "onKeyboardClose()");
     notifyHiddenListeners();
   }
 
@@ -149,14 +153,7 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
   }
 
   public int getKeyboardHeight() {
-    WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
-    if (wm == null || wm.getDefaultDisplay() == null) {
-      throw new AssertionError("WindowManager was null or there is no default display");
-    }
-
-    int rotation = wm.getDefaultDisplay().getRotation();
-
-    switch (rotation) {
+    switch (getDeviceRotation()) {
       case Surface.ROTATION_270:
       case Surface.ROTATION_90:
         return getKeyboardLandscapeHeight();
@@ -167,21 +164,19 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
     }
   }
 
+  private int getDeviceRotation() {
+    return ServiceUtil.getWindowManager(getContext()).getDefaultDisplay().getRotation();
+  }
+
   private int getKeyboardLandscapeHeight() {
-    return PreferenceManager.getDefaultSharedPreferences(getContext())
-                            .getInt("keyboard_height_landscape",
-                                    getResources().getDimensionPixelSize(R.dimen.min_emoji_drawer_height));
+    return Math.max(getHeight(), getRootView().getHeight()) / 2;
   }
 
   private int getKeyboardPortraitHeight() {
-    return PreferenceManager.getDefaultSharedPreferences(getContext())
-                            .getInt("keyboard_height_portrait",
-                                    getResources().getDimensionPixelSize(R.dimen.min_emoji_drawer_height));
-  }
-
-  private void setKeyboardLandscapeHeight(int height) {
-    PreferenceManager.getDefaultSharedPreferences(getContext())
-                     .edit().putInt("keyboard_height_landscape", height).apply();
+    int keyboardHeight = PreferenceManager.getDefaultSharedPreferences(getContext())
+                                          .getInt("keyboard_height_portrait",
+                                                  getResources().getDimensionPixelSize(R.dimen.min_emoji_drawer_height));
+    return Math.min(keyboardHeight, getRootView().getHeight() - getResources().getDimensionPixelSize(R.dimen.min_emoji_drawer_top_margin));
   }
 
   private void setKeyboardPortraitHeight(int height) {
