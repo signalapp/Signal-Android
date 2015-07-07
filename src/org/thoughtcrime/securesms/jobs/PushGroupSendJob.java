@@ -135,7 +135,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
   {
     message = getResolvedMessage(masterSecret, message, MediaConstraints.PUSH_CONSTRAINTS, false);
 
-    TextSecureMessageSender    messageSender = messageSenderFactory.create(masterSecret);
+    TextSecureMessageSender    messageSender = messageSenderFactory.create();
     byte[]                     groupId       = GroupUtil.getDecodedId(message.getTo()[0].getString());
     Recipients                 recipients    = DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupId, false);
     List<TextSecureAttachment> attachments   = getAttachments(masterSecret, message);

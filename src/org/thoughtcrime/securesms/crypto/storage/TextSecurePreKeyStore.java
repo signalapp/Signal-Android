@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.crypto.storage;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterCipher;
@@ -28,14 +30,19 @@ public class TextSecurePreKeyStore implements PreKeyStore, SignedPreKeyStore {
   public  static final String SIGNED_PREKEY_DIRECTORY = "signed_prekeys";
 
 
-  private static final int    CURRENT_VERSION_MARKER = 1;
+  private static final int    PLAINTEXT_VERSION      = 2;
+  private static final int    CURRENT_VERSION_MARKER = 2;
   private static final Object FILE_LOCK              = new Object();
   private static final String TAG                    = TextSecurePreKeyStore.class.getSimpleName();
 
-  private final Context      context;
-  private final MasterSecret masterSecret;
+  @NonNull  private final Context      context;
+  @Nullable private final MasterSecret masterSecret;
 
-  public TextSecurePreKeyStore(Context context, MasterSecret masterSecret) {
+  public TextSecurePreKeyStore(@NonNull Context context) {
+    this(context, null);
+  }
+
+  public TextSecurePreKeyStore(@NonNull Context context, @Nullable MasterSecret masterSecret) {
     this.context      = context;
     this.masterSecret = masterSecret;
   }
@@ -129,28 +136,65 @@ public class TextSecurePreKeyStore implements PreKeyStore, SignedPreKeyStore {
     record.delete();
   }
 
+  public void migrateRecords() {
+    synchronized (FILE_LOCK) {
+      File preKeyRecords = getPreKeyDirectory();
+
+      for (File preKeyRecord : preKeyRecords.listFiles()) {
+        try {
+          int          preKeyId = Integer.parseInt(preKeyRecord.getName());
+          PreKeyRecord record   = loadPreKey(preKeyId);
+
+          storePreKey(preKeyId, record);
+        } catch (InvalidKeyIdException | NumberFormatException e) {
+          Log.w(TAG, e);
+        }
+      }
+
+      File signedPreKeyRecords = getSignedPreKeyDirectory();
+
+      for (File signedPreKeyRecord : signedPreKeyRecords.listFiles()) {
+        try {
+          int                signedPreKeyId = Integer.parseInt(signedPreKeyRecord.getName());
+          SignedPreKeyRecord record         = loadSignedPreKey(signedPreKeyId);
+
+          storeSignedPreKey(signedPreKeyId, record);
+        } catch (InvalidKeyIdException | NumberFormatException e) {
+          Log.w(TAG, e);
+        }
+      }
+    }
+  }
+
   private byte[] loadSerializedRecord(File recordFile)
       throws IOException, InvalidMessageException
   {
-    MasterCipher masterCipher  = new MasterCipher(masterSecret);
     FileInputStream fin           = new FileInputStream(recordFile);
     int             recordVersion = readInteger(fin);
 
-    if (recordVersion != CURRENT_VERSION_MARKER) {
+    if (recordVersion > CURRENT_VERSION_MARKER) {
       throw new AssertionError("Invalid version: " + recordVersion);
     }
 
-    return masterCipher.decryptBytes(readBlob(fin));
+    byte[] serializedRecord = readBlob(fin);
+
+    if (recordVersion < PLAINTEXT_VERSION && masterSecret != null) {
+      MasterCipher masterCipher = new MasterCipher(masterSecret);
+      serializedRecord = masterCipher.decryptBytes(serializedRecord);
+    } else if (recordVersion < PLAINTEXT_VERSION) {
+      throw new AssertionError("Migration didn't happen!");
+    }
+
+    return serializedRecord;
   }
 
   private void storeSerializedRecord(File file, byte[] serialized) throws IOException {
-    MasterCipher     masterCipher = new MasterCipher(masterSecret);
-    RandomAccessFile recordFile   = new RandomAccessFile(file, "rw");
-    FileChannel      out          = recordFile.getChannel();
+    RandomAccessFile recordFile = new RandomAccessFile(file, "rw");
+    FileChannel      out        = recordFile.getChannel();
 
     out.position(0);
     writeInteger(CURRENT_VERSION_MARKER, out);
-    writeBlob(masterCipher.encryptBytes(serialized), out);
+    writeBlob(serialized, out);
     out.truncate(out.position());
     recordFile.close();
   }

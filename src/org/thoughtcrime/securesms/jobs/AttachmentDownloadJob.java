@@ -3,15 +3,15 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 import android.util.Log;
 
-
-import org.thoughtcrime.securesms.crypto.MasterCipher;
+import org.thoughtcrime.securesms.crypto.AsymmetricMasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
+import org.thoughtcrime.securesms.crypto.MediaKey;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.PartDatabase;
 import org.thoughtcrime.securesms.database.PartDatabase.PartId;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
-import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
@@ -114,10 +114,10 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
       throws InvalidPartException
   {
     try {
-      MasterCipher masterCipher = new MasterCipher(masterSecret);
-      long         id           = Long.parseLong(Util.toIsoString(part.getContentLocation()));
-      byte[]       key          = masterCipher.decryptBytes(Base64.decode(Util.toIsoString(part.getContentDisposition())));
-      String       relay        = null;
+      AsymmetricMasterSecret asymmetricMasterSecret = MasterSecretUtil.getAsymmetricMasterSecret(context, masterSecret);
+      long                   id                     = Long.parseLong(Util.toIsoString(part.getContentLocation()));
+      byte[]                 key                    = MediaKey.getDecrypted(masterSecret, asymmetricMasterSecret, Util.toIsoString(part.getContentDisposition()));
+      String                 relay                  = null;
 
       if (part.getName() != null) {
         relay = Util.toIsoString(part.getName());

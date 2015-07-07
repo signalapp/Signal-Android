@@ -5,8 +5,8 @@ import android.telephony.SmsMessage;
 import android.util.Log;
 import android.util.Pair;
 
-import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.MasterSecretUnion;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
@@ -43,11 +43,20 @@ public class SmsReceiveJob extends ContextJob {
 
   @Override
   public void onRun() {
-    Optional<IncomingTextMessage> message = assembleMessageFragments(pdus);
+    Optional<IncomingTextMessage> message      = assembleMessageFragments(pdus);
+    MasterSecret                  masterSecret = KeyCachingService.getMasterSecret(context);
+
+    MasterSecretUnion masterSecretUnion;
+
+    if (masterSecret == null) {
+      masterSecretUnion = new MasterSecretUnion(MasterSecretUtil.getAsymmetricMasterSecret(context, null));
+    } else {
+      masterSecretUnion = new MasterSecretUnion(masterSecret);
+    }
 
     if (message.isPresent() && !isBlocked(message.get())) {
-      Pair<Long, Long> messageAndThreadId = storeMessage(message.get());
-      MessageNotifier.updateNotification(context, KeyCachingService.getMasterSecret(context), messageAndThreadId.second);
+      Pair<Long, Long> messageAndThreadId = storeMessage(masterSecretUnion, message.get());
+      MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
     } else if (message.isPresent()) {
       Log.w(TAG, "*** Received blocked SMS, ignoring...");
     }
@@ -72,21 +81,15 @@ public class SmsReceiveJob extends ContextJob {
     return false;
   }
 
-  private Pair<Long, Long> storeMessage(IncomingTextMessage message) {
-    EncryptingSmsDatabase database     = DatabaseFactory.getEncryptingSmsDatabase(context);
-    MasterSecret          masterSecret = KeyCachingService.getMasterSecret(context);
+  private Pair<Long, Long> storeMessage(MasterSecretUnion masterSecret, IncomingTextMessage message) {
+    EncryptingSmsDatabase database = DatabaseFactory.getEncryptingSmsDatabase(context);
 
     Pair<Long, Long> messageAndThreadId;
 
     if (message.isSecureMessage()) {
-      messageAndThreadId = database.insertMessageInbox((MasterSecret)null, message);
+      IncomingTextMessage placeholder = new IncomingTextMessage(message, "");
+      messageAndThreadId = database.insertMessageInbox(placeholder);
       database.markAsLegacyVersion(messageAndThreadId.first);
-    } else if (masterSecret == null) {
-      messageAndThreadId = database.insertMessageInbox(MasterSecretUtil.getAsymmetricMasterSecret(context, null), message);
-
-      ApplicationContext.getInstance(context)
-                        .getJobManager()
-                        .add(new SmsDecryptJob(context, messageAndThreadId.first));
     } else {
       messageAndThreadId = database.insertMessageInbox(masterSecret, message);
     }

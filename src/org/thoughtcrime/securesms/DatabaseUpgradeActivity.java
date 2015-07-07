@@ -29,21 +29,15 @@ import android.widget.ProgressBar;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.storage.TextSecurePreKeyStore;
+import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.PushDatabase;
-import org.thoughtcrime.securesms.database.SmsDatabase;
-import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
 import org.thoughtcrime.securesms.jobs.PushDecryptJob;
-import org.thoughtcrime.securesms.jobs.SmsDecryptJob;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
-import org.thoughtcrime.securesms.util.ParcelUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.VersionTracker;
-import org.whispersystems.jobqueue.EncryptionKeys;
-import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 
 import java.io.File;
 import java.util.SortedSet;
@@ -60,6 +54,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
   public static final int SIGNED_PREKEY_VERSION                = 83;
   public static final int NO_DECRYPT_QUEUE_VERSION             = 113;
   public static final int PUSH_DECRYPT_SERIAL_ID_VERSION       = 131;
+  public static final int MIGRATE_SESSION_PLAINTEXT            = 133;
 
   private static final SortedSet<Integer> UPGRADE_VERSIONS = new TreeSet<Integer>() {{
     add(NO_MORE_KEY_EXCHANGE_PREFIX_VERSION);
@@ -70,6 +65,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
     add(SIGNED_PREKEY_VERSION);
     add(NO_DECRYPT_QUEUE_VERSION);
     add(PUSH_DECRYPT_SERIAL_ID_VERSION);
+    add(MIGRATE_SESSION_PLAINTEXT);
   }};
 
   private MasterSecret masterSecret;
@@ -90,10 +86,6 @@ public class DatabaseUpgradeActivity extends BaseActivity {
           .execute(VersionTracker.getLastSeenVersion(this));
     } else {
       VersionTracker.updateLastSeenVersion(this);
-      ApplicationContext.getInstance(this)
-                        .getJobManager()
-                        .setEncryptionKeys(new EncryptionKeys(ParcelUtil.serialize(masterSecret)));
-//      DecryptingQueue.schedulePendingDecrypts(DatabaseUpgradeActivity.this, masterSecret);
       MessageNotifier.updateNotification(DatabaseUpgradeActivity.this, masterSecret);
       startActivity((Intent)getIntent().getParcelableExtra("next_intent"));
       finish();
@@ -154,9 +146,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
                      .onApplicationLevelUpgrade(context, masterSecret, params[0], this);
 
       if (params[0] < CURVE25519_VERSION) {
-        if (!IdentityKeyUtil.hasCurve25519IdentityKeys(context)) {
-          IdentityKeyUtil.generateCurve25519IdentityKeys(context, masterSecret);
-        }
+        IdentityKeyUtil.migrateIdentityKeys(context, masterSecret);
       }
 
       if (params[0] < NO_V1_VERSION) {
@@ -178,68 +168,46 @@ public class DatabaseUpgradeActivity extends BaseActivity {
       if (params[0] < SIGNED_PREKEY_VERSION) {
         ApplicationContext.getInstance(getApplicationContext())
                           .getJobManager()
-                          .add(new CreateSignedPreKeyJob(context, masterSecret));
+                          .add(new CreateSignedPreKeyJob(context));
       }
 
       if (params[0] < NO_DECRYPT_QUEUE_VERSION) {
-        EncryptingSmsDatabase smsDatabase  = DatabaseFactory.getEncryptingSmsDatabase(getApplicationContext());
-        PushDatabase          pushDatabase = DatabaseFactory.getPushDatabase(getApplicationContext());
-
-        SmsDatabase.Reader smsReader  = null;
-        Cursor             pushReader = null;
-
-        SmsMessageRecord record;
-
-        try {
-          smsReader = smsDatabase.getDecryptInProgressMessages(masterSecret);
-
-          while ((record = smsReader.getNext()) != null) {
-            ApplicationContext.getInstance(getApplicationContext())
-                              .getJobManager()
-                              .add(new SmsDecryptJob(getApplicationContext(), record.getId()));
-          }
-        } finally {
-          if (smsReader != null)
-            smsReader.close();
-        }
-
-        try {
-          pushReader = pushDatabase.getPending();
-
-          while ((pushReader != null && pushReader.moveToNext())) {
-            ApplicationContext.getInstance(getApplicationContext())
-                .getJobManager()
-                .add(new PushDecryptJob(getApplicationContext(),
-                                        pushReader.getLong(pushReader.getColumnIndexOrThrow(PushDatabase.ID)),
-                                        pushReader.getString(pushReader.getColumnIndexOrThrow(PushDatabase.SOURCE))));
-          }
-        } finally {
-          if (pushReader != null)
-            pushReader.close();
-        }
+        scheduleMessagesInPushDatabase(context);
       }
 
       if (params[0] < PUSH_DECRYPT_SERIAL_ID_VERSION) {
-        PushDatabase pushDatabase = DatabaseFactory.getPushDatabase(context);
-        Cursor       pushReader   = null;
+        scheduleMessagesInPushDatabase(context);
+      }
 
-        try {
-          pushReader = pushDatabase.getPending();
+      if (params[0] < MIGRATE_SESSION_PLAINTEXT) {
+        new TextSecureSessionStore(context, masterSecret).migrateSessions();
+        new TextSecurePreKeyStore(context, masterSecret).migrateRecords();
 
-          while (pushReader != null && pushReader.moveToNext()) {
-            ApplicationContext.getInstance(getApplicationContext())
-                              .getJobManager()
-                              .add(new PushDecryptJob(getApplicationContext(),
-                                                      pushReader.getLong(pushReader.getColumnIndexOrThrow(PushDatabase.ID)),
-                                                      pushReader.getString(pushReader.getColumnIndexOrThrow(PushDatabase.SOURCE))));
-          }
-        } finally {
-          if (pushReader != null)
-            pushReader.close();
-        }
+        IdentityKeyUtil.migrateIdentityKeys(context, masterSecret);
+        scheduleMessagesInPushDatabase(context);;
       }
 
       return null;
+    }
+
+    private void scheduleMessagesInPushDatabase(Context context) {
+      PushDatabase pushDatabase = DatabaseFactory.getPushDatabase(context);
+      Cursor       pushReader   = null;
+
+      try {
+        pushReader = pushDatabase.getPending();
+
+        while (pushReader != null && pushReader.moveToNext()) {
+          ApplicationContext.getInstance(getApplicationContext())
+                            .getJobManager()
+                            .add(new PushDecryptJob(getApplicationContext(),
+                                                    pushReader.getLong(pushReader.getColumnIndexOrThrow(PushDatabase.ID)),
+                                                    pushReader.getString(pushReader.getColumnIndexOrThrow(PushDatabase.SOURCE))));
+        }
+      } finally {
+        if (pushReader != null)
+          pushReader.close();
+      }
     }
 
     @Override
@@ -254,11 +222,6 @@ public class DatabaseUpgradeActivity extends BaseActivity {
     @Override
     protected void onPostExecute(Void result) {
       VersionTracker.updateLastSeenVersion(DatabaseUpgradeActivity.this);
-//      DecryptingQueue.schedulePendingDecrypts(DatabaseUpgradeActivity.this, masterSecret);
-      ApplicationContext.getInstance(DatabaseUpgradeActivity.this)
-                        .getJobManager()
-                        .setEncryptionKeys(new EncryptionKeys(ParcelUtil.serialize(masterSecret)));
-
       MessageNotifier.updateNotification(DatabaseUpgradeActivity.this, masterSecret);
 
       startActivity((Intent)getIntent().getParcelableExtra("next_intent"));
