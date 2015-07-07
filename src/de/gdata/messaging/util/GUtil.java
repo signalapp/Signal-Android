@@ -2,7 +2,6 @@ package de.gdata.messaging.util;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -16,12 +15,13 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.load.resource.bitmap.GlideBitmapDrawable;
-import com.bumptech.glide.request.target.SquaringDrawable;
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
@@ -34,6 +34,8 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import de.gdata.messaging.CountryCodes;
 
 /**
  * Created by jan on 20.01.15.
@@ -108,15 +110,17 @@ public class GUtil {
       }
     }
   }
+
   public static String getSimCardNumber(Activity activity) {
-    TelephonyManager tm = (TelephonyManager)activity.getSystemService(activity.TELEPHONY_SERVICE);
+    TelephonyManager tm = (TelephonyManager) activity.getSystemService(activity.TELEPHONY_SERVICE);
     String simcardNumber = tm.getLine1Number() != null ? GUtil.normalizeNumber(tm.getLine1Number(), "") : "";
     String countryCode = extractCountryCode(simcardNumber);
-    if(!TextUtils.isEmpty(countryCode) && countryCode.contains("+")) {
+    if (!TextUtils.isEmpty(countryCode) && countryCode.contains("+")) {
       simcardNumber = simcardNumber.replace(countryCode, "");
     }
     return simcardNumber;
   }
+
   public static ArrayList<String> extractUrls(String input) {
     ArrayList<String> result = new ArrayList<String>();
 
@@ -170,13 +174,27 @@ public class GUtil {
     }
     return phoneNo;
   }
-public static String extractCountryCode(String number) {
-  String countryCode = "";
-  if(number.contains(" ") && number.contains("+")) {
-    countryCode = number.substring(0,number.indexOf(' ')).trim();
+
+  public static String extractCountryCode(String number) {
+    String countryCode = "";
+    if (number.contains(" ") && number.contains("+")) {
+      countryCode = number.substring(0, number.indexOf(' ')).trim();
+    }
+    return countryCode;
   }
-  return countryCode;
-}
+
+  public static int getCountryCodeLength(String number) {
+    int length = 0;
+    for (int i = 0; i <= 3 && length == 0; i++) {
+      for (String code : CountryCodes.m_Codes) {
+        if (number.substring(0, i).equals(code)) {
+          length = i;
+        }
+      }
+    }
+    return length;
+  }
+
   public static String normalizeNumber(String number) {
     String iso = Locale.getDefault().getLanguage().toUpperCase(Locale.getDefault());
     return normalizeNumber(number, iso);
@@ -255,26 +273,31 @@ public static String extractCountryCode(String number) {
     } else {
       imm.hideSoftInputFromWindow(textField.getWindowToken(), 0);
     }
-
   }
 
   public static Long numberToLong(String number) {
+    if (number.contains("+")) {
+      number = number.replace("+", "");
+      number = number.substring(getCountryCodeLength(number), number.length());
+    }
+    if (number.length() > 0 && number.charAt(0) == '0') {
+      number = number.substring(1);
+    }
     number = number.replaceAll(" ", "");
     String longNumber = "";
-    for (int i = 0; i < number.length(); ++i)
-    {
+    for (int i = 0; i < number.length(); i++) {
       char a = number.charAt(i);
       if (('0' <= a && a <= '9')) {
         longNumber += a;
       }
     }
-    if(longNumber.trim().length()<=0) {
+    if (longNumber.trim().length() <= 0) {
       longNumber = "0";
     }
     Long longId = 0L;
     try {
       longId = Long.parseLong(longNumber);
-    } catch(NumberFormatException e) {
+    } catch (NumberFormatException e) {
       Log.w("MYLOG ", "If not parseable, no profile id - so no problem");
     }
     return longId;
@@ -284,5 +307,26 @@ public static String extractCountryCode(String number) {
     return new BitmapDrawable(context.getResources(),
         BitmapUtil.getScaledCircleBitmap(context, ((GlideBitmapDrawable) profileImage)
             .getBitmap()));
+  }
+
+  public static void setListViewHeightBasedOnChildren(ListView listView) {
+    ListAdapter listAdapter = listView.getAdapter();
+    if (listAdapter == null) {
+      // pre-condition
+      return;
+    }
+
+    int totalHeight = 0;
+    for (int i = 0; i < listAdapter.getCount(); i++) {
+      View listItem = listAdapter.getView(i, null, listView);
+      listItem.measure(0, 0);
+      totalHeight += listItem.getMeasuredHeight();
+    }
+
+    ViewGroup.LayoutParams params = listView.getLayoutParams();
+    params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+    listView.setLayoutParams(params);
+    listView.requestLayout();
+
   }
 }

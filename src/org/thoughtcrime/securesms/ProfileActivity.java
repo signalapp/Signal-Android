@@ -40,7 +40,9 @@ public class ProfileActivity extends PassphraseRequiredActionBarActivity {
     setContentView(R.layout.profile_activity);
     View decorView = getWindow().getDecorView();
     int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
-    decorView.setSystemUiVisibility(uiOptions);
+    if(BuildConfig.VERSION_CODE >= 11) {
+      decorView.setSystemUiVisibility(uiOptions);
+    }
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     getSupportActionBar().setTitle(getIntent().getStringExtra("profile_name"));
     getSupportActionBar().setSubtitle(getIntent().getStringExtra("profile_number"));

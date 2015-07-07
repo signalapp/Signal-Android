@@ -49,27 +49,31 @@
                 android:hint=""
                 android:layout_marginLeft="8dp"
                 android:layout_marginBottom="16dp"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 android:text=""
                 android:textColor="@color/white"
                 android:textColorHint="@color/black"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentBottom="true"
                 android:gravity="center_vertical"/>
-            <ImageView
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:contentDescription="image"
-                android:clickable="true"
-                android:padding="4dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="12dp"
-                android:scaleType="fitXY"
-                android:background="@drawable/editor_states"
-                android:src="@android:drawable/ic_menu_edit"
-                android:id="@+id/profile_picture_edit"
+                android:id="@+id/space"
                 android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"/>
+                android:layout_alignParentRight="true">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="image"
+                    android:clickable="true"
+                    android:padding="4dp"
+                    android:layout_margin="8dp"
+                    android:scaleType="fitXY"
+                    android:background="@drawable/editor_states"
+                    android:src="@android:drawable/ic_menu_edit"
+                    android:id="@+id/profile_picture_edit"/>
+                </RelativeLayout>
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -84,11 +88,11 @@
                 android:layout_alignParentBottom="false"
                 android:layout_alignParentRight="true"/>
         </RelativeLayout>
-
             <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
+            android:id="@+id/layout_status"
             android:background="@drawable/textview_border"
                 >
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -162,6 +166,7 @@
             </LinearLayout>
         </RelativeLayout>
             <RelativeLayout
+                android:id="@+id/layout_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -235,7 +240,45 @@
                     </LinearLayout>
                 </LinearLayout>
             </RelativeLayout>
-
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@drawable/textview_border"
+                android:id="@+id/layout_member"
+                >
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:orientation="vertical"
+                              android:id="@+id/group_info"
+                    >
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/group_header"
+                        android:hint=""
+                        android:paddingTop="25dp"
+                        android:paddingBottom="8dp"
+                        android:paddingLeft="6dp"
+                        android:textSize="18sp"
+                        android:layout_weight="1"
+                        android:text="Mitglieder"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black"
+                        android:gravity="center_vertical"/>
+                    <View
+                        android:id="@+id/devider_four"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:layout_marginTop="1dp"
+                        android:background="?android:attr/listDivider" />
+                    <ListView android:id="@+id/selected_contacts_list"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content" />
+                </LinearLayout>
+            </RelativeLayout>
         </LinearLayout>
 
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
