@@ -136,7 +136,7 @@ public class ProfileFragment extends Fragment {
     scrollView = (ScrollView) getView().findViewById(R.id.scrollView);
     if(!isGroup) {
       ImageSlide slide = ProfileAccessor.getProfileAsImageSlide(getActivity(), masterSecret, profileId);
-      if (slide != null || !isMyProfile) {
+      if (slide != null && !isMyProfile) {
         if (masterSecret != null) {
           try {
             profilePicture.setImageResource(slide, masterSecret);
@@ -268,16 +268,22 @@ public class ProfileFragment extends Fragment {
 
       @Override
       public void onScrollChanged() {
-        if(BuildConfig.VERSION_CODE >= 11 ) {
+        if (BuildConfig.VERSION_CODE >= 11) {
           scrollContainer.setBackgroundColor(Color.WHITE);
           scrollContainer.setAlpha((float) ((1000.0 / scrollContainer.getHeight()) * scrollView.getHeight()));
         }
         if ((mainLayout.getTop() - scrollView.getHeight()) > scrollView.getScrollY()) {
           getActivity().finish();
         }
-        if(mainLayout.getTop()*2 < scrollView.getScrollY()+PADDING_TOP) {
+        if (mainLayout.getTop() * 2 < scrollView.getScrollY() + PADDING_TOP) {
           getActivity().finish();
         }
+      }
+    });
+    scrollContainer.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        getActivity().finish();
       }
     });
 
