@@ -74,15 +74,12 @@ public class ProfileAccessor {
     if (profileP != null) {
       profilePicture = profileP;
       if (profilePicture.getThumbnailUri() != null && profilePicture.getUri() != null) {
-        Log.d("MYLOG", "MYLOG IMAGE URI SET " + profilePicture.getUri().toString());
         getPreferences(context).setProfilePictureUri(profilePicture.getUri().toString());
-      } else {
-        Log.d("MYLOG", "MYLOG IMAGE URI NOT SET " + profilePicture.getThumbnailUri() + " - " + profilePicture.getUri());
       }
     }
   }
 
-  public static Slide getMyProfilePicture(Context context) {
+  public static ImageSlide getMyProfilePicture(Context context) {
     Uri profilePictureUri = Uri.parse(getPreferences(context).getProfilePictureUri());
     try {
       profilePicture = new ImageSlide(context, profilePictureUri);
