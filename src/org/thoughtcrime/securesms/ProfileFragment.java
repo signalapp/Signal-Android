@@ -214,8 +214,10 @@ public class ProfileFragment extends Fragment {
     ImageView profileImageDelete = (ImageView) getView().findViewById(R.id.profile_picture_delete);
     if(!isMyProfile) {
       profileStatusEdit.setVisibility(View.GONE);
+      profileImageDelete.setVisibility(View.GONE);
       if(!isGroup) {
         profileImageEdit.setVisibility(View.GONE);
+        profileImageDelete.setVisibility(View.GONE);
       } else {
         profileImageEdit.setVisibility(View.VISIBLE);
         profileImageEdit.setOnClickListener(new View.OnClickListener() {
@@ -228,6 +230,7 @@ public class ProfileFragment extends Fragment {
     } else {
       profileStatusEdit.setVisibility(View.VISIBLE);
       profileImageEdit.setVisibility(View.VISIBLE);
+      profileImageDelete.setVisibility(View.VISIBLE);
       profileStatusEdit.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
