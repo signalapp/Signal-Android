@@ -195,6 +195,7 @@ public class ContactSelectionListAdapter extends    CursorAdapter
     }
     holder.contactPhoto.setImageBitmap(defaultCroppedPhoto);
     ImageSlide profileSlide = ProfileAccessor.getProfileAsImageSlide(context,  contactData.number);
+
     if(profileSlide != null) {
       ProfileAccessor.buildGlideRequest(profileSlide).into(holder.contactPhoto);
     } else {

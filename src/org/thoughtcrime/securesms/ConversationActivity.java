@@ -350,12 +350,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     final Intent intent = new Intent(this, ProfileActivity.class);
     intent.putExtra("master_secret", masterSecret);
     intent.putExtra("profile_id", profileId);
-    if (getSupportActionBar() != null) {
-      intent.putExtra("profile_name", getSupportActionBar().getTitle());
-    }
-    if (recipients != null) {
-      intent.putExtra("profile_number", recipients.getPrimaryRecipient().getNumber());
-    }
+    intent.putExtra("is_group", getRecipients().isGroupRecipient());
+    intent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, getRecipients().getIds());
     startActivity(intent);
   }
 
@@ -365,7 +361,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     switch (item.getItemId()) {
       case R.id.menu_call:
         handleDial(getRecipients().getPrimaryRecipient());
-      //  ProfileAccessor.sendProfileUpdateToAllContacts(getApplicationContext(), masterSecret, isEncryptedConversation);
         return true;
       case R.id.menu_delete_thread:
         handleDeleteThread();
@@ -692,6 +687,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     final String title;
     final String subtitle;
     final Recipient recipient = getRecipients().getPrimaryRecipient();
+    LayoutInflater mInflater = LayoutInflater.from(this);
+    View mCustomView = mInflater.inflate(R.layout.actionbar_conversation, null);
+    TextView mTitleTextView = (TextView) mCustomView.findViewById(R.id.action_bar_title);
+    TextView mTitleTextViewSubtitle = (TextView) mCustomView.findViewById(R.id.action_bar_subtitle);
+    CircledImageView thumbnail = (CircledImageView) mCustomView.findViewById(R.id.profile_picture);
+
+    final Long profileId = GUtil.numberToLong(recipient.getNumber());
 
     if (isSingleConversation()) {
       if (TextUtils.isEmpty(recipient.getName())) {
@@ -700,41 +702,25 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       } else {
         title = recipient.getName();
 
-        final Long profileId = GUtil.numberToLong(recipient.getNumber());
         String status = ProfileAccessor.getProfileStatusForRecepient(this, profileId + "");
         subtitle = TextUtils.isEmpty(status) ? PhoneNumberUtils.formatNumber(recipient.getNumber()) : status;
 
         ImageSlide avatarSlide = ProfileAccessor.getProfileAsImageSlide(this, masterSecret, profileId + "");
-
-        LayoutInflater mInflater = LayoutInflater.from(this);
-        View mCustomView = mInflater.inflate(R.layout.actionbar_conversation, null);
-        TextView mTitleTextView = (TextView) mCustomView.findViewById(R.id.action_bar_title);
-        TextView mTitleTextViewSubtitle = (TextView) mCustomView.findViewById(R.id.action_bar_subtitle);
-        CircledImageView thumbnail = (CircledImageView) mCustomView.findViewById(R.id.profile_picture);
         if (avatarSlide != null) {
           ProfileAccessor.buildGlideRequest(avatarSlide).into(thumbnail);
         } else {
           thumbnail.setImageBitmap(recipient.getCircleCroppedContactPhoto());
         }
-        mTitleTextView.setText(title);
-        mTitleTextViewSubtitle.setText(subtitle);
-
-        mCustomView.setOnClickListener(new OnClickListener() {
-          @Override
-          public void onClick(View view) {
-            handleOpenProfile(profileId + "");
-          }
-        });
-
         getSupportActionBar().setCustomView(mCustomView);
         getSupportActionBar().setDisplayShowCustomEnabled(true);
       }
     } else if (isGroupConversation()) {
-      if (isPushGroupConversation()) {
+      if (isPushGroupConversation() || true) {
         final String groupName = recipient.getName();
         final Bitmap avatar = recipient.getContactPhoto();
+
         if (avatar != null) {
-          getSupportActionBar().setIcon(new BitmapDrawable(getResources(), BitmapUtil.getCircleBitmap(avatar)));
+          thumbnail.setImageBitmap(BitmapUtil.getCircleBitmap(avatar));
         }
 
         title = (!TextUtils.isEmpty(groupName)) ? groupName : getString(R.string.ConversationActivity_unnamed_group);
@@ -746,10 +732,21 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         subtitle = (size == 1) ? getString(R.string.ConversationActivity_d_recipients_in_group_singular)
             : String.format(getString(R.string.ConversationActivity_d_recipients_in_group), size);
       }
+      getSupportActionBar().setCustomView(mCustomView);
+      getSupportActionBar().setDisplayShowCustomEnabled(true);
     } else {
       title = getString(R.string.ConversationActivity_compose_message);
       subtitle = "";
     }
+    mTitleTextView.setText(title);
+    mTitleTextViewSubtitle.setText(subtitle);
+
+    mCustomView.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        handleOpenProfile(profileId + "");
+      }
+    });
 
     getSupportActionBar().setTitle(title);
     getSupportActionBar().setSubtitle(subtitle);

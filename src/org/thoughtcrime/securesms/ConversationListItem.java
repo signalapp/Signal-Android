@@ -138,7 +138,7 @@ public class ConversationListItem extends RelativeLayout
     if (recipient == null) return;
 
     ImageSlide profileSlide = ProfileAccessor.getProfileAsImageSlide(context, recipient.getNumber());
-    if(profileSlide != null) {
+    if(profileSlide != null && !recipient.isGroupRecipient()) {
       ProfileAccessor.buildGlideRequest(profileSlide).into(contactPhotoImage);
     } else {
       contactPhotoImage.setImageBitmap(recipient.getCircleCroppedContactPhoto());

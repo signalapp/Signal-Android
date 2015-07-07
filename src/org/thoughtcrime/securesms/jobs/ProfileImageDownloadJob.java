@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
@@ -35,6 +36,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import de.gdata.messaging.util.GUtil;
 import de.gdata.messaging.util.ProfileAccessor;
 import ws.com.google.android.mms.MmsException;
 import ws.com.google.android.mms.pdu.PduBody;
@@ -102,19 +104,6 @@ public class ProfileImageDownloadJob extends MasterSecretJob implements Injectab
       TextSecureAttachmentPointer pointer    = createAttachmentPointer(masterSecret, part);
       InputStream                 attachment = messageReceiver.retrieveAttachment(pointer, attachmentFile);
 
-   /*   InputStream scaleInputStream   = new AttachmentCipherInputStream(attachmentFile, part.getContentId());
-      InputStream measureInputStream = new AttachmentCipherInputStream(attachmentFile, part.getContentId());
-
-      try {
-        Bitmap avatar             = BitmapUtil.createScaledBitmap(measureInputStream, scaleInputStream, 500, 500);
-        Recipient recipient = RecipientFactory.getRecipientsFromString(context, profileId+"", true)
-            .getPrimaryRecipient();
-
-        recipient.setContactPhoto(avatar);
-      } catch (BitmapDecodingException e) {
-        e.printStackTrace();
-      }
-*/
       database.updateDownloadedPart(masterSecret, profileId, partId, part, attachment);
     } catch (InvalidPartException | NonSuccessfulResponseCodeException | InvalidMessageException e) {
       Log.w(TAG, e);
@@ -122,8 +111,12 @@ public class ProfileImageDownloadJob extends MasterSecretJob implements Injectab
       Log.w(TAG, e);
     } finally {
       if (attachmentFile != null) {
-        ProfileAccessor.setProfilePartId(context, profileId, part.getPartId().getUniqueId());
-        ProfileAccessor.setProfilePartRow(context, profileId, part.getPartId().getRowId());
+        Recipients recipients = RecipientFactory.getRecipientsFromString(context, profileId + "", false);
+
+        for(Recipient contact : recipients.getRecipientsList()) {
+          ProfileAccessor.setProfilePartId(context, GUtil.numberToLong(contact.getNumber()), part.getPartId().getUniqueId());
+          ProfileAccessor.setProfilePartRow(context, GUtil.numberToLong(contact.getNumber()), part.getPartId().getRowId());
+        }
         attachmentFile.delete();
       }
     }

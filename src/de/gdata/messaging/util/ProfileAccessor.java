@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
 import com.bumptech.glide.GenericRequestBuilder;
@@ -219,5 +220,14 @@ public class ProfileAccessor {
 
     return  Glide.with(GService.appContext).load(new DecryptableStreamUriLoader.DecryptableUri(masterSecret, slide.getThumbnailUri()))
         .transform(new ThumbnailTransform(GService.appContext));
+  }
+
+  public static void sendProfileUpdateToAllWithThreadContacts(FragmentActivity activity, String profileId, MasterSecret masterSecret, boolean b) {
+    Recipients recipients = RecipientFactory.getRecipientsFromString(activity, profileId, false);
+    long       threadId   = DatabaseFactory.getThreadDatabase(activity).getThreadIdFor(recipients);
+    boolean hasConversation = threadId > 0 ? true : false;
+    if(hasConversation) {
+      sendProfileUpdateToAllContacts(activity, masterSecret, b);
+    }
   }
 }
