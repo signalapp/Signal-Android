@@ -52,4 +52,8 @@
 
     <string name="import_complete_dialog">SecureChat system database import is complete.</string>
 
+    <string name="profile_status_label">Status</string>
+    <string name="profile_number_label">Telefon</string>
+    <string name="profile_status_member">Mitglieder</string>
+
 </resources>
