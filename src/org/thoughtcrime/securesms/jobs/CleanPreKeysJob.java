@@ -51,7 +51,7 @@ public class CleanPreKeysJob extends MasterSecretJob implements InjectableType {
   @Override
   public void onRun(MasterSecret masterSecret) throws IOException {
     try {
-      SignedPreKeyStore  signedPreKeyStore   = signedPreKeyStoreFactory.create(masterSecret);
+      SignedPreKeyStore  signedPreKeyStore   = signedPreKeyStoreFactory.create();
       SignedPreKeyEntity currentSignedPreKey = accountManager.getSignedPreKey();
 
       if (currentSignedPreKey == null) return;

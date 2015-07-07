@@ -3,11 +3,10 @@ package org.thoughtcrime.securesms.mms;
 import android.content.Context;
 import android.text.TextUtils;
 
-import org.thoughtcrime.securesms.crypto.MasterCipher;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.MasterSecretUnion;
+import org.thoughtcrime.securesms.crypto.MediaKey;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
 
@@ -40,7 +39,7 @@ public class OutgoingMediaMessage {
     this(context, recipients, slideDeck.toPduBody(), message, distributionType);
   }
 
-  public OutgoingMediaMessage(Context context, MasterSecret masterSecret,
+  public OutgoingMediaMessage(Context context, MasterSecretUnion masterSecret,
                               Recipients recipients, List<TextSecureAttachment> attachments,
                               String message)
   {
@@ -74,17 +73,17 @@ public class OutgoingMediaMessage {
     return false;
   }
 
-  private static PduBody pduBodyFor(MasterSecret masterSecret, List<TextSecureAttachment> attachments) {
+  private static PduBody pduBodyFor(MasterSecretUnion masterSecret, List<TextSecureAttachment> attachments) {
     PduBody body = new PduBody();
 
     for (TextSecureAttachment attachment : attachments) {
       if (attachment.isPointer()) {
         PduPart media        = new PduPart();
-        byte[]  encryptedKey = new MasterCipher(masterSecret).encryptBytes(attachment.asPointer().getKey());
+        String  encryptedKey = MediaKey.getEncrypted(masterSecret, attachment.asPointer().getKey());
 
         media.setContentType(Util.toIsoBytes(attachment.getContentType()));
         media.setContentLocation(Util.toIsoBytes(String.valueOf(attachment.asPointer().getId())));
-        media.setContentDisposition(Util.toIsoBytes(Base64.encodeBytes(encryptedKey)));
+        media.setContentDisposition(Util.toIsoBytes(encryptedKey));
 
         body.addPart(media);
       }
