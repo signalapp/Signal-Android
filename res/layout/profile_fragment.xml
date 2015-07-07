@@ -111,7 +111,7 @@
                     android:paddingLeft="6dp"
                     android:textSize="18sp"
                     android:layout_weight="1"
-                    android:text="Status"
+                    android:text="@string/profile_status_label"
                     android:textColor="@color/black"
                     android:textColorHint="@color/black"
                     android:gravity="center_vertical"/>
@@ -188,7 +188,7 @@
                         android:paddingLeft="6dp"
                         android:textSize="18sp"
                         android:layout_weight="1"
-                        android:text="Telefon"
+                        android:text="@string/profile_number_label"
                         android:textColor="@color/black"
                         android:textColorHint="@color/black"
                         android:gravity="center_vertical"/>
@@ -263,7 +263,7 @@
                         android:paddingLeft="6dp"
                         android:textSize="18sp"
                         android:layout_weight="1"
-                        android:text="Mitglieder"
+                        android:text="@string/profile_status_member"
                         android:textColor="@color/black"
                         android:textColorHint="@color/black"
                         android:gravity="center_vertical"/>

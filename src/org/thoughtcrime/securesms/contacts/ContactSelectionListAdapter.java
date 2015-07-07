@@ -26,6 +26,7 @@ import android.provider.ContactsContract;
 import android.support.v4.widget.CursorAdapter;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -184,7 +185,8 @@ public class ContactSelectionListAdapter extends    CursorAdapter
       holder.name.setEnabled(false);
       holder.number.setText("");
     } else if (contactData.type == ContactsDatabase.PUSH_TYPE) {
-      holder.number.setText(contactData.number);
+      String status = ProfileAccessor.getProfileStatusForRecepient(context, GUtil.numberToLong(contactData.number) + "");
+      holder.number.setText(TextUtils.isEmpty(status) ? contactData.number : status);
     } else {
       final CharSequence label = ContactsContract.CommonDataKinds.Phone.getTypeLabel(context.getResources(),
                                                                                      contactData.numberType, contactData.label);
