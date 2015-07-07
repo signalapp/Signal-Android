@@ -47,6 +47,7 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.AlertDialogWrapper;
 
 import org.thoughtcrime.securesms.components.ThumbnailView;
+import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
@@ -149,10 +150,14 @@ public class ProfileFragment extends Fragment {
         }
         profilePicture.setThumbnailClickListener(new ThumbnailClickListener());
       } else if (ProfileAccessor.getMyProfilePicture(getActivity()).hasImage() && isMyProfile) {
-        profilePicture.setImageResource(ProfileAccessor.getMyProfilePicture(getActivity()));
         profileStatus.setText(ProfileAccessor.getProfileStatus(getActivity()), TextView.BufferType.EDITABLE);
         imageText.setText(getString(R.string.MediaPreviewActivity_you));
         profilePicture.setThumbnailClickListener(new ThumbnailClickListener());
+        if((ProfileAccessor.getMyProfilePicture(getActivity()).getUri()+"").equals("")) {
+          profilePicture.setImageBitmap(ContactPhotoFactory.getDefaultContactPhoto(getActivity()));
+        } else {
+          profilePicture.setImageResource(ProfileAccessor.getMyProfilePicture(getActivity()));
+        }
       } else {
         imageText.setText(recipient.getName());
         profilePicture.setImageBitmap(recipient.getContactPhoto());

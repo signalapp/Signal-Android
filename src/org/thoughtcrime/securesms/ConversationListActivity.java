@@ -26,11 +26,13 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.TypedArray;
 import android.database.ContentObserver;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.ContactsContract;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -63,10 +65,12 @@ import com.melnykov.fab.FloatingActionButton;
 
 import org.thoughtcrime.securesms.components.CircledImageView;
 import org.thoughtcrime.securesms.components.ThumbnailView;
+import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.PartDatabase;
 import org.thoughtcrime.securesms.mms.ImageSlide;
+import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -105,6 +109,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   private String[] navLabels;
   private TypedArray navIcons;
   private FloatingActionButton fab;
+  private LinearLayout mDrawerNavi;
 
   @Override
   public void onCreate(Bundle icicle) {
@@ -119,7 +124,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     navLabels = getResources().getStringArray(R.array.array_nav_labels);
     navIcons = getResources().obtainTypedArray(R.array.array_nav_icons);
     mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-
+    mDrawerNavi = (LinearLayout) findViewById(R.id.drawerll);
     mDrawerToggle = new ActionBarDrawerToggle(
         this,                  /* host Activity */
         mDrawerLayout,         /* DrawerLayout object */
@@ -188,8 +193,11 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   }
   private void refreshProfile() {
     CircledImageView profileImageView = (CircledImageView) findViewById(R.id.profile_picture);
-    if(masterSecret != null) {
-      ProfileAccessor.buildDraftGlideRequest(ProfileAccessor.getMyProfilePicture(getApplicationContext())).into(profileImageView);
+    Slide myProfileImage = ProfileAccessor.getMyProfilePicture(getApplicationContext());
+    if(masterSecret != null && !(myProfileImage.getUri()+"").equals("")) {
+      ProfileAccessor.buildDraftGlideRequest(myProfileImage).into(profileImageView);
+    } else {
+      profileImageView.setImageBitmap(ContactPhotoFactory.getDefaultContactPhoto(getApplicationContext()));
     }
     TextView profileName = (TextView) findViewById(R.id.profileName);
     TextView profileStatus = (TextView) findViewById(R.id.profileStatus);
@@ -216,8 +224,14 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   /* The click listner for ListView in the navigation drawer */
   private class DrawerItemClickListener implements ListView.OnItemClickListener {
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-      selectItem(position);
+    public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+      mDrawerLayout.closeDrawer(mDrawerNavi);
+      new Handler().postDelayed(new Runnable() {
+        @Override
+        public void run() {
+          selectItem(position);
+        }
+      }, 200);
     }
   }
   private void selectItem(int position) {
@@ -254,7 +268,6 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         handleDisplaySettings();
         break;
     }
-//     mDrawerLayout.closeDrawer(mDrawerList);
   }
   private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
     @Override
@@ -283,7 +296,6 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     super.onPause();
     fab.hide();
   }
-
   @Override
   public void onDestroy() {
     MemoryCleaner.clean(masterSecret);
