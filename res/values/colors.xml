@@ -32,6 +32,7 @@
     <color name="textsecure_holo_blue_light">#ff33b5e5</color>
 
     <color name="dark_action_bar">#ff111111</color>
+    <color name="action_mode_status_bar">#ff1f1f1f</color>
     <color name="touch_highlight">#400099cc</color>
     <color name="light_button">#33ffffff</color>
     <color name="light_button_highlight">#66ffffff</color>

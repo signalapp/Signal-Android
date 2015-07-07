@@ -19,8 +19,11 @@ package org.thoughtcrime.securesms;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
@@ -267,6 +270,11 @@ public class ConversationListFragment extends Fragment
     mode.setTitle(R.string.conversation_fragment_cab__batch_selection_mode);
     mode.setSubtitle(null);
 
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+      getActivity().getWindow()
+        .setStatusBarColor(getResources().getColor(R.color.action_mode_status_bar));
+    }
+
     return true;
   }
 
@@ -288,6 +296,14 @@ public class ConversationListFragment extends Fragment
   @Override
   public void onDestroyActionMode(ActionMode mode) {
     getListAdapter().initializeBatchMode(false);
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+      TypedArray color = getActivity().getTheme()
+        .obtainStyledAttributes(new int[] { android.R.attr.statusBarColor });
+      getActivity().getWindow().setStatusBarColor(color.getColor(0, Color.BLACK));
+      color.recycle();
+    }
+
     actionMode = null;
   }
 

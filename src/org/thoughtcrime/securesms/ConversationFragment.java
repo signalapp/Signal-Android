@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager;
@@ -21,6 +22,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -345,10 +347,18 @@ public class ConversationFragment extends ListFragment
 
   private class ActionModeCallback implements ActionMode.Callback {
 
+    private int statusBarColor;
+
     @Override
     public boolean onCreateActionMode(ActionMode mode, Menu menu) {
       MenuInflater inflater = mode.getMenuInflater();
       inflater.inflate(R.menu.conversation_context, menu);
+
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        Window window = getActivity().getWindow();
+        statusBarColor = window.getStatusBarColor();
+        window.setStatusBarColor(getResources().getColor(R.color.action_mode_status_bar));
+      }
 
       setCorrectMenuVisibility(menu);
       return true;
@@ -363,6 +373,10 @@ public class ConversationFragment extends ListFragment
     public void onDestroyActionMode(ActionMode mode) {
       ((ConversationAdapter)getListAdapter()).getBatchSelected().clear();
       ((ConversationAdapter)getListAdapter()).notifyDataSetChanged();
+
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        getActivity().getWindow().setStatusBarColor(statusBarColor);
+      }
 
       actionMode = null;
     }
