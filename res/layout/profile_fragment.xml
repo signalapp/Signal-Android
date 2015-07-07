@@ -74,6 +74,24 @@
                     android:src="@android:drawable/ic_menu_edit"
                     android:id="@+id/profile_picture_edit"/>
                 </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/space_two"
+                android:layout_alignParentBottom="true"
+                android:layout_toLeftOf="@+id/space">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="image"
+                    android:clickable="true"
+                    android:padding="4dp"
+                    android:layout_margin="8dp"
+                    android:scaleType="fitXY"
+                    android:background="@drawable/editor_states"
+                    android:src="@android:drawable/ic_menu_delete"
+                    android:id="@+id/profile_picture_delete"/>
+            </RelativeLayout>
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

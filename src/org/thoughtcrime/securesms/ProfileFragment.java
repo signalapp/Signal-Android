@@ -211,6 +211,7 @@ public class ProfileFragment extends Fragment {
     }
     final ImageView profileStatusEdit = (ImageView) getView().findViewById(R.id.profile_status_edit);
     ImageView profileImageEdit = (ImageView) getView().findViewById(R.id.profile_picture_edit);
+    ImageView profileImageDelete = (ImageView) getView().findViewById(R.id.profile_picture_delete);
     if(!isMyProfile) {
       profileStatusEdit.setVisibility(View.GONE);
       if(!isGroup) {
@@ -245,6 +246,14 @@ public class ProfileFragment extends Fragment {
         public void onClick(View view) {
           hasChanged = true;
           AttachmentManager.selectImage(getActivity(), PICK_IMAGE);
+        }
+      });
+      profileImageDelete.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+          hasChanged = true;
+        ProfileAccessor.deleteMyProfilePicture(getActivity());
+        refreshLayout();
         }
       });
     }
