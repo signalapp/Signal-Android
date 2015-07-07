@@ -52,6 +52,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.AlertDialogWrapper;
@@ -734,6 +735,15 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       composeText.setInputType (composeText.getInputType()  | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
       composeText.setImeOptions(composeText.getImeOptions() | EditorInfo.IME_FLAG_NO_ENTER_ACTION);
     }
+    composeText.setOnEditorActionListener(new OnEditorActionListener() {
+      @Override public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+        if (actionId == EditorInfo.IME_ACTION_SEND) {
+          sendMessage();
+          return true;
+        }
+        return false;
+      }
+    });
   }
 
   private void initializeViews() {
@@ -771,6 +781,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       public void onChange(TransportOption newTransport) {
         calculateCharactersRemaining();
         composeText.setHint(newTransport.getComposeHint());
+        composeText.setImeActionLabel(newTransport.getComposeHint(), EditorInfo.IME_ACTION_SEND);
         buttonToggle.getBackground().setColorFilter(newTransport.getBackgroundColor(), Mode.MULTIPLY);
       }
     });
@@ -825,7 +836,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void showEmojiPopup() {
-    Log.w(TAG, "showEmojiPopup()");
     int height = Math.max(getResources().getDimensionPixelSize(R.dimen.min_emoji_drawer_height),
                           container.getKeyboardHeight());
     container.padForCustomKeyboard(height);

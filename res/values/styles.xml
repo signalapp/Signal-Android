@@ -185,7 +185,7 @@
         <item name="android:capitalize">sentences</item>
         <item name="android:autoText">true</item>
         <item name="android:gravity">center_vertical</item>
-        <item name="android:imeOptions">actionSend|flagNoEnterAction|flagNoExtractUi</item>
+        <item name="android:imeOptions">flagNoEnterAction</item>
         <item name="android:inputType">textAutoCorrect|textCapSentences|textMultiLine</item>
         <item name="android:contentDescription">@string/conversation_activity__compose_description</item>
     </style>
