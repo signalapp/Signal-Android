@@ -162,6 +162,11 @@ public class ConversationFragment extends ListFragment
       menu.findItem(R.id.menu_context_forward).setVisible(true);
       menu.findItem(R.id.menu_context_details).setVisible(true);
       menu.findItem(R.id.menu_context_copy).setVisible(true);
+
+      if(messageRecord.getBody().isSelfDestruction()) {
+        menu.findItem(R.id.menu_context_forward).setVisible(false);
+        menu.findItem(R.id.menu_context_copy).setVisible(false);
+      }
     }
   }
 
@@ -446,7 +451,7 @@ public class ConversationFragment extends ListFragment
           actionMode.finish();
           return true;
         case R.id.menu_context_forward:
-          handleForwardMessage(getSelectedMessageRecord());
+            handleForwardMessage(getSelectedMessageRecord());
           actionMode.finish();
           return true;
         case R.id.menu_context_resend:
