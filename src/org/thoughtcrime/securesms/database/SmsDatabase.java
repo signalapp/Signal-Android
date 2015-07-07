@@ -213,10 +213,6 @@ public class SmsDatabase extends MessagingDatabase {
     updateTypeBitmask(id, Types.ENCRYPTION_MASK, Types.ENCRYPTION_REMOTE_NO_SESSION_BIT);
   }
 
-  public void markAsDecrypting(long id) {
-    updateTypeBitmask(id, Types.ENCRYPTION_MASK, Types.ENCRYPTION_REMOTE_BIT);
-  }
-
   public void markAsLegacyVersion(long id) {
     updateTypeBitmask(id, Types.ENCRYPTION_MASK, Types.ENCRYPTION_REMOTE_LEGACY_BIT);
   }
@@ -461,7 +457,7 @@ public class SmsDatabase extends MessagingDatabase {
   }
 
   public Cursor getDecryptInProgressMessages() {
-    String where       = TYPE + " & " + (Types.ENCRYPTION_REMOTE_BIT | Types.ENCRYPTION_ASYMMETRIC_BIT) + " != 0";
+    String where       = TYPE + " & " + (Types.ENCRYPTION_ASYMMETRIC_BIT) + " != 0";
     SQLiteDatabase db  = databaseHelper.getReadableDatabase();
     return db.query(TABLE_NAME, MESSAGE_PROJECTION, where, null, null, null, null);
   }

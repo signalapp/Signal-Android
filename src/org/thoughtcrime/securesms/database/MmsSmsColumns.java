@@ -175,9 +175,7 @@ public interface MmsSmsColumns {
     }
 
     public static boolean isDecryptInProgressType(long type) {
-      return
-          (type & ENCRYPTION_REMOTE_BIT)     != 0 ||
-          (type & ENCRYPTION_ASYMMETRIC_BIT) != 0;
+      return (type & ENCRYPTION_ASYMMETRIC_BIT) != 0;
     }
 
     public static boolean isNoRemoteSessionType(long type) {
@@ -185,7 +183,8 @@ public interface MmsSmsColumns {
     }
 
     public static boolean isLegacyType(long type) {
-      return (type & ENCRYPTION_REMOTE_LEGACY_BIT) != 0;
+      return (type & ENCRYPTION_REMOTE_LEGACY_BIT) != 0 ||
+             (type & ENCRYPTION_REMOTE_BIT) != 0;
     }
 
     public static long translateFromSystemBaseType(long theirType) {

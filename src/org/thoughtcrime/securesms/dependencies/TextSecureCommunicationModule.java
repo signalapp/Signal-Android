@@ -4,7 +4,6 @@ import android.content.Context;
 
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.DeviceListActivity;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureAxolotlStore;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
 import org.thoughtcrime.securesms.jobs.CleanPreKeysJob;
@@ -61,12 +60,12 @@ public class TextSecureCommunicationModule {
   @Provides TextSecureMessageSenderFactory provideTextSecureMessageSenderFactory() {
     return new TextSecureMessageSenderFactory() {
       @Override
-      public TextSecureMessageSender create(MasterSecret masterSecret) {
+      public TextSecureMessageSender create() {
         return new TextSecureMessageSender(BuildConfig.PUSH_URL,
                                            new TextSecurePushTrustStore(context),
                                            TextSecurePreferences.getLocalNumber(context),
                                            TextSecurePreferences.getPushServerPassword(context),
-                                           new TextSecureAxolotlStore(context, masterSecret),
+                                           new TextSecureAxolotlStore(context),
                                            Optional.of((TextSecureMessageSender.EventListener)
                                                            new SecurityEventListener(context)));
       }
@@ -80,7 +79,7 @@ public class TextSecureCommunicationModule {
   }
 
   public static interface TextSecureMessageSenderFactory {
-    public TextSecureMessageSender create(MasterSecret masterSecret);
+    public TextSecureMessageSender create();
   }
 
   private static class DynamicCredentialsProvider implements CredentialsProvider {

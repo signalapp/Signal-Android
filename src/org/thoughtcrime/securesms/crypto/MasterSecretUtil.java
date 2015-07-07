@@ -19,6 +19,8 @@ package org.thoughtcrime.securesms.crypto;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -121,8 +123,8 @@ public class MasterSecretUtil {
     }
   }
 
-  public static AsymmetricMasterSecret getAsymmetricMasterSecret(Context context,
-                                                                 MasterSecret masterSecret)
+  public static AsymmetricMasterSecret getAsymmetricMasterSecret(@NonNull  Context context,
+                                                                 @Nullable MasterSecret masterSecret)
   {
     try {
       byte[] djbPublicBytes   = retrieve(context, ASYMMETRIC_LOCAL_PUBLIC_DJB);

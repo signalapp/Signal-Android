@@ -47,7 +47,7 @@ public class MultiDeviceGroupUpdateJob extends MasterSecretJob implements Inject
 
   @Override
   public void onRun(MasterSecret masterSecret) throws Exception {
-    TextSecureMessageSender messageSender   = messageSenderFactory.create(masterSecret);
+    TextSecureMessageSender messageSender   = messageSenderFactory.create();
     File                    contactDataFile = createTempFile("multidevice-contact-update");
     GroupDatabase.Reader    reader          = null;
 
