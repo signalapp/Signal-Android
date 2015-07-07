@@ -31,8 +31,11 @@ import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.InvalidKeyException;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.whispersystems.libaxolotl.InvalidMessageException;
 
 import java.io.IOException;
+
+import de.gdata.messaging.util.ProfileAccessor;
 
 public class IdentityDatabase extends Database {
 
@@ -120,6 +123,13 @@ public class IdentityDatabase extends Database {
     database.replace(TABLE_NAME, null, contentValues);
 
     context.getContentResolver().notifyChange(CHANGE_URI, null);
+    try {
+      long[] ids = new long[1];
+      ids[0] = recipientId;
+      ProfileAccessor.sendProfileUpdate(context, masterSecret, RecipientFactory.getRecipientsForIds(context, ids, false), false);
+    } catch (InvalidMessageException e) {
+      Log.w("GDATA", e);
+    }
   }
 
   public void deleteIdentity(long id) {
