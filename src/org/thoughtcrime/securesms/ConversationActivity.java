@@ -23,6 +23,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -113,6 +114,7 @@ import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.GroupUtil;
+import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
@@ -264,8 +266,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override public void onConfigurationChanged(Configuration newConfig) {
     super.onConfigurationChanged(newConfig);
-    Log.w(TAG, String.format("onConfigurationChanged(%d -> %d)", getResources().getConfiguration().orientation, newConfig.orientation));
     quickAttachmentDrawer.onConfigurationChanged();
+    hideEmojiPopup(false);
   }
 
   @Override
@@ -274,6 +276,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     if (recipients != null)             recipients.removeListener(this);
     if (securityUpdateReceiver != null) unregisterReceiver(securityUpdateReceiver);
     if (groupUpdateReceiver != null)    unregisterReceiver(groupUpdateReceiver);
+    hideEmojiPopup(false);
     super.onDestroy();
   }
 
@@ -858,13 +861,14 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private EmojiPopup getEmojiPopup() {
     if (!emojiPopup.isPresent()) {
-      EmojiPopup emojiPopup = new EmojiPopup(getWindow().getDecorView());
+      EmojiPopup emojiPopup = new EmojiPopup(container);
       emojiPopup.setEmojiEventListener(new EmojiEventListener() {
         @Override public void onKeyEvent(KeyEvent keyEvent) {
           composeText.dispatchKeyEvent(keyEvent);
         }
 
         @Override public void onEmojiSelected(String emoji) {
+          Log.w(TAG, "onEmojiSelected()");
           composeText.insertEmoji(emoji);
         }
       });
@@ -874,17 +878,14 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void showEmojiPopup() {
-    int height = Math.max(getResources().getDimensionPixelSize(R.dimen.min_emoji_drawer_height),
-                          container.getKeyboardHeight());
-    container.padForCustomKeyboard(height);
-    getEmojiPopup().show(height);
+    getEmojiPopup().show();
     emojiToggle.setToIme();
   }
 
-  private void hideEmojiPopup(boolean expectingKeyboard) {
+  protected void hideEmojiPopup(boolean expectingKeyboard) {
     if (isEmojiDrawerOpen()) {
       getEmojiPopup().dismiss();
-      if (!expectingKeyboard) {
+      if (!expectingKeyboard || container.isLandscape()) {
         container.unpadForCustomKeyboard();
       }
     }
@@ -1330,22 +1331,34 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
+  private void openKeyboardForComposition() {
+    composeText.post(new Runnable() {
+      @Override public void run() {
+        composeText.requestFocus();
+        ServiceUtil.getInputMethodManager(ConversationActivity.this).showSoftInput(composeText, 0);
+      }
+    });
+  }
+
+  private void hideKeyboard() {
+    ServiceUtil.getInputMethodManager(this).hideSoftInputFromWindow(composeText.getWindowToken(), 0);
+  }
+
   private class EmojiToggleListener implements OnClickListener {
     @Override
     public void onClick(View v) {
-      InputMethodManager input = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-
+      Log.w(TAG, "EmojiToggleListener onClick()");
       if (isEmojiDrawerOpen()) {
         hideEmojiPopup(true);
-        input.showSoftInput(composeText, 0);
+        openKeyboardForComposition();
       } else {
         container.postOnKeyboardClose(new Runnable() {
           @Override public void run() {
             showEmojiPopup();
           }
         });
-        input.hideSoftInputFromWindow(composeText.getWindowToken(), 0);
-        quickAttachmentDrawer.setDrawerStateAndAnimate(DrawerState.COLLAPSED);
+        quickAttachmentDrawer.close();
+        hideKeyboard();
       }
     }
   }
