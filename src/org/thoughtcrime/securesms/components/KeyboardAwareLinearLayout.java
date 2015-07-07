@@ -99,12 +99,10 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
   }
 
   public void padForCustomKeyboard(final int height) {
-    Util.assertMainThread();
     setPadding(0, 0, 0, height);
   }
 
   public void unpadForCustomKeyboard() {
-    Util.assertMainThread();
     setPadding(0, 0, 0, 0);
   }
 

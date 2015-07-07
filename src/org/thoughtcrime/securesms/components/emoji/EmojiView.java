@@ -23,20 +23,15 @@ public class EmojiView extends View implements Drawable.Callback {
   private final Rect  textBounds = new Rect();
 
   public EmojiView(Context context) {
-    super(context);
+    this(context, null);
   }
 
   public EmojiView(Context context, AttributeSet attrs) {
-    super(context, attrs);
+    this(context, attrs, 0);
   }
 
   public EmojiView(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
-  }
-
-  @TargetApi(VERSION_CODES.LOLLIPOP)
-  public EmojiView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-    super(context, attrs, defStyleAttr, defStyleRes);
   }
 
   public void setEmoji(String emoji) {
@@ -45,6 +40,10 @@ public class EmojiView extends View implements Drawable.Callback {
                                  .getEmojiDrawable(Character.codePointAt(emoji, 0),
                                                    EmojiProvider.EMOJI_FULL);
     postInvalidate();
+  }
+
+  public String getEmoji() {
+    return emoji;
   }
 
   @Override protected void onDraw(Canvas canvas) {
