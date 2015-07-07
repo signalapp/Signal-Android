@@ -75,7 +75,6 @@ import java.io.InputStream;
 import java.util.Set;
 
 import de.gdata.messaging.util.GDataLinkMovementMethod;
-git add Conv
 import de.gdata.messaging.util.GDataPreferences;
 
 
