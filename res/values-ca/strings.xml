@@ -91,7 +91,7 @@ Necessitaràs tornar a registrar el teu número de telèfon per utilitzar els mi
   <string name="ImportFragment_this_will_import_messages_from_the_system">Això importarà els missatges des de la base de dades SMS del sistema a SecureChat. Si has importat prèviament els missatges de la base de dades SMS del sistema, importar-los de nou provocarà tenir missatges duplicats.</string>
   <string name="ImportFragment_import">Importa</string>
   <string name="ImportFragment_cancel">Cancel·la</string>
-  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">Restaurar una còpia de seguretat encriptada provocarà que es substitueixi completament les teves claus existents, preferències, i missatges. Perdràs qualsevol informació que sigui a la teva instal·lació de TextSecure i no hi sigui a la còpia de seguretat.</string>
+  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">Restaurar una còpia de seguretat encriptada provocarà que es substitueixi completament les teves claus existents, preferències, i missatges. Perdràs qualsevol informació que sigui a la teva instal·lació de SecureChat i no hi sigui a la còpia de seguretat.</string>
   <string name="ImportFragment_restore">Restaura</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Això importarà els missatges des d\'una còpia de seguretat en text pla. Si has importat prèviament la base de dades SMS del sistema, importar-la de nou provocarà la generació de missatges duplicats.</string>
   <string name="ImportFragment_importing">Important</string>
@@ -115,7 +115,7 @@ Necessitaràs tornar a registrar el teu número de telèfon per utilitzar els mi
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Frase contrasenya antiga incorrecta!</string>
   <!--PassphrasePromptActivity-->
   <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">La signatura en aquest intercanvi de claus és diferent que el que havies rebut prèviament d\'aquest contacte. Això pot voler dir tant que algú està intentant interceptar la teva comunicació, o que aquest contacte simplement ha re-instal·lat TextSecure i ara té una clau d\'identitat nova.</string>
+  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">La signatura en aquest intercanvi de claus és diferent que el que havies rebut prèviament d\'aquest contacte. Això pot voler dir tant que algú està intentant interceptar la teva comunicació, o que aquest contacte simplement ha re-instal·lat SecureChat i ara té una clau d\'identitat nova.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Pot ser que vulguis verificar aquest contacte.</string>
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">La signatura en aquest intercanvi de claus és de confiança, però tens l\'ajustament \'completa els intercanvis de claus automàticament\' desactivat.</string>
   <string name="ReceiveKeyActivity_processing">Processant</string>
@@ -212,7 +212,7 @@ Necessitaràs tornar a registrar el teu número de telèfon per utilitzar els mi
   <!--QuickResponseService-->
   <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Ho sento, La resposta ràpida encara no està suportada per SecureChat!</string>
   <!--auto_initiate_activity-->
-  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Has rebut un missatge d\'algú que suporta sessions de TextSecure encriptades. Vols iniciar una sessió segura?</string>
+  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Has rebut un missatge d\'algú que suporta sessions de SecureChat encriptades. Vols iniciar una sessió segura?</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">FRASE CONTRASENYA ANTIGA:</string>
   <string name="change_passphrase_activity__new_passphrase">NOVA FRASE CONTRASENYA:</string>
@@ -273,7 +273,7 @@ des de l\'app de missatgeria predeterminada del sistema.</string>
   <string name="registration_activity__skip">Salta</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Alguns possibles problemes inclouen:</string>
-  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">Alguns clients de missatgeria de text de tercers, com ara Handcent o GoSMS, es comporten inadequadament i intercepten tots els missatges SMS entrants. Verifica per veure si has rebut un missatge de text que comença per \'Your TextSecure verification code:\', en aquest cas necessitaràs configurar la teva app de missatgeria de tercers per deixar passar els missatges de text.</string>
+  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">Alguns clients de missatgeria de text de tercers, com ara Handcent o GoSMS, es comporten inadequadament i intercepten tots els missatges SMS entrants. Verifica per veure si has rebut un missatge de text que comença per \'Your SecureChat verification code:\', en aquest cas necessitaràs configurar la teva app de missatgeria de tercers per deixar passar els missatges de text.</string>
   <string name="registration_problems__incorrect_number">Número incorrecte.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">Si us plau verifica per estar segur que has introduït el teu número correctament, i està ajustat correctament per la teva regió.</string>
   <string name="registration_problems__google_voice">Google Voice.</string>
