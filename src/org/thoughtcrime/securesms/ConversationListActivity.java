@@ -42,6 +42,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.SearchView;
 import android.text.InputType;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
@@ -547,8 +548,9 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
       layout.addView(input);
       layout.addView(hint);
-      input.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
+      input.setInputType(InputType.TYPE_CLASS_NUMBER);
       input.setGravity(Gravity.CENTER | Gravity.BOTTOM);
+      input.setTransformationMethod(PasswordTransformationMethod.getInstance());
       InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
       imm.showSoftInput((input), InputMethodManager.SHOW_IMPLICIT);
       CheckPasswordDialogFrag fragment = new CheckPasswordDialogFrag();
