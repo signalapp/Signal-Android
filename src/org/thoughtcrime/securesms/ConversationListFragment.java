@@ -97,6 +97,10 @@ public class ConversationListFragment extends ListFragment
     super.onResume();
     initializeListAdapter();
     initializeReminders();
+    if (actionMode != null) {
+      actionMode.finish();
+      actionMode = null;
+    }
   }
 
   @Override

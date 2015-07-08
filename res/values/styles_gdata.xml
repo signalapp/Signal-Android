@@ -294,7 +294,17 @@
     </style>
     <!-- Widget.Sherlock.ActionButton.CloseMode -->
     <style name="CustomActionMode" parent="Widget.AppCompat.Light.ActionMode.Inverse">
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="background">@color/transparent</item>
+        <item name="android:titleTextStyle">@style/TextSecure.TitleTextStyle</item>
+        <item name="titleTextStyle">@style/TextSecure.TitleTextStyle</item>
+        <item name="android:subtitleTextStyle">@style/TextSecure.SubtitleTextStyle</item>
+        <item name="subtitleTextStyle">@style/TextSecure.SubtitleTextStyle</item>
+        <item name="android:textColorSecondary">@color/white</item>
+        <item name="android:colorPrimary">@color/white</item>
+        <item name="android:actionBarWidgetTheme">@style/Theme.AppCompat.Light</item>
+        <item name="actionBarWidgetTheme">@style/Theme.AppCompat.Light</item>
+        <item name="android:windowContentOverlay">@null</item>
     </style>
         <style name="Theme.Transparent" parent="android:Theme">
             <item name="android:windowIsTranslucent">true</item>
