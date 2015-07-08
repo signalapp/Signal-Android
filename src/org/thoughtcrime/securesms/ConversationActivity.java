@@ -41,7 +41,6 @@ import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -73,16 +72,10 @@ import org.thoughtcrime.securesms.components.emoji.EmojiPopup;
 import org.thoughtcrime.securesms.components.emoji.EmojiToggle;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
-import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
-import org.thoughtcrime.securesms.crypto.EncryptingPartOutputStream;
+import org.thoughtcrime.securesms.components.camera.HidingImageButton;
 import org.thoughtcrime.securesms.components.camera.QuickAttachmentDrawer.AttachmentDrawerListener;
 import org.thoughtcrime.securesms.components.camera.QuickAttachmentDrawer.DrawerState;
-import org.thoughtcrime.securesms.components.emoji.EmojiDrawer;
-import org.thoughtcrime.securesms.components.emoji.EmojiToggle;
 import org.thoughtcrime.securesms.components.camera.QuickAttachmentDrawer;
-import org.thoughtcrime.securesms.components.SendButton;
-import org.thoughtcrime.securesms.contacts.ContactAccessor;
-import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
@@ -185,7 +178,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private BroadcastReceiver             groupUpdateReceiver;
   private Optional<EmojiPopup>          emojiPopup = Optional.absent();
   private EmojiToggle                   emojiToggle;
-  private ImageButton                   quickAttachmentToggle;
+  private HidingImageButton             quickAttachmentToggle;
   private QuickAttachmentDrawer         quickAttachmentDrawer;
 
   private Recipients recipients;
@@ -792,7 +785,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     unblockButton         = (Button)                findViewById(R.id.unblock_button);
     composePanel          = findViewById(R.id.bottom_panel);
     quickAttachmentDrawer = (QuickAttachmentDrawer) findViewById(R.id.quick_attachment_drawer);
-    quickAttachmentToggle = (ImageButton)           findViewById(R.id.quick_attachment_toggle);
+    quickAttachmentToggle = (HidingImageButton)     findViewById(R.id.quick_attachment_toggle);
 
     int[]      attributes   = new int[]{R.attr.conversation_item_bubble_background};
     TypedArray colors       = obtainStyledAttributes(attributes);
@@ -1299,8 +1292,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void updateToggleButtonState() {
     if (composeText.getText().length() == 0 && !attachmentManager.isAttachmentPresent()) {
       buttonToggle.display(attachButton);
+      quickAttachmentToggle.show();
     } else {
       buttonToggle.display(sendButton);
+      quickAttachmentToggle.hide();
     }
   }
 
