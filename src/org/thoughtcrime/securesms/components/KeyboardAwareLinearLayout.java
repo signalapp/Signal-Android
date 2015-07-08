@@ -64,7 +64,6 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
   }
 
   @Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-    Log.w(TAG, String.format("onMeasure(%s, %s)", MeasureSpec.toString(widthMeasureSpec), MeasureSpec.toString(heightMeasureSpec)));
     super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
     int res             = getResources().getIdentifier("status_bar_height", "dimen", "android");
