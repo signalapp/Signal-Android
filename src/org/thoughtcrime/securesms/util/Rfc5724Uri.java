@@ -47,11 +47,11 @@ public class Rfc5724Uri {
     String[] parts = uri.split("\\?")[0].split(":", 2);
 
     if (parts.length < 2 || parts[1].isEmpty()){
-        throw new URISyntaxException(uri, "invalid path");
+      throw new URISyntaxException(uri, "invalid path");
     } else if (parts[1].contains("%")){
-        return URLDecoder.decode(parts[1]);
+      return URLDecoder.decode(parts[1]);
     }else{
-        return parts[1];
+      return parts[1];
     }
   }
 
