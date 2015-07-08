@@ -180,7 +180,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private boolean isMmsEnabled = true;
   private boolean isCharactersLeftViewEnabled;
 
-  private CharacterCalculator characterCalculator = new EncryptedCharacterCalculator();
+  public static CharacterCalculator characterCalculator = new EncryptedCharacterCalculator();
   private DynamicTheme dynamicTheme = new DynamicTheme();
   private DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
@@ -783,7 +783,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       this.isEncryptedConversation = false;
       this.characterCalculator = new SmsCharacterCalculator();
     }
-
     transportButton.initializeAvailableTransports(!recipients.isSingleRecipient() || attachmentManager.isAttachmentPresent());
     bombTransportButton.initializeAvailableSelfDests();
     if (!isPushDestination) transportButton.disableTransport("textsecure");
@@ -801,7 +800,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     } else {
       transportButton.setDefaultTransport("insecure_sms");
     }
-
+    if(transportButton.getSelectedTransport().isForcedPlaintext()) {
+      characterCalculator = new SmsCharacterCalculator();
+    }
     calculateCharactersRemaining();
     getCurrentMediaSize();
   }

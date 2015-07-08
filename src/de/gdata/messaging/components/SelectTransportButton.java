@@ -11,9 +11,14 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import org.thoughtcrime.securesms.ConversationActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.TransportOptions;
+import org.thoughtcrime.securesms.util.CharacterCalculator;
+import org.thoughtcrime.securesms.util.EncryptedCharacterCalculator;
+import org.thoughtcrime.securesms.util.PushCharacterCalculator;
+import org.thoughtcrime.securesms.util.SmsCharacterCalculator;
 
 public class SelectTransportButton extends ImageButton {
     private TransportOptions transportOptions;
@@ -45,16 +50,25 @@ public class SelectTransportButton extends ImageButton {
             public void onChange(TransportOption newTransport) {
                 setImageResource(newTransport.drawable);
                 setContentDescription(newTransport.composeHint);
-                if (composeText != null && !((composeText.getHint()+"").contains(getResources().getString(R.string.self_destruction_compose_hint)))) {
+                if (composeText != null && !((composeText.getHint() + "").contains(getResources().getString(R.string.self_destruction_compose_hint)))) {
                     setComposeTextHint(newTransport.composeHint);
                 }
-                if(newTransport.key.contains("insecure_sms")) {
+                if (newTransport.key.contains("insecure_sms")) {
                     destroyButtonReference.setVisibility(View.GONE);
                     destroyButtonReference.setEnabled(false);
                     setComposeTextHint(newTransport.composeHint);
                 } else {
                     destroyButtonReference.setVisibility(View.VISIBLE);
                     destroyButtonReference.setEnabled(true);
+                }
+                if (newTransport.isForcedSms()) {
+                    if (newTransport.isForcedPlaintext()) {
+                        ConversationActivity.characterCalculator = new SmsCharacterCalculator();
+                    } else {
+                        ConversationActivity.characterCalculator = new EncryptedCharacterCalculator();
+                    }
+                } else {
+                    ConversationActivity.characterCalculator = new PushCharacterCalculator();
                 }
             }
         });
@@ -76,7 +90,6 @@ public class SelectTransportButton extends ImageButton {
     public void setComposeTextView(EditText composeText) {
         this.composeText = composeText;
     }
-
     public TransportOption getSelectedTransport() {
         return transportOptions.getSelectedTransport();
     }
