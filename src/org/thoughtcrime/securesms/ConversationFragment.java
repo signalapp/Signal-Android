@@ -166,6 +166,7 @@ public class ConversationFragment extends ListFragment
       if(messageRecord.getBody().isSelfDestruction()) {
         menu.findItem(R.id.menu_context_forward).setVisible(false);
         menu.findItem(R.id.menu_context_copy).setVisible(false);
+        menu.findItem(R.id.menu_context_save_attachment).setVisible(false);
       }
     }
   }
