@@ -355,6 +355,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     case R.id.menu_invite:                    handleInviteLink();                                return true;
     case R.id.menu_mute_notifications:        handleMuteNotifications();                         return true;
     case R.id.menu_unmute_notifications:      handleUnmuteNotifications();                       return true;
+    case R.id.menu_conversation_settings:     handleConversationSettings();                      return true;
     case android.R.id.home:                   handleReturnToConversationList();                  return true;
     }
 
@@ -401,6 +402,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         }.execute();
       }
     });
+  }
+
+  private void handleConversationSettings() {
+    titleView.performClick();
   }
 
   private void handleUnmuteNotifications() {

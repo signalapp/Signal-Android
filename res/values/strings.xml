@@ -926,6 +926,7 @@
     <string name="conversation__menu_leave_group">Leave group</string>
     <string name="conversation__menu_delete_thread">Delete thread</string>
     <string name="conversation__menu_view_media">All images</string>
+    <string name="conversation__menu_conversation_settings">Conversation settings</string>
 
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">Expand popup</string>
