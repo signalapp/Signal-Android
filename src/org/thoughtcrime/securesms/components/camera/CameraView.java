@@ -121,6 +121,7 @@ public class CameraView extends ViewGroup {
         synchronized (CameraView.this) {
           CameraView.this.notifyAll();
         }
+        Log.w(TAG, "onResume() finished");
       }
     });
   }
@@ -189,7 +190,7 @@ public class CameraView extends ViewGroup {
 
           previewSize = newSize;
           synchronized (this) { notifyAll(); }
-          initPreview(width, height, false);
+          initPreview();
         }
       }
     }
@@ -268,9 +269,9 @@ public class CameraView extends ViewGroup {
     }
   }
 
-  void previewReset(int width, int height) {
+  void previewReset() {
     previewStopped();
-    initPreview(width, height);
+    initPreview();
   }
 
   private void previewStopped() {
@@ -279,12 +280,8 @@ public class CameraView extends ViewGroup {
     }
   }
 
-  public void initPreview(int w, int h) {
-    initPreview(w, h, true);
-  }
-
   @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-  public void initPreview(int w, int h, boolean firstRun) {
+  public void initPreview() {
     submitTask(new PostInitializationTask<Void>() {
       @Override protected void onPostMain(Void avoid) {
         if (camera != null) {
@@ -307,6 +304,7 @@ public class CameraView extends ViewGroup {
   }
 
   private void startPreview() {
+    Log.w(TAG, "startPreview()");
     camera.startPreview();
     inPreview = true;
     getHost().autoFocusAvailable();

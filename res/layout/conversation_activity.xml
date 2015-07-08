@@ -9,7 +9,7 @@
         android:background="?conversation_background"
         android:orientation="vertical">
 
-<org.thoughtcrime.securesms.components.QuickAttachmentDrawer
+<org.thoughtcrime.securesms.components.camera.QuickAttachmentDrawer
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/quick_attachment_drawer"
     android:layout_width="match_parent"
@@ -156,5 +156,5 @@
         </LinearLayout>
     </RelativeLayout>
 
-</org.thoughtcrime.securesms.components.QuickAttachmentDrawer>
+</org.thoughtcrime.securesms.components.camera.QuickAttachmentDrawer>
 </org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout>

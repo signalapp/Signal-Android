@@ -284,6 +284,7 @@ public class QuickAttachmentDrawer extends ViewGroup {
         setDrawerState(DrawerState.FULL_EXPANDED);
         return;
       }
+      Log.w(TAG, "HALF_EXPANDED init");
       quickCamera.onResume();
       slideOffset = halfExpandedAnchorPoint;
       fullScreenButton.setImageResource(R.drawable.quick_camera_fullscreen);
