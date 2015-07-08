@@ -31,9 +31,6 @@
         <item name="android:actionModeCloseDrawable">@drawable/ic_cab_done_holo_dark</item>
         <item name="actionModeCloseDrawable">@drawable/ic_cab_done_holo_dark</item>
 
-        <item name="android:actionModeStyle">@style/CustomActionMode</item>
-        <item name="actionModeStyle">@style/CustomActionMode</item>
-
         <item name="android:textColor">?android:attr/textColorPrimary</item>
         <item name="android:textColorSecondary">?android:attr/textColorPrimary</item>
         <item name="conversation_list_item_background_read">
@@ -170,9 +167,6 @@
         <item name="android:actionModeCloseDrawable">@drawable/ic_cab_done_holo_dark</item>
         <item name="actionModeCloseDrawable">@drawable/ic_cab_done_holo_dark</item>
 
-        <item name="android:actionModeStyle">@style/CustomActionMode</item>
-        <item name="actionModeStyle">@style/CustomActionMode</item>
-
         <item name="android:textColor">?android:attr/textColorPrimary</item>
         <item name="android:textColorSecondary">?android:attr/textColorPrimary</item>
         <item name="conversation_list_item_background_read">
@@ -294,17 +288,8 @@
     </style>
     <!-- Widget.Sherlock.ActionButton.CloseMode -->
     <style name="CustomActionMode" parent="Widget.AppCompat.Light.ActionMode.Inverse">
-        <item name="android:background">@color/transparent</item>
-        <item name="background">@color/transparent</item>
-        <item name="android:titleTextStyle">@style/TextSecure.TitleTextStyle</item>
-        <item name="titleTextStyle">@style/TextSecure.TitleTextStyle</item>
-        <item name="android:subtitleTextStyle">@style/TextSecure.SubtitleTextStyle</item>
-        <item name="subtitleTextStyle">@style/TextSecure.SubtitleTextStyle</item>
+        <item name="android:textColor">@color/white</item>
         <item name="android:textColorSecondary">@color/white</item>
-        <item name="android:colorPrimary">@color/white</item>
-        <item name="android:actionBarWidgetTheme">@style/Theme.AppCompat.Light</item>
-        <item name="actionBarWidgetTheme">@style/Theme.AppCompat.Light</item>
-        <item name="android:windowContentOverlay">@null</item>
     </style>
         <style name="Theme.Transparent" parent="android:Theme">
             <item name="android:windowIsTranslucent">true</item>
@@ -352,8 +337,6 @@
         <item name="titleTextStyle">@style/TextSecure.TitleTextStyle</item>
         <item name="android:subtitleTextStyle">@style/TextSecure.SubtitleTextStyle</item>
         <item name="subtitleTextStyle">@style/TextSecure.SubtitleTextStyle</item>
-        <item name="android:textColorSecondary">@color/gdata_red</item>
-        <item name="android:colorPrimary">@color/gdata_red</item>
         <item name="android:actionBarWidgetTheme">@style/Theme.AppCompat.Light</item>
         <item name="actionBarWidgetTheme">@style/Theme.AppCompat.Light</item>
         <item name="android:windowContentOverlay">@null</item>

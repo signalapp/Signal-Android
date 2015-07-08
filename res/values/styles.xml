@@ -59,6 +59,7 @@
 
     <style name="TextSecure.SubtitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Subtitle">
         <item name="android:textColor">#ffffff</item>
+        <item name="background">@drawable/md_transparent</item>
     </style>
 
     <style name="TextSecure.IntroActionBar" parent="Widget.AppCompat.Light.ActionBar.Solid">
