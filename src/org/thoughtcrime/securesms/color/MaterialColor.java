@@ -29,7 +29,7 @@ public enum MaterialColor {
   BLUE_GREY  (R.color.blue_grey_500,   R.color.blue_grey_900,   R.color.blue_grey_700,   "blue_grey"),
 
   GROUP      (GREY.conversationColorLight, R.color.textsecure_primary, R.color.textsecure_primary_dark,
-              GREY.conversationColorDark, R.color.textsecure_primary, R.color.textsecure_primary_dark,
+              GREY.conversationColorDark, R.color.gray95, R.color.black,
               "group_color");
 
   private final int conversationColorLight;
