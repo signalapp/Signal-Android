@@ -266,12 +266,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override public void onConfigurationChanged(Configuration newConfig) {
     super.onConfigurationChanged(newConfig);
-    Log.w(TAG, String.format("onConfigurationChanged(%d -> %d)", getResources().getConfiguration().orientation, newConfig.orientation));
     quickAttachmentDrawer.onConfigurationChanged();
-  }
-
-  @Override public void onConfigurationChanged(Configuration newConfig) {
-    super.onConfigurationChanged(newConfig);
     hideEmojiPopup(false);
   }
 
@@ -890,7 +885,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   protected void hideEmojiPopup(boolean expectingKeyboard) {
     if (isEmojiDrawerOpen()) {
       getEmojiPopup().dismiss();
-      if (!expectingKeyboard) {
+      if (!expectingKeyboard || container.isLandscape()) {
         container.unpadForCustomKeyboard();
       }
     }

@@ -29,7 +29,6 @@ import android.view.View;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.ServiceUtil;
-import org.thoughtcrime.securesms.util.Util;
 
 import java.lang.reflect.Field;
 import java.util.HashSet;
@@ -132,10 +131,8 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
   protected void onKeyboardOpen(int keyboardHeight) {
     keyboardOpen = true;
 
-    switch (getDeviceRotation()) {
-      case Surface.ROTATION_0:
-      case Surface.ROTATION_180:
-        setKeyboardPortraitHeight(keyboardHeight);
+    if (!isLandscape()) {
+      setKeyboardPortraitHeight(keyboardHeight);
     }
     notifyShownListeners();
     unpadForCustomKeyboard();
@@ -151,17 +148,13 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
   }
 
   public int getKeyboardHeight() {
-    switch (getDeviceRotation()) {
-      case Surface.ROTATION_270:
-      case Surface.ROTATION_90:
-        return getKeyboardLandscapeHeight();
-      case Surface.ROTATION_0:
-      case Surface.ROTATION_180:
-      default:
-        return getKeyboardPortraitHeight();
-    }
+    return isLandscape() ? getKeyboardLandscapeHeight() : getKeyboardPortraitHeight();
   }
 
+  public boolean isLandscape() {
+    int rotation = getDeviceRotation();
+    return rotation == Surface.ROTATION_90 || rotation == Surface.ROTATION_270;
+  }
   private int getDeviceRotation() {
     return ServiceUtil.getWindowManager(getContext()).getDefaultDisplay().getRotation();
   }
