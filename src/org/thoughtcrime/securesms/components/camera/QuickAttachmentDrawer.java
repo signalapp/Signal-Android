@@ -102,13 +102,15 @@ public class QuickAttachmentDrawer extends ViewGroup {
   public void onConfigurationChanged() {
     int rotation = getWindowManager().getDefaultDisplay().getRotation();
     Log.w(TAG, String.format("onNewOrientation(old %d, new %d)", this.rotation, rotation));
-    if (this.rotation == rotation) return;
+    final boolean rotationChanged = this.rotation != rotation;
     this.rotation = rotation;
-    if (isOpen()) {
-      quickCamera.onPause();
-      setDrawerStateAndAnimate(getDrawerState());
+    if (rotationChanged) {
+      if (isOpen()) {
+        quickCamera.onPause();
+        setDrawerStateAndAnimate(getDrawerState());
+      }
+      updateControlsView();
     }
-    updateControlsView();
   }
 
   private void updateControlsView() {
@@ -179,15 +181,12 @@ public class QuickAttachmentDrawer extends ViewGroup {
       }
       final int childRight = childLeft + child.getMeasuredWidth();
 
-      if (childHeight > 0)
-        child.layout(childLeft, childTop, childRight, childBottom);
+      child.layout(childLeft, childTop, childRight, childBottom);
     }
   }
 
   @Override
   protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-    SoftKeyboardUtil.onMeasure(this);
-
     final int widthMode = MeasureSpec.getMode(widthMeasureSpec);
     final int widthSize = MeasureSpec.getSize(widthMeasureSpec);
     final int heightMode = MeasureSpec.getMode(heightMeasureSpec);

@@ -35,13 +35,9 @@ class TexturePreviewStrategy implements PreviewStrategy,
   private SurfaceTexture surface=null;
 
   TexturePreviewStrategy(CameraView cameraView) {
-    Log.w(TAG, "TexturePreviewStrategy()");
     this.cameraView=cameraView;
     widget=new TextureView(cameraView.getContext());
     widget.setSurfaceTextureListener(this);
-    if (widget.isAvailable()) {
-      onSurfaceTextureAvailable(widget.getSurfaceTexture(), -1, -1);
-    }
   }
 
   @Override

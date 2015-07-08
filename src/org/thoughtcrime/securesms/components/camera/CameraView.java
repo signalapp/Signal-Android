@@ -28,7 +28,8 @@ import android.util.Log;
 import android.view.OrientationEventListener;
 import android.view.Surface;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.FrameLayout;
+
 import java.io.IOException;
 import java.util.concurrent.CountDownLatch;
 
@@ -42,13 +43,14 @@ import org.whispersystems.jobqueue.Job;
 import org.whispersystems.jobqueue.JobParameters;
 
 @SuppressWarnings("deprecation")
-public class CameraView extends ViewGroup {
+public class CameraView extends FrameLayout {
   private static final String TAG = CameraView.class.getSimpleName();
 
   private          PreviewStrategy     previewStrategy        = null;
   private          Camera.Size         previewSize            = null;
   private volatile Camera              camera                 = null;
   private          boolean             inPreview              = false;
+  private          boolean             cameraReady            = false;
   private          CameraHost          host                   = null;
   private          OnOrientationChange onOrientationChange    = null;
   private          int                 displayOrientation     = -1;
@@ -86,12 +88,9 @@ public class CameraView extends ViewGroup {
 
   @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
   public void onResume() {
+    addView(previewStrategy.getWidget());
     final CameraHost host = getHost();
     submitTask(new SerializedAsyncTask<FailureReason>() {
-      @Override protected void onPreMain() {
-        addView(previewStrategy.getWidget());
-      }
-
       @Override protected FailureReason onRunBackground() {
         try {
           cameraId = host.getCameraId();
@@ -108,6 +107,7 @@ public class CameraView extends ViewGroup {
       }
 
       @Override protected void onPostMain(FailureReason result) {
+        cameraReady = true;
         if (result != null) {
           host.onCameraFail(result);
           return;
@@ -116,20 +116,20 @@ public class CameraView extends ViewGroup {
           onOrientationChange.enable();
         }
         setCameraDisplayOrientation();
-        requestLayout();
-        invalidate();
         synchronized (CameraView.this) {
           CameraView.this.notifyAll();
         }
-        Log.w(TAG, "onResume() finished");
+        requestLayout();
+        invalidate();
       }
     });
   }
 
   public void onPause() {
+    removeView(previewStrategy.getWidget());
     submitTask(new SerializedAsyncTask<Void>() {
       @Override protected void onPreMain() {
-        removeView(previewStrategy.getWidget());
+        cameraReady = false;
       }
 
       @Override protected Void onRunBackground() {
@@ -154,24 +154,23 @@ public class CameraView extends ViewGroup {
 
   @Override
   protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-    final int width  = resolveSize(getSuggestedMinimumWidth(), widthMeasureSpec);
-    final int height = resolveSize(getSuggestedMinimumHeight(), heightMeasureSpec);
-    setMeasuredDimension(width, height);
+    super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-    if (width > 0 && height > 0 && camera != null) {
+    if (getMeasuredWidth() > 0 && getMeasuredHeight() > 0 && camera != null && cameraReady) {
       Camera.Size newSize = null;
 
       try {
         if (getHost().getRecordingHint() != CameraHost.RecordingHint.STILL_ONLY) {
           newSize = getHost().getPreferredPreviewSizeForVideo(getDisplayOrientation(),
-                                                              width,
-                                                              height,
+                                                              getMeasuredWidth(),
+                                                              getMeasuredHeight(),
                                                               camera.getParameters(),
                                                               null);
         }
         if (newSize == null || newSize.width * newSize.height < 65536) {
           newSize = getHost().getPreviewSize(getDisplayOrientation(),
-                                             width, height,
+                                             getMeasuredWidth(),
+                                             getMeasuredHeight(),
                                              camera.getParameters());
         }
       } catch (Exception e) {
@@ -252,7 +251,6 @@ public class CameraView extends ViewGroup {
         try {
           if (camera != null) {
             previewStrategy.attach(camera);
-          } else {
           }
         } catch (IOException e) {
           host.handleException(e);
@@ -284,7 +282,7 @@ public class CameraView extends ViewGroup {
   public void initPreview() {
     submitTask(new PostInitializationTask<Void>() {
       @Override protected void onPostMain(Void avoid) {
-        if (camera != null) {
+        if (camera != null && cameraReady) {
           Camera.Parameters parameters = camera.getParameters();
 
           parameters.setPreviewSize(previewSize.width, previewSize.height);
@@ -297,7 +295,6 @@ public class CameraView extends ViewGroup {
           startPreview();
           requestLayout();
           invalidate();
-        } else {
         }
       }
     });
