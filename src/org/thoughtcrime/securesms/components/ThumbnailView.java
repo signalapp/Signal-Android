@@ -4,7 +4,6 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
@@ -34,12 +33,13 @@ import ws.com.google.android.mms.pdu.PduPart;
 
 public class ThumbnailView extends ForegroundImageView {
 
-  private ListenableFutureTask<SlideDeck> slideDeckFuture        = null;
-  private SlideDeckListener               slideDeckListener      = null;
-  private ThumbnailClickListener          thumbnailClickListener = null;
-  private String                          slideId                = null;
-  private Slide                           slide                  = null;
-  private Handler                         handler                = new Handler();
+  private ListenableFutureTask<SlideDeck> slideDeckFuture = null;
+  private SlideDeckListener slideDeckListener = null;
+  private ThumbnailClickListener thumbnailClickListener = null;
+  private String slideId = null;
+  private Slide slide = null;
+  private Handler handler = new Handler();
+  private boolean isLoadingDone = false;
 
   public ThumbnailView(Context context) {
     super(context);
@@ -53,15 +53,15 @@ public class ThumbnailView extends ForegroundImageView {
     super(context, attrs, defStyle);
   }
 
-  @Override protected void onDetachedFromWindow() {
+  @Override
+  protected void onDetachedFromWindow() {
     Glide.clear(this);
     super.onDetachedFromWindow();
   }
 
   public void setImageResource(@Nullable MasterSecret masterSecret,
                                long id, long timestamp,
-                               @NonNull ListenableFutureTask<SlideDeck> slideDeckFuture)
-  {
+                               @NonNull ListenableFutureTask<SlideDeck> slideDeckFuture) {
     if (this.slideDeckFuture != null && this.slideDeckListener != null) {
       this.slideDeckFuture.removeListener(this.slideDeckListener);
     }
@@ -70,12 +70,11 @@ public class ThumbnailView extends ForegroundImageView {
 
     if (!slideId.equals(this.slideId)) {
       setImageDrawable(null);
-      this.slide   = null;
+      this.slide = null;
       this.slideId = slideId;
     }
-
     this.slideDeckListener = new SlideDeckListener(masterSecret);
-    this.slideDeckFuture   = slideDeckFuture;
+    this.slideDeckFuture = slideDeckFuture;
     this.slideDeckFuture.addListener(this.slideDeckListener);
   }
 
@@ -99,14 +98,13 @@ public class ThumbnailView extends ForegroundImageView {
 
   @TargetApi(VERSION_CODES.JELLY_BEAN_MR1)
   private boolean isContextValid() {
-    return !(getContext() instanceof Activity)            ||
-           VERSION.SDK_INT < VERSION_CODES.JELLY_BEAN_MR1 ||
-           !((Activity)getContext()).isDestroyed();
+    return !(getContext() instanceof Activity) ||
+        VERSION.SDK_INT < VERSION_CODES.JELLY_BEAN_MR1 ||
+        !((Activity) getContext()).isDestroyed();
   }
 
   private GenericRequestBuilder buildGlideRequest(@NonNull Slide slide,
-                                                  @Nullable MasterSecret masterSecret)
-  {
+                                                  @Nullable MasterSecret masterSecret) {
     final GenericRequestBuilder builder;
     if (slide.getPart().isPendingPush()) {
       builder = buildPendingGlideRequest(slide);
@@ -120,24 +118,24 @@ public class ThumbnailView extends ForegroundImageView {
   }
 
   private GenericRequestBuilder buildPendingGlideRequest(Slide slide) {
-    return Glide.with(getContext()).load(R.drawable.stat_sys_download_anim0)
-                                   .dontTransform()
-                                   .skipMemoryCache(true)
-                                   .crossFade();
+    return Glide.with(getContext()).load(R.drawable.stat_sys_download)
+        .dontTransform()
+        .skipMemoryCache(true)
+        .crossFade();
   }
 
   private GenericRequestBuilder buildThumbnailGlideRequest(Slide slide, MasterSecret masterSecret) {
 
     final GenericRequestBuilder builder;
     if (slide.isDraft()) builder = buildDraftGlideRequest(slide);
-    else                 builder = buildEncryptedPartGlideRequest(slide, masterSecret);
+    else builder = buildEncryptedPartGlideRequest(slide, masterSecret);
     return builder;
   }
 
   private GenericRequestBuilder buildDraftGlideRequest(Slide slide) {
     return Glide.with(getContext()).load(slide.getThumbnailUri()).asBitmap()
-                                   .fitCenter()
-                                   .listener(new PduThumbnailSetListener(slide.getPart()));
+        .fitCenter()
+        .listener(new PduThumbnailSetListener(slide.getPart()));
   }
 
   private GenericRequestBuilder buildEncryptedPartGlideRequest(Slide slide, MasterSecret masterSecret) {
@@ -145,14 +143,14 @@ public class ThumbnailView extends ForegroundImageView {
       throw new IllegalStateException("null MasterSecret when loading non-draft thumbnail");
     }
 
-    return  Glide.with(getContext()).load(new DecryptableUri(masterSecret, slide.getThumbnailUri()))
-                 .transform(new ThumbnailTransform(getContext()));
+    return Glide.with(getContext()).load(new DecryptableUri(masterSecret, slide.getThumbnailUri()))
+        .transform(new ThumbnailTransform(getContext()));
   }
 
   private GenericRequestBuilder buildPlaceholderGlideRequest(Slide slide) {
     return Glide.with(getContext()).load(slide.getPlaceholderRes(getContext().getTheme()))
-                                   .fitCenter()
-                                   .crossFade();
+        .fitCenter()
+        .crossFade();
   }
 
   private class SlideDeckListener implements FutureTaskListener<SlideDeck> {
@@ -174,6 +172,7 @@ public class ThumbnailView extends ForegroundImageView {
             setImageResource(slide, masterSecret);
           }
         });
+        isLoadingDone = true;
       } else {
         handler.post(new Runnable() {
           @Override
@@ -198,17 +197,21 @@ public class ThumbnailView extends ForegroundImageView {
     }
   }
 
+  public boolean isLoadingDone() {
+    return isLoadingDone;
+  }
+
   public interface ThumbnailClickListener {
     void onClick(View v, Slide slide);
   }
 
   private class ThumbnailClickDispatcher implements View.OnClickListener {
     private ThumbnailClickListener listener;
-    private Slide                  slide;
+    private Slide slide;
 
     public ThumbnailClickDispatcher(ThumbnailClickListener listener, Slide slide) {
       this.listener = listener;
-      this.slide    = slide;
+      this.slide = slide;
     }
 
     @Override
