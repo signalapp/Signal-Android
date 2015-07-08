@@ -361,7 +361,7 @@ public class ConversationItem extends LinearLayout {
             alreadyDestroyed = true;
             deleteMessage(messageRecord);
           }
-        } else if ((messageRecord.getBody().getSelfDestructionDuration() - currentCountdown) > 1) {
+        } else if ((messageRecord.getBody().getSelfDestructionDuration() == currentCountdown)) {
           if (hasMedia(messageRecord)) {
             thumbnailDestroyDialog.setVisibility(View.VISIBLE);
             thumbnailDestroyDialog.setImageResource(masterSecret, ((MediaMmsMessageRecord) messageRecord).getId(),
@@ -441,7 +441,7 @@ public class ConversationItem extends LinearLayout {
               }
             });
           }
-          while (i > 0) {
+          while (i > 0 && !alreadyDestroyed) {
             try {
               Thread.sleep(SECOND);
             } catch (InterruptedException e) {
