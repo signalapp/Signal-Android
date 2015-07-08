@@ -1,17 +1,20 @@
 package de.gdata.messaging.util;
 
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.bumptech.glide.GenericRequestBuilder;
 import com.bumptech.glide.Glide;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -81,6 +84,10 @@ public class ProfileAccessor {
 
   public static ImageSlide getMyProfilePicture(Context context) {
     Uri profilePictureUri = Uri.parse(getPreferences(context).getProfilePictureUri());
+    if(TextUtils.isEmpty(profilePictureUri.toString())) {
+      Uri uri = Uri.parse("android.resource://" + context.getPackageName() + "/" + R.drawable.ic_contact_picture_removed);
+      profilePictureUri = uri;
+    }
     try {
       profilePicture = new ImageSlide(context, profilePictureUri);
     } catch (IOException e) {
@@ -163,11 +170,18 @@ public class ProfileAccessor {
     return getPreferences(context).getActiveContacts();
   }
 
-  public static void sendProfileUpdateToAllContacts(final Context context, final MasterSecret masterSecret, boolean encrypted) {
+  public static void sendProfileUpdateToAllContacts(final Context context, final MasterSecret masterSecret) {
     String[] activeContacts = getActiveContacts(context);
     mMasterSecret = masterSecret;
     for (int i = 0; i < activeContacts.length; i++) {
         updateProfileInformations(RecipientFactory.getRecipientsFromString(context, activeContacts[i], false));
+    }
+  }
+  public static void sendProfileUpdateToAllContactsWithThread(final Context context, final MasterSecret masterSecret) {
+    String[] activeContacts = getActiveContacts(context);
+    mMasterSecret = masterSecret;
+    for (int i = 0; i < activeContacts.length; i++) {
+      sendProfileUpdateToContactWithThread(context, activeContacts[i]);
     }
   }
   public static void updateProfileInformations(Recipients recipients) {
@@ -219,12 +233,12 @@ public class ProfileAccessor {
         .transform(new ThumbnailTransform(GService.appContext));
   }
 
-  public static void sendProfileUpdateToAllWithThreadContacts(FragmentActivity activity, String profileId, MasterSecret masterSecret, boolean b) {
+  public static void sendProfileUpdateToContactWithThread(Context activity, String profileId) {
     Recipients recipients = RecipientFactory.getRecipientsFromString(activity, profileId, false);
     long       threadId   = DatabaseFactory.getThreadDatabase(activity).getThreadIdFor(recipients);
     boolean hasConversation = threadId > 0 ? true : false;
     if(hasConversation) {
-      sendProfileUpdateToAllContacts(activity, masterSecret, b);
+      updateProfileInformations(RecipientFactory.getRecipientsFromString(activity, profileId, false));
     }
   }
 }
