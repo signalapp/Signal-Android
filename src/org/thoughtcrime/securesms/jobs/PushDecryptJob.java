@@ -222,11 +222,9 @@ public class PushDecryptJob extends MasterSecretJob {
         .getJobManager()
         .add(new ProfileImageDownloadJob(context, numberAsLong));
 
-    Log.d("MYLOG", "handleProfileUpdate Status: " + message.getBody().get());
-    Log.d("MYLOG", "handleProfileUpdate Attachment: " + message.getAttachments().isPresent());
     ProfileAccessor.setProfileStatus(context, message.getBody().get());
-    ProfileAccessor.setStatusForProfileId(context, numberAsLong+"", message.getBody().get());
-
+    ProfileAccessor.setStatusForProfileId(context, numberAsLong + "", message.getBody().get());
+    ProfileAccessor.setUpdateTimeForProfileId(context, numberAsLong + "", message.getTimestamp());
   }
   private void handleTextMessage(MasterSecret masterSecret, TextSecureEnvelope envelope,
                                  TextSecureMessage message, Optional<Long> smsMessageId)

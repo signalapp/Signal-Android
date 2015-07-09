@@ -108,6 +108,12 @@ public class ProfileAccessor {
   public static void setStatusForProfileId(Context context, String profileId, String status) {
     getPreferences(context).setProfileStatusForProfileId(profileId, status);
   }
+  public static void setUpdateTimeForProfileId(Context context, String profileId, Long date) {
+    getPreferences(context).setProfilUpdateTimeForProfileId(profileId, date);
+  }
+  public static Long getProfileUpdateTimeForRecepient(Context context, String profileId) {
+    return getPreferences(context).getProfileUpdateTimeForProfileId(profileId);
+  }
   public static String getProfileStatusForRecepient(Context context, String profileId) {
     return getPreferences(context).getProfileStatusForProfileId(profileId);
   }
