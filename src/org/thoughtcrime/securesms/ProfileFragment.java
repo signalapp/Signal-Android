@@ -344,6 +344,7 @@ public class ProfileFragment extends Fragment {
     Intent intent = new Intent(Intent.ACTION_VIEW);
     intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
     intent.setDataAndType(PartAuthority.getPublicPartUri(slide.getUri()), slide.getContentType());
+    intent.putExtra("destroyImage", true);
     try {
       getActivity().startActivity(intent);
     } catch (ActivityNotFoundException anfe) {
@@ -358,6 +359,7 @@ public class ProfileFragment extends Fragment {
         intent.setDataAndType(slide.getUri(), slide.getContentType());
         intent.putExtra(MediaPreviewActivity.MASTER_SECRET_EXTRA, masterSecret);
         intent.putExtra(MediaPreviewActivity.RECIPIENT_EXTRA, RecipientFactory.getRecipientsFromString(getActivity(), String.valueOf(profileId), false).getPrimaryRecipient().getRecipientId());
+        intent.putExtra("destroyImage", true);
         getActivity().startActivity(intent);
       } else {
         AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(getActivity());
