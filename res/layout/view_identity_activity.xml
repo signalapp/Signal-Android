@@ -15,9 +15,15 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:typeface="monospace"
+                android:textSize="12sp"
                 android:id="@+id/identity_fingerprint"
                 android:text=""
                 android:padding="7dip" />
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:id="@+id/identity_qrcode"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 </ScrollView>

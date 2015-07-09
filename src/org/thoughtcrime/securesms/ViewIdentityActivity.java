@@ -16,8 +16,17 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
 
 import org.whispersystems.libaxolotl.IdentityKey;
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
@@ -34,6 +43,7 @@ public class ViewIdentityActivity extends KeyScanningActivity {
 
   private TextView    identityFingerprint;
   private IdentityKey identityKey;
+  private ImageView   imageView;
 
   @Override
   public void onCreate(Bundle state) {
@@ -52,10 +62,20 @@ public class ViewIdentityActivity extends KeyScanningActivity {
   private void initializeFingerprint() {
     if (identityKey == null) {
       identityFingerprint.setText(R.string.ViewIdentityActivity_you_do_not_have_an_identity_key);
+      imageView.setVisibility(View.GONE);
     } else {
-      identityFingerprint.setText(identityKey.getFingerprint());
+      String fingerprint = identityKey.getFingerprint();
+      identityFingerprint.setText(fingerprint);
+      BitMatrix matrix = getBitMatrix(fingerprint);
+      if(matrix == null) {
+        imageView.setVisibility(View.GONE);
+        return;
+      }
+      imageView.setImageBitmap(toBitmap(matrix));
     }
+
   }
+
 
   private void initializeResources() {
     IdentityKeyParcelable identityKeyParcelable = getIntent().getParcelableExtra(IDENTITY_KEY);
@@ -66,6 +86,7 @@ public class ViewIdentityActivity extends KeyScanningActivity {
 
     this.identityKey         = identityKeyParcelable.get();
     this.identityFingerprint = (TextView)findViewById(R.id.identity_fingerprint);
+    this.imageView           = (ImageView)findViewById(R.id.identity_qrcode);
     String title             = getIntent().getStringExtra(TITLE);
 
     if (title != null) {

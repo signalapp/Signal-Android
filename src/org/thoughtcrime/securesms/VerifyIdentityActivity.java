@@ -17,9 +17,17 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.zxing.common.BitMatrix;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
@@ -46,8 +54,10 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
   private Recipient    recipient;
   private MasterSecret masterSecret;
 
-  private TextView localIdentityFingerprint;
-  private TextView remoteIdentityFingerprint;
+  private TextView     localIdentityFingerprint;
+  private TextView     remoteIdentityFingerprint;
+  private Button       scanButton;
+  private ImageView    qrCode;
 
   private final DynamicTheme    dynamicTheme    = new DynamicTheme   ();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
@@ -85,7 +95,16 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
       return;
     }
 
-    localIdentityFingerprint.setText(IdentityKeyUtil.getIdentityKey(this).getFingerprint());
+    IdentityKey identityKey = IdentityKeyUtil.getIdentityKey(this);
+    localIdentityFingerprint.setText(identityKey.getFingerprint());
+
+    String fingerprint = identityKey.getFingerprint();
+    BitMatrix matrix = getBitMatrix(fingerprint);
+    if(matrix == null) {
+      qrCode.setVisibility(View.GONE);
+      return;
+    }
+    qrCode.setImageBitmap(toBitmap(matrix));
   }
 
   private void initializeRemoteIdentityKey() {
@@ -115,31 +134,32 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
   private void initializeResources() {
     this.localIdentityFingerprint  = (TextView)findViewById(R.id.you_read);
     this.remoteIdentityFingerprint = (TextView)findViewById(R.id.friend_reads);
+    this.scanButton                = (Button)findViewById(R.id.scan_qr_code);
+    this.qrCode                    = (ImageView)findViewById(R.id.identity_qrcode);
     this.recipient                 = RecipientFactory.getRecipientForId(this, this.getIntent().getLongExtra("recipient", -1), true);
     this.masterSecret              = this.getIntent().getParcelableExtra("master_secret");
+
+    this.scanButton.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent i = new Intent(VerifyIdentityActivity.this, QrScanActivity.class);
+        startActivityForResult(i, QrScanActivity.REQUEST_SCAN_BARCODE);
+      }
+    });
   }
 
   @Override
-  protected void initiateDisplay() {
-    if (!IdentityKeyUtil.hasIdentityKey(this)) {
-      Toast.makeText(this,
-                     R.string.VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation,
-                     Toast.LENGTH_LONG).show();
+  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+    if(resultCode != Activity.RESULT_OK)
       return;
-    }
 
-    super.initiateDisplay();
-  }
-
-  @Override
-  protected void initiateScan() {
+    String key = data.getStringExtra(QrScanActivity.FINGERPRINT);
     IdentityKey identityKey = getRemoteIdentityKey(masterSecret, recipient);
-
-    if (identityKey == null) {
-      Toast.makeText(this, R.string.VerifyIdentityActivity_recipient_has_no_identity_key_exclamation,
-                     Toast.LENGTH_LONG).show();
-    } else {
-      super.initiateScan();
+    if(identityKey.getFingerprint().equalsIgnoreCase(key)){
+      remoteIdentityFingerprint.setText("OK");
+    }else{
+      remoteIdentityFingerprint.setTextColor(Color.RED);
     }
   }
 

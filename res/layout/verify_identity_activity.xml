@@ -20,11 +20,17 @@
         <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textAppearance="?android:attr/textAppearanceSmall"
                 android:typeface="monospace"
                 android:id="@+id/friend_reads"
                 android:text=""
                 android:padding="7dip" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:id="@+id/scan_qr_code"
+            android:text="@string/VerifyIdentityActivity_scan_their_key_to_compare"
+            android:layout_height="wrap_content" />
 
         <TextView
                 android:layout_width="fill_parent"
@@ -33,13 +39,20 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:padding="7dip" />
 
+
+
         <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/you_read"
-                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textAppearance="?android:attr/textAppearanceSmall"
                 android:typeface="monospace"
                 android:text=""
                 android:padding="7dip" />
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/identity_qrcode"/>
     </LinearLayout>
 </ScrollView>
