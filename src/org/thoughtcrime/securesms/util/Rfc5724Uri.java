@@ -46,13 +46,8 @@ public class Rfc5724Uri {
   private String parsePath() throws URISyntaxException {
     String[] parts = uri.split("\\?")[0].split(":", 2);
 
-    if (parts.length < 2 || parts[1].isEmpty()){
-      throw new URISyntaxException(uri, "invalid path");
-    } else if (parts[1].contains("%")){
-      return URLDecoder.decode(parts[1]);
-    }else{
-      return parts[1];
-    }
+    if (parts.length < 2 || parts[1].isEmpty()) throw new URISyntaxException(uri, "invalid path");
+    else                                        return parts[1];
   }
 
   private Map<String, String> parseQueryParams() throws URISyntaxException {

@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.Rfc5724Uri;
 
 import java.net.URISyntaxException;
+import java.net.URLDecoder;
 
 public class QuickResponseService extends MasterSecretIntentService {
 
@@ -44,6 +45,10 @@ public class QuickResponseService extends MasterSecretIntentService {
     try {
       Rfc5724Uri uri        = new Rfc5724Uri(intent.getDataString());
       String     content    = intent.getStringExtra(Intent.EXTRA_TEXT);
+      String     numbers    = uri.getPath();
+      if(numbers.contains("%")){
+        numbers = URLDecoder.decode(numbers);
+      }
       Recipients recipients = RecipientFactory.getRecipientsFromString(this, uri.getPath(), false);
 
       if (!TextUtils.isEmpty(content)) {
