@@ -87,6 +87,7 @@ public class GDataPreferences {
   public String getProfileStatus() {
     return mPreferences.getString(PROFILE_STATUS, "");
   }
+
   public void setProfileStatusForProfileId(String profileId, String status) {
     mPreferences.edit().putString("status:" + profileId, status).commit();
   }

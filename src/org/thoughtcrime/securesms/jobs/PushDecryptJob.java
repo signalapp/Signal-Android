@@ -222,7 +222,6 @@ public class PushDecryptJob extends MasterSecretJob {
         .getJobManager()
         .add(new ProfileImageDownloadJob(context, numberAsLong));
 
-    ProfileAccessor.setProfileStatus(context, message.getBody().get());
     ProfileAccessor.setStatusForProfileId(context, numberAsLong + "", message.getBody().get());
     ProfileAccessor.setUpdateTimeForProfileId(context, numberAsLong + "", message.getTimestamp());
   }

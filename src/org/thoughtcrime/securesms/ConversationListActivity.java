@@ -171,7 +171,13 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     profileDrawer.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        handleOpenProfile();
+        mDrawerLayout.closeDrawer(mDrawerNavi);
+        new Handler().postDelayed(new Runnable() {
+          @Override
+          public void run() {
+            handleOpenProfile();
+          }
+        }, 200);
       }
     });
     getSupportActionBar().setHomeButtonEnabled(true);
