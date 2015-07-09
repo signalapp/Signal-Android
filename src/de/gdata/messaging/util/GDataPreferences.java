@@ -111,10 +111,13 @@ public class GDataPreferences {
   }
 
   public boolean isMarkedAsRemoved(String id) {
-    return mPreferences.getBoolean("msgid:"+id, false);
+    return mPreferences.getBoolean("msgid:" + id, false);
   }
   public void setAsDestroyed(String id) {
     mPreferences.edit().putBoolean("msgid:" + id, true).commit();
+  }
+  public void removeFromList(String id) {
+    mPreferences.edit().remove("msgid:" + id).commit();
   }
 }
 

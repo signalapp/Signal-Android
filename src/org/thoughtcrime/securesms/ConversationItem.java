@@ -220,6 +220,7 @@ public class ConversationItem extends LinearLayout {
       bodyText.setTextColor(Color.BLACK);
     }
     if (new GDataPreferences(getContext()).isMarkedAsRemoved(getUniqueMsgId(messageRecord))) {
+      new GDataPreferences(getContext()).removeFromList(getUniqueMsgId(messageRecord));
     deleteMessage(messageRecord);
   }
 
@@ -329,7 +330,7 @@ public class ConversationItem extends LinearLayout {
   }
 
   public String getUniqueMsgId(MessageRecord messageRecord) {
-    return messageRecord.getId() + "" +  messageRecord.getRecipientDeviceId() + "" + messageRecord.getType();
+    return messageRecord.getId() + "" +  messageRecord.getRecipientDeviceId() + "" + messageRecord.getType()+messageRecord.getDateReceived();
   }
 
   public class BombClickListener implements OnClickListener {
