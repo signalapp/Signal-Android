@@ -7,17 +7,20 @@ import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ImageFormat;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.YuvImage;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.util.Pair;
 
@@ -209,7 +212,8 @@ public class BitmapUtil {
     }
   }
 
-  private static Bitmap rotateBitmap(Bitmap bitmap, int angle) {
+  public static Bitmap rotateBitmap(Bitmap bitmap, int angle) {
+    if (angle == 0) return bitmap;
     Matrix matrix = new Matrix();
     matrix.postRotate(angle);
     Bitmap rotated = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
@@ -266,6 +270,24 @@ public class BitmapUtil {
     canvas.drawBitmap(bitmap, rect, rect, paint);
 
     return output;
+  }
+
+  public static Bitmap createFromNV21(@NonNull final byte[] data,
+                                      final int width,
+                                      final int height,
+                                      final int rotation,
+                                      final Rect croppingRect)
+      throws IOException
+  {
+    YuvImage previewImage = new YuvImage(data, ImageFormat.NV21,
+                                         width, height, null);
+
+    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+    previewImage.compressToJpeg(croppingRect, 100, outputStream);
+    byte[] bytes = outputStream.toByteArray();
+    outputStream.close();
+    outputStream = new ByteArrayOutputStream();
+    return BitmapUtil.rotateBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length), rotation);
   }
 
   public static Bitmap createFromDrawable(final Drawable drawable, final int width, final int height) {

@@ -1,7 +1,8 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Intent;
-import android.os.Build;
+import android.os.Build.VERSION;
+import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -84,7 +85,7 @@ public class ConversationPopupActivity extends ConversationActivity {
             intent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, getRecipients().getIds());
             intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, result);
 
-            if ( Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            if (VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN) {
               startActivity(intent, transition.toBundle());
             } else {
               startActivity(intent);
@@ -109,6 +110,11 @@ public class ConversationPopupActivity extends ConversationActivity {
   protected void initializeActionBar() {
     super.initializeActionBar();
     getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+  }
+
+  @Override
+  protected void hideEmojiPopup(boolean expectingKeyboard) {
+    super.hideEmojiPopup(false);
   }
 
   @Override

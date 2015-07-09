@@ -3,6 +3,7 @@
     <dimen name="emoji_drawer_size">32sp</dimen>
     <dimen name="min_keyboard_size">50dp</dimen>
     <dimen name="min_emoji_drawer_height">200dp</dimen>
+    <dimen name="min_emoji_drawer_top_margin">170dp</dimen>
     <dimen name="emoji_drawer_item_padding">5dp</dimen>
     <dimen name="emoji_drawer_indicator_height">1.5dp</dimen>
     <dimen name="emoji_drawer_left_right_padding">5dp</dimen>
@@ -22,10 +23,12 @@
     <dimen name="media_bubble_height">210dp</dimen>
     <dimen name="media_bubble_border_width">3dp</dimen>
 
-
     <integer name="media_overview_cols">3</integer>
     <dimen name="message_details_table_row_pad">10dp</dimen>
 
     <dimen name="color_grid_extra_padding">32dp</dimen>
     <dimen name="color_grid_item_size">48dp</dimen>
+
+    <dimen name="quick_media_drawer_default_height">250dp</dimen>
+    <dimen name="quick_camera_shutter_ring_size">52dp</dimen>
 </resources>
