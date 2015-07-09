@@ -274,7 +274,6 @@ public class QuickAttachmentDrawer extends ViewGroup {
   private void setDrawerState(DrawerState drawerState) {
     switch (drawerState) {
     case COLLAPSED:
-      slideOffset = COLLAPSED_ANCHOR_POINT;
       fullScreenButton.setImageResource(R.drawable.quick_camera_fullscreen);
       if (listener != null) listener.onAttachmentDrawerClosed();
       break;
@@ -283,21 +282,26 @@ public class QuickAttachmentDrawer extends ViewGroup {
         setDrawerState(DrawerState.FULL_EXPANDED);
         return;
       }
-      Log.w(TAG, "HALF_EXPANDED init");
       quickCamera.onResume();
-      slideOffset = halfExpandedAnchorPoint;
       fullScreenButton.setImageResource(R.drawable.quick_camera_fullscreen);
       if (listener != null) listener.onAttachmentDrawerOpened();
       break;
     case FULL_EXPANDED:
       quickCamera.onResume();
-      slideOffset = FULL_EXPANDED_ANCHOR_POINT;
       fullScreenButton.setImageResource(isFullscreenOnly() ? R.drawable.quick_camera_hide
                                                            : R.drawable.quick_camera_exit_fullscreen);
       if (listener != null) listener.onAttachmentDrawerOpened();
       break;
     }
     this.drawerState = drawerState;
+  }
+
+  public float getTargetSlideOffset() {
+    switch (drawerState) {
+    case FULL_EXPANDED: return FULL_EXPANDED_ANCHOR_POINT;
+    case HALF_EXPANDED: return halfExpandedAnchorPoint;
+    default: return COLLAPSED_ANCHOR_POINT;
+    }
   }
 
   public DrawerState getDrawerState() {
@@ -308,7 +312,7 @@ public class QuickAttachmentDrawer extends ViewGroup {
     DrawerState oldDrawerState = this.drawerState;
     setDrawerState(requestedDrawerState);
     if (oldDrawerState != drawerState) {
-      slideTo(slideOffset);
+      slideTo(getTargetSlideOffset());
     }
   }
 
@@ -333,6 +337,7 @@ public class QuickAttachmentDrawer extends ViewGroup {
     public void onViewDragStateChanged(int state) {
       if (dragHelper.getViewDragState() == ViewDragHelper.STATE_IDLE) {
         setDrawerState(drawerState);
+        slideOffset = getTargetSlideOffset();
         requestLayout();
       }
     }
@@ -374,6 +379,7 @@ public class QuickAttachmentDrawer extends ViewGroup {
         }
 
         setDrawerState(drawerState);
+        float slideOffset = getTargetSlideOffset();
         dragHelper.captureChildView(coverView, 0);
         Log.w(TAG, String.format("setting cover at %d",  computeCoverBottomPosition(slideOffset) - coverView.getHeight()));
         dragHelper.settleCapturedViewAt(coverView.getLeft(), computeCoverBottomPosition(slideOffset) - coverView.getHeight());
