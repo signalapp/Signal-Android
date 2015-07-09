@@ -42,7 +42,7 @@
                       android:layout_height="wrap_content"
                       android:layout_toRightOf="@id/contact_photo"
                       android:layout_toEndOf="@id/contact_photo"
-                      android:layout_marginRight="50dp"
+                      android:layout_marginRight="35dp"
                       android:background="@drawable/received_bubble"
                       android:orientation="vertical">
 
