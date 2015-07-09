@@ -280,6 +280,28 @@
         <item name="dialog_info_icon">@drawable/ic_dialog_info_dark</item>
         <item name="dialog_alert_icon">@drawable/ic_dialog_alert_dark</item>
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+
+        <item name="actionModeStyle">@style/My.Widget.ActionMode</item>
+        <item name="android:actionModeStyle">@style/My.Widget.ActionMode</item>
+    </style>
+    <style name="My.Widget.ActionMode" parent="@style/Widget.AppCompat.Light.ActionMode.Inverse">
+        <item name="background">@color/gdata_red</item>
+        <item name="android:background">@color/gdata_red</item>
+        <item name="titleTextStyle">@style/My.TextAppearance.Widget.ActionMode.Title</item>
+        <item name="android:titleTextStyle">@style/My.TextAppearance.Widget.ActionMode.Title</item>
+        <item name="subtitleTextStyle">@style/My.TextAppearance.Widget.ActionMode.Subtitle</item>
+        <item name="android:subtitleTextStyle">@style/My.TextAppearance.Widget.ActionMode.Subtitle</item>
+    </style>
+    <style name="My.TextAppearance.Widget.ActionMode.Title" parent="@style/TextAppearance.AppCompat.Widget.ActionMode.Title">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:shadowColor">@android:color/black</item>
+        <item name="android:shadowRadius">1</item>
+    </style>
+
+    <style name="My.TextAppearance.Widget.ActionMode.Subtitle" parent="@style/TextAppearance.AppCompat.Widget.ActionMode.Subtitle">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">normal</item>
     </style>
 
     <style name="DrawerArrowStyle" parent="@style/Widget.AppCompat.DrawerArrowToggle">
@@ -337,8 +359,6 @@
         <item name="titleTextStyle">@style/TextSecure.TitleTextStyle</item>
         <item name="android:subtitleTextStyle">@style/TextSecure.SubtitleTextStyle</item>
         <item name="subtitleTextStyle">@style/TextSecure.SubtitleTextStyle</item>
-        <item name="android:actionBarWidgetTheme">@style/Theme.AppCompat.Light</item>
-        <item name="actionBarWidgetTheme">@style/Theme.AppCompat.Light</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>
     <!-- For Holo Light Dialog Activity Styling Emulation -->
