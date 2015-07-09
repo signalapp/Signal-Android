@@ -87,6 +87,7 @@ public class ConversationItem extends LinearLayout {
   //Workaround to hide encryption string from group creation
   private static final long TYPE_WRONG_CREATED = -2139029483;
   private static final long TYPE_WRONG_ENCRYPTED = -2136932329;
+  private static final long TYPE_LEFT_GROUP = -2136866793;
 
   private final int STYLE_ATTRIBUTES[] = new int[]{R.attr.conversation_item_sent_push_background,
       R.attr.conversation_item_sent_push_triangle_background,
@@ -215,7 +216,6 @@ public class ConversationItem extends LinearLayout {
       if (MmsDatabase.Types.isDuplicateMessageType(messageRecord.type) || SmsDatabase.Types.isDuplicateMessageType(messageRecord.type)) {
         deleteMessage(messageRecord);
       }
-
     } else {
       bodyText.setTextColor(Color.BLACK);
     }
@@ -293,12 +293,16 @@ public class ConversationItem extends LinearLayout {
     bodyText.setClickable(false);
     bodyText.setFocusable(false);
 
-    if (!(messageRecord.isGroupAction() && (messageRecord.type == TYPE_WRONG_ENCRYPTED || messageRecord.type == TYPE_WRONG_CREATED))) {
-      bodyText.setText(Emoji.getInstance(context).emojify(messageRecord.getDisplayBody(),
+    if ((messageRecord.isGroupAction() && (messageRecord.type == TYPE_WRONG_ENCRYPTED || messageRecord.type == TYPE_WRONG_CREATED))) {
+      bodyText.setText(Emoji.getInstance(context).emojify(context.getString(R.string.GroupUtil_group_updated),
+              new Emoji.InvalidatingPageLoadedListener(bodyText)),
+          TextView.BufferType.SPANNABLE);
+    } else if(messageRecord.isGroupAction() && messageRecord.type == TYPE_LEFT_GROUP) {
+      bodyText.setText(Emoji.getInstance(context).emojify(context.getString(R.string.MessageRecord_left_group),
               new Emoji.InvalidatingPageLoadedListener(bodyText)),
           TextView.BufferType.SPANNABLE);
     } else {
-      bodyText.setText(Emoji.getInstance(context).emojify(context.getString(R.string.GroupUtil_group_updated),
+      bodyText.setText(Emoji.getInstance(context).emojify(messageRecord.getDisplayBody(),
               new Emoji.InvalidatingPageLoadedListener(bodyText)),
           TextView.BufferType.SPANNABLE);
     }
