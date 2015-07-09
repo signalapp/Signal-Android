@@ -17,7 +17,7 @@
     <string name="menu_filter">Block contacts</string>
     <string name="menu_privacy">Hide conversations</string>
     <string name="menu_privacy_unhide">Turn hiding on</string>
-    <string name="menu_privacy_hide">Hiding [✔]</string>
+    <string name="menu_privacy_hide">Hiding</string>
     <string name="menu_privacy_single_hide">Hide conversation</string>
     <string name="menu_filter_block_contact">Block contact</string>
 
@@ -45,7 +45,10 @@
     <string name="preferences_notification_five_times">5x</string>
     <string name="preferences_notification_ten_times">10x</string>
     <string name="preferences_notification_title">Repeat alerts</string>
+
     <string name="unknown_country">Unknown country</string>
+
+    <string name="tk_mail">sc-feedback@gdata.de</string>
 
     <string name="log_submit_activity__button_dont_submit">Don\'t submit</string>
     <string name="log_submit_activity__button_submit">Submit</string>
@@ -53,7 +56,7 @@
     <string name="import_complete_dialog">SecureChat system database import is complete.</string>
 
     <string name="profile_status_label">Status</string>
-    <string name="profile_number_label">Telefon</string>
-    <string name="profile_status_member">Mitglieder</string>
+    <string name="profile_number_label">Phone</string>
+    <string name="profile_status_member">Member</string>
 
 </resources>
