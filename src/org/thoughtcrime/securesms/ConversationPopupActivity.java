@@ -56,6 +56,7 @@ public class ConversationPopupActivity extends ConversationActivity {
   protected void onResume() {
     super.onResume();
     composeText.requestFocus();
+    quickAttachmentToggle.disable();
   }
 
   @Override
