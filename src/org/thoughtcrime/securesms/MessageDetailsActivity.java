@@ -256,6 +256,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
       Context context = getContext();
       if (context == null) {
         Log.w(TAG, "associated context is destroyed, finishing early");
+        return null;
       }
 
       Recipients recipients;
