@@ -6,5 +6,11 @@
         </shape>
         <layer-list android:src="@drawable/import_export_item_background_light" />
     </item>
+    <item android:state_focused="true">
+        <shape>
+            <solid android:color="@color/import_export_touch_highlight_light" />
+        </shape>
+        <layer-list android:src="@drawable/import_export_item_background_light" />
+    </item>
     <item android:drawable="@drawable/import_export_item_background_light" />
 </selector>
