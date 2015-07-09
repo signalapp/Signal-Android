@@ -49,7 +49,7 @@ public class QuickResponseService extends MasterSecretIntentService {
       if(numbers.contains("%")){
         numbers = URLDecoder.decode(numbers);
       }
-      Recipients recipients = RecipientFactory.getRecipientsFromString(this, uri.getPath(), false);
+      Recipients recipients = RecipientFactory.getRecipientsFromString(this, numbers, false);
 
       if (!TextUtils.isEmpty(content)) {
         if (recipients.isSingleRecipient()) {
