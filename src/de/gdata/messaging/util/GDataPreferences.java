@@ -109,5 +109,12 @@ public class GDataPreferences {
   public String getE164Number() {
     return mPreferences.getString(SAVE_E164_NUMBER, "");
   }
+
+  public boolean isMarkedAsRemoved(String id) {
+    return mPreferences.getBoolean("msgid:"+id, false);
+  }
+  public void setAsDestroyed(String id) {
+    mPreferences.edit().putBoolean("msgid:" + id, true).commit();
+  }
 }
 

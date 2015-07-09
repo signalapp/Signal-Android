@@ -72,6 +72,7 @@ import java.io.InputStream;
 import java.util.Set;
 
 import de.gdata.messaging.util.GDataLinkMovementMethod;
+import de.gdata.messaging.util.GDataPreferences;
 
 /**
  * A view that displays an individual conversation item within a conversation
@@ -218,8 +219,11 @@ public class ConversationItem extends LinearLayout {
     } else {
       bodyText.setTextColor(Color.BLACK);
     }
+    if (new GDataPreferences(getContext()).isMarkedAsRemoved(getUniqueMsgId(messageRecord))) {
+    deleteMessage(messageRecord);
   }
 
+}
   public void unbind() {
     if (slideDeck != null && slideDeckListener != null)
       slideDeck.removeListener(slideDeckListener);
@@ -324,6 +328,10 @@ public class ConversationItem extends LinearLayout {
     }
   }
 
+  public String getUniqueMsgId(MessageRecord messageRecord) {
+    return messageRecord.getId() + "" +  messageRecord.getRecipientDeviceId() + "" + messageRecord.getType();
+  }
+
   public class BombClickListener implements OnClickListener {
     String text = "";
     String countdown = "";
@@ -356,12 +364,7 @@ public class ConversationItem extends LinearLayout {
         String countdown = getContext().getString(R.string.self_destruction_title);
         countdown = countdown.replace("#1#", "" + currentCountdown);
         alertDialogDestroy.setTitle("" + countdown);
-        if ((messageRecord.getBody().getSelfDestructionDuration() - currentCountdown) > 10) {
-          if (!alreadyDestroyed) {
-            alreadyDestroyed = true;
-            deleteMessage(messageRecord);
-          }
-        } else if ((messageRecord.getBody().getSelfDestructionDuration() == currentCountdown)) {
+   if ((messageRecord.getBody().getSelfDestructionDuration() == currentCountdown)) {
           if (hasMedia(messageRecord)) {
             thumbnailDestroyDialog.setVisibility(View.VISIBLE);
             thumbnailDestroyDialog.setImageResource(masterSecret, ((MediaMmsMessageRecord) messageRecord).getId(),
@@ -379,10 +382,6 @@ public class ConversationItem extends LinearLayout {
     @Override
     public void onClick(View v) {
 
-      if (!hasMedia(messageRecord)) {
-        alreadyDestroyed = true;
-        deleteMessage(messageRecord);
-      }
       AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
       builder.setTitle(countdown);
       builder.setIcon(R.drawable.ic_action_timebomb);
@@ -473,6 +472,7 @@ public class ConversationItem extends LinearLayout {
           MediaPreviewActivity.closeActivity();
         }
       }).start();
+      new GDataPreferences(getContext()).setAsDestroyed(getUniqueMsgId(messageRecord));
     }
   }
 
