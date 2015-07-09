@@ -7,8 +7,7 @@
         android:background="@drawable/conversation_list_item_background"
         android:layout_height="70dp"
         android:focusable="true"
-        android:nextFocusRight="@+id/fab"
-        android:nextFocusLeft="@+id/fab">
+        android:nextFocusRight="@+id/fab">
 
     <org.thoughtcrime.securesms.components.AvatarImageView
         android:id="@+id/contact_photo_image"
