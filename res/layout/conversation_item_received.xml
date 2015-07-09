@@ -6,6 +6,9 @@
         android:paddingRight="10dip"
         android:orientation="vertical"
         android:background="@drawable/conversation_item_background"
+        android:focusable="true"
+        android:nextFocusLeft="@+id/container"
+        android:nextFocusRight="@+id/embedded_text_editor"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto">

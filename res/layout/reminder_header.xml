@@ -13,7 +13,9 @@
                   tools:visibility="visible"
                   android:padding="2dp"
                   android:gravity="center_vertical"
-                  android:background="?reminder_header_background">
+                  android:focusable="true"
+                  android:nextFocusRight="@+id/cancel"
+                  android:background="@drawable/reminder_background">
 
         <LinearLayout android:id="@+id/reminder"
                       android:layout_width="0dp"
@@ -55,6 +57,9 @@
                              android:layout_width="40dp"
                              android:layout_height="40dp"
                              android:padding="10dp"
+                             android:focusable="true"
+                             android:nextFocusRight="@+id/container"
+                             android:nextFocusLeft="@+id/container"
                              android:background="@drawable/touch_highlight_background"
                              android:src="@drawable/ic_close_white_24dp"/>
             </LinearLayout>
