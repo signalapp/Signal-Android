@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 
 import java.lang.reflect.Field;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.regex.Matcher;
@@ -51,7 +52,11 @@ public class GUtil {
     setFontToLayouts(root, font);
     return root;
   }
-
+  public static String getDate(long milliseconds, String format)
+  {
+    SimpleDateFormat sdf = new SimpleDateFormat(format);
+    return sdf.format(milliseconds);
+  }
   /**
    * Sets the Typeface e.g. Roboto-Thin.tff for an Activity
    *

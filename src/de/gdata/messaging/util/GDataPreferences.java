@@ -90,6 +90,12 @@ public class GDataPreferences {
   public String getProfileStatusForProfileId(String profileId) {
     return mPreferences.getString("status:" +profileId, "");
   }
+  public Long getProfileUpdateTimeForProfileId(String profileId) {
+    return mPreferences.getLong("date:" + profileId, System.currentTimeMillis());
+  }
+  public void setProfilUpdateTimeForProfileId(String profileId, Long date) {
+    mPreferences.edit().putLong("date:" + profileId, date).commit();
+  }
   public void setApplicationFont(String applicationFont) {
     mPreferences.edit().putString(APPLICATION_FONT, applicationFont).commit();
   }

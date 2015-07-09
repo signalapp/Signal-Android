@@ -58,7 +58,10 @@ import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.SelectedRecipientsAdapter;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -79,6 +82,7 @@ public class ProfileFragment extends Fragment {
   private ImageView xCloseButton;
   private ImageView phoneCall;
   private TextView imageText;
+  private TextView statusDate;
   private TextView profilePhone;
   private ThumbnailView profilePicture;
   private Recipient recipient;
@@ -114,6 +118,7 @@ public class ProfileFragment extends Fragment {
     layout_phone = (RelativeLayout) getView().findViewById(R.id.layout_phone);
     layout_group = (RelativeLayout) getView().findViewById(R.id.layout_member);
 
+    statusDate = (TextView) getView().findViewById(R.id.profile__date);
     profileStatus = (EditText) getView().findViewById(R.id.profile_status);
     xCloseButton = (ImageView) getView().findViewById(R.id.profile_close);
     imageText = (TextView) getView().findViewById(R.id.image_text);
@@ -136,6 +141,8 @@ public class ProfileFragment extends Fragment {
           }
           profileStatus.setText(ProfileAccessor.getProfileStatusForRecepient(getActivity(), profileId), TextView.BufferType.EDITABLE);
           profileStatus.setEnabled(false);
+
+          statusDate.setText(GUtil.getDate(ProfileAccessor.getProfileUpdateTimeForRecepient(getActivity(), profileId), "dd.MM.yyyy hh:mm:ss"));
           imageText.setText(recipient.getName());
         }
         profilePicture.setThumbnailClickListener(new ThumbnailClickListener());
