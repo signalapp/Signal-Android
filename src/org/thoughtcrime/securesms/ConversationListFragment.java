@@ -100,6 +100,7 @@ public class ConversationListFragment extends ListFragment
     if (actionMode != null) {
       actionMode.finish();
       actionMode = null;
+      ((ActionBarActivity) getActivity()).getSupportActionBar().show();
     }
   }
 
@@ -122,6 +123,7 @@ public class ConversationListFragment extends ListFragment
 
         if (adapter.getBatchSelections().size() == 0) {
           actionMode.finish();
+          ((ActionBarActivity) getActivity()).getSupportActionBar().show();
         } else {
           actionMode.setSubtitle(getString(R.string.conversation_fragment_cab__batch_selection_amount,
                                            adapter.getBatchSelections().size()));
@@ -154,10 +156,11 @@ public class ConversationListFragment extends ListFragment
       public boolean onItemLongClick(AdapterView<?> arg0, View v, int position, long id) {
         ConversationListAdapter adapter = (ConversationListAdapter) getListAdapter();
         actionMode = ((ActionBarActivity) getActivity()).startSupportActionMode(ConversationListFragment.this);
-
+        ((ActionBarActivity) getActivity()).getSupportActionBar().hide();
         adapter.initializeBatchMode(true);
         adapter.toggleThreadInBatchSet(((ConversationListItem) v).getThreadId());
         adapter.notifyDataSetChanged();
+
 
         return true;
       }
@@ -222,6 +225,7 @@ public class ConversationListFragment extends ListFragment
               if (actionMode != null) {
                 actionMode.finish();
                 actionMode = null;
+                ((ActionBarActivity) getActivity()).getSupportActionBar().show();
               }
             }
           }.execute();
