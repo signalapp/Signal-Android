@@ -70,6 +70,11 @@ import java.util.List;
     }
 
     final Parameters cameraParameters = getCameraParameters();
+    if (cameraParameters == null) {
+      Log.w(TAG, "camera not in capture-ready state");
+      return;
+    }
+
     setOneShotPreviewCallback(new Camera.PreviewCallback() {
       @Override
       public void onPreviewFrame(byte[] data, final Camera camera) {
