@@ -174,14 +174,14 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private   View                      composePanel;
   private   View                      composeBubble;
 
-  private AttachmentTypeSelectorAdapter attachmentAdapter;
-  private AttachmentManager             attachmentManager;
-  private BroadcastReceiver             securityUpdateReceiver;
-  private BroadcastReceiver             groupUpdateReceiver;
-  private Optional<EmojiPopup>          emojiPopup = Optional.absent();
-  private EmojiToggle                   emojiToggle;
-  private HidingImageButton             quickAttachmentToggle;
-  private QuickAttachmentDrawer         quickAttachmentDrawer;
+  private   AttachmentTypeSelectorAdapter attachmentAdapter;
+  private   AttachmentManager             attachmentManager;
+  private   BroadcastReceiver             securityUpdateReceiver;
+  private   BroadcastReceiver             groupUpdateReceiver;
+  private   Optional<EmojiPopup>          emojiPopup = Optional.absent();
+  private   EmojiToggle                   emojiToggle;
+  protected HidingImageButton             quickAttachmentToggle;
+  private   QuickAttachmentDrawer         quickAttachmentDrawer;
 
   private Recipients recipients;
   private long       threadId;
@@ -848,7 +848,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       quickAttachmentDrawer.setListener(this);
       quickAttachmentToggle.setOnClickListener(new QuickAttachmentToggleListener());
     } else {
-      quickAttachmentToggle.setVisibility(View.GONE);
+      quickAttachmentToggle.disable();
     }
   }
 
