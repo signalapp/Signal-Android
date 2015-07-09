@@ -22,6 +22,7 @@ import android.content.pm.ActivityInfo;
 import android.hardware.Camera;
 import android.hardware.Camera.PreviewCallback;
 import android.os.Build;
+import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -240,8 +241,8 @@ public class CameraView extends FrameLayout {
     if (camera != null) camera.setOneShotPreviewCallback(callback);
   }
 
-  public Camera.Parameters getCameraParameters() {
-    return camera.getParameters();
+  public @Nullable Camera.Parameters getCameraParameters() {
+    return camera == null || !cameraReady ? null : camera.getParameters();
   }
 
   void previewCreated() {
