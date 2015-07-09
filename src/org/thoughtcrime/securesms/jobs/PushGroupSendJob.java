@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
+import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
@@ -78,11 +79,12 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
   {
     MmsDatabase          database = DatabaseFactory.getMmsDatabase(context);
     OutgoingMediaMessage message  = database.getOutgoingMessage(masterSecret, messageId);
+    MmsDatabase.Reader   reader   = database.readerFor(masterSecret, database.getMessage(messageId));
+    MessageRecord        record   = reader.getNext();
 
     try {
       deliver(masterSecret, message, filterRecipientId);
 
-      database.markAsSent(messageId, true);
       markAttachmentsUploaded(messageId, message.getAttachments());
 
       if (message.getExpiresIn() > 0 && !message.isExpirationUpdate()) {
@@ -90,6 +92,12 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
         ApplicationContext.getInstance(context)
                           .getExpiringMessageManager()
                           .scheduleDeletion(messageId, true, message.getExpiresIn());
+      }
+
+      if (record.hasNetworkFailures()) {
+        database.markAsSentFailed(messageId);
+      } else {
+        database.markAsSent(messageId, true);
       }
     } catch (InvalidNumberException | RecipientFormattingException | UndeliverableMessageException e) {
       Log.w(TAG, e);
