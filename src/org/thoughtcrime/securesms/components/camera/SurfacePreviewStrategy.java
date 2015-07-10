@@ -21,8 +21,6 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 
-import com.commonsware.cwac.camera.PreviewStrategy;
-
 import java.io.IOException;
 
 class SurfacePreviewStrategy implements PreviewStrategy,
@@ -31,6 +29,7 @@ class SurfacePreviewStrategy implements PreviewStrategy,
   private final CameraView cameraView;
   private SurfaceView preview=null;
   private SurfaceHolder previewHolder=null;
+  private boolean ready = false;
 
   @SuppressWarnings("deprecation")
   SurfacePreviewStrategy(CameraView cameraView) {
@@ -44,14 +43,14 @@ class SurfacePreviewStrategy implements PreviewStrategy,
   @Override
   public void surfaceCreated(SurfaceHolder holder) {
     Log.w(TAG, "surfaceCreated()");
-    cameraView.previewCreated();
+    ready = true;
+    synchronized (cameraView) { cameraView.notifyAll(); }
   }
 
   @Override
   public void surfaceChanged(SurfaceHolder holder, int format,
                              int width, int height) {
     Log.w(TAG, "surfaceChanged()");
-    cameraView.initPreview();
   }
 
   @Override
@@ -74,5 +73,10 @@ class SurfacePreviewStrategy implements PreviewStrategy,
   @Override
   public View getWidget() {
     return(preview);
+  }
+
+  @Override
+  public boolean isReady() {
+    return ready;
   }
 }
