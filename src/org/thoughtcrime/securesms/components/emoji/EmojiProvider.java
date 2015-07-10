@@ -9,7 +9,6 @@ import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.Drawable.Callback;
 import android.os.AsyncTask;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
@@ -17,6 +16,7 @@ import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.util.Log;
 import android.util.SparseArray;
+import android.widget.TextView;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
@@ -44,17 +44,14 @@ public class EmojiProvider {
   //                                                           |==== misc ====||======== emoticons ========||========= flags ==========|
   private static final Pattern EMOJI_RANGE = Pattern.compile("[\\u20a0-\\u32ff\\ud83c\\udc00-\\ud83d\\udeff\\udbb9\\udce5-\\udbb9\\udcee]");
 
-  public static final double EMOJI_FULL       = 1.00;
-  public static final double EMOJI_SMALL      = 0.90;
   public static final int    EMOJI_RAW_HEIGHT = 64;
   public static final int    EMOJI_RAW_WIDTH  = 64;
   public static final int    EMOJI_VERT_PAD   = 0;
   public static final int    EMOJI_PER_ROW    = 32;
 
   private final Context context;
-  private final double  drawWidth;
-  private final double  drawHeight;
-  private final double  verticalPad;
+  private final float   decodeScale;
+  private final float   verticalPad;
 
   public static EmojiProvider getInstance(Context context) {
     if (instance == null) {
@@ -69,11 +66,8 @@ public class EmojiProvider {
 
   private EmojiProvider(Context context) {
     this.context     = context.getApplicationContext();
-    this.drawHeight  = Math.min(context.getResources().getDimension(R.dimen.emoji_drawer_size), EMOJI_RAW_HEIGHT);
-    double drawScale = drawHeight / EMOJI_RAW_HEIGHT;
-    this.drawWidth   = EMOJI_RAW_WIDTH * drawScale;
-    this.verticalPad = EMOJI_VERT_PAD * drawScale;
-    Log.w(TAG, "draw size: " + drawWidth + "x" + drawHeight);
+    this.decodeScale = Math.min(1f, context.getResources().getDimension(R.dimen.emoji_drawer_size) / EMOJI_RAW_HEIGHT);
+    this.verticalPad = EMOJI_VERT_PAD * this.decodeScale;
     for (EmojiPageModel page : EmojiPages.PAGES) {
       if (page.hasSpriteMap()) {
         final EmojiPageBitmap pageBitmap = new EmojiPageBitmap(page);
@@ -84,15 +78,15 @@ public class EmojiProvider {
     }
   }
 
-  public Spannable emojify(CharSequence text, Callback callback) {
+  public Spannable emojify(CharSequence text, TextView tv) {
     Matcher                matches = EMOJI_RANGE.matcher(text);
     SpannableStringBuilder builder = new SpannableStringBuilder(text);
 
     while (matches.find()) {
       int codePoint = matches.group().codePointAt(0);
-      Drawable drawable = getEmojiDrawable(codePoint, EMOJI_SMALL);
+      Drawable drawable = getEmojiDrawable(codePoint);
       if (drawable != null) {
-        builder.setSpan(new InvalidatingDrawableSpan(drawable, callback), matches.start(), matches.end(),
+        builder.setSpan(new EmojiSpan(drawable, tv), matches.start(), matches.end(),
                         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
       }
     }
@@ -100,17 +94,16 @@ public class EmojiProvider {
     return builder;
   }
 
-  public Drawable getEmojiDrawable(int emojiCode, double size) {
-    return getEmojiDrawable(offsets.get(emojiCode), size);
+  public Drawable getEmojiDrawable(int emojiCode) {
+    return getEmojiDrawable(offsets.get(emojiCode));
   }
 
-  private Drawable getEmojiDrawable(DrawInfo drawInfo, double size) {
+  private Drawable getEmojiDrawable(DrawInfo drawInfo) {
     if (drawInfo == null)  {
       return null;
     }
 
-    final EmojiDrawable drawable = new EmojiDrawable(drawInfo, drawWidth, drawHeight);
-    drawable.setBounds(0, 0, (int)(drawWidth * size), (int)(drawHeight * size));
+    final EmojiDrawable drawable = new EmojiDrawable(drawInfo, decodeScale);
     drawInfo.page.get().addListener(new FutureTaskListener<Bitmap>() {
       @Override public void onSuccess(final Bitmap result) {
         Util.runOnMain(new Runnable() {
@@ -129,22 +122,22 @@ public class EmojiProvider {
 
   public class EmojiDrawable extends Drawable {
     private final DrawInfo info;
-    private final double   width;
-    private final double   height;
     private       Bitmap   bmp;
+    private       float    intrinsicWidth;
+    private       float    intrinsicHeight;
 
     @Override public int getIntrinsicWidth() {
-      return (int)width;
+      return (int)intrinsicWidth;
     }
 
     @Override public int getIntrinsicHeight() {
-      return (int)height;
+      return (int)intrinsicHeight;
     }
 
-    public EmojiDrawable(DrawInfo info, double width, double height) {
-      this.info   = info;
-      this.width  = width;
-      this.height = height;
+    public EmojiDrawable(DrawInfo info, float decodeScale) {
+      this.info            = info;
+      this.intrinsicWidth  = EMOJI_RAW_WIDTH  * decodeScale;
+      this.intrinsicHeight = EMOJI_RAW_HEIGHT * decodeScale;
     }
 
     @Override
@@ -157,10 +150,10 @@ public class EmojiProvider {
       final int row_index = info.index % EMOJI_PER_ROW;
 
       canvas.drawBitmap(bmp,
-                        new Rect((int)(row_index * width),
-                                 (int)(row * height + row * verticalPad),
-                                 (int)((row_index + 1) * width),
-                                 (int)((row + 1) * height + row * verticalPad)),
+                        new Rect((int)(row_index * intrinsicWidth),
+                                 (int)(row * intrinsicHeight + row * verticalPad),
+                                 (int)((row_index + 1) * intrinsicWidth),
+                                 (int)((row + 1) * intrinsicHeight + row * verticalPad)),
                         getBounds(),
                         paint);
     }
@@ -253,7 +246,7 @@ public class EmojiProvider {
       try {
         final InputStream measureStream = context.getAssets().open(model.getSprite());
         final InputStream bitmapStream  = context.getAssets().open(model.getSprite());
-        final Bitmap      bitmap        = BitmapUtil.createScaledBitmap(measureStream, bitmapStream, (float) drawHeight / (float) EMOJI_RAW_HEIGHT);
+        final Bitmap      bitmap        = BitmapUtil.createScaledBitmap(measureStream, bitmapStream, decodeScale);
         bitmapReference = new SoftReference<>(bitmap);
         Log.w(TAG, "onPageLoaded(" + model.getSprite() + ")");
         return bitmap;

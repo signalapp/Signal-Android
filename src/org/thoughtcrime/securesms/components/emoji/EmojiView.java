@@ -1,13 +1,10 @@
 package org.thoughtcrime.securesms.components.emoji;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.os.Build.VERSION_CODES;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.View;
@@ -37,8 +34,7 @@ public class EmojiView extends View implements Drawable.Callback {
   public void setEmoji(String emoji) {
     this.emoji    = emoji;
     this.drawable = EmojiProvider.getInstance(getContext())
-                                 .getEmojiDrawable(Character.codePointAt(emoji, 0),
-                                                   EmojiProvider.EMOJI_FULL);
+                                 .getEmojiDrawable(Character.codePointAt(emoji, 0));
     postInvalidate();
   }
 
