@@ -263,7 +263,7 @@ public class ConversationItem extends LinearLayout {
       mediaThumbnail.setImageResource(masterSecret, messageRecord.getId(),
                                       messageRecord.getDateReceived(),
                                       ((MediaMmsMessageRecord)messageRecord).getSlideDeckFuture());
-      mediaThumbnail.setShowProgress(!messageRecord.isFailed());
+      mediaThumbnail.setShowProgress(!messageRecord.isFailed() && messageRecord.isPending());
       bodyText.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
     } else {
       mediaThumbnail.setVisibility(View.GONE);

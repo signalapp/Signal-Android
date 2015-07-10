@@ -98,6 +98,7 @@ public class ThumbnailView extends FrameLayout {
     String slideId = id + "::" + timestamp;
 
     if (!slideId.equals(this.slideId)) {
+      progress.setVisibility(GONE);
       image.setImageDrawable(null);
       this.slide   = null;
       this.slideId = slideId;

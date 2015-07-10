@@ -71,7 +71,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
       database.markAsPush(messageId);
       database.markAsSecure(messageId);
       database.markAsSent(messageId, "push".getBytes(), 0);
-      updatePartsStatus(message.getBody());
+      markPartsUploaded(messageId, message.getBody());
     } catch (InsecureFallbackApprovalException ifae) {
       Log.w(TAG, ifae);
       database.markAsPendingInsecureSmsFallback(messageId);
@@ -98,14 +98,6 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
   public void onCanceled() {
     DatabaseFactory.getMmsDatabase(context).markAsSentFailed(messageId);
     notifyMediaMessageDeliveryFailed(context, messageId);
-  }
-
-  private void updatePartsStatus(PduBody body) {
-    if (body == null) return;
-    PartDatabase database = DatabaseFactory.getPartDatabase(context);
-    for (int i = 0; i < body.getPartsNum(); i++) {
-      database.markPartUploaded(messageId, body.getPart(i));
-    }
   }
 
   private void deliver(MasterSecret masterSecret, SendReq message)

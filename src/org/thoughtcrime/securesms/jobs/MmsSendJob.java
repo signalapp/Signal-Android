@@ -73,6 +73,7 @@ public class MmsSendJob extends SendJob {
       final MmsSendResult result   = getSendResult(sendConf, message);
 
       database.markAsSent(messageId, result.getMessageId(), result.getResponseStatus());
+      markPartsUploaded(messageId, message.getBody());
     } catch (UndeliverableMessageException | IOException e) {
       Log.w(TAG, e);
       database.markAsSentFailed(messageId);
