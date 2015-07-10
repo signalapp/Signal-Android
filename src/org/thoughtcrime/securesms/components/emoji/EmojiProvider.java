@@ -45,7 +45,7 @@ public class EmojiProvider {
   private static final Pattern EMOJI_RANGE = Pattern.compile("[\\u20a0-\\u32ff\\ud83c\\udc00-\\ud83d\\udeff\\udbb9\\udce5-\\udbb9\\udcee]");
 
   public static final double EMOJI_FULL       = 1.00;
-  public static final double EMOJI_SMALL      = 0.60;
+  public static final double EMOJI_SMALL      = 0.90;
   public static final int    EMOJI_RAW_HEIGHT = 64;
   public static final int    EMOJI_RAW_WIDTH  = 64;
   public static final int    EMOJI_VERT_PAD   = 0;
