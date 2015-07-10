@@ -51,6 +51,7 @@ public interface MmsSmsColumns {
     protected static final long SECURE_MESSAGE_BIT = 0x800000;
     protected static final long END_SESSION_BIT    = 0x400000;
     protected static final long PUSH_MESSAGE_BIT   = 0x200000;
+    protected static final long PROFILE_UPDATE_BIT = 0x10000000;
 
     // Group Message Information
     protected static final long GROUP_UPDATE_BIT = 0x10000;
@@ -87,6 +88,9 @@ public interface MmsSmsColumns {
       return (type & MESSAGE_FORCE_SMS_BIT) != 0;
     }
 
+    public static boolean isUpdateProfile(long type) {
+      return (type & PROFILE_UPDATE_BIT) != 0;
+    }
     public static boolean isPendingMessageType(long type) {
       return
           (type & BASE_TYPE_MASK) == BASE_OUTBOX_TYPE ||

@@ -36,9 +36,11 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import org.thoughtcrime.securesms.components.CircledImageView;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
+import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DateUtils;
@@ -46,6 +48,8 @@ import org.thoughtcrime.securesms.util.Emoji;
 
 import java.util.Set;
 import java.util.concurrent.ThreadFactory;
+
+import de.gdata.messaging.util.ProfileAccessor;
 
 /**
  * A view that displays the element in a list of multiple conversation threads.
@@ -69,7 +73,7 @@ public class ConversationListItem extends RelativeLayout
   private long              count;
   private boolean           read;
 
-  private ImageView         contactPhotoImage;
+  private CircledImageView         contactPhotoImage;
 
   private final Handler handler = new Handler();
   private int distributionType;
@@ -90,7 +94,7 @@ public class ConversationListItem extends RelativeLayout
     this.fromView          = (TextView) findViewById(R.id.from);
     this.dateView          = (TextView) findViewById(R.id.date);
 
-    this.contactPhotoImage = (ImageView) findViewById(R.id.contact_photo_image);
+    this.contactPhotoImage = (CircledImageView) findViewById(R.id.contact_photo_image);
 
     initializeContactWidgetVisibility();
   }
@@ -133,23 +137,27 @@ public class ConversationListItem extends RelativeLayout
   private void setContactPhoto(final Recipient recipient) {
     if (recipient == null) return;
 
-    contactPhotoImage.setImageBitmap(recipient.getCircleCroppedContactPhoto());
-
-    if (!recipient.isGroupRecipient()) {
-      contactPhotoImage.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-          if (recipient.getContactUri() != null) {
-            QuickContact.showQuickContact(context, contactPhotoImage, recipient.getContactUri(), QuickContact.MODE_LARGE, null);
-          } else {
-            Intent intent = new Intent(Intents.SHOW_OR_CREATE_CONTACT,  Uri.fromParts("tel", recipient.getNumber(), null));
-            context.startActivity(intent);
-          }
-        }
-      });
+    ImageSlide profileSlide = ProfileAccessor.getProfileAsImageSlide(context, recipient.getNumber());
+    if(profileSlide != null && !recipient.isGroupRecipient()) {
+      ProfileAccessor.buildGlideRequest(profileSlide).into(contactPhotoImage);
     } else {
-      contactPhotoImage.setOnClickListener(null);
+      contactPhotoImage.setImageBitmap(recipient.getCircleCroppedContactPhoto());
     }
+      if (!recipient.isGroupRecipient()) {
+        contactPhotoImage.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            if (recipient.getContactUri() != null) {
+              QuickContact.showQuickContact(context, contactPhotoImage, recipient.getContactUri(), QuickContact.MODE_LARGE, null);
+            } else {
+              Intent intent = new Intent(Intents.SHOW_OR_CREATE_CONTACT, Uri.fromParts("tel", recipient.getNumber(), null));
+              context.startActivity(intent);
+            }
+          }
+        });
+      } else {
+        contactPhotoImage.setOnClickListener(null);
+      }
   }
 
   private void setBackground(boolean read, boolean batch) {

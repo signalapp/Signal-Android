@@ -4,21 +4,25 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:fitsSystemWindows="true">
+    >
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     xmlns:tools="http://schemas.android.com/tools"
                     xmlns:fab="http://schemas.android.com/apk/res-auto"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:fitsSystemWindows="true"
+                    android:background="@color/gdata_red"
         >
+        <include android:id="@+id/toolbar" layout="@layout/toolbar"/>
 
         <LinearLayout android:id="@+id/drawer_layout_ll"
                       xmlns:android="http://schemas.android.com/apk/res/android"
                       android:layout_width="match_parent"
                       android:layout_height="match_parent"
-                      android:orientation="vertical">
+                      android:orientation="vertical"
+                      android:background="@color/white"
+                        android:layout_below="@+id/toolbar">
 
             <de.gdata.messaging.SlidingTabLayout
                 android:id="@+id/sliding_tabs"
@@ -31,9 +35,8 @@
                                                xmlns:android="http://schemas.android.com/apk/res/android"
                                                xmlns:tools="http://schemas.android.com/tools"
                                                android:layout_width="match_parent"
-                                               android:layout_height="wrap_content"
+                                               android:layout_height="match_parent"
                                                android:layout_below="@+id/sliding_tabs"
-                                               android:fitsSystemWindows="true"
                                                android:textSize="20dp"
                                                android:textStyle="bold"
                                                tools:context=".ActivityUser"/>
@@ -54,6 +57,64 @@
 
     </RelativeLayout>
     <!-- The navigation drawer -->
+    <LinearLayout
+        android:id="@+id/drawerll"
+        android:layout_width="240dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:orientation="vertical"
+        android:fitsSystemWindows="true"
+        >
+    <LinearLayout
+        android:id="@+id/drawer"
+        android:paddingTop="30dp"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:background="@color/gdata_red"
+        android:gravity="center_vertical"
+        android:orientation="vertical" >
+
+        <org.thoughtcrime.securesms.components.CircledImageView
+            android:id="@+id/profile_picture"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:layout_weight="2"
+            android:scaleType="centerCrop"
+            android:visibility="visible"/>
+
+        <LinearLayout
+            android:id="@+id/drawer2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:paddingBottom="5dp"
+            android:paddingTop="10dp"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text=""
+                android:id="@+id/profileName"
+                android:paddingLeft="15dp"
+                android:textColor="@color/white"
+                android:textSize="10sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:paddingLeft="15dp"
+                android:gravity="center"
+                android:text=""
+                android:id="@+id/profileStatus"
+                android:textColor="@color/white"
+                android:textSize="10sp" />
+        </LinearLayout>
+    </LinearLayout>
     <ListView
         android:id="@+id/left_drawer"
         android:layout_width="240dp"
@@ -64,4 +125,5 @@
         android:divider="@color/menuDivider"
         android:dividerHeight="1px"
         android:scrollbars="none"/>
+    </LinearLayout>
 </android.support.v4.widget.DrawerLayout>

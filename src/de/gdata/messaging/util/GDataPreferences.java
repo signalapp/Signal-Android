@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.util.JsonUtils;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Set;
 
 public class GDataPreferences {
@@ -30,7 +31,10 @@ public class GDataPreferences {
   private static final String PRIVACY_ACTIVATED = "PRIVACY_ACTIVATED";
   private static final String SAVED_HIDDEN_RECIPIENTS = "SAVED_HIDDEN_RECIPIENTS";
   private static final String SAVE_E164_NUMBER = "SAVE_E164_NUMBER";
-  private static final String DELETED_MESSAGES = "DELETED_MESSAGES";
+
+  private static final String PROFILE_PICTURE_URI = "PROFILE_PICTURE_URI";
+  private static final String PROFILE_STATUS = "PROFILE_STATUS";
+  private static final String ACTIVE_CONTACTS = "ACTIVE_CONTACTS";
 
 
   private final SharedPreferences mPreferences;
@@ -55,11 +59,64 @@ public class GDataPreferences {
     return mPreferences.getBoolean(PRIVACY_ACTIVATED, true);
   }
 
+  public void setProfilePictureUri(String uri) {
+    mPreferences.edit().putString(PROFILE_PICTURE_URI, uri).commit();
+  }
+  public String getProfilePictureUri() {
+    return mPreferences.getString(PROFILE_PICTURE_URI, "");
+  }
+
+  public void setProfilePartId(String profileId, Long profilePartId) {
+    mPreferences.edit().putLong("id:" + profileId, profilePartId).commit();
+  }
+  public void setProfilePartRow(String profileId, Long profilePartId) {
+    mPreferences.edit().putLong("row:" + profileId, profilePartId).commit();
+  }
+  public Long getProfilePartId(String profileId) {
+    return mPreferences.getLong("id:" +profileId, 0L);
+  }
+  public Long getProfilePartRow(String profileId) {
+    return mPreferences.getLong("row:"+profileId, 0L);
+  }
+  public void setProfileStatus(String profileStatus) {
+    mPreferences.edit().putString(PROFILE_STATUS, profileStatus).commit();
+  }
+  public String getProfileStatus() {
+    return mPreferences.getString(PROFILE_STATUS, "");
+  }
+
+  public void setProfileStatusForProfileId(String profileId, String status) {
+    mPreferences.edit().putString("status:" + profileId, status).commit();
+  }
+  public String getProfileStatusForProfileId(String profileId) {
+    return mPreferences.getString("status:" +profileId, "");
+  }
+  public Long getProfileUpdateTimeForProfileId(String profileId) {
+    return mPreferences.getLong("date:" + profileId, System.currentTimeMillis());
+  }
+  public void setProfilUpdateTimeForProfileId(String profileId, Long date) {
+    mPreferences.edit().putLong("date:" + profileId, date).commit();
+  }
   public void setApplicationFont(String applicationFont) {
     mPreferences.edit().putString(APPLICATION_FONT, applicationFont).commit();
   }
   public void saveFilterGroupIdForContact(String phoneNo, long filterGroupId) {
     mPreferences.edit().putLong(phoneNo, filterGroupId).commit();
+  }
+  public boolean saveActiveContacts(String[] array) {
+    mPreferences.edit().putInt(ACTIVE_CONTACTS + "_size", array.length).commit();
+    for(int i=0;i<array.length;i++) {
+      mPreferences.edit().putString(ACTIVE_CONTACTS + "_" + i, array[i]).commit();
+    }
+    return  mPreferences.edit().commit();
+  }
+  public String[] getActiveContacts() {
+    int size = mPreferences.getInt(ACTIVE_CONTACTS + "_size", 0);
+    String array[] = new String[size];
+    for(int i=0;i<size;i++) {
+      array[i] = mPreferences.getString(ACTIVE_CONTACTS + "_" + i, "");
+    }
+    return array;
   }
   public long getFilterGroupIdForContact(String phoneNo) {
     return mPreferences.getLong(phoneNo, -1L);

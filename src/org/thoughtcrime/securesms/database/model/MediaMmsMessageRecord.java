@@ -72,7 +72,7 @@ public class MediaMmsMessageRecord extends MessageRecord {
     return slideDeckFutureTask;
   }
 
-  private SlideDeck getSlideDeckSync() {
+  public SlideDeck getSlideDeckSync() {
     try {
       return slideDeckFutureTask.get();
     } catch (InterruptedException e) {

@@ -126,14 +126,14 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
         TextSecureAttachment avatar       = attachments.isEmpty() ? null : attachments.get(0);
         TextSecureGroup.Type type         = MmsSmsColumns.Types.isGroupQuit(message.getDatabaseMessageBox()) ? TextSecureGroup.Type.QUIT : TextSecureGroup.Type.UPDATE;
         TextSecureGroup      group        = new TextSecureGroup(type, groupId, groupContext.getName(), groupContext.getMembersList(), avatar);
-        TextSecureMessage groupMessage = new TextSecureMessage(message.getSentTimestamp(), group, null, null);
+        TextSecureMessage groupMessage = new TextSecureMessage(message.getSentTimestamp(), group, null, null, false);
 
         messageSender.sendMessage(addresses, groupMessage);
       }
     } else {
       String            body         = PartParser.getMessageText(message.getBody());
       TextSecureGroup   group        = new TextSecureGroup(groupId);
-      TextSecureMessage groupMessage = new TextSecureMessage(message.getSentTimestamp(), group, attachments, body);
+      TextSecureMessage groupMessage = new TextSecureMessage(message.getSentTimestamp(), group, attachments, body, false);
 
       messageSender.sendMessage(addresses, groupMessage);
     }

@@ -26,7 +26,7 @@ import android.support.annotation.Nullable;
 import android.telephony.SmsManager;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.providers.MmsBodyProvider;
+import de.gdata.messaging.providers.MmsBodyProvider;
 import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.Util;
 

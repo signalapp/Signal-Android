@@ -26,10 +26,13 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.TypedArray;
 import android.database.ContentObserver;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.ContactsContract;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -41,7 +44,9 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.text.InputType;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
@@ -58,26 +63,37 @@ import android.widget.Toast;
 
 import com.melnykov.fab.FloatingActionButton;
 
+import org.thoughtcrime.securesms.components.CircledImageView;
+import org.thoughtcrime.securesms.components.ThumbnailView;
+import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.PartDatabase;
+import org.thoughtcrime.securesms.mms.ImageSlide;
+import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
+
+import java.io.IOException;
 
 import de.gdata.messaging.SlidingTabLayout;
 import de.gdata.messaging.util.GService;
 import de.gdata.messaging.util.GDataPreferences;
 import de.gdata.messaging.util.GUtil;
 import de.gdata.messaging.util.NavDrawerAdapter;
+import de.gdata.messaging.util.ProfileAccessor;
+import ws.com.google.android.mms.pdu.PduPart;
 
 public class ConversationListActivity extends PassphraseRequiredActionBarActivity implements
     ConversationListFragment.ConversationSelectedListener {
-  private final DynamicTheme dynamicTheme = new DynamicTheme();
+ // private final DynamicTheme dynamicTheme = new DynamicTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   private DrawerLayout mDrawerLayout;
@@ -93,17 +109,22 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   private String[] navLabels;
   private TypedArray navIcons;
   private FloatingActionButton fab;
+  private LinearLayout mDrawerNavi;
 
   @Override
   public void onCreate(Bundle icicle) {
-    dynamicTheme.onCreate(this);
+    //dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
     super.onCreate(icicle);
     gDataPreferences = new GDataPreferences(getBaseContext());
     setContentView(R.layout.gdata_conversation_list_activity);
+    Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+    toolbar.setTitleTextColor(Color.WHITE);
+    setSupportActionBar(toolbar);
     navLabels = getResources().getStringArray(R.array.array_nav_labels);
     navIcons = getResources().obtainTypedArray(R.array.array_nav_icons);
     mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+    mDrawerNavi = (LinearLayout) findViewById(R.id.drawerll);
     mDrawerToggle = new ActionBarDrawerToggle(
         this,                  /* host Activity */
         mDrawerLayout,         /* DrawerLayout object */
@@ -142,6 +163,19 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     fab.hide();
     initNavDrawer(navLabels, navIcons);
 
+    LinearLayout profileDrawer = (LinearLayout) findViewById(R.id.drawer);
+    profileDrawer.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        mDrawerLayout.closeDrawer(mDrawerNavi);
+        new Handler().postDelayed(new Runnable() {
+          @Override
+          public void run() {
+            handleOpenProfile();
+          }
+        }, 200);
+      }
+    });
     getSupportActionBar().setHomeButtonEnabled(true);
     getSupportActionBar().setTitle(R.string.app_name);
     initViewPagerLayout();
@@ -150,8 +184,37 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     new GService().init(getApplicationContext());
     LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
         new IntentFilter("reloadAdapter"));
-  }
 
+    refreshProfile();
+  }
+  private void handleOpenProfile() {
+    final Intent intent = new Intent(this, ProfileActivity.class);
+    intent.putExtra("master_secret", masterSecret);
+    intent.putExtra("profile_id", gDataPreferences.getE164Number());
+    if(getSupportActionBar() != null) {
+      intent.putExtra("profile_name", getSupportActionBar().getTitle());
+    }
+    intent.putExtra("profile_number", gDataPreferences.getE164Number());
+    startActivity(intent);
+  }
+  private void refreshProfile() {
+    CircledImageView profileImageView = (CircledImageView) findViewById(R.id.profile_picture);
+    Slide myProfileImage = ProfileAccessor.getMyProfilePicture(getApplicationContext());
+    if(masterSecret != null && !(myProfileImage.getUri()+"").equals("")) {
+      ProfileAccessor.buildDraftGlideRequest(myProfileImage).into(profileImageView);
+    } else {
+      profileImageView.setImageBitmap(ContactPhotoFactory.getDefaultContactPhoto(getApplicationContext()));
+    }
+    TextView profileName = (TextView) findViewById(R.id.profileName);
+    TextView profileStatus = (TextView) findViewById(R.id.profileStatus);
+    profileStatus.setText(ProfileAccessor.getProfileStatus(this));
+    profileName.setText(gDataPreferences.getE164Number());
+  }
+  public float dpToPx(int dp) {
+    DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+    float px = (float) ((dp * displayMetrics.density) + 0.5);
+    return px;
+  }
   private void initNavDrawer(String[] labels, TypedArray icons) {
     // Set the adapter for the list view
     NavDrawerAdapter adapter = new NavDrawerAdapter(this, labels, icons);
@@ -167,8 +230,14 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   /* The click listner for ListView in the navigation drawer */
   private class DrawerItemClickListener implements ListView.OnItemClickListener {
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-      selectItem(position);
+    public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+      mDrawerLayout.closeDrawer(mDrawerNavi);
+      new Handler().postDelayed(new Runnable() {
+        @Override
+        public void run() {
+          selectItem(position);
+        }
+      }, 200);
     }
   }
   private void selectItem(int position) {
@@ -205,7 +274,6 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         handleDisplaySettings();
         break;
     }
-     mDrawerLayout.closeDrawer(mDrawerList);
   }
   private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
     @Override
@@ -222,9 +290,10 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   @Override
   public void onResume() {
     super.onResume();
-    dynamicTheme.onResume(this);
+   // dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
     initNavDrawer(navLabels, navIcons);
+    refreshProfile();
     fab.show();
   }
 
@@ -233,7 +302,6 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     super.onPause();
     fab.hide();
   }
-
   @Override
   public void onDestroy() {
     MemoryCleaner.clean(masterSecret);

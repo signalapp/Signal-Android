@@ -42,6 +42,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import de.gdata.messaging.util.GUtil;
+import de.gdata.messaging.util.ProfileAccessor;
 
 import static org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 
@@ -83,6 +84,7 @@ public class ContactSelectionFragment extends Fragment {
     dynamicLanguage.onResume(getActivity());
     //  getSupportActionBar().setTitle(R.string.AndroidManifest__select_contacts);
     masterSecret = getActivity().getIntent().getParcelableExtra(MASTER_SECRET_EXTRA);
+    ProfileAccessor.setMasterSecred(masterSecret);
   }
 
   private void initializeResources() {
