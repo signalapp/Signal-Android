@@ -21,6 +21,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -82,6 +83,18 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
     getSupportActionBar().setTitle(R.string.AndroidManifest__verify_identity);
 
   }
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    super.onOptionsItemSelected(item);
+
+    switch (item.getItemId()) {
+      case android.R.id.home:     finish();          return true;
+    }
+
+    return false;
+  }
+
 
   @Override
   protected void onDestroy() {
