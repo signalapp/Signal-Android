@@ -50,7 +50,7 @@ public class SendButton extends ImageButton
   }
 
   private TransportOptionsPopup initializeTransportOptionsPopup() {
-    return new TransportOptionsPopup(getContext(), this);
+    return new TransportOptionsPopup(getContext(), this, this);
   }
 
   public boolean isManualSelection() {
@@ -92,7 +92,7 @@ public class SendButton extends ImageButton
   @Override
   public boolean onLongClick(View v) {
     if (transportOptions.getEnabledTransports().size() > 1) {
-      transportOptionsPopup.display(getContext(), SendButton.this, transportOptions.getEnabledTransports());
+      transportOptionsPopup.display(transportOptions.getEnabledTransports());
       return true;
     }
 
