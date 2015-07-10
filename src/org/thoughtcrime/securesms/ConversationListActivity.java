@@ -185,8 +185,9 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     initViewPagerLayout();
     GUtil.forceOverFlowMenu(getApplicationContext());
     LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
-        new IntentFilter("reloadAdapter"));
+            new IntentFilter("reloadAdapter"));
     startService(new Intent(this, GService.class));
+    refreshProfile();
   }
   private void handleOpenProfile() {
     final Intent intent = new Intent(this, ProfileActivity.class);
@@ -200,18 +201,20 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
   }
   private void refreshProfile() {
-    CircledImageView profileImageView = (CircledImageView) findViewById(R.id.profile_picture);
-    Slide myProfileImage = ProfileAccessor.getMyProfilePicture(getApplicationContext());
-    if(masterSecret != null && !(myProfileImage.getUri()+"").equals("")) {
-      ProfileAccessor.buildDraftGlideRequest(myProfileImage).into(profileImageView);
-    } else {
-      profileImageView.setImageBitmap(ContactPhotoFactory.getDefaultContactPhoto(getApplicationContext()));
-    }
-    TextView profileName = (TextView) findViewById(R.id.profileName);
-    TextView profileStatus = (TextView) findViewById(R.id.profileStatus);
-    profileStatus.setText(ProfileAccessor.getProfileStatus(this));
+    if(GService.appContext != null) {
+      CircledImageView profileImageView = (CircledImageView) findViewById(R.id.profile_picture);
+      Slide myProfileImage = ProfileAccessor.getMyProfilePicture(getApplicationContext());
+      if (masterSecret != null && !(myProfileImage.getUri() + "").equals("")) {
+        ProfileAccessor.buildDraftGlideRequest(myProfileImage).into(profileImageView);
+      } else {
+        profileImageView.setImageBitmap(ContactPhotoFactory.getDefaultContactPhoto(getApplicationContext()));
+      }
+      TextView profileName = (TextView) findViewById(R.id.profileName);
+      TextView profileStatus = (TextView) findViewById(R.id.profileStatus);
+      profileStatus.setText(ProfileAccessor.getProfileStatus(this));
 
-    profileName.setText(gDataPreferences.getE164Number());
+      profileName.setText(gDataPreferences.getE164Number());
+    }
   }
   public float dpToPx(int dp) {
     DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
