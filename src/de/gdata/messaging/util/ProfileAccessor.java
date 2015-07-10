@@ -62,9 +62,9 @@ public class ProfileAccessor {
   }
 
   public static void setProfilePartId(Context context, Long profileId, Long partId) {
+    DatabaseFactory.getPartDatabase(context).deleteParts(getPartId(context, profileId+"").getUniqueId());
     getPreferences(context).setProfilePartId(profileId + "", partId);
   }
-
   public static void setProfilePartRow(Context context, Long profileId, Long partRow) {
     getPreferences(context).setProfilePartRow(profileId + "", partRow);
   }
