@@ -186,7 +186,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     GUtil.forceOverFlowMenu(getApplicationContext());
     LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
             new IntentFilter("reloadAdapter"));
-    startService(new Intent(this, GService.class));
+
     refreshProfile();
   }
   private void handleOpenProfile() {
@@ -677,6 +677,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
       } else {
        supportInvalidateOptionsMenu();
       }
+      initNavDrawer(navLabels, navIcons);
     } else if (ACTION_ID == CheckPasswordDialogFrag.ACTION_OPEN_CALL_FILTER) {
       try {
         Intent intent = new Intent("de.gdata.mobilesecurity.activities.filter.FilterListActivity");

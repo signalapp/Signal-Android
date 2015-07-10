@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.webkit.MimeTypeMap;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -11,6 +12,7 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
+import de.gdata.messaging.util.GService;
 import ws.com.google.android.mms.ContentType;
 
 public class RoutingActivity extends PassphraseRequiredActionBarActivity {
@@ -32,6 +34,12 @@ public class RoutingActivity extends PassphraseRequiredActionBarActivity {
     super.onNewIntent(intent);
     setIntent(intent);
     this.newIntent = true;
+  }
+
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    startService(new Intent(this, GService.class));
   }
 
   @Override

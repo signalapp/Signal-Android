@@ -216,7 +216,7 @@ public class PrivacyBridge {
   }
 
   public static GDataPreferences getPreferences() {
-    return preferences == null ?new GDataPreferences(GService.appContext): preferences;
+    return preferences == null ? new GDataPreferences(GService.appContext): preferences;
   }
 
   private static class AddTask extends AsyncTask<List<NumberEntry>, Integer, Integer> {
