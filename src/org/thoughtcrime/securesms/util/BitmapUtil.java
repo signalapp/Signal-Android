@@ -278,8 +278,6 @@ public class BitmapUtil {
 
     return output;
   }
-
-
   public static Bitmap createFromDrawable(final Drawable drawable, final int width, final int height) {
     final AtomicBoolean created = new AtomicBoolean(false);
     final Bitmap[]      result  = new Bitmap[1];
