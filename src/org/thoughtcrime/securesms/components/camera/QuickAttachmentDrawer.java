@@ -115,7 +115,7 @@ public class QuickAttachmentDrawer extends ViewGroup {
 
   private void updateControlsView() {
     int controlsIndex = indexOfChild(controls);
-    removeView(controls);
+    if (controlsIndex > -1) removeView(controls);
     controls = LayoutInflater.from(getContext()).inflate(isLandscape() ? R.layout.quick_camera_controls_land
                                                                        : R.layout.quick_camera_controls,
                                                          this, false);
@@ -128,7 +128,7 @@ public class QuickAttachmentDrawer extends ViewGroup {
     }
     shutterButton.setOnClickListener(new ShutterClickListener());
     fullScreenButton.setOnClickListener(new FullscreenClickListener());
-    addView(controls, controlsIndex);
+    addView(controls, controlsIndex > -1 ? controlsIndex : indexOfChild(quickCamera) + 1);
   }
 
   private boolean isLandscape() {
@@ -250,21 +250,21 @@ public class QuickAttachmentDrawer extends ViewGroup {
     if (h != oldh) updateHalfExpandedAnchorPoint();
   }
 
-//  @Override
-//  protected boolean drawChild(@NonNull Canvas canvas, @NonNull View child, long drawingTime) {
-//    boolean result;
-//    final int save = canvas.save(Canvas.CLIP_SAVE_FLAG);
-//
-//    canvas.getClipBounds(drawChildrenRect);
-//    if (child == coverView)
-//      drawChildrenRect.bottom = Math.min(drawChildrenRect.bottom, child.getBottom());
-//    else if (coverView != null)
-//      drawChildrenRect.top = Math.max(drawChildrenRect.top, coverView.getBottom());
-//    canvas.clipRect(drawChildrenRect);
-//    result = super.drawChild(canvas, child, drawingTime);
-//    canvas.restoreToCount(save);
-//    return result;
-//  }
+  @Override
+  protected boolean drawChild(@NonNull Canvas canvas, @NonNull View child, long drawingTime) {
+    boolean result;
+    final int save = canvas.save(Canvas.CLIP_SAVE_FLAG);
+
+    canvas.getClipBounds(drawChildrenRect);
+    if (child == coverView)
+      drawChildrenRect.bottom = Math.min(drawChildrenRect.bottom, child.getBottom());
+    else if (coverView != null)
+      drawChildrenRect.top = Math.max(drawChildrenRect.top, coverView.getBottom());
+    canvas.clipRect(drawChildrenRect);
+    result = super.drawChild(canvas, child, drawingTime);
+    canvas.restoreToCount(save);
+    return result;
+  }
 
   @Override
   public void computeScroll() {
