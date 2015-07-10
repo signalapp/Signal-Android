@@ -262,7 +262,7 @@ public class BitmapUtil {
     final int size = context.getResources().getDimensionPixelSize(R.dimen.contact_selection_photo_size);
     final Bitmap output = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888);
     final Canvas canvas = new Canvas(output);
-    bitmap = bitmap.createScaledBitmap(bitmap, bitmap.getWidth(), bitmap.getWidth(), true);
+    bitmap = bitmap.createScaledBitmap(bitmap, bitmap.getHeight(), bitmap.getHeight(), true);
     final int   color = Color.RED;
     final Paint paint = new Paint();
     final Rect  rect  = new Rect(0, 0, size, size);

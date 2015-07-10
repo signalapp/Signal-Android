@@ -48,7 +48,7 @@ public class CircledImageView extends ImageView {
 
       int w = getWidth(), h = getHeight();
 
-      Bitmap roundBitmap = getRoundedCroppedBitmap(bitmap, w);
+      Bitmap roundBitmap = getRoundedCroppedBitmap(bitmap, h);
       canvas.drawBitmap(roundBitmap, 0, 0, null);
     } else if(!(drawable instanceof SquaringDrawable)){
       Bitmap b = ((GlideBitmapDrawable) drawable).getBitmap();
