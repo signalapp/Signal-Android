@@ -187,9 +187,6 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
         new IntentFilter("reloadAdapter"));
     startService(new Intent(this, GService.class));
-refreshProfile();
-
-    refreshProfile();
   }
   private void handleOpenProfile() {
     final Intent intent = new Intent(this, ProfileActivity.class);
