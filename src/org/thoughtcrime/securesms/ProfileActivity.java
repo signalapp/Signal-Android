@@ -125,8 +125,6 @@ public class ProfileActivity extends PassphraseRequiredActionBarActivity {
         try {
           ImageSlide chosenImage = new ImageSlide(this, data.getData());
           ProfileAccessor.setProfilePicture(this, chosenImage);
-          ProfileAccessor.setProfilePartId(this, GUtil.numberToLong(profileId), chosenImage.getPart().getPartId().getUniqueId());
-          ProfileAccessor.setProfilePartRow(this, GUtil.numberToLong(profileId), chosenImage.getPart().getPartId().getRowId());
         } catch (IOException e) {
           Log.w("GDATA", e);
         } catch (BitmapDecodingException e) {

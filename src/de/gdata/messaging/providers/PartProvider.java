@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms.providers;
+package de.gdata.messaging.providers;
 
 import android.content.ContentProvider;
 import android.content.ContentUris;
@@ -40,7 +40,7 @@ import java.io.InputStream;
 public class PartProvider extends ContentProvider {
   private static final String TAG = PartProvider.class.getSimpleName();
 
-  private static final String CONTENT_URI_STRING = "content://org.thoughtcrime.provider.securesms/part";
+  private static final String CONTENT_URI_STRING = "content://de.gdata.provider.securesms/part";
   private static final Uri    CONTENT_URI        = Uri.parse(CONTENT_URI_STRING);
   private static final int    SINGLE_ROW         = 1;
 
@@ -48,7 +48,7 @@ public class PartProvider extends ContentProvider {
 
   static {
     uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-    uriMatcher.addURI("org.thoughtcrime.provider.securesms", "part/*/#", SINGLE_ROW);
+    uriMatcher.addURI("de.gdata.provider.securesms", "part/*/#", SINGLE_ROW);
   }
 
   @Override

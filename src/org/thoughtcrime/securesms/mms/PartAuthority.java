@@ -8,7 +8,7 @@ import android.net.Uri;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.PartDatabase;
-import org.thoughtcrime.securesms.providers.PartProvider;
+import de.gdata.messaging.providers.PartProvider;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -318,16 +318,13 @@
                 <action android:name="org.thoughtcrime.securesms.notifications.CLEAR" />
             </intent-filter>
         </receiver>
+        <provider android:name="de.gdata.messaging.providers.PartProvider"
+            android:grantUriPermissions="true"
+            android:authorities="de.gdata.provider.securesms" />
 
-        <provider
-            android:name=".providers.PartProvider"
-            android:authorities="org.thoughtcrime.provider.securesms"
-            android:grantUriPermissions="true" />
-        <provider
-            android:name=".providers.MmsBodyProvider"
-            android:authorities="org.thoughtcrime.provider.securesms.mms"
-            android:grantUriPermissions="true" />
-
+        <provider android:name="de.gdata.messaging.providers.MmsBodyProvider"
+            android:grantUriPermissions="true"
+            android:authorities="de.gdata.provider.securesms.mms" />
         <receiver
             android:name=".service.RegistrationNotifier"
             android:exported="false" >
