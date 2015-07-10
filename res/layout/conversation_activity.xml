@@ -6,19 +6,20 @@
         android:id="@+id/layout_container"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="?conversation_background"
         android:orientation="vertical">
 
 <org.thoughtcrime.securesms.components.camera.QuickAttachmentDrawer
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/quick_attachment_drawer"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/black">
 
     <RelativeLayout android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
                     android:orientation="vertical"
+                    android:background="?conversation_background"
                     android:gravity="bottom">
 
         <FrameLayout android:id="@+id/fragment_content"
