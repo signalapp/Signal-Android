@@ -7,6 +7,7 @@ import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.TextSecureExpiredException;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.PartDatabase;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.MediaUtil;
@@ -81,6 +82,14 @@ public abstract class SendJob extends MasterSecretJob {
       part.setDataSize(resizedData.length);
     }
     return part;
+  }
+
+  protected void markPartsUploaded(long messageId, PduBody body) {
+    if (body == null) return;
+    PartDatabase database = DatabaseFactory.getPartDatabase(context);
+    for (int i = 0; i < body.getPartsNum(); i++) {
+      database.markPartUploaded(messageId, body.getPart(i));
+    }
   }
 
   private byte[] getResizedPartData(MasterSecret masterSecret, MediaConstraints constraints,
