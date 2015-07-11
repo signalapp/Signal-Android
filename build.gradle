@@ -166,6 +166,7 @@ android {
         buildConfigField "long", "BUILD_TIMESTAMP", System.currentTimeMillis() + "L"
         buildConfigField "String", "PUSH_URL", "\"https://textsecure-service.whispersystems.org\""
         buildConfigField "boolean", "DEV_BUILD", "false"
+        buildConfigField "boolean", "FORCE_WS", "false"
     }
 
     compileOptions {
@@ -218,6 +219,10 @@ android {
             buildConfigField "boolean", "DEV_BUILD", "true"
             applicationIdSuffix ".dev"
             versionNameSuffix "-dev"
+        }
+        WS.initWith(buildTypes.dev)
+        WS {
+            buildConfigField "boolean", "WS_FORCE", "true"
         }
     }
 
