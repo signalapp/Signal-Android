@@ -11,7 +11,7 @@
                 android:label="Access to TextSecure Secrets"
                 android:protectionLevel="signature" />
 
-    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <!--<uses-feature android:name="android.hardware.camera" android:required="false" />-->
     <uses-permission android:name="org.thoughtcrime.securesms.ACCESS_SECRETS"/>
     <uses-permission android:name="android.permission.READ_PROFILE"/>
     <uses-permission android:name="android.permission.WRITE_PROFILE"/>
@@ -34,47 +34,47 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_CALL_LOG" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="android.permission.CAMERA" />
+    <!--<uses-permission android:name="android.permission.CAMERA" />-->
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
-    <!-- For sending location tiles in the future -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <!--&lt;!&ndash; For sending location tiles in the future &ndash;&gt;-->
+    <!--<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>-->
+    <!--<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>-->
 
-    <!-- So we can add a TextSecure 'Account' -->
-    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
-    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
-    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
-    <uses-permission android:name="android.permission.USE_CREDENTIALS"/>
+    <!--&lt;!&ndash; So we can add a TextSecure 'Account' &ndash;&gt;-->
+    <!--<uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />-->
+    <!--<uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />-->
+    <!--<uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />-->
+    <!--<uses-permission android:name="android.permission.USE_CREDENTIALS"/>-->
 
-    <!-- For conversation 'shortcuts' on the desktop -->
-    <uses-permission android:name="android.permission.INSTALL_SHORTCUT"/>
+    <!--&lt;!&ndash; For conversation 'shortcuts' on the desktop &ndash;&gt;-->
+    <!--<uses-permission android:name="android.permission.INSTALL_SHORTCUT"/>-->
 
-    <!-- For sending/receiving events -->
-    <uses-permission android:name="android.permission.WRITE_CALENDAR"/>
-    <uses-permission android:name="android.permission.READ_CALENDAR"/>
+    <!--&lt;!&ndash; For sending/receiving events &ndash;&gt;-->
+    <!--<uses-permission android:name="android.permission.WRITE_CALENDAR"/>-->
+    <!--<uses-permission android:name="android.permission.READ_CALENDAR"/>-->
 
-    <!-- For fixing MMS -->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <!--&lt;!&ndash; For fixing MMS &ndash;&gt;-->
+    <!--<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>-->
+    <!--<uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>-->
 
-    <!-- Set image as wallpaper -->
-    <uses-permission android:name="android.permission.SET_WALLPAPER"/>
-    
-    <!-- Permissions from RedPhone -->
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-    <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
-    <uses-permission android:name="android.permission.MODIFY_PHONE_STATE" />
-    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
-    <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.CALL_PRIVILEGED" />
-    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
-    <uses-permission android:name="android.permission.RAISED_THREAD_PRIORITY" />
-    <uses-permission android:name="android.permission.READ_CALL_STATE"/>
-    <uses-permission android:name="android.permission.READ_LOGS"/>
-    <uses-permission android:name="android.permission.WRITE_CALL_LOG"/>
+    <!--&lt;!&ndash; Set image as wallpaper &ndash;&gt;-->
+    <!--<uses-permission android:name="android.permission.SET_WALLPAPER"/>-->
+    <!-- -->
+    <!--&lt;!&ndash; Permissions from RedPhone &ndash;&gt;-->
+    <!--<uses-permission android:name="android.permission.RECORD_AUDIO" />-->
+    <!--<uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />-->
+    <!--<uses-permission android:name="android.permission.BLUETOOTH" />-->
+    <!--<uses-permission android:name="android.permission.BROADCAST_STICKY" />-->
+    <!--<uses-permission android:name="android.permission.MODIFY_PHONE_STATE" />-->
+    <!--<uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />-->
+    <!--<uses-permission android:name="android.permission.CALL_PHONE" />-->
+    <!--<uses-permission android:name="android.permission.CALL_PRIVILEGED" />-->
+    <!--<uses-permission android:name="android.permission.DISABLE_KEYGUARD" />-->
+    <!--<uses-permission android:name="android.permission.RAISED_THREAD_PRIORITY" />-->
+    <!--<uses-permission android:name="android.permission.READ_CALL_STATE"/>-->
+    <!--<uses-permission android:name="android.permission.READ_LOGS"/>-->
+    <!--<uses-permission android:name="android.permission.WRITE_CALL_LOG"/>-->
 
     <permission android:name="org.thoughtcrime.securesms.permission.C2D_MESSAGE"
                 android:protectionLevel="signature" />
