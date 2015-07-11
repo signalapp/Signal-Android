@@ -49,7 +49,7 @@ Indien je in de toekomst weer TextSecure berichten wilt gebruiken zul je je tele
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Geblokkeerde contacten</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">De identificerende sleutel van %1$s is veranderd. Dit kan betekenen dat iemand je communicatie probeert te onderscheppen of dat %2$s simpelweg TextSecure opnieuw geïnstalleerd heeft en nu een nieuwe identiteit heeft.</string>
+  <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">De identificerende sleutel van %1$s is veranderd. Dit kan betekenen dat iemand probeert je communicatie te onderscheppen óf %2$s heeft simpelweg TextSecure opnieuw geïnstalleerd en heeft nu een nieuwe identiteitssleutel.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Je wilt wellicht dit contact verifiëren.</string>
   <string name="ConfirmIdentityDialog_accept">Accepteren</string>
   <!--ConversationItem-->
@@ -145,6 +145,7 @@ Indien je in de toekomst weer TextSecure berichten wilt gebruiken zul je je tele
   <string name="DeviceListActivity_by_disconnecting_this_device_it_will_no_longer_be_able_to_send_or_receive">Door dit apparaat te ontkoppelen zal het niet langer berichten kunnen verzenden en ontvangen.</string>
   <string name="DeviceListActivity_network_connection_failed">Netwerkverbinding mislukt..</string>
   <string name="DeviceListActivity_try_again">Probeer opnieuw</string>
+  <string name="DeviceListActivity_disconnecting_device">Toestel aan het loskoppelen...</string>
   <string name="DeviceListActivity_disconnecting_device_no_ellipse">Apparaat aan het loskoppelen</string>
   <string name="DeviceListActivity_network_failed">Netwerkfout!</string>
   <!--DeviceListItem-->
@@ -389,6 +390,7 @@ Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en 
   <string name="MessageNotifier_failed_to_deliver_message">Het bericht afleveren is mislukt.</string>
   <string name="MessageNotifier_error_delivering_message">Fout bij afleveren bericht.</string>
   <string name="MessageNotifier_mark_all_as_read">Alles als gelezen markeren</string>
+  <string name="MessageNotifier_mark_read">Gelezen</string>
   <string name="MessageNotifier_media_message">Mediabericht</string>
   <string name="MessageNotifier_reply">Reageren</string>
   <!--QuickResponseService-->
@@ -425,6 +427,7 @@ Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en 
   <string name="conversation_activity__compose_description">Bericht samenstelling</string>
   <string name="conversation_activity__emoji_toggle_description">Wissel emoji toetsenbord</string>
   <string name="conversation_activity__attachment_thumbnail">Bijlage Miniatuur</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Bijlageoverzicht tonen/verbergen</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Mediabericht aan het downloaden</string>
   <string name="conversation_item__mms_image_description">Mediabericht</string>
@@ -501,6 +504,8 @@ Importeer een niet-versleutelde back-up voor \'SMS Back-up En Herstellen\'.</str
   <string name="recipient_preferences__ringtone">Beltoon</string>
   <string name="recipient_preferences__vibrate">Vibreren</string>
   <string name="recipient_preferences__block">Blokkeren</string>
+  <string name="recipient_preferences__color">Kleur</string>
+  <string name="recipient_preferences__color_for_this_contact">Kleur voor dit contact</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
         Verifieer je telefoonnummer om met TextSecure verbinding te maken.
@@ -511,6 +516,7 @@ TELEFOONNUMMER</string>
   <string name="registration_activity__phone_number">TELEFOONNUMMER</string>
   <string name="registration_activity__register">Registreren</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Registreren deelt tijdelijk enige informatie met de server. Het wordt niet bewaard.</string>
+  <string name="registration_activity__powered_by_twilio">Mogelijk gemaakt door twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Mogelijke problemen
 zijn:</string>
@@ -755,6 +761,7 @@ TextSecure heeft te lang moeten wachten op het binnenkomen van de verificatie-SM
   <string name="conversation__menu_leave_group">Groep verlaten</string>
   <string name="conversation__menu_delete_thread">Gehele gesprek verwijderen</string>
   <string name="conversation__menu_view_media">Alle afbeeldingen</string>
+  <string name="conversation__menu_conversation_settings">Gespreksinstellingen</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Popup vergroten</string>
   <!--conversation_callable-->
@@ -797,5 +804,7 @@ TextSecure heeft te lang moeten wachten op het binnenkomen van de verificatie-SM
   <string name="trimmer__old_messages_successfully_deleted">Oude berichten succesvol verwijderd</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportkanaal icoon</string>
+  <!--quick_attachment_drawer-->
+  <string name="quick_camera_unavailable">Camera niet beschikbaar</string>
   <!--EOF-->
 </resources>

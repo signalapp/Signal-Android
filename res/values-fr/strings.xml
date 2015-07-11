@@ -148,12 +148,13 @@ vérifier ce contact.</string>
   <string name="DateUtils_now">À l\'instant</string>
   <string name="DateUtils_minutes_ago">%d min</string>
   <!--DeviceListActivity-->
-  <string name="DeviceListActivity_disconnect_s">Déconnecter \'%s\'?</string>
+  <string name="DeviceListActivity_disconnect_s">Déconnecter \'%s\' ?</string>
   <string name="DeviceListActivity_by_disconnecting_this_device_it_will_no_longer_be_able_to_send_or_receive">Si vous déconnectez cet appareil, il ne sera plus capable d\'envoyer ou recevoir des messages.</string>
-  <string name="DeviceListActivity_network_connection_failed">Erreur de connection réseau...</string>
+  <string name="DeviceListActivity_network_connection_failed">Erreur de connexion réseau...</string>
   <string name="DeviceListActivity_try_again">Essayer à nouveau</string>
+  <string name="DeviceListActivity_disconnecting_device">Déconnexion de l\'appareil...</string>
   <string name="DeviceListActivity_disconnecting_device_no_ellipse">Déconnexion de l\'appareil</string>
-  <string name="DeviceListActivity_network_failed">Erreur réseau!</string>
+  <string name="DeviceListActivity_network_failed">Erreur réseau !</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Appareil sans nom</string>
   <string name="DeviceListItem_created_s">%s créé</string>
@@ -406,11 +407,12 @@ Un message avec une clé de chiffrement inconnue a été reçu. Cliquer pour l\'
   <string name="MessageNotifier_failed_to_deliver_message">Échec de distribution du message.</string>
   <string name="MessageNotifier_error_delivering_message">Erreur lors de la distribution du message.</string>
   <string name="MessageNotifier_mark_all_as_read">Tout marquer comme lu</string>
+  <string name="MessageNotifier_mark_read">Marquer comme lu</string>
   <string name="MessageNotifier_media_message">Message média</string>
   <string name="MessageNotifier_reply">Répondre</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">Les réponses rapides ne sont pas disponibles quand TextSecure est bloqué!</string>
-  <string name="QuickResponseService_problem_sending_message">Erreur lors de l\'envoi du message!</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">Les réponses rapides ne sont pas disponibles quand TextSecure est verrouillé !</string>
+  <string name="QuickResponseService_problem_sending_message">Erreur lors de l\'envoi du message !</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Ancienne phrase de passe :</string>
   <string name="change_passphrase_activity__new_passphrase">Nouvelle phrase de passe :</string>
@@ -518,6 +520,8 @@ Importer un fichier de sauvegarde en texte clair. Compatible avec «SMSBackup An
   <string name="recipient_preferences__ringtone">Sonnerie</string>
   <string name="recipient_preferences__vibrate">Vibreur</string>
   <string name="recipient_preferences__block">Bloquer</string>
+  <string name="recipient_preferences__color">Couleur</string>
+  <string name="recipient_preferences__color_for_this_contact">Couleur pour ce contact</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 Veuillez vérifier votre numéro de téléphone pour vous connecter avec TextSecure.</string>
@@ -527,6 +531,7 @@ VOTRE NUMÉRO DE TÉLÉPHONE</string>
   <string name="registration_activity__phone_number">NUMÉRO DE TÉLÉPHONE</string>
   <string name="registration_activity__register">S\'enregistrer</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">L\'enregistrement transmettra des informations de contact au serveur. Il n\'est pas stocké.</string>
+  <string name="registration_activity__powered_by_twilio">Fourni par twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Certains des problèmes possibles
 sont:</string>
@@ -721,7 +726,7 @@ Messages privés gratuits vers les utilisateurs TextSecure et Signal
 </string>
   <string name="preferences__submit_debug_log">Envoyer un rapport de débogage</string>
   <string name="preferences__support_wifi_calling">Compatibilité \'WiFi Calling\'</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Activer si votre appareil délivre les SMS/MMS à l\'aide du WiFI (N\'activer que lorsque \'WiFi Calling\' est activé sur votre appareil).</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Activer si votre appareil délivre les SMS/MMS à l\'aide du WiFi (n\'activer que lorsque \"WiFi Calling\" est activé sur votre appareil).</string>
   <string name="preferences_app_protection__blocked_contacts">Contacts bloqués</string>
   <!--****************************************-->
   <!--menus-->
@@ -775,6 +780,7 @@ Messages privés gratuits vers les utilisateurs TextSecure et Signal
   <string name="conversation__menu_leave_group">Quitter le groupe</string>
   <string name="conversation__menu_delete_thread">Supprimer le fil de discussion</string>
   <string name="conversation__menu_view_media">Toutes les images</string>
+  <string name="conversation__menu_conversation_settings">Préférences de conversation</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Étendre la popup</string>
   <!--conversation_callable-->
@@ -817,5 +823,7 @@ Messages privés gratuits vers les utilisateurs TextSecure et Signal
   <string name="trimmer__old_messages_successfully_deleted">Anciens messages supprimés avec succès</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icône de transport</string>
+  <!--quick_attachment_drawer-->
+  <string name="quick_camera_unavailable">Caméra indisponible</string>
   <!--EOF-->
 </resources>

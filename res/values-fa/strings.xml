@@ -40,6 +40,7 @@
   <string name="AttachmentTypeSelectorAdapter_audio">صدا</string>
   <string name="AttachmentTypeSelectorAdapter_contact">اطلاعات مخاطب</string>
   <!--BlockedContactsActivity-->
+  <string name="BlockedContactsActivity_blocked_contacts">اطلاعات تماس مسدود</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">شما ممکن است مایل به منظور بررسی
 تماس با ما</string>
@@ -100,6 +101,7 @@
   <string name="ConversationFragment_push">داده ها (TextSecure)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">پیامک</string>
+  <string name="ConversationFragment_deleting">در حال حذف کردن</string>
   <string name="ConversationFragment_deleting_messages">حذف پیام های...</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_search">جستجو...</string>
@@ -117,7 +119,11 @@
   <!--DateUtils-->
   <string name="DateUtils_now">اکنون</string>
   <!--DeviceListActivity-->
+  <string name="DeviceListActivity_try_again">دوباره تلاش کن</string>
+  <string name="DeviceListActivity_disconnecting_device">قطع اتصال دستگاه ...</string>
+  <string name="DeviceListActivity_disconnecting_device_no_ellipse">قطع اتصال دستگاه</string>
   <!--DeviceListItem-->
+  <string name="DeviceListItem_unnamed_device">دستگاهی که نامش ذکر نشده</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">به اشتراک گذاشتن با</string>
   <!--ExportFragment-->
@@ -315,7 +321,9 @@
   <string name="MessageNotifier_failed_to_deliver_message">ناموفق برای تحویل پیام.</string>
   <string name="MessageNotifier_error_delivering_message">خطا در تحویل پیام.</string>
   <string name="MessageNotifier_mark_all_as_read">علامت همه به عنوان خوانده شده</string>
+  <string name="MessageNotifier_mark_read">علامت گذاری به عنوان خوانده شده</string>
   <string name="MessageNotifier_media_message">پیام رسانه</string>
+  <string name="MessageNotifier_reply">پاسخ</string>
   <!--QuickResponseService-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">رمز قبلی:</string>
@@ -403,6 +411,8 @@
   <string name="recipient_preferences__ringtone">آهنگ های زنگ</string>
   <string name="recipient_preferences__vibrate">لرزش</string>
   <string name="recipient_preferences__block">بلوک</string>
+  <string name="recipient_preferences__color">رنگ</string>
+  <string name="recipient_preferences__color_for_this_contact">رنگ برای این مخاطب</string>
   <!--registration_activity-->
   <string name="registration_activity__your_country">کشور شما</string>
   <string name="registration_activity__your_country_code_and_phone_number">کد کشور شما و
@@ -566,6 +576,7 @@
   <string name="preferences__textsecure_messages">پیام های TextSecure</string>
   <string name="preferences__submit_debug_log">ارسال گزارش اشکال‌زدایی</string>
   <string name="preferences__support_wifi_calling">\'وای فای تلفن\' حالت سازگاری</string>
+  <string name="preferences_app_protection__blocked_contacts">اطلاعات تماس مسدود</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -650,9 +661,12 @@
   <!--media_preview_activity-->
   <string name="media_preview_activity__image_content_description">پیش‌نمایش تصویر</string>
   <!--Trimmer-->
+  <string name="trimmer__deleting">در حال حذف</string>
   <string name="trimmer__deleting_old_messages">در حال حذف پیام‌های قدیمی...</string>
   <string name="trimmer__old_messages_successfully_deleted">پیام‌های قدیمی با موفقیت حذف شدند</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">آیکون های حمل و نقل</string>
+  <!--quick_attachment_drawer-->
+  <string name="quick_camera_unavailable">دوربین در دسترس نیست</string>
   <!--EOF-->
 </resources>

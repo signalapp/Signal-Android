@@ -155,6 +155,7 @@ Elküldöd a titkosítatlan üzenetet?</string>
   <string name="DeviceListActivity_by_disconnecting_this_device_it_will_no_longer_be_able_to_send_or_receive">Ennek az eszköznek a lecsatlakoztatásával többé nem lesz alkalmas üzenetek küldésére vagy fogadására.</string>
   <string name="DeviceListActivity_network_connection_failed">Hálózati csatlakozás sikertelen...</string>
   <string name="DeviceListActivity_try_again">Újrapróbálkozás</string>
+  <string name="DeviceListActivity_disconnecting_device">Eszköz leválasztása...</string>
   <string name="DeviceListActivity_disconnecting_device_no_ellipse">Eszköz lecsatlakoztatása</string>
   <string name="DeviceListActivity_network_failed">Hálózati hiba!</string>
   <!--DeviceListItem-->
@@ -418,6 +419,7 @@ Ismeretlen azonosító kulcsú üzenet érkezett. Kattints rá a feldolgozáshoz
   <string name="MessageNotifier_failed_to_deliver_message">Nem sikerült az üzenet kézbesítése!</string>
   <string name="MessageNotifier_error_delivering_message">Hiba az üzenet kézbesítése közben!</string>
   <string name="MessageNotifier_mark_all_as_read">Az összes olvasottként való megjelölése</string>
+  <string name="MessageNotifier_mark_read">Olvasottnak jelöl</string>
   <string name="MessageNotifier_media_message">Média üzenet</string>
   <string name="MessageNotifier_reply">Válasz</string>
   <!--QuickResponseService-->
@@ -533,6 +535,8 @@ Egy titkosítatlan biztonsági mentés fájl importálása. \"SMS biztonsági me
   <string name="recipient_preferences__ringtone">Csengőhang</string>
   <string name="recipient_preferences__vibrate">Rezgés</string>
   <string name="recipient_preferences__block">Letiltás</string>
+  <string name="recipient_preferences__color">Szín</string>
+  <string name="recipient_preferences__color_for_this_contact">Szín a névjegynek</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 Ellenőrizd a telefonszámodat a TextSecure alkalmazással történő kapcsolódáshoz.</string>
@@ -543,6 +547,7 @@ TELEFONSZÁM
   <string name="registration_activity__phone_number">TELEFONSZÁM</string>
   <string name="registration_activity__register">Regisztrálás</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">A regisztrálás néhány névjegy információt juttat el a kiszolgálóhoz. Az adatok nem kerülnek tárolásra.</string>
+  <string name="registration_activity__powered_by_twilio">Powered by twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Néhány lehetséges probléma
 beleértve:
@@ -848,5 +853,6 @@ Ingyenes biztonságos üzenet küldés TextSecure és Signal felhasználóknak</
   <string name="trimmer__old_messages_successfully_deleted">A régi üzenetek sikeresen törlődtek</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Átvitel ikon</string>
+  <!--quick_attachment_drawer-->
   <!--EOF-->
 </resources>

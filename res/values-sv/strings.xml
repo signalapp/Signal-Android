@@ -151,6 +151,7 @@ verifiera denna kontakt.</string>
   <string name="DeviceListActivity_by_disconnecting_this_device_it_will_no_longer_be_able_to_send_or_receive">Genom att ta bort denna enhet kommer den inte längre kunna skicka eller få meddelanden.</string>
   <string name="DeviceListActivity_network_connection_failed">Nätverksuppkoppling misslyckades...</string>
   <string name="DeviceListActivity_try_again">Försök igen</string>
+  <string name="DeviceListActivity_disconnecting_device">Tar bort enhet...</string>
   <string name="DeviceListActivity_disconnecting_device_no_ellipse">Tar bort enhet</string>
   <string name="DeviceListActivity_network_failed">Nätverket misslyckades</string>
   <!--DeviceListItem-->
@@ -369,7 +370,7 @@ Tog emot meddelande med okänd identitetsnyckel. Tryck för att bearbeta och vis
   <string name="MmsDatabase_downloading_mms">Laddar ner MMS...</string>
   <string name="MmsDatabase_mms_download_failed">MMS-nedladdning misslyckades!</string>
   <string name="MmsDatabase_downloading">Laddar ner...</string>
-  <string name="MmsDatabase_mms_pending_download">Tappa och ställ in MMS-inställningar för att fortsätta nedladdning.</string>
+  <string name="MmsDatabase_mms_pending_download">Tryck och ställ in MMS-inställningar för att fortsätta nedladdning.</string>
   <string name="MmsDatabase_error_decrypting_message">Fel vid dekryptering av meddelande.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Dekrypterar MMS, var vänlig vänta...</string>
@@ -395,6 +396,7 @@ Tog emot meddelande med okänd identitetsnyckel. Tryck för att bearbeta och vis
   <string name="MessageNotifier_failed_to_deliver_message">Kunde inte leverera meddelande.</string>
   <string name="MessageNotifier_error_delivering_message">Fel vid leverans av meddelande.</string>
   <string name="MessageNotifier_mark_all_as_read">Markera alla som lästa</string>
+  <string name="MessageNotifier_mark_read">Markera läst</string>
   <string name="MessageNotifier_media_message">Mediameddelande</string>
   <string name="MessageNotifier_reply">Svara</string>
   <!--QuickResponseService-->
@@ -505,6 +507,8 @@ från systemets standardapp för meddelanden.</string>
   <string name="recipient_preferences__ringtone">Rington</string>
   <string name="recipient_preferences__vibrate">Vibrera</string>
   <string name="recipient_preferences__block">Blockera</string>
+  <string name="recipient_preferences__color">Färg</string>
+  <string name="recipient_preferences__color_for_this_contact">Färg för denna kontakt</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 Verifiera ditt telefonnummer för att ansluta till TextSecure.</string>
@@ -532,7 +536,7 @@ TextSecure fungerar inte med Google Voice-nummer.</string>
   <string name="registration_progress_activity__voice_verification">Röstverifiering</string>
   <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">
 TextSecure kan också ringa upp dig för att verifiera ditt telefonnummer. Tryck \'Ring mig\'
- och fyll i den sexsiffriga kod som du hör nedan.</string>
+ och fyll i den sexsiffriga koden som du hör nedan.</string>
   <string name="registration_progress_activity__verify">Verifiera</string>
   <string name="registration_progress_activity__call_me">Ring mig</string>
   <string name="registration_progress_activity__edit_number">Ändra nummer</string>
@@ -541,7 +545,9 @@ TextSecure kan också ringa upp dig för att verifiera ditt telefonnummer. Tryck
 TextSecure kunde inte ansluta till push-tjänsten.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Några möjliga orsaker:</string>
   <string name="registration_progress_activity__no_network_connectivity">Ingen nätverksanslutning.</string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Din enhet behöver nätverksanslutning för att använda denna funktion. Kontrollera att du är ansluten via mobildata eller trådlöst nätverk.</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">Din
+enhet behöver nätverksanslutning för att använda denna funktion. Kontrollera att du är ansluten
+via 3G eller trådlöst nätverk.</string>
   <string name="registration_progress_activity__restrictive_firewall">Restriktiv brandvägg.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
 Om du är ansluten via trådlöst nätverk är det möjligt att en brandvägg blockerar åtkomst till TextSecure-servern. Prova med ett annat nätverk eller mobil data.</string>
@@ -752,6 +758,7 @@ Fria privata meddelanden till användare av TextSecure och Signal</string>
   <string name="conversation__menu_leave_group">Lämna grupp</string>
   <string name="conversation__menu_delete_thread">Radera tråd</string>
   <string name="conversation__menu_view_media">Alla bilder</string>
+  <string name="conversation__menu_conversation_settings">Konversationsinställningar</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Expandera popup</string>
   <!--conversation_callable-->
@@ -794,5 +801,7 @@ Fria privata meddelanden till användare av TextSecure och Signal</string>
   <string name="trimmer__old_messages_successfully_deleted">Gamla meddelanden har raderats</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportikon</string>
+  <!--quick_attachment_drawer-->
+  <string name="quick_camera_unavailable">Kamera otillgänglig</string>
   <!--EOF-->
 </resources>

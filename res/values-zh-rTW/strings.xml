@@ -598,5 +598,6 @@ TextSecure 等候驗證用的手機簡訊已逾時。</string>
   <string name="trimmer__deleting_old_messages">正在刪除舊訊息...</string>
   <string name="trimmer__old_messages_successfully_deleted">已完成刪除舊訊息。</string>
   <!--transport_selection_list_item-->
+  <!--quick_attachment_drawer-->
   <!--EOF-->
 </resources>

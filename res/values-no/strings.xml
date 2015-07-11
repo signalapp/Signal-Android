@@ -146,6 +146,7 @@ denne kontakten.</string>
   <string name="DeviceListActivity_by_disconnecting_this_device_it_will_no_longer_be_able_to_send_or_receive">Ved å frakoble denne enheten vil den ikke lenger være i stand til å sende eller motta meldinger.</string>
   <string name="DeviceListActivity_network_connection_failed">Nettverksforbindelse feilet...</string>
   <string name="DeviceListActivity_try_again">Prøv igjen</string>
+  <string name="DeviceListActivity_disconnecting_device">Frakobler enhet...</string>
   <string name="DeviceListActivity_disconnecting_device_no_ellipse">Frakobler enhet</string>
   <string name="DeviceListActivity_network_failed">Nettverk feilet!</string>
   <!--DeviceListItem-->
@@ -389,6 +390,7 @@ Mottatt melding med ukjent ID nøkkel. Klikk for å prosessere og vise.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Klarte ikke å levere meldingen.</string>
   <string name="MessageNotifier_error_delivering_message">Feil ved levering av meldingen.</string>
   <string name="MessageNotifier_mark_all_as_read">Marker alle som lest</string>
+  <string name="MessageNotifier_mark_read">Marker som lest</string>
   <string name="MessageNotifier_media_message">Multimediamelding</string>
   <string name="MessageNotifier_reply">Svar</string>
   <!--QuickResponseService-->
@@ -425,6 +427,7 @@ Mottatt melding med ukjent ID nøkkel. Klikk for å prosessere og vise.</string>
   <string name="conversation_activity__compose_description">Meldingssammensetning</string>
   <string name="conversation_activity__emoji_toggle_description">Emoji tastatur av/på</string>
   <string name="conversation_activity__attachment_thumbnail">Vedleggsikon</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Vedleggsskuff av/på</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Media melding lastes ned</string>
   <string name="conversation_item__mms_image_description">Multimediamelding</string>
@@ -500,6 +503,8 @@ Importer en klartekst backup kompatibel med \'SMSBackup And Restore\'.</string>
   <string name="recipient_preferences__ringtone">Ringelyd</string>
   <string name="recipient_preferences__vibrate">Vibrer</string>
   <string name="recipient_preferences__block">Blokker</string>
+  <string name="recipient_preferences__color">Farge</string>
+  <string name="recipient_preferences__color_for_this_contact">Farge for denne kontakten</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 Verifiser telefonnummeret dit for å koble til TextSecure.
@@ -510,6 +515,7 @@ TELEFONNUMMER</string>
   <string name="registration_activity__phone_number">TELEFONNUMMER</string>
   <string name="registration_activity__register">Registrer</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Registrering sender noe kontaktinformasjon til serveren. Det blir ikke lagret.</string>
+  <string name="registration_activity__powered_by_twilio">Drevet av twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Noen mulige problemer
 inkluderer:</string>
@@ -750,6 +756,7 @@ Gratis og private meldinger til TextSecure og Signal brukere
   <string name="conversation__menu_leave_group">Forlat gruppe</string>
   <string name="conversation__menu_delete_thread">Slett tråd</string>
   <string name="conversation__menu_view_media">Alle bilder</string>
+  <string name="conversation__menu_conversation_settings">Samtaleinstillinger</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Utvid pop-up</string>
   <!--conversation_callable-->
@@ -792,5 +799,7 @@ Gratis og private meldinger til TextSecure og Signal brukere
   <string name="trimmer__old_messages_successfully_deleted">Sletting av gamle meldinger vellykket</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportikon</string>
+  <!--quick_attachment_drawer-->
+  <string name="quick_camera_unavailable">Kamera utilgjengelig</string>
   <!--EOF-->
 </resources>

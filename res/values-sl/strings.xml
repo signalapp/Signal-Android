@@ -146,6 +146,7 @@ preveriti ta stik.</string>
   <string name="DeviceListActivity_by_disconnecting_this_device_it_will_no_longer_be_able_to_send_or_receive">Z odstranitvijo naprave ta ne bo več mogla pošiljati ali prejemati sporočil.</string>
   <string name="DeviceListActivity_network_connection_failed">Omrežno povezovanje ni bilo uspešno...</string>
   <string name="DeviceListActivity_try_again">Poskusite znova</string>
+  <string name="DeviceListActivity_disconnecting_device">Odstranjujem napravo...</string>
   <string name="DeviceListActivity_disconnecting_device_no_ellipse">Odklapljam napravo...</string>
   <string name="DeviceListActivity_network_failed">Povezovanje ni uspelo!</string>
   <!--DeviceListItem-->
@@ -384,6 +385,7 @@ Prejeto sporočilo z neznanim identifikacijskim ključem. Kliknite za obdelavo i
   <string name="MessageNotifier_failed_to_deliver_message">Neuspešna dostava sporočila.</string>
   <string name="MessageNotifier_error_delivering_message">Napaka pri dostavi sporočila.</string>
   <string name="MessageNotifier_mark_all_as_read">Označi vse kot prebrano</string>
+  <string name="MessageNotifier_mark_read">Označi kot prebrano</string>
   <string name="MessageNotifier_media_message">Multiedijsko sporočilo</string>
   <string name="MessageNotifier_reply">Odgovor</string>
   <!--QuickResponseService-->
@@ -493,6 +495,8 @@ Prejeto sporočilo z neznanim identifikacijskim ključem. Kliknite za obdelavo i
   <string name="recipient_preferences__ringtone">Zvonjenje</string>
   <string name="recipient_preferences__vibrate">Vibriranje</string>
   <string name="recipient_preferences__block">Blokiraj</string>
+  <string name="recipient_preferences__color">Barva</string>
+  <string name="recipient_preferences__color_for_this_contact">Barva stika</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 Za uporabo sporočil TextSecure potrdite svojo telefonsko številko.</string>
@@ -502,6 +506,7 @@ TELEFONSKA ŠTEVILKA</string>
   <string name="registration_activity__phone_number">TELEFONSKA ŠTEVILKA</string>
   <string name="registration_activity__register">Registriraj</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Pri registraciji se nekateri podatki uporabnika začasno posredujejo na strežnik.</string>
+  <string name="registration_activity__powered_by_twilio">Pogon: Twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Nekatere možni razlogi
 za težave:</string>
@@ -748,6 +753,7 @@ Brezplačno zasebno sporočanje za TextSecure in Signal</string>
   <string name="conversation__menu_leave_group">Zapusti skupino</string>
   <string name="conversation__menu_delete_thread">Izbriši pogovor</string>
   <string name="conversation__menu_view_media">Vse slike</string>
+  <string name="conversation__menu_conversation_settings">Nastavitve pogovora</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Odpri pojavno okno</string>
   <!--conversation_callable-->
@@ -790,5 +796,7 @@ Brezplačno zasebno sporočanje za TextSecure in Signal</string>
   <string name="trimmer__old_messages_successfully_deleted">Stara sporočila so bila uspešno izbrisana</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona transporta</string>
+  <!--quick_attachment_drawer-->
+  <string name="quick_camera_unavailable">Kamera ni na voljo</string>
   <!--EOF-->
 </resources>

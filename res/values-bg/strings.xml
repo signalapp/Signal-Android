@@ -148,6 +148,7 @@
   <string name="DeviceListActivity_by_disconnecting_this_device_it_will_no_longer_be_able_to_send_or_receive">Ако прекратиш връзката с това устройство, няма да можеш да изпращаш и получаваш съобщения от него.</string>
   <string name="DeviceListActivity_network_connection_failed">Неуспешна връзка с интернет...</string>
   <string name="DeviceListActivity_try_again">Опитай отново</string>
+  <string name="DeviceListActivity_disconnecting_device">Прекратяване на връзката с устройството</string>
   <string name="DeviceListActivity_disconnecting_device_no_ellipse">Прекратяване на връзката с устройството</string>
   <string name="DeviceListActivity_network_failed">Грешка в мрежата!</string>
   <!--DeviceListItem-->
@@ -400,6 +401,7 @@ SMS съобщенията от системната базата данни в 
   <string name="MessageNotifier_failed_to_deliver_message">Неуспешно изпращането на съобщението.</string>
   <string name="MessageNotifier_error_delivering_message">Грешка при изпращането на съобщението</string>
   <string name="MessageNotifier_mark_all_as_read">Всички са прочетени</string>
+  <string name="MessageNotifier_mark_read">Прочетено</string>
   <string name="MessageNotifier_media_message">Медийно съобщение</string>
   <string name="MessageNotifier_reply">Отговори</string>
   <!--QuickResponseService-->
@@ -436,6 +438,7 @@ SMS съобщенията от системната базата данни в 
   <string name="conversation_activity__compose_description">Създаване на съобщение</string>
   <string name="conversation_activity__emoji_toggle_description">Смени emoji клавиатурата</string>
   <string name="conversation_activity__attachment_thumbnail">Изображение на прикачен файл</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Затвори/отвори чекмеджето с прикачени файлове</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Изтегляне на медийно съобщение</string>
   <string name="conversation_item__mms_image_description">Медийно съобщение</string>
@@ -513,6 +516,8 @@ SMS съобщенията от системната базата данни в 
   <string name="recipient_preferences__ringtone">Мелодия</string>
   <string name="recipient_preferences__vibrate">Вибрирация</string>
   <string name="recipient_preferences__block">Блокирай</string>
+  <string name="recipient_preferences__color">Цвят</string>
+  <string name="recipient_preferences__color_for_this_contact">Цвят за този контакт</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 Потвърди своя телфонен номер, за да се свържеш с TextSecure</string>
@@ -522,6 +527,7 @@ SMS съобщенията от системната базата данни в 
   <string name="registration_activity__phone_number">ТЕЛЕФОНЕН НОМЕР</string>
   <string name="registration_activity__register">Регистрирай</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Регистрацията ще прехвърли временно малко информация, относно контактите ти, на сървъра.</string>
+  <string name="registration_activity__powered_by_twilio">С помоща на twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Няколко вероятни
 проблема включват:
@@ -776,6 +782,7 @@ TextSecure чака твърде дълго за SMS потвърждение.
   <string name="conversation__menu_leave_group">Напусни група</string>
   <string name="conversation__menu_delete_thread">Изтрий разговора</string>
   <string name="conversation__menu_view_media">Всички изображения</string>
+  <string name="conversation__menu_conversation_settings">Настройки на разговора</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Разшири диалога</string>
   <!--conversation_callable-->
@@ -818,5 +825,7 @@ TextSecure чака твърде дълго за SMS потвърждение.
   <string name="trimmer__old_messages_successfully_deleted">Старите съобщения бяха успешно изтрити</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Икона за транспорт</string>
+  <!--quick_attachment_drawer-->
+  <string name="quick_camera_unavailable">Камерата е недостъпна</string>
   <!--EOF-->
 </resources>

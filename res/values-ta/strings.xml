@@ -735,5 +735,6 @@ TextSecure சரிபார்ப்பு SMS-செய்திக்கா�
   <string name="trimmer__old_messages_successfully_deleted">பழையசெய்திகள் நீக்கப்பட்டது</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">போக்குவரத்து குறும்படம்</string>
+  <!--quick_attachment_drawer-->
   <!--EOF-->
 </resources>

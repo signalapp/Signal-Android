@@ -156,6 +156,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="DeviceListActivity_by_disconnecting_this_device_it_will_no_longer_be_able_to_send_or_receive">Ao desconectar este dispositivo, ele não poderá mais enviar ou receber mensagens.</string>
   <string name="DeviceListActivity_network_connection_failed">Conexão de rede falhou...</string>
   <string name="DeviceListActivity_try_again">Tentar de novo</string>
+  <string name="DeviceListActivity_disconnecting_device">Desconectando dispositivo...</string>
   <string name="DeviceListActivity_disconnecting_device_no_ellipse">Desconectando dispositivo</string>
   <string name="DeviceListActivity_network_failed">Rede falhou!</string>
   <!--DeviceListItem-->
@@ -421,6 +422,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="MessageNotifier_failed_to_deliver_message">Falha ao enviar mensagem.</string>
   <string name="MessageNotifier_error_delivering_message">Erro ao enviar mensagem.</string>
   <string name="MessageNotifier_mark_all_as_read">Marcar todas como lidas</string>
+  <string name="MessageNotifier_mark_read">Marcar como lida</string>
   <string name="MessageNotifier_media_message">Mensagem multimídia</string>
   <string name="MessageNotifier_reply">Responder</string>
   <!--QuickResponseService-->
@@ -457,6 +459,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="conversation_activity__compose_description">Composição de mensagem</string>
   <string name="conversation_activity__emoji_toggle_description">Alternar teclado emoji</string>
   <string name="conversation_activity__attachment_thumbnail">Miniatura do anexo</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Trocar guardador de anexos</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Baixando mensagem multimídia</string>
   <string name="conversation_item__mms_image_description">Mensagem multimídia</string>
@@ -536,6 +539,8 @@ Tem certeza que deseja fazer isto?</string>
   <string name="recipient_preferences__ringtone">Toque</string>
   <string name="recipient_preferences__vibrate">Vibrar</string>
   <string name="recipient_preferences__block">Bloquear</string>
+  <string name="recipient_preferences__color">Cor</string>
+  <string name="recipient_preferences__color_for_this_contact">Cor para este contato</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
         Verifique seu número telefônico para conectar-se ao TextSecure.
@@ -547,6 +552,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="registration_activity__phone_number">NÚMERO TELEFÔNICO</string>
   <string name="registration_activity__register">Cadastrar</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">O registro irá transmitir algumas informações de contato para o servidor. Elas não serão gravadas.</string>
+  <string name="registration_activity__powered_by_twilio">Fornecido por twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Alguns problemas possíveis
         incluem:
@@ -805,6 +811,7 @@ falhou.</string>
   <string name="conversation__menu_leave_group">Sair do grupo</string>
   <string name="conversation__menu_delete_thread">Excluir conversa</string>
   <string name="conversation__menu_view_media">Todas as imagens</string>
+  <string name="conversation__menu_conversation_settings">Configurações de conversa</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Expandir popup</string>
   <!--conversation_callable-->
@@ -847,5 +854,7 @@ falhou.</string>
   <string name="trimmer__old_messages_successfully_deleted">Mensagens antigas excluídas com sucesso</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ícone do transporte</string>
+  <!--quick_attachment_drawer-->
+  <string name="quick_camera_unavailable">Câmera indisponível</string>
   <!--EOF-->
 </resources>

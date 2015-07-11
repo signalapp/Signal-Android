@@ -151,6 +151,7 @@ kontakt</string>
   <string name="DeviceListActivity_by_disconnecting_this_device_it_will_no_longer_be_able_to_send_or_receive">Po odpojení toho zařízení již nebude možno přijímat nebo odesílat zprávy.</string>
   <string name="DeviceListActivity_network_connection_failed">Síťové spojení slehalo...</string>
   <string name="DeviceListActivity_try_again">Zkusit znovu</string>
+  <string name="DeviceListActivity_disconnecting_device">Odpojuji zařízení...</string>
   <string name="DeviceListActivity_disconnecting_device_no_ellipse">Odpojuji zařízení</string>
   <string name="DeviceListActivity_network_failed">Síť selhala</string>
   <!--DeviceListItem-->
@@ -392,6 +393,7 @@ Obdržena zpráva s neznámým identifikačním klíčem. Klepněte pro její zp
   <string name="MessageNotifier_failed_to_deliver_message">Selhalo doručení zprávy.</string>
   <string name="MessageNotifier_error_delivering_message">Chyba při doručení zprávy.</string>
   <string name="MessageNotifier_mark_all_as_read">Označit vše jako přečtené</string>
+  <string name="MessageNotifier_mark_read">Označit jako přečtené</string>
   <string name="MessageNotifier_media_message">Multimediální zpráva</string>
   <string name="MessageNotifier_reply">Odpověď</string>
   <!--QuickResponseService-->
@@ -428,6 +430,7 @@ Obdržena zpráva s neznámým identifikačním klíčem. Klepněte pro její zp
   <string name="conversation_activity__compose_description">Sestavení zprávy</string>
   <string name="conversation_activity__emoji_toggle_description">Zapnout klávesnici se smajlíky</string>
   <string name="conversation_activity__attachment_thumbnail">Připojený náhled</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Vybrat úložiště pro přílohy</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Stahuji multimediální zprávu</string>
   <string name="conversation_item__mms_image_description">Multimediální zpráva</string>
@@ -505,6 +508,8 @@ Importovat nešifrovanou zálohu kompatibilní s \"SMSBackup And Restore\".</str
   <string name="recipient_preferences__ringtone">Vyzvánění</string>
   <string name="recipient_preferences__vibrate">Vibrace</string>
   <string name="recipient_preferences__block">Blokovat</string>
+  <string name="recipient_preferences__color">Barva</string>
+  <string name="recipient_preferences__color_for_this_contact">Brava tohoto kontaktu</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 Ověření vašeho telefoního čísla pro připojení k TextSecure</string>
@@ -515,6 +520,7 @@ Ověření vašeho telefoního čísla pro připojení k TextSecure</string>
   <string name="registration_activity__phone_number">Telefonní číslo</string>
   <string name="registration_activity__register">Zaregistrovat</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">V průběhu registrace jsou odeslány některé kontaktní informace na server. Nejsou ale uloženy.</string>
+  <string name="registration_activity__powered_by_twilio">Powered by twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Možné příčiny jsou:</string>
   <string name="registration_problems__sms_interceptors">Přijemci SMS</string>
@@ -767,6 +773,7 @@ Svobodná šifrovaná komunikace s uživateli TextSecure a Signal</string>
   <string name="conversation__menu_leave_group">Opustit skupinu</string>
   <string name="conversation__menu_delete_thread">Smazat konverzaci</string>
   <string name="conversation__menu_view_media">Všechny obrázky</string>
+  <string name="conversation__menu_conversation_settings">Nastavení konverzace</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Rozbalit menu</string>
   <!--conversation_callable-->
@@ -809,5 +816,7 @@ Svobodná šifrovaná komunikace s uživateli TextSecure a Signal</string>
   <string name="trimmer__old_messages_successfully_deleted">Staré zprávy byly úspěšně smazány.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona přenosu</string>
+  <!--quick_attachment_drawer-->
+  <string name="quick_camera_unavailable">Kamera není dostupná</string>
   <!--EOF-->
 </resources>

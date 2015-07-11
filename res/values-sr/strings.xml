@@ -151,6 +151,7 @@
   <string name="DeviceListActivity_by_disconnecting_this_device_it_will_no_longer_be_able_to_send_or_receive">Овај уређај више неће моћи да шаље или прима поруке ако му прекинете везу:</string>
   <string name="DeviceListActivity_network_connection_failed">Повезивање на мрежу није успело...</string>
   <string name="DeviceListActivity_try_again">Покушај поново</string>
+  <string name="DeviceListActivity_disconnecting_device">Прекидам везу са уређајем...</string>
   <string name="DeviceListActivity_disconnecting_device_no_ellipse">Прекидам везу са уређајем</string>
   <string name="DeviceListActivity_network_failed">Неуспех мреже!</string>
   <!--DeviceListItem-->
@@ -404,6 +405,7 @@
   <string name="MessageNotifier_failed_to_deliver_message">Нисам успео да испоручим поруку.</string>
   <string name="MessageNotifier_error_delivering_message">Грешка при испоруци поруке.</string>
   <string name="MessageNotifier_mark_all_as_read">Означи све прочитаним</string>
+  <string name="MessageNotifier_mark_read">Означи прочитаним</string>
   <string name="MessageNotifier_media_message">Мултимедијална порука</string>
   <string name="MessageNotifier_reply">Одговори</string>
   <!--QuickResponseService-->
@@ -440,6 +442,7 @@
   <string name="conversation_activity__compose_description">Састављање поруке</string>
   <string name="conversation_activity__emoji_toggle_description">Емоџи тастатура</string>
   <string name="conversation_activity__attachment_thumbnail">Сличица прилога</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Фиока прилога</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Преузимање мултимедијалне поруке</string>
   <string name="conversation_item__mms_image_description">Мултимедијална порука</string>
@@ -517,6 +520,8 @@
   <string name="recipient_preferences__ringtone">Звоно</string>
   <string name="recipient_preferences__vibrate">Вибрирај</string>
   <string name="recipient_preferences__block">Блокирај</string>
+  <string name="recipient_preferences__color">Боја</string>
+  <string name="recipient_preferences__color_for_this_contact">Боја за контакт</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 Потврдите ваш број телефона да бисте се пријавили на Сигурне поруке.
@@ -527,6 +532,7 @@
   <string name="registration_activity__phone_number">БРОЈ ТЕЛЕФОНА</string>
   <string name="registration_activity__register">Пријави ме</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Ово ће пренети неке податке о контактима на сервер. Подаци се не чувају.</string>
+  <string name="registration_activity__powered_by_twilio">Покреће „twilio“</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Неки од могућих проблема
 су:</string>
@@ -774,6 +780,7 @@
   <string name="conversation__menu_leave_group">Напусти групу</string>
   <string name="conversation__menu_delete_thread">Обриши преписку</string>
   <string name="conversation__menu_view_media">Све слике</string>
+  <string name="conversation__menu_conversation_settings">Поставке преписке</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Рашири прозорче</string>
   <!--conversation_callable-->
@@ -816,5 +823,7 @@
   <string name="trimmer__old_messages_successfully_deleted">Старе поруке успешно обрисане</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Икона преноса</string>
+  <!--quick_attachment_drawer-->
+  <string name="quick_camera_unavailable">Камера није доступна</string>
   <!--EOF-->
 </resources>

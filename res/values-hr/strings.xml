@@ -811,5 +811,6 @@ Besplatno privatno dopisivanje sa TextSecure i Signal korisnicima</string>
   <string name="trimmer__old_messages_successfully_deleted">Stare poruke su uspješno obrisane</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona transporta</string>
+  <!--quick_attachment_drawer-->
   <!--EOF-->
 </resources>
