@@ -108,7 +108,8 @@
                             android:src="?quick_camera_icon"
                             android:background="@drawable/touch_highlight_background"
                             android:contentDescription="@string/conversation_activity__quick_attachment_drawer_toggle_description"
-                            android:padding="10dp"/>
+                            android:visibility="gone"
+                            android:padding="10dp" />
                 </LinearLayout>
 
                 <org.thoughtcrime.securesms.components.AnimatingToggle
