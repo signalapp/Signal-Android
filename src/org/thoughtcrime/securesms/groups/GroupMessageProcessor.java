@@ -113,7 +113,7 @@ public class GroupMessageProcessor {
       builder.clearMembers();
     }
 
-    if (missingMembers.isEmpty()) {
+    if (!missingMembers.isEmpty()) {
       // TODO We should tell added and missing about each-other.
     }
 
