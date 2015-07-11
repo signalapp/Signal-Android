@@ -20,6 +20,7 @@ package ws.com.google.android.mms.pdu;
 import ws.com.google.android.mms.InvalidHeaderValueException;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 public class PduHeaders {

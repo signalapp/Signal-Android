@@ -2,8 +2,6 @@ package org.thoughtcrime.securesms.components.emoji;
 
 import android.util.Log;
 import android.view.Gravity;
-import android.view.View;
-import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.PopupWindow;
 
 import org.thoughtcrime.securesms.R;

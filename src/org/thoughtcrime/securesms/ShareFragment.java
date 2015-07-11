@@ -104,6 +104,6 @@ public class ShareFragment extends ListFragment implements LoaderManager.LoaderC
   }
 
   public interface ConversationSelectedListener {
-    public void onCreateConversation(long threadId, Recipients recipients, int distributionType);
+    void onCreateConversation(long threadId, Recipients recipients, int distributionType);
   }
 }

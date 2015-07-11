@@ -238,7 +238,7 @@ public class ConversationListFragment extends Fragment
       ConversationListAdapter adapter = (ConversationListAdapter)list.getAdapter();
       adapter.toggleThreadInBatchSet(item.getThreadId());
 
-      if (adapter.getBatchSelections().size() == 0) {
+      if (adapter.getBatchSelections().isEmpty()) {
         actionMode.finish();
       } else {
         actionMode.setSubtitle(getString(R.string.conversation_fragment_cab__batch_selection_amount,

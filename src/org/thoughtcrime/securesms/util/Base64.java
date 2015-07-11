@@ -1,5 +1,9 @@
 package org.thoughtcrime.securesms.util;
 
+import java.io.Closeable;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+
 /**
  * <p>Encodes and decodes to and from Base64 notation.</p>
  * <p>Homepage: <a href="http://iharder.net/base64">http://iharder.net/base64</a>.</p>
@@ -564,7 +568,7 @@ public class Base64
         while( raw.hasRemaining() ){
             int rem = Math.min(3,raw.remaining());
             raw.get(raw3,0,rem);
-            Base64.encode3to4(enc4, raw3, rem, Base64.NO_OPTIONS );
+            Base64.encode3to4(enc4, raw3, rem, Base64.NO_OPTIONS);
             encoded.put(enc4);
         }   // end input remaining
     }
@@ -680,30 +684,26 @@ public class Base64
             }
             oos.writeObject( serializableObject );
         }   // end try
-        catch( java.io.IOException e ) {
+        catch( IOException e ) {
             // Catch it and then throw it immediately so that
             // the finally{} block is called for cleanup.
             throw e;
         }   // end catch
         finally {
-            try{ oos.close();   } catch( Exception e ){}
-            try{ gzos.close();  } catch( Exception e ){}
-            try{ b64os.close(); } catch( Exception e ){}
-            try{ baos.close();  } catch( Exception e ){}
+            safeClose(oos);
+            safeClose(gzos);
+            safeClose(b64os);
+            safeClose(baos);
         }   // end finally
-        
+
         // Return value according to relevant encoding.
         try {
             return new String( baos.toByteArray(), PREFERRED_ENCODING );
-        }   // end try
-        catch (java.io.UnsupportedEncodingException uue){
+        } catch (UnsupportedEncodingException _){
             // Fall back to some Java default
             return new String( baos.toByteArray() );
-        }   // end catch
-        
-    }   // end encode
-    
-    
+        }
+    }
 
     /**
      * Encodes a byte array into Base64 notation.
@@ -857,14 +857,10 @@ public class Base64
         // Return value according to relevant encoding.
         try {
             return new String( encoded, PREFERRED_ENCODING );
-        }   // end try
-        catch (java.io.UnsupportedEncodingException uue) {
+        } catch (java.io.UnsupportedEncodingException _) {
             return new String( encoded );
-        }   // end catch
-        
-    }   // end encodeBytes
-
-
+        }
+    }
 
 
     /**
@@ -943,15 +939,15 @@ public class Base64
                 gzos.write( source, off, len );
                 gzos.close();
             }   // end try
-            catch( java.io.IOException e ) {
+            catch( IOException e ) {
                 // Catch it and then throw it immediately so that
                 // the finally{} block is called for cleanup.
                 throw e;
             }   // end catch
             finally {
-                try{ gzos.close();  } catch( Exception e ){}
-                try{ b64os.close(); } catch( Exception e ){}
-                try{ baos.close();  } catch( Exception e ){}
+                safeClose(gzos);
+                safeClose(b64os);
+                safeClose(baos);
             }   // end finally
 
             return baos.toByteArray();
@@ -1317,9 +1313,9 @@ public class Base64
                     // Just return originally-decoded bytes
                 }   // end catch
                 finally {
-                    try{ baos.close(); } catch( Exception e ){}
-                    try{ gzis.close(); } catch( Exception e ){}
-                    try{ bais.close(); } catch( Exception e ){}
+                    safeClose(baos);
+                    safeClose(gzis);
+                    safeClose(bais);
                 }   // end finally
 
             }   // end if: gzipped
@@ -1327,8 +1323,6 @@ public class Base64
         
         return bytes;
     }   // end decode
-
-
 
     /**
      * Attempts to decode Base64 data and deserialize a Java
@@ -1409,8 +1403,8 @@ public class Base64
             throw e;    // Catch and throw in order to execute finally{}
         }   // end catch
         finally {
-            try{ bais.close(); } catch( Exception e ){}
-            try{ ois.close();  } catch( Exception e ){}
+            safeClose(bais);
+            safeClose(ois);
         }   // end finally
         
         return obj;
@@ -1449,7 +1443,7 @@ public class Base64
             throw e; // Catch and throw to execute finally{} block
         }   // end catch: java.io.IOException
         finally {
-            try{ bos.close(); } catch( Exception e ){}
+            safeClose(bos);
         }   // end finally
         
     }   // end encodeToFile
@@ -1481,7 +1475,7 @@ public class Base64
             throw e; // Catch and throw to execute finally{} block
         }   // end catch: java.io.IOException
         finally {
-                try{ bos.close(); } catch( Exception e ){}
+            safeClose(bos);
         }   // end finally
         
     }   // end decodeToFile
@@ -1542,7 +1536,7 @@ public class Base64
             throw e; // Catch and release to execute finally{}
         }   // end catch: java.io.IOException
         finally {
-            try{ bis.close(); } catch( Exception e) {}
+            safeClose(bis);
         }   // end finally
         
         return decodedData;
@@ -1595,7 +1589,7 @@ public class Base64
             throw e; // Catch and release to execute finally{}
         }   // end catch: java.io.IOException
         finally {
-            try{ bis.close(); } catch( Exception e) {}
+            safeClose(bis);
         }   // end finally
         
         return encodedData;
@@ -1623,9 +1617,8 @@ public class Base64
             throw e; // Catch and release to execute finally{}
         }   // end catch
         finally {
-            try { out.close(); }
-            catch( Exception ex ){}
-        }   // end finally    
+            safeClose(out);
+        }   // end finally
     }   // end encodeFileToFile
 
 
@@ -1638,7 +1631,7 @@ public class Base64
      * @since 2.2
      */
     public static void decodeFileToFile( String infile, String outfile )
-    throws java.io.IOException {
+    throws IOException {
         
         byte[] decoded = Base64.decodeFromFile( infile );
         java.io.OutputStream out = null;
@@ -1651,16 +1644,14 @@ public class Base64
             throw e; // Catch and release to execute finally{}
         }   // end catch
         finally {
-            try { out.close(); }
-            catch( Exception ex ){}
+            safeClose(out);
         }   // end finally    
     }   // end decodeFileToFile
-    
-    
+
+
     /* ********  I N N E R   C L A S S   I N P U T S T R E A M  ******** */
-    
-    
-    
+
+
     /**
      * A {@link Base64.InputStream} will read data from another
      * <tt>java.io.InputStream</tt>, given in the constructor,
@@ -2091,6 +2082,9 @@ public class Base64
         
         
     }   // end inner class OutputStream
-    
-    
+
+    private static void safeClose(Closeable closeable) {
+        if (closeable != null) try { closeable.close(); } catch (Exception _) {}
+    }
+
 }   // end class Base64

@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 
 import org.thoughtcrime.securesms.util.MmsCharacterCalculator;
 import org.thoughtcrime.securesms.util.PushCharacterCalculator;
@@ -131,6 +130,6 @@ public class TransportOptions {
   }
 
   public interface OnTransportChangedListener {
-    public void onChange(TransportOption newTransport);
+    void onChange(TransportOption newTransport);
   }
 }

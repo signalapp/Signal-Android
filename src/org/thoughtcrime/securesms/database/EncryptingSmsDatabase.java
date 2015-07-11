@@ -36,7 +36,6 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 
 import java.lang.ref.SoftReference;
 import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 
 public class EncryptingSmsDatabase extends SmsDatabase {

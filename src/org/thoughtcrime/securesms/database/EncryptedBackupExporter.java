@@ -50,8 +50,11 @@ public class EncryptedBackupExporter {
     String exportDirectoryPath = getExportDirectoryPath();
     File exportDirectory       = new File(exportDirectoryPath);
 
-    if (!exportDirectory.exists())
-      exportDirectory.mkdir();
+    if (!exportDirectory.exists()) {
+      if (!exportDirectory.mkdir()) {
+        throw new NoExternalStorageException("Unable to create directory " + exportDirectoryPath);
+      }
+    }
   }
 
   private static void verifyExternalStorageForImport() throws NoExternalStorageException {
@@ -75,12 +78,13 @@ public class EncryptedBackupExporter {
     }
   }
 
-  private static void exportDirectory(Context context, String directoryName) throws IOException {
+  private static void exportDirectory(Context context, String directoryName) throws IOException, NoExternalStorageException {
     File directory       = new File(context.getFilesDir().getParent() + File.separatorChar + directoryName);
     File exportDirectory = new File(getExportDirectoryPath() + File.separatorChar + directoryName);
 
     if (directory.exists()) {
-      exportDirectory.mkdirs();
+      if (!exportDirectory.mkdirs())
+        throw new NoExternalStorageException("Could not create directory " + exportDirectory);
 
       File[] contents = directory.listFiles();
 
@@ -99,12 +103,13 @@ public class EncryptedBackupExporter {
     }
   }
 
-  private static void importDirectory(Context context, String directoryName) throws IOException {
+  private static void importDirectory(Context context, String directoryName) throws IOException, NoExternalStorageException {
     File directory       = new File(getExportDirectoryPath() + File.separator + directoryName);
     File importDirectory = new File(context.getFilesDir().getParent() + File.separator + directoryName);
 
     if (directory.exists() && directory.isDirectory()) {
-      importDirectory.mkdirs();
+      if (!importDirectory.mkdirs())
+        throw new NoExternalStorageException("Could not create diretory " + importDirectory);
 
       File[] contents = directory.listFiles();
 
