@@ -37,6 +37,7 @@ public class AttachmentTypeSelectorAdapter extends ArrayAdapter<AttachmentTypeSe
   public static final int ADD_VIDEO         = 2;
   public static final int ADD_SOUND         = 3;
   public static final int ADD_CONTACT_INFO  = 4;
+  public static final int TAKE_PHOTO        = 5;
 
   private final Context context;
 
@@ -75,6 +76,7 @@ public class AttachmentTypeSelectorAdapter extends ArrayAdapter<AttachmentTypeSe
     addItem(data, context.getString(R.string.AttachmentTypeSelectorAdapter_video),   ResUtil.getDrawableRes(context, R.attr.conversation_attach_video),        ADD_VIDEO);
     addItem(data, context.getString(R.string.AttachmentTypeSelectorAdapter_audio),   ResUtil.getDrawableRes(context, R.attr.conversation_attach_sound),        ADD_SOUND);
     addItem(data, context.getString(R.string.AttachmentTypeSelectorAdapter_contact), ResUtil.getDrawableRes(context, R.attr.conversation_attach_contact_info), ADD_CONTACT_INFO);
+    addItem(data, context.getString(R.string.AttachmentTypeSelectorAdapter_take_photo), ResUtil.getDrawableRes(context, R.attr.conversation_attach_contact_info), TAKE_PHOTO);
 
     return data;
   }
