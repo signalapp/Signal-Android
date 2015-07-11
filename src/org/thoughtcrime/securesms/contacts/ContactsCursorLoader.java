@@ -21,8 +21,6 @@ import android.database.Cursor;
 import android.support.v4.content.CursorLoader;
 import android.util.Log;
 
-import junit.framework.Assert;
-
 import java.util.concurrent.Semaphore;
 
 /**

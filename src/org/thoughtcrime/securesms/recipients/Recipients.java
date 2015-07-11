@@ -306,7 +306,7 @@ public class Recipients implements Iterable<Recipient>, RecipientModifiedListene
 
 
   public interface RecipientsModifiedListener {
-    public void onModified(Recipients recipient);
+    void onModified(Recipients recipient);
   }
 
 }

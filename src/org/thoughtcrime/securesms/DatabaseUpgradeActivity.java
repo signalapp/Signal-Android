@@ -39,11 +39,9 @@ import org.thoughtcrime.securesms.jobs.PushDecryptJob;
 import org.thoughtcrime.securesms.jobs.SmsDecryptJob;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.util.ParcelUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.VersionTracker;
 import org.whispersystems.jobqueue.EncryptionKeys;
-import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 
 import java.io.File;
 import java.util.SortedSet;

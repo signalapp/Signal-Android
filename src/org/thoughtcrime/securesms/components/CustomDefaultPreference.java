@@ -10,7 +10,6 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -172,7 +171,7 @@ public class CustomDefaultPreference extends DialogPreference {
   }
 
   protected interface CustomPreferenceValidator {
-    public boolean isValid(String value);
+    boolean isValid(String value);
   }
 
   private static class NullValidator implements CustomPreferenceValidator {

@@ -19,17 +19,12 @@ package org.thoughtcrime.securesms.components;
 import android.content.Context;
 import android.os.Build;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AutoCompleteTextView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.RecipientsAdapter;
 import org.thoughtcrime.securesms.contacts.RecipientsEditor;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -37,11 +32,9 @@ import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Panel component combining both an editable field with a button for
@@ -162,7 +155,7 @@ public class PushRecipientsPanel extends RelativeLayout {
   }
 
   public interface RecipientsPanelChangedListener {
-    public void onRecipientsPanelUpdate(Recipients recipients);
+    void onRecipientsPanelUpdate(Recipients recipients);
   }
 
 }

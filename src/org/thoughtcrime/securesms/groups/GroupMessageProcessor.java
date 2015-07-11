@@ -103,7 +103,7 @@ public class GroupMessageProcessor {
     GroupContext.Builder builder = createGroupContext(group);
     builder.setType(GroupContext.Type.UPDATE);
 
-    if (addedMembers.size() > 0) {
+    if (!addedMembers.isEmpty()) {
       Set<String> unionMembers = new HashSet<>(recordMembers);
       unionMembers.addAll(messageMembers);
       database.updateMembers(id, new LinkedList<>(unionMembers));
@@ -113,7 +113,7 @@ public class GroupMessageProcessor {
       builder.clearMembers();
     }
 
-    if (missingMembers.size() > 0) {
+    if (!missingMembers.isEmpty()) {
       // TODO We should tell added and missing about each-other.
     }
 

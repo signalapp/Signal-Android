@@ -8,7 +8,6 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
-import org.thoughtcrime.securesms.database.PartDatabase;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.PartParser;
@@ -31,7 +30,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import ws.com.google.android.mms.MmsException;
-import ws.com.google.android.mms.pdu.PduBody;
 import ws.com.google.android.mms.pdu.SendReq;
 
 import static org.thoughtcrime.securesms.dependencies.TextSecureCommunicationModule.TextSecureMessageSenderFactory;

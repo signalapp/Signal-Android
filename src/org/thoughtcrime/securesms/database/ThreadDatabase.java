@@ -58,7 +58,7 @@ public class ThreadDatabase extends Database {
   private static final String HAS_ATTACHMENT  = "has_attachment";
   public  static final String SNIPPET_TYPE    = "snippet_type";
 
-  public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID + " INTEGER PRIMARY KEY, "                             +
+  public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID + " INTEGER PRIMARY KEY, " +
     DATE + " INTEGER DEFAULT 0, " + MESSAGE_COUNT + " INTEGER DEFAULT 0, "                         +
     RECIPIENT_IDS + " TEXT, " + SNIPPET + " TEXT, " + SNIPPET_CHARSET + " INTEGER DEFAULT 0, "     +
     READ + " INTEGER DEFAULT 1, " + TYPE + " INTEGER DEFAULT 0, " + ERROR + " INTEGER DEFAULT 0, " +
@@ -261,12 +261,12 @@ public class ThreadDatabase extends Database {
   }
 
   public Cursor getFilteredConversationList(List<String> filter) {
-    if (filter == null || filter.size() == 0)
+    if (filter == null || filter.isEmpty())
       return null;
 
     List<Long> rawRecipientIds = DatabaseFactory.getAddressDatabase(context).getCanonicalAddressIds(filter);
 
-    if (rawRecipientIds == null || rawRecipientIds.size() == 0)
+    if (rawRecipientIds == null || rawRecipientIds.isEmpty())
       return null;
 
     SQLiteDatabase   db                      = databaseHelper.getReadableDatabase();
@@ -427,8 +427,8 @@ public class ThreadDatabase extends Database {
     }
   }
 
-  public static interface ProgressListener {
-    public void onProgress(int complete, int total);
+  public interface ProgressListener {
+    void onProgress(int complete, int total);
   }
 
   public Reader readerFor(Cursor cursor, MasterCipher masterCipher) {

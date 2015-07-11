@@ -17,7 +17,6 @@
 package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -165,7 +164,7 @@ public class SingleRecipientPanel extends RelativeLayout {
   }
 
   public interface RecipientsPanelChangedListener {
-    public void onRecipientsPanelUpdate(Recipients recipients);
+    void onRecipientsPanelUpdate(Recipients recipients);
   }
 
 }

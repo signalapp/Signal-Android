@@ -17,24 +17,14 @@
 package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.util.Pair;
 
-import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.dom.smil.parser.SmilXmlSerializer;
-import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.SmilUtil;
 import org.thoughtcrime.securesms.util.Util;
 
-import java.io.ByteArrayOutputStream;
-import java.io.UnsupportedEncodingException;
 import java.util.LinkedList;
 import java.util.List;
 
-import ws.com.google.android.mms.ContentType;
-import ws.com.google.android.mms.pdu.CharacterSets;
 import ws.com.google.android.mms.pdu.PduBody;
 import ws.com.google.android.mms.pdu.PduPart;
 

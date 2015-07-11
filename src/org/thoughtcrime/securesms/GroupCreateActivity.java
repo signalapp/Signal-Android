@@ -316,7 +316,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
   }
 
   private void handleGroupCreate() {
-    if (selectedContacts.size() < 1) {
+    if (selectedContacts.isEmpty()) {
       Log.i(TAG, getString(R.string.GroupCreateActivity_contacts_no_members));
       Toast.makeText(getApplicationContext(), R.string.GroupCreateActivity_contacts_no_members, Toast.LENGTH_SHORT).show();
       return;

@@ -79,8 +79,8 @@ public class TextSecureCommunicationModule {
                                          new DynamicCredentialsProvider(context));
   }
 
-  public static interface TextSecureMessageSenderFactory {
-    public TextSecureMessageSender create(MasterSecret masterSecret);
+  public interface TextSecureMessageSenderFactory {
+    TextSecureMessageSender create(MasterSecret masterSecret);
   }
 
   private static class DynamicCredentialsProvider implements CredentialsProvider {

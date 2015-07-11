@@ -147,7 +147,7 @@ public class DraftDatabase extends Database {
       Draft textDraft = getDraftOfType(Draft.TEXT);
       if (textDraft != null) {
         return textDraft.getSnippet(context);
-      } else if (size() > 0) {
+      } else if (!isEmpty()) {
         return get(0).getSnippet(context);
       } else {
         return "";

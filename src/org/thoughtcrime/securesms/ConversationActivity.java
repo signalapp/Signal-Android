@@ -29,7 +29,6 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.ColorDrawable;
-import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -75,7 +74,6 @@ import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 import org.thoughtcrime.securesms.components.camera.HidingImageButton;
 import org.thoughtcrime.securesms.components.camera.QuickAttachmentDrawer.AttachmentDrawerListener;
-import org.thoughtcrime.securesms.components.camera.QuickAttachmentDrawer.DrawerState;
 import org.thoughtcrime.securesms.components.camera.QuickAttachmentDrawer;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -1021,10 +1019,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void selectContactInfo(ContactData contactData) {
-    final CharSequence[] numbers     = new CharSequence[contactData.numbers.size()];
-    final CharSequence[] numberItems = new CharSequence[contactData.numbers.size()];
+          int            size        = contactData.numbers.size();
+    final CharSequence[] numbers     = new CharSequence[size];
+    final CharSequence[] numberItems = new CharSequence[size];
 
-    for (int i = 0; i < contactData.numbers.size(); i++) {
+    for (int i = 0; i < size; i++) {
       numbers[i]     = contactData.numbers.get(i).number;
       numberItems[i] = contactData.numbers.get(i).type + ": " + contactData.numbers.get(i).number;
     }
@@ -1078,7 +1077,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         DraftDatabase  draftDatabase  = DatabaseFactory.getDraftDatabase(ConversationActivity.this);
         long           threadId       = params[0];
 
-        if (drafts.size() > 0) {
+        if (!drafts.isEmpty()) {
           if (threadId == -1) threadId = threadDatabase.getThreadIdFor(getRecipients(), thisDistributionType);
 
           draftDatabase.insertDrafts(new MasterCipher(thisMasterSecret), threadId, drafts);

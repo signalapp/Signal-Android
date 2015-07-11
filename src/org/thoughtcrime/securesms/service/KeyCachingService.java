@@ -304,15 +304,13 @@ public class KeyCachingService extends Service {
   private PendingIntent buildLockIntent() {
     Intent intent = new Intent(this, KeyCachingService.class);
     intent.setAction(PASSPHRASE_EXPIRED_EVENT);
-    PendingIntent pendingIntent = PendingIntent.getService(getApplicationContext(), 0, intent, 0);
-    return pendingIntent;
+    return PendingIntent.getService(getApplicationContext(), 0, intent, 0);
   }
 
   private PendingIntent buildLaunchIntent() {
     Intent intent              = new Intent(this, ConversationListActivity.class);
     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-    PendingIntent launchIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
-    return launchIntent;
+    return PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
   }
 
   @Override

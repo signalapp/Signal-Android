@@ -17,7 +17,6 @@ import org.whispersystems.libaxolotl.IdentityKey;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 
 public abstract class MessagingDatabase extends Database implements MmsSmsColumns {

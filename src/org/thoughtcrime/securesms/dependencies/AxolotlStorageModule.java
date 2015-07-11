@@ -28,7 +28,7 @@ public class AxolotlStorageModule {
     };
   }
 
-  public static interface SignedPreKeyStoreFactory {
-    public SignedPreKeyStore create(MasterSecret masterSecret);
+  public interface SignedPreKeyStoreFactory {
+    SignedPreKeyStore create(MasterSecret masterSecret);
   }
 }

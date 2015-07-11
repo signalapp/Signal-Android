@@ -137,7 +137,7 @@ public class ConversationFragment extends ListFragment
   private void setCorrectMenuVisibility(Menu menu) {
     List<MessageRecord> messageRecords = getSelectedMessageRecords();
 
-    if (actionMode != null && messageRecords.size() == 0) {
+    if (actionMode != null && messageRecords.isEmpty()) {
       actionMode.finish();
       return;
     }
@@ -308,9 +308,9 @@ public class ConversationFragment extends ListFragment
   }
 
   public interface ConversationFragmentListener {
-    public void setComposeText(String text);
+    void setComposeText(String text);
 
-    public void setThreadId(long threadId);
+    void setThreadId(long threadId);
   }
 
   public interface SelectionClickListener extends

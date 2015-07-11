@@ -4,11 +4,9 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.annotation.Nullable;
 import android.text.SpannableStringBuilder;
 
 import org.thoughtcrime.securesms.ConversationActivity;
-import org.thoughtcrime.securesms.ConversationPopupActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.Util;
