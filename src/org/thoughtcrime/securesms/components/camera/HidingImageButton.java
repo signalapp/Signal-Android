@@ -26,7 +26,7 @@ public class HidingImageButton extends ImageButton {
   }
 
   public void hide() {
-    if (!isEnabled()) return;
+    if (!isEnabled() || getVisibility() == GONE) return;
     final Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.slide_to_right);
     animation.setAnimationListener(new AnimationListener() {
       @Override public void onAnimationStart(Animation animation) {}
@@ -39,7 +39,7 @@ public class HidingImageButton extends ImageButton {
   }
 
   public void show() {
-    if (!isEnabled()) return;
+    if (!isEnabled() || getVisibility() == VISIBLE) return;
     setVisibility(VISIBLE);
     animateWith(AnimationUtils.loadAnimation(getContext(), R.anim.slide_from_right));
   }
