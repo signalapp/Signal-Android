@@ -20,6 +20,7 @@
                     android:layout_weight="1"
                     android:orientation="vertical"
                     android:background="?conversation_background"
+                    android:paddingTop="?attr/actionBarSize"
                     android:gravity="bottom">
 
         <FrameLayout android:id="@+id/fragment_content"
