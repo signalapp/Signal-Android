@@ -286,7 +286,7 @@ public class ConversationListFragment extends Fragment
     inflater.inflate(R.menu.conversation_list_batch, menu);
 
     mode.setTitle(R.string.conversation_fragment_cab__batch_selection_mode);
-    mode.setSubtitle(null);
+    mode.setSubtitle(getString(R.string.conversation_fragment_cab__batch_selection_amount, 1));
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
       getActivity().getWindow()
