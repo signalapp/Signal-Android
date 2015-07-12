@@ -129,6 +129,13 @@ public class QuickAttachmentDrawer extends ViewGroup {
     shutterButton.setOnClickListener(new ShutterClickListener());
     fullScreenButton.setOnClickListener(new FullscreenClickListener());
     addView(controls, controlsIndex > -1 ? controlsIndex : indexOfChild(quickCamera) + 1);
+
+    // Workaround for #3629, invisible quick camera control views are clickable with drawer closed
+    if (!isOpen()) {
+      shutterButton.setVisibility(GONE);
+      swapCameraButton.setVisibility(GONE);
+      fullScreenButton.setVisibility(GONE);
+    }
   }
 
   private boolean isLandscape() {
