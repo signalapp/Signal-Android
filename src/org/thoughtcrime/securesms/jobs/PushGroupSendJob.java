@@ -94,7 +94,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
                           .scheduleDeletion(messageId, true, message.getExpiresIn());
       }
 
-      if (record.hasNetworkFailures()) {
+      if (record.hasNetworkFailures() || record.isIdentityMismatchFailure()) {
         database.markAsSentFailed(messageId);
       } else {
         database.markAsSent(messageId, true);
