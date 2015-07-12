@@ -61,7 +61,7 @@ public class GcmRefreshJob extends ContextJob {
       Log.w(TAG, "GCM registrationId expired, reregistering...");
       int result = GooglePlayServicesUtil.isGooglePlayServicesAvailable(context);
 
-      if (result != ConnectionResult.SUCCESS ||  BuildConfig.FORCE_WS ) {
+      if (result != ConnectionResult.SUCCESS ||  BuildConfig.FORCE_WEBSOCKETS ) {
         notifyGcmFailure();
       } else {
         String gcmId = GoogleCloudMessaging.getInstance(context).register(REGISTRATION_ID);
