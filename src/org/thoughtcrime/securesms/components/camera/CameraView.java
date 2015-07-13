@@ -224,6 +224,11 @@ public class CameraView extends FrameLayout {
         previewHeight = height;
       }
 
+      if (previewHeight == 0 || previewWidth == 0) {
+        Log.w(TAG, "skipping layout due to zero-width/height preview size");
+        return;
+      }
+
       boolean useFirstStrategy = (width * previewHeight > height * previewWidth);
       boolean useFullBleed     = getHost().useFullBleedPreview();
 
