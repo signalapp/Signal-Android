@@ -41,14 +41,6 @@ public class ProfileActivity extends PassphraseRequiredActionBarActivity {
     dynamicTheme.onCreate(this);
     super.onCreate(savedInstanceState);
     setContentView(R.layout.profile_activity);
-  /*  View decorView = getWindow().getDecorView();
-    int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
-    if(BuildConfig.VERSION_CODE >= 11) {
-      decorView.setSystemUiVisibility(uiOptions);
-    }
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-        WindowManager.LayoutParams.FLAG_FULLSCREEN);
-    */
     setStatusBarColor();
 
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -64,19 +56,7 @@ public class ProfileActivity extends PassphraseRequiredActionBarActivity {
   public void setStatusBarColor() {
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      // If both system bars are black, we can remove these from our layout,
-      // removing or shrinking the SurfaceFlinger overlay required for our views.
-
-
-      //change here
       Window window = getWindow();
-
-      // By -->>>>> Window window = getWindow();
-
-      //or by this if call in Fragment
-      // -->>>>> Window window = getActivity().getWindow();
-
-
       int statusBarColor = Color.parseColor("#00000000");
 
       if (statusBarColor == Color.BLACK && window.getNavigationBarColor() == Color.BLACK) {

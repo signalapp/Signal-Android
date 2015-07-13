@@ -281,23 +281,25 @@ public class GUtil {
   }
 
   public static Long numberToLong(String number) {
-    if (number.contains("+")) {
-      number = number.replace("+", "");
-      number = number.substring(getCountryCodeLength(number), number.length());
-    }
-    if (number.length() > 0 && number.charAt(0) == '0') {
-      number = number.substring(1);
-    }
-    number = number.replaceAll(" ", "");
     String longNumber = "";
-    for (int i = 0; i < number.length(); i++) {
-      char a = number.charAt(i);
-      if (('0' <= a && a <= '9')) {
-        longNumber += a;
+    if(number != null) {
+      if (number.contains("+")) {
+        number = number.replace("+", "");
+        number = number.substring(getCountryCodeLength(number), number.length());
       }
-    }
-    if (longNumber.trim().length() <= 0) {
-      longNumber = "0";
+      if (number.length() > 0 && number.charAt(0) == '0') {
+        number = number.substring(1);
+      }
+      number = number.replaceAll(" ", "");
+      for (int i = 0; i < number.length(); i++) {
+        char a = number.charAt(i);
+        if (('0' <= a && a <= '9')) {
+          longNumber += a;
+        }
+      }
+      if (longNumber.trim().length() <= 0) {
+        longNumber = "0";
+      }
     }
     Long longId = 0L;
     try {

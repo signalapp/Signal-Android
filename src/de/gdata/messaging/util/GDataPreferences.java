@@ -76,10 +76,10 @@ public class GDataPreferences {
     mPreferences.edit().putLong("row:" + profileId, profilePartId).commit();
   }
   public Long getProfilePartId(String profileId) {
-    return mPreferences.getLong("id:" +profileId, 0L);
+    return mPreferences.getLong("id:" +profileId, -1L);
   }
   public Long getProfilePartRow(String profileId) {
-    return mPreferences.getLong("row:"+profileId, 0L);
+    return mPreferences.getLong("row:"+profileId, -1L);
   }
   public void setProfileStatus(String profileStatus) {
     mPreferences.edit().putString(PROFILE_STATUS, profileStatus).commit();
