@@ -244,7 +244,7 @@ public class RegistrationService extends Service {
     SignedPreKeyRecord signedPreKey = PreKeyUtil.generateSignedPreKey(this, masterSecret, identityKey);
     accountManager.setPreKeys(identityKey.getPublicKey(),lastResort, signedPreKey, records);
     int gcmStatus = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
-    if (gcmStatus == ConnectionResult.SUCCESS && !BuildConfig.FORCE_WS) {
+    if (gcmStatus == ConnectionResult.SUCCESS && !BuildConfig.FORCE_WEBSOCKETS) {
       setState(new RegistrationState(RegistrationState.STATE_GCM_REGISTERING, number));
 
       String gcmRegistrationId = GoogleCloudMessaging.getInstance(this).register(GcmRefreshJob.REGISTRATION_ID);
