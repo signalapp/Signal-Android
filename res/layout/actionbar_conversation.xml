@@ -7,17 +7,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:gravity="left"
+        android:gravity="bottom"
         >
-
         <org.thoughtcrime.securesms.components.CircledImageView
             android:id="@+id/profile_picture"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
+            android:scaleType="fitXY"
             android:layout_weight="2.5"
-            android:clipChildren="false"
-            android:clipToPadding="false"
+            android:padding="2dp"
+            android:layout_gravity="center"
             android:visibility="visible"/>
 
     <LinearLayout

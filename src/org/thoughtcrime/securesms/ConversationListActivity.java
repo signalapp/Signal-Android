@@ -60,6 +60,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -202,7 +203,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   }
   private void refreshProfile() {
     if(GService.appContext != null) {
-      CircledImageView profileImageView = (CircledImageView) findViewById(R.id.profile_picture);
+      ImageView profileImageView = (ImageView) findViewById(R.id.profile_picture);
       Slide myProfileImage = ProfileAccessor.getMyProfilePicture(getApplicationContext());
       if (masterSecret != null && !(myProfileImage.getUri() + "").equals("")) {
         ProfileAccessor.buildDraftGlideRequest(myProfileImage).into(profileImageView);

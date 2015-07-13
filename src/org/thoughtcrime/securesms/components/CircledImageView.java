@@ -11,7 +11,9 @@ import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.bumptech.glide.load.resource.bitmap.GlideBitmapDrawable;
 import com.bumptech.glide.request.target.SquaringDrawable;
@@ -42,27 +44,31 @@ public class CircledImageView extends ImageView {
     if (getWidth() == 0 || getHeight() == 0) {
       return;
     }
+    int w = getWidth(), low = getHeight();
+    low = w < low ? w : low;
+    int padding = 0;
+    if(getParent() != null && getParent() instanceof  LinearLayout) {
+      padding = (((LinearLayout)getParent()).getHeight() - low)/2;
+    }
+    if(low > 200) {
+      padding = 0;
+    }
     if (!(drawable instanceof GlideBitmapDrawable) && !(drawable instanceof SquaringDrawable)) {
       Bitmap b = ((BitmapDrawable) drawable).getBitmap();
       Bitmap bitmap = b.copy(Bitmap.Config.ARGB_8888, true);
-
-      int w = getWidth(), h = getHeight();
-
-      Bitmap roundBitmap = getRoundedCroppedBitmap(bitmap, h);
-      canvas.drawBitmap(roundBitmap, 0, 0, null);
+      Bitmap roundBitmap = getRoundedCroppedBitmap(bitmap, low);
+      canvas.drawBitmap(roundBitmap, 0, padding, null);
     } else if(!(drawable instanceof SquaringDrawable)){
       Bitmap b = ((GlideBitmapDrawable) drawable).getBitmap();
       Bitmap bitmap = b.copy(Bitmap.Config.ARGB_8888, true);
-
-      Bitmap roundBitmap = BitmapUtil.getScaledCircleBitmap(context, bitmap);
-      canvas.drawBitmap(roundBitmap, 0, 0, null);
+      Bitmap roundBitmap = BitmapUtil.getScaledCircleBitmap(context, bitmap, low);
+      canvas.drawBitmap(roundBitmap, 0, padding, null);
     } else {
       SquaringDrawable squaringDrawable = (SquaringDrawable) drawable;
       Bitmap b = ((GlideBitmapDrawable) squaringDrawable.getCurrent()).getBitmap();
       Bitmap bitmap = b.copy(Bitmap.Config.ARGB_8888, true);
-
-      Bitmap roundBitmap = BitmapUtil.getScaledCircleBitmap(context, bitmap);
-      canvas.drawBitmap(roundBitmap, 0, 0, null);
+      Bitmap roundBitmap = BitmapUtil.getScaledCircleBitmap(context, bitmap, low);
+      canvas.drawBitmap(roundBitmap, 0, padding, null);
     }
   }
   public static Bitmap getRoundedCroppedBitmap(Bitmap bitmap, int radius) {

@@ -161,6 +161,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     private static final int PICK_CONTACT_INFO = 4;
     private static final int GROUP_EDIT = 5;
     private static final int SET_CALLFILTER = 10;
+    public static int currentConversationType = ConversationItem.SINGLE_CONVERSATION;
 
     private MasterSecret masterSecret;
     private EditText composeText;
@@ -206,6 +207,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         initializeViews();
         initializeResources();
         initializeDraft();
+        if(isGroupConversation()) {
+            currentConversationType = ConversationItem.GROUP_CONVERSATION;
+        } else {
+            currentConversationType = ConversationItem.SINGLE_CONVERSATION;
+        }
     }
 
     @Override
@@ -679,8 +685,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         intent.putExtras(getIntent().getExtras());
         startActivity(intent);
     }
-
-    ///// Initializers
 
     private void initializeTitleBar() {
         final String title;

@@ -90,9 +90,9 @@ public class BitmapUtil {
     InputStream is = PartAuthority.getPartStream(context, masterSecret, uri);
     if (is == null) throw new IOException("Couldn't obtain InputStream");
     return createScaledBitmap(is,
-        PartAuthority.getPartStream(context, masterSecret, uri),
-        PartAuthority.getPartStream(context, masterSecret, uri),
-        maxWidth, maxHeight, constrainedMemory);
+            PartAuthority.getPartStream(context, masterSecret, uri),
+            PartAuthority.getPartStream(context, masterSecret, uri),
+            maxWidth, maxHeight, constrainedMemory);
   }
 
   private static Bitmap createScaledBitmap(InputStream measure, InputStream orientationStream, InputStream data,
@@ -258,8 +258,10 @@ public class BitmapUtil {
 
     return output;
   }
-  public static Bitmap getScaledCircleBitmap(Context context, Bitmap bitmap) {
-    final int size = context.getResources().getDimensionPixelSize(R.dimen.contact_selection_photo_size);
+  public static Bitmap getScaledCircleBitmap(Context context, Bitmap bitmap, int size) {
+    if(size == 0) {
+      size = context.getResources().getDimensionPixelSize(R.dimen.contact_selection_photo_size);
+    }
     final Bitmap output = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888);
     final Canvas canvas = new Canvas(output);
     bitmap = bitmap.createScaledBitmap(bitmap, bitmap.getHeight(), bitmap.getHeight(), true);

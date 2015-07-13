@@ -76,6 +76,8 @@ import java.util.Set;
 
 import de.gdata.messaging.util.GDataLinkMovementMethod;
 import de.gdata.messaging.util.GDataPreferences;
+import de.gdata.messaging.util.GUtil;
+import de.gdata.messaging.util.ProfileAccessor;
 
 
 /**
@@ -92,8 +94,10 @@ public class ConversationItem extends LinearLayout {
   private static final long TYPE_WRONG_CREATED = -2139029483;
   private static final long TYPE_WRONG_ENCRYPTED = -2136932329;
   private static final long TYPE_LEFT_GROUP = -2136866793;
+    public static final int GROUP_CONVERSATION = 1;
+    public static final int SINGLE_CONVERSATION = 2;
 
-  private final int STYLE_ATTRIBUTES[] = new int[]{R.attr.conversation_item_sent_push_background,
+    private final int STYLE_ATTRIBUTES[] = new int[]{R.attr.conversation_item_sent_push_background,
       R.attr.conversation_item_sent_push_triangle_background,
       R.attr.conversation_item_sent_background,
       R.attr.conversation_item_sent_triangle_background,
@@ -212,7 +216,6 @@ public class ConversationItem extends LinearLayout {
 
     if (!messageRecord.isGroupAction()) {
       setStatusIcons(messageRecord);
-      setContactPhoto(messageRecord);
       setGroupMessageStatus(messageRecord);
       setEvents(messageRecord);
       setMinimumWidth();
@@ -223,6 +226,13 @@ public class ConversationItem extends LinearLayout {
     } else {
       bodyText.setTextColor(Color.BLACK);
     }
+      if(ConversationActivity.currentConversationType == GROUP_CONVERSATION) {
+          setContactPhoto(messageRecord);
+     } else {
+          if(contactPhoto != null) {
+              contactPhoto.setVisibility(View.GONE);
+          }
+      }
         checkForBeingDestroyed(messageRecord);
   }
   public void unbind() {
@@ -481,7 +491,6 @@ public class ConversationItem extends LinearLayout {
   }
 
   public void deleteMessage(MessageRecord mr) {
-    Log.d("MYLOG","MYLOG DELETED " + mr.getId());
     if (mr.isMms()) {
       DatabaseFactory.getMmsDatabase(getContext()).delete(mr.getId());
     } else {
@@ -550,8 +559,8 @@ public class ConversationItem extends LinearLayout {
           messageRecord.getRecipients().isSingleRecipient() &&
           !messageRecord.isSecure()) {
         checkForAutoInitiate(messageRecord.getIndividualRecipient(),
-            messageRecord.getBody().getBody(),
-            messageRecord.getThreadId());
+                messageRecord.getBody().getBody(),
+                messageRecord.getThreadId());
       }
     }
 
@@ -669,29 +678,33 @@ public class ConversationItem extends LinearLayout {
 
       Bitmap contactPhotoBitmap;
 
-      if ((recipient.getContactPhoto() == ContactPhotoFactory.getDefaultContactPhoto(context)) && (groupThread)) {
-        contactPhotoBitmap = recipient.getGeneratedAvatar(context);
-      } else {
-        contactPhotoBitmap = recipient.getCircleCroppedContactPhoto();
-      }
+        ImageSlide avatarSlide = ProfileAccessor.getProfileAsImageSlide(getActivity(), masterSecret, GUtil.numberToLong(recipient.getNumber()) + "");
+        if (avatarSlide != null) {
+            ProfileAccessor.buildGlideRequest(avatarSlide).into(contactPhoto);
+            contactPhoto.setVisibility(View.VISIBLE);
+        } else {
+            if ((recipient.getContactPhoto() == ContactPhotoFactory.getDefaultContactPhoto(context)) && (groupThread)) {
+                contactPhotoBitmap = recipient.getGeneratedAvatar(context);
+            } else {
+                contactPhotoBitmap = recipient.getCircleCroppedContactPhoto();
+            }
+            contactPhoto.setImageBitmap(contactPhotoBitmap);
 
-      contactPhoto.setImageBitmap(contactPhotoBitmap);
-
-      contactPhoto.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-          if (recipient.getContactUri() != null) {
-            QuickContact.showQuickContact(context, contactPhoto, recipient.getContactUri(), QuickContact.MODE_LARGE, null);
-          } else {
-            final Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
-            intent.putExtra(ContactsContract.Intents.Insert.PHONE, recipient.getNumber());
-            intent.setType(ContactsContract.Contacts.CONTENT_ITEM_TYPE);
-            context.startActivity(intent);
-          }
+            contactPhoto.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (recipient.getContactUri() != null) {
+                        QuickContact.showQuickContact(context, contactPhoto, recipient.getContactUri(), QuickContact.MODE_LARGE, null);
+                    } else {
+                        final Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
+                        intent.putExtra(ContactsContract.Intents.Insert.PHONE, recipient.getNumber());
+                        intent.setType(ContactsContract.Contacts.CONTENT_ITEM_TYPE);
+                        context.startActivity(intent);
+                    }
+                }
+            });
+            contactPhoto.setVisibility(View.VISIBLE);
         }
-      });
-
-      contactPhoto.setVisibility(View.VISIBLE);
     }
 
     /// Event handlers

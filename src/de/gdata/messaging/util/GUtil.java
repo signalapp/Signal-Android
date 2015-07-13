@@ -313,7 +313,7 @@ public class GUtil {
   public static Drawable createCircledBitmapFromDrawable(Context context, GlideBitmapDrawable profileImage) {
     return new BitmapDrawable(context.getResources(),
         BitmapUtil.getScaledCircleBitmap(context, ((GlideBitmapDrawable) profileImage)
-            .getBitmap()));
+            .getBitmap(),0));
   }
 
   public static void setListViewHeightBasedOnChildren(ListView listView) {
