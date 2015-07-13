@@ -131,14 +131,13 @@ public class MessageNotifier {
                                            .getRecipientsForThreadId(threadId);
 
     if (!TextSecurePreferences.isNotificationsEnabled(context) ||
-    (recipients != null && recipients.isMuted()))
+        (recipients != null && recipients.isMuted()))
     {
       if (visibleThread == threadId) {
         ThreadDatabase threads = DatabaseFactory.getThreadDatabase(context);
         threads.setRead(threadId);
         return;
-      }
-      else {
+      } else {
         return;
       }
     }
