@@ -223,12 +223,8 @@ public class ConversationItem extends LinearLayout {
     } else {
       bodyText.setTextColor(Color.BLACK);
     }
-    if (new GDataPreferences(getContext()).isMarkedAsRemoved(getUniqueMsgId(messageRecord))) {
-      new GDataPreferences(getContext()).removeFromList(getUniqueMsgId(messageRecord));
-    deleteMessage(messageRecord);
+        checkForBeingDestroyed(messageRecord);
   }
-
-}
   public void unbind() {
     if (slideDeck != null && slideDeckListener != null)
       slideDeck.removeListener(slideDeckListener);
@@ -250,7 +246,12 @@ public class ConversationItem extends LinearLayout {
     v.setBackgroundResource(backgroundResId);
     v.setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom);
   }
-
+    private void checkForBeingDestroyed(MessageRecord messageRecord) {
+        if (new GDataPreferences(getContext()).isMarkedAsRemoved(getUniqueMsgId(messageRecord))) {
+            new GDataPreferences(getContext()).removeFromList(getUniqueMsgId(messageRecord));
+            deleteMessage(messageRecord);
+        }
+    }
   /// MessageRecord Attribute Parsers
 
   private void setConversationBackgroundDrawables(MessageRecord messageRecord) {
@@ -336,11 +337,9 @@ public class ConversationItem extends LinearLayout {
       bombImage.setVisibility(View.GONE);
     }
   }
-
   public String getUniqueMsgId(MessageRecord messageRecord) {
-    return messageRecord.getId() + "" +  messageRecord.getRecipientDeviceId() + "" + messageRecord.getType()+messageRecord.getDateReceived();
+    return messageRecord.getRecipientDeviceId() + "" + messageRecord.getType()+messageRecord.getDateReceived()+messageRecord.getBody().getParsedBody();
   }
-
   public class BombClickListener implements OnClickListener {
     String text = "";
     String countdown = "";
@@ -399,18 +398,16 @@ public class ConversationItem extends LinearLayout {
       LinearLayout rlView = (LinearLayout) vi.inflate(R.layout.destroy_dialog, null);
 
       ((TextView) rlView.findViewById(R.id.textDialog)).setText(Emoji.getInstance(context).emojify(text,
-              new Emoji.InvalidatingPageLoadedListener(((TextView) rlView.findViewById(R.id.textDialog)))),
-          TextView.BufferType.SPANNABLE);
+                      new Emoji.InvalidatingPageLoadedListener(((TextView) rlView.findViewById(R.id.textDialog)))),
+              TextView.BufferType.SPANNABLE);
 
       builder.setView(rlView);
       builder.setPositiveButton(R.string.self_destruction, new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
           dialog.dismiss();
-          if (!alreadyDestroyed) {
-            alreadyDestroyed = true;
-            deleteMessage(messageRecord);
-          }
+            new GDataPreferences(getContext()).setAsDestroyed(getUniqueMsgId(messageRecord));
+            checkForBeingDestroyed(messageRecord);
         }
       });
       alertDialogDestroy = builder.show();
@@ -420,8 +417,8 @@ public class ConversationItem extends LinearLayout {
       thumbnailDestroyDialog = ((ThumbnailView) alertDialogDestroy.findViewById(R.id.imageDialog));
       loadingDestroyIndicator = ((ImageView) alertDialogDestroy.findViewById(R.id.loading_indicator));
 
-      if (getActivity() != null) {
-        getActivity().runOnUiThread(new Runnable() {
+        if (getActivity() != null) {
+            getActivity().runOnUiThread(new Runnable() {
           @Override
           public void run() {
             refreshCountdown();
@@ -433,6 +430,7 @@ public class ConversationItem extends LinearLayout {
         public void run() {
           int i = currentCountdown;
           int z = 0;
+            new GDataPreferences(getContext()).setAsDestroyed(getUniqueMsgId(messageRecord));
           while (!thumbnailDestroyDialog.isLoadingDone() && z < 10 && hasMedia(messageRecord)) {
             z++;
             try {
@@ -443,10 +441,10 @@ public class ConversationItem extends LinearLayout {
           }
           if (getActivity() != null) {
             getActivity().runOnUiThread(new Runnable() {
-              @Override
-              public void run() {
-                loadingDestroyIndicator.setVisibility(View.GONE);
-              }
+                @Override
+                public void run() {
+                    loadingDestroyIndicator.setVisibility(View.GONE);
+                }
             });
           }
           while (i > 0 && !alreadyDestroyed) {
@@ -466,10 +464,6 @@ public class ConversationItem extends LinearLayout {
               });
             }
           }
-          if (!alreadyDestroyed) {
-            alreadyDestroyed = true;
-            deleteMessage(messageRecord);
-          }
           if (getActivity() != null) {
             getActivity().runOnUiThread(new Runnable() {
               @Override
@@ -479,13 +473,15 @@ public class ConversationItem extends LinearLayout {
             });
           }
           MediaPreviewActivity.closeActivity();
+            checkForBeingDestroyed(messageRecord);
         }
       }).start();
-      new GDataPreferences(getContext()).setAsDestroyed(getUniqueMsgId(messageRecord));
+
     }
   }
 
   public void deleteMessage(MessageRecord mr) {
+    Log.d("MYLOG","MYLOG DELETED " + mr.getId());
     if (mr.isMms()) {
       DatabaseFactory.getMmsDatabase(getContext()).delete(mr.getId());
     } else {
