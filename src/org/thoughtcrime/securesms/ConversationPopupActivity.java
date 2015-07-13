@@ -114,8 +114,8 @@ public class ConversationPopupActivity extends ConversationActivity {
   }
 
   @Override
-  protected void hideEmojiPopup(boolean expectingKeyboard) {
-    super.hideEmojiPopup(false);
+  protected void hideEmojiDrawer(boolean expectingKeyboard) {
+    super.hideEmojiDrawer(false);
   }
 
   @Override
