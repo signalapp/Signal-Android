@@ -10,7 +10,6 @@ import android.view.MenuItem;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 
-import org.thoughtcrime.securesms.R;
 
 import java.util.Arrays;
 import java.util.Collections;

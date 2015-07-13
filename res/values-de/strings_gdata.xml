@@ -57,6 +57,9 @@
     <string name="verify_identity_activity_your_identity" >Eigene Identität - Dieser Schlüssel ist ihre Identifikation. Lassen Sie den Schlüssel von ihren Gesprächspartnern einscannen, um Ihre Nachrichten zu authentifizieren.</string>
     <string name="identification_verified_unsuccessfully">Die Schlüssel stimmen nicht überein!</string>
     <string name="identification_verified_successfully">Identifikation erfolgreich.</string>
+    <string name="accept_eula_and_continue"><![CDATA[Zustimmen & Fortfahren]]></string>
+    <string name="claim_textsecure">Mit uns ist Sicherheit so einfach, dass du es einfach machen musst.</string>
+    <string name="eula">AGB</string>
 
 </resources>
 

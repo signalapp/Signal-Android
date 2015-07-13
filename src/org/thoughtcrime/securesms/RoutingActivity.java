@@ -23,6 +23,7 @@ public class RoutingActivity extends PassphraseRequiredActionBarActivity {
   private static final int STATE_CONVERSATION_OR_LIST     = 3;
   private static final int STATE_UPGRADE_DATABASE         = 4;
   private static final int STATE_PROMPT_PUSH_REGISTRATION = 5;
+  private static final int STATE_PROMPT_EULA = 6;
 
   private MasterSecret masterSecret   = null;
   private boolean      isVisible      = false;
@@ -94,7 +95,13 @@ public class RoutingActivity extends PassphraseRequiredActionBarActivity {
     case STATE_CONVERSATION_OR_LIST:     handleDisplayConversationOrList(); break;
     case STATE_UPGRADE_DATABASE:         handleUpgradeDatabase();           break;
     case STATE_PROMPT_PUSH_REGISTRATION: handlePushRegistration();          break;
+    case STATE_PROMPT_EULA:              handleEula();                      break;
     }
+  }
+
+  private void handleEula() {
+    Intent intent = new Intent(this, EulaActivity.class);
+    startActivityForResult(intent, STATE_PROMPT_EULA);
   }
 
   private void handleCreatePassphrase() {
@@ -188,6 +195,9 @@ public class RoutingActivity extends PassphraseRequiredActionBarActivity {
 
     if (DatabaseUpgradeActivity.isUpdate(this))
       return STATE_UPGRADE_DATABASE;
+
+    if (!TextSecurePreferences.hasAcceptedEula(this))
+      return STATE_PROMPT_EULA;
 
     if (!TextSecurePreferences.hasPromptedPushRegistration(this))
       return STATE_PROMPT_PUSH_REGISTRATION;
