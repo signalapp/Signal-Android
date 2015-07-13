@@ -128,6 +128,7 @@ public class QuickAttachmentDrawer extends ViewGroup {
     }
     shutterButton.setOnClickListener(new ShutterClickListener());
     fullScreenButton.setOnClickListener(new FullscreenClickListener());
+    controls.setVisibility(GONE);
     addView(controls, controlsIndex > -1 ? controlsIndex : indexOfChild(quickCamera) + 1);
   }
 
@@ -273,8 +274,12 @@ public class QuickAttachmentDrawer extends ViewGroup {
     }
 
     if (slideOffset == COLLAPSED_ANCHOR_POINT && quickCamera.isStarted()) {
+      controls.setVisibility(GONE);
+      quickCamera.setVisibility(GONE);
       quickCamera.onPause();
     } else if (slideOffset != COLLAPSED_ANCHOR_POINT && !quickCamera.isStarted()) {
+      controls.setVisibility(VISIBLE);
+      quickCamera.setVisibility(VISIBLE);
       quickCamera.onResume();
     }
   }
