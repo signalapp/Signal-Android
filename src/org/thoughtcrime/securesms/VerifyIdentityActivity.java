@@ -170,8 +170,10 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
     String key = data.getStringExtra(QrScanActivity.FINGERPRINT);
     IdentityKey identityKey = getRemoteIdentityKey(masterSecret, recipient);
     if(identityKey.getFingerprint().equalsIgnoreCase(key)){
-      remoteIdentityFingerprint.setText("OK");
+      remoteIdentityFingerprint.setText(R.string.identification_verified_successfully);
+      remoteIdentityFingerprint.setTextColor(Color.GREEN);
     }else{
+      remoteIdentityFingerprint.setText(R.string.identification_verified_unsuccessfully);
       remoteIdentityFingerprint.setTextColor(Color.RED);
     }
   }

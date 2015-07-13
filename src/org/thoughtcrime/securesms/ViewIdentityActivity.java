@@ -39,9 +39,11 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 public class ViewIdentityActivity extends KeyScanningActivity {
 
   public static final String IDENTITY_KEY = "identity_key";
+  public static final String IDENTITY_TITLE = "identity_title";
   public static final String TITLE        = "title";
 
   private TextView    identityFingerprint;
+  private TextView    identityFingerprintTitle;
   private IdentityKey identityKey;
   private ImageView   imageView;
 
@@ -84,14 +86,21 @@ public class ViewIdentityActivity extends KeyScanningActivity {
       throw new AssertionError("No identity key!");
     }
 
-    this.identityKey         = identityKeyParcelable.get();
-    this.identityFingerprint = (TextView)findViewById(R.id.identity_fingerprint);
-    this.imageView           = (ImageView)findViewById(R.id.identity_qrcode);
-    String title             = getIntent().getStringExtra(TITLE);
+    this.identityKey              = identityKeyParcelable.get();
+    this.identityFingerprint      = (TextView)findViewById(R.id.identity_fingerprint);
+    this.imageView                = (ImageView)findViewById(R.id.identity_qrcode);
+    this.identityFingerprintTitle = (TextView)findViewById(R.id.identity_title);
+    String title                  = getIntent().getStringExtra(TITLE);
+    String identityTitle          = getIntent().getStringExtra(IDENTITY_TITLE);
 
     if (title != null) {
       getSupportActionBar().setTitle(getIntent().getStringExtra(TITLE));
     }
+    if(identityTitle != null){
+      identityFingerprintTitle.setVisibility(View.VISIBLE);
+      identityFingerprintTitle.setText(identityTitle);
+    }
+
   }
 
   @Override

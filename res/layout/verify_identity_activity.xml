@@ -13,8 +13,8 @@
         <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="@string/verify_identity_activity__their_identity_they_read"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/verify_identity_activity_their_identity"
                 android:padding="7dip" />
 
         <TextView
@@ -35,10 +35,9 @@
         <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/verify_identity_activity__your_identity_you_read"
-                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/verify_identity_activity_your_identity"
+                android:textAppearance="?android:attr/textAppearanceSmall"
                 android:padding="7dip" />
-
 
 
         <TextView
