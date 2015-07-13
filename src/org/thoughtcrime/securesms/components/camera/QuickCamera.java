@@ -43,7 +43,6 @@ import java.util.List;
     super(context, attrs, defStyle);
     cameraHost = new QuickCameraHost(context);
     setHost(cameraHost);
-    setClickable(false);
   }
 
   @Override
