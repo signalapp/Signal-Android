@@ -153,6 +153,7 @@ public class MessageNotifier {
     } else {
       Log.w(TAG, "Notifications enabled, visibleThread != threadId");
       updateNotification(context, masterSecret, true, 0);
+      Log.w(TAG, "updateNotification() has returned.");
     }
   }
 
