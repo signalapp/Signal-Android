@@ -11,11 +11,17 @@
                   android:orientation="vertical">
 
         <TextView
+                android:id="@+id/identity_title"
+                android:visibility="gone"
+                android:textAppearance="?android:attr/textAppearanceSmall"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:padding="7dp"/>
+        <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
                 android:typeface="monospace"
-                android:textSize="12sp"
                 android:id="@+id/identity_fingerprint"
                 android:text=""
                 android:padding="7dip" />
