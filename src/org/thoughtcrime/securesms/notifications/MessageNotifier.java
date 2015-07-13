@@ -131,17 +131,27 @@ public class MessageNotifier {
                                            .getRecipientsForThreadId(threadId);
 
     if (!TextSecurePreferences.isNotificationsEnabled(context) ||
-        (recipients != null && recipients.isMuted()))
+    (recipients != null && recipients.isMuted()))
     {
-      return;
+      if (visibleThread == threadId) {
+        Log.w(TAG, "Notifications disabled, visibleThread == threadId.");
+        ThreadDatabase threads = DatabaseFactory.getThreadDatabase(context);
+        threads.setRead(threadId);
+        return;
+      }
+      else {
+        Log.w(TAG, "Notifications disabled, visibleThread != threadId.");
+        return;
+      }
     }
 
-
     if (visibleThread == threadId) {
+      Log.w(TAG, "Notifications enabled, visibleThread == threadId");
       ThreadDatabase threads = DatabaseFactory.getThreadDatabase(context);
       threads.setRead(threadId);
       sendInThreadNotification(context, threads.getRecipientsForThreadId(threadId));
     } else {
+      Log.w(TAG, "Notifications enabled, visibleThread != threadId");
       updateNotification(context, masterSecret, true, 0);
     }
   }
