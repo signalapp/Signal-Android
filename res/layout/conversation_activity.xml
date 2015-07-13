@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/layout_container"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="vertical">
 
 <org.thoughtcrime.securesms.components.camera.QuickAttachmentDrawer
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/quick_attachment_drawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black">
+
+<org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout
+        android:id="@+id/layout_container"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
 
     <RelativeLayout android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
@@ -159,6 +159,11 @@
 
         </LinearLayout>
     </RelativeLayout>
-
-</org.thoughtcrime.securesms.components.camera.QuickAttachmentDrawer>
+    
+    <ViewStub android:id="@+id/emoji_drawer_stub"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:inflatedId="@+id/emoji_drawer"
+              android:layout="@layout/emoji_drawer_stub" />
 </org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout>
+</org.thoughtcrime.securesms.components.camera.QuickAttachmentDrawer>
