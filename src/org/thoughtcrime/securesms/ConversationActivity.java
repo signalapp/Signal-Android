@@ -29,7 +29,6 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.ColorDrawable;
-import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -277,7 +276,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     if (recipients != null)             recipients.removeListener(this);
     if (securityUpdateReceiver != null) unregisterReceiver(securityUpdateReceiver);
     if (groupUpdateReceiver != null)    unregisterReceiver(groupUpdateReceiver);
-    hideEmojiPopup(false);
+    if (isEmojiDrawerOpen())            hideEmojiPopup(false);
     super.onDestroy();
   }
 
