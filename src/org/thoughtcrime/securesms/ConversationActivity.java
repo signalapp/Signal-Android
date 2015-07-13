@@ -289,6 +289,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                 this.recipients = RecipientFactory.getRecipientsForIds(this, data.getLongArrayExtra(GroupCreateActivity.GROUP_RECIPIENT_EXTRA), true);
                 initializeTitleBar();
                 break;
+            case AttachmentTypeSelectorAdapter.TAKE_PHOTO:
+                addAttachmentImage(data.getData());
+                break;
         }
     }
 
@@ -986,6 +989,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                 break;
             case AttachmentTypeSelectorAdapter.ADD_VIDEO:
                 AttachmentManager.selectVideo(this, PICK_VIDEO);
+                break;
+            case AttachmentTypeSelectorAdapter.TAKE_PHOTO:
+                AttachmentManager.takePhoto(this, AttachmentTypeSelectorAdapter.TAKE_PHOTO);
                 break;
             case AttachmentTypeSelectorAdapter.ADD_SOUND:
                 AttachmentManager.selectAudio(this, PICK_AUDIO);

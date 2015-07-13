@@ -48,4 +48,6 @@
     <string name="profile_number_label">Phone</string>
     <string name="profile_status_member">Member</string>
 
+    <string name="take_picture">Foto aufnehmen</string>
+
 </resources>

@@ -26,22 +26,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.ResUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AttachmentTypeSelectorAdapter extends ArrayAdapter<AttachmentTypeSelectorAdapter.IconListItem> {
+public class ProfileImageTypeSelectorAdapter extends ArrayAdapter<ProfileImageTypeSelectorAdapter.IconListItem> {
 
   public static final int ADD_IMAGE         = 1;
-  public static final int ADD_VIDEO         = 2;
-  public static final int ADD_SOUND         = 3;
-  public static final int ADD_CONTACT_INFO  = 4;
   public static final int TAKE_PHOTO        = 6;
 
   private final Context context;
 
-  public AttachmentTypeSelectorAdapter(Context context) {
+  public ProfileImageTypeSelectorAdapter(Context context) {
     super(context, R.layout.icon_list_item, getItemList(context));
     this.context = context;
   }
@@ -71,12 +67,9 @@ public class AttachmentTypeSelectorAdapter extends ArrayAdapter<AttachmentTypeSe
   }
 
   private static List<IconListItem> getItemList(Context context) {
-    List<IconListItem> data = new ArrayList<>(5);
+    List<IconListItem> data = new ArrayList<>(2);
     addItem(data, context.getString(R.string.AttachmentTypeSelectorAdapter_picture), R.drawable.ic_attach_picture_holo_light, ADD_IMAGE);
     addItem(data, context.getString(R.string.take_picture), R.drawable.ic_attach_picture_holo_light, TAKE_PHOTO);
-    addItem(data, context.getString(R.string.AttachmentTypeSelectorAdapter_video), R.drawable.ic_attach_video_holo_light, ADD_VIDEO);
-    addItem(data, context.getString(R.string.AttachmentTypeSelectorAdapter_audio), R.drawable.ic_attach_audio_holo_light, ADD_SOUND);
-    addItem(data, context.getString(R.string.AttachmentTypeSelectorAdapter_contact), R.drawable.ic_action_person, ADD_CONTACT_INFO);
 
     return data;
   }

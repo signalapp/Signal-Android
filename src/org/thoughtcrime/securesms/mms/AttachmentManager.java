@@ -50,7 +50,7 @@ public class AttachmentManager {
   private final SlideDeck          slideDeck;
   private final AttachmentListener attachmentListener;
 
-  private File captureFile;
+  private static File captureFile;
 
   public AttachmentManager(Activity view, AttachmentListener listener) {
     this.attachmentView     = view.findViewById(R.id.attachment_editor);
@@ -90,11 +90,11 @@ public class AttachmentManager {
     return slideDeck;
   }
 
-  public File getCaptureFile() {
+  public static File getCaptureFile() {
     return captureFile;
   }
 
-  public void capturePhoto(Activity activity, int requestCode) {
+  public static void capturePhoto(Activity activity, int requestCode) {
     try {
       Intent captureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
@@ -107,7 +107,6 @@ public class AttachmentManager {
       Log.w(TAG, e);
     }
   }
-
   public static void selectVideo(Activity activity, int requestCode) {
     selectMediaType(activity, ContentType.VIDEO_UNSPECIFIED, requestCode);
   }
@@ -115,7 +114,10 @@ public class AttachmentManager {
   public static void selectImage(Activity activity, int requestCode) {
     selectMediaType(activity, ContentType.IMAGE_UNSPECIFIED, requestCode);
   }
-
+  public static void takePhoto(Activity activity, int requestCode) {
+    Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+    activity.startActivityForResult(cameraIntent, requestCode);
+  }
   public static void selectAudio(Activity activity, int requestCode) {
     selectMediaType(activity, ContentType.AUDIO_UNSPECIFIED, requestCode);
   }

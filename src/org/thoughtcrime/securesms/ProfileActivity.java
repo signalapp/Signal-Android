@@ -1,10 +1,13 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -18,10 +21,12 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.mms.AttachmentManager;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 
+import java.io.File;
 import java.io.IOException;
 
 import de.gdata.messaging.util.GUtil;
@@ -32,7 +37,8 @@ public class ProfileActivity extends PassphraseRequiredActionBarActivity {
 
   private MasterSecret masterSecret;
   private static final int PICK_IMAGE = 1;
-  
+  private static final int TAKE_PHOTO = 2;
+
   private DynamicTheme dynamicTheme = new DynamicTheme();
   private String profileId;
 
@@ -99,7 +105,7 @@ public class ProfileActivity extends PassphraseRequiredActionBarActivity {
     Log.w("", "onActivityResult called: " + reqCode + ", " + resultCode + " , " + data);
     super.onActivityResult(reqCode, resultCode, data);
 
-    if (data == null || resultCode != RESULT_OK) return;
+    if (data != null && resultCode != RESULT_OK) return;
     switch (reqCode) {
       case PICK_IMAGE:
         try {
@@ -111,6 +117,18 @@ public class ProfileActivity extends PassphraseRequiredActionBarActivity {
           Log.w("GDATA", e);
         }
         break;
+      case TAKE_PHOTO:
+        try {
+          Uri selectedImage = data.getData();
+          ImageSlide chosenImage = new ImageSlide(this, selectedImage);
+          ProfileAccessor.setProfilePicture(this, chosenImage);
+        } catch (IOException e) {
+          Log.w("GDATA", e);
+        } catch (BitmapDecodingException e) {
+          Log.w("GDATA", e);
+        }
+        break;
     }
+    Log.d("MYLOG","MYLOG req " + reqCode);
   }
 }

@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -26,6 +27,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,13 +49,16 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
+import org.thoughtcrime.securesms.mms.AttachmentTypeSelectorAdapter;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.PartAuthority;
+import org.thoughtcrime.securesms.mms.ProfileImageTypeSelectorAdapter;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.Dialogs;
+import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.SelectedRecipientsAdapter;
 
@@ -78,6 +83,7 @@ public class ProfileFragment extends Fragment {
   private String profileId = "";
 
   private static final int PICK_IMAGE = 1;
+  private static final int TAKE_PHOTO = 2;
   private EditText profileStatus;
   private ImageView xCloseButton;
   private ImageView phoneCall;
@@ -93,6 +99,9 @@ public class ProfileFragment extends Fragment {
   private ListView groupMember;
   private Set<Recipient> selectedContacts;
   private Set<Recipient> existingContacts  = null;
+
+  private ProfileImageTypeSelectorAdapter attachmentAdapter;
+
   private byte[] groupId;
   private RelativeLayout layout_status;
   private RelativeLayout layout_phone;
@@ -128,7 +137,7 @@ public class ProfileFragment extends Fragment {
     profilePicture = (ThumbnailView) getView().findViewById(R.id.profile_picture);
     phoneCall = (ImageView) getView().findViewById(R.id.phone_call);
     recipient = recipients.getPrimaryRecipient();
-
+    attachmentAdapter = new ProfileImageTypeSelectorAdapter(getActivity());
     scrollView = (ScrollView) getView().findViewById(R.id.scrollView);
     if(!isGroup) {
       ImageSlide slide = ProfileAccessor.getProfileAsImageSlide(getActivity(), masterSecret, profileId);
@@ -241,7 +250,7 @@ public class ProfileFragment extends Fragment {
         @Override
         public void onClick(View view) {
           hasChanged = true;
-          AttachmentManager.selectImage(getActivity(), PICK_IMAGE);
+          handleAddAttachment();
         }
       });
     }
@@ -289,6 +298,30 @@ public class ProfileFragment extends Fragment {
       }
     });
 
+  }
+  private class AttachmentTypeListener implements DialogInterface.OnClickListener {
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+      addAttachment(attachmentAdapter.buttonToCommand(which));
+    }
+  }
+  private void handleAddAttachment() {
+      AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(getActivity(), R.style.GSecure_Light_Dialog));
+      builder.setIcon(R.drawable.ic_dialog_attach);
+      builder.setTitle(R.string.ConversationActivity_add_attachment);
+      builder.setAdapter(attachmentAdapter, new AttachmentTypeListener());
+      builder.show();
+    }
+  private void addAttachment(int type) {
+    Log.w("ComposeMessageActivity", "Selected: " + type);
+    switch (type) {
+      case AttachmentTypeSelectorAdapter.ADD_IMAGE:
+        AttachmentManager.selectImage(getActivity(), PICK_IMAGE);
+        break;
+      case AttachmentTypeSelectorAdapter.TAKE_PHOTO:
+        AttachmentManager.takePhoto(getActivity(), TAKE_PHOTO);
+        break;
+    }
   }
   private static final int GROUP_EDIT = 5;
   private void handleEditPushGroup() {
