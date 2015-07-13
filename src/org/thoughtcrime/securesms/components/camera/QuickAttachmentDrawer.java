@@ -273,10 +273,8 @@ public class QuickAttachmentDrawer extends ViewGroup {
     }
 
     if (slideOffset == COLLAPSED_ANCHOR_POINT && quickCamera.isStarted()) {
-      Log.w(TAG, "computeScroll(PAUSE)");
       quickCamera.onPause();
     } else if (slideOffset != COLLAPSED_ANCHOR_POINT && !quickCamera.isStarted()) {
-      Log.w(TAG, "computeScroll(RESUME)");
       quickCamera.onResume();
     }
   }
