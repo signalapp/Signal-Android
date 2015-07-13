@@ -823,6 +823,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         calculateCharactersRemaining();
         composeText.setHint(newTransport.getComposeHint());
         composeText.setImeActionLabel(newTransport.getComposeHint(), EditorInfo.IME_ACTION_SEND);
+        composeText.setInputType(composeText.getInputType());
         buttonToggle.getBackground().setColorFilter(newTransport.getBackgroundColor(), Mode.MULTIPLY);
       }
     });
