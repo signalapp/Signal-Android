@@ -19,7 +19,11 @@ public class EmojiPopup extends PopupWindow {
           parent.getWidth(),
           parent.getResources().getDimensionPixelSize(R.dimen.min_emoji_drawer_height));
     this.parent = parent;
-    Log.w("EmojiPopup", "popup initialized with width " + parent.getWidth());
+    getContentView().setClickable(true);
+    getContentView().setFocusableInTouchMode(true);
+    getContentView().setFocusable(true);
+    setTouchable(true);
+    setFocusable(true);
   }
 
   public void setEmojiEventListener(EmojiEventListener listener) {
