@@ -3,10 +3,10 @@ package org.thoughtcrime.securesms.components.emoji;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
 import android.widget.GridView;
@@ -33,13 +33,10 @@ public class EmojiPageView extends FrameLayout {
     final View view = LayoutInflater.from(getContext()).inflate(R.layout.emoji_grid_layout, this, true);
     grid = (GridView) view.findViewById(R.id.emoji);
     grid.setColumnWidth(getResources().getDimensionPixelSize(R.dimen.emoji_drawer_size) + 2 * getResources().getDimensionPixelSize(R.dimen.emoji_drawer_item_padding));
-    grid.setOnTouchListener(new OnTouchListener() {
-      @Override public boolean onTouch(View v, MotionEvent event) {
-        if (event.getAction() == MotionEvent.ACTION_UP) {
-          EmojiView emojiView = (EmojiView)grid.getChildAt(grid.pointToPosition((int)event.getX(), (int)event.getY()));
-          if (listener != null && emojiView != null) listener.onEmojiSelected(emojiView.getEmoji());
-        }
-        return false;
+    grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+      @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        EmojiView emojiView = (EmojiView) grid.getChildAt(position - grid.getFirstVisiblePosition());
+        if (listener != null && emojiView != null) listener.onEmojiSelected(emojiView.getEmoji());
       }
     });
   }
