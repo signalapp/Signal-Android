@@ -134,26 +134,21 @@ public class MessageNotifier {
     (recipients != null && recipients.isMuted()))
     {
       if (visibleThread == threadId) {
-        Log.w(TAG, "Notifications disabled, visibleThread == threadId.");
         ThreadDatabase threads = DatabaseFactory.getThreadDatabase(context);
         threads.setRead(threadId);
         return;
       }
       else {
-        Log.w(TAG, "Notifications disabled, visibleThread != threadId.");
         return;
       }
     }
 
     if (visibleThread == threadId) {
-      Log.w(TAG, "Notifications enabled, visibleThread == threadId");
       ThreadDatabase threads = DatabaseFactory.getThreadDatabase(context);
       threads.setRead(threadId);
       sendInThreadNotification(context, threads.getRecipientsForThreadId(threadId));
     } else {
-      Log.w(TAG, "Notifications enabled, visibleThread != threadId");
       updateNotification(context, masterSecret, true, 0);
-      Log.w(TAG, "updateNotification() has returned.");
     }
   }
 
@@ -294,7 +289,7 @@ public class MessageNotifier {
     builder.setContentText(context.getString(R.string.MessageNotifier_most_recent_from_s,
                                              notifications.get(0).getIndividualRecipientName()));
     builder.setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, ConversationListActivity.class), 0));
-    
+
     builder.setContentInfo(String.valueOf(notificationState.getMessageCount()));
     builder.setNumber(notificationState.getMessageCount());
     builder.setCategory(NotificationCompat.CATEGORY_MESSAGE);
