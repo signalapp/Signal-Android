@@ -67,7 +67,7 @@ public class ThumbnailView extends FrameLayout {
 
   @Override protected void onAttachedToWindow() {
     super.onAttachedToWindow();
-    EventBus.getDefault().registerSticky(this);
+    if (!EventBus.getDefault().isRegistered(this)) EventBus.getDefault().registerSticky(this);
   }
 
   @Override protected void onDetachedFromWindow() {
