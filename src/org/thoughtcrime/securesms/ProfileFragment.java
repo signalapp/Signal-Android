@@ -29,6 +29,7 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -101,7 +102,7 @@ public class ProfileFragment extends Fragment {
   private Set<Recipient> existingContacts  = null;
 
   private ProfileImageTypeSelectorAdapter attachmentAdapter;
-
+  private static final int GROUP_EDIT = 5;
   private byte[] groupId;
   private RelativeLayout layout_status;
   private RelativeLayout layout_phone;
@@ -139,6 +140,7 @@ public class ProfileFragment extends Fragment {
     recipient = recipients.getPrimaryRecipient();
     attachmentAdapter = new ProfileImageTypeSelectorAdapter(getActivity());
     scrollView = (ScrollView) getView().findViewById(R.id.scrollView);
+    final ImageView profileStatusEdit = (ImageView) getView().findViewById(R.id.profile_status_edit);
     if(!isGroup) {
       ImageSlide slide = ProfileAccessor.getProfileAsImageSlide(getActivity(), masterSecret, profileId);
       if (slide != null && !isMyProfile) {
@@ -150,7 +152,13 @@ public class ProfileFragment extends Fragment {
           }
           profileStatus.setText(ProfileAccessor.getProfileStatusForRecepient(getActivity(), profileId), TextView.BufferType.EDITABLE);
           profileStatus.setEnabled(false);
-
+          layout_status.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+              profileStatusEdit.performClick();
+              return false;
+            }
+          });
           statusDate.setText(GUtil.getDate(ProfileAccessor.getProfileUpdateTimeForRecepient(getActivity(), profileId), "dd.MM.yyyy hh:mm:ss"));
           imageText.setText(recipient.getName());
         }
@@ -215,12 +223,15 @@ public class ProfileFragment extends Fragment {
       layout_phone.setVisibility(View.GONE);
       GUtil.setListViewHeightBasedOnChildren(groupMember);
     }
-    final ImageView profileStatusEdit = (ImageView) getView().findViewById(R.id.profile_status_edit);
+
     ImageView profileImageEdit = (ImageView) getView().findViewById(R.id.profile_picture_edit);
+    ImageView profileImageDelete = (ImageView) getView().findViewById(R.id.profile_picture_delete);
     if(!isMyProfile) {
       profileStatusEdit.setVisibility(View.GONE);
+      profileImageDelete.setVisibility(View.GONE);
       if(!isGroup) {
         profileImageEdit.setVisibility(View.GONE);
+        profileImageDelete.setVisibility(View.GONE);
       } else {
         profileImageEdit.setVisibility(View.VISIBLE);
         profileImageEdit.setOnClickListener(new View.OnClickListener() {
@@ -233,6 +244,7 @@ public class ProfileFragment extends Fragment {
     } else {
       profileStatusEdit.setVisibility(View.VISIBLE);
       profileImageEdit.setVisibility(View.VISIBLE);
+      profileImageDelete.setVisibility(View.VISIBLE);
       profileStatusEdit.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -242,8 +254,16 @@ public class ProfileFragment extends Fragment {
             hasChanged = true;
             profileStatusEdit.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_menu_edit));
           } else {
-            profileStatusEdit.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_menu_save));
+            profileStatusEdit.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_menu_send));
           }
+        }
+      });
+      profileImageDelete.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+          hasChanged = true;
+          ProfileAccessor.deleteMyProfilePicture(getActivity());
+          refreshLayout();
         }
       });
       profileImageEdit.setOnClickListener(new View.OnClickListener() {
@@ -323,7 +343,7 @@ public class ProfileFragment extends Fragment {
         break;
     }
   }
-  private static final int GROUP_EDIT = 5;
+
   private void handleEditPushGroup() {
     Intent intent = new Intent(getActivity(), GroupCreateActivity.class);
     intent.putExtra(GroupCreateActivity.MASTER_SECRET_EXTRA, masterSecret);

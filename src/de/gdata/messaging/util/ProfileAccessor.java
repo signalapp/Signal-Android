@@ -81,7 +81,12 @@ public class ProfileAccessor {
       }
     }
   }
-
+  public static void deleteMyProfilePicture(Context context) {
+      if (profilePicture.getThumbnailUri() != null && profilePicture.getUri() != null) {
+        getPreferences(context).setProfilePictureUri("");
+        profilePicture = null;
+      }
+  }
   public static ImageSlide getMyProfilePicture(Context context) {
     Uri profilePictureUri = Uri.parse(getPreferences(context).getProfilePictureUri());
     if(TextUtils.isEmpty(profilePictureUri.toString())) {
