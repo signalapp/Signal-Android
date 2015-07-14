@@ -32,7 +32,6 @@ import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.ResendAsyncTask;
 
 /**
  * A simple view to show the recipients of a message
@@ -48,7 +47,6 @@ public class MessageRecipientListItem extends RelativeLayout
   private FromTextView    fromView;
   private TextView        errorDescription;
   private Button          conflictButton;
-  private Button          resendButton;
   private AvatarImageView contactPhotoImage;
 
   private final Handler handler = new Handler();
@@ -67,7 +65,6 @@ public class MessageRecipientListItem extends RelativeLayout
     this.errorDescription  = (TextView)        findViewById(R.id.error_description);
     this.contactPhotoImage = (AvatarImageView) findViewById(R.id.contact_photo_image);
     this.conflictButton    = (Button)          findViewById(R.id.conflict_button);
-    this.resendButton      = (Button)          findViewById(R.id.resend_button);
   }
 
   public void set(final MasterSecret masterSecret,
@@ -93,7 +90,6 @@ public class MessageRecipientListItem extends RelativeLayout
     String errorText = "";
 
     if (keyMismatch != null) {
-      resendButton.setVisibility(View.GONE);
       conflictButton.setVisibility(View.VISIBLE);
 
       errorText = getContext().getString(R.string.MessageDetailsRecipient_new_safety_number);
@@ -104,21 +100,10 @@ public class MessageRecipientListItem extends RelativeLayout
         }
       });
     } else if (networkFailure != null || (!isPushGroup && record.isFailed())) {
-      resendButton.setVisibility(View.VISIBLE);
-      resendButton.setEnabled(true);
-      resendButton.requestFocus();
       conflictButton.setVisibility(View.GONE);
 
       errorText = getContext().getString(R.string.MessageDetailsRecipient_failed_to_send);
-      resendButton.setOnClickListener(new OnClickListener() {
-        @Override
-        public void onClick(View v) {
-          resendButton.setEnabled(false);
-          new ResendAsyncTask(getContext(), masterSecret, record, networkFailure).execute();
-        }
-      });
     } else {
-      resendButton.setVisibility(View.GONE);
       conflictButton.setVisibility(View.GONE);
     }
 

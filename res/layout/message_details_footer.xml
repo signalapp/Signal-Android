@@ -23,7 +23,7 @@
         android:drawablePadding="2dp"
         android:layout_gravity="center_vertical"
         android:drawableLeft="@drawable/ic_refresh_white_18dp"
-        android:text="@string/message_details_footer__resend_all"
+        android:text="@string/message_recipients_list_item__resend"
         android:visibility="gone"
         tools:visibility="visible" />
 

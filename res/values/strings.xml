@@ -979,9 +979,6 @@
     <string name="message_details_header__from">From:</string>
     <string name="message_details_header__with">With:</string>
 
-    <!-- message_details_footer -->
-    <string name="message_details_footer__resend_all">RESEND ALL</string>
-
     <!-- AndroidManifest.xml -->
     <string name="AndroidManifest__create_passphrase">Create passphrase</string>
     <string name="AndroidManifest__enter_passphrase">Enter passphrase</string>

@@ -49,13 +49,13 @@ import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.ResendAsyncTask;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
@@ -63,7 +63,6 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Locale;
 
 /**
@@ -389,15 +388,13 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
         errorText.setVisibility(View.VISIBLE);
         metadataContainer.setVisibility(View.GONE);
 
-        final List<NetworkFailure> networkFailures = messageRecord.getNetworkFailures();
-
-        if (networkFailures.size() > 1) {
+        if (messageRecord.hasNetworkFailures()) {
           resendAllButton.setVisibility(View.VISIBLE);
           resendAllButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
               resendAllButton.setEnabled(false);
-              for (final NetworkFailure networkFailure : networkFailures) {
+              for (final NetworkFailure networkFailure : messageRecord.getNetworkFailures()) {
                 new ResendAsyncTask(getContext(), masterSecret, messageRecord, networkFailure).execute();
               }
             }
@@ -411,6 +408,39 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
         metadataContainer.setVisibility(View.VISIBLE);
         resendAllButton.setVisibility(View.GONE);
       }
+    }
+  }
+
+  private class ResendAsyncTask extends AsyncTask<Void, Void, Void> {
+    private WeakReference<Context> weakContext;
+    private final MasterSecret     masterSecret;
+    private final MessageRecord    record;
+    private final NetworkFailure   failure;
+
+    public ResendAsyncTask(Context context, MasterSecret masterSecret, MessageRecord record,
+                           NetworkFailure failure)
+    {
+      this.weakContext  = new WeakReference<>(context);
+      this.masterSecret = masterSecret;
+      this.record       = record;
+      this.failure      = failure;
+    }
+
+    protected Context getContext() {
+      return weakContext.get();
+    }
+
+    @Override
+    protected Void doInBackground(Void... params) {
+      MmsDatabase mmsDatabase = DatabaseFactory.getMmsDatabase(getContext());
+      mmsDatabase.removeFailure(record.getId(), failure);
+
+      if (record.getRecipients().isGroupRecipient()) {
+        MessageSender.resendGroupMessage(getContext(), masterSecret, record, failure.getRecipientId());
+      } else {
+        MessageSender.resend(getContext(), masterSecret, record);
+      }
+      return null;
     }
   }
 }
