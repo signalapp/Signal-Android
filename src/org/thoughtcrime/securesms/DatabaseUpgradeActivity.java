@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
+import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.PushDecryptJob;
 import org.thoughtcrime.securesms.jobs.SmsDecryptJob;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
@@ -60,6 +61,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
   public static final int SIGNED_PREKEY_VERSION                = 83;
   public static final int NO_DECRYPT_QUEUE_VERSION             = 113;
   public static final int PUSH_DECRYPT_SERIAL_ID_VERSION       = 131;
+  public static final int CONTACTS_ACCOUNT_VERSION             = 135;
 
   private static final SortedSet<Integer> UPGRADE_VERSIONS = new TreeSet<Integer>() {{
     add(NO_MORE_KEY_EXCHANGE_PREFIX_VERSION);
@@ -237,6 +239,12 @@ public class DatabaseUpgradeActivity extends BaseActivity {
           if (pushReader != null)
             pushReader.close();
         }
+      }
+
+      if (params[0] < CONTACTS_ACCOUNT_VERSION) {
+        ApplicationContext.getInstance(getApplicationContext())
+                          .getJobManager()
+                          .add(new DirectoryRefreshJob(getApplicationContext()));
       }
 
       return null;
