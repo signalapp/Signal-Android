@@ -210,6 +210,10 @@ public class ConversationItem extends LinearLayout {
 
     this.conversationFragment = fragment;
 
+    if(messageRecord.getRecipients().isGroupRecipient()) {
+      this.setVisibility(View.GONE);
+    }
+
     setConversationBackgroundDrawables(messageRecord);
     setSelectionBackgroundDrawables(messageRecord);
     setBodyText();
@@ -305,6 +309,7 @@ public class ConversationItem extends LinearLayout {
   }
 
   private void setBodyText() {
+
     bodyText.setClickable(false);
     bodyText.setFocusable(false);
 
@@ -316,6 +321,10 @@ public class ConversationItem extends LinearLayout {
       bodyText.setText(Emoji.getInstance(context).emojify(context.getString(R.string.MessageRecord_left_group),
               new Emoji.InvalidatingPageLoadedListener(bodyText)),
           TextView.BufferType.SPANNABLE);
+    } else if(messageRecord.isGroupAction()) {
+      bodyText.setText(Emoji.getInstance(context).emojify(context.getString(R.string.GroupUtil_group_updated),
+                      new Emoji.InvalidatingPageLoadedListener(bodyText)),
+              TextView.BufferType.SPANNABLE);
     } else {
       bodyText.setText(Emoji.getInstance(context).emojify(messageRecord.getDisplayBody(),
               new Emoji.InvalidatingPageLoadedListener(bodyText)),
@@ -324,7 +333,6 @@ public class ConversationItem extends LinearLayout {
     if (!messageRecord.isKeyExchange() && !messageRecord.isPendingSmsFallback()) {
       bodyText.setMovementMethod(GDataLinkMovementMethod.getInstance(conversationFragment));
     }
-
     if (bodyText.isClickable() && bodyText.isFocusable()) {
       bodyText.setOnLongClickListener(new MultiSelectLongClickListener());
       bodyText.setOnClickListener(new MultiSelectLongClickListener());
