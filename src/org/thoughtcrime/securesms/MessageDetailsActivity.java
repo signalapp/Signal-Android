@@ -390,6 +390,8 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
 
         if (messageRecord.hasNetworkFailures()) {
           resendAllButton.setVisibility(View.VISIBLE);
+          resendAllButton.setEnabled(true);
+
           resendAllButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
