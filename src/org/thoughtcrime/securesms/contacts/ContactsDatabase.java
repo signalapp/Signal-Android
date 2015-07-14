@@ -60,6 +60,7 @@ public class ContactsDatabase {
 
   public static final int NORMAL_TYPE = 0;
   public static final int PUSH_TYPE   = 1;
+  public static final int NEW_TYPE    = 2;
 
   private final Context context;
 
@@ -226,7 +227,7 @@ public class ContactsDatabase {
     MatrixCursor newNumberCursor = new MatrixCursor(new String[] {ID_COLUMN, NAME_COLUMN, NUMBER_COLUMN, NUMBER_TYPE_COLUMN, LABEL_COLUMN, CONTACT_TYPE_COLUMN}, 1);
     newNumberCursor.addRow(new Object[]{-1L, context.getString(R.string.contact_selection_list__unknown_contact),
                                         filter, ContactsContract.CommonDataKinds.Phone.TYPE_CUSTOM,
-                                        "\u21e2", NORMAL_TYPE});
+                                        "\u21e2", NEW_TYPE});
 
     return newNumberCursor;
   }

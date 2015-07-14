@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 
@@ -50,7 +51,10 @@ public class ContactSelectionListItem extends RelativeLayout implements Recipien
     this.id     = id;
     this.number = number;
 
-    if (number != null) {
+    if (type == ContactsDatabase.NEW_TYPE) {
+      this.recipients = null;
+      this.contactPhotoImage.setAvatar(Recipient.getUnknownRecipient(), false);
+    } else if (number != null) {
       this.recipients = RecipientFactory.getRecipientsFromString(getContext(), number, true);
       this.recipients.addListener(this);
     }
