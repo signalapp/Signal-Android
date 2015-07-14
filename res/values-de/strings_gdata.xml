@@ -37,7 +37,7 @@
     <string name="preferences_notification_three_times">3x</string>
     <string name="preferences_notification_five_times">5x</string>
     <string name="preferences_notification_ten_times">10x</string>
-    <string name="preferences_notification_title">Warnungen wiederholen</string>
+    <string name="preferences_notification_title">Benachrichtigung wiederholen</string>
 
     <string name="unknown_country">Unbekanntes Land</string>
 
