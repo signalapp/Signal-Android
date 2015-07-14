@@ -15,6 +15,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.commonsware.cwac.camera.CameraHost.FailureReason;
 import com.commonsware.cwac.camera.SimpleCameraHost;
 
 import org.thoughtcrime.securesms.R;
@@ -151,6 +152,7 @@ import java.util.List;
 
   public interface QuickCameraListener {
     void onImageCapture(@NonNull final Bitmap bitmap);
+    void onCameraFail(FailureReason reason);
   }
 
   private class QuickCameraHost extends SimpleCameraHost {
@@ -186,7 +188,7 @@ import java.util.List;
     @Override
     public void onCameraFail(FailureReason reason) {
       super.onCameraFail(reason);
-      Toast.makeText(getContext(), R.string.quick_camera_unavailable, Toast.LENGTH_SHORT).show();
+      if (listener != null) listener.onCameraFail(reason);
     }
   }
 }
