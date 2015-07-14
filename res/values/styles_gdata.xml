@@ -359,7 +359,6 @@
         <item name="titleTextStyle">@style/TextSecure.TitleTextStyle</item>
         <item name="android:subtitleTextStyle">@style/TextSecure.SubtitleTextStyle</item>
         <item name="subtitleTextStyle">@style/TextSecure.SubtitleTextStyle</item>
-        <item name="android:windowContentOverlay">@null</item>
     </style>
     <!-- For Holo Light Dialog Activity Styling Emulation -->
     <style name="GDataDialogWindowTitle">

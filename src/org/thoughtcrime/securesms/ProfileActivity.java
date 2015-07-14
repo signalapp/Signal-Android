@@ -130,6 +130,5 @@ public class ProfileActivity extends PassphraseRequiredActionBarActivity {
         }
         break;
     }
-    Log.d("MYLOG","MYLOG req " + reqCode);
   }
 }
