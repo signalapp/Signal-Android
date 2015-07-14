@@ -14,12 +14,7 @@
               android:layout_centerVertical="true"
               android:layout_alignParentLeft="true"
               android:textSize="15sp"
-              android:textColor="?conversation_selection_header_text"
+              android:textColor="?contact_selection_header_text"
               android:textStyle="bold" />
 
-    <View android:layout_width="match_parent"
-          android:layout_height="3dp"
-          android:layout_alignParentBottom="true"
-          android:layout_marginTop="2dp"
-          android:background="?conversation_selection_header_text" />
 </RelativeLayout>

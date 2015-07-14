@@ -65,7 +65,7 @@ public class ContactSelectionListAdapter extends    CursorAdapter
 
   @Override
   public View newView(Context context, Cursor cursor, ViewGroup parent) {
-    return li.inflate(R.layout.push_contact_selection_list_item, parent, false);
+    return li.inflate(R.layout.contact_selection_list_item, parent, false);
   }
 
   @Override
@@ -96,7 +96,7 @@ public class ContactSelectionListAdapter extends    CursorAdapter
 
     if (convertView == null) {
       holder      = new HeaderViewHolder();
-      convertView = li.inflate(R.layout.push_contact_selection_list_header, viewGroup, false);
+      convertView = li.inflate(R.layout.contact_selection_list_header, viewGroup, false);
       holder.text = (TextView) convertView.findViewById(R.id.text);
       convertView.setTag(holder);
     } else {
