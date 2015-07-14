@@ -695,7 +695,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         View mCustomView = mInflater.inflate(R.layout.actionbar_conversation, null);
         TextView mTitleTextView = (TextView) mCustomView.findViewById(R.id.action_bar_title);
         TextView mTitleTextViewSubtitle = (TextView) mCustomView.findViewById(R.id.action_bar_subtitle);
-        ForegroundImageView thumbnail = (ForegroundImageView) mCustomView.findViewById(R.id.profile_picture);
+        CircledImageView thumbnail = (CircledImageView) mCustomView.findViewById(R.id.profile_picture);
 
         final Long profileId = GUtil.numberToLong(recipient.getNumber());
 
