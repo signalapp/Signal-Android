@@ -32,9 +32,10 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactSelectionListAdapter;
 import org.thoughtcrime.securesms.contacts.ContactSelectionListItem;
+import org.thoughtcrime.securesms.contacts.ContactsCursorLoader;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -140,11 +141,10 @@ public class PushContactSelectionListFragment extends    Fragment
 
   @Override
   public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-    if (getActivity().getIntent().getBooleanExtra(PushContactSelectionActivity.PUSH_ONLY_EXTRA, false)) {
-      return ContactAccessor.getInstance().getCursorLoaderForPushContacts(getActivity(), cursorFilter);
-    } else {
-      return ContactAccessor.getInstance().getCursorLoaderForContacts(getActivity(), cursorFilter);
-    }
+    boolean pushOnly    = getActivity().getIntent().getBooleanExtra(PushContactSelectionActivity.PUSH_ONLY_EXTRA, false);
+    boolean supportsSms = TextSecurePreferences.isSmsEnabled(getActivity());
+
+    return new ContactsCursorLoader(getActivity(), !pushOnly && supportsSms, cursorFilter);
   }
 
   @Override
