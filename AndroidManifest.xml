@@ -41,11 +41,11 @@
     <!--<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>-->
     <!--<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>-->
 
-    <!--&lt;!&ndash; So we can add a TextSecure 'Account' &ndash;&gt;-->
-    <!--<uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />-->
-    <!--<uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />-->
-    <!--<uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />-->
-    <!--<uses-permission android:name="android.permission.USE_CREDENTIALS"/>-->
+    <!-- So we can add a TextSecure 'Account' -->
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS"/>
 
     <!--&lt;!&ndash; For conversation 'shortcuts' on the desktop &ndash;&gt;-->
     <!--<uses-permission android:name="android.permission.INSTALL_SHORTCUT"/>-->
