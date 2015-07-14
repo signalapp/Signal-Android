@@ -388,7 +388,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
         errorText.setVisibility(View.VISIBLE);
         metadataContainer.setVisibility(View.GONE);
 
-        if (messageRecord.hasNetworkFailures()) {
+        if (messageRecord.hasNetworkFailures() || (!isPushGroup && messageRecord.isFailed())) {
           resendAllButton.setVisibility(View.VISIBLE);
           resendAllButton.setEnabled(true);
 
@@ -396,8 +396,13 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
             @Override
             public void onClick(View v) {
               resendAllButton.setEnabled(false);
-              for (final NetworkFailure networkFailure : messageRecord.getNetworkFailures()) {
-                new ResendAsyncTask(getContext(), masterSecret, messageRecord, networkFailure).execute();
+
+              if (isPushGroup) {
+                for (final NetworkFailure networkFailure : messageRecord.getNetworkFailures()) {
+                  new ResendAsyncTask(getContext(), masterSecret, messageRecord, networkFailure).execute();
+                }
+              } else {
+                new ResendAsyncTask(getContext(), masterSecret, messageRecord, null).execute();
               }
             }
           });
