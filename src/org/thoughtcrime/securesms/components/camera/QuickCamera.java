@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.components.camera;
 
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.hardware.Camera;
 import android.hardware.Camera.CameraInfo;
@@ -13,11 +12,10 @@ import android.os.Build.VERSION_CODES;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.widget.Toast;
 
+import com.commonsware.cwac.camera.CameraHost.FailureReason;
 import com.commonsware.cwac.camera.SimpleCameraHost;
 
-import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 
 import java.io.IOException;
@@ -78,29 +76,33 @@ import java.util.List;
     setOneShotPreviewCallback(new Camera.PreviewCallback() {
       @Override
       public void onPreviewFrame(byte[] data, final Camera camera) {
-        final int rotation = getCameraPictureOrientation();
+        final int  rotation     = getCameraPictureOrientation();
+        final Size previewSize  = cameraParameters.getPreviewSize();
+        final Rect croppingRect = getCroppedRect(previewSize, previewRect, rotation);
 
-        new AsyncTask<byte[], Void, Bitmap>() {
+        Log.w(TAG, "previewSize: " + previewSize.width + "x" + previewSize.height);
+        Log.w(TAG, "croppingRect: " + croppingRect.toString());
+        Log.w(TAG, "rotation: " + rotation);
+        new AsyncTask<byte[], Void, byte[]>() {
           @Override
-          protected Bitmap doInBackground(byte[]... params) {
+          protected byte[] doInBackground(byte[]... params) {
             byte[] data = params[0];
             try {
-              Size previewSize = cameraParameters.getPreviewSize();
 
               return BitmapUtil.createFromNV21(data,
                                                previewSize.width,
                                                previewSize.height,
                                                rotation,
-                                               getCroppedRect(previewSize, previewRect, rotation));
+                                               croppingRect);
             } catch (IOException e) {
               return null;
             }
           }
 
           @Override
-          protected void onPostExecute(Bitmap bitmap) {
+          protected void onPostExecute(byte[] imageBytes) {
             capturing = false;
-            if (bitmap != null && listener != null) listener.onImageCapture(bitmap);
+            if (imageBytes != null && listener != null) listener.onImageCapture(imageBytes);
           }
         }.execute(data);
       }
@@ -111,10 +113,7 @@ import java.util.List;
     final int previewWidth  = cameraPreviewSize.width;
     final int previewHeight = cameraPreviewSize.height;
 
-    if (rotation % 180 > 0) {
-      //noinspection SuspiciousNameCombination
-      visibleRect.set(visibleRect.top, visibleRect.left, visibleRect.bottom, visibleRect.right);
-    }
+    if (rotation % 180 > 0) rotateRect(visibleRect);
 
     float scale = (float) previewWidth / visibleRect.width();
     if (visibleRect.height() * scale > previewHeight) {
@@ -128,7 +127,14 @@ import java.util.List;
                     (int) (centerY - newHeight / 2),
                     (int) (centerX + newWidth  / 2),
                     (int) (centerY + newHeight / 2));
+
+    if (rotation % 180 > 0) rotateRect(visibleRect);
     return visibleRect;
+  }
+
+  @SuppressWarnings("SuspiciousNameCombination")
+  private void rotateRect(Rect rect) {
+    rect.set(rect.top, rect.left, rect.bottom, rect.right);
   }
 
   public void setQuickCameraListener(QuickCameraListener listener) {
@@ -150,7 +156,8 @@ import java.util.List;
   }
 
   public interface QuickCameraListener {
-    void onImageCapture(@NonNull final Bitmap bitmap);
+    void onImageCapture(@NonNull final byte[] imageBytes);
+    void onCameraFail(FailureReason reason);
   }
 
   private class QuickCameraHost extends SimpleCameraHost {
@@ -186,7 +193,7 @@ import java.util.List;
     @Override
     public void onCameraFail(FailureReason reason) {
       super.onCameraFail(reason);
-      Toast.makeText(getContext(), R.string.quick_camera_unavailable, Toast.LENGTH_SHORT).show();
+      if (listener != null) listener.onCameraFail(reason);
     }
   }
 }
