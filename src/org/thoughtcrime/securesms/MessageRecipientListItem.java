@@ -17,7 +17,6 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Context;
-import android.os.AsyncTask;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -29,13 +28,11 @@ import android.widget.TextView;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.FromTextView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.sms.MessageSender;
+import org.thoughtcrime.securesms.util.ResendAsyncTask;
 
 /**
  * A simple view to show the recipients of a message
@@ -117,7 +114,7 @@ public class MessageRecipientListItem extends RelativeLayout
         @Override
         public void onClick(View v) {
           resendButton.setEnabled(false);
-          new ResendAsyncTask(masterSecret, record, networkFailure).execute();
+          new ResendAsyncTask(getContext(), masterSecret, record, networkFailure).execute();
         }
       });
     } else {
@@ -165,30 +162,4 @@ public class MessageRecipientListItem extends RelativeLayout
       }
     });
   }
-
-  private class ResendAsyncTask extends AsyncTask<Void,Void,Void> {
-    private final MasterSecret   masterSecret;
-    private final MessageRecord  record;
-    private final NetworkFailure failure;
-
-    public ResendAsyncTask(MasterSecret masterSecret, MessageRecord record, NetworkFailure failure) {
-      this.masterSecret = masterSecret;
-      this.record       = record;
-      this.failure      = failure;
-    }
-
-    @Override
-    protected Void doInBackground(Void... params) {
-      MmsDatabase mmsDatabase = DatabaseFactory.getMmsDatabase(getContext());
-      mmsDatabase.removeFailure(record.getId(), failure);
-
-      if (record.getRecipients().isGroupRecipient()) {
-        MessageSender.resendGroupMessage(getContext(), masterSecret, record, failure.getRecipientId());
-      } else {
-        MessageSender.resend(getContext(), masterSecret, record);
-      }
-      return null;
-    }
-  }
-
 }

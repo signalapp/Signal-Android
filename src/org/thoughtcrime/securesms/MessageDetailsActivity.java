@@ -31,6 +31,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -41,6 +42,7 @@ import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
+import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.loaders.MessageDetailsLoader;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
@@ -53,6 +55,7 @@ import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.ResendAsyncTask;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
@@ -60,6 +63,7 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -90,6 +94,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
   private TextView         transport;
   private TextView         toFrom;
   private ListView         recipientsList;
+  private Button           resendAllButton;
   private LayoutInflater   inflater;
 
   private DynamicTheme     dynamicTheme    = new DynamicTheme();
@@ -165,12 +170,14 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
   private void initializeResources() {
     inflater       = LayoutInflater.from(this);
     View header = inflater.inflate(R.layout.message_details_header, recipientsList, false);
+    View footer = inflater.inflate(R.layout.message_details_footer, recipientsList, false);
 
     masterSecret      = getIntent().getParcelableExtra(MASTER_SECRET_EXTRA);
     threadId          = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
     isPushGroup       = getIntent().getBooleanExtra(IS_PUSH_GROUP_EXTRA, false);
     itemParent        = (ViewGroup) header.findViewById(R.id.item_container);
     recipientsList    = (ListView ) findViewById(R.id.recipients_list);
+    resendAllButton   = (Button   ) footer.findViewById(R.id.resend_all_button);
     metadataContainer =             header.findViewById(R.id.metadata_container);
     errorText         = (TextView ) header.findViewById(R.id.error_text);
     sentDate          = (TextView ) header.findViewById(R.id.sent_time);
@@ -182,6 +189,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     expiresInText     = (TextView)  header.findViewById(R.id.expires_in);
     recipientsList.setHeaderDividersEnabled(false);
     recipientsList.addHeaderView(header, null, false);
+    recipientsList.addFooterView(footer, null, false);
   }
 
   private void updateTransport(MessageRecord messageRecord) {
@@ -380,12 +388,28 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
       if (messageRecord.isFailed()) {
         errorText.setVisibility(View.VISIBLE);
         metadataContainer.setVisibility(View.GONE);
+
+        final List<NetworkFailure> networkFailures = messageRecord.getNetworkFailures();
+
+        if (networkFailures.size() > 1) {
+          resendAllButton.setVisibility(View.VISIBLE);
+          resendAllButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              resendAllButton.setEnabled(false);
+              for (final NetworkFailure networkFailure : networkFailures) {
+                new ResendAsyncTask(getContext(), masterSecret, messageRecord, networkFailure).execute();
+              }
+            }
+          });
+        }
       } else {
         updateTransport(messageRecord);
         updateTime(messageRecord);
         updateExpirationTime(messageRecord);
         errorText.setVisibility(View.GONE);
         metadataContainer.setVisibility(View.VISIBLE);
+        resendAllButton.setVisibility(View.GONE);
       }
     }
   }
