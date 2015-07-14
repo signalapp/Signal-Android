@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.ContactsDatabase;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.NotInDirectoryException;
 import org.thoughtcrime.securesms.database.TextSecureDirectory;
 import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
@@ -94,7 +95,7 @@ public class DirectoryHelper {
         }
 
         try {
-          new ContactsDatabase(context).setRegisteredUsers(account.get(), e164numbers);
+          DatabaseFactory.getContactsDatabase(context).setRegisteredUsers(account.get(), e164numbers);
         } catch (RemoteException | OperationApplicationException e) {
           Log.w(TAG, e);
         }
