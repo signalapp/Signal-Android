@@ -149,7 +149,7 @@ public class ContactsDatabase {
                                            .withSelection(BaseColumns._ID + " = ?", new String[] {String.valueOf(rowId)})
                                            .build());
   }
-  
+
   public @NonNull Cursor querySystemContacts(String filter) {
     Uri uri;
 

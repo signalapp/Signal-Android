@@ -9,7 +9,12 @@
         <item name="colorPrimary">@color/textsecure_primary</item>
         <item name="colorPrimaryDark">@color/textsecure_primary_dark</item>
         <item name="colorAccent">@color/textsecure_primary_dark</item>
+
         <item name="recipient_preference_blocked">#8e0000</item>
+        <item name="contact_selection_label_text">#66000000</item>
+        <item name="contact_selection_push_user">#ff000000</item>
+        <item name="contact_selection_lay_user">#a0000000</item>
+        <item name="contact_selection_header_text">@color/textsecure_primary_dark</item>
     </style>
 
     <style name="TextSecure.DarkNoActionBar" parent="@style/Theme.AppCompat.NoActionBar">
@@ -17,7 +22,12 @@
         <item name="actionBarStyle">@style/TextSecure.DarkActionBar</item>
         <item name="actionBarTabBarStyle">@style/TextSecure.DarkActionBar.TabBar</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
+
         <item name="recipient_preference_blocked">#d00000</item>
+        <item name="contact_selection_label_text">#66eeeeee</item>
+        <item name="contact_selection_push_user">#ffeeeeee</item>
+        <item name="contact_selection_lay_user">#afeeeeee</item>
+        <item name="contact_selection_header_text">#66eeeeee</item>
     </style>
 
     <style name="TextSecure.LightIntroTheme" parent="@style/Theme.AppCompat.Light">
@@ -81,11 +91,6 @@
         <item name="lower_right_divet">@drawable/divet_lower_right_dark</item>
 
         <item name="conversation_group_member_name">#99000000</item>
-
-        <item name="contact_selection_push_user">#ff000000</item>
-        <item name="contact_selection_lay_user">#a0000000</item>
-        <item name="contact_selection_label_text">#66000000</item>
-        <item name="conversation_selection_header_text">#44000000</item>
 
         <item name="conversation_background">#eeeeee</item>
         <item name="conversation_editor_background">#22000000</item>
@@ -195,11 +200,6 @@
         <item name="share_list_item_divider">@drawable/share_list_divider_shape_dark</item>
 
         <item name="conversation_group_member_name">#99ffffff</item>
-
-        <item name="contact_selection_push_user">#ffeeeeee</item>
-        <item name="contact_selection_lay_user">#afeeeeee</item>
-        <item name="contact_selection_label_text">#66eeeeee</item>
-        <item name="conversation_selection_header_text">#66eeeeee</item>
 
         <item name="conversation_item_background">@drawable/conversation_item_background_dark</item>
         <item name="conversation_item_bubble_background">#ff333333</item>
