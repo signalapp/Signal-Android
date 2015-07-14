@@ -106,6 +106,7 @@ public class ProfileActivity extends PassphraseRequiredActionBarActivity {
     super.onActivityResult(reqCode, resultCode, data);
 
     if (data != null && resultCode != RESULT_OK) return;
+    if(data == null) return;
     switch (reqCode) {
       case PICK_IMAGE:
         try {
