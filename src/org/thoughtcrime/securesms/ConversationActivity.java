@@ -56,6 +56,7 @@ import com.google.protobuf.ByteString;
 import org.thoughtcrime.securesms.components.CircledImageView;
 import org.thoughtcrime.securesms.components.EmojiDrawer;
 import org.thoughtcrime.securesms.components.EmojiToggle;
+import org.thoughtcrime.securesms.components.ForegroundImageView;
 import org.thoughtcrime.securesms.components.SendButton;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
@@ -694,7 +695,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         View mCustomView = mInflater.inflate(R.layout.actionbar_conversation, null);
         TextView mTitleTextView = (TextView) mCustomView.findViewById(R.id.action_bar_title);
         TextView mTitleTextViewSubtitle = (TextView) mCustomView.findViewById(R.id.action_bar_subtitle);
-        CircledImageView thumbnail = (CircledImageView) mCustomView.findViewById(R.id.profile_picture);
+        ForegroundImageView thumbnail = (ForegroundImageView) mCustomView.findViewById(R.id.profile_picture);
 
         final Long profileId = GUtil.numberToLong(recipient.getNumber());
 

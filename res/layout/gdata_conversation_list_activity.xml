@@ -75,9 +75,12 @@
             android:layout_gravity="start"
             android:background="@color/gdata_red"
             android:gravity="left"
-            android:paddingTop="35dp"
             android:orientation="vertical">
 
+            <RelativeLayout
+                android:id="@+id/containerrl"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
             <LinearLayout
                 android:id="@+id/container"
                 android:layout_width="wrap_content"
@@ -85,16 +88,14 @@
                 android:layout_gravity="start"
                 android:background="@color/gdata_red"
                 android:gravity="center_vertical"
-                android:paddingLeft="30dp"
                 android:orientation="vertical">
 
-                <org.thoughtcrime.securesms.components.CircledImageView
+                <org.thoughtcrime.securesms.components.ForegroundImageView
                     android:id="@+id/profile_picture"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
+                    android:layout_width="230dp"
+                    android:layout_height="200dp"
                     android:layout_gravity="center"
-                    android:layout_weight="2"
-                    android:scaleType="centerInside"
+                    android:scaleType="centerCrop"
                     android:visibility="visible" />
             </LinearLayout>
 
@@ -102,18 +103,25 @@
                 android:id="@+id/drawer2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
                 android:orientation="vertical"
-                android:paddingBottom="5dp"
-                android:paddingTop="10dp">
-
+                android:paddingTop="30dp">
+                <LinearLayout
+                    android:id="@+id/drawer_background"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:background="@color/bpTransparent_black">
                 <TextView
                     android:id="@+id/profileName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
                     android:text=""
+                    android:textStyle="bold"
                     android:textColor="@color/white"
                     android:textSize="10sp" />
 
@@ -124,11 +132,15 @@
                     android:layout_marginTop="5dp"
                     android:gravity="center"
                     android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
                     android:text=""
+                    android:textStyle="bold"
                     android:textColor="@color/white"
                     android:textSize="10sp" />
+                    </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
+        </RelativeLayout>
+</LinearLayout>
 
         <ListView
             android:id="@+id/left_drawer"
