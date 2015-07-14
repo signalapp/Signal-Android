@@ -100,7 +100,7 @@ public class BitmapUtil {
 
   private static Bitmap createScaledBitmap(InputStream measure, InputStream orientationStream, InputStream data,
                                            int maxWidth, int maxHeight, boolean constrainedMemory)
-      throws BitmapDecodingException
+      throws IOException, BitmapDecodingException
   {
     Bitmap bitmap = createScaledBitmap(measure, data, maxWidth, maxHeight, constrainedMemory);
     return fixOrientation(bitmap, orientationStream);
@@ -202,9 +202,9 @@ public class BitmapUtil {
     return scaler;
   }
 
-  private static Bitmap fixOrientation(Bitmap bitmap, InputStream orientationStream) {
+  private static Bitmap fixOrientation(Bitmap bitmap, InputStream orientationStream) throws IOException {
     final int orientation = Exif.getOrientation(orientationStream);
-
+    orientationStream.close();
     if (orientation != 0) {
       return rotateBitmap(bitmap, orientation);
     } else {
