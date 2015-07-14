@@ -9,7 +9,8 @@
               android:paddingTop="5dp"
               android:paddingLeft="10dp"
               android:paddingRight="10dp"
-              android:paddingBottom="10dp">
+              android:paddingBottom="10dp"
+              android:clipToPadding="false">
 
     <Button android:id="@+id/resend_all_button"
         android:layout_width="wrap_content"
@@ -19,6 +20,7 @@
         android:paddingRight="10dp"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
+        android:drawablePadding="2dp"
         android:layout_gravity="center_vertical"
         android:drawableLeft="@drawable/ic_refresh_white_18dp"
         android:text="@string/message_details_footer__resend_all"
