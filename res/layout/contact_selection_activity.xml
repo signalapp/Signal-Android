@@ -33,7 +33,7 @@
                       android:layout_marginLeft="5dp"
                       android:hint="Enter name or number"
                       android:inputType="textPersonName"
-                      android:theme="@style/TextSecure.TitleTextStyle"
+                      style="@style/TextSecure.TitleTextStyle"
                       android:background="@android:color/transparent"
                       android:layout_gravity="center_vertical"
                       android:gravity="center_vertical"/>
