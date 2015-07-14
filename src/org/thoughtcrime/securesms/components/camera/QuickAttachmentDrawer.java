@@ -52,6 +52,7 @@ public class QuickAttachmentDrawer extends ViewGroup {
   private float       halfExpandedAnchorPoint = COLLAPSED_ANCHOR_POINT;
   private boolean     halfModeUnsupported     = VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH;
   private Rect        drawChildrenRect        = new Rect();
+  private boolean     paused                  = false;
 
   public QuickAttachmentDrawer(Context context) {
     this(context, null);
@@ -277,7 +278,7 @@ public class QuickAttachmentDrawer extends ViewGroup {
       quickCamera.onPause();
       controls.setVisibility(INVISIBLE);
       quickCamera.setVisibility(INVISIBLE);
-    } else if (slideOffset != COLLAPSED_ANCHOR_POINT && !quickCamera.isStarted()) {
+    } else if (slideOffset != COLLAPSED_ANCHOR_POINT && !quickCamera.isStarted() & !paused) {
       controls.setVisibility(VISIBLE);
       quickCamera.setVisibility(VISIBLE);
       quickCamera.onResume();
@@ -507,10 +508,12 @@ public class QuickAttachmentDrawer extends ViewGroup {
   }
 
   public void onPause() {
+    paused = true;
     quickCamera.onPause();
   }
 
   public void onResume() {
+    paused = false;
     if (drawerState.isVisible()) quickCamera.onResume();
   }
 
