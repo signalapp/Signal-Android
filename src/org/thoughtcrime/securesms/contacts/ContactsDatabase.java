@@ -16,8 +16,11 @@
  */
 package org.thoughtcrime.securesms.contacts;
 
+import android.accounts.Account;
+import android.content.ContentProviderOperation;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.OperationApplicationException;
 import android.database.Cursor;
 import android.database.CursorWrapper;
 import android.database.MatrixCursor;
@@ -25,7 +28,10 @@ import android.database.MergeCursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
+import android.os.RemoteException;
+import android.provider.BaseColumns;
 import android.provider.ContactsContract;
+import android.provider.ContactsContract.RawContacts;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -36,7 +42,12 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Database to supply all types of contacts that TextSecure needs to know about
@@ -82,6 +93,88 @@ public class ContactsDatabase {
 
   public void close() {
     dbHelper.close();
+  }
+
+  public synchronized void setRegisteredUsers(Account account, List<String> e164numbers)
+      throws RemoteException, OperationApplicationException
+  {
+    Map<String, Long>                   currentContacts    = new HashMap<>();
+    Set<String>                         registeredNumbers  = new HashSet<>(e164numbers);
+    ArrayList<ContentProviderOperation> operations         = new ArrayList<>();
+    Uri                                 currentContactsUri = RawContacts.CONTENT_URI.buildUpon()
+                                                                                    .appendQueryParameter(RawContacts.ACCOUNT_NAME, account.name)
+                                                                                    .appendQueryParameter(RawContacts.ACCOUNT_TYPE, account.type).build();
+
+    Cursor cursor = null;
+
+    try {
+      cursor = context.getContentResolver().query(currentContactsUri, new String[] {BaseColumns._ID, RawContacts.SYNC1}, null, null, null);
+
+      while (cursor != null && cursor.moveToNext()) {
+        currentContacts.put(cursor.getString(1), cursor.getLong(0));
+      }
+    } finally {
+      if (cursor != null)
+        cursor.close();
+    }
+
+    for (String number : e164numbers) {
+      if (!currentContacts.containsKey(number)) {
+        addTextSecureRawContact(operations, account, number);
+      }
+    }
+
+    for (Map.Entry<String, Long> currentContactEntry : currentContacts.entrySet()) {
+      if (!registeredNumbers.contains(currentContactEntry.getKey())) {
+        removeTextSecureRawContact(operations, account, currentContactEntry.getValue());
+      }
+    }
+
+    if (!operations.isEmpty()) {
+      context.getContentResolver().applyBatch(ContactsContract.AUTHORITY, operations);
+    }
+  }
+
+  private void addTextSecureRawContact(List<ContentProviderOperation> operations,
+                                       Account account, String e164number)
+  {
+    int index   = operations.size();
+    Uri dataUri = ContactsContract.Data.CONTENT_URI.buildUpon()
+                                                   .appendQueryParameter(ContactsContract.CALLER_IS_SYNCADAPTER, "true")
+                                                   .build();
+
+    operations.add(ContentProviderOperation.newInsert(RawContacts.CONTENT_URI)
+                                           .withValue(RawContacts.ACCOUNT_NAME, account.name)
+                                           .withValue(RawContacts.ACCOUNT_TYPE, account.type)
+                                           .withValue(RawContacts.SYNC1, e164number)
+                                           .build());
+
+    operations.add(ContentProviderOperation.newInsert(dataUri)
+                                           .withValueBackReference(ContactsContract.CommonDataKinds.Phone.RAW_CONTACT_ID, index)
+                                           .withValue(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE)
+                                           .withValue(ContactsContract.CommonDataKinds.Phone.NUMBER, e164number)
+                                           .build());
+
+    operations.add(ContentProviderOperation.newInsert(dataUri)
+                                           .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, index)
+                                           .withValue(ContactsContract.Data.MIMETYPE, "vnd.android.cursor.item/vnd.org.thoughtcrime.securesms.contact")
+                                           .withValue(ContactsContract.Data.DATA1, e164number)
+                                           .withValue(ContactsContract.Data.DATA2, context.getString(R.string.app_name))
+                                           .withValue(ContactsContract.Data.DATA3, String.format("Message %s", e164number))
+                                           .withYieldAllowed(true)
+                                           .build());
+  }
+
+  private void removeTextSecureRawContact(List<ContentProviderOperation> operations,
+                                          Account account, long rowId)
+  {
+    operations.add(ContentProviderOperation.newDelete(RawContacts.CONTENT_URI.buildUpon()
+                                                                             .appendQueryParameter(RawContacts.ACCOUNT_NAME, account.name)
+                                                                             .appendQueryParameter(RawContacts.ACCOUNT_TYPE, account.type)
+                                                                             .appendQueryParameter(ContactsContract.CALLER_IS_SYNCADAPTER, "true").build())
+                                           .withYieldAllowed(true)
+                                           .withSelection(BaseColumns._ID + " = ?", new String[] {String.valueOf(rowId)})
+                                           .build());
   }
 
   public Cursor query(String filter, boolean pushOnly) {
