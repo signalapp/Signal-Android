@@ -356,6 +356,7 @@ public class ConversationFragment extends Fragment
     intent.putExtra(MessageDetailsActivity.THREAD_ID_EXTRA, threadId);
     intent.putExtra(MessageDetailsActivity.TYPE_EXTRA, message.isMms() ? MmsSmsDatabase.MMS_TRANSPORT : MmsSmsDatabase.SMS_TRANSPORT);
     intent.putExtra(MessageDetailsActivity.RECIPIENTS_IDS_EXTRA, recipients.getIds());
+    intent.putExtra(MessageDetailsActivity.IS_PUSH_GROUP_EXTRA, (!recipients.isSingleRecipient() || recipients.isGroupRecipient()) && message.isPush());
     startActivity(intent);
   }
 
