@@ -4,6 +4,6 @@
     <item android:title="@string/push_directory__menu_refresh"
           android:id="@+id/menu_refresh_directory"
           android:icon="?menu_refresh_directory"
-          app:showAsAction="ifRoom"
+          app:showAsAction="always"
         />
 </menu>
