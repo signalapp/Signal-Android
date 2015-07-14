@@ -22,6 +22,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
@@ -55,7 +56,8 @@ public class AttachmentManager {
   private final SlideDeck          slideDeck;
   private final AttachmentListener attachmentListener;
 
-  private Uri captureUri;
+  private Uri     captureUri;
+  private boolean resolvingCapture;
 
   public AttachmentManager(Activity view, AttachmentListener listener) {
     this.attachmentView     = view.findViewById(R.id.attachment_editor);
@@ -94,13 +96,16 @@ public class AttachmentManager {
   }
 
   public void cleanup() {
-//    if (captureUri != null) CaptureProvider.getInstance(context).delete(captureUri);
-    if (captureUri != null) new File(captureUri.getPath()).delete();
+    if (captureUri != null) CaptureProvider.getInstance(context).delete(captureUri);
     captureUri = null;
   }
 
   public void setImage(MasterSecret masterSecret, Uri image) throws IOException, BitmapDecodingException {
-    setMedia(new ImageSlide(context, masterSecret, image), masterSecret);
+    setImage(masterSecret, image, true);
+  }
+
+  public void setImage(MasterSecret masterSecret, Uri image, boolean updateThumbnail) throws IOException, BitmapDecodingException {
+    setMedia(new ImageSlide(context, masterSecret, image), masterSecret, updateThumbnail);
   }
 
   public void setVideo(Uri video) throws IOException, MediaTooLargeException {
@@ -116,10 +121,14 @@ public class AttachmentManager {
   }
 
   public void setMedia(final Slide slide, @Nullable MasterSecret masterSecret) {
+    setMedia(slide, masterSecret, true);
+  }
+
+  public void setMedia(final Slide slide, @Nullable MasterSecret masterSecret, boolean updateThumbnail) {
     slideDeck.clear();
     slideDeck.addSlide(slide);
     attachmentView.setVisibility(View.VISIBLE);
-    thumbnail.setImageResource(slide, masterSecret);
+    if (updateThumbnail) thumbnail.setImageResource(slide, masterSecret);
     attachmentListener.onAttachmentChanged();
   }
 
@@ -127,17 +136,44 @@ public class AttachmentManager {
     return attachmentView.getVisibility() == View.VISIBLE;
   }
 
+
+  public boolean isResolvingCapture() {
+    return resolvingCapture;
+  }
+
   public SlideDeck getSlideDeck() {
     return slideDeck;
   }
 
-  public void setCaptureImage(MasterSecret masterSecret, Bitmap bitmap) {
-    try {
-      captureUri = CaptureProvider.getInstance(context).create(masterSecret, bitmap);
-      setImage(masterSecret, captureUri);
-    } catch (IOException | BitmapDecodingException e) {
-      Log.w(TAG, e);
-    }
+  public void setCaptureImage(final MasterSecret masterSecret, Bitmap bitmap) {
+    captureUri = null;
+    resolvingCapture = true;
+    thumbnail.setImageBitmap(bitmap);
+    attachmentView.setVisibility(View.VISIBLE);
+    attachmentListener.onAttachmentChanged();
+    new AsyncTask<Bitmap, Void, Uri>() {
+
+      @Override protected Uri doInBackground(Bitmap... bitmaps) {
+        final Bitmap bitmap = bitmaps[0];
+        try {
+          return CaptureProvider.getInstance(context).create(masterSecret, bitmap);
+        } catch (IOException ioe) {
+          Log.w(TAG, ioe);
+          return null;
+        }
+      }
+
+      @Override protected void onPostExecute(Uri uri) {
+        try {
+          setImage(masterSecret, uri, false);
+          captureUri = uri;
+        } catch (IOException | BitmapDecodingException e) {
+          Log.w(TAG, e);
+        } finally {
+          resolvingCapture = false;
+        }
+      }
+    }.execute(bitmap);
   }
 
   public static void selectVideo(Activity activity, int requestCode) {
@@ -209,4 +245,6 @@ public class AttachmentManager {
   public interface AttachmentListener {
     void onAttachmentChanged();
   }
+
+  public static class PendingAttachmentResolutionException extends Exception { }
 }

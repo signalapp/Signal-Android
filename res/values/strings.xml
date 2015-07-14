@@ -124,6 +124,7 @@
     <string name="ConversationActivity_unblock_question">Unblock?</string>
     <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Are you sure you want to unblock this contact?</string>
     <string name="ConversationActivity_unblock">Unblock</string>
+    <string name="ConversationActivity_an_attachment_is_loading">An attachment is still loading, please wait.</string>
 
     <!-- ConversationFragment -->
     <string name="ConversationFragment_message_details">Message details</string>
