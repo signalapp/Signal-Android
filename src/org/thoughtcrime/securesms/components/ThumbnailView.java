@@ -130,16 +130,6 @@ public class ThumbnailView extends FrameLayout {
     setOnClickListener(new ThumbnailClickDispatcher(thumbnailClickListener, slide));
   }
 
-  public void setImageBitmap(Bitmap bitmap) {
-    if (this.slideDeckFuture != null && this.slideDeckListener != null) {
-      this.slideDeckFuture.removeListener(this.slideDeckListener);
-    }
-    this.slide   = null;
-    this.slideId = null;
-
-    image.setImageBitmap(bitmap);
-  }
-
   public void setThumbnailClickListener(ThumbnailClickListener listener) {
     this.thumbnailClickListener = listener;
   }

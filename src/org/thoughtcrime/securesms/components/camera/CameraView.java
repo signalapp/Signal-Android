@@ -124,7 +124,7 @@ public class CameraView extends FrameLayout {
         initPreview();
         requestLayout();
         invalidate();
-        Log.w(TAG, "onResume() FINISHED");
+        Log.w(TAG, "onResume() completed");
       }
     });
   }
@@ -150,7 +150,7 @@ public class CameraView extends FrameLayout {
         outputOrientation = -1;
         cameraId = -1;
         lastPictureOrientation = -1;
-        Log.w(TAG, "onPause() FINISH");
+        Log.w(TAG, "onPause() completed");
       }
     });
   }
@@ -266,7 +266,7 @@ public class CameraView extends FrameLayout {
         } catch (IOException e) {
           host.handleException(e);
         }
-        Log.w(TAG, "previewCreated() FINISHED");
+        Log.w(TAG, "previewCreated() completed");
       }
     });
   }
@@ -308,7 +308,7 @@ public class CameraView extends FrameLayout {
           startPreview();
           requestLayout();
           invalidate();
-          Log.w(TAG, "initPreview() FINISHED");
+          Log.w(TAG, "initPreview() completed");
         }
       }
     });

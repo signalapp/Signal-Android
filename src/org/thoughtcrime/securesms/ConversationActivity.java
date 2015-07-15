@@ -98,6 +98,7 @@ import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.providers.CaptureProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
@@ -979,7 +980,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     case AttachmentTypeSelectorAdapter.ADD_CONTACT_INFO:
       AttachmentManager.selectContactInfo(this, PICK_CONTACT_INFO); break;
     case AttachmentTypeSelectorAdapter.TAKE_PHOTO:
-      attachmentManager.capturePhoto(this, TAKE_PHOTO); break;
+      attachmentManager.capturePhoto(this, recipients, TAKE_PHOTO); break;
     }
   }
 
@@ -1234,10 +1235,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         throw new RecipientFormattingException("Badly formatted");
       }
 
-      if (attachmentManager.isResolvingCapture()) {
-        throw new PendingAttachmentResolutionException();
-      }
-
       if ((!recipients.isSingleRecipient() || recipients.isEmailRecipient()) && !isMmsEnabled) {
         handleManualMmsRequired();
       } else if (attachmentManager.isAttachmentPresent() || !recipients.isSingleRecipient() || recipients.isGroupRecipient() || recipients.isEmailRecipient()) {
@@ -1254,9 +1251,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       Toast.makeText(ConversationActivity.this, R.string.ConversationActivity_message_is_empty_exclamation,
                      Toast.LENGTH_SHORT).show();
       Log.w(TAG, ex);
-    } catch (PendingAttachmentResolutionException ex) {
-      Toast.makeText(ConversationActivity.this, R.string.ConversationActivity_an_attachment_is_loading,
-                     Toast.LENGTH_SHORT).show();
     }
   }
 
@@ -1320,7 +1314,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void updateToggleButtonState() {
-    if (composeText.getText().length() == 0 && !attachmentManager.isAttachmentPresent() && !attachmentManager.isResolvingCapture()) {
+    if (composeText.getText().length() == 0 && !attachmentManager.isAttachmentPresent()) {
       buttonToggle.display(attachButton);
       quickAttachmentToggle.show();
     } else {
@@ -1340,8 +1334,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   @Override
-  public void onImageCapture(@NonNull final Bitmap bitmap) {
-    attachmentManager.setCaptureImage(masterSecret, bitmap);
+  public void onImageCapture(@NonNull final byte[] imageBytes) {
+    attachmentManager.setCaptureUri(CaptureProvider.getInstance(this).create(masterSecret, recipients, imageBytes));
+    addAttachmentImage(masterSecret, attachmentManager.getCaptureUri());
     quickAttachmentDrawer.close();
   }
 

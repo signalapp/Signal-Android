@@ -20,9 +20,7 @@ import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
@@ -31,9 +29,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.view.animation.ScaleAnimation;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -41,9 +36,9 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.providers.CaptureProvider;
+import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 
-import java.io.File;
 import java.io.IOException;
 
 public class AttachmentManager {
@@ -56,8 +51,7 @@ public class AttachmentManager {
   private final SlideDeck          slideDeck;
   private final AttachmentListener attachmentListener;
 
-  private Uri     captureUri;
-  private boolean resolvingCapture;
+  private Uri captureUri;
 
   public AttachmentManager(Activity view, AttachmentListener listener) {
     this.attachmentView     = view.findViewById(R.id.attachment_editor);
@@ -101,11 +95,7 @@ public class AttachmentManager {
   }
 
   public void setImage(MasterSecret masterSecret, Uri image) throws IOException, BitmapDecodingException {
-    setImage(masterSecret, image, true);
-  }
-
-  public void setImage(MasterSecret masterSecret, Uri image, boolean updateThumbnail) throws IOException, BitmapDecodingException {
-    setMedia(new ImageSlide(context, masterSecret, image), masterSecret, updateThumbnail);
+    setMedia(new ImageSlide(context, masterSecret, image), masterSecret);
   }
 
   public void setVideo(Uri video) throws IOException, MediaTooLargeException {
@@ -121,14 +111,10 @@ public class AttachmentManager {
   }
 
   public void setMedia(final Slide slide, @Nullable MasterSecret masterSecret) {
-    setMedia(slide, masterSecret, true);
-  }
-
-  public void setMedia(final Slide slide, @Nullable MasterSecret masterSecret, boolean updateThumbnail) {
     slideDeck.clear();
     slideDeck.addSlide(slide);
     attachmentView.setVisibility(View.VISIBLE);
-    if (updateThumbnail) thumbnail.setImageResource(slide, masterSecret);
+    thumbnail.setImageResource(slide, masterSecret);
     attachmentListener.onAttachmentChanged();
   }
 
@@ -137,43 +123,8 @@ public class AttachmentManager {
   }
 
 
-  public boolean isResolvingCapture() {
-    return resolvingCapture;
-  }
-
   public SlideDeck getSlideDeck() {
     return slideDeck;
-  }
-
-  public void setCaptureImage(final MasterSecret masterSecret, Bitmap bitmap) {
-    captureUri = null;
-    resolvingCapture = true;
-    thumbnail.setImageBitmap(bitmap);
-    attachmentView.setVisibility(View.VISIBLE);
-    attachmentListener.onAttachmentChanged();
-    new AsyncTask<Bitmap, Void, Uri>() {
-
-      @Override protected Uri doInBackground(Bitmap... bitmaps) {
-        final Bitmap bitmap = bitmaps[0];
-        try {
-          return CaptureProvider.getInstance(context).create(masterSecret, bitmap);
-        } catch (IOException ioe) {
-          Log.w(TAG, ioe);
-          return null;
-        }
-      }
-
-      @Override protected void onPostExecute(Uri uri) {
-        try {
-          setImage(masterSecret, uri, false);
-          captureUri = uri;
-        } catch (IOException | BitmapDecodingException e) {
-          Log.w(TAG, e);
-        } finally {
-          resolvingCapture = false;
-        }
-      }
-    }.execute(bitmap);
   }
 
   public static void selectVideo(Activity activity, int requestCode) {
@@ -197,11 +148,16 @@ public class AttachmentManager {
     return captureUri;
   }
 
-  public void capturePhoto(Activity activity, int requestCode) {
+
+  public void setCaptureUri(Uri captureUri) {
+    this.captureUri = captureUri;
+  }
+
+  public void capturePhoto(Activity activity, Recipients recipients, int requestCode) {
     try {
       Intent captureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
       if (captureIntent.resolveActivity(activity.getPackageManager()) != null) {
-        captureUri = CaptureProvider.getInstance(context).createForExternal();
+        captureUri = CaptureProvider.getInstance(context).createForExternal(recipients);
         captureIntent.putExtra(MediaStore.EXTRA_OUTPUT, captureUri);
         activity.startActivityForResult(captureIntent, requestCode);
       }
@@ -244,6 +200,4 @@ public class AttachmentManager {
   public interface AttachmentListener {
     void onAttachmentChanged();
   }
-
-  public static class PendingAttachmentResolutionException extends Exception { }
 }
