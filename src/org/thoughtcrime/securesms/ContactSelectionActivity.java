@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -37,6 +38,7 @@ import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 
 import java.io.IOException;
+import java.lang.ref.WeakReference;
 
 /**
  * Base activity container for selecting a list of contacts.
@@ -158,24 +160,7 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActionB
 
   @Override
   public void onRefresh() {
-    new AsyncTask<Void, Void, Void>() {
-      @Override
-      protected Void doInBackground(Void... params) {
-        try {
-          DirectoryHelper.refreshDirectory(ContactSelectionActivity.this);
-        } catch (IOException e) {
-          Log.w(TAG, e);
-        }
-
-        return null;
-      }
-
-      @Override
-      protected void onPostExecute(Void result) {
-        searchText.setText("");
-        contactsFragment.resetQueryFilter();
-      }
-    }.execute();
+    new RefreshDirectoryTask(this).execute(getApplicationContext());
   }
 
   @Override
@@ -193,6 +178,37 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActionB
 
     public static boolean isEmpty(EditText editText) {
       return editText.getText().length() <= 0;
+    }
+  }
+
+  private static class RefreshDirectoryTask extends AsyncTask<Context, Void, Void> {
+
+    private final WeakReference<ContactSelectionActivity> activity;
+
+    private RefreshDirectoryTask(ContactSelectionActivity activity) {
+      this.activity = new WeakReference<>(activity);
+    }
+
+
+    @Override
+    protected Void doInBackground(Context... params) {
+      try {
+        DirectoryHelper.refreshDirectory(params[0]);
+      } catch (IOException e) {
+        Log.w(TAG, e);
+      }
+
+      return null;
+    }
+
+    @Override
+    protected void onPostExecute(Void result) {
+      ContactSelectionActivity activity = this.activity.get();
+
+      if (activity != null && !activity.isFinishing()) {
+        activity.searchText.setText("");
+        activity.contactsFragment.resetQueryFilter();
+      }
     }
   }
 }
