@@ -279,11 +279,6 @@ public class CameraView extends FrameLayout {
     }
   }
 
-  void previewReset() {
-    previewStopped();
-    initPreview();
-  }
-
   private void previewStopped() {
     if (inPreview) {
       stopPreview();
@@ -470,8 +465,8 @@ public class CameraView extends FrameLayout {
             onPostMain(result);
           }
         });
-      } catch (IllegalStateException ise) {
-        Log.w(TAG, ise.getMessage());
+      } catch (PreconditionsNotMetException e) {
+        Log.w(TAG, "skipping task, preconditions not met in onWait()");
       }
     }
 
@@ -499,17 +494,17 @@ public class CameraView extends FrameLayout {
       }
     }
 
-    protected void onWait() {}
+    protected void onWait() throws PreconditionsNotMetException {}
     protected void onPreMain() {}
     protected Result onRunBackground() { return null; }
     protected void onPostMain(Result result) {}
   }
 
   private abstract class PostInitializationTask<Result> extends SerializedAsyncTask<Result> {
-    @Override protected void onWait() {
+    @Override protected void onWait() throws PreconditionsNotMetException {
       synchronized (CameraView.this) {
         if (!cameraReady) {
-          throw new IllegalStateException("camera not prepared, abandoning post-init task");
+          throw new PreconditionsNotMetException();
         }
         while (camera == null || previewSize == null || !previewStrategy.isReady()) {
           Log.w(TAG, String.format("waiting. camera? %s previewSize? %s prevewStrategy? %s",
@@ -519,4 +514,6 @@ public class CameraView extends FrameLayout {
       }
     }
   }
+
+  private static class PreconditionsNotMetException extends Exception {}
 }
