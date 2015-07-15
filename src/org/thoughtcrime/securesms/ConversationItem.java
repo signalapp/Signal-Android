@@ -211,11 +211,13 @@ public class ConversationItem extends LinearLayout {
   private void setBubbleState(MessageRecord messageRecord) {
     if (messageRecord.isOutgoing()) {
       bodyBubble.getBackground().setColorFilter(defaultBubbleColor, PorterDuff.Mode.MULTIPLY);
+      mediaThumbnail.setBackgroundColorHint(defaultBubbleColor);
     } else {
-      bodyBubble.getBackground().setColorFilter(messageRecord.getIndividualRecipient()
-                                                             .getColor()
-                                                             .toConversationColor(context),
-                                                PorterDuff.Mode.MULTIPLY);
+      int color = messageRecord.getIndividualRecipient()
+                               .getColor()
+                               .toConversationColor(context);
+      bodyBubble.getBackground().setColorFilter(color, PorterDuff.Mode.MULTIPLY);
+      mediaThumbnail.setBackgroundColorHint(color);
     }
 
   }

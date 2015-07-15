@@ -7,6 +7,7 @@ import android.widget.ImageView;
 
 import com.makeramen.roundedimageview.RoundedDrawable;
 
+
 public class BitmapContactPhoto implements ContactPhoto {
 
   private final Bitmap bitmap;
