@@ -169,11 +169,11 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActionB
   private static class SearchUtil {
 
     public static boolean isTextInput(EditText editText) {
-      return (editText.getInputType() & 0x0000000F) == InputType.TYPE_CLASS_TEXT;
+      return (editText.getInputType() & InputType.TYPE_MASK_CLASS) == InputType.TYPE_CLASS_TEXT;
     }
 
     public static boolean isPhoneInput(EditText editText) {
-      return (editText.getInputType() & 0x0000000F) == InputType.TYPE_CLASS_PHONE;
+      return (editText.getInputType() & InputType.TYPE_MASK_CLASS) == InputType.TYPE_CLASS_PHONE;
     }
 
     public static boolean isEmpty(EditText editText) {
