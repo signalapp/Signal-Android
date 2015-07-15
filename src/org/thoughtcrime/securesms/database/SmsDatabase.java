@@ -145,7 +145,7 @@ public class SmsDatabase extends MessagingDatabase {
     Cursor cursor     = null;
 
     try {
-      cursor = db.query(TABLE_NAME, new String[] {"COUNT(*)"}, null, null, null, null, null);
+      cursor = db.query(TABLE_NAME, new String[]{"COUNT(*)"}, null, null, null, null, null);
 
       if (cursor != null && cursor.moveToFirst()) return cursor.getInt(0);
       else                                        return 0;
@@ -494,7 +494,7 @@ public class SmsDatabase extends MessagingDatabase {
   public Cursor getMessage(long messageId) {
     SQLiteDatabase db     = databaseHelper.getReadableDatabase();
     Cursor         cursor = db.query(TABLE_NAME, MESSAGE_PROJECTION, ID_WHERE, new String[]{messageId + ""},
-                                     null, null, null);
+            null, null, null);
     setNotifyConverationListeners(cursor, getThreadIdForMessage(messageId));
     return cursor;
   }
@@ -511,7 +511,7 @@ public class SmsDatabase extends MessagingDatabase {
 
   /*package */void deleteThread(long threadId) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
-    db.delete(TABLE_NAME, THREAD_ID + " = ?", new String[] {threadId+""});
+    db.delete(TABLE_NAME, THREAD_ID + " = ?", new String[]{threadId + ""});
   }
 
   /*package*/void deleteMessagesInThreadBeforeDate(long threadId, long date) {
@@ -571,6 +571,11 @@ public class SmsDatabase extends MessagingDatabase {
                                                                       SERVICE_CENTER +
                                                                       ", " + THREAD_ID + ") " +
                                      " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+  }
+
+  public void notifyListeners(long id) {
+      long threadId = getThreadIdForMessage(id);
+      notifyConversationListeners(threadId);
   }
 
   public static class Status {

@@ -247,7 +247,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         initializeIme();
         initializeCharactersLeftViewEnabledCheck();
         calculateCharactersRemaining();
-        ProfileAccessor.updateProfileInformations(getRecipients());
 
         MessageNotifier.setVisibleThread(threadId);
         markThreadAsRead();

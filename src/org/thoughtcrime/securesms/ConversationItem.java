@@ -134,6 +134,8 @@ public class ConversationItem extends LinearLayout {
   private View triangleTick;
   private ImageView pendingIndicator;
 
+  private static String openedMessageId = "";
+
   private Set<MessageRecord> batchSelected;
   private SelectionClickListener selectionClickListener;
   private View mmsContainer;
@@ -154,6 +156,7 @@ public class ConversationItem extends LinearLayout {
   private ConversationFragment conversationFragment;
   private ThumbnailView thumbnailDestroyDialog;
   private ImageView loadingDestroyIndicator;
+  private GDataPreferences mPreferences;
 
   public ConversationItem(Context context) {
     super(context);
@@ -200,6 +203,7 @@ public class ConversationItem extends LinearLayout {
   public void set(MasterSecret masterSecret, MessageRecord messageRecord,
                   Set<MessageRecord> batchSelected, SelectionClickListener selectionClickListener,
                   Handler failedIconHandler, boolean groupThread, boolean pushDestination, ConversationFragment fragment) {
+    this.mPreferences = new GDataPreferences(getContext());
     this.masterSecret = masterSecret;
     this.messageRecord = messageRecord;
     this.batchSelected = batchSelected;
@@ -261,13 +265,18 @@ public class ConversationItem extends LinearLayout {
     v.setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom);
   }
     private void checkForBeingDestroyed(MessageRecord messageRecord) {
-        if (new GDataPreferences(getContext()).isMarkedAsRemoved(getUniqueMsgId(messageRecord))) {
-            new GDataPreferences(getContext()).removeFromList(getUniqueMsgId(messageRecord));
+      String uniqueId = getUniqueMsgId(messageRecord);
+        if (mPreferences.isMarkedAsRemoved(uniqueId) && !messageIsInDialog(uniqueId)) {
+            mPreferences.removeFromList(uniqueId);
             deleteMessage(messageRecord);
         }
     }
-  /// MessageRecord Attribute Parsers
-
+  private boolean messageIsInDialog(String uniqueId) {
+    return uniqueId.equals(openedMessageId);
+  }
+  private boolean dialogIsClosed() {
+    return openedMessageId.equals("");
+  }
   private void setConversationBackgroundDrawables(MessageRecord messageRecord) {
     if (conversationParent != null && backgroundDrawables != null) {
       if (messageRecord.isOutgoing()) {
@@ -424,8 +433,8 @@ public class ConversationItem extends LinearLayout {
         @Override
         public void onClick(DialogInterface dialog, int which) {
           dialog.dismiss();
-            new GDataPreferences(getContext()).setAsDestroyed(getUniqueMsgId(messageRecord));
-            checkForBeingDestroyed(messageRecord);
+          alreadyDestroyed = true;
+        updateListeners(messageRecord);
         }
       });
       alertDialogDestroy = builder.show();
@@ -449,6 +458,7 @@ public class ConversationItem extends LinearLayout {
           int i = currentCountdown;
           int z = 0;
             new GDataPreferences(getContext()).setAsDestroyed(getUniqueMsgId(messageRecord));
+            openedMessageId = getUniqueMsgId(messageRecord);
           while (!thumbnailDestroyDialog.isLoadingDone() && z < 10 && hasMedia(messageRecord)) {
             z++;
             try {
@@ -491,10 +501,19 @@ public class ConversationItem extends LinearLayout {
             });
           }
           MediaPreviewActivity.closeActivity();
-            checkForBeingDestroyed(messageRecord);
+          updateListeners(messageRecord);
+          openedMessageId = "";
         }
       }).start();
 
+    }
+  }
+
+  private void updateListeners(MessageRecord messageRecord) {
+    if (messageRecord.isMms()) {
+      DatabaseFactory.getMmsDatabase(getContext()).notifyListeners(messageRecord.getId());
+    } else {
+      DatabaseFactory.getSmsDatabase(getContext()).notifyListeners(messageRecord.getId());
     }
   }
 
@@ -624,20 +643,6 @@ public class ConversationItem extends LinearLayout {
           mmsThumbnail.setImageResource(masterSecret, messageRecord.getId(),
               messageRecord.getDateReceived(),
               messageRecord.getSlideDeckFuture());
-
-          if(messageRecord.isUpdateProfile() && ((MediaMmsMessageRecord) messageRecord).containsMediaSlide()) {
-
-          /*  SlideDeck slideDeckProfile = ((MediaMmsMessageRecord) messageRecord).getSlideDeckSync();
-            try {
-              ProfileAccessor.setProfilePicture(context, new ImageSlide(context, slideDeckProfile.getSlides().get(0).getThumbnailUri()));
-              Log.d("MYLOG", "setProfilePicture " + messageRecord.isUpdateProfile());
-              //deleteMessage(messageRecord);
-            } catch (IOException e) {
-              Log.w("GDATA", e);
-            } catch (BitmapDecodingException e) {
-              Log.w("GDATA", e);
-            }*/
-          }
 
         } else {
           mmsThumbnail.setVisibility(View.GONE);
