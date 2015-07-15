@@ -242,18 +242,6 @@ public class ConversationItem extends LinearLayout {
               contactPhoto.setVisibility(View.GONE);
           }
       }
-    Log.d("MYLOG ","MYLOG " + messageRecord.getDisplayBody() +  " - " + messageRecord.isIdentityUpdate() + " - "
-            +  " - " + messageRecord.isCorruptedKeyExchange() + " - "
-            +  " - " + messageRecord.isAsymmetricEncryption() + " - "
-            +  " - " + messageRecord.isBundleKeyExchange() + " - "
-            +  " - " + messageRecord.isProcessedKeyExchange() + " - "
-            +  " - " + messageRecord.isIdentityMismatchFailure() + " - "
-            +  " - " + messageRecord.isKeyExchange() + " - "
-            +  " - " + messageRecord.isInvalidVersionKeyExchange() + " - "
-            +  " - " + messageRecord.isStaleKeyExchange() + " - " +
-            messageRecord.getType() + " - " + messageRecord.isSecure() + " - " + messageRecord.isFailed()
-                    + " - " +messageRecord.isLegacyMessage() + " - "+ messageRecord.isGroupAction() + " - "+
-    messageRecord.isEndSession());
         checkForBeingDestroyed(messageRecord);
   }
   public void unbind() {
