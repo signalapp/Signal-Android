@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2011 Whisper Systems
+ * Copyright (C) 2015 Open Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,18 +23,17 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.CursorAdapter;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactSelectionListAdapter;
 import org.thoughtcrime.securesms.contacts.ContactSelectionListItem;
+import org.thoughtcrime.securesms.contacts.ContactsCursorLoader;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -48,17 +47,17 @@ import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
  * @author Moxie Marlinspike
  *
  */
-
-public class PushContactSelectionListFragment extends    Fragment
-                                              implements LoaderManager.LoaderCallbacks<Cursor>
+public class ContactSelectionListFragment extends    Fragment
+                                          implements LoaderManager.LoaderCallbacks<Cursor>
 {
-  private static final String TAG = "ContactSelectFragment";
+  private static final String TAG = ContactSelectionListFragment.class.getSimpleName();
 
   private TextView emptyText;
 
   private Map<Long, String>         selectedContacts;
   private OnContactSelectedListener onContactSelectedListener;
   private StickyListHeadersListView listView;
+  private SwipeRefreshLayout        swipeRefresh;
   private String                    cursorFilter;
 
   private boolean multi = false;
@@ -66,7 +65,6 @@ public class PushContactSelectionListFragment extends    Fragment
   @Override
   public void onActivityCreated(Bundle icicle) {
     super.onCreate(icicle);
-    initializeResources();
     initializeCursor();
   }
 
@@ -82,7 +80,17 @@ public class PushContactSelectionListFragment extends    Fragment
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    return inflater.inflate(R.layout.push_contact_selection_list_activity, container, false);
+    View view = inflater.inflate(R.layout.contact_selection_list_fragment, container, false);
+
+    emptyText      = (TextView)                  view.findViewById(android.R.id.empty);
+    swipeRefresh   = (SwipeRefreshLayout)        view.findViewById(R.id.swipe_refresh);
+    listView       = (StickyListHeadersListView) view.findViewById(android.R.id.list);
+    listView.setFocusable(true);
+    listView.setFastScrollEnabled(true);
+    listView.setDrawingListUnderStickyHeader(false);
+    listView.setOnItemClickListener(new ListClickListener());
+
+    return view;
   }
 
   public List<String> getSelectedContacts() {
@@ -105,46 +113,22 @@ public class PushContactSelectionListFragment extends    Fragment
     this.getLoaderManager().initLoader(0, null, this);
   }
 
-  private void initializeResources() {
-    emptyText = (TextView) getView().findViewById(android.R.id.empty);
-    listView  = (StickyListHeadersListView) getView().findViewById(android.R.id.list);
-    listView.setFocusable(true);
-    listView.setFastScrollEnabled(true);
-    listView.setDrawingListUnderStickyHeader(false);
-    listView.setOnItemClickListener(new ListClickListener());
-
-    EditText filterEditText = (EditText) getView().findViewById(R.id.filter);
-    filterEditText.addTextChangedListener(new TextWatcher() {
-      @Override
-      public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-
-      }
-
-      @Override
-      public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-        cursorFilter = charSequence.toString();
-        update();
-      }
-
-      @Override
-      public void afterTextChanged(Editable editable) {
-
-      }
-    });
-    cursorFilter = null;
+  public void setQueryFilter(String filter) {
+    this.cursorFilter = filter;
+    this.getLoaderManager().restartLoader(0, null, this);
   }
 
-  public void update() {
-    this.getLoaderManager().restartLoader(0, null, this);
+  public void resetQueryFilter() {
+    setQueryFilter(null);
+    swipeRefresh.setRefreshing(false);
   }
 
   @Override
   public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-    if (getActivity().getIntent().getBooleanExtra(PushContactSelectionActivity.PUSH_ONLY_EXTRA, false)) {
-      return ContactAccessor.getInstance().getCursorLoaderForPushContacts(getActivity(), cursorFilter);
-    } else {
-      return ContactAccessor.getInstance().getCursorLoaderForContacts(getActivity(), cursorFilter);
-    }
+    boolean pushOnly    = getActivity().getIntent().getBooleanExtra(ContactSelectionActivity.PUSH_ONLY_EXTRA, false);
+    boolean supportsSms = TextSecurePreferences.isSmsEnabled(getActivity());
+
+    return new ContactsCursorLoader(getActivity(), !pushOnly && supportsSms, cursorFilter);
   }
 
   @Override
@@ -176,6 +160,10 @@ public class PushContactSelectionListFragment extends    Fragment
 
   public void setOnContactSelectedListener(OnContactSelectedListener onContactSelectedListener) {
     this.onContactSelectedListener = onContactSelectedListener;
+  }
+
+  public void setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener onRefreshListener) {
+    this.swipeRefresh.setOnRefreshListener(onRefreshListener);
   }
 
   public interface OnContactSelectedListener {
