@@ -70,6 +70,9 @@
     </string>
     <string name="ConfirmIdentityDialog_accept">Accept</string>
 
+    <!-- ContactsDatabase -->
+    <string name="ContactsDatabase_message_s">Message %s</string>
+
     <!-- ConversationItem -->
     <string name="ConversationItem_message_size_d_kb">Message size: %d KB</string>
     <string name="ConversationItem_expires_s">Expires: %s</string>

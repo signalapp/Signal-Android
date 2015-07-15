@@ -134,7 +134,7 @@ public class ContactsDatabase {
                                            .withValue(ContactsContract.Data.MIMETYPE, "vnd.android.cursor.item/vnd.org.thoughtcrime.securesms.contact")
                                            .withValue(ContactsContract.Data.DATA1, e164number)
                                            .withValue(ContactsContract.Data.DATA2, context.getString(R.string.app_name))
-                                           .withValue(ContactsContract.Data.DATA3, String.format("Message %s", e164number))
+                                           .withValue(ContactsContract.Data.DATA3, context.getString(R.string.ContactsDatabase_message_s, e164number))
                                            .withYieldAllowed(true)
                                            .build());
   }
