@@ -531,6 +531,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
 
         ArrayList<Recipient> selectedContactsList = setToArrayList(selectedContacts);
         intent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, RecipientFactory.getRecipientsFor(GroupCreateActivity.this, selectedContactsList, true).getIds());
+        ConversationListActivity.notifyOfGroupCreate();
         startActivity(intent);
         finish();
       } else {
@@ -629,6 +630,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
         intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId);
         intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT);
         intent.putExtra(ConversationActivity.RECIPIENTS_EXTRA, recipients.getIds());
+        ConversationListActivity.notifyOfGroupCreate();
         startActivity(intent);
         finish();
       } else if (threadId == RES_BAD_NUMBER) {
