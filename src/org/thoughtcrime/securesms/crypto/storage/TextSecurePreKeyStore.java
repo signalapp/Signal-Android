@@ -179,7 +179,7 @@ public class TextSecurePreKeyStore implements PreKeyStore, SignedPreKeyStore {
     byte[] serializedRecord = readBlob(fin);
 
     if (recordVersion < PLAINTEXT_VERSION && masterSecret != null) {
-      MasterCipher masterCipher  = new MasterCipher(masterSecret);
+      MasterCipher masterCipher = new MasterCipher(masterSecret);
       serializedRecord = masterCipher.decryptBytes(serializedRecord);
     } else if (recordVersion < PLAINTEXT_VERSION) {
       throw new AssertionError("Migration didn't happen!");

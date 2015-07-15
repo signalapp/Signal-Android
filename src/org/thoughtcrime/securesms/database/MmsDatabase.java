@@ -483,7 +483,7 @@ public class MmsDatabase extends MessagingDatabase {
   private Pair<Long, Long> updateMessageBodyAndType(long messageId, String body, long maskOff, long maskOn) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     db.execSQL("UPDATE " + TABLE_NAME + " SET " + BODY + " = ?, " +
-               MESSAGE_BOX + " = (" + MESSAGE_BOX+ " & " + (Types.TOTAL_MASK - maskOff) + " | " + maskOn + ") " +
+               MESSAGE_BOX + " = (" + MESSAGE_BOX + " & " + (Types.TOTAL_MASK - maskOff) + " | " + maskOn + ") " +
                "WHERE " + ID + " = ?",
                new String[] {body, messageId + ""});
 
