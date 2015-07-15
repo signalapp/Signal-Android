@@ -94,6 +94,7 @@ public class ConversationItem extends LinearLayout {
   private static final long TYPE_WRONG_CREATED = -2139029483;
   private static final long TYPE_WRONG_ENCRYPTED = -2136932329;
   private static final long TYPE_LEFT_GROUP = -2136866793;
+  private static final long TYPE_WRONG_KEY = -2145386476;
     public static final int GROUP_CONVERSATION = 1;
     public static final int SINGLE_CONVERSATION = 2;
 
@@ -241,6 +242,18 @@ public class ConversationItem extends LinearLayout {
               contactPhoto.setVisibility(View.GONE);
           }
       }
+    Log.d("MYLOG ","MYLOG " + messageRecord.getDisplayBody() +  " - " + messageRecord.isIdentityUpdate() + " - "
+            +  " - " + messageRecord.isCorruptedKeyExchange() + " - "
+            +  " - " + messageRecord.isAsymmetricEncryption() + " - "
+            +  " - " + messageRecord.isBundleKeyExchange() + " - "
+            +  " - " + messageRecord.isProcessedKeyExchange() + " - "
+            +  " - " + messageRecord.isIdentityMismatchFailure() + " - "
+            +  " - " + messageRecord.isKeyExchange() + " - "
+            +  " - " + messageRecord.isInvalidVersionKeyExchange() + " - "
+            +  " - " + messageRecord.isStaleKeyExchange() + " - " +
+            messageRecord.getType() + " - " + messageRecord.isSecure() + " - " + messageRecord.isFailed()
+                    + " - " +messageRecord.isLegacyMessage() + " - "+ messageRecord.isGroupAction() + " - "+
+    messageRecord.isEndSession());
         checkForBeingDestroyed(messageRecord);
   }
   public void unbind() {
@@ -330,6 +343,10 @@ public class ConversationItem extends LinearLayout {
       bodyText.setText(Emoji.getInstance(context).emojify(context.getString(R.string.MessageRecord_left_group),
               new Emoji.InvalidatingPageLoadedListener(bodyText)),
           TextView.BufferType.SPANNABLE);
+    }  else if(messageRecord.type == TYPE_WRONG_KEY && messageRecord.containsKey()) {
+      bodyText.setText(Emoji.getInstance(context).emojify(context.getString(R.string.ConversationListItem_key_exchange_message),
+                      new Emoji.InvalidatingPageLoadedListener(bodyText)),
+              TextView.BufferType.SPANNABLE);
     } else if(messageRecord.isGroupAction()) {
       bodyText.setText(Emoji.getInstance(context).emojify(context.getString(R.string.GroupUtil_group_updated),
                       new Emoji.InvalidatingPageLoadedListener(bodyText)),
