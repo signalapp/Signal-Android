@@ -82,7 +82,7 @@ public class ContactSelectionListFragment extends    Fragment
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.contact_selection_list_fragment, container, false);
 
-    this.emptyText = (TextView)                  view.findViewById(android.R.id.empty);
+    emptyText      = (TextView)                  view.findViewById(android.R.id.empty);
     swipeRefresh   = (SwipeRefreshLayout)        view.findViewById(R.id.swipe_refresh);
     listView       = (StickyListHeadersListView) view.findViewById(android.R.id.list);
     listView.setFocusable(true);
