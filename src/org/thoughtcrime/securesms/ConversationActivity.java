@@ -242,7 +242,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
         initializeSecurity();
         initializeTitleBar();
-        initializeEnabledCheck();
         initializeMmsEnabledCheck();
         initializeIme();
         initializeCharactersLeftViewEnabledCheck();
@@ -250,6 +249,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
         MessageNotifier.setVisibleThread(threadId);
         markThreadAsRead();
+        initializeEnabledCheck();
     }
 
     @Override
@@ -777,10 +777,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         }
     }
 
-    private void initializeEnabledCheck() {
+    private boolean initializeEnabledCheck() {
         boolean enabled = !(isPushGroupConversation() && !isActiveGroup());
         composeText.setEnabled(enabled);
         sendButton.setEnabled(enabled);
+        return enabled;
     }
 
     private void initializeCharactersLeftViewEnabledCheck() {
@@ -1263,28 +1264,30 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     private void sendMessage() {
-        try {
-            final Recipients recipients = getRecipients();
+        if(initializeEnabledCheck()) {
+            try {
+                final Recipients recipients = getRecipients();
 
-            if (recipients == null) {
-                throw new RecipientFormattingException("Badly formatted");
+                if (recipients == null) {
+                    throw new RecipientFormattingException("Badly formatted");
+                }
+                if ((!recipients.isSingleRecipient() || recipients.isEmailRecipient()) && !isMmsEnabled) {
+                    handleManualMmsRequired();
+                } else if (attachmentManager.isAttachmentPresent() || !recipients.isSingleRecipient() || recipients.isGroupRecipient() || recipients.isEmailRecipient()) {
+                    sendMediaMessage(transportButton.getSelectedTransport().isForcedPlaintext(), transportButton.getSelectedTransport().isForcedSms());
+                } else {
+                    sendTextMessage(transportButton.getSelectedTransport().isForcedPlaintext(), transportButton.getSelectedTransport().isForcedSms());
+                }
+            } catch (RecipientFormattingException ex) {
+                Toast.makeText(ConversationActivity.this,
+                        R.string.ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation,
+                        Toast.LENGTH_LONG).show();
+                Log.w(TAG, ex);
+            } catch (InvalidMessageException ex) {
+                Toast.makeText(ConversationActivity.this, R.string.ConversationActivity_message_is_empty_exclamation,
+                        Toast.LENGTH_SHORT).show();
+                Log.w(TAG, ex);
             }
-            if ((!recipients.isSingleRecipient() || recipients.isEmailRecipient()) && !isMmsEnabled) {
-                handleManualMmsRequired();
-            } else if (attachmentManager.isAttachmentPresent() || !recipients.isSingleRecipient() || recipients.isGroupRecipient() || recipients.isEmailRecipient()) {
-                sendMediaMessage(transportButton.getSelectedTransport().isForcedPlaintext(), transportButton.getSelectedTransport().isForcedSms());
-            } else {
-                sendTextMessage(transportButton.getSelectedTransport().isForcedPlaintext(), transportButton.getSelectedTransport().isForcedSms());
-            }
-        } catch (RecipientFormattingException ex) {
-            Toast.makeText(ConversationActivity.this,
-                    R.string.ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation,
-                    Toast.LENGTH_LONG).show();
-            Log.w(TAG, ex);
-        } catch (InvalidMessageException ex) {
-            Toast.makeText(ConversationActivity.this, R.string.ConversationActivity_message_is_empty_exclamation,
-                    Toast.LENGTH_SHORT).show();
-            Log.w(TAG, ex);
         }
     }
 
