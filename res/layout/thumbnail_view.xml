@@ -2,15 +2,13 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
        xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.makeramen.roundedimageview.RoundedImageView
-            android:id="@+id/thumbnail_image"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:contentDescription="@string/conversation_item__mms_image_description"
-            android:layout_margin="@dimen/media_bubble_border_width"
-            app:riv_corner_radius="@dimen/message_bubble_corner_radius" />
+    <ImageView android:id="@+id/thumbnail_image"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:adjustViewBounds="true"
+               android:scaleType="fitCenter"
+               android:contentDescription="@string/conversation_item__mms_image_description"
+               android:layout_margin="@dimen/media_bubble_border_width" />
 
     <com.pnikosis.materialishprogress.ProgressWheel
             android:id="@+id/progress_wheel"

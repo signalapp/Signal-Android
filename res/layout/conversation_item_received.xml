@@ -54,8 +54,6 @@
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/conversation_item__mms_image_description"
                     android:visibility="gone"
-                    app:riv_corner_radius="@dimen/message_bubble_corner_radius"
-                    app:riv_border_width="0dp"
                     tools:src="@drawable/ic_video_light"
                     tools:visibility="visible" />
 
