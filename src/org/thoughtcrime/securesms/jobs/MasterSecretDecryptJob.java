@@ -36,7 +36,7 @@ public class MasterSecretDecryptJob extends MasterSecretJob {
   @Override
   public void onRun(MasterSecret masterSecret) {
     EncryptingSmsDatabase smsDatabase = DatabaseFactory.getEncryptingSmsDatabase(context);
-    SmsDatabase.Reader    smsReader  = smsDatabase.getDecryptInProgressMessages(masterSecret);
+    SmsDatabase.Reader    smsReader   = smsDatabase.getDecryptInProgressMessages(masterSecret);
 
     SmsMessageRecord smsRecord;
 
