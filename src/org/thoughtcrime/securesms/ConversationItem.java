@@ -434,6 +434,7 @@ public class ConversationItem extends LinearLayout {
         public void onClick(DialogInterface dialog, int which) {
           dialog.dismiss();
           alreadyDestroyed = true;
+          openedMessageId = "";
         updateListeners(messageRecord);
         }
       });
