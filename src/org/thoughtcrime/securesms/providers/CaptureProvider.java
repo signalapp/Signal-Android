@@ -93,10 +93,8 @@ public class CaptureProvider {
 
   public boolean delete(@NonNull Uri uri) {
     switch (uriMatcher.match(uri)) {
-    case MATCH:
-      return getFile(ContentUris.parseId(uri)).delete();
-    default:
-      return new File(uri.getPath()).delete();
+    case MATCH: return getFile(ContentUris.parseId(uri)).delete();
+    default:    return new File(uri.getPath()).delete();
     }
   }
 
