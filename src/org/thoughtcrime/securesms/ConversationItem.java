@@ -218,11 +218,12 @@ public class ConversationItem extends LinearLayout implements Recipient.Recipien
   private void setBubbleState(MessageRecord messageRecord, Recipient recipient) {
     if (messageRecord.isOutgoing()) {
       bodyBubble.getBackground().setColorFilter(defaultBubbleColor, PorterDuff.Mode.MULTIPLY);
+      mediaThumbnail.setBackgroundColorHint(defaultBubbleColor);
     } else {
-      bodyBubble.getBackground().setColorFilter(recipient.getColor().toConversationColor(context),
-                                                PorterDuff.Mode.MULTIPLY);
+      int color = recipient.getColor().toConversationColor(context);
+      bodyBubble.getBackground().setColorFilter(color, PorterDuff.Mode.MULTIPLY);
+      mediaThumbnail.setBackgroundColorHint(color);
     }
-
   }
 
   private void setSelectionBackgroundDrawables(MessageRecord messageRecord) {
