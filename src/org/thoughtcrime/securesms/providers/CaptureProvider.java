@@ -105,7 +105,7 @@ public class CaptureProvider {
   }
 
   private int generateId(Recipients recipients) {
-    return Arrays.hashCode(recipients.getIds());
+    return Math.abs(Arrays.hashCode(recipients.getIds()));
   }
 
   private File getFile(long id) {
