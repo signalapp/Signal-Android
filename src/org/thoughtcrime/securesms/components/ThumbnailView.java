@@ -193,13 +193,14 @@ public class ThumbnailView extends FrameLayout {
     }
 
     return  Glide.with(getContext()).load(new DecryptableUri(masterSecret, slide.getThumbnailUri()))
+                                    .asBitmap()
                                     .centerCrop();
   }
 
   private GenericRequestBuilder buildPlaceholderGlideRequest(Slide slide) {
     return Glide.with(getContext()).load(slide.getPlaceholderRes(getContext().getTheme()))
-                                   .fitCenter()
-                                   .crossFade();
+                                   .asBitmap()
+                                   .fitCenter();
   }
 
   private void animateOutProgress() {
