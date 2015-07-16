@@ -96,8 +96,8 @@ public class IdentityKeyUtil {
       if (hasLegacyIdentityKeys(context)) {
         IdentityKeyPair legacyPair = getLegacyIdentityKeyPair(context, masterSecret);
 
-        save(context, IDENTITY_PUBLIC_KEY_PREF, Base64.encodeBytes(legacyPair.serialize()));
-        save(context, IDENTITY_PRIVATE_KEY_PREF, Base64.encodeBytes(legacyPair.serialize()));
+        save(context, IDENTITY_PUBLIC_KEY_PREF, Base64.encodeBytes(legacyPair.getPublicKey().serialize()));
+        save(context, IDENTITY_PRIVATE_KEY_PREF, Base64.encodeBytes(legacyPair.getPrivateKey().serialize()));
 
         delete(context, IDENTITY_PUBLIC_KEY_CIPHERTEXT_LEGACY_PREF);
         delete(context, IDENTITY_PRIVATE_KEY_CIPHERTEXT_LEGACY_PREF);
