@@ -53,7 +53,7 @@
             android:layout_gravity="bottom|right"
             android:layout_margin="30dp"
             android:src="?attr/menu_new_conversation_icon"
-            fab:fab_colorNormal="@color/gdata_red"
+            fab:fab_colorNormal="@color/gdata_red_real"
             fab:fab_colorPressed="@color/menuItemBackground"
             fab:fab_colorRipple="@color/menuTextColor"
             fab:fab_shadow="false" />

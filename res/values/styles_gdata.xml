@@ -94,7 +94,7 @@
         </item>
         <item name="conversation_editor_text_color">#000000</item>
 
-        <item name="conversation_background">@color/white</item>
+        <item name="conversation_background">#e6e5e0</item>
         <item name="conversation_editor_background">@drawable/gdata_textlines</item>
         <item name="reminder_header_background">#ff385400</item>
 
