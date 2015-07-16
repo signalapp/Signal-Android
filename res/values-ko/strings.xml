@@ -402,6 +402,7 @@
   <string name="conversation_activity__compose_description">메시지 작성</string>
   <string name="conversation_activity__emoji_toggle_description">이모티콘 키보드 전환</string>
   <string name="conversation_activity__attachment_thumbnail">첨부파일 미리보기 이미지</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_description">첨부 창 전환</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">미디어 메시지 다운로드 중</string>
   <string name="conversation_item__mms_image_description">미디어 메시지</string>
@@ -706,6 +707,7 @@
   <string name="conversation__menu_leave_group">그룹 나가기</string>
   <string name="conversation__menu_delete_thread">대화 삭제</string>
   <string name="conversation__menu_view_media">전체 이미지</string>
+  <string name="conversation__menu_conversation_settings">대화 설정</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">팝업 펼치기</string>
   <!--conversation_callable-->
@@ -749,5 +751,6 @@
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">전송 아이콘</string>
   <!--quick_attachment_drawer-->
+  <string name="quick_camera_unavailable">카메라 사용할 수 없음</string>
   <!--EOF-->
 </resources>

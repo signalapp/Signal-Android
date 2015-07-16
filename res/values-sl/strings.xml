@@ -752,7 +752,7 @@ Brezplačno zasebno sporočanje za TextSecure in Signal</string>
   <string name="conversation__menu_update_group">Posodobi skupino</string>
   <string name="conversation__menu_leave_group">Zapusti skupino</string>
   <string name="conversation__menu_delete_thread">Izbriši pogovor</string>
-  <string name="conversation__menu_view_media">Vse slike</string>
+  <string name="conversation__menu_view_media">Slike iz pogovora</string>
   <string name="conversation__menu_conversation_settings">Nastavitve pogovora</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Odpri pojavno okno</string>

@@ -456,6 +456,7 @@ Ismeretlen azonosító kulcsú üzenet érkezett. Kattints rá a feldolgozáshoz
   <string name="conversation_activity__compose_description">Üzenet létrehozása</string>
   <string name="conversation_activity__emoji_toggle_description">Váltás a hangulatjelek beviteléhez</string>
   <string name="conversation_activity__attachment_thumbnail">Melléklet előnézet</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Közvetlen csatolmányfelvétel</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Média üzenet letöltése</string>
   <string name="conversation_item__mms_image_description">Média üzenet</string>
@@ -811,6 +812,7 @@ Ingyenes biztonságos üzenet küldés TextSecure és Signal felhasználóknak</
   <string name="conversation__menu_leave_group">Csoport elhagyása</string>
   <string name="conversation__menu_delete_thread">Beszélgetésfolyam törlése</string>
   <string name="conversation__menu_view_media">Minden fénykép</string>
+  <string name="conversation__menu_conversation_settings">Beszélgetés beállítások</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Felugró kiterjesztése</string>
   <!--conversation_callable-->
@@ -854,5 +856,6 @@ Ingyenes biztonságos üzenet küldés TextSecure és Signal felhasználóknak</
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Átvitel ikon</string>
   <!--quick_attachment_drawer-->
+  <string name="quick_camera_unavailable">Kamera nem elérhető</string>
   <!--EOF-->
 </resources>
