@@ -2,10 +2,10 @@ package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.AppCompatEditText;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
+import android.text.TextUtils.TruncateAt;
 import android.text.style.RelativeSizeSpan;
 import android.util.AttributeSet;
 
@@ -24,10 +24,24 @@ public class ComposeText extends EmojiEditText {
     super(context, attrs, defStyleAttr);
   }
 
+  private CharSequence ellipsize(final CharSequence text) {
+    return TextUtils.ellipsize(text,
+                               getPaint(),
+                               getWidth() - getPaddingLeft() - getPaddingRight(),
+                               TruncateAt.END);
+  }
+
+  @Override protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+    super.onLayout(changed, left, top, right, bottom);
+    if (changed && !TextUtils.isEmpty(getHint())) {
+      setHint(ellipsize(getHint()));
+    }
+  }
+
   public void setHint(@NonNull String hint) {
     SpannableString span = new SpannableString(hint);
     span.setSpan(new RelativeSizeSpan(0.8f), 0, hint.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-    super.setHint(span);
+    super.setHint(ellipsize(hint));
   }
 
   public void appendInvite(String invite) {
