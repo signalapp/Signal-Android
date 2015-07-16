@@ -6,6 +6,7 @@
             android:id="@+id/thumbnail_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:scaleType="fitCenter"
             android:adjustViewBounds="true"
             android:contentDescription="@string/conversation_item__mms_image_description"
             android:layout_margin="@dimen/media_bubble_border_width"
