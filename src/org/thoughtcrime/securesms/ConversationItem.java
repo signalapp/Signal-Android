@@ -32,11 +32,14 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.QuickContact;
+import android.transition.Explode;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -440,12 +443,15 @@ public class ConversationItem extends LinearLayout {
           dialog.dismiss();
           alreadyDestroyed = true;
           openedMessageId = "";
-        updateListeners(messageRecord);
+          updateListeners(messageRecord);
         }
       });
       alertDialogDestroy = builder.show();
       alertDialogDestroy.getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,
-          WindowManager.LayoutParams.FLAG_SECURE);
+              WindowManager.LayoutParams.FLAG_SECURE);
+ /*     ((ViewGroup)alertDialogDestroy.getWindow().getDecorView())
+              .getChildAt(0).startAnimation(AnimationUtils.loadAnimation(
+              context, android.R.anim.slide_in_left));*/
       currentCountdown = messageRecord.getBody().getSelfDestructionDuration();
       thumbnailDestroyDialog = ((ThumbnailView) alertDialogDestroy.findViewById(R.id.imageDialog));
       loadingDestroyIndicator = ((ImageView) alertDialogDestroy.findViewById(R.id.loading_indicator));

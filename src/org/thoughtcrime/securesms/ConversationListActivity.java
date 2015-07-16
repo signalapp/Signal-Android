@@ -206,6 +206,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
       ImageView profileImageView = (ImageView) findViewById(R.id.profile_picture);
       Slide myProfileImage = ProfileAccessor.getMyProfilePicture(getApplicationContext());
       if (masterSecret != null && !(myProfileImage.getUri() + "").equals("")) {
+        ProfileAccessor.setMasterSecred(masterSecret);
         ProfileAccessor.buildDraftGlideRequest(myProfileImage).into(profileImageView);
       } else {
         profileImageView.setImageBitmap(ContactPhotoFactory.getDefaultContactPhoto(getApplicationContext()));
