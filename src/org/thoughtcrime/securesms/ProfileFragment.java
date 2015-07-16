@@ -25,9 +25,11 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -99,7 +101,7 @@ public class ProfileFragment extends Fragment {
   private Recipients recipients;
   private ListView groupMember;
   private Set<Recipient> selectedContacts;
-  private Set<Recipient> existingContacts  = null;
+  private Set<Recipient> existingContacts = null;
 
   private ProfileImageTypeSelectorAdapter attachmentAdapter;
   private static final int GROUP_EDIT = 5;
@@ -107,6 +109,7 @@ public class ProfileFragment extends Fragment {
   private RelativeLayout layout_status;
   private RelativeLayout layout_phone;
   private RelativeLayout layout_group;
+  private boolean hasLeft = false;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -118,11 +121,22 @@ public class ProfileFragment extends Fragment {
     super.onActivityCreated(bundle);
     initializeResources();
     refreshLayout();
+    this.getView().setFocusableInTouchMode(true);
+    this.getView().setOnKeyListener(new View.OnKeyListener() {
+      @Override
+      public boolean onKey(View v, int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+          finishAndSave();
+          return true;
+        }
+        return false;
+      }
+    });
   }
 
   private void refreshLayout() {
     gDataPreferences = new GDataPreferences(getActivity());
-    boolean isMyProfile = (GUtil.numberToLong(gDataPreferences.getE164Number()+"")+"").contains(GUtil.numberToLong(profileId)+"");
+    boolean isMyProfile = (GUtil.numberToLong(gDataPreferences.getE164Number() + "") + "").contains(GUtil.numberToLong(profileId) + "");
 
     layout_status = (RelativeLayout) getView().findViewById(R.id.layout_status);
     layout_phone = (RelativeLayout) getView().findViewById(R.id.layout_phone);
@@ -133,7 +147,7 @@ public class ProfileFragment extends Fragment {
     xCloseButton = (ImageView) getView().findViewById(R.id.profile_close);
     imageText = (TextView) getView().findViewById(R.id.image_text);
     profilePhone = (TextView) getView().findViewById(R.id.profile_phone);
-    groupMember        = (ListView)            getView().findViewById(R.id.selected_contacts_list);
+    groupMember = (ListView) getView().findViewById(R.id.selected_contacts_list);
     profilePhone.setText(profileId);
     profilePicture = (ThumbnailView) getView().findViewById(R.id.profile_picture);
     phoneCall = (ImageView) getView().findViewById(R.id.phone_call);
@@ -141,7 +155,7 @@ public class ProfileFragment extends Fragment {
     attachmentAdapter = new ProfileImageTypeSelectorAdapter(getActivity());
     scrollView = (ScrollView) getView().findViewById(R.id.scrollView);
     final ImageView profileStatusEdit = (ImageView) getView().findViewById(R.id.profile_status_edit);
-    if(!isGroup) {
+    if (!isGroup) {
       ImageSlide slide = ProfileAccessor.getProfileAsImageSlide(getActivity(), masterSecret, profileId);
       if (slide != null && !isMyProfile) {
         if (masterSecret != null) {
@@ -167,7 +181,7 @@ public class ProfileFragment extends Fragment {
         profileStatus.setText(ProfileAccessor.getProfileStatus(getActivity()), TextView.BufferType.EDITABLE);
         imageText.setText(getString(R.string.MediaPreviewActivity_you));
         profilePicture.setThumbnailClickListener(new ThumbnailClickListener());
-        if((ProfileAccessor.getMyProfilePicture(getActivity()).getUri()+"").equals("")) {
+        if ((ProfileAccessor.getMyProfilePicture(getActivity()).getUri() + "").equals("")) {
           profilePicture.setImageBitmap(ContactPhotoFactory.getDefaultContactPhoto(getActivity()));
         } else {
           profilePicture.setImageResource(ProfileAccessor.getMyProfilePicture(getActivity()));
@@ -218,7 +232,7 @@ public class ProfileFragment extends Fragment {
       if (avatar != null) {
         profilePicture.setImageBitmap(avatar);
       }
-    imageText.setText(groupName);
+      imageText.setText(groupName);
       layout_status.setVisibility(View.GONE);
       layout_phone.setVisibility(View.GONE);
       GUtil.setListViewHeightBasedOnChildren(groupMember);
@@ -226,10 +240,10 @@ public class ProfileFragment extends Fragment {
 
     ImageView profileImageEdit = (ImageView) getView().findViewById(R.id.profile_picture_edit);
     ImageView profileImageDelete = (ImageView) getView().findViewById(R.id.profile_picture_delete);
-    if(!isMyProfile) {
+    if (!isMyProfile) {
       profileStatusEdit.setVisibility(View.GONE);
       profileImageDelete.setVisibility(View.GONE);
-      if(!isGroup) {
+      if (!isGroup) {
         profileImageEdit.setVisibility(View.GONE);
         profileImageDelete.setVisibility(View.GONE);
       } else {
@@ -252,6 +266,7 @@ public class ProfileFragment extends Fragment {
           if (!profileStatus.isEnabled()) {
             ProfileAccessor.setProfileStatus(getActivity(), profileStatus.getText() + "");
             hasChanged = true;
+            hasLeft = false;
             profileStatusEdit.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_menu_edit));
           } else {
             profileStatusEdit.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_menu_send));
@@ -262,6 +277,7 @@ public class ProfileFragment extends Fragment {
         @Override
         public void onClick(View view) {
           hasChanged = true;
+          hasLeft = false;
           ProfileAccessor.deleteMyProfilePicture(getActivity());
           refreshLayout();
         }
@@ -270,6 +286,7 @@ public class ProfileFragment extends Fragment {
         @Override
         public void onClick(View view) {
           hasChanged = true;
+          hasLeft = false;
           handleAddAttachment();
         }
       });
@@ -277,7 +294,7 @@ public class ProfileFragment extends Fragment {
     xCloseButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        getActivity().finish();
+        finishAndSave();
       }
     });
     phoneCall.setOnClickListener(new View.OnClickListener() {
@@ -304,34 +321,42 @@ public class ProfileFragment extends Fragment {
           scrollContainer.setAlpha((float) ((1000.0 / scrollContainer.getHeight()) * scrollView.getHeight()));
         }
         if ((mainLayout.getTop() - scrollView.getHeight()) > scrollView.getScrollY()) {
-          getActivity().finish();
+          finishAndSave();
         }
         if (mainLayout.getTop() * 2 < scrollView.getScrollY() + PADDING_TOP) {
-          getActivity().finish();
+          finishAndSave();
         }
       }
     });
     scrollContainer.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-      //  getActivity().finish();
+        //  getActivity().finish();
       }
     });
 
   }
+
+  private void finishAndSave() {
+    hasLeft = true;
+    getActivity().finish();
+  }
+
   private class AttachmentTypeListener implements DialogInterface.OnClickListener {
     @Override
     public void onClick(DialogInterface dialog, int which) {
       addAttachment(attachmentAdapter.buttonToCommand(which));
     }
   }
+
   private void handleAddAttachment() {
-      AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(getActivity(), R.style.GSecure_Light_Dialog));
-      builder.setIcon(R.drawable.ic_dialog_attach);
-      builder.setTitle(R.string.ConversationActivity_add_attachment);
-      builder.setAdapter(attachmentAdapter, new AttachmentTypeListener());
-      builder.show();
-    }
+    AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(getActivity(), R.style.GSecure_Light_Dialog));
+    builder.setIcon(R.drawable.ic_dialog_attach);
+    builder.setTitle(R.string.ConversationActivity_add_attachment);
+    builder.setAdapter(attachmentAdapter, new AttachmentTypeListener());
+    builder.show();
+  }
+
   private void addAttachment(int type) {
     Log.w("ComposeMessageActivity", "Selected: " + type);
     switch (type) {
@@ -350,81 +375,99 @@ public class ProfileFragment extends Fragment {
     intent.putExtra(GroupCreateActivity.GROUP_RECIPIENT_EXTRA, recipients.getPrimaryRecipient().getRecipientId());
     startActivityForResult(intent, GROUP_EDIT);
   }
+
   private void handleDial(Recipient recipient) {
     try {
       if (recipient == null) return;
 
       Intent dialIntent = new Intent(Intent.ACTION_DIAL,
-          Uri.parse("tel:" + recipient.getNumber()));
+              Uri.parse("tel:" + recipient.getNumber()));
       startActivity(dialIntent);
     } catch (ActivityNotFoundException anfe) {
       Dialogs.showAlertDialog(getActivity(),
-          getString(R.string.ConversationActivity_calls_not_supported),
-          getString(R.string.ConversationActivity_this_device_does_not_appear_to_support_dial_actions));
+              getString(R.string.ConversationActivity_calls_not_supported),
+              getString(R.string.ConversationActivity_this_device_does_not_appear_to_support_dial_actions));
     }
   }
+
   @Override
   public void onResume() {
     super.onResume();
     refreshLayout();
   }
+
   public static final String RECIPIENTS_EXTRA = "recipients";
+
   @Override
   public void onAttach(Activity activity) {
     super.onAttach(activity);
   }
+
   private void initializeResources() {
-    this.masterSecret    = getActivity().getIntent().getParcelableExtra("master_secret");
-    this.profileId    = getActivity().getIntent().getStringExtra("profile_id");
-    this.isGroup =getActivity().getIntent().getBooleanExtra("is_group", false);
+    this.masterSecret = getActivity().getIntent().getParcelableExtra("master_secret");
+    this.profileId = getActivity().getIntent().getStringExtra("profile_id");
+    this.isGroup = getActivity().getIntent().getBooleanExtra("is_group", false);
     this.recipients = RecipientFactory.getRecipientsForIds(getActivity(), getActivity().getIntent().getLongArrayExtra(RECIPIENTS_EXTRA), true);
     selectedContacts = new HashSet<Recipient>();
   }
+
   private class ThumbnailClickListener implements ThumbnailView.ThumbnailClickListener {
-  private void fireIntent(Slide slide) {
-    Intent intent = new Intent(Intent.ACTION_VIEW);
-    intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-    intent.setDataAndType(PartAuthority.getPublicPartUri(slide.getUri()), slide.getContentType());
-    intent.putExtra("destroyImage", true);
-    try {
-      getActivity().startActivity(intent);
-    } catch (ActivityNotFoundException anfe) {
-      Toast.makeText(getActivity(), R.string.ConversationItem_unable_to_open_media, Toast.LENGTH_LONG).show();
-    }
-  }
-  public void onClick(final View v, final Slide slide) {
-    if(slide != null) {
-      if (MediaPreviewActivity.isContentTypeSupported(slide.getContentType())) {
-        Intent intent = new Intent(getActivity(), MediaPreviewActivity.class);
-        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        intent.setDataAndType(slide.getUri(), slide.getContentType());
-        intent.putExtra(MediaPreviewActivity.MASTER_SECRET_EXTRA, masterSecret);
-        intent.putExtra(MediaPreviewActivity.RECIPIENT_EXTRA, RecipientFactory.getRecipientsFromString(getActivity(), String.valueOf(profileId), false).getPrimaryRecipient().getRecipientId());
-        intent.putExtra("destroyImage", true);
+    private void fireIntent(Slide slide) {
+      Intent intent = new Intent(Intent.ACTION_VIEW);
+      intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+      intent.setDataAndType(PartAuthority.getPublicPartUri(slide.getUri()), slide.getContentType());
+      intent.putExtra("destroyImage", true);
+      try {
         getActivity().startActivity(intent);
-      } else {
-        AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(getActivity());
-        builder.setTitle(R.string.ConversationItem_view_secure_media_question);
-        builder.setIconAttribute(R.attr.dialog_alert_icon);
-        builder.setCancelable(true);
-        builder.setMessage(R.string.ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning);
-        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-          public void onClick(DialogInterface dialog, int which) {
-            fireIntent(slide);
-          }
-        });
-        builder.setNegativeButton(R.string.no, null);
-        builder.show();
+      } catch (ActivityNotFoundException anfe) {
+        Toast.makeText(getActivity(), R.string.ConversationItem_unable_to_open_media, Toast.LENGTH_LONG).show();
+      }
+    }
+
+    public void onClick(final View v, final Slide slide) {
+      if (slide != null) {
+        if (MediaPreviewActivity.isContentTypeSupported(slide.getContentType())) {
+          Intent intent = new Intent(getActivity(), MediaPreviewActivity.class);
+          intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+          intent.setDataAndType(slide.getUri(), slide.getContentType());
+          intent.putExtra(MediaPreviewActivity.MASTER_SECRET_EXTRA, masterSecret);
+          intent.putExtra(MediaPreviewActivity.RECIPIENT_EXTRA, RecipientFactory.getRecipientsFromString(getActivity(), String.valueOf(profileId), false).getPrimaryRecipient().getRecipientId());
+          intent.putExtra("destroyImage", true);
+          getActivity().startActivity(intent);
+        } else {
+          AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(getActivity());
+          builder.setTitle(R.string.ConversationItem_view_secure_media_question);
+          builder.setIconAttribute(R.attr.dialog_alert_icon);
+          builder.setCancelable(true);
+          builder.setMessage(R.string.ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning);
+          builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+              fireIntent(slide);
+            }
+          });
+          builder.setNegativeButton(R.string.no, null);
+          builder.show();
+        }
       }
     }
   }
-}
 
   @Override
   public void onPause() {
     super.onPause();
-    if(hasChanged) {
+    if (hasChanged && hasLeft) {
       ProfileAccessor.sendProfileUpdateToAllContacts(getActivity(), masterSecret);
+      hasChanged = false;
+    }
+  }
+
+  @Override
+  public void onDestroy() {
+    super.onDestroy();
+    if (hasChanged) {
+      ProfileAccessor.sendProfileUpdateToAllContacts(getActivity(), masterSecret);
+      hasChanged = false;
     }
   }
 }
+
