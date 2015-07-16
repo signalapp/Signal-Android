@@ -59,4 +59,11 @@
 
     <string name="take_picture">Foto aufnehmen</string>
 
+    <string name="status_available">Verfügbar</string>
+    <string name="status_busy">Beschäftigt</string>
+    <string name="status_atwork">Bei der Arbeit</string>
+    <string name="status_meeting">In einer Besprechung</string>
+    <string name="status_donotdisturb">Bitte nicht stören</string>
+    <string name="status_nocallsjustchat">Keine Anrufe, nur SecureChat</string>
+    <string name="status_onlyurgentcalls">Nur dringende Anrufe</string>
 </resources>
