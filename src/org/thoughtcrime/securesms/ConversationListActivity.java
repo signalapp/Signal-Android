@@ -202,7 +202,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
   }
   private void refreshProfile() {
-      ImageView profileImageView = (ImageView) findViewById(R.id.profile_picture);
+    ImageView profileImageView = (ImageView) findViewById(R.id.profile_picture);
     Slide myProfileImage = ProfileAccessor.getMyProfilePicture(getApplicationContext());
       if (masterSecret != null && !(myProfileImage.getUri() + "").equals("")) {
         ProfileAccessor.setMasterSecred(masterSecret);
@@ -216,7 +216,6 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
       TextView profileName = (TextView) findViewById(R.id.profileName);
       TextView profileStatus = (TextView) findViewById(R.id.profileStatus);
       profileStatus.setText(ProfileAccessor.getProfileStatus(this));
-
       profileName.setText(gDataPreferences.getE164Number());
   }
   public float dpToPx(int dp) {

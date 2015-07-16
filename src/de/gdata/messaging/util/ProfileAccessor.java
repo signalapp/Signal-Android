@@ -100,6 +100,7 @@ public class ProfileAccessor {
     } catch (BitmapDecodingException e) {
       Log.w("GDATA", e);
     }
+    Log.d("MYLOG","MYLOG "+profilePictureUri);
     return profilePicture;
   }
 

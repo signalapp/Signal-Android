@@ -51,6 +51,8 @@ public class AttachmentManager {
   private final SlideDeck          slideDeck;
   private final AttachmentListener attachmentListener;
 
+  public static String random  = "0";
+
   private static File captureFile;
 
   public AttachmentManager(Activity view, AttachmentListener listener) {
@@ -70,7 +72,9 @@ public class AttachmentManager {
     attachmentListener.onAttachmentChanged();
   }
 
-
+public static void generateNewRandomOutputName() {
+  random = ((int)(Math.random() * 30.0)) + "";
+}
   public void cleanup() {
     if (captureFile != null) captureFile.delete();
     captureFile = null;
@@ -99,9 +103,11 @@ public class AttachmentManager {
   }
 
   public static void selectImage(Activity activity, int requestCode) {
+    generateNewRandomOutputName();
     selectMediaType(activity, ContentType.IMAGE_UNSPECIFIED, requestCode);
   }
   public static void takePhoto(Activity activity, int requestCode) {
+    generateNewRandomOutputName();
     File image = getOutputMediaFile();
     if(image != null) {
       Uri fileUri = Uri.fromFile(image);
@@ -123,7 +129,7 @@ public class AttachmentManager {
       }
     }
     File mediaFile = new File(mediaStorageDir.getPath() + File.separator +
-              "prof_image.jpg");
+              "prof_image"+ random +" .jpg");
 
     return mediaFile;
   }
