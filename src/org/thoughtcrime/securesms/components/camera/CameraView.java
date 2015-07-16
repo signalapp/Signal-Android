@@ -19,7 +19,6 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
-import android.graphics.Color;
 import android.hardware.Camera;
 import android.hardware.Camera.PreviewCallback;
 import android.os.Build;
@@ -30,7 +29,6 @@ import android.util.Log;
 import android.view.OrientationEventListener;
 import android.view.Surface;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import java.io.IOException;
@@ -91,7 +89,7 @@ public class CameraView extends FrameLayout {
 
   @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
   public void onResume() {
-    Log.w(TAG, "onResume()");
+    Log.w(TAG, "onResume() queued");
     final CameraHost host = getHost();
     submitTask(new SerializedAsyncTask<FailureReason>() {
       @Override protected FailureReason onRunBackground() {
@@ -110,11 +108,11 @@ public class CameraView extends FrameLayout {
       }
 
       @Override protected void onPostMain(FailureReason result) {
-        cameraReady = true;
         if (result != null) {
           host.onCameraFail(result);
           return;
         }
+        cameraReady = true;
         if (getActivity().getRequestedOrientation() != ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED) {
           onOrientationChange.enable();
         }
@@ -126,12 +124,13 @@ public class CameraView extends FrameLayout {
         initPreview();
         requestLayout();
         invalidate();
+        Log.w(TAG, "onResume() completed");
       }
     });
   }
 
   public void onPause() {
-    Log.w(TAG, "onPause()");
+    Log.w(TAG, "onPause() queued");
     submitTask(new SerializedAsyncTask<Void>() {
       @Override protected void onPreMain() {
         cameraReady = false;
@@ -151,6 +150,7 @@ public class CameraView extends FrameLayout {
         outputOrientation = -1;
         cameraId = -1;
         lastPictureOrientation = -1;
+        Log.w(TAG, "onPause() completed");
       }
     });
   }
@@ -255,6 +255,7 @@ public class CameraView extends FrameLayout {
   }
 
   void previewCreated() {
+    Log.w(TAG, "previewCreated() queued");
     final CameraHost host = getHost();
     submitTask(new PostInitializationTask<Void>() {
       @Override protected void onPostMain(Void avoid) {
@@ -265,6 +266,7 @@ public class CameraView extends FrameLayout {
         } catch (IOException e) {
           host.handleException(e);
         }
+        Log.w(TAG, "previewCreated() completed");
       }
     });
   }
@@ -277,11 +279,6 @@ public class CameraView extends FrameLayout {
     }
   }
 
-  void previewReset() {
-    previewStopped();
-    initPreview();
-  }
-
   private void previewStopped() {
     if (inPreview) {
       stopPreview();
@@ -290,6 +287,7 @@ public class CameraView extends FrameLayout {
 
   @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
   public void initPreview() {
+    Log.w(TAG, "initPreview() queued");
     submitTask(new PostInitializationTask<Void>() {
       @Override protected void onPostMain(Void avoid) {
         if (camera != null && cameraReady) {
@@ -305,20 +303,19 @@ public class CameraView extends FrameLayout {
           startPreview();
           requestLayout();
           invalidate();
+          Log.w(TAG, "initPreview() completed");
         }
       }
     });
   }
 
   private void startPreview() {
-    Log.w(TAG, "startPreview()");
     camera.startPreview();
     inPreview = true;
     getHost().autoFocusAvailable();
   }
 
   private void stopPreview() {
-    Log.w(TAG, "stopPreview()");
     camera.startPreview();
     inPreview = false;
     getHost().autoFocusUnavailable();
@@ -453,20 +450,24 @@ public class CameraView extends FrameLayout {
     @Override public void onAdded() {}
 
     @Override public final void onRun() {
-      onWait();
-      runOnMainSync(new Runnable() {
-        @Override public void run() {
-          onPreMain();
-        }
-      });
+      try {
+        onWait();
+        runOnMainSync(new Runnable() {
+          @Override public void run() {
+            onPreMain();
+          }
+        });
 
-      final Result result = onRunBackground();
+        final Result result = onRunBackground();
 
-      runOnMainSync(new Runnable() {
-        @Override public void run() {
-          onPostMain(result);
-        }
-      });
+        runOnMainSync(new Runnable() {
+          @Override public void run() {
+            onPostMain(result);
+          }
+        });
+      } catch (PreconditionsNotMetException e) {
+        Log.w(TAG, "skipping task, preconditions not met in onWait()");
+      }
     }
 
     @Override public boolean onShouldRetry(Exception e) {
@@ -493,19 +494,26 @@ public class CameraView extends FrameLayout {
       }
     }
 
-    protected void onWait() {}
+    protected void onWait() throws PreconditionsNotMetException {}
     protected void onPreMain() {}
     protected Result onRunBackground() { return null; }
     protected void onPostMain(Result result) {}
   }
 
   private abstract class PostInitializationTask<Result> extends SerializedAsyncTask<Result> {
-    @Override protected void onWait() {
+    @Override protected void onWait() throws PreconditionsNotMetException {
       synchronized (CameraView.this) {
+        if (!cameraReady) {
+          throw new PreconditionsNotMetException();
+        }
         while (camera == null || previewSize == null || !previewStrategy.isReady()) {
+          Log.w(TAG, String.format("waiting. camera? %s previewSize? %s prevewStrategy? %s",
+                                   camera != null, previewSize != null, previewStrategy.isReady()));
           Util.wait(CameraView.this, 0);
         }
       }
     }
   }
+
+  private static class PreconditionsNotMetException extends Exception {}
 }
