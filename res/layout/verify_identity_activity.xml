@@ -1,57 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:layout_marginLeft="16dip"
+        android:layout_marginRight="16dip"
+        android:orientation="vertical">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
 
-    <LinearLayout android:layout_width="fill_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_marginLeft="16dip"
-                  android:layout_marginRight="16dip"
-                  android:layout_gravity="center"
-                  android:orientation="vertical">
-
-        <TextView
+            <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:padding="7dip"
                 android:text="@string/verify_identity_activity_their_identity"
-                android:padding="7dip" />
+                android:textAppearance="?android:attr/textAppearanceSmall" />
 
-        <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:typeface="monospace"
+            <TextView
                 android:id="@+id/friend_reads"
-                android:text=""
-                android:padding="7dip" />
-
-        <Button
-            android:layout_width="fill_parent"
-            android:id="@+id/scan_qr_code"
-            android:text="@string/VerifyIdentityActivity_scan_their_key_to_compare"
-            android:layout_height="wrap_content" />
-
-        <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:padding="7dip"
+                android:text=""
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:typeface="monospace" />
+
+            <Button
+                android:id="@+id/scan_qr_code"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/VerifyIdentityActivity_scan_their_key_to_compare" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="7dip"
                 android:text="@string/verify_identity_activity_your_identity"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:padding="7dip" />
+                android:textAppearance="?android:attr/textAppearanceSmall" />
 
 
-        <TextView
+            <TextView
+                android:id="@+id/you_read"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/you_read"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:typeface="monospace"
+                android:padding="7dip"
                 android:text=""
-                android:padding="7dip" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:typeface="monospace" />
 
-        <ImageView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/identity_qrcode"/>
-    </LinearLayout>
-</ScrollView>
+            <ImageView
+                android:id="@+id/identity_qrcode"
+                android:layout_width="fill_parent"
+                android:layout_height="500dp" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
