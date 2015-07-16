@@ -202,11 +202,13 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
   }
   private void refreshProfile() {
-    if(GService.appContext != null) {
       ImageView profileImageView = (ImageView) findViewById(R.id.profile_picture);
-      Slide myProfileImage = ProfileAccessor.getMyProfilePicture(getApplicationContext());
+    Slide myProfileImage = ProfileAccessor.getMyProfilePicture(getApplicationContext());
       if (masterSecret != null && !(myProfileImage.getUri() + "").equals("")) {
         ProfileAccessor.setMasterSecred(masterSecret);
+        if(GService.appContext == null) {
+          GService.appContext = getApplicationContext();
+        }
         ProfileAccessor.buildDraftGlideRequest(myProfileImage).into(profileImageView);
       } else {
         profileImageView.setImageBitmap(ContactPhotoFactory.getDefaultContactPhoto(getApplicationContext()));
@@ -216,7 +218,6 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
       profileStatus.setText(ProfileAccessor.getProfileStatus(this));
 
       profileName.setText(gDataPreferences.getE164Number());
-    }
   }
   public float dpToPx(int dp) {
     DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
