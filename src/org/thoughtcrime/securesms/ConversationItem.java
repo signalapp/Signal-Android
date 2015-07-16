@@ -449,9 +449,10 @@ public class ConversationItem extends LinearLayout {
       alertDialogDestroy = builder.show();
       alertDialogDestroy.getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,
               WindowManager.LayoutParams.FLAG_SECURE);
- /*     ((ViewGroup)alertDialogDestroy.getWindow().getDecorView())
-              .getChildAt(0).startAnimation(AnimationUtils.loadAnimation(
-              context, android.R.anim.slide_in_left));*/
+
+      ((ViewGroup)alertDialogDestroy.getWindow().getDecorView()).startAnimation(AnimationUtils.loadAnimation(
+              context, android.R.anim.slide_in_left));
+
       currentCountdown = messageRecord.getBody().getSelfDestructionDuration();
       thumbnailDestroyDialog = ((ThumbnailView) alertDialogDestroy.findViewById(R.id.imageDialog));
       loadingDestroyIndicator = ((ImageView) alertDialogDestroy.findViewById(R.id.loading_indicator));

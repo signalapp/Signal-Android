@@ -36,8 +36,8 @@ import de.gdata.messaging.util.ProfileAccessor;
 public class ProfileActivity extends PassphraseRequiredActionBarActivity {
 
   private MasterSecret masterSecret;
-  private static final int PICK_IMAGE = 1;
-  private static final int TAKE_PHOTO = 2;
+  public static final int PICK_IMAGE = 1;
+  public static final int TAKE_PHOTO = 2;
 
   private DynamicTheme dynamicTheme = new DynamicTheme();
   private String profileId;
@@ -105,8 +105,7 @@ public class ProfileActivity extends PassphraseRequiredActionBarActivity {
     Log.w("", "onActivityResult called: " + reqCode + ", " + resultCode + " , " + data);
     super.onActivityResult(reqCode, resultCode, data);
 
-    if (data != null && resultCode != RESULT_OK) return;
-    if(data == null) return;
+    if((data == null || resultCode != RESULT_OK) && reqCode != TAKE_PHOTO) return;
     switch (reqCode) {
       case PICK_IMAGE:
         try {
@@ -120,9 +119,12 @@ public class ProfileActivity extends PassphraseRequiredActionBarActivity {
         break;
       case TAKE_PHOTO:
         try {
-          Uri selectedImage = data.getData();
-          ImageSlide chosenImage = new ImageSlide(this, selectedImage);
-          ProfileAccessor.setProfilePicture(this, chosenImage);
+          File image = AttachmentManager.getOutputMediaFile();
+          if(image != null) {
+            Uri fileUri = Uri.fromFile(image);
+            ImageSlide chosenImage = new ImageSlide(this, fileUri);
+            ProfileAccessor.setProfilePicture(this, chosenImage);
+          }
         } catch (IOException e) {
           Log.w("GDATA", e);
         } catch (BitmapDecodingException e) {

@@ -24,6 +24,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.os.Environment;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -93,20 +94,6 @@ public class AttachmentManager {
   public static File getCaptureFile() {
     return captureFile;
   }
-
-  public static void capturePhoto(Activity activity, int requestCode) {
-    try {
-      Intent captureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
-      if (captureIntent.resolveActivity(activity.getPackageManager()) != null) {
-        captureFile = File.createTempFile(String.valueOf(System.currentTimeMillis()), ".jpg", activity.getExternalFilesDir(null));
-        captureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(captureFile));
-        activity.startActivityForResult(captureIntent, requestCode);
-      }
-    } catch (IOException e) {
-      Log.w(TAG, e);
-    }
-  }
   public static void selectVideo(Activity activity, int requestCode) {
     selectMediaType(activity, ContentType.VIDEO_UNSPECIFIED, requestCode);
   }
@@ -115,13 +102,31 @@ public class AttachmentManager {
     selectMediaType(activity, ContentType.IMAGE_UNSPECIFIED, requestCode);
   }
   public static void takePhoto(Activity activity, int requestCode) {
-    Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-    activity.startActivityForResult(cameraIntent, requestCode);
+    File image = getOutputMediaFile();
+    if(image != null) {
+      Uri fileUri = Uri.fromFile(image);
+      Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+      cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+      activity.startActivityForResult(cameraIntent, requestCode);
+    }
   }
   public static void selectAudio(Activity activity, int requestCode) {
     selectMediaType(activity, ContentType.AUDIO_UNSPECIFIED, requestCode);
   }
+  public static File getOutputMediaFile(){
+    File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
+            Environment.DIRECTORY_PICTURES), "SecureChat");
+    if (!mediaStorageDir.exists()){
+      if (!mediaStorageDir.mkdirs()){
+        Log.d("SecureChat", "failed to create directory");
+        return null;
+      }
+    }
+    File mediaFile = new File(mediaStorageDir.getPath() + File.separator +
+              "prof_image.jpg");
 
+    return mediaFile;
+  }
   public static void selectContactInfo(Activity activity, int requestCode) {
     Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
     activity.startActivityForResult(intent, requestCode);
