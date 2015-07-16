@@ -114,6 +114,7 @@ import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.textsecure.api.push.TextSecureAddress;
 
+import java.io.File;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -273,7 +274,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         Log.w(TAG, "onActivityResult called: " + reqCode + ", " + resultCode + " , " + data);
         super.onActivityResult(reqCode, resultCode, data);
 
-        if (data == null || resultCode != RESULT_OK) return;
+        if ((data == null || resultCode != RESULT_OK) && resultCode != AttachmentTypeSelectorAdapter.TAKE_PHOTO) return;
         switch (reqCode) {
 
             case SET_CALLFILTER:
@@ -296,11 +297,25 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                 initializeTitleBar();
                 break;
             case AttachmentTypeSelectorAdapter.TAKE_PHOTO:
-                addAttachmentImage(data.getData());
+                handleTakenPhoto(data);
                 break;
         }
     }
+public void handleTakenPhoto(Intent data) {
+        File image = AttachmentManager.getOutputMediaFile();
+        if (image != null) {
+            Uri fileUri = Uri.fromFile(image);
+            try {
+                attachmentManager.setImage(fileUri);
+            } catch (IOException | BitmapDecodingException e) {
+                Log.w(TAG, e);
+                attachmentManager.clear();
+                Toast.makeText(this, R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
+                        Toast.LENGTH_LONG).show();
+            }
+        }
 
+}
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuInflater inflater = this.getMenuInflater();
