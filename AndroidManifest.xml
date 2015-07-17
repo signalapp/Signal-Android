@@ -95,6 +95,7 @@
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize" />
         <activity
             android:name=".EulaActivity"
+            android:screenOrientation="portrait"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize" />
         <activity
             android:name=".ImportExportActivity"

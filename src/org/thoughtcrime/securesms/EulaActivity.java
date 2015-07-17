@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -104,6 +105,8 @@ public class EulaActivity extends AppCompatActivity {
             mAcceptEula.setEnabled(false);
         }
         View layout              = (LinearLayout) findViewById(R.id.rootLayout);
+        ImageView background              = (ImageView) findViewById(R.id.background);
+        background.setAlpha(125);
         GUtil.setFontForFragment(this, layout);
     }
     @Override

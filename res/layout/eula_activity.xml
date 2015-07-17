@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/relLayout"
     android:layout_width="match_parent"
@@ -6,14 +7,12 @@
     android:gravity="center">
     <ImageView
         android:id="@+id/background"
-        android:layout_width="wra"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:layout_weight="2.5"
-        android:padding="2dp"
-        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
         android:visibility="visible"
-        android:background="@drawable/background_gdata"/>
+        android:src="@drawable/background_gdata"/>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/rootLayout"
