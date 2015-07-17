@@ -22,14 +22,14 @@
         <item name="android:actionOverflowButtonStyle">@style/OverFlow</item>
         <item name="actionOverflowButtonStyle">@style/OverFlow</item>
 
-        <item name="android:windowContentOverlay">@null</item>
-
-        <item name="android:actionModeBackground">@drawable/cab_background_top</item>
-        <item name="actionModeBackground">@drawable/cab_background_top</item>
-        <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom</item>
-        <item name="actionModeSplitBackground">@drawable/cab_background_bottom</item>
+        <item name="android:actionModeBackground">@color/gdata_red</item>
+        <item name="actionModeBackground">@color/gdata_red</item>
+        <item name="android:actionModeSplitBackground">@color/gdata_red</item>
+        <item name="actionModeSplitBackground">@color/gdata_red</item>
         <item name="android:actionModeCloseDrawable">@drawable/ic_cab_done_holo_dark</item>
         <item name="actionModeCloseDrawable">@drawable/ic_cab_done_holo_dark</item>
+        <item name="actionModeStyle">@style/My.Widget.ActionMode</item>
+        <item name="android:actionModeStyle">@style/My.Widget.ActionMode</item>
 
         <item name="android:textColor">?android:attr/textColorPrimary</item>
         <item name="android:textColorSecondary">?android:attr/textColorPrimary</item>
@@ -160,12 +160,15 @@
 
         <item name="android:windowContentOverlay">@null</item>
 
-        <item name="android:actionModeBackground">@drawable/cab_background_top</item>
-        <item name="actionModeBackground">@drawable/cab_background_top</item>
-        <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom</item>
-        <item name="actionModeSplitBackground">@drawable/cab_background_bottom</item>
+        <item name="android:actionModeBackground">@color/gdata_red</item>
+        <item name="actionModeBackground">@color/gdata_red</item>
+        <item name="android:actionModeSplitBackground">@color/gdata_red</item>
+        <item name="actionModeSplitBackground">@color/gdata_red</item>
         <item name="android:actionModeCloseDrawable">@drawable/ic_cab_done_holo_dark</item>
         <item name="actionModeCloseDrawable">@drawable/ic_cab_done_holo_dark</item>
+
+        <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="android:actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Light</item>
 
         <item name="android:textColor">?android:attr/textColorPrimary</item>
         <item name="android:textColorSecondary">?android:attr/textColorPrimary</item>
@@ -294,7 +297,6 @@
     </style>
     <style name="My.TextAppearance.Widget.ActionMode.Title" parent="@style/TextAppearance.AppCompat.Widget.ActionMode.Title">
         <item name="android:textColor">@android:color/white</item>
-        <item name="android:textStyle">bold</item>
         <item name="android:shadowColor">@android:color/black</item>
         <item name="android:shadowRadius">1</item>
     </style>
