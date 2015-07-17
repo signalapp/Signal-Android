@@ -29,6 +29,7 @@ import android.view.View;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.thoughtcrime.securesms.util.Util;
 
 import java.lang.reflect.Field;
 import java.util.HashSet;
@@ -46,6 +47,9 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
   private final Set<OnKeyboardHiddenListener> hiddenListeners = new HashSet<>();
   private final Set<OnKeyboardShownListener>  shownListeners  = new HashSet<>();
   private final int minKeyboardSize;
+  private final int minCustomKeyboardSize;
+  private final int defaultCustomKeyboardSize;
+  private final int minCustomKeyboardTopMargin;
 
   private boolean keyboardOpen = false;
   private int     rotation     = -1;
@@ -60,7 +64,10 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
 
   public KeyboardAwareLinearLayout(Context context, AttributeSet attrs, int defStyle) {
     super(context, attrs, defStyle);
-    minKeyboardSize = getResources().getDimensionPixelSize(R.dimen.min_keyboard_size);
+    minKeyboardSize            = getResources().getDimensionPixelSize(R.dimen.min_keyboard_size);
+    minCustomKeyboardSize      = getResources().getDimensionPixelSize(R.dimen.min_custom_keyboard_size);
+    defaultCustomKeyboardSize  = getResources().getDimensionPixelSize(R.dimen.default_custom_keyboard_size);
+    minCustomKeyboardTopMargin = getResources().getDimensionPixelSize(R.dimen.min_custom_keyboard_top_margin);
   }
 
   @Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -134,10 +141,6 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
     notifyHiddenListeners();
   }
 
-  public boolean isKeyboardOpen() {
-    return keyboardOpen;
-  }
-
   public int getKeyboardHeight() {
     return isLandscape() ? getKeyboardLandscapeHeight() : getKeyboardPortraitHeight();
   }
@@ -156,9 +159,8 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
 
   private int getKeyboardPortraitHeight() {
     int keyboardHeight = PreferenceManager.getDefaultSharedPreferences(getContext())
-                                          .getInt("keyboard_height_portrait",
-                                                  getResources().getDimensionPixelSize(R.dimen.min_emoji_drawer_height));
-    return Math.min(keyboardHeight, getRootView().getHeight() - getResources().getDimensionPixelSize(R.dimen.min_emoji_drawer_top_margin));
+                                          .getInt("keyboard_height_portrait", defaultCustomKeyboardSize);
+    return Util.clamp(keyboardHeight, minCustomKeyboardSize, getRootView().getHeight() - minCustomKeyboardTopMargin);
   }
 
   private void setKeyboardPortraitHeight(int height) {

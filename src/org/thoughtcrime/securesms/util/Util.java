@@ -344,4 +344,8 @@ public class Util {
     return (VERSION.SDK_INT >= VERSION_CODES.KITKAT && activityManager.isLowRamDevice()) ||
            activityManager.getMemoryClass() <= 64;
   }
+
+  public static int clamp(int value, int min, int max) {
+    return Math.min(Math.max(value, min), max);
+  }
 }
