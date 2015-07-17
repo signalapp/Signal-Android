@@ -67,7 +67,7 @@ public class ThreadRecord extends DisplayRecord {
     } else if (SmsDatabase.Types.isNoRemoteSessionType(type)) {
       return emphasisAdded(context.getString(R.string.MessageDisplayHelper_message_encrypted_for_non_existing_session));
     } else if (!getBody().isPlaintext()) {
-      return emphasisAdded(context.getString(R.string.MessageNotifier_encrypted_message));
+      return emphasisAdded(context.getString(R.string.MessageNotifier_locked_message));
     } else if (SmsDatabase.Types.isEndSessionType(type)) {
       return emphasisAdded(context.getString(R.string.TheadRecord_secure_session_ended));
     } else if (MmsSmsColumns.Types.isLegacyType(type)) {
