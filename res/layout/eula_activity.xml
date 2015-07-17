@@ -10,6 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:scaleType="fitCenter"
+        android:layout_alignParentBottom="true"
         android:adjustViewBounds="true"
         android:visibility="visible"
         android:src="@drawable/background_gdata"/>
