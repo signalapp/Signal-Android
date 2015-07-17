@@ -54,6 +54,8 @@ Sie werden Ihre Rufnummer erneut registrieren müssen, um TextSecure-Nachrichten
 Dies könnte bedeuten, dass jemand versucht, Ihr Gespräch abzuhören. Vielleicht hat %2$s TextSecure aber auch nur neu installiert und benutzt nun einen neuen Schlüssel.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Sie sollten diesen Kontakt ggf. überprüfen.</string>
   <string name="ConfirmIdentityDialog_accept">OK</string>
+  <!--ContactsDatabase-->
+  <string name="ContactsDatabase_message_s">Nachricht %s</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Nachrichtengröße: %d kB</string>
   <string name="ConversationItem_expires_s">Läuft ab in: %s</string>
@@ -382,7 +384,7 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_messages_in_d_conversations">%1$d Nachrichten in %2$d Unterhaltungen</string>
   <string name="MessageNotifier_most_recent_from_s">Neueste von: %1$s</string>
-  <string name="MessageNotifier_encrypted_message">Verschlüsselte Nachricht …</string>
+  <string name="MessageNotifier_locked_message">Gesperrte Nachricht...</string>
   <string name="MessageNotifier_media_message_with_text">Mediennachricht: %s</string>
   <string name="MessageNotifier_no_subject">(Kein Betreff)</string>
   <string name="MessageNotifier_message_delivery_failed">Nachrichtenübermittlung fehlgeschlagen.</string>
@@ -618,7 +620,7 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="preferences__change_my_passphrase">Mein Passwort ändern</string>
   <string name="preferences__enable_passphrase">Passwort aktivieren</string>
   <string name="preferences__passphrase_summary">Passwort %s</string>
-  <string name="preferences__enable_local_encryption_of_messages_and_keys">Lokale Verschlüsselung von Nachrichten und Schlüsseln aktivieren</string>
+  <string name="preferences__enable_lock_screen_for_messages">Vorschau im gesperrten Modus sperren</string>
   <string name="preferences__screen_security">Bildschirmschutz</string>
   <string name="preferences__screen_security_summary">Bildschirmschutz %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Bildschirmfotos in der Anwendung und der Liste der letzten Anwendungen blockieren</string>

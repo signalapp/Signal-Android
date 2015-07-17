@@ -55,6 +55,7 @@
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Може би е добре да се провери ⏎
 този контакт. ⏎</string>
   <string name="ConfirmIdentityDialog_accept">Приемам</string>
+  <!--ContactsDatabase-->
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Размер на съобщението: %d KB</string>
   <string name="ConversationItem_expires_s">Изтича: %s</string>
@@ -394,7 +395,6 @@ SMS съобщенията от системната базата данни в 
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_messages_in_d_conversations">%1$d съобщения в %2$d чата</string>
   <string name="MessageNotifier_most_recent_from_s">Най-скорошно от: %1$s</string>
-  <string name="MessageNotifier_encrypted_message">Шифровано съобщение...</string>
   <string name="MessageNotifier_media_message_with_text">Медийно съобщение: %s</string>
   <string name="MessageNotifier_no_subject">(Няма зададена тема)</string>
   <string name="MessageNotifier_message_delivery_failed">Изпращането на съобщението неуспешно.</string>
@@ -652,7 +652,6 @@ TextSecure чака твърде дълго за SMS потвърждение.
   <string name="preferences__change_my_passphrase">Смени паролата ми</string>
   <string name="preferences__enable_passphrase">Включи парола</string>
   <string name="preferences__passphrase_summary">Парола %s</string>
-  <string name="preferences__enable_local_encryption_of_messages_and_keys">Включи локално криптиране на съобщения и ключове</string>
   <string name="preferences__screen_security">Сигурност на екрана</string>
   <string name="preferences__screen_security_summary">Защита на екрана %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Забрани автоматично копиране на екрана в списка с често използвани програми и в самата програма.</string>

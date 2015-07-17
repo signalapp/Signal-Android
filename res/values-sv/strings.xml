@@ -58,6 +58,7 @@ identitetsnyckel.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Det kan vara en bra idé att
 verifiera denna kontakt.</string>
   <string name="ConfirmIdentityDialog_accept">Acceptera</string>
+  <!--ContactsDatabase-->
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Meddelandestorlek: %d kB</string>
   <string name="ConversationItem_expires_s">Går ut: %s</string>
@@ -389,7 +390,6 @@ Tog emot meddelande med okänd identitetsnyckel. Tryck för att bearbeta och vis
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_messages_in_d_conversations">%1$d meddelanden i %2$d konversationer</string>
   <string name="MessageNotifier_most_recent_from_s">Senaste från %1$s</string>
-  <string name="MessageNotifier_encrypted_message">Krypterat meddelande...</string>
   <string name="MessageNotifier_media_message_with_text">Mediameddelande: %s</string>
   <string name="MessageNotifier_no_subject">(Inget ämne)</string>
   <string name="MessageNotifier_message_delivery_failed">Meddelandeleverans misslyckades.</string>
@@ -630,7 +630,6 @@ TextSecure uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="preferences__change_my_passphrase">Ändra mitt lösenord</string>
   <string name="preferences__enable_passphrase">Aktivera lösenordsfras</string>
   <string name="preferences__passphrase_summary">Lösenordsfras %s</string>
-  <string name="preferences__enable_local_encryption_of_messages_and_keys">Aktivera lokal kryptering av meddelanden och nycklar</string>
   <string name="preferences__screen_security">Skärmsäkerhet</string>
   <string name="preferences__screen_security_summary">Skärmsäkerhet %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blockera skärmdumpar i Senaste-listen samt inuti appen</string>

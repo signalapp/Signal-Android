@@ -31,6 +31,7 @@
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">ייתכן שתרצה לאמת
 את איש הקשר הזה.
 </string>
+  <!--ContactsDatabase-->
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">גודל ההודעה: %d KB</string>
   <string name="ConversationItem_expires_s">פג: %s</string>
@@ -162,7 +163,6 @@
   <string name="ApplicationMigrationService_import_in_progress">בתהליך ייבוא</string>
   <!--KeyCachingService-->
   <!--MessageNotifier-->
-  <string name="MessageNotifier_encrypted_message">הודעה מוצפנת...</string>
   <string name="MessageNotifier_message_delivery_failed">מסירת ההודעה נכשלה.</string>
   <string name="MessageNotifier_failed_to_deliver_message">כישלון במסירת ההודעה.</string>
   <string name="MessageNotifier_error_delivering_message">שגיאה במסירת ההודעה.</string>

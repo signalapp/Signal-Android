@@ -53,6 +53,7 @@ Om du vil benytte TextSecure meldinger igjen i fremtiden må du registrere telef
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Du bør verifisere
 denne kontakten.</string>
   <string name="ConfirmIdentityDialog_accept">Godta</string>
+  <!--ContactsDatabase-->
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Meldingsstørrelse: %d KB</string>
   <string name="ConversationItem_expires_s">Utløper: %s</string>
@@ -383,7 +384,6 @@ Mottatt melding med ukjent ID nøkkel. Klikk for å prosessere og vise.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_messages_in_d_conversations">%1$d meldinger i %2$d samtaler</string>
   <string name="MessageNotifier_most_recent_from_s">Nyeste fra: %1$s</string>
-  <string name="MessageNotifier_encrypted_message">Kryptert melding...</string>
   <string name="MessageNotifier_media_message_with_text">Media melding: %s</string>
   <string name="MessageNotifier_no_subject">(Mangler emne)</string>
   <string name="MessageNotifier_message_delivery_failed">Levering av meldingen mislyktes.</string>
@@ -625,7 +625,6 @@ feilet.</string>
   <string name="preferences__change_my_passphrase">Velg et nytt passord</string>
   <string name="preferences__enable_passphrase">Aktiver passord</string>
   <string name="preferences__passphrase_summary">Passord %s</string>
-  <string name="preferences__enable_local_encryption_of_messages_and_keys">Aktiver lokal kryptering av meldinger og nøkler</string>
   <string name="preferences__screen_security">Skjermsikkerhet</string>
   <string name="preferences__screen_security_summary">Skjermsikkerhet %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokker skjermbilde i listen over siste applikasjoner og inni applikasjonen</string>

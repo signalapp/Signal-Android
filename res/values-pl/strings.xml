@@ -54,6 +54,7 @@ Aby ponownie zacząć używać wiadomości TextSecure, będziesz musiał/a ponow
 ten kontakt.
 </string>
   <string name="ConfirmIdentityDialog_accept">Akceptuj</string>
+  <!--ContactsDatabase-->
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Rozmiar wiadomości: %d KB </string>
   <string name="ConversationItem_expires_s">Wygasa: %s</string>
@@ -384,7 +385,6 @@ Otrzymano wiadomość z nieznanym kluczem tożsamości. Kliknij aby przetworzyć
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_messages_in_d_conversations">%1$d wiadomości w %2$d wątkach</string>
   <string name="MessageNotifier_most_recent_from_s">Najnowsza z: %1$s</string>
-  <string name="MessageNotifier_encrypted_message">Szyfrowana wiadomość...</string>
   <string name="MessageNotifier_media_message_with_text">Wiadomość multimedialna: %s</string>
   <string name="MessageNotifier_no_subject">(Brak tematu)</string>
   <string name="MessageNotifier_message_delivery_failed">Nie udało się dostarczyć wiadomości.</string>
@@ -618,7 +618,6 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="preferences__change_my_passphrase">Zmień moje hasło</string>
   <string name="preferences__enable_passphrase">Włącz hasło</string>
   <string name="preferences__passphrase_summary">Hasło %s</string>
-  <string name="preferences__enable_local_encryption_of_messages_and_keys">Włącz lokalne szyfrowanie wiadomości i kluczy</string>
   <string name="preferences__screen_security">Ochrona ekranu</string>
   <string name="preferences__screen_security_summary">Ochrona ekranu %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokuj rzuty ekranu w obecnej liście oraz w aplikacji</string>

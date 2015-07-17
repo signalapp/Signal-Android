@@ -53,6 +53,8 @@ Dovrai registrare nuovamente il tuo numero di telefono per poter utilizzare di n
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Dovresti verificare
 questo contatto.</string>
   <string name="ConfirmIdentityDialog_accept">Accetta</string>
+  <!--ContactsDatabase-->
+  <string name="ContactsDatabase_message_s">Messaggio %s</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Dimensione Messaggio: %d KB</string>
   <string name="ConversationItem_expires_s">Scadenza: %s</string>
@@ -395,7 +397,7 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_messages_in_d_conversations">%1$d messaggi in %2$d conversazioni</string>
   <string name="MessageNotifier_most_recent_from_s">Il più recente da: %1$s</string>
-  <string name="MessageNotifier_encrypted_message">Messaggio cifrato...</string>
+  <string name="MessageNotifier_locked_message">Messaggio bloccato...</string>
   <string name="MessageNotifier_media_message_with_text">Messaggio multimediale: %s</string>
   <string name="MessageNotifier_no_subject">(Nessun oggetto)</string>
   <string name="MessageNotifier_message_delivery_failed">Non è riuscito l\'invio del messaggio</string>
@@ -658,7 +660,7 @@ non riuscita.
   <string name="preferences__change_my_passphrase">Cambia la mia password</string>
   <string name="preferences__enable_passphrase">Usa password</string>
   <string name="preferences__passphrase_summary">Password %s</string>
-  <string name="preferences__enable_local_encryption_of_messages_and_keys">Abilità la cifratura in locale di messaggi e chiavi</string>
+  <string name="preferences__enable_lock_screen_for_messages">Attiva schermata di blocco per i messaggi</string>
   <string name="preferences__screen_security">Sicurezza schermo</string>
   <string name="preferences__screen_security_summary">Sicurezza schermo %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blocca il fotografare dello schermo nella lista recenti e all\'interno dell\'app</string>
@@ -788,6 +790,7 @@ Chatta gratis con gli utenti TextSecure e Signal</string>
   <string name="conversation__menu_leave_group">Abbandona il gruppo</string>
   <string name="conversation__menu_delete_thread">Cancella conversazione</string>
   <string name="conversation__menu_view_media">Tutte le immagini</string>
+  <string name="conversation__menu_conversation_settings">Impostazioni conversazione</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Espandi popup</string>
   <!--conversation_callable-->
@@ -831,5 +834,6 @@ Chatta gratis con gli utenti TextSecure e Signal</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icona trasporto</string>
   <!--quick_attachment_drawer-->
+  <string name="quick_camera_unavailable">Fotocamera non disponibile</string>
   <!--EOF-->
 </resources>

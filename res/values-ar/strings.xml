@@ -51,6 +51,7 @@
   <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">لقد تغير المفتاح التعريفي الخاص بـ%1$s. وهذا يعني أن شخص ما يحاول اعتراض المحادثة أو %2$s  قام بإعادة تثبيت تيكست سيكيور وأصبح لديه مفتاح تعريفي جديد.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">ربما تود التحقق من جهة الاتصال.</string>
   <string name="ConfirmIdentityDialog_accept">موافقة</string>
+  <!--ContactsDatabase-->
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">حجم الرسالة: %d كيلوبايت</string>
   <string name="ConversationItem_expires_s">تاريخ الانتهاء: %s</string>
@@ -377,7 +378,6 @@
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_messages_in_d_conversations">%1$d رسالة في %2$d محادثات</string>
   <string name="MessageNotifier_most_recent_from_s">الأحدث من: %1$s</string>
-  <string name="MessageNotifier_encrypted_message">رسالة مشفرة...</string>
   <string name="MessageNotifier_media_message_with_text">رسالة وسائط متعددة: %s</string>
   <string name="MessageNotifier_no_subject">(بلا عنوان)</string>
   <string name="MessageNotifier_message_delivery_failed">فشل توصيل الرسالة.</string>
@@ -616,7 +616,6 @@
   <string name="preferences__change_my_passphrase">غير عبارتي السرية</string>
   <string name="preferences__enable_passphrase">تفعيل العبارة السرية</string>
   <string name="preferences__passphrase_summary">عبارة سرية %s</string>
-  <string name="preferences__enable_local_encryption_of_messages_and_keys">تفعيل تشفير تخزين الرسائل والمفاتيح</string>
   <string name="preferences__screen_security">تأمين الشاشة</string>
   <string name="preferences__screen_security_summary">تأمين الشاشة %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">منع لقطات الشاشة داخل التطبيق</string>

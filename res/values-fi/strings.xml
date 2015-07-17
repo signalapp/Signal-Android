@@ -57,6 +57,8 @@ uutta identiteettiavainta.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Saatat haluta varmentaa
 tämän yhteystiedon.</string>
   <string name="ConfirmIdentityDialog_accept">Hyväksy</string>
+  <!--ContactsDatabase-->
+  <string name="ContactsDatabase_message_s">Viesti %s</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Viestin koko: %d kt</string>
   <string name="ConversationItem_expires_s">Umpeutuu: %s</string>
@@ -400,7 +402,7 @@ Vastaanotettiin viesti tuntemattomalla identiteettiavaimella. Aloita käsittely 
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_messages_in_d_conversations">%1$d viestiä %2$d keskustelussa</string>
   <string name="MessageNotifier_most_recent_from_s">Uusin lähettäjältä: %1$s</string>
-  <string name="MessageNotifier_encrypted_message">Salattu viesti...</string>
+  <string name="MessageNotifier_locked_message">Lukittu viesti...</string>
   <string name="MessageNotifier_media_message_with_text">Mediaviesti: %s</string>
   <string name="MessageNotifier_no_subject">(Ei otsikkoa)</string>
   <string name="MessageNotifier_message_delivery_failed">Viestin toimitus epäonnistui.</string>
@@ -644,9 +646,9 @@ epäonnistui.</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Valitse yhteystieto osoitekirjasta.</string>
   <string name="preferences__change_passphrase">Salalauseen vaihto</string>
   <string name="preferences__change_my_passphrase">Vaihda salalauseeni</string>
-  <string name="preferences__enable_passphrase">Aseta salalause</string>
+  <string name="preferences__enable_passphrase">Käytä salalausetta</string>
   <string name="preferences__passphrase_summary">Salalause %s</string>
-  <string name="preferences__enable_local_encryption_of_messages_and_keys">Ota käyttöön laitteesi viestien ja avainten salaus</string>
+  <string name="preferences__enable_lock_screen_for_messages">Salaa viestit ja lukitse näyttö salalauseella</string>
   <string name="preferences__screen_security">Näytön suojaus</string>
   <string name="preferences__screen_security_summary">Näytön suojaus %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Estä kuvakaappaukset \"viimeksi käytetyt sovellukset\" -näkymästä sekä sovelluksen sisältä</string>

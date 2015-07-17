@@ -32,6 +32,7 @@
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">您想要對這名連絡人
 進行認證嗎？</string>
+  <!--ContactsDatabase-->
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">訊息大小: %d KB</string>
   <string name="ConversationItem_expires_s">於: %s 後過期</string>
@@ -289,7 +290,6 @@
   <string name="KeyCachingService_passphrase_cached">TextSecure 已解除鎖定</string>
   <string name="KeyCachingService_lock">以『自訂密碼』進行鎖定</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_encrypted_message">加密的訊息...</string>
   <string name="MessageNotifier_no_subject">(在此輸入主題)</string>
   <string name="MessageNotifier_message_delivery_failed">訊息傳送失敗。</string>
   <string name="MessageNotifier_failed_to_deliver_message">無法傳送訊息。</string>

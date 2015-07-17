@@ -45,6 +45,7 @@
   <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">Ідэнтыфікацыйны ключ для %1$s быў зменены. Гэта можа вызначаць, што нехта спрабуе перахапіць вашыя паведамленні, альбо проста %2$s пераўсталяваў па-новай TextSecure і зараз мае новы ідэнтыфікацыйны ключ.
     </string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Магчыма Вы жадаеце верыфікаваць гэты кантакт?</string>
+  <!--ContactsDatabase-->
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Аб\'ём паведамлення: %d KB</string>
   <string name="ConversationItem_expires_s">Заканчваецца: %s</string>
@@ -337,7 +338,6 @@
   <string name="KeyCachingService_passphrase_cached">TextSecure разблакіравана</string>
   <string name="KeyCachingService_lock">Замкнуць гэты пароль</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_encrypted_message">Разшыфраванае паведамленне...</string>
   <string name="MessageNotifier_media_message_with_text">Мультымедыя паведамленне: %s</string>
   <string name="MessageNotifier_no_subject">(Няма тэмы)</string>
   <string name="MessageNotifier_message_delivery_failed">Памылка дастаўкі паведамлення.</string>
@@ -552,7 +552,6 @@ TextSecure не дачакаўся параверачная SMS.</string>
   <string name="preferences__change_my_passphrase">Змяніць мой пароль</string>
   <string name="preferences__enable_passphrase">Уключыць пароль</string>
   <string name="preferences__passphrase_summary">Пароль %s</string>
-  <string name="preferences__enable_local_encryption_of_messages_and_keys">Уключыць лакальнае шыфраванне паведамленняў і ключоў</string>
   <string name="preferences__screen_security">Бяспека экрана</string>
   <string name="preferences__screen_security_summary">Бяспека экрана %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Блакіраваць магчымасць рабіць скрыншоты ўнутры праграмы</string>

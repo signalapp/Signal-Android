@@ -62,6 +62,8 @@
         este contato.
     </string>
   <string name="ConfirmIdentityDialog_accept">Aceitar</string>
+  <!--ContactsDatabase-->
+  <string name="ContactsDatabase_message_s">Mensagem %s</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Tamanho da mensagem: %d KB</string>
   <string name="ConversationItem_expires_s">Expira: %s</string>
@@ -415,7 +417,7 @@ Tem certeza que deseja fazer isto?</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_messages_in_d_conversations">%1$d mensagens em %2$d conversas</string>
   <string name="MessageNotifier_most_recent_from_s">Mais recente de: %1$s</string>
-  <string name="MessageNotifier_encrypted_message">Mensagem criptografada...</string>
+  <string name="MessageNotifier_locked_message">Mensagem trancada...</string>
   <string name="MessageNotifier_media_message_with_text">Mensagem multimídia: %s</string>
   <string name="MessageNotifier_no_subject">(Sem assunto)</string>
   <string name="MessageNotifier_message_delivery_failed">Envio de mensagem falhou.</string>
@@ -527,7 +529,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="GroupUtil_group_updated">Grupo atualizado.</string>
   <string name="GroupUtil_title_is_now">O título agora é \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
-  <string name="prompt_passphrase_activity__unlock">Desbloquear</string>
+  <string name="prompt_passphrase_activity__unlock">Destrancar</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure precisa de configurações MMS para transmitir mídia e mensagens de grupo através da sua operadora. Seu aparelho não disponibiliza essa informação, o que pode ocorrer em aparelhos bloqueados ou com configurações restritivas.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Para enviar mídia e mensagens de grupo, clique \'OK\' e complete as configurações pedidas. As configurações MMS da sua operadora geralmente podem ser encontradas procurando por \'operadora APN\'. Você só precisará fazer isto uma vez.</string>
@@ -680,7 +682,7 @@ falhou.</string>
   <string name="preferences__change_my_passphrase">Mudar a minha frase-chave</string>
   <string name="preferences__enable_passphrase">Habilitar frase-chave</string>
   <string name="preferences__passphrase_summary">Frase-chave %s</string>
-  <string name="preferences__enable_local_encryption_of_messages_and_keys">Habilitar criptografia local de mensagens e chaves</string>
+  <string name="preferences__enable_lock_screen_for_messages">Habilitar tela de bloqueio para mensagens</string>
   <string name="preferences__screen_security">Segurança da tela</string>
   <string name="preferences__screen_security_summary">Segurança de tela %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Bloquear capturas de tela na lista de recentes e dentro do app</string>

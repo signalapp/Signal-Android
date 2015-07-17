@@ -28,6 +28,7 @@
   <!--BlockedContactsActivity-->
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Можливо, вам потрібно перевірити цей контакт.</string>
+  <!--ContactsDatabase-->
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Розмір повідомленя: %d KБ</string>
   <string name="ConversationItem_expires_s">Минає: %s</string>
@@ -189,7 +190,6 @@
   <string name="KeyCachingService_textsecure_passphrase_cached">Фраза-ключ TextSecure кешована</string>
   <string name="KeyCachingService_passphrase_cached">Фраза-ключ кешована</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_encrypted_message">Зашифроване повідомлення\u2026</string>
   <string name="MessageNotifier_message_delivery_failed">Збій доставки повідомлення.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Не вдалось доставити повідомлення.</string>
   <string name="MessageNotifier_error_delivering_message">Помилка доставки повідомлення.</string>
