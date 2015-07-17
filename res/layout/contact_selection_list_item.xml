@@ -48,7 +48,8 @@
 
     </LinearLayout>
 
-    <TextView android:id="@+id/name"
+    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+        android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/number_container"
