@@ -18,13 +18,12 @@ import android.view.MotionEvent;
 import android.view.Surface;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver.OnGlobalLayoutListener;
-import android.view.WindowManager;
 import android.widget.ImageButton;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout;
 import org.thoughtcrime.securesms.components.camera.QuickCamera.QuickCameraListener;
-import org.thoughtcrime.securesms.util.SoftKeyboardUtil;
+import org.thoughtcrime.securesms.util.ServiceUtil;
 
 public class QuickAttachmentDrawer extends ViewGroup {
   private static final String TAG                        = QuickAttachmentDrawer.class.getSimpleName();
@@ -33,23 +32,23 @@ public class QuickAttachmentDrawer extends ViewGroup {
 
   private final ViewDragHelper dragHelper;
 
-  private QuickCamera              quickCamera;
-  private int                      coverViewPosition;
-  private View                     coverView;
-  private View                     controls;
-  private ImageButton              fullScreenButton;
-  private ImageButton              swapCameraButton;
-  private ImageButton              shutterButton;
-  private float                    slideOffset;
-  private float                    initialMotionX;
-  private float                    initialMotionY;
-  private int                      rotation;
-  private int                      slideRange;
-  private int                      baseHalfHeight;
-  private AttachmentDrawerListener listener;
+  private QuickCamera               quickCamera;
+  private int                       coverViewPosition;
+  private KeyboardAwareLinearLayout coverView;
+  private View                      controls;
+  private ImageButton               fullScreenButton;
+  private ImageButton               swapCameraButton;
+  private ImageButton               shutterButton;
+  private float                     slideOffset;
+  private float                     initialMotionX;
+  private float                     initialMotionY;
+  private int                       rotation;
+  private int                       slideRange;
+  private AttachmentDrawerListener  listener;
+  private int                       halfExpandedHeight;
+  private float                     halfExpandedAnchorPoint;
 
   private DrawerState drawerState             = DrawerState.COLLAPSED;
-  private float       halfExpandedAnchorPoint = COLLAPSED_ANCHOR_POINT;
   private boolean     halfModeUnsupported     = VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH;
   private Rect        drawChildrenRect        = new Rect();
   private boolean     paused                  = false;
@@ -64,8 +63,7 @@ public class QuickAttachmentDrawer extends ViewGroup {
 
   public QuickAttachmentDrawer(Context context, AttributeSet attrs, int defStyle) {
     super(context, attrs, defStyle);
-    baseHalfHeight = SoftKeyboardUtil.getKeyboardHeight(getContext());
-    dragHelper     = ViewDragHelper.create(this, 1.f, new ViewDragHelperCallback());
+    dragHelper = ViewDragHelper.create(this, 1.f, new ViewDragHelperCallback());
     initializeView();
     updateHalfExpandedAnchorPoint();
     onConfigurationChanged();
@@ -77,10 +75,6 @@ public class QuickAttachmentDrawer extends ViewGroup {
     updateControlsView();
 
     coverViewPosition = getChildCount();
-  }
-
-  private WindowManager getWindowManager() {
-    return (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
   }
 
   public static boolean isDeviceSupported(Context context) {
@@ -101,7 +95,7 @@ public class QuickAttachmentDrawer extends ViewGroup {
   }
 
   public void onConfigurationChanged() {
-    int rotation = getWindowManager().getDefaultDisplay().getRotation();
+    int rotation = ServiceUtil.getWindowManager(getContext()).getDefaultDisplay().getRotation();
     final boolean rotationChanged = this.rotation != rotation;
     this.rotation = rotation;
     if (rotationChanged) {
@@ -141,30 +135,32 @@ public class QuickAttachmentDrawer extends ViewGroup {
     return isLandscape() || halfModeUnsupported;
   }
 
-  private void updateHalfExpandedAnchorPoint() {
-    Log.w(TAG, "updateHalfExpandedAnchorPoint()");
-    getViewTreeObserver().addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
-      @SuppressWarnings("deprecation") @Override public void onGlobalLayout() {
-        if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
-          getViewTreeObserver().removeOnGlobalLayoutListener(this);
-        } else {
-          getViewTreeObserver().removeGlobalOnLayoutListener(this);
-        }
+  private KeyboardAwareLinearLayout getCoverView() {
+    if (coverView != null) return coverView;
 
-        coverView               = getChildAt(coverViewPosition);
-        slideRange              = getMeasuredHeight();
-        halfExpandedAnchorPoint = computeSlideOffsetFromCoverBottom(slideRange - baseHalfHeight);
-        requestLayout();
-        invalidate();
-        Log.w(TAG, "updated halfExpandedAnchorPoint!");
-      }
-    });
+    final View coverViewChild = getChildAt(coverViewPosition);
+    if (coverViewChild != null && !(coverViewChild instanceof KeyboardAwareLinearLayout)) {
+      throw new IllegalStateException("cover view must be a KeyboardAwareLinearLayout");
+    }
+
+    coverView = (KeyboardAwareLinearLayout) coverViewChild;
+    return coverView;
+  }
+
+  private void updateHalfExpandedAnchorPoint() {
+    if (getCoverView() != null) {
+      slideRange              = getMeasuredHeight();
+      halfExpandedHeight      = coverView.getKeyboardHeight();
+      halfExpandedAnchorPoint = computeSlideOffsetFromCoverBottom(slideRange - halfExpandedHeight);
+    }
   }
 
   @Override
   protected void onLayout(boolean changed, int l, int t, int r, int b) {
     final int paddingLeft = getPaddingLeft();
     final int paddingTop  = getPaddingTop();
+
+    updateHalfExpandedAnchorPoint();
 
     for (int i = 0; i < getChildCount(); i++) {
       final View child       = getChildAt(i);
@@ -193,8 +189,8 @@ public class QuickAttachmentDrawer extends ViewGroup {
 
   @Override
   protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-    final int widthMode = MeasureSpec.getMode(widthMeasureSpec);
-    final int widthSize = MeasureSpec.getSize(widthMeasureSpec);
+    final int widthMode  = MeasureSpec.getMode(widthMeasureSpec);
+    final int widthSize  = MeasureSpec.getSize(widthMeasureSpec);
     final int heightMode = MeasureSpec.getMode(heightMeasureSpec);
     final int heightSize = MeasureSpec.getSize(heightMeasureSpec);
 
@@ -478,7 +474,7 @@ public class QuickAttachmentDrawer extends ViewGroup {
       clampedOffset = clampedOffset / (FULL_EXPANDED_ANCHOR_POINT - halfExpandedAnchorPoint);
     }
     float slidePixelOffset = slideOffset * slideRange +
-                             (quickCamera.getMeasuredHeight() - baseHalfHeight) / 2 *
+                             (quickCamera.getMeasuredHeight() - coverView.getKeyboardHeight()) / 2 *
                              (FULL_EXPANDED_ANCHOR_POINT - clampedOffset);
     float marginPixelOffset = (getMeasuredHeight() - quickCamera.getMeasuredHeight()) / 2 * clampedOffset;
     return (int) (getMeasuredHeight() - slidePixelOffset + marginPixelOffset);
@@ -529,7 +525,7 @@ public class QuickAttachmentDrawer extends ViewGroup {
     @Override
     public void onClick(View v) {
       boolean crop        = drawerState != DrawerState.FULL_EXPANDED;
-      int     imageHeight = crop ? baseHalfHeight : quickCamera.getMeasuredHeight();
+      int     imageHeight = crop ? coverView.getKeyboardHeight() : quickCamera.getMeasuredHeight();
       Rect    previewRect = new Rect(0, 0, quickCamera.getMeasuredWidth(), imageHeight);
       quickCamera.takePicture(previewRect);
     }
