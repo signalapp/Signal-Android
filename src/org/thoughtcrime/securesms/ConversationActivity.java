@@ -274,7 +274,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         Log.w(TAG, "onActivityResult called: " + reqCode + ", " + resultCode + " , " + data);
         super.onActivityResult(reqCode, resultCode, data);
 
-        if ((data == null || resultCode != RESULT_OK) && resultCode != AttachmentTypeSelectorAdapter.TAKE_PHOTO) return;
+        if ((data == null || resultCode != RESULT_OK) && reqCode != AttachmentTypeSelectorAdapter.TAKE_PHOTO) return;
         switch (reqCode) {
 
             case SET_CALLFILTER:
@@ -297,11 +297,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                 initializeTitleBar();
                 break;
             case AttachmentTypeSelectorAdapter.TAKE_PHOTO:
-                handleTakenPhoto(data);
+                handleTakenPhoto();
                 break;
         }
     }
-public void handleTakenPhoto(Intent data) {
+public void handleTakenPhoto() {
         File image = AttachmentManager.getOutputMediaFile();
         if (image != null) {
             Uri fileUri = Uri.fromFile(image);
