@@ -45,12 +45,12 @@
     <string name="profile_number_label">Phone</string>
     <string name="profile_status_member">Member</string>
     <string name="identification">Identifikation</string>
-    <string name="identification_title">Dieser Schlüssel ist ihre Identifikation. Lassen Sie den Schlüssel von ihren Gesprächspartnern einscannen. So können diese darauf vetrauen, dass Nachrichten von diesem Schlüssel wirklich von Ihnen stammen</string>
-    <string name="verify_identity_activity_their_identity">Empfängeridentifikation - Dieser Schlüssel identifiziert ihren Gesprächspartner. Scannen sie den Schlüssel um zu bestätigen, dass eingehende Nachrichten authentisch sind.</string>
-    <string name="verify_identity_activity_your_identity" >Eigene Identität - Dieser Schlüssel ist ihre Identifikation. Lassen Sie den Schlüssel von ihren Gesprächspartnern einscannen, um Ihre Nachrichten zu authentifizieren.</string>
+    <string name="identification_title">Dieser Schlüssel ist Ihre Identifikation. Lassen Sie den Schlüssel von ihren Gesprächspartnern einscannen. So können diese darauf vetrauen, dass Nachrichten von diesem Schlüssel wirklich von Ihnen stammen</string>
+    <string name="verify_identity_activity_their_identity">Empfängeridentifikation - Dieser Schlüssel identifiziert Ihren Gesprächspartner. Scannen Sie den Schlüssel um zu bestätigen, dass eingehende Nachrichten authentisch sind.</string>
+    <string name="verify_identity_activity_your_identity" >Eigene Identität - Dieser Schlüssel ist Ihre Identifikation. Lassen Sie den Schlüssel von Ihren Gesprächspartnern einscannen, um Ihre Nachrichten zu authentifizieren.</string>
     <string name="identification_verified_unsuccessfully">Die Schlüssel stimmen nicht überein!</string>
     <string name="identification_verified_successfully">Identifikation erfolgreich.</string>
-    <string name="accept_eula_and_continue"><![CDATA[Zustimmen & Fortfahren]]></string>
+    <string name="accept_eula_and_continue">Zustimmen und Fortfahren</string>
     <string name="claim_textsecure">Mit uns ist Sicherheit so einfach, dass du es einfach machen musst.</string>
     <string name="eula">AGB</string>
     <string name="take_picture">Foto aufnehmen</string>
