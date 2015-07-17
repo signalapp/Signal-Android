@@ -286,6 +286,11 @@
 
         <item name="actionModeStyle">@style/My.Widget.ActionMode</item>
         <item name="android:actionModeStyle">@style/My.Widget.ActionMode</item>
+
+        <item name="android:actionBarTabTextStyle">@style/TabStyle</item>
+        <item name="actionBarTabTextStyle">@style/TabStyle</item>
+        <item name="android:actionBarTabBarStyle">@style/TabStyle</item>
+        <item name="actionBarTabBarStyle">@style/TabStyle</item>
     </style>
     <style name="My.Widget.ActionMode" parent="@style/Widget.AppCompat.Light.ActionMode.Inverse">
         <item name="background">@color/gdata_red</item>
