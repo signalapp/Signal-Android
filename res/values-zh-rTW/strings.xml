@@ -654,7 +654,7 @@ SecureChat 等候驗證用的手機簡訊已逾時。</string>
   <string name="trimmer__deleting_old_messages">正在刪除舊訊息...</string>
   <string name="trimmer__old_messages_successfully_deleted">已完成刪除舊訊息。</string>
   <string name="ApplicationPreferencesActivity_incoming_sms">收到的</string>
-  <string name="ApplicationPreferencesActivity_messages_per_conversation">對話包含%條信息</string>
+  <string name="ApplicationPreferencesActivity_messages_per_conversation">對話包含 %s 條信息</string>
   <string name="ApplicationPreferencesActivity_mms">關閉</string>
   <string name="ApplicationPreferencesActivity_off">開啓</string>
   <string name="ApplicationPreferencesActivity_on">發送的</string>
