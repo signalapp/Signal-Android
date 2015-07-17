@@ -24,6 +24,7 @@ import android.database.Cursor;
 import android.database.CursorWrapper;
 import android.database.MatrixCursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.RemoteException;
 import android.provider.BaseColumns;
 import android.provider.ContactsContract;
@@ -34,6 +35,7 @@ import android.text.TextUtils;
 import android.util.Pair;
 
 import org.thoughtcrime.securesms.R;
+import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -93,7 +95,11 @@ public class ContactsDatabase {
 
     for (String number : e164numbers) {
       if (!currentContacts.containsKey(number)) {
-        addTextSecureRawContact(operations, account, number);
+        Optional<Pair<String, Long>> systemContactInfo = getSystemContactInfo(number);
+
+        if (systemContactInfo.isPresent()) {
+          addTextSecureRawContact(operations, account, systemContactInfo.get().first, systemContactInfo.get().second);
+        }
       }
     }
 
@@ -109,7 +115,7 @@ public class ContactsDatabase {
   }
 
   private void addTextSecureRawContact(List<ContentProviderOperation> operations,
-                                       Account account, String e164number)
+                                       Account account, String e164number, long aggregateId)
   {
     int index   = operations.size();
     Uri dataUri = ContactsContract.Data.CONTENT_URI.buildUpon()
@@ -137,6 +143,14 @@ public class ContactsDatabase {
                                            .withValue(ContactsContract.Data.DATA3, context.getString(R.string.ContactsDatabase_message_s, e164number))
                                            .withYieldAllowed(true)
                                            .build());
+
+    if (Build.VERSION.SDK_INT >= 11) {
+      operations.add(ContentProviderOperation.newUpdate(ContactsContract.AggregationExceptions.CONTENT_URI)
+                                             .withValue(ContactsContract.AggregationExceptions.RAW_CONTACT_ID1, aggregateId)
+                                             .withValueBackReference(ContactsContract.AggregationExceptions.RAW_CONTACT_ID2, index)
+                                             .withValue(ContactsContract.AggregationExceptions.TYPE, ContactsContract.AggregationExceptions.TYPE_KEEP_TOGETHER)
+                                             .build());
+    }
   }
 
   private void removeTextSecureRawContact(List<ContentProviderOperation> operations,
@@ -230,6 +244,35 @@ public class ContactsDatabase {
                                         "\u21e2", NEW_TYPE});
 
     return newNumberCursor;
+  }
+
+  private Optional<Pair<String, Long>> getSystemContactInfo(String e164number) {
+    Uri      uri          = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(e164number));
+    String[] projection   = {ContactsContract.PhoneLookup.NUMBER,
+                             ContactsContract.PhoneLookup._ID};
+    Cursor   numberCursor = null;
+    Cursor   idCursor     = null;
+
+    try {
+      numberCursor = context.getContentResolver().query(uri, projection, null, null, null);
+
+      if (numberCursor != null && numberCursor.moveToNext()) {
+        idCursor = context.getContentResolver().query(RawContacts.CONTENT_URI,
+                                                      new String[] {RawContacts._ID},
+                                                      RawContacts.CONTACT_ID + " = ? ",
+                                                      new String[] {String.valueOf(numberCursor.getLong(1))},
+                                                      null);
+
+        if (idCursor != null && idCursor.moveToNext()) {
+          return Optional.of(new Pair<>(numberCursor.getString(0), idCursor.getLong(0)));
+        }
+      }
+    } finally {
+      if (numberCursor != null) numberCursor.close();
+      if (idCursor     != null) idCursor.close();
+    }
+
+    return Optional.absent();
   }
 
   private static class ProjectionMappingCursor extends CursorWrapper {
