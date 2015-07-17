@@ -51,9 +51,9 @@ public class RecipientProvider {
 
   private static final String TAG = RecipientProvider.class.getSimpleName();
 
-  private static final Map<Long,Recipient>          recipientCache         = Collections.synchronizedMap(new LRUCache<Long,Recipient>(1000));
-  private static final Map<RecipientIds,Recipients> recipientsCache        = Collections.synchronizedMap(new LRUCache<RecipientIds, Recipients>(1000));
-  private static final ExecutorService              asyncRecipientResolver = Util.newSingleThreadedLifoExecutor();
+  private static final RecipientCache  recipientCache         = new RecipientCache();
+  private static final RecipientsCache recipientsCache        = new RecipientsCache();
+  private static final ExecutorService asyncRecipientResolver = Util.newSingleThreadedLifoExecutor();
 
   private static final String[] CALLER_ID_PROJECTION = new String[] {
     PhoneLookup.DISPLAY_NAME,
@@ -64,23 +64,23 @@ public class RecipientProvider {
 
   Recipient getRecipient(Context context, long recipientId, boolean asynchronous) {
     Recipient cachedRecipient = recipientCache.get(recipientId);
-    if (cachedRecipient != null) return cachedRecipient;
+    if (cachedRecipient != null && !cachedRecipient.isStale()) return cachedRecipient;
 
     String number = CanonicalAddressDatabase.getInstance(context).getAddressFromId(recipientId);
 
     if (asynchronous) {
-      cachedRecipient = new Recipient(recipientId, number, getRecipientDetailsAsync(context, recipientId, number));
+      cachedRecipient = new Recipient(recipientId, number, cachedRecipient, getRecipientDetailsAsync(context, recipientId, number));
     } else {
       cachedRecipient = new Recipient(recipientId, getRecipientDetailsSync(context, recipientId, number));
     }
 
-    recipientCache.put(recipientId, cachedRecipient);
+    recipientCache.set(recipientId, cachedRecipient);
     return cachedRecipient;
   }
 
   Recipients getRecipients(Context context, long[] recipientIds, boolean asynchronous) {
     Recipients cachedRecipients = recipientsCache.get(new RecipientIds(recipientIds));
-    if (cachedRecipients != null) return cachedRecipients;
+    if (cachedRecipients != null && !cachedRecipients.isStale()) return cachedRecipients;
 
     List<Recipient> recipientList = new LinkedList<>();
 
@@ -88,16 +88,16 @@ public class RecipientProvider {
       recipientList.add(getRecipient(context, recipientId, asynchronous));
     }
 
-    if (asynchronous) cachedRecipients = new Recipients(recipientList, getRecipientsPreferencesAsync(context, recipientIds));
+    if (asynchronous) cachedRecipients = new Recipients(recipientList, cachedRecipients, getRecipientsPreferencesAsync(context, recipientIds));
     else              cachedRecipients = new Recipients(recipientList, getRecipientsPreferencesSync(context, recipientIds));
 
-    recipientsCache.put(new RecipientIds(recipientIds), cachedRecipients);
+    recipientsCache.set(new RecipientIds(recipientIds), cachedRecipients);
     return cachedRecipients;
   }
 
   void clearCache() {
-    recipientCache.clear();
-    recipientsCache.clear();
+    recipientCache.reset();
+    recipientsCache.reset();
   }
 
   private @NonNull ListenableFutureTask<RecipientDetails> getRecipientDetailsAsync(final Context context,
@@ -216,6 +216,46 @@ public class RecipientProvider {
     public int hashCode() {
       return Arrays.hashCode(ids);
     }
+  }
+
+  private static class RecipientCache {
+
+    private final Map<Long,Recipient> cache = new LRUCache<>(1000);
+
+    public synchronized Recipient get(long recipientId) {
+      return cache.get(recipientId);
+    }
+
+    public synchronized void set(long recipientId, Recipient recipient) {
+      cache.put(recipientId, recipient);
+    }
+
+    public synchronized void reset() {
+      for (Recipient recipient : cache.values()) {
+        recipient.setStale();
+      }
+    }
+
+  }
+
+  private static class RecipientsCache {
+
+    private final Map<RecipientIds,Recipients> cache = new LRUCache<>(1000);
+
+    public synchronized Recipients get(RecipientIds ids) {
+      return cache.get(ids);
+    }
+
+    public synchronized void set(RecipientIds ids, Recipients recipients) {
+      cache.put(ids, recipients);
+    }
+
+    public synchronized void reset() {
+      for (Recipients recipients : cache.values()) {
+        recipients.setStale();
+      }
+    }
+
   }
 
 
