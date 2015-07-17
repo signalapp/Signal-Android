@@ -83,16 +83,6 @@ public abstract class KeyScanningActivity extends PassphraseRequiredActionBarAct
     return bmp;
   }
 
-  protected abstract String getScanString();
-  protected abstract String getDisplayString();
 
-  protected abstract String getNotVerifiedTitle();
-  protected abstract String getNotVerifiedMessage();
-
-  protected abstract IdentityKey getIdentityKeyToCompare();
-  protected abstract IdentityKey getIdentityKeyToDisplay();
-
-  protected abstract String getVerifiedTitle();
-  protected abstract String getVerifiedMessage();
 
 }

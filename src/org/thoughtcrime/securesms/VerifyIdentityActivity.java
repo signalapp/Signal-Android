@@ -156,6 +156,8 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
       @Override
       public void onClick(View v) {
         Intent i = new Intent(VerifyIdentityActivity.this, QrScanActivity.class);
+        i.putExtra("recipient", Long.valueOf(recipient.getRecipientId()));
+        i.putExtra("remote_identity", getIntent().getParcelableExtra("remote_identity"));
         startActivityForResult(i, QrScanActivity.REQUEST_SCAN_BARCODE);
       }
     });
@@ -169,54 +171,18 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
 
     String key = data.getStringExtra(QrScanActivity.FINGERPRINT);
     IdentityKey identityKey = getRemoteIdentityKey(masterSecret, recipient);
-    if(identityKey.getFingerprint().equalsIgnoreCase(key)){
-      remoteIdentityFingerprint.setText(R.string.identification_verified_successfully);
-      remoteIdentityFingerprint.setTextColor(Color.GREEN);
-    }else{
-      remoteIdentityFingerprint.setText(R.string.identification_verified_unsuccessfully);
-      remoteIdentityFingerprint.setTextColor(Color.RED);
+    if(identityKey != null) {
+      String fingerprint = identityKey.getFingerprint();
+      if (fingerprint.equalsIgnoreCase(key)) {
+        remoteIdentityFingerprint.setText(R.string.identification_verified_successfully);
+        remoteIdentityFingerprint.setTextColor(Color.GREEN);
+      } else {
+        remoteIdentityFingerprint.setText(R.string.identification_verified_unsuccessfully);
+        remoteIdentityFingerprint.setTextColor(Color.RED);
+      }
     }
   }
 
-  @Override
-  protected String getScanString() {
-    return getString(R.string.VerifyIdentityActivity_scan_their_key_to_compare);
-  }
-
-  @Override
-  protected String getDisplayString() {
-    return getString(R.string.VerifyIdentityActivity_get_my_key_scanned);
-  }
-
-  @Override
-  protected IdentityKey getIdentityKeyToCompare() {
-    return getRemoteIdentityKey(masterSecret, recipient);
-  }
-
-  @Override
-  protected IdentityKey getIdentityKeyToDisplay() {
-    return IdentityKeyUtil.getIdentityKey(this);
-  }
-
-  @Override
-  protected String getNotVerifiedMessage() {
-    return getString(R.string.VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully);
-  }
-
-  @Override
-  protected String getNotVerifiedTitle() {
-    return getString(R.string.VerifyIdentityActivity_not_verified_exclamation);
-  }
-
-  @Override
-  protected String getVerifiedMessage() {
-    return getString(R.string.VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well);
-  }
-
-  @Override
-  protected String getVerifiedTitle() {
-    return getString(R.string.VerifyIdentityActivity_verified_exclamation);
-  }
 
   private IdentityKey getRemoteIdentityKey(MasterSecret masterSecret, Recipient recipient) {
     SessionStore  sessionStore = new TextSecureSessionStore(this, masterSecret);
