@@ -103,43 +103,4 @@ public class ViewIdentityActivity extends KeyScanningActivity {
 
   }
 
-  @Override
-  protected String getScanString() {
-    return getString(R.string.ViewIdentityActivity_scan_to_compare);
-  }
-
-  @Override
-  protected String getDisplayString() {
-    return getString(R.string.ViewIdentityActivity_get_scanned_to_compare);
-  }
-
-  @Override
-  protected IdentityKey getIdentityKeyToCompare() {
-    return identityKey;
-  }
-
-  @Override
-  protected IdentityKey getIdentityKeyToDisplay() {
-    return identityKey;
-  }
-
-  @Override
-  protected String getNotVerifiedMessage() {
-    return  getString(R.string.ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation);
-  }
-
-  @Override
-  protected String getNotVerifiedTitle() {
-    return getString(R.string.ViewIdentityActivity_not_verified_exclamation);
-  }
-
-  @Override
-  protected String getVerifiedMessage() {
-    return getString(R.string.ViewIdentityActivity_the_scanned_key_matches_exclamation);
-  }
-
-  @Override
-  protected String getVerifiedTitle() {
-    return getString(R.string.ViewIdentityActivity_verified_exclamation);
-  }
 }

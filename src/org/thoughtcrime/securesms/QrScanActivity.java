@@ -49,7 +49,9 @@ public class QrScanActivity extends ActionBarActivity implements ZXingScannerVie
     public void handleResult(Result rawResult) {
         String key = rawResult.getText();
         Intent i = new Intent();
+        i.putExtras(getIntent().getExtras());
         i.putExtra(FINGERPRINT, key);
+
         setResult(Activity.RESULT_OK, i);
         finishActivity(REQUEST_SCAN_BARCODE);
         finish();
