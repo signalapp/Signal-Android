@@ -36,14 +36,11 @@
     <string name="preferences_notification_five_times">5x</string>
     <string name="preferences_notification_ten_times">10x</string>
     <string name="preferences_notification_title">Repeat notifications</string>
-
     <string name="unknown_country">Unknown country</string>
     <string name="tk_mail">sc-feedback@gdata.de</string>
-
     <string name="log_submit_activity__button_dont_submit">Don\'t submit</string>
     <string name="log_submit_activity__button_submit">Submit</string>
     <string name="import_complete_dialog">SecureChat system database import is complete.</string>
-
     <string name="profile_status_label">Status</string>
     <string name="profile_number_label">Phone</string>
     <string name="profile_status_member">Member</string>
@@ -56,9 +53,7 @@
     <string name="accept_eula_and_continue"><![CDATA[Zustimmen & Fortfahren]]></string>
     <string name="claim_textsecure">Mit uns ist Sicherheit so einfach, das du es einfach machen musst.</string>
     <string name="eula">AGB</string>
-
     <string name="take_picture">Foto aufnehmen</string>
-
     <string name="status_available">Verfügbar</string>
     <string name="status_busy">Beschäftigt</string>
     <string name="status_atwork">Bei der Arbeit</string>
