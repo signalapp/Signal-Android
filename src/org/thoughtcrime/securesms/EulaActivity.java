@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -10,10 +11,12 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
+import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -21,6 +24,8 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+
+import de.gdata.messaging.util.GUtil;
 
 public class EulaActivity extends AppCompatActivity {
 
@@ -98,9 +103,9 @@ public class EulaActivity extends AppCompatActivity {
         }else{
             mAcceptEula.setEnabled(false);
         }
+        View layout              = (LinearLayout) findViewById(R.id.rootLayout);
+        GUtil.setFontForFragment(this, layout);
     }
-
-
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
