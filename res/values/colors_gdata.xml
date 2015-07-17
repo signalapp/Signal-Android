@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="gdata_red">#494949</color>
-    <color name="gdata_red_real">#a02020</color>
+
+    <color name="gdata_grey">#494949</color>
+    <color name="gdata_red">#a02020</color>
     <color name="transparent">@android:color/transparent</color>
     <color name="gdata_conversation_list_item_background_read">#ffffff</color>
     <color name="gdata_conversation_list_item_background_unread">@color/gray5</color>
@@ -25,4 +26,6 @@
     <color name="menuTextColor">#000000</color>
 
     <color name="translucent_black">#80000000</color>
+
+    <color name="gdata_primary_color">@color/gdata_grey</color>
 </resources>

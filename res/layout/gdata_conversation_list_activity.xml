@@ -10,7 +10,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/gdata_red"
+        android:background="@color/gdata_primary_color"
         android:fitsSystemWindows="true">
 
         <include
@@ -30,7 +30,7 @@
                 android:id="@+id/sliding_tabs"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/gdata_red" />
+                android:background="@color/gdata_primary_color" />
 
             <android.support.v4.view.ViewPager
                 xmlns:android="http://schemas.android.com/apk/res/android"
@@ -53,7 +53,7 @@
             android:layout_gravity="bottom|right"
             android:layout_margin="30dp"
             android:src="?attr/menu_new_conversation_icon"
-            fab:fab_colorNormal="@color/gdata_red_real"
+            fab:fab_colorNormal="@color/gdata_red"
             fab:fab_colorPressed="@color/menuItemBackground"
             fab:fab_colorRipple="@color/menuTextColor"
             fab:fab_shadow="false" />
@@ -73,7 +73,7 @@
             android:layout_width="230dp"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:background="@color/gdata_red"
+            android:background="@color/gdata_primary_color"
             android:gravity="left"
             android:orientation="vertical">
 
@@ -86,7 +86,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:background="@color/gdata_red"
+                android:background="@color/gdata_primary_color"
                 android:gravity="center_vertical"
                 android:orientation="vertical">
 
