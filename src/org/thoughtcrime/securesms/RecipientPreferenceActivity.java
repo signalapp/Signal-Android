@@ -98,7 +98,9 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   public boolean onOptionsItemSelected(MenuItem item) {
     super.onOptionsItemSelected(item);
     switch (item.getItemId()) {
-      case android.R.id.home: finish(); return true;
+      case android.R.id.home:
+        super.onBackPressed();
+        return true;
     }
 
     return false;
