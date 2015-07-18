@@ -1,11 +1,15 @@
 package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.util.Pair;
 
 import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.MasterSecretUnion;
+import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureAxolotlStore;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
@@ -15,7 +19,6 @@ import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.groups.GroupMessageProcessor;
-import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
@@ -31,6 +34,8 @@ import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.VersionTracker;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.libaxolotl.DuplicateMessageException;
 import org.whispersystems.libaxolotl.IdentityKey;
@@ -47,9 +52,9 @@ import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.libaxolotl.util.guava.Optional;
 import org.whispersystems.textsecure.api.crypto.TextSecureCipher;
 import org.whispersystems.textsecure.api.messages.TextSecureContent;
+import org.whispersystems.textsecure.api.messages.TextSecureDataMessage;
 import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
 import org.whispersystems.textsecure.api.messages.TextSecureGroup;
-import org.whispersystems.textsecure.api.messages.TextSecureDataMessage;
 import org.whispersystems.textsecure.api.messages.multidevice.RequestMessage;
 import org.whispersystems.textsecure.api.messages.multidevice.SentTranscriptMessage;
 import org.whispersystems.textsecure.api.messages.multidevice.TextSecureSyncMessage;
@@ -59,9 +64,9 @@ import java.util.concurrent.TimeUnit;
 
 import ws.com.google.android.mms.MmsException;
 
-public class PushDecryptJob extends MasterSecretJob {
+public class PushDecryptJob extends ContextJob {
 
-  private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 2L;
 
   public static final String TAG = PushDecryptJob.class.getSimpleName();
 
@@ -75,7 +80,6 @@ public class PushDecryptJob extends MasterSecretJob {
   public PushDecryptJob(Context context, long pushMessageId, long smsMessageId, String sender) {
     super(context, JobParameters.newBuilder()
                                 .withPersistence()
-                                .withRequirement(new MasterSecretRequirement(context))
                                 .withGroupId(sender)
                                 .withWakeLock(true, 5, TimeUnit.SECONDS)
                                 .create());
@@ -91,18 +95,34 @@ public class PushDecryptJob extends MasterSecretJob {
   }
 
   @Override
-  public void onRun(MasterSecret masterSecret) throws NoSuchMessageException {
+  public void onRun() throws NoSuchMessageException {
+    if (!IdentityKeyUtil.hasIdentityKey(context)) {
+      Log.w(TAG, "Skipping job, waiting for migration...");
+
+      if (KeyCachingService.getMasterSecret(context) != null) {
+        MessageNotifier.updateNotification(context, null, -2);
+      }
+
+      return;
+    }
+
+    MasterSecret       masterSecret         = KeyCachingService.getMasterSecret(context);
     PushDatabase       database             = DatabaseFactory.getPushDatabase(context);
     TextSecureEnvelope envelope             = database.get(messageId);
     Optional<Long>     optionalSmsMessageId = smsMessageId > 0 ? Optional.of(smsMessageId) :
                                                                  Optional.<Long>absent();
 
-    handleMessage(masterSecret, envelope, optionalSmsMessageId);
+    MasterSecretUnion masterSecretUnion;
+
+    if (masterSecret == null) masterSecretUnion = new MasterSecretUnion(MasterSecretUtil.getAsymmetricMasterSecret(context, null));
+    else                      masterSecretUnion = new MasterSecretUnion(masterSecret);
+
+    handleMessage(masterSecretUnion, envelope, optionalSmsMessageId);
     database.delete(messageId);
   }
 
   @Override
-  public boolean onShouldRetryThrowable(Exception exception) {
+  public boolean onShouldRetry(Exception exception) {
     return false;
   }
 
@@ -111,9 +131,9 @@ public class PushDecryptJob extends MasterSecretJob {
 
   }
 
-  private void handleMessage(MasterSecret masterSecret, TextSecureEnvelope envelope, Optional<Long> smsMessageId) {
+  private void handleMessage(MasterSecretUnion masterSecret, TextSecureEnvelope envelope, Optional<Long> smsMessageId) {
     try {
-      AxolotlStore      axolotlStore = new TextSecureAxolotlStore(context, masterSecret);
+      AxolotlStore      axolotlStore = new TextSecureAxolotlStore(context);
       TextSecureAddress localAddress = new TextSecureAddress(TextSecurePreferences.getLocalNumber(context));
       TextSecureCipher  cipher       = new TextSecureCipher(localAddress, axolotlStore);
 
@@ -157,8 +177,10 @@ public class PushDecryptJob extends MasterSecretJob {
     }
   }
 
-  private void handleEndSessionMessage(MasterSecret masterSecret, TextSecureEnvelope envelope,
-                                       TextSecureDataMessage message, Optional<Long> smsMessageId)
+  private void handleEndSessionMessage(@NonNull MasterSecretUnion     masterSecret,
+                                       @NonNull TextSecureEnvelope    envelope,
+                                       @NonNull TextSecureDataMessage message,
+                                       @NonNull Optional<Long>        smsMessageId)
   {
     EncryptingSmsDatabase smsDatabase         = DatabaseFactory.getEncryptingSmsDatabase(context);
     IncomingTextMessage   incomingTextMessage = new IncomingTextMessage(envelope.getSource(),
@@ -171,20 +193,25 @@ public class PushDecryptJob extends MasterSecretJob {
     if (!smsMessageId.isPresent()) {
       IncomingEndSessionMessage incomingEndSessionMessage = new IncomingEndSessionMessage(incomingTextMessage);
       Pair<Long, Long>          messageAndThreadId        = smsDatabase.insertMessageInbox(masterSecret, incomingEndSessionMessage);
+
       threadId = messageAndThreadId.second;
     } else {
       smsDatabase.markAsEndSession(smsMessageId.get());
       threadId = smsDatabase.getThreadIdForMessage(smsMessageId.get());
     }
 
-    SessionStore sessionStore = new TextSecureSessionStore(context, masterSecret);
+    SessionStore sessionStore = new TextSecureSessionStore(context);
     sessionStore.deleteAllSessions(envelope.getSource());
 
     SecurityEvent.broadcastSecurityUpdateEvent(context, threadId);
-    MessageNotifier.updateNotification(context, masterSecret, threadId);
+    MessageNotifier.updateNotification(context, masterSecret.getMasterSecret().orNull(), threadId);
   }
 
-  private void handleGroupMessage(MasterSecret masterSecret, TextSecureEnvelope envelope, TextSecureDataMessage message, Optional<Long> smsMessageId) {
+  private void handleGroupMessage(@NonNull MasterSecretUnion masterSecret,
+                                  @NonNull TextSecureEnvelope envelope,
+                                  @NonNull TextSecureDataMessage message,
+                                  @NonNull Optional<Long> smsMessageId)
+  {
     GroupMessageProcessor.process(context, masterSecret, envelope, message);
 
     if (smsMessageId.isPresent()) {
@@ -192,7 +219,9 @@ public class PushDecryptJob extends MasterSecretJob {
     }
   }
 
-  private void handleSynchronizeSentMessage(MasterSecret masterSecret, SentTranscriptMessage message, Optional<Long> smsMessageId)
+  private void handleSynchronizeSentMessage(@NonNull MasterSecretUnion masterSecret,
+                                            @NonNull SentTranscriptMessage message,
+                                            @NonNull Optional<Long> smsMessageId)
       throws MmsException
   {
     if (message.getMessage().getAttachments().isPresent()) {
@@ -202,7 +231,9 @@ public class PushDecryptJob extends MasterSecretJob {
     }
   }
 
-  private void handleSynchronizeRequestMessage(MasterSecret masterSecret, RequestMessage message) {
+  private void handleSynchronizeRequestMessage(@NonNull MasterSecretUnion masterSecret,
+                                               @NonNull RequestMessage message)
+  {
     if (message.isContactsRequest()) {
       ApplicationContext.getInstance(context)
                         .getJobManager()
@@ -216,8 +247,10 @@ public class PushDecryptJob extends MasterSecretJob {
     }
   }
 
-  private void handleMediaMessage(MasterSecret masterSecret, TextSecureEnvelope envelope,
-                                  TextSecureDataMessage message, Optional<Long> smsMessageId)
+  private void handleMediaMessage(@NonNull MasterSecretUnion masterSecret,
+                                  @NonNull TextSecureEnvelope envelope,
+                                  @NonNull TextSecureDataMessage message,
+                                  @NonNull Optional<Long> smsMessageId)
       throws MmsException
   {
     MmsDatabase          database     = DatabaseFactory.getMmsDatabase(context);
@@ -239,12 +272,12 @@ public class PushDecryptJob extends MasterSecretJob {
       DatabaseFactory.getSmsDatabase(context).deleteMessage(smsMessageId.get());
     }
 
-    MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
+    MessageNotifier.updateNotification(context, masterSecret.getMasterSecret().orNull(), messageAndThreadId.second);
   }
 
-  private void handleSynchronizeSentMediaMessage(MasterSecret masterSecret,
-                                                 SentTranscriptMessage message,
-                                                 Optional<Long> smsMessageId)
+  private void handleSynchronizeSentMediaMessage(@NonNull MasterSecretUnion masterSecret,
+                                                 @NonNull SentTranscriptMessage message,
+                                                 @NonNull Optional<Long> smsMessageId)
       throws MmsException
   {
     MmsDatabase           database     = DatabaseFactory.getMmsDatabase(context);
@@ -270,8 +303,10 @@ public class PushDecryptJob extends MasterSecretJob {
     }
   }
 
-  private void handleTextMessage(MasterSecret masterSecret, TextSecureEnvelope envelope,
-                                 TextSecureDataMessage message, Optional<Long> smsMessageId)
+  private void handleTextMessage(@NonNull MasterSecretUnion masterSecret,
+                                 @NonNull TextSecureEnvelope envelope,
+                                 @NonNull TextSecureDataMessage message,
+                                 @NonNull Optional<Long> smsMessageId)
   {
     EncryptingSmsDatabase database = DatabaseFactory.getEncryptingSmsDatabase(context);
     String                body     = message.getBody().isPresent() ? message.getBody().get() : "";
@@ -287,16 +322,15 @@ public class PushDecryptJob extends MasterSecretJob {
                                                                 message.getGroupInfo());
 
       textMessage = new IncomingEncryptedMessage(textMessage, body);
-
       messageAndThreadId = database.insertMessageInbox(masterSecret, textMessage);
     }
 
-    MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
+    MessageNotifier.updateNotification(context, masterSecret.getMasterSecret().orNull(), messageAndThreadId.second);
   }
 
-  private void handleSynchronizeSentTextMessage(MasterSecret masterSecret,
-                                                SentTranscriptMessage message,
-                                                Optional<Long> smsMessageId)
+  private void handleSynchronizeSentTextMessage(@NonNull MasterSecretUnion masterSecret,
+                                                @NonNull SentTranscriptMessage message,
+                                                @NonNull Optional<Long> smsMessageId)
   {
     EncryptingSmsDatabase database            = DatabaseFactory.getEncryptingSmsDatabase(context);
     Recipients            recipients          = getSyncMessageDestination(message);
@@ -315,55 +349,70 @@ public class PushDecryptJob extends MasterSecretJob {
     }
   }
 
-  private void handleInvalidVersionMessage(MasterSecret masterSecret, TextSecureEnvelope envelope, Optional<Long> smsMessageId) {
+  private void handleInvalidVersionMessage(@NonNull MasterSecretUnion masterSecret,
+                                           @NonNull TextSecureEnvelope envelope,
+                                           @NonNull Optional<Long> smsMessageId)
+  {
     EncryptingSmsDatabase smsDatabase = DatabaseFactory.getEncryptingSmsDatabase(context);
 
     if (!smsMessageId.isPresent()) {
-      Pair<Long, Long> messageAndThreadId = insertPlaceholder(masterSecret, envelope);
+      Pair<Long, Long> messageAndThreadId = insertPlaceholder(envelope);
       smsDatabase.markAsInvalidVersionKeyExchange(messageAndThreadId.first);
-      MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
+      MessageNotifier.updateNotification(context, masterSecret.getMasterSecret().orNull(), messageAndThreadId.second);
     } else {
       smsDatabase.markAsInvalidVersionKeyExchange(smsMessageId.get());
     }
   }
 
-  private void handleCorruptMessage(MasterSecret masterSecret, TextSecureEnvelope envelope, Optional<Long> smsMessageId) {
+  private void handleCorruptMessage(@NonNull MasterSecretUnion masterSecret,
+                                    @NonNull TextSecureEnvelope envelope,
+                                    @NonNull Optional<Long> smsMessageId)
+  {
     EncryptingSmsDatabase smsDatabase = DatabaseFactory.getEncryptingSmsDatabase(context);
 
     if (!smsMessageId.isPresent()) {
-      Pair<Long, Long> messageAndThreadId = insertPlaceholder(masterSecret, envelope);
+      Pair<Long, Long> messageAndThreadId = insertPlaceholder(envelope);
       smsDatabase.markAsDecryptFailed(messageAndThreadId.first);
-      MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
+      MessageNotifier.updateNotification(context, masterSecret.getMasterSecret().orNull(), messageAndThreadId.second);
     } else {
       smsDatabase.markAsDecryptFailed(smsMessageId.get());
     }
   }
 
-  private void handleNoSessionMessage(MasterSecret masterSecret, TextSecureEnvelope envelope, Optional<Long> smsMessageId) {
+  private void handleNoSessionMessage(@NonNull MasterSecretUnion masterSecret,
+                                      @NonNull TextSecureEnvelope envelope,
+                                      @NonNull Optional<Long> smsMessageId)
+  {
     EncryptingSmsDatabase smsDatabase = DatabaseFactory.getEncryptingSmsDatabase(context);
 
     if (!smsMessageId.isPresent()) {
-      Pair<Long, Long> messageAndThreadId = insertPlaceholder(masterSecret, envelope);
+      Pair<Long, Long> messageAndThreadId = insertPlaceholder(envelope);
       smsDatabase.markAsNoSession(messageAndThreadId.first);
-      MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
+      MessageNotifier.updateNotification(context, masterSecret.getMasterSecret().orNull(), messageAndThreadId.second);
     } else {
       smsDatabase.markAsNoSession(smsMessageId.get());
     }
   }
 
-  private void handleLegacyMessage(MasterSecret masterSecret, TextSecureEnvelope envelope, Optional<Long> smsMessageId) {
+  private void handleLegacyMessage(@NonNull MasterSecretUnion masterSecret,
+                                   @NonNull TextSecureEnvelope envelope,
+                                   @NonNull Optional<Long> smsMessageId)
+  {
     EncryptingSmsDatabase smsDatabase = DatabaseFactory.getEncryptingSmsDatabase(context);
 
     if (!smsMessageId.isPresent()) {
-      Pair<Long, Long> messageAndThreadId = insertPlaceholder(masterSecret, envelope);
+      Pair<Long, Long> messageAndThreadId = insertPlaceholder(envelope);
       smsDatabase.markAsLegacyVersion(messageAndThreadId.first);
-      MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
+      MessageNotifier.updateNotification(context, masterSecret.getMasterSecret().orNull(), messageAndThreadId.second);
     } else {
       smsDatabase.markAsLegacyVersion(smsMessageId.get());
     }
   }
 
-  private void handleDuplicateMessage(MasterSecret masterSecret, TextSecureEnvelope envelope, Optional<Long> smsMessageId) {
+  private void handleDuplicateMessage(@NonNull MasterSecretUnion masterSecret,
+                                      @NonNull TextSecureEnvelope envelope,
+                                      @NonNull Optional<Long> smsMessageId)
+  {
     // Let's start ignoring these now
 //    SmsDatabase smsDatabase = DatabaseFactory.getEncryptingSmsDatabase(context);
 //
@@ -376,7 +425,10 @@ public class PushDecryptJob extends MasterSecretJob {
 //    }
   }
 
-  private void handleUntrustedIdentityMessage(MasterSecret masterSecret, TextSecureEnvelope envelope, Optional<Long> smsMessageId) {
+  private void handleUntrustedIdentityMessage(@NonNull MasterSecretUnion masterSecret,
+                                              @NonNull TextSecureEnvelope envelope,
+                                              @NonNull Optional<Long> smsMessageId)
+  {
     try {
       EncryptingSmsDatabase database       = DatabaseFactory.getEncryptingSmsDatabase(context);
       Recipients            recipients     = RecipientFactory.getRecipientsFromString(context, envelope.getSource(), false);
@@ -393,7 +445,7 @@ public class PushDecryptJob extends MasterSecretJob {
         Pair<Long, Long>            messageAndThreadId = database.insertMessageInbox(masterSecret, bundleMessage);
 
         database.setMismatchedIdentity(messageAndThreadId.first, recipientId, identityKey);
-        MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
+        MessageNotifier.updateNotification(context, masterSecret.getMasterSecret().orNull(), messageAndThreadId.second);
       } else {
         database.updateMessageBody(masterSecret, smsMessageId.get(), encoded);
         database.markAsPreKeyBundle(smsMessageId.get());
@@ -404,16 +456,14 @@ public class PushDecryptJob extends MasterSecretJob {
     }
   }
 
-  private Pair<Long, Long> insertPlaceholder(MasterSecret masterSecret, TextSecureEnvelope envelope) {
-    EncryptingSmsDatabase database = DatabaseFactory.getEncryptingSmsDatabase(context);
-
-    IncomingTextMessage textMessage = new IncomingTextMessage(envelope.getSource(), envelope.getSourceDevice(),
-                                                              envelope.getTimestamp(), "",
-                                                              Optional.<TextSecureGroup>absent());
+  private Pair<Long, Long> insertPlaceholder(@NonNull TextSecureEnvelope envelope) {
+    EncryptingSmsDatabase database    = DatabaseFactory.getEncryptingSmsDatabase(context);
+    IncomingTextMessage   textMessage = new IncomingTextMessage(envelope.getSource(), envelope.getSourceDevice(),
+                                                                envelope.getTimestamp(), "",
+                                                                Optional.<TextSecureGroup>absent());
 
     textMessage = new IncomingEncryptedMessage(textMessage, "");
-
-    return database.insertMessageInbox(masterSecret, textMessage);
+    return database.insertMessageInbox(textMessage);
   }
 
   private Recipients getSyncMessageDestination(SentTranscriptMessage message) {

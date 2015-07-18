@@ -24,20 +24,18 @@ public class TextSecureDirectory {
   private static final int INTRODUCED_CHANGE_FROM_TOKEN_TO_E164_NUMBER = 2;
 
   private static final String DATABASE_NAME    = "whisper_directory.db";
-  private static final int    DATABASE_VERSION = 2;
+  private static final int    DATABASE_VERSION = 3;
 
   private static final String TABLE_NAME   = "directory";
   private static final String ID           = "_id";
   private static final String NUMBER       = "number";
   private static final String REGISTERED   = "registered";
   private static final String RELAY        = "relay";
-  private static final String SUPPORTS_SMS = "supports_sms";
   private static final String TIMESTAMP    = "timestamp";
   private static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + "(" + ID + " INTEGER PRIMARY KEY, " +
                               NUMBER       + " TEXT UNIQUE, " +
                               REGISTERED   + " INTEGER, " +
                               RELAY        + " TEXT, " +
-                              SUPPORTS_SMS + " INTEGER, " +
                               TIMESTAMP    + " INTEGER);";
 
   private static final Object instanceLock = new Object();
@@ -61,25 +59,6 @@ public class TextSecureDirectory {
   private TextSecureDirectory(Context context) {
     this.context = context;
     this.databaseHelper = new DatabaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
-  }
-
-  public boolean isSmsFallbackSupported(String e164number) {
-    SQLiteDatabase db = databaseHelper.getReadableDatabase();
-    Cursor cursor = null;
-
-    try {
-      cursor = db.query(TABLE_NAME, new String[] {SUPPORTS_SMS}, NUMBER + " = ?",
-                        new String[]{e164number}, null, null, null);
-
-      if (cursor != null && cursor.moveToFirst()) {
-        return cursor.getInt(0) == 1;
-      } else {
-        return false;
-      }
-    } finally {
-      if (cursor != null)
-        cursor.close();
-    }
   }
 
   public boolean isActiveNumber(String e164number) throws NotInDirectoryException {
@@ -131,7 +110,6 @@ public class TextSecureDirectory {
     values.put(NUMBER, token.getNumber());
     values.put(RELAY, token.getRelay());
     values.put(REGISTERED, active ? 1 : 0);
-    values.put(SUPPORTS_SMS, token.isSupportsSms() ? 1 : 0);
     values.put(TIMESTAMP, System.currentTimeMillis());
     db.replace(TABLE_NAME, null, values);
   }
@@ -149,7 +127,6 @@ public class TextSecureDirectory {
         values.put(REGISTERED, 1);
         values.put(TIMESTAMP, timestamp);
         values.put(RELAY, token.getRelay());
-        values.put(SUPPORTS_SMS, token.isSupportsSms() ? 1 : 0);
         db.replace(TABLE_NAME, null, values);
       }
 
@@ -169,7 +146,7 @@ public class TextSecureDirectory {
 
   public Set<String> getPushEligibleContactNumbers(String localNumber) {
     final Uri         uri     = Phone.CONTENT_URI;
-    final Set<String> results = new HashSet<String>();
+    final Set<String> results = new HashSet<>();
           Cursor      cursor  = null;
 
     try {
@@ -208,7 +185,7 @@ public class TextSecureDirectory {
   }
 
   public List<String> getActiveNumbers() {
-    final List<String> results = new ArrayList<String>();
+    final List<String> results = new ArrayList<>();
     Cursor cursor = null;
     try {
       cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, new String[]{NUMBER},

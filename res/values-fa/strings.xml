@@ -45,6 +45,7 @@
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">شما ممکن است مایل به منظور بررسی
 تماس با ما</string>
   <string name="ConfirmIdentityDialog_accept">پذیرفتن</string>
+  <!--ContactsDatabase-->
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">حجم پیام: %d کیلوبایت</string>
   <string name="ConversationItem_expires_s">انقضا: %s</string>
@@ -314,7 +315,6 @@
   <string name="KeyCachingService_passphrase_cached">TextSecure باز است</string>
   <string name="KeyCachingService_lock">قفل با عبارت عبور</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_encrypted_message">پیام رمزنگاری شده ...</string>
   <string name="MessageNotifier_media_message_with_text">پیام رسانه ها: %s</string>
   <string name="MessageNotifier_no_subject">(بدون موضوع)</string>
   <string name="MessageNotifier_message_delivery_failed">تحویل پیام شکست خورده است.</string>
@@ -506,7 +506,6 @@
   <string name="preferences__change_my_passphrase">تغییر رمز من</string>
   <string name="preferences__enable_passphrase">فعال‌سازی رمز</string>
   <string name="preferences__passphrase_summary">رمز %s</string>
-  <string name="preferences__enable_local_encryption_of_messages_and_keys">فعال کردن رمزگذاری محلی از پیام ها و کلیدها</string>
   <string name="preferences__screen_security">امنیت صفحه نمایش</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">بلوک کردن عکس گرفتن از صفحه در لیست تازه و در داخل برنامه</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">برنامه پس از مدتی به طور خودکار قفل شود</string>

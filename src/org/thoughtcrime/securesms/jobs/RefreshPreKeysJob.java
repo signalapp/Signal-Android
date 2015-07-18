@@ -57,10 +57,10 @@ public class RefreshPreKeysJob extends MasterSecretJob implements InjectableType
       return;
     }
 
-    List<PreKeyRecord> preKeyRecords       = PreKeyUtil.generatePreKeys(context, masterSecret);
-    PreKeyRecord       lastResortKeyRecord = PreKeyUtil.generateLastResortKey(context, masterSecret);
-    IdentityKeyPair    identityKey         = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
-    SignedPreKeyRecord signedPreKeyRecord  = PreKeyUtil.generateSignedPreKey(context, masterSecret, identityKey);
+    List<PreKeyRecord> preKeyRecords       = PreKeyUtil.generatePreKeys(context);
+    PreKeyRecord       lastResortKeyRecord = PreKeyUtil.generateLastResortKey(context);
+    IdentityKeyPair    identityKey         = IdentityKeyUtil.getIdentityKeyPair(context);
+    SignedPreKeyRecord signedPreKeyRecord  = PreKeyUtil.generateSignedPreKey(context, identityKey);
 
     Log.w(TAG, "Registering new prekeys...");
 

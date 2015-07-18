@@ -41,6 +41,7 @@ gai izango da saiootan sartzeko.</string>
   <!--BlockedContactsActivity-->
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Agian kontaktu hau egiaztatu beharko zenuke.</string>
+  <!--ContactsDatabase-->
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Mezuaren tamaina: %d KB</string>
   <string name="ConversationItem_expires_s">Iraingutuko da: %s</string>
@@ -320,7 +321,6 @@ Nortasun gako ezezagun batekin jaso da mezua. Klik egin prozesatzeko eta erakust
   <string name="KeyCachingService_passphrase_cached">TextSecure desblokeatuta dago</string>
   <string name="KeyCachingService_lock">Blokeatu pasahitz bat erabiliz</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_encrypted_message">Enkriptatuko mezua...</string>
   <string name="MessageNotifier_no_subject">(Ez dago gairik)</string>
   <string name="MessageNotifier_message_delivery_failed">Mezuaren banaketak huts egin du.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Mezuaren banaketak huts egin du.</string>
@@ -517,7 +517,6 @@ huts egin du.
   <string name="preferences__change_passphrase">Pasahitza aldatu</string>
   <string name="preferences__change_my_passphrase">Nire pasahitza aldatu</string>
   <string name="preferences__enable_passphrase">Pasahitza gaitu</string>
-  <string name="preferences__enable_local_encryption_of_messages_and_keys">Mezuen eta gakoen enkriptatze lokala gaitu</string>
   <string name="preferences__screen_security">Pantailaren segurtasuna</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokeatu pantailazoak arestikoen zerrendan eta aplikazioaren barruan</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Ahaztu pasahitza memoriatik denbora tarte bat pasa ondoren</string>

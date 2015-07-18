@@ -95,8 +95,7 @@ public class ConfirmIdentityDialog extends AlertDialog {
         protected Void doInBackground(Void... params) {
           IdentityDatabase identityDatabase = DatabaseFactory.getIdentityDatabase(getContext());
 
-          identityDatabase.saveIdentity(masterSecret,
-                                        mismatch.getRecipientId(),
+          identityDatabase.saveIdentity(mismatch.getRecipientId(),
                                         mismatch.getIdentityKey());
 
           processMessageRecord(messageRecord);

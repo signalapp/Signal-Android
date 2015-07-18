@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.crypto.storage;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterCipher;
@@ -34,37 +36,46 @@ public class TextSecureSessionStore implements SessionStore {
 
   private static final int SINGLE_STATE_VERSION   = 1;
   private static final int ARCHIVE_STATES_VERSION = 2;
-  private static final int CURRENT_VERSION        = 2;
+  private static final int PLAINTEXT_VERSION      = 3;
+  private static final int CURRENT_VERSION        = 3;
 
-  private final Context      context;
-  private final MasterSecret masterSecret;
+  @NonNull  private final Context      context;
+  @Nullable private final MasterSecret masterSecret;
 
-  public TextSecureSessionStore(Context context, MasterSecret masterSecret) {
+  public TextSecureSessionStore(@NonNull Context context) {
+    this(context, null);
+  }
+
+  public TextSecureSessionStore(@NonNull Context context, @Nullable MasterSecret masterSecret) {
     this.context      = context.getApplicationContext();
     this.masterSecret = masterSecret;
   }
 
   @Override
-  public SessionRecord loadSession(AxolotlAddress address) {
+  public SessionRecord loadSession(@NonNull AxolotlAddress address) {
     synchronized (FILE_LOCK) {
       try {
-        MasterCipher    cipher = new MasterCipher(masterSecret);
-        FileInputStream in     = new FileInputStream(getSessionFile(address));
-
-        int versionMarker  = readInteger(in);
+        FileInputStream in            = new FileInputStream(getSessionFile(address));
+        int             versionMarker = readInteger(in);
 
         if (versionMarker > CURRENT_VERSION) {
           throw new AssertionError("Unknown version: " + versionMarker);
         }
 
-        byte[] serialized = cipher.decryptBytes(readBlob(in));
+        byte[] serialized = readBlob(in);
         in.close();
+
+        if (versionMarker < PLAINTEXT_VERSION && masterSecret != null) {
+          serialized = new MasterCipher(masterSecret).decryptBytes(serialized);
+        } else if (versionMarker < PLAINTEXT_VERSION) {
+          throw new AssertionError("Session didn't get migrated: (" + versionMarker + "," + address + ")");
+        }
 
         if (versionMarker == SINGLE_STATE_VERSION) {
           SessionStructure sessionStructure = SessionStructure.parseFrom(serialized);
           SessionState     sessionState     = new SessionState(sessionStructure);
           return new SessionRecord(sessionState);
-        } else if (versionMarker == ARCHIVE_STATES_VERSION) {
+        } else if (versionMarker >= ARCHIVE_STATES_VERSION) {
           return new SessionRecord(serialized);
         } else {
           throw new AssertionError("Unknown version: " + versionMarker);
@@ -77,16 +88,15 @@ public class TextSecureSessionStore implements SessionStore {
   }
 
   @Override
-  public void storeSession(AxolotlAddress address, SessionRecord record) {
+  public void storeSession(@NonNull AxolotlAddress address, @NonNull SessionRecord record) {
     synchronized (FILE_LOCK) {
       try {
-        MasterCipher     masterCipher = new MasterCipher(masterSecret);
         RandomAccessFile sessionFile  = new RandomAccessFile(getSessionFile(address), "rw");
         FileChannel      out          = sessionFile.getChannel();
 
         out.position(0);
         writeInteger(CURRENT_VERSION, out);
-        writeBlob(masterCipher.encryptBytes(record.serialize()), out);
+        writeBlob(record.serialize(), out);
         out.truncate(out.position());
 
         sessionFile.close();
@@ -143,6 +153,23 @@ public class TextSecureSessionStore implements SessionStore {
     return results;
   }
 
+  public void migrateSessions() {
+    synchronized (FILE_LOCK) {
+      File directory = getSessionDirectory();
+
+      for (File session : directory.listFiles()) {
+        if (session.isFile()) {
+          AxolotlAddress address = getAddressName(session);
+
+          if (address != null) {
+            SessionRecord sessionRecord = loadSession(address);
+            storeSession(address, sessionRecord);
+          }
+        }
+      }
+    }
+  }
+
   private File getSessionFile(AxolotlAddress address) {
     return new File(getSessionDirectory(), getSessionName(address));
   }
@@ -166,6 +193,23 @@ public class TextSecureSessionStore implements SessionStore {
     int       deviceId    = axolotlAddress.getDeviceId();
 
     return recipientId + (deviceId == TextSecureAddress.DEFAULT_DEVICE_ID ? "" : "." + deviceId);
+  }
+
+  private @Nullable AxolotlAddress getAddressName(File sessionFile) {
+    try {
+      String[]  parts     = sessionFile.getName().split("[.]");
+      Recipient recipient = RecipientFactory.getRecipientForId(context, Integer.valueOf(parts[0]), true);
+
+      int deviceId;
+
+      if (parts.length > 1) deviceId = Integer.parseInt(parts[1]);
+      else                  deviceId = TextSecureAddress.DEFAULT_DEVICE_ID;
+
+      return new AxolotlAddress(recipient.getNumber(), deviceId);
+    } catch (NumberFormatException e) {
+      Log.w(TAG, e);
+      return null;
+    }
   }
 
   private byte[] readBlob(FileInputStream in) throws IOException {

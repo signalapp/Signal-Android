@@ -65,26 +65,26 @@ public class ContactSelectionListAdapter extends    CursorAdapter
 
   @Override
   public View newView(Context context, Cursor cursor, ViewGroup parent) {
-    return li.inflate(R.layout.push_contact_selection_list_item, parent, false);
+    return li.inflate(R.layout.contact_selection_list_item, parent, false);
   }
 
   @Override
   public void bindView(View view, Context context, Cursor cursor) {
-    long   id         = cursor.getLong(cursor.getColumnIndexOrThrow(ContactsDatabase.ID_COLUMN));
-    int    type       = cursor.getInt(cursor.getColumnIndexOrThrow(ContactsDatabase.TYPE_COLUMN));
-    String name       = cursor.getString(cursor.getColumnIndexOrThrow(ContactsDatabase.NAME_COLUMN));
-    String number     = cursor.getString(cursor.getColumnIndexOrThrow(ContactsDatabase.NUMBER_COLUMN));
-    int    numberType = cursor.getInt(cursor.getColumnIndexOrThrow(ContactsDatabase.NUMBER_TYPE_COLUMN));
-    String label      = cursor.getString(cursor.getColumnIndexOrThrow(ContactsDatabase.LABEL_COLUMN));
-    String labelText  = ContactsContract.CommonDataKinds.Phone.getTypeLabel(context.getResources(),
-                                                                            numberType, label).toString();
+    long   id          = cursor.getLong(cursor.getColumnIndexOrThrow(ContactsDatabase.ID_COLUMN));
+    int    contactType = cursor.getInt(cursor.getColumnIndexOrThrow(ContactsDatabase.CONTACT_TYPE_COLUMN));
+    String name        = cursor.getString(cursor.getColumnIndexOrThrow(ContactsDatabase.NAME_COLUMN));
+    String number      = cursor.getString(cursor.getColumnIndexOrThrow(ContactsDatabase.NUMBER_COLUMN));
+    int    numberType  = cursor.getInt(cursor.getColumnIndexOrThrow(ContactsDatabase.NUMBER_TYPE_COLUMN));
+    String label       = cursor.getString(cursor.getColumnIndexOrThrow(ContactsDatabase.LABEL_COLUMN));
+    String labelText   = ContactsContract.CommonDataKinds.Phone.getTypeLabel(context.getResources(),
+                                                                             numberType, label).toString();
 
-    int color = (type == ContactsDatabase.PUSH_TYPE) ? drawables.getColor(0, 0xa0000000) :
-                                                       drawables.getColor(1, 0xff000000);
+    int color = (contactType == ContactsDatabase.PUSH_TYPE) ? drawables.getColor(0, 0xa0000000) :
+                                                              drawables.getColor(1, 0xff000000);
 
 
     ((ContactSelectionListItem)view).unbind();
-    ((ContactSelectionListItem)view).set(id, type, name, number, labelText, color, multiSelect);
+    ((ContactSelectionListItem)view).set(id, contactType, name, number, labelText, color, multiSelect);
     ((ContactSelectionListItem)view).setChecked(selectedContacts.containsKey(id));
   }
 
@@ -96,7 +96,7 @@ public class ContactSelectionListAdapter extends    CursorAdapter
 
     if (convertView == null) {
       holder      = new HeaderViewHolder();
-      convertView = li.inflate(R.layout.push_contact_selection_list_header, viewGroup, false);
+      convertView = li.inflate(R.layout.contact_selection_list_header, viewGroup, false);
       holder.text = (TextView) convertView.findViewById(R.id.text);
       convertView.setTag(holder);
     } else {
@@ -105,10 +105,10 @@ public class ContactSelectionListAdapter extends    CursorAdapter
 
     cursor.moveToPosition(i);
 
-    int type = cursor.getInt(cursor.getColumnIndexOrThrow(ContactsDatabase.TYPE_COLUMN));
+    int contactType = cursor.getInt(cursor.getColumnIndexOrThrow(ContactsDatabase.CONTACT_TYPE_COLUMN));
 
-    if (type == ContactsDatabase.PUSH_TYPE) holder.text.setText(R.string.contact_selection_list__header_textsecure_users);
-    else                                    holder.text.setText(R.string.contact_selection_list__header_other);
+    if (contactType == ContactsDatabase.PUSH_TYPE) holder.text.setText(R.string.contact_selection_list__header_textsecure_users);
+    else                                           holder.text.setText(R.string.contact_selection_list__header_other);
 
     return convertView;
   }
@@ -118,7 +118,7 @@ public class ContactSelectionListAdapter extends    CursorAdapter
     Cursor cursor = getCursor();
     cursor.moveToPosition(i);
 
-    return cursor.getInt(cursor.getColumnIndexOrThrow(ContactsDatabase.TYPE_COLUMN));
+    return cursor.getInt(cursor.getColumnIndexOrThrow(ContactsDatabase.CONTACT_TYPE_COLUMN));
   }
 
   public Map<Long, String> getSelectedContacts() {

@@ -57,6 +57,7 @@
 Ова може или да значи дека некој сака да ја пресретне вашата комуникација, или пак %2$s ја преинсталирал TextSecure и сега има нов клуч.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Овој контакт би требало да го верфивикувате.</string>
   <string name="ConfirmIdentityDialog_accept">Прифати</string>
+  <!--ContactsDatabase-->
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Големина на порака: %d KB</string>
   <string name="ConversationItem_expires_s">Истекува: %s</string>
@@ -388,7 +389,6 @@
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_messages_in_d_conversations">%1$d пораки во %2$d теми</string>
   <string name="MessageNotifier_most_recent_from_s">Најнови од: %1$s</string>
-  <string name="MessageNotifier_encrypted_message">Шифрирана порака...</string>
   <string name="MessageNotifier_media_message_with_text">Медиа порака: %s</string>
   <string name="MessageNotifier_no_subject">(Без наслов)</string>
   <string name="MessageNotifier_message_delivery_failed">Доставувањето на пораката е неуспешно.</string>
@@ -631,7 +631,6 @@ TextSecure автоматски ќе го провери вашиот број �
   <string name="preferences__change_my_passphrase">Променете ја вашата лозинка</string>
   <string name="preferences__enable_passphrase">Овозможете лозинка</string>
   <string name="preferences__passphrase_summary">Лозинка %s</string>
-  <string name="preferences__enable_local_encryption_of_messages_and_keys">Овозможете локално шифрирање на пораките и клучевите</string>
   <string name="preferences__screen_security">Сигурност на екранот</string>
   <string name="preferences__screen_security_summary">Сигурност на екранот %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Оневозможете screenshots во листата на последни апликации и во самата апликација</string>

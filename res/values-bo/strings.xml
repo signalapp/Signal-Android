@@ -19,6 +19,7 @@
   <string name="AttachmentTypeSelectorAdapter_audio">སྒྲ་ཟློས། </string>
   <!--BlockedContactsActivity-->
   <!--ConfirmIdentityDialog-->
+  <!--ContactsDatabase-->
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">འཕྲིན་ཐུང་ཆེ་ཆུང་།%d KB</string>
   <string name="ConversationItem_expires_s">དུས་ཚོད་རྫོགས།%s</string>
@@ -123,7 +124,6 @@
   <string name="ApplicationMigrationService_import_in_progress">ནང་འདྲེན་བྱེད་བཞིན་ཡོད། </string>
   <!--KeyCachingService-->
   <!--MessageNotifier-->
-  <string name="MessageNotifier_encrypted_message">གསང་སྡོམ་འཕྲིན་ཐུང་། </string>
   <string name="MessageNotifier_message_delivery_failed">འཕྲིན་ཐུང་བཏང་བ་དེ་འགྲོ་མི་འདུག </string>
   <string name="MessageNotifier_failed_to_deliver_message">འཕྲིན་ཐུང་གཏོང་ཐུབ་མ་སོང་། </string>
   <string name="MessageNotifier_error_delivering_message">འཕྲིན་ཐུང་གཏོང་བར་སྐྱོན་ཤོར་འདུག </string>

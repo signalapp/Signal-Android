@@ -18,12 +18,15 @@ package org.thoughtcrime.securesms.contacts;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.database.MergeCursor;
 import android.support.v4.content.CursorLoader;
+import android.text.TextUtils;
 import android.util.Log;
 
-import junit.framework.Assert;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.util.NumberUtil;
 
-import java.util.concurrent.Semaphore;
+import java.util.ArrayList;
 
 /**
  * CursorLoader that initializes a ContactsDatabase instance
@@ -31,47 +34,34 @@ import java.util.concurrent.Semaphore;
  * @author Jake McGinty
  */
 public class ContactsCursorLoader extends CursorLoader {
-  private static final String TAG        = ContactsCursorLoader.class.getSimpleName();
-  private static final int    DB_PERMITS = 100;
 
-  private final Context          context;
-  private final String           filter;
-  private final boolean          pushOnly;
-  private final Semaphore        dbSemaphore = new Semaphore(DB_PERMITS);
-  private       ContactsDatabase db;
+  private static final String TAG = ContactsCursorLoader.class.getSimpleName();
 
-  public ContactsCursorLoader(Context context, String filter, boolean pushOnly) {
+  private final String  filter;
+  private       boolean includeSmsContacts;
+
+  public ContactsCursorLoader(Context context, boolean includeSmsContacts, String filter) {
     super(context);
-    this.context  = context;
+
     this.filter   = filter;
-    this.pushOnly = pushOnly;
-    this.db       = new ContactsDatabase(context);
+    this.includeSmsContacts = includeSmsContacts;
   }
 
   @Override
   public Cursor loadInBackground() {
-    try {
-      dbSemaphore.acquire();
-      return db.query(filter, pushOnly);
-    } catch (InterruptedException ie) {
-      throw new AssertionError(ie);
-    } finally {
-      dbSemaphore.release();
-    }
-  }
+    ContactsDatabase  contactsDatabase = DatabaseFactory.getContactsDatabase(getContext());
+    ArrayList<Cursor> cursorList       = new ArrayList<>(3);
 
-  @Override
-  public void onReset() {
-    Log.w(TAG, "onReset()");
-    try {
-      dbSemaphore.acquire(DB_PERMITS);
-      db.close();
-      db = new ContactsDatabase(context);
-    } catch (InterruptedException ie) {
-      throw new AssertionError(ie);
-    } finally {
-      dbSemaphore.release(DB_PERMITS);
+    cursorList.add(contactsDatabase.queryTextSecureContacts(filter));
+
+    if (includeSmsContacts) {
+      cursorList.add(contactsDatabase.querySystemContacts(filter));
     }
-    super.onReset();
+
+    if (!TextUtils.isEmpty(filter) && NumberUtil.isValidSmsOrEmail(filter)) {
+      cursorList.add(contactsDatabase.getNewNumberCursor(filter));
+    }
+
+    return new MergeCursor(cursorList.toArray(new Cursor[0]));
   }
 }

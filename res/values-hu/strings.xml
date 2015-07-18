@@ -60,6 +60,8 @@ azonosító kulcs %1$s vonatkozásában megváltozott. Ez jelentheti, hogy valak
 ezt a névjegyet.
  </string>
   <string name="ConfirmIdentityDialog_accept">Elfogad</string>
+  <!--ContactsDatabase-->
+  <string name="ContactsDatabase_message_s">Üzenet %s</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Üzenet mérete: %d kB</string>
   <string name="ConversationItem_expires_s">Lejár: %s</string>
@@ -412,7 +414,7 @@ Ismeretlen azonosító kulcsú üzenet érkezett. Kattints rá a feldolgozáshoz
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_messages_in_d_conversations">%1$d üzenet %2$d beszélgetésben</string>
   <string name="MessageNotifier_most_recent_from_s">Legutóbbi tőle: %1$s</string>
-  <string name="MessageNotifier_encrypted_message">Biztonságos üzenet...</string>
+  <string name="MessageNotifier_locked_message">Zárolt üzenet...</string>
   <string name="MessageNotifier_media_message_with_text">Média üzenet: %s</string>
   <string name="MessageNotifier_no_subject">(Nincs tárgy)</string>
   <string name="MessageNotifier_message_delivery_failed">Üzenet kézbesítése sikertelen!</string>
@@ -456,6 +458,7 @@ Ismeretlen azonosító kulcsú üzenet érkezett. Kattints rá a feldolgozáshoz
   <string name="conversation_activity__compose_description">Üzenet létrehozása</string>
   <string name="conversation_activity__emoji_toggle_description">Váltás a hangulatjelek beviteléhez</string>
   <string name="conversation_activity__attachment_thumbnail">Melléklet előnézet</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Közvetlen csatolmányfelvétel</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Média üzenet letöltése</string>
   <string name="conversation_item__mms_image_description">Média üzenet</string>
@@ -681,7 +684,7 @@ sikertelen.
   <string name="preferences__change_my_passphrase">A saját jelszó megváltoztatása</string>
   <string name="preferences__enable_passphrase">Kódszó engedélyezése</string>
   <string name="preferences__passphrase_summary">Jelszó %s</string>
-  <string name="preferences__enable_local_encryption_of_messages_and_keys">Helyi üzenetkódolás és kulcsok engedélyezése</string>
+  <string name="preferences__enable_lock_screen_for_messages">Zárolt képernyő engedélyezése az üzeneteknek</string>
   <string name="preferences__screen_security">Képernyő biztonság</string>
   <string name="preferences__screen_security_summary">Képernyő biztonság %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">A képernyőkép mentés tiltása a korábbi listákban és az alkalmazáson belül</string>
@@ -811,6 +814,7 @@ Ingyenes biztonságos üzenet küldés TextSecure és Signal felhasználóknak</
   <string name="conversation__menu_leave_group">Csoport elhagyása</string>
   <string name="conversation__menu_delete_thread">Beszélgetésfolyam törlése</string>
   <string name="conversation__menu_view_media">Minden fénykép</string>
+  <string name="conversation__menu_conversation_settings">Beszélgetés beállítások</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Felugró kiterjesztése</string>
   <!--conversation_callable-->
@@ -854,5 +858,6 @@ Ingyenes biztonságos üzenet küldés TextSecure és Signal felhasználóknak</
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Átvitel ikon</string>
   <!--quick_attachment_drawer-->
+  <string name="quick_camera_unavailable">Kamera nem elérhető</string>
   <!--EOF-->
 </resources>

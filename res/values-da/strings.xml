@@ -41,6 +41,7 @@ men alle med fysisk adgang til din enhed kan få adgang til dem.
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Du bør verificere
 denne kontakt.</string>
+  <!--ContactsDatabase-->
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Besked størrelse: %d KB</string>
   <string name="ConversationItem_expires_s">Udløber: %s</string>
@@ -293,7 +294,6 @@ Modtog en besked med en ukendt identitetsnøgle. Klik for at se og behandle den.
   <string name="KeyCachingService_passphrase_cached">TextSecure er låst op</string>
   <string name="KeyCachingService_lock">Lås med et kodeord</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_encrypted_message">Krypteret besked...</string>
   <string name="MessageNotifier_no_subject">(Intet emne)</string>
   <string name="MessageNotifier_message_delivery_failed">Levering af besked mislykkedes.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Kunne ikke sende besked.</string>

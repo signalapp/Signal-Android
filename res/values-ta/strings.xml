@@ -47,6 +47,7 @@
 அடையாளச் சாவி பெற்றார்.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">நீங்கள் இந்த தொடர்புபை 
 உறுதி செய்ய விரும்பலாம்</string>
+  <!--ContactsDatabase-->
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">செய்தி அளவு : %d KB</string>
   <string name="ConversationItem_expires_s">காலாவதி நேரம்: %s</string>
@@ -346,7 +347,6 @@ SMS-களை இறக்குமதி செய்திருந்தா�
   <string name="KeyCachingService_passphrase_cached">TextSecure திறக்கப்பட்டுள்ளது </string>
   <string name="KeyCachingService_lock">கடவுச்சொல்லை வைத்து பூட்டவும் </string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_encrypted_message">மறையாக்கப்பட செய்தி...</string>
   <string name="MessageNotifier_media_message_with_text">மீடியா செய்தி: %s</string>
   <string name="MessageNotifier_no_subject">(தலைப்பு இல்லை)</string>
   <string name="MessageNotifier_message_delivery_failed">செய்தி விநியோகிப்பது தோல்வியடைந்தது.</string>
@@ -575,7 +575,6 @@ TextSecure சரிபார்ப்பு SMS-செய்திக்கா�
   <string name="preferences__change_my_passphrase">என் கடவுச்சொல்லை மாற்று</string>
   <string name="preferences__enable_passphrase">கடவுச்சொல்லை செயல்படுத்து</string>
   <string name="preferences__passphrase_summary">கடவுச்சொல் %s</string>
-  <string name="preferences__enable_local_encryption_of_messages_and_keys">சாவிகள் மற்றும் செய்திகளின் கோப்பை மறையாக்கம் செய்வதை செயல்படுத்து</string>
   <string name="preferences__screen_security">திரை பாதுகாப்பு</string>
   <string name="preferences__screen_security_summary">திரை பாதுகாப்பு %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">அண்மை பட்டியல் மற்றும் மென்பொருளுக்கு உள்ளே திரையை படம் எடுப்பதை தடுக்கவும்</string>

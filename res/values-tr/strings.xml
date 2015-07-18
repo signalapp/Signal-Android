@@ -53,6 +53,7 @@ Gelecekte TextSecure mesajlarını tekrar kullanmak isterseniz telefon numaranı
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Bu kişiyi doğrulamak 
 isteyebilirsiniz.</string>
   <string name="ConfirmIdentityDialog_accept">Kabul et</string>
+  <!--ContactsDatabase-->
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Mesaj boyutu: %d KB</string>
   <string name="ConversationItem_expires_s">Ömrü: %s</string>
@@ -366,7 +367,6 @@ Bilinmeyen kimlik anahtarı içeren bir mesaj alındı. İşlemek ve görüntül
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_messages_in_d_conversations">%2$d sohbette %1$d mesaj</string>
   <string name="MessageNotifier_most_recent_from_s">En yeni mesaj: %1$s</string>
-  <string name="MessageNotifier_encrypted_message">Şifrelenmiş mesaj...</string>
   <string name="MessageNotifier_media_message_with_text">Medya mesajı: %s</string>
   <string name="MessageNotifier_no_subject">(Konusuz)</string>
   <string name="MessageNotifier_message_delivery_failed">Mesaj iletimi başarısız.</string>
@@ -593,7 +593,6 @@ başarısız.</string>
   <string name="preferences__change_my_passphrase">Parolamı değiştir</string>
   <string name="preferences__enable_passphrase">Parola etkinleştir</string>
   <string name="preferences__passphrase_summary">Parola %s</string>
-  <string name="preferences__enable_local_encryption_of_messages_and_keys">Mesaj ve anahtarların lokal şifrelenmesini etkinleştirr</string>
   <string name="preferences__screen_security">Ekran güvenliği</string>
   <string name="preferences__screen_security_summary">Ekran güvenliği %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">En son listelerde ve uygulama içinde ekran görüntüsü alınmasını engelle</string>

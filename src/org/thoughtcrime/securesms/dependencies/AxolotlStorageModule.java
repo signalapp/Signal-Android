@@ -22,13 +22,13 @@ public class AxolotlStorageModule {
   @Provides SignedPreKeyStoreFactory provideSignedPreKeyStoreFactory() {
     return new SignedPreKeyStoreFactory() {
       @Override
-      public SignedPreKeyStore create(MasterSecret masterSecret) {
-        return new TextSecureAxolotlStore(context, masterSecret);
+      public SignedPreKeyStore create() {
+        return new TextSecureAxolotlStore(context);
       }
     };
   }
 
   public static interface SignedPreKeyStoreFactory {
-    public SignedPreKeyStore create(MasterSecret masterSecret);
+    public SignedPreKeyStore create();
   }
 }

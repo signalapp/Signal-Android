@@ -19,6 +19,7 @@
   <string name="AttachmentTypeSelectorAdapter_audio">အသံ</string>
   <!--BlockedContactsActivity-->
   <!--ConfirmIdentityDialog-->
+  <!--ContactsDatabase-->
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">စာတိုအရွယ်အစား: %d KB</string>
   <string name="ConversationItem_expires_s">သက်တမ်းကုန်: %s</string>
@@ -121,7 +122,6 @@
   <string name="ApplicationMigrationService_import_in_progress">သွင်းယူနေ</string>
   <!--KeyCachingService-->
   <!--MessageNotifier-->
-  <string name="MessageNotifier_encrypted_message">စာဝှက်စနစ်ဖြင့်　အကြောင်းကြားချက်...</string>
   <string name="MessageNotifier_message_delivery_failed">အကြောင်းကြားချက်ပို့လွတ်ခြင်းမအောင်မြင်</string>
   <string name="MessageNotifier_failed_to_deliver_message">အကြောင်းကြားချက်ပို့လွတ်ရန်မအောင်မြင်</string>
   <string name="MessageNotifier_error_delivering_message">အကြောင်းကြားချက်ပို့လွတ်စဉ်အမှား</string>

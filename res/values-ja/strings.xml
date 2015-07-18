@@ -57,6 +57,7 @@
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">この連絡先を
 照合することが推奨されています。</string>
   <string name="ConfirmIdentityDialog_accept">受け取り</string>
+  <!--ContactsDatabase-->
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">メッセージのサイズ： %d KB</string>
   <string name="ConversationItem_expires_s">有効期限： %s</string>
@@ -373,7 +374,6 @@
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_messages_in_d_conversations">%2$d 会話の中の %1$d メッセージ </string>
   <string name="MessageNotifier_most_recent_from_s">最新の受信は次から: %1$s</string>
-  <string name="MessageNotifier_encrypted_message">暗号化されたメッセージ…</string>
   <string name="MessageNotifier_media_message_with_text">メディアメッセージ: %s</string>
   <string name="MessageNotifier_no_subject">（無題）</string>
   <string name="MessageNotifier_message_delivery_failed">メッセージの配信に失敗しました。</string>
@@ -603,7 +603,6 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
   <string name="preferences__change_my_passphrase">パスワードの変更</string>
   <string name="preferences__enable_passphrase">パスフレーズが有効</string>
   <string name="preferences__passphrase_summary">パスフレーズ %s</string>
-  <string name="preferences__enable_local_encryption_of_messages_and_keys">メッセージと鍵のローカル暗号化を有効にする</string>
   <string name="preferences__screen_security">スクリーンセキュリティ</string>
   <string name="preferences__screen_security_summary">スクリーンセキュリティ %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">スクリーンショットをアプリ表示の場合防ぐ</string>

@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
           package="org.thoughtcrime.securesms"
-      android:versionCode="132"
-      android:versionName="2.21.0">
+      android:versionCode="136"
+      android:versionName="2.23.0">
 
     <uses-sdk tools:overrideLibrary="com.amulyakhare.textdrawable,com.astuetz.pagerslidingtabstrip,pl.tajchert.waitingdots"/>
 
@@ -60,7 +60,7 @@
 
     <!-- Set image as wallpaper -->
     <uses-permission android:name="android.permission.SET_WALLPAPER"/>
-    
+
     <!-- Permissions from RedPhone -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
@@ -148,6 +148,8 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
 
+
+
     </activity-alias>
 
     <activity android:name=".ConversationActivity"
@@ -199,8 +201,7 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".NewConversationActivity"
-              android:label="@string/AndroidManifest__select_contacts"
-              android:windowSoftInputMode="stateVisible"
+              android:theme="@style/TextSecure.LightNoActionBar"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".PushContactSelectionActivity"
@@ -278,6 +279,11 @@
             <data android:scheme="mms" />
             <data android:scheme="mmsto" />
         </intent-filter>
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <data android:mimeType="vnd.android.cursor.item/vnd.org.thoughtcrime.securesms.contact" />
+        </intent-filter>
     </activity>
 
     <activity android:name=".RecipientPreferenceActivity"
@@ -308,6 +314,20 @@
         </intent-filter>
     </service>
 
+    <service android:name=".service.AccountAuthenticatorService" android:exported="true">
+        <intent-filter>
+            <action android:name="android.accounts.AccountAuthenticator" />
+        </intent-filter>
+        <meta-data android:name="android.accounts.AccountAuthenticator" android:resource="@xml/authenticator" />
+    </service>
+
+    <service android:name=".service.ContactsSyncAdapterService" android:exported="true">
+        <intent-filter>
+            <action android:name="android.content.SyncAdapter"/>
+        </intent-filter>
+        <meta-data android:name="android.content.SyncAdapter" android:resource="@xml/syncadapter" />
+        <meta-data android:name="android.provider.CONTACTS_STRUCTURE" android:resource="@xml/contactsformat" />
+    </service>
 
     <receiver android:name=".gcm.GcmBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND" >
         <intent-filter>

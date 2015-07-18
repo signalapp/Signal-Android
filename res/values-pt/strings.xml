@@ -59,6 +59,8 @@ que %2$s reinstalou TextSecure e tem agora uma nova chave de identidade.
 </string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Pode ser desejável verificar este contracto.</string>
   <string name="ConfirmIdentityDialog_accept">Aceitar</string>
+  <!--ContactsDatabase-->
+  <string name="ContactsDatabase_message_s">Mensagem %s</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Tamanho da mensagem: %d KB</string>
   <string name="ConversationItem_expires_s">Expira: %s</string>
@@ -403,7 +405,7 @@ Recebida mensagem com chave de identidade desconhecida. Clique para processar e 
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_messages_in_d_conversations">%1$d mensagens em %2$d conversas</string>
   <string name="MessageNotifier_most_recent_from_s">Mais recente de: %1$s</string>
-  <string name="MessageNotifier_encrypted_message">Mensagem cifrada...</string>
+  <string name="MessageNotifier_locked_message">Mensagem bloqueada...</string>
   <string name="MessageNotifier_media_message_with_text">Mensagem media: %s</string>
   <string name="MessageNotifier_no_subject">(Sem Assunto)</string>
   <string name="MessageNotifier_message_delivery_failed">A remessa de mensagem falhou.</string>
@@ -659,7 +661,7 @@ falhou.
   <string name="preferences__change_my_passphrase">Mudar a minha frase-chave</string>
   <string name="preferences__enable_passphrase">Activar frase-chave</string>
   <string name="preferences__passphrase_summary">Frase-chave %s</string>
-  <string name="preferences__enable_local_encryption_of_messages_and_keys">Activar cifra local para as mensagens e chaves</string>
+  <string name="preferences__enable_lock_screen_for_messages">Habilitar ecrã de bloqueio para mensagens</string>
   <string name="preferences__screen_security">Segurança de ecrã</string>
   <string name="preferences__screen_security_summary">Segurança de ecrã %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Bloquear captura de ecrã na lista de recentes e dentro da aplicação</string>

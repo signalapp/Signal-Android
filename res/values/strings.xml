@@ -70,6 +70,9 @@
     </string>
     <string name="ConfirmIdentityDialog_accept">Accept</string>
 
+    <!-- ContactsDatabase -->
+    <string name="ContactsDatabase_message_s">Message %s</string>
+
     <!-- ConversationItem -->
     <string name="ConversationItem_message_size_d_kb">Message size: %d KB</string>
     <string name="ConversationItem_expires_s">Expires: %s</string>
@@ -467,7 +470,7 @@
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_messages_in_d_conversations">%1$d messages in %2$d conversations</string>
     <string name="MessageNotifier_most_recent_from_s">Most recent from: %1$s</string>
-    <string name="MessageNotifier_encrypted_message">Encrypted message...</string>
+    <string name="MessageNotifier_locked_message">Locked message...</string>
     <string name="MessageNotifier_media_message_with_text">Media message: %s</string>
     <string name="MessageNotifier_no_subject">(No subject)</string>
     <string name="MessageNotifier_message_delivery_failed">Message delivery failed.</string>
@@ -779,7 +782,7 @@
     <string name="preferences__change_my_passphrase">Change my passphrase</string>
     <string name="preferences__enable_passphrase">Enable passphrase</string>
     <string name="preferences__passphrase_summary">Passphrase %s</string>
-    <string name="preferences__enable_local_encryption_of_messages_and_keys">Enable local encryption of messages and keys</string>
+    <string name="preferences__enable_lock_screen_for_messages">Enable lock screen for messages</string>
     <string name="preferences__screen_security">Screen security</string>
     <string name="preferences__screen_security_summary">Screen security %s</string>
     <string name="preferences__disable_screen_security_to_allow_screen_shots">Block screenshots in the recents list and inside the app</string>

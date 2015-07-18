@@ -59,6 +59,7 @@
         αυτήν την επαφή.
     </string>
   <string name="ConfirmIdentityDialog_accept">Αποδοχή</string>
+  <!--ContactsDatabase-->
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Μέγεθος μηνύματος: %d KB</string>
   <string name="ConversationItem_expires_s">Λήγει: %s</string>
@@ -379,7 +380,6 @@ SMS της συσκευής σας στο TextSecure. Αν έχετε ήδη ε�
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_messages_in_d_conversations">%1$d μηνύματα σe %2$d συζητήσεις</string>
   <string name="MessageNotifier_most_recent_from_s">Τελευταίο μήνυμα από: %1$s</string>
-  <string name="MessageNotifier_encrypted_message">Κρυπτογραφημένο μήνυμα...</string>
   <string name="MessageNotifier_media_message_with_text">Μήνυμα Πολυμέσων: %s</string>
   <string name="MessageNotifier_no_subject">(Χωρίς Θέμα)</string>
   <string name="MessageNotifier_message_delivery_failed">Η παράδοση μηνύματος απέτυχε.</string>
@@ -610,7 +610,6 @@ SMS της συσκευής σας στο TextSecure. Αν έχετε ήδη ε�
   <string name="preferences__change_my_passphrase">Άλλαξε το συνθηματικό μου</string>
   <string name="preferences__enable_passphrase">Ενεργοποίηση συνθηματικού</string>
   <string name="preferences__passphrase_summary">Συνθηματικό %s</string>
-  <string name="preferences__enable_local_encryption_of_messages_and_keys">Ενεργοποίηση τοπικής κρυπτογράφησης όλων των μηνυμάτων και κλειδιών</string>
   <string name="preferences__screen_security">Ασφάλεια οθόνης</string>
   <string name="preferences__screen_security_summary">Ασφάλεια οθόνης %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Να επιτρέπεται η καταγραφή της οθόνης (screenshots)</string>

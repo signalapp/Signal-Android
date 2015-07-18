@@ -53,6 +53,7 @@
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">您可能希望验证
 这个联系人。</string>
   <string name="ConfirmIdentityDialog_accept">接受</string>
+  <!--ContactsDatabase-->
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">信息大小： %d KB</string>
   <string name="ConversationItem_expires_s">到期： %s</string>
@@ -385,7 +386,6 @@
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_messages_in_d_conversations">%1$d 信息是在 %2$d 中的会话</string>
   <string name="MessageNotifier_most_recent_from_s">最新的邮件来自：%1$s</string>
-  <string name="MessageNotifier_encrypted_message">加密信息...</string>
   <string name="MessageNotifier_media_message_with_text">媒体信息：%s</string>
   <string name="MessageNotifier_no_subject">（无主题）</string>
   <string name="MessageNotifier_message_delivery_failed">信息发送失败。</string>
@@ -635,7 +635,6 @@ TextSecure 在等待短信验证时超时。</string>
   <string name="preferences__change_my_passphrase">更改我的密码</string>
   <string name="preferences__enable_passphrase">启用密码</string>
   <string name="preferences__passphrase_summary">密码 %s</string>
-  <string name="preferences__enable_local_encryption_of_messages_and_keys">启用本地加密的信息和密钥</string>
   <string name="preferences__screen_security">屏幕安全性</string>
   <string name="preferences__screen_security_summary">屏幕安全性 %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">屏蔽下列应用和内置应用的截屏功能</string>

@@ -59,6 +59,7 @@ clé d’identité.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Vous devriez
 vérifier ce contact.</string>
   <string name="ConfirmIdentityDialog_accept">Accepter</string>
+  <!--ContactsDatabase-->
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Taille du message : %d Ko</string>
   <string name="ConversationItem_expires_s">Expire : %s</string>
@@ -400,7 +401,6 @@ Un message avec une clé de chiffrement inconnue a été reçu. Cliquer pour l\'
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_messages_in_d_conversations">%1$d messages dans %2$d conversations</string>
   <string name="MessageNotifier_most_recent_from_s">Plus récent de : %1$s</string>
-  <string name="MessageNotifier_encrypted_message">Message chiffré…</string>
   <string name="MessageNotifier_media_message_with_text">Message média : %s</string>
   <string name="MessageNotifier_no_subject">(Aucun sujet)</string>
   <string name="MessageNotifier_message_delivery_failed">La distribution du message a échoué.</string>
@@ -649,7 +649,6 @@ par SMS.</string>
   <string name="preferences__change_my_passphrase">Modifier ma phrase de passe</string>
   <string name="preferences__enable_passphrase">Activer la phrase de passe</string>
   <string name="preferences__passphrase_summary">Phrase de passe %s</string>
-  <string name="preferences__enable_local_encryption_of_messages_and_keys">Activer le chiffrement local des messages et des clés</string>
   <string name="preferences__screen_security">Sécurité d’écran</string>
   <string name="preferences__screen_security_summary">Sécurité d\'écran %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Désactiver les prises d\'écrans dans la liste des applications récentes et à l\'intérieur de l\'application</string>

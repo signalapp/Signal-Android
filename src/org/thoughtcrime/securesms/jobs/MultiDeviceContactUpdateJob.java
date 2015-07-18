@@ -59,7 +59,7 @@ public class MultiDeviceContactUpdateJob extends MasterSecretJob implements Inje
   public void onRun(MasterSecret masterSecret)
       throws IOException, UntrustedIdentityException, NetworkException
   {
-    TextSecureMessageSender messageSender   = messageSenderFactory.create(masterSecret);
+    TextSecureMessageSender messageSender   = messageSenderFactory.create();
     File                    contactDataFile = createTempFile("multidevice-contact-update");
 
     try {

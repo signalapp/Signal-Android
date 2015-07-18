@@ -53,6 +53,7 @@
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Возможно, этого собеседника
 стоит перепроверить.</string>
   <string name="ConfirmIdentityDialog_accept">Принять</string>
+  <!--ContactsDatabase-->
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Размер сообщения: %d Kб</string>
   <string name="ConversationItem_expires_s">Истекает: %s</string>
@@ -382,7 +383,6 @@
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_messages_in_d_conversations">%1$d сообщений %2$d разговорах</string>
   <string name="MessageNotifier_most_recent_from_s">Последнее от %1$s</string>
-  <string name="MessageNotifier_encrypted_message">Зашифрованное сообщение...</string>
   <string name="MessageNotifier_media_message_with_text">MMS-сообщение: %s</string>
   <string name="MessageNotifier_no_subject">(Нет темы)</string>
   <string name="MessageNotifier_message_delivery_failed">Сбой доставки сообщения.</string>
@@ -634,7 +634,6 @@ SMS-подтверждения...
   <string name="preferences__change_my_passphrase">Изменить мою парольную фразу</string>
   <string name="preferences__enable_passphrase">Включить парольную фразу</string>
   <string name="preferences__passphrase_summary">Парольная фраза %s</string>
-  <string name="preferences__enable_local_encryption_of_messages_and_keys">Включить шифрование при хранении сообщений и ключей</string>
   <string name="preferences__screen_security">Защита экрана</string>
   <string name="preferences__screen_security_summary">Безопасность экрана %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Блокировать снимки экрана внутри приложения</string>

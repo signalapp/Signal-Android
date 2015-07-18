@@ -29,6 +29,7 @@ Cảnh báo, điều này tắt mã hóa lưu trữ cho tất cả tin nhắn v�
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Bạn có thể muốn kiểm chứng
 địa chỉ liên lạc này.
     </string>
+  <!--ContactsDatabase-->
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Kích thước tin nhắn: %d KB</string>
   <string name="ConversationItem_expires_s">Hết hạn: %s</string>
@@ -238,7 +239,6 @@ Nhận thông tin về chìa khóa nhận diện không rõ. Bấm để xử l�
   <string name="KeyCachingService_passphrase_cached">TextSecure được mở khóa</string>
   <string name="KeyCachingService_lock">Khóa bằng mật khẩu</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_encrypted_message">Mã hóa tin nhắn...</string>
   <string name="MessageNotifier_message_delivery_failed">Phân phối tin nhắn bị thất bại.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Thất bại trong việc phân phối tin.</string>
   <string name="MessageNotifier_error_delivering_message">Có lỗi khi phân phối tin.</string>
