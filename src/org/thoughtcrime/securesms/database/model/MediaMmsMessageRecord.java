@@ -137,7 +137,7 @@ public class MediaMmsMessageRecord extends MessageRecord {
     } else if (isLegacyMessage()) {
       return emphasisAdded(context.getString(R.string.MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported));
     } else if (!getBody().isPlaintext()) {
-      return emphasisAdded(context.getString(R.string.MessageNotifier_encrypted_message));
+      return emphasisAdded(context.getString(R.string.MessageNotifier_locked_message));
     }
 
     return super.getDisplayBody();
