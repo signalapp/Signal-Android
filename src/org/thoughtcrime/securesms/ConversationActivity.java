@@ -1370,8 +1370,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private class QuickAttachmentToggleListener implements OnClickListener {
     @Override
     public void onClick(View v) {
-      composeText.clearFocus();
-      container.show(composeText, quickAttachmentDrawer);
+      if (!quickAttachmentDrawer.isShowing()) {
+        composeText.clearFocus();
+        container.show(composeText, quickAttachmentDrawer);
+      } else {
+        container.hideAttachedInput(false);
+      }
     }
   }
 
