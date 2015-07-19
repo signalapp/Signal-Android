@@ -27,6 +27,7 @@ import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -57,6 +58,7 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActionB
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   protected ContactSelectionListFragment contactsFragment;
+  private InputMethodManager inputMethodManager;
 
   private   Toolbar         toolbar;
   private   EditText        searchText;
@@ -108,11 +110,15 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActionB
     contactsFragment.setOnContactSelectedListener(this);
     contactsFragment.setOnRefreshListener(this);
 
+    inputMethodManager = (InputMethodManager) getSystemService(this.INPUT_METHOD_SERVICE);
+
+
     this.keyboardToggle.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         searchText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PERSON_NAME);
         toggle.display(dialpadToggle);
+        inputMethodManager.showSoftInput(searchText, 1);
       }
     });
 
@@ -121,6 +127,7 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActionB
       public void onClick(View v) {
         searchText.setInputType(InputType.TYPE_CLASS_PHONE);
         toggle.display(keyboardToggle);
+        inputMethodManager.showSoftInput(searchText, 1);
       }
     });
 
