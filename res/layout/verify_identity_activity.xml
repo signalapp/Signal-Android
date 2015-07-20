@@ -14,6 +14,7 @@
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="fill_parent"
             android:orientation="vertical"
+            android:animateLayoutChanges="true"
             android:layout_height="wrap_content">
 
             <TextView
@@ -31,6 +32,12 @@
                 android:text=""
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:typeface="monospace" />
+
+                <me.dm7.barcodescanner.zxing.ZXingScannerView
+                    android:id="@+id/camera_preview"
+                    android:layout_width="match_parent"
+                    android:visibility="gone"
+                    android:layout_height="200dp"/>
 
             <Button
                 android:id="@+id/scan_qr_code"

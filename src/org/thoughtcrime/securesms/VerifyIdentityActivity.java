@@ -23,11 +23,14 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.zxing.Result;
 import com.google.zxing.common.BitMatrix;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
@@ -45,6 +48,8 @@ import org.whispersystems.libaxolotl.state.SessionRecord;
 import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.textsecure.api.push.TextSecureAddress;
 
+import me.dm7.barcodescanner.zxing.ZXingScannerView;
+
 /**
  * Activity for verifying identity keys.
  *
@@ -59,9 +64,11 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
   private TextView     remoteIdentityFingerprint;
   private Button       scanButton;
   private ImageView    qrCode;
+  private ZXingScannerView scannerView;
 
   private final DynamicTheme    dynamicTheme    = new DynamicTheme   ();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
+
 
   @Override
   public void onCreate(Bundle state) {
@@ -81,7 +88,36 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
     dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
     getSupportActionBar().setTitle(R.string.AndroidManifest__verify_identity);
+  }
 
+  private void hideScanner() {
+    scanButton.setVisibility(View.VISIBLE);
+    scannerView.setVisibility(View.GONE);
+    scannerView.stopCamera();
+
+  }
+
+  private void showScanner() {
+    scanButton.setVisibility(View.GONE);
+    scannerView.setVisibility(View.VISIBLE);
+    scannerView.setResultHandler(new ZXingScannerView.ResultHandler() {
+      @Override
+      public void handleResult(Result result) {
+        checkKey(result.getText());
+        hideScanner();
+      }
+    });
+    scannerView.setAutoFocus(true);
+    scannerView.startCamera();
+  }
+
+
+  @Override
+  protected void onPause() {
+    super.onPause();
+
+    scannerView.stopCamera();
+    scannerView.setResultHandler(null);
   }
 
   @Override
@@ -148,28 +184,20 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
     this.localIdentityFingerprint  = (TextView)findViewById(R.id.you_read);
     this.remoteIdentityFingerprint = (TextView)findViewById(R.id.friend_reads);
     this.scanButton                = (Button)findViewById(R.id.scan_qr_code);
-    this.qrCode                    = (ImageView)findViewById(R.id.identity_qrcode);
+    this.qrCode = (ImageView) findViewById(R.id.identity_qrcode);
     this.recipient                 = RecipientFactory.getRecipientForId(this, this.getIntent().getLongExtra("recipient", -1), true);
     this.masterSecret              = this.getIntent().getParcelableExtra("master_secret");
 
+    this.scannerView               = (ZXingScannerView)findViewById(R.id.camera_preview);
     this.scanButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        Intent i = new Intent(VerifyIdentityActivity.this, QrScanActivity.class);
-        i.putExtra("recipient", Long.valueOf(recipient.getRecipientId()));
-        i.putExtra("remote_identity", getIntent().getParcelableExtra("remote_identity"));
-        startActivityForResult(i, QrScanActivity.REQUEST_SCAN_BARCODE);
+        showScanner();
       }
     });
   }
 
-  @Override
-  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-    super.onActivityResult(requestCode, resultCode, data);
-    if(resultCode != Activity.RESULT_OK)
-      return;
-
-    String key = data.getStringExtra(QrScanActivity.FINGERPRINT);
+  private void checkKey(String key) {
     IdentityKey identityKey = getRemoteIdentityKey(masterSecret, recipient);
     if(identityKey != null) {
       String fingerprint = identityKey.getFingerprint();

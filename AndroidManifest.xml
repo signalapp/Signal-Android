@@ -355,14 +355,6 @@
 
         <uses-library android:name="android.test.runner" />
 
-        <activity
-            android:name=".QrScanActivity"
-
-            android:parentActivityName=".VerifyIdentityActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.thoughtcrime.securesms.VerifyIdentityActivity" />
-        </activity>
     </application>
 
 </manifest>
