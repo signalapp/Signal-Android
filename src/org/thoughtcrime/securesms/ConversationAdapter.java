@@ -158,7 +158,7 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
 
     MessageRecord messageRecord = reader.getCurrent();
 
-    messageRecordCache.put(type + messageId, new SoftReference<MessageRecord>(messageRecord));
+    messageRecordCache.put(type + messageId, new SoftReference<>(messageRecord));
 
     return messageRecord;
   }

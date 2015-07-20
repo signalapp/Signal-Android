@@ -21,10 +21,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -222,30 +225,45 @@ public class MmsSmsDatabase extends Database {
     return db.rawQuery(query, null);
   }
 
-  public Reader readerFor(Cursor cursor, MasterSecret masterSecret) {
+  public Reader readerFor(@NonNull Cursor cursor, @Nullable MasterSecret masterSecret) {
     return new Reader(cursor, masterSecret);
   }
 
-  public Reader readerFor(Cursor cursor) {
+  public Reader readerFor(@NonNull Cursor cursor) {
     return new Reader(cursor);
   }
 
   public class Reader {
 
-    private final Cursor cursor;
-    private final EncryptingSmsDatabase.Reader smsReader;
-    private final MmsDatabase.Reader mmsReader;
+    private final Cursor                       cursor;
+    private final Optional<MasterSecret>       masterSecret;
+    private       EncryptingSmsDatabase.Reader smsReader;
+    private       MmsDatabase.Reader           mmsReader;
 
-    public Reader(Cursor cursor, MasterSecret masterSecret) {
+    public Reader(Cursor cursor, @Nullable MasterSecret masterSecret) {
       this.cursor       = cursor;
-      this.smsReader    = DatabaseFactory.getEncryptingSmsDatabase(context).readerFor(masterSecret, cursor);
-      this.mmsReader    = DatabaseFactory.getMmsDatabase(context).readerFor(masterSecret, cursor);
+      this.masterSecret = Optional.fromNullable(masterSecret);
     }
 
     public Reader(Cursor cursor) {
-      this.cursor = cursor;
-      this.smsReader = DatabaseFactory.getSmsDatabase(context).readerFor(cursor);
-      this.mmsReader = DatabaseFactory.getMmsDatabase(context).readerFor(null, cursor);
+      this(cursor, null);
+    }
+
+    private EncryptingSmsDatabase.Reader getSmsReader() {
+      if (smsReader == null) {
+        if (masterSecret.isPresent()) smsReader = DatabaseFactory.getEncryptingSmsDatabase(context).readerFor(masterSecret.get(), cursor);
+        else                          smsReader = DatabaseFactory.getSmsDatabase(context).readerFor(cursor);
+      }
+
+      return smsReader;
+    }
+
+    private MmsDatabase.Reader getMmsReader() {
+      if (mmsReader == null) {
+        mmsReader = DatabaseFactory.getMmsDatabase(context).readerFor(masterSecret.orNull(), cursor);
+      }
+
+      return mmsReader;
     }
 
     public MessageRecord getNext() {
@@ -259,9 +277,9 @@ public class MmsSmsDatabase extends Database {
       String type = cursor.getString(cursor.getColumnIndexOrThrow(TRANSPORT));
 
       if (MmsSmsDatabase.MMS_TRANSPORT.equals(type)) {
-        return mmsReader.getCurrent();
+        return getMmsReader().getCurrent();
       } else {
-        return smsReader.getCurrent();
+        return getSmsReader().getCurrent();
       }
     }
 
