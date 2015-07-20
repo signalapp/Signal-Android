@@ -43,20 +43,31 @@ public class Recipient {
 
   private final long recipientId;
 
-  private String number;
-  private String name;
+  private String  number;
+  private String  name;
+  private boolean stale;
 
   private ContactPhoto contactPhoto;
   private Uri          contactUri;
 
   @Nullable private MaterialColor color;
 
-  Recipient(long recipientId, String number, ListenableFutureTask<RecipientDetails> future)
+  Recipient(long recipientId,
+            @NonNull  String number,
+            @Nullable Recipient stale,
+            @NonNull  ListenableFutureTask<RecipientDetails> future)
   {
     this.recipientId  = recipientId;
     this.number       = number;
     this.contactPhoto = ContactPhotoFactory.getLoadingPhoto();
     this.color        = null;
+
+    if (stale != null) {
+      this.name         = stale.name;
+      this.contactUri   = stale.contactUri;
+      this.contactPhoto = stale.contactPhoto;
+      this.color        = stale.color;
+    }
 
     future.addListener(new FutureTaskListener<RecipientDetails>() {
       @Override
@@ -76,7 +87,7 @@ public class Recipient {
 
       @Override
       public void onFailure(Throwable error) {
-        Log.w("Recipient", error);
+        Log.w(TAG, error);
       }
     });
   }
@@ -142,7 +153,7 @@ public class Recipient {
 
   public static Recipient getUnknownRecipient() {
     return new Recipient(-1, new RecipientDetails("Unknown", "Unknown", null,
-                                                  ContactPhotoFactory.getDefaultContactPhoto("Unknown"), null));
+                                                  ContactPhotoFactory.getDefaultContactPhoto(null), null));
   }
 
   @Override
@@ -173,5 +184,13 @@ public class Recipient {
 
   public interface RecipientModifiedListener {
     public void onModified(Recipient recipient);
+  }
+
+  boolean isStale() {
+    return stale;
+  }
+
+  void setStale() {
+    this.stale = true;
   }
 }

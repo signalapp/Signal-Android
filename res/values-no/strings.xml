@@ -53,6 +53,7 @@ Om du vil benytte TextSecure meldinger igjen i fremtiden må du registrere telef
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Du bør verifisere
 denne kontakten.</string>
   <string name="ConfirmIdentityDialog_accept">Godta</string>
+  <!--ContactsDatabase-->
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Meldingsstørrelse: %d KB</string>
   <string name="ConversationItem_expires_s">Utløper: %s</string>
@@ -63,8 +64,8 @@ denne kontakten.</string>
   <string name="ConversationItem_received_key_exchange_message_click_to_process">Nøkkelutveksling melding mottatt, klikk for å behandle.</string>
   <string name="ConversationItem_group_action_left">%1$s har forlatt gruppen.</string>
   <string name="ConversationItem_click_for_details">Klikk for detaljer</string>
-  <string name="ConversationItem_click_to_approve_unencrypted">Tast for usikret \"fallback\"</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">\"Fallback\" til ukryptert SMS?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">Klikk for usikret «fallback»</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">«Fallback» til ukryptert SMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Benytte ukryptert MMS som alternativ?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Denne meldingen vil <b>ikke</b> bli kryptert fordi mottageren ikke lenger er en TextSecure bruker.\n\nSend ukryptert melding?</string>
   <string name="ConversationItem_unable_to_open_media">Finner ikke en applikasjon som kan åpne dette mediet.</string>
@@ -142,7 +143,7 @@ denne kontakten.</string>
   <string name="DateUtils_now">Nå</string>
   <string name="DateUtils_minutes_ago">%d min</string>
   <!--DeviceListActivity-->
-  <string name="DeviceListActivity_disconnect_s">Frakoble \'%s\'?</string>
+  <string name="DeviceListActivity_disconnect_s">Frakoble «%s»?</string>
   <string name="DeviceListActivity_by_disconnecting_this_device_it_will_no_longer_be_able_to_send_or_receive">Ved å frakoble denne enheten vil den ikke lenger være i stand til å sende eller motta meldinger.</string>
   <string name="DeviceListActivity_network_connection_failed">Nettverksforbindelse feilet...</string>
   <string name="DeviceListActivity_try_again">Prøv igjen</string>
@@ -383,7 +384,6 @@ Mottatt melding med ukjent ID nøkkel. Klikk for å prosessere og vise.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_messages_in_d_conversations">%1$d meldinger i %2$d samtaler</string>
   <string name="MessageNotifier_most_recent_from_s">Nyeste fra: %1$s</string>
-  <string name="MessageNotifier_encrypted_message">Kryptert melding...</string>
   <string name="MessageNotifier_media_message_with_text">Media melding: %s</string>
   <string name="MessageNotifier_no_subject">(Mangler emne)</string>
   <string name="MessageNotifier_message_delivery_failed">Levering av meldingen mislyktes.</string>
@@ -407,7 +407,7 @@ Mottatt melding med ukjent ID nøkkel. Klikk for å prosessere og vise.</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">Du er ikke registrert hos \"push\" tjenesten...</string>
   <string name="SingleContactSelectionActivity_updating_directory">Oppdaterer katalog</string>
-  <string name="SingleContactSelectionActivity_updating_push_directory">Oppdaterer \"push\" katalogen...</string>
+  <string name="SingleContactSelectionActivity_updating_push_directory">Oppdaterer «push»-katalogen …</string>
   <string name="SingleContactSelectionActivity_contact_photo">Kontaktbilde</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Velg for</string>
@@ -489,7 +489,7 @@ Importer en klartekst backup kompatibel med \'SMSBackup And Restore\'.</string>
   <!--GroupUtil-->
   <string name="GroupUtil_joined_the_group">%1$s sluttet seg til gruppen.</string>
   <string name="GroupUtil_group_updated">Gruppen er oppdatert.</string>
-  <string name="GroupUtil_title_is_now">Tittelen er nå \'%1$s\'.</string>
+  <string name="GroupUtil_title_is_now">Tittelen er nå «%1$s».</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Lås opp</string>
   <!--prompt_mms_activity-->
@@ -625,10 +625,9 @@ feilet.</string>
   <string name="preferences__change_my_passphrase">Velg et nytt passord</string>
   <string name="preferences__enable_passphrase">Aktiver passord</string>
   <string name="preferences__passphrase_summary">Passord %s</string>
-  <string name="preferences__enable_local_encryption_of_messages_and_keys">Aktiver lokal kryptering av meldinger og nøkler</string>
   <string name="preferences__screen_security">Skjermsikkerhet</string>
   <string name="preferences__screen_security_summary">Skjermsikkerhet %s</string>
-  <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokker skjermbilde i \"siste applikasjoner\" listen og i appliksjonen</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokker skjermbilde i listen over siste applikasjoner og inni applikasjonen</string>
   <string name="preferences__forget_passphrase_from_memory_after_some_interval">Fjern passord fra minnet etter et gitt intervall</string>
   <string name="preferences__timeout_passphrase">Passordtimeout</string>
   <string name="preferences__pref_timeout_interval_dialogtitle">Velg passord timeout</string>
@@ -672,7 +671,7 @@ feilet.</string>
   <string name="preferences__custom">Tilpasset</string>
   <string name="preferences__advanced">Avansert</string>
   <string name="preferences__privacy">Personvern</string>
-  <string name="preferences__mms_user_agent">MMS \"User Agent\"</string>
+  <string name="preferences__mms_user_agent">MMS «User Agent»</string>
   <string name="preferences__advanced_mms_access_point_names">Manuelle MMS instillinger</string>
   <string name="preferences__enable_manual_mms">Bruk manuelle MMS innstillinger</string>
   <string name="preferences__override_system_mms_settings">Overstyr systeminnstillingene for MMS med informasjonen under.</string>
@@ -698,7 +697,7 @@ feilet.</string>
   <string name="preferences__language_summary">Språk %s</string>
   <string name="preferences__textsecure_messages">TextSecure meldinger</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
-Gratis og private meldinger til TextSecure og Signal brukere
+Gratis og private meldinger til TextSecure- og Signal-brukere
  </string>
   <string name="preferences__submit_debug_log">Send debug logg</string>
   <string name="preferences__support_wifi_calling">\'WiFi anrop\' kompatibilititetsmodus</string>

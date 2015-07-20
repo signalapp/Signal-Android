@@ -52,6 +52,8 @@ Indien je in de toekomst weer TextSecure berichten wilt gebruiken zul je je tele
   <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">De identificerende sleutel van %1$s is veranderd. Dit kan betekenen dat iemand probeert je communicatie te onderscheppen óf %2$s heeft simpelweg TextSecure opnieuw geïnstalleerd en heeft nu een nieuwe identiteitssleutel.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Je wilt wellicht dit contact verifiëren.</string>
   <string name="ConfirmIdentityDialog_accept">Accepteren</string>
+  <!--ContactsDatabase-->
+  <string name="ContactsDatabase_message_s">Bericht sturen naar %s</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Berichtgrootte: %d KB</string>
   <string name="ConversationItem_expires_s">Verloopt: %s</string>
@@ -383,7 +385,7 @@ Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en 
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_messages_in_d_conversations">%1$d berichten in %2$d gesprekken</string>
   <string name="MessageNotifier_most_recent_from_s">Meest recente van: %1$s</string>
-  <string name="MessageNotifier_encrypted_message">Versleuteld bericht...</string>
+  <string name="MessageNotifier_locked_message">Vergrendeld bericht...</string>
   <string name="MessageNotifier_media_message_with_text">Mediabericht: %s</string>
   <string name="MessageNotifier_no_subject">(Geen onderwerp)</string>
   <string name="MessageNotifier_message_delivery_failed">Berichtaflevering mislukt.</string>
@@ -630,7 +632,7 @@ TextSecure heeft te lang moeten wachten op het binnenkomen van de verificatie-SM
   <string name="preferences__change_my_passphrase">Mijn wachtwoord veranderen</string>
   <string name="preferences__enable_passphrase">Wachtwoord inschakelen</string>
   <string name="preferences__passphrase_summary">Wachtwoord %s</string>
-  <string name="preferences__enable_local_encryption_of_messages_and_keys">Lokale versleuteling van berichten en sleutels inschakelen</string>
+  <string name="preferences__enable_lock_screen_for_messages">Vergrendeling inschakelen voor berichten</string>
   <string name="preferences__screen_security">Schermbeveiliging</string>
   <string name="preferences__screen_security_summary">Schermbeveiliging %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Screenshots onmogelijk maken in deze app en de recente lijst</string>

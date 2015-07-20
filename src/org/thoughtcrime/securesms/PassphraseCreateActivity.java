@@ -66,7 +66,7 @@ public class PassphraseCreateActivity extends PassphraseActivity {
                                                                 passphrase);
 
       MasterSecretUtil.generateAsymmetricMasterSecret(PassphraseCreateActivity.this, masterSecret);
-      IdentityKeyUtil.generateIdentityKeys(PassphraseCreateActivity.this, masterSecret);
+      IdentityKeyUtil.generateIdentityKeys(PassphraseCreateActivity.this);
       VersionTracker.updateLastSeenVersion(PassphraseCreateActivity.this);
       TextSecurePreferences.setPasswordDisabled(PassphraseCreateActivity.this, true);
 

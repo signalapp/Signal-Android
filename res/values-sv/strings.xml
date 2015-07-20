@@ -58,6 +58,7 @@ identitetsnyckel.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Det kan vara en bra idé att
 verifiera denna kontakt.</string>
   <string name="ConfirmIdentityDialog_accept">Acceptera</string>
+  <!--ContactsDatabase-->
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Meddelandestorlek: %d kB</string>
   <string name="ConversationItem_expires_s">Går ut: %s</string>
@@ -389,7 +390,6 @@ Tog emot meddelande med okänd identitetsnyckel. Tryck för att bearbeta och vis
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_messages_in_d_conversations">%1$d meddelanden i %2$d konversationer</string>
   <string name="MessageNotifier_most_recent_from_s">Senaste från %1$s</string>
-  <string name="MessageNotifier_encrypted_message">Krypterat meddelande...</string>
   <string name="MessageNotifier_media_message_with_text">Mediameddelande: %s</string>
   <string name="MessageNotifier_no_subject">(Inget ämne)</string>
   <string name="MessageNotifier_message_delivery_failed">Meddelandeleverans misslyckades.</string>
@@ -433,6 +433,7 @@ Tog emot meddelande med okänd identitetsnyckel. Tryck för att bearbeta och vis
   <string name="conversation_activity__compose_description">Skapa meddelande</string>
   <string name="conversation_activity__emoji_toggle_description">Växla till emoji-tangentbord</string>
   <string name="conversation_activity__attachment_thumbnail">Bifogad miniatyrbild</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Dölj/visa bilagor</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Laddar ner mediameddelande</string>
   <string name="conversation_item__mms_image_description">Mediameddelande</string>
@@ -518,6 +519,7 @@ TELEFONNUMMER</string>
   <string name="registration_activity__phone_number">TELEFONNUMMER</string>
   <string name="registration_activity__register">Registrera</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Registrering kommer att temporärt överföra viss kontaktinformation till servern.</string>
+  <string name="registration_activity__powered_by_twilio">Powered by twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Några möjliga orsaker:</string>
   <string name="registration_problems__sms_interceptors">SMS-interceptorer</string>
@@ -601,7 +603,7 @@ TextSecure uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="arrays__mute_for_two_hours">Tysta i 2 timmar</string>
   <string name="arrays__mute_for_one_day">Tysta i 1 dag</string>
   <string name="arrays__mute_for_seven_days">Tysta i 7 dagar</string>
-  <string name="arrays__settings_default">Inställningars standardvärden</string>
+  <string name="arrays__settings_default">Inställningars standardvärde</string>
   <string name="arrays__enabled">Aktiverad</string>
   <string name="arrays__disabled">Inaktiverad</string>
   <!--plurals.xml-->
@@ -628,7 +630,6 @@ TextSecure uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="preferences__change_my_passphrase">Ändra mitt lösenord</string>
   <string name="preferences__enable_passphrase">Aktivera lösenordsfras</string>
   <string name="preferences__passphrase_summary">Lösenordsfras %s</string>
-  <string name="preferences__enable_local_encryption_of_messages_and_keys">Aktivera lokal kryptering av meddelanden och nycklar</string>
   <string name="preferences__screen_security">Skärmsäkerhet</string>
   <string name="preferences__screen_security_summary">Skärmsäkerhet %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blockera skärmdumpar i Senaste-listen samt inuti appen</string>
@@ -741,7 +742,7 @@ Fria privata meddelanden till användare av TextSecure och Signal</string>
   <string name="conversation_list__menu_search">Sök</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kontaktfoto</string>
-  <string name="conversation_list_item_view__error_alert">Felnotifiering</string>
+  <string name="conversation_list_item_view__error_alert">Felmeddelande</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Ny konversation</string>
   <!--conversation_secure_verified-->

@@ -67,7 +67,7 @@ public class ThumbnailView extends FrameLayout {
 
   @Override protected void onAttachedToWindow() {
     super.onAttachedToWindow();
-    EventBus.getDefault().registerSticky(this);
+    if (!EventBus.getDefault().isRegistered(this)) EventBus.getDefault().registerSticky(this);
   }
 
   @Override protected void onDetachedFromWindow() {
@@ -193,13 +193,14 @@ public class ThumbnailView extends FrameLayout {
     }
 
     return  Glide.with(getContext()).load(new DecryptableUri(masterSecret, slide.getThumbnailUri()))
+                                    .asBitmap()
                                     .centerCrop();
   }
 
   private GenericRequestBuilder buildPlaceholderGlideRequest(Slide slide) {
     return Glide.with(getContext()).load(slide.getPlaceholderRes(getContext().getTheme()))
-                                   .fitCenter()
-                                   .crossFade();
+                                   .asBitmap()
+                                   .fitCenter();
   }
 
   private void animateOutProgress() {

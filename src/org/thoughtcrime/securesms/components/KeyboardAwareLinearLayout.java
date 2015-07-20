@@ -97,14 +97,6 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
     oldRect.set(newRect);
   }
 
-  public void padForCustomKeyboard(final int height) {
-    setPadding(0, 0, 0, height);
-  }
-
-  public void unpadForCustomKeyboard() {
-    setPadding(0, 0, 0, 0);
-  }
-
   private int getViewInset() {
     if (Build.VERSION.SDK_INT < VERSION_CODES.LOLLIPOP) {
       return 0;
@@ -135,7 +127,6 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
       setKeyboardPortraitHeight(keyboardHeight);
     }
     notifyShownListeners();
-    unpadForCustomKeyboard();
   }
 
   protected void onKeyboardClose() {
@@ -188,6 +179,19 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
     }
   }
 
+  public void postOnKeyboardOpen(final Runnable runnable) {
+    if (!keyboardOpen) {
+      addOnKeyboardShownListener(new OnKeyboardShownListener() {
+        @Override public void onKeyboardShown() {
+          removeOnKeyboardShownListener(this);
+          runnable.run();
+        }
+      });
+    } else {
+      runnable.run();
+    }
+  }
+
   public void addOnKeyboardHiddenListener(OnKeyboardHiddenListener listener) {
     hiddenListeners.add(listener);
   }
@@ -205,13 +209,15 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
   }
 
   private void notifyHiddenListeners() {
-    for (OnKeyboardHiddenListener listener : hiddenListeners) {
+    final Set<OnKeyboardHiddenListener> listeners = new HashSet<>(hiddenListeners);
+    for (OnKeyboardHiddenListener listener : listeners) {
       listener.onKeyboardHidden();
     }
   }
 
   private void notifyShownListeners() {
-    for (OnKeyboardShownListener listener : shownListeners) {
+    final Set<OnKeyboardShownListener> listeners = new HashSet<>(shownListeners);
+    for (OnKeyboardShownListener listener : listeners) {
       listener.onKeyboardShown();
     }
   }

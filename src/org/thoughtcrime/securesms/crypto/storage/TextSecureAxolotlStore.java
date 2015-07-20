@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.crypto.storage;
 
 import android.content.Context;
 
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.whispersystems.libaxolotl.AxolotlAddress;
 import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.IdentityKeyPair;
@@ -25,11 +24,11 @@ public class TextSecureAxolotlStore implements AxolotlStore {
   private final IdentityKeyStore  identityKeyStore;
   private final SessionStore      sessionStore;
 
-  public TextSecureAxolotlStore(Context context, MasterSecret masterSecret) {
-    this.preKeyStore       = new TextSecurePreKeyStore(context, masterSecret);
-    this.signedPreKeyStore = new TextSecurePreKeyStore(context, masterSecret);
-    this.identityKeyStore  = new TextSecureIdentityKeyStore(context, masterSecret);
-    this.sessionStore      = new TextSecureSessionStore(context, masterSecret);
+  public TextSecureAxolotlStore(Context context) {
+    this.preKeyStore       = new TextSecurePreKeyStore(context);
+    this.signedPreKeyStore = new TextSecurePreKeyStore(context);
+    this.identityKeyStore  = new TextSecureIdentityKeyStore(context);
+    this.sessionStore      = new TextSecureSessionStore(context);
   }
 
   @Override

@@ -6,6 +6,7 @@ import android.support.v7.widget.AppCompatEditText;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
+import android.text.TextUtils.TruncateAt;
 import android.text.style.RelativeSizeSpan;
 import android.util.AttributeSet;
 
@@ -22,6 +23,16 @@ public class ComposeText extends EmojiEditText {
 
   public ComposeText(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
+  }
+
+  @Override protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+    super.onLayout(changed, left, top, right, bottom);
+    if (!TextUtils.isEmpty(getHint())) {
+      setHint(TextUtils.ellipsize(getHint(),
+                                  getPaint(),
+                                  getWidth() - getPaddingLeft() - getPaddingRight(),
+                                  TruncateAt.END));
+    }
   }
 
   public void setHint(@NonNull String hint) {

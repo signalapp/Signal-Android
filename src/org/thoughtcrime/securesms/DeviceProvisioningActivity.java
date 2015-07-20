@@ -108,7 +108,7 @@ public class DeviceProvisioningActivity extends PassphraseRequiredActionBarActiv
           String                   ephemeralId      = uri.getQueryParameter("uuid");
           String                   publicKeyEncoded = uri.getQueryParameter("pub_key");
           ECPublicKey              publicKey        = Curve.decodePoint(Base64.decode(publicKeyEncoded), 0);
-          IdentityKeyPair          identityKeyPair  = IdentityKeyUtil.getIdentityKeyPair(context, masterSecret);
+          IdentityKeyPair          identityKeyPair  = IdentityKeyUtil.getIdentityKeyPair(context);
 
           accountManager.addDevice(ephemeralId, publicKey, identityKeyPair, verificationCode);
           return SUCCESS;

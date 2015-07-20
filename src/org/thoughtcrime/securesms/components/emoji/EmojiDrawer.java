@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.LinearLayoutCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -19,6 +18,7 @@ import android.widget.LinearLayout;
 import com.astuetz.PagerSlidingTabStrip;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout;
 import org.thoughtcrime.securesms.components.RepeatableImageKey;
 import org.thoughtcrime.securesms.components.RepeatableImageKey.KeyEventListener;
 import org.thoughtcrime.securesms.components.emoji.EmojiPageView.EmojiSelectionListener;
@@ -27,10 +27,9 @@ import org.thoughtcrime.securesms.util.ResUtil;
 import java.util.LinkedList;
 import java.util.List;
 
-public class EmojiDrawer extends LinearLayoutCompat {
+public class EmojiDrawer extends LinearLayout {
   private static final KeyEvent DELETE_KEY_EVENT = new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL);
 
-  private LinearLayout         container;
   private ViewPager            pager;
   private List<EmojiPageModel> models;
   private PagerSlidingTabStrip strip;
@@ -42,11 +41,8 @@ public class EmojiDrawer extends LinearLayoutCompat {
   }
 
   public EmojiDrawer(Context context, AttributeSet attrs) {
-    this(context, attrs, 0);
-  }
-
-  public EmojiDrawer(Context context, AttributeSet attrs, int defStyle) {
-    super(context, attrs, defStyle);
+    super(context, attrs);
+    setOrientation(VERTICAL);
     final View v = LayoutInflater.from(getContext()).inflate(R.layout.emoji_drawer, this, true);
     initializeResources(v);
     initializePageModels();
@@ -59,7 +55,6 @@ public class EmojiDrawer extends LinearLayoutCompat {
 
   private void initializeResources(View v) {
     Log.w("EmojiDrawer", "initializeResources()");
-    this.container = (LinearLayout)         v.findViewById(R.id.container);
     this.pager     = (ViewPager)            v.findViewById(R.id.emoji_pager);
     this.strip     = (PagerSlidingTabStrip) v.findViewById(R.id.tabs);
 
@@ -71,8 +66,19 @@ public class EmojiDrawer extends LinearLayoutCompat {
     });
   }
 
-  public boolean isOpen() {
-    return container.getVisibility() == View.VISIBLE;
+  public boolean isShowing() {
+    return getVisibility() == VISIBLE;
+  }
+
+  public void show(KeyboardAwareLinearLayout container) {
+    ViewGroup.LayoutParams params = getLayoutParams();
+    params.height = container.getKeyboardHeight();
+    setLayoutParams(params);
+    setVisibility(VISIBLE);
+  }
+
+  public void dismiss() {
+    setVisibility(GONE);
   }
 
   private void initializeEmojiGrid() {

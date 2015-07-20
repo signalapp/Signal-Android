@@ -58,6 +58,8 @@
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Можда желите да оверите
 овај контакт.</string>
   <string name="ConfirmIdentityDialog_accept">Прихвати</string>
+  <!--ContactsDatabase-->
+  <string name="ContactsDatabase_message_s">Порука %s</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Величина поруке: %d KB</string>
   <string name="ConversationItem_expires_s">Истиче: %s</string>
@@ -398,7 +400,7 @@
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_messages_in_d_conversations">%1$d порука у %2$d преписки</string>
   <string name="MessageNotifier_most_recent_from_s">Најскорија од: %1$s</string>
-  <string name="MessageNotifier_encrypted_message">Шифрована порука...</string>
+  <string name="MessageNotifier_locked_message">Закључана порука...</string>
   <string name="MessageNotifier_media_message_with_text">Мултимедијална порука: %s</string>
   <string name="MessageNotifier_no_subject">(Без предмета)</string>
   <string name="MessageNotifier_message_delivery_failed">Испорука поруке није успела.</string>
@@ -650,7 +652,7 @@
   <string name="preferences__change_my_passphrase">Измени моју лозинку</string>
   <string name="preferences__enable_passphrase">Омогући лозинку</string>
   <string name="preferences__passphrase_summary">Лозинка %s</string>
-  <string name="preferences__enable_local_encryption_of_messages_and_keys">Омогући локално шифровање порука и кључева</string>
+  <string name="preferences__enable_lock_screen_for_messages">Укључи екран закључавања за поруке</string>
   <string name="preferences__screen_security">Безбедност екрана</string>
   <string name="preferences__screen_security_summary">обезбеђења екрана %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Блокирај снимке екрана у списку недавних апликација и унутар апликације</string>

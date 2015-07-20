@@ -49,6 +49,7 @@
   <string name="ConfirmIdentityDialog_the_signature_on_this_key_exchange_is_different">%1$s님의 인증 키가 변경되었습니다. 이 경우 누군가 통신을 가로채려고 하거나 %2$s님께서 TextSecure를 다시 설치하여 새 인증 키가 되었습니다.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">인증 키를 확인할 것을 권장합니다.</string>
   <string name="ConfirmIdentityDialog_accept">수락</string>
+  <!--ContactsDatabase-->
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">메시지 크기: %dKB</string>
   <string name="ConversationItem_expires_s">만료일: %s</string>
@@ -358,7 +359,6 @@
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_messages_in_d_conversations">대화 %2$d개에 있는 메시지 %1$d개</string>
   <string name="MessageNotifier_most_recent_from_s">%1$s님에게서 최근 메시지</string>
-  <string name="MessageNotifier_encrypted_message">암호화된 메시지</string>
   <string name="MessageNotifier_media_message_with_text">미디어 메시지: %s</string>
   <string name="MessageNotifier_no_subject">(제목 없음)</string>
   <string name="MessageNotifier_message_delivery_failed">메시지 전송 실패</string>
@@ -402,6 +402,7 @@
   <string name="conversation_activity__compose_description">메시지 작성</string>
   <string name="conversation_activity__emoji_toggle_description">이모티콘 키보드 전환</string>
   <string name="conversation_activity__attachment_thumbnail">첨부파일 미리보기 이미지</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_description">첨부 창 전환</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">미디어 메시지 다운로드 중</string>
   <string name="conversation_item__mms_image_description">미디어 메시지</string>
@@ -577,7 +578,6 @@
   <string name="preferences__change_my_passphrase">암호 변경</string>
   <string name="preferences__enable_passphrase">암호 사용</string>
   <string name="preferences__passphrase_summary">암호 %s</string>
-  <string name="preferences__enable_local_encryption_of_messages_and_keys">저장된 메시지 및 키 암호화 사용</string>
   <string name="preferences__screen_security">화면 보안</string>
   <string name="preferences__screen_security_summary">화면 보안 %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">최근 사용 목록/개요 및 앱 안에서 스크린샷 차단</string>
@@ -706,6 +706,7 @@
   <string name="conversation__menu_leave_group">그룹 나가기</string>
   <string name="conversation__menu_delete_thread">대화 삭제</string>
   <string name="conversation__menu_view_media">전체 이미지</string>
+  <string name="conversation__menu_conversation_settings">대화 설정</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">팝업 펼치기</string>
   <!--conversation_callable-->
@@ -749,5 +750,6 @@
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">전송 아이콘</string>
   <!--quick_attachment_drawer-->
+  <string name="quick_camera_unavailable">카메라 사용할 수 없음</string>
   <!--EOF-->
 </resources>

@@ -104,7 +104,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
       throws RetryLaterException, InsecureFallbackApprovalException, UntrustedIdentityException,
              UndeliverableMessageException
   {
-    TextSecureMessageSender messageSender = messageSenderFactory.create(masterSecret);
+    TextSecureMessageSender messageSender = messageSenderFactory.create();
     String                  destination   = message.getTo()[0].getString();
 
     try {

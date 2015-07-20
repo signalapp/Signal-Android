@@ -52,6 +52,7 @@ public class QuickAttachmentDrawer extends ViewGroup {
   private float       halfExpandedAnchorPoint = COLLAPSED_ANCHOR_POINT;
   private boolean     halfModeUnsupported     = VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH;
   private Rect        drawChildrenRect        = new Rect();
+  private boolean     paused                  = false;
 
   public QuickAttachmentDrawer(Context context) {
     this(context, null);
@@ -128,6 +129,7 @@ public class QuickAttachmentDrawer extends ViewGroup {
     }
     shutterButton.setOnClickListener(new ShutterClickListener());
     fullScreenButton.setOnClickListener(new FullscreenClickListener());
+    controls.setVisibility(INVISIBLE);
     addView(controls, controlsIndex > -1 ? controlsIndex : indexOfChild(quickCamera) + 1);
   }
 
@@ -273,10 +275,12 @@ public class QuickAttachmentDrawer extends ViewGroup {
     }
 
     if (slideOffset == COLLAPSED_ANCHOR_POINT && quickCamera.isStarted()) {
-      Log.w(TAG, "computeScroll(PAUSE)");
       quickCamera.onPause();
-    } else if (slideOffset != COLLAPSED_ANCHOR_POINT && !quickCamera.isStarted()) {
-      Log.w(TAG, "computeScroll(RESUME)");
+      controls.setVisibility(INVISIBLE);
+      quickCamera.setVisibility(INVISIBLE);
+    } else if (slideOffset != COLLAPSED_ANCHOR_POINT && !quickCamera.isStarted() & !paused) {
+      controls.setVisibility(VISIBLE);
+      quickCamera.setVisibility(VISIBLE);
       quickCamera.onResume();
     }
   }
@@ -504,10 +508,12 @@ public class QuickAttachmentDrawer extends ViewGroup {
   }
 
   public void onPause() {
+    paused = true;
     quickCamera.onPause();
   }
 
   public void onResume() {
+    paused = false;
     if (drawerState.isVisible()) quickCamera.onResume();
   }
 

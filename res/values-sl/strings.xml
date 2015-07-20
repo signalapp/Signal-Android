@@ -53,6 +53,8 @@ Za ponovno uporabo sporočil TextSecure se boste morali zopet prijaviti s svojo 
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Morda bi želeli
 preveriti ta stik.</string>
   <string name="ConfirmIdentityDialog_accept">Sprejmi</string>
+  <!--ContactsDatabase-->
+  <string name="ContactsDatabase_message_s">Sporočilo %s</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Velikost sporočila: %d KB</string>
   <string name="ConversationItem_expires_s">Poteče: %s</string>
@@ -378,7 +380,7 @@ Prejeto sporočilo z neznanim identifikacijskim ključem. Kliknite za obdelavo i
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_messages_in_d_conversations">Sporočil: %1$d, pogovorov: %2$d</string>
   <string name="MessageNotifier_most_recent_from_s">Zadnje sporočilo od: %1$s</string>
-  <string name="MessageNotifier_encrypted_message">Šifrirano sporočilo...</string>
+  <string name="MessageNotifier_locked_message">Zaklenjeno sporočilo...</string>
   <string name="MessageNotifier_media_message_with_text">Multimedijsko sporočilo: %s</string>
   <string name="MessageNotifier_no_subject">(brez naslova)</string>
   <string name="MessageNotifier_message_delivery_failed">Dostava sporočila ni uspela.</string>
@@ -623,7 +625,7 @@ bila uspešna.</string>
   <string name="preferences__change_my_passphrase">Nastavi novo geslo</string>
   <string name="preferences__enable_passphrase">Vklop gesla</string>
   <string name="preferences__passphrase_summary">Geslo: %s</string>
-  <string name="preferences__enable_local_encryption_of_messages_and_keys">Omogoči lokalno šifriranje sporočil na napravi</string>
+  <string name="preferences__enable_lock_screen_for_messages">Omogoči zaklepanje sporočil</string>
   <string name="preferences__screen_security">Zaščita zaslona</string>
   <string name="preferences__screen_security_summary">Zaščita zaslona: %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Prepreči zajem slike zaslona</string>
@@ -752,7 +754,7 @@ Brezplačno zasebno sporočanje za TextSecure in Signal</string>
   <string name="conversation__menu_update_group">Posodobi skupino</string>
   <string name="conversation__menu_leave_group">Zapusti skupino</string>
   <string name="conversation__menu_delete_thread">Izbriši pogovor</string>
-  <string name="conversation__menu_view_media">Vse slike</string>
+  <string name="conversation__menu_view_media">Slike iz pogovora</string>
   <string name="conversation__menu_conversation_settings">Nastavitve pogovora</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Odpri pojavno okno</string>

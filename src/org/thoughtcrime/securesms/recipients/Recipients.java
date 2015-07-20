@@ -55,9 +55,10 @@ public class Recipients implements Iterable<Recipient>, RecipientModifiedListene
   private long         mutedUntil = 0;
   private boolean      blocked    = false;
   private VibrateState vibrate    = VibrateState.DEFAULT;
+  private boolean      stale      = false;
 
   Recipients() {
-    this(new LinkedList<Recipient>(), (RecipientsPreferences)null);
+    this(new LinkedList<Recipient>(), null);
   }
 
   Recipients(List<Recipient> recipients, @Nullable RecipientsPreferences preferences) {
@@ -71,8 +72,18 @@ public class Recipients implements Iterable<Recipient>, RecipientModifiedListene
     }
   }
 
-  Recipients(List<Recipient> recipients, ListenableFutureTask<RecipientsPreferences> preferences) {
+  Recipients(@NonNull  List<Recipient> recipients,
+             @Nullable Recipients stale,
+             @NonNull  ListenableFutureTask<RecipientsPreferences> preferences)
+  {
     this.recipients = recipients;
+
+    if (stale != null) {
+      ringtone   = stale.ringtone;
+      mutedUntil = stale.mutedUntil;
+      vibrate    = stale.vibrate;
+      blocked    = stale.blocked;
+    }
 
     preferences.addListener(new FutureTaskListener<RecipientsPreferences>() {
       @Override
@@ -304,6 +315,13 @@ public class Recipients implements Iterable<Recipient>, RecipientModifiedListene
     }
   }
 
+  boolean isStale() {
+    return stale;
+  }
+
+  void setStale() {
+    this.stale = true;
+  }
 
   public interface RecipientsModifiedListener {
     public void onModified(Recipients recipient);

@@ -28,6 +28,7 @@
   <!--BlockedContactsActivity-->
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Pot ser que vulguis verificar aquest contacte.</string>
+  <!--ContactsDatabase-->
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Mida del missatge: %d KB</string>
   <string name="ConversationItem_expires_s">Expira: %s</string>
@@ -199,7 +200,6 @@
   <string name="KeyCachingService_passphrase_cached">TextSecure està desbloquejat</string>
   <string name="KeyCachingService_lock">Bloqueja amb una frase contrasenya</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_encrypted_message">Missatge encriptat...</string>
   <string name="MessageNotifier_message_delivery_failed">Entrega del missatge fallida.</string>
   <string name="MessageNotifier_failed_to_deliver_message">No s\'ha pogut entregar el missatge.</string>
   <string name="MessageNotifier_error_delivering_message">Error entregant el missatge.</string>
