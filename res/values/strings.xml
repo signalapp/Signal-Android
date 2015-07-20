@@ -13,11 +13,9 @@
     <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Delete all old messages now?</string>
     <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Are you sure you would like to immediately trim all conversation threads to the %s most recent messages?</string>
     <string name="ApplicationPreferencesActivity_delete">Delete</string>
-    <string name="ApplicationPreferencesActivity_disable_storage_encryption">Disable storage encryption?</string>
-    <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
-        Warning, this will disable storage encryption for all messages and keys. Your encrypted
-        sessions will continue to function, but anyone with physical access to your device will be
-        able to access them.
+    <string name="ApplicationPreferencesActivity_disable_passphrase">Disable passphrase?</string>
+    <string name="ApplicationPreferencesActivity_disable_lock_screen">
+        Disable lock screen for messages?
     </string>
     <string name="ApplicationPreferencesActivity_disable">Disable</string>
     <string name="ApplicationPreferencesActivity_unregistering">Unregistering</string>

@@ -137,8 +137,8 @@ public class AppProtectionPreferenceFragment extends PreferenceFragment {
     public boolean onPreferenceChange(final Preference preference, Object newValue) {
       if (((CheckBoxPreference)preference).isChecked()) {
         AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(getActivity());
-        builder.setTitle(R.string.ApplicationPreferencesActivity_disable_storage_encryption);
-        builder.setMessage(R.string.ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages);
+        builder.setTitle(R.string.ApplicationPreferencesActivity_disable_passphrase);
+        builder.setMessage(R.string.ApplicationPreferencesActivity_disable_lock_screen);
         builder.setIconAttribute(R.attr.dialog_alert_icon);
         builder.setPositiveButton(R.string.ApplicationPreferencesActivity_disable, new DialogInterface.OnClickListener() {
           @Override
