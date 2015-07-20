@@ -105,12 +105,11 @@ public class QuickAttachmentDrawer extends ViewGroup {
     final boolean rotationChanged = this.rotation != rotation;
     this.rotation = rotation;
     if (rotationChanged) {
-      Log.w(TAG, String.format("onNewOrientation(old %d, new %d)", this.rotation, rotation));
       if (isOpen()) {
         quickCamera.onPause();
-        setDrawerStateAndAnimate(drawerState);
       }
       updateControlsView();
+      setDrawerStateAndAnimate(drawerState);
     }
   }
 
