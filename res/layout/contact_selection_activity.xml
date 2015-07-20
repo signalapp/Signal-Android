@@ -45,16 +45,16 @@
                     android:layout_gravity="center"
                     android:gravity="center">
 
-                <ImageView android:id="@+id/search_dialpad"
+                <ImageView android:id="@+id/search_keyboard"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:layout_gravity="center_vertical"
                            android:gravity="center_vertical"
                            android:clickable="true"
                            android:background="@drawable/circle_touch_highlight_background"
-                           android:src="@drawable/ic_dialpad_white_24dp" />
+                           android:src="@drawable/ic_keyboard_white_24dp" />
 
-                <ImageView android:id="@+id/search_keyboard"
+                <ImageView android:id="@+id/search_dialpad"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:layout_gravity="center_vertical"
@@ -62,7 +62,7 @@
                            android:clickable="true"
                            android:visibility="gone"
                            android:background="@drawable/circle_touch_highlight_background"
-                           android:src="@drawable/ic_keyboard_white_24dp" />
+                           android:src="@drawable/ic_dialpad_white_24dp" />
 
 
                 <ImageView android:id="@+id/search_clear"
