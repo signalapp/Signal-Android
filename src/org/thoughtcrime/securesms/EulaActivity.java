@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -11,10 +10,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
-import android.util.AttributeSet;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -22,7 +18,6 @@ import android.widget.TextView;
 
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -53,7 +48,7 @@ public class EulaActivity extends AppCompatActivity {
             }
             return new AlertDialog.Builder(getActivity())
                     .setIcon(R.drawable.ic_launcher)
-                    .setTitle(R.string.eula)
+                    .setTitle(R.string.eula_gdata)
                     .setMessage(Html.fromHtml(eula))
                     .setPositiveButton(android.R.string.ok,
                             new DialogInterface.OnClickListener() {
