@@ -326,7 +326,10 @@ public class GUtil {
     int totalHeight = 0;
     for (int i = 0; i < listAdapter.getCount(); i++) {
       View listItem = listAdapter.getView(i, null, listView);
-      listItem.measure(0, 0);
+      listItem.measure(
+              View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+              View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+      );
       totalHeight += listItem.getMeasuredHeight();
     }
 
