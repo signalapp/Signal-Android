@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources xmlns:tools="http://schemas.android.com/tools">manu
     <style name="TextSecure.IntroTheme" parent="@style/Theme.AppCompat.Light">
         <!--<item name="colorPrimary">@android:color/transparent</item>-->
         <item name="actionBarStyle">@style/TextSecure.IntroActionBar</item>
@@ -9,9 +9,11 @@
         <item name="android:src">@drawable/abc_ic_menu_moreoverflow</item>
     </style>
     <style name="GSecureNotActionBar" parent="@style/Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-        <item name="android:statusBarColor">@color/statusBarAlpha</item>
-        <item name="android:windowTranslucentStatus">true</item>
+        <!-- this caused a bug (#48544) with statusBar not being displayed properly -->
+        <!--<item name="android:windowDrawsSystemBarBackgrounds">true</item>-->
+        <!--<item name="android:statusBarColor">@color/statusBarAlpha</item>-->
+        <!--<item name="android:windowTranslucentStatus">true</item>-->
+
         <item name="colorPrimary">@color/gdata_primary_color</item>
         <!-- colorPrimaryDark is used for the status bar -->
         <item name="colorPrimaryDark">@color/gdata_primary_color</item>
