@@ -17,6 +17,8 @@ import org.thoughtcrime.securesms.components.emoji.EmojiEditText;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 public class ComposeText extends EmojiEditText {
+  private SpannableString hint;
+
   public ComposeText(Context context) {
     super(context);
   }
@@ -31,18 +33,22 @@ public class ComposeText extends EmojiEditText {
 
   @Override protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
     super.onLayout(changed, left, top, right, bottom);
-    if (!TextUtils.isEmpty(getHint())) {
-      setHint(TextUtils.ellipsize(getHint(),
-                                  getPaint(),
-                                  getWidth() - getPaddingLeft() - getPaddingRight(),
-                                  TruncateAt.END));
+    if (!TextUtils.isEmpty(hint)) {
+      setHint(ellipsizeToWidth(hint));
     }
   }
 
+  private CharSequence ellipsizeToWidth(CharSequence text) {
+    return TextUtils.ellipsize(text,
+                               getPaint(),
+                               getWidth() - getPaddingLeft() - getPaddingRight(),
+                               TruncateAt.END);
+  }
+
   public void setHint(@NonNull String hint) {
-    SpannableString span = new SpannableString(hint);
-    span.setSpan(new RelativeSizeSpan(0.8f), 0, hint.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-    super.setHint(span);
+    this.hint = new SpannableString(hint);
+    this.hint.setSpan(new RelativeSizeSpan(0.8f), 0, hint.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+    super.setHint(ellipsizeToWidth(this.hint));
   }
 
   public void appendInvite(String invite) {
