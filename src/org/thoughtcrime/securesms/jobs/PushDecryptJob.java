@@ -92,11 +92,7 @@ public class PushDecryptJob extends ContextJob {
   public void onRun() throws NoSuchMessageException {
     if (!IdentityKeyUtil.hasIdentityKey(context)) {
       Log.w(TAG, "Skipping job, waiting for migration...");
-
-      if (KeyCachingService.getMasterSecret(context) != null) {
-        MessageNotifier.updateNotification(context, null, true, -2);
-      }
-
+      MessageNotifier.updateNotification(context, null, true, -2);
       return;
     }
 
