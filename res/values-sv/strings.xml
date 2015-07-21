@@ -12,11 +12,6 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Radera alla gamla meddelanden nu?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Är du säker på att du omedelbart vill trimma alla konversationstrådar till de %s senaste meddelandena?</string>
   <string name="ApplicationPreferencesActivity_delete">Radera</string>
-  <string name="ApplicationPreferencesActivity_disable_storage_encryption">Inaktivera lagringskryptering?</string>
-  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
-Varning, detta inaktiverar lagringskryptering för alla meddelanden och nycklar. Dina krypterade
-sessioner kommer fortsätta att fungera, men vem som helst med fysisk tillgång till din enhet
-kommer kunna komma åt dem.</string>
   <string name="ApplicationPreferencesActivity_disable">Inaktivera</string>
   <string name="ApplicationPreferencesActivity_unregistering">Avregistrering</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Avregistrerar från TextSecure-meddelanden...</string>
@@ -59,6 +54,7 @@ identitetsnyckel.</string>
 verifiera denna kontakt.</string>
   <string name="ConfirmIdentityDialog_accept">Acceptera</string>
   <!--ContactsDatabase-->
+  <string name="ContactsDatabase_message_s">Meddelande %s</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Meddelandestorlek: %d kB</string>
   <string name="ConversationItem_expires_s">Går ut: %s</string>
@@ -390,6 +386,7 @@ Tog emot meddelande med okänd identitetsnyckel. Tryck för att bearbeta och vis
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_messages_in_d_conversations">%1$d meddelanden i %2$d konversationer</string>
   <string name="MessageNotifier_most_recent_from_s">Senaste från %1$s</string>
+  <string name="MessageNotifier_locked_message">Låst meddelande...</string>
   <string name="MessageNotifier_media_message_with_text">Mediameddelande: %s</string>
   <string name="MessageNotifier_no_subject">(Inget ämne)</string>
   <string name="MessageNotifier_message_delivery_failed">Meddelandeleverans misslyckades.</string>
@@ -406,14 +403,11 @@ Tog emot meddelande med okänd identitetsnyckel. Tryck för att bearbeta och vis
   <string name="change_passphrase_activity__old_passphrase">GAMMALT LÖSENORD:</string>
   <string name="change_passphrase_activity__new_passphrase">NYTT LÖSENORD:</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">UPPREPA NYTT LÖSENORD:</string>
+  <!--contact_selection_activity-->
   <!--contact_selection_group_activity-->
-  <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">Inga kontakter.</string>
   <string name="contact_selection_group_activity__finding_contacts">Laddar kontakter…</string>
   <!--single_contact_selection_activity-->
-  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">Du är inte registrerad med push-tjänsten...</string>
-  <string name="SingleContactSelectionActivity_updating_directory">Uppdaterar katalogen</string>
-  <string name="SingleContactSelectionActivity_updating_push_directory">Uppdaterar push-katalogen...</string>
   <string name="SingleContactSelectionActivity_contact_photo">Kontaktfoto</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Välj för</string>
@@ -630,6 +624,7 @@ TextSecure uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="preferences__change_my_passphrase">Ändra mitt lösenord</string>
   <string name="preferences__enable_passphrase">Aktivera lösenordsfras</string>
   <string name="preferences__passphrase_summary">Lösenordsfras %s</string>
+  <string name="preferences__enable_lock_screen_for_messages">Slå på låsskärm för meddelanden</string>
   <string name="preferences__screen_security">Skärmsäkerhet</string>
   <string name="preferences__screen_security_summary">Skärmsäkerhet %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blockera skärmdumpar i Senaste-listen samt inuti appen</string>

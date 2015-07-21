@@ -11,12 +11,6 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">למחוק את כל ההודעות הישנות עכשיו?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">אתה בטוח שברצונך לקצץ מיד את כל שרשורי השיחות עד להודעות ה-%s הכי חדשות?</string>
   <string name="ApplicationPreferencesActivity_delete">מחק</string>
-  <string name="ApplicationPreferencesActivity_disable_storage_encryption">לבטל הצפנת אחסון?</string>
-  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
-אזהרה, פעולה זו תבטל הצפנה מקומית לכל ההודעות והמפתחות. החיבורים
-המאובטחים שלך ימשיכו לתפקד, אבל כל אחד עם גישה פיזית למכשירך יוכל
-לגשת אליהם.
-</string>
   <string name="ApplicationPreferencesActivity_disable">בטל</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">אירעה שגיאה בחיבור לשרת!</string>
   <!--AppProtectionPreferenceFragment-->
@@ -172,8 +166,8 @@
   <string name="change_passphrase_activity__old_passphrase">סיסמה ישנה:</string>
   <string name="change_passphrase_activity__new_passphrase">סיסמה חדשה:</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">חזור על הסיסמה החדשה:</string>
+  <!--contact_selection_activity-->
   <!--contact_selection_group_activity-->
-  <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">אין אנשי קשר.</string>
   <!--single_contact_selection_activity-->
   <!--ContactSelectionListFragment-->

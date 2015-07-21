@@ -12,10 +12,6 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Poistetaanko kaikki vanhat viestit nyt?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Haluatko varmasti rajata kaikki keskustelut %s viimeisimpään viestiin?</string>
   <string name="ApplicationPreferencesActivity_delete">Poista</string>
-  <string name="ApplicationPreferencesActivity_disable_storage_encryption">Poistetaanko tallennustilan salaus käytöstä?</string>
-  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
-Varoitus: Viestiesi ja avaimiesi tallennustilan salaus poistetaan käytöstä. Salatut istuntosi
-jatkavat toimintaansa, mutta kuka tahansa, jolla on fyysinen pääsy laitteeseesi, voi lukea ne.</string>
   <string name="ApplicationPreferencesActivity_disable">Poista käytöstä</string>
   <string name="ApplicationPreferencesActivity_unregistering">Puretaan rekisteröintiä</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Puretaan rekisteröintiä TextSecure-viestipalvelusta</string>
@@ -419,14 +415,12 @@ Vastaanotettiin viesti tuntemattomalla identiteettiavaimella. Aloita käsittely 
   <string name="change_passphrase_activity__old_passphrase">VANHA SALALAUSE:</string>
   <string name="change_passphrase_activity__new_passphrase">UUSI SALALAUSE:</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">TOISTA UUSI SALALAUSE:</string>
+  <!--contact_selection_activity-->
+  <string name="contact_selection_activity__enter_name_or_number">Syötä nimi tai numero</string>
   <!--contact_selection_group_activity-->
-  <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">Ei yhteystietoja.</string>
   <string name="contact_selection_group_activity__finding_contacts">Ladataan yhteystietoja…</string>
   <!--single_contact_selection_activity-->
-  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">Et ole rekisteröitynyt pikaviestipalveluun…</string>
-  <string name="SingleContactSelectionActivity_updating_directory">Päivitetään hakemistoa</string>
-  <string name="SingleContactSelectionActivity_updating_push_directory">Päivitetään pikaviestihakemistoa…</string>
   <string name="SingleContactSelectionActivity_contact_photo">Yhteystiedon kuva</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Valitse</string>
@@ -446,7 +440,7 @@ Vastaanotettiin viesti tuntemattomalla identiteettiavaimella. Aloita käsittely 
   <string name="conversation_activity__compose_description">Viestin kirjoitus</string>
   <string name="conversation_activity__emoji_toggle_description">Näytä tai piilota emoji-näppäimistö</string>
   <string name="conversation_activity__attachment_thumbnail">Liitteen esikatselu</string>
-  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Näytä tai piilota liitetiedostopaneeli</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Ota pikakuva</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Ladataan mediaviestiä</string>
   <string name="conversation_item__mms_image_description">Mediaviesti</string>
@@ -648,7 +642,7 @@ epäonnistui.</string>
   <string name="preferences__change_my_passphrase">Vaihda salalauseeni</string>
   <string name="preferences__enable_passphrase">Käytä salalausetta</string>
   <string name="preferences__passphrase_summary">Salalause %s</string>
-  <string name="preferences__enable_lock_screen_for_messages">Salaa viestit ja lukitse näyttö salalauseella</string>
+  <string name="preferences__enable_lock_screen_for_messages">Lukitse sovellus ja viestit salalauseella</string>
   <string name="preferences__screen_security">Näytön suojaus</string>
   <string name="preferences__screen_security_summary">Näytön suojaus %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Estä kuvakaappaukset \"viimeksi käytetyt sovellukset\" -näkymästä sekä sovelluksen sisältä</string>

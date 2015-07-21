@@ -12,9 +12,6 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Nu alle oude berichten verwijderen?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Weet je zeker dat je alle gesprekken wil inkorten tot de laatste %s berichten?</string>
   <string name="ApplicationPreferencesActivity_delete">Verwijderen</string>
-  <string name="ApplicationPreferencesActivity_disable_storage_encryption">Opslagversleuteling uitschakelen?</string>
-  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
-Let op, dit schakelt opslagversleuteling uit voor alle berichten en sleutels. Je versleutelde sessies zullen blijven werken, maar iedereen met fysieke toegang tot je apparaat zal er toegang toe hebben.</string>
   <string name="ApplicationPreferencesActivity_disable">Uitschakelen</string>
   <string name="ApplicationPreferencesActivity_unregistering">Af aan het melden</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Aan het afmelden voor TextSecure berichten...</string>
@@ -402,14 +399,11 @@ Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en 
   <string name="change_passphrase_activity__old_passphrase">Oud wachtwoord:</string>
   <string name="change_passphrase_activity__new_passphrase">Nieuw wachtwoord:</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">Herhaal nieuw wachtwoord:</string>
+  <!--contact_selection_activity-->
   <!--contact_selection_group_activity-->
-  <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">Geen contacten.</string>
   <string name="contact_selection_group_activity__finding_contacts">Contacten laden...</string>
   <!--single_contact_selection_activity-->
-  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">Je bent niet geregistreerd bij de push service...</string>
-  <string name="SingleContactSelectionActivity_updating_directory">Contactpersonen updaten</string>
-  <string name="SingleContactSelectionActivity_updating_push_directory">Pushcontacten aan het updaten...</string>
   <string name="SingleContactSelectionActivity_contact_photo">Contactfoto</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Selecteer voor</string>

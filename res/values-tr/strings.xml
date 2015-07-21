@@ -12,11 +12,6 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Tüm eski mesajlar silinsin mi?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Tüm konuşma başlıklarını hemen  %s en son konuşmaya kırpmak istediğinizden emin misiniz?</string>
   <string name="ApplicationPreferencesActivity_delete">Sil</string>
-  <string name="ApplicationPreferencesActivity_disable_storage_encryption">Saklama alanı şifrelemesi etkisizleştirilsin mi?</string>
-  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
-Uyarı, bu tüm mesaj ve anahtarlar için depolama alanı şifrelemesini etkisizleştirir. Şifrelenmiş
-oturumlarınız işlevlerini sürdürür, fakat cihazınıza fiziksel erişimi olan herhangi biri onlara
-erişebilir.</string>
   <string name="ApplicationPreferencesActivity_disable">Etkisizleştir</string>
   <string name="ApplicationPreferencesActivity_unregistering">Kayıt siliniyor</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">TextSecure mesajlarından kaydınız siliniyor</string>
@@ -379,14 +374,11 @@ Bilinmeyen kimlik anahtarı içeren bir mesaj alındı. İşlemek ve görüntül
   <string name="change_passphrase_activity__old_passphrase">ESKİ PAROLA:</string>
   <string name="change_passphrase_activity__new_passphrase">YENİ PAROLA:</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">YENİ PAROLA TEKRAR:</string>
+  <!--contact_selection_activity-->
   <!--contact_selection_group_activity-->
-  <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">Kişi yok.</string>
   <string name="contact_selection_group_activity__finding_contacts">Kişiler yükleniyor...</string>
   <!--single_contact_selection_activity-->
-  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">İtilen servisine kayıtlı değilsiniz...</string>
-  <string name="SingleContactSelectionActivity_updating_directory">Dizin güncelleniyor</string>
-  <string name="SingleContactSelectionActivity_updating_push_directory">İtilen dizini güncelleniyor...</string>
   <string name="SingleContactSelectionActivity_contact_photo">Kişi Fotosu</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Seç</string>

@@ -12,10 +12,6 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Выдаліць усе старыя паведамленні зараз?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Вы ўпэўненыя, што хочаце адразу абрэзаць усе гутаркі у %s самых апошніх паведамленняў?</string>
   <string name="ApplicationPreferencesActivity_delete">Выдаліць</string>
-  <string name="ApplicationPreferencesActivity_disable_storage_encryption">Адключыць шыфраванне захаванай інфармацыі?</string>
-  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
-Увага, гэта адключыць шыфраванне захаванай інфармацыі для ўсіх паведамленняў ды ключоў. Шыфраванне вашых дадзеных пры перадачы будзе працягвацца, але любы хто атрымае фізічны доступ да вашага смартфона, будзе мець доступ і да перапіскі.
-    </string>
   <string name="ApplicationPreferencesActivity_disable">Выключыць</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Памылка падлучэння да сервера!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS уключаны</string>
@@ -350,14 +346,11 @@
   <string name="change_passphrase_activity__old_passphrase">СТАРЫ ПАРОЛЬ:</string>
   <string name="change_passphrase_activity__new_passphrase">НОВЫ ПАРОЛЬ:</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">ПАЎТАРЫЦЕ НОВЫ ПАРОЛЬ:</string>
+  <!--contact_selection_activity-->
   <!--contact_selection_group_activity-->
-  <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">Няма кантактаў.</string>
   <string name="contact_selection_group_activity__finding_contacts">Загрузка кантактаў...</string>
   <!--single_contact_selection_activity-->
-  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">Вы не зарэгістраваны у push сервісе...</string>
-  <string name="SingleContactSelectionActivity_updating_directory">Абнаўленне тэчкі</string>
-  <string name="SingleContactSelectionActivity_updating_push_directory">Абнаўленне push тэчкі...</string>
   <string name="SingleContactSelectionActivity_contact_photo">Фота кантакта</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Абраць для</string>

@@ -10,12 +10,6 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">刪除\"全部\"的舊訊息？</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">您確定要將所有對話群組精簡為只剩最近 %s 則的對話？</string>
   <string name="ApplicationPreferencesActivity_delete">刪除</string>
-  <string name="ApplicationPreferencesActivity_disable_storage_encryption">不要對儲存內容加密</string>
-  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
-        警告！ 這麼做將會把您原先所有已加密的訊息紀錄和金鑰全部解密。
-        您還在進行中的加密對話仍可持續收送，但任何能夠存取您裝置的人將可以任意地
-        讀取未加密的訊息紀錄和金鑰。
-    </string>
   <string name="ApplicationPreferencesActivity_disable">解除</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">與伺服器的連線發生錯誤！</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">按這裡來變更您預設的手機簡訊APP</string>
@@ -301,14 +295,11 @@
   <string name="change_passphrase_activity__old_passphrase">舊的『自訂密碼』:</string>
   <string name="change_passphrase_activity__new_passphrase">新的『自訂密碼』:</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">再輸入一次新的『自訂密碼』:</string>
+  <!--contact_selection_activity-->
   <!--contact_selection_group_activity-->
-  <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">沒有連絡人。</string>
   <string name="contact_selection_group_activity__finding_contacts">載入連絡人中...</string>
   <!--single_contact_selection_activity-->
-  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">您尚未註冊 TextSecure 的加密即時訊息功能...</string>
-  <string name="SingleContactSelectionActivity_updating_directory">正在更新連絡人目錄</string>
-  <string name="SingleContactSelectionActivity_updating_push_directory">更新即時訊息目錄...</string>
   <string name="SingleContactSelectionActivity_contact_photo">連絡人的相片</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">相片</string>

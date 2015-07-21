@@ -130,8 +130,8 @@
   <string name="change_passphrase_activity__old_passphrase">စကားဝှက်အဟောင်း:</string>
   <string name="change_passphrase_activity__new_passphrase">စကားဝှက်အသစ်:</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">စကားဝှက်အသစ်အားနောက်တစ်ကြိမ်:</string>
+  <!--contact_selection_activity-->
   <!--contact_selection_group_activity-->
-  <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">အဆက်အသွယ်မရှိ</string>
   <!--single_contact_selection_activity-->
   <!--ContactSelectionListFragment-->
