@@ -29,7 +29,6 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -55,7 +54,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.AlertDialogWrapper;
@@ -247,7 +245,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     initializeSecurity();
     initializeEnabledCheck();
     initializeMmsEnabledCheck();
-    initializeIme();
+    updateIme();
 
     titleView.setTitle(recipients);
     setActionBarColor(recipients.getColor());
@@ -268,8 +266,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override public void onConfigurationChanged(Configuration newConfig) {
     super.onConfigurationChanged(newConfig);
+    updateIme();
     quickAttachmentDrawer.onConfigurationChanged();
     hideEmojiDrawer(false);
+  }
+
+  private boolean isLandscape() {
+    return getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
   }
 
   @Override
@@ -758,23 +761,25 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }.execute();
   }
 
-  private void initializeIme() {
+  private void updateIme() {
+    int imeOptions = (composeText.getImeOptions() & ~EditorInfo.IME_MASK_ACTION) | EditorInfo.IME_ACTION_SEND;
+    int inputType  = composeText.getInputType();
     if (TextSecurePreferences.isEnterSendsEnabled(this)) {
-      composeText.setInputType (composeText.getInputType()  & ~InputType.TYPE_TEXT_FLAG_MULTI_LINE);
-      composeText.setImeOptions(composeText.getImeOptions() & ~EditorInfo.IME_FLAG_NO_ENTER_ACTION);
-    } else {
-      composeText.setInputType (composeText.getInputType()  | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
-      composeText.setImeOptions(composeText.getImeOptions() | EditorInfo.IME_FLAG_NO_ENTER_ACTION);
-    }
-    composeText.setOnEditorActionListener(new OnEditorActionListener() {
-      @Override public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-        if (actionId == EditorInfo.IME_ACTION_SEND) {
-          sendMessage();
-          return true;
-        }
-        return false;
+      if (isLandscape()) {
+        composeText.setImeActionLabel(sendButton.getSelectedTransport().getComposeHint(), EditorInfo.IME_ACTION_SEND);
+        inputType |= InputType.TYPE_TEXT_FLAG_MULTI_LINE;
+      } else {
+        composeText.setImeActionLabel(null, 0);
+        inputType &= ~InputType.TYPE_TEXT_FLAG_MULTI_LINE;
       }
-    });
+      imeOptions &= ~EditorInfo.IME_FLAG_NO_ENTER_ACTION;
+    } else {
+      inputType  |= InputType.TYPE_TEXT_FLAG_MULTI_LINE;
+      imeOptions |= EditorInfo.IME_FLAG_NO_ENTER_ACTION;
+    }
+
+    composeText.setInputType(inputType);
+    composeText.setImeOptions(imeOptions);
   }
 
   private void initializeViews() {
@@ -816,6 +821,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     SendButtonListener        sendButtonListener        = new SendButtonListener();
     ComposeKeyPressedListener composeKeyPressedListener = new ComposeKeyPressedListener();
 
+    composeText.setOnEditorActionListener(sendButtonListener);
     attachButton.setOnClickListener(new AttachButtonListener());
     sendButton.setOnClickListener(sendButtonListener);
     sendButton.setEnabled(true);
@@ -823,8 +829,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       @Override
       public void onChange(TransportOption newTransport) {
         calculateCharactersRemaining();
+        updateIme();
         composeText.setHint(newTransport.getComposeHint());
-        composeText.setImeActionLabel(newTransport.getComposeHint(), EditorInfo.IME_ACTION_SEND);
         composeText.setInputType(composeText.getInputType());
         buttonToggle.getBackground().setColorFilter(newTransport.getBackgroundColor(), Mode.MULTIPLY);
       }
