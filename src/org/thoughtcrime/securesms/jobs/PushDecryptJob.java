@@ -34,8 +34,6 @@ import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.VersionTracker;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.libaxolotl.DuplicateMessageException;
 import org.whispersystems.libaxolotl.IdentityKey;
@@ -88,11 +86,7 @@ public class PushDecryptJob extends ContextJob {
   }
 
   @Override
-  public void onAdded() {
-    if (KeyCachingService.getMasterSecret(context) == null) {
-      MessageNotifier.updateNotification(context, null, -2);
-    }
-  }
+  public void onAdded() {}
 
   @Override
   public void onRun() throws NoSuchMessageException {
@@ -100,7 +94,7 @@ public class PushDecryptJob extends ContextJob {
       Log.w(TAG, "Skipping job, waiting for migration...");
 
       if (KeyCachingService.getMasterSecret(context) != null) {
-        MessageNotifier.updateNotification(context, null, -2);
+        MessageNotifier.updateNotification(context, null, true, -2);
       }
 
       return;
