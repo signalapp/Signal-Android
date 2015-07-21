@@ -1,16 +1,20 @@
 package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.AppCompatEditText;
+import android.text.InputType;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
 import android.text.style.RelativeSizeSpan;
 import android.util.AttributeSet;
+import android.view.inputmethod.EditorInfo;
 
+import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.components.emoji.EmojiEditText;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 public class ComposeText extends EmojiEditText {
   public ComposeText(Context context) {
@@ -47,5 +51,31 @@ public class ComposeText extends EmojiEditText {
     }
 
     append(invite);
+  }
+
+  private boolean isLandscape() {
+    return getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
+  }
+
+  public void setTransport(TransportOption transport) {
+    final boolean enterSends = TextSecurePreferences.isEnterSendsEnabled(getContext());
+
+    int imeOptions = (getImeOptions() & ~EditorInfo.IME_MASK_ACTION) | EditorInfo.IME_ACTION_SEND;
+    int inputType  = getInputType();
+
+    if (isLandscape()) setImeActionLabel(transport.getComposeHint(), EditorInfo.IME_ACTION_SEND);
+    else               setImeActionLabel(null, 0);
+
+    inputType  = !isLandscape() && enterSends
+               ? inputType & ~InputType.TYPE_TEXT_FLAG_MULTI_LINE
+               : inputType | InputType.TYPE_TEXT_FLAG_MULTI_LINE;
+
+    imeOptions = enterSends
+               ? imeOptions & ~EditorInfo.IME_FLAG_NO_ENTER_ACTION
+               : imeOptions | EditorInfo.IME_FLAG_NO_ENTER_ACTION;
+
+    setInputType(inputType);
+    setImeOptions(imeOptions);
+    setHint(transport.getComposeHint());
   }
 }
