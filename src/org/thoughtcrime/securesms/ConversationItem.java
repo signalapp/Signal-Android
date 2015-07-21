@@ -97,9 +97,9 @@ public class ConversationItem extends LinearLayout {
   private static final long TYPE_WRONG_CREATED = -2139029483;
   private static final long TYPE_WRONG_ENCRYPTED = -2136932329;
   private static final long TYPE_LEFT_GROUP = -2136866793;
-  private static final long TYPE_WRONG_KEY = -2145386476;
-    public static final int GROUP_CONVERSATION = 1;
-    public static final int SINGLE_CONVERSATION = 2;
+  public static final long TYPE_WRONG_KEY = -2145386476;
+  public static final int GROUP_CONVERSATION = 1;
+  public static final int SINGLE_CONVERSATION = 2;
 
     private final int STYLE_ATTRIBUTES[] = new int[]{R.attr.conversation_item_sent_push_background,
       R.attr.conversation_item_sent_push_triangle_background,
