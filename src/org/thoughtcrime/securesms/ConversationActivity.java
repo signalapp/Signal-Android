@@ -245,7 +245,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     initializeSecurity();
     initializeEnabledCheck();
     initializeMmsEnabledCheck();
-    updateIme();
+    composeText.setTransport(sendButton.getSelectedTransport());
 
     titleView.setTitle(recipients);
     setActionBarColor(recipients.getColor());
@@ -266,13 +266,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override public void onConfigurationChanged(Configuration newConfig) {
     super.onConfigurationChanged(newConfig);
-    updateIme();
+    composeText.setTransport(sendButton.getSelectedTransport());
     quickAttachmentDrawer.onConfigurationChanged();
     hideEmojiDrawer(false);
-  }
-
-  private boolean isLandscape() {
-    return getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
   }
 
   @Override
@@ -761,27 +757,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }.execute();
   }
 
-  private void updateIme() {
-    int imeOptions = (composeText.getImeOptions() & ~EditorInfo.IME_MASK_ACTION) | EditorInfo.IME_ACTION_SEND;
-    int inputType  = composeText.getInputType();
-    if (TextSecurePreferences.isEnterSendsEnabled(this)) {
-      if (isLandscape()) {
-        composeText.setImeActionLabel(sendButton.getSelectedTransport().getComposeHint(), EditorInfo.IME_ACTION_SEND);
-        inputType |= InputType.TYPE_TEXT_FLAG_MULTI_LINE;
-      } else {
-        composeText.setImeActionLabel(null, 0);
-        inputType &= ~InputType.TYPE_TEXT_FLAG_MULTI_LINE;
-      }
-      imeOptions &= ~EditorInfo.IME_FLAG_NO_ENTER_ACTION;
-    } else {
-      inputType  |= InputType.TYPE_TEXT_FLAG_MULTI_LINE;
-      imeOptions |= EditorInfo.IME_FLAG_NO_ENTER_ACTION;
-    }
-
-    composeText.setInputType(inputType);
-    composeText.setImeOptions(imeOptions);
-  }
-
   private void initializeViews() {
     titleView      = (ConversationTitleView)     getSupportActionBar().getCustomView();
     buttonToggle   = (AnimatingToggle)           findViewById(R.id.button_toggle);
@@ -829,9 +804,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       @Override
       public void onChange(TransportOption newTransport) {
         calculateCharactersRemaining();
-        updateIme();
-        composeText.setHint(newTransport.getComposeHint());
-        composeText.setInputType(composeText.getInputType());
+        composeText.setTransport(newTransport);
         buttonToggle.getBackground().setColorFilter(newTransport.getBackgroundColor(), Mode.MULTIPLY);
       }
     });
