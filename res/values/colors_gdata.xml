@@ -2,6 +2,7 @@
 <resources>
 
     <color name="gdata_grey">#494949</color>
+    <color name="gdata_grey_near">#E6E5E0</color>
     <color name="gdata_red">#a02020</color>
     <color name="transparent">@android:color/transparent</color>
     <color name="gdata_conversation_list_item_background_read">#ffffff</color>
@@ -28,4 +29,5 @@
     <color name="translucent_black">#80000000</color>
 
     <color name="gdata_primary_color">@color/gdata_grey</color>
+    <color name="gdata_primary_background_color">@color/gdata_grey_near</color>
 </resources>
