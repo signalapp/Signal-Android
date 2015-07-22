@@ -1348,7 +1348,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       if (isLeftToRightFling(e1, e2, velocityX, velocityY)) handleReturnToConversationList();
       return false;
     }
-    private boolean isLeftToRightFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityYÏ){
+    private boolean isLeftToRightFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY){
      return  e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY;
     }
     @Override
