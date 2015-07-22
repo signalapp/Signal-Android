@@ -4,7 +4,6 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
@@ -19,12 +18,10 @@ import android.view.animation.Animation.AnimationListener;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
-import com.bumptech.glide.BitmapTypeRequest;
 import com.bumptech.glide.DrawableTypeRequest;
 import com.bumptech.glide.GenericRequestBuilder;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
-import com.bumptech.glide.load.resource.bitmap.FitCenter;
 import com.bumptech.glide.load.resource.bitmap.GlideBitmapDrawable;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
@@ -176,6 +173,7 @@ public class ThumbnailView extends FrameLayout {
   private GenericRequestBuilder buildGlideRequest(@NonNull Slide slide,
                                                   @Nullable MasterSecret masterSecret)
   {
+    Log.w(TAG, "slide type " + slide.getContentType());
     final GenericRequestBuilder builder;
     if (slide.getThumbnailUri() != null) {
       builder = buildThumbnailGlideRequest(slide, masterSecret);
@@ -203,9 +201,7 @@ public class ThumbnailView extends FrameLayout {
     if (masterSecret == null) request = Glide.with(getContext()).load(slide.getThumbnailUri());
     else                      request = Glide.with(getContext()).load(new DecryptableUri(masterSecret, slide.getThumbnailUri()));
 
-    return request.fitCenter()
-                  .transform(new FitCenter(getContext()),
-                             new RoundedCorners(getContext(), radius, backgroundColorHint))
+    return request.transform(new RoundedCorners(getContext(), false, radius, backgroundColorHint))
                   .listener(new PduThumbnailSetListener(slide.getPart()));
   }
 
@@ -216,8 +212,7 @@ public class ThumbnailView extends FrameLayout {
 
     return Glide.with(getContext()).load(new DecryptableUri(masterSecret, slide.getThumbnailUri()))
                                    .crossFade()
-                                   .transform(new CenterCrop(getContext()),
-                                              new RoundedCorners(getContext(), radius, backgroundColorHint));
+                                   .transform(new RoundedCorners(getContext(), true, radius, backgroundColorHint));
   }
 
   private GenericRequestBuilder buildPlaceholderGlideRequest(Slide slide) {
@@ -320,10 +315,10 @@ public class ThumbnailView extends FrameLayout {
     @Override
     public boolean onResourceReady(GlideDrawable resource, Object model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
       if (resource instanceof GlideBitmapDrawable) {
+        Log.w(TAG, "onResourceReady() for a Bitmap. Saving.");
         part.setThumbnail(((GlideBitmapDrawable)resource).getBitmap());
       }
       return false;
     }
   }
-
 }

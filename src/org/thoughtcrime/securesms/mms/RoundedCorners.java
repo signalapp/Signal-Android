@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -9,45 +10,53 @@ import android.graphics.RectF;
 import android.graphics.Shader.TileMode;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
+import com.bumptech.glide.load.resource.bitmap.TransformationUtils;
 
 public class RoundedCorners extends BitmapTransformation {
-  private static final String TAG = RoundedCorners.class.getSimpleName();
+  private final boolean crop;
+  private final int     radius;
+  private final int     colorHint;
 
-  private final int radius;
-  private final int colorHint;
-
-  public RoundedCorners(@NonNull Context context, int radius, int colorHint) {
+  public RoundedCorners(@NonNull Context context, boolean crop, int radius, int colorHint) {
     super(context);
-    this.radius = radius;
+    this.crop      = crop;
+    this.radius    = radius;
     this.colorHint = colorHint;
   }
 
   @Override protected Bitmap transform(BitmapPool pool, Bitmap toTransform, int outWidth,
                                        int outHeight)
   {
-    final Bitmap toReuse = pool.get(outWidth, outHeight, toTransform.getConfig() != null
-                                                         ? toTransform.getConfig()
-                                                         : Bitmap.Config.ARGB_8888);
-    Bitmap transformed = round(toReuse, toTransform);
+    final Bitmap toRound = crop ? centerCrop(pool, toTransform, outWidth, outHeight)
+                                : fitCenter(pool, toTransform, outWidth, outHeight);
+    return round(pool, toRound);
+  }
+
+  private Bitmap centerCrop(BitmapPool pool, Bitmap toTransform, int outWidth, int outHeight) {
+    final Bitmap toReuse     = pool.get(outWidth, outHeight, getSafeConfig(toTransform));
+    final Bitmap transformed = TransformationUtils.centerCrop(toReuse, toTransform, outWidth, outHeight);
     if (toReuse != null && toReuse != transformed && !pool.put(toReuse)) {
       toReuse.recycle();
     }
     return transformed;
   }
 
-  private Bitmap round(@Nullable Bitmap recycled, @Nullable Bitmap toRound) {
-    Log.w(TAG, String.format("roundAndCrop(%s, %s)", recycled, toRound));
+  private Bitmap fitCenter(BitmapPool pool, Bitmap toTransform, int outWidth, int outHeight) {
+    return TransformationUtils.fitCenter(toTransform, pool, outWidth, outHeight);
+  }
+
+  private Bitmap round(@NonNull BitmapPool pool, @Nullable Bitmap toRound) {
     if (toRound == null) {
       return null;
     }
 
     final Bitmap result;
-    if (recycled != null) {
-      result = recycled;
+    final Bitmap toReuse = pool.get(toRound.getWidth(), toRound.getHeight(), getSafeConfig(toRound));
+    if (toReuse != null) {
+      result = toReuse;
     } else {
       result = Bitmap.createBitmap(toRound.getWidth(), toRound.getHeight(), getSafeConfig(toRound));
     }
@@ -58,13 +67,14 @@ public class RoundedCorners extends BitmapTransformation {
 
     shaderPaint.setShader(new BitmapShader(toRound, TileMode.CLAMP, TileMode.CLAMP));
     cornerPaint.setColor(colorHint);
-    if (!result.hasAlpha()) {
+    if (Config.RGB_565.equals(result.getConfig())) {
       canvas.drawRect(0, 0, radius, radius, cornerPaint);
       canvas.drawRect(0, toRound.getHeight() - radius, radius, toRound.getHeight(), cornerPaint);
       canvas.drawRect(toRound.getWidth() - radius, 0, toRound.getWidth(), radius, cornerPaint);
       canvas.drawRect(toRound.getWidth() - radius, toRound.getHeight() - radius, toRound.getWidth(), toRound.getHeight(), cornerPaint);
     }
     canvas.drawRoundRect(new RectF(0, 0, toRound.getWidth(), toRound.getHeight()), radius, radius, shaderPaint);
+//    Log.w("RoundedCorners", "in was " + toRound.getWidth() + "x" + toRound.getHeight() + ", out to " + result.getWidth() + "x" + result.getHeight());
     return result;
   }
 
