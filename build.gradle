@@ -5,7 +5,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.0.1'
+        classpath 'com.android.tools.build:gradle:1.2.3'
         classpath files('libs/gradle-witness.jar')
     }
 }
@@ -152,7 +152,6 @@ dependencyVerification {
 android {
     compileSdkVersion 22
     buildToolsVersion '22.0.1'
-    testBuildType "automation"
 
     dexOptions {
         javaMaxHeapSize "4g"
@@ -207,11 +206,6 @@ android {
             minifyEnabled true
             proguardFiles = buildTypes.debug.proguardFiles
             signingConfig signingConfigs.release
-        }
-        automation.initWith(buildTypes.debug)
-        automation {
-            proguardFile 'proguard-automation.pro'
-            buildConfigField "String", "PUSH_URL", "\"https://textsecure-service-staging.whispersystems.org\""
         }
         dev.initWith(buildTypes.debug)
         dev {
