@@ -12,10 +12,9 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Alle alten Nachrichten löschen?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Wollen Sie alle Unterhaltungen bis auf die letzten %s Nachrichten wirklich löschen?</string>
   <string name="ApplicationPreferencesActivity_delete">Löschen</string>
-  <string name="ApplicationPreferencesActivity_disable_storage_encryption">Speicherverschlüsselung deaktivieren?</string>
-  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
-Warnung: Dies wird die verschlüsselte Speicherung für alle Nachrichten und Schlüssel deaktivieren.
-Ihre verschlüsselten Unterhaltungen werden weiterhin funktionieren, aber jemand mit physischem Zugriff auf Ihr Gerät kann dann auf sie zugreifen.</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">Passwort deaktivieren?</string>
+  <string name="ApplicationPreferencesActivity_disable_lock_screen">
+Nachrichtenvorschau in Benachrichtigungen anzeigen, obwohl Textsecure gesperrt ist</string>
   <string name="ApplicationPreferencesActivity_disable">Deaktivieren</string>
   <string name="ApplicationPreferencesActivity_unregistering">Registrierung löschen</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">TextSecure-Registrierung wird gelöscht …</string>
@@ -75,9 +74,9 @@ Dies könnte bedeuten, dass jemand versucht, Ihr Gespräch abzuhören. Vielleich
   <string name="ConversationActivity_initiate_secure_session_question">Sichere Unterhaltung starten?</string>
   <string name="ConversationActivity_initiate_secure_session_with_s_question">Sichere Unterhaltung mit %s starten?</string>
   <string name="ConversationActivity_abort_secure_session_confirmation">Sichere Unterhaltung beenden?</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Wollen Sie diese sichere Unterhaltung wirklich beenden?</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Diese sichere Unterhaltung beenden.</string>
   <string name="ConversationActivity_delete_thread_confirmation">Unterhaltung löschen?</string>
-  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Wollen Sie diese Unterhaltung wirklich unwiderruflich löschen?</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Diese Unterhaltung unwiderruflich löschen.</string>
   <string name="ConversationActivity_add_attachment">Anhang hinzufügen</string>
   <string name="ConversationActivity_select_contact_info">Kontaktinfo wählen</string>
   <string name="ConversationActivity_compose_message">Nachricht verfassen</string>
@@ -107,14 +106,14 @@ Dies könnte bedeuten, dass jemand versucht, Ihr Gespräch abzuhören. Vielleich
   <string name="ConversationActivity_mms_not_supported_message">Diese Nachricht kann nicht gesendet werden, da Ihr Mobilfunkanbieter MMS nicht unterstützt.</string>
   <string name="ConversationActivity_specify_recipient">Bitte einen Kontakt auswählen</string>
   <string name="ConversationActivity_unblock_question">Nicht mehr blockieren?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Wollen Sie diesen Kontakt wirklich nicht mehr blockieren?</string>
+  <string name="ConversationActivity_are_you_sure_you_want_to_unblock_this_contact">Diesen Kontakt nicht mehr blockieren.</string>
   <string name="ConversationActivity_unblock">Nicht mehr blockieren</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Nachrichtendetails</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Übertragung: %1$s\nGesendet/Empfangen: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Absender: %1$s\nÜbertragung: %2$s\nGesendet: %3$s\nEmpfangen: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Nachrichten löschen?</string>
-  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Wollen Sie alle ausgewählten Nachrichten wirklich unwiderruflich löschen?</string>
+  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Alle ausgewählten Nachrichten unwiderruflich löschen.</string>
   <string name="ConversationFragment_save_to_sd_card">Im Gerätespeicher speichern?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Das Speichern der Datei im Gerätespeicher ermöglicht allen anderen installierten Apps darauf Zugriff.\n\nMöchten Sie trotzdem fortfahren?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Fehler beim Speichern des Anhangs im Gerätespeicher!</string>
@@ -132,7 +131,7 @@ Dies könnte bedeuten, dass jemand versucht, Ihr Gespräch abzuhören. Vielleich
   <string name="ConversationListActivity_search">Suchen …</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Unterhaltungen löschen?</string>
-  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Wollen Sie ALLE ausgewählten Unterhaltungen wirklich löschen?</string>
+  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">ALLE ausgewählten Unterhaltungen unwiderruflich löschen.</string>
   <string name="ConversationListFragment_deleting">Löschen</string>
   <string name="ConversationListFragment_deleting_selected_threads">Ausgewählte Unterhaltungen werden gelöscht …</string>
   <!--ConversationListItem-->
@@ -268,9 +267,9 @@ Bitten Sie den Absender, TextSecure zu aktualisieren und die Nachricht erneut zu
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Diesen Kontakt blockieren?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_see_messages_from_this_user">Nachrichten dieses Kontakts werden nicht mehr angezeigt werden.</string>
-  <string name="RecipientPreferenceActivity_block">Kontakt blockieren</string>
-  <string name="RecipientPreferenceActivity_unblock_this_contact_question">Diesen Kontakt nicht mehr blockieren?</string>
-  <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Wollen Sie diesen Kontakt wirklich nicht mehr blockieren?</string>
+  <string name="RecipientPreferenceActivity_block">Blockieren</string>
+  <string name="RecipientPreferenceActivity_unblock_this_contact_question">NIcht mehr blockieren?</string>
+  <string name="RecipientPreferenceActivity_are_you_sure_you_want_to_unblock_this_contact">Diesen Kontakt nicht mehr blockieren.</string>
   <string name="RecipientPreferenceActivity_unblock">Nicht mehr blockieren</string>
   <string name="RecipientPreferenceActivity_enabled">Aktiviert</string>
   <string name="RecipientPreferenceActivity_disabled">Deaktiviert</string>
@@ -384,7 +383,7 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_messages_in_d_conversations">%1$d Nachrichten in %2$d Unterhaltungen</string>
   <string name="MessageNotifier_most_recent_from_s">Neueste von: %1$s</string>
-  <string name="MessageNotifier_locked_message">Gesperrte Nachricht...</string>
+  <string name="MessageNotifier_locked_message">Gesperrte Nachricht …</string>
   <string name="MessageNotifier_media_message_with_text">Mediennachricht: %s</string>
   <string name="MessageNotifier_no_subject">(Kein Betreff)</string>
   <string name="MessageNotifier_message_delivery_failed">Nachrichtenübermittlung fehlgeschlagen.</string>
@@ -395,20 +394,18 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <string name="MessageNotifier_media_message">Mediennachricht</string>
   <string name="MessageNotifier_reply">Antworten</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">Schnellantwort nicht verfügbar während TextSecure gesperrt ist!</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">Schnellantwort nicht verfügbar, solange TextSecure gesperrt ist!</string>
   <string name="QuickResponseService_problem_sending_message">Problem beim Senden der Nachricht!</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">ALTES PASSWORT:</string>
   <string name="change_passphrase_activity__new_passphrase">NEUES PASSWORT:</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">NEUES PASSWORT WIEDERHOLEN:</string>
+  <!--contact_selection_activity-->
+  <string name="contact_selection_activity__enter_name_or_number">Name oder Nummer eingeben</string>
   <!--contact_selection_group_activity-->
-  <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">Keine Kontakte.</string>
   <string name="contact_selection_group_activity__finding_contacts">Kontakte werden geladen …</string>
   <!--single_contact_selection_activity-->
-  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">Sie sind nicht für den TextSecure-Dienst registriert …</string>
-  <string name="SingleContactSelectionActivity_updating_directory">Aktualisieren</string>
-  <string name="SingleContactSelectionActivity_updating_push_directory">Kontaktliste wird aktualisiert …</string>
   <string name="SingleContactSelectionActivity_contact_photo">Kontaktbild</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Auswählen für</string>
@@ -558,7 +555,7 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="registration_progress_activity__check">Haken</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Name oder Rufnummer eingeben</small></string>
-  <string name="recipients_panel__add_member">Mitglied hinzufügen</string>
+  <string name="recipients_panel__add_member">Mitglieder hinzufügen</string>
   <!--verify_identity_activity-->
   <string name="verify_identity_activity__their_identity_they_read">Kontaktschlüssel:</string>
   <string name="verify_identity_activity__your_identity_you_read">Eigener Schlüssel:</string>
@@ -620,7 +617,7 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="preferences__change_my_passphrase">Mein Passwort ändern</string>
   <string name="preferences__enable_passphrase">Passwort aktivieren</string>
   <string name="preferences__passphrase_summary">Passwort %s</string>
-  <string name="preferences__enable_lock_screen_for_messages">Vorschau im gesperrten Modus sperren</string>
+  <string name="preferences__enable_lock_screen_for_messages">Nachrichtenvorschau in Benachrichtigungen sperren, solange TextSecure gesperrt ist</string>
   <string name="preferences__screen_security">Bildschirmschutz</string>
   <string name="preferences__screen_security_summary">Bildschirmschutz %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Bildschirmfotos in der Anwendung und der Liste der letzten Anwendungen blockieren</string>
@@ -756,7 +753,7 @@ Kostenlos verschlüsselte Nachrichten mit TextSecure- und Signal-Nutzern austaus
   <!--conversation_callable-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Zu Kontakten hinzufügen</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Teilnehmerliste</string>
+  <string name="convesation_group_options__recipients_list">Mitgliederliste</string>
   <string name="conversation_group_options__delivery">Zustellung</string>
   <string name="conversation_group_options__conversation">Unterhaltung</string>
   <string name="conversation_group_options__broadcast">Übertragen</string>

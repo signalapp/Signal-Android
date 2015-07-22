@@ -2,8 +2,9 @@
 <resources>
     <dimen name="emoji_drawer_size">32sp</dimen>
     <dimen name="min_keyboard_size">50dp</dimen>
-    <dimen name="min_emoji_drawer_height">200dp</dimen>
-    <dimen name="min_emoji_drawer_top_margin">170dp</dimen>
+    <dimen name="default_custom_keyboard_size">220dp</dimen>
+    <dimen name="min_custom_keyboard_size">110dp</dimen>
+    <dimen name="min_custom_keyboard_top_margin">170dp</dimen>
     <dimen name="emoji_drawer_item_padding">5dp</dimen>
     <dimen name="emoji_drawer_indicator_height">1.5dp</dimen>
     <dimen name="emoji_drawer_left_right_padding">5dp</dimen>

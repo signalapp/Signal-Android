@@ -73,6 +73,7 @@ public class EmojiDrawer extends LinearLayout {
   public void show(KeyboardAwareLinearLayout container) {
     ViewGroup.LayoutParams params = getLayoutParams();
     params.height = container.getKeyboardHeight();
+    Log.w("EmojiDrawer", "showing emoji drawer with height " + params.height);
     setLayoutParams(params);
     setVisibility(VISIBLE);
   }

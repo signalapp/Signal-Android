@@ -12,11 +12,6 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">¿Eliminar todos los mensajes antiguos?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">¿Está seguro de que quiere recortar inmediatamente todos los hilos de conversación a los %s últimos mensajes?</string>
   <string name="ApplicationPreferencesActivity_delete">Eliminar</string>
-  <string name="ApplicationPreferencesActivity_disable_storage_encryption">¿Deshabilitar cifrado del almacenamiento?</string>
-  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
-        Atención, esto deshabilitará el cifrado del almacenamiento para todos los mensajes y claves. Sus sesiones cifradas
-        funcionarán pero cualquiera con acceso físico a su dispositivo podrá acceder a ellas.
-    </string>
   <string name="ApplicationPreferencesActivity_disable">Desactivar</string>
   <string name="ApplicationPreferencesActivity_unregistering">Desregistrándose</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Desregistrándose de los mensajes de Textsecure...</string>
@@ -436,14 +431,11 @@ Se recibió un mensaje con una clave de identidad desconocida. Haga clic para pr
   <string name="change_passphrase_activity__old_passphrase">CLAVE DE ACCESO ANTERIOR:</string>
   <string name="change_passphrase_activity__new_passphrase">CLAVE DE ACCESO NUEVA:</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">REPITA LA NUEVA CLAVE DE ACCESO:</string>
+  <!--contact_selection_activity-->
   <!--contact_selection_group_activity-->
-  <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">No hay contactos.</string>
   <string name="contact_selection_group_activity__finding_contacts">Cargando contactos...</string>
   <!--single_contact_selection_activity-->
-  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">No está registrado en el servicio push...</string>
-  <string name="SingleContactSelectionActivity_updating_directory">Actualizando directorio</string>
-  <string name="SingleContactSelectionActivity_updating_push_directory">Actualizando directorio push...</string>
   <string name="SingleContactSelectionActivity_contact_photo">Foto del contacto</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Seleccionar para</string>

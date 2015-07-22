@@ -124,12 +124,20 @@ public class MessageNotifier {
       return;
     }
 
-    updateNotification(context, masterSecret, false, 0);
+    updateNotification(context, masterSecret, false, false, 0);
   }
 
   public static void updateNotification(@NonNull  Context context,
                                         @Nullable MasterSecret masterSecret,
                                         long threadId)
+  {
+    updateNotification(context, masterSecret, false, threadId);
+  }
+
+  public static void updateNotification(@NonNull  Context context,
+                                        @Nullable MasterSecret masterSecret,
+                                        boolean   includePushDatabase,
+                                        long      threadId)
   {
     Recipients recipients = DatabaseFactory.getThreadDatabase(context)
                                            .getRecipientsForThreadId(threadId);
@@ -140,19 +148,20 @@ public class MessageNotifier {
       return;
     }
 
-
     if (visibleThread == threadId) {
       ThreadDatabase threads = DatabaseFactory.getThreadDatabase(context);
       threads.setRead(threadId);
       sendInThreadNotification(context, threads.getRecipientsForThreadId(threadId));
     } else {
-      updateNotification(context, masterSecret, true, 0);
+      updateNotification(context, masterSecret, true, includePushDatabase, 0);
     }
   }
 
   private static void updateNotification(@NonNull  Context context,
                                          @Nullable MasterSecret masterSecret,
-                                         boolean signal, int reminderCount)
+                                         boolean signal,
+                                         boolean includePushDatabase,
+                                         int     reminderCount)
   {
     Cursor telcoCursor = null;
     Cursor pushCursor  = null;
@@ -173,7 +182,9 @@ public class MessageNotifier {
 
       NotificationState notificationState = constructNotificationState(context, masterSecret, telcoCursor);
 
-      appendPushNotificationState(context, masterSecret, notificationState, pushCursor);
+      if (includePushDatabase) {
+        appendPushNotificationState(context, notificationState, pushCursor);
+      }
 
       if (notificationState.hasMultipleThreads()) {
         sendMultipleThreadNotification(context, masterSecret, notificationState, signal);
@@ -382,13 +393,10 @@ public class MessageNotifier {
     }
   }
 
-  private static void appendPushNotificationState(@NonNull  Context context,
-                                                  @Nullable MasterSecret masterSecret,
-                                                  @NonNull  NotificationState notificationState,
-                                                  @NonNull  Cursor cursor)
+  private static void appendPushNotificationState(@NonNull Context context,
+                                                  @NonNull NotificationState notificationState,
+                                                  @NonNull Cursor cursor)
   {
-    if (masterSecret != null) return;
-
     PushDatabase.Reader reader = null;
     TextSecureEnvelope envelope;
 

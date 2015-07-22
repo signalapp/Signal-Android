@@ -12,11 +12,6 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Mezu zahar guztiak ezabatu orain?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Ziur zaude solasaldi hari guztiak berehala azkenengo %s mezuetara murriztu nahi izateaz?</string>
   <string name="ApplicationPreferencesActivity_delete">Ezabatu</string>
-  <string name="ApplicationPreferencesActivity_disable_storage_encryption">Desgaitu biltegiaren enkriptaketa?</string>
-  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
-Kontuz, honek desgaituko du biltegiaren enkriptaketa mezu eta gako guztietarako.
-Zure enkriptatutako saioek funtzionatzen jarraituko dute, baina zure gailua fisikoki uki dezakeen edonor
-gai izango da saiootan sartzeko.</string>
   <string name="ApplicationPreferencesActivity_disable">Desgaitu</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Errorea zerbitzariarekin konektatzerakoan!</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Ukitu zure SMS aplikazio lehenetsia aldatzeko</string>
@@ -332,14 +327,11 @@ Nortasun gako ezezagun batekin jaso da mezua. Klik egin prozesatzeko eta erakust
   <string name="change_passphrase_activity__old_passphrase">PASAHITZ ZAHARRA:</string>
   <string name="change_passphrase_activity__new_passphrase">PASAHITZ BERRIA:</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">PASAHITZ BERRIA ERREPIKATU:</string>
+  <!--contact_selection_activity-->
   <!--contact_selection_group_activity-->
-  <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">Kontakturik ez.</string>
   <string name="contact_selection_group_activity__finding_contacts">Kontaktuak kargatzen...</string>
   <!--single_contact_selection_activity-->
-  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">Ez zaude push zerbitzuarekin erregistratuta...</string>
-  <string name="SingleContactSelectionActivity_updating_directory">Direktorioa eguneratzen</string>
-  <string name="SingleContactSelectionActivity_updating_push_directory">Push direktorioa eguneratzen...</string>
   <string name="SingleContactSelectionActivity_contact_photo">Kontaktuaren Argazkia</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Hautatu egiteko...</string>

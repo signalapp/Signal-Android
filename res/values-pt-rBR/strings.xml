@@ -12,12 +12,6 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Excluir todas as mensagens antigas agora?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Tem certeza que deseja manter apenas as %s mensagens mais recentes?</string>
   <string name="ApplicationPreferencesActivity_delete">Excluir</string>
-  <string name="ApplicationPreferencesActivity_disable_storage_encryption">Desabilitar criptografia de armazenamento?</string>
-  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
-        Atenção, isto irá desabilitar a criptografia de armazenamento para todas as mensagens e chaves. Suas sessões
-        criptografadas continuarão funcionando, mas qualquer um com acesso físico ao seu aparelho
-        conseguirá acessá-las.
-    </string>
   <string name="ApplicationPreferencesActivity_disable">Desabilitar</string>
   <string name="ApplicationPreferencesActivity_unregistering">Descadastrar</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Descadastrando de mensagens TextSecure...</string>
@@ -434,14 +428,11 @@ Tem certeza que deseja fazer isto?</string>
   <string name="change_passphrase_activity__old_passphrase">Frase-chave anterior:</string>
   <string name="change_passphrase_activity__new_passphrase">Frase-chave nova:</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">Repetir a frase-chave nova:</string>
+  <!--contact_selection_activity-->
   <!--contact_selection_group_activity-->
-  <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">Sem contactos.</string>
   <string name="contact_selection_group_activity__finding_contacts">Carregando contatos...</string>
   <!--single_contact_selection_activity-->
-  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">Você não está cadastrado no serviço push...</string>
-  <string name="SingleContactSelectionActivity_updating_directory">Atualizando diretório</string>
-  <string name="SingleContactSelectionActivity_updating_push_directory">Atualizando diretório push...</string>
   <string name="SingleContactSelectionActivity_contact_photo">Foto do contato</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Selecionar para</string>

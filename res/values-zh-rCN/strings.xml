@@ -12,9 +12,6 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">删除所有旧信息？</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">你确定处理与%s的最近的对话消息？</string>
   <string name="ApplicationPreferencesActivity_delete">删除</string>
-  <string name="ApplicationPreferencesActivity_disable_storage_encryption">禁用存储加密？</string>
-  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
-警告：这将会禁用所有信息和密钥的存储加密。您的加密会话继续有效，但是任何能物理接触到此设备的人都能够访问这些数据。</string>
   <string name="ApplicationPreferencesActivity_disable">禁用</string>
   <string name="ApplicationPreferencesActivity_unregistering">反注册</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">正在反注册来自 TextSecure 的信息...</string>
@@ -402,14 +399,11 @@
   <string name="change_passphrase_activity__old_passphrase">旧密码：</string>
   <string name="change_passphrase_activity__new_passphrase">新密码：</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">重复新密码：</string>
+  <!--contact_selection_activity-->
   <!--contact_selection_group_activity-->
-  <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">没有联系人。</string>
   <string name="contact_selection_group_activity__finding_contacts">读取联系人…</string>
   <!--single_contact_selection_activity-->
-  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">您尚未注册推送服务…</string>
-  <string name="SingleContactSelectionActivity_updating_directory">正在更新目录</string>
-  <string name="SingleContactSelectionActivity_updating_push_directory">正在更新推送目录…</string>
   <string name="SingleContactSelectionActivity_contact_photo">联系人照片</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">选择</string>

@@ -12,12 +12,6 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Slet alle gamle beskeder?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Er du sikker på at du vil trimme ALLE samtaletråde til de sidste %s beskeder?</string>
   <string name="ApplicationPreferencesActivity_delete">Slet</string>
-  <string name="ApplicationPreferencesActivity_disable_storage_encryption">Deaktiverer kryptering af lager?</string>
-  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
-Advarsel! Dette vil deaktiverer kryptering af lager for alle beskeder og nøgler.
-Dine krypterede sessioner vil fortsætte med at fungere,
-men alle med fysisk adgang til din enhed kan få adgang til dem.
-</string>
   <string name="ApplicationPreferencesActivity_disable">Deaktivere</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Kunne ikke oprette forbindelse til serveren!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS slået til</string>
@@ -305,14 +299,11 @@ Modtog en besked med en ukendt identitetsnøgle. Klik for at se og behandle den.
   <string name="change_passphrase_activity__old_passphrase">GAMMELT KODEORD:</string>
   <string name="change_passphrase_activity__new_passphrase">NYT KODEORD:</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">GENTAG NYT KODEORD:</string>
+  <!--contact_selection_activity-->
   <!--contact_selection_group_activity-->
-  <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">Ingen kontakter.</string>
   <string name="contact_selection_group_activity__finding_contacts">Indlæser kontaktpersoner...</string>
   <!--single_contact_selection_activity-->
-  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">Du er ikke registreret som bruger af \"push\" tjenesten...</string>
-  <string name="SingleContactSelectionActivity_updating_directory">Opdaterer bibliotek</string>
-  <string name="SingleContactSelectionActivity_updating_push_directory">Opdaterer \"push\" bibliotek</string>
   <string name="SingleContactSelectionActivity_contact_photo">Kontaktbillede</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Vælg</string>

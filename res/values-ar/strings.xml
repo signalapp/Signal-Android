@@ -12,9 +12,6 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">احذف جميع الرسائل القديمة الآن؟</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">هل انت متأكد من حذف جميع الرسائل بالمحادثات وابقاء أحدث %s رسالة فقط؟</string>
   <string name="ApplicationPreferencesActivity_delete">حذف</string>
-  <string name="ApplicationPreferencesActivity_disable_storage_encryption">إلغاء تشفير مساحة التخزين؟</string>
-  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
-تحذير: سيتم إلغاء تشفير مساحة تخزين الرسائل والمفاتيح. سوف تستمر محادثاتك المشفرة في العمل، ولكن سيكون أي شخص قادر على النفاذ إليهم إذا تمكن من الوصول إلى الهاتف.</string>
   <string name="ApplicationPreferencesActivity_disable">تعطيل</string>
   <string name="ApplicationPreferencesActivity_unregistering">جارٍ إلغاء التسجيل</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">جارٍ إلغاء التسجيل من رسائل تيكست سيكيور...</string>
@@ -393,14 +390,11 @@
   <string name="change_passphrase_activity__old_passphrase">العبارة السرية القديمة:</string>
   <string name="change_passphrase_activity__new_passphrase">العبارة السرية الجديدة:</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">تكرار العبارة السرية الجديدة:</string>
+  <!--contact_selection_activity-->
   <!--contact_selection_group_activity-->
-  <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">لا توجد جهات اتصال.</string>
   <string name="contact_selection_group_activity__finding_contacts">تحميل جهات الاتصال...</string>
   <!--single_contact_selection_activity-->
-  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">أنت غير مسجل في خدمة دفع الوصول إلى الرسائل...</string>
-  <string name="SingleContactSelectionActivity_updating_directory">تحديث القائمة</string>
-  <string name="SingleContactSelectionActivity_updating_push_directory">تحديث قائمة دفع وصول الرسائل</string>
   <string name="SingleContactSelectionActivity_contact_photo">صورة جهة الاتصال</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">اختيار من أجل</string>

@@ -10,8 +10,6 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Esborrar ara els missatges antics?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Estàs segur que vols retallar immediatament tots els fils de conversa deixant només els %s missatges més recents?</string>
   <string name="ApplicationPreferencesActivity_delete">Esborra</string>
-  <string name="ApplicationPreferencesActivity_disable_storage_encryption">Desactivar l\'encriptació del magatzem de dades?</string>
-  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">Alerta, això desactivarà l\'emmagatzematge encriptat per a tots els missatges i claus. Les teves sessions continuaran funcionant, però qualsevol persona amb accés físic al teu dispositiu podrà accedir-hi.</string>
   <string name="ApplicationPreferencesActivity_disable">Desactiva</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Error connectant amb el servidor!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS Habilitats</string>
@@ -209,11 +207,10 @@
   <string name="change_passphrase_activity__old_passphrase">FRASE CONTRASENYA ANTIGA:</string>
   <string name="change_passphrase_activity__new_passphrase">NOVA FRASE CONTRASENYA:</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">REPETEIX LA NOVA FRASE CONTRASENYA:</string>
+  <!--contact_selection_activity-->
   <!--contact_selection_group_activity-->
-  <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">Sense contactes.</string>
   <!--single_contact_selection_activity-->
-  <string name="SingleContactSelectionActivity_updating_directory">Actualitzant directori</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Selecciona per</string>
   <!--blocked_contacts_fragment-->

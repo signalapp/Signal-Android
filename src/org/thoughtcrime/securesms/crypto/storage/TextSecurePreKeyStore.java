@@ -185,6 +185,7 @@ public class TextSecurePreKeyStore implements PreKeyStore, SignedPreKeyStore {
       throw new AssertionError("Migration didn't happen!");
     }
 
+    fin.close();
     return serializedRecord;
   }
 

@@ -12,8 +12,6 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">지금 모든 이전 메시지를 삭제하시겠습니까?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">지금 모든 대화를 최근 메시지 %s개로 줄이시겠습니까?</string>
   <string name="ApplicationPreferencesActivity_delete">삭제</string>
-  <string name="ApplicationPreferencesActivity_disable_storage_encryption">저장소 암호화를 사용 중지하시겠습니까?</string>
-  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">경고: 이렇게 하면 모든 메시지와 키의 저장소 암호화가 사용 중지됩니다. 암호화된 세션들은 계속 기능하지만, 기기를 통해 누구나 그 세션들에 접근할 수도 있습니다.</string>
   <string name="ApplicationPreferencesActivity_disable">사용 중지</string>
   <string name="ApplicationPreferencesActivity_unregistering">TextSecure 메시지 서비스 탈퇴</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">TextSecure 메시지 서비스를 탈퇴 중…</string>
@@ -50,6 +48,7 @@
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">인증 키를 확인할 것을 권장합니다.</string>
   <string name="ConfirmIdentityDialog_accept">수락</string>
   <!--ContactsDatabase-->
+  <string name="ContactsDatabase_message_s">%s에 보내기</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">메시지 크기: %dKB</string>
   <string name="ConversationItem_expires_s">만료일: %s</string>
@@ -359,6 +358,7 @@
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_messages_in_d_conversations">대화 %2$d개에 있는 메시지 %1$d개</string>
   <string name="MessageNotifier_most_recent_from_s">%1$s님에게서 최근 메시지</string>
+  <string name="MessageNotifier_locked_message">잠겨 있는 메시지</string>
   <string name="MessageNotifier_media_message_with_text">미디어 메시지: %s</string>
   <string name="MessageNotifier_no_subject">(제목 없음)</string>
   <string name="MessageNotifier_message_delivery_failed">메시지 전송 실패</string>
@@ -375,14 +375,11 @@
   <string name="change_passphrase_activity__old_passphrase">기존 암호:</string>
   <string name="change_passphrase_activity__new_passphrase">새 암호:</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">새 암호 다시 입력:</string>
+  <!--contact_selection_activity-->
   <!--contact_selection_group_activity-->
-  <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">연락처 없음</string>
   <string name="contact_selection_group_activity__finding_contacts">주소록 로드 중…</string>
   <!--single_contact_selection_activity-->
-  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">푸시 서비스에 가입되지 않음</string>
-  <string name="SingleContactSelectionActivity_updating_directory">연락처 목록 업데이트</string>
-  <string name="SingleContactSelectionActivity_updating_push_directory">푸시 메시지를 사용하는 연락처 목록 업데이트 중…</string>
   <string name="SingleContactSelectionActivity_contact_photo">연락처 사진</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">선택:</string>

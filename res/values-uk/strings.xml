@@ -10,8 +10,6 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Вилучити всі старі повідомлення зараз?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Ви впевнені що хочете негайно обрізати всі розмови до %s останніх повідомлень?</string>
   <string name="ApplicationPreferencesActivity_delete">Видалити</string>
-  <string name="ApplicationPreferencesActivity_disable_storage_encryption">Вимкнути шифрування сховища?</string>
-  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">Увага, це відключить шифрування для всіх повідомлень і ключів. Ваші шифровані сесії продовжать працювати, але будь-яка особа з фізичним доступом до вашого пристрою може переглянути їх.</string>
   <string name="ApplicationPreferencesActivity_disable">Вимкнути</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Помилка підключення до сервера!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS Вимкнено</string>
@@ -199,11 +197,10 @@
   <string name="change_passphrase_activity__old_passphrase">СТАРА ФРАЗА-КЛЮЧ:</string>
   <string name="change_passphrase_activity__new_passphrase">НОВА ФРАЗА-КЛЮЧ:</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">ПОВТОРІТЬ НОВУ ФРАЗУ:</string>
+  <!--contact_selection_activity-->
   <!--contact_selection_group_activity-->
-  <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">Контактів не знайдено.</string>
   <!--single_contact_selection_activity-->
-  <string name="SingleContactSelectionActivity_updating_directory">Оновлення теки</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Вибрати для</string>
   <!--blocked_contacts_fragment-->
