@@ -187,7 +187,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private long       threadId;
   private int        distributionType;
   private boolean    isEncryptedConversation;
-  private boolean isMmsEnabled = true;
+  private boolean    isMmsEnabled = true;
 
   private DynamicTheme    dynamicTheme    = new DynamicTheme();
   private DynamicLanguage dynamicLanguage = new DynamicLanguage();
@@ -349,7 +349,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     inflater.inflate(R.menu.conversation, menu);
 
     if (recipients != null && recipients.isMuted()) inflater.inflate(R.menu.conversation_muted, menu);
-    else                                             inflater.inflate(R.menu.conversation_unmuted, menu);
+    else                                            inflater.inflate(R.menu.conversation_unmuted, menu);
 
     if (isSingleConversation() && getRecipients().getPrimaryRecipient().getContactUri() == null) {
       inflater.inflate(R.menu.conversation_add_to_contacts, menu);
@@ -422,7 +422,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
           @Override
           protected Void doInBackground(Void... params) {
             DatabaseFactory.getRecipientPreferenceDatabase(ConversationActivity.this)
-                    .setMuted(recipients, until);
+                           .setMuted(recipients, until);
 
             return null;
           }
@@ -548,9 +548,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
           DatabaseFactory.getGroupDatabase(self).setActive(groupId, false);
 
           GroupContext context = GroupContext.newBuilder()
-                  .setId(ByteString.copyFrom(groupId))
-                  .setType(GroupContext.Type.QUIT)
-                  .build();
+                                             .setId(ByteString.copyFrom(groupId))
+                                             .setType(GroupContext.Type.QUIT)
+                                             .build();
 
           OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(self, getRecipients(),
                   context, null);
@@ -1345,10 +1345,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     @Override
     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
       Log.d(TAG, "GestureDetecorListener:onFling() fired");
-      if (isLeftToRightFling(e1, e2, velocityX, velocityY)) {
-        handleReturnToConversationList();
-        return false; // Left to right
-      }
+      if (isLeftToRightFling(e1, e2, velocityX, velocityY)) handleReturnToConversationList();
       return false;
     }
     private boolean isLeftToRightFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityYÏ){
