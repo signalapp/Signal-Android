@@ -19,7 +19,7 @@
     <string name="self_destruction">Destroy</string>
     <string name="self_destruction_title">#1# seconds to self-destruct...</string>
     <string name="self_destruction_body">The contents of this message will self-destruct in #1# seconds after opening.</string>
-    <string name="self_destruction_compose_hint">Selbstzerstörende Nachricht senden</string>
+    <string name="self_destruction_compose_hint">Selbstzerstörende Nachricht</string>
     <string name="privacy_pw_dialog_header">Enter password: </string>
     <string name="privacy_pw_dialog_hint">Note: this is the password you selected in the Internet Security for Android.</string>
     <string name="privacy_pw_dialog_toast_wrong">The password you entered does not match that of the Internet Security.</string>
