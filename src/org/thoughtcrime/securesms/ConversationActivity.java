@@ -56,7 +56,6 @@ import com.google.protobuf.ByteString;
 import org.thoughtcrime.securesms.components.CircledImageView;
 import org.thoughtcrime.securesms.components.EmojiDrawer;
 import org.thoughtcrime.securesms.components.EmojiToggle;
-import org.thoughtcrime.securesms.components.ForegroundImageView;
 import org.thoughtcrime.securesms.components.SendButton;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
@@ -683,7 +682,7 @@ public void handleTakenPhoto() {
 
     private void handleAddAttachment() {
         if (this.isMmsEnabled || DirectoryHelper.isPushDestination(this, getRecipients())) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.GSecure_Light_Dialog));
+            AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.GDataDialogWindowTitle));
             builder.setIcon(R.drawable.ic_dialog_attach);
             builder.setTitle(R.string.ConversationActivity_add_attachment);
             builder.setAdapter(attachmentAdapter, new AttachmentTypeListener());
