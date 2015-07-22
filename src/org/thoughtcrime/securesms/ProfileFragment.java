@@ -25,7 +25,6 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
@@ -61,15 +60,11 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.Dialogs;
-import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.SelectedRecipientsAdapter;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -267,9 +262,9 @@ public class ProfileFragment extends Fragment {
             ProfileAccessor.setProfileStatus(getActivity(), profileStatus.getText() + "");
             hasChanged = true;
             hasLeft = false;
-            profileStatusEdit.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_menu_edit));
+            profileStatusEdit.setImageDrawable(getResources().getDrawable(R.drawable.ic_content_edit));
           } else {
-            profileStatusEdit.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_menu_send));
+            profileStatusEdit.setImageDrawable(getResources().getDrawable(R.drawable.ic_send_sms_gdata));
           }
         }
       });
