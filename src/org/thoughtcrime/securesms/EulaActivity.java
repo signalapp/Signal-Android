@@ -89,16 +89,11 @@ public class EulaActivity extends AppCompatActivity {
         mEula.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mAcceptEula.setEnabled(true);
                 DialogFragment f = new EulaDialig();
                 f.show(getSupportFragmentManager(), "eula");
             }
         });
-        if(savedInstanceState != null && savedInstanceState.containsKey(EULA_SHOWN)){
-            mAcceptEula.setEnabled(savedInstanceState.getBoolean(EULA_SHOWN));
-        }else{
-            mAcceptEula.setEnabled(false);
-        }
+
         View layout              = (LinearLayout) findViewById(R.id.rootLayout);
         ImageView background              = (ImageView) findViewById(R.id.background);
         background.setAlpha(125);
