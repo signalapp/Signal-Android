@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.contacts;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.CheckBox;
@@ -54,8 +55,13 @@ public class ContactSelectionListItem extends RelativeLayout implements Recipien
     if (type == ContactsDatabase.NEW_TYPE) {
       this.recipients = null;
       this.contactPhotoImage.setAvatar(Recipient.getUnknownRecipient(), false);
-    } else if (number != null) {
+    } else if (!TextUtils.isEmpty(number)) {
       this.recipients = RecipientFactory.getRecipientsFromString(getContext(), number, true);
+
+      if (this.recipients.getPrimaryRecipient().getName() != null) {
+        name = this.recipients.getPrimaryRecipient().getName();
+      }
+
       this.recipients.addListener(this);
     }
 
@@ -114,6 +120,7 @@ public class ContactSelectionListItem extends RelativeLayout implements Recipien
         @Override
         public void run() {
           contactPhotoImage.setAvatar(recipients, false);
+          nameView.setText(recipients.toShortString());
         }
       });
     }

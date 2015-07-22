@@ -12,11 +12,6 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Изтрий всички стари съобщения сега?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Сигурен ли си, че искаш скъсиш всички разговори до %s съобщения във всяка?</string>
   <string name="ApplicationPreferencesActivity_delete">Изтрий</string>
-  <string name="ApplicationPreferencesActivity_disable_storage_encryption">Изключи шифроването на паметта?</string>
-  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
-Внимание, това ще спре шифроването за всички съобщения и ключове. Твоите шифровани
-сесии ще продължат да функционират, но всеки, който има физически достъп до твоето устройство ще
-има достъп до тях. </string>
   <string name="ApplicationPreferencesActivity_disable">Изключи</string>
   <string name="ApplicationPreferencesActivity_unregistering">Отписване</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Отписване от TextSecure съобщения...</string>
@@ -56,6 +51,7 @@
 този контакт. ⏎</string>
   <string name="ConfirmIdentityDialog_accept">Приемам</string>
   <!--ContactsDatabase-->
+  <string name="ContactsDatabase_message_s">Съобщение %s</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Размер на съобщението: %d KB</string>
   <string name="ConversationItem_expires_s">Изтича: %s</string>
@@ -395,6 +391,7 @@ SMS съобщенията от системната базата данни в 
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_messages_in_d_conversations">%1$d съобщения в %2$d чата</string>
   <string name="MessageNotifier_most_recent_from_s">Най-скорошно от: %1$s</string>
+  <string name="MessageNotifier_locked_message">Заключено съобщение...</string>
   <string name="MessageNotifier_media_message_with_text">Медийно съобщение: %s</string>
   <string name="MessageNotifier_no_subject">(Няма зададена тема)</string>
   <string name="MessageNotifier_message_delivery_failed">Изпращането на съобщението неуспешно.</string>
@@ -411,14 +408,11 @@ SMS съобщенията от системната базата данни в 
   <string name="change_passphrase_activity__old_passphrase">СТАРА ПАРОЛА: </string>
   <string name="change_passphrase_activity__new_passphrase">НОВА ПАРОЛА: </string>
   <string name="change_passphrase_activity__repeat_new_passphrase">ПОВТОРИ НОВАТА ПАРОЛА: </string>
+  <!--contact_selection_activity-->
   <!--contact_selection_group_activity-->
-  <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">Няма контакти.</string>
   <string name="contact_selection_group_activity__finding_contacts">Зареждане на контакти...</string>
   <!--single_contact_selection_activity-->
-  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">Не си регистриран за интернет съобщения...</string>
-  <string name="SingleContactSelectionActivity_updating_directory">Обновяване на списъка с контакти</string>
-  <string name="SingleContactSelectionActivity_updating_push_directory">Обновяване на списъка с контакти за интернет съобщения...</string>
   <string name="SingleContactSelectionActivity_contact_photo">Снимка на Контактът</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Избери за</string>
@@ -652,6 +646,7 @@ TextSecure чака твърде дълго за SMS потвърждение.
   <string name="preferences__change_my_passphrase">Смени паролата ми</string>
   <string name="preferences__enable_passphrase">Включи парола</string>
   <string name="preferences__passphrase_summary">Парола %s</string>
+  <string name="preferences__enable_lock_screen_for_messages">Включи заключен екран за съобщения</string>
   <string name="preferences__screen_security">Сигурност на екрана</string>
   <string name="preferences__screen_security_summary">Защита на екрана %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Забрани автоматично копиране на екрана в списка с често използвани програми и в самата програма.</string>

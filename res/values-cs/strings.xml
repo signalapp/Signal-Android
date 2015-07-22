@@ -12,11 +12,6 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Smazat všechny staré zprávy?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Opravdu chcete všechny konverzace zkrátit na posledních %s zpráv?</string>
   <string name="ApplicationPreferencesActivity_delete">Smazat</string>
-  <string name="ApplicationPreferencesActivity_disable_storage_encryption">Deaktivovat šifrování lokálně uložených zpráv?</string>
-  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
-Varování: Tímto znemožníte šifrování všech uložených zpráv a klíčů. Vaše komunikace
-bude i nadále šifrována, ale bude si ji moci přečíst kdokoliv s fyzickým přístupem
-k vašemu zařízení.</string>
   <string name="ApplicationPreferencesActivity_disable">Deaktivovat</string>
   <string name="ApplicationPreferencesActivity_unregistering">Rušení registrace</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Odregistrace TextSecure zpráv</string>
@@ -405,14 +400,11 @@ Obdržena zpráva s neznámým identifikačním klíčem. Klepněte pro její zp
   <string name="change_passphrase_activity__old_passphrase">STARÉ HESLO</string>
   <string name="change_passphrase_activity__new_passphrase">NOVÉ HESLO</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">ZNOVU NOVÉ HESLO</string>
+  <!--contact_selection_activity-->
   <!--contact_selection_group_activity-->
-  <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">Žádný kontakt</string>
   <string name="contact_selection_group_activity__finding_contacts">Načítám kontakty...</string>
   <!--single_contact_selection_activity-->
-  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">Nejste zaregistrován na službě TextSecure</string>
-  <string name="SingleContactSelectionActivity_updating_directory">Aktualizuji adresář</string>
-  <string name="SingleContactSelectionActivity_updating_push_directory">Aktualizuji TextSecure adresář</string>
   <string name="SingleContactSelectionActivity_contact_photo">Fotografie kotaktu</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Vybrat</string>
@@ -722,7 +714,7 @@ Svobodná šifrovaná komunikace s uživateli TextSecure a Signal</string>
   <string name="preferences__submit_debug_log">Odeslat ladící log</string>
   <string name="preferences__support_wifi_calling">\'Wifi volání\' kompatibilní mód</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Povolit pokud vaše zařízení používá doručování SMS/MMS přes Wifi (povoleno pouze když je na zařízení povoleno \'Wifi volání\')</string>
-  <string name="preferences_app_protection__blocked_contacts">Blokované kontakt</string>
+  <string name="preferences_app_protection__blocked_contacts">Blokované kontakty</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

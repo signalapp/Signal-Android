@@ -12,11 +12,6 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Supprimer tous les anciens messages maintenant ?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Êtes-vous sûr de vouloir réduire toutes les conversations aux %s messages les plus récents ?</string>
   <string name="ApplicationPreferencesActivity_delete">Supprimer</string>
-  <string name="ApplicationPreferencesActivity_disable_storage_encryption">Désactiver le chiffrement du stockage ?</string>
-  <string name="ApplicationPreferencesActivity_warning_this_will_disable_storage_encryption_for_all_messages">
-Attention, ceci désactivera le chiffrement de stockage pour tous les messages et toutes les clés. Vos sessions chiffrées
-continueront de fonctionner mais une personne ayant un accès physique à votre appareil sera
-en mesure d’y accéder.</string>
   <string name="ApplicationPreferencesActivity_disable">Désactiver</string>
   <string name="ApplicationPreferencesActivity_unregistering">Annulation de l\'enregistrement</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Annulation de l\'enregistrement aux messages TextSecure</string>
@@ -60,6 +55,7 @@ clé d’identité.</string>
 vérifier ce contact.</string>
   <string name="ConfirmIdentityDialog_accept">Accepter</string>
   <!--ContactsDatabase-->
+  <string name="ContactsDatabase_message_s">Message %s</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Taille du message : %d Ko</string>
   <string name="ConversationItem_expires_s">Expire : %s</string>
@@ -401,6 +397,7 @@ Un message avec une clé de chiffrement inconnue a été reçu. Cliquer pour l\'
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_messages_in_d_conversations">%1$d messages dans %2$d conversations</string>
   <string name="MessageNotifier_most_recent_from_s">Plus récent de : %1$s</string>
+  <string name="MessageNotifier_locked_message">Message bloqué...</string>
   <string name="MessageNotifier_media_message_with_text">Message média : %s</string>
   <string name="MessageNotifier_no_subject">(Aucun sujet)</string>
   <string name="MessageNotifier_message_delivery_failed">La distribution du message a échoué.</string>
@@ -417,14 +414,11 @@ Un message avec une clé de chiffrement inconnue a été reçu. Cliquer pour l\'
   <string name="change_passphrase_activity__old_passphrase">Ancienne phrase de passe :</string>
   <string name="change_passphrase_activity__new_passphrase">Nouvelle phrase de passe :</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">Répéter la nouvelle phrase de passe :</string>
+  <!--contact_selection_activity-->
   <!--contact_selection_group_activity-->
-  <!--contact_selection_list_activity-->
   <string name="contact_selection_group_activity__no_contacts">Aucun contact.</string>
   <string name="contact_selection_group_activity__finding_contacts">Chargement des contacts...</string>
   <!--single_contact_selection_activity-->
-  <string name="SingleContactSelectionActivity_you_are_not_registered_with_the_push_service">Vous n\'êtes pas enregistré avec le service push...</string>
-  <string name="SingleContactSelectionActivity_updating_directory">Mise à jour du répertoire</string>
-  <string name="SingleContactSelectionActivity_updating_push_directory">Mise à jour du dossier push...</string>
   <string name="SingleContactSelectionActivity_contact_photo">Photo de contact</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionlistFragment_select_for">Sélectionner pour</string>
@@ -444,6 +438,7 @@ Un message avec une clé de chiffrement inconnue a été reçu. Cliquer pour l\'
   <string name="conversation_activity__compose_description">Composition du message</string>
   <string name="conversation_activity__emoji_toggle_description">Activer le clavier emoji</string>
   <string name="conversation_activity__attachment_thumbnail">Vignette de pièce jointe</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Capture instantanée</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Téléchargement du message média</string>
   <string name="conversation_item__mms_image_description">Message média</string>
@@ -649,6 +644,7 @@ par SMS.</string>
   <string name="preferences__change_my_passphrase">Modifier ma phrase de passe</string>
   <string name="preferences__enable_passphrase">Activer la phrase de passe</string>
   <string name="preferences__passphrase_summary">Phrase de passe %s</string>
+  <string name="preferences__enable_lock_screen_for_messages">Activer l\'écran de blocage pour les messages</string>
   <string name="preferences__screen_security">Sécurité d’écran</string>
   <string name="preferences__screen_security_summary">Sécurité d\'écran %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Désactiver les prises d\'écrans dans la liste des applications récentes et à l\'intérieur de l\'application</string>

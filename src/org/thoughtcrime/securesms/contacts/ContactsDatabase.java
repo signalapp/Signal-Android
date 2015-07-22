@@ -224,9 +224,9 @@ public class ContactsDatabase {
     } else {
       cursor = context.getContentResolver().query(ContactsContract.Data.CONTENT_URI,
                                                   projection,
-                                                  ContactsContract.Data.MIMETYPE + " = ? AND " + ContactsContract.Contacts.DISPLAY_NAME + " LIKE ?",
+                                                  ContactsContract.Data.MIMETYPE + " = ? AND (" + ContactsContract.Contacts.DISPLAY_NAME + " LIKE ? OR " + ContactsContract.Data.DATA1 + " LIKE ?)",
                                                   new String[] {"vnd.android.cursor.item/vnd.org.thoughtcrime.securesms.contact",
-                                                                "%" + filter + "%"},
+                                                                "%" + filter + "%", "%" + filter + "%"},
                                                   sort);
     }
 
