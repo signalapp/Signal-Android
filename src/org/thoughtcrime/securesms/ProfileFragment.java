@@ -238,10 +238,7 @@ public class ProfileFragment extends Fragment {
     if (!isMyProfile) {
       profileStatusEdit.setVisibility(View.GONE);
       profileImageDelete.setVisibility(View.GONE);
-      if (!isGroup) {
-        profileImageEdit.setVisibility(View.GONE);
-        profileImageDelete.setVisibility(View.GONE);
-      } else {
+      if (isGroup) {
         profileImageEdit.setVisibility(View.VISIBLE);
         profileImageEdit.setOnClickListener(new View.OnClickListener() {
           @Override
@@ -251,9 +248,13 @@ public class ProfileFragment extends Fragment {
         });
       }
     } else {
+      if (isGroup) {
+        profileImageDelete.setVisibility(View.GONE);
+      } else {
+        profileImageDelete.setVisibility(View.VISIBLE);
+      }
       profileStatusEdit.setVisibility(View.VISIBLE);
       profileImageEdit.setVisibility(View.VISIBLE);
-      profileImageDelete.setVisibility(View.VISIBLE);
       profileStatusEdit.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
