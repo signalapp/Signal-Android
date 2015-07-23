@@ -296,6 +296,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                 initializeTitleBar();
                 break;
             case AttachmentTypeSelectorAdapter.TAKE_PHOTO:
+                if (resultCode == RESULT_CANCELED) return;
                 handleTakenPhoto();
                 break;
         }
