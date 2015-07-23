@@ -1341,7 +1341,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     return super.dispatchTouchEvent(event);
   }
 
-  private class GestureDetectorListener implements GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener {
+  private class GestureDetectorListener extends GestureDetector.SimpleOnGestureListener {
     @Override
     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
       Log.d(TAG, "GestureDetecorListener:onFling() fired");
@@ -1350,45 +1350,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
     private boolean isLeftToRightFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY){
      return  e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY;
-    }
-    @Override
-    public boolean onDown(MotionEvent motionEvent) {
-      return false;
-    }
-
-    @Override
-    public void onShowPress(MotionEvent motionEvent) {
-
-    }
-
-    @Override
-    public boolean onSingleTapUp(MotionEvent motionEvent) {
-      return false;
-    }
-
-    @Override
-    public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
-      return false;
-    }
-
-    @Override
-    public void onLongPress(MotionEvent motionEvent) {
-
-    }
-
-    @Override
-    public boolean onSingleTapConfirmed(MotionEvent motionEvent) {
-      return false;
-    }
-
-    @Override
-    public boolean onDoubleTap(MotionEvent motionEvent) {
-      return false;
-    }
-
-    @Override
-    public boolean onDoubleTapEvent(MotionEvent motionEvent) {
-      return false;
     }
   }
 
