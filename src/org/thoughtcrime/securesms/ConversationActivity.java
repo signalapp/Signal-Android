@@ -157,7 +157,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private static final int TAKE_PHOTO               = 6;
   private static final int SWIPE_MIN_DISTANCE       = 120;
   private static final int SWIPE_THRESHOLD_VELOCITY = 200;
-  private static final int SWIPE_VERTICAL_TOLERANCE = 150;
+  private static final int SWIPE_VERTICAL_TOLERANCE = 165;
 
   private   MasterSecret              masterSecret;
   protected ComposeText               composeText;
@@ -1345,12 +1345,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private class GestureDetectorListener extends GestureDetector.SimpleOnGestureListener {
     @Override
     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-      if (isLeftToRightFling(e1, e2, velocityX, velocityY)) handleReturnToConversationList();
+      if (!isEmojiDrawerOpen() && isLeftToRightFling(e1, e2, velocityX, velocityY))
+        handleReturnToConversationList();
       return false;
     }
     private boolean isLeftToRightFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY){
-      Log.d(TAG, "e1_y: " + e1.getY()+ ", e2_y: " + e2.getY() + ", vertical distance: "
-                 + Math.abs(e2.getY()-e1.getY()) + ", with velocityY = " + velocityY);
       return e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE &&
              Math.abs(e2.getY() - e1.getY()) < SWIPE_VERTICAL_TOLERANCE &&
              Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY;
