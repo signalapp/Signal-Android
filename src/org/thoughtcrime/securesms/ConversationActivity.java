@@ -171,16 +171,16 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private   View                      composePanel;
   private   View                      composeBubble;
 
-  private AttachmentTypeSelectorAdapter attachmentAdapter;
-  private AttachmentManager             attachmentManager;
-  private BroadcastReceiver             securityUpdateReceiver;
-  private BroadcastReceiver             groupUpdateReceiver;
-  private Optional<EmojiDrawer> emojiDrawer = Optional.absent();
-  private   EmojiToggle           emojiToggle;
-  protected HidingImageButton     quickAttachmentToggle;
-  private   QuickAttachmentDrawer quickAttachmentDrawer;
+  private   AttachmentTypeSelectorAdapter attachmentAdapter;
+  private   AttachmentManager             attachmentManager;
+  private   BroadcastReceiver             securityUpdateReceiver;
+  private   BroadcastReceiver             groupUpdateReceiver;
+  private   Optional<EmojiDrawer>         emojiDrawer = Optional.absent();
+  private   EmojiToggle                   emojiToggle;
+  protected HidingImageButton             quickAttachmentToggle;
+  private   QuickAttachmentDrawer         quickAttachmentDrawer;
 
-  private GestureDetectorCompat gestureDetector;
+  private GestureDetectorCompat   gestureDetector;
   private GestureDetectorListener gestureDetectorListener = new GestureDetectorListener();
 
   private Recipients recipients;
@@ -207,7 +207,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     setContentView(R.layout.conversation_activity);
 
     fragment = initFragment(R.id.fragment_content, new ConversationFragment(),
-            masterSecret, dynamicLanguage.getCurrentLocale());
+                            masterSecret, dynamicLanguage.getCurrentLocale());
 
     initializeReceivers();
     initializeActionBar();
@@ -291,29 +291,29 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     if (data == null && reqCode != TAKE_PHOTO || resultCode != RESULT_OK) return;
 
     switch (reqCode) {
-      case PICK_IMAGE:
-        addAttachmentImage(masterSecret, data.getData());
-        break;
-      case PICK_VIDEO:
-        addAttachmentVideo(data.getData());
-        break;
-      case PICK_AUDIO:
-        addAttachmentAudio(data.getData());
-        break;
-      case PICK_CONTACT_INFO:
-        addAttachmentContactInfo(data.getData());
-        break;
-      case GROUP_EDIT:
-        this.recipients = RecipientFactory.getRecipientsForIds(this, data.getLongArrayExtra(GroupCreateActivity.GROUP_RECIPIENT_EXTRA), true);
-        titleView.setTitle(recipients);
-        setBlockedUserState(recipients);
-        supportInvalidateOptionsMenu();
-        break;
-      case TAKE_PHOTO:
-        if (attachmentManager.getCaptureUri() != null) {
-          addAttachmentImage(masterSecret, attachmentManager.getCaptureUri());
-        }
-        break;
+    case PICK_IMAGE:
+      addAttachmentImage(masterSecret, data.getData());
+      break;
+    case PICK_VIDEO:
+      addAttachmentVideo(data.getData());
+      break;
+    case PICK_AUDIO:
+      addAttachmentAudio(data.getData());
+      break;
+    case PICK_CONTACT_INFO:
+      addAttachmentContactInfo(data.getData());
+      break;
+    case GROUP_EDIT:
+      this.recipients = RecipientFactory.getRecipientsForIds(this, data.getLongArrayExtra(GroupCreateActivity.GROUP_RECIPIENT_EXTRA), true);
+      titleView.setTitle(recipients);
+      setBlockedUserState(recipients);
+      supportInvalidateOptionsMenu();
+      break;
+    case TAKE_PHOTO:
+      if (attachmentManager.getCaptureUri() != null) {
+        addAttachmentImage(masterSecret, attachmentManager.getCaptureUri());
+      }
+      break;
     }
   }
 
@@ -363,23 +363,23 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   public boolean onOptionsItemSelected(MenuItem item) {
     super.onOptionsItemSelected(item);
     switch (item.getItemId()) {
-      case R.id.menu_call:                      handleDial(getRecipients().getPrimaryRecipient()); return true;
-      case R.id.menu_delete_thread:             handleDeleteThread();                              return true;
-      case R.id.menu_add_attachment:            handleAddAttachment();                             return true;
-      case R.id.menu_view_media:                handleViewMedia();                                 return true;
-      case R.id.menu_add_to_contacts:           handleAddToContacts();                             return true;
-      case R.id.menu_abort_session:             handleAbortSecureSession();                        return true;
-      case R.id.menu_verify_identity:           handleVerifyIdentity();                            return true;
-      case R.id.menu_group_recipients:          handleDisplayGroupRecipients();                    return true;
-      case R.id.menu_distribution_broadcast:    handleDistributionBroadcastEnabled(item);          return true;
-      case R.id.menu_distribution_conversation: handleDistributionConversationEnabled(item);       return true;
-      case R.id.menu_edit_group:                handleEditPushGroup();                             return true;
-      case R.id.menu_leave:                     handleLeavePushGroup();                            return true;
-      case R.id.menu_invite:                    handleInviteLink();                                return true;
-      case R.id.menu_mute_notifications:        handleMuteNotifications();                         return true;
-      case R.id.menu_unmute_notifications:      handleUnmuteNotifications();                       return true;
-      case R.id.menu_conversation_settings:     handleConversationSettings();                      return true;
-      case android.R.id.home:                   handleReturnToConversationList();                  return true;
+    case R.id.menu_call:                      handleDial(getRecipients().getPrimaryRecipient()); return true;
+    case R.id.menu_delete_thread:             handleDeleteThread();                              return true;
+    case R.id.menu_add_attachment:            handleAddAttachment();                             return true;
+    case R.id.menu_view_media:                handleViewMedia();                                 return true;
+    case R.id.menu_add_to_contacts:           handleAddToContacts();                             return true;
+    case R.id.menu_abort_session:             handleAbortSecureSession();                        return true;
+    case R.id.menu_verify_identity:           handleVerifyIdentity();                            return true;
+    case R.id.menu_group_recipients:          handleDisplayGroupRecipients();                    return true;
+    case R.id.menu_distribution_broadcast:    handleDistributionBroadcastEnabled(item);          return true;
+    case R.id.menu_distribution_conversation: handleDistributionConversationEnabled(item);       return true;
+    case R.id.menu_edit_group:                handleEditPushGroup();                             return true;
+    case R.id.menu_leave:                     handleLeavePushGroup();                            return true;
+    case R.id.menu_invite:                    handleInviteLink();                                return true;
+    case R.id.menu_mute_notifications:        handleMuteNotifications();                         return true;
+    case R.id.menu_unmute_notifications:      handleUnmuteNotifications();                       return true;
+    case R.id.menu_conversation_settings:     handleConversationSettings();                      return true;
+    case android.R.id.home:                   handleReturnToConversationList();                  return true;
     }
 
     return false;
@@ -500,7 +500,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
           final Context context = getApplicationContext();
 
           OutgoingEndSessionMessage endSessionMessage =
-                  new OutgoingEndSessionMessage(new OutgoingTextMessage(getRecipients(), "TERMINATE"));
+              new OutgoingEndSessionMessage(new OutgoingTextMessage(getRecipients(), "TERMINATE"));
 
           new AsyncTask<OutgoingEndSessionMessage, Void, Long>() {
             @Override
@@ -553,7 +553,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                                              .build();
 
           OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(self, getRecipients(),
-                  context, null);
+                                                                                    context, null);
           MessageSender.send(self, masterSecret, outgoingMessage, threadId, false);
           DatabaseFactory.getGroupDatabase(self).remove(groupId, TextSecurePreferences.getLocalNumber(self));
           initializeEnabledCheck();
@@ -1128,7 +1128,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     if (characterState.charactersRemaining <= 15 || characterState.messagesSpent > 1) {
       charactersLeft.setText(characterState.charactersRemaining + "/" + characterState.maxMessageSize
-              + " (" + characterState.messagesSpent + ")");
+                                 + " (" + characterState.messagesSpent + ")");
       charactersLeft.setVisibility(View.VISIBLE);
     } else {
       charactersLeft.setVisibility(View.GONE);
