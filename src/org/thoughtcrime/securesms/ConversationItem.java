@@ -558,7 +558,7 @@ public class ConversationItem extends LinearLayout {
       mmsDownloadingLabel.setVisibility(View.GONE);
 
       if (messageRecord.isFailed()) {
-        dateText.setText(R.string.ConversationItem_error_sending_message);
+        dateText.setText(R.string.ConversationItem_error_sending_message_gdata);
       } else if (messageRecord.isPendingSmsFallback() && indicatorText != null) {
         dateText.setText("");
         if (messageRecord.isPendingSecureSmsFallback()) {
