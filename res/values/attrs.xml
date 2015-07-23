@@ -23,6 +23,8 @@
 
     <attr name="centered_app_title_color" format="reference|color" />
     <attr name="ic_arrow_forward" format="reference" />
+    <attr name="ic_visibility" format="reference" />
+    <attr name="ic_visibility_off" format="reference" />
 
     <attr name="conversation_background" format="reference|color"/>
     <attr name="conversation_editor_background" format="reference|color"/>
