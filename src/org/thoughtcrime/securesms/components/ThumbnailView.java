@@ -3,7 +3,8 @@ package org.thoughtcrime.securesms.components;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
+import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.support.annotation.NonNull;
@@ -15,13 +16,16 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import com.bumptech.glide.DrawableTypeRequest;
 import com.bumptech.glide.GenericRequestBuilder;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.GlideBitmapDrawable;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
-import com.makeramen.roundedimageview.RoundedImageView;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
 import org.thoughtcrime.securesms.R;
@@ -32,6 +36,7 @@ import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
+import org.thoughtcrime.securesms.mms.RoundedCorners;
 import org.thoughtcrime.securesms.util.Util;
 
 import de.greenrobot.event.EventBus;
@@ -40,9 +45,11 @@ import ws.com.google.android.mms.pdu.PduPart;
 public class ThumbnailView extends FrameLayout {
   private static final String TAG = ThumbnailView.class.getSimpleName();
 
-  private boolean          showProgress = true;
-  private RoundedImageView image;
-  private ProgressWheel    progress;
+  private boolean       showProgress = true;
+  private ImageView     image;
+  private ProgressWheel progress;
+  private int           backgroundColorHint;
+  private int           radius;
 
   private ListenableFutureTask<SlideDeck> slideDeckFuture        = null;
   private SlideDeckListener               slideDeckListener      = null;
@@ -61,8 +68,15 @@ public class ThumbnailView extends FrameLayout {
   public ThumbnailView(Context context, AttributeSet attrs, int defStyle) {
     super(context, attrs, defStyle);
     inflate(context, R.layout.thumbnail_view, this);
-    image    = (RoundedImageView) findViewById(R.id.thumbnail_image);
-    progress = (ProgressWheel)    findViewById(R.id.progress_wheel);
+    radius   = getResources().getDimensionPixelSize(R.dimen.message_bubble_corner_radius);
+    image    = (ImageView)     findViewById(R.id.thumbnail_image);
+    progress = (ProgressWheel) findViewById(R.id.progress_wheel);
+
+    if (attrs != null) {
+      TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.ThumbnailView, 0, 0);
+      backgroundColorHint = typedArray.getColor(0, Color.BLACK);
+      typedArray.recycle();
+    }
   }
 
   @Override protected void onAttachedToWindow() {
@@ -80,11 +94,15 @@ public class ThumbnailView extends FrameLayout {
     if (this.slide != null && event.partId.equals(this.slide.getPart().getPartId())) {
       Util.runOnMain(new Runnable() {
         @Override public void run() {
-          progress.setInstantProgress(((float) event.progress) / event.total);
+          progress.setInstantProgress(((float)event.progress) / event.total);
           if (event.progress >= event.total) animateOutProgress();
         }
       });
     }
+  }
+
+  public void setBackgroundColorHint(int color) {
+    this.backgroundColorHint = color;
   }
 
   public void setImageResource(@Nullable MasterSecret masterSecret,
@@ -155,6 +173,7 @@ public class ThumbnailView extends FrameLayout {
   private GenericRequestBuilder buildGlideRequest(@NonNull Slide slide,
                                                   @Nullable MasterSecret masterSecret)
   {
+    Log.w(TAG, "slide type " + slide.getContentType());
     final GenericRequestBuilder builder;
     if (slide.getThumbnailUri() != null) {
       builder = buildThumbnailGlideRequest(slide, masterSecret);
@@ -182,8 +201,7 @@ public class ThumbnailView extends FrameLayout {
     if (masterSecret == null) request = Glide.with(getContext()).load(slide.getThumbnailUri());
     else                      request = Glide.with(getContext()).load(new DecryptableUri(masterSecret, slide.getThumbnailUri()));
 
-    return request.asBitmap()
-                  .fitCenter()
+    return request.transform(new RoundedCorners(getContext(), false, radius, backgroundColorHint))
                   .listener(new PduThumbnailSetListener(slide.getPart()));
   }
 
@@ -192,9 +210,9 @@ public class ThumbnailView extends FrameLayout {
       throw new IllegalStateException("null MasterSecret when loading non-draft thumbnail");
     }
 
-    return  Glide.with(getContext()).load(new DecryptableUri(masterSecret, slide.getThumbnailUri()))
-                                    .asBitmap()
-                                    .centerCrop();
+    return Glide.with(getContext()).load(new DecryptableUri(masterSecret, slide.getThumbnailUri()))
+                                   .crossFade()
+                                   .transform(new RoundedCorners(getContext(), true, radius, backgroundColorHint));
   }
 
   private GenericRequestBuilder buildPlaceholderGlideRequest(Slide slide) {
@@ -282,7 +300,7 @@ public class ThumbnailView extends FrameLayout {
     }
   }
 
-  private static class PduThumbnailSetListener implements RequestListener<Object, Bitmap> {
+  private static class PduThumbnailSetListener implements RequestListener<Object, GlideDrawable> {
     private PduPart part;
 
     public PduThumbnailSetListener(@NonNull PduPart part) {
@@ -290,15 +308,17 @@ public class ThumbnailView extends FrameLayout {
     }
 
     @Override
-    public boolean onException(Exception e, Object model, Target<Bitmap> target, boolean isFirstResource) {
+    public boolean onException(Exception e, Object model, Target<GlideDrawable> target, boolean isFirstResource) {
       return false;
     }
 
     @Override
-    public boolean onResourceReady(Bitmap resource, Object model, Target<Bitmap> target, boolean isFromMemoryCache, boolean isFirstResource) {
-      part.setThumbnail(resource);
+    public boolean onResourceReady(GlideDrawable resource, Object model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+      if (resource instanceof GlideBitmapDrawable) {
+        Log.w(TAG, "onResourceReady() for a Bitmap. Saving.");
+        part.setThumbnail(((GlideBitmapDrawable)resource).getBitmap());
+      }
       return false;
     }
   }
-
 }

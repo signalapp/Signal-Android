@@ -25,15 +25,18 @@ public abstract class MediaConstraints {
   public abstract int getImageMaxHeight(Context context);
   public abstract int getImageMaxSize();
 
+  public abstract int getGifMaxSize();
+
   public abstract int getVideoMaxSize();
 
   public abstract int getAudioMaxSize();
 
   public boolean isSatisfied(Context context, MasterSecret masterSecret, PduPart part) {
     try {
-      return (MediaUtil.isImage(part) && part.getDataSize() <= getImageMaxSize() && isWithinBounds(context, masterSecret, part.getDataUri())) ||
-             (MediaUtil.isAudio(part) && part.getDataSize() <= getAudioMaxSize()) ||
-             (MediaUtil.isVideo(part) && part.getDataSize() <= getVideoMaxSize()) ||
+      return (MediaUtil.isGif(part)    && part.getDataSize() <= getGifMaxSize()) ||
+             (MediaUtil.isImage(part)  && part.getDataSize() <= getImageMaxSize() && isWithinBounds(context, masterSecret, part.getDataUri())) ||
+             (MediaUtil.isAudio(part)  && part.getDataSize() <= getAudioMaxSize()) ||
+             (MediaUtil.isVideo(part)  && part.getDataSize() <= getVideoMaxSize()) ||
              (!MediaUtil.isImage(part) && !MediaUtil.isAudio(part) && !MediaUtil.isVideo(part));
     } catch (IOException ioe) {
       Log.w(TAG, "Failed to determine if media's constraints are satisfied.", ioe);
@@ -49,7 +52,7 @@ public abstract class MediaConstraints {
   }
 
   public boolean canResize(PduPart part) {
-    return part != null && MediaUtil.isImage(part);
+    return part != null && MediaUtil.isImage(part) && !MediaUtil.isGif(part);
   }
 
   public byte[] getResizedMedia(Context context, MasterSecret masterSecret, PduPart part)

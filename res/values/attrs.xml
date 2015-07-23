@@ -130,4 +130,7 @@
         <attr name="inverted" format="boolean"/>
     </declare-styleable>
 
+    <declare-styleable name="ThumbnailView">
+        <attr name="backgroundColorHint" format="color" />
+    </declare-styleable>
 </resources>
