@@ -14,7 +14,7 @@
         android:layout_marginTop="5dp"
         android:fontFamily="sans-serif-light"
         android:textSize="13sp"
-        android:textColor="?attr/conversation_group_member_name"
+        android:textColor="@color/gdata_conversation_item_received_group_member_name"
         android:visibility="gone" />
 
     <RelativeLayout
