@@ -24,29 +24,27 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout;
 import org.thoughtcrime.securesms.components.camera.QuickCamera.QuickCameraListener;
 import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.thoughtcrime.securesms.util.Util;
 
 public class QuickAttachmentDrawer extends ViewGroup {
-  private static final String TAG                        = QuickAttachmentDrawer.class.getSimpleName();
-  private static final float  FULL_EXPANDED_ANCHOR_POINT = 1.f;
-  private static final float  COLLAPSED_ANCHOR_POINT     = 0.f;
+  private static final String TAG = QuickAttachmentDrawer.class.getSimpleName();
 
   private final ViewDragHelper dragHelper;
 
   private QuickCamera               quickCamera;
   private int                       coverViewPosition;
-  private KeyboardAwareLinearLayout coverView;
+  private KeyboardAwareLinearLayout container;
+  private View                      coverView;
   private View                      controls;
   private ImageButton               fullScreenButton;
   private ImageButton               swapCameraButton;
   private ImageButton               shutterButton;
-  private float                     slideOffset;
+  private int                       slideOffset;
   private float                     initialMotionX;
   private float                     initialMotionY;
   private int                       rotation;
-  private int                       slideRange;
   private AttachmentDrawerListener  listener;
   private int                       halfExpandedHeight;
-  private float                     halfExpandedAnchorPoint;
 
   private DrawerState drawerState             = DrawerState.COLLAPSED;
   private boolean     halfModeUnsupported     = VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH;
@@ -87,11 +85,19 @@ public class QuickAttachmentDrawer extends ViewGroup {
   }
 
   public void close() {
-    setDrawerStateAndAnimate(DrawerState.COLLAPSED);
+    setDrawerStateAndUpdate(DrawerState.COLLAPSED);
   }
 
   public void open() {
-    setDrawerStateAndAnimate(DrawerState.HALF_EXPANDED);
+    setDrawerStateAndUpdate(DrawerState.HALF_EXPANDED);
+  }
+
+  public void openInstant() {
+    setDrawerStateAndUpdate(DrawerState.HALF_EXPANDED, true);
+  }
+
+  public void closeInstant() {
+    setDrawerStateAndUpdate(DrawerState.COLLAPSED, true);
   }
 
   public void onConfigurationChanged() {
@@ -103,7 +109,7 @@ public class QuickAttachmentDrawer extends ViewGroup {
         quickCamera.onPause();
       }
       updateControlsView();
-      setDrawerStateAndAnimate(drawerState);
+      setDrawerStateAndUpdate(drawerState);
     }
   }
 
@@ -134,23 +140,19 @@ public class QuickAttachmentDrawer extends ViewGroup {
     return isLandscape() || halfModeUnsupported;
   }
 
-  private KeyboardAwareLinearLayout getCoverView() {
-    if (coverView != null) return coverView;
-
-    final View coverViewChild = getChildAt(coverViewPosition);
-    if (coverViewChild != null && !(coverViewChild instanceof KeyboardAwareLinearLayout)) {
-      throw new IllegalStateException("cover view must be a KeyboardAwareLinearLayout");
-    }
-
-    coverView = (KeyboardAwareLinearLayout) coverViewChild;
+  private View getCoverView() {
+    if (coverView == null) coverView = getChildAt(coverViewPosition);
     return coverView;
   }
 
+  private KeyboardAwareLinearLayout getContainer() {
+    if (container == null) container = (KeyboardAwareLinearLayout)getParent();
+    return container;
+  }
+
   private void updateHalfExpandedAnchorPoint() {
-    if (getCoverView() != null) {
-      slideRange              = getMeasuredHeight();
-      halfExpandedHeight      = coverView.getKeyboardHeight();
-      halfExpandedAnchorPoint = computeSlideOffsetFromCoverBottom(slideRange - halfExpandedHeight);
+    if (getContainer() != null) {
+      halfExpandedHeight = getContainer().getKeyboardHeight();
     }
   }
 
@@ -158,8 +160,6 @@ public class QuickAttachmentDrawer extends ViewGroup {
   protected void onLayout(boolean changed, int l, int t, int r, int b) {
     final int paddingLeft = getPaddingLeft();
     final int paddingTop  = getPaddingTop();
-
-    updateHalfExpandedAnchorPoint();
 
     for (int i = 0; i < getChildCount(); i++) {
       final View child       = getChildAt(i);
@@ -177,8 +177,8 @@ public class QuickAttachmentDrawer extends ViewGroup {
       } else if (child == controls) {
         childBottom = getMeasuredHeight();
       } else {
-        childBottom = computeCoverBottomPosition(slideOffset);
-        childTop    = childBottom - childHeight;
+        childTop    = computeCoverTopPosition(slideOffset);
+        childBottom = childTop + childHeight;
       }
       final int childRight = childLeft + child.getMeasuredWidth();
 
@@ -233,7 +233,7 @@ public class QuickAttachmentDrawer extends ViewGroup {
         default:
           childHeightSpec = MeasureSpec.makeMeasureSpec(lp.height, MeasureSpec.EXACTLY);
           break;
-    }
+      }
 
       child.measure(childWidthSpec, childHeightSpec);
     }
@@ -269,11 +269,11 @@ public class QuickAttachmentDrawer extends ViewGroup {
       ViewCompat.postInvalidateOnAnimation(this);
     }
 
-    if (slideOffset == COLLAPSED_ANCHOR_POINT && quickCamera.isStarted()) {
+    if (slideOffset == 0 && quickCamera.isStarted()) {
       quickCamera.onPause();
       controls.setVisibility(INVISIBLE);
       quickCamera.setVisibility(INVISIBLE);
-    } else if (slideOffset != COLLAPSED_ANCHOR_POINT && !quickCamera.isStarted() & !paused) {
+    } else if (slideOffset != 0 && !quickCamera.isStarted() & !paused) {
       controls.setVisibility(VISIBLE);
       quickCamera.setVisibility(VISIBLE);
       quickCamera.onResume();
@@ -284,7 +284,6 @@ public class QuickAttachmentDrawer extends ViewGroup {
     switch (drawerState) {
     case COLLAPSED:
       fullScreenButton.setImageResource(R.drawable.quick_camera_fullscreen);
-      if (listener != null) listener.onAttachmentDrawerClosed();
       break;
     case HALF_EXPANDED:
       if (isFullscreenOnly()) {
@@ -292,30 +291,37 @@ public class QuickAttachmentDrawer extends ViewGroup {
         return;
       }
       fullScreenButton.setImageResource(R.drawable.quick_camera_fullscreen);
-      if (listener != null) listener.onAttachmentDrawerOpened();
       break;
     case FULL_EXPANDED:
       fullScreenButton.setImageResource(isFullscreenOnly() ? R.drawable.quick_camera_hide
                                                            : R.drawable.quick_camera_exit_fullscreen);
-      if (listener != null) listener.onAttachmentDrawerOpened();
       break;
     }
-    this.drawerState = drawerState;
-  }
 
-  public float getTargetSlideOffset() {
-    switch (drawerState) {
-    case FULL_EXPANDED: return FULL_EXPANDED_ANCHOR_POINT;
-    case HALF_EXPANDED: return halfExpandedAnchorPoint;
-    default: return COLLAPSED_ANCHOR_POINT;
+    if (listener != null && drawerState != this.drawerState) {
+      this.drawerState = drawerState;
+      listener.onAttachmentDrawerStateChanged(drawerState);
     }
   }
 
-  public void setDrawerStateAndAnimate(final DrawerState requestedDrawerState) {
+  public int getTargetSlideOffset() {
+    switch (drawerState) {
+    case FULL_EXPANDED: return getMeasuredHeight();
+    case HALF_EXPANDED: return halfExpandedHeight;
+    default:            return 0;
+    }
+  }
+
+  public void setDrawerStateAndUpdate(final DrawerState requestedDrawerState) {
+    setDrawerStateAndUpdate(requestedDrawerState, false);
+  }
+
+  public void setDrawerStateAndUpdate(final DrawerState requestedDrawerState, boolean instant) {
     DrawerState oldDrawerState = this.drawerState;
     setDrawerState(requestedDrawerState);
     if (oldDrawerState != drawerState) {
-      slideTo(getTargetSlideOffset());
+      updateHalfExpandedAnchorPoint();
+      slideTo(getTargetSlideOffset(), instant);
     }
   }
 
@@ -325,8 +331,7 @@ public class QuickAttachmentDrawer extends ViewGroup {
   }
 
   public interface AttachmentDrawerListener extends QuickCameraListener {
-    void onAttachmentDrawerClosed();
-    void onAttachmentDrawerOpened();
+    void onAttachmentDrawerStateChanged(DrawerState drawerState);
   }
 
   private class ViewDragHelperCallback extends ViewDragHelper.Callback {
@@ -351,10 +356,7 @@ public class QuickAttachmentDrawer extends ViewGroup {
 
     @Override
     public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {
-      final int expandedTop  = computeCoverBottomPosition(FULL_EXPANDED_ANCHOR_POINT) - coverView.getHeight();
-      final int collapsedTop = computeCoverBottomPosition(COLLAPSED_ANCHOR_POINT)     - coverView.getHeight();
-      final int newTop       = Math.min(Math.max(coverView.getTop() + dy, expandedTop), collapsedTop);
-      slideOffset = computeSlideOffsetFromCoverBottom(newTop + coverView.getHeight());
+      slideOffset = Util.clamp(slideOffset - dy, 0, getMeasuredHeight());
       requestLayout();
     }
 
@@ -367,25 +369,20 @@ public class QuickAttachmentDrawer extends ViewGroup {
         if (direction > 1) {
           drawerState = DrawerState.FULL_EXPANDED;
         } else if (direction < -1) {
-          boolean halfExpand = (slideOffset > halfExpandedAnchorPoint && !isLandscape());
+          boolean halfExpand = (slideOffset > halfExpandedHeight && !isLandscape());
           drawerState = halfExpand ? DrawerState.HALF_EXPANDED : DrawerState.COLLAPSED;
         } else if (!isLandscape()) {
-          if (halfExpandedAnchorPoint != 1 && slideOffset >= (1.f + halfExpandedAnchorPoint) / 2) {
+          if (slideOffset >= (halfExpandedHeight + getMeasuredHeight()) / 2) {
             drawerState = DrawerState.FULL_EXPANDED;
-          } else if (halfExpandedAnchorPoint == 1 && slideOffset >= 0.5f) {
-            drawerState = DrawerState.FULL_EXPANDED;
-          } else if (halfExpandedAnchorPoint != 1 && slideOffset >= halfExpandedAnchorPoint) {
-            drawerState = DrawerState.HALF_EXPANDED;
-          } else if (halfExpandedAnchorPoint != 1 && slideOffset >= halfExpandedAnchorPoint / 2) {
+          } else if (slideOffset >= halfExpandedHeight / 2) {
             drawerState = DrawerState.HALF_EXPANDED;
           }
         }
 
         setDrawerState(drawerState);
-        float slideOffset = getTargetSlideOffset();
+        int slideOffset = getTargetSlideOffset();
         dragHelper.captureChildView(coverView, 0);
-        Log.w(TAG, String.format("setting cover at %d",  computeCoverBottomPosition(slideOffset) - coverView.getHeight()));
-        dragHelper.settleCapturedViewAt(coverView.getLeft(), computeCoverBottomPosition(slideOffset) - coverView.getHeight());
+        dragHelper.settleCapturedViewAt(coverView.getLeft(), computeCoverTopPosition(slideOffset));
         dragHelper.captureChildView(quickCamera, 0);
         dragHelper.settleCapturedViewAt(quickCamera.getLeft(), computeCameraTopPosition(slideOffset));
         ViewCompat.postInvalidateOnAnimation(QuickAttachmentDrawer.this);
@@ -394,7 +391,7 @@ public class QuickAttachmentDrawer extends ViewGroup {
 
     @Override
     public int getViewVerticalDragRange(View child) {
-      return slideRange;
+      return getMeasuredHeight();
     }
 
     @Override
@@ -465,28 +462,22 @@ public class QuickAttachmentDrawer extends ViewGroup {
            screenY >= viewLocation[1] && screenY < viewLocation[1] + quickCamera.getHeight();
   }
 
-  private int computeCameraTopPosition(float slideOffset) {
-    float clampedOffset = slideOffset - halfExpandedAnchorPoint;
-    if (clampedOffset < COLLAPSED_ANCHOR_POINT) {
-      clampedOffset = COLLAPSED_ANCHOR_POINT;
-    } else {
-      clampedOffset = clampedOffset / (FULL_EXPANDED_ANCHOR_POINT - halfExpandedAnchorPoint);
-    }
-    float slidePixelOffset = slideOffset * slideRange +
-                             (quickCamera.getMeasuredHeight() - coverView.getKeyboardHeight()) / 2 *
-                             (FULL_EXPANDED_ANCHOR_POINT - clampedOffset);
-    float marginPixelOffset = (getMeasuredHeight() - quickCamera.getMeasuredHeight()) / 2 * clampedOffset;
-    return (int) (getMeasuredHeight() - slidePixelOffset + marginPixelOffset);
+  private int computeCameraTopPosition(int slideOffset) {
+    final int   baseCameraTop = (quickCamera.getMeasuredHeight() - halfExpandedHeight) / 2;
+    final int   baseOffset    = getMeasuredHeight() - slideOffset - baseCameraTop;
+    final float slop          = Util.clamp((float)(slideOffset - halfExpandedHeight) / (getMeasuredHeight() - halfExpandedHeight),
+                                           0f,
+                                           1f);
+    return baseOffset + (int)(slop * baseCameraTop);
   }
 
-  private int computeCoverBottomPosition(float slideOffset) {
-    int slidePixelOffset = (int) (slideOffset * slideRange);
-    return getMeasuredHeight() - getPaddingBottom() - slidePixelOffset;
+  private int computeCoverTopPosition(int slideOffset) {
+    return getMeasuredHeight() - getPaddingBottom() - slideOffset - getCoverView().getMeasuredHeight();
   }
 
-  private void slideTo(float slideOffset) {
-    if (dragHelper != null && !halfModeUnsupported) {
-      dragHelper.smoothSlideViewTo(coverView, coverView.getLeft(), computeCoverBottomPosition(slideOffset) - coverView.getHeight());
+  private void slideTo(int slideOffset, boolean forceInstant) {
+    if (dragHelper != null && !halfModeUnsupported && !forceInstant) {
+      dragHelper.smoothSlideViewTo(coverView, coverView.getLeft(), computeCoverTopPosition(slideOffset));
       dragHelper.smoothSlideViewTo(quickCamera, quickCamera.getLeft(), computeCameraTopPosition(slideOffset));
       ViewCompat.postInvalidateOnAnimation(this);
     } else {
@@ -495,11 +486,6 @@ public class QuickAttachmentDrawer extends ViewGroup {
       requestLayout();
       invalidate();
     }
-  }
-
-  private float computeSlideOffsetFromCoverBottom(int topPosition) {
-    final int topBoundCollapsed = computeCoverBottomPosition(0);
-    return (float) (topBoundCollapsed - topPosition) / slideRange;
   }
 
   public void onPause() {
@@ -524,7 +510,7 @@ public class QuickAttachmentDrawer extends ViewGroup {
     @Override
     public void onClick(View v) {
       boolean crop        = drawerState != DrawerState.FULL_EXPANDED;
-      int     imageHeight = crop ? coverView.getKeyboardHeight() : quickCamera.getMeasuredHeight();
+      int     imageHeight = crop ? getContainer().getKeyboardHeight() : quickCamera.getMeasuredHeight();
       Rect    previewRect = new Rect(0, 0, quickCamera.getMeasuredWidth(), imageHeight);
       quickCamera.takePicture(previewRect);
     }
@@ -543,11 +529,11 @@ public class QuickAttachmentDrawer extends ViewGroup {
     @Override
     public void onClick(View v) {
       if (drawerState != DrawerState.FULL_EXPANDED) {
-        setDrawerStateAndAnimate(DrawerState.FULL_EXPANDED);
+        setDrawerStateAndUpdate(DrawerState.FULL_EXPANDED);
       } else if (isFullscreenOnly()) {
-        setDrawerStateAndAnimate(DrawerState.COLLAPSED);
+        setDrawerStateAndUpdate(DrawerState.COLLAPSED);
       } else {
-        setDrawerStateAndAnimate(DrawerState.HALF_EXPANDED);
+        setDrawerStateAndUpdate(DrawerState.HALF_EXPANDED);
       }
     }
   }
