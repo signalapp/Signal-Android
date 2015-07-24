@@ -10,6 +10,7 @@ import android.graphics.RectF;
 import android.graphics.Shader.TileMode;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
@@ -32,7 +33,11 @@ public class RoundedCorners extends BitmapTransformation {
   {
     final Bitmap toRound = crop ? centerCrop(pool, toTransform, outWidth, outHeight)
                                 : fitCenter(pool, toTransform, outWidth, outHeight);
-    return round(pool, toRound);
+    final Bitmap rounded = round(pool, toRound);
+    if (toRound != null && toRound != rounded && !pool.put(toRound)) {
+      toRound.recycle();
+    }
+    return rounded;
   }
 
   private Bitmap centerCrop(BitmapPool pool, Bitmap toTransform, int outWidth, int outHeight) {
