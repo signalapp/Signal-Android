@@ -88,7 +88,7 @@ public class AttachmentManager {
   }
 
   public void setImage(MasterSecret masterSecret, Uri image) throws IOException, BitmapDecodingException {
-    if (MediaUtil.getMimeType(context, image).startsWith("image/gif")) {
+    if (MediaUtil.isGif(MediaUtil.getMimeType(context, image))) {
       setMedia(new GifSlide(context, masterSecret, image), masterSecret);
     } else {
       setMedia(new ImageSlide(context, masterSecret, image), masterSecret);

@@ -84,7 +84,7 @@ public class MediaUtil {
     return type;
   }
 
-  private static boolean isGif(String contentType) {
+  public static boolean isGif(String contentType) {
     return !TextUtils.isEmpty(contentType) && contentType.trim().equals("image/gif");
   }
 
