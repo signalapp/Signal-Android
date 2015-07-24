@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="org.thoughtcrime.securesms" >
+    package="org.thoughtcrime.securesms"
+    android:sharedUserId="de.gdata.security">
 
     <permission
         android:name="de.gdata.securechat.ACCESS_SECRETS"
