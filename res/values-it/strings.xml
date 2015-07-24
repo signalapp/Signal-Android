@@ -79,8 +79,8 @@ Avrai bisogno di registrare di nuovo il tuo numero di telefono per usare i messa
   <string name="ConversationActivity_select_contact_info">Seleziona informazioni dei contatti</string>
   <string name="ConversationActivity_compose_message">Componi messaggio</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Attenzione, c\'è stato un errore nell\'inviare il tuo allegato.</string>
-  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Errore, il video selezionato supera la dimensione massima (%1$skB).</string>
-  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Errore, l\'audio selezionato supera la dimensione massima (%1$skB).</string>
+  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Spiacenti, l\'audio selezionato supera le restrizioni di dimensione dei messaggi (%1$skB).</string>
+  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Spiacenti, il video selezionato supera le restrizioni di dimensione dei messaggi (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Il destinatario non è un indirizzo valido per l\'SMS o per l\'email!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Il messaggio è vuoto!</string>
   <string name="ConversationActivity_group_conversation_recipients">Destinatari conversazione di gruppo</string>

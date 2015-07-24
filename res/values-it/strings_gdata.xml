@@ -63,6 +63,4 @@
     <string name="status_donotdisturb">Si prega di non disturbare</string>
     <string name="status_nocallsjustchat">Nessuna chiamata, solo SecureChat</string>
     <string name="status_onlyurgentcalls">Solo chiamate urgenti</string>
-    <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Spiacenti, l\'audio selezionato supera le restrizioni di dimensione dei messaggi (%1$skB).</string>
-    <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Spiacenti, il video selezionato supera le restrizioni di dimensione dei messaggi (%1$skB).</string>
 </resources>
