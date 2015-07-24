@@ -40,4 +40,27 @@
     <string name="self_destruction_title">#1# secondes avant autodestruction...</string>
     <string name="self_destruction_body">Le contenu de ce message s’autodétruira dans les #1# secondes suivant l’ouverture.</string>
     <string name="unknown_country">Pays inconnu</string>
+    <string name="self_destruction_compose_hint">Envoyer un message autodestructible</string>
+    <string name="privacy_toast_unlock_premium">Vous devez activer les fonctionnalités Premium de l’application G DATA Internet Security pour utiliser ces fonctions.</string>
+    <string name="import_complete_dialog">L’importation de la base de données du système SecureChat est terminée.</string>
+    <string name="profile_status_label">Statut</string>
+    <string name="profile_number_label">Numéro de téléphone</string>
+    <string name="profile_status_member">Membre</string>
+    <string name="identification">Identification</string>
+    <string name="identification_title">Cette clé est votre identification. Demandez à vos interlocuteurs de la numériser. Ils seront ainsi assurés que les messages de cette clé proviennent vraiment de vous.</string>
+    <string name="verify_identity_activity_their_identity">Identification du destinataire - Cette clé identifie vos interlocuteurs. Numérisez la clé pour confirmer que les messages entrants sont authentiques.</string>
+    <string name="verify_identity_activity_your_identity" >Identité propre - Cette clé est votre identification. Demandez à vos interlocuteurs de numériser la clé pour authentifier vos messages.</string>
+    <string name="identification_verified_unsuccessfully">Les clés ne correspondent pas !</string>
+    <string name="identification_verified_successfully">Identification réussie.</string>
+    <string name="accept_eula_and_continue">Accepter et poursuivre</string>
+    <string name="claim_textsecure">Avec nous, la sécurité est si simple qu’elle en devient incontournable.</string>
+    <string name="eula">Conditions générales</string>
+    <string name="take_picture">Prendre une photo</string>
+    <string name="status_available">Disponible</string>
+    <string name="status_busy">Occupé</string>
+    <string name="status_atwork">Au travail</string>
+    <string name="status_meeting">En réunion</string>
+    <string name="status_donotdisturb">Ne pas déranger</string>
+    <string name="status_nocallsjustchat">Aucun appel, SecureChat uniquement</string>
+    <string name="status_onlyurgentcalls">Appels urgents uniquement</string>
 </resources>
