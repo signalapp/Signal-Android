@@ -442,6 +442,7 @@ Wi-Fiに接続している場合、ファイアウォールがSecureChatサー�
   <string name="arrays__my_identity_key">自分の認証キー</string>
   <!--preferences.xml-->
   <string name="preferences__general">一般設定</string>
+  <string name="preferences__sms_mms">SMSとMMS</string>
   <string name="preferences__push_sms_category">プッシュとSMS</string>
   <string name="preferences__pref_all_sms_title">全てのSMSを受信</string>
   <string name="preferences__pref_all_mms_title">全てのMMSを受信</string>
@@ -495,6 +496,7 @@ Wi-Fiに接続している場合、ファイアウォールがSecureChatサー�
   <string name="preferences__slow">遅い</string>
   <string name="preferences__custom">カスタム</string>
   <string name="preferences__advanced">詳細設定</string>
+  <string name="preferences__app_protection">アプリ防御</string>
   <string name="preferences__override_system_mms_settings">システムのMMS設定を下の設定で上書きする。</string>
   <string name="preferences__mmsc_url_required">MMSC URL (必須)</string>
   <string name="preferences__mms_proxy_host_optional">MMSプロキシ・ホスト（選択自由）</string>
@@ -516,8 +518,11 @@ Wi-Fiに接続している場合、ファイアウォールがSecureChatサー�
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
 データーチャンネルを利用して他のSecureChatウーザーとの会話をする時、安全性を高めてSMS料金を避けますか？</string>
   <string name="preferences__submit_debug_log">デバッグログを提出</string>
+  <string name="preferences__sms_fallback">SMS/MMS送信</string>
   <string name="preferences__sms_outgoing_push_users">SecureChatウーザー</string>
   <string name="preferences__sms_outgoing_push_users_description">データーチャンネルが使用不可能の時、暗号化されたSMSを送る</string>
+  <string name="preferences__sms_fallback_ask_before_sending_sms_mms">SMS/MMSを送信する前に尋ねる</string>
+  <string name="preferences__sms_fallback_never_send_mms">MMSを送信しない</string>
   <string name="preferences__sms_fallback_non_push_users">SecureChatを使用しない方</string>
   <string name="preferences__sms_fallback_nobody">無人</string>
   <!--****************************************-->
@@ -606,7 +611,9 @@ Wi-Fiに接続している場合、ファイアウォールがSecureChatサー�
   <string name="ApplicationPreferencesActivity_incoming_sms">着信</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">%s 件のメッセージ (チャット履歴)</string>
   <string name="ApplicationPreferencesActivity_mms">MMS</string>
+  <string name="ApplicationPreferencesActivity_Off">オフ</string>
   <string name="ApplicationPreferencesActivity_off">オフ</string>
+  <string name="ApplicationPreferencesActivity_On">オン</string>
   <string name="ApplicationPreferencesActivity_on">オン</string>
   <string name="ApplicationPreferencesActivity_outgoing_sms">発信</string>
   <string name="ApplicationPreferencesActivity_partial">部分的</string>
