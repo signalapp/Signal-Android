@@ -606,8 +606,8 @@ Wi-Fiに接続している場合、ファイアウォールがSecureChatサー�
   <string name="preferences__enable_local_encryption_of_messages_and_keys">メッセージとキーのローカル暗号化を有効にする</string>
   <string name="preferences__enable_manual_mms">使用手動MMS設置</string>
   <string name="preferences__enable_passphrase">啓用密碼</string>
-  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">選択した動画ファイルはメッセージ容量制限 (%1$skB) を越えています。</string>
-  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">選択したオーディオファイルはメッセージ容量制限(%1$skB) を越えています。</string>
+  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">選択したオーディオファイルはメッセージの許容サイズ (%1$skB) を超えています。</string>
+  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">選択した動画ファイルはメッセージの許容サイズ (%1$skB) を超えています。</string>
   <string name="ApplicationPreferencesActivity_incoming_sms">着信</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">%s 件のメッセージ (チャット履歴)</string>
   <string name="ApplicationPreferencesActivity_mms">MMS</string>
