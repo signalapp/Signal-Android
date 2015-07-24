@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -34,6 +35,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -267,8 +269,15 @@ public class ProfileFragment extends Fragment {
                         hasChanged = true;
                         hasLeft = false;
                         profileStatusEdit.setImageDrawable(getResources().getDrawable(R.drawable.ic_content_edit));
+
+                        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(profileStatus.getWindowToken(), 0);
                     } else {
                         profileStatusEdit.setImageDrawable(getResources().getDrawable(R.drawable.ic_send_sms_gdata));
+
+                        profileStatus.requestFocus();
+                        InputMethodManager imm = (InputMethodManager)  getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.showSoftInput(profileStatus, InputMethodManager.SHOW_IMPLICIT);
                     }
                 }
             });

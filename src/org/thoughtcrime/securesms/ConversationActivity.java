@@ -301,7 +301,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                 break;
         }
     }
-public void handleTakenPhoto() {
+
+    public void handleTakenPhoto() {
         File image = AttachmentManager.getOutputMediaFile();
         if (image != null) {
             Uri fileUri = Uri.fromFile(image);
@@ -315,7 +316,8 @@ public void handleTakenPhoto() {
             }
         }
 
-}
+    }
+
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuInflater inflater = this.getMenuInflater();
