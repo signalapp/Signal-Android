@@ -8,8 +8,9 @@ import android.util.AttributeSet;
 import android.widget.ImageButton;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.emoji.EmojiDrawer.EmojiDrawerListener;
 
-public class EmojiToggle extends ImageButton {
+public class EmojiToggle extends ImageButton implements EmojiDrawerListener {
 
   private Drawable emojiToggle;
   private Drawable imeToggle;
@@ -46,6 +47,18 @@ public class EmojiToggle extends ImageButton {
     this.imeToggle       = drawables.getDrawable(1);
 
     drawables.recycle();
+    setToEmoji();
+  }
+
+  public void attach(EmojiDrawer drawer) {
+    drawer.setDrawerListener(this);
+  }
+
+  @Override public void onShown() {
+    setToIme();
+  }
+
+  @Override public void onHidden() {
     setToEmoji();
   }
 }
