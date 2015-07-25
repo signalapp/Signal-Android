@@ -392,7 +392,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     } else if (quickAttachmentDrawer.isOpen()) {
       quickAttachmentDrawer.close();
     } else {
-      super.onBackPressed();
+      handleReturnToConversationList();
     }
   }
 
