@@ -763,19 +763,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     composeBubble  =                         findViewById(R.id.compose_bubble);
     container      = (InputAwareLayout)      findViewById(R.id.layout_container);
 
-    container.addOnKeyboardShownListener(this);
-
-    buttonToggle          = (AnimatingToggle)       findViewById(R.id.button_toggle);
-    sendButton            = (SendButton)            findViewById(R.id.send_button);
-    attachButton          = (ImageButton)           findViewById(R.id.attach_button);
-    composeText           = (ComposeText)           findViewById(R.id.embedded_text_editor);
-    charactersLeft        = (TextView)              findViewById(R.id.space_left);
-    emojiToggle           = (EmojiToggle)           findViewById(R.id.emoji_toggle);
-    titleView             = (ConversationTitleView) getSupportActionBar().getCustomView();
-    unblockButton         = (Button)                findViewById(R.id.unblock_button);
-    composePanel          =                         findViewById(R.id.bottom_panel);
     quickAttachmentDrawer = (QuickAttachmentDrawer) findViewById(R.id.quick_attachment_drawer);
     quickAttachmentToggle = (HidingImageButton)     findViewById(R.id.quick_attachment_toggle);
+
+    container.addOnKeyboardShownListener(this);
 
     int[]      attributes   = new int[]{R.attr.conversation_item_bubble_background};
     TypedArray colors       = obtainStyledAttributes(attributes);
