@@ -32,7 +32,6 @@ import org.thoughtcrime.securesms.crypto.EncryptingPartOutputStream;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUnion;
 import org.thoughtcrime.securesms.mms.PartAuthority;
-import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MediaUtil.ThumbnailData;
 import org.thoughtcrime.securesms.util.Util;
@@ -608,16 +607,12 @@ public class PartDatabase extends Database {
         return stream;
       }
 
-      try {
-        PduPart part = getPart(partId);
-        ThumbnailData data = MediaUtil.generateThumbnail(context, masterSecret, part.getDataUri(), Util.toIsoString(part.getContentType()));
-        if (data == null) {
-          return null;
-        }
-        updatePartThumbnail(masterSecret, partId, part, data.toDataStream(), data.getAspectRatio());
-      } catch (BitmapDecodingException bde) {
-        throw new IOException(bde);
+      PduPart part = getPart(partId);
+      ThumbnailData data = MediaUtil.generateThumbnail(context, masterSecret, part.getDataUri(), Util.toIsoString(part.getContentType()));
+      if (data == null) {
+        return null;
       }
+      updatePartThumbnail(masterSecret, partId, part, data.toDataStream(), data.getAspectRatio());
 
       return getDataStream(masterSecret, partId, THUMBNAIL);
     }
@@ -661,7 +656,6 @@ public class PartDatabase extends Database {
 
       if (rowId != partId.rowId) return false;
       return uniqueId == partId.uniqueId;
-
     }
 
     @Override public int hashCode() {

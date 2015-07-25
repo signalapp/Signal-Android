@@ -40,6 +40,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.google.protobuf.ByteString;
 import com.soundcloud.android.crop.Crop;
 
@@ -52,12 +55,11 @@ import org.thoughtcrime.securesms.database.NotInDirectoryException;
 import org.thoughtcrime.securesms.database.TextSecureDirectory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
+import org.thoughtcrime.securesms.mms.RoundedCorners;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
-import org.thoughtcrime.securesms.util.BitmapDecodingException;
-import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.GroupUtil;
@@ -369,7 +371,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
   }
 
   @Override
-  public void onActivityResult(int reqCode, int resultCode, Intent data) {
+  public void onActivityResult(int reqCode, int resultCode, final Intent data) {
     super.onActivityResult(reqCode, resultCode, data);
     Uri outputFile = Uri.fromFile(new File(getCacheDir(), "cropped"));
 
@@ -395,7 +397,18 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
         new Crop(data.getData()).output(outputFile).asSquare().start(this);
         break;
       case Crop.REQUEST_CROP:
-        new DecodeCropAndSetAsyncTask(Crop.getOutput(data)).execute();
+        Glide.with(this).load(Crop.getOutput(data)).asBitmap().skipMemoryCache(true)
+             .centerCrop().override(AVATAR_SIZE, AVATAR_SIZE)
+             .into(new SimpleTarget<Bitmap>() {
+               @Override public void onResourceReady(Bitmap resource,
+                                                     GlideAnimation<? super Bitmap> glideAnimation)
+               {
+                 avatarBmp = resource;
+                 Glide.with(GroupCreateActivity.this).load(Crop.getOutput(data)).skipMemoryCache(true)
+                      .transform(new RoundedCorners(GroupCreateActivity.this, avatar.getWidth() / 2))
+                      .into(avatar);
+               }
+             });
     }
   }
 
@@ -487,32 +500,6 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
     }
 
     return results;
-  }
-
-  private class DecodeCropAndSetAsyncTask extends AsyncTask<Void,Void,Bitmap> {
-    private final Uri avatarUri;
-
-    DecodeCropAndSetAsyncTask(Uri uri) {
-      avatarUri = uri;
-    }
-
-    @Override
-    protected Bitmap doInBackground(Void... voids) {
-      if (avatarUri != null) {
-        try {
-          avatarBmp = BitmapUtil.createScaledBitmap(GroupCreateActivity.this, masterSecret, avatarUri, AVATAR_SIZE, AVATAR_SIZE);
-        } catch (IOException | BitmapDecodingException e) {
-          Log.w(TAG, e);
-          return null;
-        }
-      }
-      return avatarBmp;
-    }
-
-    @Override
-    protected void onPostExecute(Bitmap result) {
-      if (avatarBmp != null) avatar.setImageBitmap(avatarBmp);
-    }
   }
 
   private class CreateMmsGroupAsyncTask extends AsyncTask<Void,Void,Long> {
