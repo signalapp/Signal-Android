@@ -1,35 +1,47 @@
 package org.thoughtcrime.securesms;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
+import android.view.MenuItem;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.view.MenuItem;
-
-import org.thoughtcrime.securesms.util.ActionBarUtil;
-import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.util.DynamicTheme;
 
 
-public class ImportExportActivity extends PassphraseRequiredSherlockFragmentActivity {
+public class ImportExportActivity extends PassphraseRequiredActionBarActivity {
 
+  private MasterSecret    masterSecret;
   private TabPagerAdapter tabPagerAdapter;
-  private ViewPager viewPager;
-  private MasterSecret masterSecret;
+  private ViewPager       viewPager;
+
+  private DynamicTheme dynamicTheme = new DynamicTheme();
 
   @Override
-  public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
+  protected void onPreCreate() {
+    dynamicTheme.onCreate(this);
+  }
+
+  @Override
+  protected void onCreate(Bundle savedInstanceState, @NonNull MasterSecret masterSecret) {
+    this.masterSecret = masterSecret;
     setContentView(R.layout.import_export_activity);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    ActionBarUtil.initializeDefaultActionBar(this, getSupportActionBar());
 
     initializeResources();
     initializeViewPager();
     initializeTabs();
+  }
+
+  @Override
+  public void onResume() {
+      dynamicTheme.onResume(this);
+      super.onResume();
   }
 
   @Override
@@ -44,7 +56,6 @@ public class ImportExportActivity extends PassphraseRequiredSherlockFragmentActi
   }
 
   private void initializeResources() {
-    this.masterSecret    = getIntent().getParcelableExtra("master_secret");
     this.viewPager       = (ViewPager) findViewById(R.id.import_export_pager);
     this.tabPagerAdapter = new TabPagerAdapter(getSupportFragmentManager());
 
@@ -74,8 +85,8 @@ public class ImportExportActivity extends PassphraseRequiredSherlockFragmentActi
       public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {}
     };
 
-    actionBar.addTab(actionBar.newTab().setText("Import").setTabListener(tabListener));
-    actionBar.addTab(actionBar.newTab().setText("Export").setTabListener(tabListener));
+    actionBar.addTab(actionBar.newTab().setText(R.string.ImportExportActivity_import).setTabListener(tabListener));
+    actionBar.addTab(actionBar.newTab().setText(R.string.ImportExportActivity_export).setTabListener(tabListener));
   }
 
   private class TabPagerAdapter extends FragmentStatePagerAdapter {
@@ -104,8 +115,8 @@ public class ImportExportActivity extends PassphraseRequiredSherlockFragmentActi
 
     @Override
     public CharSequence getPageTitle(int i) {
-      if (i == 0) return "Import";
-      else        return "Export";
+      if (i == 0) return getString(R.string.ImportExportActivity_import);
+      else        return getString(R.string.ImportExportActivity_export);
     }
   }
 

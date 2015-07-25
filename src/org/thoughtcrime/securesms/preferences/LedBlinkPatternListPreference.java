@@ -16,13 +16,10 @@
  */
 package org.thoughtcrime.securesms.preferences;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.os.Parcelable;
 import android.preference.ListPreference;
-import android.preference.PreferenceManager;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,7 +28,8 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
+import com.afollestad.materialdialogs.AlertDialogWrapper;
+
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
@@ -80,9 +78,9 @@ public class LedBlinkPatternListPreference extends ListPreference implements OnS
   }
 
   private void initializeDialog(View view) {
-    AlertDialog.Builder builder = new AlertDialog.Builder(context);
-    builder.setIcon(android.R.drawable.ic_dialog_info);
-    builder.setTitle("Set Custom LED Blink Pattern");
+    AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(context);
+    builder.setIconAttribute(R.attr.dialog_info_icon);
+    builder.setTitle(R.string.preferences__pref_led_blink_custom_pattern_title);
     builder.setView(view);
     builder.setOnCancelListener(new CustomDialogCancelListener());
     builder.setNegativeButton(android.R.string.cancel, new CustomDialogCancelListener());
@@ -104,8 +102,7 @@ public class LedBlinkPatternListPreference extends ListPreference implements OnS
 
     initializeSeekBarValues();
     initializeDialog(view);
-    dialogInProgress = true;
-
+    
     dialogInProgress = true;
   }
 
@@ -154,7 +151,7 @@ public class LedBlinkPatternListPreference extends ListPreference implements OnS
       dialogInProgress = false;
 
       TextSecurePreferences.setNotificationLedPatternCustom(context, pattern);
-      Toast.makeText(context, "Custom LED blink pattern set!", Toast.LENGTH_LONG).show();
+      Toast.makeText(context, R.string.preferences__pref_led_blink_custom_pattern_set, Toast.LENGTH_LONG).show();
     }
 
   }

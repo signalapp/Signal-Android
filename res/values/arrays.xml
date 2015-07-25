@@ -7,27 +7,36 @@
       <item>Arabic العربية</item>
       <item>Bulgarian български</item>
       <item>Burmese မြန်မာစာ</item>
+      <item>Català</item>
+      <item>Čeština</item>
       <item>Chinese 中国的</item>
-      <item>Danske</item>
+      <item>Dansk</item>
       <item>Deutsch</item>
       <item>Español</item>
       <item>Français</item>
       <item>Greek ελληνικά</item>
       <item>Hebrew עברית</item>
+      <item>Hrvatski</item>
+      <item>Indonesia</item>
       <item>Italiano</item>
       <item>Japanese 日本人</item>
       <item>Kannada ಕನ್ನಡ</item>
       <item>Magyar</item>
       <item>Nederlands</item>
       <item>Norsk</item>
+      <item>Polski</item>
       <item>Português</item>
-      <item>Português (Brasil)</item>
-      <item>Român</item>
+      <item>Português do Brasil</item>
+      <item>Română</item>
       <item>Russian Pусский</item>
+      <item>Serbian српски</item>
       <item>Slovenščina</item>
       <item>Slovenský</item>
+      <item>Suomi</item>
       <item>Svenska</item>
       <item>Tibetan བོད་སྐད།</item>
+      <item>Türkçe</item>
+      <item>Ukrainian Український</item>
   </string-array>
 
   <string-array name="language_values">
@@ -36,27 +45,36 @@
       <item>ar</item>
       <item>bg</item>
       <item>my</item>
+      <item>ca</item>
+      <item>cs</item>
       <item>zh_CN</item>
       <item>da</item>
       <item>de</item>
       <item>es</item>
       <item>fr</item>
       <item>el</item>
-      <item>he</item>
+      <item>iw</item>
+      <item>hr</item>
+      <item>in</item>
       <item>it</item>
       <item>ja</item>
       <item>kn_IN</item>
-      <item>he</item>
+      <item>hu</item>
       <item>nl</item>
       <item>no</item>
+      <item>pl</item>
       <item>pt</item>
       <item>pt_BR</item>
       <item>ro</item>
       <item>ru</item>
+      <item>sr</item>
       <item>sl</item>
       <item>sk</item>
+      <item>fi</item>
       <item>sv</item>
       <item>bo</item>
+      <item>tr</item>
+      <item>uk</item>
   </string-array>
 
   <string-array name="minutes_hours">
@@ -81,6 +99,8 @@
     <item>@string/preferences__orange</item>
     <item>@string/preferences__cyan</item>
     <item>@string/preferences__magenta</item>
+    <item>@string/preferences__white</item>
+    <item>@string/preferences__none</item>
   </string-array>
   
 
@@ -91,6 +111,8 @@
     <item>yellow</item>
     <item>cyan</item>
     <item>magenta</item>
+    <item>white</item>
+    <item>none</item>
   </string-array>
   
   <string-array name="pref_led_blink_pattern_entries">
@@ -107,27 +129,71 @@
     <item>custom</item>
   </string-array>
 
-  <string-array name="navigation_drawer_text">
-    <item>@string/arrays__import_export</item>
-    <item>@string/arrays__my_identity_key</item>
-    <item>@string/arrays__contact_keys</item>
+  <string-array name="pref_repeat_alerts_entries">
+      <item>@string/preferences__never</item>
+      <item>@string/preferences__one_time</item>
+      <item>@string/preferences__two_times</item>
+      <item>@string/preferences__three_times</item>
+      <item>@string/preferences__five_times</item>
+      <item>@string/preferences__ten_times</item>
   </string-array>
 
-  <string-array name="navigation_drawer_values" translatable="false">
-    <item>import_export</item>
-    <item>my_identity_key</item>
-    <item>contact_identity_keys</item>
+  <string-array name="pref_repeat_alerts_values" translatable="false">
+      <item>0</item>
+      <item>1</item>
+      <item>2</item>
+      <item>3</item>
+      <item>5</item>
+      <item>10</item>
   </string-array>
 
-  <string-array name="navigation_drawer_icons_light">
-    <item>@drawable/import_export_light</item>
-    <item>@drawable/my_identity_light</item>
-    <item>@drawable/contacts_identities_light</item>
+  <string-array name="default_or_custom_values" translatable="false">
+      <item>default</item>
+      <item>custom</item>
   </string-array>
 
-  <string-array name="navigation_drawer_icons_dark">
-    <item>@drawable/import_export_dark</item>
-    <item>@drawable/my_identity_dark</item>
-    <item>@drawable/contacts_identities_dark</item>
+  <string-array name="default_or_custom_entries">
+      <item>@string/arrays__use_default</item>
+      <item>@string/arrays__use_custom</item>
   </string-array>
+
+  <string-array name="mute_durations">
+      <item>@string/arrays__mute_for_one_hour</item>
+      <item>@string/arrays__mute_for_two_hours</item>
+      <item>@string/arrays__mute_for_one_day</item>
+      <item>@string/arrays__mute_for_seven_days</item>
+  </string-array>
+
+  <string-array name="recipient_vibrate_entries">
+      <item>@string/arrays__settings_default</item>
+      <item>@string/arrays__enabled</item>
+      <item>@string/arrays__disabled</item>
+  </string-array>
+
+  <string-array name="recipient_vibrate_values">
+      <item>0</item>
+      <item>1</item>
+      <item>2</item>
+  </string-array>
+
+    <string-array name="default_color_choice_values" translatable="false">
+        <item>#ffF44336</item>
+        <item>#ffE91E63</item>
+        <item>#ff9C27B0</item>
+        <item>#ff673AB7</item>
+        <item>#ff3F51B5</item>
+        <item>#ff2196F3</item>
+        <item>#ff03A9F4</item>
+        <item>#ff00BCD4</item>
+        <item>#ff009688</item>
+        <item>#ff4CAF50</item>
+        <item>#ff8BC34A</item>
+        <!--<item>#FFCDDC39</item>-->
+        <item>#FFFFC107</item>
+        <item>#ffFF9800</item>
+        <item>#ffFF5722</item>
+        <item>#ff795548</item>
+        <item>#ff607D8B</item>
+    </string-array>
+
 </resources>

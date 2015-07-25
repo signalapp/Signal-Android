@@ -16,17 +16,28 @@
  */
 package org.thoughtcrime.securesms.util;
 
-import android.app.AlertDialog;
 import android.content.Context;
 
-public class Dialogs {
+import com.afollestad.materialdialogs.AlertDialogWrapper;
 
-  public static void displayAlert(Context context, String title, String message, int icon) {
-    AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
-    alertDialog.setTitle(title);
-    alertDialog.setMessage(message);
-    alertDialog.setIcon(icon);
-    alertDialog.setPositiveButton(android.R.string.ok, null);
-    alertDialog.show();
+import org.thoughtcrime.securesms.R;
+
+public class Dialogs {
+  public static void showAlertDialog(Context context, String title, String message) {
+    AlertDialogWrapper.Builder dialog = new AlertDialogWrapper.Builder(context);
+    dialog.setTitle(title);
+    dialog.setMessage(message);
+    dialog.setIconAttribute(R.attr.dialog_alert_icon);
+    dialog.setPositiveButton(android.R.string.ok, null);
+    dialog.show();
+  }
+
+  public static void showInfoDialog(Context context, String title, String message) {
+    AlertDialogWrapper.Builder dialog = new AlertDialogWrapper.Builder(context);
+    dialog.setTitle(title);
+    dialog.setMessage(message);
+    dialog.setIconAttribute(R.attr.dialog_info_icon);
+    dialog.setPositiveButton(android.R.string.ok, null);
+    dialog.show();
   }
 }

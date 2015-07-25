@@ -1,16 +1,17 @@
 package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
+import com.makeramen.roundedimageview.RoundedImageView;
+
 import org.thoughtcrime.securesms.R;
 
-public class ImageDivet extends ImageView {
+public class ImageDivet extends RoundedImageView {
   private static final float CORNER_OFFSET = 12F;
   private static final String[] POSITIONS  = new String[] {"bottom_right"};
 

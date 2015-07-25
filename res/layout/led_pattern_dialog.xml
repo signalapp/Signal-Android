@@ -29,7 +29,7 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:id="@+id/SeekBarOnLabel"
-          android:text="On For:"
+          android:text="@string/preferences__pref_led_blink_custom_pattern_on_for"
           android:paddingTop="5sp" />
         <TextView
           android:id="@+id/SeekBarOnMsLabel"
@@ -65,7 +65,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/SeekBarOffLabel"
-        android:text="Off For:"
+        android:text="@string/preferences__pref_led_blink_custom_pattern_off_for"
         android:paddingTop="5sp" />
       <TextView
         android:id="@+id/SeekBarOffMsLabel"

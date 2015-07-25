@@ -5,12 +5,11 @@ import android.os.Parcelable;
 import android.telephony.SmsMessage;
 
 import org.thoughtcrime.securesms.util.GroupUtil;
-import org.whispersystems.textsecure.push.IncomingPushMessage;
-import org.whispersystems.textsecure.storage.RecipientDevice;
+import org.whispersystems.libaxolotl.util.guava.Optional;
+import org.whispersystems.textsecure.api.messages.TextSecureGroup;
+import org.whispersystems.textsecure.api.push.TextSecureAddress;
 
 import java.util.List;
-
-import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.GroupContext;
 
 public class IncomingTextMessage implements Parcelable {
 
@@ -40,7 +39,7 @@ public class IncomingTextMessage implements Parcelable {
   public IncomingTextMessage(SmsMessage message) {
     this.message              = message.getDisplayMessageBody();
     this.sender               = message.getDisplayOriginatingAddress();
-    this.senderDeviceId       = RecipientDevice.DEFAULT_DEVICE_ID;
+    this.senderDeviceId       = TextSecureAddress.DEFAULT_DEVICE_ID;
     this.protocol             = message.getProtocolIdentifier();
     this.serviceCenterAddress = message.getServiceCenterAddress();
     this.replyPathPresent     = message.isReplyPathPresent();
@@ -50,19 +49,21 @@ public class IncomingTextMessage implements Parcelable {
     this.push                 = false;
   }
 
-  public IncomingTextMessage(IncomingPushMessage message, String encodedBody, GroupContext group) {
+  public IncomingTextMessage(String sender, int senderDeviceId, long sentTimestampMillis,
+                             String encodedBody, Optional<TextSecureGroup> group)
+  {
     this.message              = encodedBody;
-    this.sender               = message.getSource();
-    this.senderDeviceId       = message.getSourceDevice();
+    this.sender               = sender;
+    this.senderDeviceId       = senderDeviceId;
     this.protocol             = 31337;
     this.serviceCenterAddress = "GCM";
     this.replyPathPresent     = true;
     this.pseudoSubject        = "";
-    this.sentTimestampMillis  = message.getTimestampMillis();
+    this.sentTimestampMillis  = sentTimestampMillis;
     this.push                 = true;
 
-    if (group != null && group.hasId()) {
-      this.groupId = GroupUtil.getEncodedId(group.getId().toByteArray());
+    if (group.isPresent()) {
+      this.groupId = GroupUtil.getEncodedId(group.get().getGroupId());
     } else {
       this.groupId = null;
     }
@@ -117,7 +118,7 @@ public class IncomingTextMessage implements Parcelable {
   {
     this.message              = "";
     this.sender               = sender;
-    this.senderDeviceId       = RecipientDevice.DEFAULT_DEVICE_ID;
+    this.senderDeviceId       = TextSecureAddress.DEFAULT_DEVICE_ID;
     this.protocol             = 31338;
     this.serviceCenterAddress = "Outgoing";
     this.replyPathPresent     = true;
@@ -163,10 +164,6 @@ public class IncomingTextMessage implements Parcelable {
     return replyPathPresent;
   }
 
-  public boolean isKeyExchange() {
-    return false;
-  }
-
   public boolean isSecureMessage() {
     return false;
   }
@@ -176,10 +173,6 @@ public class IncomingTextMessage implements Parcelable {
   }
 
   public boolean isEndSession() {
-    return false;
-  }
-
-  public boolean isIdentityUpdate() {
     return false;
   }
 

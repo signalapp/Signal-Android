@@ -23,13 +23,22 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
+import org.thoughtcrime.securesms.recipients.Recipients;
+
 import ws.com.google.android.mms.pdu.CharacterSets;
 import ws.com.google.android.mms.pdu.EncodedStringValue;
 import ws.com.google.android.mms.pdu.PduHeaders;
 
 import java.io.UnsupportedEncodingException;
+import java.util.LinkedList;
+import java.util.List;
 
 public class MmsAddressDatabase extends Database {
+
+  private static final String TAG = MmsAddressDatabase.class.getSimpleName();
 
   private static final String TABLE_NAME      = "mms_addresses";
   private static final String ID              = "_id";
@@ -105,6 +114,40 @@ public class MmsAddressDatabase extends Database {
         cursor.close();
     }
   }
+
+  public List<String> getAddressesForId(long messageId) {
+    List<String>   results  = new LinkedList<String>();
+    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+    Cursor         cursor   = null;
+
+    try {
+      cursor = database.query(TABLE_NAME, null, MMS_ID + " = ?", new String[] {messageId+""}, null, null, null);
+
+      while (cursor != null && cursor.moveToNext()) {
+        results.add(cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS)));
+      }
+    } finally {
+      if (cursor != null)
+        cursor.close();
+    }
+
+    return results;
+  }
+
+  public Recipients getRecipientsForId(long messageId) {
+    List<String>    numbers = getAddressesForId(messageId);
+    List<Recipient> results = new LinkedList<>();
+
+    for (String number : numbers) {
+      if (!PduHeaders.FROM_INSERT_ADDRESS_TOKEN_STR.equals(number)) {
+        results.add(RecipientFactory.getRecipientsFromString(context, number, false)
+                                    .getPrimaryRecipient());
+      }
+    }
+
+    return RecipientFactory.getRecipientsFor(context, results, false);
+  }
+
 
   public void deleteAddressesForId(long messageId) {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();

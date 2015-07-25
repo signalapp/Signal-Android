@@ -7,9 +7,8 @@ import org.thoughtcrime.securesms.protocol.KeyExchangeWirePrefix;
 import org.thoughtcrime.securesms.protocol.PrekeyBundleWirePrefix;
 import org.thoughtcrime.securesms.protocol.SecureMessageWirePrefix;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
-import org.whispersystems.textsecure.util.Base64;
-import org.whispersystems.textsecure.util.Conversions;
-import org.whispersystems.textsecure.util.Hex;
+import org.thoughtcrime.securesms.util.Base64;
+import org.thoughtcrime.securesms.util.Conversions;
 
 import java.io.IOException;
 import java.util.ArrayList;

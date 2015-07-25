@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.ConversationTitleView
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_gravity="center_vertical"
+              android:gravity="center_vertical">
+
+    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+              android:id="@+id/title"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:singleLine="true"
+              android:ellipsize="end"
+              android:transitionName="recipient_name"
+              android:drawablePadding="5dp"
+              android:gravity="center_vertical"
+              android:layout_gravity="center_vertical"
+              style="@style/TextSecure.TitleTextStyle"
+              tools:ignore="UnusedAttribute"/>
+
+    <TextView android:id="@+id/subtitle"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:singleLine="true"
+              android:ellipsize="end"
+              android:layout_gravity="center_vertical"
+              android:gravity="center_vertical"
+              style="@style/TextSecure.SubtitleTextStyle"/>
+
+</org.thoughtcrime.securesms.ConversationTitleView>

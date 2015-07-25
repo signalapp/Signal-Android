@@ -13,8 +13,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
+import android.support.v7.app.ActionBarActivity;
 import android.text.SpannableString;
 import android.text.Spanned;
+import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.util.Log;
@@ -28,23 +30,26 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.actionbarsherlock.app.SherlockActivity;
 
-import org.thoughtcrime.securesms.push.PushServiceSocketFactory;
+import com.afollestad.materialdialogs.MaterialDialog;
+
+import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.push.TextSecureCommunicationFactory;
+import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.service.RegistrationService;
-import org.thoughtcrime.securesms.util.ActionBarUtil;
+import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.push.PushServiceSocket;
-import org.whispersystems.textsecure.push.RateLimitException;
-import org.whispersystems.textsecure.util.PhoneNumberFormatter;
-import org.whispersystems.textsecure.util.Util;
+import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.textsecure.api.TextSecureAccountManager;
+import org.whispersystems.textsecure.api.push.exceptions.ExpectationFailedException;
+import org.whispersystems.textsecure.api.push.exceptions.RateLimitException;
+import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
 
 import java.io.IOException;
 
 import static org.thoughtcrime.securesms.service.RegistrationService.RegistrationState;
 
-public class RegistrationProgressActivity extends SherlockActivity {
+public class RegistrationProgressActivity extends BaseActionBarActivity {
 
   private static final int FOCUSED_COLOR   = Color.parseColor("#ff333333");
   private static final int UNFOCUSED_COLOR = Color.parseColor("#ff808080");
@@ -91,7 +96,7 @@ public class RegistrationProgressActivity extends SherlockActivity {
   @Override
   public void onCreate(Bundle bundle) {
     super.onCreate(bundle);
-    ActionBarUtil.initializeDefaultActionBar(this, getSupportActionBar(), getString(R.string.RegistrationProgressActivity_verifying_number));
+    getSupportActionBar().setTitle(getString(R.string.RegistrationProgressActivity_verifying_number));
     setContentView(R.layout.registration_progress_activity);
 
     initializeResources();
@@ -168,9 +173,11 @@ public class RegistrationProgressActivity extends SherlockActivity {
     spannableString.setSpan(new ClickableSpan() {
       @Override
       public void onClick(View widget) {
-        Intent intent = new Intent(RegistrationProgressActivity.this,
-                                   RegistrationProblemsActivity.class);
-        startActivity(intent);
+        new MaterialDialog.Builder(RegistrationProgressActivity.this)
+            .title(R.string.RegistrationProblemsActivity_possible_problems)
+            .customView(R.layout.registration_problems, true)
+            .neutralText(android.R.string.ok)
+            .show();
       }
     }, pretext.length() + 1, spannableString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
@@ -314,6 +321,12 @@ public class RegistrationProgressActivity extends SherlockActivity {
                                                          PhoneNumberFormatter.formatNumberInternational(state.number)));
   }
 
+  private void handleMultiRegistrationError(RegistrationState state) {
+    handleVerificationTimeout(state);
+    Dialogs.showAlertDialog(this,                         getString(R.string.RegistrationProgressActivity_registration_conflict),
+                         getString(R.string.RegistrationProgressActivity_this_number_is_already_registered_on_a_different));
+  }
+
   private void handleVerificationComplete() {
     if (visible) {
       Toast.makeText(this,
@@ -322,7 +335,7 @@ public class RegistrationProgressActivity extends SherlockActivity {
     }
 
     shutdownService();
-    startActivity(new Intent(this, RoutingActivity.class));
+    startActivity(new Intent(this, ConversationListActivity.class));
     finish();
   }
 
@@ -403,6 +416,7 @@ public class RegistrationProgressActivity extends SherlockActivity {
       case RegistrationState.STATE_COMPLETE:             handleVerificationComplete();            break;
       case RegistrationState.STATE_GCM_TIMEOUT:          handleGcmTimeout(state);                 break;
       case RegistrationState.STATE_NETWORK_ERROR:        handleConnectivityError(state);          break;
+      case RegistrationState.STATE_MULTI_REGISTERED:     handleMultiRegistrationError(state);     break;
       case RegistrationState.STATE_VOICE_REQUESTED:      handleVerificationRequestedVoice(state); break;
       }
     }
@@ -429,10 +443,11 @@ public class RegistrationProgressActivity extends SherlockActivity {
 
   private class VerifyClickListener implements View.OnClickListener {
 
-    private static final int SUCCESS            = 0;
-    private static final int NETWORK_ERROR      = 1;
-    private static final int RATE_LIMIT_ERROR   = 2;
-    private static final int VERIFICATION_ERROR = 3;
+    private static final int SUCCESS                  = 0;
+    private static final int NETWORK_ERROR            = 1;
+    private static final int RATE_LIMIT_ERROR         = 2;
+    private static final int VERIFICATION_ERROR       = 3;
+    private static final int MULTI_REGISTRATION_ERROR = 4;
 
     private final String e164number;
     private final String password;
@@ -452,7 +467,7 @@ public class RegistrationProgressActivity extends SherlockActivity {
     public void onClick(View v) {
       final String code = codeEditText.getText().toString();
 
-      if (Util.isEmpty(code)) {
+      if (TextUtils.isEmpty(code)) {
         Toast.makeText(context,
                        getString(R.string.RegistrationProgressActivity_you_must_enter_the_code_you_received_first),
                        Toast.LENGTH_LONG).show();
@@ -484,16 +499,20 @@ public class RegistrationProgressActivity extends SherlockActivity {
               startService(intent);
               break;
             case NETWORK_ERROR:
-              Util.showAlertDialog(context, getString(R.string.RegistrationProgressActivity_network_error),
+              Dialogs.showAlertDialog(context, getString(R.string.RegistrationProgressActivity_network_error),
                                    getString(R.string.RegistrationProgressActivity_unable_to_connect));
               break;
             case VERIFICATION_ERROR:
-              Util.showAlertDialog(context, getString(R.string.RegistrationProgressActivity_verification_failed),
+              Dialogs.showAlertDialog(context, getString(R.string.RegistrationProgressActivity_verification_failed),
                                    getString(R.string.RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect));
               break;
             case RATE_LIMIT_ERROR:
-              Util.showAlertDialog(context, getString(R.string.RegistrationProgressActivity_too_many_attempts),
+              Dialogs.showAlertDialog(context, getString(R.string.RegistrationProgressActivity_too_many_attempts),
                                    getString(R.string.RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times));
+              break;
+            case MULTI_REGISTRATION_ERROR:
+              Dialogs.showAlertDialog(context, getString(R.string.RegistrationProgressActivity_registration_conflict),
+                                   getString(R.string.RegistrationProgressActivity_this_number_is_already_registered_on_a_different));
               break;
           }
         }
@@ -501,10 +520,15 @@ public class RegistrationProgressActivity extends SherlockActivity {
         @Override
         protected Integer doInBackground(Void... params) {
           try {
-            PushServiceSocket socket = PushServiceSocketFactory.create(context, e164number, password);
+            TextSecureAccountManager accountManager = TextSecureCommunicationFactory.createManager(context, e164number, password);
             int registrationId = TextSecurePreferences.getLocalRegistrationId(context);
-            socket.verifyAccount(code, signalingKey, true, registrationId);
+
+            accountManager.verifyAccount(code, signalingKey, true, registrationId);
+
             return SUCCESS;
+          } catch (ExpectationFailedException e) {
+            Log.w("RegistrationProgressActivity", e);
+            return MULTI_REGISTRATION_ERROR;
           } catch (RateLimitException e) {
             Log.w("RegistrationProgressActivity", e);
             return RATE_LIMIT_ERROR;
@@ -569,17 +593,17 @@ public class RegistrationProgressActivity extends SherlockActivity {
               }, 15000);
               break;
             case NETWORK_ERROR:
-              Util.showAlertDialog(context,
+              Dialogs.showAlertDialog(context,
                                    getString(R.string.RegistrationProgressActivity_network_error),
                                    getString(R.string.RegistrationProgressActivity_unable_to_connect));
               break;
             case CREATE_ERROR:
-              Util.showAlertDialog(context,
+              Dialogs.showAlertDialog(context,
                                    getString(R.string.RegistrationProgressActivity_server_error),
                                    getString(R.string.RegistrationProgressActivity_the_server_encountered_an_error));
               break;
             case RATE_LIMIT_EXCEEDED:
-              Util.showAlertDialog(context,
+              Dialogs.showAlertDialog(context,
                                    getString(R.string.RegistrationProgressActivity_too_many_requests),
                                    getString(R.string.RegistrationProgressActivity_youve_already_requested_a_voice_call));
               break;
@@ -589,8 +613,8 @@ public class RegistrationProgressActivity extends SherlockActivity {
         @Override
         protected Integer doInBackground(Void... params) {
           try {
-            PushServiceSocket socket = PushServiceSocketFactory.create(context, e164number, password);
-            socket.createAccount(true);
+            TextSecureAccountManager accountManager = TextSecureCommunicationFactory.createManager(context, e164number, password);
+            accountManager.requestVoiceVerificationCode();
 
             return SUCCESS;
           } catch (RateLimitException e) {

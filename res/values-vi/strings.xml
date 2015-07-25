@@ -1,0 +1,470 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="app_name">TextSecure</string>
+  <string name="yes">Có</string>
+  <string name="no">Không</string>
+  <string name="delete">Xóa</string>
+  <!--ApplicationPreferencesActivity-->
+  <string name="ApplicationPreferencesActivity_currently_s">Hiện thời: %s</string>
+  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Bạn chưa thiết lập mật khẩu!</string>
+  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Xóa tất cả tin nhắn cũ bây giờ?</string>
+  <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Bạn có chắc là muốn thu ngắn tức thì các mạch chuyện trò xuống còn %s tin nhắn mới nhất?</string>
+  <string name="ApplicationPreferencesActivity_delete">Xóa</string>
+  <string name="ApplicationPreferencesActivity_disable">Tắt</string>
+  <string name="ApplicationPreferencesActivity_error_connecting_to_server">Có lỗi kết nối vào máy chủ!</string>
+  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Chạm vào để đổi ứng dụng SMS mặc định</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Chạm vào để chọn TextSecure làm ứng dụng SMS mặc định</string>
+  <!--AppProtectionPreferenceFragment-->
+  <!--DraftDatabase-->
+  <!--AttchmentManager-->
+  <!--AttachmentTypeSelectorAdapter-->
+  <string name="AttachmentTypeSelectorAdapter_picture">Hình ảnh</string>
+  <string name="AttachmentTypeSelectorAdapter_video">Video</string>
+  <string name="AttachmentTypeSelectorAdapter_audio">Âm thanh</string>
+  <!--BlockedContactsActivity-->
+  <!--ConfirmIdentityDialog-->
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">Bạn có thể muốn kiểm chứng
+địa chỉ liên lạc này.
+    </string>
+  <!--ContactsDatabase-->
+  <!--ConversationItem-->
+  <string name="ConversationItem_message_size_d_kb">Kích thước tin nhắn: %d KB</string>
+  <string name="ConversationItem_expires_s">Hết hạn: %s</string>
+  <string name="ConversationItem_view_secure_media_question">Xem nội dung an toàn</string>
+  <string name="ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning">Phương tiện dữ liệu này được lưu trữ trong cơ sở dữ liệu có mã hóa. Tuy nhiên để xem nó bằng một ứng dụng khác đòi hỏi dữ liệu được giải mã tạm thời và chép vào ổ đĩa. Bạn có chắc là muốn làm điều này?</string>
+  <string name="ConversationItem_error_received_stale_key_exchange_message">Có lỗi, nhận thông tin cũ về trao đổi chìa khóa</string>
+  <string name="ConversationItem_received_key_exchange_message_click_to_process">Nhận thông tin trao đổi chìa khóa, bấm để tiếp tục.</string>
+  <string name="ConversationItem_group_action_left">%1$s đã rời nhóm.</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Trở lại SMS không mã hóa?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Hủy bỏ MMS chưa được mã hóa?</string>
+  <!--ConversationActivity-->
+  <string name="ConversationActivity_initiate_secure_session_question">Khởi động tiến trình mã hóa?</string>
+  <string name="ConversationActivity_initiate_secure_session_with_s_question">Khởi tạo phiên trao đổi an toàn với %s?</string>
+  <string name="ConversationActivity_abort_secure_session_confirmation">Xác nhận kết thúc tiến trình mã hóa</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_abort_this_secure_session_question">Bạn có chắc là muốn chấm dứt phiên trao đổi an toàn này?</string>
+  <string name="ConversationActivity_delete_thread_confirmation">Xóa tiến trình xác nhận</string>
+  <string name="ConversationActivity_are_you_sure_that_you_want_to_permanently_delete_this_conversation_question">Bạn có chắc là muốn xóa vĩnh viễn cuộc chuyện trò này?</string>
+  <string name="ConversationActivity_add_attachment">Thêm tập tin đính kèm</string>
+  <string name="ConversationActivity_select_contact_info">Chọn thông tin liên hệ</string>
+  <string name="ConversationActivity_compose_message">Soạn nội dung</string>
+  <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Xin lỗi, có lỗi thiết đặt tập tin đính kèm của bạn.</string>
+  <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Nơi nhận không phải là SMS hay địa chỉ email có hiệu lực!</string>
+  <string name="ConversationActivity_message_is_empty_exclamation">Tin nhắn trống không!</string>
+  <string name="ConversationActivity_group_conversation">Gom nhóm chat</string>
+  <string name="ConversationActivity_unnamed_group">Nhóm chưa đặt tên</string>
+  <string name="ConversationActivity_d_recipients_in_group">%d thành viên</string>
+  <string name="ConversationActivity_d_recipients_in_group_singular">1 thành viên</string>
+  <string name="ConversationActivity_saved_draft">Lưu bản nháp</string>
+  <string name="ConversationActivity_invalid_recipient">Người nhận không đúng!</string>
+  <string name="ConversationActivity_calls_not_supported">Không hỗ trợ tính năng gọi điệ</string>
+  <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Thiết bị này không hỗ trợ thao tác gọi.</string>
+  <string name="ConversationActivity_leave_group">Rời nhóm?</string>
+  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Bạn có chắc là muốn rời nhóm?</string>
+  <string name="ConversationActivity_transport_textsecure">TextSecure</string>
+  <!--ConversationFragment-->
+  <string name="ConversationFragment_message_details">Chi tiết tin nhắn</string>
+  <string name="ConversationFragment_confirm_message_delete">Xác nhận xóa tin</string>
+  <string name="ConversationFragment_success_exclamation">Thành công!</string>
+  <string name="ConversationFragment_saving_attachment">Đang lưu lại phần đính kèm</string>
+  <!--ConversationListActivity-->
+  <!--ConversationListFragment-->
+  <string name="ConversationListFragment_delete_threads_question">Xóa các luồng trao đổi?</string>
+  <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Bạn có chắc là muốn xóa TẤT CẢ các luồng trao đổi đã chọn?</string>
+  <string name="ConversationListFragment_deleting">Đang xóa</string>
+  <string name="ConversationListFragment_deleting_selected_threads">Xóa các mạch đã chọn...</string>
+  <!--ConversationListItem-->
+  <string name="ConversationListItem_key_exchange_message">Thông tin trao đổi chìa khóa...</string>
+  <!--CustomDefaultPreference-->
+  <string name="CustomDefaultPreference_none">Không</string>
+  <!--DateUtils-->
+  <!--DeviceListActivity-->
+  <!--DeviceListItem-->
+  <!--ShareActivity-->
+  <string name="ShareActivity_share_with">Chia sẻ với</string>
+  <!--ExportFragment-->
+  <string name="ExportFragment_export">Xuất</string>
+  <string name="ExportFragment_export_plaintext_to_sd_card">Xuất dữ liệu dạng thuần văn bản ra thẻ nhớ?</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Cảnh báo, thao tác này sẽ xuất nội dung văn bản thường (không mã hóa) của các tin nhắn TextSecure ra thẻ nhớ SD.</string>
+  <string name="ExportFragment_cancel">Hủy bỏ</string>
+  <string name="ExportFragment_exporting">Đang xuất</string>
+  <string name="ExportFragment_success">Thành công!</string>
+  <!--GcmRefreshJob-->
+  <!--GroupCreateActivity-->
+  <string name="GroupCreateActivity_actionbar_title">Tạo nhóm mới</string>
+  <string name="GroupCreateActivity_actionbar_update_title">Cập nhật nhóm</string>
+  <string name="GroupCreateActivity_group_name_hint">Tên nhóm</string>
+  <string name="GroupCreateActivity_actionbar_mms_title">Tạo nhóm MMS mới</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Bạn chọn một người liên hệ mà họ không hỗ trợ nhóm TextSecure, do đó nhóm này sẽ là MMS.</string>
+  <string name="GroupCreateActivity_you_dont_support_push">Bạn không đăng ký dùng đường truyền internet, do đó nhóm TextSecure bị tắt.</string>
+  <string name="GroupCreateActivity_contacts_mms_exception">Có lỗi bất ngờ xảy ra do đó không lập nhóm được.</string>
+  <string name="GroupCreateActivity_contacts_no_members">Cần có ít nhất một người trong nhóm!</string>
+  <string name="GroupCreateActivity_contacts_invalid_number">Một người trong nhóm có số điện thoại không đọc được. Xin điều chỉnh hoặc xóa đi và thử lại.</string>
+  <string name="GroupCreateActivity_avatar_content_description">Biểu tượng nhóm</string>
+  <string name="GroupCreateActivity_menu_create_title">Tạo nhóm</string>
+  <string name="GroupCreateActivity_creating_group">Tạo %1$s...</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Không thể thêm địa chỉ liên hệ bên ngoài TextSecure vào trong nhóm TextSecure hiện thời</string>
+  <!--GroupMembersDialog-->
+  <!--ImportExportActivity-->
+  <string name="ImportExportActivity_import">Nhập</string>
+  <string name="ImportExportActivity_export">Xuất</string>
+  <!--ImportFragment-->
+  <string name="ImportFragment_import_system_sms_database">Nhập dữ liệu từ SMS?</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">Thao tác này sẽ nhập các tin nhắn từ cơ sở dữ liệu SMS mặc định của hệ thống vào TextSecure. Nếu bạn đã từng làm việc này trước đó, nhập vào lần nữa sẽ dẫn đến việc có các tin nhắn trùng lập.</string>
+  <string name="ImportFragment_import">Nhập</string>
+  <string name="ImportFragment_cancel">Hủy bỏ</string>
+  <string name="ImportFragment_restore_encrypted_backup">Khôi phục phần sao lưu đã mã hóa?</string>
+  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
+Phục hồi bản sao lưu có mã hóa sẽ thay thế hoàn toàn các chìa khóa hiện thời, chọn lựa và tin nhắn. Bạn sẽ mất những thông tin nào có trong phiên bản TextSecure cài đặt hiện thời nhưng không có trong bản sao lưu.</string>
+  <string name="ImportFragment_restore">Phục hồi</string>
+  <string name="ImportFragment_import_plaintext_backup">Xuất dữ liệu sao lưu dạng thuần văn bản?</string>
+  <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Thao tác này sẽ nhập các tin nhắn từ bản sao lưu thường (không mã hóa). Nếu bạn đã nhập sao lưu này trước đó, nhập lần nữa sẽ dẫn đến việc có tin nhắn trùng lập.</string>
+  <string name="ImportFragment_importing">Đang nhập</string>
+  <string name="ImportFragment_no_plaintext_backup_found">Không tìm thấy sao lưu thường-không mã hóa</string>
+  <string name="ImportFragment_error_importing_backup">Có lỗi khi nhập sao lưu!</string>
+  <string name="ImportFragment_import_complete">Nhập hoàn tất!</string>
+  <string name="ImportFragment_restoring">Đang phục hồi</string>
+  <string name="ImportFragment_restoring_encrypted_backup">Phục hồi sao lưu có mã hóa...</string>
+  <string name="ImportFragment_no_encrypted_backup_found">Không tìm thấy sao lưu có mã hóa!</string>
+  <string name="ImportFragment_restore_complete">Phục hồi hoàn tất!</string>
+  <!--KeyScanningActivity-->
+  <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Không dò tìm thấy chìa khóa nào!</string>
+  <!--MessageDetailsRecipient-->
+  <!--MmsDownloader-->
+  <string name="MmsDownloader_error_storing_mms">Có lỗi lưu trữ MMS!</string>
+  <string name="MmsDownloader_error_connecting_to_mms_provider">Có lỗi kết nối vào nhà dịch vụ MMS</string>
+  <string name="MmsDownloader_error_reading_mms_settings">Có lỗi khi đọc thiết đặt MMS của dịch vụ di động...</string>
+  <!--NotificationMmsMessageRecord-->
+  <string name="NotificationMmsMessageRecord_multimedia_message">Tin nhắn đa phương tiện</string>
+  <!--MessageRecord-->
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Đã tiếp nhận một tin nhắn được mã hóa bởi một phiên bản cũ hơn và không còn được hỗ trợ. Xin hãy hỏi người gửi nâng cấp lên phiên bản mới và gửi lại tin nhắn.</string>
+  <!--PassphraseChangeActivity-->
+  <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Cụm từ mã hóa không khớp nhau!</string>
+  <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Mật khẩu cũ không đúng!</string>
+  <!--DeviceProvisioningActivity-->
+  <!--PassphrasePromptActivity-->
+  <string name="PassphrasePromptActivity_enter_passphrase">Điền vào cụm từ mã hóa</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Biểu tượng TextSecure</string>
+  <string name="PassphrasePromptActivity_ok_button_content_description">Gửi phần cụm từ mã hóa</string>
+  <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Cụm từ mã hóa không hợp lệ!</string>
+  <!--PlayServicesProblemFragment-->
+  <!--RatingManager-->
+  <!--RecipientPreferencesActivity-->
+  <!--RegistrationActivity-->
+  <string name="RegistrationActivity_connect_with_textsecure">Kết Nối Dùng TextSecure</string>
+  <string name="RegistrationActivity_select_your_country">Chọn lựa quốc gia</string>
+  <string name="RegistrationActivity_you_must_specify_your_country_code">Bạn phải cho biết mã số quốc gia bạn</string>
+  <string name="RegistrationActivity_you_must_specify_your_phone_number">Bạn phải cho biết số điện thoại của bạn</string>
+  <string name="RegistrationActivity_invalid_number">Số không đúng</string>
+  <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Số bạn cung cấp (%s) không đúng.</string>
+  <string name="RegistrationActivity_unsupported">Không hỗ trợ</string>
+  <string name="RegistrationActivity_continue">Tiếp tục</string>
+  <string name="RegistrationActivity_edit">Sửa</string>
+  <!--RegistrationProblemsActivity-->
+  <!--RegistrationProgressActivity-->
+  <string name="RegistrationProgressActivity_verifying_number">Kiểm Chứng Số</string>
+  <string name="RegistrationProgressActivity_edit_s">Sửa %s</string>
+  <string name="RegistrationProgressActivity_registration_complete">Đăng ký hoàn tất!</string>
+  <string name="RegistrationProgressActivity_you_must_enter_the_code_you_received_first">Trước hết, bạn phải điền vào mã số đã nhận...</string>
+  <string name="RegistrationProgressActivity_connecting">Đang kết nối</string>
+  <string name="RegistrationProgressActivity_connecting_for_verification">Kết nối để kiểm chứng</string>
+  <string name="RegistrationProgressActivity_unable_to_connect">Không thể kết nối. Xin xem lại đường truyền mạng và thử lại.</string>
+  <string name="RegistrationProgressActivity_the_verification_code_you_submitted_is_incorrect">Mã số kiểm chứng bạn nạp vào không đúng. Xin thử lại.</string>
+  <string name="RegistrationProgressActivity_too_many_attempts">Thử quá nhiều lần</string>
+  <string name="RegistrationProgressActivity_youve_submitted_an_incorrect_verification_code_too_many_times">Bạn nạp vào mã số kiểm chứng sai quá nhiều lần. Xin chờ vài phút rồi thử lại.</string>
+  <string name="RegistrationProgressActivity_requesting_incoming_call">Yêu cầu cú gọi vào kiểm chứng...</string>
+  <string name="RegistrationProgressActivity_the_server_encountered_an_error">Máy chủ gặp lỗi. Xin thử lại.</string>
+  <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Bạn đã yêu cầu cú gọi gần đây. Bạn có thể yêu cầu lần nữa trong vòng 20 phút.</string>
+  <string name="RegistrationProgressActivity_registration_conflict">Đăng ký gặp va chạm</string>
+  <!--RegistrationService-->
+  <string name="RegistrationService_textsecure_registration_has_successfully_completed">Đăng ký TextSecure đã hoàn tất tốt đẹp.</string>
+  <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Đăng ký TextSecure gặp phải vấn đề.</string>
+  <!--SmsMessageRecord-->
+  <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Nhận được thông tin
+trao đổi chìa khóa bị hỏng!</string>
+  <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
+Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không hợp lệ.</string>
+  <string name="SmsMessageRecord_received_message_with_unknown_identity_key_click_to_process">
+Nhận thông tin về chìa khóa nhận diện không rõ. Bấm để xử lý và hiển thị.</string>
+  <string name="SmsMessageRecord_received_updated_but_unknown_identity_information">Nhận được cập nhật nhưng không rõ thông tin nhận diện. Nhấn vào để kiểm nhận tên nhận diện.</string>
+  <string name="SmsMessageRecord_secure_session_ended">Phiên an toàn chấm dứt.</string>
+  <string name="SmsMessageRecord_duplicate_message">Tin nhắn trùng lập.</string>
+  <!--ThreadRecord-->
+  <string name="ThreadRecord_left_the_group">Rời nhóm...</string>
+  <string name="TheadRecord_secure_session_ended">Phiên an toàn chấm dứt.</string>
+  <!--VerifyIdentityActivity-->
+  <string name="VerifyIdentityActivity_you_do_not_have_an_identity_key">Bạn không có chìa khóa nhận diện.</string>
+  <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Người nhận không có chìa khóa nhận diện.</string>
+  <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Người nhận không có chìa khóa nhận diện!</string>
+  <string name="VerifyIdentityActivity_scan_their_key_to_compare">Quét chìa khóa của họ để so sánh</string>
+  <string name="VerifyIdentityActivity_get_my_key_scanned">Quét chìa khóa của tôi</string>
+  <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">CẢNH BÁO, chìa khóa được quét KHÔNG trùng hợp! Xin xem lại cho kỹ càng văn bản dấu tay.</string>
+  <string name="VerifyIdentityActivity_not_verified_exclamation">CHƯA Kiểm Chứng!</string>
+  <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Chìa khóa của họ đúng. Cũng cần phải kiểm chứng chìa khóa của bạn với họ luôn.</string>
+  <string name="VerifyIdentityActivity_verified_exclamation">Đã kiểm chứng!</string>
+  <string name="VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation">Bạn không có chìa khóa nhận diện!</string>
+  <!--ViewIdentityActivity-->
+  <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Bạn không có chìa khóa nhận diện!</string>
+  <string name="ViewIdentityActivity_scan_to_compare">Quét để so sánh</string>
+  <string name="ViewIdentityActivity_get_scanned_to_compare">Quét để so sánh</string>
+  <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">CẢNH BÁO, chìa khóa được quét KHÔNG trùng hợp!</string>
+  <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Chìa khóa được quét trùng hợp!</string>
+  <string name="ViewIdentityActivity_verified_exclamation">Đã kiểm chứng!</string>
+  <!--KeyExchangeInitiator-->
+  <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Bạn đã gửi yêu cầu khởi tạo phiên trao đổi với người nhận này, bạn có chắc là muốn gửi lần nữa? Điều này sẽ làm yêu cầu đầu tiên mất hiệu lực.</string>
+  <string name="KeyExchangeInitiator_send">Gửi</string>
+  <!--MessageDisplayHelper-->
+  <string name="MessageDisplayHelper_bad_encrypted_message">Tin nhắn mã hóa bị hỏng...</string>
+  <string name="MessageDisplayHelper_decrypting_please_wait">Đang giải mã, xin chờ...</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Tin nhắn được mã hóa cho phiên trao đổi không tồn tại...</string>
+  <!--EncryptingSmsDatabase-->
+  <!--ThreadDatabase-->
+  <!--MmsDatabase-->
+  <string name="MmsDatabase_connecting_to_mms_server">Đang kết nối vào máy chủ MMS...</string>
+  <string name="MmsDatabase_downloading_mms">Đang tải xuống MMS...</string>
+  <string name="MmsDatabase_downloading">Đang tải xuống...</string>
+  <string name="MmsDatabase_mms_pending_download">Nhấn vào để cấu hình thiết đặt MMS và tiếp tục tải xuống.</string>
+  <!--MmsMessageRecord-->
+  <string name="MmsMessageRecord_decrypting_mms_please_wait">Giải mã MMS, xin chờ...</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">Tin nhắn MMS mã hóa bị hỏng...</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Tin nhắn MMS được mã hóa cho phiên trao đổi không tồn tại...</string>
+  <!--MuteDialog-->
+  <!--ApplicationMigrationService-->
+  <string name="ApplicationMigrationService_import_in_progress">Đang tiến hành việc nhập vào</string>
+  <!--KeyCachingService-->
+  <string name="KeyCachingService_textsecure_passphrase_cached">Chạm vào để mở.</string>
+  <string name="KeyCachingService_textsecure_passphrase_cached_with_lock">Chạm vào để mở, hoặc chạm vào ổ khóa để đóng lại.</string>
+  <string name="KeyCachingService_passphrase_cached">TextSecure được mở khóa</string>
+  <string name="KeyCachingService_lock">Khóa bằng mật khẩu</string>
+  <!--MessageNotifier-->
+  <string name="MessageNotifier_message_delivery_failed">Phân phối tin nhắn bị thất bại.</string>
+  <string name="MessageNotifier_failed_to_deliver_message">Thất bại trong việc phân phối tin.</string>
+  <string name="MessageNotifier_error_delivering_message">Có lỗi khi phân phối tin.</string>
+  <string name="MessageNotifier_mark_all_as_read">Đánh dấu tất cả đã đọc</string>
+  <!--QuickResponseService-->
+  <!--change_passphrase_activity-->
+  <string name="change_passphrase_activity__old_passphrase">MẬT KHẨU CŨ:</string>
+  <string name="change_passphrase_activity__new_passphrase">MẬT KHẨU MỚI:</string>
+  <string name="change_passphrase_activity__repeat_new_passphrase">LẬP LẠI MẬT KHẨU MỚI:</string>
+  <!--contact_selection_activity-->
+  <!--contact_selection_group_activity-->
+  <string name="contact_selection_group_activity__no_contacts">Không có địa chỉ liên lạc.</string>
+  <string name="contact_selection_group_activity__finding_contacts">Nạp danh sách liên hệ...</string>
+  <!--single_contact_selection_activity-->
+  <string name="SingleContactSelectionActivity_contact_photo">Hình Liên Hệ</string>
+  <!--ContactSelectionListFragment-->
+  <string name="ContactSelectionlistFragment_select_for">Chọn cho</string>
+  <!--blocked_contacts_fragment-->
+  <!--contact_selection_recent_activity-->
+  <string name="contact_selection_recent_activity__no_recent_calls">Không cú gọi gần đây</string>
+  <!--conversation_title_view-->
+  <!--conversation_activity-->
+  <string name="conversation_activity__send">Gửi</string>
+  <string name="conversation_activity__remove">Bỏ</string>
+  <!--conversation_item-->
+  <!--conversation_item_sent-->
+  <string name="conversation_item_sent__download">Tải xuống</string>
+  <string name="conversation_item_sent__downloading">Đang tải xuống</string>
+  <string name="conversation_item_sent__pending_approval_description">Chờ Chấp Thuận</string>
+  <!--conversation_item_received-->
+  <string name="conversation_item_received__download">Tải xuống</string>
+  <string name="conversation_item_received__downloading">Đang tải xuống</string>
+  <!--conversation_fragment_cab-->
+  <!--country_selection_fragment-->
+  <string name="country_selection_fragment__loading_countries">Nạp tên quốc gia...</string>
+  <string name="country_selection_fragment__search">Tìm kiếm</string>
+  <!--device_list_fragment-->
+  <!--log_submit_activity-->
+  <string name="log_submit_activity__log_fetch_failed">Không lấy được ký sự từ thiết bị của bạn. Thay vào đó, bạn có thể dùng ADB để lấy ký sự gỡ lỗi (debug).</string>
+  <string name="log_submit_activity__thanks">Cám ơn sự trợ giúp của bạn!</string>
+  <string name="log_submit_activity__submitting">Đang nộp</string>
+  <!--database_migration_activity-->
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Bạn có muốn nhập các tin nhắn hiện có vào trong cơ sở dữ liệu có mã hóa của TextSecure?</string>
+  <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Cơ sở dữ liệu mặc định của hệ thống sẽ không bị sửa hay bị thay đổi gì cả.</string>
+  <string name="database_migration_activity__skip">Bỏ qua</string>
+  <string name="database_migration_activity__import">Nhập</string>
+  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Việc này có thể mất chút ít thời gian. Xin kiên nhẫn chờ, chúng tôi sẽ thông báo khi việc nhập hoàn tất.</string>
+  <string name="database_migration_activity__importing">ĐANG NHẬP VÀO</string>
+  <!--database_upgrade_activity-->
+  <string name="export_fragment__export_a_plaintext_backup_compatible_with">
+Xuất sao lưu thường tương thích với \'Sao Lưu và Phục Hồi SMS\' ra thẻ nhớ SD.</string>
+  <string name="import_fragment__import_the_database_from_the_default_system">Nhập cơ sở dữ liệu của ứng dụng tin nhắn mặc định của hệ thống.</string>
+  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">
+Phục hồi sao lưu TextSecure có mã hóa từng xuất ra trước đó.</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">
+Nhập tập tin sao lưu thường-không mã hóa. Tương thích với \'Sao Lưu và Phục Hồi SMS\'.</string>
+  <!--media_overview_activity-->
+  <!--message_recipients_list_item-->
+  <!--MmsPreferencesFragment-->
+  <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Phải làm thiết đặt MMS bằng tay cho điện thoại của bạn.</string>
+  <!--GroupUtil-->
+  <!--prompt_passphrase_activity-->
+  <string name="prompt_passphrase_activity__unlock">Mở khóa</string>
+  <!--prompt_mms_activity-->
+  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure </string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Để gửi tin nhắn đa phương tiện hoặc tin nhắn nhóm, bấm \'OK\' và hoàn tất các thiết đặt cần thiết. Thiết đặt MMS cho nhà mạng di động có thể tìm thấy bằng cách tìm \'your carrier APN\'. Bạn chỉ cần làm bước này một lần.</string>
+  <!--recipient_preferences_activity-->
+  <!--recipient_preferences-->
+  <!--registration_activity-->
+  <string name="registration_activity__your_country">QUỐC GIA BẠN</string>
+  <string name="registration_activity__your_country_code_and_phone_number">MÃ SỐ QUỐC GIA VÀ
+SỐ ĐIỆN THOẠI BẠN</string>
+  <string name="registration_activity__phone_number">SỐ ĐIỆN THOẠI</string>
+  <string name="registration_activity__register">Đăng ký</string>
+  <!--registration_problems-->
+  <string name="registration_problems__some_possible_problems_include">Một số vấn đề có thể gặp
+bao gồm:</string>
+  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
+Một số ứng dụng tin nhắn bên thứ ba, như Handcent hay GoSMS hành xử không hay và chận bắt tất cả tin nhắn SMS đi vào. Kiểm lại trong các ứng dụng đó xem coi có tin nhắn nào có hàng chữ \'Mã số kiểm chứng TextSecure của bạn:\', trong trường hợp đó bạn cần cấu hình ứng dụng đó cho phép tin nhắn đi xuyên qua.</string>
+  <string name="registration_problems__incorrect_number">Số không đúng.</string>
+  <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
+Xin xem lại số điền vào có đúng không, và dạng số phù hợp với vùng bạn cư ngụ. </string>
+  <string name="registration_problems__google_voice">Google Voice.</string>
+  <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">
+TextSecure không chạy với số của Google Voice.</string>
+  <!--registration_progress_activity-->
+  <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">
+TextSecure cũng có thể gọi bạn để kiểm chứng số điện thoại. Nhấn vào \'Gọi Tôi\' và điền vào dưới đây mã 6 số mà bạn nghe được qua cú gọi.</string>
+  <string name="registration_progress_activity__verify">Kiểm chứng</string>
+  <string name="registration_progress_activity__edit_number">Sửa số</string>
+  <string name="registration_progress_activity__connectivity_error">Có lỗi kết nối.</string>
+  <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">
+TextSecure không thể kết nối vào dịch vụ đẩy.</string>
+  <string name="registration_progress_activity__some_possible_problems_include">Một số vấn đề có
+thể gặp bao gồm:</string>
+  <string name="registration_progress_activity__no_network_connectivity">Không có đường
+truyền mạng.</string>
+  <string name="registration_progress_activity__restrictive_firewall">Tường lửa ngăn chận.</string>
+  <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
+TextSecure bây giờ sẽ tự động kiểm chứng số điện thoại bạn với một tin nhắn SMS xác nhận.</string>
+  <string name="registration_progress_activity__connecting">Đang kết nối...</string>
+  <string name="registration_progress_activity__waiting_for_sms_verification">Chờ kiểm
+chứng SMS...</string>
+  <string name="registration_progress_activity__registering_with_server">Đăng ký với máy chủ...</string>
+  <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Việc này có thể mất chút thời gian. Xin kiên nhãn chờ, chúng tôi sẽ báo cho bạn biết khi kiểm chứng xong.</string>
+  <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">
+TextSecure hết hạn chờ trong lúc đợi tin nhắn SMS xác nhận.</string>
+  <string name="registration_progress_activity__sms_verification_failed">Kiểm chứng SMS thất bại.</string>
+  <string name="registration_progress_activity__generating_keys">Tạo chìa khóa...</string>
+  <!--recipients_panel-->
+  <string name="recipients_panel__to"><small>Điền vào tên hoặc số</small></string>
+  <string name="recipients_panel__add_member">Thêm thành viên</string>
+  <!--verify_identity_activity-->
+  <string name="verify_identity_activity__their_identity_they_read">Tên nhận diện của họ (họ đọc):</string>
+  <string name="verify_identity_activity__your_identity_you_read">Tên nhận diện của bạn (bạn đọc):</string>
+  <!--message_details_header-->
+  <!--AndroidManifest.xml-->
+  <string name="AndroidManifest__enter_passphrase">Điền vào cụm từ mã hóa</string>
+  <string name="AndroidManifest__change_passphrase">Đổi mật khẩu</string>
+  <!--arrays.xml-->
+  <!--plurals.xml-->
+  <!--preferences.xml-->
+  <string name="preferences__general">Tổng quát</string>
+  <string name="preferences__pref_all_sms_title">Nhận tất cả SMS</string>
+  <string name="preferences__pref_all_mms_title">Nhận tất cả MMS</string>
+  <string name="preferences__input_settings">Thiết Đặt Cách Nhập</string>
+  <string name="preferences__enable_enter_key_title">Mở phím Enter</string>
+  <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Chọn khoản mục liên lạc của bạn trong danh sách liên lạc.</string>
+  <string name="preferences__change_passphrase">Đổi mật khẩu</string>
+  <string name="preferences__change_my_passphrase">Đổi mật khẩu của tôi</string>
+  <string name="preferences__screen_security">An ninh màn hình</string>
+  <string name="preferences__forget_passphrase_from_memory_after_some_interval">Quên mật khẩu trong bộ nhớ sau một khoảng thời gian</string>
+  <string name="preferences__timeout_passphrase">Hết hạn nhớ mật khẩu</string>
+  <string name="preferences__pref_timeout_interval_title">Thời gian hết hạn</string>
+  <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Khoảng thời gian chờ trước khi quên đi mật khẩu trong bộ nhớ</string>
+  <string name="preferences__notifications">Thông báo</string>
+  <string name="preferences__display_message_notifications_in_status_bar">Hiển thị thông báo tin nhắn trong thanh trạng thái</string>
+  <string name="preferences__led_color">Màu LED</string>
+  <string name="preferences__pref_led_blink_title">Mô hình chớp nháy LED</string>
+  <string name="preferences__pref_led_blink_custom_pattern_set">Mô hình chớp nháy LED tùy biến thiết lập xong!</string>
+  <string name="preferences__sound">Âm thanh</string>
+  <string name="preferences__change_notification_sound">Đổi âm thanh thông báo</string>
+  <string name="preferences__inthread_notifications">Thông báo trong-luồng</string>
+  <string name="preferences__vibrate">Rung</string>
+  <string name="preferences__also_vibrate_when_notified">Cũng rung khi thông báo</string>
+  <string name="preferences__minutes">phút</string>
+  <string name="preferences__hours">giờ</string>
+  <string name="preferences__green">Xanh lá cây</string>
+  <string name="preferences__red">Đỏ</string>
+  <string name="preferences__blue">Xanh dương</string>
+  <string name="preferences__orange">Cam</string>
+  <string name="preferences__cyan">Xanh lam</string>
+  <string name="preferences__magenta">Hồng đậm</string>
+  <string name="preferences__white">Trắng</string>
+  <string name="preferences__none">Không</string>
+  <string name="preferences__fast">Nhanh</string>
+  <string name="preferences__normal">Bình thường</string>
+  <string name="preferences__slow">Chậm</string>
+  <string name="preferences__custom">Tùy biến</string>
+  <string name="preferences__advanced">Cao cấp</string>
+  <string name="preferences__override_system_mms_settings">Thay các thiết đặt MMS của hệ thống bằng dữ liệu dưới đây.</string>
+  <string name="preferences__sms_delivery_reports">Báo cáo phân phối SMS</string>
+  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Yêu cầu có báo cáo phân phối cho từng tin nhắn SMS gửi đi</string>
+  <string name="preferences__automatically_delete_older_messages_once_a_conversation_thread_exceeds_a_specified_length">Tự động xóa các tin nhắn cũ một khi mạch chuyện trò vượt quá độ dài đã ấn định</string>
+  <string name="preferences__delete_old_messages">Xóa tin nhắn cũ</string>
+  <string name="preferences__conversation_length_limit">Giới hạn độ dài cuộc chuyện trò</string>
+  <string name="preferences__trim_all_threads_now">Rút ngắn tất cả các mạch chuyện trò ngay bây giờ</string>
+  <string name="preferences__scan_through_all_conversation_threads_and_enforce_conversation_length_limits">Xem xét các mạch chuyện trò và buộc tuân theo giới hạn độ dài</string>
+  <string name="preferences__appearance">Diện mạo</string>
+  <string name="preferences__theme">Hình nền</string>
+  <string name="preferences__default">Mặc định</string>
+  <string name="preferences__language">Ngôn ngữ</string>
+  <string name="preferences__submit_debug_log">Nạp ký sự gỡ lỗi</string>
+  <!--****************************************-->
+  <!--menus-->
+  <!--****************************************-->
+  <!--contact_selection_list-->
+  <string name="contact_selection_list__header_textsecure_users">NGƯỜI DÙNG TEXTSECURE</string>
+  <string name="contact_selection_list__header_other">TẤT CẢ LIÊN HỆ</string>
+  <string name="contact_selection_list__unknown_contact">Tin nhắn mới cho...</string>
+  <!--contact_selection-->
+  <string name="contact_selection__menu_finished">Xong</string>
+  <!--refreshing push directory from menu-->
+  <!--conversation_callable-->
+  <string name="conversation_callable__menu_call">Gọi</string>
+  <!--conversation_context-->
+  <string name="conversation_context__menu_message_details">Chi tiết tin nhắn</string>
+  <string name="conversation_context__menu_copy_text">Sao chép văn bản</string>
+  <string name="conversation_context__menu_delete_message">Xóa tin nhắn</string>
+  <string name="conversation_context__menu_forward_message">Chuyển tiếp tin nhắn</string>
+  <string name="conversation_context__menu_resend_message">Gửi lại tin nhắn</string>
+  <!--conversation_context_image-->
+  <!--conversation_insecure-->
+  <!--conversation_insecure_no_push-->
+  <string name="conversation_insecure__security">An Ninh</string>
+  <!--conversation_list_batch-->
+  <!--conversation_list-->
+  <string name="conversation_list__menu_search">Tìm kiếm</string>
+  <!--conversation_list_item_view-->
+  <!--conversation_list_fragment-->
+  <!--conversation_secure_verified-->
+  <string name="conversation_secure_verified__menu_security">An Ninh</string>
+  <!--conversation_muted-->
+  <!--conversation_unmuted-->
+  <!--conversation-->
+  <string name="conversation__menu_add_attachment">Thêm tập tin đính kèm</string>
+  <string name="conversation__menu_update_group">Cập nhật nhóm</string>
+  <string name="conversation__menu_delete_thread">Xóa luồng</string>
+  <!--conversation_popup-->
+  <!--conversation_callable-->
+  <!--conversation_group_options-->
+  <string name="convesation_group_options__recipients_list">Danh sách người nhận</string>
+  <string name="conversation_group_options__delivery">Phân phối</string>
+  <string name="conversation_group_options__conversation">Chuyện trò</string>
+  <string name="conversation_group_options__broadcast">Phát rộng</string>
+  <!--key_scanning-->
+  <string name="key_scanning__menu_compare">So sánh</string>
+  <string name="key_scanning__menu_get_scanned_to_compare">Quét để so sánh</string>
+  <string name="key_scanning__menu_scan_to_compare">Quét để so sánh</string>
+  <!--text_secure_normal-->
+  <string name="text_secure_normal__menu_new_group">Tạo nhóm mới</string>
+  <string name="text_secure_normal__menu_settings">Thiết Đặt</string>
+  <string name="text_secure_normal__menu_clear_passphrase">Khóa</string>
+  <!--reminder_header-->
+  <!--MediaPreviewActivity-->
+  <!--media_preview-->
+  <!--media_preview_activity-->
+  <!--Trimmer-->
+  <!--transport_selection_list_item-->
+  <!--quick_attachment_drawer-->
+  <!--EOF-->
+</resources>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="horizontal"
+              android:layout_width="@dimen/transport_selection_popup_width"
+              android:layout_height="60dp"
+              android:gravity="center_vertical"
+              android:paddingLeft="10dp"
+              android:paddingRight="10dp">
+    <ImageView android:id="@+id/icon"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:padding="7dp"
+               android:background="@drawable/circle_tintable"
+               android:contentDescription="@string/transport_selection_list_item__transport_icon"
+               tools:src="@drawable/ic_send_push_white_24dp"
+               tools:backgroundTint="@color/textsecure_primary" />
+    <TextView android:id="@+id/text"
+              android:paddingLeft="10dp"
+              android:fontFamily="sans-serif-light"
+              android:textSize="16sp"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              tools:text="TextSecure" />
+</LinearLayout>

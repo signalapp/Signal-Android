@@ -18,45 +18,49 @@ package org.thoughtcrime.securesms;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
 
-import org.whispersystems.textsecure.crypto.SerializableKey;
-import org.whispersystems.textsecure.util.Base64;
-import org.thoughtcrime.securesms.util.Dialogs;
-import org.thoughtcrime.securesms.util.DynamicTheme;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
-import org.whispersystems.textsecure.zxing.integration.IntentIntegrator;
-import org.whispersystems.textsecure.zxing.integration.IntentResult;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.util.Base64;
+import org.thoughtcrime.securesms.util.Dialogs;
+import org.thoughtcrime.securesms.util.DynamicLanguage;
+import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.whispersystems.libaxolotl.IdentityKey;
 
 /**
  * Activity for initiating/receiving key QR code scans.
  *
  * @author Moxie Marlinspike
  */
-public abstract class KeyScanningActivity extends PassphraseRequiredSherlockActivity {
+public abstract class KeyScanningActivity extends PassphraseRequiredActionBarActivity {
 
-  private final DynamicTheme dynamicTheme = new DynamicTheme();
+  private final DynamicTheme    dynamicTheme    = new DynamicTheme();
+  private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   @Override
-  protected void onCreate(Bundle bundle) {
+  protected void onPreCreate() {
     dynamicTheme.onCreate(this);
-    super.onCreate(bundle);
+    dynamicLanguage.onCreate(this);
   }
 
   @Override
   public void onResume() {
     super.onResume();
     dynamicTheme.onResume(this);
+    dynamicLanguage.onResume(this);
   }
 
   @Override
   public boolean onPrepareOptionsMenu(Menu menu) {
     super.onPrepareOptionsMenu(menu);
 
-    MenuInflater inflater = this.getSupportMenuInflater();
+    MenuInflater inflater = this.getMenuInflater();
     menu.clear();
 
     inflater.inflate(R.menu.key_scanning, menu);
@@ -88,9 +92,9 @@ public abstract class KeyScanningActivity extends PassphraseRequiredSherlockActi
       String data = scanResult.getContents();
 
       if (data.equals(Base64.encodeBytes(getIdentityKeyToCompare().serialize()))) {
-        Dialogs.displayAlert(this, getVerifiedTitle(), getVerifiedMessage(), android.R.drawable.ic_dialog_info);
+        Dialogs.showInfoDialog(this, getVerifiedTitle(), getVerifiedMessage());
       } else {
-        Dialogs.displayAlert(this, getNotVerifiedTitle(), getNotVerifiedMessage(), android.R.drawable.ic_dialog_alert);
+        Dialogs.showAlertDialog(this, getNotVerifiedTitle(), getNotVerifiedMessage());
       }
     } else {
       Toast.makeText(this, R.string.KeyScanningActivity_no_scanned_key_found_exclamation,
@@ -98,12 +102,23 @@ public abstract class KeyScanningActivity extends PassphraseRequiredSherlockActi
     }
   }
 
+  private IntentIntegrator getIntentIntegrator() {
+    IntentIntegrator intentIntegrator = new IntentIntegrator(this);
+    intentIntegrator.setButtonYesByID(R.string.yes);
+    intentIntegrator.setButtonNoByID(R.string.no);
+    intentIntegrator.setTitleByID(R.string.KeyScanningActivity_install_barcode_Scanner);
+    intentIntegrator.setMessageByID(R.string.KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it);
+    return intentIntegrator;
+  }
+
   protected void initiateScan() {
-    IntentIntegrator.initiateScan(this);
+    IntentIntegrator intentIntegrator = getIntentIntegrator();
+    intentIntegrator.initiateScan();
   }
 
   protected void initiateDisplay() {
-    IntentIntegrator.shareText(this, Base64.encodeBytes(getIdentityKeyToDisplay().serialize()));
+    IntentIntegrator intentIntegrator = getIntentIntegrator();
+    intentIntegrator.shareText(Base64.encodeBytes(getIdentityKeyToDisplay().serialize()));
   }
 
   protected abstract String getScanString();
@@ -112,8 +127,8 @@ public abstract class KeyScanningActivity extends PassphraseRequiredSherlockActi
   protected abstract String getNotVerifiedTitle();
   protected abstract String getNotVerifiedMessage();
 
-  protected abstract SerializableKey getIdentityKeyToCompare();
-  protected abstract SerializableKey getIdentityKeyToDisplay();
+  protected abstract IdentityKey getIdentityKeyToCompare();
+  protected abstract IdentityKey getIdentityKeyToDisplay();
 
   protected abstract String getVerifiedTitle();
   protected abstract String getVerifiedMessage();

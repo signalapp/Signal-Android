@@ -17,13 +17,13 @@
 package org.thoughtcrime.securesms.recipients;
 
 import android.content.Context;
-import android.util.Log;
+import android.support.annotation.NonNull;
+import android.text.TextUtils;
 
-import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
+import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
 import org.thoughtcrime.securesms.database.CanonicalAddressDatabase;
-import org.thoughtcrime.securesms.util.NumberUtil;
-import org.whispersystems.textsecure.push.IncomingPushMessage;
-import org.whispersystems.textsecure.util.Util;
+import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -34,65 +34,74 @@ public class RecipientFactory {
   private static final RecipientProvider provider = new RecipientProvider();
 
   public static Recipients getRecipientsForIds(Context context, String recipientIds, boolean asynchronous) {
-    if (Util.isEmpty(recipientIds))
-      return new Recipients(new LinkedList<Recipient>());
+    if (TextUtils.isEmpty(recipientIds))
+      return new Recipients();
 
-    List<Recipient> results   = new LinkedList<Recipient>();
-    StringTokenizer tokenizer = new StringTokenizer(recipientIds.trim(), " ");
-
-    while (tokenizer.hasMoreTokens()) {
-      String recipientId  = tokenizer.nextToken();
-      Recipient recipient = getRecipientFromProviderId(context, recipientId, asynchronous);
-
-      results.add(recipient);
-    }
-
-    return new Recipients(results);
+    return getRecipientsForIds(context, Util.split(recipientIds, " "), asynchronous);
   }
 
-  private static Recipient getRecipientForNumber(Context context, String number, boolean asynchronous) {
-    long recipientId = CanonicalAddressDatabase.getInstance(context).getCanonicalAddress(number);
+  public static Recipients getRecipientsFor(Context context, List<Recipient> recipients, boolean asynchronous) {
+    long[] ids = new long[recipients.size()];
+    int    i   = 0;
+
+    for (Recipient recipient : recipients) {
+      ids[i++] = recipient.getRecipientId();
+    }
+
+    return provider.getRecipients(context, ids, asynchronous);
+  }
+
+  public static Recipients getRecipientsFor(Context context, Recipient recipient, boolean asynchronous) {
+    long[] ids = new long[1];
+    ids[0] = recipient.getRecipientId();
+
+    return provider.getRecipients(context, ids, asynchronous);
+  }
+
+  public static Recipient getRecipientForId(Context context, long recipientId, boolean asynchronous) {
     return provider.getRecipient(context, recipientId, asynchronous);
   }
 
-  public static Recipients getRecipientsFromString(Context context, String rawText, boolean asynchronous)
-      throws RecipientFormattingException
-  {
-    if (rawText == null) {
-      throw new RecipientFormattingException("Null recipient string specified");
-    }
+  public static Recipients getRecipientsForIds(Context context, long[] recipientIds, boolean asynchronous) {
+    return provider.getRecipients(context, recipientIds, asynchronous);
+  }
 
-    List<Recipient> results   = new LinkedList<Recipient>();
+  public static Recipients getRecipientsFromString(Context context, @NonNull String rawText, boolean asynchronous) {
     StringTokenizer tokenizer = new StringTokenizer(rawText, ",");
+    List<String>    ids       = new LinkedList<>();
 
     while (tokenizer.hasMoreTokens()) {
-      Recipient recipient = parseRecipient(context, tokenizer.nextToken(), asynchronous);
-      if( recipient != null )
-        results.add(recipient);
+      Optional<Long> id = getRecipientIdFromNumber(context, tokenizer.nextToken());
+
+      if (id.isPresent()) {
+        ids.add(String.valueOf(id.get()));
+      }
     }
 
-    return new Recipients(results);
+    return getRecipientsForIds(context, ids, asynchronous);
   }
 
-  public static Recipients getRecipientsFromMessage(Context context,
-                                                    IncomingPushMessage message,
-                                                    boolean asynchronous)
-  {
-    try {
-      return getRecipientsFromString(context, message.getSource(), asynchronous);
-    } catch (RecipientFormattingException e) {
-      Log.w("RecipientFactory", e);
-      return new Recipients(Recipient.getUnknownRecipient(context));
+  private static Recipients getRecipientsForIds(Context context, List<String> idStrings, boolean asynchronous) {
+    long[]       ids      = new long[idStrings.size()];
+    int          i        = 0;
+
+    for (String id : idStrings) {
+      ids[i++] = Long.parseLong(id);
     }
+
+    return provider.getRecipients(context, ids, asynchronous);
   }
 
-  private static Recipient getRecipientFromProviderId(Context context, String recipientId, boolean asynchronous) {
-    try {
-      return provider.getRecipient(context, Long.parseLong(recipientId), asynchronous);
-    } catch (NumberFormatException e) {
-      Log.w("RecipientFactory", e);
-      return Recipient.getUnknownRecipient(context);
+  private static Optional<Long> getRecipientIdFromNumber(Context context, String number) {
+    number = number.trim();
+
+    if (number.isEmpty()) return Optional.absent();
+
+    if (hasBracketedNumber(number)) {
+      number = parseBracketedNumber(number);
     }
+
+    return Optional.of(CanonicalAddressDatabase.getInstance(context).getCanonicalAddressId(number));
   }
 
   private static boolean hasBracketedNumber(String recipient) {
@@ -102,44 +111,16 @@ public class RecipientFactory {
            (recipient.indexOf('>', openBracketIndex) != -1);
   }
 
-  private static String parseBracketedNumber(String recipient)
-      throws RecipientFormattingException
-  {
+  private static String parseBracketedNumber(String recipient) {
     int begin    = recipient.indexOf('<');
     int end      = recipient.indexOf('>', begin);
     String value = recipient.substring(begin + 1, end);
 
-    if (NumberUtil.isValidSmsOrEmail(value))
-      return value;
-    else
-      throw new RecipientFormattingException("Bracketed value: " + value + " is not valid.");
-  }
-
-  private static Recipient parseRecipient(Context context, String recipient, boolean asynchronous)
-      throws RecipientFormattingException
-  {
-    recipient = recipient.trim();
-
-    if( recipient.length() == 0 )
-      return null;
-
-    if (hasBracketedNumber(recipient))
-      return getRecipientForNumber(context, parseBracketedNumber(recipient), asynchronous);
-
-    if (NumberUtil.isValidSmsOrEmailOrGroup(recipient))
-      return getRecipientForNumber(context, recipient, asynchronous);
-
-    throw new RecipientFormattingException("Recipient: " + recipient + " is badly formatted.");
+    return value;
   }
 
   public static void clearCache() {
-    ContactPhotoFactory.clearCache();
     provider.clearCache();
-  }
-
-  public static void clearCache(Recipient recipient) {
-    ContactPhotoFactory.clearCache(recipient);
-    provider.clearCache(recipient);
   }
 
 }

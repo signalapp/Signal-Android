@@ -4,13 +4,12 @@ import android.content.Context;
 
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.recipients.Recipients;
-import org.whispersystems.textsecure.util.Base64;
+import org.thoughtcrime.securesms.util.Base64;
+import org.whispersystems.textsecure.internal.push.TextSecureProtos.GroupContext;
 
 import ws.com.google.android.mms.ContentType;
 import ws.com.google.android.mms.pdu.PduBody;
 import ws.com.google.android.mms.pdu.PduPart;
-
-import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.GroupContext;
 
 public class OutgoingGroupMediaMessage extends OutgoingSecureMediaMessage {
 

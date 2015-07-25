@@ -16,53 +16,81 @@
  */
 package org.thoughtcrime.securesms;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.res.TypedArray;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.view.ActionMode;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.RecyclerView.RecyclerListener;
+import android.support.v7.widget.RecyclerView.ViewHolder;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.CursorAdapter;
-import android.widget.ListView;
 
-import org.whispersystems.textsecure.crypto.MasterSecret;
+import com.afollestad.materialdialogs.AlertDialogWrapper;
+import com.melnykov.fab.FloatingActionButton;
+
+import org.thoughtcrime.securesms.ConversationListAdapter.ItemClickListener;
+import org.thoughtcrime.securesms.components.DefaultSmsReminder;
+import org.thoughtcrime.securesms.components.DividerItemDecoration;
+import org.thoughtcrime.securesms.components.ExpiredBuildReminder;
+import org.thoughtcrime.securesms.components.PushRegistrationReminder;
+import org.thoughtcrime.securesms.components.ReminderView;
+import org.thoughtcrime.securesms.components.SystemSmsImportReminder;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.loaders.ConversationListLoader;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipients;
 
-import com.actionbarsherlock.app.SherlockListFragment;
-import com.actionbarsherlock.view.ActionMode;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
-import com.actionbarsherlock.widget.SearchView;
-
+import java.util.Locale;
 import java.util.Set;
 
 
-public class ConversationListFragment extends SherlockListFragment
-  implements LoaderManager.LoaderCallbacks<Cursor>, ActionMode.Callback
+public class ConversationListFragment extends Fragment
+  implements LoaderManager.LoaderCallbacks<Cursor>, ActionMode.Callback, ItemClickListener
 {
+  private MasterSecret         masterSecret;
+  private ActionMode           actionMode;
+  private RecyclerView         list;
+  private ReminderView         reminderView;
+  private FloatingActionButton fab;
+  private Locale               locale;
+  private String               queryFilter  = "";
 
-  private ConversationSelectedListener listener;
-  private MasterSecret masterSecret;
-  private ActionMode actionMode;
-
-  private String queryFilter = "";
-  private boolean batchMode  = false;
+  @Override
+  public void onCreate(Bundle icicle) {
+    super.onCreate(icicle);
+    masterSecret = getArguments().getParcelable("master_secret");
+    locale       = (Locale) getArguments().getSerializable(PassphraseRequiredActionBarActivity.LOCALE_EXTRA);
+  }
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
-    return inflater.inflate(R.layout.conversation_list_fragment, container, false);
+    final View view = inflater.inflate(R.layout.conversation_list_fragment, container, false);
+    reminderView = (ReminderView) view.findViewById(R.id.reminder);
+    list         = (RecyclerView) view.findViewById(R.id.list);
+    fab          = (FloatingActionButton) view.findViewById(R.id.fab);
+    list.setHasFixedSize(true);
+    list.setLayoutManager(new LinearLayoutManager(getActivity()));
+    list.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL, R.attr.conversation_list_item_divider));
+    return view;
   }
 
   @Override
@@ -70,99 +98,66 @@ public class ConversationListFragment extends SherlockListFragment
     super.onActivityCreated(bundle);
 
     setHasOptionsMenu(true);
+    fab.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        startActivity(new Intent(getActivity(), NewConversationActivity.class));
+      }
+    });
     initializeListAdapter();
-    initializeBatchListener();
-
-    getLoaderManager().initLoader(0, null, this);
   }
 
   @Override
-  public void onAttach(Activity activity) {
-    super.onAttach(activity);
-    this.listener = (ConversationSelectedListener)activity;
+  public void onResume() {
+    super.onResume();
+
+    initializeReminders();
+    list.getAdapter().notifyDataSetChanged();
   }
 
-  @Override
-  public void onPrepareOptionsMenu(Menu menu) {
-    MenuInflater inflater = this.getSherlockActivity().getSupportMenuInflater();
+  public ConversationListAdapter getListAdapter() {
+    return (ConversationListAdapter) list.getAdapter();
+  }
 
-    if (this.masterSecret != null) {
-      inflater.inflate(R.menu.conversation_list, menu);
-      initializeSearch((SearchView)menu.findItem(R.id.menu_search).getActionView());
+  public void setQueryFilter(String query) {
+    this.queryFilter = query;
+    getLoaderManager().restartLoader(0, null, this);
+  }
+
+  public void resetQueryFilter() {
+    if (!TextUtils.isEmpty(this.queryFilter)) {
+      setQueryFilter("");
+    }
+  }
+
+  private void initializeReminders() {
+    if (ExpiredBuildReminder.isEligible(getActivity())) {
+      reminderView.showReminder(new ExpiredBuildReminder());
+    } else if (DefaultSmsReminder.isEligible(getActivity())) {
+      reminderView.showReminder(new DefaultSmsReminder(getActivity()));
+    } else if (SystemSmsImportReminder.isEligible(getActivity())) {
+      reminderView.showReminder(new SystemSmsImportReminder(getActivity(), masterSecret));
+    } else if (PushRegistrationReminder.isEligible(getActivity())) {
+      reminderView.showReminder(new PushRegistrationReminder(getActivity(), masterSecret));
     } else {
-      inflater.inflate(R.menu.conversation_list_empty, menu);
+      reminderView.hide();
     }
-
-    super.onPrepareOptionsMenu(menu);
-  }
-
-  @Override
-  public void onListItemClick(ListView l, View v, int position, long id) {
-    if (v instanceof ConversationListItem) {
-      ConversationListItem headerView = (ConversationListItem) v;
-      Log.w("ConversationListFragment", "Batch mode: " + batchMode);
-      if (!batchMode) {
-        handleCreateConversation(headerView.getThreadId(), headerView.getRecipients(),
-                                 headerView.getDistributionType());
-      } else {
-        ConversationListAdapter adapter = (ConversationListAdapter)getListAdapter();
-        adapter.toggleThreadInBatchSet(headerView.getThreadId());
-        adapter.notifyDataSetChanged();
-      }
-    }
-  }
-
-  public void setMasterSecret(MasterSecret masterSecret) {
-    if (this.masterSecret != masterSecret) {
-      this.masterSecret = masterSecret;
-      initializeListAdapter();
-    }
-  }
-
-  private void initializeSearch(SearchView searchView) {
-    searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-      @Override
-      public boolean onQueryTextSubmit(String query) {
-        if (isAdded()) {
-          ConversationListFragment.this.queryFilter = query;
-          ConversationListFragment.this.getLoaderManager().restartLoader(0, null, ConversationListFragment.this);
-          return true;
-        }
-        return false;
-      }
-      @Override
-      public boolean onQueryTextChange(String newText) {
-        return onQueryTextSubmit(newText);
-      }
-    });
-  }
-
-  private void initializeBatchListener() {
-    getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-      @Override
-      public boolean onItemLongClick(AdapterView<?> arg0, View v, int position, long id) {
-        ConversationListAdapter adapter = (ConversationListAdapter)getListAdapter();
-        actionMode = getSherlockActivity().startActionMode(ConversationListFragment.this);
-        batchMode  = true;
-
-        adapter.initializeBatchMode(true);
-        adapter.toggleThreadInBatchSet(((ConversationListItem) v).getThreadId());
-        adapter.notifyDataSetChanged();
-
-        return true;
-      }
-    });
   }
 
   private void initializeListAdapter() {
-    this.setListAdapter(new ConversationListAdapter(getActivity(), null, masterSecret));
-    getListView().setRecyclerListener((ConversationListAdapter)getListAdapter());
+    list.setAdapter(new ConversationListAdapter(getActivity(), masterSecret, locale, null, this));
+    list.setRecyclerListener(new RecyclerListener() {
+      @Override
+      public void onViewRecycled(ViewHolder holder) {
+        ((ConversationListItem)holder.itemView).unbind();
+      }
+    });
     getLoaderManager().restartLoader(0, null, this);
   }
 
   private void handleDeleteAllSelected() {
-    AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
-    alert.setIcon(android.R.drawable.ic_dialog_alert);
+    AlertDialogWrapper.Builder alert = new AlertDialogWrapper.Builder(getActivity());
+    alert.setIconAttribute(R.attr.dialog_alert_icon);
     alert.setTitle(R.string.ConversationListFragment_delete_threads_question);
     alert.setMessage(R.string.ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads);
     alert.setCancelable(true);
@@ -170,7 +165,7 @@ public class ConversationListFragment extends SherlockListFragment
     alert.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialog, int which) {
-        final Set<Long> selectedConversations = ((ConversationListAdapter)getListAdapter())
+        final Set<Long> selectedConversations = (getListAdapter())
             .getBatchSelections();
 
         if (!selectedConversations.isEmpty()) {
@@ -180,8 +175,8 @@ public class ConversationListFragment extends SherlockListFragment
             @Override
             protected void onPreExecute() {
               dialog = ProgressDialog.show(getActivity(),
-                                           getSherlockActivity().getString(R.string.ConversationListFragment_deleting),
-                                           getSherlockActivity().getString(R.string.ConversationListFragment_deleting_selected_threads),
+                                           getActivity().getString(R.string.ConversationListFragment_deleting),
+                                           getActivity().getString(R.string.ConversationListFragment_deleting_selected_threads),
                                            true, false);
             }
 
@@ -198,7 +193,6 @@ public class ConversationListFragment extends SherlockListFragment
               if (actionMode != null) {
                 actionMode.finish();
                 actionMode = null;
-                batchMode  = false;
               }
             }
           }.execute();
@@ -211,15 +205,13 @@ public class ConversationListFragment extends SherlockListFragment
   }
 
   private void handleSelectAllThreads() {
-    ((ConversationListAdapter)this.getListAdapter()).selectAllThreads();
-  }
-
-  private void handleUnselectAllThreads() {
-    ((ConversationListAdapter)this.getListAdapter()).selectAllThreads();
+    getListAdapter().selectAllThreads();
+    actionMode.setSubtitle(getString(R.string.conversation_fragment_cab__batch_selection_amount,
+                           ((ConversationListAdapter)this.getListAdapter()).getBatchSelections().size()));
   }
 
   private void handleCreateConversation(long threadId, Recipients recipients, int distributionType) {
-    listener.onCreateConversation(threadId, recipients, distributionType);
+    ((ConversationSelectedListener)getActivity()).onCreateConversation(threadId, recipients, distributionType);
   }
 
   @Override
@@ -229,27 +221,59 @@ public class ConversationListFragment extends SherlockListFragment
 
   @Override
   public void onLoadFinished(Loader<Cursor> arg0, Cursor cursor) {
-    ((CursorAdapter)getListAdapter()).changeCursor(cursor);
+    getListAdapter().changeCursor(cursor);
   }
 
   @Override
   public void onLoaderReset(Loader<Cursor> arg0) {
-    ((CursorAdapter)getListAdapter()).changeCursor(null);
+    getListAdapter().changeCursor(null);
+  }
+
+  @Override
+  public void onItemClick(ConversationListItem item) {
+    if (actionMode == null) {
+      handleCreateConversation(item.getThreadId(), item.getRecipients(),
+                               item.getDistributionType());
+    } else {
+      ConversationListAdapter adapter = (ConversationListAdapter)list.getAdapter();
+      adapter.toggleThreadInBatchSet(item.getThreadId());
+
+      if (adapter.getBatchSelections().size() == 0) {
+        actionMode.finish();
+      } else {
+        actionMode.setSubtitle(getString(R.string.conversation_fragment_cab__batch_selection_amount,
+                                         adapter.getBatchSelections().size()));
+      }
+
+      adapter.notifyDataSetChanged();
+    }
+  }
+
+  @Override
+  public void onItemLongClick(ConversationListItem item) {
+    actionMode = ((AppCompatActivity)getActivity()).startSupportActionMode(ConversationListFragment.this);
+
+    getListAdapter().initializeBatchMode(true);
+    getListAdapter().toggleThreadInBatchSet(item.getThreadId());
+    getListAdapter().notifyDataSetChanged();
   }
 
   public interface ConversationSelectedListener {
-    public void onCreateConversation(long threadId, Recipients recipients, int distributionType);
+    void onCreateConversation(long threadId, Recipients recipients, int distributionType);
 }
 
   @Override
   public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-    MenuInflater inflater = getSherlockActivity().getSupportMenuInflater();
+    MenuInflater inflater = getActivity().getMenuInflater();
     inflater.inflate(R.menu.conversation_list_batch, menu);
 
-    LayoutInflater layoutInflater = getSherlockActivity().getLayoutInflater();
-    View actionModeView = layoutInflater.inflate(R.layout.conversation_fragment_cab, null);
+    mode.setTitle(R.string.conversation_fragment_cab__batch_selection_mode);
+    mode.setSubtitle(null);
 
-    mode.setCustomView(actionModeView);
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+      getActivity().getWindow()
+        .setStatusBarColor(getResources().getColor(R.color.action_mode_status_bar));
+    }
 
     return true;
   }
@@ -271,9 +295,16 @@ public class ConversationListFragment extends SherlockListFragment
 
   @Override
   public void onDestroyActionMode(ActionMode mode) {
-    ((ConversationListAdapter)getListAdapter()).initializeBatchMode(false);
+    getListAdapter().initializeBatchMode(false);
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+      TypedArray color = getActivity().getTheme()
+        .obtainStyledAttributes(new int[] { android.R.attr.statusBarColor });
+      getActivity().getWindow().setStatusBarColor(color.getColor(0, Color.BLACK));
+      color.recycle();
+    }
+
     actionMode = null;
-    batchMode  = false;
   }
 
 }

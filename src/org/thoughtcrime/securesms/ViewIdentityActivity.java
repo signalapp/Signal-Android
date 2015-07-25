@@ -17,9 +17,12 @@
 package org.thoughtcrime.securesms;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.widget.TextView;
 
-import org.whispersystems.textsecure.crypto.IdentityKey;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.whispersystems.libaxolotl.IdentityKey;
+import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 
 /**
  * Activity for displaying an identity key.
@@ -28,12 +31,14 @@ import org.whispersystems.textsecure.crypto.IdentityKey;
  */
 public class ViewIdentityActivity extends KeyScanningActivity {
 
+  public static final String IDENTITY_KEY = "identity_key";
+  public static final String TITLE        = "title";
+
   private TextView    identityFingerprint;
   private IdentityKey identityKey;
 
   @Override
-  public void onCreate(Bundle state) {
-    super.onCreate(state);
+  protected void onCreate(Bundle state, @NonNull MasterSecret masterSecret) {
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     setContentView(R.layout.view_identity_activity);
 
@@ -54,12 +59,18 @@ public class ViewIdentityActivity extends KeyScanningActivity {
   }
 
   private void initializeResources() {
-    this.identityKey         = (IdentityKey)getIntent().getParcelableExtra("identity_key");
+    IdentityKeyParcelable identityKeyParcelable = getIntent().getParcelableExtra(IDENTITY_KEY);
+
+    if (identityKeyParcelable == null) {
+      throw new AssertionError("No identity key!");
+    }
+
+    this.identityKey         = identityKeyParcelable.get();
     this.identityFingerprint = (TextView)findViewById(R.id.identity_fingerprint);
-    String title             = getIntent().getStringExtra("title");
+    String title             = getIntent().getStringExtra(TITLE);
 
     if (title != null) {
-      getSupportActionBar().setTitle(getIntent().getStringExtra("title"));
+      getSupportActionBar().setTitle(getIntent().getStringExtra(TITLE));
     }
   }
 

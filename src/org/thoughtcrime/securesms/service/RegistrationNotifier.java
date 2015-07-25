@@ -8,8 +8,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 
+import org.thoughtcrime.securesms.ConversationListActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.RoutingActivity;
 
 public class RegistrationNotifier extends BroadcastReceiver {
   @Override
@@ -18,7 +18,7 @@ public class RegistrationNotifier extends BroadcastReceiver {
     builder.setSmallIcon(R.drawable.icon_notification);
     builder.setContentTitle(intent.getStringExtra(RegistrationService.NOTIFICATION_TITLE));
     builder.setContentText(intent.getStringExtra(RegistrationService.NOTIFICATION_TEXT));
-    builder.setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, RoutingActivity.class), 0));
+    builder.setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, ConversationListActivity.class), 0));
     builder.setWhen(System.currentTimeMillis());
     builder.setDefaults(Notification.DEFAULT_VIBRATE);
     builder.setAutoCancel(true);

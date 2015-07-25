@@ -3,41 +3,85 @@ package org.thoughtcrime.securesms.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.support.annotation.NonNull;
+import android.util.Log;
 
-import org.whispersystems.textsecure.push.IncomingPushMessage;
-import org.whispersystems.textsecure.util.Base64;
-import org.whispersystems.textsecure.util.Util;
+import org.thoughtcrime.securesms.util.Base64;
+import org.whispersystems.libaxolotl.util.guava.Optional;
+import org.whispersystems.textsecure.api.messages.TextSecureEnvelope;
+import org.whispersystems.textsecure.internal.util.Util;
 
 import java.io.IOException;
-import java.util.List;
 
 public class PushDatabase extends Database {
+
+  private static final String TAG = PushDatabase.class.getSimpleName();
 
   private static final String TABLE_NAME   = "push";
   public  static final String ID           = "_id";
   public  static final String TYPE         = "type";
   public  static final String SOURCE       = "source";
   public  static final String DEVICE_ID    = "device_id";
-  public  static final String BODY         = "body";
+  public  static final String LEGACY_MSG   = "body";
+  public  static final String CONTENT      = "content";
   public  static final String TIMESTAMP    = "timestamp";
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID + " INTEGER PRIMARY KEY, " +
-      TYPE + " INTEGER, " + SOURCE + " TEXT, " + DEVICE_ID + " INTEGER, " + BODY + " TEXT, " + TIMESTAMP + " INTEGER);";
+      TYPE + " INTEGER, " + SOURCE + " TEXT, " + DEVICE_ID + " INTEGER, " + LEGACY_MSG + " TEXT, " + CONTENT + " TEXT, " + TIMESTAMP + " INTEGER);";
 
   public PushDatabase(Context context, SQLiteOpenHelper databaseHelper) {
     super(context, databaseHelper);
   }
 
-  public long insert(IncomingPushMessage message) {
-    ContentValues values = new ContentValues();
-    values.put(TYPE, message.getType());
-    values.put(SOURCE, message.getSource());
-    values.put(DEVICE_ID, message.getSourceDevice());
-    values.put(BODY, Base64.encodeBytes(message.getBody()));
-    values.put(TIMESTAMP, message.getTimestampMillis());
+  public long insert(@NonNull TextSecureEnvelope envelope) {
+    Optional<Long> messageId = find(envelope);
 
-    return databaseHelper.getWritableDatabase().insert(TABLE_NAME, null, values);
+    if (messageId.isPresent()) {
+      return messageId.get();
+    } else {
+      ContentValues values = new ContentValues();
+      values.put(TYPE, envelope.getType());
+      values.put(SOURCE, envelope.getSource());
+      values.put(DEVICE_ID, envelope.getSourceDevice());
+      values.put(LEGACY_MSG, envelope.hasLegacyMessage() ? Base64.encodeBytes(envelope.getLegacyMessage()) : "");
+      values.put(CONTENT, envelope.hasContent() ? Base64.encodeBytes(envelope.getContent()) : "");
+      values.put(TIMESTAMP, envelope.getTimestamp());
+
+      return databaseHelper.getWritableDatabase().insert(TABLE_NAME, null, values);
+    }
+  }
+
+  public TextSecureEnvelope get(long id) throws NoSuchMessageException {
+    Cursor cursor = null;
+
+    try {
+      cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, ID_WHERE,
+                                                          new String[] {String.valueOf(id)},
+                                                          null, null, null);
+
+      if (cursor != null && cursor.moveToNext()) {
+        String legacyMessage = cursor.getString(cursor.getColumnIndexOrThrow(LEGACY_MSG));
+        String content       = cursor.getString(cursor.getColumnIndexOrThrow(CONTENT));
+
+        return new TextSecureEnvelope(cursor.getInt(cursor.getColumnIndexOrThrow(TYPE)),
+                                      cursor.getString(cursor.getColumnIndexOrThrow(SOURCE)),
+                                      cursor.getInt(cursor.getColumnIndexOrThrow(DEVICE_ID)),
+                                      "",
+                                      cursor.getLong(cursor.getColumnIndexOrThrow(TIMESTAMP)),
+                                      Util.isEmpty(legacyMessage) ? null : Base64.decode(legacyMessage),
+                                      Util.isEmpty(content) ? null : Base64.decode(content));
+      }
+    } catch (IOException e) {
+      Log.w(TAG, e);
+      throw new NoSuchMessageException(e);
+    } finally {
+      if (cursor != null)
+        cursor.close();
+    }
+
+    throw new NoSuchMessageException("Not found");
   }
 
   public Cursor getPending() {
@@ -52,6 +96,32 @@ public class PushDatabase extends Database {
     return new Reader(cursor);
   }
 
+  private Optional<Long> find(TextSecureEnvelope envelope) {
+    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+    Cursor         cursor   = null;
+
+    try {
+      cursor = database.query(TABLE_NAME, null, TYPE + " = ? AND " + SOURCE + " = ? AND " +
+                                                DEVICE_ID + " = ? AND " + LEGACY_MSG + " = ? AND " +
+                                                CONTENT + " = ? AND " + TIMESTAMP + " = ?" ,
+                              new String[] {String.valueOf(envelope.getType()),
+                                            envelope.getSource(),
+                                            String.valueOf(envelope.getSourceDevice()),
+                                            envelope.hasLegacyMessage() ? Base64.encodeBytes(envelope.getLegacyMessage()) : "",
+                                            envelope.hasContent() ? Base64.encodeBytes(envelope.getContent()) : "",
+                                            String.valueOf(envelope.getTimestamp())},
+                              null, null, null);
+
+      if (cursor != null && cursor.moveToFirst()) {
+        return Optional.of(cursor.getLong(cursor.getColumnIndexOrThrow(ID)));
+      } else {
+        return Optional.absent();
+      }
+    } finally {
+      if (cursor != null) cursor.close();
+    }
+  }
+
   public static class Reader {
     private final Cursor cursor;
 
@@ -59,30 +129,28 @@ public class PushDatabase extends Database {
       this.cursor = cursor;
     }
 
-    public IncomingPushMessage getNext() {
+    public TextSecureEnvelope getNext() {
       try {
         if (cursor == null || !cursor.moveToNext())
           return null;
 
-        int          type         = cursor.getInt(cursor.getColumnIndexOrThrow(TYPE));
-        String       source       = cursor.getString(cursor.getColumnIndexOrThrow(SOURCE));
-        int          deviceId     = cursor.getInt(cursor.getColumnIndexOrThrow(DEVICE_ID));
-        byte[]       body         = Base64.decode(cursor.getString(cursor.getColumnIndexOrThrow(BODY)));
-        long         timestamp    = cursor.getLong(cursor.getColumnIndexOrThrow(TIMESTAMP));
+        int    type          = cursor.getInt(cursor.getColumnIndexOrThrow(TYPE));
+        String source        = cursor.getString(cursor.getColumnIndexOrThrow(SOURCE));
+        int    deviceId      = cursor.getInt(cursor.getColumnIndexOrThrow(DEVICE_ID));
+        String legacyMessage = cursor.getString(cursor.getColumnIndexOrThrow(LEGACY_MSG));
+        String content       = cursor.getString(cursor.getColumnIndexOrThrow(CONTENT));
+        long   timestamp     = cursor.getLong(cursor.getColumnIndexOrThrow(TIMESTAMP));
 
-        return new IncomingPushMessage(type, source, deviceId, body, timestamp);
+        return new TextSecureEnvelope(type, source, deviceId, "", timestamp,
+                                      legacyMessage != null ? Base64.decode(legacyMessage) : null,
+                                      content != null ? Base64.decode(content) : null);
       } catch (IOException e) {
         throw new AssertionError(e);
       }
-    }
-
-    public long getCurrentId() {
-      return cursor.getLong(cursor.getColumnIndexOrThrow(ID));
     }
 
     public void close() {
       this.cursor.close();
     }
   }
-
 }

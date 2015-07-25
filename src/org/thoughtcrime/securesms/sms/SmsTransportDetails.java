@@ -1,5 +1,6 @@
-/** 
+/**
  * Copyright (C) 2011 Whisper Systems
+ * Copyright (C) 2014 Open Whisper Systems
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,14 +20,13 @@ package org.thoughtcrime.securesms.sms;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.protocol.WirePrefix;
-import org.whispersystems.textsecure.crypto.TransportDetails;
-import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
-import org.whispersystems.textsecure.util.Base64;
+import org.thoughtcrime.securesms.util.Base64;
+import org.whispersystems.libaxolotl.protocol.CiphertextMessage;
 
 import java.io.IOException;
 
-public class SmsTransportDetails implements TransportDetails {
-	
+public class SmsTransportDetails {
+
   public static final int SMS_SIZE           = 160;
   public static final int MULTIPART_SMS_SIZE = 153;
 
@@ -37,20 +37,17 @@ public class SmsTransportDetails implements TransportDetails {
 
   public static final int ENCRYPTED_SINGLE_MESSAGE_BODY_MAX_SIZE = SINGLE_MESSAGE_MAX_BYTES - CiphertextMessage.ENCRYPTED_MESSAGE_OVERHEAD;
 
-  @Override
   public byte[] getEncodedMessage(byte[] messageWithMac) {
     String encodedMessage = Base64.encodeBytesWithoutPadding(messageWithMac);
     Log.w("SmsTransportDetails", "Encoded Message Length: " + encodedMessage.length());
     return encodedMessage.getBytes();
   }
 
-  @Override
   public byte[] getDecodedMessage(byte[] encodedMessageBytes) throws IOException {
     String encodedMessage = new String(encodedMessageBytes);
     return Base64.decodeWithoutPadding(encodedMessage);
   }
 
-  @Override
   public byte[] getStrippedPaddingMessageBody(byte[] messageWithPadding) {
     int paddingBeginsIndex = 0;
 
@@ -70,7 +67,6 @@ public class SmsTransportDetails implements TransportDetails {
     return message;
   }
 
-  @Override
   public byte[] getPaddedMessageBody(byte[] messageBody) {
     int paddedBodySize = getMaxBodySizeForBytes(messageBody.length);
     Log.w("SmsTransportDetails", "Padding message body out to: " + paddedBodySize);

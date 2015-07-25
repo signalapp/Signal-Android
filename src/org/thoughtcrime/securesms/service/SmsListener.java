@@ -19,25 +19,27 @@ package org.thoughtcrime.securesms.service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.os.Build;
-import android.preference.PreferenceManager;
+import android.os.Bundle;
+import android.provider.Telephony;
 import android.telephony.SmsMessage;
 import android.util.Log;
 
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
+import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.jobs.SmsReceiveJob;
 import org.thoughtcrime.securesms.protocol.WirePrefix;
-import org.thoughtcrime.securesms.sms.IncomingTextMessage;
-import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
 
-import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class SmsListener extends BroadcastReceiver {
 
-  private static final String SMS_RECEIVED_ACTION = "android.provider.Telephony.SMS_RECEIVED";
-  private static final String SMS_DELIVERED_ACTION = "android.provider.Telephony.SMS_DELIVER";
+  private static final String SMS_RECEIVED_ACTION  = Telephony.Sms.Intents.SMS_RECEIVED_ACTION;
+  private static final String SMS_DELIVERED_ACTION = Telephony.Sms.Intents.SMS_DELIVER_ACTION;
+
+  private static final Pattern CHALLENGE_PATTERN = Pattern.compile(".*Your TextSecure verification code: ([0-9]{3,4})-([0-9]{3,4}).*");
 
   private boolean isExemption(SmsMessage message, String messageBody) {
 
@@ -80,15 +82,15 @@ public class SmsListener extends BroadcastReceiver {
     return bodyBuilder.toString();
   }
 
-  private ArrayList<IncomingTextMessage> getAsTextMessages(Intent intent) {
-    Object[] pdus                   = (Object[])intent.getExtras().get("pdus");
-    ArrayList<IncomingTextMessage> messages = new ArrayList<IncomingTextMessage>(pdus.length);
-
-    for (int i=0;i<pdus.length;i++)
-      messages.add(new IncomingTextMessage(SmsMessage.createFromPdu((byte[])pdus[i])));
-
-    return messages;
-  }
+//  private ArrayList<IncomingTextMessage> getAsTextMessages(Intent intent) {
+//    Object[] pdus                   = (Object[])intent.getExtras().get("pdus");
+//    ArrayList<IncomingTextMessage> messages = new ArrayList<IncomingTextMessage>(pdus.length);
+//
+//    for (int i=0;i<pdus.length;i++)
+//      messages.add(new IncomingTextMessage(SmsMessage.createFromPdu((byte[])pdus[i])));
+//
+//    return messages;
+//  }
 
   private boolean isRelevant(Context context, Intent intent) {
     SmsMessage message = getSmsMessageFromIntent(intent);
@@ -103,6 +105,9 @@ public class SmsListener extends BroadcastReceiver {
     if (!ApplicationMigrationService.isDatabaseImported(context))
       return false;
 
+    if (isChallenge(context, intent))
+      return false;
+
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT &&
         SMS_RECEIVED_ACTION.equals(intent.getAction()) &&
         Util.isDefaultSmsProvider(context))
@@ -110,8 +115,7 @@ public class SmsListener extends BroadcastReceiver {
       return false;
     }
 
-    if ((Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT &&
-         TextSecurePreferences.isSmsFallbackEnabled(context)) ||
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT &&
         TextSecurePreferences.isInterceptAllSmsEnabled(context))
     {
       return true;
@@ -126,7 +130,7 @@ public class SmsListener extends BroadcastReceiver {
     if (messageBody == null)
       return false;
 
-    if (messageBody.matches("Your TextSecure verification code: [0-9]{3,4}-[0-9]{3,4}") &&
+    if (CHALLENGE_PATTERN.matcher(messageBody).matches() &&
         TextSecurePreferences.isVerifying(context))
     {
       return true;
@@ -136,11 +140,14 @@ public class SmsListener extends BroadcastReceiver {
   }
 
   private String parseChallenge(Context context, Intent intent) {
-    String messageBody    = getSmsMessageBodyFromIntent(intent);
-    String[] messageParts = messageBody.split(":");
-    String[] codeParts    = messageParts[1].trim().split("-");
+    String  messageBody      = getSmsMessageBodyFromIntent(intent);
+    Matcher challengeMatcher = CHALLENGE_PATTERN.matcher(messageBody);
 
-    return codeParts[0] + codeParts[1];
+    if (!challengeMatcher.matches()) {
+      throw new AssertionError("Expression should match.");
+    }
+
+    return challengeMatcher.group(1) + challengeMatcher.group(2);
   }
 
   @Override
@@ -154,15 +161,17 @@ public class SmsListener extends BroadcastReceiver {
       context.sendBroadcast(challengeIntent);
 
       abortBroadcast();
-    } else if ((intent.getAction().equals(SMS_RECEIVED_ACTION) || 
-                intent.getAction().equals(SMS_DELIVERED_ACTION)) &&
-                isRelevant(context, intent))
+    } else if ((intent.getAction().equals(SMS_DELIVERED_ACTION)) ||
+               (intent.getAction().equals(SMS_RECEIVED_ACTION)) && isRelevant(context, intent))
     {
-      Intent receivedIntent = new Intent(context, SendReceiveService.class);
-      receivedIntent.setAction(SendReceiveService.RECEIVE_SMS_ACTION);
-      receivedIntent.putExtra("ResultCode", this.getResultCode());
-      receivedIntent.putParcelableArrayListExtra("text_messages",getAsTextMessages(intent));
-      context.startService(receivedIntent);
+      Object[] pdus = (Object[])intent.getExtras().get("pdus");
+      ApplicationContext.getInstance(context).getJobManager().add(new SmsReceiveJob(context, pdus));
+
+//      Intent receivedIntent = new Intent(context, SendReceiveService.class);
+//      receivedIntent.setAction(SendReceiveService.RECEIVE_SMS_ACTION);
+//      receivedIntent.putExtra("ResultCode", this.getResultCode());
+//      receivedIntent.putParcelableArrayListExtra("text_messages",getAsTextMessages(intent));
+//      context.startService(receivedIntent);
 
       abortBroadcast();
     }

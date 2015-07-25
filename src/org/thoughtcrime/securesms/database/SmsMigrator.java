@@ -23,8 +23,8 @@ import android.database.sqlite.SQLiteStatement;
 import android.net.Uri;
 import android.util.Log;
 
-import org.whispersystems.textsecure.crypto.MasterCipher;
-import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.MasterCipher;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -81,6 +81,15 @@ public class SmsMigrator {
       long theirType = cursor.getLong(columnIndex);
       statement.bindLong(index, SmsDatabase.Types.translateFromSystemBaseType(theirType) | SmsDatabase.Types.ENCRYPTION_SYMMETRIC_BIT);
     }
+  }
+
+  private static boolean isAppropriateTypeForMigration(Cursor cursor, int columnIndex) {
+    long systemType = cursor.getLong(columnIndex);
+    long ourType    = SmsDatabase.Types.translateFromSystemBaseType(systemType);
+
+    return ourType == MmsSmsColumns.Types.BASE_INBOX_TYPE ||
+           ourType == MmsSmsColumns.Types.BASE_SENT_TYPE ||
+           ourType == MmsSmsColumns.Types.BASE_SENT_FAILED_TYPE;
   }
 
   private static void getContentValuesForRow(Context context, MasterSecret masterSecret,
@@ -141,13 +150,8 @@ public class SmsMigrator {
       sb.append(address);
     }
 
-    try {
-      if (sb.length() == 0) return null;
-      else                  return RecipientFactory.getRecipientsFromString(context, sb.toString(), true);
-    } catch (RecipientFormattingException rfe) {
-      Log.w("SmsMigrator", rfe);
-      return null;
-    }
+    if (sb.length() == 0) return null;
+    else                  return RecipientFactory.getRecipientsFromString(context, sb.toString(), true);
   }
 
   private static String encrypt(MasterSecret masterSecret, String body)
@@ -171,8 +175,12 @@ public class SmsMigrator {
       SQLiteStatement statement  = ourSmsDatabase.createInsertStatement(transaction);
 
       while (cursor != null && cursor.moveToNext()) {
-        getContentValuesForRow(context, masterSecret, cursor, ourThreadId, statement);
-        statement.execute();
+        int typeColumn = cursor.getColumnIndex(SmsDatabase.TYPE);
+
+        if (cursor.isNull(typeColumn) || isAppropriateTypeForMigration(cursor, typeColumn)) {
+          getContentValuesForRow(context, masterSecret, cursor, ourThreadId, statement);
+          statement.execute();
+        }
 
         listener.progressUpdate(new ProgressDescription(progress, cursor.getCount(), cursor.getPosition()));
       }
@@ -223,7 +231,7 @@ public class SmsMigrator {
     }
 
     context.getSharedPreferences("SecureSMS", Context.MODE_PRIVATE).edit()
-      .putBoolean("migrated", true).commit();
+      .putBoolean("migrated", true).apply();
   }
 
   public interface SmsMigrationProgressListener {

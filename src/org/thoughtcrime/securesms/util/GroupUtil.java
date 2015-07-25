@@ -1,18 +1,15 @@
 package org.thoughtcrime.securesms.util;
 
+import android.content.Context;
 import android.util.Log;
 
-import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 
-import org.whispersystems.textsecure.util.Base64;
-import org.whispersystems.textsecure.util.Hex;
-
 import java.io.IOException;
-import java.util.LinkedList;
 import java.util.List;
 
-import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.GroupContext;
+import org.thoughtcrime.securesms.R;
+import static org.whispersystems.textsecure.internal.push.TextSecureProtos.GroupContext;
 
 public class GroupUtil {
 
@@ -34,32 +31,37 @@ public class GroupUtil {
     return groupId.startsWith(ENCODED_GROUP_PREFIX);
   }
 
-  public static String getDescription(String encodedGroup) {
+  public static String getDescription(Context context, String encodedGroup) {
     if (encodedGroup == null) {
-      return "Group updated.";
+      return context.getString(R.string.GroupUtil_group_updated);
     }
 
     try {
-      String       description = "";
-      GroupContext context     = GroupContext.parseFrom(Base64.decode(encodedGroup));
-      List<String> members     = context.getMembersList();
-      String       title       = context.getName();
+      StringBuilder description  = new StringBuilder();
+      GroupContext  groupContext = GroupContext.parseFrom(Base64.decode(encodedGroup));
+      List<String>  members      = groupContext.getMembersList();
+      String        title        = groupContext.getName();
 
       if (!members.isEmpty()) {
-        description += org.whispersystems.textsecure.util.Util.join(members, ", ") + " joined the group.";
+        description.append(context.getString(R.string.GroupUtil_joined_the_group, Util.join(members, ", ")));
       }
 
       if (title != null && !title.trim().isEmpty()) {
-        description += " Title is now '" + title + "'.";
+        if (description.length() > 0) description.append(" ");
+        description.append(context.getString(R.string.GroupUtil_title_is_now, title));
       }
 
-      return description;
+      if (description.length() > 0) {
+        return description.toString();
+      } else {
+        return context.getString(R.string.GroupUtil_group_updated);
+      }
     } catch (InvalidProtocolBufferException e) {
       Log.w("GroupUtil", e);
-      return "Group updated.";
+      return context.getString(R.string.GroupUtil_group_updated);
     } catch (IOException e) {
       Log.w("GroupUtil", e);
-      return "Group updated.";
+      return context.getString(R.string.GroupUtil_group_updated);
     }
   }
 }

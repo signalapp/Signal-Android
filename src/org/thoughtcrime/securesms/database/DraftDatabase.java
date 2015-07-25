@@ -7,11 +7,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import org.whispersystems.textsecure.crypto.InvalidMessageException;
-import org.whispersystems.textsecure.crypto.MasterCipher;
+import org.thoughtcrime.securesms.R;
+import org.whispersystems.libaxolotl.InvalidMessageException;
+import org.thoughtcrime.securesms.crypto.MasterCipher;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 public class DraftDatabase extends Database {
 
@@ -48,6 +50,27 @@ public class DraftDatabase extends Database {
   public void clearDrafts(long threadId) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     db.delete(TABLE_NAME, THREAD_ID + " = ?", new String[] {threadId+""});
+  }
+
+  public void clearDrafts(Set<Long> threadIds) {
+    SQLiteDatabase db        = databaseHelper.getWritableDatabase();
+    StringBuilder  where     = new StringBuilder();
+    List<String>   arguments = new LinkedList<>();
+
+    for (long threadId : threadIds) {
+      where.append(" OR ")
+           .append(THREAD_ID)
+           .append(" = ?");
+
+      arguments.add(String.valueOf(threadId));
+    }
+
+    db.delete(TABLE_NAME, where.toString().substring(4), arguments.toArray(new String[0]));
+  }
+
+  public void clearAllDrafts() {
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    db.delete(TABLE_NAME, null, null);
   }
 
   public List<Draft> getDrafts(MasterCipher masterCipher, long threadId) {
@@ -97,6 +120,38 @@ public class DraftDatabase extends Database {
 
     public String getValue() {
       return value;
+    }
+
+    public String getSnippet(Context context) {
+      switch (type) {
+      case TEXT:  return value;
+      case IMAGE: return context.getString(R.string.DraftDatabase_Draft_image_snippet);
+      case VIDEO: return context.getString(R.string.DraftDatabase_Draft_video_snippet);
+      case AUDIO: return context.getString(R.string.DraftDatabase_Draft_audio_snippet);
+      default:    return null;
+      }
+    }
+  }
+
+  public static class Drafts extends LinkedList<Draft> {
+    private Draft getDraftOfType(String type) {
+      for (Draft draft : this) {
+        if (Draft.TEXT.equals(draft.getType())) {
+          return draft;
+        }
+      }
+      return null;
+    }
+
+    public String getSnippet(Context context) {
+      Draft textDraft = getDraftOfType(Draft.TEXT);
+      if (textDraft != null) {
+        return textDraft.getSnippet(context);
+      } else if (size() > 0) {
+        return get(0).getSnippet(context);
+      } else {
+        return "";
+      }
     }
   }
 }

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.ShareListItem
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <org.thoughtcrime.securesms.components.AvatarImageView
+        android:id="@+id/contact_photo_image"
+        android:foreground="@drawable/contact_photo_background"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:cropToPadding="true"
+        android:contentDescription="@string/SingleContactSelectionActivity_contact_photo" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dip"
+        android:layout_marginLeft="4dip"
+        android:layout_marginRight="8dip"
+        android:layout_marginBottom="4dip"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/contact_photo_image"
+        android:orientation="vertical">
+
+        <org.thoughtcrime.securesms.components.FromTextView
+            android:id="@+id/from"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="?attr/conversation_list_item_contact_color"
+            android:singleLine="true"
+            android:gravity="bottom"
+            android:ellipsize="marquee" />
+
+    </LinearLayout>
+</org.thoughtcrime.securesms.ShareListItem>

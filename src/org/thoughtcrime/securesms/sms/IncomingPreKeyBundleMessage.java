@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.sms;
 
-public class IncomingPreKeyBundleMessage extends IncomingKeyExchangeMessage {
+public class IncomingPreKeyBundleMessage extends IncomingTextMessage {
 
   public IncomingPreKeyBundleMessage(IncomingTextMessage base, String newBody) {
     super(base, newBody);
@@ -15,4 +15,5 @@ public class IncomingPreKeyBundleMessage extends IncomingKeyExchangeMessage {
   public boolean isPreKeyBundle() {
     return true;
   }
+
 }

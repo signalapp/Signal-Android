@@ -1,93 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
 <org.thoughtcrime.securesms.ConversationListItem
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:background="@drawable/conversation_list_item_background"
+        android:layout_height="70dp">
 
-    <FrameLayout android:id="@+id/contact_photo_frame"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_centerVertical="true"
-                 android:layout_alignParentLeft="true"
-                 android:paddingTop="3dp"
-                 android:paddingBottom="3dp"
-                 android:paddingLeft="10dp"
-                 android:paddingRight="10dp"
-                 android:visibility="visible">
+    <org.thoughtcrime.securesms.components.AvatarImageView
+        android:id="@+id/contact_photo_image"
+        android:foreground="@drawable/contact_photo_background"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
+        android:cropToPadding="true"
+        tools:src="@drawable/ic_contact_picture"
+        android:contentDescription="@string/conversation_list_item_view__contact_photo_image"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp" />
 
-	    <ImageView android:id="@+id/contact_photo_image"
-	               android:layout_width="60dp"
-	               android:layout_height="60dp"
-	               android:cropToPadding="true"
-	               android:scaleType="centerCrop"
-	               android:visibility="gone"
-                   android:contentDescription="Contact Photo Image"
-                   android:layout_marginLeft="0dp" />
-    </FrameLayout>
-
-    <TextView android:id="@+id/from"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="?attr/conversation_list_item_contact_color"
-        android:singleLine="true"
-        android:layout_marginTop="12dip"
-        android:layout_marginRight="5dip"
+        android:layout_marginTop="4dip"
         android:layout_marginLeft="4dip"
-        android:layout_marginBottom="10dip"
-        android:layout_alignTop="@id/contact_photo_frame"
-        android:layout_toRightOf="@id/contact_photo_frame"
-        android:layout_alignParentRight="true"
-        android:layout_alignWithParentIfMissing="true"
-        android:ellipsize="marquee" />
-    <!--android:layout_toLeftOf="@id/checkbox"-->
+        android:layout_marginRight="8dip"
+        android:layout_marginBottom="4dip"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/contact_photo_image"
+        android:orientation="vertical">
 
-    <TextView android:id="@+id/date"
-        android:layout_marginTop="12dip"
-        android:layout_marginLeft="5dip"
-        android:paddingRight="10dip"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textSize="13dp"
-        android:textColor="?attr/conversation_list_item_date_color"
-        android:fontFamily="sans-serif-light"
-        android:singleLine="true"
-        android:layout_alignTop="@id/contact_photo_frame"
-        android:layout_alignParentRight="true" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:gravity="bottom">
 
-    <ImageView android:id="@+id/error"
-        android:layout_marginLeft="3dip"
-        android:visibility="invisible"
-        android:layout_toLeftOf="@id/date"
-        android:layout_alignBottom="@id/date"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:src="@drawable/ic_list_alert_sms_failed"
-        android:contentDescription="Error Alert" />
+            <org.thoughtcrime.securesms.components.FromTextView
+                      android:id="@+id/from"
+                      android:layout_weight="1"
+                      android:layout_width="0dp"
+                      android:layout_height="wrap_content"
+                      android:textAppearance="?android:attr/textAppearanceMedium"
+                      android:textColor="?attr/conversation_list_item_contact_color"
+                      android:singleLine="true"
+                      tools:text="Jules Bonnot"
+                      android:ellipsize="end"
+                      android:drawablePadding="5dp"/>
 
-     <ImageView android:id="@+id/attachment"
-        android:layout_marginLeft="3dip"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:visibility="gone"
-        android:layout_toLeftOf="@id/error"
-        android:layout_alignBottom="@id/date"
-        android:src="@drawable/ic_attachment_universal_small"
-        android:contentDescription="Attachment Indicator" />
+            <ImageView android:id="@+id/error"
+                       android:layout_marginLeft="3dip"
+                       android:layout_height="match_parent"
+                       android:layout_width="20sp"
+                       android:visibility="gone"
+                       android:src="@drawable/ic_action_warning_red"
+                       android:contentDescription="@string/conversation_list_item_view__error_alert" />
 
-    <TextView android:id="@+id/subject"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="?attr/conversation_list_item_subject_color"
-        android:fontFamily="sans-serif-light"
-        android:singleLine="true"
-        android:layout_marginBottom="12dip"
-        android:layout_marginLeft="4dip"
-        android:layout_alignBottom="@id/contact_photo_frame"
-        android:layout_toRightOf="@id/contact_photo_frame"
-        android:layout_toLeftOf="@id/date"
-        android:ellipsize="end" />
+            <TextView android:id="@+id/date"
+                      android:layout_marginLeft="3dip"
+                      android:layout_height="wrap_content"
+                      android:layout_width="wrap_content"
+                      android:textAppearance="?android:attr/textAppearanceSmall"
+                      android:textColor="?attr/conversation_list_item_date_color"
+                      android:fontFamily="sans-serif-light"
+                      tools:text="30 mins"
+                      android:singleLine="true"
+                      android:layout_gravity="top" />
+            </LinearLayout>
 
+        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+                  android:id="@+id/subject"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:textAppearance="?android:attr/textAppearanceSmall"
+                  android:textColor="?attr/conversation_list_item_subject_color"
+                  android:fontFamily="sans-serif-light"
+                  android:singleLine="true"
+                  tools:text="Wheels arrive at 3pm flat."
+                  android:ellipsize="end" />
+
+    </LinearLayout>
 </org.thoughtcrime.securesms.ConversationListItem>

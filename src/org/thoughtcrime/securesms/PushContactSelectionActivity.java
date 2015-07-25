@@ -18,82 +18,51 @@ package org.thoughtcrime.securesms;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.annotation.NonNull;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
 
-import org.thoughtcrime.securesms.contacts.ContactAccessor;
-import org.thoughtcrime.securesms.recipients.Recipients;
-import org.thoughtcrime.securesms.util.ActionBarUtil;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.util.DirectoryHelper;
+import org.thoughtcrime.securesms.util.DynamicLanguage;
+import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
-
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
-
 /**
- * Activity container for selecting a list of contacts.  Provides a tab frame for
- * contact, group, and "recent contact" activity tabs.  Used by ComposeMessageActivity
- * when selecting a list of contacts to address a message to.
+ * Activity container for selecting a list of contacts.
  *
  * @author Moxie Marlinspike
  *
  */
-public class PushContactSelectionActivity extends PassphraseRequiredSherlockFragmentActivity {
+public class PushContactSelectionActivity extends ContactSelectionActivity {
 
-  private final DynamicTheme dynamicTheme = new DynamicTheme();
-
-  @Override
-  protected void onCreate(Bundle icicle) {
-    dynamicTheme.onCreate(this);
-    super.onCreate(icicle);
-
-    final ActionBar actionBar = this.getSupportActionBar();
-    ActionBarUtil.initializeDefaultActionBar(this, actionBar);
-    actionBar.setDisplayHomeAsUpEnabled(true);
-
-    setContentView(R.layout.push_contact_selection_activity);
-  }
+  private final static String TAG = PushContactSelectionActivity.class.getSimpleName();
 
   @Override
-  public void onResume() {
-    super.onResume();
-    dynamicTheme.onResume(this);
+  protected void onCreate(Bundle icicle, @NonNull MasterSecret masterSecret) {
+    super.onCreate(icicle, masterSecret);
+    contactsFragment.setMultiSelect(true);
+
+    action.setImageDrawable(getResources().getDrawable(R.drawable.ic_check_white_24dp));
+    action.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent       resultIntent     = getIntent();
+        List<String> selectedContacts = contactsFragment.getSelectedContacts();
+
+        if (selectedContacts != null) {
+          resultIntent.putStringArrayListExtra("contacts", new ArrayList<>(selectedContacts));
+        }
+
+        setResult(RESULT_OK, resultIntent);
+        finish();
+      }
+    });
   }
-
-  @Override
-  public boolean onCreateOptionsMenu(Menu menu) {
-    MenuInflater inflater = this.getSupportMenuInflater();
-    inflater.inflate(R.menu.contact_selection, menu);
-
-    return true;
-  }
-
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-    switch (item.getItemId()) {
-    case R.id.menu_selection_finished:
-    case android.R.id.home:
-      handleSelectionFinished(); return true;
-    }
-
-    return false;
-  }
-
-  private void handleSelectionFinished() {
-    PushContactSelectionListFragment contactsFragment = (PushContactSelectionListFragment) getSupportFragmentManager().findFragmentById(R.id.contact_selection_list_fragment);
-    List<ContactData>                contacts         = contactsFragment.getSelectedContacts();
-
-    Intent resultIntent = getIntent();
-    resultIntent.putParcelableArrayListExtra("contacts", new ArrayList<ContactData>(contacts));
-
-    setResult(RESULT_OK, resultIntent);
-
-    finish();
-  }
-
 }

@@ -6,23 +6,12 @@
             android:fillViewport="true"
             android:background="@drawable/background_pattern_repeat">
 
-    <LinearLayout android:paddingRight="16dip"
-                  android:paddingLeft="16dip"
+    <LinearLayout android:padding="16dp"
+                  android:paddingBottom="0dp"
                   android:layout_width="fill_parent"
                   android:layout_height="wrap_content"
                   android:gravity="center_vertical"
                   android:orientation="vertical">
-
-        <TextView style="@style/Registration.Description"
-                  android:layout_width="fill_parent"
-                  android:layout_marginBottom="8dip"
-                  android:layout_marginTop="16dip"
-                  android:text="@string/registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users"/>
-
-        <TextView style="@style/Registration.Description"
-                  android:layout_width="fill_parent"
-                  android:layout_marginBottom="16dip"
-                  android:text="@string/registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy"/>
 
         <TextView style="@style/Registration.Label"
                   android:layout_width="fill_parent"
@@ -55,7 +44,8 @@
                       android:singleLine="true"
                       android:gravity="center"
                       android:inputType="phone"
-                      android:digits="0123456789" />
+                      android:digits="0123456789"
+                      android:maxLength="3" />
 
             <EditText android:id="@+id/number"
                       android:layout_width="0dip"
@@ -68,6 +58,17 @@
 
         </LinearLayout>
 
+        <TextView style="@style/Registration.Description"
+                  android:layout_width="fill_parent"
+                  android:layout_marginBottom="8dip"
+                  android:layout_marginTop="16dip"
+                  android:text="@string/registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users"/>
+
+        <TextView style="@style/Registration.Description"
+                  android:layout_width="fill_parent"
+                  android:layout_marginBottom="16dip"
+                  android:text="@string/registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy"/>
+
         <LinearLayout android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:layout_marginTop="16dip"
@@ -76,7 +77,8 @@
                       android:orientation="horizontal">
 
             <Button android:id="@+id/skipButton"
-                    android:text="Skip"
+                    android:visibility="gone"
+                    android:text="@android:string/cancel"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="5dip"
@@ -90,6 +92,14 @@
                     android:layout_weight="1"
                     android:textAppearance="?android:attr/textAppearanceMedium"/>
         </LinearLayout>
+
+        <ImageView android:id="@+id/twilio_shoutout"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:src="@drawable/ic_twilio_shoutout_white"
+                   android:layout_gravity="right"
+                   android:tint="@color/grey_800"
+                   android:contentDescription="@string/registration_activity__powered_by_twilio"/>
 
     </LinearLayout>
 </ScrollView>

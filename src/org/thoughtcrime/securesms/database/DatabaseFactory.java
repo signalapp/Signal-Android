@@ -16,51 +16,61 @@
  */
 package org.thoughtcrime.securesms.database;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.text.TextUtils;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.DatabaseUpgradeActivity;
+import org.thoughtcrime.securesms.contacts.ContactsDatabase;
 import org.thoughtcrime.securesms.crypto.DecryptingPartInputStream;
-import org.thoughtcrime.securesms.crypto.DecryptingQueue;
-import org.whispersystems.textsecure.crypto.IdentityKey;
-import org.whispersystems.textsecure.crypto.InvalidMessageException;
-import org.whispersystems.textsecure.crypto.MasterCipher;
-import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.MasterCipher;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
-import org.whispersystems.textsecure.storage.Session;
-import org.whispersystems.textsecure.util.Base64;
-import org.whispersystems.textsecure.util.Util;
+import org.thoughtcrime.securesms.util.Base64;
+import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.libaxolotl.IdentityKey;
+import org.whispersystems.libaxolotl.InvalidMessageException;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 import ws.com.google.android.mms.ContentType;
 
 public class DatabaseFactory {
 
-  private static final int INTRODUCED_IDENTITIES_VERSION    = 2;
-  private static final int INTRODUCED_INDEXES_VERSION       = 3;
-  private static final int INTRODUCED_DATE_SENT_VERSION     = 4;
-  private static final int INTRODUCED_DRAFTS_VERSION        = 5;
-  private static final int INTRODUCED_NEW_TYPES_VERSION     = 6;
-  private static final int INTRODUCED_MMS_BODY_VERSION      = 7;
-  private static final int INTRODUCED_MMS_FROM_VERSION      = 8;
-  private static final int INTRODUCED_TOFU_IDENTITY_VERSION = 9;
-  private static final int INTRODUCED_PUSH_DATABASE_VERSION = 10;
-  private static final int INTRODUCED_GROUP_DATABASE_VERSION = 11;
-  private static final int INTRODUCED_PUSH_FIX_VERSION       = 12;
-  private static final int DATABASE_VERSION                  = 12;
+  private static final int INTRODUCED_IDENTITIES_VERSION       = 2;
+  private static final int INTRODUCED_INDEXES_VERSION          = 3;
+  private static final int INTRODUCED_DATE_SENT_VERSION        = 4;
+  private static final int INTRODUCED_DRAFTS_VERSION           = 5;
+  private static final int INTRODUCED_NEW_TYPES_VERSION        = 6;
+  private static final int INTRODUCED_MMS_BODY_VERSION         = 7;
+  private static final int INTRODUCED_MMS_FROM_VERSION         = 8;
+  private static final int INTRODUCED_TOFU_IDENTITY_VERSION    = 9;
+  private static final int INTRODUCED_PUSH_DATABASE_VERSION    = 10;
+  private static final int INTRODUCED_GROUP_DATABASE_VERSION   = 11;
+  private static final int INTRODUCED_PUSH_FIX_VERSION         = 12;
+  private static final int INTRODUCED_DELIVERY_RECEIPTS        = 13;
+  private static final int INTRODUCED_PART_DATA_SIZE_VERSION   = 14;
+  private static final int INTRODUCED_THUMBNAILS_VERSION       = 15;
+  private static final int INTRODUCED_IDENTITY_COLUMN_VERSION  = 16;
+  private static final int INTRODUCED_UNIQUE_PART_IDS_VERSION  = 17;
+  private static final int INTRODUCED_RECIPIENT_PREFS_DB       = 18;
+  private static final int INTRODUCED_ENVELOPE_CONTENT_VERSION = 19;
+  private static final int INTRODUCED_COLOR_PREFERENCE_VERSION = 20;
+  private static final int DATABASE_VERSION                    = 20;
 
   private static final String DATABASE_NAME    = "messages.db";
   private static final Object lock             = new Object();
 
   private static DatabaseFactory instance;
-  private static EncryptingPartDatabase encryptingPartInstance;
 
   private DatabaseHelper databaseHelper;
 
@@ -76,11 +86,13 @@ public class DatabaseFactory {
   private final DraftDatabase draftDatabase;
   private final PushDatabase pushDatabase;
   private final GroupDatabase groupDatabase;
+  private final RecipientPreferenceDatabase recipientPreferenceDatabase;
+  private final ContactsDatabase contactsDatabase;
 
   public static DatabaseFactory getInstance(Context context) {
     synchronized (lock) {
       if (instance == null)
-        instance = new DatabaseFactory(context);
+        instance = new DatabaseFactory(context.getApplicationContext());
 
       return instance;
     }
@@ -114,17 +126,6 @@ public class DatabaseFactory {
     return getInstance(context).part;
   }
 
-  public static EncryptingPartDatabase getEncryptingPartDatabase(Context context, MasterSecret masterSecret) {
-    synchronized (lock)  {
-      if (encryptingPartInstance == null) {
-        DatabaseFactory factory = getInstance(context);
-        encryptingPartInstance  = new EncryptingPartDatabase(context, factory.databaseHelper, masterSecret);
-      }
-
-      return encryptingPartInstance;
-    }
-  }
-
   public static MmsAddressDatabase getMmsAddressDatabase(Context context) {
     return getInstance(context).mmsAddress;
   }
@@ -145,20 +146,30 @@ public class DatabaseFactory {
     return getInstance(context).groupDatabase;
   }
 
+  public static RecipientPreferenceDatabase getRecipientPreferenceDatabase(Context context) {
+    return getInstance(context).recipientPreferenceDatabase;
+  }
+
+  public static ContactsDatabase getContactsDatabase(Context context) {
+    return getInstance(context).contactsDatabase;
+  }
+
   private DatabaseFactory(Context context) {
-    this.databaseHelper   = new DatabaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
-    this.sms              = new SmsDatabase(context, databaseHelper);
-    this.encryptingSms    = new EncryptingSmsDatabase(context, databaseHelper);
-    this.mms              = new MmsDatabase(context, databaseHelper);
-    this.part             = new PartDatabase(context, databaseHelper);
-    this.thread           = new ThreadDatabase(context, databaseHelper);
-    this.address          = CanonicalAddressDatabase.getInstance(context);
-    this.mmsAddress       = new MmsAddressDatabase(context, databaseHelper);
-    this.mmsSmsDatabase   = new MmsSmsDatabase(context, databaseHelper);
-    this.identityDatabase = new IdentityDatabase(context, databaseHelper);
-    this.draftDatabase    = new DraftDatabase(context, databaseHelper);
-    this.pushDatabase     = new PushDatabase(context, databaseHelper);
-    this.groupDatabase    = new GroupDatabase(context, databaseHelper);
+    this.databaseHelper              = new DatabaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
+    this.sms                         = new SmsDatabase(context, databaseHelper);
+    this.encryptingSms               = new EncryptingSmsDatabase(context, databaseHelper);
+    this.mms                         = new MmsDatabase(context, databaseHelper);
+    this.part                        = new PartDatabase(context, databaseHelper);
+    this.thread                      = new ThreadDatabase(context, databaseHelper);
+    this.address                     = CanonicalAddressDatabase.getInstance(context);
+    this.mmsAddress                  = new MmsAddressDatabase(context, databaseHelper);
+    this.mmsSmsDatabase              = new MmsSmsDatabase(context, databaseHelper);
+    this.identityDatabase            = new IdentityDatabase(context, databaseHelper);
+    this.draftDatabase               = new DraftDatabase(context, databaseHelper);
+    this.pushDatabase                = new PushDatabase(context, databaseHelper);
+    this.groupDatabase               = new GroupDatabase(context, databaseHelper);
+    this.recipientPreferenceDatabase = new RecipientPreferenceDatabase(context, databaseHelper);
+    this.contactsDatabase            = new ContactsDatabase(context);
   }
 
   public void reset(Context context) {
@@ -176,6 +187,7 @@ public class DatabaseFactory {
     this.draftDatabase.reset(databaseHelper);
     this.pushDatabase.reset(databaseHelper);
     this.groupDatabase.reset(databaseHelper);
+    this.recipientPreferenceDatabase.reset(databaseHelper);
     old.close();
 
     this.address.reset(context);
@@ -288,7 +300,7 @@ public class DatabaseFactory {
             long snippetType = threadCursor.getLong(threadCursor.getColumnIndexOrThrow("snippet_type"));
             long id          = threadCursor.getLong(threadCursor.getColumnIndexOrThrow("_id"));
 
-            if (!Util.isEmpty(snippet)) {
+            if (!TextUtils.isEmpty(snippet)) {
               snippet = masterCipher.decryptBody(snippet);
             }
 
@@ -357,12 +369,12 @@ public class DatabaseFactory {
               boolean encrypted   = partCursor.getInt(partCursor.getColumnIndexOrThrow("encrypted")) == 1;
               File dataFile       = new File(dataLocation);
 
-              FileInputStream fin;
+              InputStream is;
 
-              if (encrypted) fin = new DecryptingPartInputStream(dataFile, masterSecret);
-              else           fin = new FileInputStream(dataFile);
+              if (encrypted) is = new DecryptingPartInputStream(dataFile, masterSecret);
+              else           is = new FileInputStream(dataFile);
 
-              body = (body == null) ? Util.readFully(fin) : body + " " + Util.readFully(fin);
+              body = (body == null) ? Util.readFullyAsString(is) : body + " " + Util.readFullyAsString(is);
 
               dataFile.delete();
               db.delete("part", "_id = ?", new String[] {partId+""});
@@ -377,7 +389,7 @@ public class DatabaseFactory {
           }
         }
 
-        if (!Util.isEmpty(body)) {
+        if (!TextUtils.isEmpty(body)) {
           body = masterCipher.encryptBody(body);
           db.execSQL("UPDATE mms SET body = ?, part_count = ? WHERE _id = ?",
                      new String[] {body, partCount+"", mmsId+""});
@@ -401,8 +413,15 @@ public class DatabaseFactory {
             String name = session.getName();
 
             if (name.matches("[0-9]+")) {
-              long recipientId            = Long.parseLong(name);
-              IdentityKey identityKey     = Session.getRemoteIdentityKey(context, masterSecret, recipientId);
+              long        recipientId = Long.parseLong(name);
+              IdentityKey identityKey = null;
+              // NOTE (4/21/14) -- At this moment in time, we're forgetting the ability to parse
+              // V1 session records.  Despite our usual attempts to avoid using shared code in the
+              // upgrade path, this is too complex to put here directly.  Thus, unfortunately
+              // this operation is now lost to the ages.  From the git log, it seems to have been
+              // almost exactly a year since this went in, so hopefully the bulk of people have
+              // already upgraded.
+//              IdentityKey identityKey     = Session.getRemoteIdentityKey(context, masterSecret, recipientId);
 
               if (identityKey != null) {
                 MasterCipher masterCipher = new MasterCipher(masterSecret);
@@ -419,10 +438,45 @@ public class DatabaseFactory {
       }
     }
 
+    if (fromVersion < DatabaseUpgradeActivity.ASYMMETRIC_MASTER_SECRET_FIX_VERSION) {
+      if (!MasterSecretUtil.hasAsymmericMasterSecret(context)) {
+        MasterSecretUtil.generateAsymmetricMasterSecret(context, masterSecret);
+
+        MasterCipher masterCipher = new MasterCipher(masterSecret);
+        Cursor       cursor       = null;
+
+        try {
+          cursor = db.query(SmsDatabase.TABLE_NAME,
+                            new String[] {SmsDatabase.ID, SmsDatabase.BODY, SmsDatabase.TYPE},
+                            SmsDatabase.TYPE + " & ? == 0",
+                            new String[] {String.valueOf(SmsDatabase.Types.ENCRYPTION_MASK)},
+                            null, null, null);
+
+          while (cursor.moveToNext()) {
+            long   id   = cursor.getLong(0);
+            String body = cursor.getString(1);
+            long   type = cursor.getLong(2);
+
+            String encryptedBody = masterCipher.encryptBody(body);
+
+            ContentValues update = new ContentValues();
+            update.put(SmsDatabase.BODY, encryptedBody);
+            update.put(SmsDatabase.TYPE, type | SmsDatabase.Types.ENCRYPTION_SYMMETRIC_BIT);
+
+            db.update(SmsDatabase.TABLE_NAME, update, SmsDatabase.ID  + " = ?",
+                      new String[] {String.valueOf(id)});
+          }
+        } finally {
+          if (cursor != null)
+            cursor.close();
+        }
+      }
+    }
+
     db.setTransactionSuccessful();
     db.endTransaction();
 
-    DecryptingQueue.schedulePendingDecrypts(context, masterSecret);
+//    DecryptingQueue.schedulePendingDecrypts(context, masterSecret);
     MessageNotifier.updateNotification(context, masterSecret);
   }
 
@@ -443,6 +497,7 @@ public class DatabaseFactory {
       db.execSQL(DraftDatabase.CREATE_TABLE);
       db.execSQL(PushDatabase.CREATE_TABLE);
       db.execSQL(GroupDatabase.CREATE_TABLE);
+      db.execSQL(RecipientPreferenceDatabase.CREATE_TABLE);
 
       executeStatements(db, SmsDatabase.CREATE_INDEXS);
       executeStatements(db, MmsDatabase.CREATE_INDEXS);
@@ -622,7 +677,7 @@ public class DatabaseFactory {
           long mmsId     = cursor.getLong(cursor.getColumnIndexOrThrow("mms_id"));
           String address = cursor.getString(cursor.getColumnIndexOrThrow("address"));
 
-          if (!Util.isEmpty(address)) {
+          if (!TextUtils.isEmpty(address)) {
             db.execSQL("UPDATE mms SET address = ? WHERE _id = ?", new String[]{address, mmsId+""});
           }
         }
@@ -657,6 +712,46 @@ public class DatabaseFactory {
         db.execSQL("CREATE TABLE push (_id INTEGER PRIMARY KEY, type INTEGER, source TEXT, body TEXT, timestamp INTEGER, device_id INTEGER DEFAULT 1);");
         db.execSQL("INSERT INTO push (_id, type, source, body, timestamp, device_id) SELECT _id, type, source, body, timestamp, device_id FROM push_backup;");
         db.execSQL("DROP TABLE push_backup;");
+      }
+
+      if (oldVersion < INTRODUCED_DELIVERY_RECEIPTS) {
+        db.execSQL("ALTER TABLE sms ADD COLUMN delivery_receipt_count INTEGER DEFAULT 0;");
+        db.execSQL("ALTER TABLE mms ADD COLUMN delivery_receipt_count INTEGER DEFAULT 0;");
+        db.execSQL("CREATE INDEX IF NOT EXISTS sms_date_sent_index ON sms (date_sent);");
+        db.execSQL("CREATE INDEX IF NOT EXISTS mms_date_sent_index ON mms (date);");
+      }
+
+      if (oldVersion < INTRODUCED_PART_DATA_SIZE_VERSION) {
+        db.execSQL("ALTER TABLE part ADD COLUMN data_size INTEGER DEFAULT 0;");
+      }
+
+      if (oldVersion < INTRODUCED_THUMBNAILS_VERSION) {
+        db.execSQL("ALTER TABLE part ADD COLUMN thumbnail TEXT;");
+        db.execSQL("ALTER TABLE part ADD COLUMN aspect_ratio REAL;");
+      }
+
+      if (oldVersion < INTRODUCED_IDENTITY_COLUMN_VERSION) {
+        db.execSQL("ALTER TABLE sms ADD COLUMN mismatched_identities TEXT");
+        db.execSQL("ALTER TABLE mms ADD COLUMN mismatched_identities TEXT");
+        db.execSQL("ALTER TABLE mms ADD COLUMN network_failures TEXT");
+      }
+
+      if (oldVersion < INTRODUCED_UNIQUE_PART_IDS_VERSION) {
+        db.execSQL("ALTER TABLE part ADD COLUMN unique_id INTEGER NOT NULL DEFAULT 0");
+      }
+
+      if (oldVersion < INTRODUCED_RECIPIENT_PREFS_DB) {
+        db.execSQL("CREATE TABLE recipient_preferences " +
+                   "(_id INTEGER PRIMARY KEY, recipient_ids TEXT UNIQUE, block INTEGER DEFAULT 0, " +
+                   "notification TEXT DEFAULT NULL, vibrate INTEGER DEFAULT 0, mute_until INTEGER DEFAULT 0)");
+      }
+
+      if (oldVersion < INTRODUCED_ENVELOPE_CONTENT_VERSION) {
+        db.execSQL("ALTER TABLE push ADD COLUMN content TEXT");
+      }
+
+      if (oldVersion < INTRODUCED_COLOR_PREFERENCE_VERSION) {
+        db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN color TEXT DEFAULT NULL");
       }
 
       db.setTransactionSuccessful();

@@ -32,8 +32,6 @@ import javax.crypto.spec.SecretKeySpec;
 
 import android.util.Log;
 
-import org.whispersystems.textsecure.crypto.MasterSecret;
-
 /**
  * A class for streaming an encrypted MMS "part" to disk.
  * 
@@ -45,7 +43,7 @@ public class EncryptingPartOutputStream extends FileOutputStream {
   private Cipher cipher;
   private Mac mac;
   private boolean closed;
-	
+
   public EncryptingPartOutputStream(File file, MasterSecret masterSecret) throws FileNotFoundException {
     super(file);
 
@@ -64,37 +62,37 @@ public class EncryptingPartOutputStream extends FileOutputStream {
       throw new AssertionError(e);
     }
   }
-	
+
   @Override
   public void write(byte[] buffer) throws IOException {
     this.write(buffer, 0, buffer.length);
   }
-	
+
   @Override
   public void write(byte[] buffer, int offset, int length) throws IOException {
     byte[] encryptedBuffer = cipher.update(buffer, offset, length);
-		
+
     if (encryptedBuffer != null) {
       mac.update(encryptedBuffer);
       super.write(encryptedBuffer, 0, encryptedBuffer.length);
     }
   }
-	
+
   @Override
   public void close() throws IOException {
     try {
       if (!closed) {
         byte[] encryptedRemainder = cipher.doFinal();
         mac.update(encryptedRemainder);
-				
+
         byte[] macBytes = mac.doFinal();
-				
+
         super.write(encryptedRemainder, 0, encryptedRemainder.length);
-        super.write(macBytes, 0, macBytes.length);		
+        super.write(macBytes, 0, macBytes.length);
 
         closed = true;
       }
-			
+
       super.close();
     } catch (BadPaddingException bpe) {
       throw new AssertionError(bpe);
@@ -102,22 +100,22 @@ public class EncryptingPartOutputStream extends FileOutputStream {
       throw new AssertionError(e);
     }
   }
-	
+
   private Mac initializeMac(SecretKeySpec key) throws NoSuchAlgorithmException, InvalidKeyException {
     Mac hmac = Mac.getInstance("HmacSHA1");
     hmac.init(key);
 
     return hmac;
   }
-	
+
   private Cipher initializeCipher(Mac mac, SecretKeySpec key) throws IOException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException {
     Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
     cipher.init(Cipher.ENCRYPT_MODE, key);
 
-    byte[] ivBytes = cipher.getIV();		
+    byte[] ivBytes = cipher.getIV();
     mac.update(ivBytes);
     super.write(ivBytes, 0, ivBytes.length);
-		
+
     return cipher;
   }
 

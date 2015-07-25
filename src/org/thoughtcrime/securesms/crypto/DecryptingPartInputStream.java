@@ -37,8 +37,6 @@ import javax.crypto.spec.SecretKeySpec;
 
 import android.util.Log;
 
-import org.whispersystems.textsecure.crypto.MasterSecret;
-
 /**
  * Class for streaming an encrypted MMS "part" off the disk.
  * 
@@ -46,49 +44,47 @@ import org.whispersystems.textsecure.crypto.MasterSecret;
  */
 
 public class DecryptingPartInputStream extends FileInputStream {
-	
+
+  private static final String TAG = DecryptingPartInputStream.class.getSimpleName();
+
   private static final int IV_LENGTH  = 16;
   private static final int MAC_LENGTH = 20;
-	
+
   private Cipher cipher;
   private Mac mac;
-	
+
   private boolean done;
   private long totalDataSize;
   private long totalRead;
   private byte[] overflowBuffer;
-	
+
   public DecryptingPartInputStream(File file, MasterSecret masterSecret) throws FileNotFoundException {
     super(file);
     try {
       if (file.length() <= IV_LENGTH + MAC_LENGTH)
         throw new FileNotFoundException("Part shorter than crypto overhead!");
-			
+
       done          = false;
       mac           = initializeMac(masterSecret.getMacKey());
       cipher        = initializeCipher(masterSecret.getEncryptionKey());
       totalDataSize = file.length() - cipher.getBlockSize() - mac.getMacLength();
       totalRead     = 0;
     } catch (InvalidKeyException ike) {
-      Log.w("EncryptingPartInputStream", ike);
+      Log.w(TAG, ike);
       throw new FileNotFoundException("Invalid key!");
-    } catch (NoSuchAlgorithmException e) {
-      throw new AssertionError(e);
-    } catch (InvalidAlgorithmParameterException e) {
-      throw new AssertionError(e);
-    } catch (NoSuchPaddingException e) {
+    } catch (NoSuchAlgorithmException | InvalidAlgorithmParameterException | NoSuchPaddingException e) {
       throw new AssertionError(e);
     } catch (IOException e) {
-      Log.w("EncryptingPartInputStream", e);
+      Log.w(TAG, e);
       throw new FileNotFoundException("IOException while reading IV!");
     }
   }
-	
+
   @Override
   public int read(byte[] buffer) throws IOException {
     return read(buffer, 0, buffer.length);
   }
-	
+
   @Override
   public int read(byte[] buffer, int offset, int length) throws IOException {
     if (totalRead != totalDataSize)
@@ -98,11 +94,29 @@ public class DecryptingPartInputStream extends FileInputStream {
     else 
       return -1;
   }
+
+  @Override
+  public boolean markSupported() {
+    return false;
+  }
+
+  @Override
+  public long skip(long byteCount) throws IOException {
+    long skipped = 0L;
+    while (skipped < byteCount) {
+      byte[] buf  = new byte[Math.min(4096, (int)(byteCount-skipped))];
+      int    read = read(buf);
+
+      skipped += read;
+    }
+
+    return skipped;
+  }
 	
   private int readFinal(byte[] buffer, int offset, int length) throws IOException {
-    try {	
+    try {
       int flourish = cipher.doFinal(buffer, offset);
-      //			mac.update(buffer, offset, flourish);
+      //mac.update(buffer, offset, flourish);
 
       byte[] ourMac   = mac.doFinal();
       byte[] theirMac = new byte[mac.getMacLength()];
@@ -110,21 +124,21 @@ public class DecryptingPartInputStream extends FileInputStream {
 
       if (!Arrays.equals(ourMac, theirMac))
         throw new IOException("MAC doesn't match! Potential tampering?");
-			
+
       done = true;
       return flourish;
     } catch (IllegalBlockSizeException e) {
-      Log.w("EncryptingPartInputStream", e);
+      Log.w(TAG, e);
       throw new IOException("Illegal block size exception!");
     } catch (ShortBufferException e) {
-      Log.w("EncryptingPartInputStream", e);
+      Log.w(TAG, e);
       throw new IOException("Short buffer exception!");
     } catch (BadPaddingException e) {
-      Log.w("EncryptingPartInputStream", e);
+      Log.w(TAG, e);
       throw new IOException("Bad padding exception!");
     }
   }
-	
+
   private int readIncremental(byte[] buffer, int offset, int length) throws IOException {
     int readLength = 0;
     if (null != overflowBuffer) {
@@ -147,11 +161,11 @@ public class DecryptingPartInputStream extends FileInputStream {
 
     if (length + totalRead > totalDataSize)
       length = (int)(totalDataSize - totalRead);
-		
+
     byte[] internalBuffer = new byte[length];
     int read              = super.read(internalBuffer, 0, internalBuffer.length <= cipher.getBlockSize() ? internalBuffer.length : internalBuffer.length - cipher.getBlockSize());
     totalRead            += read;
-		
+
     try {
       mac.update(internalBuffer, 0, read);
 
@@ -177,41 +191,41 @@ public class DecryptingPartInputStream extends FileInputStream {
       throw new AssertionError(e);
     }
   }
-	
+
   private Mac initializeMac(SecretKeySpec key) throws NoSuchAlgorithmException, InvalidKeyException {
     Mac hmac = Mac.getInstance("HmacSHA1");
     hmac.init(key);
 
     return hmac;
   }
-	
+
   private Cipher initializeCipher(SecretKeySpec key) 
     throws InvalidKeyException, InvalidAlgorithmParameterException, 
-	   NoSuchAlgorithmException, NoSuchPaddingException, IOException 
+           NoSuchAlgorithmException, NoSuchPaddingException, IOException 
   {
     Cipher cipher      = Cipher.getInstance("AES/CBC/PKCS5Padding");
     IvParameterSpec iv = readIv(cipher.getBlockSize());
     cipher.init(Cipher.DECRYPT_MODE, key, iv);
-		
+
     return cipher;
   }
-	
+
   private IvParameterSpec readIv(int size) throws IOException {
     byte[] iv = new byte[size];
     readFully(iv);
-		
+
     mac.update(iv);
     return new IvParameterSpec(iv);
   }
-	
+
   private void readFully(byte[] buffer) throws IOException {
     int offset = 0;
-		
+
     for (;;) {
       int read = super.read(buffer, offset, buffer.length-offset);
-			
+
       if (read + offset < buffer.length) offset += read;
-      else                		       return;
-    }		
+      else                               return;
+    }
   }
 }

@@ -4,7 +4,7 @@ package org.thoughtcrime.securesms.database;
 import android.content.Context;
 import android.os.Environment;
 
-import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 
 import java.io.File;

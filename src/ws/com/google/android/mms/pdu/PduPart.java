@@ -17,10 +17,21 @@
 
 package ws.com.google.android.mms.pdu;
 
+import android.graphics.Bitmap;
 import android.net.Uri;
 
+import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.PartDatabase;
+import org.thoughtcrime.securesms.mms.MediaConstraints;
+import org.thoughtcrime.securesms.util.BitmapDecodingException;
+import org.thoughtcrime.securesms.util.BitmapUtil;
+import org.thoughtcrime.securesms.util.Util;
+
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
+import ws.com.google.android.mms.ContentType;
 
 /**
  * The pdu part.
@@ -121,32 +132,46 @@ public class PduPart {
 
      private static final String TAG = "PduPart";
 
+     private long    rowId = -1;
+     private long    uniqueId = -1;
      private boolean isEncrypted;
-     private boolean isPendingPush;
-     
+     private boolean isInProgress;
+     private long    dataSize;
+     private Bitmap  thumbnail;
+
      /**
       * Empty Constructor.
       */
      public PduPart() {
          mPartHeader = new HashMap<Integer, Object>();
+         setUniqueId(System.currentTimeMillis());
      }
 
      public void setEncrypted(boolean isEncrypted) {
     	 this.isEncrypted = isEncrypted;
      }
-     
+
      public boolean getEncrypted() {
     	 return isEncrypted;
      }
 
-     public void setPendingPush(boolean isPendingPush) {
-       this.isPendingPush = isPendingPush;
+     public void setDataSize(long dataSize) {
+       this.dataSize = dataSize;
      }
 
-     public boolean isPendingPush() {
-       return isPendingPush;
+     public long getDataSize() {
+       return this.dataSize;
      }
-     
+
+
+     public void setInProgress(boolean isInProgress) {
+       this.isInProgress = isInProgress;
+     }
+
+     public boolean isInProgress() {
+       return isInProgress;
+     }
+
      /**
       * Set part data. The data are stored as byte array.
       *
@@ -308,7 +333,7 @@ public class PduPart {
      /**
       *  Set Content-Type value.
       *
-      *  @param value the value
+      *  @param contentType the value
       *  @throws NullPointerException if the value is null.
       */
      public void setContentType(byte[] contentType) {
@@ -331,7 +356,7 @@ public class PduPart {
      /**
       * Set Content-Transfer-Encoding value
       *
-      * @param contentId the content-id value
+      * @param contentTransferEncoding the value
       * @throws NullPointerException if the value is null.
       */
      public void setContentTransferEncoding(byte[] contentTransferEncoding) {
@@ -416,6 +441,39 @@ public class PduPart {
         } else {
             return new String(location);
         }
+    }
+
+    public PartDatabase.PartId getPartId() {
+      return new PartDatabase.PartId(rowId, uniqueId);
+    }
+
+    public void setPartId(PartDatabase.PartId partId) {
+      this.rowId    = partId.getRowId();
+      this.uniqueId = partId.getUniqueId();
+    }
+
+    public long getRowId() {
+      return rowId;
+    }
+
+    public void setRowId(long rowId) {
+      this.rowId = rowId;
+    }
+
+    public Bitmap getThumbnail() {
+      return thumbnail;
+    }
+
+    public void setThumbnail(Bitmap thumbnail) {
+      this.thumbnail = thumbnail;
+    }
+
+    public long getUniqueId() {
+      return uniqueId;
+    }
+
+    public void setUniqueId(long uniqueId) {
+      this.uniqueId = uniqueId;
     }
 }
 

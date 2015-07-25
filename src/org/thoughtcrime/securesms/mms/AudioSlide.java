@@ -16,69 +16,69 @@
  */
 package org.thoughtcrime.securesms.mms;
 
-import java.io.IOException;
-
-import org.thoughtcrime.securesms.R;
-
-import ws.com.google.android.mms.pdu.PduPart;
 import android.content.Context;
+import android.content.res.Resources.Theme;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.MediaStore.Audio;
-import android.widget.ImageView;
+import android.support.annotation.DrawableRes;
+
+import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.util.ResUtil;
+
+import java.io.IOException;
+
+import ws.com.google.android.mms.pdu.PduPart;
 
 public class AudioSlide extends Slide {
-
-  public AudioSlide(Context context, PduPart part) {
-    super(context, part);
-  }
 
   public AudioSlide(Context context, Uri uri) throws IOException, MediaTooLargeException {
     super(context, constructPartFromUri(context, uri));
   }
-	
+
+  public AudioSlide(Context context, MasterSecret masterSecret, PduPart part) {
+    super(context, masterSecret, part);
+  }
+
   @Override
-    public boolean hasImage() {
+  public boolean hasImage() {
     return true;
   }
-	
+
   @Override
-    public boolean hasAudio() {
+  public boolean hasAudio() {
     return true;
   }
-	
+
   @Override
-  public Drawable getThumbnail(int maxWidth, int maxHeight) {
-    return context.getResources().getDrawable(R.drawable.ic_menu_add_sound);
+  public @DrawableRes int getPlaceholderRes(Theme theme) {
+    return ResUtil.getDrawableRes(theme, R.attr.conversation_icon_attach_audio);
   }
 
   public static PduPart constructPartFromUri(Context context, Uri uri) throws IOException, MediaTooLargeException {
     PduPart part = new PduPart();
-		
-    if (getMediaSize(context, uri) > MAX_MESSAGE_SIZE)
-      throw new MediaTooLargeException("Audio track larger than size maximum.");
-		
+
+    assertMediaSize(context, uri);
+
     Cursor cursor = null;
-		
+
     try {
       cursor = context.getContentResolver().query(uri, new String[]{Audio.Media.MIME_TYPE}, null, null, null);
-			
+
       if (cursor != null && cursor.moveToFirst())
-	part.setContentType(cursor.getString(0).getBytes());
+        part.setContentType(cursor.getString(0).getBytes());
       else
-	throw new IOException("Unable to query content type.");
+        throw new IOException("Unable to query content type.");
     } finally {
-      cursor.close();
+      if (cursor != null)
+        cursor.close();
     } 
 
     part.setDataUri(uri);
     part.setContentId((System.currentTimeMillis()+"").getBytes());
     part.setName(("Audio" + System.currentTimeMillis()).getBytes());
-		
+
     return part;
   }
-	
 }

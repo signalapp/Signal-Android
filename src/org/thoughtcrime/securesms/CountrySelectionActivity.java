@@ -3,11 +3,9 @@ package org.thoughtcrime.securesms;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import org.thoughtcrime.securesms.util.DynamicTheme;
-
-public class CountrySelectionActivity extends SherlockFragmentActivity
+public class CountrySelectionActivity extends BaseActivity
     implements CountrySelectionFragment.CountrySelectedListener
 
 {

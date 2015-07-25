@@ -7,14 +7,12 @@
     <GridView android:id="@+id/emoji"
               android:visibility="visible"
               android:layout_width="fill_parent"
-              android:layout_height="wrap_content"
+              android:layout_height="match_parent"
               android:stretchMode="columnWidth"
-              android:columnWidth="40dp"
+              android:columnWidth="@dimen/emoji_drawer_size"
+              android:horizontalSpacing="0dp"
+              android:verticalSpacing="0dp"
               android:numColumns="auto_fit"
-              android:verticalSpacing="10dp"
-              android:horizontalSpacing="10dp"
-              android:scrollbarFadeDuration="0"
-              android:fadeScrollbars="false"
               android:gravity="center"/>
 
 </FrameLayout>

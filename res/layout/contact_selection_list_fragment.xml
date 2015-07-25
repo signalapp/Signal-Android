@@ -1,0 +1,26 @@
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    
+    <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <se.emilsjolander.stickylistheaders.StickyListHeadersListView
+            android:id="@android:id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextView android:id="@android:id/empty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center|center_vertical"
+            android:layout_marginTop="15dp"
+            android:text="@string/contact_selection_group_activity__finding_contacts"
+            android:textSize="20sp" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>

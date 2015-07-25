@@ -18,19 +18,13 @@ package org.thoughtcrime.securesms;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.Toast;
+import android.support.v7.app.ActionBar;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
-import org.thoughtcrime.securesms.util.MemoryCleaner;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.VersionTracker;
-import org.whispersystems.textsecure.util.Util;
 
 /**
  * Activity for creating a user's local encryption passphrase.
@@ -39,14 +33,6 @@ import org.whispersystems.textsecure.util.Util;
  */
 
 public class PassphraseCreateActivity extends PassphraseActivity {
-
-  private LinearLayout createLayout;
-  private LinearLayout progressLayout;
-
-  private EditText passphraseEdit;
-  private EditText passphraseRepeatEdit;
-  private Button   okButton;
-  private Button   skipButton;
 
   public PassphraseCreateActivity() { }
 
@@ -60,53 +46,10 @@ public class PassphraseCreateActivity extends PassphraseActivity {
   }
 
   private void initializeResources() {
-    this.createLayout         = (LinearLayout)findViewById(R.id.create_layout);
-    this.progressLayout       = (LinearLayout)findViewById(R.id.progress_layout);
-    this.passphraseEdit       = (EditText)    findViewById(R.id.passphrase_edit);
-    this.passphraseRepeatEdit = (EditText)    findViewById(R.id.passphrase_edit_repeat);
-    this.okButton             = (Button)      findViewById(R.id.ok_button);
-    this.skipButton           = (Button)      findViewById(R.id.skip_button);
+    getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+    getSupportActionBar().setCustomView(R.layout.centered_app_title);
 
-    this.okButton.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        verifyAndSavePassphrases();
-      }
-    });
-
-    this.skipButton.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        disablePassphrase();
-      }
-    });
-  }
-
-  private void verifyAndSavePassphrases() {
-    if (Util.isEmpty(this.passphraseEdit) || Util.isEmpty(this.passphraseRepeatEdit)) {
-      Toast.makeText(this, R.string.PassphraseCreateActivity_you_must_specify_a_password, Toast.LENGTH_SHORT).show();
-      return;
-    }
-
-    String passphrase       = this.passphraseEdit.getText().toString();
-    String passphraseRepeat = this.passphraseRepeatEdit.getText().toString();
-
-    if (!passphrase.equals(passphraseRepeat)) {
-      Toast.makeText(this, R.string.PassphraseCreateActivity_passphrases_dont_match, Toast.LENGTH_SHORT).show();
-      this.passphraseEdit.setText("");
-      this.passphraseRepeatEdit.setText("");
-      return;
-    }
-
-    // We do this, but the edit boxes are basically impossible to clean up.
-    MemoryCleaner.clean(passphraseRepeat);
-    new SecretGenerator().execute(passphrase);
-  }
-
-  private void disablePassphrase() {
-    TextSecurePreferences.setPasswordDisabled(this, true);
     new SecretGenerator().execute(MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
-
   }
 
   private class SecretGenerator extends AsyncTask<String, Void, Void> {
@@ -114,8 +57,6 @@ public class PassphraseCreateActivity extends PassphraseActivity {
 
     @Override
     protected void onPreExecute() {
-      createLayout.setVisibility(View.GONE);
-      progressLayout.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -124,12 +65,10 @@ public class PassphraseCreateActivity extends PassphraseActivity {
       masterSecret      = MasterSecretUtil.generateMasterSecret(PassphraseCreateActivity.this,
                                                                 passphrase);
 
-      // We do this, but the edit boxes are basically impossible to clean up.
-      MemoryCleaner.clean(passphrase);
-
       MasterSecretUtil.generateAsymmetricMasterSecret(PassphraseCreateActivity.this, masterSecret);
-      IdentityKeyUtil.generateIdentityKeys(PassphraseCreateActivity.this, masterSecret);
+      IdentityKeyUtil.generateIdentityKeys(PassphraseCreateActivity.this);
       VersionTracker.updateLastSeenVersion(PassphraseCreateActivity.this);
+      TextSecurePreferences.setPasswordDisabled(PassphraseCreateActivity.this, true);
 
       return null;
     }
@@ -142,8 +81,6 @@ public class PassphraseCreateActivity extends PassphraseActivity {
 
   @Override
   protected void cleanup() {
-    this.passphraseEdit       = null;
-    this.passphraseRepeatEdit = null;
     System.gc();
   }
 }

@@ -1,70 +1,82 @@
-TextSecure
-=================
+# TextSecure [![Build Status](https://travis-ci.org/WhisperSystems/TextSecure.svg?branch=master)](https://travis-ci.org/WhisperSystems/TextSecure)
 
-A secure text messaging application for Android.
+TextSecure is a messaging app for simple private communication with friends.
 
-TextSecure is a replacement for the standard text messaging application, allowing you to send and receive text messages as normal.  Additionally, TextSecure provides:
+TextSecure uses your phone's data connection (WiFi/3G/4G) to communicate securely, optionally supports plain SMS/MMS to function as a unified messenger, and can also encrypt the stored messages on your phone.
 
-1. *Local Encryption* -- All text messages, regardless of destination, that are sent or received with TextSecure are stored in an encrypted database on your phone.
-2. *Wire Encryption* -- When communicating with a recipient who is also using TextSecure, text messages are encrypted during transmission.
+Currently available on the Play store.
 
-Current BitHub Payment For Commit:
-=================
-[![Current Price](https://bithub.herokuapp.com/v1/status/payment/commit)](https://whispersystems.org/blog/bithub/)
+*[![Play Store Badge](https://developer.android.com/images/brand/en_app_rgb_wo_60.png)](https://play.google.com/store/apps/details?id=org.thoughtcrime.securesms)*
 
-
-Bug tracker
------------
-
-Have a bug? Please create an issue here on GitHub!
+## Contributing Bug reports
+We use GitHub for bug tracking. Please search the existing issues for your bug and create a new one if the issue is not yet tracked!
 
 https://github.com/WhisperSystems/TextSecure/issues
 
+## Joining the Beta
+Want to live life on the bleeding edge and help out with testing?
 
-Documentation
--------------
+You can subscribe to TextSecure Beta releases in two steps:
+ 
+1. Join the [TextSecure Beta Google+ Community](https://plus.google.com/communities/114424213916773497091).
+1. After you've joined the community, [subscribe to the beta](https://play.google.com/apps/testing/org.thoughtcrime.securesms).
 
-Looking for documentation? Check out the wiki!
+If you're interested in a life of peace and tranquility, stick with the standard releases.
 
-https://github.com/WhisperSystems/TextSecure/wiki
+## Contributing Translations
+Interested in helping to translate TextSecure? Contribute here:
 
-Mailing list
-------------
+https://www.transifex.com/projects/p/textsecure-official/
 
-Have a question? Ask on our mailing list!
+## Contributing Code
+Instructions on how to setup your development environment and build TextSecure can be found in  [BUILDING.md](https://github.com/WhisperSystems/TextSecure/blob/master/BUILDING.md).
+
+If you're new to the TextSecure codebase, we recommend going through our issues and picking out a simple bug to fix (check the "easy" label in our issues) in order to get yourself familiar.
+
+For larger changes and feature ideas, we ask that you propose it on the mailing list for a high-level discussion before implementation.
+
+This repository is set up with [BitHub](https://whispersystems.org/blog/bithub/), so you can make money for committing to TextSecure. The current BitHub price for an accepted pull request is:
+
+[![Current BitHub Price](https://bithub.herokuapp.com/v1/status/payment/commit/)](https://whispersystems.org/blog/bithub/)
+
+## Contributing Ideas
+Have something you want to say about Open Whisper Systems projects or want to be part of the conversation? Get involved in the mailing list!
 
 whispersystems@lists.riseup.net
 
 https://lists.riseup.net/www/info/whispersystems
 
-Translation
-------------
+## Contributing Funds
+[![Donate](https://www.coinbase.com/assets/buttons/donation_large-36ee936185fdf9a88e3a28cc685fb9b7.png)](https://coinbase.com/checkouts/d29fd4c37ca442393e32fdcb95304701)
 
-Interested in helping to translate TextSecure? Contribute here:
+You can add funds to BitHub to directly help further development efforts.
 
-https://www.transifex.com/projects/p/textsecure-official/
+Help
+====
+## Support
+For troubleshooting and questions, please visit our support center!
 
-Downloads
-------------
+http://support.whispersystems.org/
 
-TextSecure can be downloaded from the Play Store here:
+## Documentation
+Looking for documentation? Check out the wiki!
 
-https://play.google.com/store/apps/details?id=org.thoughtcrime.securesms
+https://github.com/WhisperSystems/TextSecure/wiki
 
-Cryptography Notice
-------------
+# Legal things
+## Cryptography Notice
 
-This distribution includes cryptographic software. The country in which you currently reside may have restrictions on the import, possession, use, and/or re-export to another country, of encryption software. 
-BEFORE using any encryption software, please check your country's laws, regulations and policies concerning the import, possession, or use, and re-export of encryption software, to see if this is permitted. 
+This distribution includes cryptographic software. The country in which you currently reside may have restrictions on the import, possession, use, and/or re-export to another country, of encryption software.
+BEFORE using any encryption software, please check your country's laws, regulations and policies concerning the import, possession, or use, and re-export of encryption software, to see if this is permitted.
 See <http://www.wassenaar.org/> for more information.
 
-The U.S. Government Department of Commerce, Bureau of Industry and Security (BIS), has classified this software as Export Commodity Control Number (ECCN) 5D002.C.1, which includes information security software using or performing cryptographic functions with asymmetric algorithms. 
+The U.S. Government Department of Commerce, Bureau of Industry and Security (BIS), has classified this software as Export Commodity Control Number (ECCN) 5D002.C.1, which includes information security software using or performing cryptographic functions with asymmetric algorithms.
 The form and manner of this distribution makes it eligible for export under the License Exception ENC Technology Software Unrestricted (TSU) exception (see the BIS Export Administration Regulations, Section 740.13) for both object code and source code.
 
-License
----------------------
+## License
 
 Copyright 2011 Whisper Systems
-Copyright 2013 Open WhisperSystems
+
+Copyright 2013-2014 Open Whisper Systems
 
 Licensed under the GPLv3: http://www.gnu.org/licenses/gpl-3.0.html

@@ -9,6 +9,7 @@ import java.io.UnsupportedEncodingException;
 import ws.com.google.android.mms.ContentType;
 import ws.com.google.android.mms.pdu.CharacterSets;
 import ws.com.google.android.mms.pdu.PduBody;
+import ws.com.google.android.mms.pdu.PduPart;
 
 public class PartParser {
   public static String getMessageText(PduBody body) {
@@ -24,7 +25,11 @@ public class PartParser {
           if (characterSet.equals(CharacterSets.MIMENAME_ANY_CHARSET))
             characterSet = CharacterSets.MIMENAME_ISO_8859_1;
 
-          partText = new String(body.getPart(i).getData(), characterSet);
+          if (body.getPart(i).getData() != null) {
+            partText = new String(body.getPart(i).getData(), characterSet);
+          } else {
+            partText = "";
+          }
         } catch (UnsupportedEncodingException e) {
           Log.w("PartParser", e);
           partText = "Unsupported Encoding!";
@@ -37,11 +42,11 @@ public class PartParser {
     return bodyText;
   }
 
-  public static PduBody getNonTextParts(PduBody body) {
+  public static PduBody getSupportedMediaParts(PduBody body) {
     PduBody stripped = new PduBody();
 
     for (int i=0;i<body.getPartsNum();i++) {
-      if (!ContentType.isTextType(Util.toIsoString(body.getPart(i).getContentType()))) {
+      if (isDisplayableMedia(body.getPart(i))) {
         stripped.addPart(body.getPart(i));
       }
     }
@@ -49,20 +54,35 @@ public class PartParser {
     return stripped;
   }
 
-  public static int getDisplayablePartCount(PduBody body) {
+  public static int getSupportedMediaPartCount(PduBody body) {
     int partCount = 0;
 
     for (int i=0;i<body.getPartsNum();i++) {
-      String contentType = Util.toIsoString(body.getPart(i).getContentType());
-
-      if (ContentType.isImageType(contentType) ||
-          ContentType.isAudioType(contentType) ||
-          ContentType.isVideoType(contentType))
-      {
+      if (isDisplayableMedia(body.getPart(i))) {
         partCount++;
       }
     }
 
     return partCount;
+  }
+
+  public static boolean isImage(PduPart part) {
+    return ContentType.isImageType(Util.toIsoString(part.getContentType()));
+  }
+
+  public static boolean isAudio(PduPart part) {
+    return ContentType.isAudioType(Util.toIsoString(part.getContentType()));
+  }
+
+  public static boolean isVideo(PduPart part) {
+    return ContentType.isVideoType(Util.toIsoString(part.getContentType()));
+  }
+
+  public static boolean isText(PduPart part) {
+    return ContentType.isTextType(Util.toIsoString(part.getContentType()));
+  }
+
+  public static boolean isDisplayableMedia(PduPart part) {
+    return isImage(part) || isAudio(part) || isVideo(part);
   }
 }

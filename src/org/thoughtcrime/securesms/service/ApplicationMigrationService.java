@@ -17,19 +17,21 @@ import android.os.PowerManager.WakeLock;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.ConversationListActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.RoutingActivity;
-import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.SmsMigrator;
 import org.thoughtcrime.securesms.database.SmsMigrator.ProgressDescription;
 
+import java.lang.ref.WeakReference;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+// FIXME: This class is nuts.
 public class ApplicationMigrationService extends Service
     implements SmsMigrator.SmsMigrationProgressListener
-  {
-
+{
+  private static final String TAG               = ApplicationMigrationService.class.getSimpleName();
   public  static final String MIGRATE_DATABASE  = "org.thoughtcrime.securesms.ApplicationMigration.MIGRATE_DATABSE";
   public  static final String COMPLETED_ACTION  = "org.thoughtcrime.securesms.ApplicationMigrationService.COMPLETED";
   private static final String PREFERENCES_NAME  = "SecureSMS";
@@ -39,9 +41,9 @@ public class ApplicationMigrationService extends Service
   private final Binder binder                       = new ApplicationMigrationBinder();
   private final Executor executor                   = Executors.newSingleThreadExecutor();
 
-  private Handler handler                         = null;
+  private WeakReference<Handler>     handler      = null;
   private NotificationCompat.Builder notification = null;
-  private ImportState state                       = new ImportState(ImportState.STATE_IDLE, null);
+  private ImportState                state        = new ImportState(ImportState.STATE_IDLE, null);
 
   @Override
   public void onCreate() {
@@ -70,7 +72,7 @@ public class ApplicationMigrationService extends Service
   }
 
   public void setImportStateHandler(Handler handler) {
-    this.handler = handler;
+    this.handler = new WeakReference<>(handler);
   }
 
   private void registerCompletedReceiver() {
@@ -103,8 +105,12 @@ public class ApplicationMigrationService extends Service
   private void setState(ImportState state) {
     this.state = state;
 
-    if (handler != null) {
-      handler.obtainMessage(state.state, state.progress).sendToTarget();
+    if (this.handler != null) {
+      Handler handler = this.handler.get();
+
+      if (handler != null) {
+        handler.obtainMessage(state.state, state.progress).sendToTarget();
+      }
     }
 
     if (state.progress != null && state.progress.secondaryComplete == 0) {
@@ -128,7 +134,7 @@ public class ApplicationMigrationService extends Service
     builder.setContentText(getString(R.string.ApplicationMigrationService_import_in_progress));
     builder.setOngoing(true);
     builder.setProgress(100, 0, false);
-    builder.setContentIntent(PendingIntent.getActivity(this, 0, new Intent(this, RoutingActivity.class), 0));
+    builder.setContentIntent(PendingIntent.getActivity(this, 0, new Intent(this, ConversationListActivity.class), 0));
 
     stopForeground(true);
     startForeground(4242, builder.build());
@@ -141,7 +147,7 @@ public class ApplicationMigrationService extends Service
 
     public ImportRunnable(Intent intent) {
       this.masterSecret = intent.getParcelableExtra("master_secret");
-      Log.w("ApplicationMigrationService", "Service got mastersecret: " + masterSecret);
+      Log.w(TAG, "Service got mastersecret: " + masterSecret);
     }
 
     @Override
@@ -184,7 +190,7 @@ public class ApplicationMigrationService extends Service
       builder.setSmallIcon(R.drawable.icon_notification);
       builder.setContentTitle("Import Complete");
       builder.setContentText("TextSecure system database import is complete.");
-      builder.setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, RoutingActivity.class), 0));
+      builder.setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, ConversationListActivity.class), 0));
       builder.setWhen(System.currentTimeMillis());
       builder.setDefaults(Notification.DEFAULT_VIBRATE);
       builder.setAutoCancel(true);
@@ -215,6 +221,6 @@ public class ApplicationMigrationService extends Service
   }
 
   public static void setDatabaseImported(Context context) {
-    context.getSharedPreferences(PREFERENCES_NAME, 0).edit().putBoolean(DATABASE_MIGRATED, true).commit();
+    context.getSharedPreferences(PREFERENCES_NAME, 0).edit().putBoolean(DATABASE_MIGRATED, true).apply();
   }
 }

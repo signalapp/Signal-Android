@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2011 Whisper Systems
+ * Copyright (C) 2015 Whisper Systems
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,29 +16,9 @@
  */
 package org.thoughtcrime.securesms.util;
 
-import org.thoughtcrime.securesms.sms.SmsTransportDetails;
+public abstract class CharacterCalculator {
 
-public class CharacterCalculator {
-
-  public CharacterState calculateCharacters(int charactersSpent) {
-    int maxMessageSize;
-
-    if (charactersSpent <= SmsTransportDetails.SMS_SIZE) {
-      maxMessageSize = SmsTransportDetails.SMS_SIZE;
-    } else {
-      maxMessageSize = SmsTransportDetails.MULTIPART_SMS_SIZE;
-    }
-
-    int messagesSpent = charactersSpent / maxMessageSize;
-
-    if (((charactersSpent % maxMessageSize) > 0) || (messagesSpent == 0))
-      messagesSpent++;
-
-    int charactersRemaining = (maxMessageSize * messagesSpent) - charactersSpent;
-
-    return new CharacterState(messagesSpent, charactersRemaining, maxMessageSize);
-  }
-
+  public abstract CharacterState calculateCharacters(int charactersSpent);
 
   public class CharacterState {
     public int charactersRemaining;

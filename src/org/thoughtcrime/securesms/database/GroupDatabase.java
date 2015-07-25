@@ -8,7 +8,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.util.Log;
 
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -18,16 +17,14 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.textsecure.util.Util;
+import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.textsecure.api.messages.TextSecureAttachmentPointer;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
-
-import static org.whispersystems.textsecure.push.PushMessageProtos.PushMessageContent.AttachmentPointer;
 
 public class GroupDatabase extends Database {
 
@@ -82,28 +79,37 @@ public class GroupDatabase extends Database {
     return record;
   }
 
+  public Reader getGroupsFilteredByTitle(String constraint) {
+    Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, TITLE + " LIKE ?",
+                                                               new String[]{"%" + constraint + "%"},
+                                                               null, null, null);
+
+    return new Reader(cursor);
+  }
+
+  public Reader getGroups() {
+    Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, null, null, null, null, null);
+    return new Reader(cursor);
+  }
+
   public Recipients getGroupMembers(byte[] groupId, boolean includeSelf) {
     String          localNumber = TextSecurePreferences.getLocalNumber(context);
     List<String>    members     = getCurrentMembers(groupId);
-    List<Recipient> recipients  = new LinkedList<Recipient>();
+    List<Recipient> recipients  = new LinkedList<>();
 
     for (String member : members) {
       if (!includeSelf && member.equals(localNumber))
         continue;
 
-      try {
-        recipients.addAll(RecipientFactory.getRecipientsFromString(context, member, false)
-                                          .getRecipientsList());
-      } catch (RecipientFormattingException e) {
-        Log.w("GroupDatabase", e);
-      }
+      recipients.addAll(RecipientFactory.getRecipientsFromString(context, member, false)
+                                        .getRecipientsList());
     }
 
-    return new Recipients(recipients);
+    return RecipientFactory.getRecipientsFor(context, recipients, false);
   }
 
   public void create(byte[] groupId, String title, List<String> members,
-                     AttachmentPointer avatar, String relay)
+                     TextSecureAttachmentPointer avatar, String relay)
   {
     ContentValues contentValues = new ContentValues();
     contentValues.put(GROUP_ID, GroupUtil.getEncodedId(groupId));
@@ -112,7 +118,7 @@ public class GroupDatabase extends Database {
 
     if (avatar != null) {
       contentValues.put(AVATAR_ID, avatar.getId());
-      contentValues.put(AVATAR_KEY, avatar.getKey().toByteArray());
+      contentValues.put(AVATAR_KEY, avatar.getKey());
       contentValues.put(AVATAR_CONTENT_TYPE, avatar.getContentType());
     }
 
@@ -123,14 +129,14 @@ public class GroupDatabase extends Database {
     databaseHelper.getWritableDatabase().insert(TABLE_NAME, null, contentValues);
   }
 
-  public void update(byte[] groupId, String title, AttachmentPointer avatar) {
+  public void update(byte[] groupId, String title, TextSecureAttachmentPointer avatar) {
     ContentValues contentValues = new ContentValues();
     if (title != null) contentValues.put(TITLE, title);
 
     if (avatar != null) {
       contentValues.put(AVATAR_ID, avatar.getId());
       contentValues.put(AVATAR_CONTENT_TYPE, avatar.getContentType());
-      contentValues.put(AVATAR_KEY, avatar.getKey().toByteArray());
+      contentValues.put(AVATAR_KEY, avatar.getKey());
     }
 
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues,
@@ -199,7 +205,7 @@ public class GroupDatabase extends Database {
         return Util.split(cursor.getString(cursor.getColumnIndexOrThrow(MEMBERS)), ",");
       }
 
-      return new LinkedList<String>();
+      return new LinkedList<>();
     } finally {
       if (cursor != null)
         cursor.close();
@@ -297,6 +303,10 @@ public class GroupDatabase extends Database {
       } catch (IOException ioe) {
         throw new AssertionError(ioe);
       }
+    }
+
+    public String getEncodedId() {
+      return id;
     }
 
     public String getTitle() {

@@ -6,8 +6,8 @@ import android.database.sqlite.SQLiteStatement;
 import android.os.Environment;
 import android.util.Log;
 
-import org.whispersystems.textsecure.crypto.MasterCipher;
-import org.whispersystems.textsecure.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.MasterCipher;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -55,32 +55,31 @@ public class PlaintextBackupImporter {
       XmlBackup.XmlBackupItem item;
 
       while ((item = backup.getNext()) != null) {
-        try {
-          Recipients      recipients = RecipientFactory.getRecipientsFromString(context, item.getAddress(), false);
-          long            threadId   = threads.getThreadIdFor(recipients);
-          SQLiteStatement statement  = db.createInsertStatement(transaction);
+        Recipients      recipients = RecipientFactory.getRecipientsFromString(context, item.getAddress(), false);
+        long            threadId   = threads.getThreadIdFor(recipients);
+        SQLiteStatement statement  = db.createInsertStatement(transaction);
 
-          if (item.getAddress() == null || item.getAddress().equals("null"))
-            continue;
+        if (item.getAddress() == null || item.getAddress().equals("null"))
+          continue;
 
-          addStringToStatement(statement, 1, item.getAddress());
-          addNullToStatement(statement, 2);
-          addLongToStatement(statement, 3, item.getDate());
-          addLongToStatement(statement, 4, item.getDate());
-          addLongToStatement(statement, 5, item.getProtocol());
-          addLongToStatement(statement, 6, item.getRead());
-          addLongToStatement(statement, 7, item.getStatus());
-          addTranslatedTypeToStatement(statement, 8, item.getType());
-          addNullToStatement(statement, 9);
-          addStringToStatement(statement, 10, item.getSubject());
-          addEncryptedStingToStatement(masterCipher, statement, 11, item.getBody());
-          addStringToStatement(statement, 12, item.getServiceCenter());
-          addLongToStatement(statement, 13, threadId);
-          modifiedThreads.add(threadId);
-          statement.execute();
-        } catch (RecipientFormattingException rfe) {
-          Log.w("PlaintextBackupImporter", rfe);
-        }
+        if (!isAppropriateTypeForImport(item.getType()))
+          continue;
+
+        addStringToStatement(statement, 1, item.getAddress());
+        addNullToStatement(statement, 2);
+        addLongToStatement(statement, 3, item.getDate());
+        addLongToStatement(statement, 4, item.getDate());
+        addLongToStatement(statement, 5, item.getProtocol());
+        addLongToStatement(statement, 6, item.getRead());
+        addLongToStatement(statement, 7, item.getStatus());
+        addTranslatedTypeToStatement(statement, 8, item.getType());
+        addNullToStatement(statement, 9);
+        addStringToStatement(statement, 10, item.getSubject());
+        addEncryptedStingToStatement(masterCipher, statement, 11, item.getBody());
+        addStringToStatement(statement, 12, item.getServiceCenter());
+        addLongToStatement(statement, 13, threadId);
+        modifiedThreads.add(threadId);
+        statement.execute();
       }
 
       for (long threadId : modifiedThreads) {
@@ -120,5 +119,14 @@ public class PlaintextBackupImporter {
   private static void addLongToStatement(SQLiteStatement statement, int index, long value) {
     statement.bindLong(index, value);
   }
+
+  private static boolean isAppropriateTypeForImport(long theirType) {
+    long ourType = SmsDatabase.Types.translateFromSystemBaseType(theirType);
+
+    return ourType == MmsSmsColumns.Types.BASE_INBOX_TYPE ||
+           ourType == MmsSmsColumns.Types.BASE_SENT_TYPE ||
+           ourType == MmsSmsColumns.Types.BASE_SENT_FAILED_TYPE;
+  }
+
 
 }

@@ -17,7 +17,7 @@ public class MmsRadio {
 
   public static synchronized MmsRadio getInstance(Context context) {
     if (instance == null)
-      instance = new MmsRadio(context);
+      instance = new MmsRadio(context.getApplicationContext());
 
     return instance;
   }
@@ -41,10 +41,6 @@ public class MmsRadio {
     this.connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
     this.wakeLock            = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "MMS Connection");
     this.wakeLock.setReferenceCounted(true);
-  }
-
-  public String getApnInformation() {
-    return connectivityManager.getNetworkInfo(TYPE_MOBILE_MMS).getExtraInfo();
   }
 
   public synchronized void disconnect() {
@@ -98,6 +94,8 @@ public class MmsRadio {
 
   private boolean isConnected() {
     NetworkInfo info = connectivityManager.getNetworkInfo(TYPE_MOBILE_MMS);
+
+    Log.w("MmsRadio", "Connected: " + info);
 
     if ((info == null) || (info.getType() != TYPE_MOBILE_MMS) || !info.isConnected())
       return false;

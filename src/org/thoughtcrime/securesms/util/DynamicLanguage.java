@@ -1,9 +1,11 @@
 package org.thoughtcrime.securesms.util;
 
 import android.app.Activity;
+import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.os.Build;
+import android.text.TextUtils;
 
 import java.util.Locale;
 
@@ -15,33 +17,35 @@ public class DynamicLanguage {
 
   public void onCreate(Activity activity) {
     currentLocale = getSelectedLocale(activity);
-    setActivityLocale(activity, currentLocale);
+    setContextLocale(activity, currentLocale);
   }
 
   public void onResume(Activity activity) {
-    if (!currentLocale.getLanguage().equalsIgnoreCase(getSelectedLocale(activity).getLanguage())) {
+    if (!currentLocale.equals(getSelectedLocale(activity))) {
       Intent intent = activity.getIntent();
-      intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-
-      activity.startActivity(intent);
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ECLAIR) {
-        OverridePendingTransition.invoke(activity);
-      }
-
       activity.finish();
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ECLAIR) {
-        OverridePendingTransition.invoke(activity);
-      }
+      OverridePendingTransition.invoke(activity);
+      activity.startActivity(intent);
+      OverridePendingTransition.invoke(activity);
     }
   }
 
-  private static void setActivityLocale(Activity activity, Locale selectedLocale) {
-    Configuration configuration = activity.getResources().getConfiguration();
+  public void updateServiceLocale(Service service) {
+    currentLocale = getSelectedLocale(service);
+    setContextLocale(service, currentLocale);
+  }
 
-    if (!configuration.locale.getLanguage().equalsIgnoreCase(selectedLocale.getLanguage())) {
+  public Locale getCurrentLocale() {
+    return currentLocale;
+  }
+
+  private static void setContextLocale(Context context, Locale selectedLocale) {
+    Configuration configuration = context.getResources().getConfiguration();
+
+    if (!configuration.locale.equals(selectedLocale)) {
       configuration.locale = selectedLocale;
-      activity.getResources().updateConfiguration(configuration,
-                                                  activity.getResources().getDisplayMetrics());
+      context.getResources().updateConfiguration(configuration,
+                                                  context.getResources().getDisplayMetrics());
     }
   }
 
@@ -49,11 +53,16 @@ public class DynamicLanguage {
     return activity.getResources().getConfiguration().locale;
   }
 
-  private static Locale getSelectedLocale(Activity activity) {
-    String language = TextSecurePreferences.getLanguage(activity);
+  private static Locale getSelectedLocale(Context context) {
+    String language[] = TextUtils.split(TextSecurePreferences.getLanguage(context), "_");
 
-    if (language.equals(DEFAULT)) return Locale.getDefault();
-    else                          return new Locale(language);
+    if (language[0].equals(DEFAULT)) {
+      return Locale.getDefault();
+    } else if (language.length == 2) {
+      return new Locale(language[0], language[1]);
+    } else {
+      return new Locale(language[0]);
+    }
   }
 
   private static final class OverridePendingTransition {

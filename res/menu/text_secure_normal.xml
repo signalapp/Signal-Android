@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:title="@string/text_secure_normal__menu_new_message"
-          android:id="@+id/menu_new_message"
-          android:icon="?attr/menu_new_conversation_icon"
-          android:showAsAction="always" />
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:title="@string/text_secure_normal__menu_new_group"
           android:id="@+id/menu_new_group"
@@ -16,6 +13,14 @@
     <item android:title="@string/text_secure_normal__mark_all_as_read"
           android:id="@+id/menu_mark_all_read"
           android:icon="@android:drawable/ic_menu_set_as" />
+
+    <item android:title="@string/arrays__import_export"
+          android:id="@+id/menu_import_export"
+          android:icon="@android:drawable/ic_menu_upload" />
+
+    <item android:title="@string/arrays__my_identity_key"
+          android:id="@+id/menu_my_identity"
+          android:icon="@android:drawable/ic_menu_view" />
 
     <item android:title="@string/text_secure_normal__menu_settings"
           android:id="@+id/menu_settings"

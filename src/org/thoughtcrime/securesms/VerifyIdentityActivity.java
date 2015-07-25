@@ -18,18 +18,21 @@
 package org.thoughtcrime.securesms;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.ActionBarUtil;
-import org.thoughtcrime.securesms.util.MemoryCleaner;
-import org.whispersystems.textsecure.crypto.IdentityKey;
-import org.whispersystems.textsecure.crypto.MasterSecret;
-import org.whispersystems.textsecure.crypto.ecc.Curve;
-import org.whispersystems.textsecure.crypto.protocol.CiphertextMessage;
-import org.whispersystems.textsecure.storage.Session;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.whispersystems.libaxolotl.AxolotlAddress;
+import org.whispersystems.libaxolotl.IdentityKey;
+import org.whispersystems.libaxolotl.state.SessionRecord;
+import org.whispersystems.libaxolotl.state.SessionStore;
+import org.whispersystems.textsecure.api.push.TextSecureAddress;
 
 /**
  * Activity for verifying identity keys.
@@ -38,19 +41,16 @@ import org.whispersystems.textsecure.storage.Session;
  */
 public class VerifyIdentityActivity extends KeyScanningActivity {
 
-  private Recipient recipient;
+  private Recipient    recipient;
   private MasterSecret masterSecret;
 
   private TextView localIdentityFingerprint;
   private TextView remoteIdentityFingerprint;
 
-  private int keyType;
-
   @Override
-  public void onCreate(Bundle state) {
-    super.onCreate(state);
+  protected void onCreate(Bundle state, @NonNull MasterSecret masterSecret) {
+    this.masterSecret = masterSecret;
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    ActionBarUtil.initializeDefaultActionBar(this, getSupportActionBar());
     setContentView(R.layout.verify_identity_activity);
 
     initializeResources();
@@ -58,25 +58,31 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
   }
 
   @Override
-  protected void onDestroy() {
-    MemoryCleaner.clean(masterSecret);
-    super.onDestroy();
+  public void onResume() {
+    super.onResume();
+    getSupportActionBar().setTitle(R.string.AndroidManifest__verify_identity);
+
   }
 
   private void initializeLocalIdentityKey() {
-    if (!IdentityKeyUtil.hasIdentityKey(this, keyType)) {
+    if (!IdentityKeyUtil.hasIdentityKey(this)) {
       localIdentityFingerprint.setText(R.string.VerifyIdentityActivity_you_do_not_have_an_identity_key);
       return;
     }
 
-    localIdentityFingerprint.setText(IdentityKeyUtil.getIdentityKey(this, keyType).getFingerprint());
+    localIdentityFingerprint.setText(IdentityKeyUtil.getIdentityKey(this).getFingerprint());
   }
 
   private void initializeRemoteIdentityKey() {
-    IdentityKey identityKey = getIntent().getParcelableExtra("remote_identity");
+    IdentityKeyParcelable identityKeyParcelable = getIntent().getParcelableExtra("remote_identity");
+    IdentityKey           identityKey           = null;
+
+    if (identityKeyParcelable != null) {
+      identityKey = identityKeyParcelable.get();
+    }
 
     if (identityKey == null) {
-      identityKey = Session.getRemoteIdentityKey(this, masterSecret, recipient);
+      identityKey = getRemoteIdentityKey(masterSecret, recipient);
     }
 
     if (identityKey == null) {
@@ -94,21 +100,12 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
   private void initializeResources() {
     this.localIdentityFingerprint  = (TextView)findViewById(R.id.you_read);
     this.remoteIdentityFingerprint = (TextView)findViewById(R.id.friend_reads);
-    this.recipient                 = this.getIntent().getParcelableExtra("recipient");
-    this.masterSecret              = this.getIntent().getParcelableExtra("master_secret");
-
-    int sessionVersion = Session.getSessionVersion(this, masterSecret, recipient);
-
-    if (sessionVersion <= CiphertextMessage.LEGACY_VERSION) {
-      this.keyType = Curve.NIST_TYPE;
-    } else {
-      this.keyType = Curve.DJB_TYPE;
-    }
+    this.recipient                 = RecipientFactory.getRecipientForId(this, this.getIntent().getLongExtra("recipient", -1), true);
   }
 
   @Override
   protected void initiateDisplay() {
-    if (!IdentityKeyUtil.hasIdentityKey(this, keyType)) {
+    if (!IdentityKeyUtil.hasIdentityKey(this)) {
       Toast.makeText(this,
                      R.string.VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation,
                      Toast.LENGTH_LONG).show();
@@ -120,7 +117,7 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
 
   @Override
   protected void initiateScan() {
-    IdentityKey identityKey = Session.getRemoteIdentityKey(this, masterSecret, recipient);
+    IdentityKey identityKey = getRemoteIdentityKey(masterSecret, recipient);
 
     if (identityKey == null) {
       Toast.makeText(this, R.string.VerifyIdentityActivity_recipient_has_no_identity_key_exclamation,
@@ -142,12 +139,12 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
 
   @Override
   protected IdentityKey getIdentityKeyToCompare() {
-    return Session.getRemoteIdentityKey(this, masterSecret, recipient);
+    return getRemoteIdentityKey(masterSecret, recipient);
   }
 
   @Override
   protected IdentityKey getIdentityKeyToDisplay() {
-    return IdentityKeyUtil.getIdentityKey(this, keyType);
+    return IdentityKeyUtil.getIdentityKey(this);
   }
 
   @Override
@@ -168,5 +165,17 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
   @Override
   protected String getVerifiedTitle() {
     return getString(R.string.VerifyIdentityActivity_verified_exclamation);
+  }
+
+  private IdentityKey getRemoteIdentityKey(MasterSecret masterSecret, Recipient recipient) {
+    SessionStore   sessionStore   = new TextSecureSessionStore(this, masterSecret);
+    AxolotlAddress axolotlAddress = new AxolotlAddress(recipient.getNumber(), TextSecureAddress.DEFAULT_DEVICE_ID);
+    SessionRecord  record         = sessionStore.loadSession(axolotlAddress);
+
+    if (record == null) {
+      return null;
+    }
+
+    return record.getSessionState().getRemoteIdentityKey();
   }
 }
