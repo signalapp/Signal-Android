@@ -1370,11 +1370,15 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private class QuickAttachmentToggleListener implements OnClickListener {
     @Override
     public void onClick(View v) {
-      InputMethodManager input = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-      input.hideSoftInputFromWindow(composeText.getWindowToken(), 0);
-      composeText.clearFocus();
-      hideEmojiDrawer(false);
-      quickAttachmentDrawer.open();
+      if (!quickAttachmentDrawer.isOpen()) {
+        InputMethodManager input = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        input.hideSoftInputFromWindow(composeText.getWindowToken(), 0);
+        composeText.clearFocus();
+        hideEmojiDrawer(false);
+        quickAttachmentDrawer.open();
+      } else {
+        quickAttachmentDrawer.close();
+      }
     }
   }
 
