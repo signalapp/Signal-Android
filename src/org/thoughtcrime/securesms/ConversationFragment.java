@@ -15,6 +15,7 @@ import android.support.v4.widget.CursorAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ActionMode;
 import android.text.ClipboardManager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -45,6 +46,8 @@ import org.thoughtcrime.securesms.util.ProgressDialogAsyncTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
@@ -144,7 +147,6 @@ public class ConversationFragment extends ListFragment
 
     if (messageRecords.size() > 1) {
       menu.findItem(R.id.menu_context_forward).setVisible(false);
-      menu.findItem(R.id.menu_context_copy).setVisible(false);
       menu.findItem(R.id.menu_context_details).setVisible(false);
       menu.findItem(R.id.menu_context_save_attachment).setVisible(false);
       menu.findItem(R.id.menu_context_resend).setVisible(false);
@@ -192,13 +194,30 @@ public class ConversationFragment extends ListFragment
     });
   }
 
-  private void handleCopyMessage(MessageRecord message) {
-    String body = message.getDisplayBody().toString();
-    if (body == null) return;
+  private void handleCopyMessage(final List<MessageRecord> messageRecords) {
+    Collections.sort(messageRecords, new Comparator<MessageRecord>() {
+      @Override
+      public int compare(MessageRecord lhs, MessageRecord rhs) {
+        if (lhs.getDateReceived() < rhs.getDateReceived()) return -1;
+        else if (lhs.getDateReceived() == rhs.getDateReceived()) return 0;
+        else return 1;
+      }
+    });
 
-    ClipboardManager clipboard = (ClipboardManager)getActivity()
+    StringBuilder bodyBuilder = new StringBuilder();
+    ClipboardManager clipboard = (ClipboardManager) getActivity()
         .getSystemService(Context.CLIPBOARD_SERVICE);
-    clipboard.setText(body);
+    for (int i = 0; i<messageRecords.size(); i++) {
+      String body = messageRecords.get(i).getDisplayBody().toString();
+      if (body != null) {
+        bodyBuilder.append(body);
+        if (i != messageRecords.size() - 1)
+            bodyBuilder.append('\n');
+      }
+    }
+    String result = bodyBuilder.toString();
+    if (!TextUtils.isEmpty(result))
+        clipboard.setText(result);
   }
 
   private void handleDeleteMessages(final List<MessageRecord> messageRecords) {
@@ -385,7 +404,7 @@ public class ConversationFragment extends ListFragment
     public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
       switch(item.getItemId()) {
         case R.id.menu_context_copy:
-          handleCopyMessage(getSelectedMessageRecord());
+          handleCopyMessage(getSelectedMessageRecords());
           actionMode.finish();
           return true;
         case R.id.menu_context_delete_message:
