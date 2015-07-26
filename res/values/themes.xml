@@ -10,7 +10,7 @@
         <item name="colorPrimaryDark">@color/textsecure_primary_dark</item>
         <item name="colorAccent">@color/textsecure_primary_dark</item>
 
-        <item name="recipient_preference_blocked">#8e0000</item>
+        <item name="recipient_preference_blocked">#d00000</item>
         <item name="contact_selection_label_text">#66000000</item>
         <item name="contact_selection_push_user">#ff000000</item>
         <item name="contact_selection_lay_user">#a0000000</item>
