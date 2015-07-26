@@ -38,14 +38,21 @@ import android.support.annotation.NonNull;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v4.view.WindowCompat;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.*;
+import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.View.OnKeyListener;
+import android.view.ViewStub;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.view.MotionEvent;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -141,13 +148,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 {
   private static final String TAG = ConversationActivity.class.getSimpleName();
 
-  public static final  String RECIPIENTS_EXTRA         = "recipients";
-  public static final  String THREAD_ID_EXTRA          = "thread_id";
-  public static final  String DRAFT_TEXT_EXTRA         = "draft_text";
-  public static final  String DRAFT_IMAGE_EXTRA        = "draft_image";
-  public static final  String DRAFT_AUDIO_EXTRA        = "draft_audio";
-  public static final  String DRAFT_VIDEO_EXTRA        = "draft_video";
-  public static final  String DISTRIBUTION_TYPE_EXTRA  = "distribution_type";
+  public static final String RECIPIENTS_EXTRA        = "recipients";
+  public static final String THREAD_ID_EXTRA         = "thread_id";
+  public static final String DRAFT_TEXT_EXTRA        = "draft_text";
+  public static final String DRAFT_IMAGE_EXTRA       = "draft_image";
+  public static final String DRAFT_AUDIO_EXTRA       = "draft_audio";
+  public static final String DRAFT_VIDEO_EXTRA       = "draft_video";
+  public static final String DISTRIBUTION_TYPE_EXTRA = "distribution_type";
 
   private static final int PICK_IMAGE               = 1;
   private static final int PICK_VIDEO               = 2;
@@ -266,8 +273,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     quickAttachmentDrawer.onPause();
   }
 
-  @Override
-  public void onConfigurationChanged(Configuration newConfig) {
+  @Override public void onConfigurationChanged(Configuration newConfig) {
     super.onConfigurationChanged(newConfig);
     composeText.setTransport(sendButton.getSelectedTransport());
     quickAttachmentDrawer.onConfigurationChanged();
@@ -853,7 +859,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void initializeGestureDetector(){
     gestureDetector = new GestureDetectorCompat(this, gestureDetectorListener);
-    gestureDetector.setOnDoubleTapListener(gestureDetectorListener);
   }
 
   private void initializeResources() {
@@ -1337,7 +1342,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   public boolean dispatchTouchEvent(MotionEvent event) {
-    View v = getCurrentFocus();
     gestureDetector.onTouchEvent(event);
     return super.dispatchTouchEvent(event);
   }
