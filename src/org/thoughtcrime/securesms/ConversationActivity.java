@@ -35,6 +35,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
+import android.support.v4.view.GestureDetectorCompat;
 import android.support.v4.view.WindowCompat;
 import android.text.Editable;
 import android.text.InputType;
@@ -51,6 +52,8 @@ import android.view.View.OnKeyListener;
 import android.view.ViewStub;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.view.MotionEvent;
+import android.view.GestureDetector;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -154,12 +157,15 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   public static final String DRAFT_VIDEO_EXTRA       = "draft_video";
   public static final String DISTRIBUTION_TYPE_EXTRA = "distribution_type";
 
-  private static final int PICK_IMAGE        = 1;
-  private static final int PICK_VIDEO        = 2;
-  private static final int PICK_AUDIO        = 3;
-  private static final int PICK_CONTACT_INFO = 4;
-  private static final int GROUP_EDIT        = 5;
-  private static final int TAKE_PHOTO        = 6;
+  private static final int PICK_IMAGE               = 1;
+  private static final int PICK_VIDEO               = 2;
+  private static final int PICK_AUDIO               = 3;
+  private static final int PICK_CONTACT_INFO        = 4;
+  private static final int GROUP_EDIT               = 5;
+  private static final int TAKE_PHOTO               = 6;
+  private static final int SWIPE_MIN_DISTANCE       = 120;
+  private static final int SWIPE_THRESHOLD_VELOCITY = 200;
+  private static final int SWIPE_VERTICAL_TOLERANCE = 165;
 
   private   MasterSecret              masterSecret;
   protected ComposeText               composeText;
@@ -182,6 +188,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private   EmojiToggle                   emojiToggle;
   protected HidingImageButton             quickAttachmentToggle;
   private   QuickAttachmentDrawer         quickAttachmentDrawer;
+
+  private GestureDetectorCompat   gestureDetector;
+  private GestureDetectorListener gestureDetectorListener = new GestureDetectorListener();
 
   private Recipients recipients;
   private long       threadId;
@@ -214,6 +223,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     initializeViews();
     initializeResources();
     initializeDraft();
+    initializeGestureDetector();
   }
 
   @Override
@@ -848,6 +858,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     getSupportActionBar().setDisplayShowTitleEnabled(false);
   }
 
+  private void initializeGestureDetector(){
+    gestureDetector = new GestureDetectorCompat(this, gestureDetectorListener);
+  }
+
   private EmojiDrawer getEmojiDrawer() {
     if (!emojiDrawer.isPresent()) {
       EmojiDrawer emojiDrawer = (EmojiDrawer)((ViewStub)findViewById(R.id.emoji_drawer_stub)).inflate();
@@ -1326,6 +1340,32 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   // Listeners
+
+  @Override
+  public boolean dispatchTouchEvent(MotionEvent event) {
+    gestureDetector.onTouchEvent(event);
+    return super.dispatchTouchEvent(event);
+  }
+
+  private class GestureDetectorListener extends GestureDetector.SimpleOnGestureListener {
+    @Override
+    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+      if (isLeftToRightFling(e1, e2, velocityX, velocityY)
+          && (!isEmojiDrawerOpen() || isAboveKeyboard(e1, e2))) {
+        handleReturnToConversationList();
+      }
+      return false;
+    }
+    private boolean isLeftToRightFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY){
+      return e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE &&
+             Math.abs(e2.getY() - e1.getY()) < SWIPE_VERTICAL_TOLERANCE &&
+             Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY;
+    }
+    private boolean isAboveKeyboard(MotionEvent e1, MotionEvent e2) {
+      float keyboardHeight = container.getKeyboardHeight();
+      return e1.getY() < keyboardHeight && e2.getY() < keyboardHeight;
+    }
+  }
 
   private class AttachmentTypeListener implements DialogInterface.OnClickListener {
     @Override
