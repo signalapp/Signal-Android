@@ -53,6 +53,7 @@ import android.view.ViewStub;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.view.MotionEvent;
+import android.view.GestureDetector;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -789,7 +790,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     emojiToggle           = (EmojiToggle)           findViewById(R.id.emoji_toggle);
     titleView             = (ConversationTitleView) getSupportActionBar().getCustomView();
     unblockButton         = (Button)                findViewById(R.id.unblock_button);
-    composePanel          =                         findViewById(R.id.bottom_panel);
+    composePanel          = findViewById(R.id.bottom_panel);
     quickAttachmentDrawer = (QuickAttachmentDrawer) findViewById(R.id.quick_attachment_drawer);
     quickAttachmentToggle = (HidingImageButton)     findViewById(R.id.quick_attachment_toggle);
 
@@ -861,48 +862,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     gestureDetector = new GestureDetectorCompat(this, gestureDetectorListener);
   }
 
-  private void initializeResources() {
-    recipients       = RecipientFactory.getRecipientsForIds(this, getIntent().getLongArrayExtra(RECIPIENTS_EXTRA), true);
-    threadId         = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
-    distributionType = getIntent().getIntExtra(DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT);
-
-    recipients.addListener(this);
-  }
-
-  private void initializeReceivers() {
-    securityUpdateReceiver = new BroadcastReceiver() {
-      @Override
-      public void onReceive(Context context, Intent intent) {
-        long eventThreadId = intent.getLongExtra("thread_id", -1);
-
-        if (eventThreadId == threadId || eventThreadId == -2) {
-          initializeSecurity();
-          calculateCharactersRemaining();
-        }
-      }
-    };
-
-    groupUpdateReceiver = new BroadcastReceiver() {
-      @Override
-      public void onReceive(Context context, Intent intent) {
-        Log.w("ConversationActivity", "Group update received...");
-        if (recipients != null) {
-          long[] ids = recipients.getIds();
-          Log.w("ConversationActivity", "Looking up new recipients...");
-          recipients = RecipientFactory.getRecipientsForIds(context, ids, false);
-          titleView.setTitle(recipients);
-        }
-      }
-    };
-
-    registerReceiver(securityUpdateReceiver,
-            new IntentFilter(SecurityEvent.SECURITY_UPDATE_EVENT),
-            KeyCachingService.KEY_PERMISSION, null);
-
-    registerReceiver(groupUpdateReceiver,
-            new IntentFilter(GroupDatabase.DATABASE_UPDATE_ACTION));
-  }
-
   private EmojiDrawer getEmojiDrawer() {
     if (!emojiDrawer.isPresent()) {
       EmojiDrawer emojiDrawer = (EmojiDrawer)((ViewStub)findViewById(R.id.emoji_drawer_stub)).inflate();
@@ -945,6 +904,14 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     return emojiDrawer.isPresent() && emojiDrawer.get().isShowing();
   }
 
+  private void initializeResources() {
+    recipients       = RecipientFactory.getRecipientsForIds(this, getIntent().getLongArrayExtra(RECIPIENTS_EXTRA), true);
+    threadId         = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
+    distributionType = getIntent().getIntExtra(DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT);
+
+    recipients.addListener(this);
+  }
+
   @Override
   public void onModified(final Recipients recipients) {
     titleView.post(new Runnable() {
@@ -955,6 +922,40 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         setActionBarColor(recipients.getColor());
       }
     });
+  }
+
+  private void initializeReceivers() {
+    securityUpdateReceiver = new BroadcastReceiver() {
+      @Override
+      public void onReceive(Context context, Intent intent) {
+        long eventThreadId = intent.getLongExtra("thread_id", -1);
+
+        if (eventThreadId == threadId || eventThreadId == -2) {
+          initializeSecurity();
+          calculateCharactersRemaining();
+        }
+      }
+    };
+
+    groupUpdateReceiver = new BroadcastReceiver() {
+      @Override
+      public void onReceive(Context context, Intent intent) {
+        Log.w("ConversationActivity", "Group update received...");
+        if (recipients != null) {
+          long[] ids = recipients.getIds();
+          Log.w("ConversationActivity", "Looking up new recipients...");
+          recipients = RecipientFactory.getRecipientsForIds(context, ids, false);
+          titleView.setTitle(recipients);
+        }
+      }
+    };
+
+    registerReceiver(securityUpdateReceiver,
+                     new IntentFilter(SecurityEvent.SECURITY_UPDATE_EVENT),
+                     KeyCachingService.KEY_PERMISSION, null);
+
+    registerReceiver(groupUpdateReceiver,
+                     new IntentFilter(GroupDatabase.DATABASE_UPDATE_ACTION));
   }
 
   //////// Helper Methods
