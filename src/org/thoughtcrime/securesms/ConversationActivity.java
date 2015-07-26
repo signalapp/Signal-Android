@@ -1345,14 +1345,20 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private class GestureDetectorListener extends GestureDetector.SimpleOnGestureListener {
     @Override
     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-      if (!isEmojiDrawerOpen() && isLeftToRightFling(e1, e2, velocityX, velocityY))
+      if (isLeftToRightFling(e1, e2, velocityX, velocityY)
+          && (!isEmojiDrawerOpen() || isAboveKeyboard(e1, e2))) {
         handleReturnToConversationList();
+      }
       return false;
     }
     private boolean isLeftToRightFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY){
       return e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE &&
              Math.abs(e2.getY() - e1.getY()) < SWIPE_VERTICAL_TOLERANCE &&
              Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY;
+    }
+    private boolean isAboveKeyboard(MotionEvent e1, MotionEvent e2) {
+      float keyboardHeight = container.getKeyboardHeight();
+      return e1.getY() < keyboardHeight && e2.getY() < keyboardHeight;
     }
   }
 
