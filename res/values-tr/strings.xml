@@ -567,10 +567,15 @@ başarısız.</string>
   <string name="preferences__use_data_channel">İtilen mesajlar</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
 Diğer SecureChat kullanıcıları ile iletişiminiz için veri kanallarını kullanarak gizliliğinizi artırın ve SMS ücretlerinden kaçının </string>
+  <string name="preferences__sms_fallback">Giden SMS/MMS</string>
   <string name="preferences__submit_debug_log">Hata ayıklama kaydı gönder</string>
   <string name="preferences__sms_outgoing_push_users">SecureChat kullanıcıları</string>
   <string name="preferences__sms_outgoing_push_users_description">Eğer veri bağlantısı kaybolursa güvenli SMS gönder</string>
-  <string name="preferences__sms_fallback_non_push_users">SecureChat kullanıcısı olmayanlar</string>
+  <string name="preferences__sms_fallback_push_users_ask">önce sor</string>
+  <string name="preferences__sms_fallback_push_users_no_mms">MMS yok</string>
+  <string name="preferences__sms_fallback_ask_before_sending_sms_mms">SMS/MMS göndermeden önce sor</string>
+  <string name="preferences__sms_fallback_never_send_mms">Hiçbir zaman MMS gönderme</string>
+  <string name="preferences__sms_fallback_non_push_users">TextSecure kullanıcısı olmayanlar</string>
   <string name="preferences__sms_fallback_nobody">Hiç kimse</string>
   <!--****************************************-->
   <!--menus-->
