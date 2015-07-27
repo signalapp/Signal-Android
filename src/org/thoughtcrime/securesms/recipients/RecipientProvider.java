@@ -25,7 +25,9 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.color.MaterialColor;
+import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoFactory;
 import org.thoughtcrime.securesms.database.CanonicalAddressDatabase;
@@ -40,7 +42,7 @@ import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -61,6 +63,12 @@ public class RecipientProvider {
     PhoneLookup._ID,
     PhoneLookup.NUMBER
   };
+
+  private static final Map<String, RecipientDetails> STATIC_DETAILS = new HashMap<String, RecipientDetails>() {{
+    put("262966", new RecipientDetails("Amazon", "262966", null,
+                                       ContactPhotoFactory.getResourceContactPhoto(R.drawable.ic_amazon),
+                                       ContactColors.UNKNOWN_COLOR));
+  }};
 
   Recipient getRecipient(Context context, long recipientId, boolean asynchronous) {
     Recipient cachedRecipient = recipientCache.get(recipientId);
@@ -102,7 +110,7 @@ public class RecipientProvider {
 
   private @NonNull ListenableFutureTask<RecipientDetails> getRecipientDetailsAsync(final Context context,
                                                                                    final long recipientId,
-                                                                                   final String number)
+                                                                                   final @NonNull String number)
   {
     Callable<RecipientDetails> task = new Callable<RecipientDetails>() {
       @Override
@@ -116,12 +124,12 @@ public class RecipientProvider {
     return future;
   }
 
-  private @NonNull RecipientDetails getRecipientDetailsSync(Context context, long recipientId, String number) {
+  private @NonNull RecipientDetails getRecipientDetailsSync(Context context, long recipientId, @NonNull String number) {
     if (GroupUtil.isEncodedGroup(number)) return getGroupRecipientDetails(context, number);
     else                                  return getIndividualRecipientDetails(context, recipientId, number);
   }
 
-  private @NonNull RecipientDetails getIndividualRecipientDetails(Context context, long recipientId, String number) {
+  private @NonNull RecipientDetails getIndividualRecipientDetails(Context context, long recipientId, @NonNull String number) {
     Optional<RecipientsPreferences> preferences = DatabaseFactory.getRecipientPreferenceDatabase(context).getRecipientsPreferences(new long[]{recipientId});
     MaterialColor                   color       = preferences.isPresent() ? preferences.get().getColor() : null;
     Uri                             uri         = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, Uri.encode(number));
@@ -143,7 +151,8 @@ public class RecipientProvider {
         cursor.close();
     }
 
-    return new RecipientDetails(null, number, null, ContactPhotoFactory.getDefaultContactPhoto(null), color);
+    if (STATIC_DETAILS.containsKey(number)) return STATIC_DETAILS.get(number);
+    else                                    return new RecipientDetails(null, number, null, ContactPhotoFactory.getDefaultContactPhoto(null), color);
   }
 
   private @NonNull RecipientDetails getGroupRecipientDetails(Context context, String groupId) {
