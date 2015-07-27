@@ -6,6 +6,8 @@ import android.net.Uri;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.provider.ContactsContract;
+import android.support.annotation.DrawableRes;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
@@ -17,8 +19,9 @@ import org.thoughtcrime.securesms.util.BitmapUtil;
 import java.io.InputStream;
 
 public class ContactPhotoFactory {
-  private static final String TAG = ContactPhotoFactory.class.getSimpleName();
 
+  private static final String TAG = ContactPhotoFactory.class.getSimpleName();
+  
   public static ContactPhoto getLoadingPhoto() {
     return new TransparentContactPhoto();
   }
@@ -26,6 +29,10 @@ public class ContactPhotoFactory {
   public static ContactPhoto getDefaultContactPhoto(@Nullable String name) {
     if (!TextUtils.isEmpty(name)) return new GeneratedContactPhoto(name);
     else                          return new GeneratedContactPhoto("#");
+  }
+
+  public static ContactPhoto getResourceContactPhoto(@DrawableRes int resourceId) {
+    return new ResourceContactPhoto(resourceId);
   }
 
   public static ContactPhoto getDefaultGroupPhoto() {
