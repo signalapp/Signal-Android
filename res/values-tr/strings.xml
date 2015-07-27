@@ -399,6 +399,10 @@ Daha önce dışa aktarılmış bir şifrelenmiş SecureChat yedeğini yeniden y
 \'SMSBackup And Restore\' ile uyumlu bir şifrelenmemiş metin yedeğini içe aktar.</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">Telefonunuz için manuel MMS ayarları gerekmektedir.</string>
+  <!--GroupUtil-->
+  <string name="GroupUtil_joined_the_group">%1$s gruba katıldı.</string>
+  <string name="GroupUtil_group_updated">Grup güncellendi.</string>
+  <string name="GroupUtil_title_is_now">Başlık şimdi  \'%1$s\' oldu.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Kilidi aç</string>
   <!--prompt_mms_activity-->
