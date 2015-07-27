@@ -588,7 +588,9 @@ Diğer SecureChat kullanıcıları ile iletişiminiz için veri kanallarını ku
   <!--conversation_button_context-->
   <string name="conversation_button_context__send_textsecure_message">SecureChat mesajı gönder</string>
   <string name="conversation_button_context__send_secure_sms">Güvenli SMS gönder</string>
+  <string name="conversation_button_context__send_insecure_sms">Teminatsız SMS gönder</string>
   <string name="conversation_button_context__send_secure_mms">Güvenli MMS gönder</string>
+  <string name="conversation_button_context__send_insecure_mms">Teminatsız MMS gönder</string>
   <!--conversation_callable-->
   <string name="conversation_callable__menu_call">Arama</string>
   <!--conversation_context-->
