@@ -508,6 +508,8 @@ başarısız.</string>
   <string name="preferences__change_passphrase">Parola Değiştir</string>
   <string name="preferences__change_my_passphrase">Parolamı değiştir</string>
   <string name="preferences__complete_key_exchanges">Anahtar takası tamamla</string>
+  <string name="preferences__enable_passphrase">Parola etkinleştir</string>
+  <string name="preferences__enable_local_encryption_of_messages_and_keys">Mesaj ve anahtarların lokal şifrelenmesini etkinleştirr</string>
   <string name="preferences__screen_security">Ekran güvenliği</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">Yeni veya aynı kimlik anahtarına sahip oturumlar için otomatik olarak anahtar takası gerçekleştir</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">En son listelerde ve uygulama içinde ekran görüntüsü alınmasını engelle</string>
@@ -545,6 +547,7 @@ başarısız.</string>
   <string name="preferences__slow">Yavaş</string>
   <string name="preferences__custom">Özel</string>
   <string name="preferences__advanced">Gelişmiş</string>
+  <string name="preferences__app_protection">App koruma</string>
   <string name="preferences__override_system_mms_settings">Sistem MMS ayarları yerine aşağıda bilgileri olanları kullan.</string>
   <string name="preferences__mmsc_url_required">MMSC URL (Gerekli)</string>
   <string name="preferences__mms_proxy_host_optional">MMS Proxy Sunucusu (İsteğe Bağlı)</string>
