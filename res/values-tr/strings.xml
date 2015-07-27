@@ -183,6 +183,8 @@ kurulumunuzda bulunan ancak yüklenecek yedekte bulunmayan tüm bilgiler kaybolu
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimedya mesajı</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Artık desteklenmeyen eski bir SecureChat sürümü ile şifrelenmiş bir mesaj alındı. Lütfen göndericiden SecureChat uygulamasını en yeni sürümüne yükseltmesini ve mesajı tekrar göndermesini isteyiniz.</string>
+  <string name="MessageRecord_left_group">Gruptan ayrıldınız.</string>
+  <string name="MessageRecord_updated_group">Grubu güncelle.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Parolalar uyuşmuyor!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Yanlış eski şifre!</string>
