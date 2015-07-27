@@ -54,7 +54,7 @@
     <string name="identification_verified_successfully">Identification réussie.</string>
     <string name="accept_eula_and_continue">Accepter et poursuivre</string>
     <string name="claim_textsecure">Avec nous, la sécurité est si simple qu’elle en devient incontournable.</string>
-    <string name="eula">Conditions générales</string>
+    <string name="eula_gdata">Conditions générales</string>
     <string name="take_picture">Prendre une photo</string>
     <string name="status_available">Disponible</string>
     <string name="status_busy">Occupé</string>

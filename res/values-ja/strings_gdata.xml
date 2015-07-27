@@ -55,7 +55,7 @@
     <string name="identification_verified_successfully">本人確認できました。</string>
     <string name="accept_eula_and_continue"><![CDATA[同意して続行する]]></string>
     <string name="claim_textsecure">セキュアチャットで安心・安全のチャットライフ。</string>
-    <string name="eula">利用条件</string>
+    <string name="eula_gdata">利用条件</string>
     <string name="take_picture">写真を撮る</string>
     <string name="status_available">オンライン</string>
     <string name="status_busy">取り込み中</string>
