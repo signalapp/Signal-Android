@@ -140,8 +140,8 @@ U zal uw telefoonnummer opnieuw moeten registreren als u push berichten weer wil
   <string name="ExportFragment_error_while_writing_to_sd_card">Fout tijdens het schrijven naar de SD-kaart.</string>
   <string name="ExportFragment_success">Succesvol!</string>
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_SecureChat_communication_failure">Permanent SecureChat communicatie falen!</string>
-  <string name="GcmRefreshJob_SecureChat_was_unable_to_register_with_Google_Play_Services">SecureChat was niet in staat met Google Play services te registreren. Communicatie over Data kanaal is uitgeschakeld, probeer te her-registreren via het SecureChat  instellingen menu.</string>
+  <string name="GcmRefreshJob_Permanent_TextSecure_communication_failure">Permanent SecureChat communicatie falen!</string>
+  <string name="GcmRefreshJob_TextSecure_was_unable_to_register_with_Google_Play_Services">SecureChat was niet in staat met Google Play services te registreren. Communicatie over Data kanaal is uitgeschakeld, probeer te her-registreren via het SecureChat instellingen menu.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Nieuwe groep</string>
   <string name="GroupCreateActivity_actionbar_update_title">Groep bijwerken</string>

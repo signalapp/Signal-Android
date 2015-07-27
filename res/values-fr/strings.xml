@@ -100,6 +100,7 @@ Ceci va désactiver les messages push en vous désinscrivant du serveur. Vous de
   <string name="ConversationActivity_transport_secure_sms">SMS sécurisé</string>
   <string name="ConversationActivity_transport_secure_mms">MMS sécurisé</string>
   <string name="ConversationActivity_transport_textsecure">SecureChat</string>
+  <string name="ConversationActivity_get_with_it">Mettez-vous-y: %s</string>
   <string name="ConversationActivity_install_textsecure">Installez SecureChat : %s</string>
   <string name="ConversationActivity_error_leaving_group">Erreur en quittant le groupe...</string>
   <!--ConversationFragment-->
