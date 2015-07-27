@@ -65,7 +65,7 @@ import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout;
 import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout.OnKeyboardShownListener;
 import org.thoughtcrime.securesms.components.SendButton;
 import org.thoughtcrime.securesms.components.camera.QuickAttachmentDrawer.DrawerState;
-import org.thoughtcrime.securesms.components.InputManager;
+import org.thoughtcrime.securesms.components.InputAwareLayout;
 import org.thoughtcrime.securesms.components.emoji.EmojiDrawer.EmojiEventListener;
 import org.thoughtcrime.securesms.components.emoji.EmojiDrawer;
 import org.thoughtcrime.securesms.components.emoji.EmojiToggle;
@@ -158,22 +158,21 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private static final int GROUP_EDIT        = 5;
   private static final int TAKE_PHOTO        = 6;
 
-  private   MasterSecret              masterSecret;
-  protected ComposeText               composeText;
-  private   AnimatingToggle           buttonToggle;
-  private   SendButton                sendButton;
-  private   ImageButton               attachButton;
-  protected ConversationTitleView     titleView;
-  private   TextView                  charactersLeft;
-  private   ConversationFragment      fragment;
-  private   Button                    unblockButton;
-  private   KeyboardAwareLinearLayout container;
-  private   View                      composePanel;
-  private   View                      composeBubble;
+  private   MasterSecret          masterSecret;
+  protected ComposeText           composeText;
+  private   AnimatingToggle       buttonToggle;
+  private   SendButton            sendButton;
+  private   ImageButton           attachButton;
+  protected ConversationTitleView titleView;
+  private   TextView              charactersLeft;
+  private   ConversationFragment  fragment;
+  private   Button                unblockButton;
+  private   InputAwareLayout      container;
+  private   View                  composePanel;
+  private   View                  composeBubble;
 
   private   AttachmentTypeSelectorAdapter attachmentAdapter;
   private   AttachmentManager             attachmentManager;
-  private   InputManager                  inputManager;
   private   BroadcastReceiver             securityUpdateReceiver;
   private   BroadcastReceiver             groupUpdateReceiver;
   private   EmojiDrawer                   emojiDrawer;
@@ -263,18 +262,19 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   @Override public void onConfigurationChanged(Configuration newConfig) {
+    Log.w(TAG, "onConfigurationChanged(" + newConfig.orientation + ")");
     super.onConfigurationChanged(newConfig);
     composeText.setTransport(sendButton.getSelectedTransport());
     quickAttachmentDrawer.onConfigurationChanged();
-    if (inputManager.getCurrentInput() == emojiDrawer) inputManager.hideAttachedInput();
+    if (container.getCurrentInput() == emojiDrawer) container.hideAttachedInput();
   }
 
   @Override
   protected void onDestroy() {
     saveDraft();
-    if (recipients != null)             recipients.removeListener(this);
+    if (recipients != null) recipients.removeListener(this);
     if (securityUpdateReceiver != null) unregisterReceiver(securityUpdateReceiver);
-    if (groupUpdateReceiver != null)    unregisterReceiver(groupUpdateReceiver);
+    if (groupUpdateReceiver != null) unregisterReceiver(groupUpdateReceiver);
     super.onDestroy();
   }
 
@@ -383,8 +383,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   @Override
   public void onBackPressed() {
     Log.w(TAG, "onBackPressed()");
-    if (inputManager.isInputOpen()) inputManager.hideCurrentInput();
-    else                            super.onBackPressed();
+    if (container.isInputOpen()) container.hideCurrentInput(composeText);
+    else                         super.onBackPressed();
   }
 
   @Override
@@ -749,18 +749,18 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void initializeViews() {
-    titleView      = (ConversationTitleView)     getSupportActionBar().getCustomView();
-    buttonToggle   = (AnimatingToggle)           findViewById(R.id.button_toggle);
-    sendButton     = (SendButton)                findViewById(R.id.send_button);
-    attachButton   = (ImageButton)               findViewById(R.id.attach_button);
-    composeText    = (ComposeText)               findViewById(R.id.embedded_text_editor);
-    charactersLeft = (TextView)                  findViewById(R.id.space_left);
-    emojiToggle    = (EmojiToggle)               findViewById(R.id.emoji_toggle);
-    emojiDrawer    = (EmojiDrawer)               findViewById(R.id.emoji_drawer);
-    unblockButton  = (Button)                    findViewById(R.id.unblock_button);
-    composePanel   =                             findViewById(R.id.bottom_panel);
-    composeBubble  =                             findViewById(R.id.compose_bubble);
-    container      = (KeyboardAwareLinearLayout) findViewById(R.id.layout_container);
+    titleView      = (ConversationTitleView) getSupportActionBar().getCustomView();
+    buttonToggle   = (AnimatingToggle)       findViewById(R.id.button_toggle);
+    sendButton     = (SendButton)            findViewById(R.id.send_button);
+    attachButton   = (ImageButton)           findViewById(R.id.attach_button);
+    composeText    = (ComposeText)           findViewById(R.id.embedded_text_editor);
+    charactersLeft = (TextView)              findViewById(R.id.space_left);
+    emojiToggle    = (EmojiToggle)           findViewById(R.id.emoji_toggle);
+    emojiDrawer    = (EmojiDrawer)           findViewById(R.id.emoji_drawer);
+    unblockButton  = (Button)                findViewById(R.id.unblock_button);
+    composePanel   =                         findViewById(R.id.bottom_panel);
+    composeBubble  =                         findViewById(R.id.compose_bubble);
+    container      = (InputAwareLayout)      findViewById(R.id.layout_container);
 
     container.addOnKeyboardShownListener(this);
 
@@ -772,7 +772,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     emojiToggle           = (EmojiToggle)           findViewById(R.id.emoji_toggle);
     titleView             = (ConversationTitleView) getSupportActionBar().getCustomView();
     unblockButton         = (Button)                findViewById(R.id.unblock_button);
-    composePanel          = findViewById(R.id.bottom_panel);
+    composePanel          =                         findViewById(R.id.bottom_panel);
     quickAttachmentDrawer = (QuickAttachmentDrawer) findViewById(R.id.quick_attachment_drawer);
     quickAttachmentToggle = (HidingImageButton)     findViewById(R.id.quick_attachment_toggle);
 
@@ -784,12 +784,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     attachmentAdapter = new AttachmentTypeSelectorAdapter(this);
     attachmentManager = new AttachmentManager(this, this);
-    inputManager      = new InputManager(container, composeText);
 
     SendButtonListener        sendButtonListener        = new SendButtonListener();
     ComposeKeyPressedListener composeKeyPressedListener = new ComposeKeyPressedListener();
 
-    emojiToggle.attach(inputManager, emojiDrawer);
+    emojiToggle.attach(emojiDrawer);
+    emojiToggle.setOnClickListener(new EmojiToggleListener());
     emojiDrawer.setEmojiEventListener(new EmojiEventListener() {
       @Override public void onKeyEvent(KeyEvent keyEvent) {
         composeText.dispatchKeyEvent(keyEvent);
@@ -1295,11 +1295,19 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
+  private class EmojiToggleListener implements OnClickListener {
+
+    @Override public void onClick(View v) {
+      if (container.getCurrentInput() == emojiDrawer) container.showSoftkey(composeText);
+      else                                            container.show(composeText, emojiDrawer);
+    }
+  }
+
   private class QuickAttachmentToggleListener implements OnClickListener {
     @Override
     public void onClick(View v) {
       composeText.clearFocus();
-      inputManager.show(quickAttachmentDrawer);
+      container.show(composeText, quickAttachmentDrawer);
     }
   }
 
@@ -1346,7 +1354,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     @Override
     public void onClick(View v) {
-      inputManager.showSoftkey();
+      container.showSoftkey(composeText);
     }
 
     @Override

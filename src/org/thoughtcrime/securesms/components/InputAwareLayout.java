@@ -1,45 +1,46 @@
 package org.thoughtcrime.securesms.components;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.widget.TextView;
+import android.util.AttributeSet;
+import android.widget.EditText;
 
 import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout.OnKeyboardShownListener;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 
-import java.util.HashSet;
-import java.util.Set;
-
-public class InputManager implements OnKeyboardShownListener {
-  private final KeyboardAwareLinearLayout container;
-  private final TextView                  inputTarget;
-
+public class InputAwareLayout extends KeyboardAwareLinearLayout implements OnKeyboardShownListener {
   private InputView current;
 
-  public InputManager(@NonNull KeyboardAwareLinearLayout container,
-                      @NonNull TextView inputTarget)
-  {
-    this.container   = container;
-    this.inputTarget = inputTarget;
-    container.addOnKeyboardShownListener(this);
+  public InputAwareLayout(Context context) {
+    this(context, null);
+  }
+
+  public InputAwareLayout(Context context, AttributeSet attrs) {
+    this(context, attrs, 0);
+  }
+
+  public InputAwareLayout(Context context, AttributeSet attrs, int defStyle) {
+    super(context, attrs, defStyle);
+    addOnKeyboardShownListener(this);
   }
 
   @Override public void onKeyboardShown() {
     hideAttachedInput();
   }
 
-  public void show(@NonNull final InputView input) {
-    if (container.isKeyboardOpen()) {
-      hideSoftkey(new Runnable() {
+  public void show(@NonNull final EditText imeTarget, @NonNull final InputView input) {
+    if (isKeyboardOpen()) {
+      hideSoftkey(imeTarget, new Runnable() {
         @Override public void run() {
-          input.show(container.getKeyboardHeight(), true);
+          input.show(getKeyboardHeight(), true);
         }
       });
     } else if (current != null && current.isShowing()) {
       current.hide(true);
-      input.show(container.getKeyboardHeight(), true);
+      input.show(getKeyboardHeight(), true);
     } else {
-      input.show(container.getKeyboardHeight(), false);
+      input.show(getKeyboardHeight(), false);
     }
 
     current = input;
@@ -49,9 +50,9 @@ public class InputManager implements OnKeyboardShownListener {
     return current;
   }
 
-  public void hideCurrentInput() {
-    if (container.isKeyboardOpen()) hideSoftkey(null);
-    else                            hideAttachedInput();
+  public void hideCurrentInput(EditText imeTarget) {
+    if (isKeyboardOpen()) hideSoftkey(imeTarget, null);
+    else                  hideAttachedInput();
   }
 
   public void hideAttachedInput() {
@@ -60,11 +61,11 @@ public class InputManager implements OnKeyboardShownListener {
   }
 
   public boolean isInputOpen() {
-    return (container.isKeyboardOpen() || (current != null && current.isShowing()));
+    return (isKeyboardOpen() || (current != null && current.isShowing()));
   }
 
-  public void showSoftkey() {
-    container.postOnKeyboardOpen(new Runnable() {
+  public void showSoftkey(final EditText inputTarget) {
+    postOnKeyboardOpen(new Runnable() {
       @Override public void run() {
         hideAttachedInput();
       }
@@ -77,8 +78,8 @@ public class InputManager implements OnKeyboardShownListener {
     });
   }
 
-  private void hideSoftkey(@Nullable Runnable runAfterClose) {
-    if (runAfterClose != null) container.postOnKeyboardClose(runAfterClose);
+  private void hideSoftkey(final EditText inputTarget, @Nullable Runnable runAfterClose) {
+    if (runAfterClose != null) postOnKeyboardClose(runAfterClose);
 
     ServiceUtil.getInputMethodManager(inputTarget.getContext())
                .hideSoftInputFromWindow(inputTarget.getWindowToken(), 0);

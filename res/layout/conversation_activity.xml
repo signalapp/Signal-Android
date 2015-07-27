@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout
+<org.thoughtcrime.securesms.components.InputAwareLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -152,4 +152,4 @@
 
     </LinearLayout>
 </org.thoughtcrime.securesms.components.camera.QuickAttachmentDrawer>
-</org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout>
+</org.thoughtcrime.securesms.components.InputAwareLayout>
