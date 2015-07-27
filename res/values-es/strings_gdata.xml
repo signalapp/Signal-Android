@@ -40,4 +40,26 @@
     <string name="self_destruction_title">#1# segundos para la autodestrucción...</string>
     <string name="self_destruction_body">El contenido de este mensaje se borrará automáticamente #1# segundos después de abrirlo.</string>
     <string name="unknown_country">País desconocido</string>
-</resources>
+    <string name="self_destruction_compose_hint">Enviar mensaje con autodestrucción</string>
+    <string name="privacy_toast_unlock_premium">Debe desbloquear las funciones Premium de G DATA Internet Security para poder utilizar estas funciones.</string>
+    <string name="import_complete_dialog">Importación de la base de datos del sistema SecureChat completada.</string>
+    <string name="profile_status_label">Estado</string>
+    <string name="profile_number_label">Número de teléfono</string>
+    <string name="profile_status_member">Miembros</string>
+    <string name="identification">Identificación</string>
+    <string name="identification_title">Esta clave es su identificación. Pida a sus interlocutores que escaneen esta clave. Así pueden confiar en que los mensajes de esta clave los ha enviado realmente usted</string>
+    <string name="verify_identity_activity_their_identity">Identificación de destinatario: esta clave identifica a su interlocutor. Escanee esta clave para confirmar que los mensajes entrantes son auténticos.</string>
+    <string name="verify_identity_activity_your_identity" >Identidad propia: esta clave es su identificación. Pida a sus interlocutores que escaneen esta clave para autentificar sus mensajes.</string>
+    <string name="identification_verified_unsuccessfully">¡Las claves no coinciden!</string>
+    <string name="identification_verified_successfully">Identificación correcta.</string>
+    <string name="accept_eula_and_continue">Aceptar y continuar</string>
+    <string name="eula_gdata">Términos y condiciones generales</string>
+    <string name="take_picture">Hacer una foto</string>
+    <string name="status_available">Disponible</string>
+    <string name="status_busy">Ocupado</string>
+    <string name="status_atwork">En el trabajo</string>
+    <string name="status_meeting">En una reunión</string>
+    <string name="status_donotdisturb">No molestar</string>
+    <string name="status_nocallsjustchat">Llamadas no, solo SecureChat</string>
+    <string name="status_onlyurgentcalls">Solo llamadas urgentes</string>
+Vollme</resources>
