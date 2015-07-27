@@ -135,6 +135,8 @@ Avrai bisogno di registrare di nuovo il tuo numero di telefono per usare i messa
     </string>
   <string name="ExportFragment_cancel">Annulla</string>
   <string name="ExportFragment_exporting">In esportazione</string>
+  <string name="ExportFragment_exporting_plaintext_to_sd_card">Esportazione in chiaro sulla scheda SD...</string>
+  <string name="ExportFragment_error_unable_to_write_to_sd_card">Errore, impossibile scrivere sulla scheda SD</string>
   <string name="ExportFragment_error_while_writing_to_sd_card">Errore durante la scrittura su scheda SD.</string>
   <string name="ExportFragment_success">Completato!</string>
   <!--GcmRefreshJob-->
