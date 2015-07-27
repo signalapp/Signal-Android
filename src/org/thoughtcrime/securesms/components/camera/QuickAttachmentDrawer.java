@@ -21,12 +21,13 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.InputManager.InputView;
 import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout;
 import org.thoughtcrime.securesms.components.camera.QuickCamera.QuickCameraListener;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.Util;
 
-public class QuickAttachmentDrawer extends ViewGroup {
+public class QuickAttachmentDrawer extends ViewGroup implements InputView {
   private static final String TAG = QuickAttachmentDrawer.class.getSimpleName();
 
   private final ViewDragHelper dragHelper;
@@ -80,24 +81,19 @@ public class QuickAttachmentDrawer extends ViewGroup {
            Camera.getNumberOfCameras() > 0;
   }
 
-  public boolean isOpen() {
+  @Override
+  public boolean isShowing() {
     return drawerState.isVisible();
   }
 
-  public void close() {
-    setDrawerStateAndUpdate(DrawerState.COLLAPSED);
+  @Override
+  public void hide(boolean immediate) {
+    setDrawerStateAndUpdate(DrawerState.COLLAPSED, immediate);
   }
 
-  public void open() {
-    setDrawerStateAndUpdate(DrawerState.HALF_EXPANDED);
-  }
-
-  public void openInstant() {
-    setDrawerStateAndUpdate(DrawerState.HALF_EXPANDED, true);
-  }
-
-  public void closeInstant() {
-    setDrawerStateAndUpdate(DrawerState.COLLAPSED, true);
+  @Override
+  public void show(int height, boolean immediate) {
+    setDrawerStateAndUpdate(DrawerState.HALF_EXPANDED, immediate);
   }
 
   public void onConfigurationChanged() {
@@ -105,7 +101,7 @@ public class QuickAttachmentDrawer extends ViewGroup {
     final boolean rotationChanged = this.rotation != rotation;
     this.rotation = rotation;
     if (rotationChanged) {
-      if (isOpen()) {
+      if (isShowing()) {
         quickCamera.onPause();
       }
       updateControlsView();
