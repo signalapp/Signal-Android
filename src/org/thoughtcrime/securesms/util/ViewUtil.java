@@ -18,8 +18,13 @@ package org.thoughtcrime.securesms.util;
 
 import android.graphics.drawable.Drawable;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.text.TextUtils;
+import android.text.TextUtils.TruncateAt;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 public class ViewUtil {
   public static void setBackgroundSavingPadding(View v, Drawable drawable) {
@@ -44,5 +49,16 @@ public class ViewUtil {
     int childIndex = parent.indexOfChild(toRemove);
     if (childIndex > -1) parent.removeView(toRemove);
     parent.addView(toAdd, childIndex > -1 ? childIndex : defaultIndex);
+  }
+
+  public static CharSequence ellipsize(@Nullable CharSequence text, @NonNull TextView view) {
+    if (TextUtils.isEmpty(text) || view.getWidth() == 0 || view.getEllipsize() != TruncateAt.END) {
+      return text;
+    } else {
+      return TextUtils.ellipsize(text,
+                                 view.getPaint(),
+                                 view.getWidth() - view.getPaddingRight() - view.getPaddingLeft(),
+                                 TruncateAt.END);
+    }
   }
 }
