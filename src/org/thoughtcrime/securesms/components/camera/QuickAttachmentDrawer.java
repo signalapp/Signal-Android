@@ -21,11 +21,12 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.InputManager.InputView;
+import org.thoughtcrime.securesms.components.InputAwareLayout.InputView;
 import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout;
 import org.thoughtcrime.securesms.components.camera.QuickCamera.QuickCameraListener;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.ViewUtil;
 
 public class QuickAttachmentDrawer extends ViewGroup implements InputView {
   private static final String TAG = QuickAttachmentDrawer.class.getSimpleName();
@@ -110,11 +111,10 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView {
   }
 
   private void updateControlsView() {
-    int controlsIndex = indexOfChild(controls);
-    if (controlsIndex > -1) removeView(controls);
-    controls = LayoutInflater.from(getContext()).inflate(isLandscape() ? R.layout.quick_camera_controls_land
-                                                                       : R.layout.quick_camera_controls,
-                                                         this, false);
+    Log.w(TAG, "updateControlsView()");
+    View controls = LayoutInflater.from(getContext()).inflate(isLandscape() ? R.layout.quick_camera_controls_land
+                                                                            : R.layout.quick_camera_controls,
+                                                              this, false);
     shutterButton    = (ImageButton) controls.findViewById(R.id.shutter_button);
     swapCameraButton = (ImageButton) controls.findViewById(R.id.swap_camera_button);
     fullScreenButton = (ImageButton) controls.findViewById(R.id.fullscreen_button);
@@ -124,8 +124,8 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView {
     }
     shutterButton.setOnClickListener(new ShutterClickListener());
     fullScreenButton.setOnClickListener(new FullscreenClickListener());
-    controls.setVisibility(INVISIBLE);
-    addView(controls, controlsIndex > -1 ? controlsIndex : indexOfChild(quickCamera) + 1);
+    ViewUtil.swapChildInPlace(this, this.controls, controls, indexOfChild(quickCamera) + 1);
+    this.controls = controls;
   }
 
   private boolean isLandscape() {
@@ -498,7 +498,7 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView {
     COLLAPSED, HALF_EXPANDED, FULL_EXPANDED;
 
     public boolean isVisible() {
-      return this == HALF_EXPANDED || this == FULL_EXPANDED;
+      return this != COLLAPSED;
     }
   }
 
