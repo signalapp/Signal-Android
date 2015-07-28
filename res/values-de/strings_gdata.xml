@@ -61,6 +61,6 @@
     <string name="status_donotdisturb">Bitte nicht stören</string>
     <string name="status_nocallsjustchat">Keine Anrufe, nur SecureChat</string>
     <string name="status_onlyurgentcalls">Nur dringende Anrufe</string>
-    <string name="ConversationItem_error_sending_message_gdata">Fehler beim senden: ein Empfänger hat ihre Nachricht möglicherweise nicht erhalten.</string>
+    <string name="ConversationItem_error_sending_message_gdata">Fehler beim Senden: ein Empfänger hat ihre Nachricht möglicherweise nicht erhalten.</string>
 </resources>
 
