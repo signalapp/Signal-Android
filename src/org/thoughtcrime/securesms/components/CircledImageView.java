@@ -53,31 +53,37 @@ public class CircledImageView extends ImageView {
     if(low > 200) {
       padding = 0;
     }
+    Bitmap b;
+    Bitmap bitmap;
+    Bitmap roundBitmap;
     if (!(drawable instanceof GlideBitmapDrawable) && !(drawable instanceof SquaringDrawable)) {
-      Bitmap b = ((BitmapDrawable) drawable).getBitmap();
-      Bitmap bitmap = b.copy(Bitmap.Config.ARGB_8888, true);
-      Bitmap roundBitmap = getRoundedCroppedBitmap(bitmap, low);
-      canvas.drawBitmap(roundBitmap, 0, padding, null);
+      b = ((BitmapDrawable) drawable).getBitmap();
+      bitmap = b.copy(Bitmap.Config.ARGB_8888, true);
+      roundBitmap = getRoundedCroppedBitmap(bitmap, low);
     } else if(!(drawable instanceof SquaringDrawable)){
-      Bitmap b = ((GlideBitmapDrawable) drawable).getBitmap();
-      Bitmap bitmap = b.copy(Bitmap.Config.ARGB_8888, true);
-      Bitmap roundBitmap = BitmapUtil.getScaledCircleBitmap(context, bitmap, low);
-      canvas.drawBitmap(roundBitmap, 0, padding, null);
+      b = ((GlideBitmapDrawable) drawable).getBitmap();
+      bitmap = b.copy(Bitmap.Config.ARGB_8888, true);
+      roundBitmap = BitmapUtil.getScaledCircleBitmap(context, bitmap, low);
     } else {
       SquaringDrawable squaringDrawable = (SquaringDrawable) drawable;
-      Bitmap b = ((GlideBitmapDrawable) squaringDrawable.getCurrent()).getBitmap();
-      Bitmap bitmap = b.copy(Bitmap.Config.ARGB_8888, true);
-      Bitmap roundBitmap = BitmapUtil.getScaledCircleBitmap(context, bitmap, low);
-      canvas.drawBitmap(roundBitmap, 0, padding, null);
+      b = ((GlideBitmapDrawable) squaringDrawable.getCurrent()).getBitmap();
+      bitmap = b.copy(Bitmap.Config.ARGB_8888, true);
+      roundBitmap = BitmapUtil.getScaledCircleBitmap(context, bitmap, low);
     }
+    canvas.drawBitmap(roundBitmap, 0, padding, null);
+    bitmap.recycle();
+    roundBitmap.recycle();
   }
+
   public static Bitmap getRoundedCroppedBitmap(Bitmap bitmap, int radius) {
     Bitmap finalBitmap;
-    if (bitmap.getWidth() != radius || bitmap.getHeight() != radius)
-      finalBitmap = Bitmap.createScaledBitmap(bitmap, radius, radius,
-          false);
-    else
+    boolean recycle = false;
+    if (bitmap.getWidth() != radius || bitmap.getHeight() != radius) {
+      finalBitmap = Bitmap.createScaledBitmap(bitmap, radius, radius, false);
+      recycle = true;
+    }else {
       finalBitmap = bitmap;
+    }
     Bitmap output = Bitmap.createBitmap(finalBitmap.getWidth(),
         finalBitmap.getHeight(), Bitmap.Config.ARGB_8888);
     Canvas canvas = new Canvas(output);
@@ -96,7 +102,8 @@ public class CircledImageView extends ImageView {
         finalBitmap.getWidth() / 2 + 0.1f, paint);
     paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
     canvas.drawBitmap(finalBitmap, rect, rect, paint);
-
+    if(recycle)
+      finalBitmap.recycle();
     return output;
   }
 }

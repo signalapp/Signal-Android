@@ -142,6 +142,7 @@ public class BitmapUtil {
 
     options.inSampleSize       = scaler;
     options.inJustDecodeBounds = false;
+    options.inPreferredConfig = (constrainedMemory ? Bitmap.Config.RGB_565 : Bitmap.Config.ARGB_8888);
 
     BufferedInputStream is = new BufferedInputStream(data);
     Bitmap roughThumbnail  = BitmapFactory.decodeStream(is, null, options);
@@ -240,7 +241,7 @@ public class BitmapUtil {
 
   public static Bitmap getCircleBitmap(Bitmap bitmap) {
     final Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),
-                                              bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+            bitmap.getHeight(), Bitmap.Config.ARGB_8888);
     final Canvas canvas = new Canvas(output);
 
     final int   color = Color.RED;

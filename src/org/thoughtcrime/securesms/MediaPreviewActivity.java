@@ -190,7 +190,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity {
         try {
           int[] maxTextureSizeParams = new int[1];
           GLES20.glGetIntegerv(GLES20.GL_MAX_TEXTURE_SIZE, maxTextureSizeParams, 0);
-          int maxTextureSize = Math.max(maxTextureSizeParams[0], 2048);
+          int maxTextureSize = Math.max(maxTextureSizeParams[0], 1024);
           Log.w(TAG, "reported GL_MAX_TEXTURE_SIZE: " + maxTextureSize);
           return BitmapUtil.createScaledBitmap(MediaPreviewActivity.this, masterSecret, mediaUri,
                                                maxTextureSize, maxTextureSize);
