@@ -40,4 +40,27 @@
     <string name="self_destruction_title">#1# секунд до самоликвидации...</string>
     <string name="self_destruction_body">Содержимое сообщения самоликвидируется через #1# секунд после открытия.</string>
     <string name="unknown_country">Неизвестная страна</string>
+    <string name="self_destruction_compose_hint">Отправить самоудаляющееся 	 сообщение</string>
+    <string name="privacy_toast_unlock_premium">Подключите премиум функции G DATA Internet Security, чтобы получить дополнительные возможности.</string>
+    <string name="tk_mail">sc-feedback@gdata.de</string>
+    <string name="import_complete_dialog">Импорт системной базы данных SecureChat завершен.</string>
+    <string name="profile_status_label">Статус</string>
+    <string name="profile_number_label">Номер телефона</string>
+    <string name="profile_status_member">Участники</string>
+    <string name="identification">Идентификация</string>
+    <string name="identification_title">Ваш ключ – Ваш идентификатор. Ваши собеседники могут просканировать ключ, чтобы быть уверенными в том, что сообщения с этим ключом приходят от Вас. </string>
+    <string name="verify_identity_activity_their_identity">Идентификация получателя – этот ключ идентифицирует Вашего собеседника. Проверьте ключ, чтобы убедиться в том, что входящие сообщения аутентичны.</string>
+    <string name="verify_identity_activity_your_identity" >Подтверждение личности – этот ключ служит Вашей идентификации. Позвольте Вашим собеседниками проверить ключ для аутентификации Ваших сообщений.</string>
+    <string name="identification_verified_unsuccessfully">Ключи не совпадают!</string>
+    <string name="identification_verified_successfully">Успешная идентификация.</string>
+    <string name="accept_eula_and_continue"><![CDATA[Принять & Продолжить]]></string>
+    <string name="eula_gdata"><u>Общие условия сделок</u></string>
+    <string name="take_picture">Сделать фото</string>
+    <string name="status_available">В сети</string>
+    <string name="status_busy">Занят</string>
+    <string name="status_atwork">Работаю</string>
+    <string name="status_meeting">Совещание</string>
+    <string name="status_donotdisturb">Не беспокоить</string>
+    <string name="status_nocallsjustchat">Не звонить. Только SecureChat</string>
+    <string name="status_onlyurgentcalls">Только срочные звонки</string>
 </resources>
