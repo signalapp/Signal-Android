@@ -5,11 +5,12 @@ import android.content.pm.PackageManager;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.hardware.Camera;
-import android.os.Build;
 import android.os.Build.VERSION;
+import android.os.Build.VERSION_CODES;
 import android.support.annotation.NonNull;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v4.view.ViewCompat;
+import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v4.widget.ViewDragHelper;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -19,6 +20,8 @@ import android.view.Surface;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+
+import com.nineoldandroids.animation.ObjectAnimator;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.InputManager.InputView;
@@ -47,10 +50,9 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView {
   private AttachmentDrawerListener  listener;
   private int                       halfExpandedHeight;
 
-  private DrawerState drawerState             = DrawerState.COLLAPSED;
-  private boolean     halfModeUnsupported     = VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH;
-  private Rect        drawChildrenRect        = new Rect();
-  private boolean     paused                  = false;
+  private DrawerState drawerState      = DrawerState.COLLAPSED;
+  private Rect        drawChildrenRect = new Rect();
+  private boolean     paused           = false;
 
   public QuickAttachmentDrawer(Context context) {
     this(context, null);
@@ -130,10 +132,6 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView {
 
   private boolean isLandscape() {
     return rotation == Surface.ROTATION_90 || rotation == Surface.ROTATION_270;
-  }
-
-  private boolean isFullscreenOnly() {
-    return isLandscape() || halfModeUnsupported;
   }
 
   private View getCoverView() {
@@ -249,10 +247,11 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView {
     final int save = canvas.save(Canvas.CLIP_SAVE_FLAG);
 
     canvas.getClipBounds(drawChildrenRect);
-    if (child == coverView)
+    if (child == coverView) {
       drawChildrenRect.bottom = Math.min(drawChildrenRect.bottom, child.getBottom());
-    else if (coverView != null)
+    } else if (coverView != null) {
       drawChildrenRect.top = Math.max(drawChildrenRect.top, coverView.getBottom());
+    }
     canvas.clipRect(drawChildrenRect);
     result = super.drawChild(canvas, child, drawingTime);
     canvas.restoreToCount(save);
@@ -261,7 +260,7 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView {
 
   @Override
   public void computeScroll() {
-    if (dragHelper != null && dragHelper.continueSettling(true)) {
+    if (dragHelper.continueSettling(true)) {
       ViewCompat.postInvalidateOnAnimation(this);
     }
 
@@ -282,15 +281,11 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView {
       fullScreenButton.setImageResource(R.drawable.quick_camera_fullscreen);
       break;
     case HALF_EXPANDED:
-      if (isFullscreenOnly()) {
-        setDrawerState(DrawerState.FULL_EXPANDED);
-        return;
-      }
       fullScreenButton.setImageResource(R.drawable.quick_camera_fullscreen);
       break;
     case FULL_EXPANDED:
-      fullScreenButton.setImageResource(isFullscreenOnly() ? R.drawable.quick_camera_hide
-                                                           : R.drawable.quick_camera_exit_fullscreen);
+      fullScreenButton.setImageResource(isLandscape() ? R.drawable.quick_camera_hide
+                                                      : R.drawable.quick_camera_exit_fullscreen);
       break;
     }
 
@@ -298,6 +293,12 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView {
       this.drawerState = drawerState;
       listener.onAttachmentDrawerStateChanged(drawerState);
     }
+  }
+
+  @SuppressWarnings("unused")
+  public void setSlideOffset(int slideOffset) {
+    this.slideOffset = slideOffset;
+    requestLayout();
   }
 
   public int getTargetSlideOffset() {
@@ -334,7 +335,7 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView {
 
     @Override
     public boolean tryCaptureView(View child, int pointerId) {
-      return child == controls && !halfModeUnsupported;
+      return child == controls;
     }
 
     @Override
@@ -398,50 +399,44 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView {
 
   @Override
   public boolean onInterceptTouchEvent(MotionEvent event) {
-    if (dragHelper != null) {
-      final int action = MotionEventCompat.getActionMasked(event);
+    final int action = MotionEventCompat.getActionMasked(event);
 
-      if (action == MotionEvent.ACTION_CANCEL || action == MotionEvent.ACTION_UP) {
+    if (action == MotionEvent.ACTION_CANCEL || action == MotionEvent.ACTION_UP) {
+      dragHelper.cancel();
+      return false;
+    }
+
+    final float x = event.getX();
+    final float y = event.getY();
+
+    switch (action) {
+    case MotionEvent.ACTION_DOWN:
+      initialMotionX = x;
+      initialMotionY = y;
+      break;
+
+    case MotionEvent.ACTION_MOVE:
+      final float adx = Math.abs(x - initialMotionX);
+      final float ady = Math.abs(y - initialMotionY);
+      final int dragSlop = dragHelper.getTouchSlop();
+
+      if (adx > dragSlop && ady < dragSlop) {
+        return super.onInterceptTouchEvent(event);
+      }
+
+      if ((ady > dragSlop && adx > ady) || !isDragViewUnder((int) initialMotionX, (int) initialMotionY)) {
         dragHelper.cancel();
         return false;
       }
-
-      final float x = event.getX();
-      final float y = event.getY();
-
-      switch (action) {
-      case MotionEvent.ACTION_DOWN:
-        initialMotionX = x;
-        initialMotionY = y;
-        break;
-
-      case MotionEvent.ACTION_MOVE:
-        final float adx = Math.abs(x - initialMotionX);
-        final float ady = Math.abs(y - initialMotionY);
-        final int dragSlop = dragHelper.getTouchSlop();
-
-        if (adx > dragSlop && ady < dragSlop) {
-          return super.onInterceptTouchEvent(event);
-        }
-
-        if ((ady > dragSlop && adx > ady) || !isDragViewUnder((int) initialMotionX, (int) initialMotionY)) {
-          dragHelper.cancel();
-          return false;
-        }
-        break;
-      }
-      return dragHelper.shouldInterceptTouchEvent(event);
+      break;
     }
-    return super.onInterceptTouchEvent(event);
+    return dragHelper.shouldInterceptTouchEvent(event);
   }
 
   @Override
   public boolean onTouchEvent(@NonNull MotionEvent event) {
-    if (dragHelper != null) {
-      dragHelper.processTouchEvent(event);
-      return true;
-    }
-    return super.onTouchEvent(event);
+    dragHelper.processTouchEvent(event);
+    return true;
   }
 
   // NOTE: Android Studio bug misreports error, squashing the warning.
@@ -459,6 +454,10 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView {
   }
 
   private int computeCameraTopPosition(int slideOffset) {
+    if (VERSION.SDK_INT < VERSION_CODES.ICE_CREAM_SANDWICH) {
+      return getPaddingTop();
+    }
+
     final int   baseCameraTop = (quickCamera.getMeasuredHeight() - halfExpandedHeight) / 2;
     final int   baseOffset    = getMeasuredHeight() - slideOffset - baseCameraTop;
     final float slop          = Util.clamp((float)(slideOffset - halfExpandedHeight) / (getMeasuredHeight() - halfExpandedHeight),
@@ -472,9 +471,11 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView {
   }
 
   private void slideTo(int slideOffset, boolean forceInstant) {
-    if (dragHelper != null && !halfModeUnsupported && !forceInstant) {
-      dragHelper.smoothSlideViewTo(coverView, coverView.getLeft(), computeCoverTopPosition(slideOffset));
-      dragHelper.smoothSlideViewTo(quickCamera, quickCamera.getLeft(), computeCameraTopPosition(slideOffset));
+    if (!forceInstant) {
+      ObjectAnimator animator = ObjectAnimator.ofInt(this, "slideOffset", this.slideOffset, slideOffset);
+      animator.setInterpolator(new FastOutSlowInInterpolator());
+      animator.setDuration(400);
+      animator.start();
       ViewCompat.postInvalidateOnAnimation(this);
     } else {
       Log.w(TAG, "quick sliding to " + slideOffset);
@@ -526,7 +527,7 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView {
     public void onClick(View v) {
       if (drawerState != DrawerState.FULL_EXPANDED) {
         setDrawerStateAndUpdate(DrawerState.FULL_EXPANDED);
-      } else if (isFullscreenOnly()) {
+      } else if (isLandscape()) {
         setDrawerStateAndUpdate(DrawerState.COLLAPSED);
       } else {
         setDrawerStateAndUpdate(DrawerState.HALF_EXPANDED);
