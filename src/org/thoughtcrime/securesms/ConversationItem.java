@@ -777,7 +777,11 @@ public class ConversationItem extends LinearLayout {
           intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
           intent.setDataAndType(slide.getUri(), slide.getContentType());
           intent.putExtra(MediaPreviewActivity.MASTER_SECRET_EXTRA, masterSecret);
-          intent.putExtra("destroyImage", true);
+          if (!messageRecord.getBody().isSelfDestruction() || messageRecord.isOutgoing()) {
+            intent.putExtra("destroyImage", false);
+          } else {
+            intent.putExtra("destroyImage", true);
+          }
           if (!messageRecord.isOutgoing())
             intent.putExtra(MediaPreviewActivity.RECIPIENT_EXTRA, messageRecord.getIndividualRecipient().getRecipientId());
           intent.putExtra(MediaPreviewActivity.DATE_EXTRA, messageRecord.getDateReceived());
