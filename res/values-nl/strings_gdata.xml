@@ -40,4 +40,27 @@
     <string name="self_destruction_title">#1# seconden tot zelfvernietiging...</string>
     <string name="self_destruction_body">De inhoud van dit bericht zal zichzelf binnen #1# seconden na het openen vernietigen.</string>
     <string name="unknown_country">Onbekend land</string>
+    <string name="self_destruction_compose_hint">Zelfvernietigend bericht sturen</string>
+    <string name="privacy_toast_unlock_premium">U moet de premiumfunctionaliteit van G DATA Internet Security ontgrendelen om deze functie te kunnen gebruiken.</string>
+    <string name="tk_mail">sc-feedback@gdata.de</string>
+    <string name="import_complete_dialog">SecureChat-systeemdatabaseimport is compleet.</string>
+    <string name="profile_status_label">Status</string>
+    <string name="profile_number_label">Telefoonnummer</string>
+    <string name="profile_status_member">Leden</string>
+    <string name="identification">Identificatie</string>
+    <string name="identification_title">Deze sleutel is uw identificatie. Laat uw gesprekspartners deze sleutel scannen. Zo kunnen ze er op vertrouwen dat berichten van deze sleutel daadwerkelijk van u afkomstig zijn.</string>
+    <string name="verify_identity_activity_their_identity">Ontvangeridentificatie - Deze sleutel identificeert uw gesprekspartner. Scan deze sleutel om te bevestigen dat binnenkomende berichten echt zijn. </string>
+    <string name="verify_identity_activity_your_identity" >Eigen identiteit - Deze sleutel is uw identificatie. Laat deze sleutel door uw gesprekspartners scannen om uw berichten te authentificeren.</string>
+    <string name="identification_verified_unsuccessfully">De sleutels zijn niet identiek!</string>
+    <string name="identification_verified_successfully">Identificatie succesvol.</string>
+    <string name="accept_eula_and_continue"><![CDATA[Accepteren & Doorgaan]]></string>
+    <string name="eula_gdata"><u>Voorwaarden</u></string>
+    <string name="take_picture">Foto nemen</string>
+    <string name="status_available">Beschikbaar</string>
+    <string name="status_busy">Bezet</string>
+    <string name="status_atwork">Op kantoor</string>
+    <string name="status_meeting">In vergadering</string>
+    <string name="status_donotdisturb">Niet storen</string>
+    <string name="status_nocallsjustchat">Geen gesprekken, alleen SecureChat</string>
+    <string name="status_onlyurgentcalls">Alleen dringende gesprekken</string>
 </resources>
