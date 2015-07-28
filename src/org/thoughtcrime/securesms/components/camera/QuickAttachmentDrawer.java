@@ -21,7 +21,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.InputManager.InputView;
+import org.thoughtcrime.securesms.components.InputAwareLayout.InputView;
 import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout;
 import org.thoughtcrime.securesms.components.camera.QuickCamera.QuickCameraListener;
 import org.thoughtcrime.securesms.util.ServiceUtil;
