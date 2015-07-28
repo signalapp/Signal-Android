@@ -83,8 +83,8 @@ Tem certeza que deseja fazer isto?</string>
   <string name="ConversationActivity_select_contact_info">Selecionar informações de contato</string>
   <string name="ConversationActivity_compose_message">Escrever mensagem</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Lamento, ocorreu um erro no envio do seu anexo</string>
-  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Desculpe, o vídeo selecionado excede as restrições de tamanho da mensagem (%1$skB).</string>
-  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Desculpe, o áudio selecionado excede as restrições de tamanho da mensagem (%1$skB).</string>
+  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Desculpe, o áudio selecionado excede as restrições de tamanho de mensagem (%1$skB).</string>
+  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Desculpe, o vídeo selecionado excede as restrições de tamanho de mensagem (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Destinatário não é um endereço SMS ou email válido!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">A mensagem está vazia!</string>
   <string name="ConversationActivity_group_conversation_recipients">Destinatários da conversa em grupo</string>
