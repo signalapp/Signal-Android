@@ -727,6 +727,8 @@ Incremente la privacidad y evite tarifas SMS al usar el canal de datos para la c
   <string name="text_secure_normal__menu_clear_passphrase">Bloquear</string>
   <string name="text_secure_normal__mark_all_as_read">Marcar todos como leídos</string>
   <!--reminder_header-->
+  <string name="reminder_header_expired_build">¡Su versión de SecureChat ha expirado!</string>
+  <string name="reminder_header_expired_build_details">Los mensajes ya no se enviarán con éxito, por favor, actualice a la versión más reciente.</string>
   <string name="reminder_header_sms_default_title">¿Usar como apllicación de SMS por defecto?</string>
   <string name="reminder_header_sms_default_text">SecureChat actualmente no es su aplicación SMS por defecto.</string>
   <string name="reminder_header_sms_import_title">¿Importar SMS del sistema?</string>

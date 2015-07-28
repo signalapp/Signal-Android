@@ -660,6 +660,8 @@ Privacy verbeteren en SMS-kosten vermijden door het datakanaal te gebruiken voor
   <string name="text_secure_normal__menu_clear_passphrase">Vergrendel</string>
   <string name="text_secure_normal__mark_all_as_read">Markeer alles als gelezen</string>
   <!--reminder_header-->
+  <string name="reminder_header_expired_build">Je build van SecureChat is verlopen!</string>
+  <string name="reminder_header_expired_build_details">Berichten zullen niet langer verzonden worden, gelieve te updaten naar de recentste versie.</string>
   <string name="reminder_header_sms_default_title">Als standaard SMS-app gebruiken?</string>
   <string name="reminder_header_sms_default_text">SecureChat is momenteel niet uw standaard SMS-app.</string>
   <string name="reminder_header_sms_import_title">SMS importeren uit systeem?</string>

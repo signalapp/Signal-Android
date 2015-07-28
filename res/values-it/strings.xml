@@ -703,6 +703,8 @@ Aumenta la privacy ed evita i costi degli SMS usando la connettività dati per c
   <string name="text_secure_normal__menu_clear_passphrase">Blocca</string>
   <string name="text_secure_normal__mark_all_as_read">Segnala tutto come già letto</string>
   <!--reminder_header-->
+  <string name="reminder_header_expired_build">La tua versione di SecureChat è scaduta!</string>
+  <string name="reminder_header_expired_build_details">Non riesci più a mandare messaggi, per piacere aggiorna all\'ultima versione.</string>
   <string name="reminder_header_sms_default_title">Adotta come applicazione predefinita per SMS.</string>
   <string name="reminder_header_sms_default_text">Attualmente SecureChat non è la tua applicazione predefinita per SMS.</string>
   <string name="reminder_header_sms_import_title">Vuoi importare gli SMS precedenti?</string>
@@ -712,6 +714,7 @@ Aumenta la privacy ed evita i costi degli SMS usando la connettività dati per c
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Tu</string>
   <string name="MediaPreviewActivity_cant_display">Impossibile mostrare l\'anteprima</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">Tipo di media non supportato</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Salva</string>
   <!--media_preview_activity-->

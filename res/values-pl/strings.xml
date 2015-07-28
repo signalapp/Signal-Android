@@ -661,6 +661,8 @@ Zwiększ swoją prywatność i unikaj opłat za SMS używając transmisji danych
   <string name="text_secure_normal__menu_clear_passphrase">Zablokuj</string>
   <string name="text_secure_normal__mark_all_as_read">Oznacz wszystkie jako przeczytane</string>
   <!--reminder_header-->
+  <string name="reminder_header_expired_build">Twoja wersja SecureChat wygasła!</string>
+  <string name="reminder_header_expired_build_details">Wiadomości nie będą już pomylnie wysyłane, prosimy o aktualizację do najnowszej wersji.</string>
   <string name="reminder_header_sms_default_title">Użyć jako domyślnej aplikacji SMS?</string>
   <string name="reminder_header_sms_default_text">SecureChat nie jest obecnie Twoją domyślną aplikacją SMS.</string>
   <string name="reminder_header_sms_import_title">Importować SMS?</string>

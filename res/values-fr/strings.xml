@@ -688,6 +688,8 @@ Augmenter la confidentialité et éviter les frais de SMS en utilisant le canal 
   <string name="text_secure_normal__menu_clear_passphrase">Verrouiller</string>
   <string name="text_secure_normal__mark_all_as_read">Tout marquer comme lu</string>
   <!--reminder_header-->
+  <string name="reminder_header_expired_build">La version de votre build de SecureChat a expiré!</string>
+  <string name="reminder_header_expired_build_details">Les messages ne pourront plus être envoyés, veuillez installer la dernière version.</string>
   <string name="reminder_header_sms_default_title">Définir SecureChat comme application SMS par défaut ? </string>
   <string name="reminder_header_sms_default_text">SecureChat n\'est pas définie comme application SMS par défaut.</string>
   <string name="reminder_header_sms_import_title">Désirez-vous importer les SMS du système ?</string>
