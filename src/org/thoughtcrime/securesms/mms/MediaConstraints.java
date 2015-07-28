@@ -5,6 +5,9 @@ import android.net.Uri;
 import android.util.Log;
 import android.util.Pair;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.gifdecoder.GifDecoder;
+
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
@@ -33,7 +36,7 @@ public abstract class MediaConstraints {
 
   public boolean isSatisfied(Context context, MasterSecret masterSecret, PduPart part) {
     try {
-      return (MediaUtil.isGif(part)    && part.getDataSize() <= getGifMaxSize()) ||
+      return (MediaUtil.isGif(part)    && part.getDataSize() <= getGifMaxSize()   && isWithinBounds(context, masterSecret, part.getDataUri())) ||
              (MediaUtil.isImage(part)  && part.getDataSize() <= getImageMaxSize() && isWithinBounds(context, masterSecret, part.getDataUri())) ||
              (MediaUtil.isAudio(part)  && part.getDataSize() <= getAudioMaxSize()) ||
              (MediaUtil.isVideo(part)  && part.getDataSize() <= getVideoMaxSize()) ||

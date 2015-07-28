@@ -59,7 +59,7 @@ public class AudioSlide extends Slide {
   public static PduPart constructPartFromUri(Context context, Uri uri) throws IOException, MediaTooLargeException {
     PduPart part = new PduPart();
 
-    assertMediaSize(context, uri);
+    assertMediaSize(context, uri, MmsMediaConstraints.MAX_MESSAGE_SIZE);
 
     Cursor cursor = null;
 
