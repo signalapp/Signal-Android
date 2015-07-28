@@ -235,7 +235,7 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
      <activity android:name=".DeviceListActivity"
-               android:label="@string/AndroidManifest_manage_paired_devices"
+               android:label="@string/AndroidManifest_manage_linked_devices"
                android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".LogSubmitActivity"

@@ -168,17 +168,17 @@
     <string name="DateUtils_minutes_ago">%d min</string>
 
     <!-- DeviceListActivity -->
-    <string name="DeviceListActivity_disconnect_s">Disconnect \'%s\'?</string>
-    <string name="DeviceListActivity_by_disconnecting_this_device_it_will_no_longer_be_able_to_send_or_receive">By disconnecting this device, it will no longer be able to send or receive messages.</string>
+    <string name="DeviceListActivity_unlink_s">Unlink \'%s\'?</string>
+    <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">By unlinking this device, it will no longer be able to send or receive messages.</string>
     <string name="DeviceListActivity_network_connection_failed">Network connection failed...</string>
     <string name="DeviceListActivity_try_again">Try again</string>
-    <string name="DeviceListActivity_disconnecting_device">Disconnecting device...</string>
-    <string name="DeviceListActivity_disconnecting_device_no_ellipse">Disconnecting device</string>
+    <string name="DeviceListActivity_unlinking_device">Unlinking device...</string>
+    <string name="DeviceListActivity_unlinking_device_no_ellipsis">Unlinking device</string>
     <string name="DeviceListActivity_network_failed">Network failed!</string>
 
     <!-- DeviceListItem -->
     <string name="DeviceListItem_unnamed_device">Unnamed device</string>
-    <string name="DeviceListItem_created_s">Created %s</string>
+    <string name="DeviceListItem_linked_s">Linked %s</string>
     <string name="DeviceListItem_last_active_s">Last active %s</string>
 
     <!-- ShareActivity -->
@@ -292,13 +292,13 @@
         - Read all your messages
         \n- Send messages in your name
     </string>
-    <string name="DeviceProvisioningActivity_content_progress_title">Adding device</string>
-    <string name="DeviceProvisioningActivity_content_progress_content">Adding new device...</string>
-    <string name="DeviceProvisioningActivity_content_progress_success">Device added!</string>
+    <string name="DeviceProvisioningActivity_content_progress_title">Linking device</string>
+    <string name="DeviceProvisioningActivity_content_progress_content">Linking new device...</string>
+    <string name="DeviceProvisioningActivity_content_progress_success">Device linked!</string>
     <string name="DeviceProvisioningActivity_content_progress_no_device">No device found.</string>
     <string name="DeviceProvisioningActivity_content_progress_network_error">Network error.</string>
     <string name="DeviceProvisioningActivity_content_progress_key_error">Invalid QR code.</string>
-    <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_registered_already">Sorry, you have too many devices registered already, try removing some...</string>
+    <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Sorry, you have too many devices linked already, try removing some...</string>
 
     <!-- PassphrasePromptActivity -->
     <string name="PassphrasePromptActivity_enter_passphrase">Enter passphrase</string>
@@ -548,7 +548,7 @@
     <string name="country_selection_fragment__search">Search</string>
 
     <!-- device_list_fragment -->
-    <string name="device_list_fragment__no_devices_paired">No devices paired...</string>
+    <string name="device_list_fragment__no_devices_linked">No devices linked...</string>
 
     <!-- log_submit_activity -->
     <string name="log_submit_activity__log_fetch_failed">Could not grab logs from your device. You can still use ADB to get debug logs instead.</string>
@@ -736,7 +736,7 @@
     <string name="AndroidManifest__media_overview">All images</string>
     <string name="AndroidManifest__media_overview_named">All images with %1$s</string>
     <string name="AndroidManifest__message_details">Message Details</string>
-    <string name="AndroidManifest_manage_paired_devices">Manage paired devices</string>
+    <string name="AndroidManifest_manage_linked_devices">Manage linked devices</string>
 
     <!-- arrays.xml -->
     <string name="arrays__import_export">Import / export</string>
