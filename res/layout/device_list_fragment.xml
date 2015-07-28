@@ -27,7 +27,7 @@
               android:gravity="center|center_vertical"
               android:textSize="20sp"
               android:visibility="gone"
-              android:text="@string/device_list_fragment__no_devices_paired"/>
+              android:text="@string/device_list_fragment__no_devices_linked"/>
 
     <ListView android:id="@id/android:list"
               android:layout_width="match_parent"
