@@ -87,7 +87,9 @@ public class AttachmentManager {
     captureUri = null;
   }
 
-  public void setImage(MasterSecret masterSecret, Uri image) throws IOException, BitmapDecodingException {
+  public void setImage(MasterSecret masterSecret, Uri image)
+      throws IOException, BitmapDecodingException, MediaTooLargeException
+  {
     if (MediaUtil.isGif(MediaUtil.getMimeType(context, image))) {
       setMedia(new GifSlide(context, masterSecret, image), masterSecret);
     } else {
