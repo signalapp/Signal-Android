@@ -78,8 +78,8 @@
   <string name="ConversationActivity_select_contact_info">选择联系信息</string>
   <string name="ConversationActivity_compose_message">编写信息</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">抱歉，设置附件时出现错误。</string>
-  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">抱歉，选择的视频超过了消息限制（%1$skB）</string>
-  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">抱歉，选择的音频超过了信息大小限制（%1$skB）</string>
+  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">抱歉，所选择的音频超出邮件大小限制(%1$skB)。</string>
+  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions"> 抱歉，所选择的视频超出邮件大小限制(%1$skB)。</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">收件人不是有效的短信或电子邮件地址！</string>
   <string name="ConversationActivity_message_is_empty_exclamation">信息为空！</string>
   <string name="ConversationActivity_group_conversation_recipients">接受群组会话</string>
