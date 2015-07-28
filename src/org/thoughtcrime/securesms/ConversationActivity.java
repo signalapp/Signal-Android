@@ -266,7 +266,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     super.onConfigurationChanged(newConfig);
     composeText.setTransport(sendButton.getSelectedTransport());
     quickAttachmentDrawer.onConfigurationChanged();
-    if (container.getCurrentInput() == emojiDrawer) container.hideAttachedInput();
+    if (container.getCurrentInput() == emojiDrawer) container.hideAttachedInput(true);
   }
 
   @Override

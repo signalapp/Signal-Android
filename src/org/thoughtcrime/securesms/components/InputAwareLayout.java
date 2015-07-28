@@ -26,7 +26,7 @@ public class InputAwareLayout extends KeyboardAwareLinearLayout implements OnKey
   }
 
   @Override public void onKeyboardShown() {
-    hideAttachedInput();
+    hideAttachedInput(true);
   }
 
   public void show(@NonNull final EditText imeTarget, @NonNull final InputView input) {
@@ -52,11 +52,11 @@ public class InputAwareLayout extends KeyboardAwareLinearLayout implements OnKey
 
   public void hideCurrentInput(EditText imeTarget) {
     if (isKeyboardOpen()) hideSoftkey(imeTarget, null);
-    else                  hideAttachedInput();
+    else                  hideAttachedInput(false);
   }
 
-  public void hideAttachedInput() {
-    if (current != null) current.hide(true);
+  public void hideAttachedInput(boolean instant) {
+    if (current != null) current.hide(instant);
     current = null;
   }
 
@@ -67,7 +67,7 @@ public class InputAwareLayout extends KeyboardAwareLinearLayout implements OnKey
   public void showSoftkey(final EditText inputTarget) {
     postOnKeyboardOpen(new Runnable() {
       @Override public void run() {
-        hideAttachedInput();
+        hideAttachedInput(true);
       }
     });
     inputTarget.post(new Runnable() {

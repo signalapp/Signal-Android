@@ -50,6 +50,7 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView {
   private int                       rotation;
   private AttachmentDrawerListener  listener;
   private int                       halfExpandedHeight;
+  private ObjectAnimator            animator;
 
   private DrawerState drawerState      = DrawerState.COLLAPSED;
   private Rect        drawChildrenRect = new Rect();
@@ -108,7 +109,7 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView {
         quickCamera.onPause();
       }
       updateControlsView();
-      setDrawerStateAndUpdate(drawerState);
+      setDrawerStateAndUpdate(drawerState, true);
     }
   }
 
@@ -152,6 +153,10 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView {
 
   @Override
   protected void onLayout(boolean changed, int l, int t, int r, int b) {
+    if (changed && drawerState == DrawerState.FULL_EXPANDED) {
+      setSlideOffset(getMeasuredHeight());
+    }
+
     final int paddingLeft = getPaddingLeft();
     final int paddingTop  = getPaddingTop();
 
@@ -281,6 +286,10 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView {
       fullScreenButton.setImageResource(R.drawable.quick_camera_fullscreen);
       break;
     case HALF_EXPANDED:
+      if (isLandscape()) {
+        setDrawerState(DrawerState.FULL_EXPANDED);
+        return;
+      }
       fullScreenButton.setImageResource(R.drawable.quick_camera_fullscreen);
       break;
     case FULL_EXPANDED:
@@ -471,14 +480,18 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView {
   }
 
   private void slideTo(int slideOffset, boolean forceInstant) {
+    if (animator != null) {
+      animator.cancel();
+      animator = null;
+    }
+
     if (!forceInstant) {
-      ObjectAnimator animator = ObjectAnimator.ofInt(this, "slideOffset", this.slideOffset, slideOffset);
+      animator = ObjectAnimator.ofInt(this, "slideOffset", this.slideOffset, slideOffset);
       animator.setInterpolator(new FastOutSlowInInterpolator());
       animator.setDuration(400);
       animator.start();
       ViewCompat.postInvalidateOnAnimation(this);
     } else {
-      Log.w(TAG, "quick sliding to " + slideOffset);
       this.slideOffset = slideOffset;
       requestLayout();
       invalidate();
