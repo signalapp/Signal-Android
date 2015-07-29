@@ -457,7 +457,7 @@ Daha önce dışa aktarılmış bir şifrelenmiş SecureChat yedeğini yeniden y
     </string>
   <string name="registration_problems__sms_interceptors">SMS yakalayıcılar.</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
-Handcent veya GoSMS gibi üçüncü parti mesaj istemcileri  iyi çalışmamakta ve tüm gelen SMS mesajlarını yakalamaktadır. \'Your TexSecure verification code:\' şeklinde başlayan bir mesaj alıp almadığınızı kontrol ediniz. Eğer almışsanız bu üçüncü parti mesaj uygulamalarını mesajların geçmesini izin verecek şekilde yapılandırmanız gerekecektir.</string>
+Handcent veya GoSMS gibi üçüncü parti mesaj istemcileri  iyi çalışmamakta ve tüm gelen SMS mesajlarını yakalamaktadır. \'Your SecureChat verification code:\' şeklinde başlayan bir mesaj alıp almadığınızı kontrol ediniz. Eğer almışsanız bu üçüncü parti mesaj uygulamalarını mesajların geçmesini izin verecek şekilde yapılandırmanız gerekecektir.</string>
   <string name="registration_problems__incorrect_number">Geçersiz numara</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
 Lütfen girdiğiniz numaranın ve alan kodlarının doğruluğunu kontrol ediniz.</string>
