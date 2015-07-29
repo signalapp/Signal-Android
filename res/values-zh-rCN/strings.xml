@@ -464,7 +464,7 @@ SecureChat无法使用Google语音号码。</string>
   <!--registration_progress_activity-->
   <string name="registration_progress_activity__voice_verification">语音验证</string>
   <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">
-Verification也可以通过拨打您的电话号码来进行验证。点击“呼叫我”并在下方输入您所听到的
+SecureChat 也可以通过拨打您的电话号码来进行验证。点击“呼叫我”并在下方输入您所听到的
 四位数字代码。</string>
   <string name="registration_progress_activity__verify">验证</string>
   <string name="registration_progress_activity__call_me">呼叫我</string>
