@@ -116,6 +116,8 @@
     <string name="ConversationActivity_transport_insecure_sms">Insecure SMS</string>
     <string name="ConversationActivity_transport_insecure_mms">Insecure MMS</string>
     <string name="ConversationActivity_transport_textsecure">TextSecure</string>
+    <string name="ConversationActivity_transport_warning_textsecure">Last message received used TextSecure, tap to switch.</string>
+    <string name="ConversationActivity_transport_warning_insecure_sms">Last message received used Insecure SMS, tap to switch.</string>
     <string name="ConversationActivity_get_with_it">Get with it: %s</string>
     <string name="ConversationActivity_lets_use_this_to_chat">Let\'s use this to chat: %s</string>
     <string name="ConversationActivity_error_leaving_group">Error leaving group...</string>

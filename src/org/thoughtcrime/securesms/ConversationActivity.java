@@ -37,7 +37,6 @@ import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v4.view.WindowCompat;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -53,7 +52,6 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -175,6 +173,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private   View                      composePanel;
   private   View                      composeBubble;
   private   View                      transportWarning;
+  private   TextView                  transportWarningText;
 
   private   AttachmentTypeSelectorAdapter attachmentAdapter;
   private   AttachmentManager             attachmentManager;
@@ -787,6 +786,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     quickAttachmentDrawer = (QuickAttachmentDrawer) findViewById(R.id.quick_attachment_drawer);
     quickAttachmentToggle = (HidingImageButton)     findViewById(R.id.quick_attachment_toggle);
     transportWarning      =                         findViewById(R.id.transport_warning_message);
+    transportWarningText  = (TextView)              findViewById(R.id.transport_warning_message_text);
 
     int[]      attributes   = new int[]{R.attr.conversation_item_bubble_background};
     TypedArray colors       = obtainStyledAttributes(attributes);
@@ -813,6 +813,15 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         updateTransportWarningMessage();
       }
     });
+
+    transportWarning.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        if (lastReceivedMessageType != null)
+          sendButton.setTransport(lastReceivedMessageType);
+      }
+    });
+    updateTransportWarningMessage();
 
     titleView.setOnClickListener(new OnClickListener() {
       @Override
@@ -1359,6 +1368,14 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         transportWarning.setVisibility(View.GONE);
       } else {
         transportWarning.setVisibility(View.VISIBLE);
+        switch(this.lastReceivedMessageType){
+          case SMS:
+            transportWarningText.setText(R.string.ConversationActivity_transport_warning_insecure_sms);
+            break;
+          case TEXTSECURE:
+            transportWarningText.setText(R.string.ConversationActivity_transport_warning_textsecure);
+            break;
+        }
       }
     }
   }
