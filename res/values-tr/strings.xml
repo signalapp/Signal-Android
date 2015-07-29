@@ -66,7 +66,7 @@ Bu işlem sunucudan kaydınızı silerek itilen mesajları etkisizleştirir. Gel
   <string name="ConversationItem_click_to_approve_mms_dialog_title">MMS geri düşülmesi?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Şifrelenmemiş SMS geri düşülmesi?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Şifrelenmemiş MMS geri düşülmesi?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Bu mesaj alıcının artık TextSecure kullanıcısı olmaması nedeni ile şifrelenmiş olarak <b>gönderilemez</b>. Güvensiz mesaj gönderilsin mi?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Bu mesaj alıcının artık SecureChat kullanıcısı olmaması nedeni ile şifrelenmiş olarak <b>gönderilemez</b>. Güvensiz mesaj gönderilsin mi?</string>
   <string name="ConversationItem_unable_to_open_media">Bu medyayı açabilen bir uygulama bulunamadı.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">Güvenli oturum başlatılsın mı?</string>
@@ -115,7 +115,7 @@ Bu işlem sunucudan kaydınızı silerek itilen mesajları etkisizleştirir. Gel
   <string name="ConversationFragment_saving_attachment">Ek kaydediliyor</string>
   <string name="ConversationFragment_saving_attachment_to_sd_card">Depolama alanına ek kaydediliyor...</string>
   <string name="ConversationFragment_pending">Bekleyen...</string>
-  <string name="ConversationFragment_push">Veri (TextSecure)</string>
+  <string name="ConversationFragment_push">Veri (SecureChat)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Siliniyor</string>
@@ -612,7 +612,7 @@ Diğer SecureChat kullanıcıları ile iletişiminiz için veri kanallarını ku
   <string name="preferences__sms_fallback_push_users_no_mms">MMS yok</string>
   <string name="preferences__sms_fallback_ask_before_sending_sms_mms">SMS/MMS göndermeden önce sor</string>
   <string name="preferences__sms_fallback_never_send_mms">Hiçbir zaman MMS gönderme</string>
-  <string name="preferences__sms_fallback_non_push_users">TextSecure kullanıcısı olmayanlar</string>
+  <string name="preferences__sms_fallback_non_push_users">SecureChat kullanıcısı olmayanlar</string>
   <string name="preferences__sms_fallback_nobody">Hiç kimse</string>
   <string name="preferences__support_wifi_calling">\'WiFi Calling\' uyumluluk modu</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Eğer cihazınız WiFi üzerinden SMS/MMS iletimi kullanıyorsa etkinleştir (sadece cihazınızda \'WiFi Calling\' etkinleştirildiğinde etkinleştirin)</string>
