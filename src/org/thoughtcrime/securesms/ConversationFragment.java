@@ -54,8 +54,9 @@ public class ConversationFragment extends ListFragment
 {
   private static final String TAG = ConversationFragment.class.getSimpleName();
 
-  private final ActionModeCallback     actionModeCallback     = new ActionModeCallback();
-  private final SelectionClickListener selectionClickListener = new ConversationFragmentSelectionClickListener();
+  private final ActionModeCallback         actionModeCallback     = new ActionModeCallback();
+  private final SelectionClickListener     selectionClickListener = new ConversationFragmentSelectionClickListener();
+  private final LastReceivedMessageWatcher messageWatcher         = new LastReceivedMessageWatcher();
 
   private ConversationFragmentListener listener;
 
@@ -68,8 +69,8 @@ public class ConversationFragment extends ListFragment
   @Override
   public void onCreate(Bundle icicle) {
     super.onCreate(icicle);
-    this.masterSecret = getArguments().getParcelable("master_secret");
-    this.locale       = (Locale) getArguments().getSerializable(PassphraseRequiredActionBarActivity.LOCALE_EXTRA);
+    this.masterSecret   = getArguments().getParcelable("master_secret");
+    this.locale         = (Locale) getArguments().getSerializable(PassphraseRequiredActionBarActivity.LOCALE_EXTRA);
   }
 
   @Override
@@ -295,8 +296,10 @@ public class ConversationFragment extends ListFragment
 
   @Override
   public void onLoadFinished(Loader<Cursor> arg0, Cursor cursor) {
-    if (getListAdapter() != null) {
-      ((CursorAdapter) getListAdapter()).changeCursor(cursor);
+    ConversationAdapter listAdaptor = (ConversationAdapter) getListAdapter();
+    if (listAdaptor != null) {
+      listAdaptor.changeCursor(cursor);
+      messageWatcher.refresh(listAdaptor, listener);
     }
   }
 
@@ -311,6 +314,8 @@ public class ConversationFragment extends ListFragment
     public void setComposeText(String text);
 
     public void setThreadId(long threadId);
+
+    public void lastReceivedMessageTransportTypeChanged(TransportOption.Type type);
   }
 
   public interface SelectionClickListener extends
@@ -413,4 +418,42 @@ public class ConversationFragment extends ListFragment
       return false;
     }
   };
+
+  /**
+   * This class keeps track of information about the last message received.
+   */
+  private static class LastReceivedMessageWatcher {
+
+    private static int MAX_LOOK_BACK = 100;
+    private long lastLastMessageId = -1;
+    private TransportOption.Type lastTransportTypeReceived = null;
+
+    private void refresh(ConversationAdapter conversationAdapter, ConversationFragmentListener listener) {
+      int last = conversationAdapter.getCount() - 1;
+      if (last < 0)
+        return;
+
+      long newLastMessageId = -1;
+
+      for (int i = last; (i >= 0 && i > last - MAX_LOOK_BACK); i--) {
+        MessageRecord record = conversationAdapter.getMessageRecord(i);
+        if (i == last)
+          newLastMessageId = record.getId();
+        if (this.lastLastMessageId == record.getId())
+          break;
+        if (!record.isOutgoing() && !record.isGroupAction()) {
+          // Must be incoming message
+          TransportOption.Type transport = record.isPush() ? TransportOption.Type.TEXTSECURE : TransportOption.Type.SMS;
+          if (transport != this.lastTransportTypeReceived) {
+            this.lastTransportTypeReceived = transport;
+            listener.lastReceivedMessageTransportTypeChanged(transport);
+          }
+          break;
+        }
+      }
+      this.lastLastMessageId = newLastMessageId;
+      return;
+    }
+
+  }
 }
