@@ -134,13 +134,22 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
   }
 
   private int getItemViewType(Cursor cursor) {
-    long id                     = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.ID));
-    String type                 = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsDatabase.TRANSPORT));
-    MessageRecord messageRecord = getMessageRecord(id, cursor, type);
+    MessageRecord messageRecord = getMessageRecord(cursor);
 
     if      (messageRecord.isGroupAction()) return MESSAGE_TYPE_GROUP_ACTION;
     else if (messageRecord.isOutgoing())    return MESSAGE_TYPE_OUTGOING;
     else                                    return MESSAGE_TYPE_INCOMING;
+  }
+
+  public MessageRecord getMessageRecord(int position){
+    Cursor cursor = (Cursor)getItem(position);
+    return getMessageRecord(cursor);
+  }
+
+  private MessageRecord getMessageRecord(Cursor cursor){
+    long id                     = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.ID));
+    String type                 = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsDatabase.TRANSPORT));
+    return getMessageRecord(id, cursor, type);
   }
 
   private MessageRecord getMessageRecord(long messageId, Cursor cursor, String type) {
@@ -182,5 +191,9 @@ public class ConversationAdapter extends CursorAdapter implements AbsListView.Re
   @Override
   public void onMovedToScrapHeap(View view) {
     ((ConversationItem)view).unbind();
+  }
+
+  {
+    this.onContentChanged();
   }
 }
