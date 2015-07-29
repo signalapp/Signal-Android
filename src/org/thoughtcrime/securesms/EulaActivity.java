@@ -10,6 +10,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
+import android.text.Spanned;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -17,9 +18,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.libaxolotl.logging.Log;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import de.gdata.messaging.util.GUtil;
 
@@ -31,25 +35,14 @@ public class EulaActivity extends AppCompatActivity {
 
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
-            String eula = null;
-            try {
-                InputStream is = getResources().openRawResource(R.raw.eula);
-                StringBuilder sb = new StringBuilder();
-                byte[] buffer = new byte[4096];
-                int read = is.read(buffer);
-                while (read != -1) {
-                    sb.append(new String(buffer, 0, read));
-                    read = is.read(buffer);
-                }
-                eula = sb.toString();
-                is.close();
-            }catch (IOException e){
-                eula = "";
-            }
+            StringBuilder str = convertStreamToSB(getActivity().getResources().openRawResource(R.raw.eula));
+
+            Spanned span = Html.fromHtml(str.toString());
+
             return new AlertDialog.Builder(getActivity())
                     .setIcon(R.drawable.ic_launcher)
                     .setTitle(R.string.eula_gdata)
-                    .setMessage(Html.fromHtml(eula))
+                    .setMessage(span)
                     .setPositiveButton(android.R.string.ok,
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int whichButton) {
@@ -103,5 +96,52 @@ public class EulaActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putBoolean(EULA_SHOWN, mAcceptEula.isEnabled());
+    }
+
+    /**
+     * Read given input stream and return string builder. Closes input stream afterwards.
+     * @param is input stream
+     * @return string builder containing read string
+     */
+    public static StringBuilder convertStreamToSB(InputStream is) {
+        InputStreamReader isr = null;
+        BufferedReader reader = null;
+
+        StringBuilder sb = new StringBuilder();
+        String line = null;
+
+        try {
+
+            isr = new InputStreamReader(is);
+            reader = new BufferedReader(isr);
+
+            while ((line = reader.readLine()) != null) {
+                sb.append(line + "\n");
+            }
+
+        } catch (IOException e) {
+            Log.e("GDATA", "Input stream conversion failed: " + e);
+
+        } finally {
+            try {
+                reader.close();
+            } catch (IOException e) {
+                /* ignore */
+            }
+
+            try {
+                isr.close();
+            } catch (IOException e) {
+                /* ignore */
+            }
+
+            try {
+                is.close();
+            } catch (IOException e) {
+                /* ignore */
+            }
+        }
+
+        return sb;
     }
 }
