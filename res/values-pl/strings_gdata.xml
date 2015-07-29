@@ -54,7 +54,6 @@
     <string name="identification_verified_unsuccessfully">Klucze nie pasują do siebie!</string>
     <string name="identification_verified_successfully">Identyfikator potwierdzony.</string>
     <string name="accept_eula_and_continue"><![CDATA[Akceptuj & kontynuuj]]></string>
-    <string name="claim_textsecure">Bezpieczeństwo z nami jest tak proste, że chcesz je stosować.</string>
     <string name="eula_gdata">EULA</string>
     <string name="take_picture">Zrób zdjęcie</string>
     <string name="status_available">Dostępny</string>

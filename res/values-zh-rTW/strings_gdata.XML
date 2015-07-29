@@ -54,7 +54,6 @@
     <string name="identification_verified_unsuccessfully">密鑰不一致!</string>
     <string name="identification_verified_successfully">身份驗證成功</string>
     <string name="accept_eula_and_continue"><![CDATA[同意 & 繼續]]></string>
-    <string name="claim_textsecure">Mit uns ist Sicherheit so einfach, dass du es einfach machen musst.</string>
     <string name="eula_gdata">最終用戶許可協議</string>
     <string name="take_picture">拍照</string>
     <string name="status_available">在線</string>
