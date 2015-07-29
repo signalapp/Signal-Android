@@ -494,7 +494,7 @@ bekleniliyor...
   <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Bu
 biraz zaman alabilir. Lütfen bekleyiniz, doğrulama tamamlandığında bilgilendirileceksiniz.</string>
   <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">
-SMS doğrulaması için verilen süre aşılarak TestSecure zaman aşımına uğradı.</string>
+SMS doğrulaması için verilen süre aşılarak SecureChat zaman aşımına uğradı.</string>
   <string name="registration_progress_activity__sms_verification_failed">SMS doğrulaması
 başarısız.</string>
   <string name="registration_progress_activity__generating_keys">Anahtarlar üretiliyor...</string>
