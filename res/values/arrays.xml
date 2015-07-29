@@ -5,14 +5,17 @@
       <item>@string/preferences__default</item>
       <item>English</item>
       <item>Arabic العربية</item>
+      <item>Belarusian беларускі</item>
       <item>Bulgarian български</item>
       <item>Burmese မြန်မာစာ</item>
       <item>Català</item>
       <item>Čeština</item>
-      <item>Chinese 中国的</item>
+      <item>Chinese (simplified) 简体字</item>
+      <item>Chinese (traditional) 正體字</item>
       <item>Dansk</item>
       <item>Deutsch</item>
       <item>Español</item>
+      <item>Euskara</item>
       <item>Français</item>
       <item>Greek ελληνικά</item>
       <item>Hebrew עברית</item>
@@ -21,9 +24,12 @@
       <item>Italiano</item>
       <item>Japanese 日本人</item>
       <item>Kannada ಕನ್ನಡ</item>
+      <item>Korean 한국어</item>
       <item>Magyar</item>
+      <item>Macedonian македонски јазик</item>
       <item>Nederlands</item>
       <item>Norsk</item>
+      <item>Persian فارسی</item>
       <item>Polski</item>
       <item>Português</item>
       <item>Português do Brasil</item>
@@ -34,23 +40,28 @@
       <item>Slovenský</item>
       <item>Suomi</item>
       <item>Svenska</item>
+      <item>Tamil தமிழ்</item>
       <item>Tibetan བོད་སྐད།</item>
       <item>Türkçe</item>
       <item>Ukrainian Український</item>
+      <item>Vietnamese Tiếng Việt</item>
   </string-array>
 
   <string-array name="language_values">
       <item>zz</item>
       <item>en</item>
       <item>ar</item>
+      <item>be</item>
       <item>bg</item>
       <item>my</item>
       <item>ca</item>
       <item>cs</item>
       <item>zh_CN</item>
+      <item>zh_TW</item>
       <item>da</item>
       <item>de</item>
       <item>es</item>
+      <item>eu</item>
       <item>fr</item>
       <item>el</item>
       <item>iw</item>
@@ -59,9 +70,12 @@
       <item>it</item>
       <item>ja</item>
       <item>kn_IN</item>
+      <item>ko</item>
       <item>hu</item>
+      <item>mk</item>
       <item>nl</item>
       <item>no</item>
+      <item>fa</item>
       <item>pl</item>
       <item>pt</item>
       <item>pt_BR</item>
@@ -72,9 +86,11 @@
       <item>sk</item>
       <item>fi</item>
       <item>sv</item>
+      <item>ta</item>
       <item>bo</item>
       <item>tr</item>
       <item>uk</item>
+      <item>vi</item>
   </string-array>
 
   <string-array name="minutes_hours">
