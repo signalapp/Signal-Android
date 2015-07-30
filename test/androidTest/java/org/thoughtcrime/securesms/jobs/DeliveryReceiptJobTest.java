@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.jobs;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 import org.thoughtcrime.securesms.TextSecureTestCase;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.whispersystems.textsecure.api.TextSecureMessageSender;
 import org.whispersystems.textsecure.api.push.TextSecureAddress;
 import org.whispersystems.textsecure.api.push.exceptions.NotFoundException;
@@ -90,7 +89,7 @@ public class DeliveryReceiptJobTest extends TextSecureTestCase {
     @Provides TextSecureMessageSenderFactory provideTextSecureMessageSenderFactory() {
       return new TextSecureMessageSenderFactory() {
         @Override
-        public TextSecureMessageSender create(MasterSecret masterSecret) {
+        public TextSecureMessageSender create() {
           return textSecureMessageSender;
         }
       };
