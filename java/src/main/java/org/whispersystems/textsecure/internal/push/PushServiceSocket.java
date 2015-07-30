@@ -17,6 +17,7 @@
 package org.whispersystems.textsecure.internal.push;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonProcessingException;
 
 import org.apache.http.conn.ssl.StrictHostnameVerifier;
 import org.whispersystems.libaxolotl.IdentityKey;
@@ -259,8 +260,6 @@ public class PushServiceSocket {
       }
 
       return bundles;
-    } catch (JsonUtil.JsonParseException e) {
-      throw new IOException(e);
     } catch (NotFoundException nfe) {
       throw new UnregisteredUserException(destination.getNumber(), nfe);
     }
@@ -301,8 +300,6 @@ public class PushServiceSocket {
 
       return new PreKeyBundle(device.getRegistrationId(), device.getDeviceId(), preKeyId, preKey,
                               signedPreKeyId, signedPreKey, signedPreKeySignature, response.getIdentityKey());
-    } catch (JsonUtil.JsonParseException e) {
-      throw new IOException(e);
     } catch (NotFoundException nfe) {
       throw new UnregisteredUserException(destination.getNumber(), nfe);
     }
@@ -359,11 +356,16 @@ public class PushServiceSocket {
   public List<ContactTokenDetails> retrieveDirectory(Set<String> contactTokens)
       throws NonSuccessfulResponseCodeException, PushNetworkException
   {
-    ContactTokenList        contactTokenList = new ContactTokenList(new LinkedList<>(contactTokens));
-    String                  response         = makeRequest(DIRECTORY_TOKENS_PATH, "PUT", JsonUtil.toJson(contactTokenList));
-    ContactTokenDetailsList activeTokens     = JsonUtil.fromJson(response, ContactTokenDetailsList.class);
+    try {
+      ContactTokenList        contactTokenList = new ContactTokenList(new LinkedList<>(contactTokens));
+      String                  response         = makeRequest(DIRECTORY_TOKENS_PATH, "PUT", JsonUtil.toJson(contactTokenList));
+      ContactTokenDetailsList activeTokens     = JsonUtil.fromJson(response, ContactTokenDetailsList.class);
 
-    return activeTokens.getContacts();
+      return activeTokens.getContacts();
+    } catch (IOException e) {
+      Log.w(TAG, e);
+      throw new NonSuccessfulResponseCodeException("Unable to parse entity");
+    }
   }
 
   public ContactTokenDetails getContactTokenDetails(String contactToken) throws IOException {
@@ -501,26 +503,45 @@ public class PushServiceSocket {
         connection.disconnect();
         throw new NotFoundException("Not found");
       case 409:
+        MismatchedDevices mismatchedDevices;
+
         try {
-          response = Util.readFully(connection.getErrorStream());
+          response          = Util.readFully(connection.getErrorStream());
+          mismatchedDevices = JsonUtil.fromJson(response, MismatchedDevices.class);
+        } catch (JsonProcessingException e) {
+          Log.w(TAG, e);
+          throw new NonSuccessfulResponseCodeException("Bad response: " + responseCode + " " + responseMessage);
         } catch (IOException e) {
           throw new PushNetworkException(e);
         }
-        throw new MismatchedDevicesException(JsonUtil.fromJson(response, MismatchedDevices.class));
+
+        throw new MismatchedDevicesException(mismatchedDevices);
       case 410:
+        StaleDevices staleDevices;
+
         try {
-          response = Util.readFully(connection.getErrorStream());
+          response     = Util.readFully(connection.getErrorStream());
+          staleDevices = JsonUtil.fromJson(response, StaleDevices.class);
+        } catch (JsonProcessingException e) {
+          throw new NonSuccessfulResponseCodeException("Bad response: " + responseCode + " " + responseMessage);
         } catch (IOException e) {
           throw new PushNetworkException(e);
         }
-        throw new StaleDevicesException(JsonUtil.fromJson(response, StaleDevices.class));
+
+        throw new StaleDevicesException(staleDevices);
       case 411:
+        DeviceLimit deviceLimit;
+
         try {
-          response = Util.readFully(connection.getErrorStream());
+          response    = Util.readFully(connection.getErrorStream());
+          deviceLimit = JsonUtil.fromJson(response, DeviceLimit.class);
+        } catch (JsonProcessingException e) {
+          throw new NonSuccessfulResponseCodeException("Bad response: " + responseCode + " " + responseMessage);
         } catch (IOException e) {
           throw new PushNetworkException(e);
         }
-        throw new DeviceLimitExceededException(JsonUtil.fromJson(response, DeviceLimit.class));
+
+        throw new DeviceLimitExceededException(deviceLimit);
       case 417:
         throw new ExpectationFailedException();
     }
