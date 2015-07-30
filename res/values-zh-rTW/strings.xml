@@ -396,7 +396,7 @@
 匯入簡訊資料。</string>
   <string name="import_fragment__import_encrypted_backup">匯入加密的備份資料</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">
-還原前一個匯出的 TestSecure 加密備份資料庫。</string>
+還原前一個匯出的 SecureChat 加密備份資料庫。</string>
   <string name="import_fragment__import_plaintext_backup">匯入未加密的資料備份</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 匯入一個未加密的備份資料。 相容於 \"SMSBackup And Restore\"。</string>
@@ -455,9 +455,9 @@ SecureChat 無法連線到即時訊息服務。</string>
   <string name="registration_progress_activity__restrictive_firewall">已被防火牆限制。</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
 如果您透過 Wi-Fi連線，有可能是防火牆阻擋了
-TextSecure的伺服器連線。請試著用別的網路或行動上網看看。</string>
+SecureChat的伺服器連線。請試著用別的網路或行動上網看看。</string>
   <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
-TextSecure將會發送一則包含確認碼的手機簡訊來自動驗證您的手機號碼。</string>
+SecureChat將會發送一則包含確認碼的手機簡訊來自動驗證您的手機號碼。</string>
   <string name="registration_progress_activity__connecting">連線中...</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">等待手機簡訊
 驗證中...</string>
