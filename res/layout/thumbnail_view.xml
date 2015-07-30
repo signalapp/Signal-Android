@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
-       xmlns:app="http://schemas.android.com/apk/res-auto">
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
 
     <ImageView android:id="@+id/thumbnail_image"
                android:layout_width="match_parent"
@@ -10,15 +9,15 @@
                android:contentDescription="@string/conversation_item__mms_image_description"
                android:layout_margin="@dimen/media_bubble_border_width" />
 
-    <com.pnikosis.materialishprogress.ProgressWheel
-            android:id="@+id/progress_wheel"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_gravity="center"
-            android:background="@drawable/progress_background"
-            android:visibility="gone"
-            app:matProg_barColor="@color/white"
-            app:matProg_linearProgress="true"
-            app:matProg_spinSpeed="0.333" />
+    <ViewStub android:id="@+id/progress_wheel_stub"
+              android:layout_width="70dp"
+              android:layout_height="70dp"
+              android:layout_gravity="center"
+              android:layout="@layout/thumbnail_view_progress_wheel" />
 
+    <ViewStub android:id="@+id/remove_button_stub"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="top|right"
+              android:layout="@layout/thumbnail_view_remove_button" />
 </merge>

@@ -29,7 +29,6 @@
                      android:layout_width="match_parent"
                      android:layout_height="wrap_content"
                      android:gravity="center_horizontal"
-                     android:paddingTop="10dp"
                      android:background="?android:windowBackground"
                      android:visibility="gone">
 
@@ -40,13 +39,6 @@
                 android:layout_gravity="center_horizontal"
                 android:contentDescription="@string/conversation_activity__attachment_thumbnail"
                 app:backgroundColorHint="?conversation_background" />
-
-            <ImageView android:id="@+id/remove_image_button"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:src="@drawable/conversation_attachment_close_circle"
-                       android:layout_marginRight="115dp"
-                       android:layout_gravity="top|center_horizontal"/>
 
         </FrameLayout>
 
