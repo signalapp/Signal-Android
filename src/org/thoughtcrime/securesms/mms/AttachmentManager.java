@@ -34,6 +34,7 @@ import android.view.animation.Animation;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.SendButton;
 import org.thoughtcrime.securesms.components.AudioView;
 import org.thoughtcrime.securesms.components.RemovableMediaView;
 import org.thoughtcrime.securesms.components.ThumbnailView;
@@ -55,6 +56,7 @@ public class AttachmentManager {
   private final @NonNull RemovableMediaView removableMediaView;
   private final @NonNull ThumbnailView      thumbnail;
   private final @NonNull AudioView          audioView;
+  private final @NonNull SendButton         sendButton;
   private final @NonNull AttachmentListener attachmentListener;
 
   private @NonNull  Optional<Slide> slide = Optional.absent();
@@ -65,6 +67,7 @@ public class AttachmentManager {
     this.thumbnail          = ViewUtil.findById(activity, R.id.attachment_thumbnail);
     this.audioView          = ViewUtil.findById(activity, R.id.attachment_audio);
     this.removableMediaView = ViewUtil.findById(activity, R.id.removable_media_view);
+    this.sendButton         = ViewUtil.findById(activity, R.id.send_button);
     this.context            = activity;
     this.attachmentListener = listener;
 
@@ -86,10 +89,12 @@ public class AttachmentManager {
         slide = Optional.absent();
         thumbnail.clear();
         attachmentView.setVisibility(View.GONE);
+        sendButton.setEnabled(true);
         attachmentListener.onAttachmentChanged();
       }
     });
 
+    sendButton.setEnabled(false);
     attachmentView.startAnimation(animation);
     audioView.cleanup();
   }
