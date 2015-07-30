@@ -150,16 +150,11 @@ que %2$s reinstalou TextSecure e tem agora uma nova chave de identidade.
   <string name="DateUtils_now">Agora</string>
   <string name="DateUtils_minutes_ago">%d min</string>
   <!--DeviceListActivity-->
-  <string name="DeviceListActivity_disconnect_s">Desligar \'%s\'?</string>
-  <string name="DeviceListActivity_by_disconnecting_this_device_it_will_no_longer_be_able_to_send_or_receive">Ao desligar este dispositivo, vai deixar de enviar ou receber mensagens.</string>
   <string name="DeviceListActivity_network_connection_failed">A ligação à rede falhou!</string>
   <string name="DeviceListActivity_try_again">Tente novamente</string>
-  <string name="DeviceListActivity_disconnecting_device">A desligar dispositivo...</string>
-  <string name="DeviceListActivity_disconnecting_device_no_ellipse">A desligar dispositivo</string>
   <string name="DeviceListActivity_network_failed">A rede falhou!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Dispositivo sem nome</string>
-  <string name="DeviceListItem_created_s">Criado %s</string>
   <string name="DeviceListItem_last_active_s">Activo pela última vez %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Partilhar com</string>
@@ -257,13 +252,9 @@ importá-lo novamente resultará em mensagens duplicadas.</string>
 - Ler todas as suas mensagens
 \n- Enviar mensagens em seu nome
 </string>
-  <string name="DeviceProvisioningActivity_content_progress_title">A adicionar dispositivo</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">A adicionar um novo dispositivo...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">Dispositivo adicionado!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Nenhum dispositivo encontrado.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Erro de rede.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Código QR inválido.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_registered_already">Lamentamos mas tem demasiados dispositivos registados, tente remover alguns...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Introduza palavra-chave</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icon TextSecure</string>
@@ -469,7 +460,6 @@ Recebida mensagem com chave de identidade desconhecida. Clique para processar e 
   <string name="country_selection_fragment__loading_countries">A carregar lista de países...</string>
   <string name="country_selection_fragment__search">Procurar</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_paired">Nenhum dispositivo emparelhado...</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Não foi possível obter os registos do seu dispositivo. Alternativamente, pode utilizar o ADB para os obter.</string>
   <string name="log_submit_activity__thanks">Obrigado pela sua ajuda!</string>
@@ -622,7 +612,6 @@ falhou.
   <string name="AndroidManifest__media_overview">Todas as imagens</string>
   <string name="AndroidManifest__media_overview_named">Todas as imagens com %1$s</string>
   <string name="AndroidManifest__message_details">Detalhes da mensagem</string>
-  <string name="AndroidManifest_manage_paired_devices">Gerir dispositivos emparelhados</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importar / Exportar</string>
   <string name="arrays__my_identity_key">A minha chave de identidade</string>

@@ -132,11 +132,9 @@
   <string name="DateUtils_now">Acum</string>
   <string name="DateUtils_minutes_ago">%d min</string>
   <!--DeviceListActivity-->
-  <string name="DeviceListActivity_disconnect_s">Deconectez \'%s\'?</string>
   <string name="DeviceListActivity_try_again">Încearcă din nou</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Dispozitiv fără nume</string>
-  <string name="DeviceListItem_created_s">S-a creat %s</string>
   <string name="DeviceListItem_last_active_s">Ultima oară activ %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Partajează cu</string>
@@ -220,9 +218,6 @@ Restaurarea unui backup criptat va înlocui complet cheile existente, setările 
         - Citirea tuturor mesajelor
         \n- Trimiterea mesajelor în numele tău
     </string>
-  <string name="DeviceProvisioningActivity_content_progress_title">Se adaugă dispozitivul</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">Se adaugă un dispozitiv nou...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">Dispozitiv adăugat!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Nu a fost gasit niciun dispozitiv.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Eroare reţea.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Cod QR invalid.</string>

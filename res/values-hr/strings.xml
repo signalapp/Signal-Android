@@ -144,16 +144,11 @@ ovaj kontakt.</string>
   <string name="DateUtils_now">Sada</string>
   <string name="DateUtils_minutes_ago">%d min</string>
   <!--DeviceListActivity-->
-  <string name="DeviceListActivity_disconnect_s">Odspoji \'%s\'?</string>
-  <string name="DeviceListActivity_by_disconnecting_this_device_it_will_no_longer_be_able_to_send_or_receive">Odspajanjem ovog uređaja više nećete moći slati ili primati poruke.</string>
   <string name="DeviceListActivity_network_connection_failed">Povezivanje na mrežu nije uspjelo...</string>
   <string name="DeviceListActivity_try_again">Pokušajte ponovno</string>
-  <string name="DeviceListActivity_disconnecting_device">Odspajanje uređaja...</string>
-  <string name="DeviceListActivity_disconnecting_device_no_ellipse">Odspajanje uređaja</string>
   <string name="DeviceListActivity_network_failed">Greška mreže!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Neimenovani uređaj</string>
-  <string name="DeviceListItem_created_s">Stvoreno %s</string>
   <string name="DeviceListItem_last_active_s">Zadnje aktivno %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Podijeli s</string>
@@ -247,13 +242,9 @@ ponovno uvoženje će rezultirati duplim porukama.</string>
   <string name="DeviceProvisioningActivity_content_bullets">
 - Čitati sve vaše poruke
 \n- Slati poruke u vaše ime</string>
-  <string name="DeviceProvisioningActivity_content_progress_title">Dodavanje uređaja</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">Dodavanje novog uređaja...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">Uređaj dodan!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Uređaj nije pronađen.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Mrežna greška.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Neispravan QR kod.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_registered_already">Imate previše registriranih uređaja, pokušajte ukloniti neke...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Unesite lozinku</string>
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure ikona</string>
@@ -457,7 +448,6 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <string name="country_selection_fragment__loading_countries">Učitavanje zemalja...</string>
   <string name="country_selection_fragment__search">Traži</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_paired">Nema uparenih uređaja...</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Nije moguće dohvatiti zapise sa vašeg uređaja. Još uvijek možete koristiti ADB kako biste dohvatili debug zapise.</string>
   <string name="log_submit_activity__thanks">Hvala na pomoći!</string>
@@ -604,7 +594,6 @@ neuspješno.</string>
   <string name="AndroidManifest__media_overview">Sve slike</string>
   <string name="AndroidManifest__media_overview_named">Sve slike sa %1$s</string>
   <string name="AndroidManifest__message_details">Detalji poruke</string>
-  <string name="AndroidManifest_manage_paired_devices">Upravljanje uparenim uređajima</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Uvoz / izvoz</string>
   <string name="arrays__my_identity_key">Moj ključ identiteta</string>

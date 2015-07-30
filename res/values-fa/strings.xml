@@ -125,8 +125,6 @@
   <string name="DateUtils_now">اکنون</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_try_again">دوباره تلاش کن</string>
-  <string name="DeviceListActivity_disconnecting_device">قطع اتصال دستگاه ...</string>
-  <string name="DeviceListActivity_disconnecting_device_no_ellipse">قطع اتصال دستگاه</string>
   <string name="DeviceListActivity_network_failed">شکست خوردن در شبکه!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">دستگاهی که نامش ذکر نشده</string>
@@ -197,9 +195,6 @@
   <string name="DeviceProvisioningActivity_continue">ادامه</string>
   <string name="DeviceProvisioningActivity_title">پیوند این دستگاه؟</string>
   <string name="DeviceProvisioningActivity_content_intro">این قادر خواهد بود به</string>
-  <string name="DeviceProvisioningActivity_content_progress_title">اضافه کردن دستگاه</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">اضافه کردن دستگاه جدید ...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">دستگاه اضافه شده است!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">دستگاه یافت نشد.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">خطای شبکه.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">کد QR نامعتبر است.</string>

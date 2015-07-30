@@ -142,16 +142,11 @@ questo contatto.</string>
   <string name="DateUtils_now">Adesso</string>
   <string name="DateUtils_minutes_ago">%d minuto</string>
   <!--DeviceListActivity-->
-  <string name="DeviceListActivity_disconnect_s">Disconnettere \'%s\'?</string>
-  <string name="DeviceListActivity_by_disconnecting_this_device_it_will_no_longer_be_able_to_send_or_receive">Disconnettendo questo dispositivo, esso non sarà più in grado di ricevere nè inviare messaggi.</string>
   <string name="DeviceListActivity_network_connection_failed">Connessione di rete fallita....</string>
   <string name="DeviceListActivity_try_again">Riprova</string>
-  <string name="DeviceListActivity_disconnecting_device">Disconnessione dispositivo...</string>
-  <string name="DeviceListActivity_disconnecting_device_no_ellipse">Scollegamento dispositivo</string>
   <string name="DeviceListActivity_network_failed">Errore di rete!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Dispositivo senza nome</string>
-  <string name="DeviceListItem_created_s">Creato %s</string>
   <string name="DeviceListItem_last_active_s">Ultima attività %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Condividi con</string>
@@ -247,13 +242,9 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="DeviceProvisioningActivity_content_bullets">
 - Leggere tutti i tuoi messaggi
 \n- Inviare messaggi col tuo nome</string>
-  <string name="DeviceProvisioningActivity_content_progress_title">Aggiunta dispositivo</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">Aggiunta nuovo dispositivo...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">Dispositivo aggiunto!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Nessun dispositivo trovato.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Errore di rete.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Codice QR non valido.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_registered_already">Ci spiace, hai già troppi dispositivi registrati, prova a rimuoverne alcuni...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Inserire la password</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icona TextSecure</string>
@@ -458,7 +449,6 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <string name="country_selection_fragment__loading_countries">Caricamento dei paese...</string>
   <string name="country_selection_fragment__search">Cerca</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_paired">Nessun dispositivo collegato...</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Non riesco a recuperare i log dal tuo dispositivo. Puoi sempre utilizzare ADB per ottenere i log di debug.</string>
   <string name="log_submit_activity__thanks">Grazie dell\'aiuto!</string>
@@ -619,7 +609,6 @@ non riuscita.
   <string name="AndroidManifest__media_overview">Tutte le immagini</string>
   <string name="AndroidManifest__media_overview_named">Tutte le immagini con %1$s</string>
   <string name="AndroidManifest__message_details">Dettagli messaggio</string>
-  <string name="AndroidManifest_manage_paired_devices">Gestisci dispositivi collegati</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importa / Esporta</string>
   <string name="arrays__my_identity_key">La chiave della mia identità</string>

@@ -141,16 +141,11 @@
   <string name="DateUtils_now">방금 전</string>
   <string name="DateUtils_minutes_ago">%d분 전</string>
   <!--DeviceListActivity-->
-  <string name="DeviceListActivity_disconnect_s">%s을(를) 등록 해제하시겠습니까?</string>
-  <string name="DeviceListActivity_by_disconnecting_this_device_it_will_no_longer_be_able_to_send_or_receive">등록 해제를 통해 메시지를 보내거나 받지 못할 수 있습니다.</string>
   <string name="DeviceListActivity_network_connection_failed">네트워크에 연결되지 않습니다.</string>
   <string name="DeviceListActivity_try_again">다시 시도</string>
-  <string name="DeviceListActivity_disconnecting_device">기기 등록 해제 중…</string>
-  <string name="DeviceListActivity_disconnecting_device_no_ellipse">기기 등록 해제</string>
   <string name="DeviceListActivity_network_failed">네트워크에 연결되지 않음</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">이름이 없는 기기</string>
-  <string name="DeviceListItem_created_s">등록: %s</string>
   <string name="DeviceListItem_last_active_s">최근 사용: %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">공유 대상</string>
@@ -236,13 +231,9 @@
   <string name="DeviceProvisioningActivity_content_intro">액세스 권한</string>
   <string name="DeviceProvisioningActivity_content_bullets">- 내 메시지 읽기
 \n- 내 이름으로 메시지 보내기</string>
-  <string name="DeviceProvisioningActivity_content_progress_title">기기 추가</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">새 기기를 추가 중…</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">기기 추가 완료</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">기기 없음</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">네트워크 오류</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">QR코드가 잘못됨</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_registered_already">기기 등록 가능 갯수 초과하여 기존의 기기 중 하나 등록 해제 필요</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">암호 입력</string>
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure 아이콘</string>
@@ -436,7 +427,6 @@
   <string name="country_selection_fragment__loading_countries">국가 로드 중…</string>
   <string name="country_selection_fragment__search">검색</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_paired">등록된 기기 없음</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">기기에서 로그 가져올 수 없지만 ADB로 수동 가져올 수 있음</string>
   <string name="log_submit_activity__thanks">도와주셔서 감사합니다.</string>
@@ -557,7 +547,6 @@
   <string name="AndroidManifest__media_overview">전체 이미지</string>
   <string name="AndroidManifest__media_overview_named">%1$s님이랑 대화의 전체 이미지</string>
   <string name="AndroidManifest__message_details">메시지 세부정보</string>
-  <string name="AndroidManifest_manage_paired_devices">등록된 기기 관리</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">가져오기 / 내보내기</string>
   <string name="arrays__my_identity_key">내 인증 키</string>

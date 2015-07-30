@@ -224,8 +224,6 @@ kurulumunuzda bulunan ancak yüklenecek yedekte bulunmayan tüm bilgiler kaybolu
   <string name="DeviceProvisioningActivity_content_bullets">
 - Tüm mesajlarınızı okuyunuz
 \n-Mesajları adınızla gönderiniz</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">Yeni cihaz ekleniyor...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">Cihaz eklendi!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Hiç cihaz bulanamadı.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Ağ hatası.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Geçersiz QR kodu.</string>

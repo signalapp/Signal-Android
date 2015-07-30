@@ -145,16 +145,11 @@ preveriti ta stik.</string>
   <string name="DateUtils_now">Ravnokar</string>
   <string name="DateUtils_minutes_ago">%d min</string>
   <!--DeviceListActivity-->
-  <string name="DeviceListActivity_disconnect_s">Odstranim \'%s\'?</string>
-  <string name="DeviceListActivity_by_disconnecting_this_device_it_will_no_longer_be_able_to_send_or_receive">Z odstranitvijo naprave ta ne bo več mogla pošiljati ali prejemati sporočil.</string>
   <string name="DeviceListActivity_network_connection_failed">Omrežno povezovanje ni bilo uspešno...</string>
   <string name="DeviceListActivity_try_again">Poskusite znova</string>
-  <string name="DeviceListActivity_disconnecting_device">Odstranjujem napravo...</string>
-  <string name="DeviceListActivity_disconnecting_device_no_ellipse">Odklapljam napravo...</string>
   <string name="DeviceListActivity_network_failed">Povezovanje ni uspelo!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Nepoimenovana naprava</string>
-  <string name="DeviceListItem_created_s">Ustvarjena %s</string>
   <string name="DeviceListItem_last_active_s">Zadnja aktivna %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Deli z</string>
@@ -241,13 +236,9 @@ preveriti ta stik.</string>
   <string name="DeviceProvisioningActivity_content_bullets">
 - prebirala vsa vaša sporočila
 \n- pošiljala sporočila v vašem imenu</string>
-  <string name="DeviceProvisioningActivity_content_progress_title">Dodajam napravo</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">Dodajam novo napravo...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">Naprava dodana!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Nobena naprava ni bila najdena.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Napaka omrežja.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Neveljavna koda QR.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_registered_already">Imate preveč registriranih naprav, poskusite kakšno odstraniti...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Vnesite geslo</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Ikona TextSecure</string>
@@ -445,7 +436,6 @@ Prejeto sporočilo z neznanim identifikacijskim ključem. Kliknite za obdelavo i
   <string name="country_selection_fragment__loading_countries">Pripravljam države...</string>
   <string name="country_selection_fragment__search">Poišči</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_paired">Ni povezanih naprav...</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Ne morem zajeti podatkov iz vaše naprave. Sistemsko zabeležbo lahko zajamete tudi sami preko ADB.</string>
   <string name="log_submit_activity__thanks">Hvala za pomoč!</string>
@@ -586,7 +576,6 @@ bila uspešna.</string>
   <string name="AndroidManifest__media_overview">Vse slike</string>
   <string name="AndroidManifest__media_overview_named">Vse slike z %1$s</string>
   <string name="AndroidManifest__message_details">Podrobnosti sporočila</string>
-  <string name="AndroidManifest_manage_paired_devices">Upravljanje povezanih naprav</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Uvoz/izvoz</string>
   <string name="arrays__my_identity_key">Moja identifikacija</string>

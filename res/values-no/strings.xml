@@ -145,16 +145,11 @@ denne kontakten.</string>
   <string name="DateUtils_now">Nå</string>
   <string name="DateUtils_minutes_ago">%d min</string>
   <!--DeviceListActivity-->
-  <string name="DeviceListActivity_disconnect_s">Frakoble «%s»?</string>
-  <string name="DeviceListActivity_by_disconnecting_this_device_it_will_no_longer_be_able_to_send_or_receive">Ved å frakoble denne enheten vil den ikke lenger være i stand til å sende eller motta meldinger.</string>
   <string name="DeviceListActivity_network_connection_failed">Nettverksforbindelse feilet...</string>
   <string name="DeviceListActivity_try_again">Prøv igjen</string>
-  <string name="DeviceListActivity_disconnecting_device">Frakobler enhet...</string>
-  <string name="DeviceListActivity_disconnecting_device_no_ellipse">Frakobler enhet</string>
   <string name="DeviceListActivity_network_failed">Nettverk feilet!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Ikke navngitt enhet</string>
-  <string name="DeviceListItem_created_s">Opprettet %s</string>
   <string name="DeviceListItem_last_active_s">Sist aktiv %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Del med</string>
@@ -243,13 +238,9 @@ Gjenoppretting av en kryptert backup vil overskrive eksisterende nøkler, innsti
 - Lese alle meldingene dine
 \n- Sende meldinger i ditt navn
  </string>
-  <string name="DeviceProvisioningActivity_content_progress_title">Legger til enhet</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">Legger til ny enhet...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">Enhet lagt til!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Ingen enhet funnet.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Nettverksfeil.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Ugyldig QR-kode.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_registered_already">Beklager, du har for mange enheter registrert allerede, forsøk å fjerne noen...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Tast inn passord</string>
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure ikon</string>
@@ -450,7 +441,6 @@ Mottatt melding med ukjent ID nøkkel. Klikk for å prosessere og vise.</string>
   <string name="country_selection_fragment__loading_countries">Laster land...</string>
   <string name="country_selection_fragment__search">Søk</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_paired">Ingen sammenkoblede enheter...</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Kunne ikke hente loggene fra din enhet. Du kan fremdeles benytte ADB for å hente debug logger.</string>
   <string name="log_submit_activity__thanks">Takk for hjelpen!</string>
@@ -589,7 +579,6 @@ feilet.</string>
   <string name="AndroidManifest__media_overview">Alle bilder</string>
   <string name="AndroidManifest__media_overview_named">Alle bilder med %1$s</string>
   <string name="AndroidManifest__message_details">Meldingsdetaljer</string>
-  <string name="AndroidManifest_manage_paired_devices">Administrer sammenkoblede enheter</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importere / eksportere</string>
   <string name="arrays__my_identity_key">Min ID-nøkkel</string>
