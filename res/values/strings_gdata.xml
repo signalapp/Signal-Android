@@ -37,7 +37,7 @@
     <string name="unknown_country">Unknown country</string>
     <string name="log_submit_activity__button_dont_submit">Don\'t submit</string>
     <string name="log_submit_activity__button_submit">Submit</string>
-    <string name="claim_textsecure">Mit uns ist Sicherheit so einfach, das du es einfach machen musst.</string>
+    <string name="claim_textsecure">SIMPLY. SECURE. SHARE MOMENTS WITH FRIENDS.</string>
     <string name="ConversationItem_error_sending_message_gdata">Error sending message: a recipient might not have received your message.</string>
     <string name="self_destruction_compose_hint">Send self-destructing message</string>
     <string name="privacy_toast_unlock_premium">You must unlock the premium functionality of G DATA Internet Security in order to use this function.</string>
@@ -53,7 +53,7 @@
     <string name="identification_verified_unsuccessfully">The keys do not match!</string>
     <string name="identification_verified_successfully">Identification successful.</string>
     <string name="accept_eula_and_continue"><![CDATA[Agree & Continue]]></string>
-    <string name="eula_gdata"><u><![CDATA[T&Cs]]></u></string>
+    <string name="eula_gdata"><u><![CDATA[Show T&Cs]]></u></string>
     <string name="take_picture">Take picture</string>
     <string name="status_available">Available</string>
     <string name="status_busy">Busy</string>
@@ -64,4 +64,5 @@
     <string name="status_onlyurgentcalls">Urgent calls only</string>
     <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions"> Sorry, the selected audio exceeds message size restrictions (%1$skB).</string>
     <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions"> Sorry, the selected video exceeds message size restrictions (%1$skB).</string>
+    <string name="eula_gdata_header_one">WELCOME TO</string>
 </resources>

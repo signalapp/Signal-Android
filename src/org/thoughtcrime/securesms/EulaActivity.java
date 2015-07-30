@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms;
 
-
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -31,7 +30,7 @@ public class EulaActivity extends AppCompatActivity {
 
     public static final String EULA_SHOWN = "eula_shown";
 
-    public static class EulaDialig extends DialogFragment{
+    public static class EulaDialig extends DialogFragment {
 
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -39,18 +38,12 @@ public class EulaActivity extends AppCompatActivity {
 
             Spanned span = Html.fromHtml(str.toString());
 
-            return new AlertDialog.Builder(getActivity())
-                    .setIcon(R.drawable.ic_launcher)
-                    .setTitle(R.string.eula_gdata)
-                    .setMessage(span)
-                    .setPositiveButton(android.R.string.ok,
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int whichButton) {
-                                    dialog.dismiss();
-                                }
-                            }
-                    )
-                    .create();
+            return new AlertDialog.Builder(getActivity()).setIcon(R.drawable.ic_launcher).setTitle(R.string.eula_gdata)
+                    .setMessage(span).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            dialog.dismiss();
+                        }
+                    }).create();
         }
 
     }
@@ -63,11 +56,13 @@ public class EulaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.eula_activity);
         ActionBar supportActionBar = getSupportActionBar();
-        if(supportActionBar != null) {
+        if (supportActionBar != null) {
             supportActionBar.hide();
         }
 
         mAcceptEula = (Button) findViewById(R.id.eula_accept);
+
+        ((TextView) findViewById(R.id.intro_part_two)).setText(getString(R.string.app_name).toUpperCase());
 
         mAcceptEula.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,11 +82,11 @@ public class EulaActivity extends AppCompatActivity {
             }
         });
 
-        View layout              = (LinearLayout) findViewById(R.id.rootLayout);
-        ImageView background              = (ImageView) findViewById(R.id.background);
-        background.setAlpha(125);
+        View layout = (LinearLayout) findViewById(R.id.rootLayout);
+        ImageView background = (ImageView) findViewById(R.id.background);
         GUtil.setFontForFragment(this, layout);
     }
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
