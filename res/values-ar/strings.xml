@@ -37,7 +37,6 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">لم يتم العثور على تطبيق لاختيار ملف.</string>
   <!--AttachmentTypeSelectorAdapter-->
-  <string name="AttachmentTypeSelectorAdapter_take_photo">التقط صورة</string>
   <string name="AttachmentTypeSelectorAdapter_picture">صورة</string>
   <string name="AttachmentTypeSelectorAdapter_video">فيديو</string>
   <string name="AttachmentTypeSelectorAdapter_audio">صوت</string>

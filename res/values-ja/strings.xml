@@ -38,7 +38,6 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">メディアの選択用アプリが見つかりません。</string>
   <!--AttachmentTypeSelectorAdapter-->
-  <string name="AttachmentTypeSelectorAdapter_take_photo">写真を撮影</string>
   <string name="AttachmentTypeSelectorAdapter_picture">写真</string>
   <string name="AttachmentTypeSelectorAdapter_video">動画</string>
   <string name="AttachmentTypeSelectorAdapter_audio">音声</string>

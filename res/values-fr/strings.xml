@@ -12,6 +12,10 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Supprimer tous les anciens messages maintenant ?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Êtes-vous sûr de vouloir réduire toutes les conversations aux %s messages les plus récents ?</string>
   <string name="ApplicationPreferencesActivity_delete">Supprimer</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">Désactiver la phrase de passe ?</string>
+  <string name="ApplicationPreferencesActivity_disable_lock_screen">
+        Désactiver le blocage de l\'écran pour les messages ?
+    </string>
   <string name="ApplicationPreferencesActivity_disable">Désactiver</string>
   <string name="ApplicationPreferencesActivity_unregistering">Annulation de l\'enregistrement</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Annulation de l\'enregistrement aux messages TextSecure</string>
@@ -39,7 +43,6 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Impossible de trouver une application pour sélectionner le média.</string>
   <!--AttachmentTypeSelectorAdapter-->
-  <string name="AttachmentTypeSelectorAdapter_take_photo">Prendre une photo</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Image</string>
   <string name="AttachmentTypeSelectorAdapter_video">Vidéo</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
@@ -415,6 +418,7 @@ Un message avec une clé de chiffrement inconnue a été reçu. Cliquer pour l\'
   <string name="change_passphrase_activity__new_passphrase">Nouvelle phrase de passe :</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">Répéter la nouvelle phrase de passe :</string>
   <!--contact_selection_activity-->
+  <string name="contact_selection_activity__enter_name_or_number">Entrez un nom ou numéro</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Aucun contact.</string>
   <string name="contact_selection_group_activity__finding_contacts">Chargement des contacts...</string>

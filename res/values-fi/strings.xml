@@ -12,6 +12,9 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Poistetaanko kaikki vanhat viestit nyt?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Haluatko varmasti rajata kaikki keskustelut %s viimeisimpään viestiin?</string>
   <string name="ApplicationPreferencesActivity_delete">Poista</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">Poista salalause käytöstä?</string>
+  <string name="ApplicationPreferencesActivity_disable_lock_screen">
+Poistetaanko sovelluksen ja viestien lukitus salalauseella käytöstä?</string>
   <string name="ApplicationPreferencesActivity_disable">Poista käytöstä</string>
   <string name="ApplicationPreferencesActivity_unregistering">Puretaan rekisteröintiä</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Puretaan rekisteröintiä TextSecure-viestipalvelusta</string>
@@ -38,7 +41,7 @@ Jos haluat käyttää TextSecure-viestejä jatkossa, sinun täytyy rekisteröity
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Median valintaan ei löytynyt sovellusta.</string>
   <!--AttachmentTypeSelectorAdapter-->
-  <string name="AttachmentTypeSelectorAdapter_take_photo">Ota kuva</string>
+  <string name="AttachmentTypeSelectorAdapter_camera">Kamera</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Kuva</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Äänitallenne</string>
@@ -81,6 +84,7 @@ tämän yhteystiedon.</string>
   <string name="ConversationActivity_select_contact_info">Valitse yhteystieto</string>
   <string name="ConversationActivity_compose_message">Kirjoita viesti</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Virhe liitteen lisäämisessä</string>
+  <string name="ConversationActivity_the_gif_you_selected_was_too_big">Valitsemasi gif on liian suuri!</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Valitettavasti kyseinen video ylittää viesteille asetetun kokorajoituksen (%1$skB).</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Valitettavasti kyseinen äänitallenne ylittää viesteille asetetun kokorajoituksen (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Annettu numero tai sähköpostiosoite ei ole kelvollinen!</string>
@@ -402,7 +406,7 @@ Vastaanotettiin viesti tuntemattomalla identiteettiavaimella. Aloita käsittely 
   <string name="MessageNotifier_media_message_with_text">Mediaviesti: %s</string>
   <string name="MessageNotifier_no_subject">(Ei otsikkoa)</string>
   <string name="MessageNotifier_message_delivery_failed">Viestin toimitus epäonnistui.</string>
-  <string name="MessageNotifier_failed_to_deliver_message">Viestin toimitus epäonnistui.</string>
+  <string name="MessageNotifier_failed_to_deliver_message">Viestin lähetys ei onnistunut.</string>
   <string name="MessageNotifier_error_delivering_message">Virhe viestiä toimitettaessa.</string>
   <string name="MessageNotifier_mark_all_as_read">Merkitse kaikki luetuiksi</string>
   <string name="MessageNotifier_mark_read">Merk. luetuksi</string>
@@ -440,7 +444,7 @@ Vastaanotettiin viesti tuntemattomalla identiteettiavaimella. Aloita käsittely 
   <string name="conversation_activity__compose_description">Viestin kirjoitus</string>
   <string name="conversation_activity__emoji_toggle_description">Näytä tai piilota emoji-näppäimistö</string>
   <string name="conversation_activity__attachment_thumbnail">Liitteen esikatselu</string>
-  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Ota pikakuva</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Pikakamera</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Ladataan mediaviestiä</string>
   <string name="conversation_item__mms_image_description">Mediaviesti</string>

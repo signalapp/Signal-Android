@@ -36,7 +36,6 @@ Pokiaľ v budúcnosti budete chcieť používať TextSecure správy, budete sa m
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nepodarilo sa nájsť aplikáciu pre výber médií.</string>
   <!--AttachmentTypeSelectorAdapter-->
-  <string name="AttachmentTypeSelectorAdapter_take_photo">Odfotiť</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Obrázok</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>

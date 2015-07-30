@@ -37,7 +37,6 @@ Gelecekte TextSecure mesajlarını tekrar kullanmak isterseniz telefon numaranı
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Seçtiğiniz medya için bir uygulama bulunamadı.</string>
   <!--AttachmentTypeSelectorAdapter-->
-  <string name="AttachmentTypeSelectorAdapter_take_photo">Foto Çek</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Resim</string>
   <string name="AttachmentTypeSelectorAdapter_video">Görüntü</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Ses</string>

@@ -12,6 +12,9 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Smazat všechny staré zprávy?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Opravdu chcete všechny konverzace zkrátit na posledních %s zpráv?</string>
   <string name="ApplicationPreferencesActivity_delete">Smazat</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">Zakázat heslo?</string>
+  <string name="ApplicationPreferencesActivity_disable_lock_screen">
+Zakázat uzamčení obrazovky zpráv?</string>
   <string name="ApplicationPreferencesActivity_disable">Deaktivovat</string>
   <string name="ApplicationPreferencesActivity_unregistering">Rušení registrace</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Odregistrace TextSecure zpráv</string>
@@ -38,7 +41,7 @@ Abyste mohli v budoucnu používat TextSecure zprávy, bude nutno toto telefonn�
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nemohu nalézt aplikaci pro vybraný typ dat</string>
   <!--AttachmentTypeSelectorAdapter-->
-  <string name="AttachmentTypeSelectorAdapter_take_photo">Vyfotit</string>
+  <string name="AttachmentTypeSelectorAdapter_camera">Kamera</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Foto</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
@@ -81,6 +84,7 @@ kontakt</string>
   <string name="ConversationActivity_select_contact_info">Vybrat informace o kontaktu</string>
   <string name="ConversationActivity_compose_message">Napište zprávu</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Omlouváme se, ale došlo k chybě při zpracování přílohy</string>
+  <string name="ConversationActivity_the_gif_you_selected_was_too_big">Vybraný gif je příliš velký!</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Omlouvám se, vybrané video překračuje maximální povolenou velikost (%1$skB)</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Omlouvám se, vybrané audio překračuje maximální povolenou velikost (%1$skB)</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Adresa příjemce není ve správném tvaru! (sms či email)</string>
@@ -401,6 +405,7 @@ Obdržena zpráva s neznámým identifikačním klíčem. Klepněte pro její zp
   <string name="change_passphrase_activity__new_passphrase">NOVÉ HESLO</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">ZNOVU NOVÉ HESLO</string>
   <!--contact_selection_activity-->
+  <string name="contact_selection_activity__enter_name_or_number">Zadejte jméno nebo číslo</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Žádný kontakt</string>
   <string name="contact_selection_group_activity__finding_contacts">Načítám kontakty...</string>

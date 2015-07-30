@@ -36,7 +36,6 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Δεν μπορεί να βρεθεί μια εφαρμογή για επιλογή μέσων ενημέρωσης.</string>
   <!--AttachmentTypeSelectorAdapter-->
-  <string name="AttachmentTypeSelectorAdapter_take_photo">Λήψη φωτογραφίας</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Εικόνα</string>
   <string name="AttachmentTypeSelectorAdapter_video">Βίντεο</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Ήχος</string>

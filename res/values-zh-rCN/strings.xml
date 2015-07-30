@@ -12,6 +12,9 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">删除所有旧信息？</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">你确定处理与%s的最近的对话消息？</string>
   <string name="ApplicationPreferencesActivity_delete">删除</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">禁用密码？</string>
+  <string name="ApplicationPreferencesActivity_disable_lock_screen">
+为信息禁用锁屏？</string>
   <string name="ApplicationPreferencesActivity_disable">禁用</string>
   <string name="ApplicationPreferencesActivity_unregistering">反注册</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">正在反注册来自 TextSecure 的信息...</string>
@@ -38,7 +41,6 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">无法找到用于选择媒体的应用。</string>
   <!--AttachmentTypeSelectorAdapter-->
-  <string name="AttachmentTypeSelectorAdapter_take_photo">拍照</string>
   <string name="AttachmentTypeSelectorAdapter_picture">图片</string>
   <string name="AttachmentTypeSelectorAdapter_video">视频</string>
   <string name="AttachmentTypeSelectorAdapter_audio">音频</string>
@@ -51,6 +53,7 @@
 这个联系人。</string>
   <string name="ConfirmIdentityDialog_accept">接受</string>
   <!--ContactsDatabase-->
+  <string name="ContactsDatabase_message_s">信息 %s</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">信息大小： %d KB</string>
   <string name="ConversationItem_expires_s">到期： %s</string>
@@ -383,6 +386,7 @@
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_messages_in_d_conversations">%1$d 信息是在 %2$d 中的会话</string>
   <string name="MessageNotifier_most_recent_from_s">最新的邮件来自：%1$s</string>
+  <string name="MessageNotifier_locked_message">锁定的信息…</string>
   <string name="MessageNotifier_media_message_with_text">媒体信息：%s</string>
   <string name="MessageNotifier_no_subject">（无主题）</string>
   <string name="MessageNotifier_message_delivery_failed">信息发送失败。</string>
@@ -400,6 +404,7 @@
   <string name="change_passphrase_activity__new_passphrase">新密码：</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">重复新密码：</string>
   <!--contact_selection_activity-->
+  <string name="contact_selection_activity__enter_name_or_number">输入姓名或号码</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">没有联系人。</string>
   <string name="contact_selection_group_activity__finding_contacts">读取联系人…</string>
@@ -629,6 +634,7 @@ TextSecure 在等待短信验证时超时。</string>
   <string name="preferences__change_my_passphrase">更改我的密码</string>
   <string name="preferences__enable_passphrase">启用密码</string>
   <string name="preferences__passphrase_summary">密码 %s</string>
+  <string name="preferences__enable_lock_screen_for_messages">为信息启用锁屏</string>
   <string name="preferences__screen_security">屏幕安全性</string>
   <string name="preferences__screen_security_summary">屏幕安全性 %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">屏蔽下列应用和内置应用的截屏功能</string>

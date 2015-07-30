@@ -12,6 +12,10 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Excluir todas as mensagens antigas agora?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Tem certeza que deseja manter apenas as %s mensagens mais recentes?</string>
   <string name="ApplicationPreferencesActivity_delete">Excluir</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">Desabilitar frase-chave?</string>
+  <string name="ApplicationPreferencesActivity_disable_lock_screen">
+        Desabilitar tela de bloqueio para mensagens?
+    </string>
   <string name="ApplicationPreferencesActivity_disable">Desabilitar</string>
   <string name="ApplicationPreferencesActivity_unregistering">Descadastrar</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Descadastrando de mensagens TextSecure...</string>
@@ -39,7 +43,6 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Não localizei um aplicativo para selecionar o arquivo.</string>
   <!--AttachmentTypeSelectorAdapter-->
-  <string name="AttachmentTypeSelectorAdapter_take_photo">Tirar foto</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Imagem</string>
   <string name="AttachmentTypeSelectorAdapter_video">Vídeo</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Áudio</string>
@@ -429,6 +432,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="change_passphrase_activity__new_passphrase">Frase-chave nova:</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">Repetir a frase-chave nova:</string>
   <!--contact_selection_activity-->
+  <string name="contact_selection_activity__enter_name_or_number">Digite o nome ou número</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Sem contactos.</string>
   <string name="contact_selection_group_activity__finding_contacts">Carregando contatos...</string>

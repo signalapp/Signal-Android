@@ -38,7 +38,6 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Не найдено приложение для выбора медиа-файлов.</string>
   <!--AttachmentTypeSelectorAdapter-->
-  <string name="AttachmentTypeSelectorAdapter_take_photo">Сделать фото</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Изображение</string>
   <string name="AttachmentTypeSelectorAdapter_video">Видео</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Аудио</string>

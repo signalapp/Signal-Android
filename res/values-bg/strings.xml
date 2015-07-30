@@ -12,6 +12,9 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Изтрий всички стари съобщения сега?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Сигурен ли си, че искаш скъсиш всички разговори до %s съобщения във всяка?</string>
   <string name="ApplicationPreferencesActivity_delete">Изтрий</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">Изключи паролата?</string>
+  <string name="ApplicationPreferencesActivity_disable_lock_screen">
+Изключи заключен екран за съобщения?</string>
   <string name="ApplicationPreferencesActivity_disable">Изключи</string>
   <string name="ApplicationPreferencesActivity_unregistering">Отписване</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Отписване от TextSecure съобщения...</string>
@@ -38,7 +41,6 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Неуспешно откирване на папка за избор на файл.</string>
   <!--AttachmentTypeSelectorAdapter-->
-  <string name="AttachmentTypeSelectorAdapter_take_photo">Направи снимка</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Картина</string>
   <string name="AttachmentTypeSelectorAdapter_video">Видео</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Аудио</string>
@@ -409,6 +411,7 @@ SMS съобщенията от системната базата данни в 
   <string name="change_passphrase_activity__new_passphrase">НОВА ПАРОЛА: </string>
   <string name="change_passphrase_activity__repeat_new_passphrase">ПОВТОРИ НОВАТА ПАРОЛА: </string>
   <!--contact_selection_activity-->
+  <string name="contact_selection_activity__enter_name_or_number">Въведи име или номер</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Няма контакти.</string>
   <string name="contact_selection_group_activity__finding_contacts">Зареждане на контакти...</string>

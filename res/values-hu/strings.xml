@@ -12,6 +12,9 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Minden régebbi üzenetet szeretnél törölni most?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Biztosan szeretnéd azonnal csonkolni az összes beszélgetésfolyamot a legutóbbi %s üzenetre?</string>
   <string name="ApplicationPreferencesActivity_delete">Törlés</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">Jelszó tiltása?</string>
+  <string name="ApplicationPreferencesActivity_disable_lock_screen">
+Tárolt képernyő engedélyezése az üzeneteknek?</string>
   <string name="ApplicationPreferencesActivity_disable">Tiltás</string>
   <string name="ApplicationPreferencesActivity_unregistering">Leregisztrálás</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Leregisztrálás TextSecure üzenetekről...</string>
@@ -39,7 +42,6 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nem található alkalmazás a média kiválasztásához</string>
   <!--AttachmentTypeSelectorAdapter-->
-  <string name="AttachmentTypeSelectorAdapter_take_photo">Fénykép készítése</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Kép</string>
   <string name="AttachmentTypeSelectorAdapter_video">Mozgókép</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Hang</string>
@@ -426,6 +428,7 @@ Ismeretlen azonosító kulcsú üzenet érkezett. Kattints rá a feldolgozáshoz
   <string name="change_passphrase_activity__new_passphrase">ÚJ JELSZÓ:</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">ISMÉTELD MEG AZ ÚJ JELSZÓT:</string>
   <!--contact_selection_activity-->
+  <string name="contact_selection_activity__enter_name_or_number">Írj be egy nevet vagy egy számot!</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Nincsenek névjegyek.</string>
   <string name="contact_selection_group_activity__finding_contacts">Névjegyek betöltése...</string>

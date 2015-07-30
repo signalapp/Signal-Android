@@ -39,7 +39,6 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Не постои апликација за избор на датотеки.</string>
   <!--AttachmentTypeSelectorAdapter-->
-  <string name="AttachmentTypeSelectorAdapter_take_photo">Сликај</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Слика</string>
   <string name="AttachmentTypeSelectorAdapter_video">Видео</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Звук</string>

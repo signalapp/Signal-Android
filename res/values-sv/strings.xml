@@ -12,6 +12,9 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Radera alla gamla meddelanden nu?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Är du säker på att du omedelbart vill trimma alla konversationstrådar till de %s senaste meddelandena?</string>
   <string name="ApplicationPreferencesActivity_delete">Radera</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">Ta bort lösenordsfras?</string>
+  <string name="ApplicationPreferencesActivity_disable_lock_screen">
+Stäng av låsskärm för meddelanden?</string>
   <string name="ApplicationPreferencesActivity_disable">Inaktivera</string>
   <string name="ApplicationPreferencesActivity_unregistering">Avregistrering</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Avregistrerar från TextSecure-meddelanden...</string>
@@ -38,7 +41,6 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Kan ej hitta app för att välja media.</string>
   <!--AttachmentTypeSelectorAdapter-->
-  <string name="AttachmentTypeSelectorAdapter_take_photo">Ta foto</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Bild</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Ljud</string>
@@ -404,6 +406,7 @@ Tog emot meddelande med okänd identitetsnyckel. Tryck för att bearbeta och vis
   <string name="change_passphrase_activity__new_passphrase">NYTT LÖSENORD:</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">UPPREPA NYTT LÖSENORD:</string>
   <!--contact_selection_activity-->
+  <string name="contact_selection_activity__enter_name_or_number">Skriv in namn eller nummer</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Inga kontakter.</string>
   <string name="contact_selection_group_activity__finding_contacts">Laddar kontakter…</string>
@@ -624,7 +627,7 @@ TextSecure uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="preferences__change_my_passphrase">Ändra mitt lösenord</string>
   <string name="preferences__enable_passphrase">Aktivera lösenordsfras</string>
   <string name="preferences__passphrase_summary">Lösenordsfras %s</string>
-  <string name="preferences__enable_lock_screen_for_messages">Slå på låsskärm för meddelanden</string>
+  <string name="preferences__enable_lock_screen_for_messages">Sätt på låsskärm för meddelanden</string>
   <string name="preferences__screen_security">Skärmsäkerhet</string>
   <string name="preferences__screen_security_summary">Skärmsäkerhet %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blockera skärmdumpar i Senaste-listen samt inuti appen</string>

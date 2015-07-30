@@ -12,6 +12,10 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Nu alle oude berichten verwijderen?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Weet je zeker dat je alle gesprekken wil inkorten tot de laatste %s berichten?</string>
   <string name="ApplicationPreferencesActivity_delete">Verwijderen</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">Wachtwoord uitschakelen?</string>
+  <string name="ApplicationPreferencesActivity_disable_lock_screen">
+        Voorbeeldvenster uitschakelen voor berichten?
+    </string>
   <string name="ApplicationPreferencesActivity_disable">Uitschakelen</string>
   <string name="ApplicationPreferencesActivity_unregistering">Af aan het melden</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Aan het afmelden voor TextSecure berichten...</string>
@@ -38,7 +42,7 @@ Indien je in de toekomst weer TextSecure berichten wilt gebruiken zul je je tele
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Geen app gevonden om media te selecteren.</string>
   <!--AttachmentTypeSelectorAdapter-->
-  <string name="AttachmentTypeSelectorAdapter_take_photo">Foto nemen</string>
+  <string name="AttachmentTypeSelectorAdapter_camera">Camera</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Afbeelding</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
@@ -77,6 +81,7 @@ Indien je in de toekomst weer TextSecure berichten wilt gebruiken zul je je tele
   <string name="ConversationActivity_select_contact_info">Selecteer contactinformatie</string>
   <string name="ConversationActivity_compose_message">Bericht opstellen</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Excuses, er trad een fout op bij het instellen van uw bijlage.</string>
+  <string name="ConversationActivity_the_gif_you_selected_was_too_big">De gif die u geselecteerd hebt is te groot!</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Excuses, het videobestand overschrijdt de maximale berichtgrootte (%1$skB).</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Excuses, het audiobestand overschrijdt de maximale berichtgrootte (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Ontvanger is niet een geldig SMS of e-mailadres!</string>
@@ -400,6 +405,7 @@ Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en 
   <string name="change_passphrase_activity__new_passphrase">Nieuw wachtwoord:</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">Herhaal nieuw wachtwoord:</string>
   <!--contact_selection_activity-->
+  <string name="contact_selection_activity__enter_name_or_number">Typ naam of nummer</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Geen contacten.</string>
   <string name="contact_selection_group_activity__finding_contacts">Contacten laden...</string>

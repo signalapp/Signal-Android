@@ -38,7 +38,7 @@ Dovrai registrare nuovamente il tuo numero di telefono per poter utilizzare di n
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Impossibile trovare un\'app per selezionare il file.</string>
   <!--AttachmentTypeSelectorAdapter-->
-  <string name="AttachmentTypeSelectorAdapter_take_photo">Scatta foto</string>
+  <string name="AttachmentTypeSelectorAdapter_camera">Fotocamera</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Immagine</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
@@ -78,6 +78,7 @@ questo contatto.</string>
   <string name="ConversationActivity_select_contact_info">Seleziona informazioni dei contatti</string>
   <string name="ConversationActivity_compose_message">Componi messaggio</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Attenzione, c\'è stato un errore nell\'inviare il tuo allegato.</string>
+  <string name="ConversationActivity_the_gif_you_selected_was_too_big">La gif selezionata è troppo grande!</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Errore, il video selezionato supera la dimensione massima (%1$skB).</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Errore, l\'audio selezionato supera la dimensione massima (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Il destinatario non è un indirizzo valido per l\'SMS o per l\'email!</string>
@@ -412,6 +413,7 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <string name="change_passphrase_activity__new_passphrase">Nuova password:</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">Ripeti nuova password:</string>
   <!--contact_selection_activity-->
+  <string name="contact_selection_activity__enter_name_or_number">Inserisci nome o numero</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Nessun contatto.</string>
   <string name="contact_selection_group_activity__finding_contacts">Caricamento contatti...</string>

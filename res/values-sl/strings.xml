@@ -12,6 +12,9 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Izbrišem stara sporočila?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Ste prepričani, da želite izbrisati vse stare pogovore, razen najnovejših?</string>
   <string name="ApplicationPreferencesActivity_delete">Izbriši</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">Izklopim geslo?</string>
+  <string name="ApplicationPreferencesActivity_disable_lock_screen">
+Izklopim zaklep zaslona za sporočila?</string>
   <string name="ApplicationPreferencesActivity_disable">Onemogoči</string>
   <string name="ApplicationPreferencesActivity_unregistering">Odjava poteka</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Odjava od sporočil TextSecure...</string>
@@ -38,7 +41,7 @@ Za ponovno uporabo sporočil TextSecure se boste morali zopet prijaviti s svojo 
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Ne najdem aplikacije za izbor datotek.</string>
   <!--AttachmentTypeSelectorAdapter-->
-  <string name="AttachmentTypeSelectorAdapter_take_photo">Posnami fotografijo</string>
+  <string name="AttachmentTypeSelectorAdapter_camera">Kamera</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Slika</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Zvok</string>
@@ -78,6 +81,7 @@ preveriti ta stik.</string>
   <string name="ConversationActivity_select_contact_info">Izberi podatke o stiku</string>
   <string name="ConversationActivity_compose_message">Sestavi sporočilo</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Oprostite, pri nastavljanju priponke je prišlo do napake.</string>
+  <string name="ConversationActivity_the_gif_you_selected_was_too_big">Izbrani gif je bil prevelik!</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Izbran video posnetek presega omejitev velikosti (%1$skB).</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Izbran zvočni posnetek presega omejitev velikosti (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Naslov prejemnika ni veljaven SMS oz. email nalsov!</string>
@@ -395,6 +399,7 @@ Prejeto sporočilo z neznanim identifikacijskim ključem. Kliknite za obdelavo i
   <string name="change_passphrase_activity__new_passphrase">Novo geslo:</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">Ponovi novo geslo:</string>
   <!--contact_selection_activity-->
+  <string name="contact_selection_activity__enter_name_or_number">Vnesite ime ali številko...</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Ni stikov.</string>
   <string name="contact_selection_group_activity__finding_contacts">Nalagam stike...</string>
