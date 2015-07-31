@@ -12,13 +12,11 @@
         android:id="@+id/quick_attachment_drawer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@color/black">
+        android:orientation="vertical">
 
     <LinearLayout android:layout_width="match_parent"
                   android:layout_height="match_parent"
                   android:orientation="vertical"
-                  android:background="?conversation_background"
                   android:paddingTop="?attr/actionBarSize"
                   android:gravity="bottom">
 
@@ -28,16 +26,18 @@
                      android:layout_weight="1" />
 
         <FrameLayout android:id="@+id/attachment_editor"
-                     android:layout_width="wrap_content"
+                     android:layout_width="match_parent"
                      android:layout_height="wrap_content"
-                     android:layout_gravity="center_horizontal"
+                     android:gravity="center_horizontal"
                      android:paddingTop="10dp"
+                     android:background="?android:windowBackground"
                      android:visibility="gone">
 
             <org.thoughtcrime.securesms.components.ThumbnailView
                 android:id="@+id/attachment_thumbnail"
                 android:layout_width="230dp"
                 android:layout_height="150dp"
+                android:layout_gravity="center_horizontal"
                 android:contentDescription="@string/conversation_activity__attachment_thumbnail"
                 app:backgroundColorHint="?conversation_background" />
 
@@ -45,7 +45,8 @@
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:src="@drawable/conversation_attachment_close_circle"
-                       android:layout_gravity="top|left"/>
+                       android:layout_marginRight="115dp"
+                       android:layout_gravity="top|center_horizontal"/>
 
         </FrameLayout>
 
@@ -55,6 +56,7 @@
                       android:gravity="center_vertical"
                       android:orientation="horizontal"
                       android:clickable="true"
+                      android:background="?android:windowBackground"
                       android:padding="5dp">
 
             <LinearLayout android:id="@+id/compose_bubble"
@@ -135,6 +137,7 @@
                   android:layout_width="fill_parent"
                   android:layout_height="wrap_content"
                   android:visibility="gone"
+                  android:background="?android:windowBackground"
                   android:text="160/160 (1)" />
 
 

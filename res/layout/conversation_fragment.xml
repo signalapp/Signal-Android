@@ -17,7 +17,6 @@
               android:fadingEdge="none"
               android:divider="@android:color/transparent"
               android:dividerHeight="0dp"
-              android:layout_marginBottom="1dip"
               android:cacheColorHint="?conversation_background" />
 
 </LinearLayout>

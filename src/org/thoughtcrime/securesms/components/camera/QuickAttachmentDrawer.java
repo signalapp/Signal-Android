@@ -78,6 +78,8 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView {
     updateControlsView();
 
     coverViewPosition = getChildCount();
+    controls.setVisibility(GONE);
+    quickCamera.setVisibility(GONE);
   }
 
   public static boolean isDeviceSupported(Context context) {
@@ -271,8 +273,8 @@ public class QuickAttachmentDrawer extends ViewGroup implements InputView {
 
     if (slideOffset == 0 && quickCamera.isStarted()) {
       quickCamera.onPause();
-      controls.setVisibility(INVISIBLE);
-      quickCamera.setVisibility(INVISIBLE);
+      controls.setVisibility(GONE);
+      quickCamera.setVisibility(GONE);
     } else if (slideOffset != 0 && !quickCamera.isStarted() & !paused) {
       controls.setVisibility(VISIBLE);
       quickCamera.setVisibility(VISIBLE);

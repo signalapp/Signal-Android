@@ -49,7 +49,6 @@ import com.melnykov.fab.FloatingActionButton;
 
 import org.thoughtcrime.securesms.ConversationListAdapter.ItemClickListener;
 import org.thoughtcrime.securesms.components.DefaultSmsReminder;
-import org.thoughtcrime.securesms.components.DividerItemDecoration;
 import org.thoughtcrime.securesms.components.ExpiredBuildReminder;
 import org.thoughtcrime.securesms.components.PushRegistrationReminder;
 import org.thoughtcrime.securesms.components.Reminder;
@@ -92,7 +91,6 @@ public class ConversationListFragment extends Fragment
     fab          = (FloatingActionButton) view.findViewById(R.id.fab);
     list.setHasFixedSize(true);
     list.setLayoutManager(new LinearLayoutManager(getActivity()));
-    list.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL, R.attr.conversation_list_item_divider));
     return view;
   }
 
