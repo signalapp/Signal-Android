@@ -33,17 +33,16 @@ public class InputAwareLayout extends KeyboardAwareLinearLayout implements OnKey
     if (isKeyboardOpen()) {
       hideSoftkey(imeTarget, new Runnable() {
         @Override public void run() {
+          hideAttachedInput(true);
           input.show(getKeyboardHeight(), true);
+          current = input;
         }
       });
-    } else if (current != null && current.isShowing()) {
-      current.hide(true);
-      input.show(getKeyboardHeight(), true);
     } else {
-      input.show(getKeyboardHeight(), false);
+      if (current != null) current.hide(true);
+      input.show(getKeyboardHeight(), current != null);
+      current = input;
     }
-
-    current = input;
   }
 
   public InputView getCurrentInput() {
