@@ -16,14 +16,11 @@
  */
 package org.thoughtcrime.securesms.mms;
 
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.Resources.Theme;
-import android.database.Cursor;
 import android.net.Uri;
-import android.provider.MediaStore;
+import android.provider.MediaStore.Video;
 import android.support.annotation.DrawableRes;
-import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -58,25 +55,16 @@ public class VideoSlide extends Slide {
     return true;
   }
 
-  private static PduPart constructPartFromUri(Context context, Uri uri)
-      throws IOException, MediaTooLargeException
-  {
-    PduPart         part     = new PduPart();
-    ContentResolver resolver = context.getContentResolver();
-    Cursor          cursor   = null;
+  private static PduPart constructPartFromUri(Context context, Uri uri) throws IOException, MediaTooLargeException {
+    PduPart part = new PduPart();
 
-    try {
-      cursor = resolver.query(uri, new String[] {MediaStore.Video.Media.MIME_TYPE}, null, null, null);
-      if (cursor != null && cursor.moveToFirst()) {
-        Log.w("VideoSlide", "Setting mime type: " + cursor.getString(0));
-        part.setContentType(cursor.getString(0).getBytes());
-      }
-    } finally {
-      if (cursor != null)
-        cursor.close();
+    if (PartAuthority.isPartAuthorityPart(uri)) {
+      part.setContentType(getContentTypeForPartInDb(context, uri));
+    } else {
+      assertMediaSize(context, uri, MmsMediaConstraints.MAX_MESSAGE_SIZE);
+      part.setContentType(getContentTypeForPartOutsideDb(context, uri, Video.Media.MIME_TYPE));
     }
 
-    assertMediaSize(context, uri, MmsMediaConstraints.MAX_MESSAGE_SIZE);
     part.setDataUri(uri);
     part.setContentId((System.currentTimeMillis()+"").getBytes());
     part.setName(("Video" + System.currentTimeMillis()).getBytes());

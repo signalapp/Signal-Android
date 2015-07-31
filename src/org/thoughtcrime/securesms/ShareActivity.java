@@ -158,6 +158,8 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
     if (type == null) {
       String extension = MimeTypeMap.getFileExtensionFromUrl(uri.toString());
       type = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
+
+      if (type == null) return getIntent().getType();
     }
 
     return type;

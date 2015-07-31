@@ -18,11 +18,14 @@ package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
 import android.content.res.Resources.Theme;
+import android.database.Cursor;
 import android.net.Uri;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.PartDatabase;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.IOException;
@@ -122,6 +125,35 @@ public abstract class Slide {
                          hasVideo(), isDraft(), getUri(), getThumbnailUri());
   }
 
+  protected static byte[] getContentTypeForPartInDb(Context context, Uri uri) throws IOException {
+    PartUriParser partUri = new PartUriParser(uri);
+    PartDatabase partDatabase = DatabaseFactory.getPartDatabase(context);
+    PartDatabase.PartId partId = partUri.getPartId();
 
+    if (partId == null) throw new IOException("Unable to query content type.");
 
+    return partDatabase.getPart(partUri.getPartId()).getContentType();
+  }
+
+  protected static byte[] getContentTypeForPartOutsideDb(Context context,
+                                                         Uri     uri,
+                                                         String  mimeTypeCol)
+      throws IOException
+  {
+    Cursor cursor = null;
+
+    try {
+      cursor = context.getContentResolver().query(uri, new String[]{mimeTypeCol}, null, null, null);
+
+      if (cursor != null && cursor.moveToFirst() && cursor.getString(0) != null) {
+        return cursor.getString(0).getBytes();
+      }
+      else {
+        throw new IOException("Unable to query content type.");
+      }
+    } finally {
+      if (cursor != null)
+        cursor.close();
+    }
+  }
 }
