@@ -270,13 +270,15 @@ public class ProfileFragment extends Fragment {
                         hasLeft = false;
                         profileStatusEdit.setImageDrawable(getResources().getDrawable(R.drawable.ic_content_edit));
 
-                        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(
+                                Context.INPUT_METHOD_SERVICE);
                         imm.hideSoftInputFromWindow(profileStatus.getWindowToken(), 0);
                     } else {
                         profileStatusEdit.setImageDrawable(getResources().getDrawable(R.drawable.ic_send_sms_gdata));
 
                         profileStatus.requestFocus();
-                        InputMethodManager imm = (InputMethodManager)  getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(
+                                Context.INPUT_METHOD_SERVICE);
                         imm.showSoftInput(profileStatus, InputMethodManager.SHOW_IMPLICIT);
                     }
                 }
@@ -439,9 +441,13 @@ public class ProfileFragment extends Fragment {
                     intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                     intent.setDataAndType(slide.getUri(), slide.getContentType());
                     intent.putExtra(MediaPreviewActivity.MASTER_SECRET_EXTRA, masterSecret);
-                    intent.putExtra(MediaPreviewActivity.RECIPIENT_EXTRA,
-                            RecipientFactory.getRecipientsFromString(getActivity(), String.valueOf(profileId), false)
-                                    .getPrimaryRecipient().getRecipientId());
+
+                    Recipient primaryRecipient = RecipientFactory.getRecipientsFromString(getActivity(),
+                            String.valueOf(profileId), false).getPrimaryRecipient();
+
+                    if (primaryRecipient != null) {
+                        intent.putExtra(MediaPreviewActivity.RECIPIENT_EXTRA, primaryRecipient.getRecipientId());
+                    }
                     intent.putExtra("destroyImage", true);
                     getActivity().startActivity(intent);
                 } else {
