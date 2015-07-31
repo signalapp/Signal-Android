@@ -40,7 +40,6 @@
             android:id="@+id/emoji_pager"
             android:visibility="visible"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="?emoji_background" />
+            android:layout_height="match_parent" />
 
 </merge>
