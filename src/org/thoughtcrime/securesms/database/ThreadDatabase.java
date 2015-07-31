@@ -28,6 +28,7 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
+import org.thoughtcrime.securesms.database.MmsSmsColumns.Types;
 import org.thoughtcrime.securesms.database.model.DisplayRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
@@ -112,17 +113,14 @@ public class ThreadDatabase extends Database {
     if (recipientCount > 1)
       contentValues.put(TYPE, distributionType);
 
-    contentValues.put(MESSAGE_COUNT, 0);
-
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     return db.insert(TABLE_NAME, null, contentValues);
   }
 
-  private void updateThread(long threadId, long count, String body, long date, long type)
+  private void updateThread(long threadId, String body, long date, long type)
   {
     ContentValues contentValues = new ContentValues(4);
     contentValues.put(DATE, date - date % 1000);
-    contentValues.put(MESSAGE_COUNT, count);
     contentValues.put(SNIPPET, body);
     contentValues.put(SNIPPET_TYPE, type);
 
@@ -393,9 +391,8 @@ public class ThreadDatabase extends Database {
 
   public boolean update(long threadId) {
     MmsSmsDatabase mmsSmsDatabase = DatabaseFactory.getMmsSmsDatabase(context);
-    long count                    = mmsSmsDatabase.getConversationCount(threadId);
 
-    if (count == 0) {
+    if (mmsSmsDatabase.isConversationEmpty(threadId)) {
       deleteThread(threadId);
       notifyConversationListListeners();
       return true;
@@ -413,7 +410,7 @@ public class ThreadDatabase extends Database {
         if (record.isPush()) timestamp = record.getDateSent();
         else                 timestamp = record.getDateReceived();
 
-        updateThread(threadId, count, record.getBody().getBody(), timestamp, record.getType());
+        updateThread(threadId, record.getBody().getBody(), timestamp, record.getType());
         notifyConversationListListeners();
         return false;
       } else {
@@ -465,12 +462,11 @@ public class ThreadDatabase extends Database {
 
       DisplayRecord.Body body = getPlaintextBody(cursor);
       long date               = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.DATE));
-      long count              = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.MESSAGE_COUNT));
       long read               = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.READ));
       long type               = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.SNIPPET_TYPE));
       int distributionType    = cursor.getInt(cursor.getColumnIndexOrThrow(ThreadDatabase.TYPE));
 
-      return new ThreadRecord(context, body, recipients, date, count,
+      return new ThreadRecord(context, body, recipients, date,
                               read == 1, threadId, type, distributionType);
     }
 

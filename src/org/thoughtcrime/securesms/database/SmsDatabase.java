@@ -155,22 +155,18 @@ public class SmsDatabase extends MessagingDatabase {
     }
   }
 
-  public int getMessageCountForThread(long threadId) {
+  public boolean hasMessagesForThread(long threadId) {
     SQLiteDatabase db = databaseHelper.getReadableDatabase();
     Cursor cursor     = null;
 
     try {
-      cursor = db.query(TABLE_NAME, new String[] {"COUNT(*)"}, THREAD_ID + " = ?",
-                        new String[] {threadId+""}, null, null, null);
+      cursor = db.rawQuery("SELECT EXISTS(SELECT 1 FROM " + TABLE_NAME + " WHERE " + THREAD_ID + " = ?);",
+                           new String[] {String.valueOf(threadId)});
 
-      if (cursor != null && cursor.moveToFirst())
-        return cursor.getInt(0);
+      return cursor != null && cursor.moveToFirst() && cursor.getInt(0) == 1;
     } finally {
-      if (cursor != null)
-        cursor.close();
+      if (cursor != null) cursor.close();
     }
-
-    return 0;
   }
 
   public void markAsEndSession(long id) {

@@ -189,11 +189,9 @@ public class MmsSmsDatabase extends Database {
     return queryTables(projection, selection, selection, order, null, null);
   }
 
-  public int getConversationCount(long threadId) {
-    int count = DatabaseFactory.getSmsDatabase(context).getMessageCountForThread(threadId);
-    count    += DatabaseFactory.getMmsDatabase(context).getMessageCountForThread(threadId);
-
-    return count;
+  public boolean isConversationEmpty(long threadId) {
+    return !DatabaseFactory.getSmsDatabase(context).hasMessagesForThread(threadId) &&
+           !DatabaseFactory.getMmsDatabase(context).hasMessagesForThread(threadId);
   }
 
   public void incrementDeliveryReceiptCount(String address, long timestamp) {
