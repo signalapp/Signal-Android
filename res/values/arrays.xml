@@ -180,24 +180,15 @@
       <item>2</item>
   </string-array>
 
-    <string-array name="default_color_choice_values" translatable="false">
-        <item>#ffF44336</item>
-        <item>#ffE91E63</item>
-        <item>#ff9C27B0</item>
-        <item>#ff673AB7</item>
-        <item>#ff3F51B5</item>
-        <item>#ff2196F3</item>
-        <item>#ff03A9F4</item>
-        <item>#ff00BCD4</item>
-        <item>#ff009688</item>
-        <item>#ff4CAF50</item>
-        <item>#ff8BC34A</item>
-        <!--<item>#FFCDDC39</item>-->
-        <item>#FFFFC107</item>
-        <item>#ffFF9800</item>
-        <item>#ffFF5722</item>
-        <item>#ff795548</item>
-        <item>#ff607D8B</item>
-    </string-array>
+  <string-array name="pref_notification_privacy_entries">
+      <item>@string/arrays__name_and_message</item>
+      <item>@string/arrays__name_only</item>
+      <item>@string/arrays__neither</item>
+  </string-array>
 
+  <string-array name="pref_notification_privacy_values">
+      <item>all</item>
+      <item>contact</item>
+      <item>none</item>
+  </string-array>
 </resources>
