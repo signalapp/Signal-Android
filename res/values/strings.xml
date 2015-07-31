@@ -467,7 +467,7 @@
     <string name="KeyCachingService_lock">Lock with passphrase</string>
 
     <!-- MessageNotifier -->
-    <string name="MessageNotifier_d_messages_in_d_conversations">%1$d messages in %2$d conversations</string>
+    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d new messages in %2$d conversations</string>
     <string name="MessageNotifier_most_recent_from_s">Most recent from: %1$s</string>
     <string name="MessageNotifier_locked_message">Locked message...</string>
     <string name="MessageNotifier_media_message_with_text">Media message: %s</string>
@@ -483,6 +483,10 @@
     <!-- QuickResponseService -->
     <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">Quick response unavailable when TextSecure is locked!</string>
     <string name="QuickResponseService_problem_sending_message">Problem sending message!</string>
+
+    <!-- SingleRecipientNotificationBuilder -->
+    <string name="SingleRecipientNotificationBuilder_new_textsecure_message">New TextSecure message</string>
+    <string name="SingleRecipientNotificationBuilder_contents_hidden">Contents hidden</string>
 
     <!-- change_passphrase_activity -->
     <string name="change_passphrase_activity__old_passphrase">OLD PASSPHRASE:</string>
@@ -754,6 +758,10 @@
     <string name="arrays__enabled">Enabled</string>
     <string name="arrays__disabled">Disabled</string>
 
+    <string name="arrays__name_and_message">Name and message</string>
+    <string name="arrays__name_only">Name only</string>
+    <string name="arrays__neither">Neither</string>
+
     <!-- plurals.xml -->
     <plurals name="hours_ago">
         <item quantity="one">%d hour</item>
@@ -858,6 +866,7 @@
     <string name="preferences__support_wifi_calling">\'WiFi Calling\' compatibility mode</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Enable if your device uses SMS/MMS delivery over WiFi (only enable when \'WiFi Calling\' is enabled on your device)</string>
     <string name="preferences_app_protection__blocked_contacts">Blocked contacts</string>
+    <string name="preferences_notifications__display_in_notifications">Display in notifications</string>
 
     <!-- **************************************** -->
     <!-- menus -->
