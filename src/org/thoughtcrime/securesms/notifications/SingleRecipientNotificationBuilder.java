@@ -6,28 +6,46 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationCompat.Action;
 import android.support.v4.app.RemoteInput;
 import android.text.SpannableStringBuilder;
+import android.util.Log;
+
+import com.bumptech.glide.Glide;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
+import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.preferences.NotificationPrivacyPreference;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.BitmapUtil;
+import org.thoughtcrime.securesms.util.ListenableFutureTask;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class SingleRecipientNotificationBuilder extends AbstractNotificationBuilder {
 
+  private static final String TAG = SingleRecipientNotificationBuilder.class.getSimpleName();
+
   private final List<CharSequence> messageBodies = new LinkedList<>();
 
-  public SingleRecipientNotificationBuilder(@NonNull Context context, @NonNull NotificationPrivacyPreference privacy) {
+  private       ListenableFutureTask<SlideDeck> slideDeck;
+  private final MasterSecret                    masterSecret;
+
+  public SingleRecipientNotificationBuilder(@NonNull Context context,
+                                            @Nullable MasterSecret masterSecret,
+                                            @NonNull NotificationPrivacyPreference privacy)
+  {
     super(context, privacy);
+    this.masterSecret = masterSecret;
 
     setSmallIcon(R.drawable.icon_notification);
     setColor(context.getResources().getColor(R.color.textsecure_primary));
@@ -62,9 +80,10 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
     setNumber(messageCount);
   }
 
-  public void setPrimaryMessageBody(CharSequence message) {
+  public void setPrimaryMessageBody(CharSequence message, @Nullable ListenableFutureTask<SlideDeck> slideDeck) {
     if (privacy.isDisplayMessage()) {
       setContentText(message);
+      this.slideDeck = slideDeck;
     } else {
       setContentText(context.getString(R.string.SingleRecipientNotificationBuilder_contents_hidden));
     }
@@ -122,14 +141,14 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
   @Override
   public Notification build() {
     if (privacy.isDisplayMessage()) {
-      SpannableStringBuilder content = new SpannableStringBuilder();
-
-      for (CharSequence message : messageBodies) {
-        content.append(message);
-        content.append('\n');
+      if (messageBodies.size() == 1 && hasBigPictureSlide(slideDeck)) {
+        assert masterSecret != null;
+        setStyle(new NotificationCompat.BigPictureStyle()
+                     .bigPicture(getBigPicture(masterSecret, slideDeck))
+                     .setSummaryText(getBigText(messageBodies)));
+      } else {
+        setStyle(new NotificationCompat.BigTextStyle().bigText(getBigText(messageBodies)));
       }
-
-      setStyle(new NotificationCompat.BigTextStyle().bigText(content));
     }
 
     return super.build();
@@ -144,6 +163,47 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
         setLargeIcon(recipientPhotoBitmap);
       }
     }
+  }
+
+  private boolean hasBigPictureSlide(@Nullable ListenableFutureTask<SlideDeck> slideDeck) {
+    try {
+      return masterSecret != null                                        &&
+             slideDeck != null                                           &&
+             Build.VERSION.SDK_INT >= 16                                 &&
+             slideDeck.get().getThumbnailSlide(context).hasImage()       &&
+             !slideDeck.get().getThumbnailSlide(context).isInProgress()  &&
+             slideDeck.get().getThumbnailSlide(context).getThumbnailUri() != null;
+    } catch (InterruptedException | ExecutionException e) {
+      Log.w(TAG, e);
+      return false;
+    }
+  }
+
+  private Bitmap getBigPicture(@NonNull MasterSecret masterSecret,
+                               @NonNull ListenableFutureTask<SlideDeck> slideDeck)
+  {
+    try {
+      Uri uri = slideDeck.get().getThumbnailSlide(context).getThumbnailUri();
+
+      return Glide.with(context)
+                  .load(new DecryptableStreamUriLoader.DecryptableUri(masterSecret, uri))
+                  .asBitmap()
+                  .into(500, 500)
+                  .get();
+    } catch (InterruptedException | ExecutionException e) {
+      throw new AssertionError(e);
+    }
+  }
+
+  private CharSequence getBigText(List<CharSequence> messageBodies) {
+    SpannableStringBuilder content = new SpannableStringBuilder();
+
+    for (CharSequence message : messageBodies) {
+      content.append(message);
+      content.append('\n');
+    }
+
+    return content;
   }
 
 }
