@@ -12,6 +12,9 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Smazat všechny staré zprávy?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Opravdu chcete všechny konverzace zkrátit na posledních %s zpráv?</string>
   <string name="ApplicationPreferencesActivity_delete">Smazat</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">Zakázat heslo?</string>
+  <string name="ApplicationPreferencesActivity_disable_lock_screen">
+Zakázat uzamčení obrazovky zpráv?</string>
   <string name="ApplicationPreferencesActivity_disable">Deaktivovat</string>
   <string name="ApplicationPreferencesActivity_unregistering">Rušení registrace</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Odregistrace TextSecure zpráv</string>
@@ -38,7 +41,7 @@ Abyste mohli v budoucnu používat TextSecure zprávy, bude nutno toto telefonn�
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nemohu nalézt aplikaci pro vybraný typ dat</string>
   <!--AttachmentTypeSelectorAdapter-->
-  <string name="AttachmentTypeSelectorAdapter_take_photo">Vyfotit</string>
+  <string name="AttachmentTypeSelectorAdapter_camera">Kamera</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Foto</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
@@ -81,6 +84,7 @@ kontakt</string>
   <string name="ConversationActivity_select_contact_info">Vybrat informace o kontaktu</string>
   <string name="ConversationActivity_compose_message">Napište zprávu</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Omlouváme se, ale došlo k chybě při zpracování přílohy</string>
+  <string name="ConversationActivity_the_gif_you_selected_was_too_big">Vybraný gif je příliš velký!</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Omlouvám se, vybrané video překračuje maximální povolenou velikost (%1$skB)</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Omlouvám se, vybrané audio překračuje maximální povolenou velikost (%1$skB)</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Adresa příjemce není ve správném tvaru! (sms či email)</string>
@@ -144,16 +148,11 @@ kontakt</string>
   <string name="DateUtils_now">Teď</string>
   <string name="DateUtils_minutes_ago">%d minuta</string>
   <!--DeviceListActivity-->
-  <string name="DeviceListActivity_disconnect_s">Odpojit \'%s\'?</string>
-  <string name="DeviceListActivity_by_disconnecting_this_device_it_will_no_longer_be_able_to_send_or_receive">Po odpojení toho zařízení již nebude možno přijímat nebo odesílat zprávy.</string>
   <string name="DeviceListActivity_network_connection_failed">Síťové spojení slehalo...</string>
   <string name="DeviceListActivity_try_again">Zkusit znovu</string>
-  <string name="DeviceListActivity_disconnecting_device">Odpojuji zařízení...</string>
-  <string name="DeviceListActivity_disconnecting_device_no_ellipse">Odpojuji zařízení</string>
   <string name="DeviceListActivity_network_failed">Síť selhala</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Nepojmenované zřízení</string>
-  <string name="DeviceListItem_created_s">Vytvořeno %s</string>
   <string name="DeviceListItem_last_active_s">Naposled aktivní %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Sdílet s</string>
@@ -243,13 +242,9 @@ tuto zálohu importovali, mohou se některé zprávy objevit vícekrát.</string
   <string name="DeviceProvisioningActivity_content_bullets">
 Přečíst všechny zprávy
 Poslat zprávy Vaším jménem.</string>
-  <string name="DeviceProvisioningActivity_content_progress_title">Přidat zařízení</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">Přidává se nové zařízení</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">Zařízení přidáno.</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Nenalezeno žádné zařízení.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Chyba sítě.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Neplatný QR kód.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_registered_already">Omlouváme se, ale máte zaregistrováno příliš mnoho zařízení, pokuste se některé odebrat...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Zadat heslo</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Ikona TextSecure</string>
@@ -401,6 +396,7 @@ Obdržena zpráva s neznámým identifikačním klíčem. Klepněte pro její zp
   <string name="change_passphrase_activity__new_passphrase">NOVÉ HESLO</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">ZNOVU NOVÉ HESLO</string>
   <!--contact_selection_activity-->
+  <string name="contact_selection_activity__enter_name_or_number">Zadejte jméno nebo číslo</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Žádný kontakt</string>
   <string name="contact_selection_group_activity__finding_contacts">Načítám kontakty...</string>
@@ -446,7 +442,6 @@ Obdržena zpráva s neznámým identifikačním klíčem. Klepněte pro její zp
   <string name="country_selection_fragment__loading_countries">Načítám země...</string>
   <string name="country_selection_fragment__search">Hledat</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_paired">Žádné zařízení není spárováno</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Nepodařilo se zaznamenat logy z vašeho zařízení. Jěště můžete zkusit použít pro získání debug logů nástroj ADB.</string>
   <string name="log_submit_activity__thanks">Díky za Vaši pomoc!</string>
@@ -599,7 +594,6 @@ TextSecure nyní automaticky ověří vaše telefonní číslo pomocí potvrzova
   <string name="AndroidManifest__media_overview">Všechny obrázky</string>
   <string name="AndroidManifest__media_overview_named">Všechny obrázky s %1$s</string>
   <string name="AndroidManifest__message_details">Podrobnosti zprávy</string>
-  <string name="AndroidManifest_manage_paired_devices">Spravovat spárovaná zařízení</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Import / export</string>
   <string name="arrays__my_identity_key">Můj identifikační klíč</string>

@@ -12,6 +12,10 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Nu alle oude berichten verwijderen?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Weet je zeker dat je alle gesprekken wil inkorten tot de laatste %s berichten?</string>
   <string name="ApplicationPreferencesActivity_delete">Verwijderen</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">Wachtwoord uitschakelen?</string>
+  <string name="ApplicationPreferencesActivity_disable_lock_screen">
+        Voorbeeldvenster uitschakelen voor berichten?
+    </string>
   <string name="ApplicationPreferencesActivity_disable">Uitschakelen</string>
   <string name="ApplicationPreferencesActivity_unregistering">Af aan het melden</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Aan het afmelden voor TextSecure berichten...</string>
@@ -38,7 +42,7 @@ Indien je in de toekomst weer TextSecure berichten wilt gebruiken zul je je tele
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Geen app gevonden om media te selecteren.</string>
   <!--AttachmentTypeSelectorAdapter-->
-  <string name="AttachmentTypeSelectorAdapter_take_photo">Foto nemen</string>
+  <string name="AttachmentTypeSelectorAdapter_camera">Camera</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Afbeelding</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
@@ -77,6 +81,7 @@ Indien je in de toekomst weer TextSecure berichten wilt gebruiken zul je je tele
   <string name="ConversationActivity_select_contact_info">Selecteer contactinformatie</string>
   <string name="ConversationActivity_compose_message">Bericht opstellen</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Excuses, er trad een fout op bij het instellen van uw bijlage.</string>
+  <string name="ConversationActivity_the_gif_you_selected_was_too_big">De gif die u geselecteerd hebt is te groot!</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Excuses, het videobestand overschrijdt de maximale berichtgrootte (%1$skB).</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Excuses, het audiobestand overschrijdt de maximale berichtgrootte (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Ontvanger is niet een geldig SMS of e-mailadres!</string>
@@ -140,16 +145,11 @@ Indien je in de toekomst weer TextSecure berichten wilt gebruiken zul je je tele
   <string name="DateUtils_now">Nu</string>
   <string name="DateUtils_minutes_ago">%d min</string>
   <!--DeviceListActivity-->
-  <string name="DeviceListActivity_disconnect_s">\'%s\' ontkoppelen?</string>
-  <string name="DeviceListActivity_by_disconnecting_this_device_it_will_no_longer_be_able_to_send_or_receive">Door dit apparaat te ontkoppelen zal het niet langer berichten kunnen verzenden en ontvangen.</string>
   <string name="DeviceListActivity_network_connection_failed">Netwerkverbinding mislukt..</string>
   <string name="DeviceListActivity_try_again">Probeer opnieuw</string>
-  <string name="DeviceListActivity_disconnecting_device">Toestel aan het loskoppelen...</string>
-  <string name="DeviceListActivity_disconnecting_device_no_ellipse">Apparaat aan het loskoppelen</string>
   <string name="DeviceListActivity_network_failed">Netwerkfout!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Naamloos apparaat</string>
-  <string name="DeviceListItem_created_s">Aangemaakt %s</string>
   <string name="DeviceListItem_last_active_s">Laatst actief %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Delen met</string>
@@ -238,13 +238,9 @@ Herstellen van een versleutelde back-up zal je bestaande sleutels, voorkeuren en
         - Al je berichten lezen
         \n- Berichten versturen namens jou
     </string>
-  <string name="DeviceProvisioningActivity_content_progress_title">Apparaat aan het toevoegen...</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">Nieuw apparaat aan het toevoegen...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">Apparaat toegevoegd!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Geen apparaat gevonden.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Netwerkfout!</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Ongeldige QR code.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_registered_already">Sorry, je hebt te veel apparaten geregistreerd, probeer er enkele te verwijderen...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Voer wachtwoord in</string>
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure icoon</string>
@@ -400,6 +396,7 @@ Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en 
   <string name="change_passphrase_activity__new_passphrase">Nieuw wachtwoord:</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">Herhaal nieuw wachtwoord:</string>
   <!--contact_selection_activity-->
+  <string name="contact_selection_activity__enter_name_or_number">Typ naam of nummer</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Geen contacten.</string>
   <string name="contact_selection_group_activity__finding_contacts">Contacten laden...</string>
@@ -445,7 +442,6 @@ Bericht ontvangen met een onbekende identiteitssleutel. Klik om te verwerken en 
   <string name="country_selection_fragment__loading_countries">Landen laden...</string>
   <string name="country_selection_fragment__search">Zoeken</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_paired">Geen apparaten gekoppeld...</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Kan geen logs van je apparaat verzamelen. Je kan nog steeds ADB gebruiken om debug logs te verzamelen.</string>
   <string name="log_submit_activity__thanks">Bedankt voor uw hulp!</string>
@@ -589,7 +585,6 @@ TextSecure heeft te lang moeten wachten op het binnenkomen van de verificatie-SM
   <string name="AndroidManifest__media_overview">Alle afbeeldingen</string>
   <string name="AndroidManifest__media_overview_named">Alle afbeeldingen met %1$s</string>
   <string name="AndroidManifest__message_details">Bericht Details</string>
-  <string name="AndroidManifest_manage_paired_devices">Gekoppelde apparaten beheren</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importeren / exporteren</string>
   <string name="arrays__my_identity_key">Mijn identiteitssleutel</string>

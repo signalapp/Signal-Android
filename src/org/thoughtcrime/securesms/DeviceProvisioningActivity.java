@@ -149,7 +149,7 @@ public class DeviceProvisioningActivity extends PassphraseRequiredActionBarActiv
             Toast.makeText(context, R.string.DeviceProvisioningActivity_content_progress_key_error, Toast.LENGTH_LONG).show();
             break;
           case LIMIT_EXCEEDED:
-            Toast.makeText(context, R.string.DeviceProvisioningActivity_sorry_you_have_too_many_devices_registered_already, Toast.LENGTH_LONG).show();
+            Toast.makeText(context, R.string.DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already, Toast.LENGTH_LONG).show();
             break;
         }
         dialog.dismiss();

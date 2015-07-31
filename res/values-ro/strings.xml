@@ -12,6 +12,7 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Şterge toate mesajele vechi acum?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Eşti sigur că doreşti să scurtezi toate conversaţiile la %s cele mai recente mesaje?</string>
   <string name="ApplicationPreferencesActivity_delete">Şterge</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">Dezactivez parola?</string>
   <string name="ApplicationPreferencesActivity_disable">Dezactivează</string>
   <string name="ApplicationPreferencesActivity_disable_textsecure_messages">Dezactivez mesajele TextSecure?</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Eroare de conectare cu serverul!</string>
@@ -33,7 +34,6 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nu pot găsi o aplicație pentru selecție media.</string>
   <!--AttachmentTypeSelectorAdapter-->
-  <string name="AttachmentTypeSelectorAdapter_take_photo">Fă o poză</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Imagine</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
@@ -132,11 +132,9 @@
   <string name="DateUtils_now">Acum</string>
   <string name="DateUtils_minutes_ago">%d min</string>
   <!--DeviceListActivity-->
-  <string name="DeviceListActivity_disconnect_s">Deconectez \'%s\'?</string>
   <string name="DeviceListActivity_try_again">Încearcă din nou</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Dispozitiv fără nume</string>
-  <string name="DeviceListItem_created_s">S-a creat %s</string>
   <string name="DeviceListItem_last_active_s">Ultima oară activ %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Partajează cu</string>
@@ -220,9 +218,6 @@ Restaurarea unui backup criptat va înlocui complet cheile existente, setările 
         - Citirea tuturor mesajelor
         \n- Trimiterea mesajelor în numele tău
     </string>
-  <string name="DeviceProvisioningActivity_content_progress_title">Se adaugă dispozitivul</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">Se adaugă un dispozitiv nou...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">Dispozitiv adăugat!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Nu a fost gasit niciun dispozitiv.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Eroare reţea.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Cod QR invalid.</string>
@@ -376,6 +371,7 @@ Primit mesaj trimis cu o cheie de identitate necunoscută. Faceți click pentru 
   <string name="change_passphrase_activity__new_passphrase">NOUA PAROLĂ:</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">REPETĂ NOUA PAROLĂ:</string>
   <!--contact_selection_activity-->
+  <string name="contact_selection_activity__enter_name_or_number">Introduceţi un nume sau un număr</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Nu exista contacte.</string>
   <string name="contact_selection_group_activity__finding_contacts">Se încarcă contactele...</string>
@@ -663,6 +659,9 @@ Operaţiunea iniţiată de TextSecure a expirat în timpul aşteptării primirii
   <string name="preferences__language">Limba</string>
   <string name="preferences__language_summary">Limba %s</string>
   <string name="preferences__textsecure_messages">Mesaje TextSecure</string>
+  <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
+        Mesagerie privată şi gratuită cu utilizatorii TextSecure şi Signal
+    </string>
   <string name="preferences__submit_debug_log">Trimite log-urile de depanare</string>
   <string name="preferences__support_wifi_calling">Mod compatibilitate \"Apelare WiFi\"</string>
   <string name="preferences_app_protection__blocked_contacts">Contacte blocate</string>

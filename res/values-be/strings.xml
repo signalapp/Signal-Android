@@ -215,8 +215,6 @@
         - Прачытаць усе вашыя паведамленні
         \n- Даслаць паведамленне на Ваша імя
     </string>
-  <string name="DeviceProvisioningActivity_content_progress_content">Дабаўленне новага дэвайса...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">Дэвайс дададзены!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Ня знойдзена дэвайсаў.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Памылка сеткі.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Няправільны QR код.</string>

@@ -114,11 +114,6 @@ public class ConversationPopupActivity extends ConversationActivity {
   }
 
   @Override
-  protected void hideEmojiDrawer(boolean expectingKeyboard) {
-    super.hideEmojiDrawer(false);
-  }
-
-  @Override
   protected void sendComplete(long threadId) {
     super.sendComplete(threadId);
     finish();

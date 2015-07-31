@@ -39,7 +39,6 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Не постои апликација за избор на датотеки.</string>
   <!--AttachmentTypeSelectorAdapter-->
-  <string name="AttachmentTypeSelectorAdapter_take_photo">Сликај</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Слика</string>
   <string name="AttachmentTypeSelectorAdapter_video">Видео</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Звук</string>
@@ -237,9 +236,6 @@
         - Чита сите ваши пораки
         \n- Праќа пораки во ваше име
     </string>
-  <string name="DeviceProvisioningActivity_content_progress_title">Додавам уред</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">Додавање нов уред...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">Уредот е додаден!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Уредот не е пронајден.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Мрежна грешка.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Погрешен QR код.</string>

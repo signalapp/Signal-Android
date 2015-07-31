@@ -6,6 +6,7 @@ import android.graphics.ColorFilter;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
+import android.support.annotation.DrawableRes;
 import android.support.v4.graphics.ColorUtils;
 import android.widget.ImageView;
 
@@ -16,7 +17,7 @@ public class ResourceContactPhoto implements ContactPhoto {
 
   private final int resourceId;
 
-  ResourceContactPhoto(int resourceId) {
+  ResourceContactPhoto(@DrawableRes int resourceId) {
     this.resourceId = resourceId;
   }
 

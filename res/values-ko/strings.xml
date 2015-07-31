@@ -12,6 +12,8 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">지금 모든 이전 메시지를 삭제하시겠습니까?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">지금 모든 대화를 최근 메시지 %s개로 줄이시겠습니까?</string>
   <string name="ApplicationPreferencesActivity_delete">삭제</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">암호 사용 중지</string>
+  <string name="ApplicationPreferencesActivity_disable_lock_screen">메시지 화면 잠금을 사용 중지하시겠습니까?</string>
   <string name="ApplicationPreferencesActivity_disable">사용 중지</string>
   <string name="ApplicationPreferencesActivity_unregistering">TextSecure 메시지 서비스 탈퇴</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">TextSecure 메시지 서비스를 탈퇴 중…</string>
@@ -36,7 +38,7 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">미디어를 선택할 수 있는 앱이 없음</string>
   <!--AttachmentTypeSelectorAdapter-->
-  <string name="AttachmentTypeSelectorAdapter_take_photo">사진 촬영</string>
+  <string name="AttachmentTypeSelectorAdapter_camera">카메라</string>
   <string name="AttachmentTypeSelectorAdapter_picture">이미지</string>
   <string name="AttachmentTypeSelectorAdapter_video">동영상</string>
   <string name="AttachmentTypeSelectorAdapter_audio">오디오</string>
@@ -75,6 +77,7 @@
   <string name="ConversationActivity_select_contact_info">연락처 선택</string>
   <string name="ConversationActivity_compose_message">메시지 작성</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">첨부에 오류가 있음</string>
+  <string name="ConversationActivity_the_gif_you_selected_was_too_big">선택된 이미지 용량 초과</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">선택된 동영상이 메시지 크기 제한 (%1$skB)을 초과하여 전송할 수 없음</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">선택된 오디오가 메시지 크기 제한 (%1$skB)을 초과하여 전송할 수 없음</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">수신 주소는 유효한 SMS 또는 이메일 주소가 아님</string>
@@ -138,7 +141,12 @@
   <string name="DateUtils_now">방금 전</string>
   <string name="DateUtils_minutes_ago">%d분 전</string>
   <!--DeviceListActivity-->
+  <string name="DeviceListActivity_network_connection_failed">네트워크에 연결되지 않습니다.</string>
+  <string name="DeviceListActivity_try_again">다시 시도</string>
+  <string name="DeviceListActivity_network_failed">네트워크에 연결되지 않음</string>
   <!--DeviceListItem-->
+  <string name="DeviceListItem_unnamed_device">이름이 없는 기기</string>
+  <string name="DeviceListItem_last_active_s">최근 사용: %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">공유 대상</string>
   <!--ExportFragment-->
@@ -223,9 +231,6 @@
   <string name="DeviceProvisioningActivity_content_intro">액세스 권한</string>
   <string name="DeviceProvisioningActivity_content_bullets">- 내 메시지 읽기
 \n- 내 이름으로 메시지 보내기</string>
-  <string name="DeviceProvisioningActivity_content_progress_title">기기 추가</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">새 기기를 추가 중…</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">기기 추가 완료</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">기기 없음</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">네트워크 오류</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">QR코드가 잘못됨</string>
@@ -376,6 +381,7 @@
   <string name="change_passphrase_activity__new_passphrase">새 암호:</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">새 암호 다시 입력:</string>
   <!--contact_selection_activity-->
+  <string name="contact_selection_activity__enter_name_or_number">이름 또는 전화번호 입력</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">연락처 없음</string>
   <string name="contact_selection_group_activity__finding_contacts">주소록 로드 중…</string>
@@ -481,6 +487,7 @@
   <string name="registration_activity__phone_number">전화번호</string>
   <string name="registration_activity__register">가입</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">가입할 때 일부 연락처 정보 서버에 전송되지만 저장되지 않습니다.</string>
+  <string name="registration_activity__powered_by_twilio">Powered by twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">잠재적인 문제</string>
   <string name="registration_problems__sms_interceptors">SMS 가로채는 앱</string>
@@ -501,7 +508,7 @@
   <string name="registration_progress_activity__no_network_connectivity">네트워크에 연결되지 않음</string>
   <string name="registration_progress_activity__your_device_needs_network_connectivity">이 TextSecure 기능을 사용하려면 네트워크 연결이 작동해야 합니다. Wi-Fi나 모바일 데이터 네트워크에 연결 상태를 확인하세요.</string>
   <string name="registration_progress_activity__restrictive_firewall">방화벽</string>
-  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">Wi-Fi 네트워크에 연결되면 TextSecure 서버에 액세스를 제한하는 방화벽이 있을 수 있습니다.</string>
+  <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">Wi-Fi 네트워크에 연결되면 TextSecure 서버에 액세스를 제한하는 방화벽이 있을 수 있습니다. 다른 Wi-Fi 네트워크나 모바일 데이터에 연결하세요.</string>
   <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">TextSecure가 자동 SMS 인증메시지로 전화번호를 확인합니다.</string>
   <string name="registration_progress_activity__connecting">연결 중…</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">SMS 인증메시지 기다리는 중…</string>
@@ -575,6 +582,7 @@
   <string name="preferences__change_my_passphrase">암호 변경</string>
   <string name="preferences__enable_passphrase">암호 사용</string>
   <string name="preferences__passphrase_summary">암호 %s</string>
+  <string name="preferences__enable_lock_screen_for_messages">메시지 화면 잠금 사용</string>
   <string name="preferences__screen_security">화면 보안</string>
   <string name="preferences__screen_security_summary">화면 보안 %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">최근 사용 목록/개요 및 앱 안에서 스크린샷 차단</string>

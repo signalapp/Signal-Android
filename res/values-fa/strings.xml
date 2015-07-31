@@ -12,7 +12,10 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">پیام‌های قدیمی حذف شوند؟</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">مطمئنید که می‌خواهید از هر گفتگو %s پیام جدیدتر را نگه داشته و بقیه را حذف کنید؟</string>
   <string name="ApplicationPreferencesActivity_delete">حذف</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">عبارت عبور غیر فعال کنم؟</string>
   <string name="ApplicationPreferencesActivity_disable">غیرفعال کردن</string>
+  <string name="ApplicationPreferencesActivity_unregistering">لغو ثبت نام</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">لغو ثبت برای پیامهای TextSecur ...</string>
   <string name="ApplicationPreferencesActivity_disable_textsecure_messages">غیر فعال کردن پیام های TextSecure ؟</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">خطا در اتصال به سرور!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">اس ام اس فعال</string>
@@ -33,7 +36,6 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">امکان یافتن برنامه‌ای برای انتخاب مدیا وجود ندارد.</string>
   <!--AttachmentTypeSelectorAdapter-->
-  <string name="AttachmentTypeSelectorAdapter_take_photo">عکس گرفتن</string>
   <string name="AttachmentTypeSelectorAdapter_picture">تصویر</string>
   <string name="AttachmentTypeSelectorAdapter_video">ویدئو</string>
   <string name="AttachmentTypeSelectorAdapter_audio">صدا</string>
@@ -123,8 +125,7 @@
   <string name="DateUtils_now">اکنون</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_try_again">دوباره تلاش کن</string>
-  <string name="DeviceListActivity_disconnecting_device">قطع اتصال دستگاه ...</string>
-  <string name="DeviceListActivity_disconnecting_device_no_ellipse">قطع اتصال دستگاه</string>
+  <string name="DeviceListActivity_network_failed">شکست خوردن در شبکه!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">دستگاهی که نامش ذکر نشده</string>
   <!--ShareActivity-->
@@ -194,8 +195,6 @@
   <string name="DeviceProvisioningActivity_continue">ادامه</string>
   <string name="DeviceProvisioningActivity_title">پیوند این دستگاه؟</string>
   <string name="DeviceProvisioningActivity_content_intro">این قادر خواهد بود به</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">اضافه کردن دستگاه جدید ...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">دستگاه اضافه شده است!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">دستگاه یافت نشد.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">خطای شبکه.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">کد QR نامعتبر است.</string>
@@ -211,7 +210,9 @@
   <string name="RatingManager_no_thanks">نه ممنون</string>
   <string name="RatingManager_later">بعد</string>
   <!--RecipientPreferencesActivity-->
+  <string name="RecipientPreferenceActivity_block_this_contact_question">انسداد این تماس؟</string>
   <string name="RecipientPreferenceActivity_block">بلوک</string>
+  <string name="RecipientPreferenceActivity_unblock_this_contact_question">رفع انسداد این تماس؟</string>
   <string name="RecipientPreferenceActivity_unblock">رفع انسداد</string>
   <string name="RecipientPreferenceActivity_enabled">فعال</string>
   <string name="RecipientPreferenceActivity_disabled">غیر فعال</string>
@@ -333,6 +334,7 @@
   <string name="change_passphrase_activity__new_passphrase">رمز جدید:</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">تکرار رمز جدید:</string>
   <!--contact_selection_activity-->
+  <string name="contact_selection_activity__enter_name_or_number">نام یا شماره را وارد کنید</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">مخاطبی یافت نشد.</string>
   <string name="contact_selection_group_activity__finding_contacts">بارگیری لیست مخاطب‌ها</string>
@@ -629,7 +631,9 @@
   <string name="conversation__menu_leave_group">مرخص شدن از گروه</string>
   <string name="conversation__menu_delete_thread">حذف موضوع</string>
   <string name="conversation__menu_view_media">همه تصاویر</string>
+  <string name="conversation__menu_conversation_settings">تنظیمات گفتگو</string>
   <!--conversation_popup-->
+  <string name="conversation_popup__menu_expand_popup">ببند پنجره پاپ آپ</string>
   <!--conversation_callable-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">افزودن به مخاطب‌ها</string>
   <!--conversation_group_options-->

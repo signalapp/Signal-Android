@@ -1,7 +1,5 @@
 package org.thoughtcrime.securesms.jobs;
 
-import android.test.AndroidTestCase;
-
 import org.thoughtcrime.securesms.TextSecureTestCase;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.dependencies.AxolotlStorageModule;
@@ -144,7 +142,7 @@ public class CleanPreKeysJobTest extends TextSecureTestCase {
     AxolotlStorageModule.SignedPreKeyStoreFactory provideSignedPreKeyStore() {
       return new AxolotlStorageModule.SignedPreKeyStoreFactory() {
         @Override
-        public SignedPreKeyStore create(MasterSecret masterSecret) {
+        public SignedPreKeyStore create() {
           return signedPreKeyStore;
         }
       };

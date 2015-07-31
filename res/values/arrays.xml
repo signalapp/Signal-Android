@@ -21,7 +21,9 @@
       <item>Italiano</item>
       <item>Japanese 日本人</item>
       <item>Kannada ಕನ್ನಡ</item>
+      <item>Korean 한국어</item>
       <item>Magyar</item>
+      <item>Macedonian македонски јазик</item>
       <item>Nederlands</item>
       <item>Norsk</item>
       <item>Polski</item>
@@ -59,7 +61,9 @@
       <item>it</item>
       <item>ja</item>
       <item>kn_IN</item>
+      <item>ko</item>
       <item>hu</item>
+      <item>mk</item>
       <item>nl</item>
       <item>no</item>
       <item>pl</item>
@@ -102,7 +106,7 @@
     <item>@string/preferences__white</item>
     <item>@string/preferences__none</item>
   </string-array>
-  
+
 
   <string-array name="pref_led_color_values" translatable="false">
     <item>green</item>
@@ -114,7 +118,7 @@
     <item>white</item>
     <item>none</item>
   </string-array>
-  
+
   <string-array name="pref_led_blink_pattern_entries">
     <item>@string/preferences__fast</item>
     <item>@string/preferences__normal</item>

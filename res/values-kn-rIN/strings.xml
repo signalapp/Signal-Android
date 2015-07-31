@@ -218,8 +218,6 @@
         - ನಿಮ್ಮ ಎಲ್ಲಾ ಸಂದೇಶಗಳನ್ನು ಓದಿ
         \n- ನಿಮ್ಮ ಹೆಸರಿನಲ್ಲಿ ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಿ
     </string>
-  <string name="DeviceProvisioningActivity_content_progress_content">ಹೋಸ ಸಾಧನವನ್ನು ಸೇರಿಸಲಾಗುತ್ತಿದೆ ...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">ಸಾಧನವನ್ನು ಸೇರಿಸಲಾಯಿತು!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">ಯಾವುದೇ ಸಾಧನವನ್ನು ಕಂಡುಹಿಡಿಯಲಾಗಿಲ್ಲ.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">ನೆಟ್ವರ್ಕ್ ದೋಷ.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">ಮಾನ್ಯವಲ್ಲದ QR ಕೋಡ್.</string>

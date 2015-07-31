@@ -12,6 +12,10 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Excluir todas as mensagens antigas agora?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Tem certeza que deseja manter apenas as %s mensagens mais recentes?</string>
   <string name="ApplicationPreferencesActivity_delete">Excluir</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">Desabilitar frase-chave?</string>
+  <string name="ApplicationPreferencesActivity_disable_lock_screen">
+        Desabilitar tela de bloqueio para mensagens?
+    </string>
   <string name="ApplicationPreferencesActivity_disable">Desabilitar</string>
   <string name="ApplicationPreferencesActivity_unregistering">Descadastrar</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Descadastrando de mensagens TextSecure...</string>
@@ -39,7 +43,6 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Não localizei um aplicativo para selecionar o arquivo.</string>
   <!--AttachmentTypeSelectorAdapter-->
-  <string name="AttachmentTypeSelectorAdapter_take_photo">Tirar foto</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Imagem</string>
   <string name="AttachmentTypeSelectorAdapter_video">Vídeo</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Áudio</string>
@@ -148,16 +151,11 @@ Tem certeza que deseja fazer isto?</string>
   <string name="DateUtils_now">Agora</string>
   <string name="DateUtils_minutes_ago">%d min</string>
   <!--DeviceListActivity-->
-  <string name="DeviceListActivity_disconnect_s">Desconectar \'%s\'?</string>
-  <string name="DeviceListActivity_by_disconnecting_this_device_it_will_no_longer_be_able_to_send_or_receive">Ao desconectar este dispositivo, ele não poderá mais enviar ou receber mensagens.</string>
   <string name="DeviceListActivity_network_connection_failed">Conexão de rede falhou...</string>
   <string name="DeviceListActivity_try_again">Tentar de novo</string>
-  <string name="DeviceListActivity_disconnecting_device">Desconectando dispositivo...</string>
-  <string name="DeviceListActivity_disconnecting_device_no_ellipse">Desconectando dispositivo</string>
   <string name="DeviceListActivity_network_failed">Rede falhou!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Dispositivo sem nome</string>
-  <string name="DeviceListItem_created_s">Criado %s</string>
   <string name="DeviceListItem_last_active_s">Último ativo %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Compartilhar com</string>
@@ -257,13 +255,9 @@ Tem certeza que deseja fazer isto?</string>
         - Ler todas as suas mensagens
         \n- Enviar mensagens em seu nome
     </string>
-  <string name="DeviceProvisioningActivity_content_progress_title">Adicionando dispositivo</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">Adicionando novo dispositivo...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">Dispositivo adicionado!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Nenhum dispositivo encontrado.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Erro de rede.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Código QR inválido.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_registered_already">Desculpe, você já possui muitos dispositivos registrados, tente remover alguns...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Inserir frase-chave</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Ícone do TextSecure</string>
@@ -429,6 +423,7 @@ Tem certeza que deseja fazer isto?</string>
   <string name="change_passphrase_activity__new_passphrase">Frase-chave nova:</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">Repetir a frase-chave nova:</string>
   <!--contact_selection_activity-->
+  <string name="contact_selection_activity__enter_name_or_number">Digite o nome ou número</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Sem contactos.</string>
   <string name="contact_selection_group_activity__finding_contacts">Carregando contatos...</string>
@@ -474,7 +469,6 @@ Tem certeza que deseja fazer isto?</string>
   <string name="country_selection_fragment__loading_countries">Carregando países...</string>
   <string name="country_selection_fragment__search">Procurar</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_paired">Nenhum dispositivo pareado...</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Não foi possível captar logs do seu dispositivo. É possível usar como alternativa o ADB para captar logs de debug.</string>
   <string name="log_submit_activity__thanks">Obrigado por sua ajuda!</string>
@@ -636,7 +630,6 @@ falhou.</string>
   <string name="AndroidManifest__media_overview">Todas as imagens</string>
   <string name="AndroidManifest__media_overview_named">Todas as imagens com %1$s</string>
   <string name="AndroidManifest__message_details">Detalhes da mensagem</string>
-  <string name="AndroidManifest_manage_paired_devices">Gerenciar dispositivos pareados</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importar / exportar</string>
   <string name="arrays__my_identity_key">Minha chave de identidade</string>

@@ -36,7 +36,6 @@ Pokiaľ v budúcnosti budete chcieť používať TextSecure správy, budete sa m
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nepodarilo sa nájsť aplikáciu pre výber médií.</string>
   <!--AttachmentTypeSelectorAdapter-->
-  <string name="AttachmentTypeSelectorAdapter_take_photo">Odfotiť</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Obrázok</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
@@ -230,8 +229,6 @@ opätovným importom zduplikujete správy.
 - Čítať všetky Vaše správy\n
 - Odosielať správy vo Vašom mene
 </string>
-  <string name="DeviceProvisioningActivity_content_progress_content">Pridáva sa nové zariadenie...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">Zariadenie bolo pridané!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Nebolo nájdené žiadne zariadenie!</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Chyba siete.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Neplatný QR kód.</string>

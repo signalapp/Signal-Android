@@ -7,11 +7,9 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-import com.makeramen.roundedimageview.RoundedImageView;
-
 import org.thoughtcrime.securesms.R;
 
-public class ImageDivet extends RoundedImageView {
+public class ImageDivet extends ImageView {
   private static final float CORNER_OFFSET = 12F;
   private static final String[] POSITIONS  = new String[] {"bottom_right"};
 

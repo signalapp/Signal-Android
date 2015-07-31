@@ -36,7 +36,6 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Δεν μπορεί να βρεθεί μια εφαρμογή για επιλογή μέσων ενημέρωσης.</string>
   <!--AttachmentTypeSelectorAdapter-->
-  <string name="AttachmentTypeSelectorAdapter_take_photo">Λήψη φωτογραφίας</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Εικόνα</string>
   <string name="AttachmentTypeSelectorAdapter_video">Βίντεο</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Ήχος</string>
@@ -239,8 +238,6 @@ SMS της συσκευής σας στο TextSecure. Αν έχετε ήδη ε�
   <string name="DeviceProvisioningActivity_content_bullets">
 Διαβάσει όλα τα μηνύματά σας
 \n- Στείλει μηνύματα με το όνομά σας</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">Προσθήκη νέας συσκευής...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">Η συσκευή προστεθηκε!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Δεν βρέθηκε συσκευή.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Σφάλμα δικτύου</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Άκυρος QR κωδικός.</string>

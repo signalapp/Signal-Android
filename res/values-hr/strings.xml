@@ -12,6 +12,9 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Obriši sve stare poruke?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Jeste li sigurni da želite skratiti sve razgovore na %s najnovijih poruka?</string>
   <string name="ApplicationPreferencesActivity_delete">Obriši</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">Onemogući lozinku?</string>
+  <string name="ApplicationPreferencesActivity_disable_lock_screen">
+Onemogući zaključani ekran za poruke?</string>
   <string name="ApplicationPreferencesActivity_disable">Onemogući</string>
   <string name="ApplicationPreferencesActivity_unregistering">Uklanjanje registracije</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Uklanjanje registracije na TextSecure poruke...</string>
@@ -38,7 +41,6 @@ Trebat ćete ponovno registrirati vaš broj telefona kako biste koristili TextSe
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nije moguće pronaći aplikaciju za odabir medija.</string>
   <!--AttachmentTypeSelectorAdapter-->
-  <string name="AttachmentTypeSelectorAdapter_take_photo">Uslikaj fotografiju</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Slika</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
@@ -52,6 +54,7 @@ ili da je %2$s jednostavno ponovno instalirao TextSecure i sada ima novi identif
 ovaj kontakt.</string>
   <string name="ConfirmIdentityDialog_accept">Prihvati</string>
   <!--ContactsDatabase-->
+  <string name="ContactsDatabase_message_s">Poruka %s</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Veličina poruke: %d KB</string>
   <string name="ConversationItem_expires_s">Ističe: %s</string>
@@ -141,15 +144,11 @@ ovaj kontakt.</string>
   <string name="DateUtils_now">Sada</string>
   <string name="DateUtils_minutes_ago">%d min</string>
   <!--DeviceListActivity-->
-  <string name="DeviceListActivity_disconnect_s">Odspoji \'%s\'?</string>
-  <string name="DeviceListActivity_by_disconnecting_this_device_it_will_no_longer_be_able_to_send_or_receive">Odspajanjem ovog uređaja više nećete moći slati ili primati poruke.</string>
   <string name="DeviceListActivity_network_connection_failed">Povezivanje na mrežu nije uspjelo...</string>
   <string name="DeviceListActivity_try_again">Pokušajte ponovno</string>
-  <string name="DeviceListActivity_disconnecting_device_no_ellipse">Odspajanje uređaja</string>
   <string name="DeviceListActivity_network_failed">Greška mreže!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Neimenovani uređaj</string>
-  <string name="DeviceListItem_created_s">Stvoreno %s</string>
   <string name="DeviceListItem_last_active_s">Zadnje aktivno %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Podijeli s</string>
@@ -243,13 +242,9 @@ ponovno uvoženje će rezultirati duplim porukama.</string>
   <string name="DeviceProvisioningActivity_content_bullets">
 - Čitati sve vaše poruke
 \n- Slati poruke u vaše ime</string>
-  <string name="DeviceProvisioningActivity_content_progress_title">Dodavanje uređaja</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">Dodavanje novog uređaja...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">Uređaj dodan!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Uređaj nije pronađen.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Mrežna greška.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Neispravan QR kod.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_registered_already">Imate previše registriranih uređaja, pokušajte ukloniti neke...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Unesite lozinku</string>
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure ikona</string>
@@ -389,12 +384,14 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_messages_in_d_conversations">%1$d poruka u %2$d razgovora</string>
   <string name="MessageNotifier_most_recent_from_s">Najnovije od: %1$s</string>
+  <string name="MessageNotifier_locked_message">Zaključana poruka...</string>
   <string name="MessageNotifier_media_message_with_text">Media poruka: %s</string>
   <string name="MessageNotifier_no_subject">(Bez naslova)</string>
   <string name="MessageNotifier_message_delivery_failed">Neuspješna isporuka poruke.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Isporuka poruke nije uspjela.</string>
   <string name="MessageNotifier_error_delivering_message">Greška prilikom isporuke poruke.</string>
   <string name="MessageNotifier_mark_all_as_read">Označi sve kao pročitano</string>
+  <string name="MessageNotifier_mark_read">Označi pročitano</string>
   <string name="MessageNotifier_media_message">Multimedijalna poruka</string>
   <string name="MessageNotifier_reply">Odgovori</string>
   <!--QuickResponseService-->
@@ -405,6 +402,7 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <string name="change_passphrase_activity__new_passphrase">NOVA LOZINKA:</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">PONOVITE NOVU LOZINKU:</string>
   <!--contact_selection_activity-->
+  <string name="contact_selection_activity__enter_name_or_number">Unesite ime ili broj</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Nema kontakata.</string>
   <string name="contact_selection_group_activity__finding_contacts">Učitavanje kontakata...</string>
@@ -428,6 +426,7 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <string name="conversation_activity__compose_description">Sastavljanje poruke</string>
   <string name="conversation_activity__emoji_toggle_description">Uključi/isključi emoji tipkovnicu</string>
   <string name="conversation_activity__attachment_thumbnail">Priložena sličica</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Uključi/isključi ladicu dodataka</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Preuzimanje media poruke</string>
   <string name="conversation_item__mms_image_description">Multimedijalna poruka</string>
@@ -449,7 +448,6 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <string name="country_selection_fragment__loading_countries">Učitavanje zemalja...</string>
   <string name="country_selection_fragment__search">Traži</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_paired">Nema uparenih uređaja...</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Nije moguće dohvatiti zapise sa vašeg uređaja. Još uvijek možete koristiti ADB kako biste dohvatili debug zapise.</string>
   <string name="log_submit_activity__thanks">Hvala na pomoći!</string>
@@ -505,6 +503,8 @@ Uvezi nekriptiranu kopiju kompatibilnu s \'SMSBackup And Restore\'.</string>
   <string name="recipient_preferences__ringtone">Melodija</string>
   <string name="recipient_preferences__vibrate">Vibriraj</string>
   <string name="recipient_preferences__block">Blokiraj</string>
+  <string name="recipient_preferences__color">Boja</string>
+  <string name="recipient_preferences__color_for_this_contact">Boja za ovaj kontakt</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 Potvrdite svoj broj telefona kako biste se povezali sa TextSecure.</string>
@@ -514,6 +514,7 @@ TELEFONSKI BROJ</string>
   <string name="registration_activity__phone_number">TELEFONSKI BROJ</string>
   <string name="registration_activity__register">Registriraj</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Registracija šalje neke informacije o kontaktima na poslužitelj. Podaci se ne pohranjuju trajno.</string>
+  <string name="registration_activity__powered_by_twilio">Pokreće twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Neki mogući problemi
 uključuju:</string>
@@ -593,7 +594,6 @@ neuspješno.</string>
   <string name="AndroidManifest__media_overview">Sve slike</string>
   <string name="AndroidManifest__media_overview_named">Sve slike sa %1$s</string>
   <string name="AndroidManifest__message_details">Detalji poruke</string>
-  <string name="AndroidManifest_manage_paired_devices">Upravljanje uparenim uređajima</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Uvoz / izvoz</string>
   <string name="arrays__my_identity_key">Moj ključ identiteta</string>
@@ -631,6 +631,7 @@ neuspješno.</string>
   <string name="preferences__change_my_passphrase">Izmjeni moju lozinku</string>
   <string name="preferences__enable_passphrase">Omogući lozinku</string>
   <string name="preferences__passphrase_summary">Lozinka %s</string>
+  <string name="preferences__enable_lock_screen_for_messages">Omogući zaključani ekran za poruke</string>
   <string name="preferences__screen_security">Sigurnost ekrana</string>
   <string name="preferences__screen_security_summary">Sigurnost ekrana %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Onemogući snimanje ekrana na popisu nedavnih i unutar aplikacije</string>
@@ -760,6 +761,7 @@ Besplatno privatno dopisivanje sa TextSecure i Signal korisnicima</string>
   <string name="conversation__menu_leave_group">Napusti grupu</string>
   <string name="conversation__menu_delete_thread">Obriši temu</string>
   <string name="conversation__menu_view_media">Sve slike</string>
+  <string name="conversation__menu_conversation_settings">Postavke razgovora</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Proširi skočni prozor</string>
   <!--conversation_callable-->
@@ -803,5 +805,6 @@ Besplatno privatno dopisivanje sa TextSecure i Signal korisnicima</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona transporta</string>
   <!--quick_attachment_drawer-->
+  <string name="quick_camera_unavailable">Kamera nije dostupna</string>
   <!--EOF-->
 </resources>

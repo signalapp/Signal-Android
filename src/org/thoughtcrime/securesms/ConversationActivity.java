@@ -37,7 +37,6 @@ import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v4.view.WindowCompat;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -48,9 +47,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.View.OnKeyListener;
-import android.view.ViewStub;
 import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -67,6 +64,8 @@ import org.thoughtcrime.securesms.components.ComposeText;
 import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout;
 import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout.OnKeyboardShownListener;
 import org.thoughtcrime.securesms.components.SendButton;
+import org.thoughtcrime.securesms.components.camera.QuickAttachmentDrawer.DrawerState;
+import org.thoughtcrime.securesms.components.InputAwareLayout;
 import org.thoughtcrime.securesms.components.emoji.EmojiDrawer.EmojiEventListener;
 import org.thoughtcrime.securesms.components.emoji.EmojiDrawer;
 import org.thoughtcrime.securesms.components.emoji.EmojiToggle;
@@ -87,6 +86,7 @@ import org.thoughtcrime.securesms.database.MmsSmsColumns.Types;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
 import org.thoughtcrime.securesms.mms.AttachmentTypeSelectorAdapter;
+import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.MediaTooLargeException;
 import org.thoughtcrime.securesms.mms.MmsMediaConstraints;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
@@ -113,13 +113,11 @@ import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.GroupUtil;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 import org.whispersystems.libaxolotl.InvalidMessageException;
-import org.whispersystems.libaxolotl.util.guava.Optional;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
@@ -161,24 +159,24 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private static final int GROUP_EDIT        = 5;
   private static final int TAKE_PHOTO        = 6;
 
-  private   MasterSecret              masterSecret;
-  protected ComposeText               composeText;
-  private   AnimatingToggle           buttonToggle;
-  private   SendButton                sendButton;
-  private   ImageButton               attachButton;
-  protected ConversationTitleView     titleView;
-  private   TextView                  charactersLeft;
-  private   ConversationFragment      fragment;
-  private   Button                    unblockButton;
-  private   KeyboardAwareLinearLayout container;
-  private   View                      composePanel;
-  private   View                      composeBubble;
+  private   MasterSecret          masterSecret;
+  protected ComposeText           composeText;
+  private   AnimatingToggle       buttonToggle;
+  private   SendButton            sendButton;
+  private   ImageButton           attachButton;
+  protected ConversationTitleView titleView;
+  private   TextView              charactersLeft;
+  private   ConversationFragment  fragment;
+  private   Button                unblockButton;
+  private   InputAwareLayout      container;
+  private   View                  composePanel;
+  private   View                  composeBubble;
 
   private   AttachmentTypeSelectorAdapter attachmentAdapter;
   private   AttachmentManager             attachmentManager;
   private   BroadcastReceiver             securityUpdateReceiver;
   private   BroadcastReceiver             groupUpdateReceiver;
-  private   Optional<EmojiDrawer>         emojiDrawer = Optional.absent();
+  private   EmojiDrawer                   emojiDrawer;
   private   EmojiToggle                   emojiToggle;
   protected HidingImageButton             quickAttachmentToggle;
   private   QuickAttachmentDrawer         quickAttachmentDrawer;
@@ -265,19 +263,19 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   @Override public void onConfigurationChanged(Configuration newConfig) {
+    Log.w(TAG, "onConfigurationChanged(" + newConfig.orientation + ")");
     super.onConfigurationChanged(newConfig);
     composeText.setTransport(sendButton.getSelectedTransport());
     quickAttachmentDrawer.onConfigurationChanged();
-    hideEmojiDrawer(false);
+    if (container.getCurrentInput() == emojiDrawer) container.hideAttachedInput(true);
   }
 
   @Override
   protected void onDestroy() {
     saveDraft();
-    if (recipients != null)             recipients.removeListener(this);
+    if (recipients != null) recipients.removeListener(this);
     if (securityUpdateReceiver != null) unregisterReceiver(securityUpdateReceiver);
-    if (groupUpdateReceiver != null)    unregisterReceiver(groupUpdateReceiver);
-    if (isEmojiDrawerOpen())            hideEmojiDrawer(false);
+    if (groupUpdateReceiver != null) unregisterReceiver(groupUpdateReceiver);
     super.onDestroy();
   }
 
@@ -386,19 +384,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   @Override
   public void onBackPressed() {
     Log.w(TAG, "onBackPressed()");
-    if (isEmojiDrawerOpen()) {
-      Log.w(TAG, "hiding emoji popup");
-      hideEmojiDrawer(false);
-    } else if (quickAttachmentDrawer.isOpen()) {
-      quickAttachmentDrawer.close();
-    } else {
-      super.onBackPressed();
-    }
+    if (container.isInputOpen()) container.hideCurrentInput(composeText);
+    else                         super.onBackPressed();
   }
 
   @Override
   public void onKeyboardShown() {
-    hideEmojiDrawer(true);
+    emojiToggle.setToEmoji();
   }
 
   //////// Event Handlers
@@ -758,31 +750,23 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void initializeViews() {
-    titleView      = (ConversationTitleView)     getSupportActionBar().getCustomView();
-    buttonToggle   = (AnimatingToggle)           findViewById(R.id.button_toggle);
-    sendButton     = (SendButton)                findViewById(R.id.send_button);
-    attachButton   = (ImageButton)               findViewById(R.id.attach_button);
-    composeText    = (ComposeText)               findViewById(R.id.embedded_text_editor);
-    charactersLeft = (TextView)                  findViewById(R.id.space_left);
-    emojiToggle    = (EmojiToggle)               findViewById(R.id.emoji_toggle);
-    unblockButton  = (Button)                    findViewById(R.id.unblock_button);
-    composePanel   =                             findViewById(R.id.bottom_panel);
-    composeBubble  =                             findViewById(R.id.compose_bubble);
-    container      = (KeyboardAwareLinearLayout) findViewById(R.id.layout_container);
+    titleView      = (ConversationTitleView) getSupportActionBar().getCustomView();
+    buttonToggle   = (AnimatingToggle)       findViewById(R.id.button_toggle);
+    sendButton     = (SendButton)            findViewById(R.id.send_button);
+    attachButton   = (ImageButton)           findViewById(R.id.attach_button);
+    composeText    = (ComposeText)           findViewById(R.id.embedded_text_editor);
+    charactersLeft = (TextView)              findViewById(R.id.space_left);
+    emojiToggle    = (EmojiToggle)           findViewById(R.id.emoji_toggle);
+    emojiDrawer    = (EmojiDrawer)           findViewById(R.id.emoji_drawer);
+    unblockButton  = (Button)                findViewById(R.id.unblock_button);
+    composePanel   =                         findViewById(R.id.bottom_panel);
+    composeBubble  =                         findViewById(R.id.compose_bubble);
+    container      = (InputAwareLayout)      findViewById(R.id.layout_container);
 
-    container.addOnKeyboardShownListener(this);
-
-    buttonToggle          = (AnimatingToggle)       findViewById(R.id.button_toggle);
-    sendButton            = (SendButton)            findViewById(R.id.send_button);
-    attachButton          = (ImageButton)           findViewById(R.id.attach_button);
-    composeText           = (ComposeText)           findViewById(R.id.embedded_text_editor);
-    charactersLeft        = (TextView)              findViewById(R.id.space_left);
-    emojiToggle           = (EmojiToggle)           findViewById(R.id.emoji_toggle);
-    titleView             = (ConversationTitleView) getSupportActionBar().getCustomView();
-    unblockButton         = (Button)                findViewById(R.id.unblock_button);
-    composePanel          = findViewById(R.id.bottom_panel);
     quickAttachmentDrawer = (QuickAttachmentDrawer) findViewById(R.id.quick_attachment_drawer);
     quickAttachmentToggle = (HidingImageButton)     findViewById(R.id.quick_attachment_toggle);
+
+    container.addOnKeyboardShownListener(this);
 
     int[]      attributes   = new int[]{R.attr.conversation_item_bubble_background};
     TypedArray colors       = obtainStyledAttributes(attributes);
@@ -795,6 +779,18 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     SendButtonListener        sendButtonListener        = new SendButtonListener();
     ComposeKeyPressedListener composeKeyPressedListener = new ComposeKeyPressedListener();
+
+    emojiToggle.attach(emojiDrawer);
+    emojiToggle.setOnClickListener(new EmojiToggleListener());
+    emojiDrawer.setEmojiEventListener(new EmojiEventListener() {
+      @Override public void onKeyEvent(KeyEvent keyEvent) {
+        composeText.dispatchKeyEvent(keyEvent);
+      }
+
+      @Override public void onEmojiSelected(String emoji) {
+        composeText.insertEmoji(emoji);
+      }
+    });
 
     composeText.setOnEditorActionListener(sendButtonListener);
     attachButton.setOnClickListener(new AttachButtonListener());
@@ -831,7 +827,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     composeText.setOnEditorActionListener(sendButtonListener);
     composeText.setOnClickListener(composeKeyPressedListener);
     composeText.setOnFocusChangeListener(composeKeyPressedListener);
-    emojiToggle.setOnClickListener(new EmojiToggleListener());
 
     if (QuickAttachmentDrawer.isDeviceSupported(this)) {
       quickAttachmentDrawer.setListener(this);
@@ -846,48 +841,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     getSupportActionBar().setCustomView(R.layout.conversation_title_view);
     getSupportActionBar().setDisplayShowCustomEnabled(true);
     getSupportActionBar().setDisplayShowTitleEnabled(false);
-  }
-
-  private EmojiDrawer getEmojiDrawer() {
-    if (!emojiDrawer.isPresent()) {
-      EmojiDrawer emojiDrawer = (EmojiDrawer)((ViewStub)findViewById(R.id.emoji_drawer_stub)).inflate();
-      emojiDrawer.setEmojiEventListener(new EmojiEventListener() {
-        @Override public void onKeyEvent(KeyEvent keyEvent) {
-          composeText.dispatchKeyEvent(keyEvent);
-        }
-
-        @Override public void onEmojiSelected(String emoji) {
-          Log.w(TAG, "onEmojiSelected()");
-          composeText.insertEmoji(emoji);
-        }
-      });
-      this.emojiDrawer = Optional.of(emojiDrawer);
-    }
-    return emojiDrawer.get();
-  }
-
-  private void showEmojiDrawer() {
-    getEmojiDrawer().show(container);
-    emojiToggle.setToIme();
-  }
-
-  protected void hideEmojiDrawer(boolean expectingKeyboard) {
-    if (isEmojiDrawerOpen()) {
-      if (!expectingKeyboard || container.isLandscape()) {
-        getEmojiDrawer().dismiss();
-      } else {
-        container.postOnKeyboardOpen(new Runnable() {
-          @Override public void run() {
-            getEmojiDrawer().dismiss();
-          }
-        });
-      }
-    }
-    emojiToggle.setToEmoji();
-  }
-
-  private boolean isEmojiDrawerOpen() {
-    return emojiDrawer.isPresent() && emojiDrawer.get().isShowing();
   }
 
   private void initializeResources() {
@@ -970,6 +923,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       attachmentManager.clear();
       Toast.makeText(this, R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
                      Toast.LENGTH_LONG).show();
+    } catch (MediaTooLargeException e) {
+      attachmentManager.clear();
+      Toast.makeText(this, getString(R.string.ConversationActivity_the_gif_you_selected_was_too_big),
+                     Toast.LENGTH_LONG).show();
+      Log.w(TAG, e);
     }
   }
 
@@ -1302,26 +1260,25 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   @Override
-  public void onAttachmentDrawerClosed() {
-    getSupportActionBar().show();
-  }
-
-  @Override
-  public void onAttachmentDrawerOpened() {
-    getSupportActionBar().hide();
+  public void onAttachmentDrawerStateChanged(DrawerState drawerState) {
+    if (drawerState == DrawerState.FULL_EXPANDED) {
+      getSupportActionBar().hide();
+    } else {
+      getSupportActionBar().show();
+    }
   }
 
   @Override
   public void onImageCapture(@NonNull final byte[] imageBytes) {
     attachmentManager.setCaptureUri(CaptureProvider.getInstance(this).create(masterSecret, recipients, imageBytes));
     addAttachmentImage(masterSecret, attachmentManager.getCaptureUri());
-    quickAttachmentDrawer.close();
+    quickAttachmentDrawer.hide(false);
   }
 
   @Override
   public void onCameraFail(FailureReason reason) {
     Toast.makeText(this, R.string.quick_camera_unavailable, Toast.LENGTH_SHORT).show();
-    quickAttachmentDrawer.close();
+    quickAttachmentDrawer.hide(false);
     quickAttachmentToggle.disable();
   }
 
@@ -1335,46 +1292,19 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
-  private void openKeyboardForComposition() {
-    composeText.post(new Runnable() {
-      @Override public void run() {
-        composeText.requestFocus();
-        ServiceUtil.getInputMethodManager(ConversationActivity.this).showSoftInput(composeText, 0);
-      }
-    });
-  }
-
-  private void hideKeyboard() {
-    ServiceUtil.getInputMethodManager(this).hideSoftInputFromWindow(composeText.getWindowToken(), 0);
-  }
-
   private class EmojiToggleListener implements OnClickListener {
-    @Override
-    public void onClick(View v) {
-      Log.w(TAG, "EmojiToggleListener onClick()");
-      if (isEmojiDrawerOpen()) {
-        hideEmojiDrawer(true);
-        openKeyboardForComposition();
-      } else {
-        container.postOnKeyboardClose(new Runnable() {
-          @Override public void run() {
-            showEmojiDrawer();
-          }
-        });
-        quickAttachmentDrawer.close();
-        hideKeyboard();
-      }
+
+    @Override public void onClick(View v) {
+      if (container.getCurrentInput() == emojiDrawer) container.showSoftkey(composeText);
+      else                                            container.show(composeText, emojiDrawer);
     }
   }
 
   private class QuickAttachmentToggleListener implements OnClickListener {
     @Override
     public void onClick(View v) {
-      InputMethodManager input = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-      input.hideSoftInputFromWindow(composeText.getWindowToken(), 0);
       composeText.clearFocus();
-      hideEmojiDrawer(false);
-      quickAttachmentDrawer.open();
+      container.show(composeText, quickAttachmentDrawer);
     }
   }
 
@@ -1421,7 +1351,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     @Override
     public void onClick(View v) {
-      hideEmojiDrawer(true);
+      container.showSoftkey(composeText);
     }
 
     @Override
@@ -1447,13 +1377,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     public void onTextChanged(CharSequence s, int start, int before,int count) {}
 
     @Override
-    public void onFocusChange(View v, boolean hasFocus) {
-      if (hasFocus && isEmojiDrawerOpen()) {
-        hideEmojiDrawer(true);
-      } else if (hasFocus && quickAttachmentDrawer.isOpen()) {
-        quickAttachmentDrawer.close();
-      }
-    }
+    public void onFocusChange(View v, boolean hasFocus) {}
   }
 
   @Override

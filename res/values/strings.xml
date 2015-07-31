@@ -48,7 +48,7 @@
     <string name="AttachmentManager_cant_open_media_selection">Can\'t find an app to select media.</string>
 
     <!-- AttachmentTypeSelectorAdapter -->
-    <string name="AttachmentTypeSelectorAdapter_take_photo">Take Photo</string>
+    <string name="AttachmentTypeSelectorAdapter_camera">Camera</string>
     <string name="AttachmentTypeSelectorAdapter_picture">Picture</string>
     <string name="AttachmentTypeSelectorAdapter_video">Video</string>
     <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
@@ -98,6 +98,7 @@
     <string name="ConversationActivity_select_contact_info">Select contact info</string>
     <string name="ConversationActivity_compose_message">Compose message</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Sorry, there was an error setting your attachment.</string>
+    <string name="ConversationActivity_the_gif_you_selected_was_too_big">The gif you selected was too big!</string>
     <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Sorry, the selected video exceeds message size restrictions (%1$skB).</string>
     <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Sorry, the selected audio exceeds message size restrictions (%1$skB).</string>
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Recipient is not a valid SMS or email address!</string>
@@ -168,17 +169,17 @@
     <string name="DateUtils_minutes_ago">%d min</string>
 
     <!-- DeviceListActivity -->
-    <string name="DeviceListActivity_disconnect_s">Disconnect \'%s\'?</string>
-    <string name="DeviceListActivity_by_disconnecting_this_device_it_will_no_longer_be_able_to_send_or_receive">By disconnecting this device, it will no longer be able to send or receive messages.</string>
+    <string name="DeviceListActivity_unlink_s">Unlink \'%s\'?</string>
+    <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">By unlinking this device, it will no longer be able to send or receive messages.</string>
     <string name="DeviceListActivity_network_connection_failed">Network connection failed...</string>
     <string name="DeviceListActivity_try_again">Try again</string>
-    <string name="DeviceListActivity_disconnecting_device">Disconnecting device...</string>
-    <string name="DeviceListActivity_disconnecting_device_no_ellipse">Disconnecting device</string>
+    <string name="DeviceListActivity_unlinking_device">Unlinking device...</string>
+    <string name="DeviceListActivity_unlinking_device_no_ellipsis">Unlinking device</string>
     <string name="DeviceListActivity_network_failed">Network failed!</string>
 
     <!-- DeviceListItem -->
     <string name="DeviceListItem_unnamed_device">Unnamed device</string>
-    <string name="DeviceListItem_created_s">Created %s</string>
+    <string name="DeviceListItem_linked_s">Linked %s</string>
     <string name="DeviceListItem_last_active_s">Last active %s</string>
 
     <!-- ShareActivity -->
@@ -292,13 +293,13 @@
         - Read all your messages
         \n- Send messages in your name
     </string>
-    <string name="DeviceProvisioningActivity_content_progress_title">Adding device</string>
-    <string name="DeviceProvisioningActivity_content_progress_content">Adding new device...</string>
-    <string name="DeviceProvisioningActivity_content_progress_success">Device added!</string>
+    <string name="DeviceProvisioningActivity_content_progress_title">Linking device</string>
+    <string name="DeviceProvisioningActivity_content_progress_content">Linking new device...</string>
+    <string name="DeviceProvisioningActivity_content_progress_success">Device linked!</string>
     <string name="DeviceProvisioningActivity_content_progress_no_device">No device found.</string>
     <string name="DeviceProvisioningActivity_content_progress_network_error">Network error.</string>
     <string name="DeviceProvisioningActivity_content_progress_key_error">Invalid QR code.</string>
-    <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_registered_already">Sorry, you have too many devices registered already, try removing some...</string>
+    <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Sorry, you have too many devices linked already, try removing some...</string>
 
     <!-- PassphrasePromptActivity -->
     <string name="PassphrasePromptActivity_enter_passphrase">Enter passphrase</string>
@@ -548,7 +549,7 @@
     <string name="country_selection_fragment__search">Search</string>
 
     <!-- device_list_fragment -->
-    <string name="device_list_fragment__no_devices_paired">No devices paired...</string>
+    <string name="device_list_fragment__no_devices_linked">No devices linked...</string>
 
     <!-- log_submit_activity -->
     <string name="log_submit_activity__log_fetch_failed">Could not grab logs from your device. You can still use ADB to get debug logs instead.</string>
@@ -736,7 +737,7 @@
     <string name="AndroidManifest__media_overview">All images</string>
     <string name="AndroidManifest__media_overview_named">All images with %1$s</string>
     <string name="AndroidManifest__message_details">Message Details</string>
-    <string name="AndroidManifest_manage_paired_devices">Manage paired devices</string>
+    <string name="AndroidManifest_manage_linked_devices">Manage linked devices</string>
 
     <!-- arrays.xml -->
     <string name="arrays__import_export">Import / export</string>

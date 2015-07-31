@@ -12,6 +12,9 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Izbrišem stara sporočila?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Ste prepričani, da želite izbrisati vse stare pogovore, razen najnovejših?</string>
   <string name="ApplicationPreferencesActivity_delete">Izbriši</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">Izklopim geslo?</string>
+  <string name="ApplicationPreferencesActivity_disable_lock_screen">
+Izklopim zaklep zaslona za sporočila?</string>
   <string name="ApplicationPreferencesActivity_disable">Onemogoči</string>
   <string name="ApplicationPreferencesActivity_unregistering">Odjava poteka</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Odjava od sporočil TextSecure...</string>
@@ -38,7 +41,7 @@ Za ponovno uporabo sporočil TextSecure se boste morali zopet prijaviti s svojo 
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Ne najdem aplikacije za izbor datotek.</string>
   <!--AttachmentTypeSelectorAdapter-->
-  <string name="AttachmentTypeSelectorAdapter_take_photo">Posnami fotografijo</string>
+  <string name="AttachmentTypeSelectorAdapter_camera">Kamera</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Slika</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Zvok</string>
@@ -78,6 +81,7 @@ preveriti ta stik.</string>
   <string name="ConversationActivity_select_contact_info">Izberi podatke o stiku</string>
   <string name="ConversationActivity_compose_message">Sestavi sporočilo</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Oprostite, pri nastavljanju priponke je prišlo do napake.</string>
+  <string name="ConversationActivity_the_gif_you_selected_was_too_big">Izbrani gif je bil prevelik!</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Izbran video posnetek presega omejitev velikosti (%1$skB).</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Izbran zvočni posnetek presega omejitev velikosti (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Naslov prejemnika ni veljaven SMS oz. email nalsov!</string>
@@ -141,16 +145,11 @@ preveriti ta stik.</string>
   <string name="DateUtils_now">Ravnokar</string>
   <string name="DateUtils_minutes_ago">%d min</string>
   <!--DeviceListActivity-->
-  <string name="DeviceListActivity_disconnect_s">Odstranim \'%s\'?</string>
-  <string name="DeviceListActivity_by_disconnecting_this_device_it_will_no_longer_be_able_to_send_or_receive">Z odstranitvijo naprave ta ne bo več mogla pošiljati ali prejemati sporočil.</string>
   <string name="DeviceListActivity_network_connection_failed">Omrežno povezovanje ni bilo uspešno...</string>
   <string name="DeviceListActivity_try_again">Poskusite znova</string>
-  <string name="DeviceListActivity_disconnecting_device">Odstranjujem napravo...</string>
-  <string name="DeviceListActivity_disconnecting_device_no_ellipse">Odklapljam napravo...</string>
   <string name="DeviceListActivity_network_failed">Povezovanje ni uspelo!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Nepoimenovana naprava</string>
-  <string name="DeviceListItem_created_s">Ustvarjena %s</string>
   <string name="DeviceListItem_last_active_s">Zadnja aktivna %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Deli z</string>
@@ -237,13 +236,9 @@ preveriti ta stik.</string>
   <string name="DeviceProvisioningActivity_content_bullets">
 - prebirala vsa vaša sporočila
 \n- pošiljala sporočila v vašem imenu</string>
-  <string name="DeviceProvisioningActivity_content_progress_title">Dodajam napravo</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">Dodajam novo napravo...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">Naprava dodana!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Nobena naprava ni bila najdena.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Napaka omrežja.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Neveljavna koda QR.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_registered_already">Imate preveč registriranih naprav, poskusite kakšno odstraniti...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Vnesite geslo</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Ikona TextSecure</string>
@@ -395,6 +390,7 @@ Prejeto sporočilo z neznanim identifikacijskim ključem. Kliknite za obdelavo i
   <string name="change_passphrase_activity__new_passphrase">Novo geslo:</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">Ponovi novo geslo:</string>
   <!--contact_selection_activity-->
+  <string name="contact_selection_activity__enter_name_or_number">Vnesite ime ali številko...</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Ni stikov.</string>
   <string name="contact_selection_group_activity__finding_contacts">Nalagam stike...</string>
@@ -440,7 +436,6 @@ Prejeto sporočilo z neznanim identifikacijskim ključem. Kliknite za obdelavo i
   <string name="country_selection_fragment__loading_countries">Pripravljam države...</string>
   <string name="country_selection_fragment__search">Poišči</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_paired">Ni povezanih naprav...</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Ne morem zajeti podatkov iz vaše naprave. Sistemsko zabeležbo lahko zajamete tudi sami preko ADB.</string>
   <string name="log_submit_activity__thanks">Hvala za pomoč!</string>
@@ -581,7 +576,6 @@ bila uspešna.</string>
   <string name="AndroidManifest__media_overview">Vse slike</string>
   <string name="AndroidManifest__media_overview_named">Vse slike z %1$s</string>
   <string name="AndroidManifest__message_details">Podrobnosti sporočila</string>
-  <string name="AndroidManifest_manage_paired_devices">Upravljanje povezanih naprav</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Uvoz/izvoz</string>
   <string name="arrays__my_identity_key">Moja identifikacija</string>

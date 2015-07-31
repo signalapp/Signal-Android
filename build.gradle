@@ -45,7 +45,7 @@ dependencies {
     compile 'org.w3c:smil:1.0.0'
     compile 'org.apache.httpcomponents:httpclient-android:4.3.5'
     compile 'com.github.chrisbanes.photoview:library:1.2.3'
-    compile 'com.github.bumptech.glide:glide:3.6.0'
+    compile 'com.github.bumptech.glide:glide:3.6.1'
     compile 'com.makeramen:roundedimageview:2.1.0'
     compile 'com.pnikosis:materialish-progress:1.5'
     compile 'de.greenrobot:eventbus:2.4.0'
@@ -79,7 +79,7 @@ dependencies {
     compile 'org.whispersystems:jobmanager:0.11.0'
     compile 'org.whispersystems:libpastelog:1.0.6'
     compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
-    compile 'org.whispersystems:textsecure-android:2.6.0'
+    compile 'org.whispersystems:textsecure-android:2.6.2'
 
     androidTestCompile 'com.google.dexmaker:dexmaker:1.2'
     androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.2'
@@ -109,7 +109,7 @@ dependencyVerification {
             'org.w3c:smil:085dc40f2bb249651578bfa07499fd08b16ad0886dbe2c4078586a408da62f9b',
             'org.apache.httpcomponents:httpclient-android:6f56466a9bd0d42934b90bfbfe9977a8b654c058bf44a12bdc2877c4e1f033f1',
             'com.github.chrisbanes.photoview:library:8b5344e206f125e7ba9d684008f36c4992d03853c57e5814125f88496126e3cc',
-            'com.github.bumptech.glide:glide:adf657e6bddccb168a29e18ab0954043af46a9b5c736d8c3193c9783fd83d69e',
+            'com.github.bumptech.glide:glide:4718ac4c57ebabe56e673dc3265950b9dbf940d1c43c0adc363e8b95c0abdf75',
             'com.makeramen:roundedimageview:1f5a1865796b308c6cdd114acc6e78408b110f0a62fc63553278fbeacd489cd1',
             'com.pnikosis:materialish-progress:d71d80e00717a096784482aee21001a9d299fec3833e4ebd87739ed36cf77c54',
             'de.greenrobot:eventbus:61d743a748156a372024d083de763b9e91ac2dcb3f6a1cbc74995c7ddab6e968',
@@ -145,6 +145,8 @@ dependencyVerification {
             'org.whispersystems:curve25519-java:9ccef8f5aba05d9942336f023c589d6278b4f9135bdc34a7bade1f4e7ad65fa3',
             'com.android.support:support-v4:1e2e4d35ac7fd30db5ce3bc177b92e4d5af86acef2ef93e9221599d733346f56',
             'com.android.support:support-annotations:7bc07519aa613b186001160403bcfd68260fa82c61cc7e83adeedc9b862b94ae',
+            'org.whispersystems:textsecure-android:28d3cb7ee8ac8437f148b9b4f689546d1393287798f0f09acbe21716c8aee8d0',
+            'org.whispersystems:textsecure-java:5be870e48adce18fc911c648c264cc968b16cd2299eb9170dd3ddc63d716eaa7',
     ]
 }
 

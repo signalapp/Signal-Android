@@ -38,7 +38,6 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">メディアの選択用アプリが見つかりません。</string>
   <!--AttachmentTypeSelectorAdapter-->
-  <string name="AttachmentTypeSelectorAdapter_take_photo">写真を撮影</string>
   <string name="AttachmentTypeSelectorAdapter_picture">写真</string>
   <string name="AttachmentTypeSelectorAdapter_video">動画</string>
   <string name="AttachmentTypeSelectorAdapter_audio">音声</string>
@@ -144,16 +143,11 @@
   <string name="DateUtils_now">今</string>
   <string name="DateUtils_minutes_ago">%d 分</string>
   <!--DeviceListActivity-->
-  <string name="DeviceListActivity_disconnect_s">\'%s\' を切断しますか?</string>
-  <string name="DeviceListActivity_by_disconnecting_this_device_it_will_no_longer_be_able_to_send_or_receive">このデバイスを切断すると、メッセージを送信/受信することはできなくなります。</string>
   <string name="DeviceListActivity_network_connection_failed">ネットワーク接続が失敗...</string>
   <string name="DeviceListActivity_try_again">再試行</string>
-  <string name="DeviceListActivity_disconnecting_device">デバイスの切断...</string>
-  <string name="DeviceListActivity_disconnecting_device_no_ellipse">デバイスの切断</string>
   <string name="DeviceListActivity_network_failed">ネットワークが失敗!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">無名のデバイス</string>
-  <string name="DeviceListItem_created_s">%s を生成</string>
   <string name="DeviceListItem_last_active_s">最後にアクティブ %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">共有</string>
@@ -242,13 +236,9 @@
         - あなたへのすべてのメッセージを読むこと
         \n- あなたの名前でメッセージを送ること
     </string>
-  <string name="DeviceProvisioningActivity_content_progress_title">デバイスの追加</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">新規デバイスの追加...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">デバイスを追加!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">デバイスがありません。</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">ネットワークエラー。</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">QRコードが無効。</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_registered_already">すみません、あなたはすでにとても多数のデバイスを登録しています、なんらかを削除してみてください...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">パスワード入力</string>
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecureアイコン</string>
@@ -445,7 +435,6 @@
   <string name="country_selection_fragment__loading_countries">国名を読み込み中...</string>
   <string name="country_selection_fragment__search">検索</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_paired">ペアリングしたデバイスはありません...</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">デバッグログの入手に失敗しました。ADBを使ってログの入手は、可能です。</string>
   <string name="log_submit_activity__thanks">提出どうもありがとうございます！</string>
@@ -583,7 +572,6 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
   <string name="AndroidManifest__media_overview">すべての画像</string>
   <string name="AndroidManifest__media_overview_named">%1$s とすべての画像</string>
   <string name="AndroidManifest__message_details">メッセージの詳細</string>
-  <string name="AndroidManifest_manage_paired_devices">ペアリングデバイスの管理</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">インポート／エクスポート</string>
   <string name="arrays__my_identity_key">自分の認証キー</string>

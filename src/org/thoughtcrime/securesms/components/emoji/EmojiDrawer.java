@@ -18,7 +18,7 @@ import android.widget.LinearLayout;
 import com.astuetz.PagerSlidingTabStrip;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout;
+import org.thoughtcrime.securesms.components.InputAwareLayout.InputView;
 import org.thoughtcrime.securesms.components.RepeatableImageKey;
 import org.thoughtcrime.securesms.components.RepeatableImageKey.KeyEventListener;
 import org.thoughtcrime.securesms.components.emoji.EmojiPageView.EmojiSelectionListener;
@@ -27,7 +27,7 @@ import org.thoughtcrime.securesms.util.ResUtil;
 import java.util.LinkedList;
 import java.util.List;
 
-public class EmojiDrawer extends LinearLayout {
+public class EmojiDrawer extends LinearLayout implements InputView {
   private static final KeyEvent DELETE_KEY_EVENT = new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL);
 
   private ViewPager            pager;
@@ -35,6 +35,7 @@ public class EmojiDrawer extends LinearLayout {
   private PagerSlidingTabStrip strip;
   private RecentEmojiPageModel recentModel;
   private EmojiEventListener   listener;
+  private EmojiDrawerListener  drawerListener;
 
   public EmojiDrawer(Context context) {
     this(context, null);
@@ -43,6 +44,9 @@ public class EmojiDrawer extends LinearLayout {
   public EmojiDrawer(Context context, AttributeSet attrs) {
     super(context, attrs);
     setOrientation(VERTICAL);
+  }
+
+  private void initView() {
     final View v = LayoutInflater.from(getContext()).inflate(R.layout.emoji_drawer, this, true);
     initializeResources(v);
     initializePageModels();
@@ -51,6 +55,10 @@ public class EmojiDrawer extends LinearLayout {
 
   public void setEmojiEventListener(EmojiEventListener listener) {
     this.listener = listener;
+  }
+
+  public void setDrawerListener(EmojiDrawerListener listener) {
+    this.drawerListener = listener;
   }
 
   private void initializeResources(View v) {
@@ -66,20 +74,27 @@ public class EmojiDrawer extends LinearLayout {
     });
   }
 
+  @Override
   public boolean isShowing() {
     return getVisibility() == VISIBLE;
   }
 
-  public void show(KeyboardAwareLinearLayout container) {
+  @Override
+  public void show(int height, boolean immediate) {
+    if (this.pager == null) initView();
     ViewGroup.LayoutParams params = getLayoutParams();
-    params.height = container.getKeyboardHeight();
+    params.height = height;
     Log.w("EmojiDrawer", "showing emoji drawer with height " + params.height);
     setLayoutParams(params);
     setVisibility(VISIBLE);
+    if (drawerListener != null) drawerListener.onShown();
   }
 
-  public void dismiss() {
+  @Override
+  public void hide(boolean immediate) {
     setVisibility(GONE);
+    if (drawerListener != null) drawerListener.onHidden();
+    Log.w("EmojiDrawer", "hide()");
   }
 
   private void initializeEmojiGrid() {
@@ -160,5 +175,10 @@ public class EmojiDrawer extends LinearLayout {
 
   public interface EmojiEventListener extends EmojiSelectionListener {
     void onKeyEvent(KeyEvent keyEvent);
+  }
+
+  public interface EmojiDrawerListener {
+    void onShown();
+    void onHidden();
   }
 }

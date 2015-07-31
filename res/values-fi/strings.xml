@@ -12,6 +12,9 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Poistetaanko kaikki vanhat viestit nyt?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Haluatko varmasti rajata kaikki keskustelut %s viimeisimpään viestiin?</string>
   <string name="ApplicationPreferencesActivity_delete">Poista</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">Poista salalause käytöstä?</string>
+  <string name="ApplicationPreferencesActivity_disable_lock_screen">
+Poistetaanko sovelluksen ja viestien lukitus salalauseella käytöstä?</string>
   <string name="ApplicationPreferencesActivity_disable">Poista käytöstä</string>
   <string name="ApplicationPreferencesActivity_unregistering">Puretaan rekisteröintiä</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Puretaan rekisteröintiä TextSecure-viestipalvelusta</string>
@@ -38,7 +41,7 @@ Jos haluat käyttää TextSecure-viestejä jatkossa, sinun täytyy rekisteröity
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Median valintaan ei löytynyt sovellusta.</string>
   <!--AttachmentTypeSelectorAdapter-->
-  <string name="AttachmentTypeSelectorAdapter_take_photo">Ota kuva</string>
+  <string name="AttachmentTypeSelectorAdapter_camera">Kamera</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Kuva</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Äänitallenne</string>
@@ -81,6 +84,7 @@ tämän yhteystiedon.</string>
   <string name="ConversationActivity_select_contact_info">Valitse yhteystieto</string>
   <string name="ConversationActivity_compose_message">Kirjoita viesti</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Virhe liitteen lisäämisessä</string>
+  <string name="ConversationActivity_the_gif_you_selected_was_too_big">Valitsemasi gif on liian suuri!</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Valitettavasti kyseinen video ylittää viesteille asetetun kokorajoituksen (%1$skB).</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Valitettavasti kyseinen äänitallenne ylittää viesteille asetetun kokorajoituksen (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Annettu numero tai sähköpostiosoite ei ole kelvollinen!</string>
@@ -148,16 +152,11 @@ Vastaanotettu: %4$s</string>
   <string name="DateUtils_now">Nyt</string>
   <string name="DateUtils_minutes_ago">%d min</string>
   <!--DeviceListActivity-->
-  <string name="DeviceListActivity_disconnect_s">Poista \'%s\'?</string>
-  <string name="DeviceListActivity_by_disconnecting_this_device_it_will_no_longer_be_able_to_send_or_receive">Jos poistat tämän laitteen, sillä ei voi enää lähettää eikä vastaanottaa viestejä.</string>
   <string name="DeviceListActivity_network_connection_failed">Verkkoyhteyden muodostus epäonnistui...</string>
   <string name="DeviceListActivity_try_again">Yritä uudelleen</string>
-  <string name="DeviceListActivity_disconnecting_device">Poistetaan laitetta...</string>
-  <string name="DeviceListActivity_disconnecting_device_no_ellipse">Poistetaan laitetta</string>
   <string name="DeviceListActivity_network_failed">Verkkoyhteysvirhe!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Nimeämätön laite</string>
-  <string name="DeviceListItem_created_s">Luotu %s</string>
   <string name="DeviceListItem_last_active_s">Viimeksi käytetty %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Jaa</string>
@@ -251,13 +250,9 @@ seuraa niiden uudelleentuonnista viestien kaksoiskappaleita.</string>
   <string name="DeviceProvisioningActivity_content_bullets">
 - lukea kaikki viestisi
 \n- lähettää viestejä sinun nimessäsi</string>
-  <string name="DeviceProvisioningActivity_content_progress_title">Lisätään laitetta</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">Lisätään uutta laitetta...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">Laite lisätty!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Laitetta ei löytynyt.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Verkkovirhe.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Virheellinen QR-koodi.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_registered_already">Sinulla on liian monta laitetta rekisteröitynä. Kokeile poistaa joitakin.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Syötä salalause</string>
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure-kuvake</string>
@@ -402,7 +397,7 @@ Vastaanotettiin viesti tuntemattomalla identiteettiavaimella. Aloita käsittely 
   <string name="MessageNotifier_media_message_with_text">Mediaviesti: %s</string>
   <string name="MessageNotifier_no_subject">(Ei otsikkoa)</string>
   <string name="MessageNotifier_message_delivery_failed">Viestin toimitus epäonnistui.</string>
-  <string name="MessageNotifier_failed_to_deliver_message">Viestin toimitus epäonnistui.</string>
+  <string name="MessageNotifier_failed_to_deliver_message">Viestin lähetys ei onnistunut.</string>
   <string name="MessageNotifier_error_delivering_message">Virhe viestiä toimitettaessa.</string>
   <string name="MessageNotifier_mark_all_as_read">Merkitse kaikki luetuiksi</string>
   <string name="MessageNotifier_mark_read">Merk. luetuksi</string>
@@ -440,7 +435,7 @@ Vastaanotettiin viesti tuntemattomalla identiteettiavaimella. Aloita käsittely 
   <string name="conversation_activity__compose_description">Viestin kirjoitus</string>
   <string name="conversation_activity__emoji_toggle_description">Näytä tai piilota emoji-näppäimistö</string>
   <string name="conversation_activity__attachment_thumbnail">Liitteen esikatselu</string>
-  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Ota pikakuva</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Pikakamera</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Ladataan mediaviestiä</string>
   <string name="conversation_item__mms_image_description">Mediaviesti</string>
@@ -462,7 +457,6 @@ Vastaanotettiin viesti tuntemattomalla identiteettiavaimella. Aloita käsittely 
   <string name="country_selection_fragment__loading_countries">Ladataan maita...</string>
   <string name="country_selection_fragment__search">Hae</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_paired">Ei yhdistettyjä laitteita...</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Lokien hakeminen laitteesta epäonnistui. Voit sen sijaan käyttää ADB-työkalua virheenkorjauslokien noutamiseen.</string>
   <string name="log_submit_activity__thanks">Kiitos avustasi!</string>
@@ -605,7 +599,6 @@ epäonnistui.</string>
   <string name="AndroidManifest__media_overview">Kaikki kuvat</string>
   <string name="AndroidManifest__media_overview_named">%1$s: kaikki kuvat</string>
   <string name="AndroidManifest__message_details">Viestin tiedot</string>
-  <string name="AndroidManifest_manage_paired_devices">Hallitse yhdistettyjä laitteita</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Varmuuskopiot</string>
   <string name="arrays__my_identity_key">Oma identiteettiavaimeni</string>

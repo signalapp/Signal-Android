@@ -213,8 +213,6 @@ SMS-களை இறக்குமதி செய்திருந்தா�
   <string name="DeviceProvisioningActivity_content_bullets">
 - அனைத்த்து குறுஞ்செய்திகளை படிக்கமுடியும்
 \n- உங்கள் பெயர்கொண்டு செய்திகளை அனுப்பமுடியும்</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">புதிய சாதனம் சேர்க்கப்படுகிறது...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">சாதனம் சேர்க்கப்பட்டது!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">எந்த சாதனமும் காணப்படவில்லை.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">இணையத்தில் பிழை.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">QR குறியீடு செல்லாது.</string>

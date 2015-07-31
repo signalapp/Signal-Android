@@ -38,8 +38,8 @@ Source assets tend to be large binary blobs, which are best stored outside of gi
 Sample command for generating our audio placeholder image:
 
 ```bash
-pngs_from_svg.py ic_audio.svg /path/to/TextSecure/res/ 150 "#000" 0.54 _light
-pngs_from_svg.py ic_audio.svg /path/to/TextSecure/res/ 150 "#fff" 1.0 _dark
+pngs_from_svg.py ic_audio.svg /path/to/TextSecure/res/ 150 --color #000 --opacity 0.54 --suffix _light
+pngs_from_svg.py ic_audio.svg /path/to/TextSecure/res/ 150 --color #fff --opacity 1.00 --suffix _light
 ```
 
 Setting up a development environment
