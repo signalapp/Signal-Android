@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.database.PartDatabase;
 import org.thoughtcrime.securesms.database.PartDatabase.PartId;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
+import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
@@ -66,6 +67,8 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
       retrievePart(masterSecret, part, messageId);
       Log.w(TAG, "Got part: " + part.getPartId());
     }
+
+    MessageNotifier.updateNotification(context, masterSecret);
   }
 
   @Override
