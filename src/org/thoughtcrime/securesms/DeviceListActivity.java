@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -17,8 +18,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-
-import com.afollestad.materialdialogs.AlertDialogWrapper;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.loaders.DeviceListLoader;
@@ -136,7 +135,7 @@ public class DeviceListActivity extends PassphraseRequiredActionBarActivity {
       final String deviceName = ((DeviceListItem)view).getDeviceName();
       final long   deviceId   = ((DeviceListItem)view).getDeviceId();
 
-      AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(getActivity());
+      AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
       builder.setTitle(getActivity().getString(R.string.DeviceListActivity_unlink_s, deviceName));
       builder.setMessage(R.string.DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive);
       builder.setNegativeButton(android.R.string.cancel, null);
@@ -150,7 +149,7 @@ public class DeviceListActivity extends PassphraseRequiredActionBarActivity {
     }
 
     private void handleLoaderFailed() {
-      AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(getActivity());
+      AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
       builder.setMessage(R.string.DeviceListActivity_network_connection_failed);
       builder.setPositiveButton(R.string.DeviceListActivity_try_again,
                                 new DialogInterface.OnClickListener() {
