@@ -137,9 +137,7 @@ public class CameraView extends FrameLayout {
       }
 
       @Override protected Void onRunBackground() {
-        if (camera != null) {
-          previewDestroyed();
-        }
+        previewDestroyed();
         return null;
       }
 
