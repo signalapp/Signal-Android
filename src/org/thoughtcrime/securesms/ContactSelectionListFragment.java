@@ -91,7 +91,7 @@ public class ContactSelectionListFragment extends    Fragment
     listView.setDrawingListUnderStickyHeader(false);
     listView.setOnItemClickListener(new ListClickListener());
 
-    swipeRefresh.setEnabled(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT);
+    swipeRefresh.setEnabled(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN);
 
     return view;
   }

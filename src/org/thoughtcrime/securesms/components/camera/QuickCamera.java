@@ -81,6 +81,7 @@ import java.util.List;
         final Rect croppingRect = getCroppedRect(previewSize, previewRect, rotation);
 
         Log.w(TAG, "previewSize: " + previewSize.width + "x" + previewSize.height);
+        Log.w(TAG, "previewFormat: " + cameraParameters.getPreviewFormat());
         Log.w(TAG, "croppingRect: " + croppingRect.toString());
         Log.w(TAG, "rotation: " + rotation);
         new AsyncTask<byte[], Void, byte[]>() {

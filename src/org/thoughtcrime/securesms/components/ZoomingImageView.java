@@ -7,7 +7,9 @@ import android.util.AttributeSet;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
@@ -32,11 +34,10 @@ public class ZoomingImageView extends ImageView {
   public void setImageUri(MasterSecret masterSecret, Uri uri) {
     Glide.with(getContext())
          .load(new DecryptableUri(masterSecret, uri))
-         .asBitmap()
          .dontTransform()
          .dontAnimate()
-         .into(new BitmapImageViewTarget(this) {
-           @Override protected void setResource(Bitmap resource) {
+         .into(new GlideDrawableImageViewTarget(this) {
+           @Override protected void setResource(GlideDrawable resource) {
              super.setResource(resource);
              attacher.update();
            }

@@ -12,6 +12,9 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Обрисати старе поруке сада?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Желите ли заиста одмах да скратите све нити преписки на %s најскоријих порука?</string>
   <string name="ApplicationPreferencesActivity_delete">Обриши</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">Да онемогућим лозинку</string>
+  <string name="ApplicationPreferencesActivity_disable_lock_screen">
+Да искључим екран закључавања за поруке?</string>
   <string name="ApplicationPreferencesActivity_disable">Онемогући</string>
   <string name="ApplicationPreferencesActivity_unregistering">Одјављујем</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Одјављујем подршку за сигурне поруке...</string>
@@ -38,7 +41,7 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Не могу да нађем апликацију за избор медијума.</string>
   <!--AttachmentTypeSelectorAdapter-->
-  <string name="AttachmentTypeSelectorAdapter_take_photo">Фотографиши</string>
+  <string name="AttachmentTypeSelectorAdapter_camera">Камера</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Слика</string>
   <string name="AttachmentTypeSelectorAdapter_video">Видео</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Звук</string>
@@ -81,6 +84,7 @@
   <string name="ConversationActivity_select_contact_info">Изаберите податке о контакту</string>
   <string name="ConversationActivity_compose_message">Састави поруку</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Дошло је до грешке при постављању вашег прилога.</string>
+  <string name="ConversationActivity_the_gif_you_selected_was_too_big">Анимирана сличица коју сте изабрали је превелика!</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Изабрани видео прекорачује ограничења величине поруке (%1$skB).</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Изабрани звук прекорачује ограничења величине поруке (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Прималац није исправан број или е-адреса!</string>
@@ -144,16 +148,11 @@
   <string name="DateUtils_now">Сад</string>
   <string name="DateUtils_minutes_ago">%d минута</string>
   <!--DeviceListActivity-->
-  <string name="DeviceListActivity_disconnect_s">Да прекинем везу са „%s“?</string>
-  <string name="DeviceListActivity_by_disconnecting_this_device_it_will_no_longer_be_able_to_send_or_receive">Овај уређај више неће моћи да шаље или прима поруке ако му прекинете везу:</string>
   <string name="DeviceListActivity_network_connection_failed">Повезивање на мрежу није успело...</string>
   <string name="DeviceListActivity_try_again">Покушај поново</string>
-  <string name="DeviceListActivity_disconnecting_device">Прекидам везу са уређајем...</string>
-  <string name="DeviceListActivity_disconnecting_device_no_ellipse">Прекидам везу са уређајем</string>
   <string name="DeviceListActivity_network_failed">Неуспех мреже!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Неименован уређај</string>
-  <string name="DeviceListItem_created_s">Направљено %s</string>
   <string name="DeviceListItem_last_active_s">Задња активност %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Подели са</string>
@@ -249,13 +248,9 @@
   <string name="DeviceProvisioningActivity_content_bullets">
 - чита све ваше поруке
 \n- шаље поруке у ваше име</string>
-  <string name="DeviceProvisioningActivity_content_progress_title">Додајем уређај</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">Додајем нови уређај...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">Уређај додат!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Није нађен уређај.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Грешка мреже.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Неисправан бар-кôд.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_registered_already">Већ имате превише пријављених уређаја, уклоните неке од њих...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Унесите лозинку</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Икона Сигурних порука</string>
@@ -413,6 +408,7 @@
   <string name="change_passphrase_activity__new_passphrase">НОВА ЛОЗИНКА:</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">ПОНОВИТЕ НОВУ ЛОЗИНКУ:</string>
   <!--contact_selection_activity-->
+  <string name="contact_selection_activity__enter_name_or_number">Унесите име или број</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Нема контаката.</string>
   <string name="contact_selection_group_activity__finding_contacts">Учитавам контакте…</string>
@@ -458,7 +454,6 @@
   <string name="country_selection_fragment__loading_countries">Учитавам државе...</string>
   <string name="country_selection_fragment__search">Тражи</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_paired">Нема упарених уређаја...</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Не могу да дохватим дневник са вашег уређаја. Можете да искористите АДБ да бисте добавили дневник исправљања грешака.</string>
   <string name="log_submit_activity__thanks">Хвала вам на помоћи!</string>
@@ -606,7 +601,6 @@
   <string name="AndroidManifest__media_overview">Све слике</string>
   <string name="AndroidManifest__media_overview_named">Све слика са %1$s</string>
   <string name="AndroidManifest__message_details">Детаљи поруке</string>
-  <string name="AndroidManifest_manage_paired_devices">Управљај упареним уређајима</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Увоз/извоз</string>
   <string name="arrays__my_identity_key">Мој кључ идентитета</string>

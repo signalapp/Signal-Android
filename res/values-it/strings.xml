@@ -38,7 +38,7 @@ Dovrai registrare nuovamente il tuo numero di telefono per poter utilizzare di n
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Impossibile trovare un\'app per selezionare il file.</string>
   <!--AttachmentTypeSelectorAdapter-->
-  <string name="AttachmentTypeSelectorAdapter_take_photo">Scatta foto</string>
+  <string name="AttachmentTypeSelectorAdapter_camera">Fotocamera</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Immagine</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
@@ -78,6 +78,7 @@ questo contatto.</string>
   <string name="ConversationActivity_select_contact_info">Seleziona informazioni dei contatti</string>
   <string name="ConversationActivity_compose_message">Componi messaggio</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Attenzione, c\'è stato un errore nell\'inviare il tuo allegato.</string>
+  <string name="ConversationActivity_the_gif_you_selected_was_too_big">La gif selezionata è troppo grande!</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Errore, il video selezionato supera la dimensione massima (%1$skB).</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Errore, l\'audio selezionato supera la dimensione massima (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Il destinatario non è un indirizzo valido per l\'SMS o per l\'email!</string>
@@ -141,16 +142,11 @@ questo contatto.</string>
   <string name="DateUtils_now">Adesso</string>
   <string name="DateUtils_minutes_ago">%d minuto</string>
   <!--DeviceListActivity-->
-  <string name="DeviceListActivity_disconnect_s">Disconnettere \'%s\'?</string>
-  <string name="DeviceListActivity_by_disconnecting_this_device_it_will_no_longer_be_able_to_send_or_receive">Disconnettendo questo dispositivo, esso non sarà più in grado di ricevere nè inviare messaggi.</string>
   <string name="DeviceListActivity_network_connection_failed">Connessione di rete fallita....</string>
   <string name="DeviceListActivity_try_again">Riprova</string>
-  <string name="DeviceListActivity_disconnecting_device">Disconnessione dispositivo...</string>
-  <string name="DeviceListActivity_disconnecting_device_no_ellipse">Scollegamento dispositivo</string>
   <string name="DeviceListActivity_network_failed">Errore di rete!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Dispositivo senza nome</string>
-  <string name="DeviceListItem_created_s">Creato %s</string>
   <string name="DeviceListItem_last_active_s">Ultima attività %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Condividi con</string>
@@ -246,13 +242,9 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="DeviceProvisioningActivity_content_bullets">
 - Leggere tutti i tuoi messaggi
 \n- Inviare messaggi col tuo nome</string>
-  <string name="DeviceProvisioningActivity_content_progress_title">Aggiunta dispositivo</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">Aggiunta nuovo dispositivo...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">Dispositivo aggiunto!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Nessun dispositivo trovato.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Errore di rete.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Codice QR non valido.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_registered_already">Ci spiace, hai già troppi dispositivi registrati, prova a rimuoverne alcuni...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Inserire la password</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icona TextSecure</string>
@@ -412,6 +404,7 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <string name="change_passphrase_activity__new_passphrase">Nuova password:</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">Ripeti nuova password:</string>
   <!--contact_selection_activity-->
+  <string name="contact_selection_activity__enter_name_or_number">Inserisci nome o numero</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Nessun contatto.</string>
   <string name="contact_selection_group_activity__finding_contacts">Caricamento contatti...</string>
@@ -456,7 +449,6 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <string name="country_selection_fragment__loading_countries">Caricamento dei paese...</string>
   <string name="country_selection_fragment__search">Cerca</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_paired">Nessun dispositivo collegato...</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Non riesco a recuperare i log dal tuo dispositivo. Puoi sempre utilizzare ADB per ottenere i log di debug.</string>
   <string name="log_submit_activity__thanks">Grazie dell\'aiuto!</string>
@@ -617,7 +609,6 @@ non riuscita.
   <string name="AndroidManifest__media_overview">Tutte le immagini</string>
   <string name="AndroidManifest__media_overview_named">Tutte le immagini con %1$s</string>
   <string name="AndroidManifest__message_details">Dettagli messaggio</string>
-  <string name="AndroidManifest_manage_paired_devices">Gestisci dispositivi collegati</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importa / Esporta</string>
   <string name="arrays__my_identity_key">La chiave della mia identità</string>

@@ -223,31 +223,31 @@ public class ColorPreference extends Preference {
     }
 
     private void sizeDialog() {
-      if (mPreference == null || mColorGrid == null) {
-        return;
-      }
-
-      Dialog dialog = getDialog();
-      if (dialog == null) {
-        return;
-      }
-
-      final Resources res = mColorGrid.getContext().getResources();
-      DisplayMetrics dm = res.getDisplayMetrics();
-
-      // Can't use Integer.MAX_VALUE here (weird issue observed otherwise on 4.2)
-      mColorGrid.measure(
-          View.MeasureSpec.makeMeasureSpec(dm.widthPixels, View.MeasureSpec.AT_MOST),
-          View.MeasureSpec.makeMeasureSpec(dm.heightPixels, View.MeasureSpec.AT_MOST));
-      int width = mColorGrid.getMeasuredWidth();
-      int height = mColorGrid.getMeasuredHeight();
-
-      int extraPadding = res.getDimensionPixelSize(R.dimen.color_grid_extra_padding);
-
-      width += extraPadding;
-      height += extraPadding;
-
-      dialog.getWindow().setLayout(width, height);
+//      if (mPreference == null || mColorGrid == null) {
+//        return;
+//      }
+//
+//      Dialog dialog = getDialog();
+//      if (dialog == null) {
+//        return;
+//      }
+//
+//      final Resources res = mColorGrid.getContext().getResources();
+//      DisplayMetrics dm = res.getDisplayMetrics();
+//
+//      // Can't use Integer.MAX_VALUE here (weird issue observed otherwise on 4.2)
+//      mColorGrid.measure(
+//          View.MeasureSpec.makeMeasureSpec(dm.widthPixels, View.MeasureSpec.AT_MOST),
+//          View.MeasureSpec.makeMeasureSpec(dm.heightPixels, View.MeasureSpec.AT_MOST));
+//      int width = mColorGrid.getMeasuredWidth();
+//      int height = mColorGrid.getMeasuredHeight();
+//
+//      int extraPadding = res.getDimensionPixelSize(R.dimen.color_grid_extra_padding);
+//
+//      width += extraPadding;
+//      height += extraPadding;
+//
+//      dialog.getWindow().setLayout(width, height);
     }
   }
 

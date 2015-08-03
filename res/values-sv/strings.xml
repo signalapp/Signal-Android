@@ -12,6 +12,9 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Radera alla gamla meddelanden nu?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Är du säker på att du omedelbart vill trimma alla konversationstrådar till de %s senaste meddelandena?</string>
   <string name="ApplicationPreferencesActivity_delete">Radera</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">Ta bort lösenordsfras?</string>
+  <string name="ApplicationPreferencesActivity_disable_lock_screen">
+Stäng av låsskärm för meddelanden?</string>
   <string name="ApplicationPreferencesActivity_disable">Inaktivera</string>
   <string name="ApplicationPreferencesActivity_unregistering">Avregistrering</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Avregistrerar från TextSecure-meddelanden...</string>
@@ -38,7 +41,6 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Kan ej hitta app för att välja media.</string>
   <!--AttachmentTypeSelectorAdapter-->
-  <string name="AttachmentTypeSelectorAdapter_take_photo">Ta foto</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Bild</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Ljud</string>
@@ -144,16 +146,11 @@ verifiera denna kontakt.</string>
   <string name="DateUtils_now">Nu</string>
   <string name="DateUtils_minutes_ago">%d min</string>
   <!--DeviceListActivity-->
-  <string name="DeviceListActivity_disconnect_s">Ta bort \'%s\'?</string>
-  <string name="DeviceListActivity_by_disconnecting_this_device_it_will_no_longer_be_able_to_send_or_receive">Genom att ta bort denna enhet kommer den inte längre kunna skicka eller få meddelanden.</string>
   <string name="DeviceListActivity_network_connection_failed">Nätverksuppkoppling misslyckades...</string>
   <string name="DeviceListActivity_try_again">Försök igen</string>
-  <string name="DeviceListActivity_disconnecting_device">Tar bort enhet...</string>
-  <string name="DeviceListActivity_disconnecting_device_no_ellipse">Tar bort enhet</string>
   <string name="DeviceListActivity_network_failed">Nätverket misslyckades</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Namnlös enhet</string>
-  <string name="DeviceListItem_created_s">Skapade %s</string>
   <string name="DeviceListItem_last_active_s">Senast aktiv %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Dela med</string>
@@ -246,13 +243,9 @@ som för närvarande finns i TextSecure.</string>
   <string name="DeviceProvisioningActivity_content_bullets">
 - Läsa alla dina meddelanden
 \n- Skicka meddelanden i ditt namn</string>
-  <string name="DeviceProvisioningActivity_content_progress_title">Lägg till enhet</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">Lägger till ny enhet...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">Enhet tillagd!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Ingen enhet hittades.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Nätverksfel.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Ogiltig QR-kod.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_registered_already">Tyvärr har du redan för många registrerade enheter, försök ta bort några...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Ange lösenord</string>
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure-ikon</string>
@@ -404,6 +397,7 @@ Tog emot meddelande med okänd identitetsnyckel. Tryck för att bearbeta och vis
   <string name="change_passphrase_activity__new_passphrase">NYTT LÖSENORD:</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">UPPREPA NYTT LÖSENORD:</string>
   <!--contact_selection_activity-->
+  <string name="contact_selection_activity__enter_name_or_number">Skriv in namn eller nummer</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Inga kontakter.</string>
   <string name="contact_selection_group_activity__finding_contacts">Laddar kontakter…</string>
@@ -449,7 +443,6 @@ Tog emot meddelande med okänd identitetsnyckel. Tryck för att bearbeta och vis
   <string name="country_selection_fragment__loading_countries">Läser in länder...</string>
   <string name="country_selection_fragment__search">Sök</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_paired">Inga enheter ihopkopplade</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Kunde inte plocka loggarna från din enhet, men du kan använda ADB för att hämta debugloggarna istället.</string>
   <string name="log_submit_activity__thanks">Tack för din hjälp!</string>
@@ -587,7 +580,6 @@ TextSecure uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="AndroidManifest__media_overview">Alla bilder</string>
   <string name="AndroidManifest__media_overview_named">Alla bilder med %1$s</string>
   <string name="AndroidManifest__message_details">Meddelandedetaljer</string>
-  <string name="AndroidManifest_manage_paired_devices">Hantera ihopkopplade enheter</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importera / exportera</string>
   <string name="arrays__my_identity_key">Min identitetsnyckel</string>
@@ -624,7 +616,7 @@ TextSecure uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="preferences__change_my_passphrase">Ändra mitt lösenord</string>
   <string name="preferences__enable_passphrase">Aktivera lösenordsfras</string>
   <string name="preferences__passphrase_summary">Lösenordsfras %s</string>
-  <string name="preferences__enable_lock_screen_for_messages">Slå på låsskärm för meddelanden</string>
+  <string name="preferences__enable_lock_screen_for_messages">Sätt på låsskärm för meddelanden</string>
   <string name="preferences__screen_security">Skärmsäkerhet</string>
   <string name="preferences__screen_security_summary">Skärmsäkerhet %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blockera skärmdumpar i Senaste-listen samt inuti appen</string>

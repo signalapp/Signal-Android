@@ -25,6 +25,11 @@ public class MmsMediaConstraints extends MediaConstraints {
   }
 
   @Override
+  public int getGifMaxSize() {
+    return MAX_MESSAGE_SIZE;
+  }
+
+  @Override
   public int getVideoMaxSize() {
     return MAX_MESSAGE_SIZE;
   }

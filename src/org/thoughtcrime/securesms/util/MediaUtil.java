@@ -3,11 +3,14 @@ package org.thoughtcrime.securesms.util;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.text.TextUtils;
 import android.util.Log;
+import android.webkit.MimeTypeMap;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.AudioSlide;
+import org.thoughtcrime.securesms.mms.GifSlide;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
@@ -59,7 +62,9 @@ public class MediaUtil {
 
   public static Slide getSlideForPart(Context context, MasterSecret masterSecret, PduPart part, String contentType) {
     Slide slide = null;
-    if (ContentType.isImageType(contentType)) {
+    if (isGif(contentType)) {
+      slide = new GifSlide(context, masterSecret, part);
+    } else if (ContentType.isImageType(contentType)) {
       slide = new ImageSlide(context, masterSecret, part);
     } else if (ContentType.isVideoType(contentType)) {
       slide = new VideoSlide(context, masterSecret, part);
@@ -68,6 +73,23 @@ public class MediaUtil {
     }
 
     return slide;
+  }
+
+  public static String getMimeType(Context context, Uri uri) {
+    String type = context.getContentResolver().getType(uri);
+    if (type == null) {
+      final String extension = MimeTypeMap.getFileExtensionFromUrl(uri.toString());
+      type = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
+    }
+    return type;
+  }
+
+  public static boolean isGif(String contentType) {
+    return !TextUtils.isEmpty(contentType) && contentType.trim().equals("image/gif");
+  }
+
+  public static boolean isGif(PduPart part) {
+    return isGif(Util.toIsoString(part.getContentType()));
   }
 
   public static boolean isImage(PduPart part) {

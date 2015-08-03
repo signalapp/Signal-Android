@@ -38,7 +38,7 @@ public class DeviceListItem extends LinearLayout {
     if (TextUtils.isEmpty(deviceInfo.getName())) this.name.setText(R.string.DeviceListItem_unnamed_device);
     else                                         this.name.setText(deviceInfo.getName());
 
-    this.created.setText(getContext().getString(R.string.DeviceListItem_created_s,
+    this.created.setText(getContext().getString(R.string.DeviceListItem_linked_s,
                                                 DateUtils.getExtendedRelativeTimeSpanString(getContext(),
                                                                                             Locale.getDefault(),
                                                                                             deviceInfo.getCreated())));

@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.providers.CaptureProvider;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
+import org.thoughtcrime.securesms.util.MediaUtil;
 
 import java.io.IOException;
 
@@ -68,22 +69,14 @@ public class AttachmentManager {
     AlphaAnimation animation = new AlphaAnimation(1.0f, 0.0f);
     animation.setDuration(200);
     animation.setAnimationListener(new Animation.AnimationListener() {
-      @Override
-      public void onAnimationStart(Animation animation) {
-
-      }
-
-      @Override
-      public void onAnimationEnd(Animation animation) {
+      @Override public void onAnimationStart(Animation animation) {}
+      @Override public void onAnimationRepeat(Animation animation) {}
+      @Override public void onAnimationEnd(Animation animation) {
         slideDeck.clear();
         attachmentView.setVisibility(View.GONE);
         attachmentListener.onAttachmentChanged();
       }
 
-      @Override
-      public void onAnimationRepeat(Animation animation) {
-
-      }
     });
 
     attachmentView.startAnimation(animation);
@@ -94,8 +87,14 @@ public class AttachmentManager {
     captureUri = null;
   }
 
-  public void setImage(MasterSecret masterSecret, Uri image) throws IOException, BitmapDecodingException {
-    setMedia(new ImageSlide(context, masterSecret, image), masterSecret);
+  public void setImage(MasterSecret masterSecret, Uri image)
+      throws IOException, BitmapDecodingException, MediaTooLargeException
+  {
+    if (MediaUtil.isGif(MediaUtil.getMimeType(context, image))) {
+      setMedia(new GifSlide(context, masterSecret, image), masterSecret);
+    } else {
+      setMedia(new ImageSlide(context, masterSecret, image), masterSecret);
+    }
   }
 
   public void setVideo(Uri video) throws IOException, MediaTooLargeException {
@@ -147,7 +146,6 @@ public class AttachmentManager {
   public Uri getCaptureUri() {
     return captureUri;
   }
-
 
   public void setCaptureUri(Uri captureUri) {
     this.captureUri = captureUri;

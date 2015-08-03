@@ -4,17 +4,13 @@ import android.text.InputFilter;
 import android.text.Spannable;
 import android.text.Spanned;
 import android.text.TextUtils;
-import android.text.TextUtils.TruncateAt;
-import android.view.View;
-import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.TextView;
 
-public class EmojiFilter implements InputFilter, OnGlobalLayoutListener {
+public class EmojiFilter implements InputFilter {
   private TextView view;
 
   public EmojiFilter(TextView view) {
     this.view = view;
-    view.getViewTreeObserver().addOnGlobalLayoutListener(this);
   }
 
   @Override public CharSequence filter(CharSequence source, int start, int end,
@@ -26,18 +22,6 @@ public class EmojiFilter implements InputFilter, OnGlobalLayoutListener {
     if (source instanceof Spanned) {
       TextUtils.copySpansFrom((Spanned) source, start, end, null, emojified, 0);
     }
-    if (view.getWidth() == 0 || view.getEllipsize() != TruncateAt.END) {
-      return emojified;
-    } else {
-      return TextUtils.ellipsize(emojified,
-                                 view.getPaint(),
-                                 view.getWidth() - view.getPaddingRight() - view.getPaddingLeft(),
-                                 TruncateAt.END);
-    }
-  }
-
-  @SuppressWarnings("deprecation")
-  @Override public void onGlobalLayout() {
-    view.invalidate();
+    return emojified;
   }
 }

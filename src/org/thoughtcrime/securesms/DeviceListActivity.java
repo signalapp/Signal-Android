@@ -137,8 +137,8 @@ public class DeviceListActivity extends PassphraseRequiredActionBarActivity {
       final long   deviceId   = ((DeviceListItem)view).getDeviceId();
 
       AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(getActivity());
-      builder.setTitle(getActivity().getString(R.string.DeviceListActivity_disconnect_s, deviceName));
-      builder.setMessage(R.string.DeviceListActivity_by_disconnecting_this_device_it_will_no_longer_be_able_to_send_or_receive);
+      builder.setTitle(getActivity().getString(R.string.DeviceListActivity_unlink_s, deviceName));
+      builder.setMessage(R.string.DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive);
       builder.setNegativeButton(android.R.string.cancel, null);
       builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
         @Override
@@ -164,8 +164,8 @@ public class DeviceListActivity extends PassphraseRequiredActionBarActivity {
 
     private void handleDisconnectDevice(final long deviceId) {
       new ProgressDialogAsyncTask<Void, Void, Void>(getActivity(),
-                                                    R.string.DeviceListActivity_disconnecting_device_no_ellipse,
-                                                    R.string.DeviceListActivity_disconnecting_device)
+                                                    R.string.DeviceListActivity_unlinking_device_no_ellipsis,
+                                                    R.string.DeviceListActivity_unlinking_device)
       {
         @Override
         protected Void doInBackground(Void... params) {

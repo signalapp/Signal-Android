@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms.components;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Rect;
 import android.os.Build;
@@ -42,14 +43,16 @@ import java.util.Set;
 public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
   private static final String TAG = KeyboardAwareLinearLayout.class.getSimpleName();
 
-  private final Rect                          oldRect         = new Rect();
-  private final Rect                          newRect         = new Rect();
-  private final Set<OnKeyboardHiddenListener> hiddenListeners = new HashSet<>();
-  private final Set<OnKeyboardShownListener>  shownListeners  = new HashSet<>();
-  private final int minKeyboardSize;
-  private final int minCustomKeyboardSize;
-  private final int defaultCustomKeyboardSize;
-  private final int minCustomKeyboardTopMargin;
+  private final Rect                          rect                       = new Rect();
+  private final Set<OnKeyboardHiddenListener> hiddenListeners            = new HashSet<>();
+  private final Set<OnKeyboardShownListener>  shownListeners             = new HashSet<>();
+  private final int                           minKeyboardSize;
+  private final int                           minCustomKeyboardSize;
+  private final int                           defaultCustomKeyboardSize;
+  private final int                           minCustomKeyboardTopMargin;
+  private final int                           statusBarHeight;
+
+  private int viewInset;
 
   private boolean keyboardOpen = false;
   private int     rotation     = -1;
@@ -64,10 +67,13 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
 
   public KeyboardAwareLinearLayout(Context context, AttributeSet attrs, int defStyle) {
     super(context, attrs, defStyle);
+    final int statusBarRes = getResources().getIdentifier("status_bar_height", "dimen", "android");
     minKeyboardSize            = getResources().getDimensionPixelSize(R.dimen.min_keyboard_size);
     minCustomKeyboardSize      = getResources().getDimensionPixelSize(R.dimen.min_custom_keyboard_size);
     defaultCustomKeyboardSize  = getResources().getDimensionPixelSize(R.dimen.default_custom_keyboard_size);
     minCustomKeyboardTopMargin = getResources().getDimensionPixelSize(R.dimen.min_custom_keyboard_top_margin);
+    statusBarHeight            = statusBarRes > 0 ? getResources().getDimensionPixelSize(statusBarRes) : 0;
+    viewInset                  = getViewInset();
   }
 
   @Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -80,35 +86,33 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
     int oldRotation = rotation;
     rotation = getDeviceRotation();
     if (oldRotation != rotation) {
+      Log.w(TAG, "rotation changed");
       onKeyboardClose();
-      oldRect.setEmpty();
     }
   }
 
   private void updateKeyboardState() {
-    int res = getResources().getIdentifier("status_bar_height", "dimen", "android");
-    int statusBarHeight = res > 0 ? getResources().getDimensionPixelSize(res) : 0;
+    if (isLandscape()) {
+      if (keyboardOpen) onKeyboardClose();
+      return;
+    }
 
-    final int availableHeight = this.getRootView().getHeight() - statusBarHeight - getViewInset();
-    getWindowVisibleDisplayFrame(newRect);
+    if (viewInset == 0 && Build.VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) viewInset = getViewInset();
+    final int availableHeight = this.getRootView().getHeight() - statusBarHeight - viewInset;
+    getWindowVisibleDisplayFrame(rect);
 
-    final int oldKeyboardHeight = availableHeight - (oldRect.bottom - oldRect.top);
-    final int keyboardHeight = availableHeight - (newRect.bottom - newRect.top);
+    final int keyboardHeight = availableHeight - (rect.bottom - rect.top);
 
-    if (keyboardHeight - oldKeyboardHeight > minKeyboardSize && !keyboardOpen) {
-      onKeyboardOpen(keyboardHeight);
-    } else if (oldKeyboardHeight - keyboardHeight > minKeyboardSize && keyboardOpen) {
+    if (keyboardHeight > minKeyboardSize) {
+      if (getKeyboardHeight() != keyboardHeight) setKeyboardPortraitHeight(keyboardHeight);
+      if (!keyboardOpen)                         onKeyboardOpen(keyboardHeight);
+    } else if (keyboardOpen) {
       onKeyboardClose();
     }
-
-    oldRect.set(newRect);
   }
 
+  @TargetApi(VERSION_CODES.LOLLIPOP)
   private int getViewInset() {
-    if (Build.VERSION.SDK_INT < VERSION_CODES.LOLLIPOP) {
-      return 0;
-    }
-
     try {
       Field attachInfoField = View.class.getDeclaredField("mAttachInfo");
       attachInfoField.setAccessible(true);
@@ -128,17 +132,20 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
   }
 
   protected void onKeyboardOpen(int keyboardHeight) {
+    Log.w(TAG, "onKeyboardOpen(" + keyboardHeight + ")");
     keyboardOpen = true;
 
-    if (!isLandscape()) {
-      setKeyboardPortraitHeight(keyboardHeight);
-    }
     notifyShownListeners();
   }
 
   protected void onKeyboardClose() {
+    Log.w(TAG, "onKeyboardClose()");
     keyboardOpen = false;
     notifyHiddenListeners();
+  }
+
+  public boolean isKeyboardOpen() {
+    return keyboardOpen;
   }
 
   public int getKeyboardHeight() {

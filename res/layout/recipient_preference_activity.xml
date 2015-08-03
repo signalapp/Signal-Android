@@ -49,6 +49,12 @@
                           android:textStyle="bold"
                           android:textColor="?recipient_preference_blocked"
                           android:textAllCaps="true"
+                          android:background="@drawable/blocked_indicator_background"
+                          android:paddingTop="3dp"
+                          android:paddingBottom="3dp"
+                          android:paddingLeft="5dp"
+                          android:paddingRight="5dp"
+                          android:layout_marginTop="2dp"
                           tools:ignore="UnusedAttribute" />
 
             </LinearLayout>

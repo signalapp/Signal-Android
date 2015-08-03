@@ -37,7 +37,6 @@ Gelecekte TextSecure mesajlarını tekrar kullanmak isterseniz telefon numaranı
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Seçtiğiniz medya için bir uygulama bulunamadı.</string>
   <!--AttachmentTypeSelectorAdapter-->
-  <string name="AttachmentTypeSelectorAdapter_take_photo">Foto Çek</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Resim</string>
   <string name="AttachmentTypeSelectorAdapter_video">Görüntü</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Ses</string>
@@ -225,8 +224,6 @@ kurulumunuzda bulunan ancak yüklenecek yedekte bulunmayan tüm bilgiler kaybolu
   <string name="DeviceProvisioningActivity_content_bullets">
 - Tüm mesajlarınızı okuyunuz
 \n-Mesajları adınızla gönderiniz</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">Yeni cihaz ekleniyor...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">Cihaz eklendi!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Hiç cihaz bulanamadı.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Ağ hatası.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Geçersiz QR kodu.</string>

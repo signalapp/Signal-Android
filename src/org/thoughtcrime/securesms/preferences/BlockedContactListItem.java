@@ -8,6 +8,7 @@ import android.widget.TextView;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.Util;
 
 public class BlockedContactListItem extends RelativeLayout implements Recipients.RecipientsModifiedListener {
 
@@ -42,9 +43,17 @@ public class BlockedContactListItem extends RelativeLayout implements Recipients
   }
 
   @Override
-  public void onModified(Recipients recipients) {
-    this.contactPhotoImage.setAvatar(recipients, false);
-    this.nameView.setText(recipients.toShortString());
+  public void onModified(final Recipients recipients) {
+    final AvatarImageView contactPhotoImage = this.contactPhotoImage;
+    final TextView        nameView          = this.nameView;
+
+    Util.runOnMain(new Runnable() {
+      @Override
+      public void run() {
+        contactPhotoImage.setAvatar(recipients, false);
+        nameView.setText(recipients.toShortString());
+      }
+    });
   }
 
   public Recipients getRecipients() {
