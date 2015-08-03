@@ -100,7 +100,9 @@ public class RegistrationActivity extends BaseActionBarActivity {
         intent.setAction(Intent.ACTION_VIEW);
         intent.addCategory(Intent.CATEGORY_BROWSABLE);
         intent.setData(Uri.parse("https://twilio.com"));
-        startActivity(intent);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+          startActivity(intent);
+        }
       }
     });
   }

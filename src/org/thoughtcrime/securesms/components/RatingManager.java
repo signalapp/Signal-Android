@@ -66,7 +66,11 @@ public class RatingManager {
 
   private static void startPlayStore(Context context) {
     Uri uri = Uri.parse("market://details?id=" + context.getPackageName());
-    context.startActivity(new Intent(Intent.ACTION_VIEW, uri));
+    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+    if (intent.resolveActivity(context.getPackageManager()) != null) {
+      context.startActivity(intent);
+    }
+
   }
 
   private static long getDaysSinceInstalled(Context context) {
