@@ -152,12 +152,13 @@ public class MmsDatabase extends MessagingDatabase {
     "CREATE INDEX IF NOT EXISTS mms_read_index ON " + TABLE_NAME + " (" + READ + ");",
     "CREATE INDEX IF NOT EXISTS mms_read_and_thread_id_index ON " + TABLE_NAME + "(" + READ + "," + THREAD_ID + ");",
     "CREATE INDEX IF NOT EXISTS mms_message_box_index ON " + TABLE_NAME + " (" + MESSAGE_BOX + ");",
-    "CREATE INDEX IF NOT EXISTS mms_date_sent_index ON " + TABLE_NAME + " (" + DATE_SENT + ");"
+    "CREATE INDEX IF NOT EXISTS mms_date_sent_index ON " + TABLE_NAME + " (" + DATE_SENT + ");",
+    "CREATE INDEX IF NOT EXISTS mms_thread_date_index ON " + TABLE_NAME + " (" + THREAD_ID + ", " + DATE_RECEIVED + ");"
   };
 
   private static final String[] MMS_PROJECTION = new String[] {
-      ID, THREAD_ID, DATE_SENT + " * 1000 AS " + NORMALIZED_DATE_SENT,
-      DATE_RECEIVED + " * 1000 AS " + NORMALIZED_DATE_RECEIVED,
+      ID, THREAD_ID, DATE_SENT + " AS " + NORMALIZED_DATE_SENT,
+      DATE_RECEIVED + " AS " + NORMALIZED_DATE_RECEIVED,
       MESSAGE_BOX, READ, MESSAGE_ID, SUBJECT, SUBJECT_CHARSET, CONTENT_TYPE,
       CONTENT_LOCATION, EXPIRY, MESSAGE_CLASS, MESSAGE_TYPE, MMS_VERSION,
       MESSAGE_SIZE, PRIORITY, REPORT_ALLOWED, STATUS, TRANSACTION_ID, RETRIEVE_STATUS,
@@ -218,7 +219,7 @@ public class MmsDatabase extends MessagingDatabase {
     Cursor             cursor          = null;
 
     try {
-      cursor = database.query(TABLE_NAME, new String[] {ID, THREAD_ID, MESSAGE_BOX}, DATE_SENT + " = ?", new String[] {String.valueOf(timestamp / 1000)}, null, null, null, null);
+      cursor = database.query(TABLE_NAME, new String[] {ID, THREAD_ID, MESSAGE_BOX}, DATE_SENT + " = ?", new String[] {String.valueOf(timestamp)}, null, null, null, null);
 
       while (cursor.moveToNext()) {
         if (Types.isOutgoingMessageType(cursor.getLong(cursor.getColumnIndexOrThrow(MESSAGE_BOX)))) {
@@ -605,7 +606,7 @@ public class MmsDatabase extends MessagingDatabase {
     contentValues.put(THREAD_ID, threadId);
     contentValues.put(CONTENT_LOCATION, contentLocation);
     contentValues.put(STATUS, Status.DOWNLOAD_INITIALIZED);
-    contentValues.put(DATE_RECEIVED, System.currentTimeMillis() / 1000);
+    contentValues.put(DATE_RECEIVED, System.currentTimeMillis());
     contentValues.put(READ, unread ? 0 : 1);
 
     if (!contentValues.containsKey(DATE_SENT)) {
@@ -678,7 +679,7 @@ public class MmsDatabase extends MessagingDatabase {
     contentValues.put(MESSAGE_BOX, Types.BASE_INBOX_TYPE);
     contentValues.put(THREAD_ID, threadId);
     contentValues.put(STATUS, Status.DOWNLOAD_INITIALIZED);
-    contentValues.put(DATE_RECEIVED, System.currentTimeMillis() / 1000);
+    contentValues.put(DATE_RECEIVED, System.currentTimeMillis());
     contentValues.put(READ, Util.isDefaultSmsProvider(context) ? 0 : 1);
 
     if (!contentValues.containsKey(DATE_SENT))
@@ -720,7 +721,7 @@ public class MmsDatabase extends MessagingDatabase {
     }
 
     SendReq sendRequest = new SendReq();
-    sendRequest.setDate(timestamp / 1000L);
+    sendRequest.setDate(timestamp);
     sendRequest.setBody(message.getPduBody());
     sendRequest.setContentType(ContentType.MULTIPART_MIXED.getBytes());
 
@@ -853,7 +854,6 @@ public class MmsDatabase extends MessagingDatabase {
   }
 
   /*package*/void deleteMessagesInThreadBeforeDate(long threadId, long date) {
-    date          = date / 1000;
     Cursor cursor = null;
 
     try {
@@ -930,7 +930,7 @@ public class MmsDatabase extends MessagingDatabase {
     phb.addLong(EXPIRY, PduHeaders.EXPIRY);
     phb.addLong(MESSAGE_SIZE, PduHeaders.MESSAGE_SIZE);
 
-    headers.setLongInteger(headers.getLongInteger(PduHeaders.DATE) / 1000L, PduHeaders.DATE);
+    headers.setLongInteger(headers.getLongInteger(PduHeaders.DATE), PduHeaders.DATE);
 
     return headers;
   }
