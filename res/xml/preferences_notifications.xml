@@ -4,7 +4,7 @@
     <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
                         android:key="pref_key_enable_notifications"
                         android:title="@string/preferences__notifications"
-                        android:summary="@string/preferences__display_message_notifications_in_status_bar"
+                        android:summary="@string/preferences__enable_message_notifications"
                         android:defaultValue="true" />
 
     <RingtonePreference android:dependency="pref_key_enable_notifications"
