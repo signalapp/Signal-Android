@@ -252,4 +252,7 @@ public class ProfileAccessor {
       updateProfileInformations(RecipientFactory.getRecipientsFromString(activity, profileId, false));
     }
   }
+  public static MasterSecret getMasterSecred() {
+    return mMasterSecret;
+  }
 }

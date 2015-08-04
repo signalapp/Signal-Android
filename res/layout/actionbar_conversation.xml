@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="50dp">
+                android:layout_height="match_parent">
     <LinearLayout
         android:id="@+id/drawerall"
         android:layout_width="match_parent"
@@ -10,14 +11,14 @@
         android:gravity="left"
         android:padding="2dp"
         >
-
         <org.thoughtcrime.securesms.components.CircledImageView
             android:id="@+id/profile_picture"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="2dp"
-            android:scaleType="centerCrop"
-            android:layout_weight="3"
+            android:scaleType="fitXY"
+            android:layout_weight="2.5"
+            android:padding="2dp"
+            android:layout_gravity="center"
             android:visibility="visible"/>
 
     <LinearLayout

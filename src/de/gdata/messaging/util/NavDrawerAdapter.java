@@ -105,14 +105,15 @@ public class NavDrawerAdapter extends BaseAdapter {
       holder.text.setText("No Data");
     } else {
       if (holder.text != null) {
+        holder.rootLayout.setVisibility(View.VISIBLE);
         holder.text.setText(labels[position]);
         holder.text.setTextColor(Color.BLACK);
         holder.image.setImageResource(icons.getResourceId(position, -1));
         if (position == menu_privacy_hide) {
           if (new GDataPreferences(activity).isPrivacyActivated()) {
-            holder.image.setImageResource(R.drawable.check_c);
+            holder.image.setImageResource(R.drawable.btn_check_on_disabled_holo_light);
           } else {
-            holder.image.setImageResource(R.drawable.check_ndh);
+            holder.image.setImageResource(R.drawable.btn_check_off_disabled_holo_light);
           }
         }
         if (position == menu_clear_passphrase) {

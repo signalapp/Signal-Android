@@ -20,7 +20,7 @@
             android:orientation="horizontal"
             android:gravity="center_vertical">
 
-            <org.thoughtcrime.securesms.components.ImageDivet android:id="@+id/avatar"
+            <org.thoughtcrime.securesms.components.CircledImageView android:id="@+id/avatar"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 position="bottom_right"

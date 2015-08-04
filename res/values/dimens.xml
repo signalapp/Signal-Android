@@ -11,6 +11,9 @@
     <dimen name="transport_selection_popup_yoff">1dp</dimen>
     <dimen name="conversation_item_corner_radius">3dp</dimen>
     <dimen name="conversation_item_drop_shadow_dist">2dp</dimen>
-    <dimen name="contact_selection_photo_size">50dp</dimen>
+    <dimen name="contact_selection_photo_size">@dimen/abc_action_bar_stacked_max_height</dimen>
     <dimen name="thumbnail_max_size">430dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
 </resources>

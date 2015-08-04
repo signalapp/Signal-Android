@@ -11,6 +11,7 @@
         android:hint="@string/recipients_panel__to"
         android:paddingRight="45dip"
         android:paddingLeft="15dp"
+              android:imeOptions="actionDone"
         android:textColor="?conversation_editor_text_color"
         android:background="?conversation_editor_background" />
 

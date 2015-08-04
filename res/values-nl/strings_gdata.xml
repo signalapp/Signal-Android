@@ -3,34 +3,32 @@
     <string name="ConversationActivity_gdata_selfdestroy_entry_five">5 minuten</string>
     <string name="ConversationActivity_gdata_selfdestroy_entry_thirty">30 minuten</string>
     <string name="ConversationActivity_gdata_selfdestroy_entry_hour">1 uur</string>
-
+    <string name="ConversationActivity_gdata_selfdestroy_entry_3">5 seconden</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_2">15 seconden</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_1">60 seconden</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_0">Uitschakelen</string>
     <string name="gdata_contact_selection_page_title">Contactpersonen</string>
-
-    <string name="gdata_conversation_list_page_title">Conversaties</string>
-
+    <string name="gdata_conversation_list_page_title">Chat</string>
     <string name="gd_dialog_fragment_phishing_title">Webbeveiliging</string>
     <string name="gd_dialog_fragment_phishing_message">Deze website is een bekende phishingsite. Ga alleen verder als u zeker bent dat u daardoor geen risico loopt.</string>
     <string name="gd_dialog_fragment_phishing_block">Blokkeren</string>
     <string name="gd_dialog_fragment_phishing_continue">Doorgaan</string>
-
+    <string name="log_submit_activity__button_dont_submit">Niet verzenden</string>
+    <string name="log_submit_activity__button_submit">Verzenden</string>
     <string name="menu_filter">Contactpersonen blokkeren</string>
-    <string name="menu_privacy">Gesprekken verbergen</string>
-    <string name="menu_privacy_unhide">Verborgen gesprekken weergeven</string>
-    <string name="menu_privacy_hide">Verborgen gesprekken niet weergeven</string>
-    <string name="menu_privacy_single_hide">Gesprek verbergen</string>
+    <string name="menu_privacy">Chat verbergen</string>
+    <string name="menu_privacy_unhide">Verbergen inschakelen</string>
+    <string name="menu_privacy_hide">Verbergen</string>
+    <string name="menu_privacy_single_hide">Chat verbergen</string>
     <string name="menu_filter_block_contact">Contactpersoon blokkeren</string>
-
     <string name="privacy_pw_dialog_header">Wachtwoord invoeren: </string>
     <string name="privacy_pw_dialog_toast_wrong">Het ingevoerde wachtwoord komt niet overeen met het wachtwoord van Internet Security.</string>
-    <string name="privacy_pw_dialog_toast_reload">Gesprekken worden hersteld...</string>
-    <string name="privacy_pw_dialog_toast_hide">Gesprekken worden verborgen...</string>
-    <string name="privacy_pw_dialog_toast_hide_single">Gesprek wordt verborgen...</string>
-    <string name="privacy_pw_dialog_hint">Let op: het gaat om het door u gekozen wachtwoord in Internet Security voor Android.</string>
-
+    <string name="privacy_pw_dialog_hint">Opmerking: het gaat om het wachtwoord dat u hebt gekozen in Internet Security voor Android.</string>
+    <string name="privacy_pw_dialog_toast_reload">Chat wordt hersteld...</string>
+    <string name="privacy_pw_dialog_toast_hide">Het verbergen van de chats wordt voorbereid...</string>
+    <string name="privacy_pw_dialog_toast_hide_single">Chat wordt verborgen...</string>
     <string name="privacy_toast_install_premium">Voor deze functie hebt u G DATA Internet Security voor Android nodig</string>
-
     <string name="conversation_activity_invite_link">https://secure.gd/scg</string>
-
     <string name="preferences_notification_never">Nooit</string>
     <string name="preferences_notification_one_time">1x</string>
     <string name="preferences_notification_two_times">2x</string>
@@ -38,4 +36,31 @@
     <string name="preferences_notification_five_times">5x</string>
     <string name="preferences_notification_ten_times">10x</string>
     <string name="preferences_notification_title">Waarschuwingen herhalen</string>
+    <string name="self_destruction">Vernietigen</string>
+    <string name="self_destruction_title">#1# seconden tot zelfvernietiging...</string>
+    <string name="self_destruction_body">De inhoud van dit bericht zal zichzelf binnen #1# seconden na het openen vernietigen.</string>
+    <string name="unknown_country">Onbekend land</string>
+    <string name="self_destruction_compose_hint">Zelfvernietigend bericht sturen</string>
+    <string name="privacy_toast_unlock_premium">U moet de premiumfunctionaliteit van G DATA Internet Security ontgrendelen om deze functie te kunnen gebruiken.</string>
+    <string name="tk_mail">sc-feedback@gdata.de</string>
+    <string name="import_complete_dialog">SecureChat-systeemdatabaseimport is compleet.</string>
+    <string name="profile_status_label">Status</string>
+    <string name="profile_number_label">Telefoonnummer</string>
+    <string name="profile_status_member">Leden</string>
+    <string name="identification">Identificatie</string>
+    <string name="identification_title">Deze sleutel is uw identificatie. Laat uw gesprekspartners deze sleutel scannen. Zo kunnen ze er op vertrouwen dat berichten van deze sleutel daadwerkelijk van u afkomstig zijn.</string>
+    <string name="verify_identity_activity_their_identity">Ontvangeridentificatie - Deze sleutel identificeert uw gesprekspartner. Scan deze sleutel om te bevestigen dat binnenkomende berichten echt zijn. </string>
+    <string name="verify_identity_activity_your_identity" >Eigen identiteit - Deze sleutel is uw identificatie. Laat deze sleutel door uw gesprekspartners scannen om uw berichten te authentificeren.</string>
+    <string name="identification_verified_unsuccessfully">De sleutels zijn niet identiek!</string>
+    <string name="identification_verified_successfully">Identificatie succesvol.</string>
+    <string name="accept_eula_and_continue"><![CDATA[Accepteren & Doorgaan]]></string>
+    <string name="eula_gdata"><u>Voorwaarden</u></string>
+    <string name="take_picture">Foto nemen</string>
+    <string name="status_available">Beschikbaar</string>
+    <string name="status_busy">Bezet</string>
+    <string name="status_atwork">Op kantoor</string>
+    <string name="status_meeting">In vergadering</string>
+    <string name="status_donotdisturb">Niet storen</string>
+    <string name="status_nocallsjustchat">Geen gesprekken, alleen SecureChat</string>
+    <string name="status_onlyurgentcalls">Alleen dringende gesprekken</string>
 </resources>

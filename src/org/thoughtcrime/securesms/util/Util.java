@@ -121,7 +121,11 @@ public class Util {
 
   public static String toIsoString(byte[] bytes) {
     try {
-      return new String(bytes, CharacterSets.MIMENAME_ISO_8859_1);
+      if(bytes != null && bytes.length >0) {
+        return new String(bytes, CharacterSets.MIMENAME_ISO_8859_1);
+      } else {
+        return "";
+      }
     } catch (UnsupportedEncodingException e) {
       throw new AssertionError("ISO_8859_1 must be supported!");
     }

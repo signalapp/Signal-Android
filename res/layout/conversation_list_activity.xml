@@ -9,7 +9,8 @@
             android:id="@+id/fragment_content"
             android:name="org.thoughtcrime.securesms.ConversationListFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:background="@color/gdata_primary_background_color"/>
 
     <!--<TextView android:id="@android:id/empty"-->
               <!--android:layout_width="fill_parent"-->

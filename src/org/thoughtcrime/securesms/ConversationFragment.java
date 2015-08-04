@@ -36,6 +36,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.loaders.ConversationLoader;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -161,6 +162,12 @@ public class ConversationFragment extends ListFragment
       menu.findItem(R.id.menu_context_forward).setVisible(true);
       menu.findItem(R.id.menu_context_details).setVisible(true);
       menu.findItem(R.id.menu_context_copy).setVisible(true);
+
+      if(messageRecord.getBody().isSelfDestruction()) {
+        menu.findItem(R.id.menu_context_forward).setVisible(false);
+        menu.findItem(R.id.menu_context_copy).setVisible(false);
+        menu.findItem(R.id.menu_context_save_attachment).setVisible(false);
+      }
     }
   }
 
@@ -211,9 +218,8 @@ public class ConversationFragment extends ListFragment
       @Override
       public void onClick(DialogInterface dialog, int which) {
         new ProgressDialogAsyncTask<MessageRecord, Void, Void>(getActivity(),
-                                                               R.string.ConversationFragment_deleting,
-                                                               R.string.ConversationFragment_deleting_messages)
-        {
+            R.string.ConversationFragment_deleting,
+            R.string.ConversationFragment_deleting_messages) {
           @Override
           protected Void doInBackground(MessageRecord... messageRecords) {
             for (MessageRecord messageRecord : messageRecords) {
@@ -277,11 +283,43 @@ public class ConversationFragment extends ListFragment
     builder.show();
   }
 
-  private void handleForwardMessage(MessageRecord message) {
-    Intent composeIntent = new Intent(getActivity(), ShareActivity.class);
+  private void handleForwardMessage(final MessageRecord message) {
+    final MediaMmsMessageRecord mmsMessage = message.isMms() ? (MediaMmsMessageRecord)message : null;
+    final Intent composeIntent = new Intent(getActivity(), ShareActivity.class);
     composeIntent.putExtra(ConversationActivity.DRAFT_TEXT_EXTRA, message.getDisplayBody().toString());
     composeIntent.putExtra(ShareActivity.MASTER_SECRET_EXTRA, masterSecret);
-    startActivity(composeIntent);
+
+    if (mmsMessage != null && mmsMessage.containsMediaSlide()) {
+      mmsMessage.fetchMediaSlide(new FutureTaskListener<Slide>() {
+        @Override
+        public void onSuccess(Slide slide) {
+          if (slide.hasAudio()){
+            composeIntent.putExtra(ConversationActivity.DRAFT_AUDIO_EXTRA, PartAuthority.getPublicPartUri(slide.getUri()));
+            composeIntent.putExtra(ConversationActivity.DRAFT_MEDIA_TYPE_EXTRA, slide.getContentType());
+          }
+          if(slide.hasImage()) {
+            composeIntent.putExtra(ConversationActivity.DRAFT_IMAGE_EXTRA, PartAuthority.getPublicPartUri(slide.getUri()));
+            composeIntent.putExtra(ConversationActivity.DRAFT_MEDIA_TYPE_EXTRA, slide.getContentType());
+          }
+          if(slide.hasVideo()) {
+            composeIntent.putExtra(ConversationActivity.DRAFT_VIDEO_EXTRA, PartAuthority.getPublicPartUri(slide.getUri()));
+            composeIntent.putExtra(ConversationActivity.DRAFT_MEDIA_TYPE_EXTRA, slide.getContentType());
+          }
+          startActivity(composeIntent);
+        }
+
+        @Override
+        public void onFailure(Throwable error) {
+          Log.w(TAG, "No slide with attachable media found, failing nicely.");
+          Log.w(TAG, error);
+          startActivity(composeIntent);
+        }
+
+      });
+    }
+    else {
+      startActivity(composeIntent);
+    }
   }
 
   private void handleResendMessage(final MessageRecord message) {
@@ -414,7 +452,7 @@ public class ConversationFragment extends ListFragment
           actionMode.finish();
           return true;
         case R.id.menu_context_forward:
-          handleForwardMessage(getSelectedMessageRecord());
+            handleForwardMessage(getSelectedMessageRecord());
           actionMode.finish();
           return true;
         case R.id.menu_context_resend:

@@ -302,6 +302,7 @@ public class ConversationListFragment extends ListFragment
   public void onDestroyActionMode(ActionMode mode) {
     ((ConversationListAdapter) getListAdapter()).initializeBatchMode(false);
     actionMode = null;
+    ((ActionBarActivity) getActivity()).getSupportActionBar().show();
   }
 
   public static ConversationListFragment newInstance(String title) {

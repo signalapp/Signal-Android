@@ -26,7 +26,7 @@
   <string name="ApplicationPreferencesActivity_sms_enabled">已开启接收短信</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">点击来改变默认的短信应用</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">已停用接收短信</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">点击将TextSecure设定为默认的短信应用</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">点击将SecureChat设定为默认的短信应用</string>
   <string name="ApplicationPreferencesActivity_on">开</string>
   <string name="ApplicationPreferencesActivity_On">开</string>
   <string name="ApplicationPreferencesActivity_off">关</string>
@@ -78,8 +78,8 @@
   <string name="ConversationActivity_select_contact_info">选择联系信息</string>
   <string name="ConversationActivity_compose_message">编写信息</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">抱歉，设置附件时出现错误。</string>
-  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">抱歉，选择的视频超过了消息限制（%1$skB）</string>
-  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">抱歉，选择的音频超过了信息大小限制（%1$skB）</string>
+  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">抱歉，所选择的音频超出邮件大小限制(%1$skB)。</string>
+  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions"> 抱歉，所选择的视频超出邮件大小限制(%1$skB)。</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">收件人不是有效的短信或电子邮件地址！</string>
   <string name="ConversationActivity_message_is_empty_exclamation">信息为空！</string>
   <string name="ConversationActivity_group_conversation_recipients">接受群组会话</string>
@@ -464,7 +464,7 @@ SecureChat无法使用Google语音号码。</string>
   <!--registration_progress_activity-->
   <string name="registration_progress_activity__voice_verification">语音验证</string>
   <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">
-Verification也可以通过拨打您的电话号码来进行验证。点击“呼叫我”并在下方输入您所听到的
+SecureChat 也可以通过拨打您的电话号码来进行验证。点击“呼叫我”并在下方输入您所听到的
 四位数字代码。</string>
   <string name="registration_progress_activity__verify">验证</string>
   <string name="registration_progress_activity__call_me">呼叫我</string>

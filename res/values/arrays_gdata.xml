@@ -7,10 +7,10 @@
         <item>@string/ConversationActivity_gdata_selfdestroy_entry_0</item>
     </string-array>
     <string-array name="gdata_selfdestroy_icons">
-        <item>@drawable/ic_action_timebomb</item>
-        <item>@drawable/ic_action_timebomb</item>
-        <item>@drawable/ic_action_timebomb</item>
-        <item>@drawable/ic_action_timebomb</item>
+        <item>@drawable/ic_action_timebomb_60</item>
+        <item>@drawable/ic_action_timebomb_15</item>
+        <item>@drawable/ic_action_timebomb_5</item>
+        <item>@drawable/ic_action_timebomb_off</item>
     </string-array>
     <string-array name="gdata_selfdestroy_values">
         <item>60</item>

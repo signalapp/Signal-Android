@@ -17,9 +17,21 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.animation.ScaleAnimation;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.zxing.Result;
+import com.google.zxing.common.BitMatrix;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
@@ -36,6 +48,8 @@ import org.whispersystems.libaxolotl.state.SessionRecord;
 import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.textsecure.api.push.TextSecureAddress;
 
+import me.dm7.barcodescanner.zxing.ZXingScannerView;
+
 /**
  * Activity for verifying identity keys.
  *
@@ -46,11 +60,15 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
   private Recipient    recipient;
   private MasterSecret masterSecret;
 
-  private TextView localIdentityFingerprint;
-  private TextView remoteIdentityFingerprint;
+  private TextView     localIdentityFingerprint;
+  private TextView     remoteIdentityFingerprint;
+  private Button       scanButton;
+  private ImageView    qrCode;
+  private ZXingScannerView scannerView;
 
   private final DynamicTheme    dynamicTheme    = new DynamicTheme   ();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
+
 
   @Override
   public void onCreate(Bundle state) {
@@ -70,8 +88,49 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
     dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
     getSupportActionBar().setTitle(R.string.AndroidManifest__verify_identity);
+  }
+
+  private void hideScanner() {
+    scanButton.setVisibility(View.VISIBLE);
+    scannerView.setVisibility(View.GONE);
+    scannerView.stopCamera();
 
   }
+
+  private void showScanner() {
+    scanButton.setVisibility(View.GONE);
+    scannerView.setVisibility(View.VISIBLE);
+    scannerView.setResultHandler(new ZXingScannerView.ResultHandler() {
+      @Override
+      public void handleResult(Result result) {
+        checkKey(result.getText());
+        hideScanner();
+      }
+    });
+    scannerView.setAutoFocus(true);
+    scannerView.startCamera();
+  }
+
+
+  @Override
+  protected void onPause() {
+    super.onPause();
+
+    scannerView.stopCamera();
+    scannerView.setResultHandler(null);
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    super.onOptionsItemSelected(item);
+
+    switch (item.getItemId()) {
+      case android.R.id.home:     finish();          return true;
+    }
+
+    return false;
+  }
+
 
   @Override
   protected void onDestroy() {
@@ -85,7 +144,16 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
       return;
     }
 
-    localIdentityFingerprint.setText(IdentityKeyUtil.getIdentityKey(this).getFingerprint());
+    IdentityKey identityKey = IdentityKeyUtil.getIdentityKey(this);
+    localIdentityFingerprint.setText(identityKey.getFingerprint());
+
+    String fingerprint = identityKey.getFingerprint();
+    BitMatrix matrix = getBitMatrix(fingerprint);
+    if(matrix == null) {
+      qrCode.setVisibility(View.GONE);
+      return;
+    }
+    qrCode.setImageBitmap(toBitmap(matrix));
   }
 
   private void initializeRemoteIdentityKey() {
@@ -115,73 +183,34 @@ public class VerifyIdentityActivity extends KeyScanningActivity {
   private void initializeResources() {
     this.localIdentityFingerprint  = (TextView)findViewById(R.id.you_read);
     this.remoteIdentityFingerprint = (TextView)findViewById(R.id.friend_reads);
+    this.scanButton                = (Button)findViewById(R.id.scan_qr_code);
+    this.qrCode = (ImageView) findViewById(R.id.identity_qrcode);
     this.recipient                 = RecipientFactory.getRecipientForId(this, this.getIntent().getLongExtra("recipient", -1), true);
     this.masterSecret              = this.getIntent().getParcelableExtra("master_secret");
+
+    this.scannerView               = (ZXingScannerView)findViewById(R.id.camera_preview);
+    this.scanButton.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        showScanner();
+      }
+    });
   }
 
-  @Override
-  protected void initiateDisplay() {
-    if (!IdentityKeyUtil.hasIdentityKey(this)) {
-      Toast.makeText(this,
-                     R.string.VerifyIdentityActivity_you_don_t_have_an_identity_key_exclamation,
-                     Toast.LENGTH_LONG).show();
-      return;
-    }
-
-    super.initiateDisplay();
-  }
-
-  @Override
-  protected void initiateScan() {
+  private void checkKey(String key) {
     IdentityKey identityKey = getRemoteIdentityKey(masterSecret, recipient);
-
-    if (identityKey == null) {
-      Toast.makeText(this, R.string.VerifyIdentityActivity_recipient_has_no_identity_key_exclamation,
-                     Toast.LENGTH_LONG).show();
-    } else {
-      super.initiateScan();
+    if(identityKey != null) {
+      String fingerprint = identityKey.getFingerprint();
+      if (fingerprint.equalsIgnoreCase(key)) {
+        remoteIdentityFingerprint.setText(R.string.identification_verified_successfully);
+        remoteIdentityFingerprint.setTextColor(Color.GREEN);
+      } else {
+        remoteIdentityFingerprint.setText(R.string.identification_verified_unsuccessfully);
+        remoteIdentityFingerprint.setTextColor(Color.RED);
+      }
     }
   }
 
-  @Override
-  protected String getScanString() {
-    return getString(R.string.VerifyIdentityActivity_scan_their_key_to_compare);
-  }
-
-  @Override
-  protected String getDisplayString() {
-    return getString(R.string.VerifyIdentityActivity_get_my_key_scanned);
-  }
-
-  @Override
-  protected IdentityKey getIdentityKeyToCompare() {
-    return getRemoteIdentityKey(masterSecret, recipient);
-  }
-
-  @Override
-  protected IdentityKey getIdentityKeyToDisplay() {
-    return IdentityKeyUtil.getIdentityKey(this);
-  }
-
-  @Override
-  protected String getNotVerifiedMessage() {
-    return getString(R.string.VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully);
-  }
-
-  @Override
-  protected String getNotVerifiedTitle() {
-    return getString(R.string.VerifyIdentityActivity_not_verified_exclamation);
-  }
-
-  @Override
-  protected String getVerifiedMessage() {
-    return getString(R.string.VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well);
-  }
-
-  @Override
-  protected String getVerifiedTitle() {
-    return getString(R.string.VerifyIdentityActivity_verified_exclamation);
-  }
 
   private IdentityKey getRemoteIdentityKey(MasterSecret masterSecret, Recipient recipient) {
     SessionStore  sessionStore = new TextSecureSessionStore(this, masterSecret);

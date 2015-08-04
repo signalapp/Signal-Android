@@ -22,6 +22,7 @@ import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.StyleSpan;
 
+import org.thoughtcrime.securesms.ConversationItem;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;
@@ -75,6 +76,8 @@ public class ThreadRecord extends DisplayRecord {
     } else if (MmsSmsColumns.Types.isDraftMessageType(type)) {
       String draftText = context.getString(R.string.ThreadRecord_draft);
       return emphasisAdded(draftText + " " + getBody().getParsedBody(), 0, draftText.length());
+    } else if (type == ConversationItem.TYPE_WRONG_KEY) {
+      return emphasisAdded(context.getString(R.string.ConversationListItem_key_exchange_message));
     } else {
       if (TextUtils.isEmpty(getBody().getParsedBody())) {
         return new SpannableString(context.getString(R.string.MessageNotifier_no_subject));

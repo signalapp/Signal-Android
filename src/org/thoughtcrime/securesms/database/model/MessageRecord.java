@@ -228,4 +228,7 @@ public abstract class MessageRecord extends DisplayRecord {
     return (int)getId();
   }
 
+  public boolean containsKey() {
+    return getDisplayBody().toString().length() == 44;
+  }
 }

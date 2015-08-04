@@ -6,6 +6,8 @@ import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.RoutingActivity;
+
 import java.io.IOException;
 
 public class TextSecurePreferences {
@@ -76,6 +78,7 @@ public class TextSecurePreferences {
 
   private static final String PUSH_REGISTRATION_REMINDER_PREF  = "pref_push_registration_reminder";
   public  static final String REPEAT_ALERTS_PREF               = "pref_repeat_alerts";
+  private static final String EULA_ACCEPTED = "pref_eula_accepted";
 
   public static long getRatingLaterTimestamp(Context context) {
     return getLongPreference(context, RATING_LATER_PREF, 0);
@@ -509,5 +512,13 @@ public class TextSecurePreferences {
 
   private static void setLongPreference(Context context, String key, long value) {
     PreferenceManager.getDefaultSharedPreferences(context).edit().putLong(key, value).apply();
+  }
+
+  public static boolean hasAcceptedEula(Context context) {
+    return getBooleanPreference(context, EULA_ACCEPTED, false);
+  }
+
+  public static void setAcceptedEula(Context context, boolean value) {
+    setBooleanPreference(context, EULA_ACCEPTED, value);
   }
 }

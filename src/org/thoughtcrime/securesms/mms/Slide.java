@@ -1,6 +1,6 @@
-/** 
+/**
  * Copyright (C) 2011 Whisper Systems
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -10,7 +10,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -18,13 +18,16 @@ package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
 import android.content.res.Resources.Theme;
+import android.database.Cursor;
 import android.net.Uri;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.Util;
+import org.w3c.dom.smil.SMILDocument;
+import org.w3c.dom.smil.SMILMediaElement;
+import org.w3c.dom.smil.SMILRegionElement;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,7 +40,7 @@ public abstract class Slide {
   protected final Context      context;
   protected       MasterSecret masterSecret;
 
-  public Slide(Context context, @NonNull PduPart part) {
+  public Slide(Context context, PduPart part) {
     this.part    = part;
     this.context = context;
   }
@@ -83,7 +86,7 @@ public abstract class Slide {
     return !getPart().getPartId().isValid();
   }
 
-  protected static void assertMediaSize(Context context, Uri uri)
+  protected static void assertMediaSize(Context context, Uri uri, boolean sendOrReceive)
       throws MediaTooLargeException, IOException
   {
     InputStream in = context.getContentResolver().openInputStream(uri);
@@ -93,7 +96,7 @@ public abstract class Slide {
 
     while ((read = in.read(buffer)) != -1) {
       size += read;
-      if (size > MmsMediaConstraints.MAX_MESSAGE_SIZE) throw new MediaTooLargeException("Media exceeds maximum message size.");
+      if (size > (sendOrReceive ? MediaConstraints.CURRENT_MEDIA_SIZE:PushMediaConstraints.MAX_MESSAGE_SIZE)) throw new MediaTooLargeException("Media exceeds maximum message size.");
     }
   }
 
@@ -118,6 +121,23 @@ public abstract class Slide {
                          hasVideo(), isDraft(), getUri(), getThumbnailUri());
   }
 
+  protected static String getContentTypeFromUri(Context context, Uri uri, String mimeType) throws  IOException {
+    Cursor cursor = null;
 
+    try {
+        cursor = context.getContentResolver().query(uri, new String[]{mimeType}, null, null, null);
+        if (cursor != null && cursor.moveToFirst() && cursor.getString(0) != null)
+          return cursor.getString(0);
+        else
+          throw new IOException("Unable to query content type.");
+
+    } finally {
+      if (cursor != null)
+        cursor.close();
+    }
+  }
+  public abstract SMILRegionElement getSmilRegion(SMILDocument document);
+
+  public abstract SMILMediaElement getMediaElement(SMILDocument document);
 
 }

@@ -5,11 +5,14 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import com.google.common.reflect.TypeToken;
+
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.util.JsonUtils;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -73,10 +76,10 @@ public class GDataPreferences {
     mPreferences.edit().putLong("row:" + profileId, profilePartId).commit();
   }
   public Long getProfilePartId(String profileId) {
-    return mPreferences.getLong("id:" +profileId, 0L);
+    return mPreferences.getLong("id:" +profileId, -1L);
   }
   public Long getProfilePartRow(String profileId) {
-    return mPreferences.getLong("row:"+profileId, 0L);
+    return mPreferences.getLong("row:"+profileId, -1L);
   }
   public void setProfileStatus(String profileStatus) {
     mPreferences.edit().putString(PROFILE_STATUS, profileStatus).commit();
@@ -127,19 +130,22 @@ public class GDataPreferences {
       recIds.add(recipient.getRecipientId());
     }
     try {
-      mPreferences.edit().putString(SAVED_HIDDEN_RECIPIENTS, JsonUtils.toJson(recIds)).commit();
-    } catch (IOException e) {
-      Log.e("GDataPreferences", e.getMessage());
-    }
+        Log.d("GDataPreferences-", JsonUtils.toJson(recIds));
+        mPreferences.edit().putString(SAVED_HIDDEN_RECIPIENTS, JsonUtils.toJson(recIds)).commit();
+      } catch (IOException e) {
+        Log.e("GDataPreferences", e.getMessage());
+      }
   }
   public ArrayList<Recipient> getSavedHiddenRecipients() {
     ArrayList<Recipient> hiddenRecipients = null;
+
     try {
-      ArrayList<Long> recipients = JsonUtils.fromJson(mPreferences.getString(SAVED_HIDDEN_RECIPIENTS, JsonUtils.toJson(new ArrayList<Long>())), ArrayList.class);
+      ArrayList<Integer> recipients = JsonUtils.fromJson(mPreferences.getString(SAVED_HIDDEN_RECIPIENTS, JsonUtils.toJson(new ArrayList<Long>())), ArrayList.class);
 
       hiddenRecipients = new ArrayList<Recipient>();
       try {
-        for (Long recId : recipients) {
+        Log.d("GDataPreferences", recipients.toString());
+        for (Integer recId : recipients) {
           hiddenRecipients.add(RecipientFactory.getRecipientForId(mContext, recId, false));
         }
       } catch(ClassCastException ex) {
@@ -159,6 +165,16 @@ public class GDataPreferences {
   }
   public String getE164Number() {
     return mPreferences.getString(SAVE_E164_NUMBER, "");
+  }
+
+  public boolean isMarkedAsRemoved(String id) {
+    return mPreferences.getBoolean("msgid:" + id, false);
+  }
+  public void setAsDestroyed(String id) {
+    mPreferences.edit().putBoolean("msgid:" + id, true).commit();
+  }
+  public void removeFromList(String id) {
+    mPreferences.edit().remove("msgid:" + id).commit();
   }
 }
 

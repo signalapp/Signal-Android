@@ -37,7 +37,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipient.RecipientModifiedListener;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
@@ -49,7 +48,6 @@ import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 import uk.co.senab.photoview.PhotoViewAttacher;
 
@@ -88,14 +86,14 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity {
     getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
         WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    setContentView(R.layout.media_preview_activity);
-    mContext = this;
-
     Bundle extras = getIntent().getExtras();
     if(extras != null) {
       destroyImage = extras.getBoolean("destroyImage");
     }
+
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    setContentView(R.layout.media_preview_activity);
+    mContext = this;
 
     initializeResources();
   }
@@ -123,6 +121,10 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity {
     super.onResume();
     dynamicLanguage.onResume(this);
 
+    if (destroyImage) {
+      getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
+    }
+
     final long recipientId = getIntent().getLongExtra(RECIPIENT_EXTRA, -1);
 
     masterSecret = getIntent().getParcelableExtra(MASTER_SECRET_EXTRA);
@@ -141,7 +143,6 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity {
     } else {
       recipient = null;
     }
-
     initializeActionBar();
 
     if (!isContentTypeSupported(mediaType)) {
@@ -190,7 +191,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity {
         try {
           int[] maxTextureSizeParams = new int[1];
           GLES20.glGetIntegerv(GLES20.GL_MAX_TEXTURE_SIZE, maxTextureSizeParams, 0);
-          int maxTextureSize = Math.max(maxTextureSizeParams[0], 2048);
+          int maxTextureSize = Math.max(maxTextureSizeParams[0], 1024);
           Log.w(TAG, "reported GL_MAX_TEXTURE_SIZE: " + maxTextureSize);
           return BitmapUtil.createScaledBitmap(MediaPreviewActivity.this, masterSecret, mediaUri,
                                                maxTextureSize, maxTextureSize);

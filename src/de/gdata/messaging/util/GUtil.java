@@ -281,23 +281,25 @@ public class GUtil {
   }
 
   public static Long numberToLong(String number) {
-    if (number.contains("+")) {
-      number = number.replace("+", "");
-      number = number.substring(getCountryCodeLength(number), number.length());
-    }
-    if (number.length() > 0 && number.charAt(0) == '0') {
-      number = number.substring(1);
-    }
-    number = number.replaceAll(" ", "");
     String longNumber = "";
-    for (int i = 0; i < number.length(); i++) {
-      char a = number.charAt(i);
-      if (('0' <= a && a <= '9')) {
-        longNumber += a;
+    if(number != null) {
+      if (number.contains("+")) {
+        number = number.replace("+", "");
+        number = number.substring(getCountryCodeLength(number), number.length());
       }
-    }
-    if (longNumber.trim().length() <= 0) {
-      longNumber = "0";
+      if (number.length() > 0 && number.charAt(0) == '0') {
+        number = number.substring(1);
+      }
+      number = number.replaceAll(" ", "");
+      for (int i = 0; i < number.length(); i++) {
+        char a = number.charAt(i);
+        if (('0' <= a && a <= '9')) {
+          longNumber += a;
+        }
+      }
+      if (longNumber.trim().length() <= 0) {
+        longNumber = "0";
+      }
     }
     Long longId = 0L;
     try {
@@ -307,13 +309,6 @@ public class GUtil {
     }
     return longId;
   }
-
-  public static Drawable createCircledBitmapFromDrawable(Context context, GlideBitmapDrawable profileImage) {
-    return new BitmapDrawable(context.getResources(),
-        BitmapUtil.getScaledCircleBitmap(context, ((GlideBitmapDrawable) profileImage)
-            .getBitmap()));
-  }
-
   public static void setListViewHeightBasedOnChildren(ListView listView) {
     ListAdapter listAdapter = listView.getAdapter();
     if (listAdapter == null) {
@@ -324,7 +319,10 @@ public class GUtil {
     int totalHeight = 0;
     for (int i = 0; i < listAdapter.getCount(); i++) {
       View listItem = listAdapter.getView(i, null, listView);
-      listItem.measure(0, 0);
+      listItem.measure(
+              View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+              View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+      );
       totalHeight += listItem.getMeasuredHeight();
     }
 

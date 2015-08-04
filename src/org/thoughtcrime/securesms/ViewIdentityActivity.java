@@ -16,8 +16,17 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
 
 import org.whispersystems.libaxolotl.IdentityKey;
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
@@ -30,10 +39,13 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 public class ViewIdentityActivity extends KeyScanningActivity {
 
   public static final String IDENTITY_KEY = "identity_key";
+  public static final String IDENTITY_TITLE = "identity_title";
   public static final String TITLE        = "title";
 
   private TextView    identityFingerprint;
+  private TextView    identityFingerprintTitle;
   private IdentityKey identityKey;
+  private ImageView   imageView;
 
   @Override
   public void onCreate(Bundle state) {
@@ -52,10 +64,20 @@ public class ViewIdentityActivity extends KeyScanningActivity {
   private void initializeFingerprint() {
     if (identityKey == null) {
       identityFingerprint.setText(R.string.ViewIdentityActivity_you_do_not_have_an_identity_key);
+      imageView.setVisibility(View.GONE);
     } else {
-      identityFingerprint.setText(identityKey.getFingerprint());
+      String fingerprint = identityKey.getFingerprint();
+      identityFingerprint.setText(fingerprint);
+      BitMatrix matrix = getBitMatrix(fingerprint);
+      if(matrix == null) {
+        imageView.setVisibility(View.GONE);
+        return;
+      }
+      imageView.setImageBitmap(toBitmap(matrix));
     }
+
   }
+
 
   private void initializeResources() {
     IdentityKeyParcelable identityKeyParcelable = getIntent().getParcelableExtra(IDENTITY_KEY);
@@ -64,52 +86,21 @@ public class ViewIdentityActivity extends KeyScanningActivity {
       throw new AssertionError("No identity key!");
     }
 
-    this.identityKey         = identityKeyParcelable.get();
-    this.identityFingerprint = (TextView)findViewById(R.id.identity_fingerprint);
-    String title             = getIntent().getStringExtra(TITLE);
+    this.identityKey              = identityKeyParcelable.get();
+    this.identityFingerprint      = (TextView)findViewById(R.id.identity_fingerprint);
+    this.imageView                = (ImageView)findViewById(R.id.identity_qrcode);
+    this.identityFingerprintTitle = (TextView)findViewById(R.id.identity_title);
+    String title                  = getIntent().getStringExtra(TITLE);
+    String identityTitle          = getIntent().getStringExtra(IDENTITY_TITLE);
 
     if (title != null) {
       getSupportActionBar().setTitle(getIntent().getStringExtra(TITLE));
     }
+    if(identityTitle != null){
+      identityFingerprintTitle.setVisibility(View.VISIBLE);
+      identityFingerprintTitle.setText(identityTitle);
+    }
+
   }
 
-  @Override
-  protected String getScanString() {
-    return getString(R.string.ViewIdentityActivity_scan_to_compare);
-  }
-
-  @Override
-  protected String getDisplayString() {
-    return getString(R.string.ViewIdentityActivity_get_scanned_to_compare);
-  }
-
-  @Override
-  protected IdentityKey getIdentityKeyToCompare() {
-    return identityKey;
-  }
-
-  @Override
-  protected IdentityKey getIdentityKeyToDisplay() {
-    return identityKey;
-  }
-
-  @Override
-  protected String getNotVerifiedMessage() {
-    return  getString(R.string.ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation);
-  }
-
-  @Override
-  protected String getNotVerifiedTitle() {
-    return getString(R.string.ViewIdentityActivity_not_verified_exclamation);
-  }
-
-  @Override
-  protected String getVerifiedMessage() {
-    return getString(R.string.ViewIdentityActivity_the_scanned_key_matches_exclamation);
-  }
-
-  @Override
-  protected String getVerifiedTitle() {
-    return getString(R.string.ViewIdentityActivity_verified_exclamation);
-  }
 }

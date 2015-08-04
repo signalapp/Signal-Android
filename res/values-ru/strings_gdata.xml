@@ -3,34 +3,30 @@
     <string name="ConversationActivity_gdata_selfdestroy_entry_five">5 минут</string>
     <string name="ConversationActivity_gdata_selfdestroy_entry_thirty">30 минут</string>
     <string name="ConversationActivity_gdata_selfdestroy_entry_hour">1 час</string>
-
+    <string name="ConversationActivity_gdata_selfdestroy_entry_3">5 секунд</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_2">15 секунд</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_1">60 секунд</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_0">Отключить</string>
     <string name="gdata_contact_selection_page_title">Контакты</string>
-
-    <string name="gdata_conversation_list_page_title">Развлечения</string>
-
+    <string name="gdata_conversation_list_page_title">Беседы</string>
     <string name="gd_dialog_fragment_phishing_title">Веб-защита</string>
-    <string name="gd_dialog_fragment_phishing_message">Данная страница является известной фишинг-страницей. Продолжайте работу только в том случае, если вы уверены, что не подвергаетесь риску.</string>
+    <string name="gd_dialog_fragment_phishing_message">Данный сайт является известным фишинговым сайтом. Продолжайте работу только в том случае, если вы уверены в отсутствии риска.</string>
     <string name="gd_dialog_fragment_phishing_block">Заблокировать</string>
     <string name="gd_dialog_fragment_phishing_continue">Продолжить</string>
-
     <string name="menu_filter">Заблокировать контакты</string>
-    <string name="menu_privacy">Защитить диалоги</string>
-    <string name="menu_privacy_unhide">Показать защищенные диалоги</string>
-    <string name="menu_privacy_hide">Скрыть защищенные диалоги</string>
-    <string name="menu_privacy_single_hide">Защитить диалог</string>
+    <string name="menu_privacy">Скрыть беседы</string>
+    <string name="menu_privacy_unhide">Включить скрытие</string>
+    <string name="menu_privacy_hide">Скрыть</string>
+    <string name="menu_privacy_single_hide">Скрыть беседу</string>
     <string name="menu_filter_block_contact">Заблокировать контакт</string>
-
     <string name="privacy_pw_dialog_header">Ввести пароль: </string>
     <string name="privacy_pw_dialog_toast_wrong">Введен неверный пароль для Internet Security.</string>
-    <string name="privacy_pw_dialog_toast_reload">Восстановление диалогов...</string>
-    <string name="privacy_pw_dialog_toast_hide">Подготовка диалогов к защите...</string>
-    <string name="privacy_pw_dialog_toast_hide_single">Диалог защищается...</string>
-    <string name="privacy_pw_dialog_hint">Примечание: речь идет о выбранном Вами пароле в Internet Security для Android.</string>
-
+    <string name="privacy_pw_dialog_toast_reload">Беседы восстанавливаются...</string>
+    <string name="privacy_pw_dialog_toast_hide">Идет подготовка к скрытию бесед...</string>
+    <string name="privacy_pw_dialog_toast_hide_single">Скрытие беседы...</string>
+    <string name="privacy_pw_dialog_hint">Примечание: Речь идет о пароле, выбранном вами в приложении Internet Security для Android.</string>
     <string name="privacy_toast_install_premium">Для использования данной функции необходима версия G DATA Internet Security для ОС Android</string>
-
     <string name="conversation_activity_invite_link">https://secure.gd/scg</string>
-
     <string name="preferences_notification_never">Никогда</string>
     <string name="preferences_notification_one_time">1x</string>
     <string name="preferences_notification_two_times">2x</string>
@@ -38,4 +34,33 @@
     <string name="preferences_notification_five_times">5x</string>
     <string name="preferences_notification_ten_times">10x</string>
     <string name="preferences_notification_title">Повторять предупреждения</string>
+    <string name="log_submit_activity__button_dont_submit">Не отправлять</string>
+    <string name="log_submit_activity__button_submit">Отправить</string>
+    <string name="self_destruction">Уничтожить</string>
+    <string name="self_destruction_title">#1# секунд до самоликвидации...</string>
+    <string name="self_destruction_body">Содержимое сообщения самоликвидируется через #1# секунд после открытия.</string>
+    <string name="unknown_country">Неизвестная страна</string>
+    <string name="self_destruction_compose_hint">Отправить самоудаляющееся 	 сообщение</string>
+    <string name="privacy_toast_unlock_premium">Подключите премиум функции G DATA Internet Security, чтобы получить дополнительные возможности.</string>
+    <string name="tk_mail">sc-feedback@gdata.de</string>
+    <string name="import_complete_dialog">Импорт системной базы данных SecureChat завершен.</string>
+    <string name="profile_status_label">Статус</string>
+    <string name="profile_number_label">Номер телефона</string>
+    <string name="profile_status_member">Участники</string>
+    <string name="identification">Идентификация</string>
+    <string name="identification_title">Ваш ключ – Ваш идентификатор. Ваши собеседники могут просканировать ключ, чтобы быть уверенными в том, что сообщения с этим ключом приходят от Вас. </string>
+    <string name="verify_identity_activity_their_identity">Идентификация получателя – этот ключ идентифицирует Вашего собеседника. Проверьте ключ, чтобы убедиться в том, что входящие сообщения аутентичны.</string>
+    <string name="verify_identity_activity_your_identity" >Подтверждение личности – этот ключ служит Вашей идентификации. Позвольте Вашим собеседниками проверить ключ для аутентификации Ваших сообщений.</string>
+    <string name="identification_verified_unsuccessfully">Ключи не совпадают!</string>
+    <string name="identification_verified_successfully">Успешная идентификация.</string>
+    <string name="accept_eula_and_continue"><![CDATA[Принять & Продолжить]]></string>
+    <string name="eula_gdata"><u>Общие условия сделок</u></string>
+    <string name="take_picture">Сделать фото</string>
+    <string name="status_available">В сети</string>
+    <string name="status_busy">Занят</string>
+    <string name="status_atwork">Работаю</string>
+    <string name="status_meeting">Совещание</string>
+    <string name="status_donotdisturb">Не беспокоить</string>
+    <string name="status_nocallsjustchat">Не звонить. Только SecureChat</string>
+    <string name="status_onlyurgentcalls">Только срочные звонки</string>
 </resources>

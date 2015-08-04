@@ -70,16 +70,21 @@ public class SelfDestOptions {
 
         final String[] valuesArray = context.getResources().getStringArray(R.array.gdata_selfdestroy_values);
 
-        final int[] attrs = new int[]{R.attr.conversation_selfdestroy_icon_indicator};
-        final TypedArray iconArray = context.obtainStyledAttributes(attrs);
-        //final int iconArrayResource = iconArray.getResourceId(R.array.gdata_selfdestroy_icons, 0);
-        //final TypedArray icons = context.getResources().obtainTypedArray(iconArrayResource);
+//        final int[] attrs = new int[] {R.attr.conversation_selfdestroy_icon_indicator};
+//        final TypedArray iconArray = context.obtainStyledAttributes(attrs);
+//        final int iconArrayResource = iconArray.getResourceId(R.array.gdata_selfdestroy_icons, 0);
+//        final TypedArray icons = context.getResources().obtainTypedArray(iconArrayResource);
+
+        final TypedArray iconArray = context.getResources().obtainTypedArray(R.array.gdata_selfdestroy_icons);
 
         enabledSelfDest.clear();
         for (int i = 0; i < valuesArray.length; i++) {
             String key = valuesArray[i];
             enabledSelfDest.add(key);
-            selfDestMetaData.put(key, new DestroyOption(key, R.drawable.ic_action_timebomb, entryArray[i]));
+
+            int iconId = iconArray.getResourceId(i, 0);
+
+            selfDestMetaData.put(key, new DestroyOption(key, iconId, entryArray[i]));
         }
         iconArray.recycle();
 

@@ -78,8 +78,8 @@ U zal uw telefoonnummer opnieuw moeten registreren als u push berichten weer wil
   <string name="ConversationActivity_select_contact_info">Selecteer contactinformatie</string>
   <string name="ConversationActivity_compose_message">Bericht opstellen</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Excuses, er trad een fout op bij het instellen van uw bijlage.</string>
-  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Excuses, het videobestand overschrijdt de maximale berichtgrootte (%1$skB).</string>
-  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Excuses, het audiobestand overschrijdt de maximale berichtgrootte (%1$skB).</string>
+  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Sorry, de geselecteerde audio is groter dan de maximale berichtgrootte (%1$skB).</string>
+  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Sorry, de geselecteerde video is groter dan de maximale berichtgrootte (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Ontvanger is niet een geldig SMS of e-mailadres!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Bericht is leeg!</string>
   <string name="ConversationActivity_group_conversation_recipients">Groepsgesprek ontvangers</string>
@@ -140,8 +140,8 @@ U zal uw telefoonnummer opnieuw moeten registreren als u push berichten weer wil
   <string name="ExportFragment_error_while_writing_to_sd_card">Fout tijdens het schrijven naar de SD-kaart.</string>
   <string name="ExportFragment_success">Succesvol!</string>
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_SecureChat_communication_failure">Permanent SecureChat communicatie falen!</string>
-  <string name="GcmRefreshJob_SecureChat_was_unable_to_register_with_Google_Play_Services">SecureChat was niet in staat met Google Play services te registreren. Communicatie over Data kanaal is uitgeschakeld, probeer te her-registreren via het SecureChat  instellingen menu.</string>
+  <string name="GcmRefreshJob_Permanent_TextSecure_communication_failure">Permanent SecureChat communicatie falen!</string>
+  <string name="GcmRefreshJob_TextSecure_was_unable_to_register_with_Google_Play_Services">SecureChat was niet in staat met Google Play services te registreren. Communicatie over Data kanaal is uitgeschakeld, probeer te her-registreren via het SecureChat instellingen menu.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Nieuwe groep</string>
   <string name="GroupCreateActivity_actionbar_update_title">Groep bijwerken</string>
@@ -660,6 +660,8 @@ Privacy verbeteren en SMS-kosten vermijden door het datakanaal te gebruiken voor
   <string name="text_secure_normal__menu_clear_passphrase">Vergrendel</string>
   <string name="text_secure_normal__mark_all_as_read">Markeer alles als gelezen</string>
   <!--reminder_header-->
+  <string name="reminder_header_expired_build">Je build van SecureChat is verlopen!</string>
+  <string name="reminder_header_expired_build_details">Berichten zullen niet langer verzonden worden, gelieve te updaten naar de recentste versie.</string>
   <string name="reminder_header_sms_default_title">Als standaard SMS-app gebruiken?</string>
   <string name="reminder_header_sms_default_text">SecureChat is momenteel niet uw standaard SMS-app.</string>
   <string name="reminder_header_sms_import_title">SMS importeren uit systeem?</string>

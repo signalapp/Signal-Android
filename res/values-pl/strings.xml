@@ -78,8 +78,8 @@ Będziesz musiał ponownie zarejestrować swój numer, aby w przyszłości ponow
   <string name="ConversationActivity_select_contact_info">Wybierz dane kontaktowe</string>
   <string name="ConversationActivity_compose_message">Nowa wiadomość</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Przepraszamy, wystąpił błąd podczas dodawania załącznika...</string>
-  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Przepraszamy, ten plik wideo przekracza dozwolony rozmiar (%1$skB).</string>
-  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Przepraszamy, ten plik audio przekracza dozwolony rozmiar (%1$skB).</string>
+  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Rozmiar pliku audio przkracza dozwoloną wartość (%1$skB).</string>
+  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Rozmiar pliku wideo przkracza dozwoloną wartość (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Podany numer lub adres e-mail jest niepoprawny!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Wiadomość jest pusta!</string>
   <string name="ConversationActivity_group_conversation_recipients">Grupuj odbiorców rozmowy</string>
@@ -661,6 +661,8 @@ Zwiększ swoją prywatność i unikaj opłat za SMS używając transmisji danych
   <string name="text_secure_normal__menu_clear_passphrase">Zablokuj</string>
   <string name="text_secure_normal__mark_all_as_read">Oznacz wszystkie jako przeczytane</string>
   <!--reminder_header-->
+  <string name="reminder_header_expired_build">Twoja wersja SecureChat wygasła!</string>
+  <string name="reminder_header_expired_build_details">Wiadomości nie będą już pomylnie wysyłane, prosimy o aktualizację do najnowszej wersji.</string>
   <string name="reminder_header_sms_default_title">Użyć jako domyślnej aplikacji SMS?</string>
   <string name="reminder_header_sms_default_text">SecureChat nie jest obecnie Twoją domyślną aplikacją SMS.</string>
   <string name="reminder_header_sms_import_title">Importować SMS?</string>

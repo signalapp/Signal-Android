@@ -1,129 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.DrawerLayout
-    android:id="@+id/drawer_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout_gdata"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:tools="http://schemas.android.com/tools"
-                    xmlns:fab="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fitsSystemWindows="true"
-                    android:background="@color/gdata_red"
-        >
-        <include android:id="@+id/toolbar" layout="@layout/toolbar"/>
+        xmlns:fab="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gdata_primary_color"
+        android:fitsSystemWindows="true">
 
-        <LinearLayout android:id="@+id/drawer_layout_ll"
-                      xmlns:android="http://schemas.android.com/apk/res/android"
-                      android:layout_width="match_parent"
-                      android:layout_height="match_parent"
-                      android:orientation="vertical"
-                      android:background="@color/white"
-                        android:layout_below="@+id/toolbar">
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/drawer_layout_ll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolbar"
+            android:background="@color/white"
+            android:orientation="vertical">
 
             <de.gdata.messaging.SlidingTabLayout
                 android:id="@+id/sliding_tabs"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/gdata_red"
-                />
-
-            <android.support.v4.view.ViewPager android:id="@+id/pager"
-                                               xmlns:android="http://schemas.android.com/apk/res/android"
-                                               xmlns:tools="http://schemas.android.com/tools"
-                                               android:layout_width="match_parent"
-                                               android:layout_height="match_parent"
-                                               android:layout_below="@+id/sliding_tabs"
-                                               android:textSize="20dp"
-                                               android:textStyle="bold"
-                                               tools:context=".ActivityUser"/>
+                android:background="@color/gdata_primary_color" />
+            <android.support.v4.view.ViewPager
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/sliding_tabs"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                tools:context=".ActivityUser" />
         </LinearLayout>
+
         <com.melnykov.fab.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
             android:layout_gravity="bottom|right"
             android:layout_margin="30dp"
             android:src="?attr/menu_new_conversation_icon"
             fab:fab_colorNormal="@color/gdata_red"
             fab:fab_colorPressed="@color/menuItemBackground"
             fab:fab_colorRipple="@color/menuTextColor"
-            fab:fab_shadow="false"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"/>
+            fab:fab_shadow="false" />
 
     </RelativeLayout>
     <!-- The navigation drawer -->
     <LinearLayout
         android:id="@+id/drawerll"
-        android:layout_width="240dp"
+        android:layout_width="230dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:orientation="vertical"
         android:fitsSystemWindows="true"
-        >
-    <LinearLayout
-        android:id="@+id/drawer"
-        android:paddingTop="30dp"
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:background="@color/gdata_red"
-        android:gravity="center_vertical"
-        android:orientation="vertical" >
-
-        <org.thoughtcrime.securesms.components.CircledImageView
-            android:id="@+id/profile_picture"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_gravity="center"
-            android:layout_weight="2"
-            android:scaleType="centerCrop"
-            android:visibility="visible"/>
+        android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/drawer2"
-            android:layout_width="wrap_content"
+            android:id="@+id/drawer"
+            android:layout_width="230dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:paddingBottom="5dp"
-            android:paddingTop="10dp"
-            android:orientation="vertical" >
+            android:layout_gravity="start"
+            android:background="@color/gdata_primary_color"
+            android:gravity="left"
+            android:orientation="vertical">
 
-            <TextView
+            <RelativeLayout
+                android:id="@+id/containerrl"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+            <LinearLayout
+                android:id="@+id/container"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text=""
-                android:id="@+id/profileName"
-                android:paddingLeft="15dp"
-                android:textColor="@color/white"
-                android:textSize="10sp" />
+                android:layout_gravity="start"
+                android:background="@color/gdata_primary_color"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
 
-            <TextView
+                <org.thoughtcrime.securesms.components.ForegroundImageView
+                    android:id="@+id/profile_picture"
+                    android:layout_width="230dp"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center"
+                    android:scaleType="centerCrop"
+                    android:visibility="visible" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/drawer2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:paddingLeft="15dp"
-                android:gravity="center"
-                android:text=""
-                android:id="@+id/profileStatus"
-                android:textColor="@color/white"
-                android:textSize="10sp" />
-        </LinearLayout>
-    </LinearLayout>
-    <ListView
-        android:id="@+id/left_drawer"
-        android:layout_width="240dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="@color/menuItemBackground"
-        android:choiceMode="singleChoice"
-        android:divider="@color/menuDivider"
-        android:dividerHeight="1px"
-        android:scrollbars="none"/>
+                android:orientation="vertical"
+                android:paddingTop="30dp">
+                <LinearLayout
+                    android:id="@+id/drawer_background"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:background="@color/bpTransparent_black">
+                <TextView
+                    android:id="@+id/profileName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:text=""
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/profileStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:text=""
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="10sp" />
+                    </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+</LinearLayout>
+
+        <ListView
+            android:id="@+id/left_drawer"
+            android:layout_width="230dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:background="@color/menuItemBackground"
+            android:choiceMode="singleChoice"
+            android:divider="@color/menuDivider"
+            android:dividerHeight="1px"
+            android:scrollbars="none" />
     </LinearLayout>
 </android.support.v4.widget.DrawerLayout>

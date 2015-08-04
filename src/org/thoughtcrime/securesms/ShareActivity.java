@@ -20,6 +20,7 @@ package org.thoughtcrime.securesms;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -37,7 +38,7 @@ import org.thoughtcrime.securesms.util.MemoryCleaner;
  */
 public class ShareActivity extends PassphraseRequiredActionBarActivity
     implements ShareFragment.ConversationSelectedListener
-  {
+{
   public final static String MASTER_SECRET_EXTRA = "master_secret";
 
   private final DynamicTheme    dynamicTheme    = new DynamicTheme   ();
@@ -58,8 +59,8 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   protected void onNewIntent(Intent intent) {
-      super.onNewIntent(intent);
-      setIntent(intent);
+    super.onNewIntent(intent);
+    setIntent(intent);
   }
 
   @Override
@@ -139,15 +140,17 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   private Intent getBaseShareIntent(final Class<?> target) {
     final Intent intent = new Intent(this, target);
     final Intent originalIntent = getIntent();
-    final String draftText  = originalIntent.getStringExtra(ConversationActivity.DRAFT_TEXT_EXTRA);
-    final Uri    draftImage = originalIntent.getParcelableExtra(ConversationActivity.DRAFT_IMAGE_EXTRA);
-    final Uri    draftAudio = originalIntent.getParcelableExtra(ConversationActivity.DRAFT_AUDIO_EXTRA);
-    final Uri    draftVideo = originalIntent.getParcelableExtra(ConversationActivity.DRAFT_VIDEO_EXTRA);
-
+    final String draftText   = originalIntent.getStringExtra(ConversationActivity.DRAFT_TEXT_EXTRA);
+    final Uri    draftImage  = originalIntent.getParcelableExtra(ConversationActivity.DRAFT_IMAGE_EXTRA);
+    final Uri    draftVideo  = originalIntent.getParcelableExtra(ConversationActivity.DRAFT_VIDEO_EXTRA);
+    final Uri    draftAudio  = originalIntent.getParcelableExtra(ConversationActivity.DRAFT_AUDIO_EXTRA);
+    final String mediaType   = originalIntent.getStringExtra(ConversationActivity.DRAFT_MEDIA_TYPE_EXTRA);
+    Log.d("MYLOG", "MYLOG getBaseShareIntent " + draftImage);
     intent.putExtra(ConversationActivity.DRAFT_TEXT_EXTRA, draftText);
     intent.putExtra(ConversationActivity.DRAFT_IMAGE_EXTRA, draftImage);
-    intent.putExtra(ConversationActivity.DRAFT_AUDIO_EXTRA, draftAudio);
     intent.putExtra(ConversationActivity.DRAFT_VIDEO_EXTRA, draftVideo);
+    intent.putExtra(ConversationActivity.DRAFT_AUDIO_EXTRA, draftAudio);
+    intent.putExtra(ConversationActivity.DRAFT_MEDIA_TYPE_EXTRA, mediaType);
     intent.putExtra(NewConversationActivity.MASTER_SECRET_EXTRA, masterSecret);
 
     return intent;

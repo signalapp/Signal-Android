@@ -23,12 +23,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:layout_marginLeft="9dp"
+        android:layout_marginLeft="2dp"
         android:layout_marginBottom="6dp"
         android:layout_marginRight="0dp"
         android:orientation="horizontal">
 
-        <org.thoughtcrime.securesms.components.ForegroundImageView
+        <org.thoughtcrime.securesms.components.CircledImageView
             android:id="@+id/contact_photo"
             android:foreground="@drawable/contact_photo_background"
             android:layout_width="40dp"

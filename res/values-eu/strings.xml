@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">TextSecure</string>
+  <string name="app_name">SecureChat</string>
   <string name="yes">Bai</string>
   <string name="no">Ez</string>
   <string name="delete">Ezabatu</string>
@@ -29,7 +29,7 @@ Zure telefono zenbakia bererregistratu beharko duzu push mezuak berriro erabili 
   <string name="ApplicationPreferencesActivity_sms_enabled">Sarrerako SMSak Gaituta</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Ukitu zure SMS aplikazio lehenetsia aldatzeko</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Sarrerako SMSak Desgaituta</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Ukitu TextSecure zure SMS aplikazio lehenetsia bihurtzeko</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Ukitu SecureChat zure SMS aplikazio lehenetsia bihurtzeko</string>
   <string name="ApplicationPreferencesActivity_on">piztuta</string>
   <string name="ApplicationPreferencesActivity_On">Aktibatuta</string>
   <string name="ApplicationPreferencesActivity_off">desaktibatuta</string>
@@ -100,9 +100,9 @@ Zure telefono zenbakia bererregistratu beharko duzu push mezuak berriro erabili 
   <string name="ConversationActivity_transport_insecure_mms">MMS ez segurua</string>
   <string name="ConversationActivity_transport_secure_sms">SMS segurua</string>
   <string name="ConversationActivity_transport_secure_mms">SMS segurua</string>
-  <string name="ConversationActivity_transport_textsecure">TextSecure</string>
+  <string name="ConversationActivity_transport_textsecure">SecureChat</string>
   <string name="ConversationActivity_get_with_it">Ondokoa lortu: %s</string>
-  <string name="ConversationActivity_install_textsecure">TextSecure instalatu: %s</string>
+  <string name="ConversationActivity_install_textsecure">SecureChat instalatu: %s</string>
   <string name="ConversationActivity_error_leaving_group">Errorea taldea uzterakoan...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Mezuaren detaileak</string>
@@ -136,7 +136,7 @@ Zure telefono zenbakia bererregistratu beharko duzu push mezuak berriro erabili 
   <string name="ExportFragment_export">Esportatu</string>
   <string name="ExportFragment_export_plaintext_to_sd_card">Enkriptatu gabeko testua SD txartel batera esportatu?</string>
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Kontuz, ekintza honek
- zure TextSecure mezuen enkriptatu gabeko testua SD txartelera esportatuko du.
+ zure SecureChat mezuen enkriptatu gabeko testua SD txartelera esportatuko du.
 </string>
   <string name="ExportFragment_cancel">Utzi</string>
   <string name="ExportFragment_exporting">Esportatzen</string>
@@ -145,16 +145,16 @@ Zure telefono zenbakia bererregistratu beharko duzu push mezuak berriro erabili 
   <string name="ExportFragment_error_while_writing_to_sd_card">Errorea SD txartelean idazterakoan.</string>
   <string name="ExportFragment_success">Arrakasta!</string>
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_TextSecure_communication_failure">TextSecuren behin betiko komunikazio akatsa</string>
-  <string name="GcmRefreshJob_TextSecure_was_unable_to_register_with_Google_Play_Services">TextSecure ez da gai izan Google Play Zerbitzuekin erregistratzeko.
-Datu kanalaren bitartezko komunikazioa desgaitu egin da, mesedez saiatu bererregistratzen TextSecure-eko ezarpenen menutik.</string>
+  <string name="GcmRefreshJob_Permanent_TextSecure_communication_failure">SecureChaten behin betiko komunikazio akatsa</string>
+  <string name="GcmRefreshJob_TextSecure_was_unable_to_register_with_Google_Play_Services">SecureChat ez da gai izan Google Play Zerbitzuekin erregistratzeko.
+Datu kanalaren bitartezko komunikazioa desgaitu egin da, mesedez saiatu bererregistratzen SecureChat-eko ezarpenen menutik.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Talde berria</string>
   <string name="GroupCreateActivity_actionbar_update_title">Taldea eguneratu</string>
   <string name="GroupCreateActivity_group_name_hint">Taldearen izena</string>
   <string name="GroupCreateActivity_actionbar_mms_title">MMS talde berria</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">TextSecure taldeak onartzen ez duen kontaktu bat aukeratu duzu; beraz, talde hau MMS izango da.</string>
-  <string name="GroupCreateActivity_you_dont_support_push">Ez zaude erregistratuta datuen kanala erabiltzeko, hortaz TextSecure-eko taldeak ezgaituta daude.</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">SecureChat taldeak onartzen ez duen kontaktu bat aukeratu duzu; beraz, talde hau MMS izango da.</string>
+  <string name="GroupCreateActivity_you_dont_support_push">Ez zaude erregistratuta datuen kanala erabiltzeko, hortaz SecureChat-eko taldeak ezgaituta daude.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Ustekabeko errorea gertatu da eta eragin du taldea sortu ezin izatea.</string>
   <string name="GroupCreateActivity_contacts_no_members">Gutxienez pertsona bat behar duzu zure taldean!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Zure taldeko partaide batek ondo irakurri ezin daitekeen zenbaki bat dauka. Mesedez, konpondu edo ezabatu kontaktua eta saiatu berriro.</string>
@@ -162,7 +162,7 @@ Datu kanalaren bitartezko komunikazioa desgaitu egin da, mesedez saiatu bererreg
   <string name="GroupCreateActivity_menu_create_title">Taldea sortu</string>
   <string name="GroupCreateActivity_creating_group">Sortzen %1$s...</string>
   <string name="GroupCreateActivity_updating_group">Eguneratzen: %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Ezin duzu TextSecurekoak ez diren kontaktuak gehitu TextSecureko talde batera</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Ezin duzu SecureChatkoak ez diren kontaktuak gehitu SecurChatko talde batera</string>
   <string name="GroupCreateActivity_loading_group_details">Taldearen detaileak kargatzen...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Ni</string>
@@ -172,13 +172,13 @@ Datu kanalaren bitartezko komunikazioa desgaitu egin da, mesedez saiatu bererreg
   <string name="ImportExportActivity_export">Esportatu</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Inportatu sistemaren SMS datubasea?</string>
-  <string name="ImportFragment_this_will_import_messages_from_the_system">Zure sisteman lehenetsitako SMS datubasearen mezuak inportatuko dira TextSecure-era. Lehenago inportatu baduzu sistemaren SMS datubasea, berriro egiteak mezu bikoiztuak sor ditzake.</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">Zure sisteman lehenetsitako SMS datubasearen mezuak inportatuko dira SecureChat-era. Lehenago inportatu baduzu sistemaren SMS datubasea, berriro egiteak mezu bikoiztuak sor ditzake.</string>
   <string name="ImportFragment_import">Inportatu</string>
   <string name="ImportFragment_cancel">Utzi</string>
   <string name="ImportFragment_restore_encrypted_backup">Enkriptatutako babeskopia leheneratu?</string>
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
 Enkriptatutako babeskopia bat leheneratzeak zure gakoak, ezapenak eta mezuak erabat 
-ordezkatuko ditu. Galduko duzu zure egungo TextSecure instalazioan dagoen edozein informazio, 
+ordezkatuko ditu. Galduko duzu zure egungo SecureChat instalazioan dagoen edozein informazio, 
 baina ez babeskopian
 </string>
   <string name="ImportFragment_restore">Leheneratu</string>
@@ -199,7 +199,7 @@ Babeskopia hau lehenago inportatu baduzu, mezu bikoiztuak sortu daitezke.
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Ez da topatu eskaneatutako gakorik!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">Barcode Scanner instalatu?</string>
-  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">TextSecure-ek Barcode Scanner behar du QR kodeak irakurri ahal izateko.</string>
+  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">SecureChat-ek Barcode Scanner behar du QR kodeak irakurri ahal izateko.</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Errorea MMS gordetzen!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Errorea MMS hornitzailearekin konentatzerakoan...</string>
@@ -207,7 +207,7 @@ Babeskopia hau lehenago inportatu baduzu, mezu bikoiztuak sortu daitezke.
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimedia mezua</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Jaso duzun mezua TextSecuren bertsio zahar eta jadanik ez onartu bat erabiliz enkriptatu zen. Mesedez, eskatu bidaltzaileari bertsiorik berrienera eguneratu dadin eta mezua berbidali dezan. </string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Jaso duzun mezua SecureChaten bertsio zahar eta jadanik ez onartu bat erabiliz enkriptatu zen. Mesedez, eskatu bidaltzaileari bertsiorik berrienera eguneratu dadin eta mezua berbidali dezan. </string>
   <string name="MessageRecord_left_group">Taldea utzi duzu.</string>
   <string name="MessageRecord_updated_group">Taldea eguneratuta.</string>
   <!--PassphraseChangeActivity-->
@@ -215,13 +215,13 @@ Babeskopia hau lehenago inportatu baduzu, mezu bikoiztuak sortu daitezke.
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Pasahitz zahar ez zuzena!</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Pasahitza sartu</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">TextSecure-ren ikonoa</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">SecureChat-ren ikonoa</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Bidali pasahitza</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Pasahitz baliogabea!</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Gako
 elkar-trukatzen honen sinadura kontaktu honengandik aurretik jaso duzunaz desberdina da.
-Izan daiteke norbait zure komunikazioaren erdian egotea edo, era berean, posible da kontaktu honek TextSecure berrinstalatu izana eta gako berri bat edukitzea.
+Izan daiteke norbait zure komunikazioaren erdian egotea edo, era berean, posible da kontaktu honek SecureChat berrinstalatu izana eta gako berri bat edukitzea.
 
 </string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Agian kontaktu hau egiaztatu beharko zenuke.</string>
@@ -232,7 +232,7 @@ osatu\' ezarpena desgaituta daukazu</string>
   <string name="ReceiveKeyActivity_processing">Prozesatzen</string>
   <string name="ReceiveKeyActivity_processing_key_exchange">Gakoaren datu-elkartrukea prozesatzen...</string>
   <!--RegistrationActivity-->
-  <string name="RegistrationActivity_connect_with_textsecure">TextSecure-ekin Konektatu</string>
+  <string name="RegistrationActivity_connect_with_textsecure">SecureChat-ekin Konektatu</string>
   <string name="RegistrationActivity_select_your_country">Zure herrialdea aukeratu</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Zure herrialdearen 
 kodea zehaztu behar duzu
@@ -275,12 +275,12 @@ Zenbaki hau zuzena al da, edo nahiko zenuke editatu jarraitu baino lehenago?</st
   <string name="RegistrationProgressActivity_too_many_requests">Eskaera gehiegi!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Duela gutxi ahotsezko dei bat eskatu duzu. Beste bat eska dezakezu 20 minutu barru.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Erregistratze gatazka</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Zenbaki hau beste TextSecure zerbitzari batean erregistratuta dago jadanik (CyanogenMod?) Deserregistratu behar duzu hemen erregistratu aurretik.</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Zenbaki hau beste SecureChat zerbitzari batean erregistratuta dago jadanik (CyanogenMod?) Deserregistratu behar duzu hemen erregistratu aurretik.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Erregistratzea osatuta</string>
-  <string name="RegistrationService_textsecure_registration_has_successfully_completed">TextSecure-ren erregistratea arrakastaz osatu da.</string>
+  <string name="RegistrationService_textsecure_registration_has_successfully_completed">SecureChat-ren erregistratea arrakastaz osatu da.</string>
   <string name="RegistrationService_registration_error">Erregistratze errorea</string>
-  <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">TextSecure-ren erregistratzeak arazo bat topatu du.</string>
+  <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">SecureChat-ren erregistratzeak arazo bat topatu du.</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Mezuaren elkar-trukerako
  gakoa hondatuta dago!
@@ -347,7 +347,7 @@ Nortasun gako ezezagun batekin jaso da mezua. Klik egin prozesatzeko eta erakust
   <!--KeyCachingService-->
   <string name="KeyCachingService_textsecure_passphrase_cached">Ukitu irekitzeko</string>
   <string name="KeyCachingService_textsecure_passphrase_cached_with_lock">Ukitu irekitzeko, edo sarraila ukitu ixteko.</string>
-  <string name="KeyCachingService_passphrase_cached">TextSecure desblokeatuta dago</string>
+  <string name="KeyCachingService_passphrase_cached">SecureChat desblokeatuta dago</string>
   <string name="KeyCachingService_lock">Blokeatu pasahitz bat erabiliz</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">Mezu berrien kopurua: %d</string>
@@ -360,9 +360,9 @@ Nortasun gako ezezagun batekin jaso da mezua. Klik egin prozesatzeko eta erakust
   <string name="MessageNotifier_mark_all_as_read">Denak irrakurritako gisa markatu</string>
   <string name="MessageNotifier_mark_as_read">Irakurritako gisa markatu</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Barkatu, Quick Response momentuz ez dago onartuta TextSecuren!</string>
+  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Barkatu, Quick Response momentuz ez dago onartuta SecureChatn!</string>
   <!--auto_initiate_activity-->
-  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">TextSecure enkriptatutako saioak onartzen dituen norbaiten mezu bat jaso duzu. Saio seguru bat hasi nahi duzu?</string>
+  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">SecureChat enkriptatutako saioak onartzen dituen norbaiten mezu bat jaso duzu. Saio seguru bat hasi nahi duzu?</string>
   <string name="auto_initiate_activity__initiate_exchange">Datu-trukatzea abiatu.</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">PASAHITZ ZAHARRA:</string>
@@ -382,7 +382,7 @@ Nortasun gako ezezagun batekin jaso da mezua. Klik egin prozesatzeko eta erakust
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Ez dago azken deirik.</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Bidali TextSecure-eko mezua</string>
+  <string name="conversation_activity__type_message_push">Bidali SecureChat-eko mezua</string>
   <string name="conversation_activity__type_message_sms_secure">SMS mezu segurua bidali</string>
   <string name="conversation_activity__type_message_sms_insecure">SMS ez segurua bidali</string>
   <string name="conversation_activity__type_message_mms_secure">MMS mezu segurua bidali</string>
@@ -418,7 +418,7 @@ Nortasun gako ezezagun batekin jaso da mezua. Klik egin prozesatzeko eta erakust
   <string name="log_submit_activity__submitting">Bidaltzen</string>
   <string name="log_submit_activity__posting_logs">Logak gist-era bidaltzen...</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Nahiko zenuke zure testu mezuak TextSecure-ren enkriptatutako datubasera inportatu?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Nahiko zenuke zure testu mezuak SecureChat-ren enkriptatutako datubasera inportatu?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Sistemaren lehenetsitako datubasea ez da inolako moduan aldatuko.</string>
   <string name="database_migration_activity__skip">Saltatu</string>
   <string name="database_migration_activity__import">Inportatu</string>
@@ -433,7 +433,7 @@ Nortasun gako ezezagun batekin jaso da mezua. Klik egin prozesatzeko eta erakust
   <string name="import_fragment__import_the_database_from_the_default_system">Inportatu datubasea sisteman lehenetsitako mezularitza aplikaziotik.</string>
   <string name="import_fragment__import_encrypted_backup">Enkriptatutako babeskopia inportatu</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">
-Aurretik enkriptatu eta esportatu den TextSecure babeskopia leheneratu.
+Aurretik enkriptatu eta esportatu den SecureChat babeskopia leheneratu.
 </string>
   <string name="import_fragment__import_plaintext_backup">Enkriptatu gabeko babeskopia inportatu</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
@@ -452,13 +452,13 @@ Enkriptatu gabeko babeskopia bat inportatu. Bateragarria \'SMSBackup Eta Restore
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Desblokeatu</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecurek MMS ezarpenak behar ditu media eta taldeko mezuak banatu ahal izateko zure hari-gabeko hornitzailearen bitartez. Zure gailuak ez dauka informazio hau eskuragarri. Hau batzuetan gertatzen da blokeatuta dauden eta beste konfigurazio murrizgarriak dituzten gailuetan.</string>
+  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">SecureChatk MMS ezarpenak behar ditu media eta taldeko mezuak banatu ahal izateko zure hari-gabeko hornitzailearen bitartez. Zure gailuak ez dauka informazio hau eskuragarri. Hau batzuetan gertatzen da blokeatuta dauden eta beste konfigurazio murrizgarriak dituzten gailuetan.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Media eta taldeko mezuak bidaltzeko, klik egin \'OK\'-n eta osatu beharrezkoak diren ezarpenak. Zure hornitzailearentzako ezarpenak normalean topa daitezke zure hornitzailearen APNa bilatuz. Bakarrik behin egin beharko duzu hau.</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Osatuta</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-Erregistratzea doan da eta pribatutasuna hobetzen du beste TextSecure-eko erabiltzaile batzuekin aritzeko. Mesedez, egiazta ezazu zure telefono zenbakia.</string>
+Erregistratzea doan da eta pribatutasuna hobetzen du beste SecureChat-eko erabiltzaile batzuekin aritzeko. Mesedez, egiazta ezazu zure telefono zenbakia.</string>
   <string name="registration_activity__your_country">ZURE HERRIALDEA</string>
   <string name="registration_activity__your_country_code_and_phone_number">ZURE HERRIALDEA ETA 
 TELEFONO ZENBAKIA
@@ -475,19 +475,19 @@ batzuk ondokoak dira:
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
 Hirugarren testu mezulararitzarako bezero batzuk, hala nola, Handcent edo GoSMS, gaizki jokatzen dute eta
 sartzen diren SMS mezu guztiak bidan atzematen dute. Egiaztatu zure mezuaren hasieran 
-\"Zure TextSecure egiaztapen kode:\" agertzen den. Hala bada, zure hirugarren testu mezulararitzarako aplikazioa konfiguratu beharko duzu mezuak pasatzen uzteko.</string>
+\"Zure SecureChat egiaztapen kode:\" agertzen den. Hala bada, zure hirugarren testu mezulararitzarako aplikazioa konfiguratu beharko duzu mezuak pasatzen uzteko.</string>
   <string name="registration_problems__incorrect_number">Zenbaki ez zuzena.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">Mesedez, egiazta ezazu zenbakia ondo sartu duzun, eta zure zonaldeari dagokion formatoan dagoen.</string>
   <string name="registration_problems__google_voice">Google Voice.</string>
-  <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">TextSecurek ez du funtzionatuko Google Voice-eko zenbakiekin.</string>
+  <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">SecureChatk ez du funtzionatuko Google Voice-eko zenbakiekin.</string>
   <!--registration_progress_activity-->
   <string name="registration_progress_activity__voice_verification">Ahotsaren bidezko egiaztapena</string>
-  <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">TextSecurek, era berean, deitu diezazuke zure zenbakia egiaztatzeko. Ukitu \"Dei iezadazu\" eta sartu azpian entzungo duzun sei zenbakiko kodea.</string>
+  <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">SecureChatk, era berean, deitu diezazuke zure zenbakia egiaztatzeko. Ukitu \"Dei iezadazu\" eta sartu azpian entzungo duzun sei zenbakiko kodea.</string>
   <string name="registration_progress_activity__verify">Egiaztatu</string>
   <string name="registration_progress_activity__call_me">Dei iezadazu</string>
   <string name="registration_progress_activity__edit_number">Zenbakia editatu</string>
   <string name="registration_progress_activity__connectivity_error">Konexioaren errorea</string>
-  <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">TextSecure ez da gai izan push zerbitzuarekin konektatzeko.</string>
+  <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">SecureChat ez da gai izan push zerbitzuarekin konektatzeko.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Aurreikusi daitezkeen 
 arazo batzuk ondokoak dira:
 </string>
@@ -495,13 +495,13 @@ arazo batzuk ondokoak dira:
 areko konexiorik.
 </string>
   <string name="registration_progress_activity__your_device_needs_network_connectivity">Zure
-gailuak sarerako konexioa behar du TextSecure-eko ezaugarri hau erabili ahal izateko. Egiaztatu
+gailuak sarerako konexioa behar du SecureChat-eko ezaugarri hau erabili ahal izateko. Egiaztatu
 konektatuta dagoen 3G edo Wi-Fi sare batekin.</string>
   <string name="registration_progress_activity__restrictive_firewall">Firewall murrizgarria.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
-Wi-Fi bidez konektatua bazaude, izan daiteke firewall bat TextSecure-eko zerbitzarirako sarrera blokeatzea. Saia zaitez beste sare edo mugikorreko datu konexioarekin.</string>
+Wi-Fi bidez konektatua bazaude, izan daiteke firewall bat SecureChat-eko zerbitzarirako sarrera blokeatzea. Saia zaitez beste sare edo mugikorreko datu konexioarekin.</string>
   <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
-Orain TextSecure-ek zure zenbakia automatikoki egiaztatuko du SMS egiaztapen mezu bat bidaliz.</string>
+Orain SecureChat-ek zure zenbakia automatikoki egiaztatuko du SMS egiaztapen mezu bat bidaliz.</string>
   <string name="registration_progress_activity__connecting">Konektatzen...</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">SMS bidezko
 egiaztapenaren zain...
@@ -511,7 +511,7 @@ egiaztapenaren zain...
 denbora tarte bat har lezake. Mesedez, pazientzia izan, jakinaraziko dizugu egiaztapena osatuta dagoenean.
 </string>
   <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">
-TextSecure SMS bidez egiaztatzeko mezuaren zain zegoela denbora mugara iritsi da.
+SecureChat SMS bidez egiaztatzeko mezuaren zain zegoela denbora mugara iritsi da.
 </string>
   <string name="registration_progress_activity__sms_verification_failed">SMS bidezko egiaztapenak 
 huts egin du.
@@ -527,7 +527,7 @@ huts egin du.
   <string name="AndroidManifest__create_passphrase">Pasahitza sortu</string>
   <string name="AndroidManifest__enter_passphrase">Pasahitza sartu</string>
   <string name="AndroidManifest__select_contacts">Kontaktuak hautatu</string>
-  <string name="AndroidManifest__textsecure_detected">TextSecure detektatua</string>
+  <string name="AndroidManifest__textsecure_detected">SecureChat detektatua</string>
   <string name="AndroidManifest__public_identity_key">Gako publikoaren nortasuna</string>
   <string name="AndroidManifest__change_passphrase">Pasahitza aldatu</string>
   <string name="AndroidManifest__verify_identity">Nortasuna egiaztatu</string>
@@ -543,8 +543,8 @@ huts egin du.
   <string name="preferences__push_sms_category">Push eta SMS</string>
   <string name="preferences__pref_all_sms_title">Jaso SMS guztiak</string>
   <string name="preferences__pref_all_mms_title">Jaso MMS guztiak</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">TextSecure erabili etorriko diren testu mezu guztiak ikusi eta gordetzeko</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">TextSecure erabili etorriko diren multimedia mezu guztiak ikusi eta gordetzeko</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">SecureChat erabili etorriko diren testu mezu guztiak ikusi eta gordetzeko</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">SecureChat erabili etorriko diren multimedia mezu guztiak ikusi eta gordetzeko</string>
   <string name="preferences__input_settings">Sarreraren Ezarpenak</string>
   <string name="preferences__enable_enter_key_title">Enter tekla gaitu</string>
   <string name="preferences__replace_smiley_with_enter_key">Smiley tekla Enter teklaren bidez ordezkatu</string>
@@ -619,19 +619,19 @@ huts egin du.
   <string name="preferences__default">Lehenetsia</string>
   <string name="preferences__language">Hizkuntza</string>
   <string name="preferences__make_default_sms_app">Lehenetsitako SMS aplikazio gisa ezarri</string>
-  <string name="preferences__make_textsecure_the_default_sms_mms_app">TextSecure zure sistemaren lehenetsitako SMS/MMS aplikazioa bihurtu.</string>
+  <string name="preferences__make_textsecure_the_default_sms_mms_app">SecureChat zure sistemaren lehenetsitako SMS/MMS aplikazioa bihurtu.</string>
   <string name="preferences__use_data_channel">Push mezuak</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
-Hobetu zure pribatutasuna eta ekidin SMS tasak datu kanala erabiliz TextSecure-eko beste erabiltzaile batzuekin komunikatzeko </string>
+Hobetu zure pribatutasuna eta ekidin SMS tasak datu kanala erabiliz SecureChat-eko beste erabiltzaile batzuekin komunikatzeko </string>
   <string name="preferences__sms_fallback">Irteerako SMS/MMS</string>
   <string name="preferences__submit_debug_log">Arazketaren log-a bidali</string>
-  <string name="preferences__sms_outgoing_push_users">TextSecure-eko erabiltzaileak</string>
+  <string name="preferences__sms_outgoing_push_users">SecureChat-eko erabiltzaileak</string>
   <string name="preferences__sms_fallback_push_users_ask">galdetu lehenago</string>
   <string name="preferences__sms_fallback_push_users_no_mms">MMSrik ez</string>
   <string name="preferences__sms_outgoing_push_users_description">SMS segurua bidali konexioa galtzen bada</string>
   <string name="preferences__sms_fallback_ask_before_sending_sms_mms">Galdetu SMS/MMS bidali baino lehenago</string>
   <string name="preferences__sms_fallback_never_send_mms">Ez bidali MMSrik inoiz.</string>
-  <string name="preferences__sms_fallback_non_push_users">Ez dira TextSecure-eko erabiltzaileak</string>
+  <string name="preferences__sms_fallback_non_push_users">Ez dira SecureChat-eko erabiltzaileak</string>
   <string name="preferences__sms_fallback_nobody">Inor ez</string>
   <string name="preferences__support_wifi_calling">\'\"WiFi Calling\' modu bateragarria</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Gaitu zure gailuak WiFi bidezko SMS/MMS banaketa erabiltzen badu (bakarrik gaitu \'WiFi Calling\' gaituta badago zure gailuan).</string>
@@ -649,7 +649,7 @@ Hobetu zure pribatutasuna eta ekidin SMS tasak datu kanala erabiliz TextSecure-e
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Freskatu kontaktuen zerrenda</string>
   <!--conversation_button_context-->
-  <string name="conversation_button_context__send_textsecure_message">Bidali TextSecure-eko mezua</string>
+  <string name="conversation_button_context__send_textsecure_message">Bidali SecureChat-eko mezua</string>
   <string name="conversation_button_context__send_secure_sms">SMS mezu segurua bidali</string>
   <string name="conversation_button_context__send_insecure_sms">Segurtasunik gabeko SMSa bidali</string>
   <string name="conversation_button_context__send_secure_mms">MMS mezu segurua bidali</string>
@@ -699,10 +699,10 @@ Hobetu zure pribatutasuna eta ekidin SMS tasak datu kanala erabiliz TextSecure-e
   <string name="text_secure_normal__mark_all_as_read">Irakurritako gisa markatu guztiak</string>
   <!--reminder_header-->
   <string name="reminder_header_sms_default_title">Lehenetsitako SMS aplikazio gisa erabili?</string>
-  <string name="reminder_header_sms_default_text">TextSecure ez da zure SMS aplikazio lehenetsia</string>
+  <string name="reminder_header_sms_default_text">SecureChat ez da zure SMS aplikazio lehenetsia</string>
   <string name="reminder_header_sms_import_title">Sistemaren SMSa inportatu?</string>
-  <string name="reminder_header_sms_import_text">TextSecure gai da zure telefonoaren SMS mezuak datubase enkriptatura kopiatzeko.</string>
-  <string name="reminder_header_push_title">Gaitu TextSecure mezuak?</string>
+  <string name="reminder_header_sms_import_text">SecureChat gai da zure telefonoaren SMS mezuak datubase enkriptatura kopiatzeko.</string>
+  <string name="reminder_header_push_title">Gaitu SecureChat mezuak?</string>
   <string name="reminder_header_push_text">Berehalako banaketa, pribatutasun indartsuagoa eta SMS tasarik ez.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Zu</string>

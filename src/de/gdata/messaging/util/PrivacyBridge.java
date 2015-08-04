@@ -97,13 +97,12 @@ public class PrivacyBridge {
       } catch (IOException e) {
         Log.e("PrivacyBridge", e.getMessage());
       }
+      for (String number : hiddenNumbers) {
+        newHiddenRecipients.add(getRecipientForNumber(GService.appContext, number).getPrimaryRecipient());
+      }
+      getPreferences().saveHiddenRecipients(newHiddenRecipients);
+      hiddenRecipients = newHiddenRecipients;
     }
-    for (String number : hiddenNumbers) {
-      newHiddenRecipients.add(getRecipientForNumber(GService.appContext, number).getPrimaryRecipient());
-    }
-    getPreferences().saveHiddenRecipients(newHiddenRecipients);
-    hiddenRecipients = newHiddenRecipients;
-
     GService.reloadHandler.sendEmptyMessage(0);
 
     Log.d("PRIVACY", "Privacy loading contacts done");
@@ -217,7 +216,7 @@ public class PrivacyBridge {
   }
 
   public static GDataPreferences getPreferences() {
-    return preferences == null ?new GDataPreferences(GService.appContext): preferences;
+    return preferences == null ? new GDataPreferences(GService.appContext): preferences;
   }
 
   private static class AddTask extends AsyncTask<List<NumberEntry>, Integer, Integer> {

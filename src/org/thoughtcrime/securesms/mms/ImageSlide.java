@@ -24,6 +24,9 @@ import android.support.annotation.DrawableRes;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
+import org.w3c.dom.smil.SMILDocument;
+import org.w3c.dom.smil.SMILMediaElement;
+import org.w3c.dom.smil.SMILRegionElement;
 
 import java.io.IOException;
 
@@ -55,6 +58,16 @@ public class ImageSlide extends Slide {
   @Override
   public @DrawableRes int getPlaceholderRes(Theme theme) {
     return R.drawable.stat_sys_download;
+  }
+
+  @Override
+  public SMILRegionElement getSmilRegion(SMILDocument document) {
+    return null;
+  }
+
+  @Override
+  public SMILMediaElement getMediaElement(SMILDocument document) {
+    return null;
   }
 
   @Override

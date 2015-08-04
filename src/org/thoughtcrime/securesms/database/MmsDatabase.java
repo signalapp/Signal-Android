@@ -351,8 +351,8 @@ public class MmsDatabase extends MessagingDatabase {
 
   public Cursor getMessage(long messageId) {
     SQLiteDatabase db = databaseHelper.getReadableDatabase();
-    Cursor cursor = db.query(TABLE_NAME, MMS_PROJECTION, ID_WHERE, new String[] {messageId+""},
-                             null, null, null);
+    Cursor cursor = db.query(TABLE_NAME, MMS_PROJECTION, ID_WHERE, new String[]{messageId + ""},
+            null, null, null);
     setNotifyConverationListeners(cursor, getThreadIdForMessage(messageId));
     return cursor;
   }
@@ -362,14 +362,14 @@ public class MmsDatabase extends MessagingDatabase {
     ContentValues contentValues = new ContentValues();
     contentValues.put(RESPONSE_STATUS, status);
 
-    database.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {messageId + ""});
+    database.update(TABLE_NAME, contentValues, ID_WHERE, new String[]{messageId + ""});
   }
 
   private void updateMailboxBitmask(long id, long maskOff, long maskOn) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     db.execSQL("UPDATE " + TABLE_NAME +
-                   " SET " + MESSAGE_BOX + " = (" + MESSAGE_BOX + " & " + (Types.TOTAL_MASK - maskOff) + " | " + maskOn + " )" +
-                   " WHERE " + ID + " = ?", new String[] {id + ""});
+            " SET " + MESSAGE_BOX + " = (" + MESSAGE_BOX + " & " + (Types.TOTAL_MASK - maskOff) + " | " + maskOn + " )" +
+            " WHERE " + ID + " = ?", new String[]{id + ""});
   }
 
   public void markAsOutbox(long messageId) {
@@ -413,7 +413,7 @@ public class MmsDatabase extends MessagingDatabase {
     ContentValues contentValues = new ContentValues();
     contentValues.put(STATUS, state);
 
-    database.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {messageId + ""});
+    database.update(TABLE_NAME, contentValues, ID_WHERE, new String[]{messageId + ""});
     notifyConversationListeners(getThreadIdForMessage(messageId));
   }
 
@@ -463,7 +463,7 @@ public class MmsDatabase extends MessagingDatabase {
     ContentValues contentValues = new ContentValues();
     contentValues.put(READ, 1);
 
-    database.update(TABLE_NAME, contentValues, THREAD_ID + " = ?", new String[] {threadId + ""});
+    database.update(TABLE_NAME, contentValues, THREAD_ID + " = ?", new String[]{threadId + ""});
   }
 
   public void setAllMessagesRead() {
@@ -775,12 +775,15 @@ public class MmsDatabase extends MessagingDatabase {
     addrDatabase.deleteAddressesForId(messageId);
 
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
-    database.delete(TABLE_NAME, ID_WHERE, new String[] {messageId+""});
+    database.delete(TABLE_NAME, ID_WHERE, new String[]{messageId + ""});
     boolean threadDeleted = DatabaseFactory.getThreadDatabase(context).update(threadId);
     notifyConversationListeners(threadId);
     return threadDeleted;
   }
-
+  public void notifyListeners(long messageId) {
+    long threadId = getThreadIdForMessage(messageId);
+    notifyConversationListeners(threadId);
+  }
   public void deleteThread(long threadId) {
     Set<Long> singleThreadSet = new HashSet<Long>();
     singleThreadSet.add(threadId);

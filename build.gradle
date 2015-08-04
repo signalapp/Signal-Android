@@ -51,7 +51,9 @@ dependencies {
     compile 'com.android.support:appcompat-v7:22.1.1'
     compile 'com.android.support:recyclerview-v7:22.1.1'
     compile 'com.madgag.spongycastle:prov:1.51.0.0'
-    compile 'com.google.zxing:android-integration:3.1.0'
+    compile 'com.google.zxing:core:3.2.0'
+    compile 'me.dm7.barcodescanner:zxing:1.7.2'
+
     compile ('com.afollestad:material-dialogs:0.7.3.1') {
         exclude module: 'appcompat-v7'
         exclude module: 'recyclerview-v7'
@@ -128,6 +130,7 @@ android {
         versionName verName + gitRevision.substring(0, 8)
         applicationId 'de.gdata.securechat'
 
+        resConfigs "en", "de", "fr", "it", "es", "pt", "pt-rBR", "nl", "ja", "tr", "ru", "pl", "zh-rCN", "zh-rTW"
     }
 
     compileOptions {

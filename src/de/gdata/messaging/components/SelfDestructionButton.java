@@ -50,14 +50,15 @@ public class SelfDestructionButton extends ImageButton {
                 setImageResource(newTransport.drawable);
                 if (Integer.parseInt(newTransport.key) > 0) {
                     if (composeText != null)
-                        setComposeTextHint(getResources().getString(R.string.self_destruction_compose_hint) + " (" + newTransport.key+")");
+                        setComposeTextHint(getResources().getString(R.string.self_destruction_compose_hint));
                 } else {
+                    setImageResource(R.drawable.ic_action_timebomb);
                     if (composeText != null) {
                         setComposeTextHint(selectTransportButtonReference.getSelectedTransport().composeHint);
+                    }
                 }
             }
-        }
-    });
+        });
 
         setHapticFeedbackEnabled(false);
 

@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:textSize="14sp"
         android:checkMark="?android:attr/listChoiceIndicatorMultiple"
-        android:text="@string/preferences__sms_fallback_ask_before_sending_sms_mms"
+        android:text="@string/gd_preferences_sms_fallback_ask_before_sending_sms_mms"
         android:layout_marginLeft="25dp" />
 
     <CheckBox android:id="@+id/never_send_mms"

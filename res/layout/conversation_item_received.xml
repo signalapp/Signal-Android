@@ -14,28 +14,27 @@
         android:layout_marginTop="5dp"
         android:fontFamily="sans-serif-light"
         android:textSize="13sp"
-        android:textColor="?attr/conversation_group_member_name"
+        android:textColor="@color/gdata_conversation_item_received_group_member_name"
         android:visibility="gone" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:layout_marginLeft="9dp"
+        android:layout_marginLeft="2dp"
         android:layout_marginBottom="6dp"
         android:layout_marginRight="0dp"
         android:orientation="horizontal">
 
-        <org.thoughtcrime.securesms.components.ForegroundImageView
+        <org.thoughtcrime.securesms.components.CircledImageView
             android:id="@+id/contact_photo"
             android:foreground="@drawable/contact_photo_background"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginRight="10dp"
             android:layout_alignParentLeft="true"
-            android:cropToPadding="true"
             android:contentDescription="@string/conversation_item_received__contact_photo_description"
-            android:scaleType="centerCrop" />
+            android:scaleType="fitXY" />
         <View android:id="@+id/triangle_tick"
             android:layout_width="12dp"
             android:layout_height="15dp"

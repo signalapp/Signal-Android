@@ -20,8 +20,11 @@ import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
+import android.os.Environment;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -36,6 +39,8 @@ import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import java.io.File;
 import java.io.IOException;
 
+import ws.com.google.android.mms.ContentType;
+
 public class AttachmentManager {
   private final static String TAG = AttachmentManager.class.getSimpleName();
 
@@ -46,7 +51,9 @@ public class AttachmentManager {
   private final SlideDeck          slideDeck;
   private final AttachmentListener attachmentListener;
 
-  private File captureFile;
+  public static String random  = "0";
+
+  private static File captureFile;
 
   public AttachmentManager(Activity view, AttachmentListener listener) {
     this.attachmentView     = view.findViewById(R.id.attachment_editor);
@@ -65,23 +72,13 @@ public class AttachmentManager {
     attachmentListener.onAttachmentChanged();
   }
 
+public static void generateNewRandomOutputName() {
+  random = ((int)(Math.random() * 30.0)) + "";
+}
   public void cleanup() {
     if (captureFile != null) captureFile.delete();
     captureFile = null;
   }
-
-  public void setImage(Uri image) throws IOException, BitmapDecodingException {
-    setMedia(new ImageSlide(context, image));
-  }
-
-  public void setVideo(Uri video) throws IOException, MediaTooLargeException {
-    setMedia(new VideoSlide(context, video));
-  }
-
-  public void setAudio(Uri audio) throws IOException, MediaTooLargeException {
-    setMedia(new AudioSlide(context, audio));
-  }
-
   public void setMedia(final Slide slide) {
     slideDeck.clear();
     slideDeck.addSlide(slide);
@@ -98,36 +95,44 @@ public class AttachmentManager {
     return slideDeck;
   }
 
-  public File getCaptureFile() {
+  public static File getCaptureFile() {
     return captureFile;
   }
-
-  public void capturePhoto(Activity activity, int requestCode) {
-    try {
-      Intent captureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
-      if (captureIntent.resolveActivity(activity.getPackageManager()) != null) {
-        captureFile = File.createTempFile(String.valueOf(System.currentTimeMillis()), ".jpg", activity.getExternalFilesDir(null));
-        captureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(captureFile));
-        activity.startActivityForResult(captureIntent, requestCode);
-      }
-    } catch (IOException e) {
-      Log.w(TAG, e);
-    }
-  }
-
   public static void selectVideo(Activity activity, int requestCode) {
-    selectMediaType(activity, "video/*", requestCode);
+    selectMediaType(activity, ContentType.VIDEO_UNSPECIFIED, requestCode);
   }
 
   public static void selectImage(Activity activity, int requestCode) {
-    selectMediaType(activity, "image/*", requestCode);
+    generateNewRandomOutputName();
+    selectMediaType(activity, ContentType.IMAGE_UNSPECIFIED, requestCode);
   }
-
+  public static void takePhoto(Activity activity, int requestCode) {
+    generateNewRandomOutputName();
+    File image = getOutputMediaFile();
+    if(image != null) {
+      Uri fileUri = Uri.fromFile(image);
+      Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+      cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+      activity.startActivityForResult(cameraIntent, requestCode);
+    }
+  }
   public static void selectAudio(Activity activity, int requestCode) {
-    selectMediaType(activity, "audio/*", requestCode);
+    selectMediaType(activity, ContentType.AUDIO_UNSPECIFIED, requestCode);
   }
+  public static File getOutputMediaFile(){
+    File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
+            Environment.DIRECTORY_PICTURES), "SecureChat");
+    if (!mediaStorageDir.exists()){
+      if (!mediaStorageDir.mkdirs()){
+        Log.d("SecureChat", "failed to create directory");
+        return null;
+      }
+    }
+    File mediaFile = new File(mediaStorageDir.getPath() + File.separator +
+              "prof_image"+ random +" .jpg");
 
+    return mediaFile;
+  }
   public static void selectContactInfo(Activity activity, int requestCode) {
     Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
     activity.startActivityForResult(intent, requestCode);
@@ -155,7 +160,22 @@ public class AttachmentManager {
       Toast.makeText(activity, R.string.AttachmentManager_cant_open_media_selection, Toast.LENGTH_LONG).show();
     }
   }
+  public void setImage(Uri image) throws IOException, BitmapDecodingException {
+    setMedia(new ImageSlide(context, image));
+  }
 
+  public void setVideo(Uri video, boolean sendOrReceive) throws IOException, MediaTooLargeException {
+    setMedia(new VideoSlide(context, video, sendOrReceive));
+  }
+  public void setVideo(Uri video, String contentType, boolean sendOrReceive) throws IOException, MediaTooLargeException {
+    setMedia(new VideoSlide(context, video, contentType, sendOrReceive));
+  }
+  public void setAudio(Uri audio, String contentType, boolean sendOrReceive) throws IOException, MediaTooLargeException {
+    setMedia(new AudioSlide(context, audio, contentType, sendOrReceive));
+  }
+  public void setAudio(Uri audio, boolean sendOrReceive) throws IOException, MediaTooLargeException {
+    setMedia(new AudioSlide(context, audio, sendOrReceive));
+  }
   private class RemoveButtonListener implements View.OnClickListener {
     @Override
     public void onClick(View v) {

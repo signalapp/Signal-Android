@@ -3,39 +3,41 @@
     <string name="ConversationActivity_gdata_selfdestroy_entry_five">5 perc</string>
     <string name="ConversationActivity_gdata_selfdestroy_entry_thirty">30 perc</string>
     <string name="ConversationActivity_gdata_selfdestroy_entry_hour">1 óra</string>
-
+    <string name="ConversationActivity_gdata_selfdestroy_entry_3">5 másodperc</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_2">15 másodperc</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_1">60 másodperc</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_0">Kikapcsolás</string>
     <string name="gdata_contact_selection_page_title">Névjegyek</string>
-
-    <string name="gdata_conversation_list_page_title">Beszélgetések</string>
-
-    <string name="gd_dialog_fragment_phishing_title">Webszűrés</string>
-    <string name="gd_dialog_fragment_phishing_message">Ez egy ismert adathalász oldal. Csak akkor folytassa, ha biztos benne, hogy nem jelent veszélyt.</string>
+    <string name="gdata_conversation_list_page_title">Üzenetek</string>
+    <string name="gd_dialog_fragment_phishing_title">Webszűrő</string>
+    <string name="gd_dialog_fragment_phishing_message">Ez az oldal egy ismert adathalász oldal. Csak akkor folytassa, ha biztos benne, hogy ez semmilyen veszélyt nem jelent.</string>
     <string name="gd_dialog_fragment_phishing_block">Blokkolás</string>
     <string name="gd_dialog_fragment_phishing_continue">Folytatás</string>
-
+    <string name="log_submit_activity__button_dont_submit">Ne küldje</string>
+    <string name="log_submit_activity__button_submit">Küldés</string>
     <string name="menu_filter">Névjegyek blokkolása</string>
-    <string name="menu_privacy">Beszélgetések elrejtése</string>
-    <string name="menu_privacy_unhide">Rejtett beszélgetések mutatása</string>
-    <string name="menu_privacy_hide">Ne mutassa a rejtett beszélgetéseket</string>
-    <string name="menu_privacy_single_hide">Beszélgetések elrejtése</string>
+    <string name="menu_privacy">Üzenetek elrejtése</string>
+    <string name="menu_privacy_unhide">Elrejtés engedélyezése</string>
+    <string name="menu_privacy_hide">Elrejtés</string>
+    <string name="menu_privacy_single_hide">Üzenet elrejtése</string>
     <string name="menu_filter_block_contact">Névjegy blokkolása</string>
-
     <string name="privacy_pw_dialog_header">Jelszó megadása: </string>
     <string name="privacy_pw_dialog_toast_wrong">A megadott jelszó nem érvényes az InternetSecurity programhoz.</string>
-    <string name="privacy_pw_dialog_toast_reload">Beszélgetések visszaállítása...</string>
-    <string name="privacy_pw_dialog_toast_hide">Beszélgetések elrejtése...</string>
-    <string name="privacy_pw_dialog_toast_hide_single">Beszélgetések elrejtése...</string>
-    <string name="privacy_pw_dialog_hint">Megjegyzés: ez az a jelszó, amit az Internet Security for Android programban megadott.</string>
-
+    <string name="privacy_pw_dialog_hint">Megjegyzés: Ez arra a jelszóra vonatkozik, melyet Ön az Internet Security for Android termékben megadott.</string>
+    <string name="privacy_pw_dialog_toast_reload">Üzenet visszaállítása...</string>
+    <string name="privacy_pw_dialog_toast_hide">Felkészülés az üzenet elrejtésére...</string>
+    <string name="privacy_pw_dialog_toast_hide_single">Üzenet elrejtése...</string>
     <string name="privacy_toast_install_premium">Szüksége van a G DATA InternetSecurityre a funkció használatához.</string>
-
     <string name="conversation_activity_invite_link">https://secure.gd/scg</string>
-
     <string name="preferences_notification_never">Soha</string>
     <string name="preferences_notification_one_time">1x</string>
     <string name="preferences_notification_two_times">2x</string>
     <string name="preferences_notification_three_times">3x</string>
     <string name="preferences_notification_five_times">5x</string>
     <string name="preferences_notification_ten_times">10x</string>
-    <string name="preferences_notification_title">Riasztás megismétlése</string>
+    <string name="preferences_notification_title">Figyelmeztetések megismétlése</string>
+    <string name="self_destruction">Megsemmisítés</string>
+    <string name="self_destruction_title">#1# másodperc a megsemmisítésig...</string>
+    <string name="self_destruction_body">Ennek az üzenetnek a tartalma automatikusan megsemmisül #1# másodperccel az üzenet megnyitása után.</string>
+    <string name="unknown_country">Ismeretlen ország</string>
 </resources>

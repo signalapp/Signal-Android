@@ -17,20 +17,25 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
-
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.whispersystems.libaxolotl.IdentityKey;
+
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.BinaryBitmap;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
 
 /**
  * Activity for initiating/receiving key QR code scans.
@@ -56,81 +61,28 @@ public abstract class KeyScanningActivity extends PassphraseRequiredActionBarAct
     dynamicLanguage.onResume(this);
   }
 
-  @Override
-  public boolean onPrepareOptionsMenu(Menu menu) {
-    super.onPrepareOptionsMenu(menu);
-
-    MenuInflater inflater = this.getMenuInflater();
-    menu.clear();
-
-    inflater.inflate(R.menu.key_scanning, menu);
-
-    menu.findItem(R.id.menu_scan).setTitle(getScanString());
-    menu.findItem(R.id.menu_get_scanned).setTitle(getDisplayString());
-
-    return true;
-  }
-
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-    super.onOptionsItemSelected(item);
-
-    switch (item.getItemId()) {
-    case R.id.menu_scan:        initiateScan();    return true;
-    case R.id.menu_get_scanned: initiateDisplay(); return true;
-    case android.R.id.home:     finish();          return true;
+  protected BitMatrix getBitMatrix(String fingerprint) {
+    BitMatrix matrix = null;
+    QRCodeWriter writer = new QRCodeWriter();
+    try {
+      matrix = writer.encode(fingerprint, BarcodeFormat.QR_CODE, 500, 500);
+    } catch (WriterException e) {
     }
-
-    return false;
+    return matrix;
   }
 
-  @Override
-  public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-    IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
-
-    if ((scanResult != null) && (scanResult.getContents() != null)) {
-      String data = scanResult.getContents();
-
-      if (data.equals(Base64.encodeBytes(getIdentityKeyToCompare().serialize()))) {
-        Dialogs.showInfoDialog(this, getVerifiedTitle(), getVerifiedMessage());
-      } else {
-        Dialogs.showAlertDialog(this, getNotVerifiedTitle(), getNotVerifiedMessage());
+  protected Bitmap toBitmap(BitMatrix matrix){
+    int height = matrix.getHeight();
+    int width = matrix.getWidth();
+    Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
+    for (int x = 0; x < width; x++){
+      for (int y = 0; y < height; y++){
+        bmp.setPixel(x, y, matrix.get(x,y) ? Color.BLACK : Color.WHITE);
       }
-    } else {
-      Toast.makeText(this, R.string.KeyScanningActivity_no_scanned_key_found_exclamation,
-                     Toast.LENGTH_LONG).show();
     }
+    return bmp;
   }
 
-  private IntentIntegrator getIntentIntegrator() {
-    IntentIntegrator intentIntegrator = new IntentIntegrator(this);
-    intentIntegrator.setButtonYesByID(R.string.yes);
-    intentIntegrator.setButtonNoByID(R.string.no);
-    intentIntegrator.setTitleByID(R.string.KeyScanningActivity_install_barcode_Scanner);
-    intentIntegrator.setMessageByID(R.string.KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it);
-    return intentIntegrator;
-  }
 
-  protected void initiateScan() {
-    IntentIntegrator intentIntegrator = getIntentIntegrator();
-    intentIntegrator.initiateScan();
-  }
-
-  protected void initiateDisplay() {
-    IntentIntegrator intentIntegrator = getIntentIntegrator();
-    intentIntegrator.shareText(Base64.encodeBytes(getIdentityKeyToDisplay().serialize()));
-  }
-
-  protected abstract String getScanString();
-  protected abstract String getDisplayString();
-
-  protected abstract String getNotVerifiedTitle();
-  protected abstract String getNotVerifiedMessage();
-
-  protected abstract IdentityKey getIdentityKeyToCompare();
-  protected abstract IdentityKey getIdentityKeyToDisplay();
-
-  protected abstract String getVerifiedTitle();
-  protected abstract String getVerifiedMessage();
 
 }

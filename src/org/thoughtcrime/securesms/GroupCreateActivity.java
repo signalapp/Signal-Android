@@ -98,7 +98,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
 
   private static final int PICK_CONTACT = 1;
   private static final int PICK_AVATAR  = 2;
-  public static final  int AVATAR_SIZE  = 210;
+  public static final  int AVATAR_SIZE  = 410;
 
   private EditText            groupName;
   private ListView            lv;

@@ -59,7 +59,8 @@
                   android:layout_height="wrap_content"
                   android:layout_marginTop="10dip"
                   android:background="@drawable/clickable_card_light"
-                  android:orientation="vertical">
+                  android:orientation="vertical"
+                  android:visibility="gone">
 
         <LinearLayout android:orientation="horizontal"
                       android:layout_width="wrap_content"

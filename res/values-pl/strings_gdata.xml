@@ -3,39 +3,64 @@
     <string name="ConversationActivity_gdata_selfdestroy_entry_five">5 min.</string>
     <string name="ConversationActivity_gdata_selfdestroy_entry_thirty">30 min.</string>
     <string name="ConversationActivity_gdata_selfdestroy_entry_hour">1 min.</string>
-
+    <string name="ConversationActivity_gdata_selfdestroy_entry_3">5 sek.</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_2">15 sek.</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_1">60 sek.</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_0">Wyłącz</string>
     <string name="gdata_contact_selection_page_title">Kontakty</string>
-
-    <string name="gdata_conversation_list_page_title">Rozmowy</string>
-
-    <string name="gd_dialog_fragment_phishing_title">Ochrona aplikacji</string>
-    <string name="gd_dialog_fragment_phishing_message">Jest to znana strona wyłudzająca dane. Kontynuuj tylko wtedy, gdy masz pewność, że nie ryzykujesz.</string>
+    <string name="gdata_conversation_list_page_title">Konwersacje</string>
+    <string name="gd_dialog_fragment_phishing_title">Ochrona przeglądarek</string>
+    <string name="gd_dialog_fragment_phishing_message">Jest to znana strona wyłudzająca dane. Kontynuuj tylko wtedy, gdy masz pewność, że nie wiąże się to z ryzykiem.</string>
     <string name="gd_dialog_fragment_phishing_block">Zablokuj</string>
     <string name="gd_dialog_fragment_phishing_continue">Kontynuuj</string>
-
+    <string name="log_submit_activity__button_dont_submit">Nie wysyłaj</string>
+    <string name="log_submit_activity__button_submit">Wyślij</string>
     <string name="menu_filter">Zablokuj kontakty</string>
-    <string name="menu_privacy">Ukryj rozmowy</string>
-    <string name="menu_privacy_unhide">Pokaż ukryte rozmowy</string>
-    <string name="menu_privacy_hide">Nie pokazuj ukrytych rozmów</string>
-    <string name="menu_privacy_single_hide">Ukryj rozmowę</string>
+    <string name="menu_privacy">Ukryj konwersacje</string>
+    <string name="menu_privacy_unhide">Pokaż ukryte</string>
+    <string name="menu_privacy_hide">Ukryj</string>
+    <string name="menu_privacy_single_hide">Ukryj konwersację</string>
     <string name="menu_filter_block_contact">Zablokuj kontakt</string>
-
     <string name="privacy_pw_dialog_header">Podaj hasło: </string>
     <string name="privacy_pw_dialog_toast_wrong">To nie jest hasło do aplikacji Internet Security.</string>
-    <string name="privacy_pw_dialog_toast_reload">Przywracanie listy rozmów...</string>
-    <string name="privacy_pw_dialog_toast_hide">Przygotowuję rozmowy do ukrycia...</string>
-    <string name="privacy_pw_dialog_toast_hide_single">Ukrywanie rozmowy...</string>
-    <string name="privacy_pw_dialog_hint">Wskazówka: Chodzi o hasło dla programu G DATA Internet Security for Android.</string>
-
+    <string name="privacy_pw_dialog_hint">Wskazówka: Chodzi o Twoje hasło w programie Internet Security for Android.</string>
+    <string name="privacy_pw_dialog_toast_reload">Przywracanie konwersacji...</string>
+    <string name="privacy_pw_dialog_toast_hide">Przygotowuję konwersacje do ukrycia...</string>
+    <string name="privacy_pw_dialog_toast_hide_single">Ukrywanie konwersacji...</string>
     <string name="privacy_toast_install_premium">Ta funkcjonalność wymaga aplikacji G DATA Internet Security for Android</string>
-
     <string name="conversation_activity_invite_link">https://secure.gd/scg</string>
-
     <string name="preferences_notification_never">Nigdy</string>
     <string name="preferences_notification_one_time">1x</string>
     <string name="preferences_notification_two_times">2x</string>
     <string name="preferences_notification_three_times">3x</string>
     <string name="preferences_notification_five_times">5x</string>
     <string name="preferences_notification_ten_times">10x</string>
-    <string name="preferences_notification_title">Powtarzaj ostrzeżenia</string>
+    <string name="preferences_notification_title">Pokazuj powiadomienia</string>
+    <string name="self_destruction">Zniszcz</string>
+    <string name="self_destruction_title">#1# sek. do samozniszczenia...</string>
+    <string name="self_destruction_body">Po otwarciu wiadomości treść ulegnie samozniszczeniu po upływie #1# sek.</string>
+    <string name="unknown_country">Nieznany kraj</string>
+    <string name="self_destruction_compose_hint">Wyślij samoniszczącą się wiadomość </string>
+    <string name="privacy_toast_unlock_premium">Odblokuj funkcjonalność premium aplikacji G DATA Internet Security aby skorzystać z tej funkcji.</string>
+    <string name="tk_mail">sc-feedback@gdata.de</string>
+    <string name="import_complete_dialog">Import bazy danych SecureChat zakończony.</string>
+    <string name="profile_status_label">Status</string>
+    <string name="profile_number_label">Numer telefonu</string>
+    <string name="profile_status_member">Członkowie</string>
+    <string name="identification">Identifikator</string>
+    <string name="identification_title">Ten klucz jest Twoim identyfikatorem. Pozwól Twoim rozmówcom na zeskanowanie klucza. Dzięki temu mogą mieć pewność, że wiadomości otrzymane z tego klucza na pewno pochodzą od Ciebie </string>
+    <string name="verify_identity_activity_their_identity">Identyfikator odbiorcy – ten klucz to identyfikator Twojego rozmówcy. Zeskanuj klucz aby potwierdzić autentyczność odbieranych wiadomości.</string>
+    <string name="verify_identity_activity_your_identity" >Własna tożsamość – ten klucz jest Twoim identyfikatorem. Pozwól zeskanować go Twoim rozmówcom aby uwiarygodnić Twoje wiadomości.</string>
+    <string name="identification_verified_unsuccessfully">Klucze nie pasują do siebie!</string>
+    <string name="identification_verified_successfully">Identyfikator potwierdzony.</string>
+    <string name="accept_eula_and_continue"><![CDATA[Akceptuj & kontynuuj]]></string>
+    <string name="eula_gdata"><u>EULA</u></string>
+    <string name="take_picture">Zrób zdjęcie</string>
+    <string name="status_available">Dostępny</string>
+    <string name="status_busy">Zajęty</string>
+    <string name="status_atwork">Przy pracy</string>
+    <string name="status_meeting">Na spotkaniu</string>
+    <string name="status_donotdisturb">Nie przeszkadzać</string>
+    <string name="status_nocallsjustchat">Nie dzwonić, tylko SecureChat</string>
+    <string name="status_onlyurgentcalls">Tylko pilne połączenia</string>
 </resources>

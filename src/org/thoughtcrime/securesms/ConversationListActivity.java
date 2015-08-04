@@ -34,6 +34,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.ContactsContract;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -42,11 +43,14 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
+
+import android.text.method.PasswordTransformationMethod;
+
 import android.util.DisplayMetrics;
+
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
@@ -56,12 +60,11 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.melnykov.fab.FloatingActionButton;
 
 import org.thoughtcrime.securesms.components.CircledImageView;
 import org.thoughtcrime.securesms.components.ThumbnailView;
@@ -81,7 +84,9 @@ import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
 
-import java.io.IOException;
+
+import com.melnykov.fab.FloatingActionButton;
+
 
 import de.gdata.messaging.SlidingTabLayout;
 import de.gdata.messaging.util.GService;
@@ -123,7 +128,9 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     setSupportActionBar(toolbar);
     navLabels = getResources().getStringArray(R.array.array_nav_labels);
     navIcons = getResources().obtainTypedArray(R.array.array_nav_icons);
-    mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+    mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout_gdata);
+
     mDrawerNavi = (LinearLayout) findViewById(R.id.drawerll);
     mDrawerToggle = new ActionBarDrawerToggle(
         this,                  /* host Activity */
@@ -180,10 +187,8 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     getSupportActionBar().setTitle(R.string.app_name);
     initViewPagerLayout();
     GUtil.forceOverFlowMenu(getApplicationContext());
-    startService(new Intent(this, GService.class));
-    new GService().init(getApplicationContext());
     LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
-        new IntentFilter("reloadAdapter"));
+            new IntentFilter("reloadAdapter"));
 
     refreshProfile();
   }
@@ -196,19 +201,24 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     }
     intent.putExtra("profile_number", gDataPreferences.getE164Number());
     startActivity(intent);
+
   }
   private void refreshProfile() {
-    CircledImageView profileImageView = (CircledImageView) findViewById(R.id.profile_picture);
+    ImageView profileImageView = (ImageView) findViewById(R.id.profile_picture);
     Slide myProfileImage = ProfileAccessor.getMyProfilePicture(getApplicationContext());
-    if(masterSecret != null && !(myProfileImage.getUri()+"").equals("")) {
-      ProfileAccessor.buildDraftGlideRequest(myProfileImage).into(profileImageView);
-    } else {
-      profileImageView.setImageBitmap(ContactPhotoFactory.getDefaultContactPhoto(getApplicationContext()));
-    }
-    TextView profileName = (TextView) findViewById(R.id.profileName);
-    TextView profileStatus = (TextView) findViewById(R.id.profileStatus);
-    profileStatus.setText(ProfileAccessor.getProfileStatus(this));
-    profileName.setText(gDataPreferences.getE164Number());
+      if (masterSecret != null && !(myProfileImage.getUri() + "").equals("")) {
+        ProfileAccessor.setMasterSecred(masterSecret);
+        if(GService.appContext == null) {
+          GService.appContext = getApplicationContext();
+        }
+        ProfileAccessor.buildDraftGlideRequest(myProfileImage).into(profileImageView);
+      } else {
+        profileImageView.setImageBitmap(ContactPhotoFactory.getDefaultContactPhoto(getApplicationContext()));
+      }
+      TextView profileName = (TextView) findViewById(R.id.profileName);
+      TextView profileStatus = (TextView) findViewById(R.id.profileStatus);
+      profileStatus.setText(ProfileAccessor.getProfileStatus(this));
+      profileName.setText(gDataPreferences.getE164Number());
   }
   public float dpToPx(int dp) {
     DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
@@ -478,7 +488,6 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
       @Override
       public void onChange(boolean selfChange) {
         super.onChange(selfChange);
-        Log.d("ConversationListActivity", "detected android contact data changed, refreshing cache");
         // TODO only clear updated recipients from cache
         RecipientFactory.clearCache();
         ConversationListActivity.this.runOnUiThread(new Runnable() {
@@ -614,8 +623,9 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
       layout.addView(input);
       layout.addView(hint);
-      input.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
+      input.setInputType(InputType.TYPE_CLASS_NUMBER);
       input.setGravity(Gravity.CENTER | Gravity.BOTTOM);
+      input.setTransformationMethod(PasswordTransformationMethod.getInstance());
       InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
       imm.showSoftInput((input), InputMethodManager.SHOW_IMPLICIT);
       CheckPasswordDialogFrag fragment = new CheckPasswordDialogFrag();
@@ -670,6 +680,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
       } else {
        supportInvalidateOptionsMenu();
       }
+      initNavDrawer(navLabels, navIcons);
     } else if (ACTION_ID == CheckPasswordDialogFrag.ACTION_OPEN_CALL_FILTER) {
       try {
         Intent intent = new Intent("de.gdata.mobilesecurity.activities.filter.FilterListActivity");

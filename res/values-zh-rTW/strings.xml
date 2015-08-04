@@ -30,9 +30,11 @@
   <string name="ApplicationPreferencesActivity_sms_disabled">已關閉手機簡按這裡來變更您預設的手機簡訊APP訊接收功能</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">按這裡將 SecureChat 設為預設的手機簡訊APP</string>
   <!--AppProtectionPreferenceFragment-->
+  <string name="AppProtectionPreferenceFragment_minutes">%d 分鍾</string>
   <!--DraftDatabase-->
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">找不到合適的 APP 來選擇媒體檔案。</string>
+  <string name="AttachmentTypeSelectorAdapter_contact">聯系人信息</string>
   <!--AttachmentTypeSelectorAdapter-->
   <string name="AttachmentTypeSelectorAdapter_picture">照片</string>
   <string name="AttachmentTypeSelectorAdapter_video">影片</string>
@@ -52,6 +54,8 @@
   <string name="ConversationItem_click_to_approve_mms_dialog_title">撤回多媒體簡訊？</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">撤回未加密的手機簡訊？</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">撤回未加密的多媒體簡訊？</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">點擊發送未加密的信息</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">由于安全會話不能建立，此消息將<B>不會</B>被加密。\n\n確定要發送不安全的消息？</string>
   <string name="ConversationItem_unable_to_open_media">找不到合適的 APP 來開啟媒體檔案。</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_initiate_secure_session_question">開啟一條安全連線？</string>
@@ -114,7 +118,7 @@
   <string name="ExportFragment_success">成功！</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_TextSecure_communication_failure">SecureChat 持續發生傳輸異常！</string>
-  <string name="GcmRefreshJob_TextSecure_was_unable_to_register_with_Google_Play_Services">SecureChat 無法順利註冊為 Google Play Services。指定的傳輸通道已被停用。請試著從TextSecure 的設定選單中，重新註冊。</string>
+  <string name="GcmRefreshJob_TextSecure_was_unable_to_register_with_Google_Play_Services">SecureChat 無法順利註冊為 Google Play Services。指定的傳輸通道已被停用。請試著從SecureChat 的設定選單中，重新註冊。</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">新增群組</string>
   <string name="GroupCreateActivity_actionbar_update_title">更新群組</string>
@@ -392,7 +396,7 @@
 匯入簡訊資料。</string>
   <string name="import_fragment__import_encrypted_backup">匯入加密的備份資料</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">
-還原前一個匯出的 TestSecure 加密備份資料庫。</string>
+還原前一個匯出的 SecureChat 加密備份資料庫。</string>
   <string name="import_fragment__import_plaintext_backup">匯入未加密的資料備份</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 匯入一個未加密的備份資料。 相容於 \"SMSBackup And Restore\"。</string>
@@ -451,9 +455,9 @@ SecureChat 無法連線到即時訊息服務。</string>
   <string name="registration_progress_activity__restrictive_firewall">已被防火牆限制。</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
 如果您透過 Wi-Fi連線，有可能是防火牆阻擋了
-TextSecure的伺服器連線。請試著用別的網路或行動上網看看。</string>
+SecureChat的伺服器連線。請試著用別的網路或行動上網看看。</string>
   <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
-TextSecure將會發送一則包含確認碼的手機簡訊來自動驗證您的手機號碼。</string>
+SecureChat將會發送一則包含確認碼的手機簡訊來自動驗證您的手機號碼。</string>
   <string name="registration_progress_activity__connecting">連線中...</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">等待手機簡訊
 驗證中...</string>
@@ -487,13 +491,14 @@ SecureChat 等候驗證用的手機簡訊已逾時。</string>
   <string name="arrays__my_identity_key">我的身分識別金鑰</string>
   <!--preferences.xml-->
   <string name="preferences__general">一般</string>
+  <string name="preferences__sms_mms">SMS和MMS</string>
   <string name="preferences__push_sms_category">即時訊息與手機簡訊</string>
   <string name="preferences__pref_all_sms_title">接收所有手機簡訊</string>
   <string name="preferences__pref_all_mms_title">接收所有MMS多媒體簡訊</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">使用 SecureChat 來檢視與儲存所有接收到的文字簡訊</string>
   <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">使用 SecureChat 來檢視與儲存所有接收到的多媒體簡訊</string>
   <string name="preferences__input_settings">輸入設定</string>
-  <string name="preferences__enable_enter_key_title">啟用 Enter 鍵</string>
+  <string name="preferences__enable_enter_key_title">啓用Enter鍵</string>
   <string name="preferences__replace_smiley_with_enter_key">把介面上的表情符號按鈕，換成 Enter 按鈕</string>
   <string name="preferences__pref_enter_sends_title">啟用 按 Enter 鍵 就送出訊息</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">若按下 Enter 鍵，不會換行，而是直接把訊息送出</string>
@@ -506,7 +511,7 @@ SecureChat 等候驗證用的手機簡訊已逾時。</string>
   <string name="preferences__screen_security">螢幕安全設定</string>
   <string name="preferences__automatically_complete_key_exchanges_for_new_sessions_or_for_existing_sessions_with_the_same_identity_key">自動完成新連線金鑰交換，或套用目前已存在連線同樣的身分識別金鑰</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">停用畫面擷取功能，在對話清單或APP內</string>
-  <string name="preferences__forget_passphrase_from_memory_after_some_interval">若閒置太久沒用，讓『自訂密碼』自動幫 TextSecure上鎖</string>
+  <string name="preferences__forget_passphrase_from_memory_after_some_interval">若閒置太久沒用，讓『自訂密碼』自動幫 SecureChat上鎖</string>
   <string name="preferences__timeout_passphrase">『自訂密碼』上鎖倒數</string>
   <string name="preferences__pref_timeout_interval_dialogtitle">選擇『自訂密碼』上鎖倒數的區間</string>
   <string name="preferences__pref_timeout_interval_title">倒數時間</string>
@@ -563,10 +568,19 @@ SecureChat 等候驗證用的手機簡訊已逾時。</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
 可提升隱私性，並且藉由與其他也使用 SecureChat 的使用這透過加密的連線通訊來節約手機簡訊費用。</string>
   <string name="preferences__submit_debug_log">送出偵錯紀錄</string>
+  <string name="preferences__sms_fallback">發送SMS/MMS</string>
   <string name="preferences__sms_outgoing_push_users">SecureChat 使用者</string>
   <string name="preferences__sms_outgoing_push_users_description">如果網路斷線，改送出付費的加密手機簡訊</string>
+  <string name="preferences__sms_fallback_ask_before_sending_sms_mms">發送SMS/MMS前詢問</string>
+  <string name="preferences__sms_fallback_never_send_mms">從不發送MMS</string>
   <string name="preferences__sms_fallback_non_push_users">非 SecureChat 使用者</string>
   <string name="preferences__sms_fallback_nobody">無人</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">啓用此功能，當您的設備通過WiFi發送SMS/MMS時（只有當您的設備上啓用了\'WiFi呼叫\'時）。</string>
+  <string name="preferences__enable_local_encryption_of_messages_and_keys">啓用消息和密鑰的本地加密</string>
+  <string name="preferences__enable_manual_mms">使用手動MMS設置</string>
+  <string name="preferences__enable_passphrase">啓用密碼</string>
+  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">抱歉，所選擇的音頻超出郵件大小限制(%1$skB)。</string>
+  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions"> 抱歉，所選擇的視頻超出郵件大小限制(%1$skB)。</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -643,5 +657,15 @@ SecureChat 等候驗證用的手機簡訊已逾時。</string>
   <string name="trimmer__deleting">刪除中...</string>
   <string name="trimmer__deleting_old_messages">正在刪除舊訊息...</string>
   <string name="trimmer__old_messages_successfully_deleted">已完成刪除舊訊息。</string>
+  <string name="ApplicationPreferencesActivity_incoming_sms">收到的</string>
+  <string name="ApplicationPreferencesActivity_messages_per_conversation">對話包含 %s 條信息</string>
+  <string name="ApplicationPreferencesActivity_mms">關閉</string>
+  <string name="ApplicationPreferencesActivity_off">開啓</string>
+  <string name="ApplicationPreferencesActivity_on">發送的</string>
+  <string name="ApplicationPreferencesActivity_On">開啓</string>
+  <string name="ApplicationPreferencesActivity_Off">關閉</string>
+  <string name="ApplicationPreferencesActivity_outgoing_sms">部分的</string>
+  <string name="ApplicationPreferencesActivity_partial">短信</string>
+  <string name="ApplicationPreferencesActivity_sms">開啓</string>
   <!--EOF-->
 </resources>

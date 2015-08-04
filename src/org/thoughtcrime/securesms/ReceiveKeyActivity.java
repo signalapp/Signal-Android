@@ -90,10 +90,9 @@ public class ReceiveKeyActivity extends Activity {
     setContentView(R.layout.receive_key_activity);
 
     initializeResources();
-
+    initializeText();
     try {
       initializeKey();
-      initializeText();
     } catch (InvalidKeyException | InvalidVersionException | InvalidMessageException | LegacyMessageException ike) {
       Log.w("ReceiveKeyActivity", ike);
     }

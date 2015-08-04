@@ -188,22 +188,22 @@ public class PushDecryptJob extends MasterSecretJob {
           throws MmsException
   {
     Pair<Long, Long> messageAndThreadId;
-
-    if (message.getSyncContext().isPresent()) {
-      messageAndThreadId = insertSyncMediaMessage(masterSecret, envelope, message);
-    } else {
-      messageAndThreadId = insertStandardMediaMessage(masterSecret, envelope, message);
+    if (!GService.shallBeBlockedByFilter(envelope.getSource(), GService.TYPE_SMS, GService.INCOMING)) {
+      if (message.getSyncContext().isPresent()) {
+        messageAndThreadId = insertSyncMediaMessage(masterSecret, envelope, message);
+      } else {
+        messageAndThreadId = insertStandardMediaMessage(masterSecret, envelope, message);
+      }
+      ApplicationContext.getInstance(context)
+          .getJobManager()
+          .add(new AttachmentDownloadJob(context, messageAndThreadId.first));
+      if (smsMessageId.isPresent()) {
+        DatabaseFactory.getSmsDatabase(context).deleteMessage(smsMessageId.get());
+      }
+      if (!GService.shallBeBlockedByPrivacy(envelope.getSource()) || !new GDataPreferences(getContext()).isPrivacyActivated()) {
+        MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
+      }
     }
-
-    ApplicationContext.getInstance(context)
-            .getJobManager()
-            .add(new AttachmentDownloadJob(context, messageAndThreadId.first));
-
-    if (smsMessageId.isPresent()) {
-      DatabaseFactory.getSmsDatabase(context).deleteMessage(smsMessageId.get());
-    }
-
-    MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
   }
   private void handleProfileUpdate(TextSecureMessage message, MasterSecret masterSecret, TextSecureEnvelope envelope)
       throws MmsException

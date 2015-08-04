@@ -35,8 +35,8 @@ public class SelectedRecipientsAdapter extends ArrayAdapter<SelectedRecipientsAd
     if (v == null) {
 
       LayoutInflater vi;
-      vi = LayoutInflater.from(getContext());
-      v = vi.inflate(R.layout.selected_recipient_list_item, null);
+      vi =  (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+      v = vi.inflate(R.layout.selected_recipient_list_item, parent, false);
 
     }
 

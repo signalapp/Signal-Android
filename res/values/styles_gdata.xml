@@ -9,27 +9,29 @@
         <item name="android:src">@drawable/abc_ic_menu_moreoverflow</item>
     </style>
     <style name="GSecureNotActionBar" parent="@style/Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-        <item name="android:statusBarColor">@color/statusBarAlpha</item>
-        <item name="android:windowTranslucentStatus">true</item>
-        <item name="colorPrimary">@color/gdata_red</item>
+        <!-- this caused a bug (#48544) with statusBar not being displayed properly -->
+        <!--<item name="android:windowDrawsSystemBarBackgrounds">true</item>-->
+        <!--<item name="android:statusBarColor">@color/statusBarAlpha</item>-->
+        <!--<item name="android:windowTranslucentStatus">true</item>-->
+
+        <item name="colorPrimary">@color/gdata_primary_color</item>
         <!-- colorPrimaryDark is used for the status bar -->
-        <item name="colorPrimaryDark">@color/gdata_red</item>
-        <item name="colorAccent">@color/gdata_red</item>
+        <item name="colorPrimaryDark">@color/gdata_primary_color</item>
+        <item name="colorAccent">@color/gdata_primary_color</item>
 
         <item name="conversation_selfdestroy_icon_indicator">@array/gdata_selfdestroy_icons</item>
 
         <item name="android:actionOverflowButtonStyle">@style/OverFlow</item>
         <item name="actionOverflowButtonStyle">@style/OverFlow</item>
 
-        <item name="android:windowContentOverlay">@null</item>
-
-        <item name="android:actionModeBackground">@drawable/cab_background_top</item>
-        <item name="actionModeBackground">@drawable/cab_background_top</item>
-        <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom</item>
-        <item name="actionModeSplitBackground">@drawable/cab_background_bottom</item>
+        <item name="android:actionModeBackground">@color/gdata_primary_color</item>
+        <item name="actionModeBackground">@color/gdata_primary_color</item>
+        <item name="android:actionModeSplitBackground">@color/gdata_primary_color</item>
+        <item name="actionModeSplitBackground">@color/gdata_primary_color</item>
         <item name="android:actionModeCloseDrawable">@drawable/ic_cab_done_holo_dark</item>
         <item name="actionModeCloseDrawable">@drawable/ic_cab_done_holo_dark</item>
+        <item name="actionModeStyle">@style/My.Widget.ActionMode</item>
+        <item name="android:actionModeStyle">@style/My.Widget.ActionMode</item>
 
         <item name="android:textColor">?android:attr/textColorPrimary</item>
         <item name="android:textColorSecondary">?android:attr/textColorPrimary</item>
@@ -94,7 +96,7 @@
         </item>
         <item name="conversation_editor_text_color">#000000</item>
 
-        <item name="conversation_background">@color/white</item>
+        <item name="conversation_background">#e6e5e0</item>
         <item name="conversation_editor_background">@drawable/gdata_textlines</item>
         <item name="reminder_header_background">#ff385400</item>
 
@@ -146,10 +148,13 @@
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
     </style>
     <style name="GSecure.GDataTheme" parent="@style/Theme.AppCompat.Light">
-        <item name="colorPrimary">@color/gdata_red</item>
+        <item name="colorPrimary">@color/gdata_primary_color</item>
+        <item name="android:colorPrimary">@color/gdata_primary_color</item>
         <!-- colorPrimaryDark is used for the status bar -->
-        <item name="colorPrimaryDark">@color/gdata_red</item>
-        <item name="colorAccent">@color/gdata_red</item>
+        <item name="colorPrimaryDark">@color/gdata_primary_color</item>
+        <item name="android:colorPrimaryDark">@color/gdata_primary_color</item>
+        <item name="colorAccent">@color/gdata_primary_color</item>
+        <item name="android:colorAccent">@color/gdata_primary_color</item>
         <item name="android:actionBarStyle">@style/GSecure.GDataActionBar</item>
         <item name="actionBarStyle">@style/GSecure.GDataActionBar</item>
 
@@ -160,12 +165,15 @@
 
         <item name="android:windowContentOverlay">@null</item>
 
-        <item name="android:actionModeBackground">@drawable/cab_background_top</item>
-        <item name="actionModeBackground">@drawable/cab_background_top</item>
-        <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom</item>
-        <item name="actionModeSplitBackground">@drawable/cab_background_bottom</item>
+        <item name="android:actionModeBackground">@color/gdata_primary_color</item>
+        <item name="actionModeBackground">@color/gdata_primary_color</item>
+        <item name="android:actionModeSplitBackground">@color/gdata_primary_color</item>
+        <item name="actionModeSplitBackground">@color/gdata_primary_color</item>
         <item name="android:actionModeCloseDrawable">@drawable/ic_cab_done_holo_dark</item>
         <item name="actionModeCloseDrawable">@drawable/ic_cab_done_holo_dark</item>
+
+        <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="android:actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Light</item>
 
         <item name="android:textColor">?android:attr/textColorPrimary</item>
         <item name="android:textColorSecondary">?android:attr/textColorPrimary</item>
@@ -283,10 +291,15 @@
 
         <item name="actionModeStyle">@style/My.Widget.ActionMode</item>
         <item name="android:actionModeStyle">@style/My.Widget.ActionMode</item>
+
+        <item name="android:actionBarTabTextStyle">@style/TabStyle</item>
+        <item name="actionBarTabTextStyle">@style/TabStyle</item>
+        <item name="android:actionBarTabBarStyle">@style/TabStyle</item>
+        <item name="actionBarTabBarStyle">@style/TabStyle</item>
     </style>
     <style name="My.Widget.ActionMode" parent="@style/Widget.AppCompat.Light.ActionMode.Inverse">
-        <item name="background">@color/gdata_red</item>
-        <item name="android:background">@color/gdata_red</item>
+        <item name="background">@color/gdata_primary_color</item>
+        <item name="android:background">@color/gdata_primary_color</item>
         <item name="titleTextStyle">@style/My.TextAppearance.Widget.ActionMode.Title</item>
         <item name="android:titleTextStyle">@style/My.TextAppearance.Widget.ActionMode.Title</item>
         <item name="subtitleTextStyle">@style/My.TextAppearance.Widget.ActionMode.Subtitle</item>
@@ -294,7 +307,6 @@
     </style>
     <style name="My.TextAppearance.Widget.ActionMode.Title" parent="@style/TextAppearance.AppCompat.Widget.ActionMode.Title">
         <item name="android:textColor">@android:color/white</item>
-        <item name="android:textStyle">bold</item>
         <item name="android:shadowColor">@android:color/black</item>
         <item name="android:shadowRadius">1</item>
     </style>
@@ -351,15 +363,14 @@
     <style name="GSecure.GDataActionBar" parent="@style/Widget.AppCompat.ActionBar">
         <item name="android:icon">@drawable/actionbar_icon_gdata</item>
         <item name="icon">@drawable/actionbar_icon_gdata</item>
-        <item name="android:background">@color/gdata_red</item>
-        <item name="background">@color/gdata_red</item>
+        <item name="android:background">@color/gdata_primary_color</item>
+        <item name="background">@color/gdata_primary_color</item>
         <item name="android:logo">@drawable/actionbar_icon_gdata</item>
         <item name="logo">@drawable/actionbar_icon_gdata</item>
         <item name="android:titleTextStyle">@style/TextSecure.TitleTextStyle</item>
         <item name="titleTextStyle">@style/TextSecure.TitleTextStyle</item>
         <item name="android:subtitleTextStyle">@style/TextSecure.SubtitleTextStyle</item>
         <item name="subtitleTextStyle">@style/TextSecure.SubtitleTextStyle</item>
-        <item name="android:windowContentOverlay">@null</item>
     </style>
     <!-- For Holo Light Dialog Activity Styling Emulation -->
     <style name="GDataDialogWindowTitle">
