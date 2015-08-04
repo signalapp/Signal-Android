@@ -83,7 +83,8 @@ public class SmsDatabase extends MessagingDatabase {
     "CREATE INDEX IF NOT EXISTS sms_read_index ON " + TABLE_NAME + " (" + READ + ");",
     "CREATE INDEX IF NOT EXISTS sms_read_and_thread_id_index ON " + TABLE_NAME + "(" + READ + "," + THREAD_ID + ");",
     "CREATE INDEX IF NOT EXISTS sms_type_index ON " + TABLE_NAME + " (" + TYPE + ");",
-    "CREATE INDEX IF NOT EXISTS sms_date_sent_index ON " + TABLE_NAME + " (" + DATE_SENT + ");"
+    "CREATE INDEX IF NOT EXISTS sms_date_sent_index ON " + TABLE_NAME + " (" + DATE_SENT + ");",
+    "CREATE INDEX IF NOT EXISTS sms_thread_date_index ON " + TABLE_NAME + " (" + THREAD_ID + ", " + DATE_RECEIVED + ");"
   };
 
   private static final String[] MESSAGE_PROJECTION = new String[] {
@@ -155,22 +156,18 @@ public class SmsDatabase extends MessagingDatabase {
     }
   }
 
-  public int getMessageCountForThread(long threadId) {
+  public boolean hasMessagesForThread(long threadId) {
     SQLiteDatabase db = databaseHelper.getReadableDatabase();
     Cursor cursor     = null;
 
     try {
-      cursor = db.query(TABLE_NAME, new String[] {"COUNT(*)"}, THREAD_ID + " = ?",
-                        new String[] {threadId+""}, null, null, null);
+      cursor = db.rawQuery("SELECT EXISTS(SELECT 1 FROM " + TABLE_NAME + " WHERE " + THREAD_ID + " = ?);",
+                           new String[] {String.valueOf(threadId)});
 
-      if (cursor != null && cursor.moveToFirst())
-        return cursor.getInt(0);
+      return cursor != null && cursor.moveToFirst() && cursor.getInt(0) == 1;
     } finally {
-      if (cursor != null)
-        cursor.close();
+      if (cursor != null) cursor.close();
     }
-
-    return 0;
   }
 
   public void markAsEndSession(long id) {

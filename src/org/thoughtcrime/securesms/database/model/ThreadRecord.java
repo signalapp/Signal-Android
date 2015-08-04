@@ -37,17 +37,15 @@ import org.thoughtcrime.securesms.util.GroupUtil;
 public class ThreadRecord extends DisplayRecord {
 
   private final Context context;
-  private final long count;
   private final boolean read;
-  private final int distributionType;
+  private final int     distributionType;
 
   public ThreadRecord(Context context, Body body, Recipients recipients, long date,
-                      long count, boolean read, long threadId, long snippetType,
+                      boolean read, long threadId, long snippetType,
                       int distributionType)
   {
     super(context, body, recipients, date, date, threadId, snippetType);
     this.context          = context.getApplicationContext();
-    this.count            = count;
     this.read             = read;
     this.distributionType = distributionType;
   }
@@ -93,10 +91,6 @@ public class ThreadRecord extends DisplayRecord {
     spannable.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC),
                       start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
     return spannable;
-  }
-
-  public long getCount() {
-    return count;
   }
 
   public boolean isRead() {
