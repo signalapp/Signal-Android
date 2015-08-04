@@ -33,6 +33,7 @@ import android.util.Log;
 import android.widget.RemoteViews;
 
 import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.DatabaseUpgradeActivity;
 import org.thoughtcrime.securesms.DummyActivity;
 import org.thoughtcrime.securesms.R;
@@ -58,15 +59,15 @@ public class KeyCachingService extends Service {
 
   public static final int SERVICE_RUNNING_ID = 4141;
 
-  public  static final String KEY_PERMISSION           = "org.thoughtcrime.securesms.ACCESS_SECRETS";
-  public  static final String NEW_KEY_EVENT            = "org.thoughtcrime.securesms.service.action.NEW_KEY_EVENT";
-  public  static final String CLEAR_KEY_EVENT          = "org.thoughtcrime.securesms.service.action.CLEAR_KEY_EVENT";
-  private static final String PASSPHRASE_EXPIRED_EVENT = "org.thoughtcrime.securesms.service.action.PASSPHRASE_EXPIRED_EVENT";
-  public  static final String CLEAR_KEY_ACTION         = "org.thoughtcrime.securesms.service.action.CLEAR_KEY";
-  public  static final String DISABLE_ACTION           = "org.thoughtcrime.securesms.service.action.DISABLE";
-  public  static final String ACTIVITY_START_EVENT     = "org.thoughtcrime.securesms.service.action.ACTIVITY_START_EVENT";
-  public  static final String ACTIVITY_STOP_EVENT      = "org.thoughtcrime.securesms.service.action.ACTIVITY_STOP_EVENT";
-  public  static final String LOCALE_CHANGE_EVENT      = "org.thoughtcrime.securesms.service.action.LOCALE_CHANGE_EVENT";
+  public  static final String KEY_PERMISSION           = BuildConfig.APPLICATION_ID + ".ACCESS_SECRETS";
+  public  static final String NEW_KEY_EVENT            = BuildConfig.APPLICATION_ID + ".NEW_KEY_EVENT";
+  public  static final String CLEAR_KEY_EVENT          = BuildConfig.APPLICATION_ID + ".CLEAR_KEY_EVENT";
+  private static final String PASSPHRASE_EXPIRED_EVENT = BuildConfig.APPLICATION_ID + ".PASSPHRASE_EXPIRED_EVENT";
+  public  static final String CLEAR_KEY_ACTION         = BuildConfig.APPLICATION_ID + ".CLEAR_KEY";
+  public  static final String DISABLE_ACTION           = BuildConfig.APPLICATION_ID + ".DISABLE";
+  public  static final String ACTIVITY_START_EVENT     = BuildConfig.APPLICATION_ID + ".ACTIVITY_START_EVENT";
+  public  static final String ACTIVITY_STOP_EVENT      = BuildConfig.APPLICATION_ID + ".ACTIVITY_STOP_EVENT";
+  public  static final String LOCALE_CHANGE_EVENT      = BuildConfig.APPLICATION_ID + ".LOCALE_CHANGE_EVENT";
 
   private DynamicLanguage dynamicLanguage = new DynamicLanguage();
 

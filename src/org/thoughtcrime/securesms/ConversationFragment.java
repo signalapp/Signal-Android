@@ -36,6 +36,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.loaders.ConversationLoader;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -71,9 +72,6 @@ public class ConversationFragment extends ListFragment
   private long         threadId;
   private ActionMode   actionMode;
 
-  IRpcService mService = null;
-  private boolean mIsBound;
-
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
     return GUtil.setFontForFragment(getActivity(), inflater.inflate(R.layout.conversation_fragment, container, false));
@@ -91,21 +89,11 @@ public class ConversationFragment extends ListFragment
     @Override
   public void onPause() {
     super.onPause();
-
-    if (mIsBound) {
-        getActivity().unbindService(mConnection);
-    }
   }
 
     @Override
   public void onResume() {
     super.onResume();
-    try {
-      getActivity().bindService(new Intent(GDataPreferences.INTENT_ACCESS_SERVER), mConnection, Context.BIND_AUTO_CREATE);
-      } catch (java.lang.SecurityException e) {
-      Log.e("GDATA", "Remote Service Exception:  " + "wrong signatures " + e.getMessage());
-      }
-    mIsBound = true;
   }
 
     @Override
@@ -174,6 +162,12 @@ public class ConversationFragment extends ListFragment
       menu.findItem(R.id.menu_context_forward).setVisible(true);
       menu.findItem(R.id.menu_context_details).setVisible(true);
       menu.findItem(R.id.menu_context_copy).setVisible(true);
+
+      if(messageRecord.getBody().isSelfDestruction()) {
+        menu.findItem(R.id.menu_context_forward).setVisible(false);
+        menu.findItem(R.id.menu_context_copy).setVisible(false);
+        menu.findItem(R.id.menu_context_save_attachment).setVisible(false);
+      }
     }
   }
 
@@ -224,9 +218,8 @@ public class ConversationFragment extends ListFragment
       @Override
       public void onClick(DialogInterface dialog, int which) {
         new ProgressDialogAsyncTask<MessageRecord, Void, Void>(getActivity(),
-                                                               R.string.ConversationFragment_deleting,
-                                                               R.string.ConversationFragment_deleting_messages)
-        {
+            R.string.ConversationFragment_deleting,
+            R.string.ConversationFragment_deleting_messages) {
           @Override
           protected Void doInBackground(MessageRecord... messageRecords) {
             for (MessageRecord messageRecord : messageRecords) {
@@ -290,11 +283,43 @@ public class ConversationFragment extends ListFragment
     builder.show();
   }
 
-  private void handleForwardMessage(MessageRecord message) {
-    Intent composeIntent = new Intent(getActivity(), ShareActivity.class);
+  private void handleForwardMessage(final MessageRecord message) {
+    final MediaMmsMessageRecord mmsMessage = message.isMms() ? (MediaMmsMessageRecord)message : null;
+    final Intent composeIntent = new Intent(getActivity(), ShareActivity.class);
     composeIntent.putExtra(ConversationActivity.DRAFT_TEXT_EXTRA, message.getDisplayBody().toString());
     composeIntent.putExtra(ShareActivity.MASTER_SECRET_EXTRA, masterSecret);
-    startActivity(composeIntent);
+
+    if (mmsMessage != null && mmsMessage.containsMediaSlide()) {
+      mmsMessage.fetchMediaSlide(new FutureTaskListener<Slide>() {
+        @Override
+        public void onSuccess(Slide slide) {
+          if (slide.hasAudio()){
+            composeIntent.putExtra(ConversationActivity.DRAFT_AUDIO_EXTRA, PartAuthority.getPublicPartUri(slide.getUri()));
+            composeIntent.putExtra(ConversationActivity.DRAFT_MEDIA_TYPE_EXTRA, slide.getContentType());
+          }
+          if(slide.hasImage()) {
+            composeIntent.putExtra(ConversationActivity.DRAFT_IMAGE_EXTRA, PartAuthority.getPublicPartUri(slide.getUri()));
+            composeIntent.putExtra(ConversationActivity.DRAFT_MEDIA_TYPE_EXTRA, slide.getContentType());
+          }
+          if(slide.hasVideo()) {
+            composeIntent.putExtra(ConversationActivity.DRAFT_VIDEO_EXTRA, PartAuthority.getPublicPartUri(slide.getUri()));
+            composeIntent.putExtra(ConversationActivity.DRAFT_MEDIA_TYPE_EXTRA, slide.getContentType());
+          }
+          startActivity(composeIntent);
+        }
+
+        @Override
+        public void onFailure(Throwable error) {
+          Log.w(TAG, "No slide with attachable media found, failing nicely.");
+          Log.w(TAG, error);
+          startActivity(composeIntent);
+        }
+
+      });
+    }
+    else {
+      startActivity(composeIntent);
+    }
   }
 
   private void handleResendMessage(final MessageRecord message) {
@@ -427,7 +452,7 @@ public class ConversationFragment extends ListFragment
           actionMode.finish();
           return true;
         case R.id.menu_context_forward:
-          handleForwardMessage(getSelectedMessageRecord());
+            handleForwardMessage(getSelectedMessageRecord());
           actionMode.finish();
           return true;
         case R.id.menu_context_resend:
@@ -443,20 +468,4 @@ public class ConversationFragment extends ListFragment
       return false;
     }
   };
-
-  private ServiceConnection mConnection = new ServiceConnection() {
-      @Override
-      public void onServiceConnected(ComponentName name, IBinder service) {
-          mService = IRpcService.Stub.asInterface(service);
-      }
-
-      @Override
-      public void onServiceDisconnected(ComponentName name) {
-        mService = null;
-      }
-  };
-
-    public IRpcService getService() {
-        return mService;
-    }
 }

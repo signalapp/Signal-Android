@@ -3,34 +3,32 @@
     <string name="ConversationActivity_gdata_selfdestroy_entry_five">5 dakika</string>
     <string name="ConversationActivity_gdata_selfdestroy_entry_thirty">30 dakika</string>
     <string name="ConversationActivity_gdata_selfdestroy_entry_hour">1 saat</string>
-
+    <string name="ConversationActivity_gdata_selfdestroy_entry_3">5 saniye</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_2">15 saniye</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_1">60 saniye</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_0">Devre dýþý býrak</string>
     <string name="gdata_contact_selection_page_title">Rehber girişleri</string>
-
     <string name="gdata_conversation_list_page_title">Eğlence</string>
-
-    <string name="gd_dialog_fragment_phishing_title">Web Koruması</string>
-    <string name="gd_dialog_fragment_phishing_message">Bu site, bilinen bir olta atma sitesi. Ancak riske girmediğinizden eminseniz devam edin.</string>
+    <string name="gd_dialog_fragment_phishing_title">Web Korumasý</string>
+    <string name="gd_dialog_fragment_phishing_message">Bu site, bilinen bir olta atma sitesi. Ancak riske girmediðinizden eminseniz devam edin.</string>
     <string name="gd_dialog_fragment_phishing_block">Engelle</string>
     <string name="gd_dialog_fragment_phishing_continue">Devam</string>
-
+    <string name="log_submit_activity__button_dont_submit">Gönderilmesin</string>
+    <string name="log_submit_activity__button_submit">Gönder</string>
     <string name="menu_filter">Rehber girişlerini engelle</string>
-    <string name="menu_privacy">Sohbetleri gizle</string>
-    <string name="menu_privacy_unhide">Gizli sohbetleri göster</string>
-    <string name="menu_privacy_hide">Gizli sohbetleri sakla</string>
-    <string name="menu_privacy_single_hide">Sohbeti gizle</string>
+    <string name="menu_privacy">Eðlenceleri gizle</string>
+    <string name="menu_privacy_unhide">Gizlenenleri aç</string>
+    <string name="menu_privacy_hide">Gizle</string>
+    <string name="menu_privacy_single_hide">Eðlenceyi gizle</string>
     <string name="menu_filter_block_contact">Rehber girişini engelle</string>
-
     <string name="privacy_pw_dialog_header">Parola girin: </string>
     <string name="privacy_pw_dialog_toast_wrong">Girdiğiniz parola, Internet Security parolasıyla aynı değil.</string>
-    <string name="privacy_pw_dialog_toast_reload">Sohbetler yeniden yükleniyor...</string>
-    <string name="privacy_pw_dialog_toast_hide">Sohbetler gizlenmek için hazırlanılıyorlar...</string>
-    <string name="privacy_pw_dialog_toast_hide_single">Sohbet gizleniliyor...</string>
-    <string name="privacy_pw_dialog_hint">Not: Android icin Internet Securityde ilgili olan sectiginiz sifre\'yi kullaniniz Uyari: Android icin Internet Securityde sectiginiz sifre</string>
-
+    <string name="privacy_pw_dialog_hint">Not: Android için Internet Security uygulamasýnda seçtiðiniz parola söz konusudur.</string>
+    <string name="privacy_pw_dialog_toast_reload">Eðlenceler geri yükleniyor...</string>
+    <string name="privacy_pw_dialog_toast_hide">Eðlenceler gizlenmek üzere hazýrlanýyor...</string>
+    <string name="privacy_pw_dialog_toast_hide_single">Eðlence gizleniyor...</string>
     <string name="privacy_toast_install_premium">Bu işlev için, Android için G DATA Internet Security uygulaması gereklidir</string>
-
     <string name="conversation_activity_invite_link">https://secure.gd/scg</string>
-
     <string name="preferences_notification_never">Hiçbir zaman</string>
     <string name="preferences_notification_one_time">1x</string>
     <string name="preferences_notification_two_times">2x</string>
@@ -38,4 +36,33 @@
     <string name="preferences_notification_five_times">5x</string>
     <string name="preferences_notification_ten_times">10x</string>
     <string name="preferences_notification_title">Uyarıları yinele</string>
+    <string name="self_destruction">Ýmha et</string>
+    <string name="self_destruction_title">Ýmha iþlemine #1# saniye kaldý...</string>
+    <string name="self_destruction_body">Bu mesaj açýldýktan sonra #1# saniye içinde kendi kendini silecektir.</string>
+    <string name="unknown_country">Bilinmeyen ülke</string>
+    <string name="self_destruction_compose_hint">Kendini imha eden mesaj gönder</string>
+    <string name="privacy_toast_unlock_premium">Bu özellikleri kullanmak için G DATA Internet Security premium özellikleri etkinleştirmeniz gerekir.</string>
+    <string name="tk_mail">sc-feedback@gdata.de</string>
+    <string name="import_complete_dialog">SecureChat Sohbet sistem veritabanı ithalatı tamamlandı.</string>
+    <string name="profile_status_label">Durum</string>
+    <string name="profile_number_label">Telefon numarası</string>
+    <string name="profile_status_member">Üyeler</string>
+    <string name="identification">Kimlik belirleme</string>
+    <string name="identification_title">Bu anahtar sizin kimliğinizi temsil ediyor. Anahtarınızı muhatap olduğunuz kişiye okutturunuz. Böylelikle bu anahtardan gelen mesajların gerçekten sizden geldiğine emin olabilirler.</string>
+    <string name="verify_identity_activity_their_identity">Alıcı kimliği belirleme – Bu anahtar muhatap olduğunuz kişiyi teşhis eder. Anahtarı okutun Gelen mesajların güvenirliğini ispat etmek için, anahtarı okutun.</string>
+    <string name="verify_identity_activity_your_identity" >Kendi kimliğini belirleme – Bu anahtar sizin kimliğinizi belirler. Kimliğinizi doğrulamak için, anahtarı muhatap olduğunuz kişiye okutturnuz.</string>
+    <string name="identification_verified_unsuccessfully">Anahtarlar uyuşmuyor!</string>
+    <string name="identification_verified_successfully">Kimlik belirleme başarıyla sonuçlandı.</string>
+    <string name="accept_eula_and_continue"><![CDATA[Kabul et & devam et]]></string>
+    <string name="eula_gdata"><u>Şartlar ve koşullar</u></string>
+    <string name="take_picture">Fotoğraf çekmek </string>
+    <string name="status_available">Müsait</string>
+    <string name="status_busy">Meşgul</string>
+    <string name="status_atwork">İşyerinde</string>
+    <string name="status_meeting">Bir toplantıda</string>
+    <string name="status_donotdisturb">Lütfen rahatsız etmeyin</string>
+    <string name="status_nocallsjustchat">Arama yapmayın, sadece SecureChat</string>
+    <string name="status_onlyurgentcalls">Sadece önemli aramalar</string>
+    <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Maalesef seçilen audio mesaj boyutu kısıtlamasını aşıyor (%1$skB).</string>
+    <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Maalesef seçilen video mesaj boyutu kısıtlamasını aşıyor (%1$skB).</string>
 </resources>

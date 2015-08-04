@@ -30,6 +30,16 @@ public class ListenableFutureTask<V> extends FutureTask<V> {
     super(callable);
   }
 
+  public ListenableFutureTask(final V result) {
+    super(new Callable<V>() {
+      @Override
+      public V call() throws Exception {
+        return result;
+      }
+    });
+    this.run();
+  }
+
   public synchronized void addListener(FutureTaskListener<V> listener) {
     if (this.isDone()) {
       callback(listener);

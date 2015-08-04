@@ -43,7 +43,7 @@ public class GroupUtil {
       String        title        = groupContext.getName();
 
       if (!members.isEmpty()) {
-        description.append(context.getString(R.string.GroupUtil_joined_the_group, Util.join(members, ", ")));
+        description.append(context.getString(R.string.GroupUtil_joined_the_group, Util.join(members, ", ", context)));
       }
 
       if (title != null && !title.trim().isEmpty()) {
@@ -51,7 +51,11 @@ public class GroupUtil {
         description.append(context.getString(R.string.GroupUtil_title_is_now, title));
       }
 
-      return description.toString();
+      if (description.length() > 0) {
+        return description.toString();
+      } else {
+        return context.getString(R.string.GroupUtil_group_updated);
+      }
     } catch (InvalidProtocolBufferException e) {
       Log.w("GroupUtil", e);
       return context.getString(R.string.GroupUtil_group_updated);

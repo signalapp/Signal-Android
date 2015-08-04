@@ -15,11 +15,11 @@
                  android:paddingRight="10dp"
                  android:visibility="visible">
 
-        <org.thoughtcrime.securesms.components.ForegroundImageView
+        <org.thoughtcrime.securesms.components.CircledImageView
             android:id="@+id/contact_photo_image"
             android:foreground="@drawable/contact_photo_background"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:cropToPadding="true"
             android:scaleType="centerCrop"
             android:visibility="gone"

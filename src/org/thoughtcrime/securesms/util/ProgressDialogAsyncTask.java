@@ -33,5 +33,9 @@ public abstract class ProgressDialogAsyncTask<Params, Progress, Result> extends 
   protected void onPostExecute(Result result) {
     if (progress != null) progress.dismiss();
   }
+
+  protected Context getContext() {
+    return contextReference.get();
+  }
 }
 

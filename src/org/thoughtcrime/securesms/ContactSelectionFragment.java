@@ -31,7 +31,6 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
@@ -43,6 +42,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import de.gdata.messaging.util.GUtil;
+import de.gdata.messaging.util.ProfileAccessor;
 
 import static org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 
@@ -84,10 +84,11 @@ public class ContactSelectionFragment extends Fragment {
     dynamicLanguage.onResume(getActivity());
     //  getSupportActionBar().setTitle(R.string.AndroidManifest__select_contacts);
     masterSecret = getActivity().getIntent().getParcelableExtra(MASTER_SECRET_EXTRA);
+    ProfileAccessor.setMasterSecred(masterSecret);
   }
 
   private void initializeResources() {
-    contactsFragment = (PushContactSelectionListFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.contact_selection_list_fragment);
+    contactsFragment = (PushContactSelectionListFragment) getChildFragmentManager().findFragmentById(R.id.contact_selection_list_fragment);
     contactsFragment.setOnContactSelectedListener(new PushContactSelectionListFragment.OnContactSelectedListener() {
       @Override
       public void onContactSelected(ContactData contactData) {
@@ -122,14 +123,12 @@ public class ContactSelectionFragment extends Fragment {
     Recipients recipients = new Recipients(new LinkedList<Recipient>());
     for (ContactAccessor.NumberData numberData : contactData.numbers) {
       if (NumberUtil.isValidSmsOrEmailOrGroup(numberData.number)) {
-        try {
-          Recipients recipientsForNumber = RecipientFactory.getRecipientsFromString(getActivity(),
-              numberData.number,
-              false);
-          recipients.getRecipientsList().addAll(recipientsForNumber.getRecipientsList());
-        } catch (RecipientFormattingException rfe) {
-          Log.w(TAG, "Caught RecipientFormattingException when trying to convert a selected number to a Recipient.", rfe);
-        }
+
+        Recipients recipientsForNumber = RecipientFactory.getRecipientsFromString(getActivity(),
+            numberData.number,
+            false);
+        recipients.getRecipientsList().addAll(recipientsForNumber.getRecipientsList());
+
       }
     }
     return recipients;

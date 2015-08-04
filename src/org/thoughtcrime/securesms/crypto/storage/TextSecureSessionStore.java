@@ -5,12 +5,15 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientFactory;
+import org.thoughtcrime.securesms.util.Conversions;
+import org.whispersystems.libaxolotl.AxolotlAddress;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.libaxolotl.state.SessionRecord;
 import org.whispersystems.libaxolotl.state.SessionState;
 import org.whispersystems.libaxolotl.state.SessionStore;
-import org.whispersystems.textsecure.api.push.PushAddress;
-import org.thoughtcrime.securesms.util.Conversions;
+import org.whispersystems.textsecure.api.push.TextSecureAddress;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -42,11 +45,11 @@ public class TextSecureSessionStore implements SessionStore {
   }
 
   @Override
-  public SessionRecord loadSession(long recipientId, int deviceId) {
+  public SessionRecord loadSession(AxolotlAddress address) {
     synchronized (FILE_LOCK) {
       try {
         MasterCipher cipher = new MasterCipher(masterSecret);
-        FileInputStream in     = new FileInputStream(getSessionFile(recipientId, deviceId));
+        FileInputStream in     = new FileInputStream(getSessionFile(address));
 
         int versionMarker  = readInteger(in);
 
@@ -74,11 +77,11 @@ public class TextSecureSessionStore implements SessionStore {
   }
 
   @Override
-  public void storeSession(long recipientId, int deviceId, SessionRecord record) {
+  public void storeSession(AxolotlAddress address, SessionRecord record) {
     synchronized (FILE_LOCK) {
       try {
         MasterCipher     masterCipher = new MasterCipher(masterSecret);
-        RandomAccessFile sessionFile  = new RandomAccessFile(getSessionFile(recipientId, deviceId), "rw");
+        RandomAccessFile sessionFile  = new RandomAccessFile(getSessionFile(address), "rw");
         FileChannel      out          = sessionFile.getChannel();
 
         out.position(0);
@@ -94,29 +97,30 @@ public class TextSecureSessionStore implements SessionStore {
   }
 
   @Override
-  public boolean containsSession(long recipientId, int deviceId) {
-    return getSessionFile(recipientId, deviceId).exists() &&
-        loadSession(recipientId, deviceId).getSessionState().hasSenderChain();
+  public boolean containsSession(AxolotlAddress address) {
+    return getSessionFile(address).exists() &&
+        loadSession(address).getSessionState().hasSenderChain();
   }
 
   @Override
-  public void deleteSession(long recipientId, int deviceId) {
-    getSessionFile(recipientId, deviceId).delete();
+  public void deleteSession(AxolotlAddress address) {
+    getSessionFile(address).delete();
   }
 
   @Override
-  public void deleteAllSessions(long recipientId) {
-    List<Integer> devices = getSubDeviceSessions(recipientId);
+  public void deleteAllSessions(String name) {
+    List<Integer> devices = getSubDeviceSessions(name);
 
-    deleteSession(recipientId, PushAddress.DEFAULT_DEVICE_ID);
+    deleteSession(new AxolotlAddress(name, TextSecureAddress.DEFAULT_DEVICE_ID));
 
     for (int device : devices) {
-      deleteSession(recipientId, device);
+      deleteSession(new AxolotlAddress(name, device));
     }
   }
 
   @Override
-  public List<Integer> getSubDeviceSessions(long recipientId) {
+  public List<Integer> getSubDeviceSessions(String name) {
+    long          recipientId = RecipientFactory.getRecipientsFromString(context, name, true).getPrimaryRecipient().getRecipientId();
     List<Integer> results  = new LinkedList<>();
     File          parent   = getSessionDirectory();
     String[]      children = parent.list();
@@ -139,8 +143,8 @@ public class TextSecureSessionStore implements SessionStore {
     return results;
   }
 
-  private File getSessionFile(long recipientId, int deviceId) {
-    return new File(getSessionDirectory(), getSessionName(recipientId, deviceId));
+  private File getSessionFile(AxolotlAddress address) {
+    return new File(getSessionDirectory(), getSessionName(address));
   }
 
   private File getSessionDirectory() {
@@ -155,8 +159,13 @@ public class TextSecureSessionStore implements SessionStore {
     return directory;
   }
 
-  private String getSessionName(long recipientId, int deviceId) {
-    return recipientId + (deviceId == PushAddress.DEFAULT_DEVICE_ID ? "" : "." + deviceId);
+  private String getSessionName(AxolotlAddress axolotlAddress) {
+    Recipient recipient   = RecipientFactory.getRecipientsFromString(context, axolotlAddress.getName(), true)
+                                               .getPrimaryRecipient();
+    long      recipientId = recipient.getRecipientId();
+    int       deviceId    = axolotlAddress.getDeviceId();
+
+    return recipientId + (deviceId == TextSecureAddress.DEFAULT_DEVICE_ID ? "" : "." + deviceId);
   }
 
   private byte[] readBlob(FileInputStream in) throws IOException {

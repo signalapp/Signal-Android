@@ -6,7 +6,8 @@
     android:paddingTop="15dp"
     android:paddingLeft="15dp"
     android:paddingBottom="15dp"
-    android:paddingRight="10dp">
+    android:paddingRight="10dp"
+    android:background="@color/gdata_conversation_list_item_background_read">
 
     <CheckBox android:id="@+id/data_users"
         style="@style/TextSecureDialogPrimaryText"

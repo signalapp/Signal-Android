@@ -1,18 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="gdata_selfdestroy_entrys">
-        <item>@string/ConversationActivity_gdata_selfdestroy_entry_five</item>
-        <item>@string/ConversationActivity_gdata_selfdestroy_entry_thirty</item>
-        <item>@string/ConversationActivity_gdata_selfdestroy_entry_hour</item>
-    </string-array>
-    <string-array name="gdata_selfdestroy_compose_entrys">
-        <item>@string/conversation_activity__type_message_mms_insecure</item>
-        <item>@string/conversation_activity__type_message_mms_secure</item>
-        <item>@string/conversation_activity__type_message_push</item>
+        <item>@string/ConversationActivity_gdata_selfdestroy_entry_1</item>
+        <item>@string/ConversationActivity_gdata_selfdestroy_entry_2</item>
+        <item>@string/ConversationActivity_gdata_selfdestroy_entry_3</item>
+        <item>@string/ConversationActivity_gdata_selfdestroy_entry_0</item>
     </string-array>
     <string-array name="gdata_selfdestroy_icons">
-        <item>@drawable/ic_menu_remove_holo_light</item>
-        <item>@drawable/ic_menu_remove_holo_light</item>
-        <item>@drawable/ic_menu_remove_holo_light</item>
+        <item>@drawable/ic_action_timebomb_60</item>
+        <item>@drawable/ic_action_timebomb_15</item>
+        <item>@drawable/ic_action_timebomb_5</item>
+        <item>@drawable/ic_action_timebomb_off</item>
+    </string-array>
+    <string-array name="gdata_selfdestroy_values">
+        <item>60</item>
+        <item>15</item>
+        <item>5</item>
+        <item>0</item>
+    </string-array>
+    <string-array name="bomb_selection_compose_text">
+        <item>@string/self_destruction</item>
+        <item>@string/self_destruction</item>
+        <item>@string/self_destruction</item>
+        <item>@string/self_destruction</item>
+    </string-array>
+    <string-array
+        name="array_nav_labels">
+        <item>@string/text_secure_normal__menu_new_group</item>
+        <item>@string/text_secure_normal__mark_all_as_read</item>
+        <item>@string/arrays__import_export</item>
+        <item>@string/arrays__my_identity_key</item>
+        <item>@string/menu_filter</item>
+        <item>@string/menu_privacy</item>
+        <item>@string/menu_privacy_hide</item>
+        <item>@string/text_secure_normal__menu_settings</item>
+        <item>@string/text_secure_normal__menu_clear_passphrase</item>
+    </string-array>
+    <string-array name="array_nav_icons">
+        <item>@drawable/ic_action_add</item>
+        <item>@drawable/ic_action_checked</item>
+        <item>@drawable/ic_action_save</item>
+        <item>@drawable/ic_action_key</item>
+        <item>@drawable/ic_action_blockuser</item>
+        <item>@drawable/ic_action_hidemessage</item>
+        <item>@drawable/check_cd</item>
+        <item>@drawable/ic_action_settings</item>
+        <item>@drawable/ic_menu_lock_holo_light</item>
     </string-array>
 </resources>

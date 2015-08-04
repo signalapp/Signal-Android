@@ -12,7 +12,6 @@ import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
 import org.thoughtcrime.securesms.push.TextSecurePushTrustStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
@@ -21,8 +20,9 @@ import org.whispersystems.jobqueue.JobParameters;
 import org.whispersystems.jobqueue.requirements.NetworkRequirement;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 import org.whispersystems.textsecure.api.crypto.AttachmentCipherInputStream;
-import org.whispersystems.textsecure.internal.push.PushServiceSocket;
 import org.whispersystems.textsecure.api.push.exceptions.NonSuccessfulResponseCodeException;
+import org.whispersystems.textsecure.internal.push.PushServiceSocket;
+import org.whispersystems.textsecure.internal.util.StaticCredentialsProvider;
 
 import java.io.File;
 import java.io.IOException;
@@ -71,13 +71,11 @@ public class AvatarDownloadJob extends MasterSecretJob {
 
         database.updateAvatar(groupId, avatar);
 
-        try {
-          Recipient groupRecipient = RecipientFactory.getRecipientsFromString(context, GroupUtil.getEncodedId(groupId), true)
+
+        Recipient groupRecipient = RecipientFactory.getRecipientsFromString(context, GroupUtil.getEncodedId(groupId), true)
                                                      .getPrimaryRecipient();
-          groupRecipient.setContactPhoto(avatar);
-        } catch (RecipientFormattingException e) {
-          Log.w("AvatarDownloader", e);
-        }
+        groupRecipient.setContactPhoto(avatar);
+
       }
     } catch (InvalidMessageException | BitmapDecodingException | NonSuccessfulResponseCodeException e) {
       Log.w(TAG, e);
@@ -99,8 +97,9 @@ public class AvatarDownloadJob extends MasterSecretJob {
   private File downloadAttachment(String relay, long contentLocation) throws IOException {
     PushServiceSocket socket = new PushServiceSocket(Release.PUSH_URL,
                                                      new TextSecurePushTrustStore(context),
-                                                     TextSecurePreferences.getLocalNumber(context),
-                                                     TextSecurePreferences.getPushServerPassword(context));
+                                                     new StaticCredentialsProvider(TextSecurePreferences.getLocalNumber(context),
+                                                                                   TextSecurePreferences.getPushServerPassword(context),
+                                                                                   null));
 
     File destination = File.createTempFile("avatar", "tmp");
 

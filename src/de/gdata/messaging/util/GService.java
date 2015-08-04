@@ -1,5 +1,6 @@
 package de.gdata.messaging.util;
 
+import android.app.Service;
 import android.content.AsyncQueryHandler;
 import android.content.ComponentName;
 import android.content.ContentResolver;
@@ -8,7 +9,11 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Looper;
+import android.os.Message;
+import android.os.RemoteException;
 import android.provider.ContactsContract;
 import android.util.Log;
 
@@ -20,64 +25,69 @@ import java.io.IOException;
 import de.gdata.messaging.TextEncrypter;
 import de.gdata.messaging.isfaserverdefinitions.IRpcService;
 
-public class GService {
+public class GService extends Service {
 
   public static final int TYPE_SMS = 2;
   public static final int INCOMING = 1;
-  private static Context mContext;
+  public static Context appContext;
+
   private static PrivacyContentObserver privacyContentObserver;
   private static GDataPreferences preferences;
   private static IRpcService mService;
 
-  public void init(Context context) {
-    preferences = new GDataPreferences(context);
+  public void init() {
+    preferences = new GDataPreferences(appContext);
     preferences.setApplicationFont("Roboto-Light.ttf");
-    mContext = context;
-    PrivacyBridge.mContext = context;
     AsyncQueryHandler handler =
-        new AsyncQueryHandler(context.getContentResolver()) {
+        new AsyncQueryHandler(appContext.getContentResolver()) {
         };
 
     Uri.Builder b = new Uri.Builder();
     b.scheme(ContentResolver.SCHEME_CONTENT);
-    Uri hiddenUri = Uri.parse("content://de.gdata.mobilesecurity.privacy.provider/contact/0");
-    Uri hiddenNUri = Uri.parse("content://de.gdata.mobilesecurity.privacy.provider/number/0");
-    Uri hiddenContactsUri = b.authority(PrivacyBridge.AUTHORITY).path("contacts/").build();
-    Uri hiddenNumbersUri = b.authority(PrivacyBridge.AUTHORITY).path("numbers/").build();
-    if (privacyContentObserver == null) {
+    Uri hiddenUri = Uri.parse("content://"+ GDataPreferences.ISFA_PACKAGE+PrivacyBridge.AUTHORITY);
+
       privacyContentObserver = new PrivacyContentObserver(handler);
-      context.getContentResolver().
+    appContext.getContentResolver().
           registerContentObserver(
-              ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+              ContactsContract.Contacts.CONTENT_URI,
               true, privacyContentObserver
           );
-      context.getContentResolver().
+    appContext.getContentResolver().
           registerContentObserver(
               hiddenUri,
               true,
               privacyContentObserver);
-      context.getContentResolver().
-          registerContentObserver(
-              hiddenNUri,
-              true,
-              privacyContentObserver);
-    }
+
     refreshPrivacyData(false);
   }
   public static void bindISFAService() {
-    boolean isInstalled = true;
+    boolean isInstalled = false;
     try {
       if (mService == null) {
-        Log.d("GDATA", "Trying to bind service " + (mService != null));
-        if (mContext != null) {
-          isInstalled = mContext.bindService(new Intent(GDataPreferences.INTENT_ACCESS_SERVER), mConnection, Context.BIND_AUTO_CREATE);
+        Log.d("GDATA", "Trying to bind service " + (mService == null) + " - " + (appContext == null));
+        if (appContext != null) {
+          try {
+            for(int i = 0; i < GDataPreferences.ISFA_PACKAGES.length && !isInstalled;i++) {
+              Intent serviceIntent = new Intent(GDataPreferences.INTENT_ACCESS_SERVER);
+              serviceIntent.setPackage(GDataPreferences.ISFA_PACKAGES[i]);
+              isInstalled = appContext.bindService(serviceIntent, mConnection, Context.BIND_AUTO_CREATE);
+            }
+          } catch(java.lang.IllegalArgumentException ex) {
+            Log.e("GDATA", "IllegalArgumentException:  " + ex.getMessage());
+          }
         }
+      } else {
+        isInstalled = true;
       }
     } catch (java.lang.SecurityException e) {
       Log.e("GDATA", "Remote Service Exception:  " + "wrong signatures " + e.getMessage());
     }
     if (preferences != null) {
-      if (!isInstalled) {
+      try {
+        if (!isInstalled || (mService!= null && !mService.hasPremiumEnabled())) {
+          preferences.setPrivacyActivated(false);
+        }
+      } catch (RemoteException e) {
         preferences.setPrivacyActivated(false);
       }
     }
@@ -152,6 +162,15 @@ public class GService {
       Log.d("GDATA", "Service error " + e.getMessage());
     }
   }
+  public static void addPhishingException(String url) {
+    try {
+      if (getServiceInstance() != null) {
+        getServiceInstance().addPhishingException(url);
+      }
+    } catch (Exception e) {
+      Log.d("GDATA", "Service error " + e.getMessage());
+    }
+  }
   public static boolean isPasswordCorrect(String pw) {
     boolean isPasswordCorrect = false;
     TextEncrypter encrypter = new TextEncrypter();
@@ -164,7 +183,17 @@ public class GService {
       }
     return isPasswordCorrect;
   }
-
+  public static boolean isMaliciousUrl(String url) {
+    boolean isMaliciousUrl = false;
+    try {
+      if (getServiceInstance() != null && getServiceInstance().isMaliciousUrl(url)) {
+        isMaliciousUrl = true;
+      }
+    } catch (Exception e) {
+      Log.d("GDATA", "Service error " + e.getMessage());
+    }
+    return isMaliciousUrl;
+  }
   public static boolean isNoPasswordSet() {
     return isPasswordCorrect("");
   }
@@ -180,15 +209,29 @@ public class GService {
     }
     return suppressedNumbers;
   }
+  @Override
+  public IBinder onBind(Intent intent) {
+    return null;
+  }
+  @Override
+  public void onCreate() {
+    appContext = getApplicationContext();
+    bindISFAService();
+    init();
+  }
 
+  @Override
+  public int onStartCommand(Intent intent, int flags, int startId) {
+    return Service.START_STICKY;
+  }
   public static class AsyncTaskRefreshPrivacyData extends AsyncTask<Boolean, Void, String> {
 
     @Override
     protected String doInBackground(Boolean... params) {
       bindISFAService();
-      PrivacyBridge.loadAllHiddenContacts(mContext);
+      PrivacyBridge.loadAllHiddenContacts(appContext);
       try {
-        DirectoryHelper.refreshDirectory(mContext, TextSecureCommunicationFactory.createManager(mContext));
+        DirectoryHelper.refreshDirectory(appContext, TextSecureCommunicationFactory.createManager(appContext));
       } catch (IOException e) {
         Log.d("GDATA", "Couldn`t load SecureChat contacts");
       }
@@ -204,4 +247,12 @@ public class GService {
     //nothing big happens here anynmore, so that it isnt neccessary to check whether its already running or not
     new AsyncTaskRefreshPrivacyData().execute(fullReload);
   }
+  //needs to be initialized here, because of Looper/Thread reasons.
+  public static Handler reloadHandler = new Handler(Looper.getMainLooper()) {
+
+    public void handleMessage(Message msg) {
+      super.handleMessage(msg);
+      PrivacyBridge.reloadAdapter();
+    }
+  };
 }

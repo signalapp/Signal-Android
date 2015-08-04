@@ -80,8 +80,8 @@ Ceci va désactiver les messages push en vous désinscrivant du serveur. Vous de
   <string name="ConversationActivity_select_contact_info">Sélectionner les informations du contact</string>
   <string name="ConversationActivity_compose_message">Rédiger un message</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Désolé, il y a eu une erreur lors de l\'ajout de votre pièce jointe.</string>
-  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Désolé, la vidéo sélectionnée dépasse les restrictions de taille de message (%1$skB).</string>
-  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Désolé, le fichier audio sélectionné dépasse les restrictions de taille de message (%1$skB).</string>
+  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Désolé, le fichier audio sélectionné dépasse les limitations en matière de taille de message (%1$sKo).</string>
+  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Désolé, le fichier vidéo sélectionné dépasse les limitations en matière de taille de message (%1$sKo).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Le destinataire n’est pas une adresse SMS ou e-mail valide !</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Le message est vide !</string>
   <string name="ConversationActivity_group_conversation_recipients">Destinataires de la conversation de groupe</string>
@@ -100,6 +100,7 @@ Ceci va désactiver les messages push en vous désinscrivant du serveur. Vous de
   <string name="ConversationActivity_transport_secure_sms">SMS sécurisé</string>
   <string name="ConversationActivity_transport_secure_mms">MMS sécurisé</string>
   <string name="ConversationActivity_transport_textsecure">SecureChat</string>
+  <string name="ConversationActivity_get_with_it">Mettez-vous-y: %s</string>
   <string name="ConversationActivity_install_textsecure">Installez SecureChat : %s</string>
   <string name="ConversationActivity_error_leaving_group">Erreur en quittant le groupe...</string>
   <!--ConversationFragment-->
@@ -687,6 +688,8 @@ Augmenter la confidentialité et éviter les frais de SMS en utilisant le canal 
   <string name="text_secure_normal__menu_clear_passphrase">Verrouiller</string>
   <string name="text_secure_normal__mark_all_as_read">Tout marquer comme lu</string>
   <!--reminder_header-->
+  <string name="reminder_header_expired_build">La version de votre build de SecureChat a expiré!</string>
+  <string name="reminder_header_expired_build_details">Les messages ne pourront plus être envoyés, veuillez installer la dernière version.</string>
   <string name="reminder_header_sms_default_title">Définir SecureChat comme application SMS par défaut ? </string>
   <string name="reminder_header_sms_default_text">SecureChat n\'est pas définie comme application SMS par défaut.</string>
   <string name="reminder_header_sms_import_title">Désirez-vous importer les SMS du système ?</string>

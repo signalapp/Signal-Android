@@ -3,34 +3,32 @@
     <string name="ConversationActivity_gdata_selfdestroy_entry_five">5分鍾</string>
     <string name="ConversationActivity_gdata_selfdestroy_entry_thirty">30分鍾</string>
     <string name="ConversationActivity_gdata_selfdestroy_entry_hour">1小時</string>
-
-    <string name="gdata_contact_selection_page_title">通訊錄</string>
-
-    <string name="gdata_conversation_list_page_title">消息</string>
-
+    <string name="ConversationActivity_gdata_selfdestroy_entry_3">5秒</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_2">15秒</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_1">60秒</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_0">關閉</string>
+    <string name="gdata_contact_selection_page_title">聯系人</string>
+    <string name="gdata_conversation_list_page_title">對話</string>
     <string name="gd_dialog_fragment_phishing_title">網頁保護</string>
     <string name="gd_dialog_fragment_phishing_message">此網站是釣魚詐騙網站，請確認沒有安全風險後再選擇繼續。</string>
-    <string name="gd_dialog_fragment_phishing_block">禁用</string>
+    <string name="gd_dialog_fragment_phishing_block">鎖定</string>
     <string name="gd_dialog_fragment_phishing_continue">繼續</string>
-
+    <string name="log_submit_activity__button_dont_submit">不發送</string>
+    <string name="log_submit_activity__button_submit">發送</string>
     <string name="menu_filter">阻止聯系人</string>
     <string name="menu_privacy">隱藏對話</string>
     <string name="menu_privacy_unhide">顯示隱藏的對話</string>
-    <string name="menu_privacy_hide">再次隱藏對話</string>
+    <string name="menu_privacy_hide">隱藏</string>
     <string name="menu_privacy_single_hide">隱藏對話</string>
     <string name="menu_filter_block_contact">阻止聯系人</string>
-
     <string name="privacy_pw_dialog_header">輸入密碼: </string>
     <string name="privacy_pw_dialog_toast_wrong">您輸入的密碼和行動安全防護軟體的密碼不一致。</string>
+    <string name="privacy_pw_dialog_hint">提示: 這裏需要輸入移動安全軟件密碼</string>
     <string name="privacy_pw_dialog_toast_reload">對話恢複顯示中……</string>
-    <string name="privacy_pw_dialog_toast_hide">正在隱藏對話中……</string>
+    <string name="privacy_pw_dialog_toast_hide">正在准備隱藏此對話中……</string>
     <string name="privacy_pw_dialog_toast_hide_single">正在隱藏此對話中……</string>
-    <string name="privacy_pw_dialog_hint">提示: 這裏需要輸入行動安全防護軟體密碼</string>
-
     <string name="privacy_toast_install_premium">使用此功能須安裝G DATA行動安全防護</string>
-
     <string name="conversation_activity_invite_link">https://secure.gd/scg</string>
-
     <string name="preferences_notification_never">從不</string>
     <string name="preferences_notification_one_time">一次</string>
     <string name="preferences_notification_two_times">兩次</string>
@@ -38,4 +36,31 @@
     <string name="preferences_notification_five_times">五次</string>
     <string name="preferences_notification_ten_times">十次</string>
     <string name="preferences_notification_title">重複提醒</string>
+    <string name="self_destruction">刪除</string>
+    <string name="self_destruction_title">#1# 秒後自動刪除……</string>
+    <string name="self_destruction_body">消息內容會在被打開後的#1#秒後自動刪除。</string>
+    <string name="unknown_country">國家無法識別</string>
+    <string name="self_destruction_compose_hint">發送可自刪除消息</string>
+    <string name="privacy_toast_unlock_premium">您必須開啓G DATA行動安全防護軟體的高級功能才能使用此功能。</string>
+    <string name="tk_mail">sc-feedback@gdata.de</string>
+    <string name="import_complete_dialog">SecureChat系統數據庫導入完畢。</string>
+    <string name="profile_status_label">狀態</string>
+    <string name="profile_number_label">電話號碼</string>
+    <string name="profile_status_member">會員</string>
+    <string name="identification">身份驗證</string>
+    <string name="identification_title">此密鑰用來驗證您的身份。請讓您的對話夥伴掃描它，使對方可以確認來自這個密鑰的消息確實是您發送的。</string>
+    <string name="verify_identity_activity_their_identity">信息接收人身份驗證 -此密鑰用來驗證您對話夥伴的身份。請您掃描它來確認接收到的消息是真實的。</string>
+    <string name="verify_identity_activity_your_identity" >自我身份驗證 -此密鑰用來驗證您的身份。請讓您的對話夥伴掃描它來驗證您發送的消息。</string>
+    <string name="identification_verified_unsuccessfully">密鑰不一致!</string>
+    <string name="identification_verified_successfully">身份驗證成功</string>
+    <string name="accept_eula_and_continue"><![CDATA[同意 & 繼續]]></string>
+    <string name="eula_gdata"><u>最終用戶許可協議</u></string>
+    <string name="take_picture">拍照</string>
+    <string name="status_available">在線</string>
+    <string name="status_busy">忙碌中</string>
+    <string name="status_atwork">工作中</string>
+    <string name="status_meeting">開會中</string>
+    <string name="status_donotdisturb">請勿打擾</string>
+    <string name="status_nocallsjustchat">請勿來電，只接受SecureChat消息</string>
+    <string name="status_onlyurgentcalls">只允許緊急呼叫</string>
 </resources>

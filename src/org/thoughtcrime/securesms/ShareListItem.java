@@ -98,7 +98,7 @@ public class ShareListItem extends RelativeLayout
 
   private void setContactPhoto(final Recipient recipient) {
     if (recipient == null) return;
-    contactPhotoImage.setImageBitmap(BitmapUtil.getCircleCroppedBitmap(recipient.getContactPhoto()));
+    contactPhotoImage.setImageBitmap(BitmapUtil.getCircleBitmap(recipient.getContactPhoto()));
   }
 
   private void setBackground() {

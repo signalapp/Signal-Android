@@ -110,7 +110,7 @@
   <string name="ExportFragment_error_while_writing_to_sd_card">ಎಸ್.ಡಿ ಕಾರ್ಡ್ಗೆ ಬರೆಯುವಾಗ ದೋಷವಾಗಿದೆ. ⏎</string>
   <string name="ExportFragment_success">ಯಶಸ್ವಿಯಾಗಿದೆ!</string>
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_TextSecure_communication_failure">ಶಾಶ್ವತ ಟೆಕ್ಸ್ಟ ಸೆಕ್ಯೂರ್ ಸಂಪರ್ಕ ವೈಫಲ್ಯ!</string>
+  <string name="GcmRefreshJob_Permanent_SecureChat_communication_failure">ಶಾಶ್ವತ ಟೆಕ್ಸ್ಟ ಸೆಕ್ಯೂರ್ ಸಂಪರ್ಕ ವೈಫಲ್ಯ!</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">ಹೋಸ ಸಮೂಹ </string>
   <string name="GroupCreateActivity_actionbar_update_title">ಸಮೂಹವನ್ನು ನವೀಕರಿಸಿ</string>
@@ -382,7 +382,7 @@
 ಇವು ಸೇರಿವೆ: </string>
   <string name="registration_problems__sms_interceptors">ಎಸ್ಎಂಎಸ್ ಅಂತಃಛೇದಕಗಳು.</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
-ಕೆಲವು ತೃತೀಯ ಎಸ್. ಎಮ್. ಎಸ್ ಸಂದೇಶದ ಕ್ಲೈಂಟ್ಗಳು, ಉದಾಹರಣೆಗೆ Handcent ಅಥವಾ GoSMS, ಕಳಪೆಯಾಗಿ ವರ್ತಿಸುತ್ತವೆ ಹಾಗೂ ಎಲ್ಲಾ ಒಳಬರುವ ಎಸ್. ಎಮ್. ಎಸ್ ಸಂದೇಶಗಳನ್ನು ಅಡ್ಡಗಟ್ಟುತ್ತವೆ. ನೀವು ಎಸ್. ಎಮ್. ಎಸ್ ಸಂದೇಶವನ್ನು ಸ್ವೀಕರಿಸಿದ ವೇಳೆಯಲ್ಲಿ, ಆ ಸಂದೇಶ \' Your TextSecure verification code:\'  ಎಂಬುದಾಗಿ  ಆರಂಭವಾಗುತ್ತದೆಯೇ ಎಂದು ಪರಿಶೀಲಿಸಿ. ಆ ಸಂದರ್ಭದಲ್ಲಿ ನಿಮ್ಮ ತೃತೀಯ ಎಸ್. ಎಮ್. ಎಸ್ ಸಂದೇಶದ ಅಪ್ಲಿಕೇಶನ್ನನ್ನು  ಎಸ್. ಎಮ್. ಎಸ್ ಸಂದೇಶಗಳು ಹಾದು ಹೋಗಲು ಸಾಧ್ಯವಾಗುವಂತೆ  ಕಾನ್ಫಿಗರ್ ಮಾಡಬೇಕಾಗುತ್ತದೆ. </string>
+ಕೆಲವು ತೃತೀಯ ಎಸ್. ಎಮ್. ಎಸ್ ಸಂದೇಶದ ಕ್ಲೈಂಟ್ಗಳು, ಉದಾಹರಣೆಗೆ Handcent ಅಥವಾ GoSMS, ಕಳಪೆಯಾಗಿ ವರ್ತಿಸುತ್ತವೆ ಹಾಗೂ ಎಲ್ಲಾ ಒಳಬರುವ ಎಸ್. ಎಮ್. ಎಸ್ ಸಂದೇಶಗಳನ್ನು ಅಡ್ಡಗಟ್ಟುತ್ತವೆ. ನೀವು ಎಸ್. ಎಮ್. ಎಸ್ ಸಂದೇಶವನ್ನು ಸ್ವೀಕರಿಸಿದ ವೇಳೆಯಲ್ಲಿ, ಆ ಸಂದೇಶ \' Your SecureChat verification code:\'  ಎಂಬುದಾಗಿ  ಆರಂಭವಾಗುತ್ತದೆಯೇ ಎಂದು ಪರಿಶೀಲಿಸಿ. ಆ ಸಂದರ್ಭದಲ್ಲಿ ನಿಮ್ಮ ತೃತೀಯ ಎಸ್. ಎಮ್. ಎಸ್ ಸಂದೇಶದ ಅಪ್ಲಿಕೇಶನ್ನನ್ನು  ಎಸ್. ಎಮ್. ಎಸ್ ಸಂದೇಶಗಳು ಹಾದು ಹೋಗಲು ಸಾಧ್ಯವಾಗುವಂತೆ  ಕಾನ್ಫಿಗರ್ ಮಾಡಬೇಕಾಗುತ್ತದೆ. </string>
   <string name="registration_problems__incorrect_number">ತಪ್ಪಾದ ಸಂಖ್ಯೆ.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
 ನೀವು ಸರಿಯಾಗಿ ನಿಮ್ಮ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿರುವಿರಿ ಹಾಗೂ ಇದು ನಿಮ್ಮ ವಲಯಕ್ಕೆ ಸೂಕ್ತವಾಗಿ ಸ್ವರೂಪಗೊಳಿಸಲಾಗಿದೆ ಎಂದು ಪರಿಶೀಲಿಸಿ.</string>

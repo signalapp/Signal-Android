@@ -3,34 +3,32 @@
     <string name="ConversationActivity_gdata_selfdestroy_entry_five">5 分</string>
     <string name="ConversationActivity_gdata_selfdestroy_entry_thirty">30 分</string>
     <string name="ConversationActivity_gdata_selfdestroy_entry_hour">1 時間</string>
-
+    <string name="ConversationActivity_gdata_selfdestroy_entry_3">5 秒</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_2">15 秒</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_1">60 秒</string>
+    <string name="ConversationActivity_gdata_selfdestroy_entry_0">無効にする</string>
     <string name="gdata_contact_selection_page_title">連絡先</string>
-
     <string name="gdata_conversation_list_page_title">チャット</string>
-
     <string name="gd_dialog_fragment_phishing_title">ウェブ保護</string>
-    <string name="gd_dialog_fragment_phishing_message">このサイトはフィッシングサイト、詐欺、悪質サイトの疑いがあります。アクセスを行いたい場合は、このサイトが安全と判断できる場合のみ、以下の「続行」ボタンをタップし、ご自身の責任においてアクセスを行ってください。</string>
+    <string name="gd_dialog_fragment_phishing_message">このサイトはフィッシングサイト、詐欺、悪質サイトです。アクセスを行いたい場合は、このサイトが安全と判断できる場合のみ、以下の「続行」ボタンをタップし、ご自身の責任においてアクセスを行ってください。</string>
     <string name="gd_dialog_fragment_phishing_block">拒否</string>
     <string name="gd_dialog_fragment_phishing_continue">続行</string>
-
+    <string name="log_submit_activity__button_dont_submit">送信しない</string>
+    <string name="log_submit_activity__button_submit">送信</string>
     <string name="menu_filter">連絡先をブロック</string>
-    <string name="menu_privacy">チャットを隠す</string>
-    <string name="menu_privacy_unhide">隠したチャットを表示</string>
-    <string name="menu_privacy_hide">隠したチャットを非表示</string>
-    <string name="menu_privacy_single_hide">チャットを隠す</string>
+    <string name="menu_privacy">チャットの非表示</string>
+    <string name="menu_privacy_unhide">非表示をオン</string>
+    <string name="menu_privacy_hide">非表示にする</string>
+    <string name="menu_privacy_single_hide">チャットの非表示</string>
     <string name="menu_filter_block_contact">連絡先をブロック</string>
-
     <string name="privacy_pw_dialog_header">パスワードの入力: </string>
     <string name="privacy_pw_dialog_toast_wrong">入力されたパスワードが Internet Security のものと一致していません。</string>
-    <string name="privacy_pw_dialog_toast_reload">チャットを復元中...</string>
-    <string name="privacy_pw_dialog_toast_hide">チャットを隠す準備をしています...</string>
-    <string name="privacy_pw_dialog_toast_hide_single">チャットを隠しています...</string>
-    <string name="privacy_pw_dialog_hint">メモ: Internet Security for Android で設定したパスワードです。</string>
-
+    <string name="privacy_pw_dialog_hint">ヒント: Internet Security für Android で設定したパスワードです。</string>
+    <string name="privacy_pw_dialog_toast_reload">チャットを復元しています...</string>
+    <string name="privacy_pw_dialog_toast_hide">チャットを非表示化する準備をしています...</string>
+    <string name="privacy_pw_dialog_toast_hide_single">チャットを非表示化しています...</string>
     <string name="privacy_toast_install_premium">この機能を利用するには、G DATA Internet Security for Android が必要です。</string>
-
     <string name="conversation_activity_invite_link">https://secure.gd/scg</string>
-
     <string name="preferences_notification_never">常に非表示</string>
     <string name="preferences_notification_one_time">1 回</string>
     <string name="preferences_notification_two_times">2 回</string>
@@ -38,4 +36,31 @@
     <string name="preferences_notification_five_times">5 回</string>
     <string name="preferences_notification_ten_times">10 回</string>
     <string name="preferences_notification_title">警告の繰り返し表示</string>
+    <string name="self_destruction">自動消去</string>
+    <string name="self_destruction_title">自動消去まで残り #1# 秒...</string>
+    <string name="self_destruction_body">このメッセージは開いて #1# 秒後に自動消去されます。</string>
+    <string name="unknown_country">不明な国</string>
+    <string name="self_destruction_compose_hint">自動消去メッセージを送信</string>
+    <string name="privacy_toast_unlock_premium">この機能を利用するには、G DATA Internet Security のプレミアム機能をアンロックする必要があります。</string>
+    <string name="tk_mail">sc-feedback@gdata.de</string>
+    <string name="import_complete_dialog">SecureChat システムのデータベースをインポートしました。</string>
+    <string name="profile_status_label">ステータス</string>
+    <string name="profile_number_label">電話番号</string>
+    <string name="profile_status_member">メンバー</string>
+    <string name="identification">本人確認</string>
+    <string name="identification_title">この鍵はあなたのIDです。この鍵を相手の端末で読み込ませてください。送信メッセージがあなた本人からのものである事を裏付けできます。</string>
+    <string name="verify_identity_activity_their_identity">受信者確認 – この鍵で相手の本人確認をします。受信メッセージが信頼できる場合は、この鍵を読み取ってください。</string>
+    <string name="verify_identity_activity_your_identity" >あなたのID – この鍵はあなたの本人確認IDです。あなた本人からのメッセージである事を証明するため、この鍵を相手の端末で読み込ませてください。</string>
+    <string name="identification_verified_unsuccessfully">鍵が一致しません!</string>
+    <string name="identification_verified_successfully">本人確認できました。</string>
+    <string name="accept_eula_and_continue"><![CDATA[同意して続行する]]></string>
+    <string name="eula_gdata"><u>利用条件</u></string>
+    <string name="take_picture">写真を撮る</string>
+    <string name="status_available">オンライン</string>
+    <string name="status_busy">取り込み中</string>
+    <string name="status_atwork">仕事中</string>
+    <string name="status_meeting">会議中</string>
+    <string name="status_donotdisturb">応答不可</string>
+    <string name="status_nocallsjustchat">通話不可、SecureChatのみ</string>
+    <string name="status_onlyurgentcalls">緊急連絡のみ</string>
 </resources>

@@ -9,6 +9,7 @@ import java.io.UnsupportedEncodingException;
 import ws.com.google.android.mms.ContentType;
 import ws.com.google.android.mms.pdu.CharacterSets;
 import ws.com.google.android.mms.pdu.PduBody;
+import ws.com.google.android.mms.pdu.PduPart;
 
 public class PartParser {
   public static String getMessageText(PduBody body) {
@@ -45,7 +46,7 @@ public class PartParser {
     PduBody stripped = new PduBody();
 
     for (int i=0;i<body.getPartsNum();i++) {
-      if (isDisplayableMedia(Util.toIsoString(body.getPart(i).getContentType()))) {
+      if (isDisplayableMedia(body.getPart(i))) {
         stripped.addPart(body.getPart(i));
       }
     }
@@ -57,9 +58,7 @@ public class PartParser {
     int partCount = 0;
 
     for (int i=0;i<body.getPartsNum();i++) {
-      String contentType = Util.toIsoString(body.getPart(i).getContentType());
-
-      if (isDisplayableMedia(contentType)) {
+      if (isDisplayableMedia(body.getPart(i))) {
         partCount++;
       }
     }
@@ -67,9 +66,23 @@ public class PartParser {
     return partCount;
   }
 
-  private static boolean isDisplayableMedia(String contentType) {
-    return ContentType.isImageType(contentType) ||
-           ContentType.isAudioType(contentType) ||
-           ContentType.isVideoType(contentType);
+  public static boolean isImage(PduPart part) {
+    return ContentType.isImageType(Util.toIsoString(part.getContentType()));
+  }
+
+  public static boolean isAudio(PduPart part) {
+    return ContentType.isAudioType(Util.toIsoString(part.getContentType()));
+  }
+
+  public static boolean isVideo(PduPart part) {
+    return ContentType.isVideoType(Util.toIsoString(part.getContentType()));
+  }
+
+  public static boolean isText(PduPart part) {
+    return ContentType.isTextType(Util.toIsoString(part.getContentType()));
+  }
+
+  public static boolean isDisplayableMedia(PduPart part) {
+    return isImage(part) || isAudio(part) || isVideo(part);
   }
 }

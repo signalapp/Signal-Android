@@ -2,15 +2,18 @@ package org.thoughtcrime.securesms;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.webkit.MimeTypeMap;
 
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
+
+import de.gdata.messaging.util.GService;
+import ws.com.google.android.mms.ContentType;
 
 public class RoutingActivity extends PassphraseRequiredActionBarActivity {
 
@@ -20,6 +23,7 @@ public class RoutingActivity extends PassphraseRequiredActionBarActivity {
   private static final int STATE_CONVERSATION_OR_LIST     = 3;
   private static final int STATE_UPGRADE_DATABASE         = 4;
   private static final int STATE_PROMPT_PUSH_REGISTRATION = 5;
+  private static final int STATE_PROMPT_EULA = 6;
 
   private MasterSecret masterSecret   = null;
   private boolean      isVisible      = false;
@@ -31,6 +35,12 @@ public class RoutingActivity extends PassphraseRequiredActionBarActivity {
     super.onNewIntent(intent);
     setIntent(intent);
     this.newIntent = true;
+  }
+
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    startService(new Intent(this, GService.class));
   }
 
   @Override
@@ -85,7 +95,13 @@ public class RoutingActivity extends PassphraseRequiredActionBarActivity {
     case STATE_CONVERSATION_OR_LIST:     handleDisplayConversationOrList(); break;
     case STATE_UPGRADE_DATABASE:         handleUpgradeDatabase();           break;
     case STATE_PROMPT_PUSH_REGISTRATION: handlePushRegistration();          break;
+    case STATE_PROMPT_EULA:              handleEula();                      break;
     }
+  }
+
+  private void handleEula() {
+    Intent intent = new Intent(this, EulaActivity.class);
+    startActivityForResult(intent, STATE_PROMPT_EULA);
   }
 
   private void handleCreatePassphrase() {
@@ -133,9 +149,10 @@ public class RoutingActivity extends PassphraseRequiredActionBarActivity {
     intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, parameters.thread);
     intent.putExtra(ConversationActivity.MASTER_SECRET_EXTRA, masterSecret);
     intent.putExtra(ConversationActivity.DRAFT_TEXT_EXTRA, parameters.draftText);
-    intent.putExtra(ConversationActivity.DRAFT_IMAGE_EXTRA, parameters.draftImage);
     intent.putExtra(ConversationActivity.DRAFT_AUDIO_EXTRA, parameters.draftAudio);
+    intent.putExtra(ConversationActivity.DRAFT_IMAGE_EXTRA, parameters.draftImage);
     intent.putExtra(ConversationActivity.DRAFT_VIDEO_EXTRA, parameters.draftVideo);
+    intent.putExtra(ConversationActivity.DRAFT_MEDIA_TYPE_EXTRA, parameters.draftMediaType);
 
     return intent;
   }
@@ -146,9 +163,10 @@ public class RoutingActivity extends PassphraseRequiredActionBarActivity {
 
     if (parameters != null) {
       intent.putExtra(ConversationActivity.DRAFT_TEXT_EXTRA, parameters.draftText);
-      intent.putExtra(ConversationActivity.DRAFT_IMAGE_EXTRA, parameters.draftImage);
       intent.putExtra(ConversationActivity.DRAFT_AUDIO_EXTRA, parameters.draftAudio);
+      intent.putExtra(ConversationActivity.DRAFT_IMAGE_EXTRA, parameters.draftImage);
       intent.putExtra(ConversationActivity.DRAFT_VIDEO_EXTRA, parameters.draftVideo);
+      intent.putExtra(ConversationActivity.DRAFT_MEDIA_TYPE_EXTRA, parameters.draftMediaType);
     }
 
     return intent;
@@ -178,6 +196,9 @@ public class RoutingActivity extends PassphraseRequiredActionBarActivity {
     if (DatabaseUpgradeActivity.isUpdate(this))
       return STATE_UPGRADE_DATABASE;
 
+    if (!TextSecurePreferences.hasAcceptedEula(this))
+      return STATE_PROMPT_EULA;
+
     if (!TextSecurePreferences.hasPromptedPushRegistration(this))
       return STATE_PROMPT_PUSH_REGISTRATION;
 
@@ -199,39 +220,26 @@ public class RoutingActivity extends PassphraseRequiredActionBarActivity {
     String body     = getIntent().getStringExtra("sms_body");
     long   threadId = getIntent().getLongExtra("thread_id", -1);
 
-    try {
-      String data = getIntent().getData().getSchemeSpecificPart();
-      recipients = RecipientFactory.getRecipientsFromString(this, data, false);
-      threadId   = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipients);
-    } catch (RecipientFormattingException rfe) {
-      recipients = null;
-    }
+    String data = getIntent().getData().getSchemeSpecificPart();
+    recipients = RecipientFactory.getRecipientsFromString(this, data, false);
+    threadId   = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipients);
 
-    return new ConversationParameters(threadId, recipients, body, null, null, null);
+    return new ConversationParameters(threadId, recipients, body, null, null, null, null);
   }
 
   private ConversationParameters getConversationParametersForShareAction() {
-    String type      = getIntent().getType();
-    String draftText = getIntent().getStringExtra(Intent.EXTRA_TEXT);
-    Uri draftImage   = null;
-    Uri draftAudio   = null;
-    Uri draftVideo   = null;
+    String type       = getIntent().getType();
+    String draftText  = getIntent().getStringExtra(Intent.EXTRA_TEXT);
+    Uri    draftImage = getIntent().getParcelableExtra(ConversationActivity.DRAFT_IMAGE_EXTRA);
+    Uri    draftVideo = getIntent().getParcelableExtra(ConversationActivity.DRAFT_VIDEO_EXTRA);
+    Uri    draftAudio = getIntent().getParcelableExtra(ConversationActivity.DRAFT_AUDIO_EXTRA);
 
     Uri streamExtra = getIntent().getParcelableExtra(Intent.EXTRA_STREAM);
 
     if (streamExtra != null) {
       type = getMimeType(streamExtra);
     }
-
-    if (type != null && type.startsWith("image/")) {
-      draftImage = streamExtra;
-    } else if (type != null && type.startsWith("audio/")) {
-      draftAudio = streamExtra;
-    } else if (type != null && type.startsWith("video/")) {
-      draftVideo = streamExtra;
-    }
-
-    return new ConversationParameters(-1, null, draftText, draftImage, draftAudio, draftVideo);
+    return new ConversationParameters(-1, null, draftText, draftImage, draftVideo, draftAudio, type);
   }
 
   private String getMimeType(Uri uri) {
@@ -250,7 +258,7 @@ public class RoutingActivity extends PassphraseRequiredActionBarActivity {
     long[] recipientIds   = getIntent().getLongArrayExtra("recipients");
     Recipients recipients = recipientIds == null ? null : RecipientFactory.getRecipientsForIds(this, recipientIds, true);
 
-    return new ConversationParameters(threadId, recipients, null, null, null, null);
+    return new ConversationParameters(threadId, recipients, null, null, null, null, null);
   }
 
   private boolean isShareAction() {
@@ -266,18 +274,20 @@ public class RoutingActivity extends PassphraseRequiredActionBarActivity {
     public final Recipients recipients;
     public final String     draftText;
     public final Uri        draftImage;
-    public final Uri        draftAudio;
     public final Uri        draftVideo;
+    public final Uri        draftAudio;
+    public final String     draftMediaType;
 
     public ConversationParameters(long thread, Recipients recipients,
-                                  String draftText, Uri draftImage, Uri draftAudio, Uri draftVideo)
+                                  String draftText, Uri draftImage, Uri draftVideo, Uri draftAudio, String draftMediaType)
     {
-     this.thread     = thread;
-     this.recipients = recipients;
-     this.draftText  = draftText;
-     this.draftImage = draftImage;
-     this.draftAudio = draftAudio;
-     this.draftVideo = draftVideo;
+      this.thread         = thread;
+      this.recipients     = recipients;
+      this.draftText      = draftText;
+      this.draftImage     = draftImage;
+      this.draftVideo     = draftVideo;
+      this.draftAudio     = draftAudio;
+      this.draftMediaType = draftMediaType;
     }
   }
 

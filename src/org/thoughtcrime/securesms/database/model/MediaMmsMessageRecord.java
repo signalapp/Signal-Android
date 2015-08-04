@@ -22,6 +22,8 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.database.documents.NetworkFailure;
+import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.mms.MediaNotFoundException;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
@@ -30,6 +32,7 @@ import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
 
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -52,10 +55,13 @@ public class MediaMmsMessageRecord extends MessageRecord {
                                long dateSent, long dateReceived, int deliveredCount,
                                long threadId, Body body,
                                ListenableFutureTask<SlideDeck> slideDeck,
-                               int partCount, long mailbox)
+                               int partCount, long mailbox,
+                               List<IdentityKeyMismatch> mismatches,
+                               List<NetworkFailure> failures)
   {
     super(context, id, body, recipients, individualRecipient, recipientDeviceId,
-          dateSent, dateReceived, threadId, DELIVERY_STATUS_NONE, deliveredCount, mailbox);
+          dateSent, dateReceived, threadId, DELIVERY_STATUS_NONE, deliveredCount, mailbox,
+          mismatches, failures);
 
     this.context             = context.getApplicationContext();
     this.partCount           = partCount;
@@ -66,7 +72,7 @@ public class MediaMmsMessageRecord extends MessageRecord {
     return slideDeckFutureTask;
   }
 
-  private SlideDeck getSlideDeckSync() {
+  public SlideDeck getSlideDeckSync() {
     try {
       return slideDeckFutureTask.get();
     } catch (InterruptedException e) {
@@ -132,6 +138,8 @@ public class MediaMmsMessageRecord extends MessageRecord {
       return emphasisAdded(context.getString(R.string.MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported));
     } else if (!getBody().isPlaintext()) {
       return emphasisAdded(context.getString(R.string.MessageNotifier_encrypted_message));
+    } else if (isOutgoing()) {
+      return new SpannableString(getBody().getParsedBody());
     }
 
     return super.getDisplayBody();

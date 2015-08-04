@@ -6,8 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Handler;
-import android.os.Message;
+import android.os.Looper;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.ContactsContract;
@@ -16,15 +15,15 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.google.thoughtcrimegson.Gson;
-import com.google.thoughtcrimegson.reflect.TypeToken;
+import com.google.common.reflect.TypeToken;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.JsonUtils;
 
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,9 +36,10 @@ public class PrivacyBridge {
 
   public static final String RESULT_KEY = "numberpicker_entries";
 
-  public final static String AUTHORITY = "de.gdata.mobilesecurity.privacy.provider";
+  public final static String AUTHORITY = ".privacy.provider";
   public static final String NAME_COLUMN = ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME;
   public static final String RECIPIENT_IDS = "recipient_ids";
+  private static final String ACTION_RELOAD_ADAPTER = "reloadAdapter";
 
   private static GDataPreferences preferences;
 
@@ -59,13 +59,7 @@ public class PrivacyBridge {
   }
 
   public static Recipients getRecipientForNumber(Context context, String phoneNo) {
-    Recipients recipients;
-    try {
-      recipients = RecipientFactory.getRecipientsFromString(context, GUtil.normalizeNumber(phoneNo), true);
-    } catch (RecipientFormattingException e) {
-      recipients = new Recipients(Recipient.getUnknownRecipient(context));
-    }
-    return recipients;
+    return RecipientFactory.getRecipientsFromString(context, GUtil.normalizeNumber(phoneNo), true);
   }
 
   public static Contact getPhoneContactForDisplayName(String name, Context context) {
@@ -82,7 +76,7 @@ public class PrivacyBridge {
   }
 
   public static void loadAllHiddenContacts(Context context) {
-    mContext = context;
+    GService.appContext = context;
     loadHiddenContactsPerService();
   }
 
@@ -92,39 +86,27 @@ public class PrivacyBridge {
     }
     return hiddenRecipients;
   }
-
-  public static Context mContext;
-
-
   public static void loadHiddenContactsPerService() {
-    Type listType = new TypeToken<ArrayList<String>>() {
-    }.getType();
     ArrayList<Recipient> newHiddenRecipients = new ArrayList<Recipient>();
     String suppressedNumbers = GService.getSupressedNumbers();
     ArrayList<String> hiddenNumbers = new ArrayList<String>();
 
     if (!TextUtils.isEmpty(suppressedNumbers)) {
-      hiddenNumbers = new Gson().fromJson(suppressedNumbers, listType);
+      try {
+        hiddenNumbers = JsonUtils.fromJson(suppressedNumbers, ArrayList.class);
+      } catch (IOException e) {
+        Log.e("PrivacyBridge", e.getMessage());
+      }
+      for (String number : hiddenNumbers) {
+        newHiddenRecipients.add(getRecipientForNumber(GService.appContext, number).getPrimaryRecipient());
+      }
+      getPreferences().saveHiddenRecipients(newHiddenRecipients);
+      hiddenRecipients = newHiddenRecipients;
     }
-    for (String number : hiddenNumbers) {
-      newHiddenRecipients.add(getRecipientForNumber(mContext, number).getPrimaryRecipient());
-    }
-    getPreferences().saveHiddenRecipients(newHiddenRecipients);
-    hiddenRecipients = newHiddenRecipients;
-
-    messageHandler.sendEmptyMessage(0);
+    GService.reloadHandler.sendEmptyMessage(0);
 
     Log.d("PRIVACY", "Privacy loading contacts done");
   }
-
-  private static Handler messageHandler = new Handler() {
-
-    public void handleMessage(Message msg) {
-      super.handleMessage(msg);
-      reloadAdapter();
-    }
-  };
-
   /**
    * Removes hidden contacts from cursor.
    *
@@ -222,19 +204,19 @@ public class PrivacyBridge {
       entry = new Entry("unknown", numbers);
     }
     entries.add(entry);
-    Toast.makeText(mContext, mContext.getString(R.string.privacy_pw_dialog_toast_hide_single), Toast.LENGTH_LONG).show();
+    Toast.makeText(GService.appContext, GService.appContext.getString(R.string.privacy_pw_dialog_toast_hide_single), Toast.LENGTH_LONG).show();
     new AddTask().execute(entries);
     GService.refreshPrivacyData(false);
   }
-  public static ArrayList<Contact> getAllPhoneContacts(Context mContext, boolean reload) {
+  public static ArrayList<Contact> getAllPhoneContacts(Context context, boolean reload) {
     if (reload || allPhoneContacts == null) {
-      allPhoneContacts = new ContactFetcher(mContext).fetchAll();
+      allPhoneContacts = new ContactFetcher(context).fetchAll();
     }
     return allPhoneContacts;
   }
 
   public static GDataPreferences getPreferences() {
-    return preferences == null ?new GDataPreferences(mContext): preferences;
+    return preferences == null ? new GDataPreferences(GService.appContext): preferences;
   }
 
   private static class AddTask extends AsyncTask<List<NumberEntry>, Integer, Integer> {
@@ -243,19 +225,19 @@ public class PrivacyBridge {
       final List<NumberEntry> entries = arrayLists[0];
       Uri.Builder b = new Uri.Builder();
       b.scheme(ContentResolver.SCHEME_CONTENT);
-      Uri hiddenContactsUri = b.authority(AUTHORITY).path("contacts/").build();
-      Uri hiddenNumbersUri = b.authority(AUTHORITY).path("numbers/").build();
+      Uri hiddenContactsUri = b.authority(GDataPreferences.ISFA_PACKAGE+ AUTHORITY).path("contacts/").build();
+      Uri hiddenNumbersUri = b.authority(GDataPreferences.ISFA_PACKAGE+ AUTHORITY).path("numbers/").build();
 
       if (entries == null || entries.size() == 0) return 0;
 
       String id = "";
       String number = "";
-      final ContentResolver contentResolver = mContext.getContentResolver();
+      final ContentResolver contentResolver = GService.appContext.getContentResolver();
       List<ContentValues> contacts = new ArrayList<ContentValues>();
       List<ContentValues> numbers = new ArrayList<ContentValues>();
       for (final NumberEntry e : entries) {
         final ContentValues cv = new ContentValues(3);
-        id = new ContactFetcher(mContext).fetchContactsId(mContext, e.getNumbers().get(0));
+        id = new ContactFetcher(GService.appContext).fetchContactsId(GService.appContext, e.getNumbers().get(0));
         number = "";
 
         if (e.getNumbers().size() > 0) {
@@ -383,8 +365,8 @@ public class PrivacyBridge {
 
   }
   public static void reloadAdapter() {
-    Intent intent = new Intent("reloadAdapter");
-    LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
+    Intent intent = new Intent(ACTION_RELOAD_ADAPTER);
+    LocalBroadcastManager.getInstance(GService.appContext).sendBroadcast(intent);
   }
 }
 

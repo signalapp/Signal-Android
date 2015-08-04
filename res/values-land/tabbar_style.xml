@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Modify the text color -->
+    <style name="TabStyle" parent="android:Widget.Holo.Light.ActionBar.TabText.Inverse">
+        <item name="android:textColor">@color/white</item>
+        <item name="background">@color/gdata_primary_color</item>
+        <item name="android:background">@color/gdata_primary_color</item>
+    </style>
+</resources>

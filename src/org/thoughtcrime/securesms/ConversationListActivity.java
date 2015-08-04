@@ -24,11 +24,17 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.TypedArray;
 import android.database.ContentObserver;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.ContactsContract;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -36,40 +42,66 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.text.InputType;
+
+import android.text.method.PasswordTransformationMethod;
+
+import android.util.DisplayMetrics;
+
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.thoughtcrime.securesms.components.CircledImageView;
+import org.thoughtcrime.securesms.components.ThumbnailView;
+import org.thoughtcrime.securesms.contacts.ContactPhotoFactory;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.PartDatabase;
+import org.thoughtcrime.securesms.mms.ImageSlide;
+import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MemoryCleaner;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+
+import com.melnykov.fab.FloatingActionButton;
 
 import de.gdata.messaging.SlidingTabLayout;
 import de.gdata.messaging.util.GService;
 import de.gdata.messaging.util.GDataPreferences;
 import de.gdata.messaging.util.GUtil;
+import de.gdata.messaging.util.NavDrawerAdapter;
+import de.gdata.messaging.util.ProfileAccessor;
+import ws.com.google.android.mms.pdu.PduPart;
 
 public class ConversationListActivity extends PassphraseRequiredActionBarActivity implements
     ConversationListFragment.ConversationSelectedListener {
-  private final DynamicTheme dynamicTheme = new DynamicTheme();
+ // private final DynamicTheme dynamicTheme = new DynamicTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
+
+  private DrawerLayout mDrawerLayout;
+  private ListView     mDrawerList;
+  private ActionBarDrawerToggle mDrawerToggle;
 
   private ConversationListFragment conversationListFragment;
   private ContactSelectionFragment contactSelectionFragment;
@@ -77,21 +109,177 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   private GDataPreferences gDataPreferences;
   private ContentObserver observer;
   private static String inputText = "";
+  private String[] navLabels;
+  private TypedArray navIcons;
+  private FloatingActionButton fab;
+  private LinearLayout mDrawerNavi;
 
   @Override
   public void onCreate(Bundle icicle) {
-    dynamicTheme.onCreate(this);
+    //dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
     super.onCreate(icicle);
     gDataPreferences = new GDataPreferences(getBaseContext());
     setContentView(R.layout.gdata_conversation_list_activity);
+    Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+    toolbar.setTitleTextColor(Color.WHITE);
+    setSupportActionBar(toolbar);
+    navLabels = getResources().getStringArray(R.array.array_nav_labels);
+    navIcons = getResources().obtainTypedArray(R.array.array_nav_icons);
+    mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout_gdata);
+    mDrawerNavi = (LinearLayout) findViewById(R.id.drawerll);
+    mDrawerToggle = new ActionBarDrawerToggle(
+        this,                  /* host Activity */
+        mDrawerLayout,         /* DrawerLayout object */
+        R.string.common_open_on_phone,  /* "open drawer" description */
+        R.string.abc_action_bar_home_description  /* "close drawer" description */
+    ) {
 
+      /** Called when a drawer has settled in a completely closed state. */
+      public void onDrawerClosed(View view) {
+        super.onDrawerClosed(view);
+        getSupportActionBar().setTitle(R.string.app_name);
+        initNavDrawer(navLabels, navIcons);
+      }
+
+      /** Called when a drawer has settled in a completely open state. */
+      public void onDrawerOpened(View drawerView) {
+        super.onDrawerOpened(drawerView);
+        getSupportActionBar().setTitle(R.string.app_name);
+      }
+    };
+    mDrawerToggle.setDrawerIndicatorEnabled(true);
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    getSupportActionBar().setElevation(0);
+    // Set the drawer toggle as the DrawerListener
+    mDrawerLayout.setDrawerListener(mDrawerToggle);
+
+    mDrawerList = (ListView) findViewById(R.id.left_drawer);
+    mDrawerLayout.setScrimColor(Color.argb(0xC8, 0xFF, 0xFF, 0xFF));
+    fab = (FloatingActionButton) findViewById(R.id.fab);
+    fab.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        openSingleContactSelection();
+      }
+    });
+    fab.hide();
+    initNavDrawer(navLabels, navIcons);
+
+    LinearLayout profileDrawer = (LinearLayout) findViewById(R.id.drawer);
+    profileDrawer.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        mDrawerLayout.closeDrawer(mDrawerNavi);
+        new Handler().postDelayed(new Runnable() {
+          @Override
+          public void run() {
+            handleOpenProfile();
+          }
+        }, 200);
+      }
+    });
+    getSupportActionBar().setHomeButtonEnabled(true);
     getSupportActionBar().setTitle(R.string.app_name);
     initViewPagerLayout();
     GUtil.forceOverFlowMenu(getApplicationContext());
-    new GService().init(getApplicationContext());
     LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
-        new IntentFilter("reloadAdapter"));
+            new IntentFilter("reloadAdapter"));
+
+    refreshProfile();
+  }
+  private void handleOpenProfile() {
+    final Intent intent = new Intent(this, ProfileActivity.class);
+    intent.putExtra("master_secret", masterSecret);
+    intent.putExtra("profile_id", gDataPreferences.getE164Number());
+    if(getSupportActionBar() != null) {
+      intent.putExtra("profile_name", getSupportActionBar().getTitle());
+    }
+    intent.putExtra("profile_number", gDataPreferences.getE164Number());
+    startActivity(intent);
+
+  }
+  private void refreshProfile() {
+    ImageView profileImageView = (ImageView) findViewById(R.id.profile_picture);
+    Slide myProfileImage = ProfileAccessor.getMyProfilePicture(getApplicationContext());
+      if (masterSecret != null && !(myProfileImage.getUri() + "").equals("")) {
+        ProfileAccessor.setMasterSecred(masterSecret);
+        if(GService.appContext == null) {
+          GService.appContext = getApplicationContext();
+        }
+        ProfileAccessor.buildDraftGlideRequest(myProfileImage).into(profileImageView);
+      } else {
+        profileImageView.setImageBitmap(ContactPhotoFactory.getDefaultContactPhoto(getApplicationContext()));
+      }
+      TextView profileName = (TextView) findViewById(R.id.profileName);
+      TextView profileStatus = (TextView) findViewById(R.id.profileStatus);
+      profileStatus.setText(ProfileAccessor.getProfileStatus(this));
+      profileName.setText(gDataPreferences.getE164Number());
+  }
+  public float dpToPx(int dp) {
+    DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+    float px = (float) ((dp * displayMetrics.density) + 0.5);
+    return px;
+  }
+  private void initNavDrawer(String[] labels, TypedArray icons) {
+    // Set the adapter for the list view
+    NavDrawerAdapter adapter = new NavDrawerAdapter(this, labels, icons);
+    // Set the list's click listener
+    mDrawerList.setAdapter(adapter);
+    mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+    mDrawerList.setItemChecked(0, false);
+    mDrawerList.invalidate();
+    mDrawerList.invalidateViews();
+    adapter.notifyDataSetChanged();
+  }
+
+  /* The click listner for ListView in the navigation drawer */
+  private class DrawerItemClickListener implements ListView.OnItemClickListener {
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+      mDrawerLayout.closeDrawer(mDrawerNavi);
+      new Handler().postDelayed(new Runnable() {
+        @Override
+        public void run() {
+          selectItem(position);
+        }
+      }, 200);
+    }
+  }
+  private void selectItem(int position) {
+
+    switch (position) {
+      case NavDrawerAdapter.menu_new_message:
+        openSingleContactSelection();
+        break;
+      case NavDrawerAdapter.menu_new_group:
+        createGroup();
+        break;
+      case NavDrawerAdapter.menu_my_identity:
+        handleMyIdentity();
+        break;
+      case NavDrawerAdapter.menu_clear_passphrase:
+        handleClearPassphrase();
+        break;
+      case NavDrawerAdapter.menu_mark_all_read:
+        handleMarkAllRead();
+        break;
+      case NavDrawerAdapter.menu_import_export:
+        handleImportExport();
+        break;
+      case NavDrawerAdapter.menu_privacy:
+        openPasswordDialogWithAction(CheckPasswordDialogFrag.ACTION_OPEN_PRIVACY);
+        break;
+      case NavDrawerAdapter.menu_privacy_hide:
+        openPasswordDialogWithAction(CheckPasswordDialogFrag.ACTION_TOGGLE_VISIBILITY);
+        break;
+      case NavDrawerAdapter.menu_filter:
+        openPasswordDialogWithAction(CheckPasswordDialogFrag.ACTION_OPEN_CALL_FILTER);
+        break;
+      case NavDrawerAdapter.menu_settings:
+        handleDisplaySettings();
+        break;
+    }
   }
   private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
     @Override
@@ -100,17 +288,26 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     }
   };
   @Override
-  public void onPostCreate(Bundle bundle) {
+  protected void onPostCreate(Bundle bundle) {
     super.onPostCreate(bundle);
+    mDrawerToggle.syncState();
   }
 
   @Override
   public void onResume() {
     super.onResume();
-    dynamicTheme.onResume(this);
+   // dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
+    initNavDrawer(navLabels, navIcons);
+    refreshProfile();
+    fab.show();
   }
 
+  @Override
+  protected void onPause() {
+    super.onPause();
+    fab.hide();
+  }
   @Override
   public void onDestroy() {
     MemoryCleaner.clean(masterSecret);
@@ -131,21 +328,11 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     MenuInflater inflater = this.getMenuInflater();
     menu.clear();
 
-    inflater.inflate(R.menu.text_secure_normal, menu);
+//    inflater.inflate(R.menu.gdata_text_secure_normal, menu);
 
-    menu.findItem(R.id.menu_clear_passphrase).setVisible(!TextSecurePreferences.isPasswordDisabled(this));
-
-    if (this.masterSecret != null && gDataPreferences.getViewPagersLastPage() == 0) {
-    //removed for now until we found better approach ()
-    //      inflater.inflate(R.menu.conversation_list, menu);
-    //      MenuItem menuItem = menu.findItem(R.id.menu_search);
-    //      initializeSearch(menuItem);
-    } else {
-      inflater.inflate(R.menu.conversation_list_empty, menu);
+    if (!(this.masterSecret != null && gDataPreferences.getViewPagersLastPage() == 0)) {
+      menu.clear();
     }
-    MenuItem itemHide = menu.findItem(R.id.menu_privacy_hide);
-    itemHide.setTitle(gDataPreferences.isPrivacyActivated()
-        ? getString(R.string.menu_privacy_unhide) : getString(R.string.menu_privacy_hide));
 
     super.onPrepareOptionsMenu(menu);
     return true;
@@ -190,6 +377,10 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     super.onOptionsItemSelected(item);
+
+    if (mDrawerToggle.onOptionsItemSelected(item)) {
+      return true;
+    }
 
     switch (item.getItemId()) {
       case R.id.menu_new_message:
@@ -293,7 +484,6 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
       @Override
       public void onChange(boolean selfChange) {
         super.onChange(selfChange);
-        Log.w("ConversationListActivity", "detected android contact data changed, refreshing cache");
         // TODO only clear updated recipients from cache
         RecipientFactory.clearCache();
         ConversationListActivity.this.runOnUiThread(new Runnable() {
@@ -310,12 +500,10 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
     getContentResolver().registerContentObserver(ContactsContract.Contacts.CONTENT_URI, true, observer);
   }
-
   private void initializeResources() {
     this.masterSecret = getIntent().getParcelableExtra("master_secret");
     this.conversationListFragment.setMasterSecret(masterSecret);
   }
-
   public class PagerAdapter extends FragmentPagerAdapter {
     public static final java.lang.String EXTRA_FRAGMENT_PAGE_TITLE = "pageTitle";
 
@@ -382,6 +570,11 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
       public void onPageSelected(int i) {
         gDataPreferences.setViewPagerLastPage(i);
         supportInvalidateOptionsMenu();
+        if(i == 0) {
+          fab.show();
+        } else {
+          fab.hide();
+        }
       }
 
       @Override
@@ -426,8 +619,9 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
       layout.addView(input);
       layout.addView(hint);
-      input.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
+      input.setInputType(InputType.TYPE_CLASS_NUMBER);
       input.setGravity(Gravity.CENTER | Gravity.BOTTOM);
+      input.setTransformationMethod(PasswordTransformationMethod.getInstance());
       InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
       imm.showSoftInput((input), InputMethodManager.SHOW_IMPLICIT);
       CheckPasswordDialogFrag fragment = new CheckPasswordDialogFrag();
@@ -482,6 +676,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
       } else {
        supportInvalidateOptionsMenu();
       }
+      initNavDrawer(navLabels, navIcons);
     } else if (ACTION_ID == CheckPasswordDialogFrag.ACTION_OPEN_CALL_FILTER) {
       try {
         Intent intent = new Intent("de.gdata.mobilesecurity.activities.filter.FilterListActivity");

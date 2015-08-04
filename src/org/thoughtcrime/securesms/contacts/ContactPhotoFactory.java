@@ -59,7 +59,7 @@ public class ContactPhotoFactory {
   public static Bitmap getDefaultContactPhotoCropped(Context context) {
     synchronized (defaultPhotoCroppedLock) {
       if (defaultContactPhotoCropped == null)
-        defaultContactPhotoCropped = BitmapUtil.getCircleCroppedBitmap(getDefaultContactPhoto(context));
+        defaultContactPhotoCropped = BitmapUtil.getCircleBitmap(getDefaultContactPhoto(context));
 
       return defaultContactPhotoCropped;
     }
@@ -68,7 +68,7 @@ public class ContactPhotoFactory {
   public static Bitmap getDefaultGroupPhotoCropped(Context context) {
     synchronized (defaultGroupPhotoCroppedLock) {
       if (defaultGroupContactPhotoCropped == null)
-        defaultGroupContactPhotoCropped = BitmapUtil.getCircleCroppedBitmap(getDefaultGroupPhoto(context));
+        defaultGroupContactPhotoCropped = BitmapUtil.getCircleBitmap(getDefaultGroupPhoto(context));
 
       return defaultGroupContactPhotoCropped;
     }

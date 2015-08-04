@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -36,7 +37,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.Recipient.RecipientModifiedListener;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
@@ -48,7 +48,6 @@ import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 import uk.co.senab.photoview.PhotoViewAttacher;
 
@@ -74,6 +73,8 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity {
   private String            mediaType;
   private Recipient         recipient;
   private long              date;
+  private boolean           destroyImage = false;
+  private static Activity          mContext;
 
   @Override
   protected void onCreate(Bundle bundle) {
@@ -83,12 +84,29 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity {
     super.onCreate(bundle);
     setFullscreenIfPossible();
     getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                         WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+    Bundle extras = getIntent().getExtras();
+    if(extras != null) {
+      destroyImage = extras.getBoolean("destroyImage");
+    }
 
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     setContentView(R.layout.media_preview_activity);
+    mContext = this;
 
     initializeResources();
+  }
+  public static void closeActivity(){
+    if(mContext != null) {
+      mContext.finish();
+    }
+  }
+
+  @Override
+  protected void onDestroy() {
+    super.onDestroy();
+    mContext = null;
   }
 
   @TargetApi(VERSION_CODES.JELLY_BEAN)
@@ -102,6 +120,10 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity {
   public void onResume() {
     super.onResume();
     dynamicLanguage.onResume(this);
+
+    if (destroyImage) {
+      getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
+    }
 
     final long recipientId = getIntent().getLongExtra(RECIPIENT_EXTRA, -1);
 
@@ -121,7 +143,6 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity {
     } else {
       recipient = null;
     }
-
     initializeActionBar();
 
     if (!isContentTypeSupported(mediaType)) {
@@ -170,7 +191,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity {
         try {
           int[] maxTextureSizeParams = new int[1];
           GLES20.glGetIntegerv(GLES20.GL_MAX_TEXTURE_SIZE, maxTextureSizeParams, 0);
-          int maxTextureSize = Math.max(maxTextureSizeParams[0], 2048);
+          int maxTextureSize = Math.max(maxTextureSizeParams[0], 1024);
           Log.w(TAG, "reported GL_MAX_TEXTURE_SIZE: " + maxTextureSize);
           return BitmapUtil.createScaledBitmap(MediaPreviewActivity.this, masterSecret, mediaUri,
                                                maxTextureSize, maxTextureSize);
@@ -216,7 +237,9 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity {
 
     menu.clear();
     MenuInflater inflater = this.getMenuInflater();
-    inflater.inflate(R.menu.media_preview, menu);
+    if(!destroyImage) {
+      inflater.inflate(R.menu.media_preview, menu);
+    }
 
     return true;
   }

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/drawerall"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="bottom"
+        >
+        <org.thoughtcrime.securesms.components.CircledImageView
+            android:id="@+id/profile_picture"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:layout_weight="2.5"
+            android:padding="2dp"
+            android:layout_gravity="center"
+            android:visibility="visible"/>
+
+    <LinearLayout
+        android:id="@+id/drawerll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingLeft="5dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        >
+    <TextView
+        android:id="@+id/action_bar_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#fff"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/action_bar_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#fff"
+        android:maxLines="2"
+        android:paddingBottom="2dp"
+        android:textStyle="italic" />
+    </LinearLayout>
+
+</LinearLayout>
+</RelativeLayout>

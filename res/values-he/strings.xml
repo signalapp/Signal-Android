@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">TextSecure</string>
+  <string name="app_name">SecureChat</string>
   <string name="yes">כן</string>
   <string name="no">לא</string>
   <string name="delete">מחק</string>
@@ -42,7 +42,7 @@
   <string name="ConversationActivity_message_is_empty_exclamation">ההודעה ריקה!</string>
   <string name="ConversationActivity_invalid_recipient">נמען שגוי!</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">נראה כי מכשיר זה אינו תומך בפעולות חיוג.</string>
-  <string name="ConversationActivity_transport_textsecure">TextSecure</string>
+  <string name="ConversationActivity_transport_textsecure">SecureChat</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">פרטי הודעה</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">אתה בטוח שאתה רוצה למחוק את ההודעה הזו לתמיד?</string>
@@ -58,7 +58,7 @@
   <!--ExportFragment-->
   <string name="ExportFragment_export">יצא</string>
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">אזהרה, פעולה זו
-תייצא את תוכן הודעות ה-TextSecure שלך לכרטיס ה-SD ללא הצפנה.
+תייצא את תוכן הודעות ה-SecureChat שלך לכרטיס ה-SD ללא הצפנה.
 </string>
   <string name="ExportFragment_cancel">בטל</string>
   <string name="ExportFragment_exporting">מייצא</string>
@@ -78,14 +78,14 @@
   <string name="ImportExportActivity_export">יצא</string>
   <!--ImportFragment-->
   <string name="ImportFragment_this_will_import_messages_from_the_system">פעולה זו תייבא
-הודעות מבסיס הנתונים של ה-SMS ברירת המחדל של המערכת ל-TextSecure.
+הודעות מבסיס הנתונים של ה-SMS ברירת המחדל של המערכת ל-SecureChat.
  אם כבר ייבאת מבסיס נתונים זה, ייבוא מחדש יגרום להודעות כפולות.</string>
   <string name="ImportFragment_import">יבא</string>
   <string name="ImportFragment_cancel">בטל</string>
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
 שחזור גיבוי מוצפן יחליף לגמרי את המפתחות, ההגדרות וההודעות הקיימות.
 אתה 
-תאבד את כל המידע שבהתקנת ה-TextSecure הנוכחית שלך אבל לא שבגיבוי.
+תאבד את כל המידע שבהתקנת ה-SecureChat הנוכחית שלך אבל לא שבגיבוי.
 </string>
   <string name="ImportFragment_restore">שחזר</string>
   <string name="ImportFragment_importing">מייבא</string>
@@ -113,7 +113,7 @@
 על החלפת המפתח הזאת שונה ממה שקיבלת בעבר מאיש הקשר הזה.
 זה יכול להעיד שמישהו מנסה ליירט את התקשורת שלך
 או
-שאיש הקשר פשוט התקין מחדש את TextSecure ועכשיו יש לו מפתח זהות חדש.
+שאיש הקשר פשוט התקין מחדש את SecureChat ועכשיו יש לו מפתח זהות חדש.
 </string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">ייתכן שתרצה לאמת
 את איש הקשר הזה.
@@ -179,7 +179,7 @@
   <string name="MessageNotifier_mark_as_read">סמן כנקרא</string>
   <!--QuickResponseService-->
   <!--auto_initiate_activity-->
-  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">קיבלת הודעה ממישהו שתומך בחיבור מאובטח של TextSecure. האם ברצונך להתחיל חיבור מאובטח? </string>
+  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">קיבלת הודעה ממישהו שתומך בחיבור מאובטח של SecureChat. האם ברצונך להתחיל חיבור מאובטח? </string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">סיסמה ישנה:</string>
   <string name="change_passphrase_activity__new_passphrase">סיסמה חדשה:</string>
@@ -207,7 +207,7 @@
   <string name="country_selection_fragment__search">חפש</string>
   <!--log_submit_activity-->
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">אתה רוצה לייבא את הודעות הטקסט הקיימות שלך לבסיס הנתונים המוצפן של TextSecure?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">אתה רוצה לייבא את הודעות הטקסט הקיימות שלך לבסיס הנתונים המוצפן של SecureChat?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">בסיס הנתונים ברירת המחדל של המערכת לא ישתנה בשום אופן.</string>
   <string name="database_migration_activity__skip">דלג</string>
   <string name="database_migration_activity__import">יבא</string>
@@ -220,7 +220,7 @@
 מאפליקציית ברירת המחדל של המערכת.
 </string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">
-שחזר גיבוי מוצפן של TextSecure שיוצא בעבר.
+שחזר גיבוי מוצפן של SecureChat שיוצא בעבר.
 </string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 יבא קובץ גיבוי לא מוצפן. תואם \'SMSBackup And Restore\'.</string>
@@ -229,7 +229,7 @@
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">פתח</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure דורש הגדרות MMS כדי לשלוח הודעות מולטימדיה או הודעות קבוצתיות דרך ספק השירות שלך. המכשיר שלך לא מספק את המידע הזה, זה קורה לעיתים במכשירים נעולים או קונפיגורציות מוגבלות אחרות.</string>
+  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">SecureChat דורש הגדרות MMS כדי לשלוח הודעות מולטימדיה או הודעות קבוצתיות דרך ספק השירות שלך. המכשיר שלך לא מספק את המידע הזה, זה קורה לעיתים במכשירים נעולים או קונפיגורציות מוגבלות אחרות.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">כדי לשלוח הודעות מולטימדיה או הודעות קבוצתיות,לחץ \'אישור\' והשלם את ההגדרות המתבקשות.את הגדרות ה-MMS עבור ספק השירות שלך אתה יכול למצוא בד\"כ ע\"י חיפוש \"ספק השרות APN\". אתה תצטרך להשלים מידע זה רק פעם אחת.</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">השלם</string>
@@ -246,8 +246,8 @@
   <!--arrays.xml-->
   <!--preferences.xml-->
   <string name="preferences__general">כללי</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">השתמש ב-TextSecure לצפייה ואחסון של כל הודעות הטקסט</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">השתמש ב-TextSecure לצפייה ואחסון של כל הודעות המולטימדיה</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">השתמש ב-SecureChat לצפייה ואחסון של כל הודעות הטקסט</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">השתמש ב-SecureChat לצפייה ואחסון של כל הודעות המולטימדיה</string>
   <string name="preferences__input_settings">הכנס הגדרות</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">בחר איש קשר מאנשי הקשר.</string>
   <string name="preferences__change_passphrase">שנה סיסמה</string>

@@ -20,6 +20,7 @@ public abstract class MediaConstraints {
 
   public static MediaConstraints MMS_CONSTRAINTS  = new MmsMediaConstraints();
   public static MediaConstraints PUSH_CONSTRAINTS = new PushMediaConstraints();
+  public  static int CURRENT_MEDIA_SIZE = 280 * 1024;
 
   public abstract int getImageMaxWidth();
   public abstract int getImageMaxHeight();

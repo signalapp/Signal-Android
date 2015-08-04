@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">TextSecure</string>
+  <string name="app_name">SecureChat</string>
   <string name="yes">ဟုတ်ကဲ့</string>
   <string name="no">မလုပ်ပါ</string>
   <string name="delete">ဖျက်ရန်</string>
@@ -30,7 +30,7 @@
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">ပူးတွဲပါဖိုင်တွင် ဆက်တင်အမှားရှိ.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">လက်ခံသူသည်　မှန်ကန်သော SMS(သို့)အီးမေးလိပ်စာ　မဟုတ်</string>
   <string name="ConversationActivity_message_is_empty_exclamation">စာတိုမရှိ</string>
-  <string name="ConversationActivity_transport_textsecure">TextSecure</string>
+  <string name="ConversationActivity_transport_textsecure">SecureChat</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">စာတို အသေးစိတ်အချက်အလက်များ</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">စာတိုကို အပြီးဖျက်ပစ်မည်မှာ သေချာလား</string>

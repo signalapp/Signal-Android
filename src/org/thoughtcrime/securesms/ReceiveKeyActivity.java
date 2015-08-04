@@ -20,6 +20,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -89,10 +90,9 @@ public class ReceiveKeyActivity extends Activity {
     setContentView(R.layout.receive_key_activity);
 
     initializeResources();
-
+    initializeText();
     try {
       initializeKey();
-      initializeText();
     } catch (InvalidKeyException | InvalidVersionException | InvalidMessageException | LegacyMessageException ike) {
       Log.w("ReceiveKeyActivity", ike);
     }
@@ -134,13 +134,14 @@ public class ReceiveKeyActivity extends Activity {
 
     descriptionText.setText(spannableString);
     descriptionText.setMovementMethod(LinkMovementMethod.getInstance());
+    descriptionText.setTextColor(Color.BLACK);
   }
 
   private boolean isTrusted(IdentityKey identityKey) {
-    long             recipientId      = recipient.getRecipientId();
+    String number                     = recipient.getNumber();
     IdentityKeyStore identityKeyStore = new TextSecureIdentityKeyStore(this, masterSecret);
 
-    return identityKeyStore.isTrustedIdentity(recipientId, identityKey);
+    return identityKeyStore.isTrustedIdentity(number, identityKey);
   }
 
   private void initializeKey()

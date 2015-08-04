@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">TextSecure</string>
+  <string name="app_name">SecureChat</string>
   <string name="yes">Ναι</string>
   <string name="no">Όχι</string>
   <string name="delete">Διαγραφή</string>
@@ -82,7 +82,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Είστε σίγουροι πως θέλετε να αποχωρήσετε απο την ομάδα;</string>
   <string name="ConversationActivity_transport_secure_sms">Ασφαλό SMS</string>
   <string name="ConversationActivity_transport_secure_mms">Ασφαλό MMS</string>
-  <string name="ConversationActivity_transport_textsecure">TextSecure</string>
+  <string name="ConversationActivity_transport_textsecure">SecureChat</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Στοιχεία μηνύματος</string>
   <string name="ConversationFragment_confirm_message_delete">Επιβεβαίωση Διαγραφής Μηνύματος</string>
@@ -123,8 +123,8 @@
   <string name="GroupCreateActivity_actionbar_update_title">Ενημέρωση ομάδας</string>
   <string name="GroupCreateActivity_group_name_hint">Όνομα ομάδας</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Νέα ομάδα MMS</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Επιλέξατε μια επαφή που δεν υποστηρίζει ομάδες TextSecure, γι αυτό η ομάδα θα γίνει MMS.</string>
-  <string name="GroupCreateActivity_you_dont_support_push">Είστε εγγεγραμένος για χρήση του καναλιού δεδομένων, γι αυτό το οι ομάδες TextSecure είναι απενεργοποιημένες. </string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Επιλέξατε μια επαφή που δεν υποστηρίζει ομάδες SecureChat, γι αυτό η ομάδα θα γίνει MMS.</string>
+  <string name="GroupCreateActivity_you_dont_support_push">Είστε εγγεγραμένος για χρήση του καναλιού δεδομένων, γι αυτό το οι ομάδες SecureChat είναι απενεργοποιημένες. </string>
   <string name="GroupCreateActivity_contacts_mms_exception">Προέκυψε ένα απρόσμενο σφάλμα και η δημιουργία ομάδας απέτυχε.</string>
   <string name="GroupCreateActivity_contacts_no_members">Χρειάζεστε έστω ένα άτομο στην ομάδα σας!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Έχετε ένα μέλος στην ομάδα σας που ο αριθμός του δεν μπορεί να διαβαστεί σωστά. Παρακαλώ διορθώστε το ή διαγράψτε την επαφή και δοκιμάστε ξανά. </string>
@@ -139,7 +139,7 @@
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Να εισαγχθούν όλα τα προϋπάρχοντα SMS;</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">Θα γίνει εισαγωγή όλων των
-        μηνυμάτων από το προκαθορισμένο αρχείο μηνυμάτων SMS της συσκευής σας στο TextSecure. Αν έχετε ήδη εισάγει
+        μηνυμάτων από το προκαθορισμένο αρχείο μηνυμάτων SMS της συσκευής σας στο SecureChat. Αν έχετε ήδη εισάγει
         το αρχείο μηνυμάτων της συσκευής σας, η επανα-εισαγωγή θα έχει ως αποτέλεσμα διπλά μηνύματα.
     </string>
   <string name="ImportFragment_import">Εισαγωγή</string>
@@ -147,7 +147,7 @@
   <string name="ImportFragment_restore_encrypted_backup">Επαναφορά Του Κρυπτογραφημένου Αντιγράφου Ασφαλείας;</string>
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
         Η επαναφορά του κρυπτογραφημένου αντιγράφου ασφαλείας θα αντικαταστήσει πλήρως τα υπάρχοντα κλειδιά, τις ρυθμίσεις και τα
-        μηνύματά σας. Θα χάσετε όλα τα δεδομένα της υπάρχουσας εγκατάστασης του TextSecure, αλλά όχι
+        μηνύματά σας. Θα χάσετε όλα τα δεδομένα της υπάρχουσας εγκατάστασης του SecureChat, αλλά όχι
         του αντίγραφου ασφαλείας.
     </string>
   <string name="ImportFragment_restore">Επαναφορά</string>
@@ -174,20 +174,20 @@
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Μήνυμα Πολυμέσων</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Λάβαμε ένα μήνυμα κρυπτογραφημένο με μια παλιά έκδοση του TextSecure που δεν υποστηρίζεται πλέον. Παρακαλώ ζητήστε από τον αποστολέα να αναβαθμίσει στη τελευταία έκδοση και να ξαναστείλει το μήνυμα.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Λάβαμε ένα μήνυμα κρυπτογραφημένο με μια παλιά έκδοση του SecureChat που δεν υποστηρίζεται πλέον. Παρακαλώ ζητήστε από τον αποστολέα να αναβαθμίσει στη τελευταία έκδοση και να ξαναστείλει το μήνυμα.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Οι συνθηματικές φράσεις δε ταιριάζουν!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Λανθασμένη παλιά συνθηματική φράση!</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Εισάγετε συνθηματική φράση</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">Εικονίδιο TextSecure</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Εικονίδιο SecureChat</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Εισάγετε συνθηματική φράση</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Άκυρη συνθηματική φράση!</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Το
         αποτύπωμα αυτής της ανταλλαγής κλειδιών είναι διαφορετικό από αυτό που λάβαμε πρωτύτερα από αυτή την
         επαφή. Αυτό σημαίνει είτε ότι κάποιος προσπαθεί να υποκλέψει τη συνομιλία σας, ή
-        ότι αυτή η επαφή απλά επανεγκτέστησε το TextSecure και τώρα έχει νέο κλειδί ταυτότητας.
+        ότι αυτή η επαφή απλά επανεγκτέστησε το SecureChat και τώρα έχει νέο κλειδί ταυτότητας.
     </string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Προτείνεται να επιβεβαιώσετε
         αυτήν την επαφή.
@@ -199,7 +199,7 @@
   <string name="ReceiveKeyActivity_processing">Γίνεται επεξεργασία</string>
   <string name="ReceiveKeyActivity_processing_key_exchange">Επεξεργάζεται η ανταλλαγή κλειδιών...</string>
   <!--RegistrationActivity-->
-  <string name="RegistrationActivity_connect_with_textsecure">Σύνδεση Με TextSecure</string>
+  <string name="RegistrationActivity_connect_with_textsecure">Σύνδεση Με SecureChat</string>
   <string name="RegistrationActivity_select_your_country">Επιλέξτε Χώρα</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Πρέπει να καθορίσετε
 τον κώδικα της χώρας σας
@@ -238,12 +238,12 @@
   <string name="RegistrationProgressActivity_too_many_requests">Πάρα πολλές αιτήσεις!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Έχετε ζητήσει κλήση επαλήθευσης πρόσφατα. Μπορείτε να ζητήσετε άλλη μία σε 20 λεπτά.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Πρόβλημα με την εγγραφή</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Αυτός ο αριθμός ειναι ήδη καταχωρημένος σε έναν άλλο διακομιστή TextSecure (χρησιμοποιούσατε CyanogenMod?). Πρέπει πρώτα να απεγγραφείτε από κει, πριν μπορέσετε να εγγραφείτε από αυτή τη συσκευή.</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Αυτός ο αριθμός ειναι ήδη καταχωρημένος σε έναν άλλο διακομιστή SecureChat (χρησιμοποιούσατε CyanogenMod?). Πρέπει πρώτα να απεγγραφείτε από κει, πριν μπορέσετε να εγγραφείτε από αυτή τη συσκευή.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Η εγγραφή ολοκληρώθηκε</string>
-  <string name="RegistrationService_textsecure_registration_has_successfully_completed">Η εγγραφή TextSecure ολοκληρώθηκε επιτυχώς.</string>
+  <string name="RegistrationService_textsecure_registration_has_successfully_completed">Η εγγραφή SecureChat ολοκληρώθηκε επιτυχώς.</string>
   <string name="RegistrationService_registration_error">Σφάλμα εγγραφής</string>
-  <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Η εγγραφή TextSecure παρουσίασε ένα πρόβλημα.</string>
+  <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Η εγγραφή SecureChat παρουσίασε ένα πρόβλημα.</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Ελήφθη προβληματικό μήνυμα
         ανταλλαγής κλειδιών!
@@ -306,7 +306,7 @@
   <!--KeyCachingService-->
   <string name="KeyCachingService_textsecure_passphrase_cached">Πατήστε για άνοιγμα.</string>
   <string name="KeyCachingService_textsecure_passphrase_cached_with_lock">Πατήστε για άνοιγμα, ή πατήστε τη κλειδαριά για κλείσιμο.</string>
-  <string name="KeyCachingService_passphrase_cached">Το TextSecure είναι ξεκλειδωμένο</string>
+  <string name="KeyCachingService_passphrase_cached">Το SecureChat είναι ξεκλειδωμένο</string>
   <string name="KeyCachingService_lock">Κλείδωμα με συνθηματική φράση</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">%d νέα μηνύματα</string>
@@ -319,9 +319,9 @@
   <string name="MessageNotifier_mark_all_as_read">Επισήμανση όλων ως αναγνωσμένα</string>
   <string name="MessageNotifier_mark_as_read">Επισήμανση ως αναγνωσμένο</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Λυπούμαστε, η Άμεση Απάντηση δεν υποστηρίζεται ακόμα από το TextSecure!</string>
+  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Λυπούμαστε, η Άμεση Απάντηση δεν υποστηρίζεται ακόμα από το SecureChat!</string>
   <!--auto_initiate_activity-->
-  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Λάβατε μήνυμα από κάποιον που υποστηρίζει κρυπτογραφημένες συζητήσεις με TextSecure. Εκκίνηση ασφαλούς συζήτησης;</string>
+  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Λάβατε μήνυμα από κάποιον που υποστηρίζει κρυπτογραφημένες συζητήσεις με SecureChat. Εκκίνηση ασφαλούς συζήτησης;</string>
   <string name="auto_initiate_activity__initiate_exchange">Έναρξη Ανταλλαγής Κλειδιών</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">ΠΑΛΙΑ ΣΥΝΘΗΜΑΤΙΚΗ ΦΡΑΣΗ</string>
@@ -341,7 +341,7 @@
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Δεν υπάρχουν πρόσφατες κλήσεις.</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Αποστολή μηνύματος TextSecure</string>
+  <string name="conversation_activity__type_message_push">Αποστολή μηνύματος SecureChat</string>
   <string name="conversation_activity__type_message_sms_secure">Αποστολή ασφαλούς SMS</string>
   <string name="conversation_activity__type_message_mms_secure">Αποστολή ασφαλούς MMS</string>
   <string name="conversation_activity__send">Αποστολή</string>
@@ -367,7 +367,7 @@
   <string name="log_submit_activity__thanks">Ευχαριστούμε για τη βοήθειά σας!</string>
   <string name="log_submit_activity__submitting">Αποστολή</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Να εισαχθούν τα παλιά μηνύματα στη κρυπτογραφημένη βάση δεδομένων του TextSecure;</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Να εισαχθούν τα παλιά μηνύματα στη κρυπτογραφημένη βάση δεδομένων του SecureChat;</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Το υπάρχον αρχείο μηνυμάτων δε θα αλλαχθεί.</string>
   <string name="database_migration_activity__skip">Παράληψη</string>
   <string name="database_migration_activity__import">Εισαγωγή</string>
@@ -384,7 +384,7 @@
     </string>
   <string name="import_fragment__import_encrypted_backup">Εισαγωγή Κρυπτογραφημένου Αντιγράφου Ασφαλείας</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">
-        Επαναφορά προηγούμενου αντιγράφου ασφαλείας του TextSecure.
+        Επαναφορά προηγούμενου αντιγράφου ασφαλείας του SecureChat.
     </string>
   <string name="import_fragment__import_plaintext_backup">Εισαγωγή μη κρυπτογραφημένου αντιγράφου ασφαλείας</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
@@ -394,7 +394,7 @@
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Ξεκλείδωμα</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">Το TextSecure χρειάζεται τις ρυθμίσεις MMS για να στείλει μηνύματα πολυμέσων μέσω του πάροχού σας. Η συσκευή σας δεν παρέχει αυτές τις ρυθμίσεις, κάτι που ισχύει σε κλειδωμένες συσκευές και άλλες περιοριστικές διαμορφώσεις.</string>
+  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">Το SecureChat χρειάζεται τις ρυθμίσεις MMS για να στείλει μηνύματα πολυμέσων μέσω του πάροχού σας. Η συσκευή σας δεν παρέχει αυτές τις ρυθμίσεις, κάτι που ισχύει σε κλειδωμένες συσκευές και άλλες περιοριστικές διαμορφώσεις.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Για να στείλετε μηνύματα πολυμέσων, πατήστε «ΟΚ» και συμπληρώστε τις ρυθμίσεις APN. Θα βρείτε τις σωστές ρυθμίσεις APN για τον πάροχό σας ψάχνοντας online για «το όνομα του πάροχού σας» + APN. Αυτές οι ρυθμίσεις θα χρειαστούν μόνο μία φορά.</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Ολοκληρώθηκε</string>
@@ -412,14 +412,14 @@
   <string name="registration_problems__sms_interceptors">Εφαρμογές που \"αρπάζουν\" όλα τα SMS</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
 Κάποιες εφαρμογές (πχ Handcent ή GoSMS), δε συμπεριφέρονται σωστά και \"αρπάζουν\" 
-όλα τα εισερχόμενα μηνύματα. Αν έχετε κάποιο μήνυμα που ξεκινάει με \"Your TextSecure verification code:\" σε μια από αυτές τις εφαρμογές θα πρέπει να τη ρυθμίσετε ώστε να μη διαχειρίζεται όλα τα μηνύματα κειμένου.</string>
+όλα τα εισερχόμενα μηνύματα. Αν έχετε κάποιο μήνυμα που ξεκινάει με \"Your SecureChat verification code:\" σε μια από αυτές τις εφαρμογές θα πρέπει να τη ρυθμίσετε ώστε να μη διαχειρίζεται όλα τα μηνύματα κειμένου.</string>
   <string name="registration_problems__incorrect_number">Λανθασμένος αριθμός.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
 Παρακαλώ σιγουρευτείτε ότι εισάγατε σωστά τον αριθμό σας και ότι αυτός ειναι διαμορφωμένος σωστά
 για την περιοχή σας.</string>
   <string name="registration_problems__google_voice">Google Voice.</string>
   <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">
-Το TextSecure δεν λειτουργεί με αριθμούς Google Voice.</string>
+Το SecureChat δεν λειτουργεί με αριθμούς Google Voice.</string>
   <!--registration_progress_activity-->
   <string name="registration_progress_activity__voice_verification">Επιβεβαίωση με φωνή</string>
   <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">
@@ -429,7 +429,7 @@
   <string name="registration_progress_activity__edit_number">Επεξεργασία αριθμού</string>
   <string name="registration_progress_activity__connectivity_error">Σφάλμα συνδεσιμότητας.</string>
   <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">
-Το TextSecure ήταν αδύνατο να συνδεθεί στην υπηρεσία push.</string>
+Το SecureChat ήταν αδύνατο να συνδεθεί στην υπηρεσία push.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Πιθανά
         προβλήματα:
     </string>
@@ -442,9 +442,9 @@
 </string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
 Αν είστε συνδεμένοι μέσω Wifi, μπορεί να υπάρχει firewall που εμποδίζει την πρόσβαση
-στο διακομιστή του TextSecure. Δοκιμάστε από άλλο δίκτυο ή από τη σύνδεση 3G.</string>
+στο διακομιστή του SecureChat. Δοκιμάστε από άλλο δίκτυο ή από τη σύνδεση 3G.</string>
   <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
-Το TextSecure θα επαληθέυσει αυτόματα τον αριθμό σας μεσω μηνύματος SMS.</string>
+Το SecureChat θα επαληθέυσει αυτόματα τον αριθμό σας μεσω μηνύματος SMS.</string>
   <string name="registration_progress_activity__connecting">Γίνεται σύνδεση...</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">Αναμονή για επιβεβαίωση
         SMS...
@@ -453,7 +453,7 @@
   <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Αυτό
 μπορεί να διαρκέσει για λίγο. ΠΑρακαλώ κάντε υπομονή και θα σας ειδοποιήσουμε όταν ολοκληρωθεί η επαλήθευση.</string>
   <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">
-Το TextSecure έληξε περιμένοντας την επαλήθευση μέσω μηνύματος SMS.</string>
+Το SecureChat έληξε περιμένοντας την επαλήθευση μέσω μηνύματος SMS.</string>
   <string name="registration_progress_activity__sms_verification_failed">Η επιβεβαίωση SMS
         απέτυχε.
     </string>
@@ -468,7 +468,7 @@
   <string name="AndroidManifest__create_passphrase">Δημιουργία Συνθηματικής Φράσης</string>
   <string name="AndroidManifest__enter_passphrase">Εισάγετε Συνθηματική Φράση</string>
   <string name="AndroidManifest__select_contacts">Επιλέξτε Επαφές</string>
-  <string name="AndroidManifest__textsecure_detected">Εντοπίστηκε TextSecure</string>
+  <string name="AndroidManifest__textsecure_detected">Εντοπίστηκε SecureChat</string>
   <string name="AndroidManifest__public_identity_key">Δημόσιο Κλειδί Ταυτότητας</string>
   <string name="AndroidManifest__change_passphrase">Αλλαγή συνθηματικής φράσης</string>
   <string name="AndroidManifest__verify_identity">Επιβεβαίωση Ταυτότητας</string>
@@ -481,8 +481,8 @@
   <string name="preferences__push_sms_category">Push (μέσω Internet) και SMS</string>
   <string name="preferences__pref_all_sms_title">Λήψη όλων των μηνυμάτων</string>
   <string name="preferences__pref_all_mms_title">Λήψη όλων των μηνυμάτων MMS</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Χρήση TextSecure για προβολή και αποθήκευση όλων των μηνυμάτων SMS</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Χρήση TextSecure για προβολή και αποθήκευση όλων των μηνυμάτων MMS</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Χρήση SecureChat για προβολή και αποθήκευση όλων των μηνυμάτων SMS</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Χρήση SecureChat για προβολή και αποθήκευση όλων των μηνυμάτων MMS</string>
   <string name="preferences__input_settings">Ρυθμίσεις εισαγωγής</string>
   <string name="preferences__enable_enter_key_title">Ενεργοποίηση πλήκτρου Enter</string>
   <string name="preferences__replace_smiley_with_enter_key">Αντικαθιστά το πλήκτρο smiley με το πλήκτρο Enter</string>
@@ -547,14 +547,14 @@
   <string name="preferences__default">Προκαθορισμένη</string>
   <string name="preferences__language">Γλώσσα</string>
   <string name="preferences__make_default_sms_app">Ανάθεση ως προεπιλεγμένη εφαρμογή για SMS</string>
-  <string name="preferences__make_textsecure_the_default_sms_mms_app">Το TextSecure να είναι η προεπιλεγμένη εφαρμογή για SMS/MMS.</string>
+  <string name="preferences__make_textsecure_the_default_sms_mms_app">Το SecureChat να είναι η προεπιλεγμένη εφαρμογή για SMS/MMS.</string>
   <string name="preferences__use_data_channel">ΕΙδοποιήσεις Push</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
-Αυξήστε την ανωνυμία και αποφύγετε το κόστος του SMS χρησιμοποιώντας το κανάλι δεδομένων για επικοινωνία με τους άλλους χρήστες του TextSecure.</string>
+Αυξήστε την ανωνυμία και αποφύγετε το κόστος του SMS χρησιμοποιώντας το κανάλι δεδομένων για επικοινωνία με τους άλλους χρήστες του SecureChat.</string>
   <string name="preferences__submit_debug_log">Αποστολή αρχείων καταγραφής αποσφαλμάτωσης</string>
-  <string name="preferences__sms_outgoing_push_users">Χρήστες TextSecure</string>
+  <string name="preferences__sms_outgoing_push_users">Χρήστες SecureChat</string>
   <string name="preferences__sms_outgoing_push_users_description">Αποστολή ασφαλούς μηνύματος εαν χαθεί η σύνδεση</string>
-  <string name="preferences__sms_fallback_non_push_users">Μη χρήστες TextSecure</string>
+  <string name="preferences__sms_fallback_non_push_users">Μη χρήστες SecureChat</string>
   <string name="preferences__sms_fallback_nobody">κανένας</string>
   <!--****************************************-->
   <!--menus-->
@@ -570,7 +570,7 @@
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Ανανέωση της λίστας επαφών</string>
   <!--conversation_button_context-->
-  <string name="conversation_button_context__send_textsecure_message">Αποστολή μηνύματος TextSecure</string>
+  <string name="conversation_button_context__send_textsecure_message">Αποστολή μηνύματος SecureChat</string>
   <string name="conversation_button_context__send_secure_sms">Αποστολή ασφαλούς SMS</string>
   <string name="conversation_button_context__send_secure_mms">Αποστολή ασφαλούς MMS</string>
   <!--conversation_callable-->
@@ -618,10 +618,10 @@
   <string name="text_secure_normal__mark_all_as_read">Επισήμανση όλων ως αναγνωσμένα</string>
   <!--reminder_header-->
   <string name="reminder_header_sms_default_title">Να είμαστε η προεπιλεγμένη εφαρμογή για SMS;</string>
-  <string name="reminder_header_sms_default_text">Το TextSecure δεν είναι η προεπιλεγμένη εφαρμογή για SMS.</string>
+  <string name="reminder_header_sms_default_text">Το SecureChat δεν είναι η προεπιλεγμένη εφαρμογή για SMS.</string>
   <string name="reminder_header_sms_import_title">Να εισαγχθούν όλα τα προϋπάρχοντα SMS;</string>
-  <string name="reminder_header_sms_import_text">Το TextSecure μπορεί να αντιγράψει τα SMS του τηλεφώνου σας στην ασφαλή βάση δεδομένων του.</string>
-  <string name="reminder_header_push_title">Ενεργοποίηση μηνυμάτων TextSecure;</string>
+  <string name="reminder_header_sms_import_text">Το SecureChat μπορεί να αντιγράψει τα SMS του τηλεφώνου σας στην ασφαλή βάση δεδομένων του.</string>
+  <string name="reminder_header_push_title">Ενεργοποίηση μηνυμάτων SecureChat;</string>
   <string name="reminder_header_push_text">Άμεση παράδοση, περισσότερο απόρρητα, και χωρίς χρεώσεις SMS.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Εσείς</string>

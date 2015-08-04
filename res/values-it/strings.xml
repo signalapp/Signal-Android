@@ -79,8 +79,8 @@ Avrai bisogno di registrare di nuovo il tuo numero di telefono per usare i messa
   <string name="ConversationActivity_select_contact_info">Seleziona informazioni dei contatti</string>
   <string name="ConversationActivity_compose_message">Componi messaggio</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Attenzione, c\'è stato un errore nell\'inviare il tuo allegato.</string>
-  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Errore, il video selezionato supera la dimensione massima (%1$skB).</string>
-  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Errore, l\'audio selezionato supera la dimensione massima (%1$skB).</string>
+  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Spiacenti, l\'audio selezionato supera le restrizioni di dimensione dei messaggi (%1$skB).</string>
+  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Spiacenti, il video selezionato supera le restrizioni di dimensione dei messaggi (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Il destinatario non è un indirizzo valido per l\'SMS o per l\'email!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Il messaggio è vuoto!</string>
   <string name="ConversationActivity_group_conversation_recipients">Destinatari conversazione di gruppo</string>
@@ -101,11 +101,13 @@ Avrai bisogno di registrare di nuovo il tuo numero di telefono per usare i messa
   <string name="ConversationActivity_transport_textsecure">SecureChat</string>
   <string name="ConversationActivity_get_with_it">Ottienilo con: %s</string>
   <string name="ConversationActivity_install_textsecure">Installa SecureChat: %s</string>
+  <string name="ConversationActivity_error_leaving_group">Errore nell\'abbandonare il gruppo...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Dettagli messaggio</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Trasporto: %1$s\nInviato/Ricevuto: %2$s</string>
   <string name="ConversationFragment_sender_s_transport_s_sent_s_received_s">Mittente: %1$s\nTrasporto: %2$s\nInviato: %3$s\nRicevuto: %4$s</string>
   <string name="ConversationFragment_confirm_message_delete">Messaggio di conferma cancellazione</string>
+  <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_all_selected_messages">Sei sicuro di voler cancellare definitivamente tutti i messaggi selezionati?</string>
   <string name="ConversationFragment_save_to_sd_card">Salvare in memoria?</string>
   <string name="ConversationFragment_this_media_has_been_stored_in_an_encrypted_database_warning">Salvare quest\'immagine sulla memoria consentirà a qualunque applicazione sul tuo telefono di accedervi.\n\nContinuare?</string>
   <string name="ConversationFragment_error_while_saving_attachment_to_sd_card">Errore nel salvare l\'allegato in memoria!</string>
@@ -118,6 +120,7 @@ Avrai bisogno di registrare di nuovo il tuo numero di telefono per usare i messa
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Cancellazione...</string>
+  <string name="ConversationFragment_deleting_messages">Cancellazione messaggi...</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_delete_threads_question">Cancellare i threads?</string>
   <string name="ConversationListFragment_are_you_sure_you_wish_to_delete_all_selected_conversation_threads">Sei sicuro di voler cancellare TUTTE le conversazioni selezionate?</string>
@@ -135,6 +138,8 @@ Avrai bisogno di registrare di nuovo il tuo numero di telefono per usare i messa
     </string>
   <string name="ExportFragment_cancel">Annulla</string>
   <string name="ExportFragment_exporting">In esportazione</string>
+  <string name="ExportFragment_exporting_plaintext_to_sd_card">Esportazione in chiaro sulla scheda SD...</string>
+  <string name="ExportFragment_error_unable_to_write_to_sd_card">Errore, impossibile scrivere sulla scheda SD</string>
   <string name="ExportFragment_error_while_writing_to_sd_card">Errore durante la scrittura su scheda SD.</string>
   <string name="ExportFragment_success">Completato!</string>
   <!--GcmRefreshJob-->
@@ -200,6 +205,7 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="NotificationMmsMessageRecord_multimedia_message">Messaggio multimediale</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Hai ricevuto un messaggio cifrato usando una vecchia versione di SecureChat che non è più supportata. Ti preghiamo di chiedere al mittente di aggiornare l\'app e rimandare il messaggio.</string>
+  <string name="MessageRecord_left_group">Hai lasciato il gruppo.</string>
   <string name="MessageRecord_updated_group">Gruppo aggiornato.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Le password non corrispondono!</string>
@@ -314,13 +320,16 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <string name="MessageDisplayHelper_decrypting_please_wait">Decifratura in corso...</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Messaggio cifrato per una sessione non esistente...</string>
   <!--EncryptingSmsDatabase-->
+  <string name="EncryptingSmsDatabase_error_decrypting_message">Errore nel decifrare il messaggio.</string>
   <!--ThreadDatabase-->
+  <string name="ThreadDatabase_error_decrypting_message">Errore nel decifrare il messaggio.</string>
   <!--MmsDatabase-->
   <string name="MmsDatabase_connecting_to_mms_server">Connessione al server MMS...</string>
   <string name="MmsDatabase_downloading_mms">Download MMS...</string>
   <string name="MmsDatabase_mms_download_failed">Download dell\'MMS fallito!</string>
   <string name="MmsDatabase_downloading">Scaricamento...</string>
   <string name="MmsDatabase_mms_pending_download">Tocca e configura le impstazioni MMS per continuare a scaricare.</string>
+  <string name="MmsDatabase_error_decrypting_message">Errore nel decifrare il messaggio.</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_decrypting_mms_please_wait">Decifratura MMS in corso, attendere...</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Cifratura MMS invalida..</string>
@@ -629,6 +638,8 @@ Aumenta la privacy ed evita i costi degli SMS usando la connettività dati per c
   <string name="preferences__sms_fallback_never_send_mms">Non inviare mai MMS</string>
   <string name="preferences__sms_fallback_non_push_users">Utenti Non-SecureChat</string>
   <string name="preferences__sms_fallback_nobody">Nessuno</string>
+  <string name="preferences__support_wifi_calling">Modalità di compatibilità \'WiFi Calling\'</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Abilitare se il tuo device spedisce gli SMM/MMS  via WiFi ( abilita solo quando \"WiFi Calling\" è abilitato per il tuo dispositivo )</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -692,6 +703,8 @@ Aumenta la privacy ed evita i costi degli SMS usando la connettività dati per c
   <string name="text_secure_normal__menu_clear_passphrase">Blocca</string>
   <string name="text_secure_normal__mark_all_as_read">Segnala tutto come già letto</string>
   <!--reminder_header-->
+  <string name="reminder_header_expired_build">La tua versione di SecureChat è scaduta!</string>
+  <string name="reminder_header_expired_build_details">Non riesci più a mandare messaggi, per piacere aggiorna all\'ultima versione.</string>
   <string name="reminder_header_sms_default_title">Adotta come applicazione predefinita per SMS.</string>
   <string name="reminder_header_sms_default_text">Attualmente SecureChat non è la tua applicazione predefinita per SMS.</string>
   <string name="reminder_header_sms_import_title">Vuoi importare gli SMS precedenti?</string>
@@ -701,6 +714,7 @@ Aumenta la privacy ed evita i costi degli SMS usando la connettività dati per c
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Tu</string>
   <string name="MediaPreviewActivity_cant_display">Impossibile mostrare l\'anteprima</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">Tipo di media non supportato</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Salva</string>
   <!--media_preview_activity-->

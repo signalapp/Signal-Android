@@ -1,8 +1,12 @@
 package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
+import android.os.Build;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.util.Log;
+
+import org.thoughtcrime.securesms.RoutingActivity;
 
 import java.io.IOException;
 
@@ -15,10 +19,15 @@ public class TextSecurePreferences {
   public  static final String DISABLE_PASSPHRASE_PREF          = "pref_disable_passphrase";
   public  static final String THEME_PREF                       = "pref_theme";
   public  static final String LANGUAGE_PREF                    = "pref_language";
+  private static final String MMSC_CUSTOM_HOST_PREF            = "pref_apn_mmsc_custom_host";
   public  static final String MMSC_HOST_PREF                   = "pref_apn_mmsc_host";
+  private static final String MMSC_CUSTOM_PROXY_PREF           = "pref_apn_mms_custom_proxy";
   public  static final String MMSC_PROXY_HOST_PREF             = "pref_apn_mms_proxy";
+  private static final String MMSC_CUSTOM_PROXY_PORT_PREF      = "pref_apn_mms_custom_proxy_port";
   public  static final String MMSC_PROXY_PORT_PREF             = "pref_apn_mms_proxy_port";
+  private static final String MMSC_CUSTOM_USERNAME_PREF        = "pref_apn_mmsc_custom_username";
   public  static final String MMSC_USERNAME_PREF               = "pref_apn_mmsc_username";
+  private static final String MMSC_CUSTOM_PASSWORD_PREF        = "pref_apn_mmsc_custom_password";
   public  static final String MMSC_PASSWORD_PREF               = "pref_apn_mmsc_password";
   public  static final String THREAD_TRIM_LENGTH               = "pref_trim_length";
   public  static final String THREAD_TRIM_NOW                  = "pref_trim_now";
@@ -40,6 +49,8 @@ public class TextSecurePreferences {
   private static final String ENTER_SENDS_PREF                 = "pref_enter_sends";
   private static final String ENTER_PRESENT_PREF               = "pref_enter_key";
   private static final String SMS_DELIVERY_REPORT_PREF         = "pref_delivery_report_sms";
+  public  static final String MMS_USER_AGENT                   = "pref_mms_user_agent";
+  private static final String MMS_CUSTOM_USER_AGENT            = "pref_custom_mms_user_agent";
   private static final String THREAD_TRIM_ENABLED              = "pref_trim_threads";
   private static final String LOCAL_NUMBER_PREF                = "pref_local_number";
   private static final String VERIFYING_STATE_PREF             = "pref_verifying";
@@ -61,9 +72,37 @@ public class TextSecurePreferences {
 
   private static final String GCM_REGISTRATION_ID_PREF         = "pref_gcm_registration_id";
   private static final String GCM_REGISTRATION_ID_VERSION_PREF = "pref_gcm_registration_id_version";
+  private static final String WEBSOCKET_REGISTERED_PREF        = "pref_websocket_registered";
+  private static final String RATING_LATER_PREF                = "pref_rating_later";
+  private static final String RATING_ENABLED_PREF              = "pref_rating_enabled";
 
   private static final String PUSH_REGISTRATION_REMINDER_PREF  = "pref_push_registration_reminder";
   public  static final String REPEAT_ALERTS_PREF               = "pref_repeat_alerts";
+  private static final String EULA_ACCEPTED = "pref_eula_accepted";
+
+  public static long getRatingLaterTimestamp(Context context) {
+    return getLongPreference(context, RATING_LATER_PREF, 0);
+  }
+
+  public static void setRatingLaterTimestamp(Context context, long timestamp) {
+    setLongPreference(context, RATING_LATER_PREF, timestamp);
+  }
+
+  public static boolean isRatingEnabled(Context context) {
+    return getBooleanPreference(context, RATING_ENABLED_PREF, true);
+  }
+
+  public static void setRatingEnabled(Context context, boolean enabled) {
+    setBooleanPreference(context, RATING_ENABLED_PREF, enabled);
+  }
+
+  public static boolean isWebsocketRegistered(Context context) {
+    return getBooleanPreference(context, WEBSOCKET_REGISTERED_PREF, false);
+  }
+
+  public static void setWebsocketRegistered(Context context, boolean registered) {
+    setBooleanPreference(context, WEBSOCKET_REGISTERED_PREF, registered);
+  }
 
   public static boolean isWifiSmsEnabled(Context context) {
     return getBooleanPreference(context, WIFI_SMS_PREF, false);
@@ -105,36 +144,44 @@ public class TextSecurePreferences {
     }
   }
 
-  public static boolean isFallbackSmsAllowed(Context context) {
-    return getBooleanPreference(context, FALLBACK_SMS_ALLOWED_PREF, true);
-  }
+    public static boolean isFallbackSmsAllowed(Context context) {
+        return getBooleanPreference(context, FALLBACK_SMS_ALLOWED_PREF, true);
+    }
 
-  public static void setFallbackSmsAllowed(Context context, boolean allowed) {
-    setBooleanPreference(context, FALLBACK_SMS_ALLOWED_PREF, allowed);
-  }
+    public static void setFallbackSmsAllowed(Context context, boolean allowed) {
+        setBooleanPreference(context, FALLBACK_SMS_ALLOWED_PREF, allowed);
+    }
 
-  public static boolean isFallbackSmsAskRequired(Context context) {
-    return getBooleanPreference(context, FALLBACK_SMS_ASK_REQUIRED_PREF, false);
-  }
+    public static boolean isFallbackSmsAskRequired(Context context) {
+        return getBooleanPreference(context, FALLBACK_SMS_ASK_REQUIRED_PREF, false);
+    }
 
-  public static void setFallbackSmsAskRequired(Context context, boolean required) {
-    setBooleanPreference(context, FALLBACK_SMS_ASK_REQUIRED_PREF, required);
-  }
+    public static void setFallbackSmsAskRequired(Context context, boolean required) {
+        setBooleanPreference(context, FALLBACK_SMS_ASK_REQUIRED_PREF, required);
+    }
 
-  public static boolean isFallbackMmsEnabled(Context context) {
-    return getBooleanPreference(context, FALLBACK_MMS_ENABLED_PREF, true);
-  }
+    public static boolean isFallbackMmsEnabled(Context context) {
+        return getBooleanPreference(context, FALLBACK_MMS_ENABLED_PREF, true);
+    }
 
-  public static void setFallbackMmsEnabled(Context context, boolean enabled) {
-    setBooleanPreference(context, FALLBACK_MMS_ENABLED_PREF, enabled);
-  }
+    public static void setFallbackMmsEnabled(Context context, boolean enabled) {
+        setBooleanPreference(context, FALLBACK_MMS_ENABLED_PREF, enabled);
+    }
 
-  public static boolean isDirectSmsAllowed(Context context) {
-    return getBooleanPreference(context, DIRECT_SMS_ALLOWED_PREF, true);
-  }
+    public static boolean isDirectSmsAllowed(Context context) {
+        return getBooleanPreference(context, DIRECT_SMS_ALLOWED_PREF, true);
+    }
 
-  public static void setDirectSmsAllowed(Context context, boolean allowed) {
-    setBooleanPreference(context, DIRECT_SMS_ALLOWED_PREF, allowed);
+    public static void setDirectSmsAllowed(Context context, boolean allowed) {
+        setBooleanPreference(context, DIRECT_SMS_ALLOWED_PREF, allowed);
+    }
+
+  public static boolean isSmsEnabled(Context context) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+      return Util.isDefaultSmsProvider(context);
+    } else {
+      return isInterceptAllSmsEnabled(context);
+    }
   }
 
   public static int getLocalRegistrationId(Context context) {
@@ -197,24 +244,96 @@ public class TextSecurePreferences {
     setBooleanPreference(context, DISABLE_PASSPHRASE_PREF, disabled);
   }
 
+  public static boolean getUseCustomMmsc(Context context) {
+    boolean legacy = TextSecurePreferences.isLegacyUseLocalApnsEnabled(context);
+    return getBooleanPreference(context, MMSC_CUSTOM_HOST_PREF, legacy);
+  }
+
+  public static void setUseCustomMmsc(Context context, boolean value) {
+    setBooleanPreference(context, MMSC_CUSTOM_HOST_PREF, value);
+  }
+
   public static String getMmscUrl(Context context) {
     return getStringPreference(context, MMSC_HOST_PREF, "");
+  }
+
+  public static void setMmscUrl(Context context, String mmsc) {
+    setStringPreference(context, MMSC_HOST_PREF, mmsc);
+  }
+
+  public static boolean getUseCustomMmscProxy(Context context) {
+    boolean legacy = TextSecurePreferences.isLegacyUseLocalApnsEnabled(context);
+    return getBooleanPreference(context, MMSC_CUSTOM_PROXY_PREF, legacy);
+  }
+
+  public static void setUseCustomMmscProxy(Context context, boolean value) {
+    setBooleanPreference(context, MMSC_CUSTOM_PROXY_PREF, value);
   }
 
   public static String getMmscProxy(Context context) {
     return getStringPreference(context, MMSC_PROXY_HOST_PREF, "");
   }
 
+  public static void setMmscProxy(Context context, String value) {
+    setStringPreference(context, MMSC_PROXY_HOST_PREF, value);
+  }
+
+  public static boolean getUseCustomMmscProxyPort(Context context) {
+    boolean legacy = TextSecurePreferences.isLegacyUseLocalApnsEnabled(context);
+    return getBooleanPreference(context, MMSC_CUSTOM_PROXY_PORT_PREF, legacy);
+  }
+
+  public static void setUseCustomMmscProxyPort(Context context, boolean value) {
+    setBooleanPreference(context, MMSC_CUSTOM_PROXY_PORT_PREF, value);
+  }
+
   public static String getMmscProxyPort(Context context) {
     return getStringPreference(context, MMSC_PROXY_PORT_PREF, "");
+  }
+
+  public static void setMmscProxyPort(Context context, String value) {
+    setStringPreference(context, MMSC_PROXY_PORT_PREF, value);
+  }
+
+  public static boolean getUseCustomMmscUsername(Context context) {
+    boolean legacy = TextSecurePreferences.isLegacyUseLocalApnsEnabled(context);
+    return getBooleanPreference(context, MMSC_CUSTOM_USERNAME_PREF, legacy);
+  }
+
+  public static void setUseCustomMmscUsername(Context context, boolean value) {
+    setBooleanPreference(context, MMSC_CUSTOM_USERNAME_PREF, value);
   }
 
   public static String getMmscUsername(Context context) {
     return getStringPreference(context, MMSC_USERNAME_PREF, "");
   }
 
+  public static void setMmscUsername(Context context, String value) {
+    setStringPreference(context, MMSC_USERNAME_PREF, value);
+  }
+
+  public static boolean getUseCustomMmscPassword(Context context) {
+    boolean legacy = TextSecurePreferences.isLegacyUseLocalApnsEnabled(context);
+    return getBooleanPreference(context, MMSC_CUSTOM_PASSWORD_PREF, legacy);
+  }
+
+  public static void setUseCustomMmscPassword(Context context, boolean value) {
+    setBooleanPreference(context, MMSC_CUSTOM_PASSWORD_PREF, value);
+  }
+
   public static String getMmscPassword(Context context) {
     return getStringPreference(context, MMSC_PASSWORD_PREF, "");
+  }
+
+  public static void setMmscPassword(Context context, String value) {
+    setStringPreference(context, MMSC_PASSWORD_PREF, value);
+  }
+
+  public static String getMmsUserAgent(Context context, String defaultUserAgent) {
+    boolean useCustom = getBooleanPreference(context, MMS_CUSTOM_USER_AGENT, false);
+
+    if (useCustom) return getStringPreference(context, MMS_USER_AGENT, defaultUserAgent);
+    else           return defaultUserAgent;
   }
 
   public static String getIdentityContactUri(Context context) {
@@ -233,12 +352,8 @@ public class TextSecurePreferences {
     return getBooleanPreference(context, SCREEN_SECURITY_PREF, true);
   }
 
-  public static boolean isUseLocalApnsEnabled(Context context) {
+  public static boolean isLegacyUseLocalApnsEnabled(Context context) {
     return getBooleanPreference(context, ENABLE_MANUAL_MMS_PREF, false);
-  }
-
-  public static void setUseLocalApnsEnabled(Context context, boolean useLocal) {
-    setBooleanPreference(context, ENABLE_MANUAL_MMS_PREF, useLocal);
   }
 
   public static int getLastVersionCode(Context context) {
@@ -325,7 +440,7 @@ public class TextSecurePreferences {
   }
 
   public static String getNotificationRingtone(Context context) {
-    return getStringPreference(context, RINGTONE_PREF, null);
+    return getStringPreference(context, RINGTONE_PREF, Settings.System.DEFAULT_NOTIFICATION_URI.toString());
   }
 
   public static boolean isNotificationVibrateEnabled(Context context) {
@@ -333,7 +448,7 @@ public class TextSecurePreferences {
   }
 
   public static String getNotificationLedColor(Context context) {
-    return getStringPreference(context, LED_COLOR_PREF, "green");
+    return getStringPreference(context, LED_COLOR_PREF, "blue");
   }
 
   public static String getNotificationLedPattern(Context context) {
@@ -356,19 +471,18 @@ public class TextSecurePreferences {
     return Integer.parseInt(getStringPreference(context, THREAD_TRIM_LENGTH, "500"));
   }
 
-  public static long getLastPushReminderTime(Context context) {
-    return getLongPreference(context, PUSH_REGISTRATION_REMINDER_PREF, 0L);
-  }
+    public static long getLastPushReminderTime(Context context) {
+        return getLongPreference(context, PUSH_REGISTRATION_REMINDER_PREF, 0L);
+    }
 
-  public static void setLastPushReminderTime(Context context, long time) {
-    setLongPreference(context, PUSH_REGISTRATION_REMINDER_PREF, time);
-  }
-
-  private static void setBooleanPreference(Context context, String key, boolean value) {
+    public static void setLastPushReminderTime(Context context, long time) {
+        setLongPreference(context, PUSH_REGISTRATION_REMINDER_PREF, time);
+    }
+  public static void setBooleanPreference(Context context, String key, boolean value) {
     PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean(key, value).apply();
   }
 
-  private static boolean getBooleanPreference(Context context, String key, boolean defaultValue) {
+  public static boolean getBooleanPreference(Context context, String key, boolean defaultValue) {
     return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(key, defaultValue);
   }
 
@@ -376,7 +490,7 @@ public class TextSecurePreferences {
     PreferenceManager.getDefaultSharedPreferences(context).edit().putString(key, value).apply();
   }
 
-  private static String getStringPreference(Context context, String key, String defaultValue) {
+  public static String getStringPreference(Context context, String key, String defaultValue) {
     return PreferenceManager.getDefaultSharedPreferences(context).getString(key, defaultValue);
   }
 
@@ -398,5 +512,13 @@ public class TextSecurePreferences {
 
   private static void setLongPreference(Context context, String key, long value) {
     PreferenceManager.getDefaultSharedPreferences(context).edit().putLong(key, value).apply();
+  }
+
+  public static boolean hasAcceptedEula(Context context) {
+    return getBooleanPreference(context, EULA_ACCEPTED, false);
+  }
+
+  public static void setAcceptedEula(Context context, boolean value) {
+    setBooleanPreference(context, EULA_ACCEPTED, value);
   }
 }

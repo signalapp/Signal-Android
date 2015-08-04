@@ -9,6 +9,10 @@ import android.util.Log;
 public class TelephonyUtil {
   private static final String TAG = TelephonyUtil.class.getSimpleName();
 
+  public static TelephonyManager getManager(final Context context) {
+    return (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
+  }
+
   public static String getMccMnc(final Context context) {
     final TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
     final int configMcc = context.getResources().getConfiguration().mcc;

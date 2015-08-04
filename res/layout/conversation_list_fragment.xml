@@ -14,6 +14,7 @@
                   android:divider="?conversation_list_item_divider"
                   android:headerDividersEnabled="false"
                   android:footerDividersEnabled="false"
+                  android:background="@color/gdata_primary_background_color"
                   android:dividerHeight="1px"/>
 
 </LinearLayout>

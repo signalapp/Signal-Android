@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">SECURECHAT</string>
+  <string name="app_name">SecureChat</string>
   <string name="yes">Tak</string>
   <string name="no">Nie</string>
   <string name="delete">Usuń</string>
@@ -26,7 +26,7 @@ Będziesz musiał ponownie zarejestrować swój numer, aby w przyszłości ponow
   <string name="ApplicationPreferencesActivity_sms_enabled">Otrzymywanie SMSów włączone</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Dotknij aby zmienić swoją domyślną aplikację SMS</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Otrzymywanie SMS wyłączone</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Dotknij aby SECURECHAT była Twoją domyślną aplikacją SMS</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Dotknij aby SecureChat była Twoją domyślną aplikacją SMS</string>
   <string name="ApplicationPreferencesActivity_on">włączone</string>
   <string name="ApplicationPreferencesActivity_On">Włączone</string>
   <string name="ApplicationPreferencesActivity_off">wyłączone</string>
@@ -78,8 +78,8 @@ Będziesz musiał ponownie zarejestrować swój numer, aby w przyszłości ponow
   <string name="ConversationActivity_select_contact_info">Wybierz dane kontaktowe</string>
   <string name="ConversationActivity_compose_message">Nowa wiadomość</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Przepraszamy, wystąpił błąd podczas dodawania załącznika...</string>
-  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Przepraszamy, ten plik wideo przekracza dozwolony rozmiar (%1$skB).</string>
-  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Przepraszamy, ten plik audio przekracza dozwolony rozmiar (%1$skB).</string>
+  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Rozmiar pliku audio przkracza dozwoloną wartość (%1$skB).</string>
+  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Rozmiar pliku wideo przkracza dozwoloną wartość (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Podany numer lub adres e-mail jest niepoprawny!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Wiadomość jest pusta!</string>
   <string name="ConversationActivity_group_conversation_recipients">Grupuj odbiorców rozmowy</string>
@@ -97,9 +97,9 @@ Będziesz musiał ponownie zarejestrować swój numer, aby w przyszłości ponow
   <string name="ConversationActivity_transport_insecure_mms">Nieszyfrowany MMS</string>
   <string name="ConversationActivity_transport_secure_sms">Bezpieczny SMS</string>
   <string name="ConversationActivity_transport_secure_mms">Bezpieczny MMS</string>
-  <string name="ConversationActivity_transport_textsecure">SECURECHAT</string>
+  <string name="ConversationActivity_transport_textsecure">SecureChat</string>
   <string name="ConversationActivity_get_with_it">Weź z: %s</string>
-  <string name="ConversationActivity_install_textsecure">Instaluj SECURECHAT: %s</string>
+  <string name="ConversationActivity_install_textsecure">Instaluj SecureChat: %s</string>
   <string name="ConversationActivity_error_leaving_group">Błąd opuszczenia grupy...</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Szczegóły wiadomości</string>
@@ -132,7 +132,7 @@ Będziesz musiał ponownie zarejestrować swój numer, aby w przyszłości ponow
   <!--ExportFragment-->
   <string name="ExportFragment_export">Eksport</string>
   <string name="ExportFragment_export_plaintext_to_sd_card">Wyeksportować czysty tekst na kartę SD?</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Uwaga, wiadomości z Twojej zaszyfrowanej skrzynki odbiorczej SECURECHAT zostaną wyeksportowane w postaci jawnego tekstu na kartę SD.</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Uwaga, wiadomości z Twojej zaszyfrowanej skrzynki odbiorczej SecureChat zostaną wyeksportowane w postaci jawnego tekstu na kartę SD.</string>
   <string name="ExportFragment_cancel">Anuluj</string>
   <string name="ExportFragment_exporting">Eksportowanie</string>
   <string name="ExportFragment_exporting_plaintext_to_sd_card">Eksportowanie nieszyfrowanych na kartę SD</string>
@@ -140,15 +140,15 @@ Będziesz musiał ponownie zarejestrować swój numer, aby w przyszłości ponow
   <string name="ExportFragment_error_while_writing_to_sd_card">Wystąpił błąd w czasie zapisu na kartę SD.</string>
   <string name="ExportFragment_success">Sukces!</string>
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_TextSecure_communication_failure">Pernamentny błąd komunikacji SECURECHAT!</string>
-  <string name="GcmRefreshJob_TextSecure_was_unable_to_register_with_Google_Play_Services">SECURECHAT nie był w stanie zarejestrować się w sklepie Google Play. Kominikacja danych telefonu jest wyłączona, prosze spróbuj ponownie zarejestrować używając menu ustawień SECURECHAT.</string>
+  <string name="GcmRefreshJob_Permanent_TextSecure_communication_failure">Pernamentny błąd komunikacji SecureChat!</string>
+  <string name="GcmRefreshJob_TextSecure_was_unable_to_register_with_Google_Play_Services">SecureChat nie był w stanie zarejestrować się w sklepie Google Play. Kominikacja danych telefonu jest wyłączona, prosze spróbuj ponownie zarejestrować używając menu ustawień SecureChat.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Nowa grupa</string>
   <string name="GroupCreateActivity_actionbar_update_title">Aktualizuj grupę</string>
   <string name="GroupCreateActivity_group_name_hint">Nazwa grupy</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Nowa grupa MMS</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Zaznaczyłeś kontakt, który nie wspiera grup SECURECHAT, dlatego ta grupa będzie grupą MMS.</string>
-  <string name="GroupCreateActivity_you_dont_support_push">Nie jesteś zarejestrowany do używania kanału danych, dlatego grupy SECURECHAT są niedostępne.</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Zaznaczyłeś kontakt, który nie wspiera grup SecureChat, dlatego ta grupa będzie grupą MMS.</string>
+  <string name="GroupCreateActivity_you_dont_support_push">Nie jesteś zarejestrowany do używania kanału danych, dlatego grupy SecureChat są niedostępne.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Wystąpił błąd podczas tworzenia nowej grupy. Grupa nie została utworzona.</string>
   <string name="GroupCreateActivity_contacts_no_members">Potrzebujesz przynajmniej jeden osoby w Twojej grupie.</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Jeden z członków Twojej grupy ma numer który nie może być prawidłowo odczytany. Proszę popraw go lub usuń ten numer i spróbuj ponownie.</string>
@@ -156,7 +156,7 @@ Będziesz musiał ponownie zarejestrować swój numer, aby w przyszłości ponow
   <string name="GroupCreateActivity_menu_create_title">Utwórz grupę</string>
   <string name="GroupCreateActivity_creating_group">Trwa tworzenie %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Aktualizowanie %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Nie można dodać użytkowników nie używających SECURECHAT do istniejącej grupy SECURECHAT</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Nie można dodać użytkowników nie używających SecureChat do istniejącej grupy SecureChat</string>
   <string name="GroupCreateActivity_loading_group_details">Wczytywanie szczegółów grupy...</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Ja</string>
@@ -166,12 +166,12 @@ Będziesz musiał ponownie zarejestrować swój numer, aby w przyszłości ponow
   <string name="ImportExportActivity_export">Eksport</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Zaimportować systemową bazę danych SMS?</string>
-  <string name="ImportFragment_this_will_import_messages_from_the_system">Wiadomości z Twojej domyślnej bazy danych zostaną zaimportowane do bazy SECURECHAT. Jeśli wcześniej importowałeś już bazę danych SMS, ponowny import spowoduje duplikację wiadomości.</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">Wiadomości z Twojej domyślnej bazy danych zostaną zaimportowane do bazy SecureChat. Jeśli wcześniej importowałeś już bazę danych SMS, ponowny import spowoduje duplikację wiadomości.</string>
   <string name="ImportFragment_import">Import</string>
   <string name="ImportFragment_cancel">Anulluj</string>
   <string name="ImportFragment_restore_encrypted_backup">Przywrócić z zaszyfrowanej kopii zapasowej?</string>
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
-Przywracanie z zaszyfrowanej kopii zapasowej spowoduje nadpisanie Twoich istniejących kluczy, ustawień i wiadomości. Stracisz wszystkie informacje zawarte w aplikacji SECURECHAT, z wyjątkiem tych zawartych w kopii zapasowej.</string>
+Przywracanie z zaszyfrowanej kopii zapasowej spowoduje nadpisanie Twoich istniejących kluczy, ustawień i wiadomości. Stracisz wszystkie informacje zawarte w aplikacji SecureChat, z wyjątkiem tych zawartych w kopii zapasowej.</string>
   <string name="ImportFragment_restore">Przywróć</string>
   <string name="ImportFragment_import_plaintext_backup">Importować z nieszyfrowanej kopii zapasowej?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Wiadomości z jawnej kopii zapasowej zostaną zaimportowane. Jeżeli wcześniej wykonywałeś już tę czynność, ponowny import spowoduje duplikację wiadomości.</string>
@@ -187,7 +187,7 @@ Przywracanie z zaszyfrowanej kopii zapasowej spowoduje nadpisanie Twoich istniej
   <!--KeyScanningActivity-->
   <string name="KeyScanningActivity_no_scanned_key_found_exclamation">Nie znaleziono żadnego zeskanowanego klucza!</string>
   <string name="KeyScanningActivity_install_barcode_Scanner">Zainstalować Barcode Scanner?</string>
-  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">SECURECHAT potrzebuje Barcode Scanner dla kodów QR.</string>
+  <string name="KeyScanningActivity_this_application_requires_barcode_scanner_would_you_like_to_install_it">SecureChat potrzebuje Barcode Scanner dla kodów QR.</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_storing_mms">Błąd przechowywania MMS!</string>
   <string name="MmsDownloader_error_connecting_to_mms_provider">Błąd połączenia z dostawcą usługi MMS...</string>
@@ -195,7 +195,7 @@ Przywracanie z zaszyfrowanej kopii zapasowej spowoduje nadpisanie Twoich istniej
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Wiadomość multimedialna</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Otrzymano wiadomość zaszyfrowaną przy użyciu starej wersji SECURECHAT, która nie jest już wspierana. Poproś nadawcę o aktualizacje aplikacji do najnowszej wersji i przesłanie wiadomości ponownie.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Otrzymano wiadomość zaszyfrowaną przy użyciu starej wersji SecureChat, która nie jest już wspierana. Poproś nadawcę o aktualizacje aplikacji do najnowszej wersji i przesłanie wiadomości ponownie.</string>
   <string name="MessageRecord_left_group">Opuściłeś grupę.</string>
   <string name="MessageRecord_updated_group">Zaktualizowano grupę.</string>
   <!--PassphraseChangeActivity-->
@@ -203,13 +203,13 @@ Przywracanie z zaszyfrowanej kopii zapasowej spowoduje nadpisanie Twoich istniej
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Nieprawidłowe stare hasło!</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Podaj hasło</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">Ikona SECURECHAT</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Ikona SecureChat</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Wprowadź hasło</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Nieprawidłowe hasło!</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Podpis pod tą wymianą kluczy jest inny od tego, który otrzymałeś poprzednio od tego 
 kontaktu. Może to oznaczać, że ktoś próbuje przechwycić Twoją komunikację lub 
-Twój kontakt przeinstalował program SECURECHAT i posiada teraz nowy klucz tożsamości.</string>
+Twój kontakt przeinstalował program SecureChat i posiada teraz nowy klucz tożsamości.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Możesz chcieć zweryfikować 
 ten kontakt.
 </string>
@@ -217,7 +217,7 @@ ten kontakt.
   <string name="ReceiveKeyActivity_processing">Przetwarzanie</string>
   <string name="ReceiveKeyActivity_processing_key_exchange">Przetwarzanie wymiany kluczy...</string>
   <!--RegistrationActivity-->
-  <string name="RegistrationActivity_connect_with_textsecure">Połącz z SECURECHAT</string>
+  <string name="RegistrationActivity_connect_with_textsecure">Połącz z SecureChat</string>
   <string name="RegistrationActivity_select_your_country">Wybierz swój kraj</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Podaj kod telefoniczny kraju</string>
   <string name="RegistrationActivity_you_must_specify_your_phone_number">Podaj swój numer telefonu</string>
@@ -256,12 +256,12 @@ Czy ten numer jest poprawny? Czy chcesz go edytować przed kontynuowaniem?
   <string name="RegistrationProgressActivity_too_many_requests">Zbyt wiele zapytań!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Już zażądałeś połączenia głosowego. Możesz ponownie zażądać innego połączenia w ciągu następnych 20 minut.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Konflikt rejestracji</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Ten numer jest już zarejestrowany na innym serwerze SECURECHAT (CyanogenMod?). Musisz się tam najpierw wyrejestrować zanim zarejestrujesz się tutaj.</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Ten numer jest już zarejestrowany na innym serwerze SecureChat (CyanogenMod?). Musisz się tam najpierw wyrejestrować zanim zarejestrujesz się tutaj.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Rejestracja zakończona!</string>
-  <string name="RegistrationService_textsecure_registration_has_successfully_completed">Rejestracja SECURECHAT została pomyślnie zakończona.</string>
+  <string name="RegistrationService_textsecure_registration_has_successfully_completed">Rejestracja SecureChat została pomyślnie zakończona.</string>
   <string name="RegistrationService_registration_error">Błąd rejestracji</string>
-  <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Rejestracja SECURECHAT napotkała problem.</string>
+  <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">Rejestracja SecureChat napotkała problem.</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Otrzymano uszkodzony klucz!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
@@ -324,7 +324,7 @@ Otrzymano wiadomość z nieznanym kluczem tożsamości. Kliknij aby przetworzyć
   <!--KeyCachingService-->
   <string name="KeyCachingService_textsecure_passphrase_cached">Dotknij, aby otworzyć.</string>
   <string name="KeyCachingService_textsecure_passphrase_cached_with_lock">Dotknij, aby otworzyć lub dotknij zablokuj, aby zamknąć.</string>
-  <string name="KeyCachingService_passphrase_cached">SECURECHAT jest odblokowany</string>
+  <string name="KeyCachingService_passphrase_cached">SecureChat jest odblokowany</string>
   <string name="KeyCachingService_lock">Zablokuj hasłem</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">%d nowych wiadomości</string>
@@ -337,9 +337,9 @@ Otrzymano wiadomość z nieznanym kluczem tożsamości. Kliknij aby przetworzyć
   <string name="MessageNotifier_mark_all_as_read">Oznacz wszystkie jako przeczytane</string>
   <string name="MessageNotifier_mark_as_read">Oznacz jako przeczytane</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Przepraszamy, Szybka Odpowiedź nie jest jeszcze wspierana przez SECURECHAT!</string>
+  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Przepraszamy, Szybka Odpowiedź nie jest jeszcze wspierana przez SecureChat!</string>
   <!--auto_initiate_activity-->
-  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Dostałeś wiadomość od kogoś kto obsługuje szyfrowane sesje SECURECHAT. Czy chcesz rozpocząć bezpieczną sesję?</string>
+  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Dostałeś wiadomość od kogoś kto obsługuje szyfrowane sesje SecureChat. Czy chcesz rozpocząć bezpieczną sesję?</string>
   <string name="auto_initiate_activity__initiate_exchange">Rozpocznij wymianę</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">STARE HASŁO:</string>
@@ -359,7 +359,7 @@ Otrzymano wiadomość z nieznanym kluczem tożsamości. Kliknij aby przetworzyć
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Brak ostatnich połączeń.</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Wyślij wiadomość SECURECHAT</string>
+  <string name="conversation_activity__type_message_push">Wyślij wiadomość SecureChat</string>
   <string name="conversation_activity__type_message_sms_secure">Wyślij szyfrowany SMS</string>
   <string name="conversation_activity__type_message_sms_insecure">Wyślij nieszyfrowany SMS</string>
   <string name="conversation_activity__type_message_mms_secure">Wyślij szyfrowany MMS</string>
@@ -395,7 +395,7 @@ Otrzymano wiadomość z nieznanym kluczem tożsamości. Kliknij aby przetworzyć
   <string name="log_submit_activity__submitting">Wysyłanie</string>
   <string name="log_submit_activity__posting_logs">Wysyłanie logów do gist...</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Czy chcesz zaimportować swoje wiadomości do zaszyfrowanej bazy danych SECURECHAT?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Czy chcesz zaimportować swoje wiadomości do zaszyfrowanej bazy danych SecureChat?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Domyślna baza danych nie zostanie zmodyfikowana ani zastąpiona w żaden sposób.</string>
   <string name="database_migration_activity__skip">Pomiń</string>
   <string name="database_migration_activity__import">Import</string>
@@ -411,7 +411,7 @@ Eksportuj niezaszyfrowaną kopię zapasową kompatybilną z \'SMSBackup And Rest
 z domyślnej systemowej aplikacji SMS.</string>
   <string name="import_fragment__import_encrypted_backup">Importuj szyfrowaną kopię zapasową</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">
-Przywróć poprzednio wyeksportowaną szyfrowaną kopię zapasową SECURECHAT.</string>
+Przywróć poprzednio wyeksportowaną szyfrowaną kopię zapasową SecureChat.</string>
   <string name="import_fragment__import_plaintext_backup">Importuj nieszyfrowaną kopię zapasową</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Importuj niezaszyfrowany plik kopii zapasowej, kompatybilny z \'SMSBackup And Restore\'.</string>
@@ -429,13 +429,13 @@ Importuj niezaszyfrowany plik kopii zapasowej, kompatybilny z \'SMSBackup And Re
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Odblokuj</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">SECURECHAT wymaga ustawień MMS w celu dostarczenia wiadomości multimedialnych za pośrednictwem Twojego operatora. Twoje urządzenie nie udostępnia tych informacji. Może to być spowodowane pewnymi restrykcyjnymi konfiguracjami w telefonie.</string>
+  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">SecureChat wymaga ustawień MMS w celu dostarczenia wiadomości multimedialnych za pośrednictwem Twojego operatora. Twoje urządzenie nie udostępnia tych informacji. Może to być spowodowane pewnymi restrykcyjnymi konfiguracjami w telefonie.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Aby mieć możliwość wysyłania wiadomości multimedialnych i wiadomości grupowych, kliknij \'OK\' i wypełnij pola, o które jesteś proszony. Dane MMS dla Twojego operatora, można znaleźć szukając w ustawieniach frazy typu \'Punkty Dostępu - APN\'. Wystarczy to zrobić tylko jeden raz.</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Zakończono</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-Rejestracja jest darmowa i zwiększa prywatność podczas pisania do innych użytkowników SECURECHAT. Proszę zweryfikuj swój numer.</string>
+Rejestracja jest darmowa i zwiększa prywatność podczas pisania do innych użytkowników SecureChat. Proszę zweryfikuj swój numer.</string>
   <string name="registration_activity__your_country">TWÓJ KRAJ</string>
   <string name="registration_activity__your_country_code_and_phone_number">KOD TWOJEGO KRAJU I 
 NUMER TELEFONU</string>
@@ -447,31 +447,31 @@ NUMER TELEFONU</string>
   <string name="registration_problems__some_possible_problems_include">Niektóre możliwe problemy:</string>
   <string name="registration_problems__sms_interceptors">Przechwytywanie SMS.</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
-Niektóre zewnętrzne aplikacje SMS, takie jak Handcent lub GoSMS mogą przechwytywać całą komunikację SMS. Sprawdź czy otrzymałeś wiadomość rozpoczynającą się od słów: \'Twój kod weryfikacyjny SECURECHAT:\'. Jeśli tak, musisz skonfigurować swoją zewnętrzną aplikację tak aby nie przechwytywała wiadomości SMS.</string>
+Niektóre zewnętrzne aplikacje SMS, takie jak Handcent lub GoSMS mogą przechwytywać całą komunikację SMS. Sprawdź czy otrzymałeś wiadomość rozpoczynającą się od słów: \'Twój kod weryfikacyjny SecureChat:\'. Jeśli tak, musisz skonfigurować swoją zewnętrzną aplikację tak aby nie przechwytywała wiadomości SMS.</string>
   <string name="registration_problems__incorrect_number">Niepoprawny numer.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
 Upewnij się czy wprowadzony numer jest poprawny oraz czy kod Twojego regionu jest prawidłowy.</string>
   <string name="registration_problems__google_voice">Google Voice.</string>
   <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">
-SECURECHAT nie będzie współpracował z numerami Google Voice.</string>
+SecureChat nie będzie współpracował z numerami Google Voice.</string>
   <!--registration_progress_activity-->
   <string name="registration_progress_activity__voice_verification">Weryfikacja głosowa</string>
   <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">
-SECURECHAT może również zadzwonić do Ciebie w celu weryfikacji numeru. Wybierz \'Zadzwoń do mnie\' i wprowadź sześciocyfrowy kod który usłyszysz.</string>
+SecureChat może również zadzwonić do Ciebie w celu weryfikacji numeru. Wybierz \'Zadzwoń do mnie\' i wprowadź sześciocyfrowy kod który usłyszysz.</string>
   <string name="registration_progress_activity__verify">Weryfikuj</string>
   <string name="registration_progress_activity__call_me">Zadzwoń do mnie</string>
   <string name="registration_progress_activity__edit_number">Edytuj numer</string>
   <string name="registration_progress_activity__connectivity_error">Błąd połączenia.</string>
   <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">
-SECURECHAT nie był w stanie połączyć się z usługą push service.</string>
+SecureChat nie był w stanie połączyć się z usługą push service.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Niektóre możliwe problemy:</string>
   <string name="registration_progress_activity__no_network_connectivity">Brak połączenia z siecią.</string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Twoje urządzenie potrzebuje połączyć się z siecią aby użyć tej funkcji SECURECHAT. Sprawdź czy urządzenie podłączone jest do sieci 3G lub WiFi.</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">Twoje urządzenie potrzebuje połączyć się z siecią aby użyć tej funkcji SecureChat. Sprawdź czy urządzenie podłączone jest do sieci 3G lub WiFi.</string>
   <string name="registration_progress_activity__restrictive_firewall">Restrykcyjny Firewall.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
-Jeśli jesteś połączony przez WiFi, możliwe jest że Firewall blokuje dostęp do serwera SECURECHAT.</string>
+Jeśli jesteś połączony przez WiFi, możliwe jest że Firewall blokuje dostęp do serwera SecureChat.</string>
   <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
-SECURECHAT zweryfikuje teraz Twój numer za pomocą wiadomości SMS.</string>
+SecureChat zweryfikuje teraz Twój numer za pomocą wiadomości SMS.</string>
   <string name="registration_progress_activity__connecting">Łączenie...</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">Oczekiwanie na weryfikację SMS...</string>
   <string name="registration_progress_activity__registering_with_server">Rejestrowanie z serwerem...</string>
@@ -490,7 +490,7 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="AndroidManifest__create_passphrase">Utwórz hasło</string>
   <string name="AndroidManifest__enter_passphrase">Podaj hasło</string>
   <string name="AndroidManifest__select_contacts">Wybierz kontakty</string>
-  <string name="AndroidManifest__textsecure_detected">Wykryto SECURECHAT</string>
+  <string name="AndroidManifest__textsecure_detected">Wykryto SecureChat</string>
   <string name="AndroidManifest__public_identity_key">Publiczny klucz tożsamości</string>
   <string name="AndroidManifest__change_passphrase">Zmień hasło</string>
   <string name="AndroidManifest__verify_identity">Zweryfikuj tożsamość</string>
@@ -506,8 +506,8 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="preferences__push_sms_category">Push i SMS</string>
   <string name="preferences__pref_all_sms_title">Otrzymuj wszystkie SMSy</string>
   <string name="preferences__pref_all_mms_title">Otrzymuj wszystkie MMSy</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Użyj SECURECHAT do przeglądania i przechowywania wszystkich wiadomości tekstowych.</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Użyj SECURECHAT do przeglądania i przechowywania wszystkich wiadomości multimedialnych</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Użyj SecureChat do przeglądania i przechowywania wszystkich wiadomości tekstowych.</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Użyj SecureChat do przeglądania i przechowywania wszystkich wiadomości multimedialnych</string>
   <string name="preferences__input_settings">Ustawienia wprowadzania</string>
   <string name="preferences__enable_enter_key_title">Włącz klawisz Enter</string>
   <string name="preferences__replace_smiley_with_enter_key">Zastąp przycisk emotikon klawiszem Enter</string>
@@ -582,19 +582,19 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="preferences__default">Domyślne</string>
   <string name="preferences__language">Język</string>
   <string name="preferences__make_default_sms_app">Ustaw jako domyślną aplikację SMS</string>
-  <string name="preferences__make_textsecure_the_default_sms_mms_app">Ustaw SECURECHAT jako domyślną aplikację SMS/MMS.</string>
+  <string name="preferences__make_textsecure_the_default_sms_mms_app">Ustaw SecureChat jako domyślną aplikację SMS/MMS.</string>
   <string name="preferences__use_data_channel">Push wiadomości</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
-Zwiększ swoją prywatność i unikaj opłat za SMS używając transmisji danych do komunikacji z innymi użytkownikami SECURECHAT.</string>
+Zwiększ swoją prywatność i unikaj opłat za SMS używając transmisji danych do komunikacji z innymi użytkownikami SecureChat.</string>
   <string name="preferences__sms_fallback">Wychodzący SMS/MMS</string>
   <string name="preferences__submit_debug_log">Wyślij logi debugowania</string>
-  <string name="preferences__sms_outgoing_push_users">Użytkowników SECURECHAT</string>
+  <string name="preferences__sms_outgoing_push_users">Użytkowników SecureChat</string>
   <string name="preferences__sms_fallback_push_users_ask">najpierw pytaj</string>
   <string name="preferences__sms_fallback_push_users_no_mms">nie MMS</string>
   <string name="preferences__sms_outgoing_push_users_description">Wysyłaj bezpieczne SMSy jeśli połączenie jest utracone</string>
   <string name="preferences__sms_fallback_ask_before_sending_sms_mms">Pytaj przed wysłaniem SMS/MMS</string>
   <string name="preferences__sms_fallback_never_send_mms">Nigdy nie wysyłaj MMS</string>
-  <string name="preferences__sms_fallback_non_push_users">Użytkowników bez-SECURECHAT</string>
+  <string name="preferences__sms_fallback_non_push_users">Użytkowników bez-SecureChat</string>
   <string name="preferences__sms_fallback_nobody">Nikt</string>
   <string name="preferences__support_wifi_calling">\'WiFi Calling\' tryb zgodności</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Włącz jeśli Twoje urządzenie używa dostarczanie SMS/MMS przez WiFi (włącz tylko wtedy gdy \'WiFi Calling\' jest włączone na Twoim urządzeniu).</string>
@@ -612,7 +612,7 @@ Zwiększ swoją prywatność i unikaj opłat za SMS używając transmisji danych
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Odśwież listę kontaktów</string>
   <!--conversation_button_context-->
-  <string name="conversation_button_context__send_textsecure_message">Wyślij wiadomość SECURECHAT</string>
+  <string name="conversation_button_context__send_textsecure_message">Wyślij wiadomość SecureChat</string>
   <string name="conversation_button_context__send_secure_sms">Wyślij szyfrowany SMS</string>
   <string name="conversation_button_context__send_insecure_sms">Wyślij nieszyfrowany SMS</string>
   <string name="conversation_button_context__send_secure_mms">Wyślij szyfrowany MMS</string>
@@ -661,11 +661,13 @@ Zwiększ swoją prywatność i unikaj opłat za SMS używając transmisji danych
   <string name="text_secure_normal__menu_clear_passphrase">Zablokuj</string>
   <string name="text_secure_normal__mark_all_as_read">Oznacz wszystkie jako przeczytane</string>
   <!--reminder_header-->
+  <string name="reminder_header_expired_build">Twoja wersja SecureChat wygasła!</string>
+  <string name="reminder_header_expired_build_details">Wiadomości nie będą już pomylnie wysyłane, prosimy o aktualizację do najnowszej wersji.</string>
   <string name="reminder_header_sms_default_title">Użyć jako domyślnej aplikacji SMS?</string>
-  <string name="reminder_header_sms_default_text">SECURECHAT nie jest obecnie Twoją domyślną aplikacją SMS.</string>
+  <string name="reminder_header_sms_default_text">SecureChat nie jest obecnie Twoją domyślną aplikacją SMS.</string>
   <string name="reminder_header_sms_import_title">Importować SMS?</string>
-  <string name="reminder_header_sms_import_text">SECURECHAT może skopiować Twoje wiadomości SMS do szyfrowanej bazy danych.</string>
-  <string name="reminder_header_push_title">Włączyć wiadomości SECURECHAT?</string>
+  <string name="reminder_header_sms_import_text">SecureChat może skopiować Twoje wiadomości SMS do szyfrowanej bazy danych.</string>
+  <string name="reminder_header_push_title">Włączyć wiadomości SecureChat?</string>
   <string name="reminder_header_push_text">Szybkie dostarczenie, większa prywatność i brak opłat SMS.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Ty</string>

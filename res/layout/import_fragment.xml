@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/white"
             android:layout_gravity="center_vertical"
             android:gravity="center_vertical">
 
@@ -10,13 +11,14 @@
               android:layout_height="wrap_content"
               android:gravity="center_vertical"
               android:layout_gravity="center_vertical"
-              android:padding="8dip">
+              android:padding="8dip"
+              android:background="@color/white">
 
     <LinearLayout android:id="@+id/import_sms"
                   android:clickable="true"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                  android:background="?import_export_item_card_background"
+                  android:background="@drawable/clickable_card_light"
                   android:orientation="vertical">
 
         <LinearLayout android:orientation="horizontal"
@@ -31,7 +33,7 @@
             <ImageView android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:layout_marginRight="10dip"
-                       android:src="?stock_sms"/>
+                       android:src="@drawable/stock_sms_light"/>
 
             <LinearLayout android:orientation="vertical"
                           android:layout_width="wrap_content"
@@ -56,7 +58,7 @@
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:layout_marginTop="10dip"
-                  android:background="?import_export_item_card_background"
+                  android:background="@drawable/clickable_card_light"
                   android:orientation="vertical"
                   android:visibility="gone">
 
@@ -72,7 +74,7 @@
             <ImageView android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:layout_marginRight="10dip"
-                       android:src="?encrypted_backup"/>
+                       android:src="@drawable/encrypted_backup_light"/>
 
             <LinearLayout android:orientation="vertical"
                           android:layout_width="wrap_content"
@@ -98,7 +100,7 @@
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:layout_marginTop="10dip"
-                  android:background="?import_export_item_card_background"
+                  android:background="@drawable/clickable_card_light"
                   android:orientation="vertical">
 
         <LinearLayout android:orientation="horizontal"
@@ -113,7 +115,7 @@
             <ImageView android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:layout_marginRight="10dip"
-                       android:src="?plaintext_backup"/>
+                       android:src="@drawable/plaintext_backup_light"/>
 
             <LinearLayout android:orientation="vertical"
                           android:layout_width="wrap_content"

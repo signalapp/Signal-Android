@@ -83,8 +83,8 @@ Tem certeza que deseja fazer isto?</string>
   <string name="ConversationActivity_select_contact_info">Selecionar informações de contato</string>
   <string name="ConversationActivity_compose_message">Escrever mensagem</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Lamento, ocorreu um erro no envio do seu anexo</string>
-  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Desculpe, o vídeo selecionado excede as restrições de tamanho da mensagem (%1$skB).</string>
-  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Desculpe, o áudio selecionado excede as restrições de tamanho da mensagem (%1$skB).</string>
+  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Desculpe, o áudio selecionado excede as restrições de tamanho de mensagem (%1$skB).</string>
+  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Desculpe, o vídeo selecionado excede as restrições de tamanho de mensagem (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Destinatário não é um endereço SMS ou email válido!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">A mensagem está vazia!</string>
   <string name="ConversationActivity_group_conversation_recipients">Destinatários da conversa em grupo</string>
@@ -719,6 +719,8 @@ falhou.</string>
   <string name="text_secure_normal__menu_clear_passphrase">Trancar</string>
   <string name="text_secure_normal__mark_all_as_read">Marcar todas como lidas</string>
   <!--reminder_header-->
+  <string name="reminder_header_expired_build">Sua versão do SecureChat expirou!</string>
+  <string name="reminder_header_expired_build_details">As mensagens não serão enviadas com sucesso, favor atualizar para a versão mais recente.</string>
   <string name="reminder_header_sms_default_title">Usar como app SMS padrão?</string>
   <string name="reminder_header_sms_default_text">O SecureChat não é atualmente o seu app SMS padrão.</string>
   <string name="reminder_header_sms_import_title">Importar mensagens SMS do sistema?</string>

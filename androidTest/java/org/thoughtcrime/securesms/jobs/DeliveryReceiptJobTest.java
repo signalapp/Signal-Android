@@ -7,7 +7,7 @@ import org.mockito.Mockito;
 import org.thoughtcrime.securesms.TextSecureTestCase;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.whispersystems.textsecure.api.TextSecureMessageSender;
-import org.whispersystems.textsecure.api.push.PushAddress;
+import org.whispersystems.textsecure.api.push.TextSecureAddress;
 import org.whispersystems.textsecure.api.push.exceptions.NotFoundException;
 import org.whispersystems.textsecure.api.push.exceptions.PushNetworkException;
 
@@ -38,7 +38,7 @@ public class DeliveryReceiptJobTest extends TextSecureTestCase {
 
     deliveryReceiptJob.onRun();
 
-    ArgumentCaptor<PushAddress> captor = ArgumentCaptor.forClass(PushAddress.class);
+    ArgumentCaptor<TextSecureAddress> captor = ArgumentCaptor.forClass(TextSecureAddress.class);
     verify(textSecureMessageSender).sendDeliveryReceipt(captor.capture(), eq(timestamp));
 
     assertTrue(captor.getValue().getRelay().equals("foo"));
@@ -51,7 +51,7 @@ public class DeliveryReceiptJobTest extends TextSecureTestCase {
 
     Mockito.doThrow(new PushNetworkException("network error"))
            .when(textSecureMessageSender)
-           .sendDeliveryReceipt(any(PushAddress.class), eq(timestamp));
+           .sendDeliveryReceipt(any(TextSecureAddress.class), eq(timestamp));
 
 
     DeliveryReceiptJob deliveryReceiptJob = new DeliveryReceiptJob(getContext(),
@@ -70,7 +70,7 @@ public class DeliveryReceiptJobTest extends TextSecureTestCase {
 
     Mockito.doThrow(new NotFoundException("not found"))
            .when(textSecureMessageSender)
-           .sendDeliveryReceipt(any(PushAddress.class), eq(timestamp));
+           .sendDeliveryReceipt(any(TextSecureAddress.class), eq(timestamp));
 
     try {
       deliveryReceiptJob.onRun();

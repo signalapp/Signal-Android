@@ -128,7 +128,7 @@ public class SmsListener extends BroadcastReceiver {
     if (messageBody == null)
       return false;
 
-    if (messageBody.matches("Your TextSecure verification code: [0-9]{3,4}-[0-9]{3,4}") &&
+    if (messageBody.contains("verification code: ") &&
         TextSecurePreferences.isVerifying(context))
     {
       return true;

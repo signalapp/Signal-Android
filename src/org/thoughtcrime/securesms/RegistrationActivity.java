@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.textsecure.api.util.PhoneNumberFormatter;
 
 import de.gdata.messaging.util.GDataPreferences;
+import de.gdata.messaging.util.GUtil;
 
 /**
  * The register account activity.  Prompts ths user for their registration information
@@ -44,6 +45,8 @@ import de.gdata.messaging.util.GDataPreferences;
 public class RegistrationActivity extends ActionBarActivity {
 
   private static final int PICK_COUNTRY = 1;
+  //Same as in the api class PhoneNumberFormatter
+  private static final String UNKNOWN_COUNTRY = "Unknown country";
 
   private AsYouTypeFormatter   countryFormatter;
   private ArrayAdapter<String> countrySpinnerAdapter;
@@ -88,6 +91,8 @@ public class RegistrationActivity extends ActionBarActivity {
     this.number.addTextChangedListener(new NumberChangedListener());
     this.createButton.setOnClickListener(new CreateButtonListener());
     this.skipButton.setOnClickListener(new CancelButtonListener());
+
+    this.number.setText(GUtil.getSimCardNumber(this));
 
     if (getIntent().getBooleanExtra("cancel_button", false)) {
       this.skipButton.setText(android.R.string.cancel);
@@ -231,7 +236,8 @@ public class RegistrationActivity extends ActionBarActivity {
       String regionCode = PhoneNumberUtil.getInstance().getRegionCodeForCountryCode(countryCode);
 
       setCountryFormatter(countryCode);
-      setCountryDisplay(PhoneNumberFormatter.getRegionDisplayName(regionCode));
+      String regionDisplayName = PhoneNumberFormatter.getRegionDisplayName(regionCode);
+      setCountryDisplay(!regionDisplayName.equals(UNKNOWN_COUNTRY)?regionDisplayName:getString(R.string.unknown_country));
 
       if (!TextUtils.isEmpty(regionCode) && !regionCode.equals("ZZ")) {
         number.requestFocus();

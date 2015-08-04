@@ -22,13 +22,10 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.widget.ImageView;
 
-import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 
 import java.lang.ref.WeakReference;
 
@@ -58,18 +55,14 @@ public class BitmapWorkerRunnable implements Runnable {
   @Override
   public void run() {
     final Bitmap bitmap;
-    try {
-      final Recipient recipient = RecipientFactory.getRecipientsFromString(context, number, false).getPrimaryRecipient();
-      final Bitmap contactPhoto = recipient.getContactPhoto();
-      if (defaultPhoto == contactPhoto) {
-        return;
-      }
 
-      bitmap = BitmapUtil.getScaledCircleCroppedBitmap(contactPhoto, size);
-    } catch (RecipientFormattingException rfe) {
-      Log.w(TAG, "Couldn't get recipient from string", rfe);
+    final Recipient recipient = RecipientFactory.getRecipientsFromString(context, number, false).getPrimaryRecipient();
+    final Bitmap contactPhoto = recipient.getContactPhoto();
+    if (defaultPhoto == contactPhoto) {
       return;
     }
+
+    bitmap = BitmapUtil.getCircleBitmap(contactPhoto);
 
     if (bitmap != null) {
       final ImageView imageView                  = imageViewReference.get();

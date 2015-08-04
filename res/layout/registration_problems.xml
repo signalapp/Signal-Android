@@ -19,8 +19,8 @@
                 android:layout_height="wrap_content">
 
             <TextView
-                    style="@style/Registration.Description"
-                    android:layout_width="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dip"
                     android:text="@string/registration_problems__some_possible_problems_include" />
@@ -32,7 +32,7 @@
                 <TableRow>
 
                     <TextView
-                            style="@style/Registration.Description"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingRight="10dip"
@@ -44,14 +44,14 @@
                             android:orientation="vertical" >
 
                         <TextView
-                                style="@style/Registration.Description"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/registration_problems__sms_interceptors"
                                 android:textStyle="bold" />
 
                         <TextView
-                                style="@style/Registration.Description"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingRight="20dip"
@@ -62,7 +62,7 @@
                 <TableRow>
 
                     <TextView
-                            style="@style/Registration.Description"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingRight="10dip"
@@ -74,14 +74,14 @@
                             android:orientation="vertical" >
 
                         <TextView
-                                style="@style/Registration.Description"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/registration_problems__incorrect_number"
                                 android:textStyle="bold" />
 
                         <TextView
-                                style="@style/Registration.Description"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingRight="20dip"
@@ -92,7 +92,7 @@
                 <TableRow>
 
                     <TextView
-                            style="@style/Registration.Description"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="•" />
@@ -103,14 +103,14 @@
                             android:orientation="vertical" >
 
                         <TextView
-                                style="@style/Registration.Description"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/registration_problems__google_voice"
                                 android:textStyle="bold" />
 
                         <TextView
-                                style="@style/Registration.Description"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingRight="20dip"

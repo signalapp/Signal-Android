@@ -44,13 +44,15 @@ import com.google.protobuf.ByteString;
 import org.thoughtcrime.securesms.components.PushRecipientsPanel;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.RecipientsEditor;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.NotInDirectoryException;
+import org.thoughtcrime.securesms.database.TextSecureDirectory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
@@ -62,13 +64,9 @@ import org.thoughtcrime.securesms.util.ProgressDialogAsyncTask;
 import org.thoughtcrime.securesms.util.SelectedRecipientsAdapter;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.TextSecureDirectory;
-import org.thoughtcrime.securesms.database.NotInDirectoryException;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -100,7 +98,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
 
   private static final int PICK_CONTACT = 1;
   private static final int PICK_AVATAR  = 2;
-  public static final  int AVATAR_SIZE  = 210;
+  public static final  int AVATAR_SIZE  = 410;
 
   private EditText            groupName;
   private ListView            lv;
@@ -382,17 +380,15 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
         List<ContactData> selected = data.getParcelableArrayListExtra("contacts");
         for (ContactData contact : selected) {
           for (ContactAccessor.NumberData numberData : contact.numbers) {
-            try {
-              Recipient recipient = RecipientFactory.getRecipientsFromString(this, numberData.number, false)
-                                                    .getPrimaryRecipient();
 
-              if (!selectedContacts.contains(recipient)
-                  && (existingContacts == null || !existingContacts.contains(recipient))) {
-                addSelectedContact(recipient);
-              }
-            } catch (RecipientFormattingException e) {
-              Log.w(TAG, e);
+            Recipient recipient = RecipientFactory.getRecipientsFromString(this, numberData.number, false)
+                                                  .getPrimaryRecipient();
+
+            if (!selectedContacts.contains(recipient)
+                && (existingContacts == null || !existingContacts.contains(recipient))) {
+              addSelectedContact(recipient);
             }
+
           }
         }
         syncAdapterWithSelectedContacts();
@@ -452,24 +448,21 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
       throws InvalidNumberException
   {
 
-    try {
-      String     groupRecipientId = GroupUtil.getEncodedId(groupId);
-      Recipients groupRecipient   = RecipientFactory.getRecipientsFromString(this, groupRecipientId, false);
+    String     groupRecipientId = GroupUtil.getEncodedId(groupId);
+    Recipients groupRecipient   = RecipientFactory.getRecipientsFromString(this, groupRecipientId, false);
 
-      GroupContext context = GroupContext.newBuilder()
-                                         .setId(ByteString.copyFrom(groupId))
-                                         .setType(GroupContext.Type.UPDATE)
-                                         .setName(groupName)
-                                         .addAllMembers(e164numbers)
-                                         .build();
+    GroupContext context = GroupContext.newBuilder()
+                                       .setId(ByteString.copyFrom(groupId))
+                                       .setType(GroupContext.Type.UPDATE)
+                                       .setName(groupName)
+                                       .addAllMembers(e164numbers)
+                                       .build();
 
-      OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(this, groupRecipient, context, avatar);
-      long                      threadId        = MessageSender.send(this, masterSecret, outgoingMessage, -1, false);
+    OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(this, groupRecipient, context, avatar);
+    long                      threadId        = MessageSender.send(this, masterSecret, outgoingMessage, -1, false);
 
-      return new Pair<>(threadId, groupRecipient);
-    } catch (RecipientFormattingException e) {
-      throw new AssertionError(e);
-    }
+    return new Pair<>(threadId, groupRecipient);
+
   }
 
   private long handleCreateMmsGroup(Set<Recipient> members) {
@@ -510,7 +503,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
     protected Bitmap doInBackground(Void... voids) {
       if (avatarUri != null) {
         try {
-          avatarBmp = BitmapUtil.getScaledCircleCroppedBitmap(GroupCreateActivity.this, masterSecret, avatarUri, AVATAR_SIZE);
+          avatarBmp = BitmapUtil.createScaledBitmap(GroupCreateActivity.this, masterSecret, avatarUri, AVATAR_SIZE, AVATAR_SIZE);
         } catch (IOException | BitmapDecodingException e) {
           Log.w(TAG, e);
           return null;
@@ -683,7 +676,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity {
         existingTitle = group.getTitle();
         final byte[] existingAvatar = group.getAvatar();
         if (existingAvatar != null) {
-          existingAvatarBmp = BitmapUtil.getCircleCroppedBitmap(
+          existingAvatarBmp = BitmapUtil.getCircleBitmap(
               BitmapFactory.decodeByteArray(existingAvatar, 0, existingAvatar.length));
         }
       }

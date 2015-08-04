@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingKeyExchangeMessage;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.Dialogs;
+import org.whispersystems.libaxolotl.AxolotlAddress;
 import org.whispersystems.libaxolotl.SessionBuilder;
 import org.whispersystems.libaxolotl.protocol.KeyExchangeMessage;
 import org.whispersystems.libaxolotl.state.IdentityKeyStore;
@@ -37,7 +38,7 @@ import org.whispersystems.libaxolotl.state.PreKeyStore;
 import org.whispersystems.libaxolotl.state.SessionRecord;
 import org.whispersystems.libaxolotl.state.SessionStore;
 import org.whispersystems.libaxolotl.state.SignedPreKeyStore;
-import org.whispersystems.textsecure.api.push.PushAddress;
+import org.whispersystems.textsecure.api.push.TextSecureAddress;
 
 public class KeyExchangeInitiator {
 
@@ -65,10 +66,10 @@ public class KeyExchangeInitiator {
     PreKeyStore       preKeyStore       = new TextSecurePreKeyStore(context, masterSecret);
     SignedPreKeyStore signedPreKeyStore = new TextSecurePreKeyStore(context, masterSecret);
     IdentityKeyStore  identityKeyStore  = new TextSecureIdentityKeyStore(context, masterSecret);
+    AxolotlAddress    axolotlAddress    = new AxolotlAddress(recipient.getNumber(), TextSecureAddress.DEFAULT_DEVICE_ID);
 
     SessionBuilder    sessionBuilder    = new SessionBuilder(sessionStore, preKeyStore, signedPreKeyStore,
-                                                             identityKeyStore, recipient.getRecipientId(),
-                                                             PushAddress.DEFAULT_DEVICE_ID);
+                                                             identityKeyStore, axolotlAddress);
 
     KeyExchangeMessage         keyExchangeMessage = sessionBuilder.process();
     String                     serializedMessage  = Base64.encodeBytesWithoutPadding(keyExchangeMessage.serialize());
@@ -81,7 +82,8 @@ public class KeyExchangeInitiator {
                                              Recipient recipient)
   {
     SessionStore  sessionStore  = new TextSecureSessionStore(context, masterSecret);
-    SessionRecord sessionRecord = sessionStore.loadSession(recipient.getRecipientId(), PushAddress.DEFAULT_DEVICE_ID);
+    AxolotlAddress axolotlAddress = new AxolotlAddress(recipient.getNumber(), TextSecureAddress.DEFAULT_DEVICE_ID);
+    SessionRecord sessionRecord = sessionStore.loadSession(axolotlAddress);
 
     return sessionRecord.getSessionState().hasPendingKeyExchange();
   }

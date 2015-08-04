@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">TextSecure</string>
+  <string name="app_name">SecureChat</string>
   <string name="yes">Ja</string>
   <string name="no">Nej</string>
   <string name="delete">Radera</string>
@@ -26,7 +26,7 @@ Det här kommer slå av pushmeddelanden genom att avregistrera dig från servern
   <string name="ApplicationPreferencesActivity_sms_enabled">Inkommande SMS påslaget</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Tryck för att ändra din standardapp för SMS</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Inkommande SMS avslaget</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Tryck för att göra TextSecure till din standardapp för SMS</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Tryck för att göra SecureChat till din standardapp för SMS</string>
   <!--AppProtectionPreferenceFragment-->
   <!--DraftDatabase-->
   <!--AttchmentManager-->
@@ -75,7 +75,7 @@ Det här kommer slå av pushmeddelanden genom att avregistrera dig från servern
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Denna enhet verkar inte stödja ringa upp handlingar.</string>
   <string name="ConversationActivity_leave_group">Lämna grupp?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Är du säker på att du vill lämna den här gruppen?</string>
-  <string name="ConversationActivity_transport_textsecure">TextSecure</string>
+  <string name="ConversationActivity_transport_textsecure">SecureChat</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Meddelandedetaljer</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nSkickat/Mottagits: %2$s</string>
@@ -116,15 +116,15 @@ skriva data till minneskort.</string>
   <string name="GroupCreateActivity_actionbar_update_title">Uppdatera grupp</string>
   <string name="GroupCreateActivity_group_name_hint">Gruppnamn</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Ny MMS-grupp</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Du har valt en kontakt som inte har stöd för TextSecure-grupper, gruppen kommer att vara MMS.</string>
-  <string name="GroupCreateActivity_you_dont_support_push">Du är inte registrerad för att använda datakanalen, så TextSecure-grupper är inaktiverat.</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Du har valt en kontakt som inte har stöd för SecureChat-grupper, gruppen kommer att vara MMS.</string>
+  <string name="GroupCreateActivity_you_dont_support_push">Du är inte registrerad för att använda datakanalen, så SecureChat-grupper är inaktiverat.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Ett oförutsett fel inträffade som gjort att gruppen inte kunde skapas.</string>
   <string name="GroupCreateActivity_contacts_no_members">Du behöver åtminstone en person i din grupp!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">En av deltagarna i din grupp har ett nummer som inte kan läsas ordentligt. Vänligen åtgärda eller ta bort kontakten och försök igen.</string>
   <string name="GroupCreateActivity_avatar_content_description">Gruppavatar</string>
   <string name="GroupCreateActivity_menu_create_title">Skapa grupp</string>
   <string name="GroupCreateActivity_creating_group">Skapar %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Kan inte lägga in annat än TextSecure-kontakter i en TextSecure-grupp</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Kan inte lägga in annat än SecureChat-kontakter i en SecureChat-grupp</string>
   <!--GroupMembersDialog-->
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Importera</string>
@@ -132,14 +132,14 @@ skriva data till minneskort.</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Importera systemets SMS-databas?</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">Denna åtgärd importerar
-meddelanden från systemets ursprungliga SMS-databas till TextSecure. Om du tidigare har
+meddelanden från systemets ursprungliga SMS-databas till SecureChat. Om du tidigare har
 importerat systemets SMS-databas så kommer denna åtgärd skapa dubbletter av meddelandena.</string>
   <string name="ImportFragment_import">Importera</string>
   <string name="ImportFragment_cancel">Avbryt</string>
   <string name="ImportFragment_restore_encrypted_backup">Återställ krypterad backup?</string>
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">Genom att återställa en krypterad säkerhetskopia resulterar i att dina existerande nycklar,
 inställningar och meddelanden kommer att skrivas över. Du kommer att förlora all information
-som för närvarande finns i TextSecure.</string>
+som för närvarande finns i SecureChat.</string>
   <string name="ImportFragment_restore">Återställ</string>
   <string name="ImportFragment_import_plaintext_backup">Importera okrypterad backup?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Denna åtgärd importerar meddelanden från en säkerhetskopia i klartext. Om du redan har importerat denna säkerhetskopia och importerar igen kommer du att få duplicerade meddelanden.</string>
@@ -161,25 +161,25 @@ som för närvarande finns i TextSecure.</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimediameddelande</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Fick krypterat meddelande från en gammal version av TextSecure som inte längre supporteras. Vänligen be avsändaren att uppgradera till senaste version och skicka om meddelandet.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Fick krypterat meddelande från en gammal version av SecureChat som inte längre supporteras. Vänligen be avsändaren att uppgradera till senaste version och skicka om meddelandet.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Lösenorden matchar inte!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Inkorrekt gammalt lösenord!</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Ange lösenord</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">TextSecure-ikon</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">SecureChat-ikon</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Skicka lösenord</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Fel lösenord!</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Signaturen för detta nyckelutbytet skiljer sig från det som du tidigare har mottagit från denna kontakt.
-Detta kan innebära antingen att någon försöker avlyssna din kommunikation, eller att denna kontakt helt enkelt installerade om TextSecure och nu har en ny identitetsnyckel.</string>
+Detta kan innebära antingen att någon försöker avlyssna din kommunikation, eller att denna kontakt helt enkelt installerade om SecureChat och nu har en ny identitetsnyckel.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Det kan vara en bra idé att
 verifiera denna kontakt.</string>
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">Signaturen för detta nyckelutbytet är betrodd, men du har inställningen \'fullborda nyckelutbyten automatiskt\' avstängd.</string>
   <string name="ReceiveKeyActivity_processing">Bearbetar</string>
   <string name="ReceiveKeyActivity_processing_key_exchange">Bearbetar nyckelutbyte...</string>
   <!--RegistrationActivity-->
-  <string name="RegistrationActivity_connect_with_textsecure">Anslut med TextSecure</string>
+  <string name="RegistrationActivity_connect_with_textsecure">Anslut med SecureChat</string>
   <string name="RegistrationActivity_select_your_country">Välj ditt land</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Du måste ange din landskod</string>
   <string name="RegistrationActivity_you_must_specify_your_phone_number">Du måste ange ditt telefonnummer</string>
@@ -215,12 +215,12 @@ verifiera denna kontakt.</string>
   <string name="RegistrationProgressActivity_too_many_requests">För många förfrågningar!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Du har redan begärt ett röstsamtal. Du kan begära ett nytt om 20 minuter.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Registrerings konflikt</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Detta nummer är redan registrerat på en annan TextSecure-server (CyanogenMod?). Du måste avregistrera dig där innan du kan registrera dig här.</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Detta nummer är redan registrerat på en annan SecureChat-server (CyanogenMod?). Du måste avregistrera dig där innan du kan registrera dig här.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Registrering klar</string>
-  <string name="RegistrationService_textsecure_registration_has_successfully_completed">TextSecure-registrering har lyckats.</string>
+  <string name="RegistrationService_textsecure_registration_has_successfully_completed">SecureChat-registrering har lyckats.</string>
   <string name="RegistrationService_registration_error">Registreringsfel</string>
-  <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">TextSecure-registreringen har drabbats av ett problem.</string>
+  <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">SecureChat-registreringen har drabbats av ett problem.</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Tog emot skadat meddelande
 för nyckelutbyte!</string>
@@ -280,7 +280,7 @@ Tog emot meddelande med okänd identitetsnyckel. Tryck för att bearbeta och vis
   <!--KeyCachingService-->
   <string name="KeyCachingService_textsecure_passphrase_cached">Tryck för att öppna.</string>
   <string name="KeyCachingService_textsecure_passphrase_cached_with_lock">Tryck för att öppna, tryck på låset för att stänga.</string>
-  <string name="KeyCachingService_passphrase_cached">TextSecure är upplåst</string>
+  <string name="KeyCachingService_passphrase_cached">SecureChat är upplåst</string>
   <string name="KeyCachingService_lock">Lås med lösenord</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">%d nya meddelanden</string>
@@ -293,9 +293,9 @@ Tog emot meddelande med okänd identitetsnyckel. Tryck för att bearbeta och vis
   <string name="MessageNotifier_mark_all_as_read">Markera alla som lästa</string>
   <string name="MessageNotifier_mark_as_read">Markera som läst</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Tyvärr, Quick Response stöds inte ännu av TextSecure!</string>
+  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Tyvärr, Quick Response stöds inte ännu av SecureChat!</string>
   <!--auto_initiate_activity-->
-  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Du har fått ett meddelande från någon som stödjer TextSecure krypterade sessioner. Vill du initiera en säker session?</string>
+  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Du har fått ett meddelande från någon som stödjer SecureChat krypterade sessioner. Vill du initiera en säker session?</string>
   <string name="auto_initiate_activity__initiate_exchange">Påbörja nyckelutbyte</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">GAMMALT LÖSENORD:</string>
@@ -315,7 +315,7 @@ Tog emot meddelande med okänd identitetsnyckel. Tryck för att bearbeta och vis
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Inga nyliga samtal.</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Skicka TextSecure-meddelande</string>
+  <string name="conversation_activity__type_message_push">Skicka SecureChat-meddelande</string>
   <string name="conversation_activity__type_message_sms_secure">Skicka säkert SMS</string>
   <string name="conversation_activity__type_message_mms_secure">Skicka säkert MMS</string>
   <string name="conversation_activity__send">Skicka</string>
@@ -348,7 +348,7 @@ Tog emot meddelande med okänd identitetsnyckel. Tryck för att bearbeta och vis
   <string name="log_submit_activity__thanks">Tack för din hjälp!</string>
   <string name="log_submit_activity__submitting">Skickar</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Vill du importera dina existerande SMS-meddelanden till TextSecures krypterade databas?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Vill du importera dina existerande SMS-meddelanden till SecureChats krypterade databas?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Systemets standarddatabas kommer på intet sätt att modifieras eller ändras.</string>
   <string name="database_migration_activity__skip">Hoppa över</string>
   <string name="database_migration_activity__import">Importera</string>
@@ -362,7 +362,7 @@ Tog emot meddelande med okänd identitetsnyckel. Tryck för att bearbeta och vis
   <string name="import_fragment__import_the_database_from_the_default_system">Importera databasen
 från systemets standardapp för meddelanden.</string>
   <string name="import_fragment__import_encrypted_backup">Importera krypterad backup</string>
-  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">Återställ en tidigare krypterad säkerhetskopia av TextSecure.</string>
+  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">Återställ en tidigare krypterad säkerhetskopia av SecureChat.</string>
   <string name="import_fragment__import_plaintext_backup">Importera okrypterad backup</string>
   <string name="import_fragment__import_a_plaintext_backup_file">Importera en okrypterad säkerhetskopia kompatibel med \'SMSBackup And Restore\'.</string>
   <!--MmsPreferencesFragment-->
@@ -370,13 +370,13 @@ från systemets standardapp för meddelanden.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Lås upp</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure kräver MMS inställningar för att leverera medie- och gruppmeddelanden via din mobilöperatör. Din enhet gör inte den här informationen tillgänglig, vilket ibland stämmer för låsta enheter och andra restriktiva konfigurationer.</string>
+  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">SecureChat kräver MMS inställningar för att leverera medie- och gruppmeddelanden via din mobilöperatör. Din enhet gör inte den här informationen tillgänglig, vilket ibland stämmer för låsta enheter och andra restriktiva konfigurationer.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">För att skicka medie- och gruppmeddelande, klicka \'OK\' och fyll i de begärda inställningarna. MMS inställningarna för din operatör kan generellt hittas genom att söka efter \'din operatör APN\'. Du behöver bara göra det här en gång.</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Klart</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-        Att regisrera sig är gratis och ökar integriteten när du chattar med andra TextSecure användare. Var vänlig verifiera ditt telefonnummer.
+        Att regisrera sig är gratis och ökar integriteten när du chattar med andra SecureChat användare. Var vänlig verifiera ditt telefonnummer.
     </string>
   <string name="registration_activity__your_country">DITT LAND</string>
   <string name="registration_activity__your_country_code_and_phone_number">DIN LANDSKOD OCH 
@@ -391,39 +391,39 @@ TELEFONNUMMER</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
 Vissa meddelandeklienter från tredje part, t.ex. Handcent och GoSMS, 
 snappar upp alla inkommande sms. Kontrollera om du tog emot ett meddelande som börjar
-med \'Your TextSecure verification code:\', isåfall måste du konfigurera din
+med \'Your SecureChat verification code:\', isåfall måste du konfigurera din
 meddelandeklient för att släppa igenom meddelanden.</string>
   <string name="registration_problems__incorrect_number">Felaktigt nummer.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
 Kontrollera att du angav telefonnummret rätt och att det är rätt formaterat för ditt område.</string>
   <string name="registration_problems__google_voice">Google Voice.</string>
   <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">
-TextSecure fungerar inte med Google Voice-nummer.</string>
+SecureChat fungerar inte med Google Voice-nummer.</string>
   <!--registration_progress_activity-->
   <string name="registration_progress_activity__voice_verification">Röstverifiering</string>
   <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">
-TextSecure kan också ringa upp dig för att verifiera ditt telefonnummer. Tryck \'Ring mig\'
+SecureChat kan också ringa upp dig för att verifiera ditt telefonnummer. Tryck \'Ring mig\'
  och fyll i den sexsiffriga kod som du hör nedan.</string>
   <string name="registration_progress_activity__verify">Verifiera</string>
   <string name="registration_progress_activity__call_me">Ring mig</string>
   <string name="registration_progress_activity__edit_number">Ändra nummer</string>
   <string name="registration_progress_activity__connectivity_error">Anslutningsfel.</string>
   <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">
-TextSecure kunde inte ansluta till push-tjänsten.</string>
+SecureChat kunde inte ansluta till push-tjänsten.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Några möjliga orsaker:</string>
   <string name="registration_progress_activity__no_network_connectivity">Ingen nätverksanslutning.</string>
   <string name="registration_progress_activity__your_device_needs_network_connectivity">Din enhet behöver nätverksanslutning för att använda denna funktion. Kontrollera att du är ansluten via mobil data eller trådlöst nätverk.</string>
   <string name="registration_progress_activity__restrictive_firewall">Restriktiv brandvägg.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
-Om du är ansluten via trådlöst nätverk är det möjligt att en brandvägg blockerar åtkomst till TextSecure-servern. Prova med ett annat nätverk eller mobil data.</string>
+Om du är ansluten via trådlöst nätverk är det möjligt att en brandvägg blockerar åtkomst till SecureChat-servern. Prova med ett annat nätverk eller mobil data.</string>
   <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
-TextSecure kommer nu att automatiskt verifiera ditt telefonnummer med ett sms.</string>
+SecureChat kommer nu att automatiskt verifiera ditt telefonnummer med ett sms.</string>
   <string name="registration_progress_activity__connecting">Ansluter...</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">Väntar på sms-verifiering...</string>
   <string name="registration_progress_activity__registering_with_server">Registrerar på server...</string>
   <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Detta kan ta en stund. Vi notifierar dig när verifieringen är klar.</string>
   <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">
-TextSecure uppnådde tidsgränsen för sms-verifiering.</string>
+SecureChat uppnådde tidsgränsen för sms-verifiering.</string>
   <string name="registration_progress_activity__sms_verification_failed">Sms-verifiering misslyckades.</string>
   <string name="registration_progress_activity__generating_keys">Skapar nycklar...</string>
   <!--recipients_panel-->
@@ -436,7 +436,7 @@ TextSecure uppnådde tidsgränsen för sms-verifiering.</string>
   <string name="AndroidManifest__create_passphrase">Skapa lösenord</string>
   <string name="AndroidManifest__enter_passphrase">Ange lösenord</string>
   <string name="AndroidManifest__select_contacts">Välj kontakter</string>
-  <string name="AndroidManifest__textsecure_detected">TextSecure upptäckt</string>
+  <string name="AndroidManifest__textsecure_detected">SecureChat upptäckt</string>
   <string name="AndroidManifest__public_identity_key">Publik identitetsnyckel</string>
   <string name="AndroidManifest__change_passphrase">Ändra lösenord</string>
   <string name="AndroidManifest__verify_identity">Verifiera identiteten</string>
@@ -451,8 +451,8 @@ TextSecure uppnådde tidsgränsen för sms-verifiering.</string>
   <string name="preferences__push_sms_category">Push och SMS</string>
   <string name="preferences__pref_all_sms_title">Använd för alla SMS</string>
   <string name="preferences__pref_all_mms_title">Använd för alla MMS</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Använd TextSecure för att läsa och lagra alla inkommande text meddelanden</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Använd TextSecure för att se och lagra alla inkommande multimedia meddelanden</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Använd SecureChat för att läsa och lagra alla inkommande text meddelanden</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Använd SecureChat för att se och lagra alla inkommande multimedia meddelanden</string>
   <string name="preferences__input_settings">Inputinställningar</string>
   <string name="preferences__enable_enter_key_title">Aktivera returtagenten</string>
   <string name="preferences__replace_smiley_with_enter_key">Ersätt tangenten för uttryckssymboler med Retur</string>
@@ -517,14 +517,14 @@ TextSecure uppnådde tidsgränsen för sms-verifiering.</string>
   <string name="preferences__default">Standard</string>
   <string name="preferences__language">Språk</string>
   <string name="preferences__make_default_sms_app">Använd som standardapp för SMS</string>
-  <string name="preferences__make_textsecure_the_default_sms_mms_app">Gör TextSecure till standardapp för SMS/MMS på din enhet.</string>
+  <string name="preferences__make_textsecure_the_default_sms_mms_app">Gör SecureChat till standardapp för SMS/MMS på din enhet.</string>
   <string name="preferences__use_data_channel">Push-meddelanden</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
-Utöka sekretessen och undvik SMS-kostnader genom att använda datakanalen för att kommunicera med andra TextSecure-användare</string>
+Utöka sekretessen och undvik SMS-kostnader genom att använda datakanalen för att kommunicera med andra SecureChat-användare</string>
   <string name="preferences__submit_debug_log">Skicka in loggfilen för felsökning</string>
-  <string name="preferences__sms_outgoing_push_users">TextSecure användare</string>
+  <string name="preferences__sms_outgoing_push_users">SecureChat användare</string>
   <string name="preferences__sms_outgoing_push_users_description">Skicka säkert SMS om dataanslutningen är nere</string>
-  <string name="preferences__sms_fallback_non_push_users">Icke-TextSecure användare</string>
+  <string name="preferences__sms_fallback_non_push_users">Icke-SecureChat användare</string>
   <string name="preferences__sms_fallback_nobody">Ingen</string>
   <!--****************************************-->
   <!--menus-->
@@ -540,7 +540,7 @@ Utöka sekretessen och undvik SMS-kostnader genom att använda datakanalen för 
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Uppdaterar kontaktlistan</string>
   <!--conversation_button_context-->
-  <string name="conversation_button_context__send_textsecure_message">Skicka TextSecure-meddelande</string>
+  <string name="conversation_button_context__send_textsecure_message">Skicka SecureChat-meddelande</string>
   <string name="conversation_button_context__send_secure_sms">Skicka säkert SMS</string>
   <string name="conversation_button_context__send_secure_mms">Skicka säkert MMS</string>
   <!--conversation_callable-->
@@ -587,10 +587,10 @@ Utöka sekretessen och undvik SMS-kostnader genom att använda datakanalen för 
   <string name="text_secure_normal__mark_all_as_read">Markera alla lästa</string>
   <!--reminder_header-->
   <string name="reminder_header_sms_default_title">Använd som standardapp för SMS</string>
-  <string name="reminder_header_sms_default_text">TextSecure är för närvarande inte din standardapp för SMS.</string>
+  <string name="reminder_header_sms_default_text">SecureChat är för närvarande inte din standardapp för SMS.</string>
   <string name="reminder_header_sms_import_title">Importera systemets SMS?</string>
-  <string name="reminder_header_sms_import_text">TextSecure kan kopiera din telefons SMS-meddelanden till sin krypterade databas.</string>
-  <string name="reminder_header_push_title">Aktivera TextSecure-meddelanden?</string>
+  <string name="reminder_header_sms_import_text">SecureChat kan kopiera din telefons SMS-meddelanden till sin krypterade databas.</string>
+  <string name="reminder_header_push_title">Aktivera SecureChat-meddelanden?</string>
   <string name="reminder_header_push_text">Omedelbar leverans, starkare sekretess och inga SMS-avgifter.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Du</string>

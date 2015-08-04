@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="ConversationActivity_gdata_selfdestroy_entry_1">خمسة
+  دقائق</string>
+
+  <string name="ConversationActivity_gdata_selfdestroy_entry_2">ثلاثون
+  دقيقة</string>
+
+  <string name="ConversationActivity_gdata_selfdestroy_entry_3">ساعة
+  واحدة</string>
+
+  <string name="gdata_contact_selection_page_title">جهات الاتصال</string>
+
+  <string name="gdata_conversation_list_page_title">المحادثات</string>
+
+  <string name="gd_dialog_fragment_phishing_title">حماية الويب</string>
+
+  <string name="gd_dialog_fragment_phishing_message">هذا الموقع هو موقع مزيف
+  معروف. استمر إذا كنت متأكدا من أنه لا يشكل أي تهديد عليك</string>
+
+  <string name="gd_dialog_fragment_phishing_block">حجب</string>
+
+  <string name="gd_dialog_fragment_phishing_continue">استمر</string>
+
+  <string name="menu_filter">حجب جهات اتصال</string>
+
+  <string name="menu_privacy">اخفاء جهات اتصال</string>
+
+  <string name="menu_privacy_unhide">عرض جهات الاتصال المخفية</string>
+
+  <string name="menu_privacy_hide">اخفاء جهات الاتصال المخفية</string>
+
+  <string name="menu_privacy_single_hide">اخفاء جهة اتصال</string>
+
+  <string name="menu_filter_block_contact">حجب جهة اتصال</string>
+
+  <string name="privacy_pw_dialog_header">ادخل كلمة المرور:</string>
+
+  <string name="privacy_pw_dialog_toast_wrong">كلمة المرور التي أدخلتها لا
+  تحقق أمن الانترنيت</string>
+
+  <string name="privacy_pw_dialog_toast_reload">يتم استعادة الرسائل وجهات
+  الاتصال ...</string>
+
+  <string name="privacy_pw_dialog_toast_hide">يجري حاليا إعداد الرسائل وجهات
+  الاتصال لتكون مخفية ...</string>
+
+  <string name="privacy_pw_dialog_toast_hide_single">إخفاء جهات الاتصال
+  ...</string>
+
+  <string name="privacy_toast_install_premium">انت بحاجة إلى G DATA Internet
+  Security، لاستخدام هذه الميزة.</string>
+
+  <string
+  name="conversation_activity_invite_link">https://secure.gd/scg</string>
+
+  <string name="preferences_notification_never">اطلاقا</string>
+
+  <string name="preferences_notification_one_time">1x</string>
+
+  <string name="preferences_notification_two_times">2x</string>
+
+  <string name="preferences_notification_three_times">3x</string>
+
+  <string name="preferences_notification_five_times">5x</string>
+
+  <string name="preferences_notification_ten_times">10x</string>
+
+  <string name="preferences_notification_title">كرر التنبيهات</string>
+</resources>

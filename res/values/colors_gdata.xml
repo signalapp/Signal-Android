@@ -1,14 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <color name="gdata_grey">#494949</color>
+    <color name="gdata_grey_near">#E6E5E0</color>
     <color name="gdata_red">#a02020</color>
+    <color name="transparent">@android:color/transparent</color>
     <color name="gdata_conversation_list_item_background_read">#ffffff</color>
     <color name="gdata_conversation_list_item_background_unread">@color/gray5</color>
     <color name="gdata_conversation_list_divider">@color/gray5</color>
-    <color name="gdata_conversation_item_sent_background">#93B93A</color>
+    <color name="gdata_conversation_item_sent_background">#848484</color>
     <color name="gdata_conversation_item_sent_shadow">@color/gray5</color>
-    <color name="gdata_conversation_item_sent_pending_background">#A9C761</color>
-    <color name="gdata_conversation_item_sent_push_background">#93B93A</color>
-    <color name="gdata_conversation_item_sent_push_pending_background">#A9C761</color>
+    <color name="gdata_conversation_item_sent_pending_background">#848484</color>
+    <color name="gdata_conversation_item_sent_push_background">#848484</color>
+    <color name="gdata_conversation_item_sent_push_pending_background">#848484</color>
     <color name="gdata_conversation_item_received_background">@color/gray5</color>
     <color name="gdata_conversation_item_received_shadow">@color/gray5</color>
+    <color name="gdata_conversation_item_received_group_member_name">#848484</color>
+    <!-- Colors for SlidigMenu -->
+    <color name="menuBackgroundStart">@color/menuItemBackground</color>
+    <color name="menuBackgroundEnd">@color/menuItemBackground</color>
+    <color name="menuCacheHint">#00000000</color>
+    <color name="statusBarAlpha">#55a02020</color>
+    <color name="menuDivider">#a0ffffff</color>
+    <color name="menuItemSelectedText">#ffcccccc</color>
+    <color name="menuItemBackground">#ffdddddd</color>
+    <color name="menuTransparent">#ff000000</color>
+    <color name="menuTextColor">#000000</color>
+
+    <color name="translucent_black">#80000000</color>
+
+    <color name="gdata_primary_color">@color/gdata_grey</color>
+    <color name="gdata_primary_background_color">@color/gdata_grey_near</color>
 </resources>

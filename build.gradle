@@ -1,5 +1,5 @@
-def verName = "1.0.1."
-def verNumber = 1
+def verName = "1.0.2."
+def verNumber = 3
 
 def gitRevision = (System.env['GIT_COMMIT'] ? System.env['GIT_COMMIT'] : "MASTER  ").toString()
 def gitBranch = (System.env['GIT_BRANCH'] ? System.env['GIT_BRANCH'].toString().substring(7) : "develop")
@@ -11,13 +11,12 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.0.0'
+        classpath 'com.android.tools.build:gradle:1.2.3'
         classpath files('libs/gradle-witness.jar')
     }
 }
 
 apply plugin: 'com.android.application'
-apply from: 'strip_play_services.gradle'
 apply plugin: 'witness'
 
 repositories {
@@ -36,82 +35,102 @@ repositories {
     maven {
         url "https://raw.github.com/whispersystems/maven/master/shortcutbadger/releases/"
     }
+    maven { url 'https://dl.bintray.com/drummer-aidan/maven' }
+    jcenter()
 }
 
 dependencies {
+
     compile 'me.leolin:ShortcutBadger:1.0.2-WS2'
     compile 'se.emilsjolander:stickylistheaders:2.2.0'
-    compile 'com.google.android.gms:play-services:6.1.71'
+    compile 'com.google.android.gms:play-services-base:6.5.87'
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
     compile 'org.w3c:smil:1.0.0'
     compile 'org.apache.httpcomponents:httpclient-android:4.3.5'
     compile 'com.github.chrisbanes.photoview:library:1.2.3'
-    compile 'com.android.support:appcompat-v7:20.0.0'
+    compile 'com.android.support:appcompat-v7:22.1.1'
+    compile 'com.android.support:recyclerview-v7:22.1.1'
     compile 'com.madgag.spongycastle:prov:1.51.0.0'
-    compile 'com.google.zxing:android-integration:3.1.0'
+    compile 'com.google.zxing:core:3.2.0'
+    compile 'me.dm7.barcodescanner:zxing:1.7.2'
+
+    compile ('com.afollestad:material-dialogs:0.7.3.1') {
+        exclude module: 'appcompat-v7'
+        exclude module: 'recyclerview-v7'
+        exclude module: 'support-annotations'
+    }
+
+    compile 'com.github.bumptech.glide:glide:3.6.0'
+    compile 'com.makeramen:roundedimageview:1.5.0'
+
     compile ('com.android.support:support-v4-preferencefragment:1.0.0@aar'){
         exclude module: 'support-v4'
     }
     compile 'com.squareup.dagger:dagger:1.2.2'
-    compile ("com.doomonafireball.betterpickers:library:1.5.2") {
+    compile ("com.doomonafireball.betterpickers:library:1.6.0") {
         exclude group: 'com.android.support', module: 'support-v4'
     }
     provided 'com.squareup.dagger:dagger-compiler:1.2.2'
 
-    compile 'org.whispersystems:jobmanager:0.10.0'
-    compile 'org.whispersystems:libpastelog:1.0.4'
+    compile 'org.whispersystems:jobmanager:0.11.0'
+    compile 'org.whispersystems:libpastelog:1.0.6'
+
+    compile 'com.melnykov:floatingactionbutton:1.3.0'
 
     androidTestCompile 'com.squareup:fest-android:1.0.8'
-    androidTestCompile 'com.google.dexmaker:dexmaker:1.1'
-    androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.1'
 
-    compile project(':libtextsecure')
+    androidTestCompile 'com.google.dexmaker:dexmaker:1.2'
+    androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.2'
 
+    //compile project(':libtextsecure')
+    compile project(':LibTextsecure')
     compile project(':IsfaServerDefinitions')
 }
 
-dependencyVerification {
-    verify = [
-            'me.leolin:ShortcutBadger:027977c718035e5997035e04e05152d6c72d94df645e8b7099a274ada722bd14',
-            'se.emilsjolander:stickylistheaders:89146b46c96fea0e40200474a2625cda10fe94891e4128f53cdb42375091b9b6',
-            'com.google.android.gms:play-services:32e7d1834a1cf8fa4b17e8d359db580c286e26c1eefbf84fdb9996eac8d74919',
-            'com.astuetz:pagerslidingtabstrip:f1641396732c7132a7abb837e482e5ee2b0ebb8d10813fc52bbaec2c15c184c2',
-            'org.w3c:smil:085dc40f2bb249651578bfa07499fd08b16ad0886dbe2c4078586a408da62f9b',
-            'org.apache.httpcomponents:httpclient-android:6f56466a9bd0d42934b90bfbfe9977a8b654c058bf44a12bdc2877c4e1f033f1',
-            'com.github.chrisbanes.photoview:library:8b5344e206f125e7ba9d684008f36c4992d03853c57e5814125f88496126e3cc',
-            'com.android.support:appcompat-v7:736f576ab0b68d27bdf18b1e7931566e6d8254b73965175313e87f8866b91547',
-            'com.madgag.spongycastle:prov:b8c3fec3a59aac1aa04ccf4dad7179351e54ef7672f53f508151b614c131398a',
-            'com.google.zxing:android-integration:89e56aadf1164bd71e57949163c53abf90af368b51669c0d4a47a163335f95c4',
-            'com.android.support:support-v4-preferencefragment:5470f5872514a6226fa1fc6f4e000991f38805691c534cf0bd2778911fc773ad',
-            'com.squareup.dagger:dagger:789aca24537022e49f91fc6444078d9de8f1dd99e1bfb090f18491b186967883',
-            'com.doomonafireball.betterpickers:library:1c2dd66b0f4555e9e68427b28eed8826b7cd2e7074b8c038c88836a6aa9abe64',
-            'org.whispersystems:jobmanager:01f35586c43aa3806f1c18d3d6a5a972def98103ba1a5a9ca3eec08d15f974b7',
-            'org.whispersystems:libpastelog:3ccf00fe1597eb8ca1e5de99b17fc225387a1b80b5bbc00ec1bc4d4f3ea9cdde',
-            'com.android.support:support-v4:81f2b1c2c94efd5a4ec7fcd97b6cdcd00e87a933905c5c86103c7319eb024572',
-            'com.madgag.spongycastle:core:8d6240b974b0aca4d3da9c7dd44d42339d8a374358aca5fc98e50a995764511f',
-            'javax.inject:javax.inject:91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff',
-            'com.nineoldandroids:library:68025a14e3e7673d6ad2f95e4b46d78d7d068343aa99256b686fe59de1b3163a',
-            'org.whispersystems:gson:08f4f7498455d1539c9233e5aac18e9b1805815ef29221572996508eb512fe51',
-            'com.google.protobuf:protobuf-java:e0c1c64575c005601725e7c6a02cebf9e1285e888f756b2a1d73ffa8d725cc74',
-            'com.googlecode.libphonenumber:libphonenumber:eba17eae81dd622ea89a00a3a8c025b2f25d342e0d9644c5b62e16f15687c3ab',
-            'org.whispersystems:axolotl-android:7617256d05aaecd7b5475cd55e42773d7079167a22ca48512bcb0f84f8473cc9',
-            'com.android.support:support-annotations:1aa96ef0cc4a445bfc2f93ccf762305bc57fa107b12afe9d11f3863ae8a11036',
-    ]
-}
+//dependencyVerification {
+//    verify = [
+//            'me.leolin:ShortcutBadger:027977c718035e5997035e04e05152d6c72d94df645e8b7099a274ada722bd14',
+//            'se.emilsjolander:stickylistheaders:89146b46c96fea0e40200474a2625cda10fe94891e4128f53cdb42375091b9b6',
+//            'com.google.android.gms:play-services:32e7d1834a1cf8fa4b17e8d359db580c286e26c1eefbf84fdb9996eac8d74919',
+//            'com.astuetz:pagerslidingtabstrip:f1641396732c7132a7abb837e482e5ee2b0ebb8d10813fc52bbaec2c15c184c2',
+//            'org.w3c:smil:085dc40f2bb249651578bfa07499fd08b16ad0886dbe2c4078586a408da62f9b',
+//            'org.apache.httpcomponents:httpclient-android:6f56466a9bd0d42934b90bfbfe9977a8b654c058bf44a12bdc2877c4e1f033f1',
+//            'com.github.chrisbanes.photoview:library:8b5344e206f125e7ba9d684008f36c4992d03853c57e5814125f88496126e3cc',
+//            'com.android.support:appcompat-v7:736f576ab0b68d27bdf18b1e7931566e6d8254b73965175313e87f8866b91547',
+//            'com.madgag.spongycastle:prov:b8c3fec3a59aac1aa04ccf4dad7179351e54ef7672f53f508151b614c131398a',
+//            'com.google.zxing:android-integration:89e56aadf1164bd71e57949163c53abf90af368b51669c0d4a47a163335f95c4',
+//            'com.android.support:support-v4-preferencefragment:5470f5872514a6226fa1fc6f4e000991f38805691c534cf0bd2778911fc773ad',
+//            'com.squareup.dagger:dagger:789aca24537022e49f91fc6444078d9de8f1dd99e1bfb090f18491b186967883',
+//            'com.doomonafireball.betterpickers:library:1c2dd66b0f4555e9e68427b28eed8826b7cd2e7074b8c038c88836a6aa9abe64',
+//            'org.whispersystems:jobmanager:01f35586c43aa3806f1c18d3d6a5a972def98103ba1a5a9ca3eec08d15f974b7',
+//            'org.whispersystems:libpastelog:3ccf00fe1597eb8ca1e5de99b17fc225387a1b80b5bbc00ec1bc4d4f3ea9cdde',
+//            'com.android.support:support-v4:81f2b1c2c94efd5a4ec7fcd97b6cdcd00e87a933905c5c86103c7319eb024572',
+//            'com.madgag.spongycastle:core:8d6240b974b0aca4d3da9c7dd44d42339d8a374358aca5fc98e50a995764511f',
+//            'javax.inject:javax.inject:91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff',
+//            'com.nineoldandroids:library:68025a14e3e7673d6ad2f95e4b46d78d7d068343aa99256b686fe59de1b3163a',
+//            'org.whispersystems:gson:08f4f7498455d1539c9233e5aac18e9b1805815ef29221572996508eb512fe51',
+//            'com.google.protobuf:protobuf-java:e0c1c64575c005601725e7c6a02cebf9e1285e888f756b2a1d73ffa8d725cc74',
+//            'com.googlecode.libphonenumber:libphonenumber:eba17eae81dd622ea89a00a3a8c025b2f25d342e0d9644c5b62e16f15687c3ab',
+//            'org.whispersystems:axolotl-android:7617256d05aaecd7b5475cd55e42773d7079167a22ca48512bcb0f84f8473cc9',
+//            'com.android.support:support-annotations:1aa96ef0cc4a445bfc2f93ccf762305bc57fa107b12afe9d11f3863ae8a11036',
+//    ]
+//}
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion '21.1.2'
+    compileSdkVersion 22
+    buildToolsVersion '22.0.1'
 
     defaultConfig {
         minSdkVersion 9
-        targetSdkVersion 19
+        targetSdkVersion 22
 
         buildConfigField "long", "BUILD_TIMESTAMP", System.currentTimeMillis() + "L"
 
         versionCode verNumber
         versionName verName + gitRevision.substring(0, 8)
         applicationId 'de.gdata.securechat'
+
+        resConfigs "en", "de", "fr", "it", "es", "pt", "pt-rBR", "nl", "ja", "tr", "ru", "pl", "zh-rCN", "zh-rTW"
     }
 
     compileOptions {
@@ -125,12 +144,46 @@ android {
 
     buildTypes {
         debug {
-            minifyEnabled false
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                    'proguard-google-play-services.pro',
+                    'proguard-dagger.pro',
+                    'proguard-jackson.pro',
+                    'proguard-sqlite.pro',
+                    'proguard-appcompat-v7.pro',
+                    'proguard-square-okhttp.pro',
+                    'proguard-square-okio.pro',
+                    'proguard-spongycastle.pro',
+                    'proguard-rounded-image-view.pro',
+                    'proguard-glide.pro',
+                    'proguard.cfg'
         }
         release {
-            minifyEnabled false
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                    'proguard-google-play-services.pro',
+                    'proguard-dagger.pro',
+                    'proguard-jackson.pro',
+                    'proguard-sqlite.pro',
+                    'proguard-appcompat-v7.pro',
+                    'proguard-square-okhttp.pro',
+                    'proguard-square-okio.pro',
+                    'proguard-spongycastle.pro',
+                    'proguard-rounded-image-view.pro',
+                    'proguard-glide.pro',
+                    'proguard.cfg'
             signingConfig signingConfigs.release
         }
+    }
+
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/ASL2.0'
     }
 
     sourceSets {

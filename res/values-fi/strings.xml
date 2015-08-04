@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">TextSecure</string>
+  <string name="app_name">SecureChat</string>
   <string name="yes">Kyllä</string>
   <string name="no">Ei</string>
   <string name="delete">Poista</string>
@@ -24,7 +24,7 @@ Käyttääksenne push-palvelua tulevaisuudessa teidän täytyy rekisteröityä u
   <string name="ApplicationPreferencesActivity_sms_enabled">Saapuvat tekstiviestit sallittu</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Kosketa muuttaaksesi oletus tekstiviestisovellusta</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Saapuvat tekstiviestit kielletty</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Kosketa asettaaksesi TextSecuren oletus tekstiviestisovellukseksi</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Kosketa asettaaksesi SecureChatn oletus tekstiviestisovellukseksi</string>
   <!--AppProtectionPreferenceFragment-->
   <!--DraftDatabase-->
   <!--AttchmentManager-->
@@ -71,7 +71,7 @@ Käyttääksenne push-palvelua tulevaisuudessa teidän täytyy rekisteröityä u
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Tämä laite ei näytä tukevan valintanäppäintoimintoja.</string>
   <string name="ConversationActivity_leave_group">Poistutaanko ryhmästä?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Haluatteko varmasti poistua ryhmästä?</string>
-  <string name="ConversationActivity_transport_textsecure">TextSecure</string>
+  <string name="ConversationActivity_transport_textsecure">SecureChat</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Viestin tiedot</string>
   <string name="ConversationFragment_confirm_message_delete">Viestin poiston varmistus</string>
@@ -91,7 +91,7 @@ Käyttääksenne push-palvelua tulevaisuudessa teidän täytyy rekisteröityä u
   <string name="ExportFragment_export">Vie</string>
   <string name="ExportFragment_export_plaintext_to_sd_card">Viedäänkö salaamattomana SD-muistikortille?</string>
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Varoitus,
-Tämä toiminto vie TextSecure-viestiesi salaamattoman sisällön SD-muistikortillesi.</string>
+Tämä toiminto vie SecureChat-viestiesi salaamattoman sisällön SD-muistikortillesi.</string>
   <string name="ExportFragment_cancel">Peruuta</string>
   <string name="ExportFragment_exporting">Viedään</string>
   <string name="ExportFragment_exporting_plaintext_to_sd_card">Viedään salaamattomana SD-muistikortille...</string>
@@ -105,7 +105,7 @@ voida kirjoittaa!</string>
   <string name="GroupCreateActivity_actionbar_update_title">Päivitä ryhmää</string>
   <string name="GroupCreateActivity_group_name_hint">Ryhmän nimi</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Uusi MMS-ryhmä</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Olet valinnut yhteyshenkilön, joka ei tue TextSecuren ryhmäkeskusteluja. Tämä istunto tulee olemaan MMS.</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Olet valinnut yhteyshenkilön, joka ei tue SecureChatn ryhmäkeskusteluja. Tämä istunto tulee olemaan MMS.</string>
   <string name="GroupCreateActivity_you_dont_support_push">Et ole rekisteröitynyt käyttämään tiedonsiirtokanavaa, joten ryhmäkeskustelut ovat poissa käytöstä.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Ryhmän luonti epäonnistui odottamattoman virheen takia.</string>
   <string name="GroupCreateActivity_contacts_no_members">Ryhmässä täytyy olla vähintään yksi henkilö!</string>
@@ -113,20 +113,20 @@ voida kirjoittaa!</string>
   <string name="GroupCreateActivity_avatar_content_description">Ryhmän kuvake</string>
   <string name="GroupCreateActivity_menu_create_title">Luo ryhmä</string>
   <string name="GroupCreateActivity_creating_group">Luodaan %1$s…</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Olemassa olevaan TextSecuren ryhmäkeskusteluun ei voi lisätä kontakteja, jotka eivät käytä TextSecurea</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Olemassa olevaan SecureChatn ryhmäkeskusteluun ei voi lisätä kontakteja, jotka eivät käytä SecureChata</string>
   <!--GroupMembersDialog-->
   <!--ImportExportActivity-->
   <string name="ImportExportActivity_import">Tuo</string>
   <string name="ImportExportActivity_export">Vie</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Tuodaanko järjestelmän tekstiviestitietokanta?</string>
-  <string name="ImportFragment_this_will_import_messages_from_the_system">Tämä toiminto kopioi tekstiviestit laitteesi tietokannasta TextSecureen. Jos viestit on tuotu jo aiemmin, seuraa niiden uudelleen tuonnista viestien kaksoiskappaleita.</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">Tämä toiminto kopioi tekstiviestit laitteesi tietokannasta SecureChaten. Jos viestit on tuotu jo aiemmin, seuraa niiden uudelleen tuonnista viestien kaksoiskappaleita.</string>
   <string name="ImportFragment_import">Tuo</string>
   <string name="ImportFragment_cancel">Peruuta</string>
   <string name="ImportFragment_restore_encrypted_backup">Palautetaanko salattu varmuuskopio?</string>
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
 Salatun varmuuskopion palauttaminen korvaa kaikki olemassa olevat avaimet, asetukset ja
-viestit.  Menetät kaikki TextSecuressa olevat tiedot, jotka eivät ole osa varmuuskopiota.</string>
+viestit.  Menetät kaikki SecureChatssa olevat tiedot, jotka eivät ole osa varmuuskopiota.</string>
   <string name="ImportFragment_restore">Palauta</string>
   <string name="ImportFragment_import_plaintext_backup">Tuodaanko salaamaton varmuuskopio?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Tämä toiminto tuo viestit salaamattomasta varmuuskopiosta. Jos viestit on tuotu jo
@@ -149,24 +149,24 @@ aiemmin, seuraa niiden uudelleen tuonnista viestien kaksoiskappaleita.</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimediaviesti</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Viesti on salattu käyttäen vanhaa versiota TextSecuresta, jota ei enää tueta. Pyydä lähettäjää päivittämään TextSecure uusimpaan versioon.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Viesti on salattu käyttäen vanhaa versiota SecureChatsta, jota ei enää tueta. Pyydä lähettäjää päivittämään SecureChat uusimpaan versioon.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Salasanat eivät täsmää!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Vanha salasana on väärin!</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Syötä salasana</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">TextSecure-kuvake</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">SecureChat-kuvake</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Syötä salasana</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Salasana ei kelpaa!</string>
   <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Tämän avaintenvaihto-operaation allekirjoitus eroaa tältä kontaktilta aiemmin saaduista allekirjoituksista. Tämä voi tarkoittaa että joku yrittää kaapata viestiliikennettäsi tai että kontaktisi on uudelleenasentanut TextSecuren, ja käyttää nyt uutta tunnisteavainta.</string>
+  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Tämän avaintenvaihto-operaation allekirjoitus eroaa tältä kontaktilta aiemmin saaduista allekirjoituksista. Tämä voi tarkoittaa että joku yrittää kaapata viestiliikennettäsi tai että kontaktisi on uudelleenasentanut SecureChatn, ja käyttää nyt uutta tunnisteavainta.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Saatat haluta varmentaa
 tämän kontaktin.</string>
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">Tämän avaintenvaihto-operaation allekirjoitus on luotettu, mutta \"suorita avaimenvaihdot automaattisesti\"-asetus on poissa käytöstä.</string>
   <string name="ReceiveKeyActivity_processing">Käsitellään</string>
   <string name="ReceiveKeyActivity_processing_key_exchange">Käsitellään avaimenvaihtoa...</string>
   <!--RegistrationActivity-->
-  <string name="RegistrationActivity_connect_with_textsecure">Yhdistä TextSecurella</string>
+  <string name="RegistrationActivity_connect_with_textsecure">Yhdistä SecureChatlla</string>
   <string name="RegistrationActivity_select_your_country">Valitse maasi</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Suuntanumero täytyy määritellä</string>
   <string name="RegistrationActivity_you_must_specify_your_phone_number">Teidän täytyy määritellä 
@@ -203,7 +203,7 @@ tarvitse olla Google-tiliä, mutta täytyy olla Play-kauppa asennettuna. </strin
   <string name="RegistrationProgressActivity_too_many_requests">Liian monta pyyntöä!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Olet äskettäin pyytänyt puhelua. Voit pyytää uutta puhelua 20 minuutin kuluttua.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Rekisteröintiristiriita</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Tämä numero on jo rekisteröitynä toisella TextSecure-palvelimella (CyanogenMod?). Sinun täytyy purkaa rekisteröityminen siellä ennen kuin voit rekisteröityä.</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Tämä numero on jo rekisteröitynä toisella SecureChat-palvelimella (CyanogenMod?). Sinun täytyy purkaa rekisteröityminen siellä ennen kuin voit rekisteröityä.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Rekisteröinti suoritettu</string>
   <string name="RegistrationService_textsecure_registration_has_successfully_completed">Rekisteröityminen suoritettiin onnistuneesti.</string>
@@ -268,7 +268,7 @@ Vastaanotettiin viesti tuntemattomalla tunnisteavaimella. Napsauta käsitelläks
   <!--KeyCachingService-->
   <string name="KeyCachingService_textsecure_passphrase_cached">Kosketa avataksesi.</string>
   <string name="KeyCachingService_textsecure_passphrase_cached_with_lock">Kosketa avataksesi tai kosketa lukkoa sulkeaksesi.</string>
-  <string name="KeyCachingService_passphrase_cached">TextSecuren lukitus on auki</string>
+  <string name="KeyCachingService_passphrase_cached">SecureChatn lukitus on auki</string>
   <string name="KeyCachingService_lock">Lukitse salasanalla</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">%d uutta viestiä</string>
@@ -281,9 +281,9 @@ Vastaanotettiin viesti tuntemattomalla tunnisteavaimella. Napsauta käsitelläks
   <string name="MessageNotifier_mark_all_as_read">Merkitse kaikki luetuiksi</string>
   <string name="MessageNotifier_mark_as_read">Merkitse luetuksi</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Pahoittelemme. \"Quick Response\" ei ole vielä tuettu TextSecuressa!</string>
+  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Pahoittelemme. \"Quick Response\" ei ole vielä tuettu SecureChatssa!</string>
   <!--auto_initiate_activity-->
-  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Olette saaneet viestin henkilöltä, jolla on mahdollisuus TextSecuren salattuihin istuntoihin. Haluatteko aloittaa salatun istunnon?</string>
+  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Olette saaneet viestin henkilöltä, jolla on mahdollisuus SecureChatn salattuihin istuntoihin. Haluatteko aloittaa salatun istunnon?</string>
   <string name="auto_initiate_activity__initiate_exchange">Aloita vaihto</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">VANHA SALASANA:</string>
@@ -303,7 +303,7 @@ Vastaanotettiin viesti tuntemattomalla tunnisteavaimella. Napsauta käsitelläks
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Ei uusia soittoja.</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Lähetä TextSecure-viesti</string>
+  <string name="conversation_activity__type_message_push">Lähetä SecureChat-viesti</string>
   <string name="conversation_activity__type_message_sms_secure">Lähetä salattu SMS</string>
   <string name="conversation_activity__type_message_mms_secure">Lähetä salattu MMS</string>
   <string name="conversation_activity__send">Lähetä</string>
@@ -330,7 +330,7 @@ Vastaanotettiin viesti tuntemattomalla tunnisteavaimella. Napsauta käsitelläks
   <string name="log_submit_activity__thanks">Kiitos avustasi!</string>
   <string name="log_submit_activity__submitting">Lähetetään</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Haluatteko tuoda olemassa olevat tekstiviestisinne TextSecuren suojattuun tietokantaan?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Haluatteko tuoda olemassa olevat tekstiviestisinne SecureChatn suojattuun tietokantaan?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Järjestelmän oletustietokantaa ei tulla muuttamaan millään tavalla.</string>
   <string name="database_migration_activity__skip">Ohita</string>
   <string name="database_migration_activity__import">Tuo</string>
@@ -346,7 +346,7 @@ Vie salaamaton \"SMS Backup And Restore\"-yhteensopiva varmuuskopio SD-muistikor
 järjestelmän oletus viestisovelluksesta.</string>
   <string name="import_fragment__import_encrypted_backup">Tuo salattu varmuuskopio</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">
-Tuo aiemmin viety salattu TextSecure-varmuuskopio.</string>
+Tuo aiemmin viety salattu SecureChat-varmuuskopio.</string>
   <string name="import_fragment__import_plaintext_backup">Tuo salaamaton varmuuskopio</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Tuo salaamaton varmuuskopiotiedosto. Yhteensopiva \"SMS Backup And Restore\":lla.</string>
@@ -355,7 +355,7 @@ Tuo salaamaton varmuuskopiotiedosto. Yhteensopiva \"SMS Backup And Restore\":lla
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Avaa</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure edellyttää MMS-asetuksia lähettääkseen mediaa ja ryhmäviestejä verkko-operaattorisi kautta. Laitettasi ei ole konfiguroitu antamaan näitä tietoja itsestään, mikä voi johtua laitteen lukituksesta operaattoriin tai muusta rajoitetusta kokoonpanosta.</string>
+  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">SecureChat edellyttää MMS-asetuksia lähettääkseen mediaa ja ryhmäviestejä verkko-operaattorisi kautta. Laitettasi ei ole konfiguroitu antamaan näitä tietoja itsestään, mikä voi johtua laitteen lukituksesta operaattoriin tai muusta rajoitetusta kokoonpanosta.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Lähettääksenne mediatiedostoja ja ryhmäviestejä, napsauttakaa \"OK\" ja täydentäkää pyydetyt asetukset. Verkko-operaattorinne MMS-asetukset voi yleensä paikantaa etsimällä termiä \"APN\". Teidän tarvitsee tehdä tämän vain kerran.</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Valmis</string>
@@ -373,39 +373,39 @@ sisältyvät:</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
 Jotkin kolmannen osapuolen tekstiviestisovellukset, kuten Handcent ja GoSMS, käyttäytyvät huonosti ja
 sieppaavat kaikki saapuvat tekstiviestit. Tarkistakaa, jos olette saaneet tekstiviestin, joka alkaa
-sanoilla \'Your TextSecure verification code:\', jolloin teidän täytyy säätää
+sanoilla \'Your SecureChat verification code:\', jolloin teidän täytyy säätää
 kolmannen osapuolen tekstiviestisovelluksenne päästämään tekstiviestinne läpi.</string>
   <string name="registration_problems__incorrect_number">Virheellinen puhelinnumero.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
 Takista, että olet syöttänyt puhelinnumerosi oikein ja että se on muotoiltu oikein alueellesi.</string>
   <string name="registration_problems__google_voice">Google Voice.</string>
   <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">
-TextSecure ei toimi Google Voice -numeroiden kanssa.</string>
+SecureChat ei toimi Google Voice -numeroiden kanssa.</string>
   <!--registration_progress_activity-->
   <string name="registration_progress_activity__voice_verification">Puhevarmennus</string>
   <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">
-TextSecure voi myös soittaa teille numeronne varmistamiseksi. Napsauttakaa \"Soita minulle\" ja syöttäkää kuulemanne kuusinumeroinen koodi alla olevaan kenttään. </string>
+SecureChat voi myös soittaa teille numeronne varmistamiseksi. Napsauttakaa \"Soita minulle\" ja syöttäkää kuulemanne kuusinumeroinen koodi alla olevaan kenttään. </string>
   <string name="registration_progress_activity__verify">Varmenna</string>
   <string name="registration_progress_activity__call_me">Soita minulle</string>
   <string name="registration_progress_activity__edit_number">Muokkaa numeroa</string>
   <string name="registration_progress_activity__connectivity_error">Yhteysvirhe.</string>
   <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">
-TextSecure ei voinut yhdistää push-palveluun.</string>
+SecureChat ei voinut yhdistää push-palveluun.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Mahdollisiin ongelmiin
 sisältyvät:</string>
   <string name="registration_progress_activity__no_network_connectivity">Ei verkkoyhteyttä.</string>
-  <string name="registration_progress_activity__your_device_needs_network_connectivity">Laitteesi tarvitsee verkkoyhteyden tämän TextSecuren ominaisuuden käyttämiseen. Tarkista, että se on yhdistettynä 3G- tai WiFi-verkkoon.</string>
+  <string name="registration_progress_activity__your_device_needs_network_connectivity">Laitteesi tarvitsee verkkoyhteyden tämän SecureChatn ominaisuuden käyttämiseen. Tarkista, että se on yhdistettynä 3G- tai WiFi-verkkoon.</string>
   <string name="registration_progress_activity__restrictive_firewall">Rajoittava palomuuri.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
-Jos olet yhdistänyt WiFi-verkkoon, on mahdollista että palomuuri estää pääsyn TextSecuren palvelimelle. Kokeille toista verkkoa tai mobiiliverkkoa.</string>
+Jos olet yhdistänyt WiFi-verkkoon, on mahdollista että palomuuri estää pääsyn SecureChatn palvelimelle. Kokeille toista verkkoa tai mobiiliverkkoa.</string>
   <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
-TextSecure varmistaa nyt puhelinnumerosi automaattisesti tekstiviestillä.</string>
+SecureChat varmistaa nyt puhelinnumerosi automaattisesti tekstiviestillä.</string>
   <string name="registration_progress_activity__connecting">Yhdistetään...</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">Odotetaan vahvistustekstiviestiä...</string>
   <string name="registration_progress_activity__registering_with_server">Rekisteröidytään palvelimelle...</string>
   <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Tämä voi viedä hetken. Olkaa kärsivällinen — ilmoitamme, kun vahvistus on suoritettu.</string>
   <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">
-TextSecure ei saanut vahvistustekstiviestiä odotusajan sisällä.</string>
+SecureChat ei saanut vahvistustekstiviestiä odotusajan sisällä.</string>
   <string name="registration_progress_activity__sms_verification_failed">SMS-varmennus
 epäonnistui.</string>
   <string name="registration_progress_activity__generating_keys">Luodaan avaimia...</string>
@@ -419,7 +419,7 @@ epäonnistui.</string>
   <string name="AndroidManifest__create_passphrase">Luo salasana</string>
   <string name="AndroidManifest__enter_passphrase">Syötä salasana</string>
   <string name="AndroidManifest__select_contacts">Valitse kontaktit</string>
-  <string name="AndroidManifest__textsecure_detected">TextSecure havaittu</string>
+  <string name="AndroidManifest__textsecure_detected">SecureChat havaittu</string>
   <string name="AndroidManifest__public_identity_key">Julkinen tunnisteavain</string>
   <string name="AndroidManifest__change_passphrase">Vaihda salasana</string>
   <string name="AndroidManifest__verify_identity">Varmenna tunniste</string>
@@ -432,8 +432,8 @@ epäonnistui.</string>
   <string name="preferences__push_sms_category">Push- ja tekstiviestit</string>
   <string name="preferences__pref_all_sms_title">Vastaanota kaikki tekstiviestit</string>
   <string name="preferences__pref_all_mms_title">Vastaanota kaikki multimediaviestit</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Käytä TextSecurea kaikkien saapuvien tekstiviestien katselemiseen ja tallentamiseen</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Käytä TextSecurea kaikkien saapuvien multimediaviestien katselemiseen ja tallentamiseen</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Käytä SecureChata kaikkien saapuvien tekstiviestien katselemiseen ja tallentamiseen</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Käytä SecureChata kaikkien saapuvien multimediaviestien katselemiseen ja tallentamiseen</string>
   <string name="preferences__input_settings">Syöttöasetukset</string>
   <string name="preferences__enable_enter_key_title">Ota rivinvaihto käyttöön</string>
   <string name="preferences__replace_smiley_with_enter_key">Korvaa hymiönäppäin rivinvaihtonäppäimellä</string>
@@ -498,12 +498,12 @@ epäonnistui.</string>
   <string name="preferences__default">Oletus</string>
   <string name="preferences__language">Kieli</string>
   <string name="preferences__make_default_sms_app">Aseta oletus tekstiviestisovellukseksi</string>
-  <string name="preferences__make_textsecure_the_default_sms_mms_app">Tee TextSecuresta järjestelmäsi oletus SMS/MMS -sovellus.</string>
+  <string name="preferences__make_textsecure_the_default_sms_mms_app">Tee SecureChatsta järjestelmäsi oletus SMS/MMS -sovellus.</string>
   <string name="preferences__use_data_channel">Push-viestit</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
-Paranna yksityisyyttäsi ja vältä tekstiviestilaskuja käyttämällä tiedonsiirtokanavaa muiden TextSecuren käyttäjien kanssa.</string>
+Paranna yksityisyyttäsi ja vältä tekstiviestilaskuja käyttämällä tiedonsiirtokanavaa muiden SecureChatn käyttäjien kanssa.</string>
   <string name="preferences__submit_debug_log">Lähetä virheenkorjausloki</string>
-  <string name="preferences__sms_outgoing_push_users">TextSecuren käyttäjille</string>
+  <string name="preferences__sms_outgoing_push_users">SecureChatn käyttäjille</string>
   <string name="preferences__sms_outgoing_push_users_description">Lähetä salattuja tekstiviestejä jos verkkoyhteys katkeaa</string>
   <string name="preferences__sms_fallback_non_push_users">Muille</string>
   <string name="preferences__sms_fallback_nobody">Ei kenellekkään</string>
@@ -521,7 +521,7 @@ Paranna yksityisyyttäsi ja vältä tekstiviestilaskuja käyttämällä tiedonsi
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Päivitä yhteystietoluettelo</string>
   <!--conversation_button_context-->
-  <string name="conversation_button_context__send_textsecure_message">Lähetä TextSecure-viesti</string>
+  <string name="conversation_button_context__send_textsecure_message">Lähetä SecureChat-viesti</string>
   <string name="conversation_button_context__send_secure_sms">Lähetä salattu SMS</string>
   <string name="conversation_button_context__send_secure_mms">Lähetä salattu MMS</string>
   <!--conversation_callable-->

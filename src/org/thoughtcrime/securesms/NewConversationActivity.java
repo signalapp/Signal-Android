@@ -24,18 +24,17 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
+import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.NumberUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -136,14 +135,12 @@ public class NewConversationActivity extends PassphraseRequiredActionBarActivity
     Recipients recipients = new Recipients(new LinkedList<Recipient>());
     for (ContactAccessor.NumberData numberData : contactData.numbers) {
       if (NumberUtil.isValidSmsOrEmailOrGroup(numberData.number)) {
-        try {
-          Recipients recipientsForNumber = RecipientFactory.getRecipientsFromString(NewConversationActivity.this,
-                                                                                    numberData.number,
-                                                                                    false);
-          recipients.getRecipientsList().addAll(recipientsForNumber.getRecipientsList());
-        } catch (RecipientFormattingException rfe) {
-          Log.w(TAG, "Caught RecipientFormattingException when trying to convert a selected number to a Recipient.", rfe);
-        }
+
+        Recipients recipientsForNumber = RecipientFactory.getRecipientsFromString(NewConversationActivity.this,
+                                                                                  numberData.number,
+                                                                                  false);
+        recipients.getRecipientsList().addAll(recipientsForNumber.getRecipientsList());
+
       }
     }
     return recipients;
@@ -158,6 +155,7 @@ public class NewConversationActivity extends PassphraseRequiredActionBarActivity
       intent.putExtra(ConversationActivity.DRAFT_AUDIO_EXTRA, getIntent().getParcelableExtra(ConversationActivity.DRAFT_AUDIO_EXTRA));
       intent.putExtra(ConversationActivity.DRAFT_VIDEO_EXTRA, getIntent().getParcelableExtra(ConversationActivity.DRAFT_VIDEO_EXTRA));
       intent.putExtra(ConversationActivity.DRAFT_IMAGE_EXTRA, getIntent().getParcelableExtra(ConversationActivity.DRAFT_IMAGE_EXTRA));
+      intent.putExtra(ConversationActivity.DRAFT_MEDIA_TYPE_EXTRA, getIntent().getStringExtra(ConversationActivity.DRAFT_MEDIA_TYPE_EXTRA));
       long existingThread = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipients);
       intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, existingThread);
       intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT);

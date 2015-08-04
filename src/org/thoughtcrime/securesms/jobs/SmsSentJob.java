@@ -83,7 +83,7 @@ public class SmsSentJob extends MasterSecretJob {
           if (record != null && record.isEndSession()) {
             Log.w(TAG, "Ending session...");
             SessionStore sessionStore = new TextSecureSessionStore(context, masterSecret);
-            sessionStore.deleteAllSessions(record.getIndividualRecipient().getRecipientId());
+            sessionStore.deleteAllSessions(record.getIndividualRecipient().getNumber());
             SecurityEvent.broadcastSecurityUpdateEvent(context, record.getThreadId());
           }
 

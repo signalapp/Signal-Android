@@ -49,7 +49,6 @@ import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -84,25 +83,27 @@ public class MessageNotifier {
     if (visibleThread == threadId) {
       sendInThreadNotification(context);
     } else {
-      Intent intent = new Intent(context, RoutingActivity.class);
-      intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-      intent.putExtra("recipients", recipients.getIds());
-      intent.putExtra("thread_id", threadId);
-      intent.setData((Uri.parse("custom://"+System.currentTimeMillis())));
+      if(recipients != null) {
+        Intent intent = new Intent(context, RoutingActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        intent.putExtra("recipients", recipients.getIds());
+        intent.putExtra("thread_id", threadId);
+        intent.setData((Uri.parse("custom://" + System.currentTimeMillis())));
 
-      NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
-      builder.setSmallIcon(R.drawable.icon_notification_gdata);
-      builder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(),
-                                                        R.drawable.ic_action_warning_red));
-      builder.setContentTitle(context.getString(R.string.MessageNotifier_message_delivery_failed));
-      builder.setContentText(context.getString(R.string.MessageNotifier_failed_to_deliver_message));
-      builder.setTicker(context.getString(R.string.MessageNotifier_error_delivering_message));
-      builder.setContentIntent(PendingIntent.getActivity(context, 0, intent, 0));
-      builder.setAutoCancel(true);
-      setNotificationAlarms(context, builder, true);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
+        builder.setSmallIcon(R.drawable.icon_notification_gdata);
+        builder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(),
+            R.drawable.ic_action_warning_red));
+        builder.setContentTitle(context.getString(R.string.MessageNotifier_message_delivery_failed));
+        builder.setContentText(context.getString(R.string.MessageNotifier_failed_to_deliver_message));
+        builder.setTicker(context.getString(R.string.MessageNotifier_error_delivering_message));
+        builder.setContentIntent(PendingIntent.getActivity(context, 0, intent, 0));
+        builder.setAutoCancel(true);
+        setNotificationAlarms(context, builder, true);
 
-      ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
-        .notify((int)threadId, builder.build());
+        ((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE))
+            .notify((int) threadId, builder.build());
+      }
     }
   }
 
@@ -313,12 +314,7 @@ public class MessageNotifier {
       while ((envelope = reader.getNext()) != null) {
         Recipients recipients;
 
-        try {
-          recipients = RecipientFactory.getRecipientsFromString(context, envelope.getSource(), false);
-        } catch (RecipientFormattingException e) {
-          Log.w("MessageNotifier", e);
-          recipients = new Recipients(Recipient.getUnknownRecipient(context));
-        }
+        recipients = RecipientFactory.getRecipientsFromString(context, envelope.getSource(), false);
 
         Recipient       recipient = recipients.getPrimaryRecipient();
         long            threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
@@ -351,7 +347,9 @@ public class MessageNotifier {
       SpannableString body             = record.getDisplayBody();
       Uri             image            = null;
       Recipients      threadRecipients = null;
-
+      if(record.getBody().isSelfDestruction()) {
+        body = new SpannableString(context.getString(R.string.self_destruction_body).replace("#1#", "" + record.getBody().getSelfDestructionDuration()));
+      }
       if (threadId != -1) {
         threadRecipients = DatabaseFactory.getThreadDatabase(context).getRecipientsForThreadId(threadId);
       }

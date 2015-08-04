@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.crypto.storage;
 import android.content.Context;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.whispersystems.libaxolotl.AxolotlAddress;
 import org.whispersystems.libaxolotl.IdentityKey;
 import org.whispersystems.libaxolotl.IdentityKeyPair;
 import org.whispersystems.libaxolotl.InvalidKeyIdException;
@@ -42,13 +43,13 @@ public class TextSecureAxolotlStore implements AxolotlStore {
   }
 
   @Override
-  public void saveIdentity(long recipientId, IdentityKey identityKey) {
-    identityKeyStore.saveIdentity(recipientId, identityKey);
+  public void saveIdentity(String number, IdentityKey identityKey) {
+    identityKeyStore.saveIdentity(number, identityKey);
   }
 
   @Override
-  public boolean isTrustedIdentity(long recipientId, IdentityKey identityKey) {
-    return identityKeyStore.isTrustedIdentity(recipientId, identityKey);
+  public boolean isTrustedIdentity(String number, IdentityKey identityKey) {
+    return identityKeyStore.isTrustedIdentity(number, identityKey);
   }
 
   @Override
@@ -72,33 +73,33 @@ public class TextSecureAxolotlStore implements AxolotlStore {
   }
 
   @Override
-  public SessionRecord loadSession(long recipientId, int deviceId) {
-    return sessionStore.loadSession(recipientId, deviceId);
+  public SessionRecord loadSession(AxolotlAddress axolotlAddress) {
+    return sessionStore.loadSession(axolotlAddress);
   }
 
   @Override
-  public List<Integer> getSubDeviceSessions(long recipientId) {
-    return sessionStore.getSubDeviceSessions(recipientId);
+  public List<Integer> getSubDeviceSessions(String number) {
+    return sessionStore.getSubDeviceSessions(number);
   }
 
   @Override
-  public void storeSession(long recipientId, int deviceId, SessionRecord record) {
-    sessionStore.storeSession(recipientId, deviceId, record);
+  public void storeSession(AxolotlAddress axolotlAddress, SessionRecord record) {
+    sessionStore.storeSession(axolotlAddress, record);
   }
 
   @Override
-  public boolean containsSession(long recipientId, int deviceId) {
-    return sessionStore.containsSession(recipientId, deviceId);
+  public boolean containsSession(AxolotlAddress axolotlAddress) {
+    return sessionStore.containsSession(axolotlAddress);
   }
 
   @Override
-  public void deleteSession(long recipientId, int deviceId) {
-    sessionStore.deleteSession(recipientId, deviceId);
+  public void deleteSession(AxolotlAddress axolotlAddress) {
+    sessionStore.deleteSession(axolotlAddress);
   }
 
   @Override
-  public void deleteAllSessions(long recipientId) {
-    sessionStore.deleteAllSessions(recipientId);
+  public void deleteAllSessions(String number) {
+    sessionStore.deleteAllSessions(number);
   }
 
   @Override

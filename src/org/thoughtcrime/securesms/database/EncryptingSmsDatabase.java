@@ -61,13 +61,14 @@ public class EncryptingSmsDatabase extends SmsDatabase {
   }
 
   public long insertMessageOutbox(MasterSecret masterSecret, long threadId,
-                                  OutgoingTextMessage message, boolean forceSms)
+                                  OutgoingTextMessage message, boolean forceSms,
+                                  long timestamp)
   {
     long type = Types.BASE_OUTBOX_TYPE;
     message   = message.withBody(getEncryptedBody(masterSecret, message.getMessageBody()));
     type     |= Types.ENCRYPTION_SYMMETRIC_BIT;
 
-    return insertMessageOutbox(threadId, message, type, forceSms);
+    return insertMessageOutbox(threadId, message, type, forceSms, timestamp);
   }
 
   public Pair<Long, Long> insertMessageInbox(MasterSecret masterSecret,
@@ -100,10 +101,10 @@ public class EncryptingSmsDatabase extends SmsDatabase {
     return insertMessageInbox(message, type);
   }
 
-  public void updateBundleMessageBody(MasterSecret masterSecret, long messageId, String body) {
+  public Pair<Long, Long> updateBundleMessageBody(MasterSecret masterSecret, long messageId, String body) {
     String encryptedBody = getEncryptedBody(masterSecret, body);
-    updateMessageBodyAndType(messageId, encryptedBody, Types.TOTAL_MASK,
-                             Types.BASE_INBOX_TYPE | Types.ENCRYPTION_SYMMETRIC_BIT | Types.SECURE_MESSAGE_BIT);
+    return updateMessageBodyAndType(messageId, encryptedBody, Types.TOTAL_MASK,
+                                    Types.BASE_INBOX_TYPE | Types.ENCRYPTION_SYMMETRIC_BIT | Types.SECURE_MESSAGE_BIT);
   }
 
   public void updateMessageBody(MasterSecret masterSecret, long messageId, String body) {

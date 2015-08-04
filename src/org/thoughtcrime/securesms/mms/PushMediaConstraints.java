@@ -4,6 +4,7 @@ public class PushMediaConstraints extends MediaConstraints {
   private static final int MAX_IMAGE_DIMEN  = 1280;
   private static final int KB               = 1024;
   private static final int MB               = 1024 * KB;
+  public  static final int MAX_MESSAGE_SIZE = 5120 * KB;
 
   @Override
   public int getImageMaxWidth() {
@@ -17,16 +18,16 @@ public class PushMediaConstraints extends MediaConstraints {
 
   @Override
   public int getImageMaxSize() {
-    return 300 * KB;
+    return 400 * KB;
   }
 
   @Override
   public int getVideoMaxSize() {
-    return MmsMediaConstraints.MAX_MESSAGE_SIZE;
+    return MAX_MESSAGE_SIZE;
   }
 
   @Override
   public int getAudioMaxSize() {
-    return MmsMediaConstraints.MAX_MESSAGE_SIZE;
+    return MAX_MESSAGE_SIZE;
   }
 }

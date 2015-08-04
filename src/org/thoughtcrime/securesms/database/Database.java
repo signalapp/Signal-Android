@@ -25,9 +25,9 @@ import java.util.Set;
 
 public abstract class Database {
 
-  protected static final String ID_WHERE            = "_id = ?";
-  private static final String CONVERSATION_URI      = "content://textsecure/thread/";
-  private static final String CONVERSATION_LIST_URI = "content://textsecure/conversation-list";
+  protected static final String ID_WHERE              = "_id = ?";
+  private   static final String CONVERSATION_URI      = "content://textsecure/thread/";
+  private   static final String CONVERSATION_LIST_URI = "content://textsecure/conversation-list";
 
   protected       SQLiteOpenHelper databaseHelper;
   protected final Context context;

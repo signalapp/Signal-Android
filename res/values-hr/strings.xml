@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">TextSecure</string>
+  <string name="app_name">SecureChat</string>
   <string name="yes">Da</string>
   <string name="no">Ne</string>
   <string name="delete">Obriši</string>
@@ -28,7 +28,7 @@ Trebat ćete ponovno registrirati vaš broj telefona kako biste koristili instan
   <string name="ApplicationPreferencesActivity_sms_enabled">Dolazne SMS poruke omogućene</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Pritisnite za promjenu zadane SMS aplikacije</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Dolazne SMS poruke onemogućene</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Pritisnite kako biste postavili TextSecure kao zadanu SMS aplikaciju</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Pritisnite kako biste postavili SecureChat kao zadanu SMS aplikaciju</string>
   <string name="ApplicationPreferencesActivity_on">uključeno</string>
   <string name="ApplicationPreferencesActivity_On">Uključeno</string>
   <string name="ApplicationPreferencesActivity_off">isključeno</string>
@@ -93,7 +93,7 @@ Trebat ćete ponovno registrirati vaš broj telefona kako biste koristili instan
   <string name="ConversationActivity_transport_insecure_mms">Nesigurni MMS</string>
   <string name="ConversationActivity_transport_secure_sms">Sigurni SMS</string>
   <string name="ConversationActivity_transport_secure_mms">Sigurni MMS</string>
-  <string name="ConversationActivity_transport_textsecure">TextSecure</string>
+  <string name="ConversationActivity_transport_textsecure">SecureChat</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalji poruke</string>
   <string name="ConversationFragment_transport_s_sent_received_s">Transport: %1$s\nPoslano/Primljeno: %2$s</string>
@@ -122,7 +122,7 @@ Trebat ćete ponovno registrirati vaš broj telefona kako biste koristili instan
   <string name="ExportFragment_export">Izvoz</string>
   <string name="ExportFragment_export_plaintext_to_sd_card">Izvezi nekriptirano na SD karticu?</string>
   <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Upozorenje, ovime ćete
-nekriptirano izvesti sadržaj vaših TextSecure poruka na SD karticu.</string>
+nekriptirano izvesti sadržaj vaših SecureChat poruka na SD karticu.</string>
   <string name="ExportFragment_cancel">Odustani</string>
   <string name="ExportFragment_exporting">Izvoz</string>
   <string name="ExportFragment_exporting_plaintext_to_sd_card">Nekriptirani izvoz na SD karticu...</string>
@@ -131,15 +131,15 @@ na SD karticu!</string>
   <string name="ExportFragment_error_while_writing_to_sd_card">Greška prilikom pisanja na SD karticu.</string>
   <string name="ExportFragment_success">Uspješno!</string>
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_TextSecure_communication_failure">Trajna TextSecure greška u komunikaciji!</string>
-  <string name="GcmRefreshJob_TextSecure_was_unable_to_register_with_Google_Play_Services">TextSecure se nije uspješno registrirao na Google Play Services. Komunikacija preko podatkovnog kanala je onemogućena, pokušajte se ponovno registrirati iz TextSecure izbornika.</string>
+  <string name="GcmRefreshJob_Permanent_SecureChat_communication_failure">Trajna SecureChat greška u komunikaciji!</string>
+  <string name="GcmRefreshJob_SecureChat_was_unable_to_register_with_Google_Play_Services">SecureChat se nije uspješno registrirao na Google Play Services. Komunikacija preko podatkovnog kanala je onemogućena, pokušajte se ponovno registrirati iz SecureChat izbornika.</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Nova grupa</string>
   <string name="GroupCreateActivity_actionbar_update_title">Ažuriraj grupu</string>
   <string name="GroupCreateActivity_group_name_hint">Naziv grupe</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Nova MMS grupa</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Odabrali ste kontakt koji ne podržava TextSecure grupe, tako da će ovo biti MMS grupa.</string>
-  <string name="GroupCreateActivity_you_dont_support_push">Niste registrirani za korištenje podatkovnih kanala, tako da su TextSecure grupe onemogućene.</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Odabrali ste kontakt koji ne podržava SecureChat grupe, tako da će ovo biti MMS grupa.</string>
+  <string name="GroupCreateActivity_you_dont_support_push">Niste registrirani za korištenje podatkovnih kanala, tako da su SecureChat grupe onemogućene.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Dogodila se neočekivana greška zbog koje je stvaranje grupe neuspješno.</string>
   <string name="GroupCreateActivity_contacts_no_members">Potrebna je barem jedna osoba u vašoj grupi!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Jedan od članova vaše grupe ima broj koji ne može biti ispravno pročitan. Ispravite ili uklonite taj kontakt i pokušajte ponovno.</string>
@@ -148,7 +148,7 @@ na SD karticu!</string>
   <string name="GroupCreateActivity_creating_group">Stvaranje %1$s...</string>
   <string name="GroupCreateActivity_updating_group">Ažuriranje %1$s...</string>
   <string name="GroupCreateActivity_loading_group_details">Učitavanje detalja grupe</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Nije moguće dodati korisnike koji ne koriste TextSecure u TextSecure grupu</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Nije moguće dodati korisnike koji ne koriste SecureChat u SecureChat grupu</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Ja</string>
   <!--ImportExportActivity-->
@@ -157,14 +157,14 @@ na SD karticu!</string>
   <!--ImportFragment-->
   <string name="ImportFragment_import_system_sms_database">Uvezi sistemsku SMS bazu podataka?</string>
   <string name="ImportFragment_this_will_import_messages_from_the_system">Ovo će uvesti
-poruke iz zadane sistemske SMS baze podataka u TextSecure. Ukoliko ste prethodno
+poruke iz zadane sistemske SMS baze podataka u SecureChat. Ukoliko ste prethodno
 uvezli sistemsku SMS bazu podataka, ponovno uvoženje će rezultirati duplim porukama.</string>
   <string name="ImportFragment_import">Uvoz</string>
   <string name="ImportFragment_cancel">Odustani</string>
   <string name="ImportFragment_restore_encrypted_backup">Povrati kriptiranu kopiju?</string>
   <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">
 Vraćanje kriptirane kopije će potpuno zamijeniti vaše postojeće ključeve, postavke i poruke.
-Izgubit ćete sve podatke iz trenutne TextSecure instalacije koji se ne nalaza u kopiji.</string>
+Izgubit ćete sve podatke iz trenutne SecureChat instalacije koji se ne nalaza u kopiji.</string>
   <string name="ImportFragment_restore">Vrati</string>
   <string name="ImportFragment_import_plaintext_backup">Uvezi nekriptiranu kopiju?</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Ovo će uvesti
@@ -188,20 +188,20 @@ ponovno uvoženje će rezultirati duplim porukama.</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimedijalna poruka</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Primljena je poruka kriptirana starom TextSecure inačicom koja više nije podržana. Zamolite pošiljatelja da ažurira aplikaciju na najnoviju inačicu i ponovno pošalje poruku.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Primljena je poruka kriptirana starom SecureChat inačicom koja više nije podržana. Zamolite pošiljatelja da ažurira aplikaciju na najnoviju inačicu i ponovno pošalje poruku.</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Lozinka ne odgovara!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Netočna stara lozinka!</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Unesite lozinku</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">TextSecure ikona</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">SecureChat ikona</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Pošaljite lozinku</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Neispravna lozinka!</string>
   <!--ReceiveKeyActivity-->
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">Potpis
 na razmjeni ključeva je drugačiji od onoga što ste prethodno primali od ovog kontakta.
 Ovo može značiti da netko presreće vašu komunikaciju, ili da je ovaj kontakt
-jednostavno ponovno instalirao TextSecure i sada ima novi identifikacijski ključ.</string>
+jednostavno ponovno instalirao SecureChat i sada ima novi identifikacijski ključ.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Možda bi trebali provjeriti
 ovaj kontakt.</string>
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">Potpis
@@ -210,7 +210,7 @@ razmjene ključeva\'.</string>
   <string name="ReceiveKeyActivity_processing">Obrađivanje</string>
   <string name="ReceiveKeyActivity_processing_key_exchange">Obrađivanje razmjene ključeva...</string>
   <!--RegistrationActivity-->
-  <string name="RegistrationActivity_connect_with_textsecure">Povežite se sa TextSecure</string>
+  <string name="RegistrationActivity_connect_with_textsecure">Povežite se sa SecureChat</string>
   <string name="RegistrationActivity_select_your_country">Odaberite svoju zemlju</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Unesite pozivni broj
 vaše zemlje</string>
@@ -251,12 +251,12 @@ Je li ovaj broj ispravan ili ga želite urediti prije nastavka?</string>
   <string name="RegistrationProgressActivity_too_many_requests">Previše zahtjeva!</string>
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Već ste nedavno poslali zahtjev za poziv. Možete ponovno poslati zahtjev za 20 minuta.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Konflikt prilikom registracije</string>
-  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Ovaj broj je već registriran na drugom TextSecure poslužitelju (CyanogenMod?). Morate ukinuti registraciju tamo prije registriranja ovdje.</string>
+  <string name="RegistrationProgressActivity_this_number_is_already_registered_on_a_different">Ovaj broj je već registriran na drugom SecureChat poslužitelju (CyanogenMod?). Morate ukinuti registraciju tamo prije registriranja ovdje.</string>
   <!--RegistrationService-->
   <string name="RegistrationService_registration_complete">Registracija završena</string>
-  <string name="RegistrationService_textsecure_registration_has_successfully_completed">TextSecure registracija je uspješno završena.</string>
+  <string name="RegistrationService_textsecure_registration_has_successfully_completed">SecureChat registracija je uspješno završena.</string>
   <string name="RegistrationService_registration_error">Greška prilikom registracije</string>
-  <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">TextSecure registracija je naišla na problem.</string>
+  <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">SecureChat registracija je naišla na problem.</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Primljena iskvarena poruka
 razmjene ključeva!</string>
@@ -317,7 +317,7 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <!--KeyCachingService-->
   <string name="KeyCachingService_textsecure_passphrase_cached">Pritisnite za otvaranje.</string>
   <string name="KeyCachingService_textsecure_passphrase_cached_with_lock">Pritisnite za otvaranje ili pritisnite lokot za zatvaranje.</string>
-  <string name="KeyCachingService_passphrase_cached">TextSecure je otključan</string>
+  <string name="KeyCachingService_passphrase_cached">SecureChat je otključan</string>
   <string name="KeyCachingService_lock">Zaključajte sa lozinkom</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">%d novih poruka</string>
@@ -330,9 +330,9 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <string name="MessageNotifier_mark_all_as_read">Označi sve kao pročitano</string>
   <string name="MessageNotifier_mark_as_read">Označi kao pročitano</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Brzi odgovor još nije podržan u TextSecure!</string>
+  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Brzi odgovor još nije podržan u SecureChat!</string>
   <!--auto_initiate_activity-->
-  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Primili ste poruku od nekoga tko podržava TextSecure kriptirane sesije. Želite li pokrenuti sigurnu sesiju?</string>
+  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Primili ste poruku od nekoga tko podržava SecureChat kriptirane sesije. Želite li pokrenuti sigurnu sesiju?</string>
   <string name="auto_initiate_activity__initiate_exchange">Pokreni razmjenu</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">STARA LOZINKA:</string>
@@ -352,7 +352,7 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <!--contact_selection_recent_activity-->
   <string name="contact_selection_recent_activity__no_recent_calls">Nema nedavnih poziva.</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Pošalji TextSecure poruku</string>
+  <string name="conversation_activity__type_message_push">Pošalji SecureChat poruku</string>
   <string name="conversation_activity__type_message_sms_secure">Pošalji sigurni SMS</string>
   <string name="conversation_activity__type_message_mms_secure">Pošalji sigurni MMS</string>
   <string name="conversation_activity__send">Pošalji</string>
@@ -386,7 +386,7 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <string name="log_submit_activity__submitting">Slanje</string>
   <string name="log_submit_activity__posting_logs">Slanje zapisa u gist…</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Želite li uvesti postojeće tekstualne poruke u TextSecure kriptiranu bazu podataka?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Želite li uvesti postojeće tekstualne poruke u SecureChat kriptiranu bazu podataka?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Zadana sistemska baza podataka neće biti izmjenjena na bilo koji način.</string>
   <string name="database_migration_activity__skip">Preskoči</string>
   <string name="database_migration_activity__import">Uvoz</string>
@@ -402,7 +402,7 @@ Izvezi nekriptiranu kopiju kompatibilnu s \'SMSBackup And Restore\' na SD kartic
 iz zadane aplikacije za poruke sustava.</string>
   <string name="import_fragment__import_encrypted_backup">Uvezi kriptiranu kopiju</string>
   <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">
-Vrati prethodno izvezenu kriptiranu TextSecure kopiju.</string>
+Vrati prethodno izvezenu kriptiranu SecureChat kopiju.</string>
   <string name="import_fragment__import_plaintext_backup">Uvezi nekriptiranu kopiju</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
 Uvezi nekriptiranu kopiju kompatibilnu s \'SMSBackup And Restore\'.</string>
@@ -413,13 +413,13 @@ Uvezi nekriptiranu kopiju kompatibilnu s \'SMSBackup And Restore\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Otključaj</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure zahtjeva MMS postavke kako bi dostavio multimedijalne ili grupne poruke preko vašeg operatera. Vaš uređaj nije ove informacije učinio dostupnima, što se ponekad događa kod zaključanih uređaja ili kod ograničenih postavki.</string>
+  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">SecureChat zahtjeva MMS postavke kako bi dostavio multimedijalne ili grupne poruke preko vašeg operatera. Vaš uređaj nije ove informacije učinio dostupnima, što se ponekad događa kod zaključanih uređaja ili kod ograničenih postavki.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Kako biste slali multimedijalne ili grupne poruke, pritisnite \'OK\' i popunite tražene postavke. MMS postavke za vašeg operatera se obično mogu naći tražeći \'APN vašeg operatera\'. Ovo je potrebno napraviti samo jednom.</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Završeno</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
-Registracija je besplatna i povećava privatnost prilikom slanja poruka drugim TextSecure korisnicima. Provjerite svoj broj telefona.</string>
+Registracija je besplatna i povećava privatnost prilikom slanja poruka drugim SecureChat korisnicima. Provjerite svoj broj telefona.</string>
   <string name="registration_activity__your_country">VAŠA ZEMLJA</string>
   <string name="registration_activity__your_country_code_and_phone_number">POZIVNI BROJ ZEMLJE I
 TELEFONSKI BROJ</string>
@@ -434,37 +434,37 @@ uključuju:</string>
   <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
 Neke aplikacije za slanje tekstualnih poruka, kao Handcent ili GoSMS, se loše ponašaju i
 presreću sve dolazne SMS poruke. Provjerite da li ste primili tekstualnu poruku koja počinje
-sa \'Your TextSecure verification code:\', i u tom slučaju morate podesiti tu aplikaciju
+sa \'Your SecureChat verification code:\', i u tom slučaju morate podesiti tu aplikaciju
 da propušta tekstualne poruke.</string>
   <string name="registration_problems__incorrect_number">Pogrešan broj.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
 Provjerite jeste li unijeli svoj broj ispravno i da li je ispravno oblikovan za vašu regiju.</string>
   <string name="registration_problems__google_voice">Google Voice.</string>
   <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">
-TextSecure neće raditi sa Google Voice brojevima.</string>
+SecureChat neće raditi sa Google Voice brojevima.</string>
   <!--registration_progress_activity-->
   <string name="registration_progress_activity__voice_verification">Glasovna potvrda</string>
   <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">
-TextSecure vas može nazvati kako bi potvrdio vaš broj. Pritisnite \'Nazovi me\' i niže unesite
+SecureChat vas može nazvati kako bi potvrdio vaš broj. Pritisnite \'Nazovi me\' i niže unesite
 šesteroznamenkasti broj koji čujete.</string>
   <string name="registration_progress_activity__verify">Potvrdi</string>
   <string name="registration_progress_activity__call_me">Nazovi me</string>
   <string name="registration_progress_activity__edit_number">Uredi broj</string>
   <string name="registration_progress_activity__connectivity_error">Greška u povezivanju.</string>
   <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">
-TextSecure se nije mogao povezati na instant uslugu.</string>
+SecureChat se nije mogao povezati na instant uslugu.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Neki mogući
 problemi uključuju:</string>
   <string name="registration_progress_activity__no_network_connectivity">Nema mreže.</string>
   <string name="registration_progress_activity__your_device_needs_network_connectivity">Vaš
-uređaj treba mrežu kako bi koristio ovu TextSecure mogućnost. Provjerite da li ste povezani
+uređaj treba mrežu kako bi koristio ovu SecureChat mogućnost. Provjerite da li ste povezani
 na 3G ili Wi-Fi mrežu.</string>
   <string name="registration_progress_activity__restrictive_firewall">Ograničenja vatrozida.</string>
   <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
-Ukoliko ste povezani preko Wi-Fi, moguće je da vatrozid blokira pristup TextSecure
+Ukoliko ste povezani preko Wi-Fi, moguće je da vatrozid blokira pristup SecureChat
 poslužitelju. Pokušajte sa drugom mrežom ili mobilnim podacima.</string>
   <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
-TextSecure će sada automatski provjeriti vaš broj sa SMS porukom.</string>
+SecureChat će sada automatski provjeriti vaš broj sa SMS porukom.</string>
   <string name="registration_progress_activity__connecting">Povezivanje...</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">Čekanje na SMS
 potvrdu...</string>
@@ -486,7 +486,7 @@ neuspješno.</string>
   <string name="AndroidManifest__create_passphrase">Stvorite lozinku</string>
   <string name="AndroidManifest__enter_passphrase">Unesite lozinku</string>
   <string name="AndroidManifest__select_contacts">Odaberite kontakte</string>
-  <string name="AndroidManifest__textsecure_detected">TextSecure otkriven</string>
+  <string name="AndroidManifest__textsecure_detected">SecureChat otkriven</string>
   <string name="AndroidManifest__public_identity_key">Javni ključ identiteta</string>
   <string name="AndroidManifest__change_passphrase">Izmjeni lozinku</string>
   <string name="AndroidManifest__verify_identity">Potvrdite identitet</string>
@@ -502,8 +502,8 @@ neuspješno.</string>
   <string name="preferences__push_sms_category">Instant i SMS</string>
   <string name="preferences__pref_all_sms_title">Primi sve SMS</string>
   <string name="preferences__pref_all_mms_title">Primi sve MMS</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Koristi TextSecure za prikaz i pohranu svih dolaznih tekstualnih poruka</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Koristi TextSecure za prikaz i pohranu svih dolaznih multimedijalnih poruka</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Koristi SecureChat za prikaz i pohranu svih dolaznih tekstualnih poruka</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Koristi SecureChat za prikaz i pohranu svih dolaznih multimedijalnih poruka</string>
   <string name="preferences__input_settings">Postavke unosa</string>
   <string name="preferences__enable_enter_key_title">Omogući Enter tipku</string>
   <string name="preferences__replace_smiley_with_enter_key">Zamijeni tipku smješka sa Enter tipkom</string>
@@ -578,19 +578,19 @@ neuspješno.</string>
   <string name="preferences__default">Zadano</string>
   <string name="preferences__language">Jezik</string>
   <string name="preferences__make_default_sms_app">Postavi kao zadanu SMS aplikaciju</string>
-  <string name="preferences__make_textsecure_the_default_sms_mms_app">Postavi TextSecure kao zadanu SMS/MMS aplikaciju za svoj sistem.</string>
+  <string name="preferences__make_textsecure_the_default_sms_mms_app">Postavi SecureChat kao zadanu SMS/MMS aplikaciju za svoj sistem.</string>
   <string name="preferences__use_data_channel">Instant poruke</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
-Povećajte privatnost i izbjegnite SMS troškove koristeći podatkovni kanal za komunikaciju sa drugim TextSecure korisnicima</string>
+Povećajte privatnost i izbjegnite SMS troškove koristeći podatkovni kanal za komunikaciju sa drugim SecureChat korisnicima</string>
   <string name="preferences__sms_fallback">Odlazni SMS/MMS</string>
   <string name="preferences__submit_debug_log">Pošalji debug zapis</string>
-  <string name="preferences__sms_outgoing_push_users">TextSecure korisnici</string>
+  <string name="preferences__sms_outgoing_push_users">SecureChat korisnici</string>
   <string name="preferences__sms_fallback_push_users_ask">prvo pitaj</string>
   <string name="preferences__sms_fallback_push_users_no_mms">bez MMS</string>
   <string name="preferences__sms_outgoing_push_users_description">Pošalji sigurni SMS ukoliko je podatkovna veza izgubljena</string>
   <string name="preferences__sms_fallback_ask_before_sending_sms_mms">Pitaj prije slanja SMS/MMS</string>
   <string name="preferences__sms_fallback_never_send_mms">Nikad ne šalji MMS</string>
-  <string name="preferences__sms_fallback_non_push_users">Korisnici bez TextSecure</string>
+  <string name="preferences__sms_fallback_non_push_users">Korisnici bez SecureChat</string>
   <string name="preferences__sms_fallback_nobody">Nitko</string>
   <!--****************************************-->
   <!--menus-->
@@ -606,7 +606,7 @@ Povećajte privatnost i izbjegnite SMS troškove koristeći podatkovni kanal za 
   <!--refreshing push directory from menu-->
   <string name="push_directory__menu_refresh">Osvježi popis kontakata</string>
   <!--conversation_button_context-->
-  <string name="conversation_button_context__send_textsecure_message">Pošalji TextSecure poruku</string>
+  <string name="conversation_button_context__send_textsecure_message">Pošalji SecureChat poruku</string>
   <string name="conversation_button_context__send_secure_sms">Pošalji sigurni SMS</string>
   <string name="conversation_button_context__send_secure_mms">Pošalji sigurni MMS</string>
   <!--conversation_callable-->
@@ -654,10 +654,10 @@ Povećajte privatnost i izbjegnite SMS troškove koristeći podatkovni kanal za 
   <string name="text_secure_normal__mark_all_as_read">Označi sve pročitano</string>
   <!--reminder_header-->
   <string name="reminder_header_sms_default_title">Koristi kao zadanu SMS aplikaciju?</string>
-  <string name="reminder_header_sms_default_text">TextSecure trenutno nije vaša zadana SMS aplikacija.</string>
+  <string name="reminder_header_sms_default_text">SecureChat trenutno nije vaša zadana SMS aplikacija.</string>
   <string name="reminder_header_sms_import_title">Uvezi SMS poruke sustava?</string>
-  <string name="reminder_header_sms_import_text">TextSecure može kopirati SMS poruke sa vašeg telefona u svoju kodiranu bazu podataka.</string>
-  <string name="reminder_header_push_title">Omogući TextSecure poruke?</string>
+  <string name="reminder_header_sms_import_text">SecureChat može kopirati SMS poruke sa vašeg telefona u svoju kodiranu bazu podataka.</string>
+  <string name="reminder_header_push_title">Omogući SecureChat poruke?</string>
   <string name="reminder_header_push_text">Instant isporuka, pojačana privatnost i bez SMS troškova.</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Vi</string>

@@ -24,10 +24,10 @@ import org.whispersystems.textsecure.api.crypto.UntrustedIdentityException;
 import org.whispersystems.textsecure.api.messages.TextSecureAttachment;
 import org.whispersystems.textsecure.api.messages.TextSecureGroup;
 import org.whispersystems.textsecure.api.messages.TextSecureMessage;
-import org.whispersystems.textsecure.api.push.PushAddress;
-import org.whispersystems.textsecure.internal.push.PushMessageProtos;
+import org.whispersystems.textsecure.api.push.TextSecureAddress;
 import org.whispersystems.textsecure.api.push.exceptions.EncapsulatedExceptions;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
+import org.whispersystems.textsecure.internal.push.PushMessageProtos;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -113,7 +113,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
     TextSecureMessageSender    messageSender = messageSenderFactory.create(masterSecret);
     byte[]                     groupId       = GroupUtil.getDecodedId(message.getTo()[0].getString());
     Recipients                 recipients    = DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupId, false);
-    List<PushAddress>          addresses     = getPushAddresses(recipients);
+    List<TextSecureAddress>          addresses     = getPushAddresses(recipients);
     List<TextSecureAttachment> attachments   = getAttachments(masterSecret, message);
 
     if (MmsSmsColumns.Types.isGroupUpdate(message.getDatabaseMessageBox()) ||
@@ -126,24 +126,24 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
         TextSecureAttachment avatar       = attachments.isEmpty() ? null : attachments.get(0);
         TextSecureGroup.Type type         = MmsSmsColumns.Types.isGroupQuit(message.getDatabaseMessageBox()) ? TextSecureGroup.Type.QUIT : TextSecureGroup.Type.UPDATE;
         TextSecureGroup      group        = new TextSecureGroup(type, groupId, groupContext.getName(), groupContext.getMembersList(), avatar);
-        TextSecureMessage groupMessage = new TextSecureMessage(message.getSentTimestamp(), group, null, null);
+        TextSecureMessage groupMessage = new TextSecureMessage(message.getSentTimestamp(), group, null, null, false);
 
         messageSender.sendMessage(addresses, groupMessage);
       }
     } else {
       String            body         = PartParser.getMessageText(message.getBody());
       TextSecureGroup   group        = new TextSecureGroup(groupId);
-      TextSecureMessage groupMessage = new TextSecureMessage(message.getSentTimestamp(), group, attachments, body);
+      TextSecureMessage groupMessage = new TextSecureMessage(message.getSentTimestamp(), group, attachments, body, false);
 
       messageSender.sendMessage(addresses, groupMessage);
     }
   }
 
-  private List<PushAddress> getPushAddresses(Recipients recipients) throws InvalidNumberException {
-    List<PushAddress> addresses = new LinkedList<>();
+  private List<TextSecureAddress> getPushAddresses(Recipients recipients) throws InvalidNumberException {
+    List<TextSecureAddress> addresses = new LinkedList<>();
 
     for (Recipient recipient : recipients.getRecipientsList()) {
-      addresses.add(getPushAddress(recipient));
+      addresses.add(getPushAddress(recipient.getNumber()));
     }
 
     return addresses;

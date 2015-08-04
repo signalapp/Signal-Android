@@ -19,8 +19,10 @@ package org.thoughtcrime.securesms.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.MergeCursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -32,11 +34,12 @@ import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libaxolotl.InvalidMessageException;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -130,8 +133,10 @@ public class ThreadDatabase extends Database {
     notifyConversationListListeners();
   }
 
-  public void updateSnippet(long threadId, String snippet, long type) {
+  public void updateSnippet(long threadId, String snippet, long date, long type) {
     ContentValues contentValues = new ContentValues(3);
+
+    contentValues.put(DATE, date - date % 1000);
     contentValues.put(SNIPPET, snippet);
     contentValues.put(SNIPPET_TYPE, type);
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
@@ -261,24 +266,31 @@ public class ThreadDatabase extends Database {
     if (filter == null || filter.size() == 0)
       return null;
 
-    List<Long> recipientIds = DatabaseFactory.getAddressDatabase(context).getCanonicalAddressIds(filter);
+    List<Long> rawRecipientIds = DatabaseFactory.getAddressDatabase(context).getCanonicalAddressIds(filter);
 
-    if (recipientIds == null || recipientIds.size() == 0)
+    if (rawRecipientIds == null || rawRecipientIds.size() == 0)
       return null;
 
-    String selection       = RECIPIENT_IDS + " = ?";
-    String[] selectionArgs = new String[recipientIds.size()];
+    SQLiteDatabase   db                      = databaseHelper.getReadableDatabase();
+    List<List<Long>> partitionedRecipientIds = Util.partition(rawRecipientIds, 900);
+    List<Cursor>     cursors                 = new LinkedList<>();
 
-    for (int i=0;i<recipientIds.size()-1;i++)
-      selection += (" OR " + RECIPIENT_IDS + " = ?");
+    for (List<Long> recipientIds : partitionedRecipientIds) {
+      String   selection      = RECIPIENT_IDS + " = ?";
+      String[] selectionArgs  = new String[recipientIds.size()];
 
-    int i= 0;
-    for (long id : recipientIds) {
-      selectionArgs[i++] = id+"";
+      for (int i=0;i<recipientIds.size()-1;i++)
+        selection += (" OR " + RECIPIENT_IDS + " = ?");
+
+      int i= 0;
+      for (long id : recipientIds) {
+        selectionArgs[i++] = String.valueOf(id);
+      }
+
+      cursors.add(db.query(TABLE_NAME, null, selection, selectionArgs, null, null, DATE + " DESC"));
     }
 
-    SQLiteDatabase db = databaseHelper.getReadableDatabase();
-    Cursor cursor     = db.query(TABLE_NAME, null, selection, selectionArgs, null, null, DATE + " DESC");
+    Cursor cursor = cursors.size() > 1 ? new MergeCursor(cursors.toArray(new Cursor[cursors.size()])) : cursors.get(0);
     setNotifyConverationListListeners(cursor);
     return cursor;
   }
@@ -294,6 +306,7 @@ public class ThreadDatabase extends Database {
   public void deleteConversation(long threadId) {
     DatabaseFactory.getSmsDatabase(context).deleteThread(threadId);
     DatabaseFactory.getMmsDatabase(context).deleteThread(threadId);
+    DatabaseFactory.getDraftDatabase(context).clearDrafts(threadId);
     deleteThread(threadId);
     notifyConversationListeners(threadId);
     notifyConversationListListeners();
@@ -303,6 +316,7 @@ public class ThreadDatabase extends Database {
   public void deleteConversations(Set<Long> selectedConversations) {
     DatabaseFactory.getSmsDatabase(context).deleteThreads(selectedConversations);
     DatabaseFactory.getMmsDatabase(context).deleteThreads(selectedConversations);
+    DatabaseFactory.getDraftDatabase(context).clearDrafts(selectedConversations);
     deleteThreads(selectedConversations);
     notifyConversationListeners(selectedConversations);
     notifyConversationListListeners();
@@ -311,6 +325,7 @@ public class ThreadDatabase extends Database {
   public void deleteAllConversations() {
     DatabaseFactory.getSmsDatabase(context).deleteAllThreads();
     DatabaseFactory.getMmsDatabase(context).deleteAllThreads();
+    DatabaseFactory.getDraftDatabase(context).clearAllDrafts();
     deleteAllThreads();
   }
 
@@ -360,7 +375,7 @@ public class ThreadDatabase extends Database {
     }
   }
 
-  public Recipients getRecipientsForThreadId(long threadId) {
+  public @Nullable Recipients getRecipientsForThreadId(long threadId) {
     SQLiteDatabase db = databaseHelper.getReadableDatabase();
     Cursor cursor     = null;
 
@@ -379,14 +394,14 @@ public class ThreadDatabase extends Database {
     return null;
   }
 
-  public void update(long threadId) {
+  public boolean update(long threadId) {
     MmsSmsDatabase mmsSmsDatabase = DatabaseFactory.getMmsSmsDatabase(context);
     long count                    = mmsSmsDatabase.getConversationCount(threadId);
 
     if (count == 0) {
       deleteThread(threadId);
       notifyConversationListListeners();
-      return;
+      return true;
     }
 
     MmsSmsDatabase.Reader reader = null;
@@ -402,15 +417,17 @@ public class ThreadDatabase extends Database {
         else                 timestamp = record.getDateReceived();
 
         updateThread(threadId, count, record.getBody().getBody(), timestamp, record.getType());
+        notifyConversationListListeners();
+        return false;
       } else {
         deleteThread(threadId);
+        notifyConversationListListeners();
+        return true;
       }
     } finally {
       if (reader != null)
         reader.close();
     }
-
-    notifyConversationListListeners();
   }
 
   public static interface ProgressListener {

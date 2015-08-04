@@ -20,10 +20,13 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.provider.ContactsContract;
 import android.support.v4.widget.CursorAdapter;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -34,7 +37,12 @@ import android.widget.FilterQueryProvider;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.load.resource.bitmap.GlideBitmapDrawable;
+import com.bumptech.glide.request.target.SquaringDrawable;
+
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.CircledImageView;
+import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.BitmapWorkerRunnable;
 import org.thoughtcrime.securesms.util.BitmapWorkerRunnable.AsyncDrawable;
@@ -46,6 +54,8 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.FutureTask;
 
+import de.gdata.messaging.util.GUtil;
+import de.gdata.messaging.util.ProfileAccessor;
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 
 /**
@@ -89,7 +99,7 @@ public class ContactSelectionListAdapter extends    CursorAdapter
     this.multiSelect         = multiSelect;
     this.defaultPhoto        = ContactPhotoFactory.getDefaultContactPhoto(context);
     this.scaledPhotoSize     = context.getResources().getDimensionPixelSize(R.dimen.contact_selection_photo_size);
-    this.defaultCroppedPhoto = BitmapUtil.getScaledCircleCroppedBitmap(defaultPhoto, scaledPhotoSize);
+    this.defaultCroppedPhoto = BitmapUtil.getCircleBitmap(defaultPhoto);
   }
 
   public static class ViewHolder {
@@ -122,7 +132,7 @@ public class ContactSelectionListAdapter extends    CursorAdapter
       holder.name         = (TextView) v.findViewById(R.id.name);
       holder.number       = (TextView) v.findViewById(R.id.number);
       holder.checkBox     = (CheckBox) v.findViewById(R.id.check_box);
-      holder.contactPhoto = (ImageView) v.findViewById(R.id.contact_photo_image);
+      holder.contactPhoto = (CircledImageView) v.findViewById(R.id.contact_photo_image);
 
       if (!multiSelect) holder.checkBox.setVisibility(View.GONE);
 
@@ -175,7 +185,8 @@ public class ContactSelectionListAdapter extends    CursorAdapter
       holder.name.setEnabled(false);
       holder.number.setText("");
     } else if (contactData.type == ContactsDatabase.PUSH_TYPE) {
-      holder.number.setText(contactData.number);
+      String status = ProfileAccessor.getProfileStatusForRecepient(context, GUtil.numberToLong(contactData.number) + "");
+      holder.number.setText(TextUtils.isEmpty(status) ? contactData.number : status);
     } else {
       final CharSequence label = ContactsContract.CommonDataKinds.Phone.getTypeLabel(context.getResources(),
                                                                                      contactData.numberType, contactData.label);
@@ -185,7 +196,13 @@ public class ContactSelectionListAdapter extends    CursorAdapter
       holder.number.setText(numberLabelSpan);
     }
     holder.contactPhoto.setImageBitmap(defaultCroppedPhoto);
-    if (contactData.id > -1) loadBitmap(contactData.number, holder.contactPhoto);
+    ImageSlide profileSlide = ProfileAccessor.getProfileAsImageSlide(context,  contactData.number);
+
+    if(profileSlide != null) {
+      ProfileAccessor.buildGlideRequest(profileSlide).into(holder.contactPhoto);
+    } else {
+      if (contactData.id > -1) loadBitmap(contactData.number, holder.contactPhoto);
+    }
   }
 
   @Override

@@ -78,6 +78,7 @@ Durch das Deaktivieren von SecureChat-Nachrichten wird die Registrierung bei Sec
   <string name="ConversationActivity_select_contact_info">Kontaktinfo wählen</string>
   <string name="ConversationActivity_compose_message">Nachricht verfassen</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Leider ist ein Fehler beim Hinzufügen des Anhangs aufgetreten.</string>
+  ConversationActivity_sorry_the_selected_attachment_exceeds_message_size_restrictions
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Die ausgewählte Videodatei überschreitet leider die maximal mögliche Nachrichtengröße (%1$skB).</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Die ausgewählte Audiodatei überschreitet leider die maximal mögliche Nachrichtengröße (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Die Empfängeradresse ist keine gültige SMS- oder E-Mail-Adresse!</string>
@@ -390,7 +391,7 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Fortfahren antippen.</string
   <string name="log_submit_activity__submitting">Versand</string>
   <string name="log_submit_activity__posting_logs">Diagnoseprotokoll wird übermittelt...</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Möchten Sie Ihre vorhandenen Nachrichten in TextSecures verschlüsselte Datenbank importieren?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Möchten Sie Ihre vorhandenen Nachrichten in SecureChats verschlüsselte Datenbank importieren?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Die System-Datenbank des Geräts wird in keiner Weise verändert.</string>
   <string name="database_migration_activity__skip">Überspringen</string>
   <string name="database_migration_activity__import">Importieren</string>
@@ -654,6 +655,8 @@ Mehr Privatsphäre und keine SMS-Kosten durch Nutzung der Datenverbindung zur Ko
   <string name="text_secure_normal__menu_clear_passphrase">SecureChat sperren</string>
   <string name="text_secure_normal__mark_all_as_read">Alle als gelesen markieren</string>
   <!--reminder_header-->
+  <string name="reminder_header_expired_build">Ihre SecureChat-Version ist veraltet!</string>
+  <string name="reminder_header_expired_build_details">Das Versenden von Nachrichten ist nicht mehr möglich. Bitte TextSecure auf die neueste Version aktualisieren.</string>
   <string name="reminder_header_sms_default_title">Als Standard-SMS-App verwenden?</string>
   <string name="reminder_header_sms_default_text">SecureChat ist zur Zeit nicht als Standard-SMS-App eingerichtet.</string>
   <string name="reminder_header_sms_import_title">SMS des Telefons importieren?</string>

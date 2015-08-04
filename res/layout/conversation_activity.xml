@@ -3,7 +3,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="?conversation_background"
+    android:background="@color/gdata_primary_background_color"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -19,6 +19,7 @@
                 android:name="org.thoughtcrime.securesms.ConversationFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@color/gdata_primary_background_color"
                 android:layout_above="@+id/bottom_container" />
 
         <LinearLayout
@@ -38,7 +39,7 @@
                         android:orientation="horizontal"
                         android:visibility="gone">
 
-                    <ImageView
+                    <org.thoughtcrime.securesms.components.ThumbnailView
                             android:id="@+id/attachment_thumbnail"
                             android:layout_width="0dp"
                             android:layout_height="150dip"
@@ -77,12 +78,34 @@
                     android:background="@drawable/touch_highlight_background"
                     android:contentDescription="@string/conversation_activity__send"
                     android:nextFocusLeft="@+id/embedded_text_editor"
-                    android:padding="12dp"
+                    android:paddingTop="14dp"
+                    android:paddingBottom="12dp"
                     android:visibility="visible"
                     android:src="?conversation_send_button_sms_insecure"
                     android:clickable="false"
-                    android:enabled="false" />
+                    android:enabled="false"
+                    android:paddingLeft="6dp"
+                    android:paddingRight="3dp"/>
 
+                <de.gdata.messaging.components.SelfDestructionButton
+                    android:id="@+id/select_bomb_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/touch_highlight_background"
+                    android:contentDescription="@string/self_destruction"
+                    android:nextFocusLeft="@+id/embedded_text_editor"
+                    android:visibility="visible"
+                    android:src="@drawable/ic_action_timebomb"
+                    android:clickable="false"
+                    android:enabled="false"
+                    android:outlineProvider="background"
+                    android:scaleType="centerInside"
+                    android:cropToPadding="false"
+                    android:paddingTop="0dp"
+                    android:paddingBottom="6dp"
+                    android:paddingLeft="3dp"
+                    android:paddingRight="6dp"/>
                 <org.thoughtcrime.securesms.components.EmojiToggle
                         android:id="@+id/emoji_toggle"
                         android:layout_width="wrap_content"

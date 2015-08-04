@@ -15,12 +15,17 @@
     <attr name="conversation_group_member_name" format="reference|color"/>
     <attr name="conversation_sent_text_primary_color" format="reference|color"/>
     <attr name="conversation_sent_text_secondary_color" format="reference|color"/>
+    <attr name="conversation_sent_text_indicator_tab_color" format="reference|color"/>
     <attr name="conversation_received_card_background" format="reference|color"/>
     <attr name="conversation_received_text_primary_color" format="reference|color"/>
     <attr name="conversation_received_text_secondary_color" format="reference|color"/>
 
+    <attr name="fab_color" format="reference|color" />
     <attr name="actionbar_icon" format="reference" />
     <attr name="lower_right_divet" format="reference" />
+
+    <attr name="centered_app_title_color" format="reference|color" />
+    <attr name="ic_arrow_forward" format="reference" />
 
     <attr name="conversation_background" format="reference|color"/>
     <attr name="conversation_editor_background" format="reference"/>
@@ -29,10 +34,19 @@
     <attr name="conversation_send_button_sms_secure" format="reference"/>
     <attr name="conversation_send_button_sms_insecure" format="reference"/>
     <attr name="conversation_delivery_delivered" format="reference"/>
+    <attr name="menu_bomb_icon" format="reference"/>
+    <attr name="conversation_transport_sms_indicator" format="reference"/>
+    <attr name="conversation_transport_push_indicator" format="reference"/>
     <attr name="conversation_transport_indicators" format="reference"/>
     <attr name="conversation_transport_popup_background" format="reference"/>
     <attr name="conversation_emoji_toggle" format="reference"/>
     <attr name="conversation_keyboard_toggle" format="reference"/>
+    <attr name="conversation_attach_image" format="reference"/>
+    <attr name="conversation_attach_video" format="reference"/>
+    <attr name="conversation_attach_sound" format="reference"/>
+    <attr name="conversation_attach_contact_info" format="reference"/>
+    <attr name="conversation_attach_photo" format="reference"/>
+    <attr name="conversation_attach" format="reference"/>
 
     <attr name="conversation_selfdestroy_icon_indicator" format="reference"/>
 
@@ -46,10 +60,22 @@
     <attr name="conversation_item_sent_push_background" format="reference" />
     <attr name="conversation_item_sent_push_triangle_background" format="reference" />
     <attr name="conversation_item_sent_indicator_text_background" format="reference" />
+    <attr name="conversation_item_sent_push_pending_background" format="reference" />
+    <attr name="conversation_item_shadow" format="color" />
+    <attr name="conversation_item_mms_pending_mask" format="color" />
+
+    <attr name="triangle_tick_incoming" format="reference" />
+    <attr name="triangle_tick_outgoing_sent_sms" format="reference" />
+    <attr name="triangle_tick_outgoing_sent_push" format="reference" />
+    <attr name="triangle_tick_outgoing_pending_sms" format="reference" />
+    <attr name="triangle_tick_outgoing_pending_push" format="reference" />
+    <attr name="conversation_item_sent_push_pending_triangle_background" format="reference" />
+
     <attr name="dialog_info_icon" format="reference" />
     <attr name="dialog_alert_icon" format="reference" />
-    <attr name="conversation_item_sent_push_pending_background" format="reference" />
-    <attr name="conversation_item_sent_push_pending_triangle_background" format="reference" />
+
+    <attr name="conversation_icon_attach_audio" format="reference"/>
+    <attr name="conversation_icon_attach_video" format="reference" />
 
     <attr name="contact_selection_push_user" format="reference|color" />
     <attr name="contact_selection_lay_user" format="reference|color" />
@@ -59,6 +85,7 @@
     <attr name="import_export_item_background_color" format="reference|color" />
     <attr name="import_export_item_background_shadow_color" format="reference|color" />
     <attr name="import_export_item_card_background" format="reference" />
+    <attr name="import_sms" format="reference" />
     <attr name="stock_sms" format="reference" />
     <attr name="encrypted_backup" format="reference" />
     <attr name="plaintext_backup" format="reference" />
@@ -72,6 +99,7 @@
     <attr name="menu_unlock_icon" format="reference" />
     <attr name="menu_lock_icon" format="reference" />
     <attr name="menu_lock_icon_small" format="reference" />
+    <attr name="menu_lock_icon_small_received" format="reference" />
     <attr name="menu_trash_icon" format="reference" />
     <attr name="menu_selectall_icon" format="reference" />
     <attr name="menu_group_icon" format="reference" />
@@ -86,7 +114,22 @@
 
     <declare-styleable name="ForegroundImageView">
         <attr name="android:foreground" />
-        <attr name="android:foregroundInsidePadding" />
         <attr name="android:foregroundGravity" />
     </declare-styleable>
+
+    <attr name="pref_ic_sms_mms" format="reference" />
+    <attr name="pref_ic_notifications" format="reference" />
+    <attr name="pref_ic_app_protection" format="reference" />
+    <attr name="pref_ic_appearance" format="reference" />
+    <attr name="pref_ic_storage" format="reference" />
+    <attr name="pref_ic_advanced" format="reference" />
+
+    <attr name="app_protect_timeout_picker_color" format="reference"/>
+
+    <declare-styleable name="CustomDefaultPreference">
+        <attr name="custom_pref_toggle" format="string"/>
+    </declare-styleable>
+
+    <attr name="group_members_dialog_icon" format="reference"/>
+    <attr name="lockscreen_watermark" format="reference" />
 </resources>

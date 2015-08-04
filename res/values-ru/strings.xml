@@ -78,8 +78,8 @@
   <string name="ConversationActivity_select_contact_info">Выбрать контакт</string>
   <string name="ConversationActivity_compose_message">Написать сообщение</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Извините, произошла ошибка при обработке вложения.</string>
-  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Извините, выбранное видео превышает ограничение на размер сообщения (%1$sКБ).</string>
-  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Извините, выбранное аудио превышает ограничение на размер сообщения (%1$sКБ).</string>
+  <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">К сожалению, размер аудио сообщения превышает лимит (%1$skB).</string>
+  <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">К сожалению, размер видео сообщения превышает лимит (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Адрес получателя не является ни номером телефона, ни адресом электронной почты.</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Пустое сообщение!</string>
   <string name="ConversationActivity_group_conversation_recipients">Участники группы</string>
@@ -95,7 +95,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Вы уверены, что хотите покинуть эту группу?</string>
   <string name="ConversationActivity_transport_insecure_sms">Незащищённое SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Незащищённое MMS</string>
-  <string name="ConversationActivity_transport_secure_sms">Защищённое MMS</string>
+  <string name="ConversationActivity_transport_secure_sms">Защищённое SMS</string>
   <string name="ConversationActivity_transport_secure_mms">Защищённое MMS</string>
   <string name="ConversationActivity_transport_textsecure">SecureChat</string>
   <string name="ConversationActivity_get_with_it">Получить: %s</string>
@@ -670,6 +670,8 @@ SMS-подтверждения...
   <string name="text_secure_normal__menu_clear_passphrase">Заблокировать</string>
   <string name="text_secure_normal__mark_all_as_read">Отметить все как прочитанные</string>
   <!--reminder_header-->
+  <string name="reminder_header_expired_build">Вы используете устаревшую версию SecureChat!</string>
+  <string name="reminder_header_expired_build_details">Сообщения больше не будут отправляться. Пожалуйста, обновитесь до последней версии.</string>
   <string name="reminder_header_sms_default_title">Использовать как SMS-приложение по умолчанию?</string>
   <string name="reminder_header_sms_default_text">SecureChat сейчас не используется как ваше SMS-приложение по умолчанию</string>
   <string name="reminder_header_sms_import_title">Импортировать SMS из системы?</string>

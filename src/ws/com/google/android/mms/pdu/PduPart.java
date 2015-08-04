@@ -21,6 +21,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.database.PartDatabase;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
@@ -131,17 +132,19 @@ public class PduPart {
 
      private static final String TAG = "PduPart";
 
-     private long    id = -1;
+     private long    rowId = -1;
+     private long    uniqueId = -1;
      private boolean isEncrypted;
      private boolean isPendingPush;
      private long    dataSize;
      private Bitmap  thumbnail;
-     
+
      /**
       * Empty Constructor.
       */
      public PduPart() {
          mPartHeader = new HashMap<Integer, Object>();
+         setUniqueId(System.currentTimeMillis());
      }
 
      public void setEncrypted(boolean isEncrypted) {
@@ -440,12 +443,21 @@ public class PduPart {
         }
     }
 
-    public long getId() {
-      return id;
+    public PartDatabase.PartId getPartId() {
+      return new PartDatabase.PartId(rowId, uniqueId);
     }
 
-    public void setId(long id) {
-      this.id = id;
+    public void setPartId(PartDatabase.PartId partId) {
+      this.rowId    = partId.getRowId();
+      this.uniqueId = partId.getUniqueId();
+    }
+
+    public long getRowId() {
+      return rowId;
+    }
+
+    public void setRowId(long rowId) {
+      this.rowId = rowId;
     }
 
     public Bitmap getThumbnail() {
@@ -454,6 +466,14 @@ public class PduPart {
 
     public void setThumbnail(Bitmap thumbnail) {
       this.thumbnail = thumbnail;
+    }
+
+    public long getUniqueId() {
+      return uniqueId;
+    }
+
+    public void setUniqueId(long uniqueId) {
+      this.uniqueId = uniqueId;
     }
 }
 

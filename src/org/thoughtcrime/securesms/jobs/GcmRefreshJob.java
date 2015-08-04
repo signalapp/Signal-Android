@@ -42,7 +42,7 @@ public class GcmRefreshJob extends ContextJob {
 
   private static final String TAG = GcmRefreshJob.class.getSimpleName();
 
-  public static final String REGISTRATION_ID = "312334754206";
+  public static final String REGISTRATION_ID = "761549671948";
 
   public GcmRefreshJob(Context context) {
     super(context, JobParameters.newBuilder().withRequirement(new NetworkRequirement(context)).create());

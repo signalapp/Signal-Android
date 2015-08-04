@@ -26,8 +26,8 @@
     <style name="TextSecure.LightActionBar" parent="@style/Widget.AppCompat.ActionBar">
         <item name="android:icon">@drawable/actionbar_icon_gdata</item>
         <item name="icon">@drawable/actionbar_icon_gdata</item>
-        <item name="android:background">@color/gdata_red</item>
-        <item name="background">@color/gdata_red</item>
+        <item name="android:background">@color/gdata_primary_color</item>
+        <item name="background">@color/gdata_primary_color</item>
         <item name="android:logo">@drawable/actionbar_icon_gdata</item>
         <item name="logo">@drawable/actionbar_icon_gdata</item>
         <item name="android:titleTextStyle">@style/TextSecure.TitleTextStyle</item>
@@ -59,6 +59,7 @@
 
     <style name="TextSecure.SubtitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Subtitle">
         <item name="android:textColor">#ffffff</item>
+        <item name="background">@drawable/md_transparent</item>
     </style>
 
     <style name="TextSecure.IntroActionBar" parent="Widget.AppCompat.Light.ActionBar.Solid">

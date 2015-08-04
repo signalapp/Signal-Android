@@ -32,6 +32,7 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.jobs.MmsSendJob;
 import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
 import org.thoughtcrime.securesms.jobs.PushMediaSendJob;
+import org.thoughtcrime.securesms.jobs.PushProfileSendJob;
 import org.thoughtcrime.securesms.jobs.PushTextSendJob;
 import org.thoughtcrime.securesms.jobs.SmsSendJob;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
@@ -49,7 +50,6 @@ import org.thoughtcrime.securesms.util.DirectoryUtil;
 import org.whispersystems.textsecure.api.util.InvalidNumberException;
 
 import java.io.IOException;
-
 import ws.com.google.android.mms.MmsException;
 
 public class MessageSender {
@@ -74,7 +74,7 @@ public class MessageSender {
       allocatedThreadId = threadId;
     }
 
-    long messageId = database.insertMessageOutbox(masterSecret, allocatedThreadId, message, forceSms);
+    long messageId = database.insertMessageOutbox(masterSecret, allocatedThreadId, message, forceSms, System.currentTimeMillis());
 
     sendTextMessage(context, recipients, forceSms, keyExchange, messageId);
 
@@ -100,9 +100,9 @@ public class MessageSender {
       }
 
       Recipients recipients = message.getRecipients();
-      long       messageId  = database.insertMessageOutbox(masterSecret, message, allocatedThreadId, forceSms);
+      long       messageId  = database.insertMessageOutbox(masterSecret, message, allocatedThreadId, forceSms, System.currentTimeMillis());
 
-      sendMediaMessage(context, masterSecret, recipients, forceSms, messageId);
+      sendMediaMessage(context, masterSecret, recipients, forceSms, messageId, message.isProfileUpdate());
 
       return allocatedThreadId;
     } catch (MmsException e) {
@@ -119,7 +119,7 @@ public class MessageSender {
       boolean    keyExchange = messageRecord.isKeyExchange();
 
       if (messageRecord.isMms()) {
-        sendMediaMessage(context, masterSecret, recipients, forceSms, messageId);
+        sendMediaMessage(context, masterSecret, recipients, forceSms, messageId, messageRecord.isUpdateProfile());
       } else {
         sendTextMessage(context, recipients, forceSms, keyExchange, messageId);
       }
@@ -129,18 +129,22 @@ public class MessageSender {
   }
 
   private static void sendMediaMessage(Context context, MasterSecret masterSecret,
-                                       Recipients recipients, boolean forceSms, long messageId)
+                                       Recipients recipients, boolean forceSms, long messageId, boolean profileUpdate)
       throws MmsException
   {
-    if (!forceSms && isSelfSend(context, recipients)) {
-      sendMediaSelf(context, masterSecret, messageId);
-    } else if (isGroupPushSend(recipients)) {
-      sendGroupPush(context, recipients, messageId);
-    } else if (!forceSms && isPushMediaSend(context, recipients)) {
-      sendMediaPush(context, recipients, messageId);
+    if(!profileUpdate) {
+      if (!forceSms && isSelfSend(context, recipients)) {
+        sendMediaSelf(context, masterSecret, messageId);
+      } else if (isGroupPushSend(recipients)) {
+        sendGroupPush(context, recipients, messageId);
+      } else if (!forceSms && isPushMediaSend(context, recipients)) {
+        sendMediaPush(context, recipients, messageId);
+      } else {
+        sendMms(context, messageId);
+      }
     } else {
-      sendMms(context, messageId);
-    }
+        sendProfileUpdate(context, recipients, messageId);
+      }
   }
 
   private static void sendTextMessage(Context context, Recipients recipients,
@@ -185,7 +189,10 @@ public class MessageSender {
     JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
     jobManager.add(new PushMediaSendJob(context, messageId, recipients.getPrimaryRecipient().getNumber()));
   }
-
+  public static void sendProfileUpdate(Context context, Recipients recipients, long messageId) {
+    JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
+    jobManager.add(new PushProfileSendJob(context, messageId, recipients.getPrimaryRecipient().getNumber()));
+  }
   private static void sendGroupPush(Context context, Recipients recipients, long messageId) {
     JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
     jobManager.add(new PushGroupSendJob(context, messageId, recipients.getPrimaryRecipient().getNumber()));
@@ -197,6 +204,7 @@ public class MessageSender {
   }
 
   private static void sendMms(Context context, long messageId) {
+    Log.d("MYLOG", "sendMMS");
     JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
     jobManager.add(new MmsSendJob(context, messageId));
   }

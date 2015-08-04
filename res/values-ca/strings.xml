@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">TextSecure</string>
+  <string name="app_name">SecureChat</string>
   <string name="yes">Si</string>
   <string name="no">No</string>
   <string name="delete">Esborra</string>
@@ -21,7 +21,7 @@ Això desactivarà els missatges push des-registran-te del servidor.
 Necessitaràs tornar a registrar el teu número de telèfon per utilitzar els missatges push una altra vegada.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Error connectant amb el servidor!</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Toca per canviar la teva app d\'SMS predeterminada</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Toca per fer TextSecure la teva app d\'SMS predeterminada</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_textsecure_your_default_sms_app">Toca per fer SecureChat la teva app d\'SMS predeterminada</string>
   <!--AppProtectionPreferenceFragment-->
   <!--DraftDatabase-->
   <!--AttchmentManager-->
@@ -53,7 +53,7 @@ Necessitaràs tornar a registrar el teu número de telèfon per utilitzar els mi
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Aquest dispositiu no sembla suportar accions de trucada.</string>
   <string name="ConversationActivity_leave_group">Deixar el grup?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Estàs segur que vols deixar aquest grup?</string>
-  <string name="ConversationActivity_transport_textsecure">TextSecure</string>
+  <string name="ConversationActivity_transport_textsecure">SecureChat</string>
   <!--ConversationFragment-->
   <string name="ConversationFragment_message_details">Detalls del missatge</string>
   <string name="ConversationFragment_are_you_sure_you_want_to_permanently_delete_this_message">Estàs segur que vols esborrar permanentment aquest missatge?</string>
@@ -68,7 +68,7 @@ Necessitaràs tornar a registrar el teu número de telèfon per utilitzar els mi
   <!--ShareActivity-->
   <!--ExportFragment-->
   <string name="ExportFragment_export">Exporta</string>
-  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Alerta, això exportarà els continguts de text pla dels teus missatges TextSecure a la targeta SD.</string>
+  <string name="ExportFragment_warning_this_will_export_the_plaintext_contents">Alerta, això exportarà els continguts de text pla dels teus missatges SecureChat a la targeta SD.</string>
   <string name="ExportFragment_cancel">Cancel·la</string>
   <string name="ExportFragment_exporting">Exportant</string>
   <string name="ExportFragment_exporting_plaintext_to_sd_card">Exportant text pla a la targeta SD...</string>
@@ -77,8 +77,8 @@ Necessitaràs tornar a registrar el teu número de telèfon per utilitzar els mi
   <string name="ExportFragment_success">Èxit!</string>
   <!--GcmRefreshJob-->
   <!--GroupCreateActivity-->
-  <string name="GroupCreateActivity_contacts_dont_support_push">Has seleccionat un contacte que no suporta grups de TextSecure, això farà que aquest grup sigui de MMS.</string>
-  <string name="GroupCreateActivity_you_dont_support_push">No estàs registrat per utilitzar el canal de dades, això farà que els grups de TextSecure estiguin desactivats.</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Has seleccionat un contacte que no suporta grups de SecureChat, això farà que aquest grup sigui de MMS.</string>
+  <string name="GroupCreateActivity_you_dont_support_push">No estàs registrat per utilitzar el canal de dades, això farà que els grups de SecureChat estiguin desactivats.</string>
   <string name="GroupCreateActivity_contacts_mms_exception">Ha passat un error inesperat que ha fet que la creació del grup hagi fallat.</string>
   <string name="GroupCreateActivity_contacts_no_members">Necessites almenys una persona dins el teu grup!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Un dels membres del teu grup té un número que no pot ser llegit correctament. Si us plau corregeix o treu aquest contacte i intenta-ho de nou.</string>
@@ -88,10 +88,10 @@ Necessitaràs tornar a registrar el teu número de telèfon per utilitzar els mi
   <string name="ImportExportActivity_import">Importa</string>
   <string name="ImportExportActivity_export">Exporta</string>
   <!--ImportFragment-->
-  <string name="ImportFragment_this_will_import_messages_from_the_system">Això importarà els missatges des de la base de dades SMS del sistema a TextSecure. Si has importat prèviament els missatges de la base de dades SMS del sistema, importar-los de nou provocarà tenir missatges duplicats.</string>
+  <string name="ImportFragment_this_will_import_messages_from_the_system">Això importarà els missatges des de la base de dades SMS del sistema a SecureChat. Si has importat prèviament els missatges de la base de dades SMS del sistema, importar-los de nou provocarà tenir missatges duplicats.</string>
   <string name="ImportFragment_import">Importa</string>
   <string name="ImportFragment_cancel">Cancel·la</string>
-  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">Restaurar una còpia de seguretat encriptada provocarà que es substitueixi completament les teves claus existents, preferències, i missatges. Perdràs qualsevol informació que sigui a la teva instal·lació de TextSecure i no hi sigui a la còpia de seguretat.</string>
+  <string name="ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys">Restaurar una còpia de seguretat encriptada provocarà que es substitueixi completament les teves claus existents, preferències, i missatges. Perdràs qualsevol informació que sigui a la teva instal·lació de SecureChat i no hi sigui a la còpia de seguretat.</string>
   <string name="ImportFragment_restore">Restaura</string>
   <string name="ImportFragment_this_will_import_messages_from_a_plaintext_backup">Això importarà els missatges des d\'una còpia de seguretat en text pla. Si has importat prèviament la base de dades SMS del sistema, importar-la de nou provocarà la generació de missatges duplicats.</string>
   <string name="ImportFragment_importing">Important</string>
@@ -115,13 +115,13 @@ Necessitaràs tornar a registrar el teu número de telèfon per utilitzar els mi
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Frase contrasenya antiga incorrecta!</string>
   <!--PassphrasePromptActivity-->
   <!--ReceiveKeyActivity-->
-  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">La signatura en aquest intercanvi de claus és diferent que el que havies rebut prèviament d\'aquest contacte. Això pot voler dir tant que algú està intentant interceptar la teva comunicació, o que aquest contacte simplement ha re-instal·lat TextSecure i ara té una clau d\'identitat nova.</string>
+  <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_different">La signatura en aquest intercanvi de claus és diferent que el que havies rebut prèviament d\'aquest contacte. Això pot voler dir tant que algú està intentant interceptar la teva comunicació, o que aquest contacte simplement ha re-instal·lat SecureChat i ara té una clau d\'identitat nova.</string>
   <string name="ReceiveKeyActivity_you_may_wish_to_verify_this_contact">Pot ser que vulguis verificar aquest contacte.</string>
   <string name="ReceiveKeyActivity_the_signature_on_this_key_exchange_is_trusted_but">La signatura en aquest intercanvi de claus és de confiança, però tens l\'ajustament \'completa els intercanvis de claus automàticament\' desactivat.</string>
   <string name="ReceiveKeyActivity_processing">Processant</string>
   <string name="ReceiveKeyActivity_processing_key_exchange">Processant intercanvi de clau...</string>
   <!--RegistrationActivity-->
-  <string name="RegistrationActivity_connect_with_textsecure">Connecta amb TextSecure</string>
+  <string name="RegistrationActivity_connect_with_textsecure">Connecta amb SecureChat</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Has d\'especificar el teu codi de país</string>
   <string name="RegistrationActivity_you_must_specify_your_phone_number">Has d\'especificar el teu número de telèfon</string>
   <string name="RegistrationActivity_invalid_number">Número invàlid</string>
@@ -146,8 +146,8 @@ Necessitaràs tornar a registrar el teu número de telèfon per utilitzar els mi
   <string name="RegistrationProgressActivity_youve_already_requested_a_voice_call">Ja has demanat recentment una trucada de veu. Pots tornar-la a demanar d\'aquí 20 minuts.</string>
   <string name="RegistrationProgressActivity_registration_conflict">Conflicte de registre</string>
   <!--RegistrationService-->
-  <string name="RegistrationService_textsecure_registration_has_successfully_completed">El registre a TextSecure s\'ha completat satisfactòriament.</string>
-  <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">El registre a TextSecure ha trobat un problema.</string>
+  <string name="RegistrationService_textsecure_registration_has_successfully_completed">El registre a SecureChat s\'ha completat satisfactòriament.</string>
+  <string name="RegistrationService_textsecure_registration_has_encountered_a_problem">El registre a SecureChat ha trobat un problema.</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">S\'ha rebut un missatge d\'intercanvi de claus corromput!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">S\'ha rebut un missatge d\'intercanvi de claus per una versió del protocol invàlida.</string>
@@ -198,7 +198,7 @@ Necessitaràs tornar a registrar el teu número de telèfon per utilitzar els mi
   <!--KeyCachingService-->
   <string name="KeyCachingService_textsecure_passphrase_cached">Toca per obrir.</string>
   <string name="KeyCachingService_textsecure_passphrase_cached_with_lock">Toca per obrir, o toca el bloqueig per tancar.</string>
-  <string name="KeyCachingService_passphrase_cached">TextSecure està desbloquejat</string>
+  <string name="KeyCachingService_passphrase_cached">SecureChat està desbloquejat</string>
   <string name="KeyCachingService_lock">Bloqueja amb una frase contrasenya</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages">%d nous missatges</string>
@@ -210,9 +210,9 @@ Necessitaràs tornar a registrar el teu número de telèfon per utilitzar els mi
   <string name="MessageNotifier_mark_all_as_read">Marca-ho tot com a llegit</string>
   <string name="MessageNotifier_mark_as_read">Marca com a llegit</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Ho sento, La resposta ràpida encara no està suportada per TextSecure!</string>
+  <string name="QuickResponseService_sorry_quick_response_is_not_yet_supported_by_textsecure">Ho sento, La resposta ràpida encara no està suportada per SecureChat!</string>
   <!--auto_initiate_activity-->
-  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Has rebut un missatge d\'algú que suporta sessions de TextSecure encriptades. Vols iniciar una sessió segura?</string>
+  <string name="auto_initiate_activity__you_have_received_a_message_from_someone_who_supports_textsecure_encrypted_sessions_would_you_like_to_initiate_a_secure_session">Has rebut un missatge d\'algú que suporta sessions de SecureChat encriptades. Vols iniciar una sessió segura?</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">FRASE CONTRASENYA ANTIGA:</string>
   <string name="change_passphrase_activity__new_passphrase">NOVA FRASE CONTRASENYA:</string>
@@ -244,7 +244,7 @@ Necessitaràs tornar a registrar el teu número de telèfon per utilitzar els mi
   <string name="log_submit_activity__log_fetch_failed">No s\'han pogut recollir els registres del teu dispositiu. Encara pots utilitzar ADB per aconseguir els registres de depuració.</string>
   <string name="log_submit_activity__thanks">Gràcies per la teva ajuda!</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Vols importar tots el teus missatges de text existents a la base de dades encriptada de TextSecure?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Vols importar tots el teus missatges de text existents a la base de dades encriptada de SecureChat?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">La base de dades predeterminada del sistema no serà modificada o alterada de cap manera.</string>
   <string name="database_migration_activity__skip">Salta</string>
   <string name="database_migration_activity__import">Importa</string>
@@ -254,14 +254,14 @@ Necessitaràs tornar a registrar el teu número de telèfon per utilitzar els mi
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">Exporta una còpia de seguretat en text pla compatible amb \'Còpia de seguretat i restauració d\'SMS\' a la targeta SD.</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importa la base de dades
 des de l\'app de missatgeria predeterminada del sistema.</string>
-  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">Restaura una còpia de seguretat encriptada de TextSecure prèviament exportada.</string>
+  <string name="import_fragment__restore_a_previously_exported_encrypted_textsecure_backup">Restaura una còpia de seguretat encriptada de SecureChat prèviament exportada.</string>
   <string name="import_fragment__import_a_plaintext_backup_file">Importa un arxiu de còpia de seguretat en text pla. Compatible amb \'Còpia de seguretat i restauració d\'SMS\'.</string>
   <!--MmsPreferencesFragment-->
   <string name="MmsPreferencesFragment__manual_mms_settings_are_required">En el teu telèfon són necessaris els ajustaments MMS manuals.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Desbloqueja</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">TextSecure necessita ajustaments MMS per entregar missatges de grup i multimèdia a través de l\'operador inalàmbric. El teu dispositiu no fa que aquesta informació estigui disponible, cosa que és certa ocasionalment en dispositius bloquejats o amb altres configuracions restringides.</string>
+  <string name="prompt_mms_activity__textsecure_requires_mms_settings_to_deliver_media_and_group_messages">SecureChat necessita ajustaments MMS per entregar missatges de grup i multimèdia a través de l\'operador inalàmbric. El teu dispositiu no fa que aquesta informació estigui disponible, cosa que és certa ocasionalment en dispositius bloquejats o amb altres configuracions restringides.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_click_ok">Per enviar missatges multimèdia i de grup, clica \'OK\' i completa els ajustaments demanats. Els ajustaments MMS de la teva operadora normalment poden ser trobats buscant \'latevaoperadora APN\'. Només necessitaràs fer això una vegada.</string>
   <!--receive_key_activity-->
   <string name="receive_key_activity__complete">Complet</string>
@@ -273,26 +273,26 @@ des de l\'app de missatgeria predeterminada del sistema.</string>
   <string name="registration_activity__skip">Salta</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Alguns possibles problemes inclouen:</string>
-  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">Alguns clients de missatgeria de text de tercers, com ara Handcent o GoSMS, es comporten inadequadament i intercepten tots els missatges SMS entrants. Verifica per veure si has rebut un missatge de text que comença per \'Your TextSecure verification code:\', en aquest cas necessitaràs configurar la teva app de missatgeria de tercers per deixar passar els missatges de text.</string>
+  <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">Alguns clients de missatgeria de text de tercers, com ara Handcent o GoSMS, es comporten inadequadament i intercepten tots els missatges SMS entrants. Verifica per veure si has rebut un missatge de text que comença per \'Your SecureChat verification code:\', en aquest cas necessitaràs configurar la teva app de missatgeria de tercers per deixar passar els missatges de text.</string>
   <string name="registration_problems__incorrect_number">Número incorrecte.</string>
   <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">Si us plau verifica per estar segur que has introduït el teu número correctament, i està ajustat correctament per la teva regió.</string>
   <string name="registration_problems__google_voice">Google Voice.</string>
-  <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">TextSecure no funcionarà amb números de Google Voice.</string>
+  <string name="registration_problems__textsecure_will_not_work_with_google_voice_numbers">SecureChat no funcionarà amb números de Google Voice.</string>
   <!--registration_progress_activity-->
-  <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">TextSecure també et pot trucar per verificar el teu número de telèfon. Pica \'Truca\'m\' i introdueix a sota el codi de sis dígits que sentis.</string>
+  <string name="registration_progress_activity__textsecure_can_also_call_you_to_verify_your_number">SecureChat també et pot trucar per verificar el teu número de telèfon. Pica \'Truca\'m\' i introdueix a sota el codi de sis dígits que sentis.</string>
   <string name="registration_progress_activity__verify">Verifica</string>
   <string name="registration_progress_activity__edit_number">Edita número</string>
   <string name="registration_progress_activity__connectivity_error">Error de connectivitat.</string>
-  <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">TextSecure no s\'ha pogut connectar al servei push.</string>
+  <string name="registration_progress_activity__textsecure_was_unable_to_connect_to_the_push_service">SecureChat no s\'ha pogut connectar al servei push.</string>
   <string name="registration_progress_activity__some_possible_problems_include">Alguns possibles problemes inclouen:</string>
   <string name="registration_progress_activity__no_network_connectivity">No hi ha connexió de xarxa.</string>
   <string name="registration_progress_activity__restrictive_firewall">Tallafocs restrictiu.</string>
-  <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">TextSecure verificarà automàticament el teu número amb un missatge de confirmació SMS.</string>
+  <string name="registration_progress_activity__textsecure_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">SecureChat verificarà automàticament el teu número amb un missatge de confirmació SMS.</string>
   <string name="registration_progress_activity__connecting">Connectant...</string>
   <string name="registration_progress_activity__waiting_for_sms_verification">Esperant la verificació SMS...</string>
   <string name="registration_progress_activity__registering_with_server">Registrant-se al servidor...</string>
   <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">Això portarà una estona. Si us plau sigues pacient, et notificarem quan la verificació estigui completada.</string>
-  <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">S\'ha acabat el temps d\'espera de TextSecure mentre s\'esperava el missatge SMS de verificació.</string>
+  <string name="registration_progress_activity__textsecure_timed_out_while_waiting_for_a_verification_sms_message">S\'ha acabat el temps d\'espera de SecureChat mentre s\'esperava el missatge SMS de verificació.</string>
   <string name="registration_progress_activity__sms_verification_failed">La verificació SMS ha fallat.</string>
   <string name="registration_progress_activity__generating_keys">Generant claus...</string>
   <!--recipients_panel-->
@@ -305,8 +305,8 @@ des de l\'app de missatgeria predeterminada del sistema.</string>
   <!--arrays.xml-->
   <!--preferences.xml-->
   <string name="preferences__general">General</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Utilitza TextSecure per veure i emmagatzemar tots els missatges de text entrants</string>
-  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Utilitza TextSecure per veure i emmagatzemar tots els missatges multimèdia entrants</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_text_messages">Utilitza SecureChat per veure i emmagatzemar tots els missatges de text entrants</string>
+  <string name="preferences__use_textsecure_for_viewing_and_storing_all_incoming_multimedia_messages">Utilitza SecureChat per veure i emmagatzemar tots els missatges multimèdia entrants</string>
   <string name="preferences__enable_enter_key_title">Habilita la tecla Enter</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Escull el teu contacte de la llista de contactes</string>
   <string name="preferences__change_passphrase">Canvia frase contrasenya</string>
@@ -359,10 +359,10 @@ des de l\'app de missatgeria predeterminada del sistema.</string>
   <string name="preferences__default">Predeterminat</string>
   <string name="preferences__language">Idioma</string>
   <string name="preferences__make_default_sms_app">Estableix com a app d\'SMS predeterminada</string>
-  <string name="preferences__make_textsecure_the_default_sms_mms_app">Fes TextSecure l\'aplicació d\'SMS/MMS predeterminada del teu sistema.</string>
+  <string name="preferences__make_textsecure_the_default_sms_mms_app">Fes SecureChat l\'aplicació d\'SMS/MMS predeterminada del teu sistema.</string>
   <string name="preferences__use_data_channel">Missatges Push</string>
   <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
-Augmenta la privacitat i evita els càrrecs d\'SMS utilitzant el canal de dades per comunicar-se amb altres usuaris de TextSecure</string>
+Augmenta la privacitat i evita els càrrecs d\'SMS utilitzant el canal de dades per comunicar-se amb altres usuaris de SecureChat</string>
   <string name="preferences__submit_debug_log">Envia un registre de depuració</string>
   <!--****************************************-->
   <!--menus-->

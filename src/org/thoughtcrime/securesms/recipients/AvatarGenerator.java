@@ -24,7 +24,7 @@ public class AvatarGenerator {
 
   public static Bitmap generateFor(Context context, Recipient recipient) {
     if ((recipient == null) || (recipient.getName() == null)) {
-      return BitmapUtil.getCircleCroppedBitmap(ContactPhotoFactory.getDefaultContactPhoto(context));
+      return BitmapUtil.getCircleBitmap(ContactPhotoFactory.getDefaultContactPhoto(context));
     }
 
     final int    size            = ContactPhotoFactory.getDefaultContactPhoto(context).getHeight();

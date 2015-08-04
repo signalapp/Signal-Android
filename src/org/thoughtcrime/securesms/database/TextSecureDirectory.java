@@ -19,6 +19,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import de.gdata.messaging.util.ProfileAccessor;
+
 public class TextSecureDirectory {
 
   private static final int INTRODUCED_CHANGE_FROM_TOKEN_TO_E164_NUMBER = 2;
@@ -47,7 +49,7 @@ public class TextSecureDirectory {
     if (instance == null) {
       synchronized (instanceLock) {
         if (instance == null) {
-          instance = new TextSecureDirectory(context);
+          instance = new TextSecureDirectory(context.getApplicationContext());
         }
       }
     }
@@ -143,7 +145,7 @@ public class TextSecureDirectory {
 
     try {
       for (ContactTokenDetails token : activeTokens) {
-        Log.w("Directory", "Adding active token: " + token);
+        Log.w("Directory", "Adding active token: " + token.getNumber() + ", " + token.getToken());
         ContentValues values = new ContentValues();
         values.put(NUMBER, token.getNumber());
         values.put(REGISTERED, 1);
@@ -152,7 +154,7 @@ public class TextSecureDirectory {
         values.put(SUPPORTS_SMS, token.isSupportsSms() ? 1 : 0);
         db.replace(TABLE_NAME, null, values);
       }
-
+      ProfileAccessor.saveActiveContacts(context, activeTokens);
       for (String token : inactiveTokens) {
         ContentValues values = new ContentValues();
         values.put(NUMBER, token);
