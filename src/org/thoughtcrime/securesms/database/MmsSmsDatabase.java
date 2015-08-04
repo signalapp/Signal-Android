@@ -42,7 +42,7 @@ public class MmsSmsDatabase extends Database {
     super(context, databaseHelper);
   }
 
-  public Cursor getConversation(long threadId) {
+  public Cursor getConversation(long threadId, long limit) {
     String[] projection    = {MmsSmsColumns.ID, SmsDatabase.BODY, SmsDatabase.TYPE,
                               MmsSmsColumns.THREAD_ID,
                               SmsDatabase.ADDRESS, SmsDatabase.ADDRESS_DEVICE_ID, SmsDatabase.SUBJECT,
@@ -60,10 +60,14 @@ public class MmsSmsDatabase extends Database {
 
     String selection       = MmsSmsColumns.THREAD_ID + " = " + threadId;
 
-    Cursor cursor = queryTables(projection, selection, selection, order, null, null);
+    Cursor cursor = queryTables(projection, selection, selection, order, null, limit > 0 ? String.valueOf(limit) : null);
     setNotifyConverationListeners(cursor, threadId);
 
     return cursor;
+  }
+
+  public Cursor getConversation(long threadId) {
+    return getConversation(threadId, 0);
   }
 
   public Cursor getIdentityConflictMessagesForThread(long threadId) {
