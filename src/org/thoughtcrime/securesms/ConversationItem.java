@@ -550,7 +550,9 @@ public class ConversationItem extends LinearLayout {
         indicatorText.setVisibility(messageRecord.isPendingSmsFallback() ? View.VISIBLE : View.GONE);
       }
       secureImage.setVisibility(messageRecord.isSecure() ? View.VISIBLE : View.GONE);
-      bodyText.setCompoundDrawablesWithIntrinsicBounds(0, 0, messageRecord.isKeyExchange() ? R.drawable.ic_menu_login : 0, 0);
+      bodyText.setCompoundDrawablesWithIntrinsicBounds(0, 0, messageRecord.isKeyExchange() || messageRecord.displaysAKey() ? R.drawable.ic_menu_login : 0, 0);
+      if(messageRecord.displaysAKey()) bodyText.setText("");
+
       deliveryImage.setVisibility(!messageRecord.isKeyExchange() && messageRecord.isDelivered() ? View.VISIBLE : View.GONE);
 
       mmsThumbnail.setVisibility(View.GONE);
