@@ -145,7 +145,13 @@ public class MessageNotifier {
     if (!TextSecurePreferences.isNotificationsEnabled(context) ||
         (recipients != null && recipients.isMuted()))
     {
-      return;
+      if (visibleThread == threadId) {
+        ThreadDatabase threads = DatabaseFactory.getThreadDatabase(context);
+        threads.setRead(threadId);
+        return;
+      } else {
+        return;
+      }
     }
 
     if (visibleThread == threadId) {
@@ -301,7 +307,7 @@ public class MessageNotifier {
     builder.setContentText(context.getString(R.string.MessageNotifier_most_recent_from_s,
                                              notifications.get(0).getIndividualRecipientName()));
     builder.setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, ConversationListActivity.class), 0));
-    
+
     builder.setContentInfo(String.valueOf(notificationState.getMessageCount()));
     builder.setNumber(notificationState.getMessageCount());
     builder.setCategory(NotificationCompat.CATEGORY_MESSAGE);
