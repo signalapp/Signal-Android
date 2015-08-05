@@ -61,13 +61,13 @@ public class GcmRefreshJob extends ContextJob {
       Log.w(TAG, "GCM registrationId expired, reregistering...");
       int result = GooglePlayServicesUtil.isGooglePlayServicesAvailable(context);
 
-      if (result != ConnectionResult.SUCCESS ||  BuildConfig.FORCE_WEBSOCKETS ) {
+      if (result != ConnectionResult.SUCCESS || BuildConfig.FORCE_WEBSOCKETS) {
         notifyGcmFailure();
       } else {
         String gcmId = GoogleCloudMessaging.getInstance(context).register(REGISTRATION_ID);
         accountManager.setGcmId(Optional.of(gcmId));
         TextSecurePreferences.setGcmRegistrationId(context, gcmId);
-        TextSecurePreferences.setGcmRegistered(context,true);
+        TextSecurePreferences.setGcmRegistered(context, true);
       }
       TextSecurePreferences.setWebsocketRegistered(context, true);
     }

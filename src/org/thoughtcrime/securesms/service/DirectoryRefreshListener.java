@@ -35,9 +35,8 @@ public class DirectoryRefreshListener extends BroadcastReceiver {
 
   public static void schedule(Context context) {
     if (!TextSecurePreferences.isPushRegistered(context)) return;
-    if(!TextSecurePreferences.isGcmRegistered(context)){
-      Intent intent = new Intent(context, MessageRetrievalService.class);
-      context.startService(intent);
+    if (!TextSecurePreferences.isGcmRegistered(context)) {
+      context.startService(new Intent(context, MessageRetrievalService.class));
     }
 
     AlarmManager      alarmManager  = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
