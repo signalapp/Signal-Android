@@ -77,7 +77,7 @@ import de.gdata.messaging.util.ProfileAccessor;
 
 public class ProfileFragment extends Fragment {
 
-    private static final int PADDING_TOP = 300;
+    private static final int PADDING_TOP = 0;
     private MasterSecret masterSecret;
     private GDataPreferences gDataPreferences;
     private String profileId = "";
@@ -333,7 +333,7 @@ public class ProfileFragment extends Fragment {
                 if ((mainLayout.getTop() - scrollView.getHeight()) > scrollView.getScrollY()) {
                     finishAndSave();
                 }
-                if (mainLayout.getTop() * 2 < scrollView.getScrollY() + PADDING_TOP) {
+                if (mainLayout.getTop() + scrollView.getHeight() < scrollView.getScrollY() + PADDING_TOP) {
                     finishAndSave();
                 }
             }
