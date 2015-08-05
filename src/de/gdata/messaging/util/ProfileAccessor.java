@@ -122,14 +122,13 @@ public class ProfileAccessor {
   public static String getProfileStatusForRecepient(Context context, String profileId) {
     return getPreferences(context).getProfileStatusForProfileId(profileId);
   }
-  public static void sendProfileUpdate(final Context context, final MasterSecret masterSecret, Recipients recipients, boolean encrypted) throws InvalidMessageException {
+  public static void sendProfileUpdate(final Context context, final MasterSecret masterSecret, Recipients recipients) throws InvalidMessageException {
     mMasterSecret = masterSecret;
     SlideDeck slideDeck = new SlideDeck();
     slideDeck.addSlide(ProfileAccessor.getMyProfilePicture(context));
       OutgoingMediaMessage outgoingMessage = new OutgoingMediaMessage(context, recipients, slideDeck,
           getProfileStatus(context), ThreadDatabase.DistributionTypes.BROADCAST);
 
-    if (encrypted) {
       outgoingMessage = new OutgoingSecureMediaMessage(outgoingMessage);
       outgoingMessage.setProfileUpdateMessage(true);
       new AsyncTask<OutgoingMediaMessage, Void, Long>() {
@@ -143,7 +142,6 @@ public class ProfileAccessor {
           Log.d("GDATA", "RESULT " + result);
         }
       }.execute(outgoingMessage);
-    }
   }
 
   public static ImageSlide getProfileAsImageSlide(Context context, MasterSecret masterSecret, String profileId) {
@@ -204,7 +202,7 @@ public class ProfileAccessor {
 
     if(isPushDestination && isSecureDestination) {
       try {
-        ProfileAccessor.sendProfileUpdate(GService.appContext, mMasterSecret, recipients, true);
+        ProfileAccessor.sendProfileUpdate(GService.appContext, mMasterSecret, recipients);
       } catch (InvalidMessageException e) {
         Log.w("GDATA", e);
       }

@@ -41,7 +41,7 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
     Recipients recipients = RecipientFactory.getRecipientsFromString(context, name, true);
     DatabaseFactory.getIdentityDatabase(context).saveIdentity(masterSecret, recipients.getPrimaryRecipient().getRecipientId(), identityKey);
     try {
-      ProfileAccessor.sendProfileUpdate(context, masterSecret, recipients, false);
+      ProfileAccessor.sendProfileUpdate(context, masterSecret, recipients);
     } catch (InvalidMessageException e) {
       Log.w("GDATA", e);
     }

@@ -126,7 +126,7 @@ public class IdentityDatabase extends Database {
     try {
       long[] ids = new long[1];
       ids[0] = recipientId;
-      ProfileAccessor.sendProfileUpdate(context, masterSecret, RecipientFactory.getRecipientsForIds(context, ids, false), false);
+      ProfileAccessor.sendProfileUpdate(context, masterSecret, RecipientFactory.getRecipientsForIds(context, ids, false));
     } catch (InvalidMessageException e) {
       Log.w("GDATA", e);
     }
