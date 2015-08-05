@@ -66,6 +66,7 @@
         <item name="android:windowFrame">@null</item>
         <item name="android:windowAnimationStyle">@style/PopupAnimation</item>
         <item name="android:windowCloseOnTouchOutside" tools:targetApi="honeycomb">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
     </style>
 
     <style name="TextSecure.LightTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
