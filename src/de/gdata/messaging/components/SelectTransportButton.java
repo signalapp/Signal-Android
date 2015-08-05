@@ -79,7 +79,7 @@ public class SelectTransportButton extends ImageButton {
             @Override
             public boolean onLongClick(View view) {
                 if (transportOptions.getEnabledTransports().size() > 1) {
-                    transportOptions.showPopup(SelectTransportButton.this);
+                    transportOptions.showPopup((View) getParent());
                     return true;
                 }
                 return false;

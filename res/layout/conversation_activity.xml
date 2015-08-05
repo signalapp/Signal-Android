@@ -67,9 +67,19 @@
                     android:id="@+id/bottom_panel"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                <TextView android:id="@+id/space_left"
+                    android:paddingLeft="5dip"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:text="160/160 (1)" />
+                <LinearLayout
+                    android:id="@+id/bottom_panel_inside"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:background="?conversation_editor_background">
-
                 <de.gdata.messaging.components.SelectTransportButton
                     android:id="@+id/select_transport_button"
                     android:layout_width="wrap_content"
@@ -148,14 +158,7 @@
 
 
             </LinearLayout>
-
-           <TextView android:id="@+id/space_left"
-                     android:paddingLeft="5dip"
-                     android:layout_width="fill_parent"
-                     android:layout_height="wrap_content"
-                     android:visibility="gone"
-                     android:text="160/160 (1)" />
-
+        </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
 
