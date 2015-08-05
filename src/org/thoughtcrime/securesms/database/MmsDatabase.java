@@ -1099,13 +1099,13 @@ public class MmsDatabase extends MessagingDatabase {
 
     private Recipients getRecipientsFor(String address) {
       if (TextUtils.isEmpty(address) || address.equals("insert-address-token")) {
-        return RecipientFactory.getRecipientsFor(context, Recipient.getUnknownRecipient(), false);
+        return RecipientFactory.getRecipientsFor(context, Recipient.getUnknownRecipient(), true);
       }
 
-      Recipients recipients =  RecipientFactory.getRecipientsFromString(context, address, false);
+      Recipients recipients =  RecipientFactory.getRecipientsFromString(context, address, true);
 
       if (recipients == null || recipients.isEmpty()) {
-        return RecipientFactory.getRecipientsFor(context, Recipient.getUnknownRecipient(), false);
+        return RecipientFactory.getRecipientsFor(context, Recipient.getUnknownRecipient(), true);
       }
 
       return recipients;

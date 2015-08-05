@@ -608,16 +608,16 @@ public class SmsDatabase extends MessagingDatabase {
 
     private Recipients getRecipientsFor(String address) {
       if (address != null) {
-        Recipients recipients = RecipientFactory.getRecipientsFromString(context, address, false);
+        Recipients recipients = RecipientFactory.getRecipientsFromString(context, address, true);
 
         if (recipients == null || recipients.isEmpty()) {
-          return RecipientFactory.getRecipientsFor(context, Recipient.getUnknownRecipient(), false);
+          return RecipientFactory.getRecipientsFor(context, Recipient.getUnknownRecipient(), true);
         }
 
         return recipients;
       } else {
         Log.w(TAG, "getRecipientsFor() address is null");
-        return RecipientFactory.getRecipientsFor(context, Recipient.getUnknownRecipient(), false);
+        return RecipientFactory.getRecipientsFor(context, Recipient.getUnknownRecipient(), true);
       }
     }
 
