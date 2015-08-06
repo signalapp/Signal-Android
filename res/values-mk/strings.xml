@@ -377,7 +377,6 @@
   <string name="KeyCachingService_passphrase_cached">TextSecure е отклучен.</string>
   <string name="KeyCachingService_lock">Заклучете со лозинка</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_messages_in_d_conversations">%1$d пораки во %2$d теми</string>
   <string name="MessageNotifier_most_recent_from_s">Најнови од: %1$s</string>
   <string name="MessageNotifier_media_message_with_text">Медиа порака: %s</string>
   <string name="MessageNotifier_no_subject">(Без наслов)</string>
@@ -387,6 +386,7 @@
   <string name="MessageNotifier_mark_all_as_read">Обележи ги сите како прочитани</string>
   <string name="MessageNotifier_media_message">Медиа порака</string>
   <!--QuickResponseService-->
+  <!--SingleRecipientNotificationBuilder-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">СТАРА ЛОЗИНКА:</string>
   <string name="change_passphrase_activity__new_passphrase">НОВА ЛОЗИНКА:</string>
@@ -627,7 +627,6 @@ TextSecure автоматски ќе го провери вашиот број �
   <string name="preferences__pref_timeout_interval_title">Интервал за временско ограничување </string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Време после кое лозинката ќе биде избришана од меморија</string>
   <string name="preferences__notifications">Известувања</string>
-  <string name="preferences__display_message_notifications_in_status_bar">Покажете известувања во лентата за статуси</string>
   <string name="preferences__led_color">LED боја</string>
   <string name="preferences__led_color_unknown">Непознато</string>
   <string name="preferences__pref_led_blink_title">LED примерок за трепкање</string>

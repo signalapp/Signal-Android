@@ -323,6 +323,7 @@ Nortasun gako ezezagun batekin jaso da mezua. Klik egin prozesatzeko eta erakust
   <string name="MessageNotifier_mark_all_as_read">Denak irrakurritako gisa markatu</string>
   <string name="MessageNotifier_media_message">Media mezua</string>
   <!--QuickResponseService-->
+  <!--SingleRecipientNotificationBuilder-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">PASAHITZ ZAHARRA:</string>
   <string name="change_passphrase_activity__new_passphrase">PASAHITZ BERRIA:</string>
@@ -517,7 +518,6 @@ huts egin du.
   <string name="preferences__pref_timeout_interval_title">Iraungitzearen tartea</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Memoriatik pasahitza kentzeko itxaron behar den denbora</string>
   <string name="preferences__notifications">Jakinarazpenak</string>
-  <string name="preferences__display_message_notifications_in_status_bar">Mezuaren jakinarazpenak erakutsi egoera-barran</string>
   <string name="preferences__led_color">LED kolorea</string>
   <string name="preferences__led_color_unknown">Ezezaguna</string>
   <string name="preferences__pref_led_blink_title">LEDaren keinuka eredua</string>

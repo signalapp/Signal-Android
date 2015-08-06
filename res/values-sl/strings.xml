@@ -145,11 +145,16 @@ preveriti ta stik.</string>
   <string name="DateUtils_now">Ravnokar</string>
   <string name="DateUtils_minutes_ago">%d min</string>
   <!--DeviceListActivity-->
+  <string name="DeviceListActivity_unlink_s">Odstranim \'%s\'?</string>
+  <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Z odstranitvijo naprave ta ne bo več mogla pošiljati ali prejemati sporočil.</string>
   <string name="DeviceListActivity_network_connection_failed">Omrežno povezovanje ni bilo uspešno...</string>
   <string name="DeviceListActivity_try_again">Poskusite znova</string>
+  <string name="DeviceListActivity_unlinking_device">Odstranjujem napravo...</string>
+  <string name="DeviceListActivity_unlinking_device_no_ellipsis">Odstranjujem napravo</string>
   <string name="DeviceListActivity_network_failed">Povezovanje ni uspelo!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Nepoimenovana naprava</string>
+  <string name="DeviceListItem_linked_s">Povezan z %s</string>
   <string name="DeviceListItem_last_active_s">Zadnja aktivna %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Deli z</string>
@@ -236,9 +241,13 @@ preveriti ta stik.</string>
   <string name="DeviceProvisioningActivity_content_bullets">
 - prebirala vsa vaša sporočila
 \n- pošiljala sporočila v vašem imenu</string>
+  <string name="DeviceProvisioningActivity_content_progress_title">Povezujem napravo</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">Povezujem novo napravo...</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">Naprava povezana!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Nobena naprava ni bila najdena.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Napaka omrežja.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Neveljavna koda QR.</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Imate preveč povezanih naprav, poskusite kakšno odstraniti...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Vnesite geslo</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Ikona TextSecure</string>
@@ -370,7 +379,7 @@ Prejeto sporočilo z neznanim identifikacijskim ključem. Kliknite za obdelavo i
   <string name="KeyCachingService_passphrase_cached">TextSecure je odklenjen</string>
   <string name="KeyCachingService_lock">Zakleni z geslom</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_messages_in_d_conversations">Sporočil: %1$d, pogovorov: %2$d</string>
+  <string name="MessageNotifier_d_new_messages_in_d_conversations">Novih sporočil: %1$d, pogovorov: %2$d</string>
   <string name="MessageNotifier_most_recent_from_s">Zadnje sporočilo od: %1$s</string>
   <string name="MessageNotifier_locked_message">Zaklenjeno sporočilo...</string>
   <string name="MessageNotifier_media_message_with_text">Multimedijsko sporočilo: %s</string>
@@ -385,6 +394,9 @@ Prejeto sporočilo z neznanim identifikacijskim ključem. Kliknite za obdelavo i
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">Ko je TextSecure zaklenjen, hitro odgovarjanje ni mogoče!</string>
   <string name="QuickResponseService_problem_sending_message">Težava pri pošiljanju sporočila</string>
+  <!--SingleRecipientNotificationBuilder-->
+  <string name="SingleRecipientNotificationBuilder_new_textsecure_message">Novo sporočilo TextSecure</string>
+  <string name="SingleRecipientNotificationBuilder_contents_hidden">Vsebina prikrita</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Staro geslo:</string>
   <string name="change_passphrase_activity__new_passphrase">Novo geslo:</string>
@@ -436,6 +448,7 @@ Prejeto sporočilo z neznanim identifikacijskim ključem. Kliknite za obdelavo i
   <string name="country_selection_fragment__loading_countries">Pripravljam države...</string>
   <string name="country_selection_fragment__search">Poišči</string>
   <!--device_list_fragment-->
+  <string name="device_list_fragment__no_devices_linked">Ni povezanih naprav...</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Ne morem zajeti podatkov iz vaše naprave. Sistemsko zabeležbo lahko zajamete tudi sami preko ADB.</string>
   <string name="log_submit_activity__thanks">Hvala za pomoč!</string>
@@ -576,6 +589,7 @@ bila uspešna.</string>
   <string name="AndroidManifest__media_overview">Vse slike</string>
   <string name="AndroidManifest__media_overview_named">Vse slike z %1$s</string>
   <string name="AndroidManifest__message_details">Podrobnosti sporočila</string>
+  <string name="AndroidManifest_manage_linked_devices">Upravljanje povezanih naprav</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Uvoz/izvoz</string>
   <string name="arrays__my_identity_key">Moja identifikacija</string>
@@ -588,6 +602,9 @@ bila uspešna.</string>
   <string name="arrays__settings_default">Sistemsko privzeto</string>
   <string name="arrays__enabled">Vklopljeno</string>
   <string name="arrays__disabled">Izklopljeno</string>
+  <string name="arrays__name_and_message">Pošiljatelj in sporočilo</string>
+  <string name="arrays__name_only">Samo pošiljatelj</string>
+  <string name="arrays__neither">Brez</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d ura</item>
@@ -624,7 +641,7 @@ bila uspešna.</string>
   <string name="preferences__pref_timeout_interval_title">Čas pomnjenja gesla</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Koliko časa naj bo geslo v pomnilniku, preden bo pozabljeno</string>
   <string name="preferences__notifications">Obvestila</string>
-  <string name="preferences__display_message_notifications_in_status_bar">Prikaz obvestila o sporočilu v statusni vrstici</string>
+  <string name="preferences__enable_message_notifications">Omogoči obvestila o novih sporočilih</string>
   <string name="preferences__led_color">Barva LED</string>
   <string name="preferences__led_color_unknown">Neznano</string>
   <string name="preferences__pref_led_blink_title">Vzorec utripanja LED</string>
@@ -692,6 +709,7 @@ Brezplačno zasebno sporočanje za TextSecure in Signal</string>
   <string name="preferences__support_wifi_calling">Združljivostni način \'Klicanje WiFi\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktivirajte, če dostava SMS/MMS sporočil na vaši napravi poteka preko povezave WiFi (samo, če imate vklopljeno \'WiFi klicanje/WiFi Calling)</string>
   <string name="preferences_app_protection__blocked_contacts">Blokirani stiki</string>
+  <string name="preferences_notifications__display_in_notifications">Prikazano v obvestilu</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

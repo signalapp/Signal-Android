@@ -145,11 +145,16 @@ denne kontakten.</string>
   <string name="DateUtils_now">Nå</string>
   <string name="DateUtils_minutes_ago">%d min</string>
   <!--DeviceListActivity-->
+  <string name="DeviceListActivity_unlink_s">Frakoble \'%s\'?</string>
+  <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Ved å frakoble denne enheten vil den ikke lenger være i stand til å sende eller motta meldinger.</string>
   <string name="DeviceListActivity_network_connection_failed">Nettverksforbindelse feilet...</string>
   <string name="DeviceListActivity_try_again">Prøv igjen</string>
+  <string name="DeviceListActivity_unlinking_device">Frakobler enhet...</string>
+  <string name="DeviceListActivity_unlinking_device_no_ellipsis">Frakobler enhet</string>
   <string name="DeviceListActivity_network_failed">Nettverk feilet!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Ikke navngitt enhet</string>
+  <string name="DeviceListItem_linked_s">%s tilkoblet</string>
   <string name="DeviceListItem_last_active_s">Sist aktiv %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Del med</string>
@@ -238,9 +243,13 @@ Gjenoppretting av en kryptert backup vil overskrive eksisterende nøkler, innsti
 - Lese alle meldingene dine
 \n- Sende meldinger i ditt navn
  </string>
+  <string name="DeviceProvisioningActivity_content_progress_title">Kobler enhet</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">Kobler til ny enhet...</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">Enhet tilkoblet!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Ingen enhet funnet.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Nettverksfeil.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Ugyldig QR-kode.</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Beklager, du har for mange enheter koblet til allerede, forsøk å fjerne noen...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Tast inn passord</string>
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure ikon</string>
@@ -375,7 +384,6 @@ Mottatt melding med ukjent ID nøkkel. Klikk for å prosessere og vise.</string>
   <string name="KeyCachingService_passphrase_cached">TextSecure er ulåst</string>
   <string name="KeyCachingService_lock">Lås med passord</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_messages_in_d_conversations">%1$d meldinger i %2$d samtaler</string>
   <string name="MessageNotifier_most_recent_from_s">Nyeste fra: %1$s</string>
   <string name="MessageNotifier_locked_message">Låst melding...</string>
   <string name="MessageNotifier_media_message_with_text">Media melding: %s</string>
@@ -390,6 +398,7 @@ Mottatt melding med ukjent ID nøkkel. Klikk for å prosessere og vise.</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">Rask tilbakemelding ikke tilgjengelig når TextSecure er låst!</string>
   <string name="QuickResponseService_problem_sending_message">Kunne ikke sende melding!</string>
+  <!--SingleRecipientNotificationBuilder-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Gammelt passord:</string>
   <string name="change_passphrase_activity__new_passphrase">Nytt passord:</string>
@@ -441,6 +450,7 @@ Mottatt melding med ukjent ID nøkkel. Klikk for å prosessere og vise.</string>
   <string name="country_selection_fragment__loading_countries">Laster land...</string>
   <string name="country_selection_fragment__search">Søk</string>
   <!--device_list_fragment-->
+  <string name="device_list_fragment__no_devices_linked">Ingen enheter tilkoblet...</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Kunne ikke hente loggene fra din enhet. Du kan fremdeles benytte ADB for å hente debug logger.</string>
   <string name="log_submit_activity__thanks">Takk for hjelpen!</string>
@@ -579,6 +589,7 @@ feilet.</string>
   <string name="AndroidManifest__media_overview">Alle bilder</string>
   <string name="AndroidManifest__media_overview_named">Alle bilder med %1$s</string>
   <string name="AndroidManifest__message_details">Meldingsdetaljer</string>
+  <string name="AndroidManifest_manage_linked_devices">Administrer tilkoblede enheter</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importere / eksportere</string>
   <string name="arrays__my_identity_key">Min ID-nøkkel</string>
@@ -625,7 +636,6 @@ feilet.</string>
   <string name="preferences__pref_timeout_interval_title">Timeoutintervall</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Tiden det skal gå før passordet slettes fra minnet på enheten</string>
   <string name="preferences__notifications">Varsling</string>
-  <string name="preferences__display_message_notifications_in_status_bar">Vis varsel om meldinger i status feltet</string>
   <string name="preferences__led_color">LED farge</string>
   <string name="preferences__led_color_unknown">Ukjent</string>
   <string name="preferences__pref_led_blink_title">LED blinkemønster</string>

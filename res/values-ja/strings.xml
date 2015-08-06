@@ -12,6 +12,10 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">全ての古いメッセージを今、削除しますか？</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">今すぐ全ての会話スレッドを最新メッセージ%s通にまで縮小（トリム）しますか？</string>
   <string name="ApplicationPreferencesActivity_delete">削除</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">パスワードを無効にする?</string>
+  <string name="ApplicationPreferencesActivity_disable_lock_screen">
+        ロックスクリーンでのメッセージを無効化する?
+    </string>
   <string name="ApplicationPreferencesActivity_disable">無効</string>
   <string name="ApplicationPreferencesActivity_unregistering">未登録</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">TextSecureメッセージが未登録...</string>
@@ -38,6 +42,7 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">メディアの選択用アプリが見つかりません。</string>
   <!--AttachmentTypeSelectorAdapter-->
+  <string name="AttachmentTypeSelectorAdapter_camera">カメラ</string>
   <string name="AttachmentTypeSelectorAdapter_picture">写真</string>
   <string name="AttachmentTypeSelectorAdapter_video">動画</string>
   <string name="AttachmentTypeSelectorAdapter_audio">音声</string>
@@ -80,6 +85,7 @@
   <string name="ConversationActivity_select_contact_info">連絡先情報を選択</string>
   <string name="ConversationActivity_compose_message">メッセージ作成</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">添付中にエラーが発生しました。</string>
+  <string name="ConversationActivity_the_gif_you_selected_was_too_big">あなたの選択したGIFは大きすぎます!</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">選択された映像ファイルはサイズ限度を超えています(%1$skB)。</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">選択された音声ファイルはサイズ限度を超えています(%1$skB)。</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">受信先のSMS又はEメールアドレスが有効ではありません。</string>
@@ -143,11 +149,16 @@
   <string name="DateUtils_now">今</string>
   <string name="DateUtils_minutes_ago">%d 分</string>
   <!--DeviceListActivity-->
+  <string name="DeviceListActivity_unlink_s">\'%s\' をリンク解除?</string>
+  <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">このデバイスをリンク解除すると、メッセージを送信/受信することはできなくなります。</string>
   <string name="DeviceListActivity_network_connection_failed">ネットワーク接続が失敗...</string>
   <string name="DeviceListActivity_try_again">再試行</string>
+  <string name="DeviceListActivity_unlinking_device">デバイスのリンク解除...</string>
+  <string name="DeviceListActivity_unlinking_device_no_ellipsis">デバイスのリンク解除</string>
   <string name="DeviceListActivity_network_failed">ネットワークが失敗!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">無名のデバイス</string>
+  <string name="DeviceListItem_linked_s">%s とリンク</string>
   <string name="DeviceListItem_last_active_s">最後にアクティブ %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">共有</string>
@@ -236,9 +247,13 @@
         - あなたへのすべてのメッセージを読むこと
         \n- あなたの名前でメッセージを送ること
     </string>
+  <string name="DeviceProvisioningActivity_content_progress_title">デバイスのリンク</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">新しいデバイスのリンク...</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">デバイスとリンクした!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">デバイスがありません。</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">ネットワークエラー。</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">QRコードが無効。</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">すみません、あなたはすでにとても多数のデバイスをリンクしています、なんらかを削除してください...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">パスワード入力</string>
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecureアイコン</string>
@@ -370,7 +385,6 @@
   <string name="KeyCachingService_passphrase_cached">TextSecureは、アンロックされています</string>
   <string name="KeyCachingService_lock">パスワードでロックする</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_messages_in_d_conversations">%2$d 会話の中の %1$d メッセージ </string>
   <string name="MessageNotifier_most_recent_from_s">最新の受信は次から: %1$s</string>
   <string name="MessageNotifier_locked_message">メッセージをロック...</string>
   <string name="MessageNotifier_media_message_with_text">メディアメッセージ: %s</string>
@@ -385,11 +399,13 @@
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">TextSecureがロックされていますので、クイック返信は利用できません!</string>
   <string name="QuickResponseService_problem_sending_message">送信メッセージでの問題!</string>
+  <!--SingleRecipientNotificationBuilder-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">既存のパスワード：</string>
   <string name="change_passphrase_activity__new_passphrase">新規のパスワード：</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">新規のパスワードを再入力：</string>
   <!--contact_selection_activity-->
+  <string name="contact_selection_activity__enter_name_or_number">名前もしくは番号を入力</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">連絡先はありません。</string>
   <string name="contact_selection_group_activity__finding_contacts">連絡先を読み込み中…</string>
@@ -435,6 +451,7 @@
   <string name="country_selection_fragment__loading_countries">国名を読み込み中...</string>
   <string name="country_selection_fragment__search">検索</string>
   <!--device_list_fragment-->
+  <string name="device_list_fragment__no_devices_linked">リンクしたデバイスはありません...</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">デバッグログの入手に失敗しました。ADBを使ってログの入手は、可能です。</string>
   <string name="log_submit_activity__thanks">提出どうもありがとうございます！</string>
@@ -572,6 +589,7 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
   <string name="AndroidManifest__media_overview">すべての画像</string>
   <string name="AndroidManifest__media_overview_named">%1$s とすべての画像</string>
   <string name="AndroidManifest__message_details">メッセージの詳細</string>
+  <string name="AndroidManifest_manage_linked_devices">リンク済みデバイスの管理</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">インポート／エクスポート</string>
   <string name="arrays__my_identity_key">自分の認証キー</string>
@@ -618,7 +636,6 @@ Wi-Fiに接続している場合、ファイアウォールがTextSecureサー�
   <string name="preferences__pref_timeout_interval_title">タイムアウトの間隔</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">メモリからパスワードを消去するまでの待ち時間です</string>
   <string name="preferences__notifications">通知</string>
-  <string name="preferences__display_message_notifications_in_status_bar">受信通知をステータスバーに表示</string>
   <string name="preferences__led_color">LED色</string>
   <string name="preferences__led_color_unknown">不明</string>
   <string name="preferences__pref_led_blink_title">LED点滅パターン</string>

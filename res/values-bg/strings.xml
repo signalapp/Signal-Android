@@ -41,6 +41,7 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Неуспешно откирване на папка за избор на файл.</string>
   <!--AttachmentTypeSelectorAdapter-->
+  <string name="AttachmentTypeSelectorAdapter_camera">Камера</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Картина</string>
   <string name="AttachmentTypeSelectorAdapter_video">Видео</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Аудио</string>
@@ -80,6 +81,7 @@
   <string name="ConversationActivity_select_contact_info">Посочи информация за контакта</string>
   <string name="ConversationActivity_compose_message">Ново съобщение</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">За съжаление, настъпи грешка при прикачването.</string>
+  <string name="ConversationActivity_the_gif_you_selected_was_too_big">Gif-ът, който избра е твърде голям</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">За съжеление, избраното видео надвишава допустимия максимален размер (%1$skB).</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">За съжеление, избраното audio надвишава допустимия максимален размер (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Получателя не е с валиден SMS или имейл!</string>
@@ -143,11 +145,16 @@
   <string name="DateUtils_now">Сега</string>
   <string name="DateUtils_minutes_ago">%d мин</string>
   <!--DeviceListActivity-->
+  <string name="DeviceListActivity_unlink_s">Премахни връзката \'%s\'?</string>
+  <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Ако прекратиш връзката с това устройство, няма да можеш да изпращаш и получаваш съобщения от него.</string>
   <string name="DeviceListActivity_network_connection_failed">Неуспешна връзка с интернет...</string>
   <string name="DeviceListActivity_try_again">Опитай отново</string>
+  <string name="DeviceListActivity_unlinking_device">Прекратяване на връзката с устройството...</string>
+  <string name="DeviceListActivity_unlinking_device_no_ellipsis">Прекратяване на връзката с устройството</string>
   <string name="DeviceListActivity_network_failed">Грешка в мрежата!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Некръстено устройство</string>
+  <string name="DeviceListItem_linked_s">Свързан с %s</string>
   <string name="DeviceListItem_last_active_s">Последна активност %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Сподели с</string>
@@ -242,9 +249,13 @@ SMS съобщенията от системната базата данни в 
   <string name="DeviceProvisioningActivity_content_bullets">
 Чете всичките ти съобщения
 \n - Изпраща съобщения от твое име</string>
+  <string name="DeviceProvisioningActivity_content_progress_title">Свързване с устройството</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">Свързване с ново устройство...</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">Устройството е свързано!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Не е открито устройство.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Проблем с мобилната мрежа.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Невалиден QR код.</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">За съжалние имаш твърде много регистрирани устройства, опитай да премахнеш някои от тях...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Въведи паролата</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Икона на TextSecure</string>
@@ -382,7 +393,7 @@ SMS съобщенията от системната базата данни в 
   <string name="KeyCachingService_passphrase_cached">TextSecure е отключен</string>
   <string name="KeyCachingService_lock">Заключи паролата</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_messages_in_d_conversations">%1$d съобщения в %2$d чата</string>
+  <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d нови съобщения в %2$d чата</string>
   <string name="MessageNotifier_most_recent_from_s">Най-скорошно от: %1$s</string>
   <string name="MessageNotifier_locked_message">Заключено съобщение...</string>
   <string name="MessageNotifier_media_message_with_text">Медийно съобщение: %s</string>
@@ -397,6 +408,9 @@ SMS съобщенията от системната базата данни в 
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">Бърз отговор не е възможен, когато TextSecure е заключен!</string>
   <string name="QuickResponseService_problem_sending_message">Проблем при изпрашане на съобщение!</string>
+  <!--SingleRecipientNotificationBuilder-->
+  <string name="SingleRecipientNotificationBuilder_new_textsecure_message">Ново TextSecure съобщение</string>
+  <string name="SingleRecipientNotificationBuilder_contents_hidden">Съдържанието е скрито</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">СТАРА ПАРОЛА: </string>
   <string name="change_passphrase_activity__new_passphrase">НОВА ПАРОЛА: </string>
@@ -448,6 +462,7 @@ SMS съобщенията от системната базата данни в 
   <string name="country_selection_fragment__loading_countries">Зареждане на държавите...</string>
   <string name="country_selection_fragment__search">Търси</string>
   <!--device_list_fragment-->
+  <string name="device_list_fragment__no_devices_linked">Няма свързани устройства...</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Не успешен опит да се сдобием с доклада от устройството ти. Въпреки това можеш да ползваш ADB, за да се добиеш с доклада.</string>
   <string name="log_submit_activity__thanks">Благодаря за помоща!</string>
@@ -602,6 +617,7 @@ TextSecure чака твърде дълго за SMS потвърждение.
   <string name="AndroidManifest__media_overview">Всички изображения</string>
   <string name="AndroidManifest__media_overview_named">Всички изображения с %1$s</string>
   <string name="AndroidManifest__message_details">Информаця за съобщението</string>
+  <string name="AndroidManifest_manage_linked_devices">Управление на свързани устройства</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Внасяне / изнасяне</string>
   <string name="arrays__my_identity_key">Моят ключ за самоличност</string>
@@ -614,6 +630,9 @@ TextSecure чака твърде дълго за SMS потвърждение.
   <string name="arrays__settings_default">Настройки по подразбиране</string>
   <string name="arrays__enabled">Включено</string>
   <string name="arrays__disabled">Изключено</string>
+  <string name="arrays__name_and_message">Име и съобщение</string>
+  <string name="arrays__name_only">Само име</string>
+  <string name="arrays__neither">Нито едното</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d час</item>
@@ -648,7 +667,7 @@ TextSecure чака твърде дълго за SMS потвърждение.
   <string name="preferences__pref_timeout_interval_title">Продължителност на помненето</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Продължителнос от време, преди да забравя паролата от памета</string>
   <string name="preferences__notifications">Известия</string>
-  <string name="preferences__display_message_notifications_in_status_bar">Покажи известия за съобщения в лентата за известия</string>
+  <string name="preferences__enable_message_notifications">Разреши известия за съобщения</string>
   <string name="preferences__led_color">LED цвят</string>
   <string name="preferences__led_color_unknown">Непознат</string>
   <string name="preferences__pref_led_blink_title">LED известяване</string>
@@ -716,6 +735,7 @@ TextSecure чака твърде дълго за SMS потвърждение.
   <string name="preferences__support_wifi_calling">Съвместим режим \'WiFi Calling\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Включи ако устройството ти използва WiFi за SMS/MMS(само ако \'Wifi Calling\' е включен на устройството ти)</string>
   <string name="preferences_app_protection__blocked_contacts">Блокирани контакти</string>
+  <string name="preferences_notifications__display_in_notifications">Покажи в полето с известия</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

@@ -148,11 +148,16 @@
   <string name="DateUtils_now">Сад</string>
   <string name="DateUtils_minutes_ago">%d минута</string>
   <!--DeviceListActivity-->
+  <string name="DeviceListActivity_unlink_s">Да уклоним „%s“?</string>
+  <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Овај уређај више неће моћи да шаље или прима поруке ако га уклоните.</string>
   <string name="DeviceListActivity_network_connection_failed">Повезивање на мрежу није успело...</string>
   <string name="DeviceListActivity_try_again">Покушај поново</string>
+  <string name="DeviceListActivity_unlinking_device">Уклањам уређај...</string>
+  <string name="DeviceListActivity_unlinking_device_no_ellipsis">Уклањам уређај</string>
   <string name="DeviceListActivity_network_failed">Неуспех мреже!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Неименован уређај</string>
+  <string name="DeviceListItem_linked_s">Повезан %s</string>
   <string name="DeviceListItem_last_active_s">Задња активност %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Подели са</string>
@@ -240,7 +245,7 @@
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Нетачна стара лозинка!</string>
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Унесите нову лозинку!</string>
   <!--DeviceProvisioningActivity-->
-  <string name="DeviceProvisioningActivity_link_this_device">Да поежем овај уређај?</string>
+  <string name="DeviceProvisioningActivity_link_this_device">Да повежем овај уређај?</string>
   <string name="DeviceProvisioningActivity_cancel">ОДУСТАНИ</string>
   <string name="DeviceProvisioningActivity_continue">НАСТАВИ</string>
   <string name="DeviceProvisioningActivity_title">Повезати овај уређај?</string>
@@ -248,9 +253,13 @@
   <string name="DeviceProvisioningActivity_content_bullets">
 - чита све ваше поруке
 \n- шаље поруке у ваше име</string>
+  <string name="DeviceProvisioningActivity_content_progress_title">Повезујем уређај</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">Повезујем нови уређај...</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">Уређај повезан!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Није нађен уређај.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Грешка мреже.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Неисправан бар-кôд.</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Већ имате превише повезаних уређаја, уклоните неке од њих...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Унесите лозинку</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Икона Сигурних порука</string>
@@ -388,7 +397,6 @@
   <string name="KeyCachingService_passphrase_cached">Сигурне поруке су откључане</string>
   <string name="KeyCachingService_lock">Закључај лозинком</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_messages_in_d_conversations">%1$d порука у %2$d преписки</string>
   <string name="MessageNotifier_most_recent_from_s">Најскорија од: %1$s</string>
   <string name="MessageNotifier_locked_message">Закључана порука...</string>
   <string name="MessageNotifier_media_message_with_text">Мултимедијална порука: %s</string>
@@ -403,6 +411,7 @@
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">Брзи одговор није доступан ако су Сигурне поруке закључане!</string>
   <string name="QuickResponseService_problem_sending_message">Проблем са слањем поруке!</string>
+  <!--SingleRecipientNotificationBuilder-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">СТАРА ЛОЗИНКА:</string>
   <string name="change_passphrase_activity__new_passphrase">НОВА ЛОЗИНКА:</string>
@@ -454,6 +463,7 @@
   <string name="country_selection_fragment__loading_countries">Учитавам државе...</string>
   <string name="country_selection_fragment__search">Тражи</string>
   <!--device_list_fragment-->
+  <string name="device_list_fragment__no_devices_linked">Нема повезаних уређаја...</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Не могу да дохватим дневник са вашег уређаја. Можете да искористите АДБ да бисте добавили дневник исправљања грешака.</string>
   <string name="log_submit_activity__thanks">Хвала вам на помоћи!</string>
@@ -601,6 +611,7 @@
   <string name="AndroidManifest__media_overview">Све слике</string>
   <string name="AndroidManifest__media_overview_named">Све слика са %1$s</string>
   <string name="AndroidManifest__message_details">Детаљи поруке</string>
+  <string name="AndroidManifest_manage_linked_devices">Управљај повезаним уређајима</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Увоз/извоз</string>
   <string name="arrays__my_identity_key">Мој кључ идентитета</string>
@@ -648,7 +659,6 @@
   <string name="preferences__pref_timeout_interval_title">Интервал истека</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Време чекања пре уклањања лозинке из меморије</string>
   <string name="preferences__notifications">Обавештења</string>
-  <string name="preferences__display_message_notifications_in_status_bar">Прикажи обавештења о порукама у траци стања</string>
   <string name="preferences__led_color">Боја ЛЕД светла</string>
   <string name="preferences__led_color_unknown">Непозната</string>
   <string name="preferences__pref_led_blink_title">Трептање ЛЕД светла</string>

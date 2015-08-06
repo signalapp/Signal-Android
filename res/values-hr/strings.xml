@@ -41,6 +41,7 @@ Trebat ćete ponovno registrirati vaš broj telefona kako biste koristili TextSe
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nije moguće pronaći aplikaciju za odabir medija.</string>
   <!--AttachmentTypeSelectorAdapter-->
+  <string name="AttachmentTypeSelectorAdapter_camera">Kamera</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Slika</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Audio</string>
@@ -81,6 +82,7 @@ ovaj kontakt.</string>
   <string name="ConversationActivity_select_contact_info">Odaberite informacije kontakta</string>
   <string name="ConversationActivity_compose_message">Sastavi poruku</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Došlo je do greške prilikom postavljanja privitka.</string>
+  <string name="ConversationActivity_the_gif_you_selected_was_too_big">Odabrana gif slika je prevelika!</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Odabrani video prelazi ograničenje veličine poruke (%1$skB).</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Odabrani audio prelazi ograničenje veličine poruke (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Primatelj nije valjana SMS ili adresa e-pošte!</string>
@@ -144,11 +146,16 @@ ovaj kontakt.</string>
   <string name="DateUtils_now">Sada</string>
   <string name="DateUtils_minutes_ago">%d min</string>
   <!--DeviceListActivity-->
+  <string name="DeviceListActivity_unlink_s">Odspoji \'%s\'?</string>
+  <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Odspajanjem ovog uređaja više nećete moći slati ili primati poruke.</string>
   <string name="DeviceListActivity_network_connection_failed">Povezivanje na mrežu nije uspjelo...</string>
   <string name="DeviceListActivity_try_again">Pokušajte ponovno</string>
+  <string name="DeviceListActivity_unlinking_device">Odspajanje uređaja...</string>
+  <string name="DeviceListActivity_unlinking_device_no_ellipsis">Odspajanje uređaja</string>
   <string name="DeviceListActivity_network_failed">Greška mreže!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Neimenovani uređaj</string>
+  <string name="DeviceListItem_linked_s">Povezan %s</string>
   <string name="DeviceListItem_last_active_s">Zadnje aktivno %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Podijeli s</string>
@@ -242,9 +249,13 @@ ponovno uvoženje će rezultirati duplim porukama.</string>
   <string name="DeviceProvisioningActivity_content_bullets">
 - Čitati sve vaše poruke
 \n- Slati poruke u vaše ime</string>
+  <string name="DeviceProvisioningActivity_content_progress_title">Povezivanje uređaja</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">Povezivanje novog uređaja...</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">Uređaj povezan!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Uređaj nije pronađen.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Mrežna greška.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Neispravan QR kod.</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Imate previše povezanih uređaja, pokušajte ukloniti neke...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Unesite lozinku</string>
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure ikona</string>
@@ -382,7 +393,6 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <string name="KeyCachingService_passphrase_cached">TextSecure je otključan</string>
   <string name="KeyCachingService_lock">Zaključajte sa lozinkom</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_messages_in_d_conversations">%1$d poruka u %2$d razgovora</string>
   <string name="MessageNotifier_most_recent_from_s">Najnovije od: %1$s</string>
   <string name="MessageNotifier_locked_message">Zaključana poruka...</string>
   <string name="MessageNotifier_media_message_with_text">Media poruka: %s</string>
@@ -397,6 +407,7 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">Brzi odgovor nije dostupan kada je TextSecure zaključan!</string>
   <string name="QuickResponseService_problem_sending_message">Greška prilikom slanja poruke!</string>
+  <!--SingleRecipientNotificationBuilder-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">STARA LOZINKA:</string>
   <string name="change_passphrase_activity__new_passphrase">NOVA LOZINKA:</string>
@@ -448,6 +459,7 @@ Primljena poruka sa nepoznatim ključem identiteta. Pritisnite za obradu i prika
   <string name="country_selection_fragment__loading_countries">Učitavanje zemalja...</string>
   <string name="country_selection_fragment__search">Traži</string>
   <!--device_list_fragment-->
+  <string name="device_list_fragment__no_devices_linked">Nema povezanih uređaja...</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Nije moguće dohvatiti zapise sa vašeg uređaja. Još uvijek možete koristiti ADB kako biste dohvatili debug zapise.</string>
   <string name="log_submit_activity__thanks">Hvala na pomoći!</string>
@@ -594,6 +606,7 @@ neuspješno.</string>
   <string name="AndroidManifest__media_overview">Sve slike</string>
   <string name="AndroidManifest__media_overview_named">Sve slike sa %1$s</string>
   <string name="AndroidManifest__message_details">Detalji poruke</string>
+  <string name="AndroidManifest_manage_linked_devices">Upravljanje povezanim uređajima</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Uvoz / izvoz</string>
   <string name="arrays__my_identity_key">Moj ključ identiteta</string>
@@ -641,7 +654,6 @@ neuspješno.</string>
   <string name="preferences__pref_timeout_interval_title">Interval vremenskog ograničenja</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Vrijeme nakon kojeg će se obrisati lozinka iz memorije</string>
   <string name="preferences__notifications">Obavijesti</string>
-  <string name="preferences__display_message_notifications_in_status_bar">Prikaži obavijesti o porukama u statusnoj traci</string>
   <string name="preferences__led_color">LED boja</string>
   <string name="preferences__led_color_unknown">Nepoznato</string>
   <string name="preferences__pref_led_blink_title">LED uzorak treptanja</string>

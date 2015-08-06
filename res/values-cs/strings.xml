@@ -148,11 +148,16 @@ kontakt</string>
   <string name="DateUtils_now">Teď</string>
   <string name="DateUtils_minutes_ago">%d minuta</string>
   <!--DeviceListActivity-->
+  <string name="DeviceListActivity_unlink_s">Rozpojit \'%s\'?</string>
+  <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Rozpojením toho zařízení nebude dále možno posílat a přijímat zprávy.</string>
   <string name="DeviceListActivity_network_connection_failed">Síťové spojení slehalo...</string>
   <string name="DeviceListActivity_try_again">Zkusit znovu</string>
+  <string name="DeviceListActivity_unlinking_device">Rozpojování zařízení...</string>
+  <string name="DeviceListActivity_unlinking_device_no_ellipsis">Rozpojuji zařízení</string>
   <string name="DeviceListActivity_network_failed">Síť selhala</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Nepojmenované zřízení</string>
+  <string name="DeviceListItem_linked_s">Propojeno %s</string>
   <string name="DeviceListItem_last_active_s">Naposled aktivní %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Sdílet s</string>
@@ -242,9 +247,13 @@ tuto zálohu importovali, mohou se některé zprávy objevit vícekrát.</string
   <string name="DeviceProvisioningActivity_content_bullets">
 Přečíst všechny zprávy
 Poslat zprávy Vaším jménem.</string>
+  <string name="DeviceProvisioningActivity_content_progress_title">Propojuji zařízení</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">Propojuji nové zařízení...</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">Zařízení propojena!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Nenalezeno žádné zařízení.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Chyba sítě.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Neplatný QR kód.</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Omlouváme se, ale máte propojeno příliš mnoho zařízení, pokuste se některé odpojit...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Zadat heslo</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Ikona TextSecure</string>
@@ -376,7 +385,6 @@ Obdržena zpráva s neznámým identifikačním klíčem. Klepněte pro její zp
   <string name="KeyCachingService_passphrase_cached">TextSecure je odemčený</string>
   <string name="KeyCachingService_lock">Uzamknout heslem</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_messages_in_d_conversations">%1$d zpráv v %2$d konverzacích</string>
   <string name="MessageNotifier_most_recent_from_s">Poslední od: %1$s</string>
   <string name="MessageNotifier_locked_message">Zamčená zpráva</string>
   <string name="MessageNotifier_media_message_with_text">Multimediální zpráva: %s</string>
@@ -391,6 +399,7 @@ Obdržena zpráva s neznámým identifikačním klíčem. Klepněte pro její zp
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">Rychlá dopověď není dostupná pokud je TextSecure uzamčen!</string>
   <string name="QuickResponseService_problem_sending_message">Problém při odesílání zprávy!</string>
+  <!--SingleRecipientNotificationBuilder-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">STARÉ HESLO</string>
   <string name="change_passphrase_activity__new_passphrase">NOVÉ HESLO</string>
@@ -442,6 +451,7 @@ Obdržena zpráva s neznámým identifikačním klíčem. Klepněte pro její zp
   <string name="country_selection_fragment__loading_countries">Načítám země...</string>
   <string name="country_selection_fragment__search">Hledat</string>
   <!--device_list_fragment-->
+  <string name="device_list_fragment__no_devices_linked">Žádná zařízení nejsou propojena...</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Nepodařilo se zaznamenat logy z vašeho zařízení. Jěště můžete zkusit použít pro získání debug logů nástroj ADB.</string>
   <string name="log_submit_activity__thanks">Díky za Vaši pomoc!</string>
@@ -594,6 +604,7 @@ TextSecure nyní automaticky ověří vaše telefonní číslo pomocí potvrzova
   <string name="AndroidManifest__media_overview">Všechny obrázky</string>
   <string name="AndroidManifest__media_overview_named">Všechny obrázky s %1$s</string>
   <string name="AndroidManifest__message_details">Podrobnosti zprávy</string>
+  <string name="AndroidManifest_manage_linked_devices">Spravovat propojená zařízení</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Import / export</string>
   <string name="arrays__my_identity_key">Můj identifikační klíč</string>
@@ -641,7 +652,6 @@ TextSecure nyní automaticky ověří vaše telefonní číslo pomocí potvrzova
   <string name="preferences__pref_timeout_interval_title">Limit čekání</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Doba po kterou si pamatovat vyplněné heslo</string>
   <string name="preferences__notifications">Upozornění</string>
-  <string name="preferences__display_message_notifications_in_status_bar">Zobrazovat upozornění v oznamovacím panelu</string>
   <string name="preferences__led_color">Barva LED</string>
   <string name="preferences__led_color_unknown">Neznámý</string>
   <string name="preferences__pref_led_blink_title">Schéma blikání LED</string>

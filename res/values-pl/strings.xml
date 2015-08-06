@@ -12,6 +12,10 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Usunąć wszystkie stare wiadomości?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Czy na pewno chcesz przyciąć wszystkie wątki rozmów do %s najnowszych wiadomości?</string>
   <string name="ApplicationPreferencesActivity_delete">Usuń</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">Wyłączyć hasło?</string>
+  <string name="ApplicationPreferencesActivity_disable_lock_screen">
+Wyłączyć blokadę ekranu dla wiadomości?
+</string>
   <string name="ApplicationPreferencesActivity_disable">Wyłącz</string>
   <string name="ApplicationPreferencesActivity_unregistering">Wyrejestrowanie </string>
   <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Trwa wyrejestrowanie od używania wiadomości TextSecure</string>
@@ -38,6 +42,7 @@ Aby ponownie zacząć używać wiadomości TextSecure, będziesz musiał/a ponow
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nie można znaleźć aplikacji, aby wybrać media.</string>
   <!--AttachmentTypeSelectorAdapter-->
+  <string name="AttachmentTypeSelectorAdapter_camera">Kamera</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Zdjęcie</string>
   <string name="AttachmentTypeSelectorAdapter_video">Film</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Dźwięk</string>
@@ -51,6 +56,7 @@ ten kontakt.
 </string>
   <string name="ConfirmIdentityDialog_accept">Akceptuj</string>
   <!--ContactsDatabase-->
+  <string name="ContactsDatabase_message_s">Wiadomość %s</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">Rozmiar wiadomości: %d KB </string>
   <string name="ConversationItem_expires_s">Wygasa: %s</string>
@@ -77,6 +83,7 @@ ten kontakt.
   <string name="ConversationActivity_select_contact_info">Wybierz dane kontaktowe</string>
   <string name="ConversationActivity_compose_message">Nowa wiadomość</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Przepraszamy, wystąpił błąd podczas dodawania załącznika.</string>
+  <string name="ConversationActivity_the_gif_you_selected_was_too_big">Obraz gif, który wybrałeś był zbyt duży!</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Przepraszamy, ten plik wideo przekracza dozwolony rozmiar (%1$skB).</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Przepraszamy, ten plik audio przekracza dozwolony rozmiar (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Podany numer lub adres e-mail jest niepoprawny!</string>
@@ -140,11 +147,16 @@ ten kontakt.
   <string name="DateUtils_now">Teraz</string>
   <string name="DateUtils_minutes_ago">%d minuta</string>
   <!--DeviceListActivity-->
+  <string name="DeviceListActivity_unlink_s">Wyrejestrować \'%s\'?</string>
+  <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Wyrejestrowanie tego urządzenia spowoduje, że nie będziesz miał możliwości wysyłania i odbierania wiadomości.</string>
   <string name="DeviceListActivity_network_connection_failed">Brak połączenia internetowego...</string>
   <string name="DeviceListActivity_try_again">Spróbuj ponownie</string>
+  <string name="DeviceListActivity_unlinking_device">Wyrejestrowywanie urządzenia...</string>
+  <string name="DeviceListActivity_unlinking_device_no_ellipsis">Wyrejestrowywanie urządzenia</string>
   <string name="DeviceListActivity_network_failed">Błąd sieci!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Nieznane urządzenie</string>
+  <string name="DeviceListItem_linked_s">Zarejestrowano %s</string>
   <string name="DeviceListItem_last_active_s">Ostatnio aktywny %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Podziel się z</string>
@@ -234,9 +246,13 @@ Przywracanie szyfrowanej kopii zapasowej TextSecure spowoduje nadpisanie Twoich 
 \n- Wysyłać wiadomości w Twoim imieniu
 
     </string>
+  <string name="DeviceProvisioningActivity_content_progress_title">Rejestrowanie urządzenia</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">Rejestrowanie nowego urządzenia...</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">Urządzenie zostało zarejestrowane!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Nie znaleziono żadnych urządzeń.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Błąd sieci.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Niepoprawny kod QR.</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Niestety masz już zbyt dużo zarejestrowanych urządzeń, spróbuj usunąć któreś z nich...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Podaj hasło</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Ikona TextSecure</string>
@@ -371,24 +387,27 @@ Otrzymano wiadomość z nieznanym kluczem tożsamości. Kliknij aby przetworzyć
   <string name="KeyCachingService_passphrase_cached">TextSecure jest odblokowany</string>
   <string name="KeyCachingService_lock">Zablokuj hasłem</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_messages_in_d_conversations">%1$d wiadomości w %2$d wątkach</string>
   <string name="MessageNotifier_most_recent_from_s">Najnowsza z: %1$s</string>
+  <string name="MessageNotifier_locked_message">Wiadomość zablokowana...</string>
   <string name="MessageNotifier_media_message_with_text">Wiadomość multimedialna: %s</string>
   <string name="MessageNotifier_no_subject">(Brak tematu)</string>
   <string name="MessageNotifier_message_delivery_failed">Nie udało się dostarczyć wiadomości.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Dostarczenie wiadomości nie powiodło się.</string>
   <string name="MessageNotifier_error_delivering_message">Błąd przy wysyłaniu wiadomości.</string>
   <string name="MessageNotifier_mark_all_as_read">Oznacz wszystkie jako przeczytane</string>
+  <string name="MessageNotifier_mark_read">Przeczytane</string>
   <string name="MessageNotifier_media_message">Wiadomość multimedialna</string>
   <string name="MessageNotifier_reply">Odpowiedź</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">Szybka odpowiedź jest niedostępna kiedy TextSecure jest zablokowany!</string>
   <string name="QuickResponseService_problem_sending_message">Wystąpił błąd przy wysyłaniu wiadomości!</string>
+  <!--SingleRecipientNotificationBuilder-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">STARE HASŁO:</string>
   <string name="change_passphrase_activity__new_passphrase">NOWE HASŁO:</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">POWTÓRZ NOWE HASŁO:</string>
   <!--contact_selection_activity-->
+  <string name="contact_selection_activity__enter_name_or_number">Wprowadź nazwę lub numer</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Brak kontaktów.</string>
   <string name="contact_selection_group_activity__finding_contacts">Ładowanie listy kontaktów...</string>
@@ -412,6 +431,7 @@ Otrzymano wiadomość z nieznanym kluczem tożsamości. Kliknij aby przetworzyć
   <string name="conversation_activity__compose_description">Kompozycja wiadomości</string>
   <string name="conversation_activity__emoji_toggle_description">Przełącz do emoji klawiatury</string>
   <string name="conversation_activity__attachment_thumbnail">Minaturka załącznika</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_description">Bezpośrednie przechwytywanie</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_downloading_description">Trwa pobieranie wiadomości multimedialnej</string>
   <string name="conversation_item__mms_image_description">Wiadomość multimedialna</string>
@@ -433,6 +453,7 @@ Otrzymano wiadomość z nieznanym kluczem tożsamości. Kliknij aby przetworzyć
   <string name="country_selection_fragment__loading_countries">Wczytywanie krajów...</string>
   <string name="country_selection_fragment__search">Szukaj</string>
   <!--device_list_fragment-->
+  <string name="device_list_fragment__no_devices_linked">Brak zarejestrowanych urządzeń...</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Nie udało się odczytać logów z Twojego urządzenia. W dalszym ciągu możesz użyć ADB, aby pobrać logi debugowania.</string>
   <string name="log_submit_activity__thanks">Dziękujemy za Twoją pomoc!</string>
@@ -488,6 +509,8 @@ Importuj niezaszyfrowany plik kopii zapasowej, kompatybilny z \'SMSBackup And Re
   <string name="recipient_preferences__ringtone">Dzwonek</string>
   <string name="recipient_preferences__vibrate">Wibracja</string>
   <string name="recipient_preferences__block">Blokuj</string>
+  <string name="recipient_preferences__color">Kolor</string>
+  <string name="recipient_preferences__color_for_this_contact">Kolor tego kontaktu</string>
   <!--registration_activity-->
   <string name="registration_activity__textsecure_can_use_instant_messages_to_avoid_sms_charges_when_communicating_with_other_textsecure_users">
 Weryfikuj swój numer telefonu, aby połączyć się z TextSecure.</string>
@@ -497,6 +520,7 @@ NUMER TELEFONU</string>
   <string name="registration_activity__phone_number">NUMER TELEFONU</string>
   <string name="registration_activity__register">Rejestracja</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Podczas rejestracji, niektóre informacje o kontakcie zostaną przesłane tymczasowo na serwer. Nie będą one zapisane.</string>
+  <string name="registration_activity__powered_by_twilio">Wspierane przez twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">Niektóre możliwe problemy:</string>
   <string name="registration_problems__sms_interceptors">Przechwytywanie SMS.</string>
@@ -564,6 +588,7 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="AndroidManifest__media_overview">Wszystkie obrazy</string>
   <string name="AndroidManifest__media_overview_named">Wszystkie obrazy z %1$s</string>
   <string name="AndroidManifest__message_details">Szczegóły wiadomości</string>
+  <string name="AndroidManifest_manage_linked_devices">Zarządzaj zarejestrowanymi urządzeniami</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Import / eksport</string>
   <string name="arrays__my_identity_key">Mój klucz tożsamości</string>
@@ -601,6 +626,7 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="preferences__change_my_passphrase">Zmień moje hasło</string>
   <string name="preferences__enable_passphrase">Włącz hasło</string>
   <string name="preferences__passphrase_summary">Hasło %s</string>
+  <string name="preferences__enable_lock_screen_for_messages">Włącz blokadę ekranu dla wiadomości</string>
   <string name="preferences__screen_security">Ochrona ekranu</string>
   <string name="preferences__screen_security_summary">Ochrona ekranu %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokuj rzuty ekranu w obecnej liście oraz w aplikacji</string>
@@ -610,7 +636,6 @@ Upłynął czas oczekiwania na wiadomość weryfikacyjną SMS.</string>
   <string name="preferences__pref_timeout_interval_title">Wybierz czas wygaśnięcia hasła</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Ilość czasu zanim hasło zostanie wymazane z pamięci urządzenia</string>
   <string name="preferences__notifications">Powiadomienia</string>
-  <string name="preferences__display_message_notifications_in_status_bar">Wyświetlaj powiadomienia wiadomości w pasku statusu</string>
   <string name="preferences__led_color">Kolor LED</string>
   <string name="preferences__led_color_unknown">Nieznane</string>
   <string name="preferences__pref_led_blink_title">Wzór powiadomień LED</string>
@@ -730,6 +755,7 @@ Darmowe i prywatne wiadomości do użytkowników TextSecure i Signal</string>
   <string name="conversation__menu_leave_group">Opuść grupę</string>
   <string name="conversation__menu_delete_thread">Usuń wątek</string>
   <string name="conversation__menu_view_media">Wszystkie obrazy</string>
+  <string name="conversation__menu_conversation_settings">Ustawienia rozmowy</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Powiększ okno</string>
   <!--conversation_callable-->
@@ -773,5 +799,6 @@ Darmowe i prywatne wiadomości do użytkowników TextSecure i Signal</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona transportu</string>
   <!--quick_attachment_drawer-->
+  <string name="quick_camera_unavailable">Kamera jest niedostępna</string>
   <!--EOF-->
 </resources>

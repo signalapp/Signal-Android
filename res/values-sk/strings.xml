@@ -364,7 +364,6 @@ Bola prijatá správa s neznámou identou. Kliknite pre spracovanie a zobrazenie
   <string name="KeyCachingService_passphrase_cached">TextSecure je otvorený</string>
   <string name="KeyCachingService_lock">Zamkni s heslom</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_messages_in_d_conversations">%1$d správ v %2$d konverzáciách</string>
   <string name="MessageNotifier_most_recent_from_s">Najnovšie od: %1$s</string>
   <string name="MessageNotifier_media_message_with_text">Multimediálna správa: %s</string>
   <string name="MessageNotifier_no_subject">(bez predmetu)</string>
@@ -374,6 +373,7 @@ Bola prijatá správa s neznámou identou. Kliknite pre spracovanie a zobrazenie
   <string name="MessageNotifier_mark_all_as_read">Označ všetko ako prečítané</string>
   <string name="MessageNotifier_media_message">Multimediálna správa</string>
   <!--QuickResponseService-->
+  <!--SingleRecipientNotificationBuilder-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Staré heslo:</string>
   <string name="change_passphrase_activity__new_passphrase">Nové heslo:</string>
@@ -612,7 +612,6 @@ zlyhalo.
   <string name="preferences__pref_timeout_interval_title">Doba platnosti</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Časový interval po ktorom sa heslo vymaže z pamäte</string>
   <string name="preferences__notifications">Notifikácie</string>
-  <string name="preferences__display_message_notifications_in_status_bar">Zobrazuj hlásenia o správach v stavovom riadku</string>
   <string name="preferences__led_color">LED farba</string>
   <string name="preferences__led_color_unknown">Neznáme</string>
   <string name="preferences__pref_led_blink_title">Sekvencia blikania LED</string>

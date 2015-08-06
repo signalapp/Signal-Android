@@ -348,7 +348,6 @@
   <string name="KeyCachingService_passphrase_cached">ಟೆಕ್ಸ್ಟ್ ಸೆಕ್ಯೂರ್  ಬೀಗ ತೆಗೆದಿದೆ </string>
   <string name="KeyCachingService_lock">ಗುಪ್ತಪದವನ್ನು ಉಪಯೋಗಿಸಿಕೊಂಡು ಬೀಗ ಹಾಕಿ</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_messages_in_d_conversations">%1$d ಸಂದೇಶಗಳನ್ನು %2$d ಸಂಭಾಷಣೆಗಳಲ್ಲಿ.</string>
   <string name="MessageNotifier_most_recent_from_s">%1$s ನಿಂದ ಇತ್ತೀಚಿನ</string>
   <string name="MessageNotifier_media_message_with_text">ಬಹುಮಾಧ್ಯಮ ಸಂದೇಶ: %s</string>
   <string name="MessageNotifier_no_subject">(ವಿಷಯವಸ್ತು ಇಲ್ಲ)</string>
@@ -358,6 +357,7 @@
   <string name="MessageNotifier_mark_all_as_read">ಎಲ್ಲವನ್ನು ಓದಿದೆ ಎಂದು ಗುರುತು ಮಾಡಿ</string>
   <string name="MessageNotifier_media_message">ಬಹುಮಾಧ್ಯಮ ಸಂದೇಶ</string>
   <!--QuickResponseService-->
+  <!--SingleRecipientNotificationBuilder-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">ಹಳೆಯ ಗುಪ್ತಪದ:</string>
   <string name="change_passphrase_activity__new_passphrase">ಹೊಸ ಗುಪ್ತಪದ:</string>
@@ -569,7 +569,6 @@
   <string name="preferences__pref_timeout_interval_title">ಕಾಲಾವಧಿ</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">ಸ್ಮರಣೆಯಿಂದ ಗುಪ್ತಪದವನ್ನು ಮರೆಯುವ ಮೊದಲು ಕಾಯಬೇಕಿರುವ ಸಮಯ ಪ್ರಮಾಣ</string>
   <string name="preferences__notifications">ಸೂಚನೆಗಳು</string>
-  <string name="preferences__display_message_notifications_in_status_bar">ಸ್ಥಿತಿ ಪಟ್ಟಿಯಲ್ಲಿ ಸಂದೇಶದ ಸೂಚನೆಗಳನ್ನು ಪ್ರದರ್ಶಿಸಿ</string>
   <string name="preferences__led_color">ಎಲ್. ಇ. ಡಿ ಬಣ್ಣ</string>
   <string name="preferences__led_color_unknown">ತಿಳಿಯದ</string>
   <string name="preferences__pref_led_blink_title">ಎಲ್. ಇ. ಡಿ ಮಿಣುಕುವ ಮಾದರಿ</string>
