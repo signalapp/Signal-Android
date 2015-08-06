@@ -56,7 +56,7 @@ public class FromTextView extends EmojiTextView {
       if (!read) typeface = Typeface.BOLD_ITALIC;
       else       typeface = Typeface.ITALIC;
     } else if (!read) {
-      typeface = Typeface.BOLD;
+      typeface = Typeface.BOLD_ITALIC;
     } else {
       typeface = Typeface.NORMAL;
     }

@@ -48,11 +48,10 @@ import static org.thoughtcrime.securesms.util.SpanUtil.color;
  */
 
 public class ConversationListItem extends RelativeLayout
-                                  implements Recipients.RecipientsModifiedListener
-{
+        implements Recipients.RecipientsModifiedListener {
   private final static String TAG = ConversationListItem.class.getSimpleName();
 
-  private final static Typeface BOLD_TYPEFACE  = Typeface.create("sans-serif", Typeface.BOLD);
+    private final static Typeface BOLD_TYPEFACE = Typeface.create("sans-serif", Typeface.BOLD_ITALIC);
   private final static Typeface LIGHT_TYPEFACE = Typeface.create("sans-serif-light", Typeface.NORMAL);
 
   private Context         context;
@@ -135,6 +134,10 @@ public class ConversationListItem extends RelativeLayout
   @TargetApi(VERSION_CODES.LOLLIPOP)
   public void setRippleColor(Recipients recipients) {
     if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
+            if (!read)
+                setBackgroundResource(R.drawable.conversation_list_item_unread_background);
+            else
+                setBackgroundResource(R.drawable.conversation_list_item_background);
       ((RippleDrawable)(getBackground()).mutate())
           .setColor(ColorStateList.valueOf(recipients.getColor().toConversationColor(context)));
     }
