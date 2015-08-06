@@ -335,7 +335,8 @@ public class ConversationItem extends LinearLayout {
               new Emoji.InvalidatingPageLoadedListener(bodyText)),
           TextView.BufferType.SPANNABLE);
     }  else if(messageRecord.type == TYPE_WRONG_KEY && messageRecord.containsKey()) {
-        deleteMessage(messageRecord);
+      deleteMessage(messageRecord);
+      handleKeyExchangeClicked();
     } else if(messageRecord.isGroupAction()) {
       bodyText.setText(Emoji.getInstance(context).emojify(context.getString(R.string.GroupUtil_group_updated),
                       new Emoji.InvalidatingPageLoadedListener(bodyText)),
@@ -747,6 +748,7 @@ public class ConversationItem extends LinearLayout {
       intent.putExtra("is_push", messageRecord.isPush());
       intent.putExtra("master_secret", masterSecret);
       intent.putExtra("sent", messageRecord.isOutgoing());
+      intent.putExtra("from_sender", messageRecord.type == TYPE_WRONG_KEY);
       context.startActivity(intent);
     }
 
