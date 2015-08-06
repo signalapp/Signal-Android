@@ -12,6 +12,8 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.util.Log;
@@ -78,7 +80,8 @@ public class EmojiProvider {
     }
   }
 
-  public Spannable emojify(CharSequence text, TextView tv) {
+  public @Nullable Spannable emojify(@Nullable CharSequence text, @NonNull TextView tv) {
+    if (text == null) return null;
     Matcher                matches = EMOJI_RANGE.matcher(text);
     SpannableStringBuilder builder = new SpannableStringBuilder(text);
 
