@@ -52,30 +52,30 @@ public class DeviceProvisioningActivity extends PassphraseRequiredActionBarActiv
            .append("\n")
            .append(small(getString(R.string.DeviceProvisioningActivity_content_bullets)));
 
-    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    builder.setTitle(R.string.DeviceProvisioningActivity_link_this_device);
-    builder.setIconAttribute(R.drawable.icon_dialog);
-    builder.setMessage(content);
-    builder.setPositiveButton(R.string.DeviceProvisioningActivity_continue, new DialogInterface.OnClickListener() {
-      @Override
-      public void onClick(DialogInterface dialog, int which) {
+    final AlertDialog dialog = new AlertDialog.Builder(this)
+            .setTitle(R.string.DeviceProvisioningActivity_link_this_device)
+            .setIconAttribute(R.drawable.icon_dialog)
+            .setMessage(content)
+            .setPositiveButton(R.string.DeviceProvisioningActivity_continue, new DialogInterface.OnClickListener() {
+              @Override
+              public void onClick(DialogInterface dialog, int which) {
 
-      }
-    });
-    builder.setNegativeButton(R.string.DeviceProvisioningActivity_cancel, new DialogInterface.OnClickListener() {
-      @Override
-      public void onClick(DialogInterface dialog, int which) {
-        dialog.dismiss();
-        finish();
-      }
-    });
-    builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-      @Override
-      public void onDismiss(DialogInterface dialog) {
-        finish();
-      }
-    });
-    final AlertDialog dialog = builder.create();
+              }
+            })
+            .setNegativeButton(R.string.DeviceProvisioningActivity_cancel, new DialogInterface.OnClickListener() {
+              @Override
+              public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                finish();
+              }
+            })
+            .setOnDismissListener(new DialogInterface.OnDismissListener() {
+              @Override
+              public void onDismiss(DialogInterface dialog) {
+                finish();
+              }
+            })
+            .create();
     dialog.show();
     dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
       @Override
