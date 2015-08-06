@@ -88,7 +88,7 @@
                     android:background="@drawable/touch_highlight_background"
                     android:contentDescription="@string/conversation_activity__send"
                     android:nextFocusLeft="@+id/embedded_text_editor"
-                    android:paddingTop="14dp"
+                    android:paddingTop="13dp"
                     android:paddingBottom="12dp"
                     android:visibility="visible"
                     android:src="?conversation_send_button_sms_insecure"
@@ -113,7 +113,7 @@
                     android:scaleType="centerInside"
                     android:cropToPadding="false"
                     android:paddingTop="0dp"
-                    android:paddingBottom="6dp"
+                    android:paddingBottom="0dp"
                     android:paddingLeft="3dp"
                     android:paddingRight="6dp"/>
                 <org.thoughtcrime.securesms.components.EmojiToggle
