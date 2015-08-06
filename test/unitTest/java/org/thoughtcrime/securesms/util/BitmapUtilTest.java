@@ -1,9 +1,11 @@
 package org.thoughtcrime.securesms.util;
 
-import org.thoughtcrime.securesms.TextSecureTestCase;
+import org.junit.Test;
 
-public class BitmapUtilTest extends TextSecureTestCase {
-  public void testScaleFactorNormal() {
+import static org.junit.Assert.assertEquals;
+
+public class BitmapUtilTest {
+  @Test public void testScaleFactorNormal() {
     assertEquals(1, BitmapUtil.getScaleFactor(1000, 1000, 9000, 9000, false));
 
     assertEquals(1, BitmapUtil.getScaleFactor(1000, 1000, 750, 750, false));
@@ -18,7 +20,7 @@ public class BitmapUtilTest extends TextSecureTestCase {
     assertEquals(2, BitmapUtil.getScaleFactor(1000, 2000, 499, 499, false));
   }
 
-  public void testScaleFactorConstrained() {
+  @Test public void testScaleFactorConstrained() {
     assertEquals(1, BitmapUtil.getScaleFactor(1000, 1000, 9000, 9000, true));
 
     assertEquals(2, BitmapUtil.getScaleFactor(1000, 1000, 750, 750, true));
