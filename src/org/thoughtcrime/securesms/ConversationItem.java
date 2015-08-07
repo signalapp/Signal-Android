@@ -218,10 +218,6 @@ public class ConversationItem extends LinearLayout {
 
     this.conversationFragment = fragment;
 
-    if(messageRecord.getRecipients().isGroupRecipient()) {
-      this.setVisibility(View.GONE);
-    }
-
     setConversationBackgroundDrawables(messageRecord);
     setSelectionBackgroundDrawables(messageRecord);
     setBodyText();
@@ -334,11 +330,17 @@ public class ConversationItem extends LinearLayout {
       bodyText.setText(Emoji.getInstance(context).emojify(context.getString(R.string.MessageRecord_left_group),
               new Emoji.InvalidatingPageLoadedListener(bodyText)),
           TextView.BufferType.SPANNABLE);
-    }  else if(messageRecord.type == TYPE_WRONG_KEY && messageRecord.containsKey()) {
+    }  else if(messageRecord.type == TYPE_WRONG_KEY && messageRecord.containsKey() && !messageRecord.getRecipients().isGroupRecipient()) {
       deleteMessage(messageRecord);
       handleKeyExchangeClicked();
-    } else if(messageRecord.isGroupAction()) {
+    } else if (messageRecord.type == TYPE_WRONG_KEY && messageRecord.containsKey() && messageRecord.getRecipients().isGroupRecipient()) {
+        deleteMessage(messageRecord);
+    } else if(messageRecord.isGroupAction() && messageRecord.getIndividualRecipient().getName().equals("Unknown")) {
       bodyText.setText(Emoji.getInstance(context).emojify(context.getString(R.string.GroupUtil_group_updated),
+                      new Emoji.InvalidatingPageLoadedListener(bodyText)),
+              TextView.BufferType.SPANNABLE);
+    } else if(messageRecord.isFailed() && messageRecord.getIndividualRecipient().getName().equals("Unknown") && messageRecord.isOutgoing()) {
+      bodyText.setText(Emoji.getInstance(context).emojify(context.getString(R.string.msg_failed),
                       new Emoji.InvalidatingPageLoadedListener(bodyText)),
               TextView.BufferType.SPANNABLE);
     } else {

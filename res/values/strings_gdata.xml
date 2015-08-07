@@ -66,4 +66,5 @@
     <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions"> Sorry, the selected audio exceeds message size restrictions (%1$skB).</string>
     <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions"> Sorry, the selected video exceeds message size restrictions (%1$skB).</string>
     <string name="eula_gdata_header_one">WELCOME TO</string>
+    <string name="msg_failed">Hinweis: Vermutlich hat sich der Schlüssel eines Empfängers durch eine Neuinstallation oder den versuchten Angriff eines Dritten geändert. Innerhalb einer Gruppe kann dieses Problem gelöst werden indem ein gewöhnlicher Schlüsselaustausch über eine neue Unterhaltung mit dem Kontakt stattfindet und anschließend die Gruppe aktualisiert wird.</string>
 </resources>
