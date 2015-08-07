@@ -32,4 +32,8 @@ public class AppearancePreferenceFragmentActions {
     onData(Matchers.<Object>allOf(withKey("pref_language"))).perform(click());
   }
 
+  public static void clickEmoji() throws Exception {
+    onData(Matchers.<Object>allOf(withKey("pref_emoji"))).perform(click());
+  }
+
 }

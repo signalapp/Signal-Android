@@ -858,6 +858,10 @@
     <string name="preferences__default">Default</string>
     <string name="preferences__language">Language</string>
     <string name="preferences__language_summary">Language %s</string>
+    <string name="preferences__apple_emoji">Apple</string>
+    <string name="preferences__google_emoji">Google</string>
+    <string name="preferences__emoji">Emoji</string>
+    <string name="preferences__emoji_summary">%s Emoji</string>
     <string name="preferences__textsecure_messages">TextSecure messages</string>
     <string name="preferences__use_the_data_channel_for_communication_with_other_textsecure_users">
         Free private messaging to TextSecure and Signal users
