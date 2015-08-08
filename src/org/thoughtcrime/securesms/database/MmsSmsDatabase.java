@@ -54,8 +54,8 @@ public class MmsSmsDatabase extends Database {
                                                            MmsDatabase.STATUS, MmsSmsColumns.RECEIPT_COUNT,
                                                            MmsSmsColumns.MISMATCHED_IDENTITIES,
                                                            MmsDatabase.NETWORK_FAILURE, TRANSPORT};
-  private static final String[] MMS_PROJECTION = {MmsDatabase.DATE_SENT + " * 1000 AS " + MmsSmsColumns.NORMALIZED_DATE_SENT,
-                                                  MmsDatabase.DATE_RECEIVED + " * 1000 AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED,
+  private static final String[] MMS_PROJECTION = {MmsDatabase.DATE_SENT + " AS " + MmsSmsColumns.NORMALIZED_DATE_SENT,
+                                                  MmsDatabase.DATE_RECEIVED + " AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED,
                                                   MmsSmsColumns.ID, SmsDatabase.BODY, MmsSmsColumns.READ, MmsSmsColumns.THREAD_ID,
                                                   SmsDatabase.TYPE, SmsDatabase.ADDRESS, SmsDatabase.ADDRESS_DEVICE_ID, SmsDatabase.SUBJECT, MmsDatabase.MESSAGE_TYPE,
                                                   MmsDatabase.MESSAGE_BOX, SmsDatabase.STATUS, MmsDatabase.PART_COUNT,
@@ -63,8 +63,8 @@ public class MmsSmsDatabase extends Database {
                                                   MmsDatabase.MESSAGE_SIZE, MmsDatabase.EXPIRY, MmsDatabase.STATUS,
                                                   MmsSmsColumns.RECEIPT_COUNT, MmsSmsColumns.MISMATCHED_IDENTITIES,
                                                   MmsDatabase.NETWORK_FAILURE, TRANSPORT};
-  private static final String[] SMS_PROJECTION = {SmsDatabase.DATE_SENT + " * 1 AS " + MmsSmsColumns.NORMALIZED_DATE_SENT,
-                                                  SmsDatabase.DATE_RECEIVED + " * 1 AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED,
+  private static final String[] SMS_PROJECTION = {SmsDatabase.DATE_SENT + " AS " + MmsSmsColumns.NORMALIZED_DATE_SENT,
+                                                  SmsDatabase.DATE_RECEIVED + " AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED,
                                                   MmsSmsColumns.ID, SmsDatabase.BODY, MmsSmsColumns.READ, MmsSmsColumns.THREAD_ID,
                                                   SmsDatabase.TYPE, SmsDatabase.ADDRESS, SmsDatabase.ADDRESS_DEVICE_ID, SmsDatabase.SUBJECT, MmsDatabase.MESSAGE_TYPE,
                                                   MmsDatabase.MESSAGE_BOX, SmsDatabase.STATUS, MmsDatabase.PART_COUNT,

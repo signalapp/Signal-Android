@@ -14,6 +14,8 @@ import android.support.annotation.NonNull;
 import android.support.v4.util.LruCache;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.util.VisibleForTesting;
+
 public class LargeSQLiteCursor extends AbstractCursor {
   private static final String TAG = LargeSQLiteCursor.class.getSimpleName();
 
@@ -21,13 +23,13 @@ public class LargeSQLiteCursor extends AbstractCursor {
   private final String         query;
   private final int            windowSize;
 
-  private int                       count;
-  private ContentObserver           contentObserver;
-  private ContentResolver           contentResolver;
-  private DataSetObserver           dataSetObserver;
-  private Uri                       notificationUri;
-  private LruCache<Integer, Cursor> loadedCursors;
-  private Cursor                    current;
+  private int             count;
+  private ContentObserver contentObserver;
+  private ContentResolver contentResolver;
+  private DataSetObserver dataSetObserver;
+  private Uri             notificationUri;
+  private CursorLruCache  loadedCursors;
+  private Cursor          current;
 
   public LargeSQLiteCursor(SQLiteDatabase db, String query, int windowSize) {
     this.db            = db;
@@ -35,7 +37,7 @@ public class LargeSQLiteCursor extends AbstractCursor {
     this.windowSize    = windowSize;
     this.count         = getCount(db, query);
     this.loadedCursors = new CursorLruCache(4);
-    updateCursor(0);
+    this.current       = getCursorFor(0);
   }
 
   private int getCount(SQLiteDatabase db, String query) {
@@ -58,15 +60,16 @@ public class LargeSQLiteCursor extends AbstractCursor {
     return query + " LIMIT " + limit + " OFFSET " + offset;
   }
 
-  private void updateCursor(int position) {
-    if (position < 0 || (count > 0 && position >= count)) return;
+  private Cursor getCursorFor(int position) {
+    if (position < 0 || (count > 0 && position >= count)) return null;
 
     final int    offset       = position - (position % windowSize);
     final Cursor loadedCursor = loadedCursors.get(offset);
+
     if (loadedCursor != null) {
-      current = loadedCursor;
       loadedCursors.remove(offset);
       loadedCursors.put(offset, loadedCursor);
+      return loadedCursor;
     } else {
       @SuppressLint("Recycle")
       Cursor cursor = db.rawQuery(buildWindowedQuery(windowSize, offset), null);
@@ -74,14 +77,14 @@ public class LargeSQLiteCursor extends AbstractCursor {
       if (dataSetObserver != null) cursor.registerDataSetObserver(dataSetObserver);
       if (contentObserver != null) cursor.registerContentObserver(contentObserver);
       loadedCursors.put(offset, cursor);
-      current = cursor;
       Log.w(TAG, "loaded new cursor for offset " + offset + ", holding " + loadedCursors.size() + " open cursors.");
+      return cursor;
     }
   }
 
   private boolean setPosition(int position) {
-    updateCursor(position);
-    return current.moveToPosition(position % windowSize);
+    current = getCursorFor(position);
+    return current != null && current.moveToPosition(position % windowSize);
   }
 
   @Override public int getCount() {
@@ -151,7 +154,6 @@ public class LargeSQLiteCursor extends AbstractCursor {
   }
 
   @Override public boolean onMove(int oldPosition, int newPosition) {
-    updateCursor(newPosition);
     return setPosition(newPosition);
   }
 
@@ -196,7 +198,7 @@ public class LargeSQLiteCursor extends AbstractCursor {
     return notificationUri;
   }
 
-  private class CursorLruCache extends LruCache<Integer, Cursor> {
+  @VisibleForTesting class CursorLruCache extends LruCache<Integer, Cursor> {
 
     public CursorLruCache(int maxSize) {
       super(maxSize);
@@ -208,5 +210,9 @@ public class LargeSQLiteCursor extends AbstractCursor {
         oldc.close();
       }
     }
+  }
+
+  @VisibleForTesting CursorLruCache getLoadedCursors() {
+    return loadedCursors;
   }
 }
