@@ -1,13 +1,14 @@
 package org.thoughtcrime.securesms.util;
 
 import org.junit.Test;
+import org.thoughtcrime.securesms.BaseUnitTest;
 
 import java.util.LinkedList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class ListPartitionTest {
+public class ListPartitionTest extends BaseUnitTest {
 
   @Test public void testPartitionEven() {
     List<Integer> list = new LinkedList<>();

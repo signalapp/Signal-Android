@@ -22,12 +22,13 @@ import android.util.Log;
 import junit.framework.AssertionFailedError;
 
 import org.junit.Test;
+import org.thoughtcrime.securesms.BaseUnitTest;
 
 import java.net.URISyntaxException;
 
 import static org.junit.Assert.assertTrue;
 
-public class Rfc5724UriTest {
+public class Rfc5724UriTest extends BaseUnitTest {
 
   private static final String TAG = Rfc5724UriTest.class.getSimpleName();
 
