@@ -17,19 +17,16 @@
 
 package org.thoughtcrime.securesms.util;
 
-import android.util.Log;
-
 import junit.framework.AssertionFailedError;
 
 import org.junit.Test;
+import org.thoughtcrime.securesms.BaseUnitTest;
 
 import java.net.URISyntaxException;
 
 import static org.junit.Assert.assertTrue;
 
-public class Rfc5724UriTest {
-
-  private static final String TAG = Rfc5724UriTest.class.getSimpleName();
+public class Rfc5724UriTest extends BaseUnitTest {
 
   @Test public void testInvalidPath() throws Exception {
     final String[] invalidSchemaUris = {
@@ -101,7 +98,6 @@ public class Rfc5724UriTest {
       final Rfc5724Uri testUri     = new Rfc5724Uri(uriTestPair[0]);
       final String     paramResult = testUri.getQueryParams().get(uriTestPair[1]);
 
-      Log.d(TAG, paramResult + " ?= " + uriTestPair[2]);
       if (paramResult == null) assertTrue(uriTestPair[2] == null);
       else                     assertTrue(paramResult.equals(uriTestPair[2]));
     }
