@@ -21,6 +21,7 @@ import com.bumptech.glide.Glide;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
+import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.preferences.NotificationPrivacyPreference;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -167,12 +168,17 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
 
   private boolean hasBigPictureSlide(@Nullable ListenableFutureTask<SlideDeck> slideDeck) {
     try {
-      return masterSecret != null                                        &&
-             slideDeck != null                                           &&
-             Build.VERSION.SDK_INT >= 16                                 &&
-             slideDeck.get().getThumbnailSlide(context).hasImage()       &&
-             !slideDeck.get().getThumbnailSlide(context).isInProgress()  &&
-             slideDeck.get().getThumbnailSlide(context).getThumbnailUri() != null;
+      if (masterSecret == null || slideDeck == null || Build.VERSION.SDK_INT < 16) {
+        return false;
+      }
+
+      Slide thumbnailSlide = slideDeck.get().getThumbnailSlide();
+
+      return thumbnailSlide != null         &&
+             thumbnailSlide.hasImage()      &&
+             !thumbnailSlide.isInProgress() &&
+             thumbnailSlide.getThumbnailUri() != null;
+
     } catch (InterruptedException | ExecutionException e) {
       Log.w(TAG, e);
       return false;
@@ -183,7 +189,7 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
                                @NonNull ListenableFutureTask<SlideDeck> slideDeck)
   {
     try {
-      Uri uri = slideDeck.get().getThumbnailSlide(context).getThumbnailUri();
+      Uri uri = slideDeck.get().getThumbnailSlide().getThumbnailUri();
 
       return Glide.with(context)
                   .load(new DecryptableStreamUriLoader.DecryptableUri(masterSecret, uri))

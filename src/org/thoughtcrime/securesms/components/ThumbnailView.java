@@ -21,7 +21,6 @@ import android.widget.ImageView;
 import com.bumptech.glide.DrawableTypeRequest;
 import com.bumptech.glide.GenericRequestBuilder;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.GlideBitmapDrawable;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
@@ -32,11 +31,11 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.jobs.PartProgressEvent;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
+import org.thoughtcrime.securesms.mms.RoundedCorners;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
-import org.thoughtcrime.securesms.mms.RoundedCorners;
 import org.thoughtcrime.securesms.util.Util;
 
 import de.greenrobot.event.EventBus;
@@ -245,7 +244,8 @@ public class ThumbnailView extends FrameLayout {
     public void onSuccess(final SlideDeck slideDeck) {
       if (slideDeck == null) return;
 
-      final Slide slide = slideDeck.getThumbnailSlide(getContext());
+      final Slide slide = slideDeck.getThumbnailSlide();
+
       if (slide != null) {
         Util.runOnMain(new Runnable() {
           @Override
