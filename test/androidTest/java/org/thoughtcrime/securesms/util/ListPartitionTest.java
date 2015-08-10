@@ -1,15 +1,15 @@
 package org.thoughtcrime.securesms.util;
 
-import org.junit.Test;
+import org.thoughtcrime.securesms.TextSecureTestCase;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static junit.framework.Assert.assertEquals;
 
-public class ListPartitionTest {
+public class ListPartitionTest extends TextSecureTestCase {
 
-  @Test public void testPartitionEven() {
+  public void testPartitionEven() {
     List<Integer> list = new LinkedList<>();
 
     for (int i=0;i<100;i++) {
@@ -32,7 +32,7 @@ public class ListPartitionTest {
     }
   }
 
-  @Test public void testPartitionOdd() {
+  public void testPartitionOdd() {
     List<Integer> list = new LinkedList<>();
 
     for (int i=0;i<100;i++) {
@@ -60,7 +60,7 @@ public class ListPartitionTest {
     assertEquals((int)partitions.get(10).get(0), 100);
   }
 
-  @Test public void testPathological() {
+  public void testPathological() {
     List<Integer> list = new LinkedList<>();
 
     for (int i=0;i<100;i++) {

@@ -80,9 +80,8 @@ dependencies {
     compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
     compile 'org.whispersystems:textsecure-android:1.6.2'
 
-    testCompile 'junit:junit:4.12'
-    testCompile 'org.assertj:assertj-core:1.7.1'
-    testCompile "org.mockito:mockito-core:1.9.5"
+    androidTestCompile 'com.google.dexmaker:dexmaker:1.2'
+    androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.2'
 
     androidTestCompile ('org.assertj:assertj-core:1.7.1') {
         exclude group: 'org.hamcrest', module: 'hamcrest-core'
@@ -90,6 +89,13 @@ dependencies {
     androidTestCompile ('com.squareup.assertj:assertj-android:1.0.0') {
         exclude group: 'org.hamcrest',        module: 'hamcrest-core'
         exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestCompile ('com.android.support.test:runner:0.2') {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestCompile ('com.android.support.test.espresso:espresso-core:2.1') {
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'javax.inject'
     }
 }
 
@@ -155,6 +161,7 @@ android {
         minSdkVersion 9
         targetSdkVersion 22
 
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField "long", "BUILD_TIMESTAMP", System.currentTimeMillis() + "L"
         buildConfigField "String", "PUSH_URL", "\"https://textsecure-service.whispersystems.org\""
         buildConfigField "boolean", "DEV_BUILD", "false"
@@ -219,9 +226,6 @@ android {
         androidTest {
             java.srcDirs = ['test/androidTest/java']
         }
-        test {
-            java.srcDirs = ['test/unitTest/java']
-        }
     }
 
      lintOptions {
@@ -260,3 +264,27 @@ if (propFile.canRead()){
     android.buildTypes.release.signingConfig = null
 }
 
+if (project.hasProperty('espresso') && System.console() != null) {
+    println "______________________WARNING_______________________"
+    println "ALL YOUR CONTACTS WILL BE DELETED IN THE PROCESS"
+    println "OF RUNNING THESE TESTS, TYPE 'delete all my contacts'"
+    println "TO CONTINUE"
+    println "----------------------------------------------------"
+
+    def input = System.console().readLine(':')
+    if (input == 'delete all my contacts') {
+        android.productFlavors {
+            base {}
+            espresso {
+                testInstrumentationRunner "org.thoughtcrime.securesms.TextSecureWakingTestRunner"
+            }
+        }
+        android.sourceSets.espresso {
+            manifest.srcFile 'test/espresso/AndroidManifest.xml'
+        }
+        android.sourceSets.androidTestEspresso {
+            java.srcDirs = ['test/androidTestEspresso/java']
+            res.srcDirs  = ['test/androidTestEspresso/res']
+        }
+    }
+}
