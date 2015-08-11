@@ -368,7 +368,6 @@ SMS της συσκευής σας στο TextSecure. Αν έχετε ήδη ε�
   <string name="KeyCachingService_passphrase_cached">Το TextSecure είναι ξεκλειδωμένο</string>
   <string name="KeyCachingService_lock">Κλείδωμα με συνθηματικό</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_messages_in_d_conversations">%1$d μηνύματα σe %2$d συζητήσεις</string>
   <string name="MessageNotifier_most_recent_from_s">Τελευταίο μήνυμα από: %1$s</string>
   <string name="MessageNotifier_media_message_with_text">Μήνυμα Πολυμέσων: %s</string>
   <string name="MessageNotifier_no_subject">(Χωρίς Θέμα)</string>
@@ -378,6 +377,7 @@ SMS της συσκευής σας στο TextSecure. Αν έχετε ήδη ε�
   <string name="MessageNotifier_mark_all_as_read">Επισήμανση όλων ως αναγνωσμένα</string>
   <string name="MessageNotifier_media_message">Μήνυμα πολυμέσων</string>
   <!--QuickResponseService-->
+  <!--SingleRecipientNotificationBuilder-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">ΠΑΛΙΟ ΣΥΝΘΗΜΑΤΙΚΟ</string>
   <string name="change_passphrase_activity__new_passphrase">ΝΕΟ ΣΥΝΘΗΜΑΤΙΚΟ:</string>
@@ -606,7 +606,6 @@ SMS της συσκευής σας στο TextSecure. Αν έχετε ήδη ε�
   <string name="preferences__pref_timeout_interval_title">Χρονικό όριο</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Πόση ώρα θα περιμένουμε πριν σβήσουμε το συνθηματικό από τη μνήμη</string>
   <string name="preferences__notifications">Ειδοποιήσεις</string>
-  <string name="preferences__display_message_notifications_in_status_bar">Προβολή ειδοποιήσεων για νέα μηνύματα στη γραμμή κατάστασης</string>
   <string name="preferences__led_color">Χρώμα LED</string>
   <string name="preferences__led_color_unknown">Αγνωστο</string>
   <string name="preferences__pref_led_blink_title">Μοτίβο αναβοσβήματος του LED</string>

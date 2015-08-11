@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
           package="org.thoughtcrime.securesms"
-      android:versionCode="140"
-      android:versionName="2.24.0">
+      android:versionCode="144"
+      android:versionName="2.25.2">
 
     <uses-sdk tools:overrideLibrary="com.amulyakhare.textdrawable,com.astuetz.pagerslidingtabstrip,pl.tajchert.waitingdots"/>
 
@@ -155,7 +155,6 @@
     <activity android:name=".ConversationActivity"
               android:windowSoftInputMode="stateUnchanged"
               android:launchMode="singleTask"
-              android:theme="@style/TextSecure.LightTheme.Popup"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize" />
 
     <activity android:name=".ConversationPopupActivity"

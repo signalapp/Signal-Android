@@ -291,6 +291,7 @@
   <string name="MessageNotifier_mark_all_as_read">全部標示為已讀</string>
   <string name="MessageNotifier_media_message">媒體訊息</string>
   <!--QuickResponseService-->
+  <!--SingleRecipientNotificationBuilder-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">舊的『自訂密碼』:</string>
   <string name="change_passphrase_activity__new_passphrase">新的『自訂密碼』:</string>
@@ -472,7 +473,6 @@ TextSecure 等候驗證用的手機簡訊已逾時。</string>
   <string name="preferences__pref_timeout_interval_title">倒數時間</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">等候『自訂密碼』幫 TextSecure 上鎖的等候時間</string>
   <string name="preferences__notifications">通知</string>
-  <string name="preferences__display_message_notifications_in_status_bar">在 Android 系統狀態列顯示通知</string>
   <string name="preferences__led_color">LED燈號顏色</string>
   <string name="preferences__pref_led_blink_title">LED 閃爍模式</string>
   <string name="preferences__pref_led_blink_custom_pattern_title">自訂 LED 閃爍模式</string>

@@ -152,11 +152,16 @@ Vastaanotettu: %4$s</string>
   <string name="DateUtils_now">Nyt</string>
   <string name="DateUtils_minutes_ago">%d min</string>
   <!--DeviceListActivity-->
+  <string name="DeviceListActivity_unlink_s">Poista \'%s\'?</string>
+  <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Jos poistat tämän laitteen, sillä ei voi enää lähettää eikä vastaanottaa viestejä.</string>
   <string name="DeviceListActivity_network_connection_failed">Verkkoyhteyden muodostus epäonnistui...</string>
   <string name="DeviceListActivity_try_again">Yritä uudelleen</string>
+  <string name="DeviceListActivity_unlinking_device">Poistetaan laitetta...</string>
+  <string name="DeviceListActivity_unlinking_device_no_ellipsis">Poistetaan laitetta</string>
   <string name="DeviceListActivity_network_failed">Verkkoyhteysvirhe!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Nimeämätön laite</string>
+  <string name="DeviceListItem_linked_s">Yhdistetty %s</string>
   <string name="DeviceListItem_last_active_s">Viimeksi käytetty %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Jaa</string>
@@ -250,9 +255,13 @@ seuraa niiden uudelleentuonnista viestien kaksoiskappaleita.</string>
   <string name="DeviceProvisioningActivity_content_bullets">
 - lukea kaikki viestisi
 \n- lähettää viestejä sinun nimessäsi</string>
+  <string name="DeviceProvisioningActivity_content_progress_title">Yhdistetään laitetta</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">Yhdistetään uutta laitetta...</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">Laite yhdistetty!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Laitetta ei löytynyt.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Verkkovirhe.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Virheellinen QR-koodi.</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Sinulla on liian monta laitetta yhdistettynä. Kokeile poistaa joitakin...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Syötä salalause</string>
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure-kuvake</string>
@@ -391,7 +400,6 @@ Vastaanotettiin viesti tuntemattomalla identiteettiavaimella. Aloita käsittely 
   <string name="KeyCachingService_passphrase_cached">TextSecuren lukitus on auki</string>
   <string name="KeyCachingService_lock">Lukitse salalauseella</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_messages_in_d_conversations">%1$d viestiä %2$d keskustelussa</string>
   <string name="MessageNotifier_most_recent_from_s">Uusin lähettäjältä: %1$s</string>
   <string name="MessageNotifier_locked_message">Lukittu viesti...</string>
   <string name="MessageNotifier_media_message_with_text">Mediaviesti: %s</string>
@@ -400,12 +408,13 @@ Vastaanotettiin viesti tuntemattomalla identiteettiavaimella. Aloita käsittely 
   <string name="MessageNotifier_failed_to_deliver_message">Viestin lähetys ei onnistunut.</string>
   <string name="MessageNotifier_error_delivering_message">Virhe viestiä toimitettaessa.</string>
   <string name="MessageNotifier_mark_all_as_read">Merkitse kaikki luetuiksi</string>
-  <string name="MessageNotifier_mark_read">Merk. luetuksi</string>
+  <string name="MessageNotifier_mark_read">Luettu</string>
   <string name="MessageNotifier_media_message">Mediaviesti</string>
   <string name="MessageNotifier_reply">Vastaa</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">Pikavastaus ei toimi, kun TextSecure on lukittu!</string>
   <string name="QuickResponseService_problem_sending_message">Ongelma viestin lähettämisessä!</string>
+  <!--SingleRecipientNotificationBuilder-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">VANHA SALALAUSE:</string>
   <string name="change_passphrase_activity__new_passphrase">UUSI SALALAUSE:</string>
@@ -457,6 +466,7 @@ Vastaanotettiin viesti tuntemattomalla identiteettiavaimella. Aloita käsittely 
   <string name="country_selection_fragment__loading_countries">Ladataan maita...</string>
   <string name="country_selection_fragment__search">Hae</string>
   <!--device_list_fragment-->
+  <string name="device_list_fragment__no_devices_linked">Ei yhdistettyjä laitteita...</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Lokien hakeminen laitteesta epäonnistui. Voit sen sijaan käyttää ADB-työkalua virheenkorjauslokien noutamiseen.</string>
   <string name="log_submit_activity__thanks">Kiitos avustasi!</string>
@@ -599,6 +609,7 @@ epäonnistui.</string>
   <string name="AndroidManifest__media_overview">Kaikki kuvat</string>
   <string name="AndroidManifest__media_overview_named">%1$s: kaikki kuvat</string>
   <string name="AndroidManifest__message_details">Viestin tiedot</string>
+  <string name="AndroidManifest_manage_linked_devices">Hallitse yhdistettyjä laitteita</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Varmuuskopiot</string>
   <string name="arrays__my_identity_key">Oma identiteettiavaimeni</string>
@@ -645,7 +656,6 @@ epäonnistui.</string>
   <string name="preferences__pref_timeout_interval_title">Salalauseen ajastimen kesto</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Odotusaika, ennen kuin salalause unohdetaan muistista</string>
   <string name="preferences__notifications">Ilmoitukset</string>
-  <string name="preferences__display_message_notifications_in_status_bar">Näytä ilmoitukset viesteistä tilapalkissa</string>
   <string name="preferences__led_color">LED:in väri</string>
   <string name="preferences__led_color_unknown">Tuntematon</string>
   <string name="preferences__pref_led_blink_title">LED:in vilkkumistahti</string>

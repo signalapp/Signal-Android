@@ -193,6 +193,7 @@
   <string name="MessageNotifier_error_delivering_message">Помилка доставки повідомлення.</string>
   <string name="MessageNotifier_mark_all_as_read">Позначити все як прочитане</string>
   <!--QuickResponseService-->
+  <!--SingleRecipientNotificationBuilder-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">СТАРА ФРАЗА-КЛЮЧ:</string>
   <string name="change_passphrase_activity__new_passphrase">НОВА ФРАЗА-КЛЮЧ:</string>
@@ -299,7 +300,6 @@
   <string name="preferences__pref_timeout_interval_title">Термін зберігання</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Час, після якого фраза-пароль буде стерта з пам’яті</string>
   <string name="preferences__notifications">Сповіщення</string>
-  <string name="preferences__display_message_notifications_in_status_bar">Показувати сповіщення повідомлень в рядку стану</string>
   <string name="preferences__led_color">Колір LED</string>
   <string name="preferences__pref_led_blink_title">Шаблон мерехтіння LED</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Власний шаблон мерехтіння LED задано!</string>

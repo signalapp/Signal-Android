@@ -6,6 +6,8 @@ import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
 
+import org.thoughtcrime.securesms.preferences.NotificationPrivacyPreference;
+
 import java.io.IOException;
 
 public class TextSecurePreferences {
@@ -71,6 +73,11 @@ public class TextSecurePreferences {
   private static final String RATING_ENABLED_PREF              = "pref_rating_enabled";
 
   public  static final String REPEAT_ALERTS_PREF               = "pref_repeat_alerts";
+  public  static final String NOTIFICATION_PRIVACY_PREF        = "pref_notification_privacy";
+
+  public static NotificationPrivacyPreference getNotificationPrivacy(Context context) {
+    return new NotificationPrivacyPreference(getStringPreference(context, NOTIFICATION_PRIVACY_PREF, "all"));
+  }
 
   public static long getRatingLaterTimestamp(Context context) {
     return getLongPreference(context, RATING_LATER_PREF, 0);

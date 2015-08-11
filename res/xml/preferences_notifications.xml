@@ -4,7 +4,7 @@
     <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
                         android:key="pref_key_enable_notifications"
                         android:title="@string/preferences__notifications"
-                        android:summary="@string/preferences__display_message_notifications_in_status_bar"
+                        android:summary="@string/preferences__enable_message_notifications"
                         android:defaultValue="true" />
 
     <RingtonePreference android:dependency="pref_key_enable_notifications"
@@ -36,7 +36,6 @@
         android:entries="@array/pref_led_blink_pattern_entries"
         android:entryValues="@array/pref_led_blink_pattern_values" />
 
-
     <CheckBoxPreference android:key="pref_key_inthread_notifications"
                         android:title="@string/preferences__inthread_notifications"
                         android:summary="@string/preferences__play_inthread_notifications"
@@ -44,10 +43,17 @@
                         android:defaultValue="true" />
 
     <ListPreference
-        android:key="pref_repeat_alerts"
-        android:defaultValue="0"
-        android:title="@string/preferences__repeat_alerts"
-        android:dependency="pref_key_enable_notifications"
-        android:entries="@array/pref_repeat_alerts_entries"
-        android:entryValues="@array/pref_repeat_alerts_values" />
+            android:key="pref_repeat_alerts"
+            android:defaultValue="0"
+            android:title="@string/preferences__repeat_alerts"
+            android:dependency="pref_key_enable_notifications"
+            android:entries="@array/pref_repeat_alerts_entries"
+            android:entryValues="@array/pref_repeat_alerts_values" />
+
+    <ListPreference android:key="pref_notification_privacy"
+                    android:title="@string/preferences_notifications__display_in_notifications"
+                    android:defaultValue="all"
+                    android:entries="@array/pref_notification_privacy_entries"
+                    android:entryValues="@array/pref_notification_privacy_values"/>
+
 </PreferenceScreen>

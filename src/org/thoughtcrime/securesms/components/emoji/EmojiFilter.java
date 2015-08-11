@@ -19,7 +19,7 @@ public class EmojiFilter implements InputFilter {
     char[] v = new char[end - start];
     TextUtils.getChars(source, start, end, v, 0);
     Spannable emojified = EmojiProvider.getInstance(view.getContext()).emojify(new String(v), view);
-    if (source instanceof Spanned) {
+    if (source instanceof Spanned && emojified != null) {
       TextUtils.copySpansFrom((Spanned) source, start, end, null, emojified, 0);
     }
     return emojified;

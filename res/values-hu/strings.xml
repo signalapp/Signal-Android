@@ -42,6 +42,7 @@ Tárolt képernyő engedélyezése az üzeneteknek?</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nem található alkalmazás a média kiválasztásához</string>
   <!--AttachmentTypeSelectorAdapter-->
+  <string name="AttachmentTypeSelectorAdapter_camera">Kamera</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Kép</string>
   <string name="AttachmentTypeSelectorAdapter_video">Mozgókép</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Hang</string>
@@ -86,6 +87,7 @@ Elküldöd a titkosítatlan üzenetet?</string>
   <string name="ConversationActivity_select_contact_info">Válassz névjegy infót!</string>
   <string name="ConversationActivity_compose_message">Üzenetírás</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Sajnos nem sikerült a melléklet beállítása.</string>
+  <string name="ConversationActivity_the_gif_you_selected_was_too_big">Az általad választott gif túl nagy volt!</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Sajnos a kiválasztott mozgókép mérete meghaladja a maximális üzenetméret határt (%1$skB).</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Sajnos a kiválasztott hangállomány mérete meghaladja a maximális üzenetméret határt (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">A fogadó címe nem érvényes SMS vagy email cím!</string>
@@ -149,11 +151,16 @@ Elküldöd a titkosítatlan üzenetet?</string>
   <string name="DateUtils_now">Most</string>
   <string name="DateUtils_minutes_ago">%d perc</string>
   <!--DeviceListActivity-->
+  <string name="DeviceListActivity_unlink_s">Társítás megszüntetése ezzel: \'%s\'?</string>
+  <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Ez az eszköz társításának megszüntetésével ez többé nem lesz képes üzeneteket küldeni vagy fogadni.</string>
   <string name="DeviceListActivity_network_connection_failed">Hálózati csatlakozás sikertelen...</string>
   <string name="DeviceListActivity_try_again">Újrapróbálkozás</string>
+  <string name="DeviceListActivity_unlinking_device">Eszköz társításának megszüntetése...</string>
+  <string name="DeviceListActivity_unlinking_device_no_ellipsis">Eszköz társításának megszüntetése</string>
   <string name="DeviceListActivity_network_failed">Hálózati hiba!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Megnevezetlen eszköz</string>
+  <string name="DeviceListItem_linked_s">Társítva: %s</string>
   <string name="DeviceListItem_last_active_s">Utoljára aktív %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Megosztás...</string>
@@ -243,17 +250,21 @@ akkor az újbóli importálás duplikált üzeneteket eredményez.</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Hibás korábbi jelszó!</string>
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Adj meg egy új jelszót!</string>
   <!--DeviceProvisioningActivity-->
-  <string name="DeviceProvisioningActivity_link_this_device">Csatlakozzon az eszköz?</string>
+  <string name="DeviceProvisioningActivity_link_this_device">Társítod ezt az eszközt?</string>
   <string name="DeviceProvisioningActivity_cancel">MÉGSEM</string>
   <string name="DeviceProvisioningActivity_continue">FOLYTATÁS</string>
-  <string name="DeviceProvisioningActivity_title">Csatlakozzon az eszköz?</string>
+  <string name="DeviceProvisioningActivity_title">Társítod ezt az eszközt?</string>
   <string name="DeviceProvisioningActivity_content_intro">Képes lesz</string>
   <string name="DeviceProvisioningActivity_content_bullets">
 - Az összes üzenet olvasása
 \n- Üzenetek küldése a nevedben</string>
+  <string name="DeviceProvisioningActivity_content_progress_title">Eszköz társítása</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">Új eszköz társítása</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">Eszköz társítva!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Nem található eszköz</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Hálózati hiba</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Érvénytelen QR kód</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Sajnos túl sok eszközöd van társítva jelenleg, próbálj meg néhányat eltávolítani...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Jelszó megadása</string>
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure ikon</string>
@@ -291,7 +302,7 @@ telefonszámot!
 szám (%s) érvénytelen.
  </string>
   <string name="RegistrationActivity_unsupported">Nem támogatott</string>
-  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Sajnáljuk, de a jelen
+  <string name="RegistrationActivity_sorry_this_device_is_not_supported_for_data_messaging">Sajnos a jelen
 eszköz nem támogatja az adat alapú üzenetküldést. Az Android 4.0-nál régebbi verziót használó eszközök esetén
 rendelkezniük kell Google fiókkal. Az Android 4.0-t vagy frissebb verziót használó eszközök
 nem igénylik a Google fiók meglétét, de a Play Áruház alkalmazásnak telepítve kell lennie.
@@ -399,7 +410,6 @@ Ismeretlen azonosító kulcsú üzenet érkezett. Kattints rá a feldolgozáshoz
   <string name="KeyCachingService_passphrase_cached">A TextSecure feloldásra került.</string>
   <string name="KeyCachingService_lock">Lezárás jelszóval</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_messages_in_d_conversations">%1$d üzenet %2$d beszélgetésben</string>
   <string name="MessageNotifier_most_recent_from_s">Legutóbbi tőle: %1$s</string>
   <string name="MessageNotifier_locked_message">Zárolt üzenet...</string>
   <string name="MessageNotifier_media_message_with_text">Média üzenet: %s</string>
@@ -414,6 +424,7 @@ Ismeretlen azonosító kulcsú üzenet érkezett. Kattints rá a feldolgozáshoz
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">Gyors válasz nem elérhető, amikor a TextSecure zárolva van!</string>
   <string name="QuickResponseService_problem_sending_message">Probléma az üzenetküldésben!</string>
+  <!--SingleRecipientNotificationBuilder-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">RÉGI JELSZÓ:</string>
   <string name="change_passphrase_activity__new_passphrase">ÚJ JELSZÓ:</string>
@@ -465,6 +476,7 @@ Ismeretlen azonosító kulcsú üzenet érkezett. Kattints rá a feldolgozáshoz
   <string name="country_selection_fragment__loading_countries">Országok betöltése...</string>
   <string name="country_selection_fragment__search">Keresés</string>
   <!--device_list_fragment-->
+  <string name="device_list_fragment__no_devices_linked">Nincsenek társított eszközök...</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Nem sikerült a naplóbejegyzések elérése az eszközön. Helyettük az ADB használható a hibakeresési naplóbejegyzésekhez.</string>
   <string name="log_submit_activity__thanks">Köszönjük a segítségedet!</string>
@@ -631,6 +643,7 @@ sikertelen.
   <string name="AndroidManifest__media_overview">Minden fénykép</string>
   <string name="AndroidManifest__media_overview_named">Minden fénykép vele: %1$s</string>
   <string name="AndroidManifest__message_details">Üzenet részletei</string>
+  <string name="AndroidManifest_manage_linked_devices">Társított eszközök kezelése</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importálás / Exportálás</string>
   <string name="arrays__my_identity_key">Saját azonosító kulcs</string>
@@ -677,7 +690,6 @@ sikertelen.
   <string name="preferences__pref_timeout_interval_title">Érvényességi idő tartama</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">A jelszó memóriából való törlése előtti várakozási idő tartama</string>
   <string name="preferences__notifications">Értesítések</string>
-  <string name="preferences__display_message_notifications_in_status_bar">Üzenet értesítések megjelenítése a státusz sorban</string>
   <string name="preferences__led_color">LED színe</string>
   <string name="preferences__led_color_unknown">Ismeretlen</string>
   <string name="preferences__pref_led_blink_title">LED villogás mintázata</string>

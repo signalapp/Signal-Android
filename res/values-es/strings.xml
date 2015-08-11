@@ -153,11 +153,16 @@ Recibido:%4$s</string>
   <string name="DateUtils_now">Ahora</string>
   <string name="DateUtils_minutes_ago">%d mins</string>
   <!--DeviceListActivity-->
+  <string name="DeviceListActivity_unlink_s">¿Desvincular \'%s\'?</string>
+  <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Al desvincular este dispositivo, ya no podrá enviar y recibir mensajes.</string>
   <string name="DeviceListActivity_network_connection_failed">Fallo de conexión a la red...</string>
   <string name="DeviceListActivity_try_again">Intentar de nuevo</string>
+  <string name="DeviceListActivity_unlinking_device">Desvinculando dispositivo...</string>
+  <string name="DeviceListActivity_unlinking_device_no_ellipsis">Desvinculando dispositivo</string>
   <string name="DeviceListActivity_network_failed">¡Fallo de red!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Dispositivo sin nombre</string>
+  <string name="DeviceListItem_linked_s">Se vinculó %s</string>
   <string name="DeviceListItem_last_active_s">Activo por última vez el %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Compartir con</string>
@@ -259,9 +264,13 @@ Por favor pida al remitente que actualice a la versión más reciente y reenvíe
         - Leer todos sus mensajes
         \n- Enviar mensajes en su nombre
     </string>
+  <string name="DeviceProvisioningActivity_content_progress_title">Vinculando dispositivo</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">Vinculando nuevo dispositivo...</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">¡Dispositivo vinculado!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">No se encontró ningun dispositivo.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Error de red.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Código QR no válido.</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Lo sentimos, ya tiene demasiados dispositivos vinculados, pruebe a eliminar alguno...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Introduzca clave de acceso</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icono de TextSecure</string>
@@ -407,7 +416,6 @@ Se recibió un mensaje con una clave de identidad desconocida. Haga clic para pr
   <string name="KeyCachingService_passphrase_cached">TextSecure está desbloqueado</string>
   <string name="KeyCachingService_lock">Bloquear con clave de acceso</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_messages_in_d_conversations">%1$d mensajes en %2$d conversaciones</string>
   <string name="MessageNotifier_most_recent_from_s">Más recientes desde: %1$s</string>
   <string name="MessageNotifier_locked_message">Mensaje bloqueado...</string>
   <string name="MessageNotifier_media_message_with_text">Mensaje multimedia: %s</string>
@@ -422,6 +430,7 @@ Se recibió un mensaje con una clave de identidad desconocida. Haga clic para pr
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">¡Respuesta rápida no disponible cuando TextSecure está bloqueado!</string>
   <string name="QuickResponseService_problem_sending_message">¡Hubo un problema al enviar el mensaje!</string>
+  <!--SingleRecipientNotificationBuilder-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">CLAVE DE ACCESO ANTERIOR:</string>
   <string name="change_passphrase_activity__new_passphrase">CLAVE DE ACCESO NUEVA:</string>
@@ -473,6 +482,7 @@ Se recibió un mensaje con una clave de identidad desconocida. Haga clic para pr
   <string name="country_selection_fragment__loading_countries">Cargando países...</string>
   <string name="country_selection_fragment__search">Buscar</string>
   <!--device_list_fragment-->
+  <string name="device_list_fragment__no_devices_linked">No hay dispositivos vinculados...</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">No se pudieron obtener los registros de actividad de su dispositivo. En su lugar, aún puede usar ADB para acceder a los registros de depuración.</string>
   <string name="log_submit_activity__thanks">¡Gracias por su ayuda!</string>
@@ -645,6 +655,7 @@ por SMS.
   <string name="AndroidManifest__media_overview">Todas las imágenes</string>
   <string name="AndroidManifest__media_overview_named">Todas la imágenes con %1$s</string>
   <string name="AndroidManifest__message_details">Detalles del mensaje</string>
+  <string name="AndroidManifest_manage_linked_devices">Administrar dispositivos vinculados</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importar/exportar</string>
   <string name="arrays__my_identity_key">Mi clave de identidad</string>
@@ -691,7 +702,6 @@ por SMS.
   <string name="preferences__pref_timeout_interval_title">Intervalo de expiración</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">El intervalo de tiempo a esperar antes de eliminar la clave de acceso de la memoria</string>
   <string name="preferences__notifications">Notificaciones</string>
-  <string name="preferences__display_message_notifications_in_status_bar">Desplegar notificaciones de mensaje en la barra de estado</string>
   <string name="preferences__led_color">Color del LED</string>
   <string name="preferences__led_color_unknown">Desconocido</string>
   <string name="preferences__pref_led_blink_title">Patrón de parpadeo del LED</string>

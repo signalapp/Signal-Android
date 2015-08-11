@@ -12,6 +12,9 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Eliminare tutti i messaggi vecchi ora?</string>
   <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">Vuoi davvero ridurre tutte conversazioni ai soli %s messaggi più recenti?</string>
   <string name="ApplicationPreferencesActivity_delete">Elimina</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">Disabilitare la password?</string>
+  <string name="ApplicationPreferencesActivity_disable_lock_screen">
+Disabilitare la schermata di blocco per i messaggi?</string>
   <string name="ApplicationPreferencesActivity_disable">Disabilita</string>
   <string name="ApplicationPreferencesActivity_unregistering">Disiscriviti</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">Disicriviti dai messaggi di TextSecure</string>
@@ -142,11 +145,16 @@ questo contatto.</string>
   <string name="DateUtils_now">Adesso</string>
   <string name="DateUtils_minutes_ago">%d minuto</string>
   <!--DeviceListActivity-->
+  <string name="DeviceListActivity_unlink_s">Scollegare \'%s\'?</string>
+  <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Scollegando questo dispositivo, esso non sarà più in grado di inviare o ricevere messaggi.</string>
   <string name="DeviceListActivity_network_connection_failed">Connessione di rete fallita....</string>
   <string name="DeviceListActivity_try_again">Riprova</string>
+  <string name="DeviceListActivity_unlinking_device">Scollegamento dispositivo...</string>
+  <string name="DeviceListActivity_unlinking_device_no_ellipsis">Scollegamento dispositivo</string>
   <string name="DeviceListActivity_network_failed">Errore di rete!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Dispositivo senza nome</string>
+  <string name="DeviceListItem_linked_s">Collegato %s</string>
   <string name="DeviceListItem_last_active_s">Ultima attività %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Condividi con</string>
@@ -242,9 +250,13 @@ una nuova importazione creerà dei messaggi duplicati.</string>
   <string name="DeviceProvisioningActivity_content_bullets">
 - Leggere tutti i tuoi messaggi
 \n- Inviare messaggi col tuo nome</string>
+  <string name="DeviceProvisioningActivity_content_progress_title">Collegamento dispositivo</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">Collegamento nuovo dispositivo...</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">Dispositivo collegato!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Nessun dispositivo trovato.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Errore di rete.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Codice QR non valido.</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Siamo spiacenti, hai già troppi dispositivi collegati. Prova a scollegarne qualcuno...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Inserire la password</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icona TextSecure</string>
@@ -384,7 +396,6 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <string name="KeyCachingService_passphrase_cached">TextSecure è sbloccato</string>
   <string name="KeyCachingService_lock">Chiudi con password</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_messages_in_d_conversations">%1$d messaggi in %2$d conversazioni</string>
   <string name="MessageNotifier_most_recent_from_s">Il più recente da: %1$s</string>
   <string name="MessageNotifier_locked_message">Messaggio bloccato...</string>
   <string name="MessageNotifier_media_message_with_text">Messaggio multimediale: %s</string>
@@ -399,6 +410,7 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">Risposta veloce non disponibile quando TextSecure è bloccato!</string>
   <string name="QuickResponseService_problem_sending_message">Problema nell\'invio del messaggio!</string>
+  <!--SingleRecipientNotificationBuilder-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Vecchia password:</string>
   <string name="change_passphrase_activity__new_passphrase">Nuova password:</string>
@@ -449,6 +461,7 @@ Ricevuto un messaggio con una chiave identificativa sconosciuta. Clicca per elab
   <string name="country_selection_fragment__loading_countries">Caricamento dei paese...</string>
   <string name="country_selection_fragment__search">Cerca</string>
   <!--device_list_fragment-->
+  <string name="device_list_fragment__no_devices_linked">Nessun dispositivo collegato...</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Non riesco a recuperare i log dal tuo dispositivo. Puoi sempre utilizzare ADB per ottenere i log di debug.</string>
   <string name="log_submit_activity__thanks">Grazie dell\'aiuto!</string>
@@ -609,6 +622,7 @@ non riuscita.
   <string name="AndroidManifest__media_overview">Tutte le immagini</string>
   <string name="AndroidManifest__media_overview_named">Tutte le immagini con %1$s</string>
   <string name="AndroidManifest__message_details">Dettagli messaggio</string>
+  <string name="AndroidManifest_manage_linked_devices">Gestisci dispositivi collegati</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importa / Esporta</string>
   <string name="arrays__my_identity_key">La chiave della mia identità</string>
@@ -655,7 +669,6 @@ non riuscita.
   <string name="preferences__pref_timeout_interval_title">Intervallo di tempo</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">La quantità di tempo prima di dimenticare la password</string>
   <string name="preferences__notifications">Notifiche</string>
-  <string name="preferences__display_message_notifications_in_status_bar">Mostra messaggio di notifica nella barra di stato</string>
   <string name="preferences__led_color">Colore del LED</string>
   <string name="preferences__led_color_unknown">Sconosciuto</string>
   <string name="preferences__pref_led_blink_title">Impostazioni LED</string>

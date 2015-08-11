@@ -203,6 +203,7 @@
   <string name="MessageNotifier_error_delivering_message">Error entregant el missatge.</string>
   <string name="MessageNotifier_mark_all_as_read">Marca-ho tot com a llegit</string>
   <!--QuickResponseService-->
+  <!--SingleRecipientNotificationBuilder-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">FRASE CONTRASENYA ANTIGA:</string>
   <string name="change_passphrase_activity__new_passphrase">NOVA FRASE CONTRASENYA:</string>
@@ -311,7 +312,6 @@ des de l\'app de missatgeria predeterminada del sistema.</string>
   <string name="preferences__pref_timeout_interval_title">Interval del temps d\'espera</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">La quantitat de temps que s\'esperarà abans d\'oblidar la frase contrasenya de la memòria</string>
   <string name="preferences__notifications">Notificacions</string>
-  <string name="preferences__display_message_notifications_in_status_bar">Mostra notificacions dels missatges a la barra d\'estat</string>
   <string name="preferences__led_color">Color del LED</string>
   <string name="preferences__pref_led_blink_title">Patró d\'intermitència del LED</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">S\'ha fixat un patró de parpalleig del LED personalitzat!</string>
