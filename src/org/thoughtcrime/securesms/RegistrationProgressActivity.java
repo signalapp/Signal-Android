@@ -337,8 +337,8 @@ public class RegistrationProgressActivity extends BaseActionBarActivity {
 
     shutdownService();
     ApplicationContext.getInstance(this)
-                        .getJobManager()
-					   .add(new PushNotificationReceiveJob(this));
+                      .getJobManager()
+                      .add(new PushNotificationReceiveJob(this));
     finish();
   }
 

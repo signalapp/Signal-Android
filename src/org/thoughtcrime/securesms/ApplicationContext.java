@@ -120,11 +120,10 @@ public class ApplicationContext extends Application implements DependencyInjecto
         TextSecurePreferences.getGcmRegistrationId(this) == null)
     {
       this.jobManager.add(new GcmRefreshJob(this));
-    }
-	else if (!TextSecurePreferences.isGcmRegistered(this) &&
-            TextSecurePreferences.isPushRegistered(this)){
-      Intent intent = new Intent(this, MessageRetrievalService.class);
-      startService(intent);
+    } else if (!TextSecurePreferences.isGcmRegistered(this) &&
+               TextSecurePreferences.isPushRegistered(this))
+    {
+      startService(new Intent(this, MessageRetrievalService.class));
     }
   }
 
