@@ -153,7 +153,7 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
     }
   }
 
-  private class InvalidPartException extends Exception {
+  private static class InvalidPartException extends Exception {
     public InvalidPartException(Exception e) {super(e);}
   }
 
