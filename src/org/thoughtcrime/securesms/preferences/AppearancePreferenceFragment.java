@@ -19,8 +19,10 @@ public class AppearancePreferenceFragment extends ListSummaryPreferenceFragment 
 
     this.findPreference(TextSecurePreferences.THEME_PREF).setOnPreferenceChangeListener(new ListSummaryListener());
     this.findPreference(TextSecurePreferences.LANGUAGE_PREF).setOnPreferenceChangeListener(new ListSummaryListener());
+    this.findPreference(TextSecurePreferences.EMOJI_PREF).setOnPreferenceChangeListener(new ListSummaryListener());
     initializeListSummary((ListPreference)findPreference(TextSecurePreferences.THEME_PREF));
     initializeListSummary((ListPreference)findPreference(TextSecurePreferences.LANGUAGE_PREF));
+    initializeListSummary((ListPreference)findPreference(TextSecurePreferences.EMOJI_PREF));
   }
 
   @Override
@@ -46,11 +48,15 @@ public class AppearancePreferenceFragment extends ListSummaryPreferenceFragment 
     String[] languageEntryValues = context.getResources().getStringArray(R.array.language_values);
     String[] themeEntries        = context.getResources().getStringArray(R.array.pref_theme_entries);
     String[] themeEntryValues    = context.getResources().getStringArray(R.array.pref_theme_values);
+    String[] emojiEntries        = context.getResources().getStringArray(R.array.pref_emoji_entries);
+    String[] emojiEntryValues    = context.getResources().getStringArray(R.array.pref_emoji_values);
 
     int langIndex  = Arrays.asList(languageEntryValues).indexOf(TextSecurePreferences.getLanguage(context));
     int themeIndex = Arrays.asList(themeEntryValues).indexOf(TextSecurePreferences.getTheme(context));
+    int emojiIndex = Arrays.asList(emojiEntryValues).indexOf(TextSecurePreferences.getEmoji(context));
 
     return context.getString(R.string.preferences__theme_summary,    themeEntries[themeIndex]) + ", " +
-           context.getString(R.string.preferences__language_summary, languageEntries[langIndex]);
+           context.getString(R.string.preferences__language_summary, languageEntries[langIndex]) + ", " +
+           context.getString(R.string.preferences__emoji_summary,    emojiEntries[emojiIndex]);
   }
 }
