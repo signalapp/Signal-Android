@@ -14,7 +14,7 @@
   <string name="ApplicationPreferencesActivity_delete">Löschen</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Passwort deaktivieren?</string>
   <string name="ApplicationPreferencesActivity_disable_lock_screen">
-TextSecure und dessen Benachrichtigungen dauerhaft entsperren.</string>
+TextSecure und Benachrichtigungen dauerhaft entsperren.</string>
   <string name="ApplicationPreferencesActivity_disable">Deaktivieren</string>
   <string name="ApplicationPreferencesActivity_unregistering">Registrierung löschen</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">TextSecure-Registrierung wird gelöscht …</string>
@@ -144,11 +144,16 @@ Dies könnte bedeuten, dass jemand versucht, Ihr Gespräch abzuhören. Vielleich
   <string name="DateUtils_now">Jetzt</string>
   <string name="DateUtils_minutes_ago">%d min</string>
   <!--DeviceListActivity-->
+  <string name="DeviceListActivity_unlink_s">\"%s\" entfernen?</string>
+  <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Nach Entfernen dieses Geräts wird es keine weiteren Nachrichten senden oder empfangen können.</string>
   <string name="DeviceListActivity_network_connection_failed">Keine Netzwerkverbindung …</string>
   <string name="DeviceListActivity_try_again">Erneut versuchen</string>
+  <string name="DeviceListActivity_unlinking_device">Gerät wird entfernt …</string>
+  <string name="DeviceListActivity_unlinking_device_no_ellipsis">Gerät entfernen</string>
   <string name="DeviceListActivity_network_failed">Netzwerkfehler!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Unbenanntes Gerät</string>
+  <string name="DeviceListItem_linked_s">%s verknüpft</string>
   <string name="DeviceListItem_last_active_s">Zuletzt aktiv %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Teilen mit</string>
@@ -238,9 +243,13 @@ Bitten Sie den Absender, TextSecure zu aktualisieren und die Nachricht erneut zu
   <string name="DeviceProvisioningActivity_content_bullets">
 - Alle Nachrichten lesen
 \n- Nachrichten in Ihrem Namen senden </string>
+  <string name="DeviceProvisioningActivity_content_progress_title">Gerät verknüpfen</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">Neues Gerät wird verknüpft …</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">Gerät verknüpft!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Kein Gerät gefunden.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Netzwerkfehler.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Ungültiger QR-Code.</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Es sind bereits zu viele Geräte verknüpft. Versuchen Sie, mindestens eines zu entfernen …</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Passwort eingeben</string>
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure-Symbol</string>
@@ -322,7 +331,7 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key">Kontakt hat keinen Schlüssel.</string>
   <string name="VerifyIdentityActivity_recipient_has_no_identity_key_exclamation">Kontakt hat keinen Schlüssel!</string>
   <string name="VerifyIdentityActivity_scan_their_key_to_compare">QR-Code einscannen</string>
-  <string name="VerifyIdentityActivity_get_my_key_scanned">Eigenen QR-Code anzeigen</string>
+  <string name="VerifyIdentityActivity_get_my_key_scanned">Ihren QR-Code anzeigen</string>
   <string name="VerifyIdentityActivity_warning_the_scanned_key_does_not_match_please_check_the_fingerprint_text_carefully">ACHTUNG: Der eingescannte Schlüssel stimmt NICHT überein! Bitte überprüfen Sie den Text des Schlüssels sorgfältig.</string>
   <string name="VerifyIdentityActivity_not_verified_exclamation">NICHT überprüft!</string>
   <string name="VerifyIdentityActivity_their_key_is_correct_it_is_also_necessary_to_verify_your_key_with_them_as_well">Der Schlüssel des Kontakts ist korrekt. Lassen Sie ihn auch Ihren eigenen Schlüssel überprüfen.</string>
@@ -331,12 +340,12 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <!--ViewIdentityActivity-->
   <string name="ViewIdentityActivity_you_do_not_have_an_identity_key">Sie haben keinen eigenen Schlüssel.</string>
   <string name="ViewIdentityActivity_scan_to_compare">QR-Code einscannen</string>
-  <string name="ViewIdentityActivity_get_scanned_to_compare">Eigenen QR-Code anzeigen</string>
+  <string name="ViewIdentityActivity_get_scanned_to_compare">Ihren QR-Code anzeigen</string>
   <string name="ViewIdentityActivity_warning_the_scanned_key_does_not_match_exclamation">ACHTUNG: Der eingescannte Schlüssel stimmt NICHT überein!</string>
   <string name="ViewIdentityActivity_not_verified_exclamation">NICHT überprüft!</string>
   <string name="ViewIdentityActivity_the_scanned_key_matches_exclamation">Der eingescannte Schlüssel stimmt überein!</string>
   <string name="ViewIdentityActivity_verified_exclamation">Überprüft!</string>
-  <string name="ViewIdentityActivity_my_identity_fingerprint">Mein Schlüssel</string>
+  <string name="ViewIdentityActivity_my_identity_fingerprint">Ihr Schlüssel</string>
   <!--KeyExchangeInitiator-->
   <string name="KeyExchangeInitiator_initiate_despite_existing_request_question">Trotz bestehender Anfrage starten?</string>
   <string name="KeyExchangeInitiator_youve_already_sent_a_session_initiation_request_to_this_recipient_are_you_sure">Sie haben bereits eine Unterhaltungsanfrage an den Kontakt gesendet. Wollen Sie wirklich eine weitere senden? Dies wird die erste Anfrage ungültig machen.</string>
@@ -371,7 +380,7 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <string name="KeyCachingService_passphrase_cached">TextSecure ist entsperrt</string>
   <string name="KeyCachingService_lock">Mit Passwort sperren</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_messages_in_d_conversations">%1$d Nachrichten in %2$d Unterhaltungen</string>
+  <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d neue Nachrichten in %2$d Unterhaltungen</string>
   <string name="MessageNotifier_most_recent_from_s">Neueste von: %1$s</string>
   <string name="MessageNotifier_locked_message">Gesperrte Nachricht …</string>
   <string name="MessageNotifier_media_message_with_text">Mediennachricht: %s</string>
@@ -386,6 +395,9 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">Schnellantwort nicht verfügbar, solange TextSecure gesperrt ist!</string>
   <string name="QuickResponseService_problem_sending_message">Problem beim Senden der Nachricht!</string>
+  <!--SingleRecipientNotificationBuilder-->
+  <string name="SingleRecipientNotificationBuilder_new_textsecure_message">Neue TextSecure-Nachricht</string>
+  <string name="SingleRecipientNotificationBuilder_contents_hidden">Inhalt verborgen</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">ALTES PASSWORT:</string>
   <string name="change_passphrase_activity__new_passphrase">NEUES PASSWORT:</string>
@@ -437,6 +449,7 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <string name="country_selection_fragment__loading_countries">Länder werden geladen …</string>
   <string name="country_selection_fragment__search">Suchen</string>
   <!--device_list_fragment-->
+  <string name="device_list_fragment__no_devices_linked">Keine Geräte verknüpft …</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Entweder konnte kein Diagnoseprotokoll vom Gerät gelesen werden oder es gab Probleme dieses an den Server zu senden. Wenn Sie sicher sind, dass das Gerät mit dem Internet verbunden ist, können Sie versuchen das Protokoll mit ADB auszulesen.</string>
   <string name="log_submit_activity__thanks">Danke für Ihre Hilfe!</string>
@@ -453,7 +466,7 @@ Nachricht mit unbekanntem Schlüssel empfangen. Zum Anzeigen antippen.</string>
   <string name="database_upgrade_activity__updating_database">Datenbank wird aktualisiert …</string>
   <string name="export_fragment__export_plaintext_backup">Klartextsicherung exportieren</string>
   <string name="export_fragment__export_a_plaintext_backup_compatible_with">
-Eine mit \"SMS Backup + Restore\" kompatible Klartextsicherung exportieren</string>
+Eine mit "SMS Backup &amp; Restore" kompatible Klartextsicherung exportieren</string>
   <string name="import_fragment__import_system_sms_database">System-SMS importieren</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Datenbank aus der Standard-SMS-App importieren</string>
   <string name="import_fragment__import_encrypted_backup">Verschlüsselte Sicherung wiederherstellen</string>
@@ -461,7 +474,7 @@ Eine mit \"SMS Backup + Restore\" kompatible Klartextsicherung exportieren</stri
 Eine zuvor exportierte, verschlüsselte TextSecure-Datensicherung wiederherstellen</string>
   <string name="import_fragment__import_plaintext_backup">Klartextsicherung importieren</string>
   <string name="import_fragment__import_a_plaintext_backup_file">
-Eine mit \"SMS Backup + Restore\" kompatible Klartextsicherung importieren</string>
+Eine mit "SMS Backup &amp; Restore" kompatible Klartextsicherung importieren</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_images">Keine Bilder</string>
   <!--message_recipients_list_item-->
@@ -547,7 +560,7 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="recipients_panel__add_member">Mitglieder hinzufügen</string>
   <!--verify_identity_activity-->
   <string name="verify_identity_activity__their_identity_they_read">Schlüssel des Kontakts:</string>
-  <string name="verify_identity_activity__your_identity_you_read">Eigener Schlüssel:</string>
+  <string name="verify_identity_activity__your_identity_you_read">Ihr Schlüssel:</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Einige Vorgänge benötigen Ihre Aufmerksamkeit.</string>
   <string name="message_details_header__sent">Gesendet</string>
@@ -569,9 +582,10 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="AndroidManifest__media_overview">Alle Bilder</string>
   <string name="AndroidManifest__media_overview_named">Alle Bilder mit %1$s</string>
   <string name="AndroidManifest__message_details">Nachrichtendetails</string>
+  <string name="AndroidManifest_manage_linked_devices">Verknüpfte Geräte verwalten</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Datensicherung</string>
-  <string name="arrays__my_identity_key">Mein Schlüssel</string>
+  <string name="arrays__my_identity_key">Ihr Schlüssel</string>
   <string name="arrays__use_default">Standard verwenden</string>
   <string name="arrays__use_custom">Benutzerdefiniert verwenden</string>
   <string name="arrays__mute_for_one_hour">Für 1 Stunde</string>
@@ -581,6 +595,9 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="arrays__settings_default">Standard</string>
   <string name="arrays__enabled">Aktiviert</string>
   <string name="arrays__disabled">Deaktiviert</string>
+  <string name="arrays__name_and_message">Name und Nachricht</string>
+  <string name="arrays__name_only">Name</string>
+  <string name="arrays__neither">Weder noch</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d Stunde</item>
@@ -602,10 +619,10 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="preferences__choose_identity">Kontakt auswählen</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Wählen Sie den Kontakt aus der Kontaktliste.</string>
   <string name="preferences__change_passphrase">Passwort ändern</string>
-  <string name="preferences__change_my_passphrase">Mein Passwort ändern</string>
+  <string name="preferences__change_my_passphrase">Ihr Passwort ändern</string>
   <string name="preferences__enable_passphrase">Passwort aktivieren</string>
   <string name="preferences__passphrase_summary">Passwort %s</string>
-  <string name="preferences__enable_lock_screen_for_messages">TextSecure und dessen Benachrichtigungen sperren</string>
+  <string name="preferences__enable_lock_screen_for_messages">TextSecure und Benachrichtigungen mit Passwort sperren</string>
   <string name="preferences__screen_security">Bildschirmschutz</string>
   <string name="preferences__screen_security_summary">Bildschirmschutz %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Bildschirmfotos in der Anwendung und der Liste der letzten Anwendungen blockieren</string>
@@ -615,14 +632,14 @@ Die Überprüfung der SMS-Bestätigung hat zu lange gedauert.</string>
   <string name="preferences__pref_timeout_interval_title">Zeitüberschreitung</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Wartezeit, nach deren Ablauf das Passwort vergessen wird</string>
   <string name="preferences__notifications">Benachrichtigungen</string>
-  <string name="preferences__display_message_notifications_in_status_bar">Benachrichtigungen über Nachrichten aktivieren</string>
+  <string name="preferences__enable_message_notifications">Benachrichtigungen bei Nachrichtenempfang einschalten</string>
   <string name="preferences__led_color">LED-Farbe</string>
   <string name="preferences__led_color_unknown">Unbekannt</string>
   <string name="preferences__pref_led_blink_title">LED-Blinkmuster</string>
-  <string name="preferences__pref_led_blink_custom_pattern_title">Eigenes LED-Blinkmuster wählen</string>
+  <string name="preferences__pref_led_blink_custom_pattern_title">LED-Blinkmuster festlegen</string>
   <string name="preferences__pref_led_blink_custom_pattern_on_for">Aktiviert für:</string>
   <string name="preferences__pref_led_blink_custom_pattern_off_for">Deaktiviert für:</string>
-  <string name="preferences__pref_led_blink_custom_pattern_set">Eigenes LED-Blinkmuster aktiviert!</string>
+  <string name="preferences__pref_led_blink_custom_pattern_set">LED-Blinkmuster festgelegt</string>
   <string name="preferences__sound">Benachrichtigungston</string>
   <string name="preferences__change_notification_sound">Benachrichtigungston ändern</string>
   <string name="preferences__inthread_notifications">Immer benachrichtigen</string>
@@ -683,6 +700,7 @@ Kostenlos verschlüsselte Nachrichten mit TextSecure- und Signal-Nutzern austaus
   <string name="preferences__support_wifi_calling">Kompatibilität WLAN-Telefonie</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktivieren, falls das Gerät SMS/MMS über WLAN nutzt (nur bei aktivierter WLAN-Telefonie)</string>
   <string name="preferences_app_protection__blocked_contacts">Blockierte Kontakte</string>
+  <string name="preferences_notifications__display_in_notifications">In Benachrichtigungen anzeigen</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -747,7 +765,7 @@ Kostenlos verschlüsselte Nachrichten mit TextSecure- und Signal-Nutzern austaus
   <string name="conversation_group_options__broadcast">Übertragen</string>
   <!--key_scanning-->
   <string name="key_scanning__menu_compare">Vergleichen</string>
-  <string name="key_scanning__menu_get_scanned_to_compare">Eigenen QR-Code anzeigen</string>
+  <string name="key_scanning__menu_get_scanned_to_compare">Ihren QR-Code anzeigen</string>
   <string name="key_scanning__menu_scan_to_compare">QR-Code einscannen</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_message">Neue Unterhaltung</string>

@@ -55,7 +55,7 @@ class TexturePreviewStrategy implements PreviewStrategy,
   @Override
   public boolean onSurfaceTextureDestroyed(SurfaceTexture surface) {
     Log.w(TAG, "onSurfaceTextureDestroyed()");
-    cameraView.previewDestroyed();
+    cameraView.onPause();
 
     return(true);
   }

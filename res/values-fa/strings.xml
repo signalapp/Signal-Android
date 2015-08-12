@@ -329,6 +329,7 @@
   <string name="MessageNotifier_reply">پاسخ</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_problem_sending_message">بروز خطا در ارسال پیام!</string>
+  <!--SingleRecipientNotificationBuilder-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">رمز قبلی:</string>
   <string name="change_passphrase_activity__new_passphrase">رمز جدید:</string>
@@ -517,7 +518,6 @@
   <string name="preferences__pref_timeout_interval_title">فاصله ایست</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">برنامه پس از چه مدت به طور خودکار رمز وارد شده را فراموش کند و قفل شود</string>
   <string name="preferences__notifications">اطلاعیه‌ها</string>
-  <string name="preferences__display_message_notifications_in_status_bar">نمایش اطلاعیه دریافت پیام در نوار وضعیت</string>
   <string name="preferences__led_color">رنگ چراغ ال‌ای‌دی</string>
   <string name="preferences__led_color_unknown">ناشناخته</string>
   <string name="preferences__pref_led_blink_title">الگوی چشمک زدن</string>

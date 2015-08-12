@@ -352,7 +352,6 @@ Primit mesaj trimis cu o cheie de identitate necunoscută. Faceți click pentru 
   <string name="KeyCachingService_passphrase_cached">TextSecure e deblocat.</string>
   <string name="KeyCachingService_lock">Blocare acces cu parola</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_messages_in_d_conversations">%1$d mesaje în %2$d conversaţii</string>
   <string name="MessageNotifier_most_recent_from_s">Cel mai recent de la: %1$s</string>
   <string name="MessageNotifier_locked_message">Mesaj blocat...</string>
   <string name="MessageNotifier_media_message_with_text">Mesaje media: %s</string>
@@ -366,6 +365,7 @@ Primit mesaj trimis cu o cheie de identitate necunoscută. Faceți click pentru 
   <string name="MessageNotifier_reply">Răspunde</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_problem_sending_message">Problemă la trimiterea mesajului!</string>
+  <!--SingleRecipientNotificationBuilder-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">PAROLA VECHE:</string>
   <string name="change_passphrase_activity__new_passphrase">NOUA PAROLĂ:</string>
@@ -598,7 +598,6 @@ Operaţiunea iniţiată de TextSecure a expirat în timpul aşteptării primirii
   <string name="preferences__pref_timeout_interval_title">Interval expirare</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Perioada de timp de așteptare înainte de a șterge parola din memorie</string>
   <string name="preferences__notifications">Notificări</string>
-  <string name="preferences__display_message_notifications_in_status_bar">Afișează notificările în bara de stare</string>
   <string name="preferences__led_color">Culoare LED</string>
   <string name="preferences__led_color_unknown">Necunoscut</string>
   <string name="preferences__pref_led_blink_title">Tipar de clipire LED</string>

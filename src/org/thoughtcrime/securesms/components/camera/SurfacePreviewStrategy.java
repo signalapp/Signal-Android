@@ -56,7 +56,7 @@ class SurfacePreviewStrategy implements PreviewStrategy,
   @Override
   public void surfaceDestroyed(SurfaceHolder holder) {
     Log.w(TAG, "surfaceDestroyed()");
-    cameraView.previewDestroyed();
+    cameraView.onPause();
   }
 
   @Override

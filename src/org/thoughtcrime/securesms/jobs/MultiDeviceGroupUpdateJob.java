@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -32,6 +33,7 @@ import javax.inject.Inject;
 public class MultiDeviceGroupUpdateJob extends MasterSecretJob implements InjectableType {
 
   private static final long serialVersionUID = 1L;
+  private static final String TAG = MultiDeviceGroupUpdateJob.class.getSimpleName();
 
   @Inject
   transient TextSecureCommunicationModule.TextSecureMessageSenderFactory messageSenderFactory;
@@ -65,7 +67,11 @@ public class MultiDeviceGroupUpdateJob extends MasterSecretJob implements Inject
 
       out.close();
 
-      sendUpdate(messageSender, contactDataFile);
+      if (contactDataFile.exists() && contactDataFile.length() > 0) {
+        sendUpdate(messageSender, contactDataFile);
+      } else {
+        Log.w(TAG, "No groups present for sync message...");
+      }
 
     } finally {
       if (contactDataFile != null) contactDataFile.delete();

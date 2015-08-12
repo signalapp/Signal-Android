@@ -295,6 +295,7 @@ Modtog en besked med en ukendt identitetsnøgle. Klik for at se og behandle den.
   <string name="MessageNotifier_mark_all_as_read">Marker alle som læst</string>
   <string name="MessageNotifier_media_message">Multimedie besked</string>
   <!--QuickResponseService-->
+  <!--SingleRecipientNotificationBuilder-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">GAMMELT KODEORD:</string>
   <string name="change_passphrase_activity__new_passphrase">NYT KODEORD:</string>
@@ -468,7 +469,6 @@ fejlede.
   <string name="preferences__pref_timeout_interval_title">Timeout tidsinterval</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Hvor lang tid skal der gå før kodeordet slettes fra hukommelsen</string>
   <string name="preferences__notifications">Notifikation</string>
-  <string name="preferences__display_message_notifications_in_status_bar">Vis notifikation om beskeder i status feltet</string>
   <string name="preferences__led_color">LED farve</string>
   <string name="preferences__pref_led_blink_title">LED blinkemønster</string>
   <string name="preferences__pref_led_blink_custom_pattern_title">Tilpas LED blinkemønster</string>

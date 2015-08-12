@@ -568,7 +568,7 @@ public class PartDatabase extends Database {
       return new ImageRecord(partId,
                              cursor.getString(cursor.getColumnIndexOrThrow(CONTENT_TYPE)),
                              cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.ADDRESS)),
-                             cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.NORMALIZED_DATE_RECEIVED)) * 1000);
+                             cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.NORMALIZED_DATE_RECEIVED)));
     }
 
     public PartId getPartId() {

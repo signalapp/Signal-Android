@@ -10,8 +10,11 @@
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">لم تقم بتحديد عبارة سرية بعد!</string>
   <string name="ApplicationPreferencesActivity_messages_per_conversation">%s رسائل في المحادثة</string>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">احذف جميع الرسائل القديمة الآن؟</string>
-  <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">هل انت متأكد من حذف جميع الرسائل بالمحادثات وابقاء أحدث %s رسالة فقط؟</string>
+  <string name="ApplicationPreferencesActivity_are_you_sure_you_would_like_to_immediately_trim_all_conversation_threads_to_the_s_most_recent_messages">هل انت متأكد من حذف جميع الرسائل بالمحادثات وإبقاء أحدث %s رسالة فقط؟</string>
   <string name="ApplicationPreferencesActivity_delete">حذف</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">تعطيل العبارة السرية؟</string>
+  <string name="ApplicationPreferencesActivity_disable_lock_screen">
+إلغاء قفل الشاشة للرسائل؟</string>
   <string name="ApplicationPreferencesActivity_disable">تعطيل</string>
   <string name="ApplicationPreferencesActivity_unregistering">جارٍ إلغاء التسجيل</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_textsecure_messages">جارٍ إلغاء التسجيل من رسائل تيكست سيكيور...</string>
@@ -37,6 +40,7 @@
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">لم يتم العثور على تطبيق لاختيار ملف.</string>
   <!--AttachmentTypeSelectorAdapter-->
+  <string name="AttachmentTypeSelectorAdapter_camera">كاميرا</string>
   <string name="AttachmentTypeSelectorAdapter_picture">صورة</string>
   <string name="AttachmentTypeSelectorAdapter_video">فيديو</string>
   <string name="AttachmentTypeSelectorAdapter_audio">صوت</string>
@@ -48,6 +52,7 @@
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_this_contact">ربما تود التحقق من جهة الاتصال.</string>
   <string name="ConfirmIdentityDialog_accept">موافقة</string>
   <!--ContactsDatabase-->
+  <string name="ContactsDatabase_message_s">رسالة %s</string>
   <!--ConversationItem-->
   <string name="ConversationItem_message_size_d_kb">حجم الرسالة: %d كيلوبايت</string>
   <string name="ConversationItem_expires_s">تاريخ الانتهاء: %s</string>
@@ -74,6 +79,7 @@
   <string name="ConversationActivity_select_contact_info">أختر بيانات جهة الاتصال</string>
   <string name="ConversationActivity_compose_message">إنشاء رسالة</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">عذراً، حصل خطأ أثناء رفع المرفق.</string>
+  <string name="ConversationActivity_the_gif_you_selected_was_too_big">حجم الملف كبير للغاية!</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">عذرا، حجم الفيديو يتجاوز الحد المسموح (%1$skB).</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">عذرا، حجم ملف الصوت يتجاوز الحد المسموح (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">الطرف الآخر ليس رقم هاتف أو عنوان بريد الكتروني صحيح!</string>
@@ -137,11 +143,16 @@
   <string name="DateUtils_now">الآن</string>
   <string name="DateUtils_minutes_ago">%d دقيقة</string>
   <!--DeviceListActivity-->
+  <string name="DeviceListActivity_unlink_s">إلغاء ربط  \'%s\'؟</string>
+  <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">لن يكون إرسال واستقبال الرسائل ممكنا بمجرد إلغاء ربط الجهاز.</string>
   <string name="DeviceListActivity_network_connection_failed">فشل في اتصال الشبكة...</string>
   <string name="DeviceListActivity_try_again">حاول مجددا</string>
+  <string name="DeviceListActivity_unlinking_device">جارٍ إلغاء ربط الجهاز...</string>
+  <string name="DeviceListActivity_unlinking_device_no_ellipsis">جارٍ إلغاء ربط الجهاز</string>
   <string name="DeviceListActivity_network_failed">فشل في الشبكة!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">جهاز غير مسمى</string>
+  <string name="DeviceListItem_linked_s">متصل %s</string>
   <string name="DeviceListItem_last_active_s">آخر مرة %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">شارك مع</string>
@@ -229,9 +240,13 @@
   <string name="DeviceProvisioningActivity_content_bullets">
 قراءة كل رسائلك.
 \n- استخدام أسمك للإرسال</string>
+  <string name="DeviceProvisioningActivity_content_progress_title">ربط الجهاز</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">جارٍ ربط الجهاز...</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">الجهاز متصل!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">لم يتم العثور على جهاز.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">خطأ في الشبكة.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">الرمز غير سليم.</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">عذرا، لديك بالفعل أجهزة عديدة متصلة. حاول إزالة بعضهم...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">أدخل العبارة السرية</string>
   <string name="PassphrasePromptActivity_watermark_content_description">أيقونة تيكست سيكيور</string>
@@ -363,7 +378,6 @@
   <string name="KeyCachingService_passphrase_cached">تيكست سيكيور غير مقفل</string>
   <string name="KeyCachingService_lock">أقفل بالعبارة السرية</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_messages_in_d_conversations">%1$d رسالة في %2$d محادثات</string>
   <string name="MessageNotifier_most_recent_from_s">الأحدث من: %1$s</string>
   <string name="MessageNotifier_media_message_with_text">رسالة وسائط متعددة: %s</string>
   <string name="MessageNotifier_no_subject">(بلا عنوان)</string>
@@ -371,16 +385,19 @@
   <string name="MessageNotifier_failed_to_deliver_message">فشل توصيل الرسالة.</string>
   <string name="MessageNotifier_error_delivering_message">خطأ بالارسال</string>
   <string name="MessageNotifier_mark_all_as_read">اعتبر جميع الرسائل مقروءة</string>
+  <string name="MessageNotifier_mark_read">اعتبرها مقروءة</string>
   <string name="MessageNotifier_media_message">رسالة وسائط متعددة</string>
   <string name="MessageNotifier_reply">رَدّ</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">الردود السريعة غير متاحة عند قفل تيكست سيكيور</string>
   <string name="QuickResponseService_problem_sending_message">مشكلة في الإرسال!</string>
+  <!--SingleRecipientNotificationBuilder-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">العبارة السرية القديمة:</string>
   <string name="change_passphrase_activity__new_passphrase">العبارة السرية الجديدة:</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">تكرار العبارة السرية الجديدة:</string>
   <!--contact_selection_activity-->
+  <string name="contact_selection_activity__enter_name_or_number">أدخل أسم أو رقم</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">لا توجد جهات اتصال.</string>
   <string name="contact_selection_group_activity__finding_contacts">تحميل جهات الاتصال...</string>
@@ -425,6 +442,7 @@
   <string name="country_selection_fragment__loading_countries">تحميل البلدان جارٍ ...</string>
   <string name="country_selection_fragment__search">بحث</string>
   <!--device_list_fragment-->
+  <string name="device_list_fragment__no_devices_linked">لا توجد أجهزة متصلة...</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">تعذر التقاط سجلات التصحيح من هاتفك. يمكنك استخدام ADB للحصول على سجلات التصحيح بدلا من ذلك.</string>
   <string name="log_submit_activity__thanks">شكرا للمساعدة!</string>
@@ -489,6 +507,7 @@
   <string name="registration_activity__phone_number">رقم الهاتف</string>
   <string name="registration_activity__register">سجل</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">يتم نقل بعض بيانات الاتصال إلى الخادم أثناء التسجيل، ولا يتم حفظها.</string>
+  <string name="registration_activity__powered_by_twilio">مدعم بواسطة Twilio</string>
   <!--registration_problems-->
   <string name="registration_problems__some_possible_problems_include">بعض المشاكل المحتملة
 وتتضمن:</string>
@@ -558,6 +577,7 @@
   <string name="AndroidManifest__media_overview">جميع الصور</string>
   <string name="AndroidManifest__media_overview_named">جميع الصور مع %1$s</string>
   <string name="AndroidManifest__message_details">تفاصيل الرسالة</string>
+  <string name="AndroidManifest_manage_linked_devices">إدارة الأجهزة المتصلة</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">استيراد \ تصدير</string>
   <string name="arrays__my_identity_key">مفتاح هويتي</string>
@@ -598,6 +618,7 @@
   <string name="preferences__change_my_passphrase">غير عبارتي السرية</string>
   <string name="preferences__enable_passphrase">تفعيل العبارة السرية</string>
   <string name="preferences__passphrase_summary">عبارة سرية %s</string>
+  <string name="preferences__enable_lock_screen_for_messages">تفعيل قفل الشاشة للرسائل</string>
   <string name="preferences__screen_security">تأمين الشاشة</string>
   <string name="preferences__screen_security_summary">تأمين الشاشة %s</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">منع لقطات الشاشة داخل التطبيق</string>
@@ -607,7 +628,6 @@
   <string name="preferences__pref_timeout_interval_title">مدة الصلاحية</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">الوقت اللازم ليتم مسح العبارة السرية من الذاكرة</string>
   <string name="preferences__notifications">التنبيهات</string>
-  <string name="preferences__display_message_notifications_in_status_bar">عرض تنبيهات الرسائل بشريط التنبيهات</string>
   <string name="preferences__led_color">لون ضوء التنبيه LED</string>
   <string name="preferences__led_color_unknown">مجهول</string>
   <string name="preferences__pref_led_blink_title">نمط وميض LED</string>

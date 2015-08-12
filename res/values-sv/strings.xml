@@ -41,6 +41,7 @@ Stäng av låsskärm för meddelanden?</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Kan ej hitta app för att välja media.</string>
   <!--AttachmentTypeSelectorAdapter-->
+  <string name="AttachmentTypeSelectorAdapter_camera">Kamera</string>
   <string name="AttachmentTypeSelectorAdapter_picture">Bild</string>
   <string name="AttachmentTypeSelectorAdapter_video">Video</string>
   <string name="AttachmentTypeSelectorAdapter_audio">Ljud</string>
@@ -83,6 +84,7 @@ verifiera denna kontakt.</string>
   <string name="ConversationActivity_select_contact_info">Välj kontaktinformation</string>
   <string name="ConversationActivity_compose_message">Skriv meddelande</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Tyvärr uppstod det ett fel vid bifogning av din fil.</string>
+  <string name="ConversationActivity_the_gif_you_selected_was_too_big">Gifen du valde är för stor!</string>
   <string name="ConversationActivity_sorry_the_selected_video_exceeds_message_size_restrictions">Tyvärr, den valda videon överskrider gränsen för meddelandestorlek (%1$skB).</string>
   <string name="ConversationActivity_sorry_the_selected_audio_exceeds_message_size_restrictions">Tyvärr, den valda ljudfilen överskrider gränsen för meddelandestorlek (%1$skB).</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Mottagare är inte en giltig SMS eller e-postadress!</string>
@@ -146,11 +148,16 @@ verifiera denna kontakt.</string>
   <string name="DateUtils_now">Nu</string>
   <string name="DateUtils_minutes_ago">%d min</string>
   <!--DeviceListActivity-->
+  <string name="DeviceListActivity_unlink_s">Koppla bort \'%s\'?</string>
+  <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Genom att koppla bort denna enhet kommer den inte längre kunna skicka eller få meddelanden.</string>
   <string name="DeviceListActivity_network_connection_failed">Nätverksuppkoppling misslyckades...</string>
   <string name="DeviceListActivity_try_again">Försök igen</string>
+  <string name="DeviceListActivity_unlinking_device">Kopplar bort enhet...</string>
+  <string name="DeviceListActivity_unlinking_device_no_ellipsis">Kopplar bort enhet</string>
   <string name="DeviceListActivity_network_failed">Nätverket misslyckades</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Namnlös enhet</string>
+  <string name="DeviceListItem_linked_s">Länkade %s</string>
   <string name="DeviceListItem_last_active_s">Senast aktiv %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Dela med</string>
@@ -243,9 +250,13 @@ som för närvarande finns i TextSecure.</string>
   <string name="DeviceProvisioningActivity_content_bullets">
 - Läsa alla dina meddelanden
 \n- Skicka meddelanden i ditt namn</string>
+  <string name="DeviceProvisioningActivity_content_progress_title">Länkar enhet</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">Länkar ny enhet...</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">Enhet länkad</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Ingen enhet hittades.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Nätverksfel.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Ogiltig QR-kod.</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Tyvärr har du redan för många länkade enheter, försök ta bort några...</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Ange lösenord</string>
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure-ikon</string>
@@ -377,7 +388,7 @@ Tog emot meddelande med okänd identitetsnyckel. Tryck för att bearbeta och vis
   <string name="KeyCachingService_passphrase_cached">TextSecure är upplåst</string>
   <string name="KeyCachingService_lock">Lås med lösenord</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_messages_in_d_conversations">%1$d meddelanden i %2$d konversationer</string>
+  <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nya meddelanden i %2$d konversationer</string>
   <string name="MessageNotifier_most_recent_from_s">Senaste från %1$s</string>
   <string name="MessageNotifier_locked_message">Låst meddelande...</string>
   <string name="MessageNotifier_media_message_with_text">Mediameddelande: %s</string>
@@ -392,6 +403,9 @@ Tog emot meddelande med okänd identitetsnyckel. Tryck för att bearbeta och vis
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">Snabbsvar är ej tillgänglit när TextSecure är låst!</string>
   <string name="QuickResponseService_problem_sending_message">Problem med att skicka meddelandet!</string>
+  <!--SingleRecipientNotificationBuilder-->
+  <string name="SingleRecipientNotificationBuilder_new_textsecure_message">Nytt TextSecure-meddelande</string>
+  <string name="SingleRecipientNotificationBuilder_contents_hidden">Innehållet dolt</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">GAMMALT LÖSENORD:</string>
   <string name="change_passphrase_activity__new_passphrase">NYTT LÖSENORD:</string>
@@ -443,6 +457,7 @@ Tog emot meddelande med okänd identitetsnyckel. Tryck för att bearbeta och vis
   <string name="country_selection_fragment__loading_countries">Läser in länder...</string>
   <string name="country_selection_fragment__search">Sök</string>
   <!--device_list_fragment-->
+  <string name="device_list_fragment__no_devices_linked">Inga länkade enheter...</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">Kunde inte plocka loggarna från din enhet, men du kan använda ADB för att hämta debugloggarna istället.</string>
   <string name="log_submit_activity__thanks">Tack för din hjälp!</string>
@@ -580,6 +595,7 @@ TextSecure uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="AndroidManifest__media_overview">Alla bilder</string>
   <string name="AndroidManifest__media_overview_named">Alla bilder med %1$s</string>
   <string name="AndroidManifest__message_details">Meddelandedetaljer</string>
+  <string name="AndroidManifest_manage_linked_devices">Hantera länkade enheter</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importera / exportera</string>
   <string name="arrays__my_identity_key">Min identitetsnyckel</string>
@@ -592,6 +608,9 @@ TextSecure uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="arrays__settings_default">Inställningars standardvärde</string>
   <string name="arrays__enabled">Aktiverad</string>
   <string name="arrays__disabled">Inaktiverad</string>
+  <string name="arrays__name_and_message">Namn och meddelande</string>
+  <string name="arrays__name_only">Endast namn</string>
+  <string name="arrays__neither">Varken eller</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%d timme</item>
@@ -626,7 +645,7 @@ TextSecure uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="preferences__pref_timeout_interval_title">Timeout intervall</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">Väntetiden innan lösenordet glöms från minnet</string>
   <string name="preferences__notifications">Aviseringar</string>
-  <string name="preferences__display_message_notifications_in_status_bar">Visa meddelande-aviseringar i statusraden</string>
+  <string name="preferences__enable_message_notifications">Slå på meddelandeaviseringar</string>
   <string name="preferences__led_color">Färg på ljusindikator</string>
   <string name="preferences__led_color_unknown">Okänd</string>
   <string name="preferences__pref_led_blink_title">Blinkmönster på ljusindikator</string>
@@ -636,7 +655,7 @@ TextSecure uppnådde tidsgränsen för SMS-verifiering.</string>
   <string name="preferences__pref_led_blink_custom_pattern_set">Specialanpassat LED-blinkningsmönster valt!</string>
   <string name="preferences__sound">Ljud</string>
   <string name="preferences__change_notification_sound">Ändra aviseringsljud</string>
-  <string name="preferences__inthread_notifications">Inom-tråd aviseringar</string>
+  <string name="preferences__inthread_notifications">Aviseringar i tråden</string>
   <string name="preferences__play_inthread_notifications">Spela aviseringsljud när du tittar på en aktiv konversation</string>
   <string name="preferences__repeat_alerts">Upprepa aviseringar</string>
   <string name="preferences__never">Aldrig</string>
@@ -694,6 +713,7 @@ Fria privata meddelanden till användare av TextSecure och Signal</string>
   <string name="preferences__support_wifi_calling">\'WiFi Calling\' kompatibilitetsläge</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktivera om din enhet använder SMS/MMS sändning över WiFi (aktivera endast när \'WiFi Calling\' är aktiverat på din enhet)</string>
   <string name="preferences_app_protection__blocked_contacts">Blockerade kontakter</string>
+  <string name="preferences_notifications__display_in_notifications">Visa i aviseringar</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

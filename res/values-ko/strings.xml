@@ -141,11 +141,16 @@
   <string name="DateUtils_now">방금 전</string>
   <string name="DateUtils_minutes_ago">%d분 전</string>
   <!--DeviceListActivity-->
+  <string name="DeviceListActivity_unlink_s">%s을(를) 연결 해제하시겠습니까?</string>
+  <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">연결 해제를 통해 메시지를 보내거나 받지 못할 수 있습니다.</string>
   <string name="DeviceListActivity_network_connection_failed">네트워크에 연결되지 않습니다.</string>
   <string name="DeviceListActivity_try_again">다시 시도</string>
+  <string name="DeviceListActivity_unlinking_device">기기 연결 해제 중…</string>
+  <string name="DeviceListActivity_unlinking_device_no_ellipsis">기기 연결 해제</string>
   <string name="DeviceListActivity_network_failed">네트워크에 연결되지 않음</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">이름이 없는 기기</string>
+  <string name="DeviceListItem_linked_s">연결: %s</string>
   <string name="DeviceListItem_last_active_s">최근 사용: %s</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">공유 대상</string>
@@ -224,16 +229,20 @@
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">기존 암호가 잘못됨</string>
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">새 암호가 입력되지 않음</string>
   <!--DeviceProvisioningActivity-->
-  <string name="DeviceProvisioningActivity_link_this_device">해당 기기를 설정하시겠습니까?</string>
+  <string name="DeviceProvisioningActivity_link_this_device">해당 기기를 연결하시겠습니까?</string>
   <string name="DeviceProvisioningActivity_cancel">취소</string>
   <string name="DeviceProvisioningActivity_continue">확인</string>
-  <string name="DeviceProvisioningActivity_title">해당 기기를 설정하시겠습니까?</string>
+  <string name="DeviceProvisioningActivity_title">해당 기기를 연결하시겠습니까?</string>
   <string name="DeviceProvisioningActivity_content_intro">액세스 권한</string>
   <string name="DeviceProvisioningActivity_content_bullets">- 내 메시지 읽기
 \n- 내 이름으로 메시지 보내기</string>
+  <string name="DeviceProvisioningActivity_content_progress_title">기기 연결</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">새 기기를 연결 중…</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">기기 연결 완료</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">기기 없음</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">네트워크 오류</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">QR코드가 잘못됨</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">기기 연결 가능 갯수 초과하여 기존의 기기 중 하나 연결 해제 필요</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">암호 입력</string>
   <string name="PassphrasePromptActivity_watermark_content_description">TextSecure 아이콘</string>
@@ -361,7 +370,6 @@
   <string name="KeyCachingService_passphrase_cached">TextSecure 잠금 해제 됨</string>
   <string name="KeyCachingService_lock">암호로 잠금</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_messages_in_d_conversations">대화 %2$d개에 있는 메시지 %1$d개</string>
   <string name="MessageNotifier_most_recent_from_s">%1$s님에게서 최근 메시지</string>
   <string name="MessageNotifier_locked_message">잠겨 있는 메시지</string>
   <string name="MessageNotifier_media_message_with_text">미디어 메시지: %s</string>
@@ -376,6 +384,7 @@
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_TextSecure_is_locked">TextSecure 잠겨 있는 경우 빠른 응답 사용할 수 없음</string>
   <string name="QuickResponseService_problem_sending_message">메시지 보내지 못함</string>
+  <!--SingleRecipientNotificationBuilder-->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">기존 암호:</string>
   <string name="change_passphrase_activity__new_passphrase">새 암호:</string>
@@ -427,6 +436,7 @@
   <string name="country_selection_fragment__loading_countries">국가 로드 중…</string>
   <string name="country_selection_fragment__search">검색</string>
   <!--device_list_fragment-->
+  <string name="device_list_fragment__no_devices_linked">연결된 기기 없음</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">기기에서 로그 가져올 수 없지만 ADB로 수동 가져올 수 있음</string>
   <string name="log_submit_activity__thanks">도와주셔서 감사합니다.</string>
@@ -547,6 +557,7 @@
   <string name="AndroidManifest__media_overview">전체 이미지</string>
   <string name="AndroidManifest__media_overview_named">%1$s님이랑 대화의 전체 이미지</string>
   <string name="AndroidManifest__message_details">메시지 세부정보</string>
+  <string name="AndroidManifest_manage_linked_devices">연결된 기기 관리</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">가져오기 / 내보내기</string>
   <string name="arrays__my_identity_key">내 인증 키</string>
@@ -592,7 +603,6 @@
   <string name="preferences__pref_timeout_interval_title">시간 초과 간격</string>
   <string name="preferences__the_amount_of_time_to_wait_before_forgetting_passphrase">메모리에서 암호 삭제되지 않는 기간</string>
   <string name="preferences__notifications">알림</string>
-  <string name="preferences__display_message_notifications_in_status_bar">메시지 알림 표시</string>
   <string name="preferences__led_color">알림등 색상</string>
   <string name="preferences__led_color_unknown">알 수 없음</string>
   <string name="preferences__pref_led_blink_title">알림등 반복 패턴</string>

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Paint.FontMetricsInt;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
 import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
@@ -28,12 +29,12 @@ public class EmojiTextView extends AppCompatTextView {
     super(context, attrs, defStyleAttr);
   }
 
-  @Override public void setText(CharSequence text, BufferType type) {
+  @Override public void setText(@Nullable CharSequence text, BufferType type) {
     source = EmojiProvider.getInstance(getContext()).emojify(text, this);
     setTextEllipsized(source);
   }
 
-  public void setTextEllipsized(final CharSequence source) {
+  public void setTextEllipsized(final @Nullable CharSequence source) {
     super.setText(needsEllipsizing ? ViewUtil.ellipsize(source, this) : source, BufferType.SPANNABLE);
   }
 
