@@ -184,7 +184,7 @@ public class DatabaseMigrationActivity extends PassphraseRequiredActionBarActivi
     }
   }
 
-  private class NullReceiver extends BroadcastReceiver {
+  private static class NullReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
       abortBroadcast();

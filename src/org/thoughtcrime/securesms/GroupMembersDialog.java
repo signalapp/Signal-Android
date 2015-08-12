@@ -67,7 +67,7 @@ public class GroupMembersDialog extends AsyncTask<Void, Void, Recipients> {
     else                               onPostExecute(recipients);
   }
 
-  private class GroupMembersOnClickListener implements DialogInterface.OnClickListener {
+  private static class GroupMembersOnClickListener implements DialogInterface.OnClickListener {
     private final GroupMembers groupMembers;
     private final Context      context;
 

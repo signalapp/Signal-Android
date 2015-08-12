@@ -181,7 +181,7 @@ public class EmojiProvider {
     public void setColorFilter(ColorFilter cf) { }
   }
 
-  class DrawInfo {
+  private static class DrawInfo {
     EmojiPageBitmap page;
     int             index;
 

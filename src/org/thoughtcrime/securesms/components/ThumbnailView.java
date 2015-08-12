@@ -312,7 +312,7 @@ public class ThumbnailView extends FrameLayout {
     void onClick(View v, Slide slide);
   }
 
-  private class ThumbnailClickDispatcher implements View.OnClickListener {
+  private static class ThumbnailClickDispatcher implements View.OnClickListener {
     private ThumbnailClickListener listener;
     private Slide                  slide;
 

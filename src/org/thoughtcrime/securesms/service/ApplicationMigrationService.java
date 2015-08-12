@@ -183,7 +183,7 @@ public class ApplicationMigrationService extends Service
     }
   }
 
-  private class CompletedReceiver extends BroadcastReceiver {
+  private static class CompletedReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
       NotificationCompat.Builder builder = new NotificationCompat.Builder(context);

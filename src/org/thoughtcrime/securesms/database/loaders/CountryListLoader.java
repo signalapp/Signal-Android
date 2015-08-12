@@ -38,7 +38,7 @@ public class CountryListLoader extends AsyncTaskLoader<ArrayList<Map<String, Str
     return results;
   }
 
-  private class RegionComparator implements Comparator<Map<String, String>> {
+  private static class RegionComparator implements Comparator<Map<String, String>> {
     @Override
     public int compare(Map<String, String> lhs, Map<String, String> rhs) {
       return lhs.get("country_name").compareTo(rhs.get("country_name"));
