@@ -66,8 +66,8 @@ public class TextSecureCommunicationModule {
                                            TextSecurePreferences.getLocalNumber(context),
                                            TextSecurePreferences.getPushServerPassword(context),
                                            new TextSecureAxolotlStore(context),
-                                           Optional.of((TextSecureMessageSender.EventListener)
-                                                           new SecurityEventListener(context)));
+                                           Optional.<TextSecureMessageSender.EventListener>of(
+                                               new SecurityEventListener(context)));
       }
     };
   }
