@@ -61,7 +61,6 @@ import org.thoughtcrime.securesms.TransportOptions.OnTransportChangedListener;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.components.AnimatingToggle;
 import org.thoughtcrime.securesms.components.ComposeText;
-import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout;
 import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout.OnKeyboardShownListener;
 import org.thoughtcrime.securesms.components.SendButton;
 import org.thoughtcrime.securesms.components.camera.QuickAttachmentDrawer.DrawerState;
@@ -86,7 +85,6 @@ import org.thoughtcrime.securesms.database.MmsSmsColumns.Types;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
 import org.thoughtcrime.securesms.mms.AttachmentTypeSelectorAdapter;
-import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.MediaTooLargeException;
 import org.thoughtcrime.securesms.mms.MmsMediaConstraints;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
@@ -343,6 +341,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     inflater.inflate(R.menu.conversation, menu);
+
+    if (!isConversationEnabled()) {
+      MenuItem menuItem = menu.findItem(R.id.menu_add_attachment);
+      if (menuItem != null) menuItem.setVisible(false);
+    }
 
     if (recipients != null && recipients.isMuted()) inflater.inflate(R.menu.conversation_muted, menu);
     else                                            inflater.inflate(R.menu.conversation_unmuted, menu);
@@ -682,9 +685,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void initializeEnabledCheck() {
-    boolean enabled = !(isPushGroupConversation() && !isActiveGroup());
-    composeText.setEnabled(enabled);
-    sendButton.setEnabled(enabled);
+    if (!isConversationEnabled()) composePanel.setVisibility(View.GONE);
   }
 
   private void initializeDraftFromDatabase() {
@@ -1063,6 +1064,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void setBlockedUserState(Recipients recipients) {
+    if (!isConversationEnabled()) return;
+
     if (recipients.isBlocked()) {
       unblockButton.setVisibility(View.VISIBLE);
       composePanel.setVisibility(View.GONE);
@@ -1111,6 +1114,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private boolean isPushGroupConversation() {
     return getRecipients() != null && getRecipients().isGroupRecipient();
+  }
+
+  private boolean isConversationEnabled() {
+    return !(isPushGroupConversation() && !isActiveGroup());
   }
 
   protected Recipients getRecipients() {
