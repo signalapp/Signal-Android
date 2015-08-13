@@ -1,16 +1,16 @@
 /**
  * Copyright (C) 2014 Open Whisper Systems
- *
+ * <p/>
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * <p/>
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * <p/>
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -24,6 +24,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -37,6 +38,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -93,6 +95,7 @@ public class ProfileFragment extends Fragment {
     private ThumbnailView profilePicture;
     private Recipient recipient;
     private ScrollView scrollView;
+    private LinearLayout historyLayout;
     private boolean hasChanged = false;
     private boolean isGroup;
     private Recipients recipients;
@@ -107,6 +110,8 @@ public class ProfileFragment extends Fragment {
     private RelativeLayout layout_phone;
     private RelativeLayout layout_group;
     private boolean hasLeft = false;
+    private HorizontalScrollView historyScrollView;
+    private TextView historyContentTextView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -146,6 +151,9 @@ public class ProfileFragment extends Fragment {
         imageText = (TextView) getView().findViewById(R.id.image_text);
         profilePhone = (TextView) getView().findViewById(R.id.profile_phone);
         groupMember = (ListView) getView().findViewById(R.id.selected_contacts_list);
+        historyLayout = (LinearLayout) getView().findViewById(R.id.historylayout);
+        historyContentTextView = (TextView) getView().findViewById(R.id.history_content);
+        historyScrollView = (HorizontalScrollView) getView().findViewById(R.id.horizontal_scroll);
         profilePhone.setText(profileId);
         profilePicture = (ThumbnailView) getView().findViewById(R.id.profile_picture);
         phoneCall = (ImageView) getView().findViewById(R.id.phone_call);
@@ -176,6 +184,7 @@ public class ProfileFragment extends Fragment {
                             ProfileAccessor.getProfileUpdateTimeForRecepient(getActivity(), profileId),
                             "dd.MM.yyyy hh:mm:ss"));
                     imageText.setText(recipient.getName());
+                    setMediaHistoryImages();
                 }
                 profilePicture.setThumbnailClickListener(new ThumbnailClickListener());
             } else if (ProfileAccessor.getMyProfilePicture(getActivity()).hasImage() && isMyProfile) {
@@ -209,11 +218,13 @@ public class ProfileFragment extends Fragment {
             if (recipients != null) {
                 final List<Recipient> recipientList = recipients.getRecipientsList();
                 if (recipientList != null) {
-                    if (existingContacts == null) existingContacts = new HashSet<>(recipientList.size());
+                    if (existingContacts == null)
+                        existingContacts = new HashSet<>(recipientList.size());
                     existingContacts.addAll(recipientList);
                 }
                 if (recipientList != null) {
-                    if (existingContacts == null) existingContacts = new HashSet<>(recipientList.size());
+                    if (existingContacts == null)
+                        existingContacts = new HashSet<>(recipientList.size());
                     existingContacts.addAll(recipientList);
                 }
 
@@ -346,10 +357,60 @@ public class ProfileFragment extends Fragment {
         });
 
     }
+        private void setMediaHistoryImages() {
+        while (historyLayout.getChildCount() >= 1) {
+            historyLayout.removeView(historyLayout.getChildAt(0));
+        }
+        String[] mediaHistoryUris = gDataPreferences.getMediaUriHistoryForId(recipient.getRecipientId());
+
+        for (int i = 0; i < mediaHistoryUris.length; i++) {
+            ImageSlide mediaHistorySlide = ProfileAccessor.getSlideForUri(getActivity(), masterSecret, mediaHistoryUris[i]);
+            if (mediaHistorySlide != null && masterSecret != null && !(mediaHistorySlide.getUri() + "").equals("")) {
+                ThumbnailView historyMedia = new ThumbnailView(getActivity());
+
+                android.widget.LinearLayout.LayoutParams layoutParams = new android.widget.LinearLayout.LayoutParams(
+                        dpToPx(100), dpToPx(100));
+                historyMedia.setBackgroundColor(getResources().getColor(R.color.conversation_list_divider_light));
+                layoutParams.setMargins(5, 0, 5, 0);
+
+                historyMedia.setLayoutParams(layoutParams);
+                ProfileAccessor.buildEncryptedPartGlideRequest(mediaHistorySlide, masterSecret).into(historyMedia);
+                historyLayout.addView(historyMedia);
+                historyMedia.setSlide(mediaHistorySlide);
+            }
+        }
+        LinearLayout ll = ((LinearLayout) historyScrollView.getChildAt(0));
+        if(ll.getChildCount()>0 && historyContentTextView != null) {
+            historyContentTextView.setVisibility(View.GONE);
+        }
+        for (int l = 0; l < ll.getChildCount(); l++) {
+            ((ThumbnailView) ll.getChildAt(l)).setOnClickListener(new View.OnClickListener() {
+                                                                      @Override
+                                                                      public void onClick(View view) {
+                                                                          Slide slide = ((ThumbnailView) view).getSlide();
+                                                                          if (slide !=null && MediaPreviewActivity.isContentTypeSupported(slide.getContentType())) {
+                                                                              Intent intent = new Intent(getActivity(), MediaPreviewActivity.class);
+                                                                              intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                                                                              intent.setDataAndType(slide.getUri(), slide.getContentType());
+                                                                              intent.putExtra(MediaPreviewActivity.MASTER_SECRET_EXTRA, masterSecret);
+                                                                              intent.putExtra(MediaPreviewActivity.RECIPIENT_EXTRA, recipient.getRecipientId());
+                                                                              intent.putExtra(MediaPreviewActivity.DATE_EXTRA, System.currentTimeMillis());
+                                                                              getActivity().startActivity(intent);
+                                                                          }
+                                                                      }
+                                                                  }
+            );
+        }
+    }
 
     private void finishAndSave() {
         hasLeft = true;
         getActivity().finish();
+    }
+
+    private int dpToPx(int dp) {
+        float density = getActivity().getResources().getDisplayMetrics().density;
+        return Math.round((float) dp * density);
     }
 
     private class AttachmentTypeListener implements DialogInterface.OnClickListener {

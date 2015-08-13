@@ -37,6 +37,15 @@ public class ThumbnailView extends ForegroundImageView {
   private SlideDeckListener slideDeckListener = null;
   private ThumbnailClickListener thumbnailClickListener = null;
   private String slideId = null;
+
+  public Slide getSlide() {
+    return slide;
+  }
+
+  public void setSlide(Slide slide) {
+    this.slide = slide;
+  }
+
   private Slide slide = null;
   private Handler handler = new Handler();
   private boolean isLoadingDone = false;

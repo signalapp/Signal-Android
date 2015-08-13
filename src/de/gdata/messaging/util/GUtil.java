@@ -37,6 +37,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import de.gdata.messaging.CountryCodes;
+import ws.com.google.android.mms.pdu.PduPart;
 
 /**
  * Created by jan on 20.01.15.
@@ -331,5 +332,11 @@ public class GUtil {
     listView.setLayoutParams(params);
     listView.requestLayout();
 
+  }
+
+  public static void saveInMediaHistory(Context context, PduPart part, Long recId) {
+    new GDataPreferences(context).saveMediaForHistory(part.getDataUri(),"", recId);
+    ProfileAccessor.savePartIdForUri(context, part.getDataUri().toString(), part.getPartId().getUniqueId());
+    ProfileAccessor.savePartRowForUri(context, part.getDataUri().toString(), part.getPartId().getRowId());
   }
 }

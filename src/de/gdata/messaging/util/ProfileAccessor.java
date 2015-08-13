@@ -102,7 +102,24 @@ public class ProfileAccessor {
     }
     return profilePicture;
   }
-
+  public static PartDatabase.PartId getPartIdForUri(Context context, String uri) {
+    return new PartDatabase.PartId(getPreferences(context).getProfilePartRow(uri + ""), getPreferences(context).getProfilePartId(uri + ""));
+  }
+  public static void savePartIdForUri(Context context, String uri, Long partId) {
+    getPreferences(context).setProfilePartId(uri + "", partId);
+  }
+  public static void savePartRowForUri(Context context, String uri, Long partRow) {
+    getPreferences(context).setProfilePartRow(uri + "", partRow);
+  }
+  public static ImageSlide getSlideForUri(Context context, MasterSecret masterSecret, String uriToPart) {
+    PartDatabase database = DatabaseFactory.getPartDatabase(context);
+    PduPart part = database.getPart(ProfileAccessor.getPartIdForUri(context, uriToPart));
+    mMasterSecret = masterSecret;
+    if (part != null) {
+      return new ImageSlide(context, masterSecret, part);
+    }
+    return null;
+  }
   public static void setProfileStatus(Context context, String status) {
     getPreferences(context).setProfileStatus(status);
   }
@@ -237,7 +254,6 @@ public class ProfileAccessor {
     if (masterSecret == null) {
       throw new IllegalStateException("null MasterSecret when loading non-draft thumbnail");
     }
-
     return  Glide.with(GService.appContext).load(new DecryptableStreamUriLoader.DecryptableUri(masterSecret, slide.getThumbnailUri()))
         .transform(new ThumbnailTransform(GService.appContext));
   }

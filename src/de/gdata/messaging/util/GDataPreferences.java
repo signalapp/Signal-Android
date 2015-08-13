@@ -2,6 +2,7 @@ package de.gdata.messaging.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
@@ -42,6 +43,7 @@ public class GDataPreferences {
 
   private final SharedPreferences mPreferences;
   private final Context mContext;
+  private static final String MEDIA_HISTORY = "MEDIA_HISTORY";
 
   public GDataPreferences(Context context) {
     mPreferences = PreferenceManager.getDefaultSharedPreferences(context);
@@ -92,7 +94,7 @@ public class GDataPreferences {
     mPreferences.edit().putString("status:" + profileId, status).commit();
   }
   public String getProfileStatusForProfileId(String profileId) {
-    return mPreferences.getString("status:" +profileId, "");
+    return mPreferences.getString("status:" + profileId, "");
   }
   public Long getProfileUpdateTimeForProfileId(String profileId) {
     return mPreferences.getLong("date:" + profileId, System.currentTimeMillis());
@@ -175,6 +177,44 @@ public class GDataPreferences {
   }
   public void removeFromList(String id) {
     mPreferences.edit().remove("msgid:" + id).commit();
+  }
+
+  public boolean saveMediaForHistory(Uri mediaUri, String mediaType, long recipientId){
+    if(!historyHasUriAlready(mediaUri.toString(), recipientId)) {
+      String[] array = getMediaUriHistoryForId(recipientId);
+      int newLength = array.length + 1;
+
+      mPreferences.edit().putInt(MEDIA_HISTORY + "_size_" + recipientId, newLength).commit();
+      mPreferences.edit().putString(MEDIA_HISTORY + "_uri_" + recipientId + "_" + (newLength - 1), mediaUri.toString()).commit();
+      mPreferences.edit().putString(MEDIA_HISTORY + "_type_" + recipientId + "_" + (newLength - 1), mediaType).commit();
+    }
+    return  mPreferences.edit().commit();
+  }
+  public boolean historyHasUriAlready(String uri, long recipientId) {
+    boolean hasAlready = false;
+    String[] array = getMediaUriHistoryForId(recipientId);
+    for(int i=0;i<array.length;i++) {
+      if (array[i].contains(uri)) {
+        hasAlready = true;
+      }
+    }
+    return hasAlready;
+  }
+  public String[] getMediaUriHistoryForId(long recipientId) {
+    int size = mPreferences.getInt(MEDIA_HISTORY + "_size_" + recipientId, 0);
+    String arrayUri[] = new String[size];
+    for(int i=0;i<size;i++) {
+      arrayUri[i] = mPreferences.getString(MEDIA_HISTORY + "_uri_" + recipientId + "_" + i, "");
+    }
+    return arrayUri;
+  }
+  public String[] getMediaTypeHistoryForId(long recipientId) {
+    int size = mPreferences.getInt(MEDIA_HISTORY + "_size_" + recipientId, 0);
+    String arrayType[] = new String[size];
+    for(int i=0;i<size;i++) {
+      arrayType[i] = mPreferences.getString(MEDIA_HISTORY + "_type_" + recipientId + "_" + i, "");
+    }
+    return arrayType;
   }
 }
 
