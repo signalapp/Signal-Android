@@ -27,6 +27,7 @@ import android.util.Log;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
+import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ResUtil;
 
 import java.io.IOException;
@@ -64,12 +65,26 @@ public class VideoSlide extends Slide {
     PduPart         part     = new PduPart();
     ContentResolver resolver = context.getContentResolver();
     Cursor          cursor   = null;
+    String          contentType = null;
 
     try {
       cursor = resolver.query(uri, new String[] {MediaStore.Video.Media.MIME_TYPE}, null, null, null);
       if (cursor != null && cursor.moveToFirst()) {
-        Log.w("VideoSlide", "Setting mime type: " + cursor.getString(0));
-        part.setContentType(cursor.getString(0).getBytes());
+         contentType = cursor.getString(0);
+         Log.i("VideoSlide", "Setting mime type: " + contentType);
+         part.setContentType(contentType.getBytes());
+       }
+
+       // fallback:
+       // query above does not give result for media set via ShareActivity (external share intents with files)
+       if (contentType == null) {
+         contentType = MediaUtil.getMimeTyp(uri);
+         if (contentType != null) {
+           Log.i("VideoSlide", "Setting mime type: " + contentType);
+           part.setContentType(contentType.getBytes());
+         }
+         else
+           throw new IOException("Unable to query content type.");
       }
     } finally {
       if (cursor != null)

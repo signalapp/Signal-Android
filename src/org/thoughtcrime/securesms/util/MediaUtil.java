@@ -104,6 +104,11 @@ public class MediaUtil {
     return ContentType.isVideoType(Util.toIsoString(part.getContentType()));
   }
 
+  public static String getMimeTyp(Uri uri) {
+    final String extension = MimeTypeMap.getFileExtensionFromUrl(uri.toString());
+    return MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
+  }
+
   public static class ThumbnailData {
     Bitmap bitmap;
     float aspectRatio;

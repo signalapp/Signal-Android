@@ -24,12 +24,12 @@ import android.support.annotation.NonNull;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.webkit.MimeTypeMap;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.MediaUtil;
 
 import java.net.URLDecoder;
 
@@ -156,8 +156,7 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
     String type = getContentResolver().getType(uri);
 
     if (type == null) {
-      String extension = MimeTypeMap.getFileExtensionFromUrl(uri.toString());
-      type = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
+      type = MediaUtil.getMimeTyp(uri);
     }
 
     return type;
