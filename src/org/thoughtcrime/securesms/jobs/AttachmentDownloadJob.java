@@ -2,19 +2,19 @@ package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
 import android.util.Log;
-import android.util.Pair;
 
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.EncryptingSmsDatabase;
+import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.PartDatabase;
-import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobs.requirements.MasterSecretRequirement;
+import org.thoughtcrime.securesms.recipients.Recipients;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.jobqueue.JobParameters;
@@ -32,9 +32,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import de.gdata.messaging.util.GDataPreferences;
 import de.gdata.messaging.util.GUtil;
-import de.gdata.messaging.util.ProfileAccessor;
 import ws.com.google.android.mms.MmsException;
 import ws.com.google.android.mms.pdu.PduPart;
 
@@ -57,7 +55,13 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
   }
 
   @Override
-  public void onAdded() {}
+  public void onAdded() {
+    PartDatabase  database = DatabaseFactory.getPartDatabase(context);
+    List<PduPart> parts    = database.getParts(messageId);
+    for (PduPart part : parts) {
+      saveSlideToMediaHistory(messageId, part);
+    }
+  }
 
   @Override
   public void onRun(MasterSecret masterSecret) throws IOException {
@@ -102,7 +106,7 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
       InputStream                 attachment = messageReceiver.retrieveAttachment(pointer, attachmentFile);
 
       database.updateDownloadedPart(masterSecret, messageId, partId, part, attachment);
-      saveSlideToMediaHistory(masterSecret, messageId, part);
+      saveSlideToMediaHistory(messageId, part);
     } catch (InvalidPartException | NonSuccessfulResponseCodeException | InvalidMessageException | MmsException e) {
       Log.w(TAG, e);
       markFailed(messageId, part, partId);
@@ -111,18 +115,16 @@ public class AttachmentDownloadJob extends MasterSecretJob implements Injectable
         attachmentFile.delete();
     }
   }
-  private void saveSlideToMediaHistory(MasterSecret masterSecret, long messageId, PduPart part) {
-    EncryptingSmsDatabase smsDatabase      = DatabaseFactory.getEncryptingSmsDatabase(context);
-    SmsMessageRecord record = null;
-    try {
-      record = smsDatabase.getMessage(masterSecret, messageId);
-    } catch (NoSuchMessageException e) {
-      Log.w("GDATA","NO MESSAGE");
+  private void saveSlideToMediaHistory(long messageId, PduPart part) {
+    MmsDatabase smsDatabase      =  DatabaseFactory.getMmsDatabase(context);
+    ThreadDatabase threadDb      = DatabaseFactory.getThreadDatabase(context);
+    long threadId = smsDatabase.getThreadIdForMessage(messageId);
+    Recipients sender = threadDb.getRecipientsForThreadId(threadId);
+      if (sender != null) {
+        GUtil.saveInMediaHistory(context, part, sender.getPrimaryRecipient().getNumber());
+      }
     }
-    if(record != null) {
-      GUtil.saveInMediaHistory(context, part, record.getRecipients().getPrimaryRecipient().getRecipientId());
-    }
-  }
+
   private TextSecureAttachmentPointer createAttachmentPointer(MasterSecret masterSecret, PduPart part)
           throws InvalidPartException
   {

@@ -361,8 +361,7 @@ public class ProfileFragment extends Fragment {
         while (historyLayout.getChildCount() >= 1) {
             historyLayout.removeView(historyLayout.getChildAt(0));
         }
-        String[] mediaHistoryUris = gDataPreferences.getMediaUriHistoryForId(recipient.getRecipientId());
-
+        String[] mediaHistoryUris = gDataPreferences.getMediaUriHistoryForId(GUtil.numberToLong(recipient.getNumber()));
         for (int i = 0; i < mediaHistoryUris.length; i++) {
             ImageSlide mediaHistorySlide = ProfileAccessor.getSlideForUri(getActivity(), masterSecret, mediaHistoryUris[i]);
             if (mediaHistorySlide != null && masterSecret != null && !(mediaHistorySlide.getUri() + "").equals("")) {
@@ -463,7 +462,6 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        refreshLayout();
     }
 
     public static final String RECIPIENTS_EXTRA = "recipients";

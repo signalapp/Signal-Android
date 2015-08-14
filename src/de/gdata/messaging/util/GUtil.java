@@ -334,8 +334,8 @@ public class GUtil {
 
   }
 
-  public static void saveInMediaHistory(Context context, PduPart part, Long recId) {
-    new GDataPreferences(context).saveMediaForHistory(part.getDataUri(),"", recId);
+  public static void saveInMediaHistory(Context context, PduPart part, String recId) {
+    new GDataPreferences(context).saveMediaForHistory(part.getDataUri(),"", GUtil.numberToLong(recId));
     ProfileAccessor.savePartIdForUri(context, part.getDataUri().toString(), part.getPartId().getUniqueId());
     ProfileAccessor.savePartRowForUri(context, part.getDataUri().toString(), part.getPartId().getRowId());
   }
