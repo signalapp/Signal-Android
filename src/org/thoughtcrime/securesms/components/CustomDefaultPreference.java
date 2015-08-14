@@ -10,7 +10,6 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -26,8 +25,6 @@ import java.net.URISyntaxException;
 
 
 public class CustomDefaultPreference extends DialogPreference {
-
-  private static final String TAG = CustomDefaultPreference.class.getSimpleName();
 
   private final int    inputType;
   private final String customPreference;
@@ -202,7 +199,7 @@ public class CustomDefaultPreference extends DialogPreference {
       if (TextUtils.isEmpty(value)) return true;
 
       try {
-        URI uri = new URI(null, value, null, null);
+        new URI(null, value, null, null);
         return true;
       } catch (URISyntaxException mue) {
         return false;

@@ -76,7 +76,7 @@ public class ConversationListActivityTest extends TextSecureEspressoTestCase<Con
     Integer reminderTitleResId = null;
     Integer reminderTextResId  = null;
 
-    if (ExpiredBuildReminder.isEligible(getContext())) {
+    if (ExpiredBuildReminder.isEligible()) {
       reminderTitleResId = R.string.reminder_header_expired_build;
       reminderTextResId  = R.string.reminder_header_expired_build_details;
     } else if (DefaultSmsReminder.isEligible(getContext())) {
@@ -112,7 +112,7 @@ public class ConversationListActivityTest extends TextSecureEspressoTestCase<Con
     loadAndCheckState();
 
     int expectedReminders = 0;
-    if (ExpiredBuildReminder.isEligible(getContext()))    expectedReminders++;
+    if (ExpiredBuildReminder.isEligible())    expectedReminders++;
     if (DefaultSmsReminder.isEligible(getContext()))      expectedReminders++;
     if (SystemSmsImportReminder.isEligible(getContext())) expectedReminders++;
 

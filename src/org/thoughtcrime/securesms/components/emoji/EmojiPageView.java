@@ -15,7 +15,6 @@ import android.widget.GridView;
 import org.thoughtcrime.securesms.R;
 
 public class EmojiPageView extends FrameLayout {
-  private static final String TAG = EmojiPageView.class.getSimpleName();
 
   private EmojiPageModel         model;
   private EmojiSelectionListener listener;

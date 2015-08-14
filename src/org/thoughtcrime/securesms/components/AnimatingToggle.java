@@ -7,16 +7,12 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
-import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
 
 import org.thoughtcrime.securesms.R;
 
 public class AnimatingToggle extends FrameLayout {
-
-  private static final int SPEED_MILLIS = 200;
 
   private View current;
 
@@ -77,13 +73,5 @@ public class AnimatingToggle extends FrameLayout {
     animation.setInterpolator(new FastOutSlowInInterpolator());
     view.setVisibility(View.VISIBLE);
     view.startAnimation(animation);
-  }
-
-  private int getViewIndex(View view) {
-    for (int i=0;i<getChildCount();i++) {
-      if (getChildAt(i) == view) return i;
-    }
-
-    throw new IllegalArgumentException("Not a parent of this view.");
   }
 }
