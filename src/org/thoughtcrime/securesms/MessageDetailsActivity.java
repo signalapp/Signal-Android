@@ -42,6 +42,7 @@ import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.loaders.MessageDetailsLoader;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientFactory;
 import org.thoughtcrime.securesms.recipients.Recipients;
@@ -72,6 +73,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
   public final static String RECIPIENTS_IDS_EXTRA = "recipients_ids";
 
   private MasterSecret     masterSecret;
+  private long             messageId;
   private boolean          isPushGroup;
   private ConversationItem conversationItem;
   private ViewGroup        itemParent;
@@ -109,6 +111,14 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
     getSupportActionBar().setTitle(R.string.AndroidManifest__message_details);
+
+    MessageNotifier.setVisibleMessage(messageId);
+  }
+
+  @Override
+  protected void onPause() {
+    super.onPause();
+    MessageNotifier.setVisibleMessage(-1L);
   }
 
   private void initializeActionBar() {
@@ -143,6 +153,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     View header = inflater.inflate(R.layout.message_details_header, recipientsList, false);
 
     masterSecret      = getIntent().getParcelableExtra(MASTER_SECRET_EXTRA);
+    messageId         = getIntent().getLongExtra(MESSAGE_ID_EXTRA, -1);
     isPushGroup       = getIntent().getBooleanExtra(IS_PUSH_GROUP_EXTRA, false);
     itemParent        = (ViewGroup) header.findViewById(R.id.item_container);
     recipientsList    = (ListView ) findViewById(R.id.recipients_list);

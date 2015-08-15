@@ -230,7 +230,7 @@ public class MmsSendJob extends SendJob {
     Recipients recipients = DatabaseFactory.getThreadDatabase(context).getRecipientsForThreadId(threadId);
 
     if (recipients != null) {
-      MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId);
+      MessageNotifier.notifyMessageDeliveryFailed(context, recipients, threadId, messageId);
     }
   }
 }
