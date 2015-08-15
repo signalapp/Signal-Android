@@ -388,7 +388,9 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
         errorText.setVisibility(View.VISIBLE);
         metadataContainer.setVisibility(View.GONE);
 
-        if (messageRecord.hasNetworkFailures() || (!isPushGroup && messageRecord.isFailed())) {
+        if (messageRecord.hasNetworkFailures() ||
+            (!isPushGroup && !messageRecord.isIdentityMismatchFailure()))
+        {
           resendAllButton.setVisibility(View.VISIBLE);
           resendAllButton.setEnabled(true);
 
