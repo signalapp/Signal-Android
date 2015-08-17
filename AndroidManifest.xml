@@ -264,7 +264,7 @@
               android:finishOnTaskLaunch="true" />
 
     <activity android:name=".PlayServicesProblemActivity"
-              android:theme="@android:style/Theme.Translucent.NoTitleBar"
+              android:theme="@style/TextSecure.DialogActivity"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".SmsSendtoActivity">

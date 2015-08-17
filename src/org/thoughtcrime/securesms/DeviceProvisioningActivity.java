@@ -2,18 +2,15 @@ package org.thoughtcrime.securesms;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.DialogInterface.OnDismissListener;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.text.SpannableStringBuilder;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.widget.Toast;
-
-import com.afollestad.materialdialogs.MaterialDialog;
-import com.afollestad.materialdialogs.MaterialDialog.Builder;
-import com.afollestad.materialdialogs.MaterialDialog.ButtonCallback;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
@@ -55,40 +52,44 @@ public class DeviceProvisioningActivity extends PassphraseRequiredActionBarActiv
            .append("\n")
            .append(small(getString(R.string.DeviceProvisioningActivity_content_bullets)));
 
-    new Builder(this).title(getString(R.string.DeviceProvisioningActivity_link_this_device))
-                     .iconRes(R.drawable.icon_dialog)
-                     .content(content)
-                     .positiveText(R.string.DeviceProvisioningActivity_continue)
-                     .negativeText(R.string.DeviceProvisioningActivity_cancel)
-                     .positiveColorRes(R.color.textsecure_primary)
-                     .negativeColorRes(R.color.gray50)
-                     .autoDismiss(false)
-                     .callback(new ButtonCallback() {
-                       @Override
-                       public void onPositive(MaterialDialog dialog) {
-                         handleProvisioning(dialog);
-                       }
+    final AlertDialog dialog = new AlertDialog.Builder(this)
+            .setTitle(R.string.DeviceProvisioningActivity_link_this_device)
+            .setIconAttribute(R.drawable.icon_dialog)
+            .setMessage(content)
+            .setPositiveButton(R.string.DeviceProvisioningActivity_continue, new DialogInterface.OnClickListener() {
+              @Override
+              public void onClick(DialogInterface dialog, int which) {
 
-                       @Override
-                       public void onNegative(MaterialDialog dialog) {
-                         dialog.dismiss();
-                         finish();
-                       }
-                     })
-                     .dismissListener(new OnDismissListener() {
-                       @Override
-                       public void onDismiss(DialogInterface dialog) {
-                         finish();
-                       }
-                     })
-                     .show();
+              }
+            })
+            .setNegativeButton(R.string.DeviceProvisioningActivity_cancel, new DialogInterface.OnClickListener() {
+              @Override
+              public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                finish();
+              }
+            })
+            .setOnDismissListener(new DialogInterface.OnDismissListener() {
+              @Override
+              public void onDismiss(DialogInterface dialog) {
+                finish();
+              }
+            })
+            .create();
+    dialog.show();
+    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        handleProvisioning(dialog);
+      }
+    });
   }
 
   private void initializeResources() {
     this.uri = getIntent().getData();
   }
 
-  private void handleProvisioning(final MaterialDialog dialog) {
+  private void handleProvisioning(final AlertDialog dialog) {
     new ProgressDialogAsyncTask<Void, Void, Integer>(this,
                                                      R.string.DeviceProvisioningActivity_content_progress_title,
                                                      R.string.DeviceProvisioningActivity_content_progress_content)

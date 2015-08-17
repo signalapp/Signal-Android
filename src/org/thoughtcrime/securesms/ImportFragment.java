@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -8,13 +7,12 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
-import com.afollestad.materialdialogs.AlertDialogWrapper;
 
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -82,7 +80,7 @@ public class ImportFragment extends Fragment {
   }
 
   private void handleImportSms() {
-    AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(getActivity());
+    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
     builder.setIconAttribute(R.attr.dialog_info_icon);
     builder.setTitle(getActivity().getString(R.string.ImportFragment_import_system_sms_database));
     builder.setMessage(getActivity().getString(R.string.ImportFragment_this_will_import_messages_from_the_system));
@@ -106,7 +104,7 @@ public class ImportFragment extends Fragment {
   }
 
   private void handleImportEncryptedBackup() {
-    AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(getActivity());
+    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
     builder.setIconAttribute(R.attr.dialog_alert_icon);
     builder.setTitle(getActivity().getString(R.string.ImportFragment_restore_encrypted_backup));
     builder.setMessage(getActivity().getString(R.string.ImportFragment_restoring_an_encrypted_backup_will_completely_replace_your_existing_keys));
@@ -121,7 +119,7 @@ public class ImportFragment extends Fragment {
   }
 
   private void handleImportPlaintextBackup() {
-    AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(getActivity());
+    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
     builder.setIconAttribute(R.attr.dialog_alert_icon);
     builder.setTitle(getActivity().getString(R.string.ImportFragment_import_plaintext_backup));
     builder.setMessage(getActivity().getString(R.string.ImportFragment_this_will_import_messages_from_a_plaintext_backup));
