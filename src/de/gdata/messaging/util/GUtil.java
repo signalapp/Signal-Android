@@ -341,4 +341,17 @@ public class GUtil {
       ProfileAccessor.savePartRowForUri(context, part.getDataUri().toString(), part.getPartId().getRowId());
     }
   }
+
+  public static String[] reverseOrder(String[] arrayUri) {
+    String array[] = arrayUri;
+    String temp;
+
+    for (int i = 0; i < arrayUri.length/2; i++)
+    {
+      temp = array[i];
+      array[i] = array[arrayUri.length-1 - i];
+      array[arrayUri.length-1 - i] = temp;
+    }
+    return array;
+  }
 }

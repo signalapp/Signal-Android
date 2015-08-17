@@ -206,6 +206,9 @@ public class GDataPreferences {
     for(int i=0;i<size;i++) {
       arrayUri[i] = mPreferences.getString(MEDIA_HISTORY + "_uri_" + recipientId + "_" + i, "");
     }
+    if(size > 0) {
+      arrayUri = GUtil.reverseOrder(arrayUri);
+    }
     return arrayUri;
   }
   public String[] getMediaTypeHistoryForId(long recipientId) {

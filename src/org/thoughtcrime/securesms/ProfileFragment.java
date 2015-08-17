@@ -363,7 +363,7 @@ public class ProfileFragment extends Fragment {
         }
         String[] mediaHistoryUris = gDataPreferences.getMediaUriHistoryForId(GUtil.numberToLong(recipient.getNumber()));
         for (int i = 0; i < mediaHistoryUris.length; i++) {
-            ImageSlide mediaHistorySlide = ProfileAccessor.getSlideForUri(getActivity(), masterSecret, mediaHistoryUris[i]);
+            Slide mediaHistorySlide = ProfileAccessor.getSlideForUri(getActivity(), masterSecret, mediaHistoryUris[i]);
             if (mediaHistorySlide != null && masterSecret != null && !(mediaHistorySlide.getUri() + "").equals("")) {
                 ThumbnailView historyMedia = new ThumbnailView(getActivity());
 
@@ -383,25 +383,47 @@ public class ProfileFragment extends Fragment {
             historyContentTextView.setVisibility(View.GONE);
         }
         for (int l = 0; l < ll.getChildCount(); l++) {
-            ((ThumbnailView) ll.getChildAt(l)).setOnClickListener(new View.OnClickListener() {
-                                                                      @Override
-                                                                      public void onClick(View view) {
-                                                                          Slide slide = ((ThumbnailView) view).getSlide();
-                                                                          if (slide !=null && MediaPreviewActivity.isContentTypeSupported(slide.getContentType())) {
-                                                                              Intent intent = new Intent(getActivity(), MediaPreviewActivity.class);
-                                                                              intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                                                                              intent.setDataAndType(slide.getUri(), slide.getContentType());
-                                                                              intent.putExtra(MediaPreviewActivity.MASTER_SECRET_EXTRA, masterSecret);
-                                                                              intent.putExtra(MediaPreviewActivity.RECIPIENT_EXTRA, recipient.getRecipientId());
-                                                                              intent.putExtra(MediaPreviewActivity.DATE_EXTRA, System.currentTimeMillis());
-                                                                              getActivity().startActivity(intent);
-                                                                          }
-                                                                      }
-                                                                  }
-            );
+            ((ThumbnailView) ll.getChildAt(l)).setOnClickListener(mediaOnClickListener);
         }
     }
-
+    View.OnClickListener mediaOnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            final Slide slide = ((ThumbnailView) view).getSlide();
+            if (slide != null && MediaPreviewActivity.isContentTypeSupported(slide.getContentType())) {
+                Intent intent = new Intent(getActivity(), MediaPreviewActivity.class);
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                intent.setDataAndType(slide.getUri(), slide.getContentType());
+                intent.putExtra(MediaPreviewActivity.MASTER_SECRET_EXTRA, masterSecret);
+                intent.putExtra(MediaPreviewActivity.RECIPIENT_EXTRA, recipient.getRecipientId());
+                intent.putExtra(MediaPreviewActivity.DATE_EXTRA, System.currentTimeMillis());
+                getActivity().startActivity(intent);
+            } else {
+                AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(getActivity());
+                builder.setTitle(R.string.ConversationItem_view_secure_media_question);
+                builder.setIconAttribute(R.attr.dialog_alert_icon);
+                builder.setCancelable(true);
+                builder.setMessage(R.string.ConversationItem_this_media_has_been_stored_in_an_encrypted_database_external_viewer_warning);
+                builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        fireIntent(slide);
+                    }
+                });
+                builder.setNegativeButton(R.string.no, null);
+                builder.show();
+            }
+        }
+    };
+    private void fireIntent(Slide slide) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        intent.setDataAndType(PartAuthority.getPublicPartUri(slide.getUri()), slide.getContentType());
+        try {
+            getActivity().startActivity(intent);
+        } catch (ActivityNotFoundException anfe) {
+            Log.w("GDATA", "MYLOG " + anfe.getMessage() + " - " + slide.getContentType());
+        }
+    }
     private void finishAndSave() {
         hasLeft = true;
         getActivity().finish();
@@ -461,6 +483,9 @@ public class ProfileFragment extends Fragment {
 
     @Override
     public void onResume() {
+        if(hasChanged) {
+            refreshLayout();
+        }
         super.onResume();
     }
 
@@ -479,7 +504,23 @@ public class ProfileFragment extends Fragment {
                 .getLongArrayExtra(RECIPIENTS_EXTRA), true);
         selectedContacts = new HashSet<Recipient>();
     }
+        @Override
+    public void onPause() {
+        super.onPause();
+        if (hasChanged && hasLeft) {
+            ProfileAccessor.sendProfileUpdateToAllContacts(getActivity(), masterSecret);
+            hasChanged = false;
+        }
+    }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (hasChanged) {
+            ProfileAccessor.sendProfileUpdateToAllContacts(getActivity(), masterSecret);
+            hasChanged = false;
+        }
+    }
     private class ThumbnailClickListener implements ThumbnailView.ThumbnailClickListener {
         private void fireIntent(Slide slide) {
             Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -524,24 +565,6 @@ public class ProfileFragment extends Fragment {
                     builder.show();
                 }
             }
-        }
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        if (hasChanged && hasLeft) {
-            ProfileAccessor.sendProfileUpdateToAllContacts(getActivity(), masterSecret);
-            hasChanged = false;
-        }
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (hasChanged) {
-            ProfileAccessor.sendProfileUpdateToAllContacts(getActivity(), masterSecret);
-            hasChanged = false;
         }
     }
 }
