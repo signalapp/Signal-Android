@@ -40,7 +40,7 @@
     <string name="tk_mail">sc-feedback@gdata.de</string>
     <string name="log_submit_activity__button_dont_submit">Don\'t submit</string>
     <string name="log_submit_activity__button_submit">Submit</string>
-    <string name="import_complete_dialog">SecureChat system database import is complete.</string>
+    <string name="import_complete_dialog">SMS Datenbank wurde importiert.</string>
     <string name="profile_status_label">Status</string>
     <string name="profile_number_label">Phone</string>
     <string name="profile_status_member">Member</string>
