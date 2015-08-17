@@ -112,6 +112,7 @@ public class ProfileFragment extends Fragment {
     private boolean hasLeft = false;
     private HorizontalScrollView historyScrollView;
     private TextView historyContentTextView;
+    private RelativeLayout historyLine;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -157,6 +158,7 @@ public class ProfileFragment extends Fragment {
         profilePhone.setText(profileId);
         profilePicture = (ThumbnailView) getView().findViewById(R.id.profile_picture);
         phoneCall = (ImageView) getView().findViewById(R.id.phone_call);
+        historyLine = (RelativeLayout) getView().findViewById(R.id.layout_history);
         recipient = recipients.getPrimaryRecipient();
         attachmentAdapter = new ProfileImageTypeSelectorAdapter(getActivity());
         scrollView = (ScrollView) getView().findViewById(R.id.scrollView);
@@ -196,6 +198,7 @@ public class ProfileFragment extends Fragment {
                 } else {
                     profilePicture.setImageResource(ProfileAccessor.getMyProfilePicture(getActivity()));
                 }
+                historyLine.setVisibility(View.GONE);
             } else {
                 imageText.setText(recipient.getName());
                 profilePicture.setImageBitmap(recipient.getContactPhoto());
